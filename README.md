@@ -5,16 +5,16 @@ Source for Sonic SatAM RPG, requires LÖVE v0.10.2
 Custom framework built on Love2D's lua game engine, uses Tiled for level editing.
 
 Primary concepts include:
-- EventHandler
+- EventHandler:
   Base class for all things, allows you to add/remove dynamic event handling functions
 
-- Scene
-  The logic which manages logic on the scale of a game level/map
+- Scene:
+  Manages logic on the scale of a game level/map
   
-- SceneNode
+- SceneNode:
   An object within the scene that will be created/updated within the scope of that scene
   
-- Action
+- Action:
   A multi-frame behavior that can be composed together to declaratively describe behavior beyond the current moment
   
 # Metadata Format
