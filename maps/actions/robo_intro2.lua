@@ -63,13 +63,16 @@ return function(scene)
 			scene.player.y = cambot.y
 		end),
 		
-		PlayAudio("music", "patrol", 1.0, true),
-		
 		Parallel {
 			Move(cambot, scene.objectLookup.IntroWaypoint1, "idle"),
 			Do(function()
 				scene.player.x = cambot.x
-			end)
+			end),
+			
+			Serial {
+				PlayAudio("music", "patrol", 0.0, true),
+				AudioFade("music", 0.0, 1.0, 0.5)
+			}
 		},
 		
 		Wait(1),
@@ -80,7 +83,7 @@ return function(scene)
 		
 		Parallel {
 			Ease(scene.player, "y", scene.player.y, 1, "inout"),
-			Wait(2)
+			Wait(3)
 		},
 	
 		Do(function()
@@ -159,7 +162,7 @@ return function(scene)
 		
 		Animate(partySprites.sally.sprite, "idledown"),
 		
-		Wait(1),
+		Wait(0.5),
 
 		Animate(partySprites.sally.sprite, "idleright"),
 		

@@ -64,7 +64,7 @@ local RunUpdate = function(self, dt)
 	
 	-- Orthogonal movement during run
 	if math.abs(self.fy) > math.abs(self.fx) then
-		if not self.cinematic and not love.keyboard.isDown("lshift") then
+		if (not self.cinematic and not love.keyboard.isDown("lshift")) or self.forcestop then
 			self.fy = self.fy + (self.fy > 0 and -SLOWDOWN_STOP_SPEED or SLOWDOWN_STOP_SPEED)
 			if self.fy >= -1 and self.fy <= 1 then
 				self.state = "idle"..(self:isFacing("down") and "down" or "up")
@@ -140,7 +140,7 @@ local RunUpdate = function(self, dt)
 			end
 		end
 	else
-		if not self.cinematic and not love.keyboard.isDown("lshift") then
+		if (not self.cinematic and not love.keyboard.isDown("lshift")) or self.forcestop then
 			self.fx = self.fx + (self.fx > 0 and -SLOWDOWN_STOP_SPEED or SLOWDOWN_STOP_SPEED)
 			if self.fx >= -1 and self.fx <= 1 then
 				self.state = "idle"..(self:isFacing("right") and "right" or "left")

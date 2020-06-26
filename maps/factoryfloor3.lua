@@ -70,18 +70,6 @@ return {
   },
   layers = {
     {
-      type = "imagelayer",
-      name = "bg",
-      visible = true,
-      opacity = 1,
-      offsetx = -224,
-      offsety = 192,
-      image = "../art/parallax/pipe2.PNG",
-      properties = {
-        ["movespeed"] = 1.1
-      }
-    },
-    {
       type = "tilelayer",
       name = "shadow",
       x = 0,

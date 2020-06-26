@@ -8,7 +8,7 @@ return {
   height = 79,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 494,
+  nextobjectid = 499,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter2f.png",
     ["onload"] = "actions/datacenter_floor4.lua",
@@ -43,28 +43,6 @@ return {
       tiles = {}
     },
     {
-      name = "mainframe",
-      firstgid = 3501,
-      filename = "mainframe.tsx",
-      tilewidth = 32,
-      tileheight = 32,
-      spacing = 0,
-      margin = 0,
-      tileoffset = {
-        x = 0,
-        y = 0
-      },
-      grid = {
-        orientation = "orthogonal",
-        width = 32,
-        height = 32
-      },
-      properties = {},
-      terrains = {},
-      tilecount = 0,
-      tiles = {}
-    },
-    {
       name = "datacenter_interior",
       firstgid = 3501,
       filename = "datacenter_interior.tsx",
@@ -88,6 +66,32 @@ return {
       properties = {},
       terrains = {},
       tilecount = 1190,
+      tiles = {}
+    },
+    {
+      name = "forest2",
+      firstgid = 4691,
+      filename = "forest2.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/greatforesttileset.png",
+      imagewidth = 2208,
+      imageheight = 2144,
+      transparentcolor = "#b326c3",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 4623,
       tiles = {}
     }
   },
@@ -133,16 +137,16 @@ return {
         1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
         1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1521, 1522, 1521, 1522, 1521, 1522, 1521, 1522, 1521, 1522, 1521, 1522, 1521, 1522, 1521, 1522, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
         1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1556, 1557, 1556, 1557, 1556, 1557, 1556, 1557, 1556, 1557, 1556, 1557, 1556, 1557, 1556, 1557, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
-        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1448, 1449, 1448, 1449, 1448, 1449, 1448, 1449, 1448, 1449, 1448, 1449, 1448, 1449, 1448, 1449, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
-        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1483, 1484, 1483, 1484, 1483, 1484, 1483, 1484, 1483, 1484, 1483, 1484, 1483, 1484, 1483, 1484, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
-        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1518, 1519, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1518, 1519, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
-        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1483, 1484, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1483, 1484, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
-        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1518, 1519, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1518, 1519, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
-        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1483, 1484, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1483, 1484, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
-        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1518, 1519, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1518, 1519, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
-        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1483, 1484, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1483, 1484, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
-        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1518, 1519, 1518, 1519, 1518, 1519, 1486, 1487, 1486, 1487, 1518, 1519, 1518, 1519, 1518, 1519, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
-        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1553, 1554, 1553, 1554, 1553, 1554, 1486, 1487, 1486, 1487, 1553, 1554, 1553, 1554, 1553, 1554, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
+        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1448, 1861, 2146, 2146, 2146, 2146, 2146, 2146, 2146, 2146, 2146, 2146, 2146, 2146, 1861, 1449, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
+        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1483, 1791, 2181, 2181, 2181, 2181, 2181, 2181, 2181, 2181, 2181, 2181, 2181, 2181, 1791, 1484, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
+        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1518, 1826, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1826, 1519, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
+        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1483, 1861, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1861, 1484, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
+        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1518, 1791, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1791, 1519, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
+        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1483, 1826, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1826, 1484, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
+        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1518, 1861, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1861, 1519, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
+        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1483, 1791, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1791, 1484, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
+        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1518, 1826, 1518, 1519, 1518, 1519, 1486, 1487, 1486, 1487, 1518, 1519, 1518, 1519, 1826, 1519, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
+        1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1553, 1861, 1655, 1656, 1655, 1656, 1486, 1487, 1486, 1487, 1655, 1656, 1655, 1656, 1861, 1554, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
         1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1830, 1830, 1830, 1830, 1830, 1830, 1830, 1830, 1830, 1830, 1830, 1830, 1830, 1830, 1830, 1830, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
         1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1864, 1865, 1865, 1865, 1865, 1865, 1865, 1865, 1865, 1865, 1865, 1865, 1865, 1865, 1865, 1866, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
         1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1871, 1872, 1871, 1872, 1871, 1872, 1486, 1487, 1486, 1487, 1871, 1872, 1871, 1872, 1871, 1872, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487, 1486, 1487,
@@ -185,6 +189,37 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "conveyor",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 498,
+          name = "ConveyorBelt1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 0,
+          y = 1920,
+          width = 1600,
+          height = 64,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "right",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/conveyorbelt.png"
+          }
+        }
       }
     },
     {
@@ -236,7 +271,7 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2442, 2442, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2442, 2442, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2442, 2442, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2442, 2442, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2442, 2442, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2442, 2442, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2442, 2442, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2442, 2442, 2442, 2442, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2442, 2442, 1655, 1656, 1655, 1656, 0, 0, 0, 0, 1655, 1656, 1655, 1656, 2442, 2442, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2442, 2442, 2442, 2442, 2442, 2442, 1342, 1343, 1343, 1344, 2442, 2442, 2442, 2442, 2442, 2442, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1342, 1343, 1343, 1344, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1342, 1343, 1343, 1344, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -280,6 +315,38 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "computerobject",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 497,
+          name = "Computer1",
+          type = "Computer",
+          shape = "rectangle",
+          x = 704,
+          y = 1152,
+          width = 128,
+          height = 32,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -32,
+            ["scanAction"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Repeat = require \"actions/Repeat\"\nlocal Ease = require \"actions/Ease\"\nlocal Move = require \"actions/Move\"\nlocal YieldUntil = require \"actions/YieldUntil\"\nlocal Executor = require \"actions/Executor\"\n\nlocal SpriteNode = require \"object/SpriteNode\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    GameState:setFlag(self)\n    self.scene.player.cinematic = true\n\n    self.scene.bgColor = {255,255,255,255}\n    ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n\n    -- Setup beam sprite\n    self.beamSprite = SpriteNode(self.scene, Transform(), nil, \"botbeam\", nil, nil, \"ui\")\n    self.beamSprite.transform.sx = 0\n    self.beamSprite.transform.sy = 1\n    self.beamSprite.transform.ox = 0\n\n    local walkout, walkin, sprites = self.scene.player:split()\n    sprites.sonic.x = sprites.sonic.x - 50\n    sprites.sally.x = sprites.sally.x - 50\n    sprites.antoine.x = sprites.antoine.x - 50\n\n    local origY = self.scene.player.y\n\n    local rover = self.scene.objectLookup.Rover1\n    rover.sprite.visible = false\n\n    local deatheggbg = SpriteNode(self.scene, Transform(0,0,2,2), nil, \"parallax/robotropolis\", nil, nil, \"ui\")\n    deatheggbg.visible = false\n\n    return Serial {\n        Parallel {\n            AudioFade(\"music\", 1.0, 0.0, 2),\n            Serial {\n                Animate(self.scene.player.sprite, \"pose\"),\n                MessageBox { message = \"Sally: This is it! {p50}Time to overload this sucker!\", blocking = true},\n                Animate(self.scene.player.sprite, \"nicholeup\")\n            }\n        },\n        Wait(1),\n        -- wall comes down boom boom boom\n        walkout,\n        Animate(sprites.sally.sprite, \"idleup\"),\n        Animate(sprites.sonic.sprite, \"idleup\"),\n        Animate(sprites.antoine.sprite, \"idleup\"),\n        MessageBox { message = \"Sonic: ...Uhhh...{p50} is this what overloading looks like?\", blocking = true},\n        MessageBox { message = \"Sally: No.{p50} Something's wrong.\", blocking = true},\n\n        Parallel {\n            Repeat(Serial {\n                PlayAudio(\"sfx\", \"alert\", 1.0, true),\n                Parallel {\n                    Serial {\n                        Ease(self.scene.bgColor, 1, 510, 5, \"quad\"),\n                        Ease(self.scene.bgColor, 1, 255, 5, \"quad\")\n                    },\n                    Do(function() \n                        ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n                    end)\n                }\n            }, 20),\n            Serial {\n                Wait(1),\n                Animate(sprites.sally.sprite, \"shock\"),\n                Animate(sprites.sonic.sprite, \"shock\"),\n                Animate(sprites.antoine.sprite, \"shock\"),\n\n                Wait(0.6),\n                \n                Animate(sprites.sonic.sprite, \"idledown\"),\n                Animate(sprites.sally.sprite, \"idleright\"),\n                Animate(sprites.antoine.sprite, \"idleleft\"),\n                MessageBox {message=\"Sonic: This place is about to be swaming with swatbutts!\", blocking = true},\n                Do(function()\n                    self.scene.player.cinematic = true\n                end),\n                walkin,\n                \n                Do(function()\n                    GameState.leader = \"sonic\"\n                    self.scene.player:updateSprite()\n                    self.scene.player.x = self.scene.player.x + 50\n                    self.scene.player.y = self.scene.player.y + 50\n                    self.scene.player.cinematic = true\n                    self.scene.player.chargeSpeed = 3\n                    self.scene.player.state = \"idledown\"\n                    self.scene.player:onSpecialMove()\n                    -- Create collision wall on bridge\n                    for x=21,28 do\n                        self.scene.map.collisionMap[59][x] = true\n                    end\n                end),\n\n                PlayAudio(\"music\", \"escapefanfare\", 1.0, true),\n                Parallel {\n                    MessageBox {message=\"Sonic: Let's juice!\", closeAction=Wait(2)},\n                    Serial {\n                        Do(function()\n                            rover.x = self.scene.objectLookup.Exit1.x\n                            rover.y = self.scene:getMapHeight()\n                            rover.sprite:setAnimation(\"idleup\")\n                            rover.sprite.visible = true\n                        end),\n                \n                        Ease(rover, \"y\",\n                            function()\n                                local _x, y = self.scene:collisionCoordToWorldCoord(0, 57)\n                                return y\n                            end, 0.5, \"linear\")\n                        }\n                },\n\n                PlayAudio(\"music\", \"trouble\", 1.0, true),\n                Do(function()\n                    self.scene.player.sprite:setAnimation(\"idledown\")\n                    self.scene.player.cinematic = true\n                end),\n                MessageBox {message=\"Sonic: Uh oh!\", blocking = true},\n                \n                Do(function()\n                    local walkout2, walkin2, sprites2 = self.scene.player:split()\n                    sprites2.sonic.x = sprites2.sonic.x - 50\n                    sprites2.sally.x = sprites2.sally.x - 50\n                    sprites2.antoine.x = sprites2.antoine.x - 50\n                    self.scene:run {\n                        walkout2,\n                        Do(function()\n                            sprites2.sonic.sprite:setAnimation(\"stepback\")\n                            sprites2.sally.sprite:setAnimation(\"stepback\")\n                            sprites2.antoine.sprite:setAnimation(\"stepback\")\n                        end),\n                        Parallel {\n                            Serial {\n                                Ease(sprites2.sonic, \"y\", function() return sprites2.sonic.y - 50 end, 0.2, \"linear\"),\n                                Do(function()\n                                    sprites2.sonic.sprite:setAnimation(\"idledown\")\n                                end)\n                            },\n                            Serial {\n                                Ease(sprites2.antoine, \"y\", function() return sprites2.antoine.y - 50 end, 0.2, \"linear\"),\n                                Do(function()\n                                    sprites2.antoine.sprite:setAnimation(\"idledown\")\n                                end)\n                            },\n                            Ease(rover, \"y\", function() return rover.y - 70 end, 0.3, \"linear\"),\n                            Serial {\n                                Ease(sprites2.sally, \"y\", function() return sprites2.sally.y - 25 end, 0.5, \"linear\"),\n                                Do(function() sprites2.sally.sprite:setAnimation(\"idleright\") end),\n                                MessageBox {message=\"Sally: The conveyor belt!\", blocking = true}\n                            }\n                        },\n                        MessageBox {message=\"Sonic: Let's do it!\", blocking = true},\n                        Do(function()\n                            sprites2.sonic.sprite:setAnimation(\"crouchright\")\n                            sprites2.sally.sprite:setAnimation(\"crouchright\")\n                        end),\n                        MessageBox {message=\"Antoine: I-I-I'm not being so sure!\", blocking = true},\n                        Wait(0.5),\n                        Do(function()\n                            sprites2.sonic.sprite:setAnimation(\"jumpright\")\n                            sprites2.sally.sprite:setAnimation(\"jumpright\")\n                        end),\n                        Parallel {\n                            Ease(sprites2.sonic, \"x\", function() return sprites2.sonic.x + 100 end, 5, \"linear\"),\n                            Ease(sprites2.sonic, \"y\", function() return sprites2.sonic.y - 50 end, 5, \"linear\"),\n                            Ease(sprites2.sally, \"x\", function() return sprites2.sally.x + 100 end, 5, \"linear\"),\n                            Ease(sprites2.sally, \"y\", function() return sprites2.sally.y - 50 end, 5, \"linear\")\n                        },\n                        Parallel {\n                            Ease(sprites2.sonic, \"x\", function() return sprites2.sonic.x + 100 end, 5, \"linear\"),\n                            Ease(sprites2.sonic, \"y\", function() return sprites2.sonic.y + 150 end, 5, \"linear\"),\n                            Ease(sprites2.sally, \"x\", function() return sprites2.sally.x + 100 end, 5, \"linear\"),\n                            Ease(sprites2.sally, \"y\", function() return sprites2.sally.y + 150 end, 5, \"linear\")\n                        },\n                        Do(function()\n                            sprites2.sonic.sprite:setAnimation(\"crouchright\")\n                            sprites2.sally.sprite:setAnimation(\"crouchright\")\n                        end),\n                        Wait(0.5),\n                        Do(function()\n                            sprites2.sonic.sprite:setAnimation(\"idleleft\")\n                            sprites2.sally.sprite:setAnimation(\"idleleft\")\n                        end),\n                        Ease(rover, \"y\", function() return sprites2.antoine.y - 80 end, 1, \"linear\"),\n                        Do(function() rover.sprite:setAnimation(\"idleright\") end),\n                        Wait(0.2),\n                        Do(function()\n                            rover.sprite:setAnimation(\"upright\")\n                            sprites2.antoine.sprite:setAnimation(\"shock\")\n                        end),\n                        MessageBox {message=\"Antoine: Help!!\", blocking = true},\n                        MessageBox {message=\"Sonic: I'm comin' Ant!\", blocking = true},\n                        Animate(function()\n                            local xform = Transform.from(rover.sprite.transform)\n                            xform.x = xform.x + rover.sprite.w*2 - 80\n	        xform.y = xform.y + rover.sprite.h\n                            return SpriteNode(self.scene, xform, nil, \"beamfire\", nil, nil, \"ui\"), true\n                        end, \"idle\"),\n                        PlayAudio(\"sfx\", \"laser\", 1.0, true),\n                        Do(function()\n                            self.beamSprite.transform.x = rover.sprite.transform.x + rover.sprite.w*2 - 80 + self.beamSprite.w\n                            self.beamSprite.transform.y = rover.sprite.transform.y + rover.sprite.h + self.beamSprite.h*2\n                            self.beamSprite.transform.ox = 0\n                            local x1, y1 = self.beamSprite.transform.x, self.beamSprite.transform.y\n                            local x2, y2 = sprites2.sonic.sprite.transform.x, sprites2.sally.sprite.transform.y\n                            local dx = (x2 - x1)\n                            local dy = (y2 - y1)\n                            local dot = dx * dx\n                            local m1 = math.sqrt(dx*dx + dy*dy)\n                            local m2 = dx\n                            local angle = math.acos(dot / (m1 * m2))\n                            if self.beamSprite.transform.y > sprites2.sally.sprite.transform.y then\n                                self.beamSprite.transform.angle = -angle\n                            else\n                                self.beamSprite.transform.angle = angle\n                            end\n                            self.xDist = dx\n                            self.yDist = dy\n                            self.len = m1/self.beamSprite.w	\n                        end),\n                        -- Beam stretch to target and recede\n                        Ease(self.beamSprite.transform, \"sx\", function() return self.len end, 8),\n                        Do(function()\n                            self.beamSprite.transform.ox = self.beamSprite.w\n                            self.beamSprite.transform.x = self.beamSprite.transform.x + self.xDist\n                            self.beamSprite.transform.y = self.beamSprite.transform.y + self.yDist\n                        end),\n                        Ease(self.beamSprite.transform, \"sx\", 0, 8),\n                        Do(function()\n                            self.scene.audio:stopMusic()\n                            sprites2.sonic.sprite:setAnimation(\"shock\")\n                            sprites2.sally.sprite:setAnimation(\"shock\")\n                        end),\n                        Parallel {\n                            Ease(sprites2.sonic, \"x\", function() return sprites2.sonic.x + 50 end, 1, \"linear\"),\n                            Ease(sprites2.sonic, \"y\", function() return sprites2.sonic.y - 100 end, 1, \"log\"),\n                            Ease(sprites2.sally, \"x\", function() return sprites2.sally.x + 50 end, 1, \"linear\"),\n                            Ease(sprites2.sally, \"y\", function() return sprites2.sally.y - 100 end, 1, \"log\")\n                        },\n                        Parallel {\n                            Ease(sprites2.sonic, \"x\", function() return sprites2.sonic.x + 100 end, 2, \"linear\"),\n                            Ease(sprites2.sonic, \"y\", function() return 2000 end, 2, \"linear\"),\n                            Ease(sprites2.sally, \"x\", function() return sprites2.sally.x + 100 end, 2, \"linear\"),\n                            Ease(sprites2.sally, \"y\", function() return 2000 end, 2, \"linear\")\n                        },\n                        Wait(1),\n                        MessageBox {message=\"Rover: zzz. {p25}Freedom fighter captured. {p25}Hedgehog and princess exterminated. {p25}zzzz.\", blocking = true, textSpeed = 4},\n                        Do(function()\n                            sprites2.antoine.sprite:setAnimation(\"idleright\")\n                        end),\n                        PlayAudio(\"music\", \"dead\", 1.0, true),\n                        MessageBox {message=\"Antoine: Sonic... {p25}Sally...{p50} I have failed you...\", blocking = true, closeAction = Wait(1.5), textSpeed = 2},\n                        Do(function()\n                            self.scene.rovercinematicover = true\n                        end),\n                    }\n                end),\n                YieldUntil(function() return self.scene.rovercinematicover end),\n                Wait(0.5),\n                Parallel {\n                    Ease(self.scene.bgColor, 1, 0, 0.2, \"linear\"),\n                    Ease(self.scene.bgColor, 2, 0, 0.2, \"linear\"),\n                    Ease(self.scene.bgColor, 3, 0, 0.2, \"linear\"),\n                    Do(function()\n                        ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n                    end)\n                },\n                Do(function()\n                    deatheggbg.visible = true\n                    deatheggbg.transform.sx = 3\n                    deatheggbg.transform.sy = 3\n                end),\n                Parallel {\n                    Ease(self.scene.bgColor, 1, 255, 0.5, \"linear\"),\n                    Ease(self.scene.bgColor, 2, 255, 0.5, \"linear\"),\n                    Ease(self.scene.bgColor, 3, 255, 0.5, \"linear\"),\n                    Do(function()\n                        ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n                    end),\n                    Serial {\n                        Wait(1),\n                        PlayAudio(\"music\", \"deatheggtransition\", 0.0, true),\n                        Parallel {\n                            AudioFade(\"music\", 0.0, 1.0, 1),\n                            Ease(deatheggbg.transform, \"x\", -1100, 0.2, \"inout\"),\n                            Ease(deatheggbg.transform, \"sx\", 2, 0.2, \"linear\"),\n                            Ease(deatheggbg.transform, \"sy\", 2, 0.2, \"linear\")\n                        }\n                    }\n                },\n                Wait(2),\n                Parallel {\n                    Ease(self.scene.bgColor, 1, 0, 0.3, \"linear\"),\n                    Ease(self.scene.bgColor, 2, 0, 0.3, \"linear\"),\n                    Ease(self.scene.bgColor, 3, 0, 0.3, \"linear\"),\n                    Do(function()\n                        ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n                    end)\n                },\n                Do(function()\n                    self.scene.sceneMgr:switchScene {\n                        class = \"BasicScene\",\n                        mapName = \"maps/robotnikwarroom.lua\",\n                        map = self.scene.maps[\"maps/robotnikwarroom.lua\"],\n                        maps = self.scene.maps,\n                        region = self.scene.region,\n                        fadeInSpeed = 0.3,\n                        images = self.scene.images,\n                        animations = self.scene.animations,\n                        audio = self.scene.audio,\n                        doingSpecialMove = false,\n                        cache = true\n                    }\n                end)\n            }\n        }\n    }\nend",
+            ["specialHint"] = "sally",
+            ["sprite"] = "../art/sprites/computer.png"
+          }
+        }
       }
     },
     {
@@ -337,19 +404,19 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 506, 0, 0, 0, 0, 507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 541, 0, 0, 0, 0, 542, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 471, 0, 0, 0, 0, 472, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 506, 0, 0, 0, 0, 507, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
-        2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 541, 0, 0, 0, 0, 542, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
-        2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 471, 0, 0, 0, 0, 472, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
-        2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 506, 0, 0, 0, 0, 507, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
-        2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 541, 0, 0, 0, 0, 542, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
-        2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 471, 0, 0, 0, 0, 472, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
-        2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 506, 0, 0, 0, 0, 507, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
-        2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 541, 0, 0, 0, 0, 542, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
-        2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 471, 0, 0, 0, 0, 542, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
-        2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 506, 0, 0, 0, 0, 507, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
-        2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 541, 0, 0, 0, 0, 542, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
-        2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 471, 0, 0, 0, 0, 472, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
-        2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 506, 0, 0, 0, 0, 507, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 506, 0, 0, 0, 0, 507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 541, 0, 0, 0, 0, 542, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 471, 0, 0, 0, 0, 472, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 506, 0, 0, 0, 0, 507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 541, 0, 0, 0, 0, 542, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 471, 0, 0, 0, 0, 472, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 506, 0, 0, 0, 0, 507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 541, 0, 0, 0, 0, 542, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 471, 0, 0, 0, 0, 542, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 506, 0, 0, 0, 0, 507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 541, 0, 0, 0, 0, 542, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 471, 0, 0, 0, 0, 472, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 506, 0, 0, 0, 0, 507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 541, 0, 0, 0, 0, 542, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
         2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 471, 0, 0, 0, 0, 472, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
         2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 506, 0, 0, 0, 0, 507, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443, 2443,
@@ -408,26 +475,6 @@ return {
           }
         },
         {
-          id = 492,
-          name = "Computer1",
-          type = "Computer",
-          shape = "rectangle",
-          x = 704,
-          y = 1152,
-          width = 128,
-          height = 32,
-          rotation = 0,
-          gid = 2311,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -32,
-            ["scanAction"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Repeat = require \"actions/Repeat\"\nlocal Ease = require \"actions/Ease\"\nlocal Move = require \"actions/Move\"\nlocal YieldUntil = require \"actions/YieldUntil\"\nlocal Executor = require \"actions/Executor\"\n\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    GameState:setFlag(self)\n    self.scene.player.cinematic = true\n\n    self.scene.bgColor = {255,255,255,255}\n    ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n\n    local walkout, walkin, sprites = self.scene.player:split()\n    sprites.sonic.x = sprites.sonic.x - 50\n    sprites.sally.x = sprites.sally.x - 50\n    sprites.antoine.x = sprites.antoine.x - 50\n\n    local origY = self.scene.player.y\n    local rover = self.scene.objectLookup.Rover1\n    rover.sprite.visible = false\n\n    return Serial {\n        Parallel {\n            AudioFade(\"music\", 1.0, 0.0, 2),\n            Serial {\n                Animate(self.scene.player.sprite, \"pose\"),\n                MessageBox { message = \"Sally: This is it! {p50}Time to overload this sucker!\", blocking = true},\n                Animate(self.scene.player.sprite, \"nicholeup\")\n            }\n        },\n        Wait(1),\n        -- wall comes down boom boom boom\n        walkout,\n        Animate(sprites.sally.sprite, \"idleup\"),\n        Animate(sprites.sonic.sprite, \"idleup\"),\n        Animate(sprites.antoine.sprite, \"idleup\"),\n        MessageBox { message = \"Sonic: ...Uhhh...{p50} is this what overloading looks like?\", blocking = true},\n        MessageBox { message = \"Sally: No.{p50} Something's wrong.\", blocking = true},\n\n        Parallel {\n            Repeat(Serial {\n                PlayAudio(\"sfx\", \"alert\", 1.0, true),\n                Parallel {\n                    Serial {\n                        Ease(self.scene.bgColor, 1, 510, 5, \"quad\"),\n                        Ease(self.scene.bgColor, 1, 255, 5, \"quad\")\n                    },\n                    Do(function() \n                        ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n                    end)\n                }\n            }, 20),\n            Serial {\n                Wait(1),\n                Animate(sprites.sally.sprite, \"shock\"),\n                Animate(sprites.sonic.sprite, \"shock\"),\n                Animate(sprites.antoine.sprite, \"shock\"),\n                PlayAudio(\"music\", \"robotrouble\", 1.0, true),\n                Wait(1),\n                Do(function()\n                    rover.x = self.scene.objectLookup.Exit1.x\n                    rover.y = self.scene:getMapHeight()\n                    rover.sprite:setAnimation(\"idleup\")\n                    rover.sprite.visible = true\n                end),\n                Ease(self.scene.player, \"y\", self.scene:getMapHeight() - love.graphics.getHeight(), 1, \"linear\"),\n                Ease(rover, \"y\", function() return self.scene.player.y end, 0.5, \"linear\"),\n                Wait(2),\n                Parallel {\n                    Ease(self.scene.player, \"y\", origY, 0.5, \"inout\"),\n                    Do(function()\n                        rover.y = self.scene.player.y\n                    end)\n                },\n                Do(function()\n                    local afterBattle\n                    afterBattle = function()\n                            GameState:setFlag(\"rover_boss\")\n                            GameState.leader = \"sonic\"\n                            self.scene.player:updateSprite()\n                            self.scene.player.sprite.visible = false\n                            self.scene.audio:stopMusic()\n                            self.scene.audio:stopSfx()\n                            self.scene.player.cinematic = true\n                            Executor(self.scene):act(\n                                Serial {\n                                    Animate(sprites.sonic.sprite, \"idledown\"),\n                                    Animate(sprites.sally.sprite, \"idleright\"),\n                                    Animate(sprites.antoine.sprite, \"idleleft\"),\n                                    Wait(1),\n                                    MessageBox {message=\"Sonic: We gotta juice! {p50}This place is about to be swaming with swatbutts!\", blocking = true},\n                                    Do(function()\n                                        self.scene.player.cinematic = true\n                                    end),\n                                    walkin,\n                                    PlayAudio(\"music\", \"escapefanfare\", 1.0, true),\n\n                                    Do(function()\n                                        self.scene.player.x = self.scene.player.x + 50\n                                        self.scene.player.y = self.scene.player.y + 50\n                                        self.scene.player.cinematic = true\n                                        self.scene.player.ignoreSpecialMoveCollision = true\n                                        self.scene.player.chargeSpeed = 3\n                                        self.scene.player.state = \"idledown\"\n                                        self.scene.player:onSpecialMove()\n                                        self.scene:removeHandler(\"enter\", afterBattle)\n                                    end),\n                                    YieldUntil(function() return self.scene.player.y > self.scene:getMapHeight() end),\n                                    Wait(1),\n                                    Parallel {\n                                        Ease(self.scene.bgColor, 1, 0, 0.3, \"inout\"),\n                                        Ease(self.scene.bgColor, 2, 0, 0.3, \"inout\"),\n                                        Ease(self.scene.bgColor, 3, 0, 0.3, \"inout\"),\n                                        Do(function() \n                                            ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n                                        end)\n                                    },\n                                    Do(function()\n                                        self.scene.sceneMgr:switchScene {\n                                            class = \"BasicScene\",\n                                            mapName = \"maps/roboterminal.lua\",\n                                            map = self.scene.maps[\"maps/roboterminal.lua\"],\n                                            maps = self.scene.maps,\n                                            region = self.scene.region,\n                                            fadeInSpeed = 0.3,\n                                            spawn_point = \"Door\",\n                                            spawn_point_offset = Transform(150,0),\n                                            images = self.scene.images,\n                                            animations = self.scene.animations,\n                                            audio = self.scene.audio,\n                                            doingSpecialMove = false,\n                                            cache = true\n                                        }\n                                    end)\n                                }\n                            )\n                    end\n                    self.scene:addHandler(\"enter\", afterBattle)\n                    rover:messageBox() -- enter battle\n                end)\n            }\n        }\n    }\nend",
-            ["specialHint"] = "sally",
-            ["sprite"] = "../art/sprites/computer.png"
-          }
-        },
-        {
           id = 493,
           name = "Rover1",
           type = "Swatbot",
@@ -440,14 +487,10 @@ return {
           gid = 37,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/rover.lua",
-            ["battleOnCollide"] = true,
-            ["boss"] = true,
             ["defaultAnim"] = "crouched",
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
             ["ignorePlayer"] = true,
             ["noInvestigate"] = true,
+            ["nocollision"] = true,
             ["sprite"] = "../art/sprites/rover.png"
           }
         }

@@ -7,12 +7,6 @@
  </properties>
  <tileset firstgid="1" source="datacenter_interior.tsx"/>
  <tileset firstgid="1191" source="robotropolis.tsx"/>
- <imagelayer name="bg" offsetx="-224" offsety="192">
-  <image source="../art/parallax/pipe2.PNG" width="1730" height="1497"/>
-  <properties>
-   <property name="movespeed" type="float" value="1.1"/>
-  </properties>
- </imagelayer>
  <layer name="shadow" width="31" height="60">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

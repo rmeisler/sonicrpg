@@ -90,6 +90,24 @@ return {
 			speed = 0.08
 		},
 		
+		stepback = {
+		    frames = {{0,2},{1,2},{0,2},{5,2}},
+			speed = 0.5
+		},
+		
+		crouchleft = {
+		    frames = {{13,6}}
+		},
+		crouchright = {
+		    frames = {{14,6}}
+		},
+		jumpleft = {
+		    frames = {{15,6}}
+		},
+		jumpright = {
+		    frames = {{16,6}}
+		},
+		
 		chargeright = {
 			frames = {{13,0},{15,0},{15,0},{15,0},{15,0},{15,0}},
 			speed = 0.2

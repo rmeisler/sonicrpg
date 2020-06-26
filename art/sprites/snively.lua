@@ -21,8 +21,11 @@ return {
 			speed = 0.5
 		},
 		
-		crouchleft = {
-		    frames = {{13,6}}
+		computerup = {
+		    frames = {{2,4}}
+		},
+		smiledown = {
+		    frames = {{1,4}}
 		},
 		crouchright = {
 		    frames = {{14,6}}

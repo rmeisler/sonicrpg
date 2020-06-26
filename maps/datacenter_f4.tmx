@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="79" tilewidth="32" tileheight="32" infinite="0" nextobjectid="494">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="79" tilewidth="32" tileheight="32" infinite="0" nextobjectid="499">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter2f.png"/>
   <property name="onload" type="file" value="actions/datacenter_floor4.lua"/>
@@ -7,7 +7,6 @@
   <property name="sectorName" value="Data Center"/>
  </properties>
  <tileset firstgid="1" source="robotropolis.tsx"/>
- <tileset firstgid="3501" source="mainframe.tsx"/>
  <tileset firstgid="3501" source="datacenter_interior.tsx"/>
  <tileset firstgid="4691" source="forest2.tsx"/>
  <layer name="abyss" width="50" height="79">
@@ -93,6 +92,16 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="conveyor">
+  <object id="498" name="ConveyorBelt1" type="BasicNPC" gid="37" x="0" y="1920" width="1600" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="right"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/conveyorbelt.png"/>
+   </properties>
+  </object>
+ </objectgroup>
  <layer name="floor" width="50" height="79">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -176,6 +185,347 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="computerobject">
+  <object id="497" name="Computer1" type="Computer" gid="2311" x="704" y="1152" width="128" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="int" value="-32"/>
+    <property name="scanAction">local MessageBox = require &quot;actions/MessageBox&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Do = require &quot;actions/Do&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Repeat = require &quot;actions/Repeat&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Move = require &quot;actions/Move&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
+local Executor = require &quot;actions/Executor&quot;
+
+local SpriteNode = require &quot;object/SpriteNode&quot;
+local Transform = require &quot;util/Transform&quot;
+
+return function(self)
+    GameState:setFlag(self)
+    self.scene.player.cinematic = true
+
+    self.scene.bgColor = {255,255,255,255}
+    ScreenShader:sendColor(&quot;multColor&quot;, self.scene.bgColor)
+
+    -- Setup beam sprite
+    self.beamSprite = SpriteNode(self.scene, Transform(), nil, &quot;botbeam&quot;, nil, nil, &quot;ui&quot;)
+    self.beamSprite.transform.sx = 0
+    self.beamSprite.transform.sy = 1
+    self.beamSprite.transform.ox = 0
+
+    local walkout, walkin, sprites = self.scene.player:split()
+    sprites.sonic.x = sprites.sonic.x - 50
+    sprites.sally.x = sprites.sally.x - 50
+    sprites.antoine.x = sprites.antoine.x - 50
+
+    local origY = self.scene.player.y
+
+    local rover = self.scene.objectLookup.Rover1
+    rover.sprite.visible = false
+
+    local deatheggbg = SpriteNode(self.scene, Transform(0,0,2,2), nil, &quot;parallax/robotropolis&quot;, nil, nil, &quot;ui&quot;)
+    deatheggbg.visible = false
+
+    return Serial {
+        Parallel {
+            AudioFade(&quot;music&quot;, 1.0, 0.0, 2),
+            Serial {
+                Animate(self.scene.player.sprite, &quot;pose&quot;),
+                MessageBox { message = &quot;Sally: This is it! {p50}Time to overload this sucker!&quot;, blocking = true},
+                Animate(self.scene.player.sprite, &quot;nicholeup&quot;)
+            }
+        },
+        Wait(1),
+        -- wall comes down boom boom boom
+        walkout,
+        Animate(sprites.sally.sprite, &quot;idleup&quot;),
+        Animate(sprites.sonic.sprite, &quot;idleup&quot;),
+        Animate(sprites.antoine.sprite, &quot;idleup&quot;),
+        MessageBox { message = &quot;Sonic: ...Uhhh...{p50} is this what overloading looks like?&quot;, blocking = true},
+        MessageBox { message = &quot;Sally: No.{p50} Something's wrong.&quot;, blocking = true},
+
+        Parallel {
+            Repeat(Serial {
+                PlayAudio(&quot;sfx&quot;, &quot;alert&quot;, 1.0, true),
+                Parallel {
+                    Serial {
+                        Ease(self.scene.bgColor, 1, 510, 5, &quot;quad&quot;),
+                        Ease(self.scene.bgColor, 1, 255, 5, &quot;quad&quot;)
+                    },
+                    Do(function() 
+                        ScreenShader:sendColor(&quot;multColor&quot;, self.scene.bgColor)
+                    end)
+                }
+            }, 20),
+            Serial {
+                Wait(1),
+                Animate(sprites.sally.sprite, &quot;shock&quot;),
+                Animate(sprites.sonic.sprite, &quot;shock&quot;),
+                Animate(sprites.antoine.sprite, &quot;shock&quot;),
+
+                Wait(0.6),
+                
+                Animate(sprites.sonic.sprite, &quot;idledown&quot;),
+                Animate(sprites.sally.sprite, &quot;idleright&quot;),
+                Animate(sprites.antoine.sprite, &quot;idleleft&quot;),
+                MessageBox {message=&quot;Sonic: This place is about to be swaming with swatbutts!&quot;, blocking = true},
+                Do(function()
+                    self.scene.player.cinematic = true
+                end),
+                walkin,
+                
+                Do(function()
+                    GameState.leader = &quot;sonic&quot;
+                    self.scene.player:updateSprite()
+                    self.scene.player.x = self.scene.player.x + 50
+                    self.scene.player.y = self.scene.player.y + 50
+                    self.scene.player.cinematic = true
+                    self.scene.player.chargeSpeed = 3
+                    self.scene.player.state = &quot;idledown&quot;
+                    self.scene.player:onSpecialMove()
+                    -- Create collision wall on bridge
+                    for x=21,28 do
+                        self.scene.map.collisionMap[59][x] = true
+                    end
+                end),
+
+                PlayAudio(&quot;music&quot;, &quot;escapefanfare&quot;, 1.0, true),
+                Parallel {
+                    MessageBox {message=&quot;Sonic: Let's juice!&quot;, closeAction=Wait(2)},
+                    Serial {
+                        Do(function()
+                            rover.x = self.scene.objectLookup.Exit1.x
+                            rover.y = self.scene:getMapHeight()
+                            rover.sprite:setAnimation(&quot;idleup&quot;)
+                            rover.sprite.visible = true
+                        end),
+                
+                        Ease(rover, &quot;y&quot;,
+                            function()
+                                local _x, y = self.scene:collisionCoordToWorldCoord(0, 57)
+                                return y
+                            end, 0.5, &quot;linear&quot;)
+                        }
+                },
+
+                PlayAudio(&quot;music&quot;, &quot;trouble&quot;, 1.0, true),
+                Do(function()
+                    self.scene.player.sprite:setAnimation(&quot;idledown&quot;)
+                    self.scene.player.cinematic = true
+                end),
+                MessageBox {message=&quot;Sonic: Uh oh!&quot;, blocking = true},
+                
+                Do(function()
+                    local walkout2, walkin2, sprites2 = self.scene.player:split()
+                    sprites2.sonic.x = sprites2.sonic.x - 50
+                    sprites2.sally.x = sprites2.sally.x - 50
+                    sprites2.antoine.x = sprites2.antoine.x - 50
+                    self.scene:run {
+                        walkout2,
+                        Do(function()
+                            sprites2.sonic.sprite:setAnimation(&quot;stepback&quot;)
+                            sprites2.sally.sprite:setAnimation(&quot;stepback&quot;)
+                            sprites2.antoine.sprite:setAnimation(&quot;stepback&quot;)
+                        end),
+                        Parallel {
+                            Serial {
+                                Ease(sprites2.sonic, &quot;y&quot;, function() return sprites2.sonic.y - 50 end, 0.2, &quot;linear&quot;),
+                                Do(function()
+                                    sprites2.sonic.sprite:setAnimation(&quot;idledown&quot;)
+                                end)
+                            },
+                            Serial {
+                                Ease(sprites2.antoine, &quot;y&quot;, function() return sprites2.antoine.y - 50 end, 0.2, &quot;linear&quot;),
+                                Do(function()
+                                    sprites2.antoine.sprite:setAnimation(&quot;idledown&quot;)
+                                end)
+                            },
+                            Ease(rover, &quot;y&quot;, function() return rover.y - 70 end, 0.3, &quot;linear&quot;),
+                            Serial {
+                                Ease(sprites2.sally, &quot;y&quot;, function() return sprites2.sally.y - 25 end, 0.5, &quot;linear&quot;),
+                                Do(function() sprites2.sally.sprite:setAnimation(&quot;idleright&quot;) end),
+                                MessageBox {message=&quot;Sally: The conveyor belt!&quot;, blocking = true}
+                            }
+                        },
+                        MessageBox {message=&quot;Sonic: Let's do it!&quot;, blocking = true},
+                        Do(function()
+                            sprites2.sonic.sprite:setAnimation(&quot;crouchright&quot;)
+                            sprites2.sally.sprite:setAnimation(&quot;crouchright&quot;)
+                        end),
+                        MessageBox {message=&quot;Antoine: I-I-I'm not being so sure!&quot;, blocking = true},
+                        Wait(0.5),
+                        Do(function()
+                            sprites2.sonic.sprite:setAnimation(&quot;jumpright&quot;)
+                            sprites2.sally.sprite:setAnimation(&quot;jumpright&quot;)
+                        end),
+                        Parallel {
+                            Ease(sprites2.sonic, &quot;x&quot;, function() return sprites2.sonic.x + 100 end, 5, &quot;linear&quot;),
+                            Ease(sprites2.sonic, &quot;y&quot;, function() return sprites2.sonic.y - 50 end, 5, &quot;linear&quot;),
+                            Ease(sprites2.sally, &quot;x&quot;, function() return sprites2.sally.x + 100 end, 5, &quot;linear&quot;),
+                            Ease(sprites2.sally, &quot;y&quot;, function() return sprites2.sally.y - 50 end, 5, &quot;linear&quot;)
+                        },
+                        Parallel {
+                            Ease(sprites2.sonic, &quot;x&quot;, function() return sprites2.sonic.x + 100 end, 5, &quot;linear&quot;),
+                            Ease(sprites2.sonic, &quot;y&quot;, function() return sprites2.sonic.y + 150 end, 5, &quot;linear&quot;),
+                            Ease(sprites2.sally, &quot;x&quot;, function() return sprites2.sally.x + 100 end, 5, &quot;linear&quot;),
+                            Ease(sprites2.sally, &quot;y&quot;, function() return sprites2.sally.y + 150 end, 5, &quot;linear&quot;)
+                        },
+                        Do(function()
+                            sprites2.sonic.sprite:setAnimation(&quot;crouchright&quot;)
+                            sprites2.sally.sprite:setAnimation(&quot;crouchright&quot;)
+                        end),
+                        Wait(0.5),
+                        Do(function()
+                            sprites2.sonic.sprite:setAnimation(&quot;idleleft&quot;)
+                            sprites2.sally.sprite:setAnimation(&quot;idleleft&quot;)
+                        end),
+                        Ease(rover, &quot;y&quot;, function() return sprites2.antoine.y - 80 end, 1, &quot;linear&quot;),
+                        Do(function() rover.sprite:setAnimation(&quot;idleright&quot;) end),
+                        Wait(0.2),
+                        Do(function()
+                            rover.sprite:setAnimation(&quot;upright&quot;)
+                            sprites2.antoine.sprite:setAnimation(&quot;shock&quot;)
+                        end),
+                        MessageBox {message=&quot;Antoine: Help!!&quot;, blocking = true},
+                        MessageBox {message=&quot;Sonic: I'm comin' Ant!&quot;, blocking = true},
+                        Animate(function()
+                            local xform = Transform.from(rover.sprite.transform)
+                            xform.x = xform.x + rover.sprite.w*2 - 80
+	        xform.y = xform.y + rover.sprite.h
+                            return SpriteNode(self.scene, xform, nil, &quot;beamfire&quot;, nil, nil, &quot;ui&quot;), true
+                        end, &quot;idle&quot;),
+                        PlayAudio(&quot;sfx&quot;, &quot;laser&quot;, 1.0, true),
+                        Do(function()
+                            self.beamSprite.transform.x = rover.sprite.transform.x + rover.sprite.w*2 - 80 + self.beamSprite.w
+                            self.beamSprite.transform.y = rover.sprite.transform.y + rover.sprite.h + self.beamSprite.h*2
+                            self.beamSprite.transform.ox = 0
+                            local x1, y1 = self.beamSprite.transform.x, self.beamSprite.transform.y
+                            local x2, y2 = sprites2.sonic.sprite.transform.x, sprites2.sally.sprite.transform.y
+                            local dx = (x2 - x1)
+                            local dy = (y2 - y1)
+                            local dot = dx * dx
+                            local m1 = math.sqrt(dx*dx + dy*dy)
+                            local m2 = dx
+                            local angle = math.acos(dot / (m1 * m2))
+                            if self.beamSprite.transform.y &gt; sprites2.sally.sprite.transform.y then
+                                self.beamSprite.transform.angle = -angle
+                            else
+                                self.beamSprite.transform.angle = angle
+                            end
+                            self.xDist = dx
+                            self.yDist = dy
+                            self.len = m1/self.beamSprite.w	
+                        end),
+                        -- Beam stretch to target and recede
+                        Ease(self.beamSprite.transform, &quot;sx&quot;, function() return self.len end, 8),
+                        Do(function()
+                            self.beamSprite.transform.ox = self.beamSprite.w
+                            self.beamSprite.transform.x = self.beamSprite.transform.x + self.xDist
+                            self.beamSprite.transform.y = self.beamSprite.transform.y + self.yDist
+                        end),
+                        Ease(self.beamSprite.transform, &quot;sx&quot;, 0, 8),
+                        Do(function()
+                            self.scene.audio:stopMusic()
+                            sprites2.sonic.sprite:setAnimation(&quot;shock&quot;)
+                            sprites2.sally.sprite:setAnimation(&quot;shock&quot;)
+                        end),
+                        Parallel {
+                            Ease(sprites2.sonic, &quot;x&quot;, function() return sprites2.sonic.x + 50 end, 1, &quot;linear&quot;),
+                            Ease(sprites2.sonic, &quot;y&quot;, function() return sprites2.sonic.y - 100 end, 1, &quot;log&quot;),
+                            Ease(sprites2.sally, &quot;x&quot;, function() return sprites2.sally.x + 50 end, 1, &quot;linear&quot;),
+                            Ease(sprites2.sally, &quot;y&quot;, function() return sprites2.sally.y - 100 end, 1, &quot;log&quot;)
+                        },
+                        Parallel {
+                            Ease(sprites2.sonic, &quot;x&quot;, function() return sprites2.sonic.x + 100 end, 2, &quot;linear&quot;),
+                            Ease(sprites2.sonic, &quot;y&quot;, function() return 2000 end, 2, &quot;linear&quot;),
+                            Ease(sprites2.sally, &quot;x&quot;, function() return sprites2.sally.x + 100 end, 2, &quot;linear&quot;),
+                            Ease(sprites2.sally, &quot;y&quot;, function() return 2000 end, 2, &quot;linear&quot;)
+                        },
+                        Wait(1),
+                        MessageBox {message=&quot;Rover: zzz. {p25}Freedom fighter captured. {p25}Hedgehog and princess exterminated. {p25}zzzz.&quot;, blocking = true, textSpeed = 4},
+                        Do(function()
+                            sprites2.antoine.sprite:setAnimation(&quot;idleright&quot;)
+                        end),
+                        PlayAudio(&quot;music&quot;, &quot;dead&quot;, 1.0, true),
+                        MessageBox {message=&quot;Antoine: Sonic... {p25}Sally...{p50} I have failed you...&quot;, blocking = true, closeAction = Wait(1.5), textSpeed = 2},
+                        Do(function()
+                            self.scene.rovercinematicover = true
+                        end),
+                    }
+                end),
+                YieldUntil(function() return self.scene.rovercinematicover end),
+                Wait(0.5),
+                Parallel {
+                    Ease(self.scene.bgColor, 1, 0, 0.2, &quot;linear&quot;),
+                    Ease(self.scene.bgColor, 2, 0, 0.2, &quot;linear&quot;),
+                    Ease(self.scene.bgColor, 3, 0, 0.2, &quot;linear&quot;),
+                    Do(function()
+                        ScreenShader:sendColor(&quot;multColor&quot;, self.scene.bgColor)
+                    end)
+                },
+                Do(function()
+                    deatheggbg.visible = true
+                    deatheggbg.transform.sx = 3
+                    deatheggbg.transform.sy = 3
+                end),
+                Parallel {
+                    Ease(self.scene.bgColor, 1, 255, 0.5, &quot;linear&quot;),
+                    Ease(self.scene.bgColor, 2, 255, 0.5, &quot;linear&quot;),
+                    Ease(self.scene.bgColor, 3, 255, 0.5, &quot;linear&quot;),
+                    Do(function()
+                        ScreenShader:sendColor(&quot;multColor&quot;, self.scene.bgColor)
+                    end),
+                    Serial {
+                        Wait(1),
+                        PlayAudio(&quot;music&quot;, &quot;deatheggtransition&quot;, 0.0, true),
+                        Parallel {
+                            AudioFade(&quot;music&quot;, 0.0, 1.0, 1),
+                            Ease(deatheggbg.transform, &quot;x&quot;, -1100, 0.2, &quot;inout&quot;),
+                            Ease(deatheggbg.transform, &quot;sx&quot;, 2, 0.2, &quot;linear&quot;),
+                            Ease(deatheggbg.transform, &quot;sy&quot;, 2, 0.2, &quot;linear&quot;)
+                        }
+                    }
+                },
+                Wait(2),
+                Parallel {
+                    Ease(self.scene.bgColor, 1, 0, 0.3, &quot;linear&quot;),
+                    Ease(self.scene.bgColor, 2, 0, 0.3, &quot;linear&quot;),
+                    Ease(self.scene.bgColor, 3, 0, 0.3, &quot;linear&quot;),
+                    Do(function()
+                        ScreenShader:sendColor(&quot;multColor&quot;, self.scene.bgColor)
+                    end)
+                },
+                Do(function()
+                    self.scene.sceneMgr:switchScene {
+                        class = &quot;BasicScene&quot;,
+                        mapName = &quot;maps/robotnikwarroom.lua&quot;,
+                        map = self.scene.maps[&quot;maps/robotnikwarroom.lua&quot;],
+                        maps = self.scene.maps,
+                        region = self.scene.region,
+                        fadeInSpeed = 0.3,
+                        images = self.scene.images,
+                        animations = self.scene.animations,
+                        audio = self.scene.audio,
+                        doingSpecialMove = false,
+                        cache = true
+                    }
+                end)
+            }
+        }
+    }
+end</property>
+    <property name="specialHint" value="sally"/>
+    <property name="sprite" type="file" value="../art/sprites/computer.png"/>
+   </properties>
+  </object>
+ </objectgroup>
  <layer name="deck" width="50" height="79">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -269,179 +619,12 @@
     <property name="spawn_point" value="Exit2"/>
    </properties>
   </object>
-  <object id="492" name="Computer1" type="Computer" gid="2311" x="704" y="1152" width="128" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="int" value="-32"/>
-    <property name="scanAction">local MessageBox = require &quot;actions/MessageBox&quot;
-local Animate = require &quot;actions/Animate&quot;
-local Serial = require &quot;actions/Serial&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Do = require &quot;actions/Do&quot;
-local AudioFade = require &quot;actions/AudioFade&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Repeat = require &quot;actions/Repeat&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Move = require &quot;actions/Move&quot;
-local YieldUntil = require &quot;actions/YieldUntil&quot;
-local Executor = require &quot;actions/Executor&quot;
-
-local Transform = require &quot;util/Transform&quot;
-
-return function(self)
-    GameState:setFlag(self)
-    self.scene.player.cinematic = true
-
-    self.scene.bgColor = {255,255,255,255}
-    ScreenShader:sendColor(&quot;multColor&quot;, self.scene.bgColor)
-
-    local walkout, walkin, sprites = self.scene.player:split()
-    sprites.sonic.x = sprites.sonic.x - 50
-    sprites.sally.x = sprites.sally.x - 50
-    sprites.antoine.x = sprites.antoine.x - 50
-
-    local origY = self.scene.player.y
-    local rover = self.scene.objectLookup.Rover1
-    rover.sprite.visible = false
-
-    return Serial {
-        Parallel {
-            AudioFade(&quot;music&quot;, 1.0, 0.0, 2),
-            Serial {
-                Animate(self.scene.player.sprite, &quot;pose&quot;),
-                MessageBox { message = &quot;Sally: This is it! {p50}Time to overload this sucker!&quot;, blocking = true},
-                Animate(self.scene.player.sprite, &quot;nicholeup&quot;)
-            }
-        },
-        Wait(1),
-        -- wall comes down boom boom boom
-        walkout,
-        Animate(sprites.sally.sprite, &quot;idleup&quot;),
-        Animate(sprites.sonic.sprite, &quot;idleup&quot;),
-        Animate(sprites.antoine.sprite, &quot;idleup&quot;),
-        MessageBox { message = &quot;Sonic: ...Uhhh...{p50} is this what overloading looks like?&quot;, blocking = true},
-        MessageBox { message = &quot;Sally: No.{p50} Something's wrong.&quot;, blocking = true},
-
-        Parallel {
-            Repeat(Serial {
-                PlayAudio(&quot;sfx&quot;, &quot;alert&quot;, 1.0, true),
-                Parallel {
-                    Serial {
-                        Ease(self.scene.bgColor, 1, 510, 5, &quot;quad&quot;),
-                        Ease(self.scene.bgColor, 1, 255, 5, &quot;quad&quot;)
-                    },
-                    Do(function() 
-                        ScreenShader:sendColor(&quot;multColor&quot;, self.scene.bgColor)
-                    end)
-                }
-            }, 20),
-            Serial {
-                Wait(1),
-                Animate(sprites.sally.sprite, &quot;shock&quot;),
-                Animate(sprites.sonic.sprite, &quot;shock&quot;),
-                Animate(sprites.antoine.sprite, &quot;shock&quot;),
-                PlayAudio(&quot;music&quot;, &quot;robotrouble&quot;, 1.0, true),
-                Wait(1),
-                Do(function()
-                    rover.x = self.scene.objectLookup.Exit1.x
-                    rover.y = self.scene:getMapHeight()
-                    rover.sprite:setAnimation(&quot;idleup&quot;)
-                    rover.sprite.visible = true
-                end),
-                Ease(self.scene.player, &quot;y&quot;, self.scene:getMapHeight() - love.graphics.getHeight(), 1, &quot;linear&quot;),
-                Ease(rover, &quot;y&quot;, function() return self.scene.player.y end, 0.5, &quot;linear&quot;),
-                Wait(2),
-                Parallel {
-                    Ease(self.scene.player, &quot;y&quot;, origY, 0.5, &quot;inout&quot;),
-                    Do(function()
-                        rover.y = self.scene.player.y
-                    end)
-                },
-                Do(function()
-                    local afterBattle
-                    afterBattle = function()
-                            GameState:setFlag(&quot;rover_boss&quot;)
-                            GameState.leader = &quot;sonic&quot;
-                            self.scene.player:updateSprite()
-                            self.scene.player.sprite.visible = false
-                            self.scene.audio:stopMusic()
-                            self.scene.audio:stopSfx()
-                            self.scene.player.cinematic = true
-                            Executor(self.scene):act(
-                                Serial {
-                                    Animate(sprites.sonic.sprite, &quot;idledown&quot;),
-                                    Animate(sprites.sally.sprite, &quot;idleright&quot;),
-                                    Animate(sprites.antoine.sprite, &quot;idleleft&quot;),
-                                    Wait(1),
-                                    MessageBox {message=&quot;Sonic: We gotta juice! {p50}This place is about to be swaming with swatbutts!&quot;, blocking = true},
-                                    Do(function()
-                                        self.scene.player.cinematic = true
-                                    end),
-                                    walkin,
-                                    PlayAudio(&quot;music&quot;, &quot;escapefanfare&quot;, 1.0, true),
-
-                                    Do(function()
-                                        self.scene.player.x = self.scene.player.x + 50
-                                        self.scene.player.y = self.scene.player.y + 50
-                                        self.scene.player.cinematic = true
-                                        self.scene.player.ignoreSpecialMoveCollision = true
-                                        self.scene.player.chargeSpeed = 3
-                                        self.scene.player.state = &quot;idledown&quot;
-                                        self.scene.player:onSpecialMove()
-                                        self.scene:removeHandler(&quot;enter&quot;, afterBattle)
-                                    end),
-                                    YieldUntil(function() return self.scene.player.y &gt; self.scene:getMapHeight() end),
-                                    Wait(1),
-                                    Parallel {
-                                        Ease(self.scene.bgColor, 1, 0, 0.3, &quot;inout&quot;),
-                                        Ease(self.scene.bgColor, 2, 0, 0.3, &quot;inout&quot;),
-                                        Ease(self.scene.bgColor, 3, 0, 0.3, &quot;inout&quot;),
-                                        Do(function() 
-                                            ScreenShader:sendColor(&quot;multColor&quot;, self.scene.bgColor)
-                                        end)
-                                    },
-                                    Do(function()
-                                        self.scene.sceneMgr:switchScene {
-                                            class = &quot;BasicScene&quot;,
-                                            mapName = &quot;maps/roboterminal.lua&quot;,
-                                            map = self.scene.maps[&quot;maps/roboterminal.lua&quot;],
-                                            maps = self.scene.maps,
-                                            region = self.scene.region,
-                                            fadeInSpeed = 0.3,
-                                            spawn_point = &quot;Door&quot;,
-                                            spawn_point_offset = Transform(150,0),
-                                            images = self.scene.images,
-                                            animations = self.scene.animations,
-                                            audio = self.scene.audio,
-                                            doingSpecialMove = false,
-                                            cache = true
-                                        }
-                                    end)
-                                }
-                            )
-                    end
-                    self.scene:addHandler(&quot;enter&quot;, afterBattle)
-                    rover:messageBox() -- enter battle
-                end)
-            }
-        }
-    }
-end</property>
-    <property name="specialHint" value="sally"/>
-    <property name="sprite" type="file" value="../art/sprites/computer.png"/>
-   </properties>
-  </object>
   <object id="493" name="Rover1" type="Swatbot" gid="37" x="-64" y="2432" width="32" height="32">
    <properties>
-    <property name="battle" type="file" value="../data/monsters/rover.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
-    <property name="boss" type="bool" value="true"/>
     <property name="defaultAnim" value="crouched"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="ghost" type="bool" value="true"/>
     <property name="ignorePlayer" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/rover.png"/>
    </properties>
   </object>

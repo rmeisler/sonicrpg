@@ -306,7 +306,9 @@ function Player:split()
 		Do(function()
 			-- Hide our primary sprite
 			self.sprite.visible = false
-			self.dropShadow.sprite.visible = false
+			if self.dropShadow.sprite then
+				self.dropShadow.sprite.visible = false
+			end
 		end),
 		
 		-- Show all other sprites walking out
@@ -322,7 +324,9 @@ function Player:split()
 
 			-- Show our primary sprite
 			self.sprite.visible = true
-			self.dropShadow.sprite.visible = true
+			if self.dropShadow.sprite then
+				self.dropShadow.sprite.visible = true
+			end
 		end)
 	}
 	return walkOut, walkIn, self.partySprites

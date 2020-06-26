@@ -46,6 +46,16 @@ return {
   },
   layers = {
     {
+      type = "imagelayer",
+      name = "trash",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = -160,
+      image = "../art/parallax/bg4.png",
+      properties = {}
+    },
+    {
       type = "tilelayer",
       name = "Ground",
       x = 0,

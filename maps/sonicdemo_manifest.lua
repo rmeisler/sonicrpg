@@ -7,6 +7,12 @@ return {
 	
 	{
         type = "map",
+        file = "maps/robotnikwarroom.lua",
+		primary = true
+    },
+	
+	{
+        type = "map",
         file = "maps/roboterminal.lua"
     },
 	
@@ -45,7 +51,7 @@ return {
 		type = "map",
 		file = "maps/knothole.lua",
 		music = "music/knothole",
-		primary = true
+		--primary = true
 	},
 	
 	{
@@ -356,7 +362,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/parallax/RobotropolisBG.png"
+		file = "art/parallax/robotropolis.png"
 	},
 	{
 		type = "image",
@@ -629,7 +635,12 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/deathegg.ogg",
+		file = "audio/music/dead.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/deatheggtransition.ogg",
 		category = "music",
 	},
 	{

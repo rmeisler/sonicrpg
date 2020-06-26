@@ -16,6 +16,19 @@ return {
 			frames = {{5,2}}
 		},
 		
+		crouchleft = {
+		    frames = {{13,6}}
+		},
+		crouchright = {
+		    frames = {{14,6}}
+		},
+		jumpleft = {
+		    frames = {{15,6}}
+		},
+		jumpright = {
+		    frames = {{16,6}}
+		},
+		
 		nichole_project_start = {
 			frames = {{10,2},{11,2}},
 			speed = 0.05
@@ -76,6 +89,11 @@ return {
 					{x = 0, y = 0}, {x = 0, y = 2}, {x = 0, y = 4}, {x = 0, y = 2}
 				}
 			}
+		},
+		
+		stepback = {
+		    frames = {{0,2},{1,2},{0,2},{5,2}},
+			speed = 0.5
 		},
 		
 		nicholeright = {

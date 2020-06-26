@@ -155,7 +155,7 @@ function MessageBox:reset()
 		self.scene:unfocus("keytriggered")
 	end
 	
-	if self.scene.player then
+	if self.scene.player and self.blocking then
 		self.scene.player.cinematic = false
 	end
 	

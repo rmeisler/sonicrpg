@@ -666,7 +666,7 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/swatbot.lua",
+            ["battle"] = "../data/monsters/factorybot.lua",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
@@ -675,32 +675,8 @@ return {
             ["ghost"] = true,
             ["ignoreCollision"] = "Pillar5,ConveyorBelt1,ConveyorBelt2,ConveyorBelt3",
             ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/swatbot.png"
-          }
-        },
-        {
-          id = 140,
-          name = "Swatbot1",
-          type = "Swatbot",
-          shape = "rectangle",
-          x = 384,
-          y = 576,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/swatbot.lua",
-            ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idledown",
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["ignoreCollision"] = "Pillar5,ConveyorBelt1,ConveyorBelt2,ConveyorBelt3",
-            ["ignorePlayer"] = false,
             ["noInvestigate"] = true,
-            ["sprite"] = "../art/sprites/swatbot.png"
+            ["sprite"] = "../art/sprites/factorybot.png"
           }
         },
         {
