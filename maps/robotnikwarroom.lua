@@ -139,7 +139,9 @@ return {
       offsetx = 160,
       offsety = 320,
       image = "../art/sprites/warroom.png",
-      properties = {}
+      properties = {
+        ["movespeed"] = 1
+      }
     },
     {
       type = "imagelayer",
@@ -149,7 +151,9 @@ return {
       offsetx = 224,
       offsety = 448,
       image = "../art/sprites/robotnikcomputer.png",
-      properties = {}
+      properties = {
+        ["movespeed"] = 1
+      }
     },
     {
       type = "tilelayer",
@@ -244,7 +248,7 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 396,
-          y = 992,
+          y = 1024,
           width = 32,
           height = 32,
           rotation = 0,

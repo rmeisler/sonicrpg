@@ -8,7 +8,7 @@ return {
 	{
         type = "map",
         file = "maps/robotnikwarroom.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -34,6 +34,18 @@ return {
 	{
         type = "map",
         file = "maps/factoryfloor3.lua"
+    },
+	
+	{
+        type = "map",
+        file = "maps/forgotten2.lua",
+		primary = true,
+    },
+	
+	{
+        type = "map",
+        file = "maps/forgotten4.lua",
+		--primary = true,
     },
 	
 	{
@@ -583,6 +595,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/sallyenters.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/sonictheme.ogg",
 		category = "music"
 	},
 	{

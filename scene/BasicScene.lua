@@ -75,6 +75,7 @@ function BasicScene:onEnter(args)
 				-- If object is marked as a player spawn location
 				if  object.type == "Player" or
 					object.type == "EscapePlayer" or
+					object.type == "EscapePlayerVert" or
 					object.type == "SavePoint" or
 					object.type == "SceneEdge"					
 				then

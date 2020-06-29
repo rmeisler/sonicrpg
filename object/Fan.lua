@@ -56,16 +56,23 @@ function Fan:construct(scene, layer, object)
 	self:addInteract(Fan.use)
 	self:addSceneHandler("exit")
 	self:addSceneHandler("enter")
+	
+	self.respawn = object.properties.respawn
+	self.nosound = object.properties.nosound
+	
+	if object.properties.on then
+		self:use()
+	end
 end
 
 function Fan:exit()
-	if GameState:isFlagSet(self) then
+	if GameState:isFlagSet(self) and not self.nosound then
 		self.scene.audio:stopSfx("fan")
 	end
 end
 
 function Fan:enter()
-	if GameState:isFlagSet(self) then
+	if GameState:isFlagSet(self) and not self.nosound then
 		self.scene.audio:playSfx("fan", 0.5)
 		self.scene.audio:setLooping("sfx", true)
 	end
@@ -141,9 +148,16 @@ function Fan:update(dt)
 							},
 							Do(function()
 								self.scene.player.cinematic = false
-								self.scene.player.x = self.x + self.sprite.w*2 + 100
-								self.scene.player.y = self.y + 100
-								self.scene.player.state = "idledown"
+								
+								if self.respawn then
+									self.scene.player.x = self.scene.objectLookup[self.respawn].x
+									self.scene.player.y = self.scene.objectLookup[self.respawn].y
+									self.scene.player.state = "idleup"
+								else
+									self.scene.player.x = self.x + self.sprite.w*2 + 100
+									self.scene.player.y = self.y + 100
+									self.scene.player.state = "idledown"
+								end
 							end),
 							-- Blink transparency
 							Repeat(
@@ -159,13 +173,15 @@ function Fan:update(dt)
 			end
 		end
 		
-		local minAudibleDist = 800
-		local maxAudibleDist = 200
-		local num = self:distanceFromPlayerSq() - maxAudibleDist*maxAudibleDist
-		local denom = (minAudibleDist - maxAudibleDist)*(minAudibleDist - maxAudibleDist)
-		local volume = 1.0 - math.min(1.0, math.max(0.0, num) / denom)
+		if not self.nosound then
+			local minAudibleDist = 800
+			local maxAudibleDist = 200
+			local num = self:distanceFromPlayerSq() - maxAudibleDist*maxAudibleDist
+			local denom = (minAudibleDist - maxAudibleDist)*(minAudibleDist - maxAudibleDist)
+			local volume = 1.0 - math.min(1.0, math.max(0.0, num) / denom)
 
-		self.scene.audio:setVolumeFor("sfx", "fan", volume)
+			self.scene.audio:setVolumeFor("sfx", "fan", volume)
+		end
 	end
 end
 
@@ -176,8 +192,10 @@ function Fan:use()
 
 	GameState:setFlag(self)
 	
-	self.scene.audio:playSfx("fan", 0.5)
-	self.scene.audio:setLooping("sfx", true)
+	if not self.nosound then
+		self.scene.audio:playSfx("fan", 0.5)
+		self.scene.audio:setLooping("sfx", true)
+	end
 end
 
 function Fan:distanceFromPlayerSq()

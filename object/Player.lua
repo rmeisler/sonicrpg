@@ -446,7 +446,15 @@ function Player:updateSprite()
 	if self.sprite then
 		self.sprite:remove()
 	end
-	self.sprite = SpriteNode(self.scene, self.transform, self.color, GameState.party[GameState.leader].sprite, nil, nil, self.layer.name)
+	self.sprite = SpriteNode(
+		self.scene,
+		self.transform,
+		self.color,
+		GameState.party[GameState.leader].sprite,
+		nil,
+		nil,
+		self.layer.name
+	)
 	
 	-- Debug
 	if self.debugHotspots then
@@ -548,7 +556,10 @@ function Player:basicUpdate(dt)
 	self.dropShadow.y = self.dropShadowOverrideY or self.y + self.sprite.h - 15
 	
 	local prevState = self.state
-	self.state = Player.ToIdle[self.state] or self.state
+	
+	if not self.noIdle then
+		self.state = Player.ToIdle[self.state] or self.state
+	end
 	
 	self.collisionX, self.collisionY = self.scene:worldCoordToCollisionCoord(self.x, self.y)
 	local hotspots = self:updateHotspots()

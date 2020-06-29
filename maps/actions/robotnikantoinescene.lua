@@ -34,7 +34,7 @@ return function(scene)
 	local antoine = BasicNPC(
 		scene,
 		{name = "objects"},
-		{name = "antoine", x = scene.player.x - 50, y = 1200, width = scene.player.width, height = scene.player.height,
+		{name = "antoine", x = scene.player.x - 50, y = 1100, width = scene.player.width, height = scene.player.height,
 			properties = {
 				ghost = true,
 				sprite = "art/sprites/antoine.png"
@@ -46,7 +46,7 @@ return function(scene)
 	local rover = BasicNPC(
 		scene,
 		{name = "objects"},
-		{name = "rover", x = scene.player.x - 50, y = 1250, width = 75, height = 81,
+		{name = "rover", x = scene.player.x - 50, y = 1150, width = 75, height = 81,
 			properties = {
 				ghost = true,
 				sprite = "art/sprites/rover.png"
@@ -64,7 +64,7 @@ return function(scene)
 	snively.sprite.color[3] = 180
 	
 	return Serial {
-	    Wait(2),
+	    Wait(1),
 		Parallel {
 			Ease(scene.player, "y", 972, 0.3, "inout"),
 			Serial {
@@ -90,7 +90,7 @@ return function(scene)
 		
 		MessageBox{message="???: What do we have here?", blocking=true, textSpeed = 4, closeAction=Wait(1)},
 		Parallel {
-            MessageBox{message="Antoine: Ro-{p20}ro-{p20}robotnik!", blocking=true},
+            MessageBox{message="Antoine: Ro-{p20}ro-{p20}ro-{p20}robotnik!", blocking=true},
 			Serial {
 			    Ease(antoine, "y", function() return antoine.y - 50 end, 8, "linear"),
 			    Ease(antoine, "y", function() return antoine.y + 50 end, 8, "linear")
@@ -115,6 +115,7 @@ return function(scene)
 		MessageBox{message="Robotnik: ...or I will simply download it off your newly roboticized brain{p20}.{p20}.{p20}.", blocking=true, textSpeed = 4},
 		Ease(antoine, "y", function() return antoine.y - 50 end, 8, "linear"),
 	    Ease(antoine, "y", function() return antoine.y + 50 end, 8, "linear"),
-		MessageBox{message="Antoine: *Sonic{p50}, Sally... {p50}where are you?...*", blocking=true, textSpeed=4},
+		MessageBox{message="Antoine: {p30}.{p30}.{p30}.", blocking=true, textSpeed=4},
+		MessageBox{message="Antoine: *Sonic{p50}, Sally... {p50}where are you?...*", blocking=true, textSpeed=3},
 	}
 end

@@ -59,9 +59,15 @@
  </layer>
  <imagelayer name="warroom" offsetx="160" offsety="320">
   <image source="../art/sprites/warroom.png" width="770" height="980"/>
+  <properties>
+   <property name="movespeed" type="float" value="1"/>
+  </properties>
  </imagelayer>
  <imagelayer name="computer" offsetx="224" offsety="448">
   <image source="../art/sprites/robotnikcomputer.png" width="640" height="320"/>
+  <properties>
+   <property name="movespeed" type="float" value="1"/>
+  </properties>
  </imagelayer>
  <layer name="above" width="35" height="45">
   <data encoding="csv">
@@ -118,7 +124,7 @@
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="170" name="Robotnik" type="BasicNPC" gid="1586" x="396" y="992" width="32" height="32">
+  <object id="170" name="Robotnik" type="BasicNPC" gid="1586" x="396" y="1024" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="nocollision" type="bool" value="true"/>

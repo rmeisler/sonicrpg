@@ -252,8 +252,8 @@ return function(self)
         MessageBox { message = &quot;Sally: No.{p50} Something's wrong.&quot;, blocking = true},
 
         Parallel {
+            PlayAudio(&quot;sfx&quot;, &quot;alert&quot;, 1.0, true),
             Repeat(Serial {
-                PlayAudio(&quot;sfx&quot;, &quot;alert&quot;, 1.0, true),
                 Parallel {
                     Serial {
                         Ease(self.scene.bgColor, 1, 510, 5, &quot;quad&quot;),
@@ -449,7 +449,7 @@ return function(self)
                             Ease(sprites2.sally, &quot;y&quot;, function() return 2000 end, 2, &quot;linear&quot;)
                         },
                         Wait(1),
-                        MessageBox {message=&quot;Rover: zzz. {p25}Freedom fighter captured. {p25}Hedgehog and princess exterminated. {p25}zzzz.&quot;, blocking = true, textSpeed = 4},
+                        MessageBox {message=&quot;Rover: zzz. {p25}Freedom fighter captured. {p25}zzzz.&quot;, blocking = true, textSpeed = 4},
                         Do(function()
                             sprites2.antoine.sprite:setAnimation(&quot;idleright&quot;)
                         end),

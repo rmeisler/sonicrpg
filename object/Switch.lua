@@ -18,7 +18,10 @@ function Switch:flip()
 	self.animState = "on"
 	self.sprite:setAnimation(self.animState)
 	if self.object.properties.subject then
-		self.scene.objectLookup[self.object.properties.subject]:use()
+		local subjects = pack((self.object.properties.subject):split(','))
+		for _, subject in pairs(subjects) do
+			self.scene.objectLookup[subject]:use()
+		end
 	end
 	
 	GameState:setFlag(self)

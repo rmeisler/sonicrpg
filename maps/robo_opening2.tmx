@@ -10,11 +10,14 @@
  <tileset firstgid="3501" source="datacenter_interior.tsx"/>
  <imagelayer name="BG1" offsetx="832" offsety="4896">
   <image source="../art/parallax/bg1.png" width="2000" height="601"/>
+  <properties>
+   <property name="movespeed" type="float" value="1"/>
+  </properties>
  </imagelayer>
  <imagelayer name="BG2" offsetx="128" offsety="1056">
   <image source="../art/parallax/bg2.png" width="1679" height="400"/>
   <properties>
-   <property name="movespeed" type="float" value="1.05"/>
+   <property name="movespeed" type="float" value="1"/>
   </properties>
  </imagelayer>
  <layer name="Ground" width="97" height="180">
