@@ -454,8 +454,9 @@ return function(self)
                             sprites2.antoine.sprite:setAnimation(&quot;idleright&quot;)
                         end),
                         PlayAudio(&quot;music&quot;, &quot;dead&quot;, 1.0, true),
-                        MessageBox {message=&quot;Antoine: Sonic... {p25}Sally...{p50} I have failed you...&quot;, blocking = true, closeAction = Wait(1.5), textSpeed = 2},
+                        MessageBox {message=&quot;Antoine: Sonic... {p50}Sally...{p50} I have failed you...&quot;, blocking = true, closeAction = Wait(1.5), textSpeed = 2},
                         Do(function()
+                            self.scene.player.cinematic = true
                             self.scene.rovercinematicover = true
                         end),
                     }

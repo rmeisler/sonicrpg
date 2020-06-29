@@ -77,7 +77,6 @@ function TitleSplashScene:onEnter()
 	self.audio:registerAs("sfx", "cursor", love.audio.newSource("audio/sfx/cursor.wav", "static"))
 	self.audio:registerAs("sfx", "error", love.audio.newSource("audio/sfx/error.wav", "static"))
 	self.audio:registerAs("music", "pretitle", love.audio.newSource("audio/music/title.ogg", "static"))
-	self.audio:registerAs("music", "posttitle", love.audio.newSource("audio/music/postintro.ogg", "static"))
 	
 	self.bgColor = {0,0,0,255}
 	self.logoColor = {255,255,255,0}

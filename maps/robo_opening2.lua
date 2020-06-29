@@ -8,7 +8,7 @@ return {
   height = 180,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 233,
+  nextobjectid = 240,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/robo_intro2.lua",
@@ -2202,7 +2202,7 @@ return {
           gid = 1922,
           visible = true,
           properties = {
-            ["script"] = "actions/robo_intro_Script1.lua"
+            ["script"] = "local Do = require \"actions/Do\"\n\nreturn function(scene)\n	return Do(function()\n		local swatbot = scene.objectLookup.Swatbot3\n		swatbot.followStack = {\"Waypoint8\"}\n		swatbot:postInit()\n		swatbot.action:add(scene, Do(function() swatbot:remove() end))\n	end)\nend\n"
           }
         },
         {
@@ -2373,6 +2373,139 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 233,
+          name = "WallEdge",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 608,
+          y = 5312,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "lightdiagleft",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/wall.png"
+          }
+        },
+        {
+          id = 234,
+          name = "WallEdge",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 96,
+          y = 5248,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "lightright",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/wall.png"
+          }
+        },
+        {
+          id = 235,
+          name = "WallEdge",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 800,
+          y = 4512,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "lightdiagleft",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/wall.png"
+          }
+        },
+        {
+          id = 236,
+          name = "WallEdge",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 608,
+          y = 4032,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "lightdiagleft",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/wall.png"
+          }
+        },
+        {
+          id = 237,
+          name = "WallEdge",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 416,
+          y = 3680,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "lightleft",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/wall.png"
+          }
+        },
+        {
+          id = 238,
+          name = "WallEdge",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 288,
+          y = 3872,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "lightright",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/wall.png"
+          }
+        },
+        {
+          id = 239,
+          name = "WallEdge",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2080,
+          y = 2816,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "lightleft",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/wall.png"
           }
         }
       }

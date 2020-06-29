@@ -38,8 +38,20 @@ return {
 	
 	{
         type = "map",
-        file = "maps/forgotten2.lua",
+        file = "maps/forgottenstart.lua",
 		primary = true,
+    },
+	
+	{
+        type = "map",
+        file = "maps/forgotten1.lua",
+		--primary = true,
+    },
+	
+	{
+        type = "map",
+        file = "maps/forgotten2.lua",
+		--primary = true,
     },
 	
 	{
@@ -591,6 +603,18 @@ return {
 		type = "sound",
 		file = "audio/sfx/clink.ogg",
 		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/mysterious.ogg",
+		category = "music",
+		looping = true,
+	},
+	{
+		type = "sound",
+		file = "audio/music/follow.ogg",
+		category = "music",
+		looping = true,
 	},
 	{
 		type = "sound",
