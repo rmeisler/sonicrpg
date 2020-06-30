@@ -54,7 +54,7 @@ function Player:construct(scene, layer, object)
 	self.y = 0
 	self.collisionX = 0
 	self.collisionY = 0
-	self.movespeed = 3
+	self.movespeed = 4
 	self.layer = layer
 	self.object = object
 	
@@ -272,7 +272,7 @@ function Player:split()
 				end),
 				Animate(self.partySprites[id].sprite, walkOutAnim, true),
 				Parallel {
-					Wait(0.3),
+					Wait(0.2),
 					Do(function()
 						self.partySprites[id].x = self.partySprites[id].x + dir.x * (love.timer.getDelta()/0.016)
 						self.partySprites[id].y = self.partySprites[id].y + dir.y * (love.timer.getDelta()/0.016)
@@ -288,7 +288,7 @@ function Player:split()
 			Serial {
 				Animate(self.partySprites[id].sprite, walkInAnim, true),
 				Parallel {
-					Wait(0.3),
+					Wait(0.2),
 					Do(function()
 						self.partySprites[id].x = self.partySprites[id].x - dir.x * (love.timer.getDelta()/0.016)
 						self.partySprites[id].y = self.partySprites[id].y - dir.y * (love.timer.getDelta()/0.016)

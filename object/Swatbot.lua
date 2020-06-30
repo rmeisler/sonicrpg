@@ -237,7 +237,7 @@ function Swatbot:update(dt)
 					end
 				end),
 				Wait(1),
-				self:follow(self.scene.player, "run", 4, nil, true)
+				self:follow(self.scene.player, "run", 5, nil, true)
 			}
 		elseif lineOfSight == Swatbot.NOTICE_HEAR then
 			self:removeSceneHandler("update")
@@ -321,7 +321,7 @@ function Swatbot:investigateUpdate(dt)
 				end
 			end),
 			Wait(1),
-			self:follow(self.scene.player, "run", 4, nil, true)
+			self:follow(self.scene.player, "run", 5, nil, true)
 		}
 		return
 	end

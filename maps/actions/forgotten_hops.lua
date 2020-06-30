@@ -34,79 +34,26 @@ return function(scene)
 	scene.player.cinematic = true
 	
 	local R = scene.objectLookup.R
+	R.movespeed = 3
 
 	return Serial {
-	    Do(function()
-		    scene.player.x = R.x
-   	        scene.player.y = R.y + 60
-		end),
 		Wait(2),
 		
 		Parallel {
-			Serial {
-				Move(R, scene.objectLookup.Waypoint0, "walk"),
-				Animate(R.sprite, "idleup"),
-				Wait(0.5),
-				Animate(R.sprite, "idledown"),
-				Wait(0.5),
-				
-				Do(function()
-					R.movespeed = 15
-				end),
-				Animate(R.sprite, "pose"),
-				Animate(R.sprite, "dashstart"),
-				Move(R, scene.objectLookup.Waypoint1, "dash"),
-				Move(R, scene.objectLookup.Waypoint2, "dash"),
-				Move(R, scene.objectLookup.Waypoint3, "dash"),
-				Move(R, scene.objectLookup.Waypoint5, "dash"),
-				Move(R, scene.objectLookup.Waypoint6, "dash"),
-				Move(R, scene.objectLookup.Waypoint7, "dash"),
-				Do(function()
-					R.movespeed = 2
-				end),
-				Move(R, scene.objectLookup.Waypoint8, "walk"),
-				Animate(R.sprite, "idledown"),
-				Wait(0.5),
-				Animate(R.sprite, "idleup"),
-				Wait(0.5),
-				Do(function()
-					scene.objectLookup.Switch1:flip()
-					scene.audio:playSfx("fan", 1.0)
-					scene.audio:setLooping("sfx", true)
-				end),
-				Wait(0.5),
-				Animate(R.sprite, "idledown"),
-				Wait(0.5),
-				
-				Move(R, scene.objectLookup.Waypoint7, "walk"),
-				Animate(R.sprite, "idledown"),
-				Wait(0.5),
-				
-				Animate(R.sprite, "pose"),
-				Animate(R.sprite, "dashstart"),
-				Do(function()
-					R.movespeed = 15
-				end),
-				
-				Move(R, scene.objectLookup.Waypoint9, "dash"),
-				Do(function()
-					R.sprite.visible = false
-				end),
-			},
+			Move(R, scene.objectLookup.Waypoint1, "walk"),
 			Do(function()
-				scene.player.x = R.x
-				scene.player.y = R.y + 60
+				scene.player.x = R.x + 50
+				scene.player.y = R.y
 			end)
 		},
-		
-		Wait(0.5),
-		
+		Animate(R.sprite, "idleup"),
 		Parallel {
-			Ease(scene.player, "x", 800, 0.2, "inout"),
-			Ease(scene.player, "y", 2688, 0.2, "inout")
+			Ease(scene.player, "x", 864, 1, "inout"),
+			Ease(scene.player, "y", 2688, 1, "inout")
 		},
 		
 		Do(function()
+			scene.objectLookup.R:remove()
 			scene.player.sprite.visible = true
 			scene.player.dropShadow.sprite.visible = true
 			scene.player.noIdle = true
