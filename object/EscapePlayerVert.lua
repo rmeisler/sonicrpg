@@ -46,6 +46,125 @@ function EscapePlayerVert:construct(scene, layer, object)
 	scene.player = self
 end
 
+function EscapePlayerVert:chargeJuice()
+	local player = self
+	local leg1 = SpriteNode(
+		player.scene,
+		Transform.from(player.sprite.transform),
+		player.sprite.color,
+		"sonicchargeleg1",
+		nil,
+		nil,
+		"objects"
+	)
+	local leg2 = SpriteNode(
+		player.scene,
+		Transform.from(player.sprite.transform),
+		player.sprite.color,
+		"sonicchargeleg2",
+		nil,
+		nil,
+		"objects"
+	)
+	local body = SpriteNode(
+		player.scene,
+		Transform.from(player.sprite.transform),
+		player.sprite.color,
+		"sonicchargebody",
+		nil,
+		nil,
+		"objects"
+	)
+	local head = SpriteNode(
+		player.scene,
+		Transform.from(player.sprite.transform),
+		player.sprite.color,
+		"sprites/sonic",
+		nil,
+		nil,
+		"objects"
+	)
+	
+	local directionAnim = "right"
+	
+	leg1:setAnimation(directionAnim)
+	leg1.transform.ox = 26
+	leg1.transform.oy = 41
+	leg1.transform.x = leg1.transform.x + leg1.transform.ox*2
+	leg1.transform.y = leg1.transform.y + leg1.transform.oy*2
+	leg1.sortOrderY = player.sprite.transform.y + player.sprite.h*2
+	
+	leg2:setAnimation(directionAnim)
+	leg2.transform.ox = 26
+	leg2.transform.oy = 41
+	leg2.transform.x = leg2.transform.x + leg2.transform.ox*2
+	leg2.transform.y = leg2.transform.y + leg2.transform.oy*2
+	leg2.sortOrderY = player.sprite.transform.y + player.sprite.h*2
+	
+	body:setAnimation(directionAnim)
+	body.transform.ox = 26
+	body.transform.oy = 41
+	body.transform.x = body.transform.x + body.transform.ox*2
+	body.transform.y = body.transform.y + body.transform.oy*2
+	body.sortOrderY = player.sprite.transform.y + player.sprite.h*2
+	
+	head:setAnimation("charge"..directionAnim)
+	head.sortOrderY = player.sprite.transform.y
+	
+	player.sprite.visible = false
+	
+	local chargeSpeed = (player.chargeSpeed or 1)
+	
+	return Serial {
+		PlayAudio("sfx", "sonicrun", 1.0, true, false, true),
+		Parallel {
+			-- Gently rotate sprite
+			Serial {
+				Parallel {
+					Ease(body.transform, "angle", math.pi / 6, 2 / chargeSpeed),
+					
+					Ease(head.transform, "x", head.transform.x - 60, 2 / chargeSpeed),
+					Ease(body.transform, "x", body.transform.x - 75, 2 / chargeSpeed),
+					Ease(leg1.transform, "x", leg1.transform.x - 75, 2 / chargeSpeed),
+					Ease(leg2.transform, "x", leg2.transform.x - 75, 2 / chargeSpeed),
+					
+					Ease(head.transform, "y", head.transform.y - 50, 2 / chargeSpeed),
+					Ease(body.transform, "y", body.transform.y - 70, 2 / chargeSpeed),
+					Ease(leg1.transform, "y", leg1.transform.y - 70, 2 / chargeSpeed),
+					Ease(leg2.transform, "y", leg2.transform.y - 70, 2 / chargeSpeed),
+				},
+				Wait(0.20 * chargeSpeed),
+				Parallel {
+					Ease(body.transform, "angle", 0, 12 / chargeSpeed),
+					
+					Ease(head.transform, "x", head.transform.x, 12 / chargeSpeed),
+					Ease(body.transform, "x", body.transform.x, 12 / chargeSpeed),
+					Ease(leg1.transform, "x", leg1.transform.x, 12 / chargeSpeed),
+					Ease(leg2.transform, "x", leg2.transform.x, 12 / chargeSpeed),
+					
+					Ease(head.transform, "y", head.transform.y, 12 / chargeSpeed),
+					Ease(body.transform, "y", body.transform.y, 12 / chargeSpeed),
+					Ease(leg1.transform, "y", leg1.transform.y, 12 / chargeSpeed),
+					Ease(leg2.transform, "y", leg2.transform.y, 12 / chargeSpeed),
+				}
+			},
+			-- Rapidly rotate legs
+			Ease(leg1.transform, "angle", 50 * math.pi, 1.4 / chargeSpeed, "quad"),
+			Ease(leg2.transform, "angle", 50 * math.pi, 1.4 / chargeSpeed, "quad")
+		},
+		Do(function()
+			leg1:remove()
+			leg2:remove()
+			body:remove()
+			head:remove()
+
+			player.sprite:setAnimation(player.state)
+			player.sprite.visible = true
+			player.bigDust = true
+		end)
+	}
+end
+
 function EscapePlayerVert:update(dt)
 	if not self.frameCounter then
 		self.frameCounter = 0

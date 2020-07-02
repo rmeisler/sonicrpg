@@ -11,6 +11,7 @@ local Animate = require "actions/Animate"
 local Move = require "actions/Move"
 local PlayAudio = require "actions/PlayAudio"
 local AudioFade = require "actions/AudioFade"
+local BlockInput = require "actions/BlockInput"
 
 local Transform = require "util/Transform"
 
@@ -68,24 +69,42 @@ function MechaArm:getFlag()
 end
 
 function MechaArm:update(dt)
+	self:updateAction(dt)
+
 	-- If player close enough, leap toward him
 	if self:noticePlayer() == MechaArm.NOTICE_SEE and self.sprite.visible == false then
-	    print("hellooooooo "..self.object.name)
 	    self.sprite.visible = true
-		self:run {
-			Animate(self.sprite, "dive"..self.facing),
+		
+		local battleArgs = {
+			initiative = self:getInitiative()
+		}
+		local npcArgs = self:getBattleArgs()
+		if next(npcArgs) then
+			for k, v in pairs(npcArgs) do
+				battleArgs[k] = v
+			end
+		end
+		
+		self.scene:run(Serial {
+			Do(function()
+			    print("GOT HERE 1")
+			end),
+			Animate(self.sprite, "dive"..self.facing, true),
+			Do(function()
+			    print("GOT HERE 2")
+			end),
 			Animate(self.sprite, "grabbed"..self.facing),
 			Do(function()
-			    self.scene.player.cinematic = true
+			    print("GOT HERE 3")
+				self.scene.player.cinematic = true
 				self.scene.player.noIdle = true
-				self.scene.player.state = "shock"
-				
-				-- start battle
-				self.state = NPC.STATE_TOUCHING
-			    self:invoke("collision")
-		        self:onCollision()
+				self.scene.player.sprite:setAnimation("shock")
+			end),
+			self.scene:enterBattle(battleArgs),
+			Do(function()
+				self:onBattleComplete()
 			end)
-		}
+		})
 	end
 	
 	self.distanceFromPlayer = nil

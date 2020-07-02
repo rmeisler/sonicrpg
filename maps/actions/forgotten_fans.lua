@@ -40,7 +40,7 @@ return function(scene)
 		    scene.player.x = R.x
    	        scene.player.y = R.y + 60
 		end),
-		Wait(2),
+		Wait(1),
 		
 		Parallel {
 			Serial {
@@ -71,7 +71,7 @@ return function(scene)
 				Wait(0.5),
 				Do(function()
 					scene.objectLookup.Switch1:flip()
-					scene.audio:playSfx("fan", 1.0)
+					scene.audio:playSfx("fan", 0.3)
 					scene.audio:setLooping("sfx", true)
 				end),
 				Wait(0.5),
@@ -110,10 +110,10 @@ return function(scene)
 			scene.player.sprite.visible = true
 			scene.player.dropShadow.sprite.visible = true
 			scene.player.noIdle = true
-			scene.player.state = "walkup"
+			scene.player.sprite:setAnimation("walkup")
 		end),
 		
-		Ease(scene.player, "y", 2588, 1.5, "linear"),
+		Ease(scene.player, "y", 2588, 2, "linear"),
 
 		Do(function()
 			scene.player.cinematic = false

@@ -485,6 +485,9 @@ return function(self)
         MessageBox {message= &quot;Sonic: Whoah-- {p30}is that...&quot;, blocking = true, textSpeed = 4},
         MessageBox {message= &quot;Sally: ...a roboticized child? {p30}It looks like it.&quot;, blocking = true, textSpeed = 4},
 
+        Do(function()
+            self.scene.audio:stopMusic()
+        end),
         Animate(self.scene.objectLookup.R.sprite, &quot;idledown&quot;),
         Wait(0.5),
         Ease(self.scene.objectLookup.R, &quot;y&quot;, function() return self.scene.objectLookup.R.y - 50 end, 8, &quot;linear&quot;),
@@ -492,6 +495,8 @@ return function(self)
         Wait(1),
 
         MessageBox {message= &quot;Sonic: Uh{p20}.{p20}.{p20}. Hey little buddy!&quot;, blocking = true, textSpeed = 4},
+        Wait(0.2),
+        PlayAudio(&quot;music&quot;, &quot;follow&quot;, 0.7, true),
 
         Do(function()
             self.scene.player.cinematic = true
@@ -525,7 +530,6 @@ return function(self)
         MessageBox {message= &quot;Sally: He doesn't seem to be under Robotnik's control.&quot;, blocking = true, textSpeed = 4},
         Animate(sprites.sonic.sprite, &quot;idleright&quot;),
         MessageBox {message= &quot;Sally: We should follow him. {p30}Maybe he can help us find a way out of here.&quot;, blocking = true, textSpeed = 4},
-        PlayAudio(&quot;music&quot;, &quot;follow&quot;, 0.7, true),
         walkin,
         Do(function()
             self.scene.player.x = self.scene.player.x + 60

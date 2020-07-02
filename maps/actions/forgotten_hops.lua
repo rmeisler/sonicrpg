@@ -34,10 +34,15 @@ return function(scene)
 	scene.player.cinematic = true
 	
 	local R = scene.objectLookup.R
-	R.movespeed = 3
+	R.movespeed = 4
 
 	return Serial {
-		Wait(2),
+		Do(function()
+		    scene.player.x = R.x + 50
+   	        scene.player.y = R.y
+		end),
+
+		Wait(1),
 		
 		Parallel {
 			Move(R, scene.objectLookup.Waypoint1, "walk"),
@@ -57,7 +62,7 @@ return function(scene)
 			scene.player.sprite.visible = true
 			scene.player.dropShadow.sprite.visible = true
 			scene.player.noIdle = true
-			scene.player.state = "walkup"
+			scene.player.sprite:setAnimation("walkup")
 		end),
 		
 		Ease(scene.player, "y", 2588, 1.5, "linear"),

@@ -95,11 +95,23 @@ return {
 			speed = 0.5
 		},
 		
+		crouchdown = {
+		    frames = {{13,7}}
+		},
+		crouchup = {
+		    frames = {{14,7}}
+		},
 		crouchleft = {
 		    frames = {{13,6}}
 		},
 		crouchright = {
 		    frames = {{14,6}}
+		},
+		jumpdown = {
+		    frames = {{15,7}}
+		},
+		jumpup = {
+		    frames = {{16,7}}
 		},
 		jumpleft = {
 		    frames = {{15,6}}

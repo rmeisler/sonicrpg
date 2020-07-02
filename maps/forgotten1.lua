@@ -8,9 +8,9 @@ return {
   height = 83,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 306,
+  nextobjectid = 308,
   properties = {
-    ["battlebg"] = "../art/backgrounds/datacenter1f.png",
+    ["battlebg"] = "../art/backgrounds/forgotten.png",
     ["onload"] = "actions/forgotten_hops.lua",
     ["regionName"] = "Robotropolis",
     ["sectorName"] = "Swatbot Factory"
@@ -547,8 +547,29 @@ return {
           name = "MechaArm5",
           type = "MechaArm",
           shape = "rectangle",
-          x = 288,
-          y = 1792,
+          x = 64,
+          y = 1664,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/mechaarm.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["facing"] = "right",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/mechaarm.png"
+          }
+        },
+        {
+          id = 176,
+          name = "MechaArm4",
+          type = "MechaArm",
+          shape = "rectangle",
+          x = 416,
+          y = 2304,
           width = 32,
           height = 32,
           rotation = 0,
@@ -564,85 +585,22 @@ return {
           }
         },
         {
-          id = 176,
-          name = "MechaArm4",
-          type = "MechaArm",
-          shape = "rectangle",
-          x = 192,
-          y = 2112,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/swatbot.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
-            ["facing"] = "right",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/mechaarm.png"
-          }
-        },
-        {
-          id = 177,
-          name = "MechaArm3",
-          type = "MechaArm",
-          shape = "rectangle",
-          x = 992,
-          y = 1792,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/swatbot.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
-            ["facing"] = "right",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/mechaarm.png"
-          }
-        },
-        {
           id = 179,
           name = "MechaArm2",
           type = "MechaArm",
           shape = "rectangle",
-          x = 1088,
-          y = 1280,
+          x = 1120,
+          y = 1312,
           width = 32,
           height = 32,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/swatbot.lua",
+            ["battle"] = "../data/monsters/mechaarm.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["facing"] = "right",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/mechaarm.png"
-          }
-        },
-        {
-          id = 180,
-          name = "MechaArm1",
-          type = "MechaArm",
-          shape = "rectangle",
-          x = 768,
-          y = 1216,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/swatbot.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
-            ["facing"] = "left",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/mechaarm.png"
           }
@@ -1293,7 +1251,7 @@ return {
           type = "HopTrigger",
           shape = "rectangle",
           x = 128,
-          y = 1696,
+          y = 1705,
           width = 96,
           height = 32,
           rotation = 0,
@@ -1562,7 +1520,7 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["script"] = "local Ease = require \"actions/Ease\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Move = require \"actions/Move\"\nlocal Action = require \"actions/Action\"\n\nreturn function(self)\n    local R = self.scene.objectLookup.R2\n    R.movespeed = 3\n    R.sprite.visible = true\n    self:run(Serial {\n        Move(R, self.scene.objectLookup.Waypoint2, \"walk\"),\n        Parallel {\n            Ease(R, \"x\", function() return R.x - 120 end, 5, \"linear\"),\n            Serial {\n                Ease(R, \"y\", function() return R.y - 50 end, 5, \"inout\"),\n                Ease(R, \"y\", function() return R.y + 50 end, 6, \"inout\")\n            },\n        },\n\n        Move(R, self.scene.objectLookup.Waypoint3, \"walk\"),\n        Parallel {\n            Ease(R, \"x\", function() return R.x - 120 end, 5, \"linear\"),\n            Serial {\n                Ease(R, \"y\", function() return R.y - 50 end, 5, \"inout\"),\n                Ease(R, \"y\", function() return R.y + 50 end, 6, \"inout\")\n            },\n        },\n\n        Move(R, self.scene.objectLookup.Waypoint4, \"walk\"),\n        Ease(R, \"y\", function() return R.y - 150 end, 5, \"inout\"),\n        Ease(R, \"y\", function() return R.y - 50 end, 6, \"inout\"),\n\n        Do(function()\n            R:remove()\n        end)\n    })\n    return Action()\nend"
+            ["script"] = "local Ease = require \"actions/Ease\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Move = require \"actions/Move\"\nlocal Action = require \"actions/Action\"\n\nreturn function(self)\n    local R = self.scene.objectLookup.R2\n    if not R:isRemoved() then\n        R.movespeed = 3\n        R.sprite.visible = true\n        self:run(Serial {\n            Move(R, self.scene.objectLookup.Waypoint2, \"walk\"),\n            Parallel {\n                Ease(R, \"x\", function() return R.x - 120 end, 5, \"linear\"),\n                Serial {\n                    Ease(R, \"y\", function() return R.y - 50 end, 5, \"inout\"),\n                    Ease(R, \"y\", function() return R.y + 50 end, 6, \"inout\")\n                },\n            },\n\n            Move(R, self.scene.objectLookup.Waypoint3, \"walk\"),\n            Parallel {\n                Ease(R, \"x\", function() return R.x - 120 end, 5, \"linear\"),\n                Serial {\n                    Ease(R, \"y\", function() return R.y - 50 end, 5, \"inout\"),\n                    Ease(R, \"y\", function() return R.y + 50 end, 6, \"inout\")\n                },\n            },\n\n            Move(R, self.scene.objectLookup.Waypoint4, \"walk\"),\n            Ease(R, \"y\", function() return R.y - 150 end, 5, \"inout\"),\n            Ease(R, \"y\", function() return R.y - 50 end, 6, \"inout\"),\n\n            Do(function()\n                R:remove()\n            end)\n        })\n    end\n    return Action()\nend"
           }
         },
         {
@@ -1586,7 +1544,7 @@ return {
           name = "Waypoint3",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 416,
+          x = 448,
           y = 1504,
           width = 32,
           height = 32,
@@ -1627,6 +1585,39 @@ return {
           visible = true,
           properties = {
             ["ThickGloves"] = 1,
+            ["sprite"] = "../art/sprites/chest.png"
+          }
+        },
+        {
+          id = 306,
+          name = "RTrigger1",
+          type = "TouchTrigger",
+          shape = "rectangle",
+          x = 992,
+          y = 1600,
+          width = 32,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["script"] = "local Action = require \"actions/Action\"\nreturn function(self)\n    self.scene.objectLookup.R2:remove()\n    return Action()\nend"
+          }
+        },
+        {
+          id = 307,
+          name = "Chest2",
+          type = "Chest",
+          shape = "rectangle",
+          x = 1216,
+          y = 1248,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 3501,
+          visible = true,
+          properties = {
+            ["GreenLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest.png"
           }
         }

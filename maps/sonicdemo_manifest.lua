@@ -56,7 +56,7 @@ return {
 	
 	{
         type = "map",
-        file = "maps/forgotten4.lua",
+        file = "maps/forgotten3.lua",
 		--primary = true,
     },
 	

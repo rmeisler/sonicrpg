@@ -22,6 +22,7 @@ local Executor = require "actions/Executor"
 local Spawn = require "actions/Spawn"
 local AudioFade = require "actions/AudioFade"
 local Repeat = require "actions/Repeat"
+local Move = require "actions/Move"
 
 local BasicNPC = require "object/BasicNPC"
 local EscapeObstacle = require "object/EscapeObstacle"
@@ -33,166 +34,137 @@ local EscapePlayerVert = require "object/EscapePlayerVert"
 local TARGET_OFFSET_X = 400
 
 return function(scene)
-	local targetX = function()
-		--[[if hoverbot1.x > scene.player.x then
-			return hoverbot1.x + TARGET_OFFSET_X
-		else
-			return math.max(scene.player.x, hoverbot1.x + TARGET_OFFSET_X)
-		end]]
-		return 0
-	end
+	scene.playerDead = false
 	
-	scene.dead = false
+	scene.player.sprite.visible = false
+	scene.player.dropShadow.sprite.visible = false
 	
-	GameState.leader = "sonic"
-	scene.player:updateSprite()
+	GameState:removeFromParty("antoine")
 	
+	local R = scene.objectLookup.R
 	return While(
 		function()
 			return not scene.playerDead
 		end,
 		
 		Serial {
-			Wait(2),
-			
 			Do(function()
-				scene.player.cinematic = true
-				scene.player.sprite:setAnimation("juiceup")
-				scene.player.ignoreSpecialMoveCollision = true
-				scene.player:addSceneHandler("update", EscapePlayerVert.update)
+				scene.player.x = R.x + 50
+				scene.player.y = R.y
+				R.movespeed = 25
 			end),
-			
-			Wait(0.5),
-			
-			Do(function()
-				scene.audio:setMusicVolume(1.0)
-			end),
-			PlayAudio("music", "sonictheme", 1.0, true),
-			
-			Do(function()
-				scene.player.cinematic = false
-				scene.player.ignoreSpecialMoveCollision = false
-			end),
-			
-			Do(function()
-				scene.audio:setMusicVolume(1.0)
-			end),
-			
-			-- Alert ahead of obstacle
-			PlayAudio("sfx", "alert", 1.0, true),
-			Do(function()
-				scene.indicators = {}
-				--table.insert(scene.indicators, EscapeIndicator.place(scene, hoverbot1.layer, 500))
-			end),
-			Wait(1),
-			Do(function()
-				for _, indicator in pairs(scene.indicators) do
-					indicator:remove()
-				end
-				scene.indicators = {}
-			end),
-			
-			Wait(2),
-			
-			-- Alert ahead of obstacle		
-			PlayAudio("sfx", "alert", 1.0, true),
-			Do(function()
-				--table.insert(scene.indicators, EscapeIndicator.place(scene, hoverbot1.layer, 650))
-				--table.insert(scene.indicators, EscapeIndicator.place(scene, hoverbot1.layer, 750))
-			end),
-			Wait(1),
-			Do(function()
-				for _, indicator in pairs(scene.indicators) do
-					indicator:remove()
-				end
-				scene.indicators = {}
-			end),
-			
-			Wait(2),
-			
-			-- Alert ahead of obstacle
-			PlayAudio("sfx", "alert", 1.0, true),
-			Do(function()
-				for y=0,3 do
-					--table.insert(scene.indicators, EscapeIndicator.place(scene, hoverbot1.layer, 550 + y*61))
-				end
-			end),
-			Wait(1),
-			Do(function()
-				for _, indicator in pairs(scene.indicators) do
-					indicator:remove()
-				end
-				scene.indicators = {}
-			end),
-			
 			
 			Wait(1),
 			
+			Parallel {
+				Serial {
+					Move(R, scene.objectLookup.Waypoint1, "dash"),
+					Move(R, scene.objectLookup.Waypoint2, "dash"),
+					Move(R, scene.objectLookup.Waypoint3, "dash"),
+					Move(R, scene.objectLookup.Waypoint4, "dash"),
+					Move(R, scene.objectLookup.Waypoint5, "dash"),
+					Move(R, scene.objectLookup.Waypoint6, "dash"),
+				},
+				Do(function()
+					scene.player.x = R.x + 50
+					scene.player.y = R.y
+				end)
+			},
 			
-			Wait(1),
+			Parallel {
+				Move(R, scene.objectLookup.Waypoint7, "dash"),
+				Ease(scene.player, "x", 800, 0.2, "inout"),
+				Ease(scene.player, "y", 22368, 0.2, "inout")
+			},
 			
-			
-			-- Alert ahead of obstacle
-			PlayAudio("sfx", "alert", 1.0, true),
 			Do(function()
-				for y=0,3 do
-					--table.insert(scene.indicators, EscapeIndicator.place(scene, hoverbot1.layer, 400 + y*61))
-				end
-			end),
-			Wait(1),
-			Do(function()
-				for _, indicator in pairs(scene.indicators) do
-					indicator:remove()
-				end
-				scene.indicators = {}
-			end),
-			
-			
-			Wait(1),
-			
-			
-			Wait(1),
-			
-			-- Alert ahead of obstacle
-			PlayAudio("sfx", "alert", 1.0, true),
-			Do(function()
-				for y=0,6 do
-					if y <= 2 or y >= 6 then
-						--table.insert(scene.indicators, EscapeIndicator.place(scene, hoverbot1.layer, 400 + y*61))
-					end
-				end
-			end),
-			Wait(1),
-			Do(function()
-				for _, indicator in pairs(scene.indicators) do
-					indicator:remove()
-				end
-				scene.indicators = {}
+				scene.objectLookup.R:remove()
+				
+				GameState.leader = "sonic"
+				scene.player:updateSprite()
+				scene.player.noIdle = true
+				scene.player.sprite:setAnimation("walkup")
 			end),
 			
+			Ease(scene.player, "y", 22068, 1.5, "linear"),
 			
-			Wait(3),
-			
-			-- Alert ahead of obstacle
-			PlayAudio("sfx", "alert", 1.0, true),
 			Do(function()
-				for y=0,2 do
-					--table.insert(scene.indicators, EscapeIndicator.place(scene, hoverbot1.layer, 350 + y*61))
-					--table.insert(scene.indicators, EscapeIndicator.place(scene, hoverbot1.layer, 550 + y*61))
-				end
-			end),
-			Wait(1),
-			Do(function()
-				for _, indicator in pairs(scene.indicators) do
-					indicator:remove()
-				end
-				scene.indicators = {}
+				local walkout, walkin, sprites = scene.player:split()
+				scene.player.noIdle = false
+				scene:run {
+					walkout,
+					Animate(sprites.sonic.sprite, "idleup"),
+					Animate(sprites.sally.sprite, "idleup"),
+					MessageBox{message="Sally: Phew!{p50} He is fast!", blocking=true, textSpeed=4},
+					Animate(sprites.sonic.sprite, "idleright"),
+					MessageBox{message="Sonic: Doesn't seem so fast to me...", blocking=true, textSpeed=4},
+					Animate(sprites.sally.sprite, "idleleft"),
+					MessageBox{message="Sally: Time to juice?", blocking=true, textSpeed=4},
+					MessageBox{message="Sonic: Sal! {p50}Ya can't steal my moment like that!", blocking=true, textSpeed=4},
+					Animate(sprites.sally.sprite, "thinking"),
+					MessageBox{message="Sally: Sorry, sorry.", blocking=true, textSpeed=4},
+					walkin,
+					Do(function()
+						scene.player.x = scene.player.x + 60
+						scene.player.y = scene.player.y + 70
+						scene.player.sprite:setAnimation("idleright")
+					end),
+					Parallel {
+						MessageBox{message="Sonic: Time to juice!", closeAction=Wait(1), textSpeed=4},
+						Serial {
+							Wait(1),
+							Do(function()
+								scene.audio:setMusicVolume(1.0)
+							end),
+							PlayAudio("music", "sonictheme", 0.7, true),
+							Do(function()
+								scene.player.sprite.visible = false
+								scene.player.dropShadow.sprite.visible = false
+								scene:run {
+									scene.player:chargeJuice(),
+									Do(function()
+										scene.timeToJuice1 = true
+									end)
+								}
+							end),
+							YieldUntil(function() return scene.timeToJuice1 end),
+							Do(function()
+								scene.player.bx = 25
+								scene.player.by = 20
+								scene.player:addSceneHandler("update", EscapePlayerVert.update)
+								scene.player.sprite.visible = true
+								scene.player.dropShadow.sprite.visible = true
+								scene.player.sprite:setAnimation("juiceupright")
+							end),
+							Wait(0.2),
+							Do(function()
+								scene.player.sprite:setAnimation("juiceupleft")
+							end),
+							Wait(0.1),
+							Do(function()
+								scene.player.bx = -15
+							end),
+							Wait(0.2),
+							Do(function()
+								scene.player.sprite:setAnimation("juiceup")
+							end)
+						}
+					},
+					Do(function()
+						scene.timeToJuice2 = true
+					end)
+				}
 			end),
 			
+			YieldUntil(function() return scene.timeToJuice2 end),
+			
+			Wait(1000)
 		},
 		
 		Serial {
-			--scene.player:die(),
+			Do(function()
+				scene.player:removeSceneHandler("update", EscapePlayerVert.update)
+			end),
 			Menu {
 				layout = Layout {
 					{Layout.Text("Try again?"), selectable = false},

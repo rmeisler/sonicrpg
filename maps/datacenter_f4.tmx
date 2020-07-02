@@ -203,6 +203,8 @@ local Ease = require &quot;actions/Ease&quot;
 local Move = require &quot;actions/Move&quot;
 local YieldUntil = require &quot;actions/YieldUntil&quot;
 local Executor = require &quot;actions/Executor&quot;
+local While = require &quot;actions/While&quot;
+local Spawn = require &quot;actions/Spawn&quot;
 
 local SpriteNode = require &quot;object/SpriteNode&quot;
 local Transform = require &quot;util/Transform&quot;
@@ -251,19 +253,25 @@ return function(self)
         MessageBox { message = &quot;Sonic: ...Uhhh...{p50} is this what overloading looks like?&quot;, blocking = true},
         MessageBox { message = &quot;Sally: No.{p50} Something's wrong.&quot;, blocking = true},
 
-        Parallel {
-            PlayAudio(&quot;sfx&quot;, &quot;alert&quot;, 1.0, true),
-            Repeat(Serial {
+        Spawn(Repeat(
+             While(
+                function() return not self.scene.rovercinematicover end,
                 Parallel {
                     Serial {
                         Ease(self.scene.bgColor, 1, 510, 5, &quot;quad&quot;),
-                        Ease(self.scene.bgColor, 1, 255, 5, &quot;quad&quot;)
+                        Ease(self.scene.bgColor, 1, 255, 5, &quot;quad&quot;),
                     },
                     Do(function() 
                         ScreenShader:sendColor(&quot;multColor&quot;, self.scene.bgColor)
                     end)
-                }
-            }, 20),
+                },
+                Do(function() end)
+            ),
+            1000
+        )),
+        Spawn(Repeat(While(function() return not self.scene.rovercinematicover end, PlayAudio(&quot;sfx&quot;, &quot;alert&quot;, 0.3), Do(function() end)), 100)),
+
+        Parallel {            
             Serial {
                 Wait(1),
                 Animate(sprites.sally.sprite, &quot;shock&quot;),
@@ -496,9 +504,9 @@ return function(self)
                 },
                 Wait(2),
                 Parallel {
-                    Ease(self.scene.bgColor, 1, 0, 0.3, &quot;linear&quot;),
-                    Ease(self.scene.bgColor, 2, 0, 0.3, &quot;linear&quot;),
-                    Ease(self.scene.bgColor, 3, 0, 0.3, &quot;linear&quot;),
+                    Ease(self.scene.bgColor, 1, 0, 0.5, &quot;linear&quot;),
+                    Ease(self.scene.bgColor, 2, 0, 0.5, &quot;linear&quot;),
+                    Ease(self.scene.bgColor, 3, 0, 0.5, &quot;linear&quot;),
                     Do(function()
                         ScreenShader:sendColor(&quot;multColor&quot;, self.scene.bgColor)
                     end)
@@ -510,7 +518,7 @@ return function(self)
                         map = self.scene.maps[&quot;maps/robotnikwarroom.lua&quot;],
                         maps = self.scene.maps,
                         region = self.scene.region,
-                        fadeInSpeed = 0.3,
+                        fadeInSpeed = 0.2,
                         images = self.scene.images,
                         animations = self.scene.animations,
                         audio = self.scene.audio,

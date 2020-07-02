@@ -569,7 +569,9 @@ function Player:basicUpdate(dt)
 		not self.scene:playerMovable() or
 		self.dontfuckingmove
 	then
-		self.sprite:setAnimation(self.state)
+		if not self.noIdle then
+			self.sprite:setAnimation(self.state)
+		end
 		return
 	end
 	
