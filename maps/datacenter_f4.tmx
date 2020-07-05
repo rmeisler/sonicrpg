@@ -186,7 +186,7 @@
 </data>
  </layer>
  <objectgroup name="computerobject">
-  <object id="497" name="Computer1" type="Computer" gid="2311" x="704" y="1152" width="128" height="32">
+  <object id="497" name="Computer1" type="Computer" gid="2311" x="736" y="1152" width="64" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="int" value="-32"/>

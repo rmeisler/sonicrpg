@@ -367,6 +367,8 @@ function BasicScene:enterBattle(args)
 		self.blur.radius_h = 0.0
 	end
 	
+	print("GOT HERE 1!")
+	
 	self.bgColor = {255,255,255,255}
 	ScreenShader:sendColor("multColor", self.bgColor)
 	return Serial {
@@ -378,8 +380,9 @@ function BasicScene:enterBattle(args)
 
 		-- Motion blur + fade to black + fade music
 		Ease(self.blur, "radius_h", 150, 2),
-
+		
 		Do(function()
+			print("GOT HERE 2!")
 			self.audio.allowDucking = false
 			self.sceneMgr:pushScene {
 				class = "BattleScene",
@@ -394,6 +397,10 @@ function BasicScene:enterBattle(args)
 				bossBattle = args.bossBattle,
 				initiative = args.initiative
 			}
+		end),
+		
+		Do(function()
+			print("GOT HERE 3")
 		end)
 	}
 end

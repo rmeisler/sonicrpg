@@ -76,7 +76,8 @@ function MechaArm:update(dt)
 	    self.sprite.visible = true
 		
 		local battleArgs = {
-			initiative = self:getInitiative()
+			initiative = self:getInitiative(),
+			opponents = {self:getMonsterData()}
 		}
 		local npcArgs = self:getBattleArgs()
 		if next(npcArgs) then
@@ -85,25 +86,20 @@ function MechaArm:update(dt)
 			end
 		end
 		
-		self.scene:run(Serial {
-			Do(function()
-			    print("GOT HERE 1")
-			end),
+		self:run(Serial {
+			Wait(0.5),
 			Animate(self.sprite, "dive"..self.facing, true),
-			Do(function()
-			    print("GOT HERE 2")
-			end),
 			Animate(self.sprite, "grabbed"..self.facing),
+			
+			Wait(0.2),
 			Do(function()
-			    print("GOT HERE 3")
 				self.scene.player.cinematic = true
 				self.scene.player.noIdle = true
 				self.scene.player.sprite:setAnimation("shock")
+				self.flagForDeletion = true
+				
+				self.scene:run(self.scene:enterBattle(battleArgs))
 			end),
-			self.scene:enterBattle(battleArgs),
-			Do(function()
-				self:onBattleComplete()
-			end)
 		})
 	end
 	

@@ -32,17 +32,24 @@ function HopTrigger:onCollision(prevState)
 			Do(function()
 				self.scene.player.cinematic = true
 				self.scene.player.noIdle = true
+				self.scene.player.dropShadowOverrideY = self.scene.player.y + self.scene.player.sprite.h - 15
 			end),
 			Animate(self.scene.player.sprite, "crouchup"),
 			Wait(0.1),
 			Animate(self.scene.player.sprite, "jumpup"),
-			Ease(self.scene.player, "y", self.scene.player.y - 150, 5, "inout"),
-			Ease(self.scene.player, "y", self.scene.player.y - 120, 6, "inout"),
+			Parallel {
+				Serial {
+					Ease(self.scene.player, "y", self.scene.player.y - 150, 5, "inout"),
+					Ease(self.scene.player, "y", self.scene.player.y - 120, 6, "inout")
+				},
+				Ease(self.scene.player, "dropShadowOverrideY", self.scene.player.y + self.scene.player.sprite.h - 15 - 120, 4, "inout")
+			},
 			Animate(self.scene.player.sprite, "crouchup"),
 			Do(function()
 				self.scene.player.cinematic = false
 				self.scene.player.isHopping = false
 				self.scene.player.noIdle = false
+				self.scene.player.dropShadowOverrideY = nil
 			end),
 		}
 	elseif  love.keyboard.isDown("down") and
@@ -53,17 +60,24 @@ function HopTrigger:onCollision(prevState)
 			Do(function()
 				self.scene.player.cinematic = true
 				self.scene.player.noIdle = true
+				self.scene.player.dropShadowOverrideY = self.scene.player.y + self.scene.player.sprite.h - 15
 			end),
 			Animate(self.scene.player.sprite, "crouchdown"),
 			Wait(0.1),
 			Animate(self.scene.player.sprite, "jumpdown"),
-			Ease(self.scene.player, "y", self.scene.player.y - 20, 5, "inout"),
-			Ease(self.scene.player, "y", self.scene.player.y + 110, 6, "inout"),
+			Parallel {
+				Serial {
+					Ease(self.scene.player, "y", self.scene.player.y - 20, 5, "inout"),
+					Ease(self.scene.player, "y", self.scene.player.y + 110, 6, "inout")
+				},
+				Ease(self.scene.player, "dropShadowOverrideY", self.scene.player.y + self.scene.player.sprite.h - 15 + 110, 3, "inout")
+			},
 			Animate(self.scene.player.sprite, "crouchdown"),
 			Do(function()
 				self.scene.player.cinematic = false
 				self.scene.player.isHopping = false
 				self.scene.player.noIdle = false
+				self.scene.player.dropShadowOverrideY = nil
 			end),
 		}
 	elseif  love.keyboard.isDown("left") and
@@ -74,6 +88,7 @@ function HopTrigger:onCollision(prevState)
 			Do(function()
 				self.scene.player.cinematic = true
 				self.scene.player.noIdle = true
+				self.scene.player.dropShadowOverrideY = self.scene.player.y + self.scene.player.sprite.h - 15
 			end),
 			Animate(self.scene.player.sprite, "crouchleft"),
 			Wait(0.1),
@@ -90,6 +105,7 @@ function HopTrigger:onCollision(prevState)
 				self.scene.player.cinematic = false
 				self.scene.player.isHopping = false
 				self.scene.player.noIdle = false
+				self.scene.player.dropShadowOverrideY = nil
 			end),
 		}
 	elseif  love.keyboard.isDown("right") and
@@ -100,6 +116,7 @@ function HopTrigger:onCollision(prevState)
 			Do(function()
 				self.scene.player.cinematic = true
 				self.scene.player.noIdle = true
+				self.scene.player.dropShadowOverrideY = self.scene.player.y + self.scene.player.sprite.h - 15
 			end),
 			Animate(self.scene.player.sprite, "crouchright"),
 			Wait(0.1),
@@ -116,13 +133,14 @@ function HopTrigger:onCollision(prevState)
 				self.scene.player.cinematic = false
 				self.scene.player.isHopping = false
 				self.scene.player.noIdle = false
+				self.scene.player.dropShadowOverrideY = nil
 			end),
 		}
 	else
 		self.scene.player.isHopping = false
 	end
 	
-	self.scene:run(action)
+	self.scene.player:run(action)
 end
 
 

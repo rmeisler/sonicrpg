@@ -1,10 +1,20 @@
 return {
     image = "mechaarm.png",
-    starting = "diveright",
+    starting = "idle",
     w = 116,
     h = 75,
 
     animations = {
+		idle = {
+			frames = {{12,0}}
+		},
+		backward = {
+			frames = {{26,0}},
+		},
+		hurt = {
+			frames = {{13,0}}
+		},
+	
         diveleft = {
             frames = {{14,0},{15,0},{16,0},{17,0},{18,0},{19,0},{20,0},{21,0},{22,0},{23,0},{24,0},{25,0},{26,0},{27,0}},
 			speed = 0.05

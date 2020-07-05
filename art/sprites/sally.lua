@@ -35,10 +35,10 @@ return {
 		    frames = {{16,7}}
 		},
 		jumpleft = {
-		    frames = {{15,6}}
+		    frames = {{3,1}}
 		},
 		jumpright = {
-		    frames = {{16,6}}
+		    frames = {{3,0}}
 		},
 		
 		nichole_project_start = {
