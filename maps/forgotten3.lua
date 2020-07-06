@@ -2271,27 +2271,9 @@ return {
           }
         },
         {
-          id = 183,
-          name = "MechaArm1",
-          type = "MechaArm",
-          shape = "rectangle",
-          x = 608,
-          y = 20480,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["facing"] = "right",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/mechaarm.png"
-          }
-        },
-        {
           id = 185,
           name = "MechaArm3",
-          type = "MechaArm",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 800,
           y = 17792,
@@ -2309,7 +2291,7 @@ return {
         {
           id = 187,
           name = "MechaArm5",
-          type = "MechaArm",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 704,
           y = 11968,
@@ -2325,28 +2307,9 @@ return {
           }
         },
         {
-          id = 193,
-          name = "MechaArm2",
-          type = "MechaArm",
-          shape = "rectangle",
-          x = 992,
-          y = 19296,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["disappearAfterBattle"] = true,
-            ["facing"] = "left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/mechaarm.png"
-          }
-        },
-        {
           id = 194,
           name = "MechaArm4",
-          type = "MechaArm",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 800,
           y = 17440,
@@ -2364,7 +2327,7 @@ return {
         {
           id = 195,
           name = "MechaArm6",
-          type = "MechaArm",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 896,
           y = 12736,
@@ -2412,7 +2375,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.playerDead = true\n    return Action()\nend"
+            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.player.by = 10\n    return Action()\nend"
           }
         },
         {
@@ -2429,7 +2392,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.playerDead = true\n    return Action()\nend"
+            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.player.by = 10\n    return Action()\nend"
           }
         },
         {
@@ -2446,7 +2409,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.playerDead = true\n    return Action()\nend"
+            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.player.by = 10\n    return Action()\nend"
           }
         },
         {
@@ -2575,7 +2538,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.playerDead = true\n    return Action()\nend"
+            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.player.by = 10\n    return Action()\nend"
           }
         },
         {
@@ -2592,7 +2555,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.playerDead = true\n    return Action()\nend"
+            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.player.by = 10\n    return Action()\nend"
           }
         },
         {
@@ -2609,7 +2572,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.playerDead = true\n    return Action()\nend"
+            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.player.by = 10\n    return Action()\nend"
           }
         },
         {
@@ -2626,7 +2589,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.playerDead = true\n    return Action()\nend"
+            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.player.by = 10\n    return Action()\nend"
           }
         },
         {
@@ -2643,7 +2606,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.playerDead = true\n    return Action()\nend"
+            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.player.by = 10\n    return Action()\nend"
           }
         },
         {
@@ -2660,7 +2623,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.playerDead = true\n    return Action()\nend"
+            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.player.by = 10\n    return Action()\nend"
           }
         },
         {
@@ -2677,7 +2640,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.playerDead = true\n    return Action()\nend"
+            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.player.by = 10\n    return Action()\nend"
           }
         },
         {
@@ -2694,7 +2657,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.playerDead = true\n    return Action()\nend"
+            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.player.by = 10\n    return Action()\nend"
           }
         },
         {
@@ -2711,7 +2674,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.playerDead = true\n    return Action()\nend"
+            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.player.by = 10\n    return Action()\nend"
           }
         },
         {
@@ -2728,7 +2691,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.playerDead = true\n    return Action()\nend"
+            ["script"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    self.scene.player.by = 10\n    return Action()\nend"
           }
         }
       }

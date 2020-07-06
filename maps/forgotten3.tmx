@@ -2127,43 +2127,28 @@
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="183" name="MechaArm1" type="MechaArm" gid="1227" x="608" y="20480" width="32" height="32">
+  <object id="185" name="MechaArm3" type="BasicNPC" gid="1227" x="800" y="17792" width="32" height="32">
    <properties>
     <property name="facing" value="right"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/mechaarm.png"/>
    </properties>
   </object>
-  <object id="185" name="MechaArm3" type="MechaArm" gid="1227" x="800" y="17792" width="32" height="32">
+  <object id="187" name="MechaArm5" type="BasicNPC" gid="1227" x="704" y="11968" width="32" height="32">
    <properties>
     <property name="facing" value="right"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/mechaarm.png"/>
    </properties>
   </object>
-  <object id="187" name="MechaArm5" type="MechaArm" gid="1227" x="704" y="11968" width="32" height="32">
+  <object id="194" name="MechaArm4" type="BasicNPC" gid="1227" x="800" y="17440" width="32" height="32">
    <properties>
     <property name="facing" value="right"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/mechaarm.png"/>
    </properties>
   </object>
-  <object id="193" name="MechaArm2" type="MechaArm" gid="1227" x="992" y="19296" width="32" height="32">
-   <properties>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="facing" value="left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/mechaarm.png"/>
-   </properties>
-  </object>
-  <object id="194" name="MechaArm4" type="MechaArm" gid="1227" x="800" y="17440" width="32" height="32">
-   <properties>
-    <property name="facing" value="right"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/mechaarm.png"/>
-   </properties>
-  </object>
-  <object id="195" name="MechaArm6" type="MechaArm" gid="1227" x="896" y="12736" width="32" height="32">
+  <object id="195" name="MechaArm6" type="BasicNPC" gid="1227" x="896" y="12736" width="32" height="32">
    <properties>
     <property name="facing" value="left"/>
     <property name="ghost" type="bool" value="true"/>
@@ -2184,7 +2169,7 @@
     <property name="script">local Action = require &quot;actions/Action&quot;
 
 return function(self)
-    self.scene.playerDead = true
+    self.scene.player.by = 10
     return Action()
 end</property>
    </properties>
@@ -2195,7 +2180,7 @@ end</property>
     <property name="script">local Action = require &quot;actions/Action&quot;
 
 return function(self)
-    self.scene.playerDead = true
+    self.scene.player.by = 10
     return Action()
 end</property>
    </properties>
@@ -2206,7 +2191,7 @@ end</property>
     <property name="script">local Action = require &quot;actions/Action&quot;
 
 return function(self)
-    self.scene.playerDead = true
+    self.scene.player.by = 10
     return Action()
 end</property>
    </properties>
@@ -2252,7 +2237,7 @@ end</property>
     <property name="script">local Action = require &quot;actions/Action&quot;
 
 return function(self)
-    self.scene.playerDead = true
+    self.scene.player.by = 10
     return Action()
 end</property>
    </properties>
@@ -2263,7 +2248,7 @@ end</property>
     <property name="script">local Action = require &quot;actions/Action&quot;
 
 return function(self)
-    self.scene.playerDead = true
+    self.scene.player.by = 10
     return Action()
 end</property>
    </properties>
@@ -2274,7 +2259,7 @@ end</property>
     <property name="script">local Action = require &quot;actions/Action&quot;
 
 return function(self)
-    self.scene.playerDead = true
+    self.scene.player.by = 10
     return Action()
 end</property>
    </properties>
@@ -2285,7 +2270,7 @@ end</property>
     <property name="script">local Action = require &quot;actions/Action&quot;
 
 return function(self)
-    self.scene.playerDead = true
+    self.scene.player.by = 10
     return Action()
 end</property>
    </properties>
@@ -2296,7 +2281,7 @@ end</property>
     <property name="script">local Action = require &quot;actions/Action&quot;
 
 return function(self)
-    self.scene.playerDead = true
+    self.scene.player.by = 10
     return Action()
 end</property>
    </properties>
@@ -2307,7 +2292,7 @@ end</property>
     <property name="script">local Action = require &quot;actions/Action&quot;
 
 return function(self)
-    self.scene.playerDead = true
+    self.scene.player.by = 10
     return Action()
 end</property>
    </properties>
@@ -2318,7 +2303,7 @@ end</property>
     <property name="script">local Action = require &quot;actions/Action&quot;
 
 return function(self)
-    self.scene.playerDead = true
+    self.scene.player.by = 10
     return Action()
 end</property>
    </properties>
@@ -2329,7 +2314,7 @@ end</property>
     <property name="script">local Action = require &quot;actions/Action&quot;
 
 return function(self)
-    self.scene.playerDead = true
+    self.scene.player.by = 10
     return Action()
 end</property>
    </properties>
@@ -2340,7 +2325,7 @@ end</property>
     <property name="script">local Action = require &quot;actions/Action&quot;
 
 return function(self)
-    self.scene.playerDead = true
+    self.scene.player.by = 10
     return Action()
 end</property>
    </properties>
@@ -2351,7 +2336,7 @@ end</property>
     <property name="script">local Action = require &quot;actions/Action&quot;
 
 return function(self)
-    self.scene.playerDead = true
+    self.scene.player.by = 10
     return Action()
 end</property>
    </properties>

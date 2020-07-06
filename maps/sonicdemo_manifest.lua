@@ -420,6 +420,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/splash2.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/fan.ogg",
 		category = "sfx"
 	},

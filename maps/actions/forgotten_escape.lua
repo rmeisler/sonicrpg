@@ -77,87 +77,21 @@ return function(scene)
 				Ease(scene.player, "y", 22368, 0.2, "inout")
 			},
 			
+			MessageBox{message = "Sonic: Ready or not... {p50}here I come!", blocking = true, textSpeed = 4},
+			
 			Do(function()
 				scene.objectLookup.R:remove()
 				
 				GameState.leader = "sonic"
 				scene.player:updateSprite()
-				scene.player.noIdle = true
-				scene.player.sprite:setAnimation("walkup")
+				scene.player:addSceneHandler("update", EscapePlayerVert.update)
+				scene.player.sprite.visible = true
+				scene.player.dropShadow.sprite.visible = true
+				scene.player.sprite:setAnimation("juiceup")
 			end),
 			
-			Ease(scene.player, "y", 22068, 1.5, "linear"),
-			
-			Do(function()
-				local walkout, walkin, sprites = scene.player:split()
-				scene.player.noIdle = false
-				scene:run {
-					walkout,
-					Animate(sprites.sonic.sprite, "idleup"),
-					Animate(sprites.sally.sprite, "idleup"),
-					MessageBox{message="Sally: Phew!{p50} He is fast!", blocking=true, textSpeed=4},
-					Animate(sprites.sonic.sprite, "idleright"),
-					MessageBox{message="Sonic: Doesn't seem so fast to me...", blocking=true, textSpeed=4},
-					Animate(sprites.sally.sprite, "idleleft"),
-					MessageBox{message="Sally: Time to juice?", blocking=true, textSpeed=4},
-					MessageBox{message="Sonic: Sal! {p50}Ya can't steal my moment like that!", blocking=true, textSpeed=4},
-					Animate(sprites.sally.sprite, "thinking"),
-					MessageBox{message="Sally: Sorry, sorry.", blocking=true, textSpeed=4},
-					walkin,
-					Do(function()
-						scene.player.x = scene.player.x + 60
-						scene.player.y = scene.player.y + 70
-						scene.player.sprite:setAnimation("idleright")
-					end),
-					Parallel {
-						MessageBox{message="Sonic: Time to juice!", closeAction=Wait(1), textSpeed=4},
-						Serial {
-							Wait(1),
-							Do(function()
-								scene.audio:setMusicVolume(1.0)
-							end),
-							PlayAudio("music", "sonictheme", 0.7, true),
-							Do(function()
-								scene.player.sprite.visible = false
-								scene.player.dropShadow.sprite.visible = false
-								scene:run {
-									scene.player:chargeJuice(),
-									Do(function()
-										scene.timeToJuice1 = true
-									end)
-								}
-							end),
-							YieldUntil(function() return scene.timeToJuice1 end),
-							Do(function()
-								scene.player.bx = 25
-								scene.player.by = 20
-								scene.player:addSceneHandler("update", EscapePlayerVert.update)
-								scene.player.sprite.visible = true
-								scene.player.dropShadow.sprite.visible = true
-								scene.player.sprite:setAnimation("juiceupright")
-							end),
-							Wait(0.2),
-							Do(function()
-								scene.player.sprite:setAnimation("juiceupleft")
-							end),
-							Wait(0.1),
-							Do(function()
-								scene.player.bx = -15
-							end),
-							Wait(0.2),
-							Do(function()
-								scene.player.sprite:setAnimation("juiceup")
-							end)
-						}
-					},
-					Do(function()
-						scene.timeToJuice2 = true
-					end)
-				}
-			end),
-			
-			YieldUntil(function() return scene.timeToJuice2 end),
-			
+			PlayAudio("music", "sonictheme", 0.8, true),
+
 			Wait(1000)
 		},
 		

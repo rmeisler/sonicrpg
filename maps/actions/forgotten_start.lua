@@ -26,11 +26,56 @@ local Repeat = require "actions/Repeat"
 
 local BasicNPC = require "object/BasicNPC"
 
-local TARGET_OFFSET_X = 400
-
 return function(scene)
     GameState:removeFromParty("antoine")
+	
+	scene.camPos.y = 1300
+	
+	local sonicfall = BasicNPC(
+		scene,
+		{name="objects"},
+		{name = "sonicfall", x = 750, y = -120, width = 47, height = 55,
+			properties = {
+				ghost = true,
+				sprite = "art/sprites/sonic.png"
+			}
+		}
+	)
+	scene:addObject(sonicfall)
+
+	local sallyfall = BasicNPC(
+		scene,
+		{name="objects"},
+		{name = "sallyfall", x = 870, y = -150, width = 47, height = 55,
+			properties = {
+				ghost = true,
+				sprite = "art/sprites/sally.png"
+			}
+		}
+	)
+	scene:addObject(sallyfall)
+	
+	sonicfall.sprite:setAnimation("shock")
+	sallyfall.sprite:setAnimation("shock")
+	
+	scene.player.sprite.visible = false
+	scene.player.dropShadow.sprite.visible = false
+	
 	return Serial {
+		Wait(3),
+		
+		Parallel {
+			Ease(scene.camPos, "y", 0, 0.3, "inout"),
+			
+			Serial {
+				Parallel {
+					Ease(sonicfall, "y", 2100, 0.5, "linear"),
+					Ease(sallyfall, "y", 2100, 0.5, "linear")
+				},
+				PlayAudio("sfx", "splash2", 1.0, true)
+			}
+		},
+	
 		PlayAudio("music", "mysterious", 1.0, true)
 	}
 end
