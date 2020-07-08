@@ -198,6 +198,9 @@ return {
 		},
 		thinking = {
 			frames = {{0,5}}
+		},
+		swimup = {
+			frames = {{13,3}}
 		}
     }
 }

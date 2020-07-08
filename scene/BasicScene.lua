@@ -174,13 +174,18 @@ function BasicScene:onEnter(args)
 	ScreenShader:sendColor("multColor", self.bgColor)
 	return Serial {
 		Spawn(
-			Parallel {
-				Ease(self.bgColor, 1, 255, 2 * fadeInSpeed, "linear"),
-				Ease(self.bgColor, 2, 255, 2 * fadeInSpeed, "linear"),
-				Ease(self.bgColor, 3, 255, 2 * fadeInSpeed, "linear"),
-				
+			Serial {
+				Parallel {
+					Ease(self.bgColor, 1, 255, 2 * fadeInSpeed, "linear"),
+					Ease(self.bgColor, 2, 255, 2 * fadeInSpeed, "linear"),
+					Ease(self.bgColor, 3, 255, 2 * fadeInSpeed, "linear"),
+					
+					Do(function()
+						ScreenShader:sendColor("multColor", self.bgColor)
+					end)
+				},
 				Do(function()
-					ScreenShader:sendColor("multColor", self.bgColor)
+					print("done now")
 				end)
 			}
 		),

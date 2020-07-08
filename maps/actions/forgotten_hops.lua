@@ -65,7 +65,7 @@ return function(scene)
 			scene.player.sprite:setAnimation("walkup")
 		end),
 		
-		Ease(scene.player, "y", 2588, 2, "linear"),
+		Ease(scene.player, "y", 2488, 3, "linear"),
 
 		Do(function()
 			scene.player.cinematic = false

@@ -122,12 +122,13 @@ return function(scene)
 		
 		Parallel {
 			Ease(scene.player, "y", 400, 0.3, "inout"),
-			Ease(scene.bgColor, 1, 0, 0.5, "linear"),
-			Ease(scene.bgColor, 2, 0, 0.5, "linear"),
-			Ease(scene.bgColor, 3, 0, 0.5, "linear"),
+			Ease(scene.bgColor, 1, 0, 2, "inout"),
+			Ease(scene.bgColor, 2, 0, 2, "inout"),
+			Ease(scene.bgColor, 3, 0, 2, "inout"),
 			Do(function()
 				ScreenShader:sendColor("multColor", scene.bgColor)
-			end)
+			end),
+			AudioFade("music", 1.0, 0.0, 0.5)
 		},
 		
 		Do(function()
@@ -137,7 +138,7 @@ return function(scene)
 				map = scene.maps["maps/forgottenstart.lua"],
 				maps = scene.maps,
 				region = scene.region,
-				fadeInSpeed = 1,
+				fadeInSpeed = 0.5,
 				images = scene.images,
 				animations = scene.animations,
 				audio = scene.audio,

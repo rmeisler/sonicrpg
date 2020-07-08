@@ -39,7 +39,7 @@ return {
 	{
         type = "map",
         file = "maps/forgottenstart.lua",
-		primary = true,
+		--primary = true,
     },
 	
 	{
@@ -57,7 +57,7 @@ return {
 	{
         type = "map",
         file = "maps/forgotten3.lua",
-		--primary = true,
+		primary = true,
     },
 	
 	{
@@ -271,6 +271,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/waterblast.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/lakesplash.png"
 	},
 	{
 		type = "image",
@@ -577,12 +581,6 @@ return {
 		type = "sound",
 		file = "audio/sfx/cursor.wav",
 		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/slash.ogg",
-		category = "sfx",
-		volume = 0.7
 	},
 	{
 		type = "sound",
