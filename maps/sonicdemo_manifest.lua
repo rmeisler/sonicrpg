@@ -39,7 +39,7 @@ return {
 	{
         type = "map",
         file = "maps/forgottenstart.lua",
-		--primary = true,
+		primary = true,
     },
 	
 	{
@@ -57,7 +57,7 @@ return {
 	{
         type = "map",
         file = "maps/forgotten3.lua",
-		primary = true,
+		--primary = true,
     },
 	
 	{
@@ -171,6 +171,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/sonic.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/b.png"
 	},
 	{
 		type = "image",
