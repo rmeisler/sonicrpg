@@ -15,7 +15,7 @@ local SpriteNode = require "object/SpriteNode"
 local MessageBox = class(Action)
 
 MessageBox.ANIM_SPEED = 2
-MessageBox.DEFAULT_TEXT_SPEED = 8
+MessageBox.DEFAULT_TEXT_SPEED = 4
 MessageBox.FAST_TEXT_SPEED = 12
 MessageBox.HEADLINER_RECT = Rect(Transform(love.graphics.getWidth()/2, 30), love.graphics.getWidth() - 10, 60)
 MessageBox.SUBLINER_RECT = Rect(Transform(love.graphics.getWidth()/2, love.graphics.getHeight() - 30), love.graphics.getWidth() - 10, 60)
@@ -120,7 +120,7 @@ function MessageBox:setScene(scene)
 		scene:focus("keytriggered", self)
 	end
 	
-	if scene.player then
+	if scene.player and self.blocking then
 		scene.player.cinematic = true
 	end
 	

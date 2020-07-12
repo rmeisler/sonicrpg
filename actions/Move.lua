@@ -2,7 +2,7 @@ local Wait = require "actions/Wait"
 local Transform = require "util/Transform"
 local Move = class(require "actions/Action")
 
-function Move:construct(obj, target, anim, ttl, earlyExitFun)
+function Move:construct(obj, target, anim, ttl, earlyExitFun, tag)
 	self.obj = obj
 	self.target = target
 	self.anim = anim or "walk"
@@ -11,6 +11,7 @@ function Move:construct(obj, target, anim, ttl, earlyExitFun)
 	self.done = false
 	self.animCooldown = 0
 	self.switchAnim = nil
+	self.tag = tag
 end
 
 function Move:update(dt)
@@ -22,7 +23,7 @@ function Move:update(dt)
 		self.timeout:update(dt)
 	end
 
-	self:stepToward(self.target, self.obj.movespeed * (dt/0.016))
+	self:stepToward(self.target, math.ceil(self.obj.movespeed * (dt/0.016)))
 	
 	if self.animCooldown == 0 then
 		self.obj.sprite:trySetAnimation(self.switchAnim)
@@ -33,7 +34,9 @@ function Move:update(dt)
 end
 
 function Move:stepToward(target, speed)
-	if self.obj.hotspots.left_bot.x - target.hotspots.right_bot.x > speed then
+	local topspeed = speed
+	if self.obj.hotspots.right_bot.x - target.hotspots.right_bot.x > self.obj.movespeed*2 then
+		speed = math.min(topspeed, self.obj.hotspots.right_bot.x - target.hotspots.right_bot.x)
 		if  self.obj.object.properties.ignoreMapCollision or
 			(self.obj.scene:canMoveWhitelist(self.obj.hotspots.left_top.x, self.obj.hotspots.left_top.y, -speed, 0, self.obj.ignoreCollision) and
 			 self.obj.scene:canMoveWhitelist(self.obj.hotspots.left_bot.x, self.obj.hotspots.left_bot.y, -speed, 0, self.obj.ignoreCollision))
@@ -41,7 +44,8 @@ function Move:stepToward(target, speed)
 			self.obj.x = self.obj.x - speed
 			self.switchAnim = self.anim.."left"
 		end
-	elseif target.hotspots.left_bot.x - self.obj.hotspots.left_bot.x > speed then
+	elseif target.hotspots.left_bot.x - self.obj.hotspots.left_bot.x > self.obj.movespeed*2 then
+		speed = math.min(topspeed, target.hotspots.left_bot.x - self.obj.hotspots.left_bot.x)
 		if  self.obj.object.properties.ignoreMapCollision or
 			(self.obj.scene:canMoveWhitelist(self.obj.hotspots.right_top.x, self.obj.hotspots.right_top.y, speed, 0, self.obj.ignoreCollision) and
 		 	 self.obj.scene:canMoveWhitelist(self.obj.hotspots.right_bot.x, self.obj.hotspots.right_bot.y, speed, 0, self.obj.ignoreCollision))
@@ -51,7 +55,8 @@ function Move:stepToward(target, speed)
 		end
 	end
 	
-	if self.obj.hotspots.left_top.y - target.hotspots.left_top.y > speed then
+	if self.obj.hotspots.left_top.y - target.hotspots.left_top.y > self.obj.movespeed*2 then
+		speed = math.min(topspeed, self.obj.hotspots.left_top.y - target.hotspots.left_top.y)
 		if  self.obj.object.properties.ignoreMapCollision or
 			(self.obj.scene:canMoveWhitelist(self.obj.hotspots.left_top.x, self.obj.hotspots.left_top.y, 0, -speed, self.obj.ignoreCollision) and
 			 self.obj.scene:canMoveWhitelist(self.obj.hotspots.right_top.x, self.obj.hotspots.right_top.y, 0, -speed, self.obj.ignoreCollision))
@@ -59,7 +64,8 @@ function Move:stepToward(target, speed)
 			self.obj.y = self.obj.y - speed
 			self.switchAnim = self.anim.."up"
 		end
-	elseif target.hotspots.left_bot.y - self.obj.hotspots.left_bot.y > speed then
+	elseif target.hotspots.left_bot.y - self.obj.hotspots.left_bot.y > self.obj.movespeed*2 then
+		speed = math.min(topspeed, target.hotspots.left_bot.y - self.obj.hotspots.left_bot.y)
 		if  self.obj.object.properties.ignoreMapCollision or
 			(self.obj.scene:canMoveWhitelist(self.obj.hotspots.left_bot.x, self.obj.hotspots.left_bot.y, 0, speed, self.obj.ignoreCollision) and
 			 self.obj.scene:canMoveWhitelist(self.obj.hotspots.right_bot.x, self.obj.hotspots.right_bot.y, 0, speed, self.obj.ignoreCollision))

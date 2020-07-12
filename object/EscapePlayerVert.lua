@@ -174,12 +174,12 @@ function EscapePlayerVert:update(dt)
 		self.animationStack = {}
 	end
 
-	-- If we are hiding, display our sprite more darkly
+	--[[ If we are hiding, display our sprite more darkly
 	if self:inShadow() then
 		self.sprite.color = {150,150,150,255}
 	else
 		self.sprite.color = {255,255,255,255}
-	end
+	end]]
 	
 	if self.blocked or not self.scene:playerMovable() then
 		return
@@ -202,28 +202,33 @@ function EscapePlayerVert:update(dt)
 		else
 			self.fx = math.min(0, self.fx + RETURN_SPEED)
 		end
-		if self.scene.audio:isFinished("sfx") then
-			self.scene.audio:playSfx("sonicrunturn", nil, true)
-		end
 	end
 
 	if not self.cinematic then
 		if love.keyboard.isDown("right") then
 			self.fx = 3.1
 			self.fy = -10
-			self.bx = ORTHO_BURST_MAGNITUDE
+			self.bx = math.ceil(ORTHO_BURST_MAGNITUDE * 0.7)
 			self.by = -ORTHO_BURST_MAGNITUDE
 			self.bigDust = true
 			
 			self.state = "juiceupright"
+			
+			if self.scene.audio:isFinished("sfx") then
+				self.scene.audio:playSfx("sonicrunturn", nil, true)
+			end
 		elseif love.keyboard.isDown("left") then
 			self.fx = -3.1
 			self.fy = -10
-			self.bx = -ORTHO_BURST_MAGNITUDE
+			self.bx = -math.ceil(ORTHO_BURST_MAGNITUDE * 0.7)
 			self.by = -ORTHO_BURST_MAGNITUDE
 			self.bigDust = true
 			
 			self.state = "juiceupleft"
+			
+			if self.scene.audio:isFinished("sfx") then
+				self.scene.audio:playSfx("sonicrunturn", nil, true)
+			end
 		end
 	end
 	

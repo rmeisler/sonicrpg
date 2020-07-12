@@ -34,17 +34,19 @@ local EscapePlayerVert = require "object/EscapePlayerVert"
 local TARGET_OFFSET_X = 400
 
 return function(scene)
-	scene.playerDead = false
+	scene.player.dead = false
 	
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
+	
+	scene.audio:setVolume("music", 1.0)
 	
 	GameState:removeFromParty("antoine")
 	
 	local R = scene.objectLookup.R
 	return While(
 		function()
-			return not scene.playerDead
+			return not scene.player.dead
 		end,
 		
 		Serial {
@@ -68,13 +70,86 @@ return function(scene)
 				Do(function()
 					scene.player.x = R.x + 50
 					scene.player.y = R.y
-				end)
+				end),
+				
+				Repeat(Serial {
+					Wait(0.2),
+					Do(function()
+						local sparkle = BasicNPC(
+							scene,
+							{name = "objects"},
+							{name = "sparkle1", x = R.x + 20, y = R.y + 70, width = 11, height = 11,
+								properties = {
+									ghost = true,
+									sprite = "art/sprites/sparkle.png"
+								}
+							}
+						)
+						sparkle.sprite.transform.sx = 4
+						sparkle.sprite.transform.sy = 4
+						scene:addObject(sparkle)
+					end),
+				}, 40)
 			},
 			
+			Do(function()
+				Executor(scene):act(Serial {
+					Parallel {
+						Serial {
+							Move(R, scene.objectLookup.Waypoint7, "dash"),
+							Move(R, scene.objectLookup.Waypoint8, "dash"),
+							Move(R, scene.objectLookup.Waypoint9, "dash"),
+							Move(R, scene.objectLookup.Waypoint10, "dash"),
+							Move(R, scene.objectLookup.Waypoint11, "dash"),
+							Move(R, scene.objectLookup.Waypoint12, "dash"),
+							Move(R, scene.objectLookup.Waypoint13, "dash"),
+							Move(R, scene.objectLookup.Waypoint14, "dash"),
+							Move(R, scene.objectLookup.Waypoint15, "dash"),
+							Move(R, scene.objectLookup.Waypoint16, "dash"),
+							Move(R, scene.objectLookup.Waypoint17, "dash"),
+							Move(R, scene.objectLookup.Waypoint18, "dash"),
+							Move(R, scene.objectLookup.Waypoint19, "dash"),
+							Move(R, scene.objectLookup.Waypoint20, "dash"),
+							Move(R, scene.objectLookup.Waypoint21, "dash"),
+							Move(R, scene.objectLookup.Waypoint22, "dash"),
+							Move(R, scene.objectLookup.Waypoint23, "dash"),
+							Move(R, scene.objectLookup.Waypoint24, "dash"),
+							Move(R, scene.objectLookup.Waypoint25, "dash"),
+							Move(R, scene.objectLookup.Waypoint26, "dash"),
+							Move(R, scene.objectLookup.Waypoint27, "dash"),
+							Move(R, scene.objectLookup.Waypoint28, "dash"),
+							Move(R, scene.objectLookup.Waypoint29, "dash"),
+							Move(R, scene.objectLookup.Waypoint30, "dash"),
+						},
+						
+						Repeat(Serial {
+							Do(function()
+								local sparkle = BasicNPC(
+									scene,
+									{name = "objects"},
+									{name = "sparkle1", x = R.x + 20, y = R.y + 70, width = 11, height = 11,
+										properties = {
+											ghost = true,
+											sprite = "art/sprites/sparkle.png"
+										}
+									}
+								)
+								sparkle.sprite.transform.sx = 4
+								sparkle.sprite.transform.sy = 4
+								scene:addObject(sparkle)
+							end),
+							Wait(0.2),
+						}, 120)
+					},
+					Do(function()
+						print("R done")
+					end)
+				})
+			end),
+			
 			Parallel {
-				Move(R, scene.objectLookup.Waypoint7, "dash"),
 				Ease(scene.player, "x", 800, 0.2, "inout"),
-				Ease(scene.player, "y", 22368, 0.2, "inout")
+				Ease(scene.player, "y", 48032, 0.2, "inout")
 			},
 			
 			MessageBox{message = "Sonic: Ready or not... {p50}here I come!", blocking = true, textSpeed = 4},
@@ -90,7 +165,9 @@ return function(scene)
 				scene.player.sprite:setAnimation("juiceup")
 			end),
 			
-			PlayAudio("music", "sonictheme", 0.8, true),
+			PlayAudio("music", "sonictheme", 0.5, true),
+		
+			MessageBox{message = "Sally: Follow the sparks!", blocking = false, closeAction = Wait(1)},
 
 			Wait(1000)
 		},

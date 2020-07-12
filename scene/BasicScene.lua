@@ -25,7 +25,7 @@ function BasicScene:onEnter(args)
 	
 	self.lastSpawnPoint = args.spawn_point or "Spawn 1"
 	
-	print("spawn = "..self.lastSpawnPoint)
+	--print("spawn = "..self.lastSpawnPoint)
 	
 	self.spawnPoints = {}
 	
@@ -183,10 +183,7 @@ function BasicScene:onEnter(args)
 					Do(function()
 						ScreenShader:sendColor("multColor", self.bgColor)
 					end)
-				},
-				Do(function()
-					print("done now")
-				end)
+				}
 			}
 		),
 			
@@ -372,8 +369,6 @@ function BasicScene:enterBattle(args)
 		self.blur.radius_h = 0.0
 	end
 	
-	print("GOT HERE 1!")
-	
 	self.bgColor = {255,255,255,255}
 	ScreenShader:sendColor("multColor", self.bgColor)
 	return Serial {
@@ -387,7 +382,6 @@ function BasicScene:enterBattle(args)
 		Ease(self.blur, "radius_h", 150, 2),
 		
 		Do(function()
-			print("GOT HERE 2!")
 			self.audio.allowDucking = false
 			self.sceneMgr:pushScene {
 				class = "BattleScene",
@@ -405,7 +399,7 @@ function BasicScene:enterBattle(args)
 		end),
 		
 		Do(function()
-			print("GOT HERE 3")
+			
 		end)
 	}
 end
@@ -524,7 +518,7 @@ function BasicScene:update(dt)
 	end
 	self.timer = self.timer + dt
 	if self.timer > 1 then
-		print("num objects in scene = "..tostring(table.count(self.map.objects)))
+		--print("num objects in scene = "..tostring(table.count(self.map.objects)))
 		self.timer = 0
 	end
 
