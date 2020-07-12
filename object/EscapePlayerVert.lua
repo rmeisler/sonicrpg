@@ -173,13 +173,6 @@ function EscapePlayerVert:update(dt)
 	if not self.animationStack then
 		self.animationStack = {}
 	end
-
-	--[[ If we are hiding, display our sprite more darkly
-	if self:inShadow() then
-		self.sprite.color = {150,150,150,255}
-	else
-		self.sprite.color = {255,255,255,255}
-	end]]
 	
 	if self.blocked or not self.scene:playerMovable() then
 		return
@@ -328,7 +321,7 @@ function EscapePlayerVert:update(dt)
 	self.frameCounter = self.frameCounter + 1
 	
 	-- Update drop shadow position
-	self.dropShadow.x = self.x - 35
+	self.dropShadow.x = self.x - 22
 	self.dropShadow.y = (self.origY or self.y) + self.sprite.h - 15
 	
 	self:updateShadows()

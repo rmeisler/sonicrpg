@@ -42,10 +42,6 @@ function NPC:construct(scene, layer, object)
 	self.name = object.name
 	self.object = object
 	self.layer = layer
-	
-	if self.name == "Swatbot1" then
-		print("NPC ctor")
-	end
 
 	self.specialHintPlayer = object.properties.specialHint
 	self.hidingSpot = object.properties.hidingspot

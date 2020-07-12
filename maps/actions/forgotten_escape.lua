@@ -24,10 +24,7 @@ local AudioFade = require "actions/AudioFade"
 local Repeat = require "actions/Repeat"
 local Move = require "actions/Move"
 
-local BasicNPC = require "object/BasicNPC"
-local EscapeObstacle = require "object/EscapeObstacle"
-local EscapeHoverbot = require "object/EscapeHoverbot"
-local EscapeIndicator = require "object/EscapeIndicator"
+local SparkCollector = require "object/SparkCollector"
 
 local EscapePlayerVert = require "object/EscapePlayerVert"
 
@@ -39,7 +36,7 @@ return function(scene)
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
 	
-	scene.audio:setVolume("music", 1.0)
+	scene.audio:stopMusic()
 	
 	GameState:removeFromParty("antoine")
 	
@@ -51,7 +48,7 @@ return function(scene)
 		
 		Serial {
 			Do(function()
-				scene.player.x = R.x + 50
+				scene.player.x = R.x
 				scene.player.y = R.y
 				R.movespeed = 25
 			end),
@@ -64,21 +61,19 @@ return function(scene)
 					Move(R, scene.objectLookup.Waypoint2, "dash"),
 					Move(R, scene.objectLookup.Waypoint3, "dash"),
 					Move(R, scene.objectLookup.Waypoint4, "dash"),
-					Move(R, scene.objectLookup.Waypoint5, "dash"),
-					Move(R, scene.objectLookup.Waypoint6, "dash"),
 				},
 				Do(function()
-					scene.player.x = R.x + 50
+					scene.player.x = R.x
 					scene.player.y = R.y
 				end),
 				
 				Repeat(Serial {
 					Wait(0.2),
 					Do(function()
-						local sparkle = BasicNPC(
+						local sparkle = SparkCollector(
 							scene,
 							{name = "objects"},
-							{name = "sparkle1", x = R.x + 20, y = R.y + 70, width = 11, height = 11,
+							{name = "sparkle1", x = R.x + 20, y = R.y + 70, width = 32, height = 32,
 								properties = {
 									ghost = true,
 									sprite = "art/sprites/sparkle.png"
@@ -89,74 +84,58 @@ return function(scene)
 						sparkle.sprite.transform.sy = 4
 						scene:addObject(sparkle)
 					end),
-				}, 40)
+				}, 15),
+				
+				Serial {
+					Wait(2),
+					PlayAudio("music", "sonictheme", 0.5, true)
+				}
 			},
 			
-			Do(function()
-				Executor(scene):act(Serial {
-					Parallel {
-						Serial {
-							Move(R, scene.objectLookup.Waypoint7, "dash"),
-							Move(R, scene.objectLookup.Waypoint8, "dash"),
-							Move(R, scene.objectLookup.Waypoint9, "dash"),
-							Move(R, scene.objectLookup.Waypoint10, "dash"),
-							Move(R, scene.objectLookup.Waypoint11, "dash"),
-							Move(R, scene.objectLookup.Waypoint12, "dash"),
-							Move(R, scene.objectLookup.Waypoint13, "dash"),
-							Move(R, scene.objectLookup.Waypoint14, "dash"),
-							Move(R, scene.objectLookup.Waypoint15, "dash"),
-							Move(R, scene.objectLookup.Waypoint16, "dash"),
-							Move(R, scene.objectLookup.Waypoint17, "dash"),
-							Move(R, scene.objectLookup.Waypoint18, "dash"),
-							Move(R, scene.objectLookup.Waypoint19, "dash"),
-							Move(R, scene.objectLookup.Waypoint20, "dash"),
-							Move(R, scene.objectLookup.Waypoint21, "dash"),
-							Move(R, scene.objectLookup.Waypoint22, "dash"),
-							Move(R, scene.objectLookup.Waypoint23, "dash"),
-							Move(R, scene.objectLookup.Waypoint24, "dash"),
-							Move(R, scene.objectLookup.Waypoint25, "dash"),
-							Move(R, scene.objectLookup.Waypoint26, "dash"),
-							Move(R, scene.objectLookup.Waypoint27, "dash"),
-							Move(R, scene.objectLookup.Waypoint28, "dash"),
-							Move(R, scene.objectLookup.Waypoint29, "dash"),
-							Move(R, scene.objectLookup.Waypoint30, "dash"),
-						},
-						
-						Repeat(Serial {
-							Do(function()
-								local sparkle = BasicNPC(
-									scene,
-									{name = "objects"},
-									{name = "sparkle1", x = R.x + 20, y = R.y + 70, width = 11, height = 11,
-										properties = {
-											ghost = true,
-											sprite = "art/sprites/sparkle.png"
-										}
-									}
-								)
-								sparkle.sprite.transform.sx = 4
-								sparkle.sprite.transform.sy = 4
-								scene:addObject(sparkle)
-							end),
-							Wait(0.2),
-						}, 120)
+			Spawn(Serial {
+				Parallel {
+					Serial {
+						Move(R, scene.objectLookup.Waypoint5, "dash"),
+						Move(R, scene.objectLookup.Waypoint6, "dash"),
+						Move(R, scene.objectLookup.Waypoint7, "dash"),
+						Move(R, scene.objectLookup.Waypoint8, "dash"),
+						Move(R, scene.objectLookup.Waypoint9, "dash"),
+						Move(R, scene.objectLookup.Waypoint10, "dash"),
+						Move(R, scene.objectLookup.Waypoint11, "dash"),
 					},
-					Do(function()
-						print("R done")
-					end)
-				})
-			end),
+					
+					Repeat(Serial {
+						Do(function()
+							local newSparkleY = R.y + 70
+							local sparkle = SparkCollector(
+								scene,
+								{name = "objects"},
+								{name = "sparkle", x = R.x + 20, y = newSparkleY, width = 32, height = 32,
+									properties = {
+										ghost = true,
+										sprite = "art/sprites/sparkle.png"
+									}
+								}
+							)
+							sparkle.sprite.transform.sx = 4
+							sparkle.sprite.transform.sy = 4
+							scene:addObject(sparkle)
+						end),
+						Wait(0.2)
+					}, 35)
+				},
+				Do(function()
+					scene.objectLookup.R:remove()
+				end)
+			}),
 			
 			Parallel {
-				Ease(scene.player, "x", 800, 0.2, "inout"),
-				Ease(scene.player, "y", 48032, 0.2, "inout")
+				Ease(scene.player, "x", 832, 0.3, "inout"),
+				Ease(scene.player, "y", 20768, 0.3, "inout"),
+				MessageBox{message = "Sonic: Hey kid! {p50}Wait up!", blocking = true, closeAction = Wait(1)},
 			},
 			
-			MessageBox{message = "Sonic: Ready or not... {p50}here I come!", blocking = true, textSpeed = 4},
-			
 			Do(function()
-				scene.objectLookup.R:remove()
-				
 				GameState.leader = "sonic"
 				scene.player:updateSprite()
 				scene.player:addSceneHandler("update", EscapePlayerVert.update)
@@ -165,11 +144,7 @@ return function(scene)
 				scene.player.sprite:setAnimation("juiceup")
 			end),
 			
-			PlayAudio("music", "sonictheme", 0.5, true),
-		
-			MessageBox{message = "Sally: Follow the sparks!", blocking = false, closeAction = Wait(1)},
-
-			Wait(1000)
+			YieldUntil(function() return scene.player.y < 0 and not scene.player.dead end)
 		},
 		
 		Serial {
