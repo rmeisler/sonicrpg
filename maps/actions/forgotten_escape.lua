@@ -36,8 +36,6 @@ return function(scene)
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
 	
-	scene.audio:stopMusic()
-	
 	GameState:removeFromParty("antoine")
 	
 	local R = scene.objectLookup.R
@@ -84,9 +82,10 @@ return function(scene)
 						sparkle.sprite.transform.sy = 4
 						scene:addObject(sparkle)
 					end),
-				}, 15),
+				}, 17),
 				
 				Serial {
+					AudioFade("music", scene.audio:getMusicVolume(), 0, 1),
 					Wait(2),
 					PlayAudio("music", "sonictheme", 0.5, true)
 				}
@@ -122,7 +121,7 @@ return function(scene)
 							scene:addObject(sparkle)
 						end),
 						Wait(0.2)
-					}, 35)
+					}, 40)
 				},
 				Do(function()
 					scene.objectLookup.R:remove()
@@ -130,8 +129,8 @@ return function(scene)
 			}),
 			
 			Parallel {
-				Ease(scene.player, "x", 832, 0.3, "inout"),
-				Ease(scene.player, "y", 20768, 0.3, "inout"),
+				Ease(scene.player, "x", 832, 0.23, "inout"),
+				Ease(scene.player, "y", 20768, 0.23, "inout"),
 				MessageBox{message = "Sonic: Hey kid! {p50}Wait up!", blocking = true, closeAction = Wait(1)},
 			},
 			
