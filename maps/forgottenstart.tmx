@@ -131,10 +131,10 @@
 0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,1522,1521,1522,1521,1522,1521,1522,0,0,0,1522,1521,1522,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,1522,1521,1522,1521,1522,1521,1522,0,0,0,1522,1521,1522,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,1522,1521,1522,1521,1522,1521,1522,0,0,0,1522,1521,1522,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,1522,1521,1522,1521,1522,1521,1522,0,0,0,1522,1521,1522,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,1522,1521,1522,1521,1522,1521,1522,0,0,0,1522,1521,1522,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,1557,1556,1557,1556,1557,1556,1557,0,0,0,1557,1556,1557,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,1592,1591,1592,1591,1592,1591,1592,0,0,0,1592,1591,1592,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,1522,1521,1522,1521,1522,1521,1522,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,1522,1521,1522,1521,1522,1521,1522,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,1557,1556,1557,1556,1557,1556,1557,0,0,1556,1557,1556,1557,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,1592,1591,1592,1591,1592,1591,1592,0,0,1591,1592,1591,1592,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -376,32 +376,6 @@
     <property name="sprite" type="file" value="../art/sprites/r.png"/>
    </properties>
   </object>
-  <object id="174" name="WallEdge3" type="Switch" gid="1227" x="896" y="1152" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="darkleft"/>
-    <property name="script">local Ease = require &quot;actions/Ease&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Do = require &quot;actions/Do&quot;
-local Serial = require &quot;actions/Serial&quot;
-
-return function(self)
-    return Serial {
-        Parallel {
-            Ease(self.scene.objectLookup.WallEdge1, &quot;y&quot;, self.scene.objectLookup.WallEdge1.y - 100, 2, &quot;linear&quot;),
-            Ease(self.scene.objectLookup.WallEdge2, &quot;y&quot;, self.scene.objectLookup.WallEdge2.y - 100, 2, &quot;linear&quot;),
-            Ease(self.scene.objectLookup.WallEdge3, &quot;y&quot;, self.scene.objectLookup.WallEdge3.y - 100, 2, &quot;linear&quot;),
-        },
-        Do(function()
-            self.scene.objectLookup.WallEdge1:remove()
-            self.scene.objectLookup.WallEdge2:remove()
-            self.scene.objectLookup.WallEdge3:remove()
-        end)
-    }
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/wall.png"/>
-   </properties>
-  </object>
   <object id="175" name="WallEdge1" type="Switch" gid="1227" x="832" y="1152" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -416,12 +390,10 @@ return function(self)
         Parallel {
             Ease(self.scene.objectLookup.WallEdge1, &quot;y&quot;, self.scene.objectLookup.WallEdge1.y - 100, 2, &quot;linear&quot;),
             Ease(self.scene.objectLookup.WallEdge2, &quot;y&quot;, self.scene.objectLookup.WallEdge2.y - 100, 2, &quot;linear&quot;),
-            Ease(self.scene.objectLookup.WallEdge3, &quot;y&quot;, self.scene.objectLookup.WallEdge3.y - 100, 2, &quot;linear&quot;),
         },
         Do(function()
             self.scene.objectLookup.WallEdge1:remove()
             self.scene.objectLookup.WallEdge2:remove()
-            self.scene.objectLookup.WallEdge3:remove()
         end)
     }
 end</property>
@@ -442,19 +414,17 @@ return function(self)
         Parallel {
             Ease(self.scene.objectLookup.WallEdge1, &quot;y&quot;, self.scene.objectLookup.WallEdge1.y - 100, 2, &quot;linear&quot;),
             Ease(self.scene.objectLookup.WallEdge2, &quot;y&quot;, self.scene.objectLookup.WallEdge2.y - 100, 2, &quot;linear&quot;),
-            Ease(self.scene.objectLookup.WallEdge3, &quot;y&quot;, self.scene.objectLookup.WallEdge3.y - 100, 2, &quot;linear&quot;),
         },
         Do(function()
             self.scene.objectLookup.WallEdge1:remove()
             self.scene.objectLookup.WallEdge2:remove()
-            self.scene.objectLookup.WallEdge3:remove()
         end)
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/wall.png"/>
    </properties>
   </object>
-  <object id="177" name="Exit1" type="SceneEdge" gid="3564" x="832" y="1088" width="96" height="32">
+  <object id="177" name="Exit1" type="SceneEdge" gid="3564" x="832" y="1088" width="64" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
@@ -510,7 +480,6 @@ return function(self)
         Parallel {
             Ease(self.scene.objectLookup.WallEdge1, &quot;y&quot;, self.scene.objectLookup.WallEdge1.y - 100, 2, &quot;linear&quot;),
             Ease(self.scene.objectLookup.WallEdge2, &quot;y&quot;, self.scene.objectLookup.WallEdge2.y - 100, 2, &quot;linear&quot;),
-            Ease(self.scene.objectLookup.WallEdge3, &quot;y&quot;, self.scene.objectLookup.WallEdge3.y - 100, 2, &quot;linear&quot;),
         },
         Move(self.scene.objectLookup.R, self.scene.objectLookup.Waypoint, &quot;walk&quot;),
         Do(function()
@@ -520,7 +489,6 @@ return function(self)
         Parallel {
             Ease(self.scene.objectLookup.WallEdge1, &quot;y&quot;, self.scene.objectLookup.WallEdge1.y, 2, &quot;linear&quot;),
             Ease(self.scene.objectLookup.WallEdge2, &quot;y&quot;, self.scene.objectLookup.WallEdge2.y, 2, &quot;linear&quot;),
-            Ease(self.scene.objectLookup.WallEdge3, &quot;y&quot;, self.scene.objectLookup.WallEdge3.y, 2, &quot;linear&quot;)
         },
         Ease(self.scene.camPos, &quot;y&quot;, self.scene.camPos.y, 1, &quot;inout&quot;),
 

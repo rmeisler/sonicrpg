@@ -36,6 +36,8 @@ return function(scene)
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
 	
+	scene.audio:stopSfx()
+	
 	GameState:removeFromParty("antoine")
 	
 	local R = scene.objectLookup.R
@@ -86,6 +88,9 @@ return function(scene)
 				
 				Serial {
 					AudioFade("music", scene.audio:getMusicVolume(), 0, 1),
+					Do(function()
+						scene.audio:stopMusic()
+					end),
 					Wait(2),
 					PlayAudio("music", "sonictheme", 0.5, true)
 				}
@@ -101,6 +106,7 @@ return function(scene)
 						Move(R, scene.objectLookup.Waypoint9, "dash"),
 						Move(R, scene.objectLookup.Waypoint10, "dash"),
 						Move(R, scene.objectLookup.Waypoint11, "dash"),
+						Move(R, scene.objectLookup.Waypoint12, "dash"),
 					},
 					
 					Repeat(Serial {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="650" tilewidth="32" tileheight="32" infinite="0" nextobjectid="265">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="650" tilewidth="32" tileheight="32" infinite="0" nextobjectid="266">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="onload" type="file" value="actions/forgotten_escape.lua"/>
@@ -2048,7 +2048,7 @@ return function(self)
 end</property>
    </properties>
   </object>
-  <object id="210" name="BadArea2" type="TouchTrigger" gid="1227" x="672" y="7712" width="160" height="896">
+  <object id="210" name="BadArea2" type="TouchTrigger" gid="1227" x="672" y="7680" width="128" height="864">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="script">local Serial= require &quot;actions/Serial&quot;
@@ -2229,7 +2229,7 @@ return function(self)
 end</property>
    </properties>
   </object>
-  <object id="257" name="BadArea3" type="TouchTrigger" gid="1227" x="896" y="6080" width="64" height="896">
+  <object id="257" name="BadArea3" type="TouchTrigger" gid="1227" x="928" y="6048" width="32" height="864">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="script">local Serial= require &quot;actions/Serial&quot;
@@ -2360,7 +2360,7 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="260" name="BadArea7" type="TouchTrigger" gid="1227" x="896" y="2400" width="64" height="2144">
+  <object id="260" name="BadArea7" type="TouchTrigger" gid="1227" x="928" y="2368" width="32" height="2112">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="script">local Serial= require &quot;actions/Serial&quot;
@@ -2423,7 +2423,7 @@ return function(self)
 end</property>
    </properties>
   </object>
-  <object id="261" name="BadArea6" type="TouchTrigger" gid="1227" x="672" y="2400" width="64" height="2144">
+  <object id="261" name="BadArea6" type="TouchTrigger" gid="1227" x="672" y="2368" width="32" height="2112">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="script">local Serial= require &quot;actions/Serial&quot;
@@ -2530,6 +2530,69 @@ return function(self)
         Animate(monster1.sprite, &quot;grabbedright&quot;, true),
         Animate(monster2.sprite, &quot;grabbedleft&quot;, true),
     }
+end</property>
+   </properties>
+  </object>
+  <object id="265" name="BadArea1.5" type="TouchTrigger" gid="1227" x="672" y="11424" width="32" height="1216">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="script">local Serial= require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Repeat = require &quot;actions/Repeat&quot;
+local Ease = require &quot;actions/Ease&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Action = require &quot;actions/Action&quot;
+local Do = require &quot;actions/Do&quot;
+local Wait = require &quot;actions/Wait&quot;
+
+return function(self)
+    self.scene.player.by = 10
+    if self.scene.invincible then
+        return Action()
+    end
+
+    if not self.scene.player.waterTouches then
+        self.scene.player.waterTouches = 3
+    end
+
+    self.scene.invincible = true
+    self.scene.player.waterTouches = self.scene.player.waterTouches - 1
+
+    if self.scene.player.waterTouches &gt; 0 then
+        return Parallel {
+            MessageBox {message = &quot;Sally: Watch where you're going, Sonic!&quot;, closeAction = Wait(1)},
+            Serial {
+                Repeat(
+                    Serial {
+                        Ease(self.scene.player.sprite.color, 4, 0, 20, &quot;quad&quot;),
+                        Ease(self.scene.player.sprite.color, 4, 255, 20, &quot;quad&quot;)
+                    },
+                    10
+                ),
+                Do(function()
+                    self.scene.invincible = false
+                end)
+             }
+         }
+    else
+        return Serial {
+            Parallel {
+                Repeat(
+                    Serial {
+                        Ease(self.scene.player.sprite.color, 4, 0, 20, &quot;quad&quot;),
+                        Ease(self.scene.player.sprite.color, 4, 255, 20, &quot;quad&quot;)
+                    },
+                    10
+                )
+            },
+            Do(function()
+                self.scene.invincible = false
+                self.scene.player.sprite.visible = false
+                self.scene.player.dropShadow.sprite.visible = false
+                self.scene.player.dead = true
+            end)
+        }
+    end
 end</property>
    </properties>
   </object>
