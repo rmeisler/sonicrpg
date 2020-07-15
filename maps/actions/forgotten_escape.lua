@@ -40,7 +40,12 @@ return function(scene)
 	
 	GameState:removeFromParty("antoine")
 	
+	for name, _ in pairs(scene.objectLookup) do
+		print("object lookup "..name)
+	end
+	
 	local R = scene.objectLookup.R
+
 	return While(
 		function()
 			return not scene.player.dead

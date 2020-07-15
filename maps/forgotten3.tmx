@@ -1977,7 +1977,7 @@
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="207" name="R" type="BasicNPC" gid="1227" x="832" y="20832" width="32" height="32">
+  <object id="207" name="R" type="BasicNPC" gid="1227" x="832" y="20800" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="idleup"/>
     <property name="ghost" type="bool" value="true"/>

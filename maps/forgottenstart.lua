@@ -8,7 +8,7 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 183,
+  nextobjectid = 184,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_start.lua",
@@ -660,6 +660,28 @@ return {
           properties = {
             ["CrystalWater"] = 1,
             ["sprite"] = "../art/sprites/chest.png"
+          }
+        },
+        {
+          id = 183,
+          name = "Ratbot",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 704,
+          y = 1760,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["battle"] = "../data/monsters/ratbot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idle",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/ratbot.png"
           }
         }
       }

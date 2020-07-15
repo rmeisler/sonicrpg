@@ -276,7 +276,11 @@ function NPC:getMonsterData()
 end
 
 function NPC:getBattleArgs()
-	return {}
+	return {
+		opponents = {
+			self:getMonsterData()
+		}
+	}
 end
 
 function NPC:onBattleComplete()
