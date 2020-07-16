@@ -50,6 +50,7 @@ return {
 		end
 
 		local telegraphAction = Action()
+		local soundAction = Action()
 		local prefix = ""
 		local stats = table.clone(self.stats)
 		if self.turnCounter % 3 == 0 then
@@ -57,6 +58,7 @@ return {
 			prefix = "electric"
 			telegraphAction = Telegraph(self, "Electric Whip", {255,255,255,50})
 			stats.attack = self.stats.attack * 2
+			soundAction = PlayAudio("sfx", "smack2", 1.0, true)
 		else
 			self.electricTail = false
 			telegraphAction = Telegraph(self, "Whip", {255,255,255,50})
@@ -116,7 +118,10 @@ return {
 							),
 						}
 					},
-					target:takeDamage(stats, true, self.electricTail and BattleActor.shockKnockback or nil),
+					Serial {
+						soundAction,
+						target:takeDamage(stats, true, self.electricTail and BattleActor.shockKnockback or nil)
+					},
 					0.3
 				)
 			},

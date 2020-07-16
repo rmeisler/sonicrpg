@@ -55,15 +55,26 @@ return {
 			frames = {{6,6}}
 		},
 		juiceupright = {
-			frames = {{6,5}},
-			speed = 0.08
+			frames = {{6,5}}
+		},
+		juicedownleft = {
+			frames = {{6,9}}
+		},
+		juicedownright = {
+			frames = {{6,8}}
 		},
 		juiceup = {
-			frames = {{6,7}},
-			speed = 0.08
+			frames = {{6,7}}
+		},
+		juicedown = {
+			frames = {{5,8}}
 		},
 		juiceright = {
 			frames = {{0,8},{1,8},{2,8},{3,8}},
+			speed = 0.08
+		},
+		juiceleft = {
+			frames = {{0,9},{1,9},{2,9},{3,9}},
 			speed = 0.08
 		},
 		

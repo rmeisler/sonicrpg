@@ -63,13 +63,13 @@ return {
 				--require "data/battle/skills/PowerRing"
 			}
 		},
-		--[[[3] = {
-			messages = {"Sonic learned \"Bounce\"!"},
+		[2] = {
+			messages = {"Sonic learned \"Roundabout\"!"},
 			skills = {
 				require "data/battle/skills/Spindash",
-				require "data/battle/skills/Bounce",
+				require "data/battle/skills/Roundabout",
 			}
-		},]]
+		},
 	},
 	
 	specialmove = require "data/specialmoves/sonic",
