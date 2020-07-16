@@ -165,8 +165,9 @@ function PartyMember:chooseTarget(menu, targetType, unusable, callback, ...)
 
 	-- Setup arrow
 	if self.targetType == TargetType.AllOpponents then
+		self.arrow = {}
 		for _, target in pairs(self.scene.opponents) do
-			self.arrow = SpriteNode(
+			local arrow = SpriteNode(
 				self.scene,
 				Transform(
 					target.sprite.transform.x + target.sprite.w / 2,
@@ -183,10 +184,37 @@ function PartyMember:chooseTarget(menu, targetType, unusable, callback, ...)
 			)
 			-- Can't target for some reason
 			if unusable and unusable(target) then
-				self.arrow.color = {150,150,150, 255}
+				arrow.color = {150,150,150, 255}
 			else
-				self.arrow.color = {255, 255, 255, 255}
+				arrow.color = {255, 255, 255, 255}
 			end
+			table.insert(self.arrow, arrow)
+		end
+	elseif self.targetType == TargetType.AllParty then
+		self.arrow = {}
+		for _, target in pairs(self.scene.party) do
+			local arrow = SpriteNode(
+				self.scene,
+				Transform(
+					target.sprite.transform.x + target.sprite.w / 2,
+					target.sprite.transform.y - target.sprite.h * 1.5,
+					2,
+					2,
+					math.pi/2
+				),
+				{255,255,255,255},
+				CursorSprite,
+				nil,
+				nil,
+				"ui"
+			)
+			-- Can't target for some reason
+			if unusable and unusable(target) then
+				arrow.color = {150,150,150, 255}
+			else
+				arrow.color = {255, 255, 255, 255}
+			end
+			table.insert(self.arrow, arrow)
 		end
 	else
 		local target = self.scene[self.targetType][self.selectedTarget]
@@ -216,91 +244,143 @@ function PartyMember:chooseTarget(menu, targetType, unusable, callback, ...)
 end
 
 function PartyMember:chooseTargetKey(key, _, unusable)
-	local target = self.scene[self.targetType][self.selectedTarget]
-	local invalidateArrowPos = false
-
-	if key == "up" then
-		self.scene.audio:playSfx("cursor", nil, true)
-		self.selectedTarget = (self.selectedTarget == 1) and #self.scene[self.targetType] or (self.selectedTarget - 1)
-		target = self.scene[self.targetType][self.selectedTarget]
-		invalidateArrowPos = true
-
-	elseif key == "down" then
-		self.scene.audio:playSfx("cursor", nil, true)
-		self.selectedTarget = (self.selectedTarget == #self.scene[self.targetType]) and 1 or (self.selectedTarget + 1)
-		target = self.scene[self.targetType][self.selectedTarget]
-		invalidateArrowPos = true
-		
-	elseif key == "left" or key == "right" then
-		-- Change target type
-		self.targetType = self.targetType == TargetType.Opponent and TargetType.Party or TargetType.Opponent
-		self.selectedTarget = (self.selectedTarget % #self.scene[self.targetType]) + 1
-		target = self.scene[self.targetType][self.selectedTarget]
-		invalidateArrowPos = true
-	
-	elseif key == "x" then
-		-- Can't attack flying if we can't target flying
-		if unusable and unusable(target) then
-			self.scene.audio:playSfx("error", nil, true)
-		else
+	if  self.targetType == TargetType.AllOpponents or
+		self.targetType == TargetType.AllParty
+	then
+		if key == "x" then
 			self.scene.audio:playSfx("choose", nil, true)
 
 			-- Choosing target
-			self.arrow:remove()
+			for _, arrow in pairs(self.arrow) do
+				arrow:remove()
+			end
 			self.arrow = nil
 			self.scene:removeHandler("keytriggered", PartyMember.chooseTargetKey, self)
 			self.scene:unfocus("keytriggered")
 			
-			-- Set sort order based on target
-			self.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h*2 - self.sprite.h*2
-			
-			local startingX = self.dropShadow.transform.x
-			local startingY = self.dropShadow.transform.y
+			local targets
+			local onAttackActions = {}
+			if self.targetType == TargetType.AllParty then
+				targets = table.clone(self.scene.party)
+				for index, target in pairs(targets) do
+					if unusable and unusable(target) then
+						targets[index] = nil
+					end
+				end
+			else
+				targets = table.clone(self.scene.opponents)
+				for index, target in pairs(targets) do
+					if not unusable or not unusable(target) then
+						table.insert(onAttackActions, (target.onAttack and not target.immobilized) and target:onAttack(self) or Action())
+					else
+						targets[index] = nil
+					end
+				end
+			end
 			
 			-- Perform callback
 			self.selectedMenu:close()
 			self.scene:run {
 				Parallel {
 					self.selectedMenu,
-					-- Have shadow follow
-					Do(function()
-						-- HACK
-						local m = 1 - (self.dropShadow.transform.x - target.sprite.transform.x + target.sprite.w*3)/(startingX - target.sprite.transform.x + target.sprite.w*3)
-						self.dropShadow.transform.x = self.sprite.transform.x - 22
-						self.dropShadow.transform.y = startingY + (startingY - target.sprite.transform.y + target.sprite.h) * m
-					end),
 					Serial {
-						self.callback(self, target, unpack(self.callbackArgs)),
-						(target.onAttack and not target.immobilized) and target:onAttack(self) or Action(),
+						self.callback(self, targets, unpack(self.callbackArgs)),
+						Serial(onAttackActions),
 						Do(function() self:endTurn() end)
 					}
-				},
-				-- Update drop shadow
-				Do(function()
-					self.dropShadow.transform.x = startingX
-					self.dropShadow.transform.y = startingY
-				end)
+				}
 			}
+		elseif key == "z" then
+			-- Back out of attack option
+			self:cleanupChooseTarget()
 		end
-	elseif key == "z" then
-		-- Back out of attack option
-		self:cleanupChooseTarget()
-	end
-	
-	if invalidateArrowPos and self.arrow then
-		self.arrow.transform.x = target.sprite.transform.x + target.sprite.w / 2
+	else
+		local target = self.scene[self.targetType][self.selectedTarget]
+		local invalidateArrowPos = false
+
+		if key == "up" then
+			self.scene.audio:playSfx("cursor", nil, true)
+			self.selectedTarget = (self.selectedTarget == 1) and #self.scene[self.targetType] or (self.selectedTarget - 1)
+			target = self.scene[self.targetType][self.selectedTarget]
+			invalidateArrowPos = true
+
+		elseif key == "down" then
+			self.scene.audio:playSfx("cursor", nil, true)
+			self.selectedTarget = (self.selectedTarget == #self.scene[self.targetType]) and 1 or (self.selectedTarget + 1)
+			target = self.scene[self.targetType][self.selectedTarget]
+			invalidateArrowPos = true
+			
+		elseif key == "left" or key == "right" then
+			-- Change target type
+			self.targetType = self.targetType == TargetType.Opponent and TargetType.Party or TargetType.Opponent
+			self.selectedTarget = (self.selectedTarget % #self.scene[self.targetType]) + 1
+			target = self.scene[self.targetType][self.selectedTarget]
+			invalidateArrowPos = true
 		
-		if self.id == "rotor" then
-			self.arrow.transform.y = target.sprite.transform.y - target.sprite.h * 2
-		else
-			self.arrow.transform.y = target.sprite.transform.y - target.sprite.h * 1.5
+		elseif key == "x" then
+			-- Can't attack flying if we can't target flying
+			if unusable and unusable(target) then
+				self.scene.audio:playSfx("error", nil, true)
+			else
+				self.scene.audio:playSfx("choose", nil, true)
+
+				-- Choosing target
+				self.arrow:remove()
+				self.arrow = nil
+				self.scene:removeHandler("keytriggered", PartyMember.chooseTargetKey, self)
+				self.scene:unfocus("keytriggered")
+				
+				-- Set sort order based on target
+				self.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h*2 - self.sprite.h*2
+				
+				local startingX = self.dropShadow.transform.x
+				local startingY = self.dropShadow.transform.y
+				
+				-- Perform callback
+				self.selectedMenu:close()
+				self.scene:run {
+					Parallel {
+						self.selectedMenu,
+						-- Have shadow follow
+						Do(function()
+							-- HACK
+							local m = 1 - (self.dropShadow.transform.x - target.sprite.transform.x + target.sprite.w*3)/(startingX - target.sprite.transform.x + target.sprite.w*3)
+							self.dropShadow.transform.x = self.sprite.transform.x - 22
+							self.dropShadow.transform.y = startingY + (startingY - target.sprite.transform.y + target.sprite.h) * m
+						end),
+						Serial {
+							self.callback(self, target, unpack(self.callbackArgs)),
+							(target.onAttack and not target.immobilized) and target:onAttack(self) or Action(),
+							Do(function() self:endTurn() end)
+						}
+					},
+					-- Update drop shadow
+					Do(function()
+						self.dropShadow.transform.x = startingX
+						self.dropShadow.transform.y = startingY
+					end)
+				}
+			end
+		elseif key == "z" then
+			-- Back out of attack option
+			self:cleanupChooseTarget()
 		end
 		
-		-- Can't target
-		if unusable and unusable(target) then
-			self.arrow.color = {150,150,150, 255}
-		else
-			self.arrow.color = {255, 255, 255, 255}
+		if invalidateArrowPos and self.arrow then
+			self.arrow.transform.x = target.sprite.transform.x + target.sprite.w / 2
+			
+			if self.id == "rotor" then
+				self.arrow.transform.y = target.sprite.transform.y - target.sprite.h * 2
+			else
+				self.arrow.transform.y = target.sprite.transform.y - target.sprite.h * 1.5
+			end
+			
+			-- Can't target
+			if unusable and unusable(target) then
+				self.arrow.color = {150,150,150, 255}
+			else
+				self.arrow.color = {255, 255, 255, 255}
+			end
 		end
 	end
 end
@@ -317,7 +397,17 @@ function PartyMember:isTurnOver()
 end
 
 function PartyMember:cleanupChooseTarget(menu)
-	self.arrow:remove()
+	if  self.targetType == TargetType.AllOpponents or
+		self.targetType == TargetType.AllParty
+	then
+		for _, arrow in pairs(self.arrow) do
+			arrow:remove()
+		end
+		self.arrow = nil
+	else
+		self.arrow:remove()	
+	end
+	
 	self.arrow = nil
 	self.scene:removeHandler("keytriggered", PartyMember.chooseTargetKey, self)
 	self.scene:unfocus("keytriggered")

@@ -63,14 +63,13 @@ return {
 				require "data/battle/skills/Scan",
 			}
 		},
-		-- Sorry, no time
-		--[[[2] = {
-			messages = {"Nicole learned \"Laser\"!"},
+		[2] = {
+			messages = {"Nicole learned \"Rally\"!"},
 			skills = {
 				require "data/battle/skills/Scan",
-				require "data/battle/skills/Laser",
+				require "data/battle/skills/Rally",
 			}
-		},]]
+		},
 	},
 	
 	specialmove = require "data/specialmoves/sally",

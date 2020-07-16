@@ -204,6 +204,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/avatar/b.png"
+	},
+	{
+		type = "image",
 		file = "art/avatar/sonic.png"
 	},
 	{
@@ -616,6 +620,11 @@ return {
 		type = "sound",
 		file = "audio/sfx/clink.ogg",
 		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/sallyrally.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",
