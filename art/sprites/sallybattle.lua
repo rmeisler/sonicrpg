@@ -20,6 +20,9 @@ return {
         leap = {
             frames = {{4,0}}
         },
+		leap_dodge = {
+			frames = {{4,0}}
+		},
 		nichole_start = {
 			frames = {{0,3},{1,3},{2,3}},
 			speed = 0.1
