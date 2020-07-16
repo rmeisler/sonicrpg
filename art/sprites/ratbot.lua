@@ -2,7 +2,7 @@ return {
     image = "ratbot.png",
     starting = "idle",
     w = 134,
-    h = 100,
+    h = 87,
 
     animations = {
 		idle = {

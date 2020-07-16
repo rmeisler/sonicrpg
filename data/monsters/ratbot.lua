@@ -73,7 +73,7 @@ return {
 				Serial {
 					Ease(self.sprite.transform, "y", target.sprite.transform.y - 100, 5, "quad"),
 					Animate(self.sprite, "lunge"),
-					Ease(self.sprite.transform, "y", target.sprite.transform.y, 6, "quad")
+					Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 6, "quad")
 				},
 				Ease(self.sprite.transform, "x", target.sprite.transform.x - 150, 3, "linear")
 			},
@@ -126,7 +126,7 @@ return {
 			Animate(self.sprite, "leap", true),
 			Parallel {
 				Serial {
-					Ease(self.sprite.transform, "y", target.sprite.transform.y - 100, 5, "quad"),
+					Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h - 100, 5, "quad"),
 					Ease(self.sprite.transform, "y", self.sprite.transform.y, 6, "quad")
 				},
 				Ease(self.sprite.transform, "x", self.sprite.transform.x, 3, "linear")
