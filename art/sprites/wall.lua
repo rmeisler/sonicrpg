@@ -29,5 +29,11 @@ return {
 		lightdiagright = {
             frames = {{7,0}}
         },
+		darkhiddenleft = {
+            frames = {{8,0}}
+        },
+		darkhiddenright = {
+            frames = {{9,0}}
+        },
     }
 }

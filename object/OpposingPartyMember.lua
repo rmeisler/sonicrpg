@@ -148,6 +148,26 @@ function OpposingPartyMember:beginTurn()
 				}
 			}
 		end
+	elseif self.confused then
+		-- If confused, choose random target from opponent side, or don't attack at all
+		if #self.scene.opponents > 1 then
+			self.selectedTarget = math.random(#self.scene.opponents)
+			self.action = Serial {
+				MessageBox {
+					message=self.name.." is confused!",
+					rect=MessageBox.HEADLINER_RECT,
+					closeAction=Wait(0.6)
+				},
+				self.behavior(self, self.scene.opponents[self.selectedTarget]) or Action()
+			}
+		else
+			self.action = MessageBox {
+				message=self.name.." is confused!",
+				rect=MessageBox.HEADLINER_RECT,
+				closeAction=Wait(0.6)
+			}
+		end
+		self.confused = false
 	else
 		-- Choose action based on behavior
 		self.action = self.behavior(self, self.scene.party[self.selectedTarget]) or Action()

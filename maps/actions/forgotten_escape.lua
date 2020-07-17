@@ -22,7 +22,7 @@ local Executor = require "actions/Executor"
 local Spawn = require "actions/Spawn"
 local AudioFade = require "actions/AudioFade"
 local Repeat = require "actions/Repeat"
-local Move = require "actions/Move"
+local Move = require "actions/FastMove"
 
 local SparkCollector = require "object/SparkCollector"
 
@@ -36,13 +36,9 @@ return function(scene)
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
 	
-	scene.audio:stopSfx()
+	scene.audio:stopSfx("fan")
 	
 	GameState:removeFromParty("antoine")
-	
-	for name, _ in pairs(scene.objectLookup) do
-		print("object lookup "..name)
-	end
 	
 	local R = scene.objectLookup.R
 

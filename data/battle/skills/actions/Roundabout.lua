@@ -21,6 +21,57 @@ local Transform = require "util/Transform"
 
 return function(self, target)
 	self.sprite:setAnimation("juiceleft")
+
+	local RunCircle = function(speed, animLag)
+		return Serial {
+			Do(function()
+				self.scene.audio:playSfx("sonicrunturn", nil, true)
+				self.sprite.prevSortOrderY = self.sprite.sortOrderY
+				self.sprite.sortOrderY = 0
+				target.sprite:setAnimation("idle")
+			end),
+			Parallel {
+				Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h*2, 20, "inout"),
+				Serial {
+					Do(function() self.sprite:setAnimation("juiceupleft") end),
+					Wait(animLag),
+					Do(function() self.sprite:setAnimation("juiceupright") end),
+					Wait(animLag),
+					Do(function() self.sprite:setAnimation("juiceright") end)
+				},
+				Serial {
+					Ease(self.sprite.transform, "x", target.sprite.transform.x - 110, 20, "inout"),
+					Ease(self.sprite.transform, "x", target.sprite.transform.x + 100, speed, "inout"),
+				}
+			},
+			
+			Do(function()
+				self.scene.audio:playSfx("sonicrunturn", nil, true)
+				target.sprite:setAnimation("backward")
+			end),
+			
+			Parallel {
+				Serial {
+					Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 20, "inout"),
+					Do(function()
+						self.sprite.sortOrderY = self.sprite.prevSortOrderY
+					end)
+				},
+				Serial {
+					Do(function() self.sprite:setAnimation("juicedownright") end),
+					Wait(animLag),
+					Do(function() self.sprite:setAnimation("juicedownleft") end),
+					Wait(animLag),
+					Do(function() self.sprite:setAnimation("juiceleft") end)
+				},
+				Serial {
+					Ease(self.sprite.transform, "x", target.sprite.transform.x + 110, 20, "inout"),
+					Ease(self.sprite.transform, "x", target.sprite.transform.x - 100, speed, "inout"),
+				}
+			}
+		}
+	end
+
 	return Serial {
 		Spawn(
 			While(
@@ -28,9 +79,9 @@ return function(self, target)
 					return self.sprite.selected ~= "idle"
 				end,
 				Repeat(Do(function()
-					if not self.dustTime or self.dustTime > 0.01 then
+					if not self.dustTime or self.dustTime > 0.005 then
 						self.dustTime = 0
-					elseif self.dustTime < 0.01 then
+					elseif self.dustTime < 0.005 then
 						self.dustTime = self.dustTime + love.timer.getDelta()
 						return
 					end
@@ -79,174 +130,14 @@ return function(self, target)
 		},
 		
 		-- Round 1
-		Do(function()
-			self.scene.audio:playSfx("sonicrunturn", nil, true)
-			self.sprite.prevSortOrderY = self.sprite.sortOrderY
-			self.sprite.sortOrderY = 0
-		end),
-		Parallel {
-			Ease(self.sprite.transform, "x", target.sprite.transform.x + 100, 3, "inout"),
-			Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h*2, 9, "inout"),
-			
-			Serial {
-				Do(function() self.sprite:setAnimation("juiceupleft") end),
-				Wait(0.08),
-				Do(function() self.sprite:setAnimation("juiceupright") end),
-				Wait(0.08),
-				Do(function() self.sprite:setAnimation("juiceright") end)
-			}
-		},
-		Do(function()
-			self.scene.audio:playSfx("sonicrunturn", nil, true)
-			target.sprite:setAnimation("backward")
-		end),
-		Parallel {
-			Ease(self.sprite.transform, "x", target.sprite.transform.x - 100, 3, "inout"),
-			Serial {
-				Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 9, "inout"),
-				Do(function()
-					self.sprite.sortOrderY = self.sprite.prevSortOrderY
-				end)
-			},
-			
-			Serial {
-				Do(function() self.sprite:setAnimation("juicedownright") end),
-				Wait(0.08),
-				Do(function() self.sprite:setAnimation("juicedownleft") end),
-				Wait(0.08),
-				Do(function() self.sprite:setAnimation("juiceleft") end)
-			}
-		},
+		RunCircle(3, 0.03),
 		
-		-- Round 2
-		Do(function()
-			self.scene.audio:playSfx("sonicrunturn", nil, true)
-			target.sprite:setAnimation("idle")
-			self.sprite.prevSortOrderY = self.sprite.sortOrderY
-			self.sprite.sortOrderY = 0
-		end),
-		Parallel {
-			Ease(self.sprite.transform, "x", target.sprite.transform.x + 100, 5, "inout"),
-			Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h*2, 15, "inout"),
-			
-			Serial {
-				Do(function() self.sprite:setAnimation("juiceupleft") end),
-				Wait(0.05),
-				Do(function() self.sprite:setAnimation("juiceupright") end),
-				Wait(0.05),
-				Do(function() self.sprite:setAnimation("juiceright") end)
-			}
-		},
-		Do(function()
-			self.scene.audio:playSfx("sonicrunturn", nil, true)
-			target.sprite:setAnimation("backward")
-		end),
-		Parallel {
-			Ease(self.sprite.transform, "x", target.sprite.transform.x - 100, 5, "inout"),
-			Serial {
-				Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 15, "inout"),
-				Do(function()
-					self.sprite.sortOrderY = self.sprite.prevSortOrderY
-				end)
-			},
-			
-			Serial {
-				Do(function() self.sprite:setAnimation("juicedownright") end),
-				Wait(0.05),
-				Do(function() self.sprite:setAnimation("juicedownleft") end),
-				Wait(0.05),
-				Do(function() self.sprite:setAnimation("juiceleft") end)
-			}
-		},
+		-- Round 2-3
+		Repeat(RunCircle(5, 0.03), 2),
 		
-		-- Round 3
-		Do(function()
-			self.scene.audio:playSfx("sonicrunturn", nil, true)
-			target.sprite:setAnimation("idle")
-			self.sprite.prevSortOrderY = self.sprite.sortOrderY
-			self.sprite.sortOrderY = 0
-		end),
-		Parallel {
-			Ease(self.sprite.transform, "x", target.sprite.transform.x + 100, 5, "inout"),
-			Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h*2, 15, "inout"),
-			
-			Serial {
-				Do(function() self.sprite:setAnimation("juiceupleft") end),
-				Wait(0.05),
-				Do(function() self.sprite:setAnimation("juiceupright") end),
-				Wait(0.05),
-				Do(function() self.sprite:setAnimation("juiceright") end)
-			}
-		},
-		Do(function()
-			self.scene.audio:playSfx("sonicrunturn", nil, true)
-			target.sprite:setAnimation("backward")
-		end),
-		Parallel {
-			Ease(self.sprite.transform, "x", target.sprite.transform.x - 100, 5, "inout"),
-			
-			Serial {
-				Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 15, "inout"),
-				Do(function()
-					self.sprite.sortOrderY = self.sprite.prevSortOrderY
-				end)
-			},
-			
-			Serial {
-				Do(function() self.sprite:setAnimation("juicedownright") end),
-				Wait(0.05),
-				Do(function() self.sprite:setAnimation("juicedownleft") end),
-				Wait(0.05),
-				Do(function() self.sprite:setAnimation("juiceleft") end)
-			}
-		},
-		
-		-- Round 4-9
-		Repeat(
-			Serial {
-				Do(function()
-					self.scene.audio:playSfx("sonicrunturn", nil, true)
-					target.sprite:setAnimation("idle")
-					self.sprite.prevSortOrderY = self.sprite.sortOrderY
-					self.sprite.sortOrderY = 0
-				end),
-				Parallel {
-					Ease(self.sprite.transform, "x", target.sprite.transform.x + 100, 6, "inout"),
-					Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h*2, 18, "inout"),
-					
-					Serial {
-						Do(function() self.sprite:setAnimation("juiceupleft") end),
-						Wait(0.02),
-						Do(function() self.sprite:setAnimation("juiceupright") end),
-						Wait(0.02),
-						Do(function() self.sprite:setAnimation("juiceright") end)
-					}
-				},
-				Do(function()
-					self.scene.audio:playSfx("sonicrunturn", nil, true)
-					target.sprite:setAnimation("backward")
-				end),
-				Parallel {
-					Ease(self.sprite.transform, "x", target.sprite.transform.x - 100, 6, "inout"),
-					Serial {
-						Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 18, "inout"),
-						Do(function()
-							self.sprite.sortOrderY = self.sprite.prevSortOrderY
-						end)
-					},
-					
-					Serial {
-						Do(function() self.sprite:setAnimation("juicedownright") end),
-						Wait(0.02),
-						Do(function() self.sprite:setAnimation("juicedownleft") end),
-						Wait(0.02),
-						Do(function() self.sprite:setAnimation("juiceleft") end)
-					}
-				}
-			},
-			5
-		),
-		
+		-- Round 4-8
+		Repeat(RunCircle(8, 0.03), 5),
+
 		Do(function()
 			self.sprite:setAnimation("juiceright")
 		end),
@@ -256,6 +147,8 @@ return function(self, target)
 		},
 		Do(function()
 			self.sprite:setAnimation("idle")
+			
+			target.confused = true
 		end),
 		
 		-- Bot is confused

@@ -189,7 +189,7 @@
   <object id="227" name="WallEdge1" type="Switch" gid="1227" x="544" y="1248" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="darkleft"/>
+    <property name="defaultAnim" value="darkhiddenleft"/>
     <property name="script">local Ease = require &quot;actions/Ease&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Do = require &quot;actions/Do&quot;
@@ -213,7 +213,7 @@ end</property>
   <object id="228" name="WallEdge2" type="Switch" gid="1227" x="576" y="1248" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="darkright"/>
+    <property name="defaultAnim" value="darkhiddenright"/>
     <property name="script">local Ease = require &quot;actions/Ease&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Do = require &quot;actions/Do&quot;

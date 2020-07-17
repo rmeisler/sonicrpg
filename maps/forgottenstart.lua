@@ -569,7 +569,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "darkleft",
+            ["defaultAnim"] = "darkhiddenleft",
             ["script"] = "local Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    return Serial {\n        Parallel {\n            Ease(self.scene.objectLookup.WallEdge1, \"y\", self.scene.objectLookup.WallEdge1.y - 100, 2, \"linear\"),\n            Ease(self.scene.objectLookup.WallEdge2, \"y\", self.scene.objectLookup.WallEdge2.y - 100, 2, \"linear\"),\n        },\n        Do(function()\n            self.scene.objectLookup.WallEdge1:remove()\n            self.scene.objectLookup.WallEdge2:remove()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/wall.png"
           }
@@ -588,7 +588,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "darkright",
+            ["defaultAnim"] = "darkhiddenright",
             ["script"] = "local Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    return Serial {\n        Parallel {\n            Ease(self.scene.objectLookup.WallEdge1, \"y\", self.scene.objectLookup.WallEdge1.y - 100, 2, \"linear\"),\n            Ease(self.scene.objectLookup.WallEdge2, \"y\", self.scene.objectLookup.WallEdge2.y - 100, 2, \"linear\"),\n        },\n        Do(function()\n            self.scene.objectLookup.WallEdge1:remove()\n            self.scene.objectLookup.WallEdge2:remove()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/wall.png"
           }

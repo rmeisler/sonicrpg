@@ -13,34 +13,48 @@ local Heal = require "data/items/actions/Heal"
 
 return function(self, targets)
 	local actions = {}
+	local resetActions = {}
 	local counter = 0
 	for _, target in pairs(targets) do
 		table.insert(
 			actions,
 			Serial {
+				Animate(target.sprite, "victory"),
 				Wait(counter),
 				Heal("hp", 50)(self, target)
 			}
 		)
+		table.insert(resetActions, Animate(target.sprite, "idle"))
 		counter = counter + 0.3
 	end
 
 	return Serial {
-		Animate(self.sprite, "victory"),
 		MessageBox {
-			message="Sally: Let's do it to it!",
+			message="Sally: We can do this guys...",
 			rect=MessageBox.HEADLINER_RECT,
 			textSpeed=8,
 			closeAction=Wait(0.6)
 		},
 		
-		AudioFade("music", 1.0, 0.0, 2),
+		Animate(self.sprite, "victory"),
 		Parallel {
-			PlayAudio("music", "sallyrally", 1.0),
-			Parallel(actions)
+			MessageBox {
+				message="Sally: Let's do it to it!",
+				rect=MessageBox.HEADLINER_RECT,
+				textSpeed=8,
+				closeAction=Wait(0.6)
+			},
+			Serial {
+				AudioFade("music", 1.0, 0.0, 2),
+				Parallel {
+					PlayAudio("music", "sallyrally", 1.0),
+					Parallel(actions)
+				}
+			}
 		},
 		
 		Animate(self.sprite, "idle"),
+		Parallel(resetActions),
 		PlayAudio("music", "battle", 1.0, true),
 	}
 end
