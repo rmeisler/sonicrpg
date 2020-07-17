@@ -124,6 +124,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/ratboteyes.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/camflashlight.png"
 	},
 	{

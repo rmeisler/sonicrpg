@@ -8,7 +8,7 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 184,
+  nextobjectid = 188,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_start.lua",
@@ -663,13 +663,13 @@ return {
           }
         },
         {
-          id = 183,
-          name = "Ratbot",
-          type = "BasicNPC",
+          id = 184,
+          name = "Ratbot1",
+          type = "Ratbot",
           shape = "rectangle",
-          x = 704,
-          y = 1760,
-          width = 32,
+          x = 480,
+          y = 1536,
+          width = 96,
           height = 32,
           rotation = 0,
           gid = 1227,
@@ -681,6 +681,8 @@ return {
             ["defaultAnim"] = "idle",
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
+            ["ignorePlayer"] = true,
+            ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/ratbot.png"
           }
         }

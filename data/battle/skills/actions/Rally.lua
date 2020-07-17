@@ -14,18 +14,16 @@ local Heal = require "data/items/actions/Heal"
 return function(self, targets)
 	local actions = {}
 	local resetActions = {}
-	local counter = 0
 	for _, target in pairs(targets) do
 		table.insert(
 			actions,
 			Serial {
 				Animate(target.sprite, "victory"),
-				Wait(counter),
+				Wait(0.1),
 				Heal("hp", 50)(self, target)
 			}
 		)
 		table.insert(resetActions, Animate(target.sprite, "idle"))
-		counter = counter + 0.3
 	end
 
 	return Serial {

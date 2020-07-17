@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="184">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="188">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="onload" type="file" value="actions/forgotten_start.lua"/>
@@ -520,7 +520,7 @@ end
     <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
-  <object id="183" name="Ratbot" type="BasicNPC" gid="1227" x="704" y="1760" width="32" height="32">
+  <object id="184" name="Ratbot1" type="Ratbot" gid="1227" x="480" y="1536" width="96" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="battle" type="file" value="../data/monsters/ratbot.lua"/>
@@ -528,6 +528,8 @@ end
     <property name="defaultAnim" value="idle"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="true"/>
+    <property name="noInvestigate" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/ratbot.png"/>
    </properties>
   </object>

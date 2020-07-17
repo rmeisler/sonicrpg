@@ -478,9 +478,17 @@ function Swatbot:hop(waitTime)
 			waitAction
 		},
 		Do(function()
-			self.dropShadow.x = self.x + 18
+			self:updateDropShadowPos(true)
 		end)
 	}
+end
+
+function Swatbot:updateDropShadowPos(xonly)
+	self.dropShadow.x = self.x + 18
+	
+	if not xonly then
+		self.dropShadow.y = self.y + self.sprite.h*2 - 14
+	end
 end
 
 function Swatbot:baseUpdate(dt)
@@ -515,8 +523,7 @@ function Swatbot:baseUpdate(dt)
 	end
 	
 	-- Update drop shadow position
-	self.dropShadow.x = self.x + 18
-	self.dropShadow.y = self.y + self.sprite.h*2 - 14
+	self:updateDropShadowPos()
 	
 	if not self.scene:playerMovable() or self.disabled then
 		return false
@@ -540,8 +547,7 @@ function Swatbot:baseUpdate(dt)
 	end
 	
 	-- Update drop shadow position
-	self.dropShadow.x = self.x + 18
-	self.dropShadow.y = self.y + self.sprite.h*2 - 14
+	self:updateDropShadowPos()
 	
 	-- Hack
 	self:hideFlashlight()

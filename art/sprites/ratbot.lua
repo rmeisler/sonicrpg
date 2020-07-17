@@ -26,19 +26,19 @@ return {
 		},
 		walkright = {
 			frames = {{11,0},{12,0},{11,0},{10,0}},
-			speed = 0.3
+			speed = 0.15
 		},
 		walkleft = {
 			frames = {{14,0},{15,0},{14,0},{13,0}},
-			speed = 0.3
+			speed = 0.15
 		},
 		walkup = {
 			frames = {{11,0},{12,0},{11,0},{10,0}},
-			speed = 0.3
+			speed = 0.15
 		},
 		walkdown = {
 			frames = {{11,0},{12,0},{11,0},{10,0}},
-			speed = 0.3
+			speed = 0.15
 		},
 
 		hurt = {
