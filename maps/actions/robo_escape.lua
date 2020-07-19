@@ -78,12 +78,7 @@ return function(scene)
 				scene.audio:setMusicVolume(1.0)
 			end),
 			
-			Spawn(
-				Serial {
-					PlayAudio("music", "escapelevel", 1.0),
-					PlayAudio("music", "transition", 1.0)
-				}
-			),
+			PlayAudio("music", "escapelevel", 1.0, true),
 			
 			Do(function()
 				scene.player.cinematic = true
@@ -512,7 +507,7 @@ return function(scene)
 				end
 			end),
 			
-			Wait(4),
+			Wait(3),
 			
 			Do(function()
 				scene.player.cinematic = true
@@ -521,7 +516,7 @@ return function(scene)
 			Parallel {
 				Animate(scene.player.sprite, "juicegrabringright"),
 				Serial {
-					WaitForFrame(scene.player.sprite, 4),
+					WaitForFrame(scene.player.sprite, 3),
 					Do(function()
 						scene.powerring = SpriteNode(
 							scene,
@@ -560,7 +555,7 @@ return function(scene)
 						Ease(scene.player.sprite.color, 2, 255, 0.2, "linear")
 					},
 					
-					Wait(2),
+					Wait(1),
 			
 					Do(function()
 						scene.player.cinematic = true
