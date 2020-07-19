@@ -84,7 +84,7 @@ function EscapePlayer:update(dt)
 
 	if not self.cinematic then
 		if love.keyboard.isDown("up") then
-			self.fx = 10
+			self.fx = self.fxOverride or 10
 			self.fy = -3.1
 			self.bx = ORTHO_BURST_MAGNITUDE
 			self.by = -ORTHO_BURST_MAGNITUDE
@@ -92,7 +92,7 @@ function EscapePlayer:update(dt)
 			
 			self.state = "juiceupright"
 		elseif love.keyboard.isDown("down") then
-			self.fx = 10
+			self.fx = self.fxOverride or 10
 			self.fy = 3.1
 			self.bx = ORTHO_BURST_MAGNITUDE
 			self.by = ORTHO_BURST_MAGNITUDE

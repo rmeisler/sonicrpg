@@ -533,29 +533,48 @@ return function(scene)
 							"objects"
 						)
 					end)
-				},
+				}
 			},
 			
 			Do(function()
-				scene.player.sprite:setAnimation("juiceringright")
+				scene.audio:playSfx("usering", nil, true)
 				hoverbot1.nofollow = true
+				scene.player.cinematic = false
 				scene.powerring.transform = Transform.relative(scene.player.sprite.transform, Transform(scene.player.sprite.w*2 - 10, scene.player.sprite.h + 5))
 			end),
 			
-			Ease(scene.player, "fx", function() return scene.player.fx + 30 end, 0.5, "inout"),
+			Parallel {
+				Do(function()
+					scene.player.stateOverride = "juiceringright"
+					scene.player.fxOverride = scene.player.fx
+				end),
+				Ease(scene.player, "fx", function() return scene.player.fx + 30 end, 0.5, "inout"),
+				Serial {
+					Parallel {
+						Ease(scene.player.sprite.color, 1, 512, 1, "inout"),
+						Ease(scene.player.sprite.color, 2, 512, 1, "inout")
+					},
+					Wait(1),
+					Parallel {
+						Ease(scene.player.sprite.color, 1, 255, 0.2, "linear"),
+						Ease(scene.player.sprite.color, 2, 255, 0.2, "linear")
+					},
+					
+					Wait(2),
 			
-			Wait(1),
-			
-			Do(function()
-				scene.player:run(Parallel {
-					Ease(scene.bgColor, 1, 0, 0.2, "inout"),
-					Ease(scene.bgColor, 2, 0, 0.2, "inout"),
-					Ease(scene.bgColor, 3, 0, 0.2, "inout"),
 					Do(function()
-						ScreenShader:sendColor("multColor", scene.bgColor)
-					end)
-				})
-			end),
+						scene.player.cinematic = true
+						scene.player:run(Parallel {
+							Ease(scene.bgColor, 1, 0, 0.2, "inout"),
+							Ease(scene.bgColor, 2, 0, 0.2, "inout"),
+							Ease(scene.bgColor, 3, 0, 0.2, "inout"),
+							Do(function()
+								ScreenShader:sendColor("multColor", scene.bgColor)
+							end)
+						})
+					end),
+				}
+			},
 		},
 		
 		Serial {

@@ -93,7 +93,7 @@ return function(scene)
 						scene.audio:stopMusic()
 					end),
 					Wait(2),
-					PlayAudio("music", "sonictheme", 0.5, true)
+					PlayAudio("music", "sonictheme", 1.0, true)
 				}
 			},
 			

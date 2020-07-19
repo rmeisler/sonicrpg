@@ -8,7 +8,7 @@ return {
 	{
         type = "map",
         file = "maps/robotnikwarroom.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -74,7 +74,7 @@ return {
 	{
         type = "map",
         file = "maps/run1.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -433,6 +433,11 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/hoverbot.png"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/usering.ogg",
+		category = "sfx"
 	},
 	{
 		type = "sound",
