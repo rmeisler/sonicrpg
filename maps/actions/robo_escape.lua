@@ -64,6 +64,8 @@ return function(scene)
 		end
 	end
 	
+	scene.bgColor = {255,255,255,255}
+	
 	return While(
 		function()
 			return not scene.playerDead
@@ -97,7 +99,7 @@ return function(scene)
 				return scene.player.x > 500
 			end),
 			
-			--[[Do(function()
+			Do(function()
 				scene.player.cinematic = false
 				scene.player.ignoreSpecialMoveCollision = false
 			end),
@@ -510,7 +512,7 @@ return function(scene)
 				end
 			end),
 			
-			Wait(4),]]
+			Wait(4),
 			
 			Do(function()
 				scene.player.cinematic = true
@@ -540,7 +542,20 @@ return function(scene)
 				scene.powerring.transform = Transform.relative(scene.player.sprite.transform, Transform(scene.player.sprite.w*2 - 10, scene.player.sprite.h + 5))
 			end),
 			
-			Ease(scene.player, "fx", function() return scene.player.fx + 30 end, 0.5, "inout")
+			Ease(scene.player, "fx", function() return scene.player.fx + 30 end, 0.5, "inout"),
+			
+			Wait(1),
+			
+			Do(function()
+				scene.player:run(Parallel {
+					Ease(scene.bgColor, 1, 0, 0.2, "inout"),
+					Ease(scene.bgColor, 2, 0, 0.2, "inout"),
+					Ease(scene.bgColor, 3, 0, 0.2, "inout"),
+					Do(function()
+						ScreenShader:sendColor("multColor", scene.bgColor)
+					end)
+				})
+			end),
 		},
 		
 		Serial {

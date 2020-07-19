@@ -158,7 +158,7 @@ return {
 		
 		juiceringright = {
 			frames = {{9,6}, {10,6}, {11,6}, {12,6}},
-			speed = 0.08
+			speed = 0.04
 		},
 		
 		juiceright = {

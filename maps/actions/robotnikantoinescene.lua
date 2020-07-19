@@ -120,31 +120,34 @@ return function(scene)
 		MessageBox{message="Antoine: {p30}.{p30}.{p30}.", blocking=true, textSpeed=4},
 		MessageBox{message="Antoine: *Sonic{p50}, Sally... {p50}where are you?...*", blocking=true, textSpeed=3},
 		
-		Parallel {
-			Ease(scene.player, "y", 400, 0.3, "inout"),
-			Ease(scene.bgColor, 1, 0, 2, "inout"),
-			Ease(scene.bgColor, 2, 0, 2, "inout"),
-			Ease(scene.bgColor, 3, 0, 2, "inout"),
-			Do(function()
-				ScreenShader:sendColor("multColor", scene.bgColor)
-			end),
-			AudioFade("music", 1.0, 0.0, 0.5)
-		},
-		
 		Do(function()
-			scene.sceneMgr:switchScene {
-				class = "BasicScene",
-				mapName = "maps/forgottenstart.lua",
-				map = scene.maps["maps/forgottenstart.lua"],
-				maps = scene.maps,
-				region = scene.region,
-				fadeInSpeed = 0.5,
-				images = scene.images,
-				animations = scene.animations,
-				audio = scene.audio,
-				doingSpecialMove = false,
-				cache = true
+			scene.player:run {
+				Parallel {
+					Ease(scene.player, "y", 400, 0.3, "inout"),
+					Ease(scene.bgColor, 1, 0, 0.2, "inout"),
+					Ease(scene.bgColor, 2, 0, 0.2, "inout"),
+					Ease(scene.bgColor, 3, 0, 0.2, "inout"),
+					Do(function()
+						ScreenShader:sendColor("multColor", scene.bgColor)
+					end),
+					AudioFade("music", 1.0, 0.0, 0.5)
+				},
+				Do(function()
+					scene.sceneMgr:switchScene {
+						class = "BasicScene",
+						mapName = "maps/forgottenstart.lua",
+						map = scene.maps["maps/forgottenstart.lua"],
+						maps = scene.maps,
+						region = scene.region,
+						fadeInSpeed = 0.5,
+						images = scene.images,
+						animations = scene.animations,
+						audio = scene.audio,
+						doingSpecialMove = false,
+						cache = true
+					}
+				end)
 			}
-		end)
+		end),
 	}
 end
