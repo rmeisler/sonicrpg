@@ -6,6 +6,7 @@ local SpriteNode = require "object/SpriteNode"
 local Serial = require "actions/Serial"
 local Parallel = require "actions/Parallel"
 local Do = require "actions/Do"
+local AudioFade = require "actions/AudioFade"
 local Animate = require "actions/Animate"
 local Ease = require "actions/Ease"
 local PlayAudio = require "actions/PlayAudio"
@@ -53,13 +54,6 @@ function EscapePlayer:update(dt)
 	
 	if not self.animationStack then
 		self.animationStack = {}
-	end
-
-	-- If we are hiding, display our sprite more darkly
-	if self:inShadow() then
-		self.sprite.color = {150,150,150,255}
-	else
-		self.sprite.color = {255,255,255,255}
 	end
 	
 	if self.blocked or not self.scene:playerMovable() then
@@ -375,24 +369,11 @@ end
 
 function EscapePlayer:die()
 	return Parallel {
-		self.scene:screenShake(30, 20),
-		Serial {
-			Do(function()
-				self.stateOverride = "ouchright"
-				self.origY = self.y
-			end),
-			Parallel {
-				Ease(self, "x", self.x - 150, 3, "linear"),
-				Serial {
-					Ease(self, "y", self.y - 60, 8, "quad"),
-					Wait(0.1),
-					Ease(self, "y", self.y, 8, "quad")
-				}
-			},
-			Do(function()
-				self.stateOverride = "layright"
-			end)
-		}
+		self.scene:screenShake(0, 20),
+		AudioFade("music", 1.0, 0.0, 2),
+		Do(function()
+			self.scene.audio:stopMusic("escapelevel")
+		end)
 	}
 end
 

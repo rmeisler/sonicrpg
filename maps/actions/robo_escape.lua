@@ -7,6 +7,7 @@ local Animate = require "actions/Animate"
 local TypeText = require "actions/TypeText"
 local Menu = require "actions/Menu"
 local MessageBox = require "actions/MessageBox"
+local WaitForFrame = require "actions/WaitForFrame"
 local PlayAudio = require "actions/PlayAudio"
 local Ease = require "actions/Ease"
 local Parallel = require "actions/Parallel"
@@ -28,6 +29,7 @@ local EscapeObstacle = require "object/EscapeObstacle"
 local EscapeHoverbot = require "object/EscapeHoverbot"
 local EscapeIndicator = require "object/EscapeIndicator"
 
+local SpriteNode = require "object/SpriteNode"
 local EscapePlayer = require "object/EscapePlayer"
 
 local TARGET_OFFSET_X = 400
@@ -95,7 +97,7 @@ return function(scene)
 				return scene.player.x > 500
 			end),
 			
-			Do(function()
+			--[[Do(function()
 				scene.player.cinematic = false
 				scene.player.ignoreSpecialMoveCollision = false
 			end),
@@ -507,6 +509,38 @@ return function(scene)
 					end
 				end
 			end),
+			
+			Wait(4),]]
+			
+			Do(function()
+				scene.player.cinematic = true
+			end),
+			
+			Parallel {
+				Animate(scene.player.sprite, "juicegrabringright"),
+				Serial {
+					WaitForFrame(scene.player.sprite, 4),
+					Do(function()
+						scene.powerring = SpriteNode(
+							scene,
+							Transform.relative(scene.player.sprite.transform, Transform(scene.player.sprite.w*2 - 25, scene.player.sprite.h + 5)),
+							nil,
+							"powerring",
+							nil,
+							nil,
+							"objects"
+						)
+					end)
+				},
+			},
+			
+			Do(function()
+				scene.player.sprite:setAnimation("juiceringright")
+				hoverbot1.nofollow = true
+				scene.powerring.transform = Transform.relative(scene.player.sprite.transform, Transform(scene.player.sprite.w*2 - 10, scene.player.sprite.h + 5))
+			end),
+			
+			Ease(scene.player, "fx", function() return scene.player.fx + 30 end, 0.5, "inout")
 		},
 		
 		Serial {

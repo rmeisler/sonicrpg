@@ -39,7 +39,7 @@ return {
 	{
         type = "map",
         file = "maps/forgottenstart.lua",
-		primary = true,
+		--primary = true,
     },
 	
 	{
@@ -74,7 +74,7 @@ return {
 	{
         type = "map",
         file = "maps/run1.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -289,6 +289,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/waterblast.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/powerring.png"
 	},
 	{
 		type = "image",

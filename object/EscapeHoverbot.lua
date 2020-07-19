@@ -82,7 +82,7 @@ function EscapeHoverbot:update(dt)
 	end
 	
 	local fx = self.scene.player.fx
-	if self.scene.player.noGas then
+	if self.scene.player.noGas or self.nofollow then
 		fx = 25
 	end
 
