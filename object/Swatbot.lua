@@ -177,17 +177,23 @@ function Swatbot:followActions()
 end
 
 function Swatbot:getInitiative()
-	if self.behavior == Swatbot.BEHAVIOR_CHASING and self.scene.player:isFacing(self.facing) then
-		return "opponent"
-	elseif self.scene.player:isFacing(self.facing) and
-		   ((self.facing == "left"  and self.x < self.scene.player.x) or
+	if self.scene.player:isFacing(self.facing) then
+		if ((self.facing == "left"  and self.x < self.scene.player.x) or
 		    (self.facing == "right" and self.x > self.scene.player.x) or
 		    (self.facing == "up"    and self.y < self.scene.player.y) or
-		    (self.facing == "down"  and self.y > self.scene.player.y)) then
-		return "player"
-	else
-		return nil
+		    (self.facing == "down"  and self.y > self.scene.player.y))
+		then
+			return "opponent"
+		elseif ((self.facing == "left"  and self.x > self.scene.player.x) or
+				(self.facing == "right" and self.x < self.scene.player.x) or
+				(self.facing == "up"    and self.y > self.scene.player.y) or
+				(self.facing == "down"  and self.y < self.scene.player.y))
+		then
+			return "player"
+		end
 	end
+
+	return nil
 end
 
 function Swatbot:distanceFromPlayerSq()

@@ -158,7 +158,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 	
 	local bouncyTextOffsetX = (direction > 0) and 10 or -50
 	local endHp = math.max(0, self.hp - damage)
-	self.action = Serial {
+	local action = Serial {
 		isPassive = isPassive,
 		
 		Serial {
@@ -201,9 +201,9 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 		Do(function() self.hp = endHp end)
 	}
 	if self.hp - damage <= 0 then
-		self.action:add(self.scene, self:die())
+		action:add(self.scene, self:die())
 	end
-	return self.action
+	return action
 end
 
 -- Takes a table of stat name => mult bonus

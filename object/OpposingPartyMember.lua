@@ -149,24 +149,15 @@ function OpposingPartyMember:beginTurn()
 			}
 		end
 	elseif self.confused then
-		-- If confused, choose random target from opponent side, or don't attack at all
-		if #self.scene.opponents > 1 then
-			self.selectedTarget = math.random(#self.scene.opponents)
-			self.action = Serial {
-				MessageBox {
-					message=self.name.." is confused!",
-					rect=MessageBox.HEADLINER_RECT,
-					closeAction=Wait(0.6)
-				},
-				self.behavior(self, self.scene.opponents[self.selectedTarget]) or Action()
-			}
-		else
-			self.action = MessageBox {
+		self.selectedTarget = math.random(#self.scene.opponents)
+		self.action = Serial {
+			MessageBox {
 				message=self.name.." is confused!",
 				rect=MessageBox.HEADLINER_RECT,
 				closeAction=Wait(0.6)
-			}
-		end
+			},
+			self.behavior(self, self.scene.opponents[self.selectedTarget]) or Action()
+		}
 		self.confused = false
 	else
 		-- Choose action based on behavior
@@ -243,7 +234,11 @@ function OpposingPartyMember:die()
 				self.sprite:remove()
 			end),
 			
-			self.onDead(self)
+			self.onDead(self),
+			
+			Do(function()
+				self.action = nil
+			end)
 		}
 	else
 		return Serial {
@@ -265,7 +260,11 @@ function OpposingPartyMember:die()
 				self.sprite:remove()
 			end),
 			
-			self.onDead(self)
+			self.onDead(self),
+			
+			Do(function()
+				self.action = nil
+			end)
 		}
 	end
 end

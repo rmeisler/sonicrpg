@@ -60,8 +60,11 @@ function MessageBox:construct(args) -- name, message, rect, closeAction, blockin
 		Transform(self.rect.transform.x - self.rect.w/2 + 15, self.rect.transform.y - self.rect.h/2 + 15),
 		{255,255,255,255},
 		FontCache.Consolas,
-		args.message:wordwrap(50),
-		10 * (args.textSpeed or MessageBox.DEFAULT_TEXT_SPEED)
+		args.message,
+		10 * (args.textSpeed or MessageBox.DEFAULT_TEXT_SPEED),
+		false,
+		false,
+		50
 	)
 	self:addChild(self.text)
 

@@ -1,6 +1,6 @@
 local TypeText = class(require "actions/Action")
 
-function TypeText:construct(transform, color, font, text, speed, noFastForward, outline)
+function TypeText:construct(transform, color, font, text, speed, noFastForward, outline, wordwrap)
 	self.transform = transform
 	self.color = color
 	self.font = font
@@ -12,6 +12,9 @@ function TypeText:construct(transform, color, font, text, speed, noFastForward, 
 	self.elapsed = 0
 	self.speed = speed or 20
 	self.speed_mult = 1.0
+	self.wordwrap = wordwrap
+	self.charCounter = 0
+	self.lastSpaceIdx = 1
 	self.outline = outline
 	self.noFastForward = noFastForward
 	self.type = "TypeText"
@@ -54,10 +57,12 @@ function TypeText:reset()
 end
 
 function TypeText:update(dt)
+	local invalidateChar = false
 	self.elapsed = self.elapsed + dt * self.speed * self.speed_mult
 	if self.elapsed >= 1.0 then
 	    self.elapsed = 0
 		self.charidx = self.charidx + 1
+		invalidateChar = true
 	end
 	
 	-- Applies speed multiplier to typing while the user holds 'x'
@@ -66,12 +71,29 @@ function TypeText:update(dt)
 	else
 		self.speed_mult = 1.0
 	end
-	
+
 	-- Look ahead for special character codes
-	if self.curtext:sub(self.charidx, self.charidx) == '{' then
-		local charCode = self.curtext:sub(self.charidx + 1, self.charidx + 1)
-		local idx = self.curtext:find("}", self.charidx + 1, true)
-		self["oncode_"..charCode](self, idx)
+	if invalidateChar then
+		local nextChar = self.curtext:sub(self.charidx, self.charidx)
+		if nextChar == '{' then
+			local charCode = self.curtext:sub(self.charidx + 1, self.charidx + 1)
+			local idx = self.curtext:find("}", self.charidx + 1, true)
+			self["oncode_"..charCode](self, idx)
+		elseif nextChar == ' ' and self.wordwrap then
+			self.charCounter = self.charCounter + 1
+			
+			if self.charCounter > self.wordwrap then
+				self.curtext = self.curtext:sub(1, self.lastSpaceIdx)..
+					"\n"..
+					self.curtext:sub(self.lastSpaceIdx + 1, self.curtext:len())
+				self.charCounter = 0
+			end
+			self.lastSpaceIdx = self.charidx
+		elseif nextChar == '\n' then
+			self.charCounter = 0
+		else
+			self.charCounter = self.charCounter + 1
+		end
 	end
 end
 

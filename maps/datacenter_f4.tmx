@@ -372,6 +372,7 @@ return function(self)
                         Do(function()
                             sprites2.sonic.sprite:setAnimation(&quot;jumpright&quot;)
                             sprites2.sally.sprite:setAnimation(&quot;jumpright&quot;)
+                            sprites2.sally.sprite.sortOrderY = 0
                         end),
                         Parallel {
                             Ease(sprites2.sonic, &quot;x&quot;, function() return sprites2.sonic.x + 100 end, 5, &quot;linear&quot;),
@@ -393,6 +394,7 @@ return function(self)
                         Do(function()
                             sprites2.sonic.sprite:setAnimation(&quot;idleleft&quot;)
                             sprites2.sally.sprite:setAnimation(&quot;idleleft&quot;)
+                            sprites2.sally.sprite.sortOrderY = nil
                         end),
                         Ease(rover, &quot;y&quot;, function() return sprites2.antoine.y - 80 end, 1, &quot;linear&quot;),
                         Do(function() rover.sprite:setAnimation(&quot;idleright&quot;) end),
@@ -483,6 +485,7 @@ return function(self)
                     deatheggbg.visible = true
                     deatheggbg.transform.sx = 3
                     deatheggbg.transform.sy = 3
+                    self.scene.audio:stopSfx(&quot;factoryfloor&quot;)
                 end),
                 Parallel {
                     Ease(self.scene.bgColor, 1, 255, 0.5, &quot;linear&quot;),
