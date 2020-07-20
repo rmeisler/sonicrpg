@@ -507,11 +507,14 @@ return function(scene)
 				end
 			end),
 			
-			Wait(3),
+			Wait(4),
 			
 			Do(function()
 				scene.player.cinematic = true
+				scene.player.sprite:setAnimation("juiceright")
 			end),
+			
+			Ease(scene.player, "y", 544, 1, "inout"),
 			
 			Parallel {
 				Animate(scene.player.sprite, "juicegrabringright"),
@@ -520,45 +523,44 @@ return function(scene)
 					Do(function()
 						scene.powerring = SpriteNode(
 							scene,
-							Transform.relative(scene.player.sprite.transform, Transform(scene.player.sprite.w*2 - 25, scene.player.sprite.h + 5)),
+							Transform.relative(scene.player.sprite.transform, Transform(scene.player.sprite.w*2 - 35, scene.player.sprite.h)),
 							nil,
 							"powerring",
 							nil,
 							nil,
 							"objects"
 						)
-					end)
+					end),
+					Wait(0.1),
+					Do(function()
+						scene.powerring.transform = Transform.relative(scene.player.sprite.transform, Transform(scene.player.sprite.w*2 - 25, scene.player.sprite.h + 5))
+					end),
 				}
 			},
 			
 			Do(function()
 				scene.audio:playSfx("usering", nil, true)
 				hoverbot1.nofollow = true
-				scene.player.cinematic = false
 				scene.powerring.transform = Transform.relative(scene.player.sprite.transform, Transform(scene.player.sprite.w*2 - 10, scene.player.sprite.h + 5))
 			end),
 			
 			Parallel {
 				Do(function()
-					scene.player.stateOverride = "juiceringright"
-					scene.player.fxOverride = scene.player.fx
+					scene.player.sprite:setAnimation("juiceringright")
 				end),
 				Ease(scene.player, "fx", function() return scene.player.fx + 30 end, 0.5, "inout"),
 				Serial {
 					Parallel {
-						Ease(scene.player.sprite.color, 1, 512, 1, "inout"),
-						Ease(scene.player.sprite.color, 2, 512, 1, "inout")
+						Ease(scene.player.sprite.color, 1, 512, 0.5, "inout"),
+						Ease(scene.player.sprite.color, 2, 512, 0.5, "inout")
 					},
-					Wait(1),
+					Wait(2),
 					Parallel {
-						Ease(scene.player.sprite.color, 1, 255, 0.2, "linear"),
-						Ease(scene.player.sprite.color, 2, 255, 0.2, "linear")
+						Ease(scene.player.sprite.color, 1, 255, 0.5, "linear"),
+						Ease(scene.player.sprite.color, 2, 255, 0.5, "linear")
 					},
-					
-					Wait(1),
 			
 					Do(function()
-						scene.player.cinematic = true
 						scene.player:run(Parallel {
 							Ease(scene.bgColor, 1, 0, 0.2, "inout"),
 							Ease(scene.bgColor, 2, 0, 0.2, "inout"),
