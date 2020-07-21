@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="188">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="189">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="onload" type="file" value="actions/forgotten_start.lua"/>
@@ -368,9 +368,9 @@
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="173" name="R" type="BasicNPC" gid="1227" x="832" y="1312" width="32" height="32">
+  <object id="173" name="R" type="BasicNPC" gid="1227" x="832" y="1184" width="32" height="32">
    <properties>
-    <property name="defaultAnim" value="idleup"/>
+    <property name="defaultAnim" value="idledown"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreMapCollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/r.png"/>
@@ -386,6 +386,7 @@ local Do = require &quot;actions/Do&quot;
 local Serial = require &quot;actions/Serial&quot;
 
 return function(self)
+    self.scene.audio:playSfx(&quot;openchasm&quot;)
     return Serial {
         Parallel {
             Ease(self.scene.objectLookup.WallEdge1, &quot;y&quot;, self.scene.objectLookup.WallEdge1.y - 100, 2, &quot;linear&quot;),
@@ -410,6 +411,7 @@ local Do = require &quot;actions/Do&quot;
 local Serial = require &quot;actions/Serial&quot;
 
 return function(self)
+    self.scene.audio:playSfx(&quot;openchasm&quot;)
     return Serial {
         Parallel {
             Ease(self.scene.objectLookup.WallEdge1, &quot;y&quot;, self.scene.objectLookup.WallEdge1.y - 100, 2, &quot;linear&quot;),
@@ -433,82 +435,6 @@ end</property>
     <property name="spawn_point" value="Exit1"/>
    </properties>
   </object>
-  <object id="178" name="Script1" type="TouchTrigger" gid="3112" x="608" y="1408" width="416" height="96">
-   <properties>
-    <property name="script">local Serial = require &quot;actions/Serial&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Do = require &quot;actions/Do&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Animate = require &quot;actions/Animate&quot;
-local Move = require &quot;actions/Move&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-
-return function(self)
-    self.scene.player.cinematic = true
-    local walkout, walkin, sprites = self.scene.player:split()
-    return Serial {
-        walkout,
-        Animate(sprites.sonic.sprite, &quot;idleup&quot;),
-        Animate(sprites.sally.sprite, &quot;idleup&quot;),
-        MessageBox {message= &quot;Sonic: Whoah-- {p30}is that...&quot;, blocking = true, textSpeed = 4},
-        MessageBox {message= &quot;Sally: ...a roboticized child? {p30}It looks like it.&quot;, blocking = true, textSpeed = 4},
-
-        Do(function()
-            self.scene.audio:stopMusic()
-        end),
-        Animate(self.scene.objectLookup.R.sprite, &quot;idledown&quot;),
-        Wait(0.5),
-        Ease(self.scene.objectLookup.R, &quot;y&quot;, function() return self.scene.objectLookup.R.y - 50 end, 8, &quot;linear&quot;),
-        Ease(self.scene.objectLookup.R, &quot;y&quot;, function() return self.scene.objectLookup.R.y + 50 end, 8, &quot;linear&quot;),
-        Wait(1),
-
-        MessageBox {message= &quot;Sonic: Uh{p20}.{p20}.{p20}. Hey little buddy!&quot;, blocking = true, textSpeed = 4},
-        Wait(0.2),
-        PlayAudio(&quot;music&quot;, &quot;follow&quot;, 0.7, true),
-
-        Do(function()
-            self.scene.player.cinematic = true
-            self.scene.objectLookup.R.movespeed = 5
-        end),
-        Parallel {
-            Ease(self.scene.camPos, &quot;y&quot;, self.scene.camPos.y + 200, 1, &quot;inout&quot;),
-            Move(self.scene.objectLookup.R, self.scene.objectLookup.Exit1, &quot;walk&quot;)
-        },
-        Animate(self.scene.objectLookup.R.sprite, &quot;idleup&quot;),
-        Parallel {
-            Ease(self.scene.objectLookup.WallEdge1, &quot;y&quot;, self.scene.objectLookup.WallEdge1.y - 100, 2, &quot;linear&quot;),
-            Ease(self.scene.objectLookup.WallEdge2, &quot;y&quot;, self.scene.objectLookup.WallEdge2.y - 100, 2, &quot;linear&quot;),
-        },
-        Move(self.scene.objectLookup.R, self.scene.objectLookup.Waypoint, &quot;walk&quot;),
-        Do(function()
-            self.scene.objectLookup.R:remove()
-            self.scene.player.cinematic = true
-        end),
-        Parallel {
-            Ease(self.scene.objectLookup.WallEdge1, &quot;y&quot;, self.scene.objectLookup.WallEdge1.y, 2, &quot;linear&quot;),
-            Ease(self.scene.objectLookup.WallEdge2, &quot;y&quot;, self.scene.objectLookup.WallEdge2.y, 2, &quot;linear&quot;),
-        },
-        Ease(self.scene.camPos, &quot;y&quot;, self.scene.camPos.y, 1, &quot;inout&quot;),
-
-        Animate(sprites.sonic.sprite, &quot;thinking&quot;),
-        MessageBox {message= &quot;Sonic: Was it something I said?&quot;, blocking = true, textSpeed = 4},
-        Animate(sprites.sally.sprite, &quot;idleleft&quot;),
-        MessageBox {message= &quot;Sally: He doesn't seem to be under Robotnik's control.&quot;, blocking = true, textSpeed = 4},
-        Animate(sprites.sonic.sprite, &quot;idleright&quot;),
-        MessageBox {message= &quot;Sally: We should follow him. {p30}Maybe he can help us find a way out of here.&quot;, blocking = true, textSpeed = 4},
-        walkin,
-        Do(function()
-            self.scene.player.x = self.scene.player.x + 60
-            self.scene.player.y = self.scene.player.y + 60
-            self.scene.player.cinematic = false
-        end)
-    }
-end
-</property>
-   </properties>
-  </object>
   <object id="179" name="Waypoint" type="BasicNPC" gid="1227" x="832" y="960" width="96" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
@@ -520,7 +446,7 @@ end
     <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
-  <object id="184" name="Ratbot1" type="Ratbot" gid="1227" x="480" y="1536" width="96" height="32">
+  <object id="184" name="Ratbot1" type="Ratbot" gid="1227" x="288" y="1696" width="96" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="battle" type="file" value="../data/monsters/ratbot.lua"/>
@@ -531,6 +457,11 @@ end
     <property name="ignorePlayer" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/ratbot.png"/>
+   </properties>
+  </object>
+  <object id="188" name="Waypoint1" type="BasicNPC" gid="1227" x="832" y="1472" width="96" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

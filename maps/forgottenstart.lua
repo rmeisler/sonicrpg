@@ -8,7 +8,7 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 188,
+  nextobjectid = 189,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_start.lua",
@@ -542,14 +542,14 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 832,
-          y = 1312,
+          y = 1184,
           width = 32,
           height = 32,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["defaultAnim"] = "idleup",
+            ["defaultAnim"] = "idledown",
             ["ghost"] = true,
             ["ignoreMapCollision"] = true,
             ["sprite"] = "../art/sprites/r.png"
@@ -570,7 +570,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "darkhiddenleft",
-            ["script"] = "local Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    return Serial {\n        Parallel {\n            Ease(self.scene.objectLookup.WallEdge1, \"y\", self.scene.objectLookup.WallEdge1.y - 100, 2, \"linear\"),\n            Ease(self.scene.objectLookup.WallEdge2, \"y\", self.scene.objectLookup.WallEdge2.y - 100, 2, \"linear\"),\n        },\n        Do(function()\n            self.scene.objectLookup.WallEdge1:remove()\n            self.scene.objectLookup.WallEdge2:remove()\n        end)\n    }\nend",
+            ["script"] = "local Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    self.scene.audio:playSfx(\"openchasm\")\n    return Serial {\n        Parallel {\n            Ease(self.scene.objectLookup.WallEdge1, \"y\", self.scene.objectLookup.WallEdge1.y - 100, 2, \"linear\"),\n            Ease(self.scene.objectLookup.WallEdge2, \"y\", self.scene.objectLookup.WallEdge2.y - 100, 2, \"linear\"),\n        },\n        Do(function()\n            self.scene.objectLookup.WallEdge1:remove()\n            self.scene.objectLookup.WallEdge2:remove()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/wall.png"
           }
         },
@@ -589,7 +589,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "darkhiddenright",
-            ["script"] = "local Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    return Serial {\n        Parallel {\n            Ease(self.scene.objectLookup.WallEdge1, \"y\", self.scene.objectLookup.WallEdge1.y - 100, 2, \"linear\"),\n            Ease(self.scene.objectLookup.WallEdge2, \"y\", self.scene.objectLookup.WallEdge2.y - 100, 2, \"linear\"),\n        },\n        Do(function()\n            self.scene.objectLookup.WallEdge1:remove()\n            self.scene.objectLookup.WallEdge2:remove()\n        end)\n    }\nend",
+            ["script"] = "local Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    self.scene.audio:playSfx(\"openchasm\")\n    return Serial {\n        Parallel {\n            Ease(self.scene.objectLookup.WallEdge1, \"y\", self.scene.objectLookup.WallEdge1.y - 100, 2, \"linear\"),\n            Ease(self.scene.objectLookup.WallEdge2, \"y\", self.scene.objectLookup.WallEdge2.y - 100, 2, \"linear\"),\n        },\n        Do(function()\n            self.scene.objectLookup.WallEdge1:remove()\n            self.scene.objectLookup.WallEdge2:remove()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/wall.png"
           }
         },
@@ -611,22 +611,6 @@ return {
             ["orientation"] = "down",
             ["scene"] = "forgotten1.lua",
             ["spawn_point"] = "Exit1"
-          }
-        },
-        {
-          id = 178,
-          name = "Script1",
-          type = "TouchTrigger",
-          shape = "rectangle",
-          x = 608,
-          y = 1408,
-          width = 416,
-          height = 96,
-          rotation = 0,
-          gid = 3112,
-          visible = true,
-          properties = {
-            ["script"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal Move = require \"actions/Move\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self)\n    self.scene.player.cinematic = true\n    local walkout, walkin, sprites = self.scene.player:split()\n    return Serial {\n        walkout,\n        Animate(sprites.sonic.sprite, \"idleup\"),\n        Animate(sprites.sally.sprite, \"idleup\"),\n        MessageBox {message= \"Sonic: Whoah-- {p30}is that...\", blocking = true, textSpeed = 4},\n        MessageBox {message= \"Sally: ...a roboticized child? {p30}It looks like it.\", blocking = true, textSpeed = 4},\n\n        Do(function()\n            self.scene.audio:stopMusic()\n        end),\n        Animate(self.scene.objectLookup.R.sprite, \"idledown\"),\n        Wait(0.5),\n        Ease(self.scene.objectLookup.R, \"y\", function() return self.scene.objectLookup.R.y - 50 end, 8, \"linear\"),\n        Ease(self.scene.objectLookup.R, \"y\", function() return self.scene.objectLookup.R.y + 50 end, 8, \"linear\"),\n        Wait(1),\n\n        MessageBox {message= \"Sonic: Uh{p20}.{p20}.{p20}. Hey little buddy!\", blocking = true, textSpeed = 4},\n        Wait(0.2),\n        PlayAudio(\"music\", \"follow\", 0.7, true),\n\n        Do(function()\n            self.scene.player.cinematic = true\n            self.scene.objectLookup.R.movespeed = 5\n        end),\n        Parallel {\n            Ease(self.scene.camPos, \"y\", self.scene.camPos.y + 200, 1, \"inout\"),\n            Move(self.scene.objectLookup.R, self.scene.objectLookup.Exit1, \"walk\")\n        },\n        Animate(self.scene.objectLookup.R.sprite, \"idleup\"),\n        Parallel {\n            Ease(self.scene.objectLookup.WallEdge1, \"y\", self.scene.objectLookup.WallEdge1.y - 100, 2, \"linear\"),\n            Ease(self.scene.objectLookup.WallEdge2, \"y\", self.scene.objectLookup.WallEdge2.y - 100, 2, \"linear\"),\n        },\n        Move(self.scene.objectLookup.R, self.scene.objectLookup.Waypoint, \"walk\"),\n        Do(function()\n            self.scene.objectLookup.R:remove()\n            self.scene.player.cinematic = true\n        end),\n        Parallel {\n            Ease(self.scene.objectLookup.WallEdge1, \"y\", self.scene.objectLookup.WallEdge1.y, 2, \"linear\"),\n            Ease(self.scene.objectLookup.WallEdge2, \"y\", self.scene.objectLookup.WallEdge2.y, 2, \"linear\"),\n        },\n        Ease(self.scene.camPos, \"y\", self.scene.camPos.y, 1, \"inout\"),\n\n        Animate(sprites.sonic.sprite, \"thinking\"),\n        MessageBox {message= \"Sonic: Was it something I said?\", blocking = true, textSpeed = 4},\n        Animate(sprites.sally.sprite, \"idleleft\"),\n        MessageBox {message= \"Sally: He doesn't seem to be under Robotnik's control.\", blocking = true, textSpeed = 4},\n        Animate(sprites.sonic.sprite, \"idleright\"),\n        MessageBox {message= \"Sally: We should follow him. {p30}Maybe he can help us find a way out of here.\", blocking = true, textSpeed = 4},\n        walkin,\n        Do(function()\n            self.scene.player.x = self.scene.player.x + 60\n            self.scene.player.y = self.scene.player.y + 60\n            self.scene.player.cinematic = false\n        end)\n    }\nend\n"
           }
         },
         {
@@ -667,8 +651,8 @@ return {
           name = "Ratbot1",
           type = "Ratbot",
           shape = "rectangle",
-          x = 480,
-          y = 1536,
+          x = 288,
+          y = 1696,
           width = 96,
           height = 32,
           rotation = 0,
@@ -684,6 +668,22 @@ return {
             ["ignorePlayer"] = true,
             ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/ratbot.png"
+          }
+        },
+        {
+          id = 188,
+          name = "Waypoint1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 832,
+          y = 1472,
+          width = 96,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

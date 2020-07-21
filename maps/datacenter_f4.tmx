@@ -372,7 +372,7 @@ return function(self)
                         Do(function()
                             sprites2.sonic.sprite:setAnimation(&quot;jumpright&quot;)
                             sprites2.sally.sprite:setAnimation(&quot;jumpright&quot;)
-                            sprites2.sally.sprite.sortOrderY = 0
+                            sprites2.sally.sprite.sortOrderY = 999999
                         end),
                         Parallel {
                             Ease(sprites2.sonic, &quot;x&quot;, function() return sprites2.sonic.x + 100 end, 5, &quot;linear&quot;),

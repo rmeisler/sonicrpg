@@ -744,6 +744,7 @@ local Do = require &quot;actions/Do&quot;
 local Serial = require &quot;actions/Serial&quot;
 
 return function(self)
+    self.scene.audio:playSfx(&quot;openchasm&quot;)
     return Serial {
         Parallel {
             Ease(self.scene.objectLookup.WallEdge1, &quot;y&quot;, self.scene.objectLookup.WallEdge1.y - 100, 2, &quot;linear&quot;),
@@ -768,6 +769,7 @@ local Do = require &quot;actions/Do&quot;
 local Serial = require &quot;actions/Serial&quot;
 
 return function(self)
+    self.scene.audio:playSfx(&quot;openchasm&quot;)
     return Serial {
         Parallel {
             Ease(self.scene.objectLookup.WallEdge1, &quot;y&quot;, self.scene.objectLookup.WallEdge1.y - 100, 2, &quot;linear&quot;),

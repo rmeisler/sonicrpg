@@ -33,7 +33,7 @@ return function(scene)
 	
 	local sonicfall = BasicNPC(
 		scene,
-		{name="aboveobjects"},
+		{name="objects"},
 		{name = "sonicfall", x = 750, y = -120, width = 47, height = 55,
 			properties = {
 				ghost = true,
@@ -46,7 +46,7 @@ return function(scene)
 
 	local sallyfall = BasicNPC(
 		scene,
-		{name="aboveobjects"},
+		{name="objects"},
 		{name = "sallyfall", x = 870, y = -150, width = 47, height = 55,
 			properties = {
 				ghost = true,
@@ -65,6 +65,18 @@ return function(scene)
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
 	scene.player.cinematic = true
+	
+	local nicole = SpriteNode(
+		scene,
+		Transform(),
+		{255,255,255,0},
+		"nicholeprojection",
+		nil,
+		nil,
+		"objects"
+	)
+	
+	local walkout, walkin, sprites = scene.player:split()
 	
 	return Serial {
 		Wait(3),
@@ -170,6 +182,101 @@ return function(scene)
 			scene.player.dropShadow.sprite.visible = true
 			sonicfall:remove()
 			sallyfall:remove()
+			scene.player.cinematic = true
+			
+			sprites.sonic.x = scene.player.x - 60
+			sprites.sonic.y = scene.player.y - 60
+			sprites.sally.x = scene.player.x - 60
+			sprites.sally.y = scene.player.y - 60
+		end),
+		
+		walkout,
+		Animate(sprites.sonic.sprite, "idleright"),
+		Animate(sprites.sally.sprite, "idleleft"),
+		
+		MessageBox {message="Sonic: Where are we, Sal?", blocking = true},
+		
+		Parallel {
+			Serial {
+				Animate(sprites.sally.sprite, "nichole_project_start"),
+				Do(function()
+					sprites.sally.sprite:setAnimation("nichole_project_idle")
+					nicole.transform = Transform(
+						sprites.sally.sprite.transform.x,
+						sprites.sally.sprite.transform.y + 70,
+						2,
+						2
+					)
+				end),
+				Ease(nicole.color, 4, 220, 5)
+			},
+			MessageBox {message="Sally: I'm not sure... {p20}this isn't on any of my father's maps...", blocking = true}
+		},
+		
+		Ease(nicole.color, 4, 0, 5),
+		Animate(sprites.sally.sprite, "idledown"),
+		
+		Do(function()
+			nicole:remove()
+		end),
+		
+		Move(scene.objectLookup.R, scene.objectLookup.Waypoint1, "walk"),
+		Animate(scene.objectLookup.R.sprite, "idledown"),
+		
+		Parallel {
+			MessageBox {message= "???: ...!", blocking = true},
+			Serial {
+				Wait(0.5),
+				Ease(scene.objectLookup.R, "y", function() return scene.objectLookup.R.y - 50 end, 8, "linear"),
+				Ease(scene.objectLookup.R, "y", function() return scene.objectLookup.R.y + 50 end, 8, "linear"),
+			}
+		},
+		
+		Animate(sprites.sonic.sprite, "idleup"),
+		Animate(sprites.sally.sprite, "idleup"),
+		MessageBox {message= "Sonic: Whoah, {p30}is that--", blocking = true},
+		MessageBox {message= "Sally: --a roboticized child?", blocking = true},
+
+		Do(function()
+			scene.audio:stopMusic()
+		end),
+
+		MessageBox {message= "Sonic: Uh{p20}.{p20}.{p20}. Hey little buddy!", blocking = true, textSpeed = 4},
+		Wait(0.2),
+		PlayAudio("music", "follow", 0.7, true),
+
+		Do(function()
+			scene.player.cinematic = true
+			scene.objectLookup.R.movespeed = 5
+		end),
+		Parallel {
+			Ease(scene.camPos, "y", 200, 1, "inout"),
+			Move(scene.objectLookup.R, scene.objectLookup.Exit1, "walk")
+		},
+		Animate(scene.objectLookup.R.sprite, "idleup"),
+		Parallel {
+			Ease(scene.objectLookup.WallEdge1, "y", scene.objectLookup.WallEdge1.y - 100, 2, "linear"),
+			Ease(scene.objectLookup.WallEdge2, "y", scene.objectLookup.WallEdge2.y - 100, 2, "linear"),
+		},
+		Move(scene.objectLookup.R, scene.objectLookup.Waypoint, "walk"),
+		Do(function()
+			scene.objectLookup.R:remove()
+			scene.player.cinematic = true
+		end),
+		Parallel {
+			Ease(scene.objectLookup.WallEdge1, "y", scene.objectLookup.WallEdge1.y, 2, "linear"),
+			Ease(scene.objectLookup.WallEdge2, "y", scene.objectLookup.WallEdge2.y, 2, "linear"),
+		},
+		Ease(scene.camPos, "y", 0, 1, "inout"),
+
+		Animate(sprites.sonic.sprite, "thinking"),
+		MessageBox {message= "Sonic: Was it something I said?", blocking = true, textSpeed = 4},
+		Animate(sprites.sally.sprite, "idleleft"),
+		MessageBox {message= "Sally: He doesn't seem to be under Robotnik's control.", blocking = true, textSpeed = 4},
+		Animate(sprites.sonic.sprite, "idleright"),
+		MessageBox {message= "Sally: We should follow him. {p30}Maybe he can help us find a way out of here.", blocking = true, textSpeed = 4},
+		walkin,
+		Do(function()
 			scene.player.cinematic = false
 		end)
 	}
