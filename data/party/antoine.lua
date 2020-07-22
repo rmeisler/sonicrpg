@@ -54,6 +54,12 @@ return {
 	},
 	
 	levelup = {
+		[2] = {
+			messages = {"Antoine learned \"Bore\"!"},
+			skills = {
+				require "data/battle/skills/Bore",
+			}
+		},
 	},
 	
 	specialmove = require "data/specialmoves/antoine",

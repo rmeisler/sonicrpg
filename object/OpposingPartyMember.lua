@@ -6,7 +6,9 @@ local Serial = require "actions/Serial"
 local Parallel = require "actions/Parallel"
 local Wait = require "actions/Wait"
 local Shake = require "actions/Shake"
+local PlayAudio = require "actions/PlayAudio"
 local Ease = require "actions/Ease"
+local Animate = require "actions/Animate"
 local Executor = require "actions/Executor"
 local Repeat = require "actions/Repeat"
 local Action = require "actions/Action"
@@ -14,6 +16,8 @@ local Do = require "actions/Do"
 local Lazy = require "util/Lazy"
 local MessageBox = require "actions/MessageBox"
 local SpriteNode = require "object/SpriteNode"
+
+local Telegraph = require "data/monsters/actions/Telegraph"
 
 local BattleActor = require "object/BattleActor"
 
@@ -25,6 +29,8 @@ function OpposingPartyMember:construct(scene, data)
 	self.playerSlot = data.playerSlot
 	self.sprite = data.sprite
 	self.turns = 0
+	self.lostTurns = 0
+	self.malfunctioningTurns = 0
 	self.state = BattleActor.STATE_IDLE
 
 	self.name = data.altName or ""
@@ -119,11 +125,7 @@ function OpposingPartyMember:beginTurn()
 		if math.random() > self.chanceToEscape then
 			self.action = Serial {
 				shake,
-				MessageBox {
-					message=self.name.." is immobilized!",
-					rect=MessageBox.HEADLINER_RECT,
-					closeAction=Wait(0.6)
-				}
+				Telegraph(self, self.name.." is immobilized!", {255,255,255,50}),
 			}
 		else
 			-- Retract bunny ext arm and linkages and go back to idle anim
@@ -141,24 +143,52 @@ function OpposingPartyMember:beginTurn()
 				
 				self.scene.partyByName["bunny"].reverseAnimation,
 				
-				MessageBox {
-					message=self.name.." broke free!",
-					rect=MessageBox.HEADLINER_RECT,
-					closeAction=Wait(0.6)
-				}
+				Telegraph(self, self.name.." broke free!", {255,255,255,50}),
 			}
 		end
 	elseif self.confused then
 		self.selectedTarget = math.random(#self.scene.opponents)
 		self.action = Serial {
-			MessageBox {
-				message=self.name.." is confused!",
-				rect=MessageBox.HEADLINER_RECT,
-				closeAction=Wait(0.6)
-			},
+			Telegraph(self, self.name.." is confused!", {255,255,255,50}),
 			self.behavior(self, self.scene.opponents[self.selectedTarget]) or Action()
 		}
 		self.confused = false
+	elseif self.malfunctioningTurns > 1 then
+		self.action = Serial {
+			Telegraph(self, self.name.." is still malfunctioning!", {255,255,255,50}),
+			Parallel {
+				Animate(function()
+					local xform = Transform(
+						self.sprite.transform.x,
+						self.sprite.transform.y,
+						2,
+						2
+					)
+					return SpriteNode(self.scene, xform, nil, "lightning", nil, nil, "ui"), true
+				end, "idle"),
+				
+				Serial {
+					Wait(0.2),
+					PlayAudio("sfx", "shocked", 0.5, true),
+				}
+			},
+			self:takeDamage({attack = 10, speed = 0, luck = 0}),
+			self.behavior(self, self.scene.party[self.selectedTarget]) or Action()
+		}
+		self.malfunctioningTurns = self.malfunctioningTurns - 1
+	elseif self.malfunctioningTurns > 0 then
+		self.action = Serial {
+			Telegraph(self, self.name.." is no longer malfunctioning.", {255,255,255,50}),
+			self.behavior(self, self.scene.party[self.selectedTarget]) or Action()
+		}
+		self.malfunctioningTurns = self.malfunctioningTurns - 1
+	elseif self.lostTurns > 1 then
+		self.action = Telegraph(self, self.name.." is still bored!", {255,255,255,50})
+		self.lostTurns = self.lostTurns - 1
+	elseif self.lostTurns > 0 then
+		self.action = Telegraph(self, self.name.."'s boredom has subsided.", {255,255,255,50})
+		self.lostTurns = self.lostTurns - 1
+		self.sprite:setAnimation("idle")
 	else
 		-- Choose action based on behavior
 		self.action = self.behavior(self, self.scene.party[self.selectedTarget]) or Action()

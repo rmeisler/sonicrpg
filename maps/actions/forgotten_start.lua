@@ -250,7 +250,7 @@ return function(scene)
 			scene.objectLookup.R.movespeed = 5
 		end),
 		Parallel {
-			Ease(scene.camPos, "y", 200, 1, "inout"),
+			Ease(scene.camPos, "y", 300, 1, "inout"),
 			Move(scene.objectLookup.R, scene.objectLookup.Exit1, "walk")
 		},
 		Animate(scene.objectLookup.R.sprite, "idleup"),

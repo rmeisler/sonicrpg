@@ -140,5 +140,5 @@ return {
 		}
 	end,
 	
-	scan = "Do not attack Ratbot when electrified."
+	scan = "You can avoid Ratbot's attacks, if you're nimble."
 }

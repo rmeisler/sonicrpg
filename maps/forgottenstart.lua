@@ -647,30 +647,6 @@ return {
           }
         },
         {
-          id = 184,
-          name = "Ratbot1",
-          type = "Ratbot",
-          shape = "rectangle",
-          x = 288,
-          y = 1696,
-          width = 96,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["battle"] = "../data/monsters/ratbot.lua",
-            ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idle",
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["ignorePlayer"] = true,
-            ["noInvestigate"] = true,
-            ["sprite"] = "../art/sprites/ratbot.png"
-          }
-        },
-        {
           id = 188,
           name = "Waypoint1",
           type = "BasicNPC",

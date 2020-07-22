@@ -61,12 +61,21 @@ return {
 			messages = {},
 			skills = {
 				require "data/battle/skills/Scan",
+				require "data/battle/skills/Infect",
 			}
 		},
 		[2] = {
-			messages = {"Nicole learned \"Rally\"!"},
+			messages = {"Sally learned \"Infect\"!"},
 			skills = {
 				require "data/battle/skills/Scan",
+				require "data/battle/skills/Infect",
+			}
+		},
+		[3] = {
+			messages = {"Sally learned \"Rally\"!"},
+			skills = {
+				require "data/battle/skills/Scan",
+				require "data/battle/skills/Infect",
 				require "data/battle/skills/Rally",
 			}
 		},

@@ -2,7 +2,7 @@ return {
     {
         type = "map",
 		file = "maps/robo_opening2.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -39,7 +39,7 @@ return {
 	{
         type = "map",
         file = "maps/forgottenstart.lua",
-		primary = true,
+		--primary = true,
     },
 	
 	{
@@ -75,6 +75,12 @@ return {
         type = "map",
         file = "maps/run1.lua",
 		--primary = true
+    },
+	
+	{
+        type = "map",
+        file = "maps/sewer1.lua",
+		primary = true
     },
 	
 	{
@@ -117,6 +123,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/alert.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/sweatdrop.png"
 	},
 	{
 		type = "image",
@@ -638,6 +648,11 @@ return {
 		type = "sound",
 		file = "audio/sfx/clink.ogg",
 		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/boring.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",
