@@ -6,30 +6,30 @@ return {
 
     animations = {
 		idle = {
-            frames = {{11,0}}
+            frames = {{17,0}}
         },
 		backward = {
-			frames = {{14,0}}
+			frames = {{20,0}}
 		},
 		
         idleright = {
-            frames = {{11,0}}
+            frames = {{17,0}}
         },
 		idleleft = {
-			frames = {{14,0}}
+			frames = {{20,0}}
 		},
 		idledown = {
-			frames = {{11,0}}
+			frames = {{14,0}}
 		},
 		idleup = {
 			frames = {{11,0}}
 		},
 		walkright = {
-			frames = {{11,0},{12,0},{11,0},{10,0}},
+			frames = {{17,0},{18,0},{17,0},{16,0}},
 			speed = 0.15
 		},
 		walkleft = {
-			frames = {{14,0},{15,0},{14,0},{13,0}},
+			frames = {{20,0},{21,0},{20,0},{19,0}},
 			speed = 0.15
 		},
 		walkup = {
@@ -37,7 +37,24 @@ return {
 			speed = 0.15
 		},
 		walkdown = {
+			frames = {{14,0},{15,0},{14,0},{13,0}},
+			speed = 0.15
+		},
+		
+		runright = {
+			frames = {{17,0},{18,0},{17,0},{16,0}},
+			speed = 0.15
+		},
+		runleft = {
+			frames = {{20,0},{21,0},{20,0},{19,0}},
+			speed = 0.15
+		},
+		runup = {
 			frames = {{11,0},{12,0},{11,0},{10,0}},
+			speed = 0.15
+		},
+		rundown = {
+			frames = {{14,0},{15,0},{14,0},{13,0}},
 			speed = 0.15
 		},
 
@@ -50,12 +67,12 @@ return {
 		},
 		
 		leap = {
-			frames = {{16,0}, {17,0}, {17,0}, {17,0}, {17,0}, {17,0}, {17,0}, {17,0}},
+			frames = {{22,0}, {23,0}, {23,0}, {23,0}, {23,0}, {23,0}, {23,0}, {23,0}},
 			speed = 0.3
 		},
 		
 		lunge = {
-			frames = {{18,0}}
+			frames = {{24,0}}
 		},
 		
 		pose = {

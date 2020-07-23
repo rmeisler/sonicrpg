@@ -25,6 +25,8 @@ return {
 	name = "Ratbot",
 	altName = "Ratbot",
 	sprite = "sprites/ratbot",
+	
+	color = {50,50,50,255},
 
 	stats = {
 		xp    = 10,
@@ -66,19 +68,49 @@ return {
 		
 		self.turnCounter = self.turnCounter + 1
 		
+		local leap = function()
+			if self == target then
+				return Action()
+			else
+				return Serial {
+					Animate(self.sprite, "crouch"),
+					Wait(0.2),
+					Animate(self.sprite, "leap", true),
+					Parallel {
+						Serial {
+							Ease(self.sprite.transform, "y", target.sprite.transform.y - 100, 5, "quad"),
+							Animate(self.sprite, "lunge"),
+							Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 6, "quad")
+						},
+						Ease(self.sprite.transform, "x", target.sprite.transform.x - 150, 3, "linear")
+					}
+				}
+			end
+		end
+		
+		local leapBack = function()
+			if self == target then
+				return Action()
+			else
+				return Serial {
+					Animate(self.sprite, "pose"),
+					Animate(self.sprite, "crouch"),
+					Wait(0.2),
+					Animate(self.sprite, "leap", true),
+					Parallel {
+						Serial {
+							Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h - 100, 5, "quad"),
+							Ease(self.sprite.transform, "y", self.sprite.transform.y, 6, "quad")
+						},
+						Ease(self.sprite.transform, "x", self.sprite.transform.x, 3, "linear")
+					}
+				}
+			end
+		end
+		
 		return Serial {
 			telegraphAction,
-			Animate(self.sprite, "crouch"),
-			Wait(0.2),
-			Animate(self.sprite, "leap", true),
-			Parallel {
-				Serial {
-					Ease(self.sprite.transform, "y", target.sprite.transform.y - 100, 5, "quad"),
-					Animate(self.sprite, "lunge"),
-					Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 6, "quad")
-				},
-				Ease(self.sprite.transform, "x", target.sprite.transform.x - 150, 3, "linear")
-			},
+			leap(),
 			Animate(self.sprite, prefix.."pose"),
 			Parallel {
 				Serial {
@@ -125,17 +157,7 @@ return {
 					0.3
 				)
 			},
-			Animate(self.sprite, "pose"),
-			Animate(self.sprite, "crouch"),
-			Wait(0.2),
-			Animate(self.sprite, "leap", true),
-			Parallel {
-				Serial {
-					Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h - 100, 5, "quad"),
-					Ease(self.sprite.transform, "y", self.sprite.transform.y, 6, "quad")
-				},
-				Ease(self.sprite.transform, "x", self.sprite.transform.x, 3, "linear")
-			},
+			leapBack(),
 			Animate(self.sprite, "idle"),
 		}
 	end,

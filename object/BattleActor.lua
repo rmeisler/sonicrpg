@@ -29,6 +29,7 @@ function BattleActor:construct(scene, data)
 	self.hp = data.hp or 0
 	self.sp = data.sp or 0
 	self.turns = 0
+	self.color = {255,255,255,255}
 	
 	self.raw = data
 	
@@ -175,7 +176,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 				},
 				Parallel {
 					knockBackAction,
-					Ease(self.sprite.color, 1, 255, 2, "linear"),
+					Ease(self.sprite.color, 1, self.color[1], 2, "linear"),
 				}
 			},
 			

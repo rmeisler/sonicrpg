@@ -87,6 +87,8 @@ function PartyMember:construct(scene, data)
 	if self.state == BattleActor.STATE_DEAD then
 		self.sprite:setAnimation("dead")
 	end
+	
+	self.side = TargetType.Party
 end
 
 function PartyMember:setShadow()

@@ -32,7 +32,7 @@ return function(self, targets)
 					Ease(target.sweatdrop.transform, "y", target.sweatdrop.transform.y + 20, 0.5, "inout"),
 					Ease(target.sweatdrop.color, 4, 255, 0.5, "inout")
 				},
-				Wait(0.5),
+				Wait(1),
 				Ease(target.sweatdrop.color, 4, 0, 1, "inout"),
 				Do(function()
 					target.sweatdrop:remove()
@@ -55,17 +55,17 @@ return function(self, targets)
 		Parallel {
 			Serial {
 				MessageBox {
-					message="...yes he was my grandfather! Brave and true!",
+					message="Antoine: He was my grandfather! Brave and true!",
 					rect=MessageBox.HEADLINER_RECT,
 					closeAction=Wait(0.6)
 				},
 				MessageBox {
-					message="He made a fine duck confit...",
+					message="Antoine: ...and he made a very fine duck confit...",
 					rect=MessageBox.HEADLINER_RECT,
 					closeAction=Wait(0.6)
 				},
 				MessageBox {
-					message="...ze favorite dish of ze Acorn family!",
+					message="All bots are bored!",
 					rect=MessageBox.HEADLINER_RECT,
 					closeAction=Wait(0.6)
 				},
