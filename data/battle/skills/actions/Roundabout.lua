@@ -26,8 +26,8 @@ return function(self, target)
 		return Serial {
 			Do(function()
 				self.scene.audio:playSfx("sonicrunturn", nil, true)
-				self.sprite.prevSortOrderY = self.sprite.sortOrderY
-				self.sprite.sortOrderY = 0
+				--self.sprite.prevSortOrderY = self.sprite.sortOrderY
+				self.sprite.sortOrderY = nil --target.sprite.transform.y - 10
 				target.sprite:setAnimation("idle")
 			end),
 			Parallel {
@@ -54,7 +54,7 @@ return function(self, target)
 				Serial {
 					Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 20, "inout"),
 					Do(function()
-						self.sprite.sortOrderY = self.sprite.prevSortOrderY
+						--self.sprite.sortOrderY = self.sprite.prevSortOrderY
 					end)
 				},
 				Serial {
@@ -99,7 +99,7 @@ return function(self, target)
 					dust.color[2] = 130
 					dust.color[3] = 200
 					dust.color[4] = 255
-					dust.sortOrderY = self.sprite.sortOrderY
+					dust.sortOrderY = self.sprite.transform.y + self.sprite.h*2 - 20 --target.sprite.transform.y - 10
 					
 					if self.sprite.selected == "juiceleft" or self.sprite.selected == "juicedownleft" then
 						dust.transform.x = dust.transform.x + self.sprite.w

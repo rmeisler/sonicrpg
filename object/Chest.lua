@@ -49,7 +49,7 @@ function Chest:open()
 			if v > 1 then
 				contents = contents..tostring(v).." "..name.."s"
 			else
-				contents = contents.." a "..name
+				contents = contents.."a "..name
 			end
 			if next(items, k) then
 				contents = contents.." and "

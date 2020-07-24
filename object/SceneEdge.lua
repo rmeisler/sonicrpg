@@ -100,7 +100,7 @@ function SceneEdge:goToScene()
 	local mapName = "maps/"..self.object.properties.scene
 	
 	self.scene.player.ignoreSpecialMoveCollision = true
-
+	
 	self.scene.sceneMgr:switchScene {
 		class = "BasicScene",
 		mapName = mapName,

@@ -48,7 +48,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.onDead = data.onDead or function() return Action() end
 	self.onAttack = data.onAttack
 	self.textOffset = data.textOffset or Transform(0, self.sprite.h/2 - 15)
-	self.color = data.color
+	self.color = data.color or {255,255,255,255}
 	
 	self.sprite.color = self.color
 	
@@ -182,8 +182,8 @@ function OpposingPartyMember:beginTurn()
 				Parallel {
 					Animate(function()
 						local xform = Transform(
-							self.sprite.transform.x,
-							self.sprite.transform.y,
+							self.sprite.transform.x - 50,
+							self.sprite.transform.y - 50,
 							2,
 							2
 						)

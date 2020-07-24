@@ -157,7 +157,9 @@ function BattleScene:onEnter(args)
 	-- Opponent has initiative by running toward player
 	elseif self.initiative == "opponent" then
 		for _, player in pairs(self.party) do
-			player.sprite:setAnimation("backward")
+			if player.state ~= BattleActor.STATE_DEAD then
+				player.sprite:setAnimation("backward")
+			end
 		end
 		self.state = BattleScene.STATE_MONSTERTURN
 

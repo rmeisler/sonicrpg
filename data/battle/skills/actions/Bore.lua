@@ -17,7 +17,7 @@ return function(self, targets)
 	for _, target in pairs(targets) do
 		target.sweatdrop = SpriteNode(
 			target.scene,
-			Transform(target.sprite.transform.x + target.sprite.w/2, target.sprite.transform.y, 2, 2),
+			Transform(target.sprite.transform.x, target.sprite.transform.y - target.sprite.h/2, 2, 2),
 			{255, 255, 255, 0},
 			"sweatdrop",
 			nil,

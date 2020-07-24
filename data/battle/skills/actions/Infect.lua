@@ -38,8 +38,8 @@ return function(self, target)
 		Parallel {
 			Animate(function()
 				local xform = Transform(
-					target.sprite.transform.x,
-					target.sprite.transform.y,
+					target.sprite.transform.x - 50,
+					target.sprite.transform.y - 50,
 					2,
 					2
 				)

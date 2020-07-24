@@ -178,7 +178,7 @@ function TitleSplashScene:newGame()
 	GameState:addToParty("antoine", 2, true)
 	--GameState:addToParty("rotor", 1, true)
 	GameState:addToParty("sonic", 2, true)
-	--GameState:addToParty("b", 1, true)
+	GameState:addToParty("b", 1, true)
 	GameState.leader = "sally"
 	GameState.leader = "sonic"
 	

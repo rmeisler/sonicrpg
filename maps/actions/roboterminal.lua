@@ -48,6 +48,9 @@ return function(scene)
 			end)
 		}
 	elseif GameState:isFlagSet("rover_boss") then
+		scene.objectLookup.Door.sprite:setAnimation("open")
+		scene.objectLookup.Door:removeCollision()
+	
 		scene.player.sprite.color[4] = 0
 		scene.player.cinematic = true
 		return Serial {
@@ -91,6 +94,11 @@ return function(scene)
 				}
 			end)
 		}
+	elseif GameState:isFlagSet("roboterminal_used") then
+		scene.objectLookup.Door.sprite:setAnimation("open")
+		scene.objectLookup.Door:removeCollision()
+	
+		return Action()
 	else
 		return Action()
 	end

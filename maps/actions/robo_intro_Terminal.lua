@@ -19,9 +19,15 @@ local BlockInput = require "actions/BlockInput"
 local SpriteNode = require "object/SpriteNode"
 
 return function(self)
-	return BlockInput {
+	return Serial {
 		Do(function()
 			self.disabled = true -- Disable computer
+			GameState:setFlag("roboterminal_used")
+			
+			-- Remove collision around door
+			self.scene.objectLookup.Door:removeCollision()
+			
+			self.scene.player.cinematic = true
 		end),
 		Parallel {
 			MessageBox {
@@ -30,7 +36,8 @@ return function(self)
 			},
 			Serial {
 				Wait(0.5),
-				self.scene.objectLookup.Door:open()
+				Animate(self.scene.objectLookup.Door.sprite, "opening"),
+				Animate(self.scene.objectLookup.Door.sprite, "open")
 			}
 		},
 		Do(function()
@@ -41,7 +48,7 @@ return function(self)
 				{
 					name = "SwatbotFromDoor1",
 					x = self.scene.objectLookup.Door.x + 80,
-					y = self.scene.objectLookup.Door.y + self.scene.objectLookup.Door.sprite.h*2 + 10,
+					y = self.scene.objectLookup.Door.y + self.scene.objectLookup.Door.sprite.h + 10,
 					width = 56,
 					height = 79,
 					properties = {
@@ -70,7 +77,7 @@ return function(self)
 				{
 					name = "SwatbotFromDoor2",
 					x = self.scene.objectLookup.Door.x + 160,
-					y = self.scene.objectLookup.Door.y + self.scene.objectLookup.Door.sprite.h*2 + 10,
+					y = self.scene.objectLookup.Door.y + self.scene.objectLookup.Door.sprite.h + 10,
 					width = 56,
 					height = 79,
 					properties = {
@@ -93,6 +100,8 @@ return function(self)
 					swatbot2.noticeDist = 1000
 				end)
 			}
+			
+			self.scene.player.cinematic = true
 		end),
 		Wait(1),
 		Do(function()
@@ -140,11 +149,16 @@ return function(self)
 				)
 			end
 			self.scene:addHandler("enter", afterBattle)
+			self.scene.player.cinematic = true
 		end),
 		Animate(self.scene.player.sprite, "shock"),
 		MessageBox {
 			message = "Sally: Uh oh!",
 			blocking = true
-		}
+		},
+		
+		Do(function()
+			self.scene.player.cinematic = true
+		end)
 	}
 end
