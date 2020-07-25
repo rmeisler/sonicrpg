@@ -693,12 +693,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/robointro.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
 		file = "audio/music/doittoit.ogg",
 		category = "music",
 		looping = true
