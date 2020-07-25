@@ -171,7 +171,7 @@ function BattleScene:onEnter(args)
 	
 	self.musicVolume = 1.0
 	return Serial {
-		PlayAudio("music", self.nextMusic, self.musicVolume, true),
+		PlayAudio("music", self.nextMusic, self.musicVolume, true, true),
 		Parallel {
 			-- Unblur + fade in
 			Ease(self.blur, "radius_h", 0, 2),

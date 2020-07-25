@@ -77,6 +77,6 @@ return function(self, targets)
 		},
 		
 		Animate(self.sprite, "idle"),
-		PlayAudio("music", "battle", 1.0, true),
+		PlayAudio("music", "battle", 1.0, true, true),
 	}
 end

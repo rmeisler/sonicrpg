@@ -667,6 +667,12 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/forgottenhideout.ogg",
+		category = "music",
+		looping = true,
+	},
+	{
+		type = "sound",
 		file = "audio/music/follow.ogg",
 		category = "music",
 		looping = true,
