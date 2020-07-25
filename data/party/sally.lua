@@ -61,7 +61,6 @@ return {
 			messages = {},
 			skills = {
 				require "data/battle/skills/Scan",
-				require "data/battle/skills/Infect",
 			}
 		},
 		[2] = {

@@ -80,7 +80,7 @@ return {
 	{
         type = "map",
         file = "maps/sewer1.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -674,6 +674,12 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/follow.ogg",
+		category = "music",
+		looping = true,
+	},
+	{
+		type = "sound",
+		file = "audio/music/factory.ogg",
 		category = "music",
 		looping = true,
 	},

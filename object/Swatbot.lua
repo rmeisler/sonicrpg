@@ -37,6 +37,8 @@ function Swatbot:construct(scene, layer, object)
 	self.ignorePlayer = object.properties.ignorePlayer
 	self.noInvestigate = object.properties.noInvestigate
 	self.noMusic = object.properties.noMusic
+	self.visibleDist = object.properties.visibleDistance
+	self.audibleDist = object.properties.audibleDistance
 	
 	self.movespeed = 2
 	self.hotspotOffsets = {
@@ -423,8 +425,8 @@ function Swatbot:follow(target, animType, speed, timeout, forever, earlyExitFun)
 end
 
 function Swatbot:noticePlayer(ignoreShadow)
-	local visibleDistance = self.noticeDist or 200
-	local audibleDistance = self.noticeDist or 250
+	local visibleDistance = self.visibleDist or self.noticeDist or 200
+	local audibleDistance = self.audibleDist or self.noticeDist or 250
 	
 	if self.ignorePlayer then
 		return Swatbot.NOTICE_NONE

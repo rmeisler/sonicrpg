@@ -123,11 +123,9 @@ return function(self)
 						MessageBox {message="Antoine: I will be voting yes on that!"},
 						
 						Animate(sprites.sally.sprite, "thinking"),
-						MessageBox {message="Sally: No."},
+						MessageBox {message="Sally: No. {p50}We're so close, {p50}and this could really hurt Robotnik."},
 						
 						Animate(sprites.antoine.sprite, "scaredhop1"),
-						
-						MessageBox {message="Sally: We're so close, {p50}and this could really hurt Robotnik."},
 						
 						Animate(sprites.sonic.sprite, "idledown"),
 						MessageBox {message="Sonic: Your call."},

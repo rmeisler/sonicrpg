@@ -72,6 +72,6 @@ return function(scene)
 			}
 		}),
 		
-		PlayAudio("music", "robobuilding", 1.0, true)
+		PlayAudio("music", "factory", 1.0, true, true)
 	}
 end
