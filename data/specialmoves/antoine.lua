@@ -40,27 +40,31 @@ return function(player)
 	if bots[1] then
 		aggro = Serial {
 			Parallel {
-				Ease(player.scene.camPos, "x", bots[1].x - player.x, 1, "inout"),
-				Ease(player.scene.camPos, "y", player.y - bots[1].y, 1, "inout"),
+				Ease(player.scene.camPos, "x", function() return player.x - bots[1].x end, 1, "inout"),
+				Ease(player.scene.camPos, "y", function() return player.y - bots[1].y end, 1, "inout"),
 				
 				Serial {
 					Wait(0.5),
 					Do(function()
 						bots[1].visibleDist = 1500
+						player.antoineSpecialGoneTooFar = true
 					end)
 				}
 			},
-			Wait(2),
+			Wait(1),
 			Parallel {
 				Ease(player.scene.camPos, "x", 0, 3, "linear"),
 				Ease(player.scene.camPos, "y", 0, 3, "linear")
-			}
+			},
+			Do(function()
+				player.antoineSpecialGoneTooFar = false
+			end)
 		}
 	end
 	
 	player:run(While(
 		function()
-			return love.keyboard.isDown("lshift")
+			return love.keyboard.isDown("lshift") or player.antoineSpecialGoneTooFar
 		end,
 		Serial {
 			PlayAudio("sfx", "antoinescared", 1.0, true),
