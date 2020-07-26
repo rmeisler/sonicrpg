@@ -68,6 +68,12 @@ return {
 	
 	{
         type = "map",
+        file = "maps/forgottenhideout.lua",
+		primary = true,
+    },
+	
+	{
+        type = "map",
         file = "maps/datacenter_f4.lua"
     },
 	

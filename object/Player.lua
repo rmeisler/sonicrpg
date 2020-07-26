@@ -79,6 +79,9 @@ function Player:construct(scene, layer, object)
 	-- A hashset of things we are touching
 	self.touching = {}
 	
+	-- A hashset of stairs we are touching
+	self.stairs = {}
+	
 	-- Place player
 	self.x = object.x
 	self.y = object.y
@@ -590,6 +593,17 @@ function Player:basicUpdate(dt)
 		then
 			self.x = self.x + movespeed
 			self.state = Player.STATE_WALKRIGHT
+			
+			-- Going up stairs
+			local _, stairs = next(self.stairs)
+			if stairs then
+				if stairs.direction == "up_right" then
+					self.y = self.y - movespeed * 0.7
+				elseif stairs.direction == "up_left" then
+					self.y = self.y + movespeed * 0.7
+				end
+			end
+			
 			moving = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
@@ -639,6 +653,17 @@ function Player:basicUpdate(dt)
 		then
 			self.x = self.x - movespeed
 			self.state = Player.STATE_WALKLEFT
+			
+			-- Going up stairs
+			local _, stairs = next(self.stairs)
+			if stairs then
+				if stairs.direction == "up_right" then
+					self.y = self.y + movespeed * 0.7
+				elseif stairs.direction == "up_left" then
+					self.y = self.y - movespeed * 0.7
+				end
+			end
+			
 			moving = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
@@ -687,9 +712,14 @@ function Player:basicUpdate(dt)
 		if  self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, 0, movespeed) and
 			self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, 0, movespeed)
 		then
-			self.y = self.y + movespeed
-			self.state = Player.STATE_WALKDOWN
-			moving = true
+			-- Not allowed to move up and down if going up stairs
+			if not next(self.stairs) then
+				self.y = self.y + movespeed
+				self.state = Player.STATE_WALKDOWN
+				moving = true
+			else
+				self.state = Player.STATE_IDLEDOWN
+			end
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
 			if spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
@@ -769,9 +799,14 @@ function Player:basicUpdate(dt)
 		if  self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, 0, -movespeed) and
 			self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, 0, -movespeed)
 		then
-			self.y = self.y - movespeed
-			self.state = Player.STATE_WALKUP
-			moving = true
+			-- Not allowed to move up and down if going up stairs
+			if not next(self.stairs) then
+				self.y = self.y - movespeed
+				self.state = Player.STATE_WALKUP
+				moving = true
+			else
+				self.state = Player.STATE_IDLEUP
+			end
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
 			if spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then

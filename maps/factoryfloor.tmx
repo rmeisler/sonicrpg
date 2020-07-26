@@ -430,7 +430,7 @@ return function(self)
 
     return Serial {
         MessageBox {
-            message=&quot;Nicole: {p50}.{p50}.{p50}.{p50}&quot;,
+            message=&quot;Nicole: {p30}.{p30}.{p30}.&quot;,
             blocking=true,
             closeAction=Action()
         },
@@ -505,7 +505,7 @@ return function(self)
 
     return Serial {
         MessageBox {
-            message=&quot;Nicole: {p50}.{p50}.{p50}.{p50}&quot;,
+            message=&quot;Nicole: {p30}.{p30}.{p30}.&quot;,
             blocking=true,
             closeAction=Action()
         },
@@ -580,7 +580,7 @@ return function(self)
 
     return Serial {
         MessageBox {
-            message=&quot;Nicole: {p50}.{p50}.{p50}.{p50}&quot;,
+            message=&quot;Nicole: {p30}.{p30}.{p30}.&quot;,
             blocking=true,
             closeAction=Action()
         },

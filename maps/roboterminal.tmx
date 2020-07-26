@@ -283,9 +283,9 @@
     <property name="align" value="bottom_left"/>
    </properties>
   </object>
-  <object id="95" name="Switch1" type="Switch" gid="1922" x="1824" y="544" width="32" height="32">
+  <object id="95" name="Switch1" type="Switch" gid="1922" x="1824" y="576" width="32" height="64">
    <properties>
-    <property name="align" value="bottom_left"/>
+    <property name="align" value="top_left"/>
     <property name="sprite" type="file" value="../art/sprites/switch.png"/>
     <property name="subject" value="Fan1"/>
    </properties>

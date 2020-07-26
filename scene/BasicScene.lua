@@ -236,6 +236,10 @@ function BasicScene:onReEnter(args)
 		end
 	end
 	
+	local onLoadAction = Action()
+	if self.map.properties.onload then
+		onLoadAction = love.filesystem.load("maps/"..self.map.properties.onload)()(self)
+	end
 
 	local fadeInSpeed = args.fadeInSpeed or 1.0
 	self.bgColor = {0,0,0,255}
@@ -249,7 +253,9 @@ function BasicScene:onReEnter(args)
 			Do(function()
 				ScreenShader:sendColor("multColor", self.bgColor)
 			end)
-		}
+		},
+		
+		onLoadAction
 	}
 end
 

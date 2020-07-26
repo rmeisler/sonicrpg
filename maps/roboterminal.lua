@@ -544,14 +544,14 @@ return {
           type = "Switch",
           shape = "rectangle",
           x = 1824,
-          y = 544,
+          y = 576,
           width = 32,
-          height = 32,
+          height = 64,
           rotation = 0,
           gid = 1922,
           visible = true,
           properties = {
-            ["align"] = "bottom_left",
+            ["align"] = "top_left",
             ["sprite"] = "../art/sprites/switch.png",
             ["subject"] = "Fan1"
           }

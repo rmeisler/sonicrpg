@@ -27,6 +27,8 @@ local Repeat = require "actions/Repeat"
 local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
+	scene.audio:stopSfx("factoryfloor")
+
 	if not GameState:isFlagSet("robotterminal_enter") then
 		scene.player.cinematic = true
 		local walkout, walkin, partySprites = scene.player:split()
@@ -95,11 +97,15 @@ return function(scene)
 			end)
 		}
 	elseif GameState:isFlagSet("roboterminal_used") then
+		scene.audio:playMusic("patrol", 1.0, true)
+		scene.audio:setLooping("music", true)
 		scene.objectLookup.Door.sprite:setAnimation("open")
 		scene.objectLookup.Door:removeCollision()
 	
 		return Action()
 	else
+		scene.audio:playMusic("patrol", 1.0, true)
+		scene.audio:setLooping("music", true)
 		return Action()
 	end
 end
