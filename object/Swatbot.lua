@@ -182,14 +182,14 @@ function Swatbot:getInitiative()
 	if self.scene.player:isFacing(self.facing) then
 		if ((self.facing == "left"  and self.x < self.scene.player.x) or
 		    (self.facing == "right" and self.x > self.scene.player.x) or
-		    (self.facing == "up"    and self.y < self.scene.player.y) or
-		    (self.facing == "down"  and self.y > self.scene.player.y))
+		    (self.facing == "up"    and self.y > self.scene.player.y) or
+		    (self.facing == "down"  and self.y < self.scene.player.y))
 		then
 			return "opponent"
 		elseif ((self.facing == "left"  and self.x > self.scene.player.x) or
 				(self.facing == "right" and self.x < self.scene.player.x) or
-				(self.facing == "up"    and self.y > self.scene.player.y) or
-				(self.facing == "down"  and self.y < self.scene.player.y))
+				(self.facing == "up"    and self.y < self.scene.player.y) or
+				(self.facing == "down"  and self.y > self.scene.player.y))
 		then
 			return "player"
 		end

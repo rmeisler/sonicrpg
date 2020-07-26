@@ -205,10 +205,6 @@ function Fan:distanceFromPlayerSq()
 end
 
 function Fan:onScan()
-	if GameState:isFlagSet(self) then
-		return Action()
-	end
-	
 	return Action()
 end
 

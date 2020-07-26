@@ -391,27 +391,231 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
-  <object id="115" name="ConveyorObj1" type="BasicNPC" gid="1227" x="480" y="2208" width="288" height="160">
+  <object id="115" name="ConveyorObj1" type="Switch" gid="1227" x="480" y="2208" width="288" height="160">
    <properties>
     <property name="align" value="top_left"/>
     <property name="defaultAnim" value="right_inactive"/>
     <property name="ghost" type="bool" value="false"/>
+    <property name="onScan">local Menu = require &quot;actions/Menu&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Action = require &quot;actions/Action&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
+
+local Layout = require &quot;util/Layout&quot;
+local Transform = require &quot;util/Transform&quot;
+
+return function(self)
+    local menu = Menu {
+            layout = Layout {
+                {Layout.Text(&quot;Yes&quot;),
+                    choose = function(menu)
+                        menu:close()
+                        self.sprite:setAnimation(&quot;right_active&quot;)
+                    end},
+                {Layout.Text(&quot;No&quot;),
+                    choose = function(menu)
+                        menu:close()
+                    end},
+                colWidth = 200,
+            },
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight() - 60),
+            cancellable = true,
+            blocking = true
+        }
+    local mbox = MessageBox {
+                message=&quot;Nicole: Would you like to activate the conveyor{p50}, Sally?&quot;,
+                closeAction = YieldUntil(function() return menu.closing end)
+            }
+
+    return Serial {
+        MessageBox {
+            message=&quot;Nicole: {p50}.{p50}.{p50}.{p50}&quot;,
+            blocking=true,
+            closeAction=Action()
+        },
+        Parallel {
+            mbox,
+            Serial {
+                YieldUntil(function() return mbox.opened end),
+                menu
+            }
+        }
+    }
+end</property>
+    <property name="overrideScript">local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    if GameState.leader == &quot;sally&quot; then
+        return MessageBox {
+            message=&quot;Sally: I wonder if I can crack this with Nicole...&quot;,
+            blocking=true
+        }
+    elseif GameState.leader == &quot;antoine&quot; then
+        return MessageBox {
+            message=&quot;Antoine: Hmmm... {p50}I don't have one clue.&quot;,
+            blocking=true
+        }
+    elseif GameState.leader == &quot;sonic&quot; then
+        return MessageBox {
+            message=&quot;Sonic: This techno-junk gives me a headache.&quot;,
+            blocking=true
+        }
+    end
+end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorobject.png"/>
    </properties>
   </object>
-  <object id="119" name="ConveyorObj2" type="BasicNPC" gid="1227" x="96" y="1856" width="288" height="160">
+  <object id="119" name="ConveyorObj2" type="Switch" gid="1227" x="96" y="1856" width="288" height="160">
    <properties>
     <property name="align" value="top_left"/>
     <property name="defaultAnim" value="left_inactive"/>
     <property name="ghost" type="bool" value="false"/>
+    <property name="onScan">local Menu = require &quot;actions/Menu&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Action = require &quot;actions/Action&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
+
+local Layout = require &quot;util/Layout&quot;
+local Transform = require &quot;util/Transform&quot;
+
+return function(self)
+    local menu = Menu {
+            layout = Layout {
+                {Layout.Text(&quot;Yes&quot;),
+                    choose = function(menu)
+                        menu:close()
+                        self.sprite:setAnimation(&quot;left_active&quot;)
+                    end},
+                {Layout.Text(&quot;No&quot;),
+                    choose = function(menu)
+                        menu:close()
+                    end},
+                colWidth = 200,
+            },
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight() - 60),
+            cancellable = true,
+            blocking = true
+        }
+    local mbox = MessageBox {
+                message=&quot;Nicole: Would you like to activate the conveyor{p50}, Sally?&quot;,
+                closeAction = YieldUntil(function() return menu.closing end)
+            }
+
+    return Serial {
+        MessageBox {
+            message=&quot;Nicole: {p50}.{p50}.{p50}.{p50}&quot;,
+            blocking=true,
+            closeAction=Action()
+        },
+        Parallel {
+            mbox,
+            Serial {
+                YieldUntil(function() return mbox.opened end),
+                menu
+            }
+        }
+    }
+end</property>
+    <property name="overrideScript">local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    if GameState.leader == &quot;sally&quot; then
+        return MessageBox {
+            message=&quot;Sally: I wonder if I can crack this with Nicole...&quot;,
+            blocking=true
+        }
+    elseif GameState.leader == &quot;antoine&quot; then
+        return MessageBox {
+            message=&quot;Antoine: Hmmm... {p50}I don't have one clue.&quot;,
+            blocking=true
+        }
+    elseif GameState.leader == &quot;sonic&quot; then
+        return MessageBox {
+            message=&quot;Sonic: This techno-junk gives me a headache.&quot;,
+            blocking=true
+        }
+    end
+end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorobject.png"/>
    </properties>
   </object>
-  <object id="124" name="ConveyorObj3" type="BasicNPC" gid="1227" x="480" y="1344" width="288" height="160">
+  <object id="124" name="ConveyorObj3" type="Switch" gid="1227" x="480" y="1344" width="288" height="160">
    <properties>
     <property name="align" value="top_left"/>
     <property name="defaultAnim" value="right_inactive"/>
     <property name="ghost" type="bool" value="false"/>
+    <property name="onScan">local Menu = require &quot;actions/Menu&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Action = require &quot;actions/Action&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
+
+local Layout = require &quot;util/Layout&quot;
+local Transform = require &quot;util/Transform&quot;
+
+return function(self)
+    local menu = Menu {
+            layout = Layout {
+                {Layout.Text(&quot;Yes&quot;),
+                    choose = function(menu)
+                        menu:close()
+                        self.sprite:setAnimation(&quot;right_active&quot;)
+                    end},
+                {Layout.Text(&quot;No&quot;),
+                    choose = function(menu)
+                        menu:close()
+                    end},
+                colWidth = 200,
+            },
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight() - 60),
+            cancellable = true,
+            blocking = true
+        }
+    local mbox = MessageBox {
+                message=&quot;Nicole: Would you like to activate the conveyor{p50}, Sally?&quot;,
+                closeAction = YieldUntil(function() return menu.closing end)
+            }
+
+    return Serial {
+        MessageBox {
+            message=&quot;Nicole: {p50}.{p50}.{p50}.{p50}&quot;,
+            blocking=true,
+            closeAction=Action()
+        },
+        Parallel {
+            mbox,
+            Serial {
+                YieldUntil(function() return mbox.opened end),
+                menu
+            }
+        }
+    }
+end</property>
+    <property name="overrideScript">local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    if GameState.leader == &quot;sally&quot; then
+        return MessageBox {
+            message=&quot;Sally: I wonder if I can crack this with Nicole...&quot;,
+            blocking=true
+        }
+    elseif GameState.leader == &quot;antoine&quot; then
+        return MessageBox {
+            message=&quot;Antoine: Hmmm... {p50}I don't have one clue.&quot;,
+            blocking=true
+        }
+    elseif GameState.leader == &quot;sonic&quot; then
+        return MessageBox {
+            message=&quot;Sonic: This techno-junk gives me a headache.&quot;,
+            blocking=true
+        }
+    end
+end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorobject.png"/>
    </properties>
   </object>
