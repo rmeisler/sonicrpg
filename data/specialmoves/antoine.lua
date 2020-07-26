@@ -25,7 +25,6 @@ return function(player)
 	local bots = {}
 	for _, object in pairs(player.scene.map.objects) do
 		if object.isBot and not object:isRemoved() and object:distanceFromPlayerSq() < 1000000 then
-			print("Found acceptable bot "..object.name)
 			table.insert(bots, object)
 		end
 	end
@@ -39,19 +38,22 @@ return function(player)
 	-- Pull aggro of bot
 	local aggro = Wait(3)
 	if bots[1] then
-		print("here's yer bot")
 		aggro = Serial {
 			Parallel {
 				Ease(player.scene.camPos, "x", bots[1].x - player.x, 1, "inout"),
-				Ease(player.scene.camPos, "y", player.y - bots[1].y, 1, "inout")
+				Ease(player.scene.camPos, "y", player.y - bots[1].y, 1, "inout"),
+				
+				Serial {
+					Wait(0.5),
+					Do(function()
+						bots[1].visibleDist = 1500
+					end)
+				}
 			},
-			Do(function()
-				bots[1].visibleDist = 1500
-			end),
-			Wait(1.5),
+			Wait(2),
 			Parallel {
-				Ease(player.scene.camPos, "x", 0, 1, "inout"),
-				Ease(player.scene.camPos, "y", 0, 1, "inout")
+				Ease(player.scene.camPos, "x", 0, 3, "linear"),
+				Ease(player.scene.camPos, "y", 0, 3, "linear")
 			}
 		}
 	end
@@ -81,8 +83,8 @@ return function(player)
 			AudioFade("sfx", 1.0, 0, 2),
 			Ease(player, "y", player.y, 7, "linear"),
 			Parallel {
-				Ease(player.scene.camPos, "x", 0, 1, "inout"),
-				Ease(player.scene.camPos, "y", 0, 1, "inout")
+				Ease(player.scene.camPos, "x", 0, 3, "linear"),
+				Ease(player.scene.camPos, "y", 0, 3, "linear")
 			},
 			Do(function()
 				player.basicUpdate = player.origUpdate

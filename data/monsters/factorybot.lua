@@ -9,8 +9,8 @@ local Telegraph = require "data/monsters/actions/Telegraph"
 local Smack = require "data/monsters/actions/Smack"
 
 return {
-	name = "Operatorbot",
-	altName = "Operatorbot",
+	name = "Factory Bot",
+	altName = "Factory Bot",
 	sprite = "sprites/factorybot",
 
 	stats = {

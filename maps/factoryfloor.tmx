@@ -214,9 +214,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1864,1865,1865,1865,1865,1865,1865,1865,1865,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1899,1900,1900,1900,1900,1900,1900,1900,1900,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4001,4002,4003,4004,1440,4001,4002,4003,4004,4005,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4005,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -230,9 +230,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,1865,1865,1865,1865,1865,1865,1865,1866,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,1900,1900,1900,1900,1900,1900,1900,1901,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,4001,4002,4003,4004,1439,4001,4002,4003,4004,4005,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,4001,4002,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -241,9 +241,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1864,1865,1865,1865,1865,1865,1865,1865,1865,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1899,1900,1900,1900,1900,1900,1900,1900,1900,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4001,4002,4003,4004,1440,4001,4002,4003,4004,4005,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4005,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -391,28 +391,28 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
-  <object id="115" name="ConveyorBelt1" type="BasicNPC" gid="1227" x="480" y="2144" width="288" height="64">
+  <object id="115" name="ConveyorObj1" type="BasicNPC" gid="1227" x="480" y="2208" width="288" height="160">
    <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="right"/>
+    <property name="align" value="top_left"/>
+    <property name="defaultAnim" value="right_inactive"/>
     <property name="ghost" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/conveyorbeltsmall.png"/>
+    <property name="sprite" type="file" value="../art/sprites/conveyorobject.png"/>
    </properties>
   </object>
-  <object id="119" name="ConveyorBelt2" type="BasicNPC" gid="1227" x="96" y="1792" width="288" height="64">
+  <object id="119" name="ConveyorObj2" type="BasicNPC" gid="1227" x="96" y="1856" width="288" height="160">
    <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="left"/>
+    <property name="align" value="top_left"/>
+    <property name="defaultAnim" value="left_inactive"/>
     <property name="ghost" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/conveyorbeltsmall.png"/>
+    <property name="sprite" type="file" value="../art/sprites/conveyorobject.png"/>
    </properties>
   </object>
-  <object id="124" name="ConveyorBelt3" type="BasicNPC" gid="1227" x="480" y="1280" width="288" height="64">
+  <object id="124" name="ConveyorObj3" type="BasicNPC" gid="1227" x="480" y="1344" width="288" height="160">
    <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="right"/>
+    <property name="align" value="top_left"/>
+    <property name="defaultAnim" value="right_inactive"/>
     <property name="ghost" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/conveyorbeltsmall.png"/>
+    <property name="sprite" type="file" value="../art/sprites/conveyorobject.png"/>
    </properties>
   </object>
   <object id="125" name="Pillar5" type="BasicNPC" gid="3112" x="288" y="1632" width="64" height="32">
@@ -504,12 +504,12 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="158" name="ClawTemplateWaypoint2" type="BasicNPC" gid="3522" x="896" y="1248" width="32" height="32">
+  <object id="158" name="ClawTemplateWaypoint2" type="BasicNPC" gid="3522" x="960" y="1248" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="159" name="ClawTemplateWaypoint4" type="BasicNPC" gid="3522" x="-32" y="1728" width="32" height="32">
+  <object id="159" name="ClawTemplateWaypoint4" type="BasicNPC" gid="3522" x="-96" y="1728" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -524,7 +524,7 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="162" name="ClawTemplateWaypoint6" type="BasicNPC" gid="3522" x="896" y="2080" width="32" height="32">
+  <object id="162" name="ClawTemplateWaypoint6" type="BasicNPC" gid="3522" x="960" y="2080" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -775,7 +775,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorbelt.png"/>
    </properties>
   </object>
-  <object id="27" name="Template1" type="Spawner" gid="1227" x="96" y="4160" width="32" height="32">
+  <object id="27" name="Template1" type="Spawner" gid="1227" x="-96" y="4160" width="32" height="32">
    <properties>
     <property name="actions">local Serial = require &quot;actions/Serial&quot;
 local Move = require &quot;actions/Move&quot;
@@ -807,7 +807,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/swatbothand.png"/>
    </properties>
   </object>
-  <object id="28" name="Template2" type="Spawner" gid="1227" x="768" y="3456" width="32" height="32">
+  <object id="28" name="Template2" type="Spawner" gid="1227" x="960" y="3456" width="32" height="32">
    <properties>
     <property name="actions">local Serial = require &quot;actions/Serial&quot;
 local Move = require &quot;actions/Move&quot;
@@ -839,7 +839,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/swatbothelmet.png"/>
    </properties>
   </object>
-  <object id="29" name="Template3" type="Spawner" gid="1227" x="96" y="2720" width="32" height="32">
+  <object id="29" name="Template3" type="Spawner" gid="1227" x="-96" y="2720" width="32" height="32">
    <properties>
     <property name="actions">local Serial = require &quot;actions/Serial&quot;
 local Move = require &quot;actions/Move&quot;
@@ -871,17 +871,17 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/swatbotarmor.png"/>
    </properties>
   </object>
-  <object id="30" name="Waypoint3" type="BasicNPC" gid="1227" x="832" y="2720" width="32" height="32">
+  <object id="30" name="Waypoint3" type="BasicNPC" gid="1227" x="960" y="2720" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="31" name="Waypoint2" type="BasicNPC" gid="1227" x="32" y="3456" width="32" height="32">
+  <object id="31" name="Waypoint2" type="BasicNPC" gid="1227" x="-96" y="3456" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="32" name="Waypoint1" type="BasicNPC" gid="1227" x="832" y="4160" width="32" height="32">
+  <object id="32" name="Waypoint1" type="BasicNPC" gid="1227" x="960" y="4160" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -909,6 +909,7 @@ return function(self)
                 local grabbed = self.scene.objectLookup.ClawTemplate3
                 grabbed.x = self.x
                 grabbed.y = self.y + grabbed.sprite.h
+                grabbed.visible = self.scene.objectLookup.ConveyorObj3.sprite.selected == &quot;right_active&quot;
             end)
         },
         Animate(self.sprite, &quot;release&quot;),
@@ -934,6 +935,7 @@ return function(self)
                 local grabbed = self.scene.objectLookup.ClawTemplate2
                 grabbed.x = self.x
                 grabbed.y = self.y + grabbed.sprite.h*4
+                grabbed.visible = self.scene.objectLookup.ConveyorObj2.sprite.selected == &quot;left_active&quot;
             end)
         },
         Animate(self.sprite, &quot;release&quot;),
@@ -959,6 +961,7 @@ return function(self)
                 local grabbed = self.scene.objectLookup.ClawTemplate1
                 grabbed.x = self.x
                 grabbed.y = self.y + grabbed.sprite.h*3
+                grabbed.visible = self.scene.objectLookup.ConveyorObj1.sprite.selected == &quot;right_active&quot;
             end)
         },
         Animate(self.sprite, &quot;release&quot;),
@@ -1263,9 +1266,6 @@ end</property>
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
-0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,2965,2965,2965,2965,2965,2965,2965,2965,2965,2965,0,0,0,
-0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,2965,2965,2971,2971,2971,2971,2965,2965,2965,2965,0,0,0,
-0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,2971,2971,2971,2971,2971,2971,2971,2971,2971,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
@@ -1279,9 +1279,6 @@ end</property>
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
-0,0,0,2965,2965,2965,2965,2965,2965,2965,2965,2965,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
-0,0,0,2965,2965,2965,2965,2965,2965,2965,2965,2965,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
-0,0,0,2965,2971,2971,2971,2971,2971,2971,2971,2971,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
@@ -1290,9 +1287,15 @@ end</property>
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
-0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,2965,2965,2965,2965,2965,2965,2965,2965,2965,2965,0,0,0,
-0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,2965,2965,2965,2971,2971,2971,2965,2965,2965,2965,0,0,0,
-0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,2971,2971,2971,2971,2971,2971,2971,2971,2971,2965,0,0,0,
+0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
+0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
+0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
+0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
+0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
+0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
+0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
+0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
+0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
 0,0,0,2965,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2965,0,0,0,
