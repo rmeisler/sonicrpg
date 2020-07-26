@@ -418,7 +418,6 @@ return function(self)
                     choose = function(menu)
                         menu:close()
                     end},
-                colWidth = 200,
             },
             transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight() - 60),
             cancellable = true,
@@ -494,7 +493,6 @@ return function(self)
                     choose = function(menu)
                         menu:close()
                     end},
-                colWidth = 200,
             },
             transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight() - 60),
             cancellable = true,
@@ -570,7 +568,6 @@ return function(self)
                     choose = function(menu)
                         menu:close()
                     end},
-                colWidth = 200,
             },
             transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight() - 60),
             cancellable = true,

@@ -57,6 +57,7 @@ function Player:construct(scene, layer, object)
 	self.movespeed = 4
 	self.layer = layer
 	self.object = object
+	self.cinematicStack = 0
 	
 	-- A hashset of objects that are contributing to our hiding in shadow
 	-- Note: If hashset is empty, we are not in shadows. If it has at least
@@ -565,6 +566,7 @@ function Player:basicUpdate(dt)
 	local hotspots = self:updateHotspots()
     
 	if 	self.cinematic or
+		self.cinematicStack > 0 or
 		self.blocked or
 		not self.scene:playerMovable() or
 		self.dontfuckingmove

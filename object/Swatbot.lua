@@ -512,7 +512,7 @@ function Swatbot:baseUpdate(dt)
 	
 	-- Don't update if player doesn't exist, we have no sprite, or swatbot is too far away
 	-- from the player
-	local maxUpdateDistance = 1500
+	local maxUpdateDistance = self.maxUpdateDistance or 1500
 	if self:distanceFromPlayerSq() > maxUpdateDistance*maxUpdateDistance then
 		if self.behavior == Swatbot.BEHAVIOR_CHASING then
 			-- Go back to regular patrolling

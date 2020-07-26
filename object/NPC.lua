@@ -391,7 +391,7 @@ function NPC:update(dt)
 				self:invoke("collision", prevState)
 				self:onCollision(prevState)
 				
-				if prevState ~= NPC.STATE_TOUCHING then
+				if prevState ~= NPC.STATE_TOUCHING and not self.disabled then
 					self.scene.player:showKeyHint(
 						self.isInteractable,
 						self.specialHintPlayer

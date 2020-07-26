@@ -11,6 +11,10 @@ local SpriteNode = require "object/SpriteNode"
 local NPC = require "object/NPC"
 
 return function(player)
+	if player.disableScan then
+		return
+	end
+
 	-- Pause controls
 	local origUpdate = player.basicUpdate
 	
@@ -35,8 +39,11 @@ return function(player)
 		self:removeKeyHint()
 
 		self.cinematic = true
+		self.cinematicStack = self.cinematicStack + 1
 		self.scanning = true
-		self.scene:run {
+		
+		print("scan again")
+		self:run {
 			PlayAudio("sfx", "nicholescan", 1.0, true),
 
 			Do(function()
@@ -52,10 +59,12 @@ return function(player)
 			target.onScan and target:onScan() or Action(),
 			
 			Do(function()
+				self.doingSpecialMove = false
 				self.scanning = false
 				self.cinematic = false
+				self.cinematicStack = self.cinematicStack - 1
 				self.basicUpdate = origUpdate
-				
+
 				-- Refresh keyhint
 				self:showKeyHint(
 					target.isInteractable,
@@ -69,6 +78,7 @@ return function(player)
 	player.basicUpdate = function(self, dt)
 		if not love.keyboard.isDown("lshift") and not self.scanning then
 			self.cinematic = false
+			self.doingSpecialMove = false
 			self.basicUpdate = origUpdate
 		end
 	end

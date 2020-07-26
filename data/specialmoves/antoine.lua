@@ -23,8 +23,9 @@ return function(player)
 	
 	-- Find nearest bot
 	local bots = {}
+	local maxDistance = 1000*1000
 	for _, object in pairs(player.scene.map.objects) do
-		if object.isBot and not object:isRemoved() and object:distanceFromPlayerSq() < 1000000 then
+		if object.isBot and not object:isRemoved() and object:distanceFromPlayerSq() < maxDistance then
 			table.insert(bots, object)
 		end
 	end
@@ -46,7 +47,9 @@ return function(player)
 				Serial {
 					Wait(0.5),
 					Do(function()
-						bots[1].visibleDist = 1500
+						bots[1].visibleDist = 2000
+						bots[1].audibleDist = 2000
+						bots[1].maxUpdateDistance = 2000
 						player.antoineSpecialGoneTooFar = true
 					end)
 				}

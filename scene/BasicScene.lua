@@ -408,6 +408,7 @@ function BasicScene:mainInput(key, uni)
 	-- Open subscreen
 	if key == "z" and
 		not self.player.cinematic and
+		self.player.cinematicStack == 0 and
 		(not self.subscreen or
 			(self.subscreen.isRemoved and self.subscreen:isRemoved()))
 	then

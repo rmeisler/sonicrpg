@@ -73,7 +73,7 @@ return {
 						return self.scene.partyByName.antoine.hp > 0
 					end,
 					Serial {
-						MessageBox {message="Antoine: {p50}.{p50}.{p50}."},
+						MessageBox {message="Antoine: {p30}.{p30}.{p30}."},
 
 						-- Antoine scared
 						Parallel {

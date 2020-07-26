@@ -27,7 +27,8 @@ return function(self)
 			-- Remove collision around door
 			self.scene.objectLookup.Door:removeCollision()
 			
-			self.scene.player.cinematic = true
+			self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
+			self.scene.player.disableScan = true
 		end),
 		Parallel {
 			MessageBox {
@@ -100,8 +101,6 @@ return function(self)
 					swatbot2.noticeDist = 1000
 				end)
 			}
-			
-			self.scene.player.cinematic = true
 		end),
 		Wait(1),
 		Do(function()
@@ -110,53 +109,58 @@ return function(self)
 			afterBattle = function()
 				self.scene.player:removeKeyHint()
 				self.scene.player.sprite:setAnimation("idledown")
+				self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
+				self.scene.player.noIdle = false
 				local walkout, walkin, sprites = self.scene.player:split()
 				Executor(self.scene):act(
 					Serial {
 						PlayAudio("music", "patrol", 1.0, true, true),
 						walkout,
 						
-						MessageBox {message="Sally: That was a close one."},
-						MessageBox {message="Sonic: Mighta bit off more than we can chew on this one, Sal."},
+						MessageBox {message="Sally: That was a close one.", blocking = true},
+						MessageBox {message="Sonic: Mighta bit off more than we can chew on this one, Sal. {p30}Should we abort?", blocking = true},
 						
-						MessageBox {message="Sonic: Should we abort?"},
-						MessageBox {message="Antoine: I will be voting yes on that!"},
+						MessageBox {message="Antoine: I will be voting yes on that!", blocking = true},
 						
 						Animate(sprites.sally.sprite, "thinking"),
-						MessageBox {message="Sally: No. {p50}We're so close, {p50}and this could really hurt Robotnik."},
+						MessageBox {message="Sally: Hmmm{p20}.{p20}.{p20}. {p50}I think we should keep going.", blocking = true},
 						
 						Animate(sprites.antoine.sprite, "scaredhop1"),
 						
+						MessageBox {message="Sally: We're almost there, and this could really hurt Robotnik!", blocking = true},
+						
 						Animate(sprites.sonic.sprite, "idledown"),
-						MessageBox {message="Sonic: Your call."},
+						MessageBox {message="Sonic: Your call.", blocking = true},
 						
 						Animate(sprites.sonic.sprite, "thinking"),
 						
-						MessageBox {message="Sonic: Since when am I the cautious one?"},
+						MessageBox {message="Sonic: Since when am I the cautious one?", blocking = true},
 						
 						Animate(sprites.antoine.sprite, "idledown"),
-						MessageBox {message="Antoine: Sacre bleu...", textSpeed = 4},
+						MessageBox {message="Antoine: Sacre bleu...", textSpeed = 4, blocking = true},
 						
 						walkin,
 						Do(function()
 							self.scene.player.x = self.scene.player.x + 80
 							self.scene.player.y = self.scene.player.y + 70
+							
 							self.scene:removeHandler("enter", afterBattle)
+							
+							self.scene.player.cinematicStack = self.scene.player.cinematicStack - 2
+							self.scene.player.disableScan = false
 						end)
 					}
 				)
 			end
 			self.scene:addHandler("enter", afterBattle)
-			self.scene.player.cinematic = true
+			
+			self.scene.player.sprite:setAnimation("shock")
+			self.scene.player.noIdle = true
 		end),
-		Animate(self.scene.player.sprite, "shock"),
 		MessageBox {
 			message = "Sally: Uh oh!",
-			blocking = true
-		},
-		
-		Do(function()
-			self.scene.player.cinematic = true
-		end)
+			blocking = true,
+			closeAction = Wait(2)
+		}
 	}
 end
