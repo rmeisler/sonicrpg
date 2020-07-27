@@ -40,9 +40,9 @@ return function(scene)
 		return Serial {
 			Wait(1),
 			walkout,
-			MessageBox {message = "Sally: This should be our rendevous point."},
-			MessageBox {message = "Antoine: We are having no sign of Sonic?"},
-			MessageBox {message = "Sally: Not yet. {p50}We'll have to make due."},
+			MessageBox {message = "Sally: This should be our rendevous point.", blocking = true},
+			MessageBox {message = "Antoine: We are having no sign of Sonic?", blocking = true},
+			MessageBox {message = "Sally: Not yet. {p50}We'll have to make due.", blocking = true},
 			walkin,
 			Do(function()
 				GameState:setFlag("robotterminal_enter")

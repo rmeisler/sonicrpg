@@ -2,7 +2,7 @@ return {
     {
         type = "map",
 		file = "maps/robo_opening2.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -69,7 +69,17 @@ return {
 	{
         type = "map",
         file = "maps/forgottenhideout.lua",
-		primary = true,
+		--primary = true,
+    },
+	
+	{
+        type = "map",
+        file = "maps/forgottenhideout_troom.lua",
+    },
+	
+	{
+        type = "map",
+        file = "maps/forgottenhideout_jroom.lua",
     },
 	
 	{
@@ -85,8 +95,8 @@ return {
 	
 	{
         type = "map",
-        file = "maps/sewer1.lua",
-		--primary = true
+        file = "maps/sewer.lua",
+		primary = true
     },
 	
 	{
@@ -663,6 +673,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/sallyrally.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/nomore.ogg",
 		category = "music"
 	},
 	{

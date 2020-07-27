@@ -717,8 +717,6 @@ function Player:basicUpdate(dt)
 				self.y = self.y + movespeed
 				self.state = Player.STATE_WALKDOWN
 				moving = true
-			else
-				self.state = Player.STATE_IDLEDOWN
 			end
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
@@ -804,8 +802,6 @@ function Player:basicUpdate(dt)
 				self.y = self.y - movespeed
 				self.state = Player.STATE_WALKUP
 				moving = true
-			else
-				self.state = Player.STATE_IDLEUP
 			end
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)

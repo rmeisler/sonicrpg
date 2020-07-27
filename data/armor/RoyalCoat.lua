@@ -7,6 +7,6 @@ return {
 	color = {50,50,50,255},
 	usableBy = {"antoine"},
 	stats = {
-		defense = 2
+		defense = 3
 	}
 }

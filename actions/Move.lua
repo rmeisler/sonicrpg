@@ -21,8 +21,10 @@ function Move:update(dt)
 	if self.timeout then
 		self.timeout:update(dt) 
 	end
- 
-	self:stepToward(self.target, self.obj.movespeed * (dt/0.016))
+	
+	if not self.obj.pauseMove then
+		self:stepToward(self.target, self.obj.movespeed * (dt/0.016))
+	end
 
 	if self.animCooldown == 0 then
 		self.obj.sprite:trySetAnimation(self.switchAnim)

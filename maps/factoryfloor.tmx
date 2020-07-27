@@ -1001,6 +1001,7 @@ return function(self)
 end</property>
     <property name="every" type="int" value="2"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
     <property name="movespeed" type="int" value="2"/>
     <property name="scalex" type="float" value="3"/>
     <property name="scaley" type="float" value="3"/>
@@ -1033,6 +1034,7 @@ return function(self)
 end</property>
     <property name="every" type="int" value="2"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
     <property name="movespeed" type="int" value="2"/>
     <property name="scalex" type="float" value="3"/>
     <property name="scaley" type="float" value="3"/>
@@ -1065,6 +1067,7 @@ return function(self)
 end</property>
     <property name="every" type="int" value="2"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
     <property name="movespeed" type="int" value="2"/>
     <property name="scalex" type="float" value="3"/>
     <property name="scaley" type="float" value="3"/>

@@ -40,10 +40,13 @@ return function(player)
 	local aggro = Wait(3)
 	if bots[1] then
 		aggro = Serial {
+			Do(function()
+				bots[1].pauseMove = true
+			end),
 			Parallel {
 				Ease(player.scene.camPos, "x", function() return player.x - bots[1].x end, 1, "inout"),
 				Ease(player.scene.camPos, "y", function() return player.y - bots[1].y end, 1, "inout"),
-				
+
 				Serial {
 					Wait(0.5),
 					Do(function()
@@ -51,6 +54,7 @@ return function(player)
 						bots[1].audibleDist = 2000
 						bots[1].maxUpdateDistance = 2000
 						player.antoineSpecialGoneTooFar = true
+						bots[1].pauseMove = false
 					end)
 				}
 			},
@@ -86,15 +90,18 @@ return function(player)
 				player.basicUpdate = player.origUpdate
 			end)
 		},
-		Parallel {
-			AudioFade("sfx", 1.0, 0, 2),
-			Ease(player, "y", player.y, 7, "linear"),
+		Serial {
 			Parallel {
+				AudioFade("sfx", 1.0, 0, 2),
+				Ease(player, "y", player.y, 7, "linear"),
 				Ease(player.scene.camPos, "x", 0, 3, "linear"),
 				Ease(player.scene.camPos, "y", 0, 3, "linear")
 			},
 			Do(function()
 				player.basicUpdate = player.origUpdate
+				if bots[1] then
+					bots[1].pauseMove = false
+				end
 			end)
 		}
 	))

@@ -25,8 +25,6 @@ return {
 	name = "Ratbot",
 	altName = "Ratbot",
 	sprite = "sprites/ratbot",
-	
-	color = {50,50,50,255},
 
 	stats = {
 		xp    = 10,

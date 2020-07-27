@@ -85,12 +85,12 @@ return function(scene)
 	
 		Wait(1),
 		Animate(snively.sprite, "smiledown"),
-		MessageBox{message="???: Well, well...", blocking=true, textSpeed = 4, closeAction=Wait(1)},
+		MessageBox{message="Well, well...", blocking=true, textSpeed = 4, closeAction=Wait(1)},
 		Animate(robotnik.sprite, "spinaround"),
 		Animate(robotnik.sprite, "facedowngrin"),
 		PlayAudio("music", "robotnik", 1.0, true),
 		
-		MessageBox{message="???: What do we have here?", blocking=true, textSpeed = 4, closeAction=Wait(1)},
+		MessageBox{message="What do we have here?", blocking=true, textSpeed = 4, closeAction=Wait(1)},
 		Parallel {
             MessageBox{message="Antoine: Ro-{p20}ro-{p20}ro-{p20}robotnik!", blocking=true},
 			Serial {
@@ -105,7 +105,7 @@ return function(scene)
 			robotnik.sprite:setAnimation("facedownsmile")
 		end),
 		MessageBox{message="Robotnik: Is that so?", blocking=true, textSpeed = 4},
-		MessageBox{message="Robotnik: Then tell me{p20}.{p20}.{p20}. {p20}what is the princess' plan?", blocking=true, textSpeed = 4},
+		MessageBox{message="Robotnik: Then tell me{p20}.{p20}.{p20}. {p20}what brings the princess to my fair city?...", blocking=true, textSpeed = 4},
 		MessageBox{message="Antoine: I{p20}-I{p20}-I {p50}will n-n-never tell!", blocking=true},
 		Do(function()
 			robotnik.sprite:setAnimation("facedownangry")

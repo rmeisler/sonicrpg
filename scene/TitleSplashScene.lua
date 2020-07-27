@@ -183,7 +183,7 @@ function TitleSplashScene:newGame()
 	--GameState.leader = "sonic"
 	
 	self.exiting = true
-	self.sceneMgr:switchScene {class = "Region", manifest = "maps/sonicdemo_manifest.lua"}
+	self.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/sonicdemo_manifest.lua"}
 end
 
 function TitleSplashScene:continue()

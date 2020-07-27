@@ -396,6 +396,7 @@ function BattleScene:onExit(args)
 	if args.toTitle then
 		return Serial {
 			AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+			PlayAudio("music", "nomore", 1.0, true),
 			MessageBox {
 				message="The Freedom Fighters are no more...",
 				rect=MessageBox.HEADLINER_RECT

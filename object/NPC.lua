@@ -28,6 +28,7 @@ NPC.ALIGN_TOPLEFT = "top_left"
 NPC.ALIGN_TOPRIGHT = "top_right"
 NPC.ALIGN_BOTLEFT = "bottom_left"
 NPC.ALIGN_BOTRIGHT = "bottom_right"
+NPC.ALIGN_BOTCENTER = "bottom_center"
 
 function NPC:construct(scene, layer, object)
 	self.state = NPC.STATE_IDLE
@@ -52,8 +53,8 @@ function NPC:construct(scene, layer, object)
 		self.whileColliding = assert(loadstring(object.properties.whileColliding))()
 	end
 	
-	if object.properties.friendlyCond then
-		self.friendlyCond = assert(loadstring(object.properties.friendlyCond))()
+	if object.properties.onInteract then
+		self:addInteract(NPC.onInteract)
 	end
 	
 	self.hotspotOffsets = {
@@ -79,6 +80,19 @@ function NPC:construct(scene, layer, object)
 		if self.object.properties.defaultAnim then
 			self.sprite:setAnimation(self.object.properties.defaultAnim)
 		end
+	end
+end
+
+function NPC:onInteract()
+	self.scene:run(assert(loadstring(self.object.properties.onInteract))()(self))
+end
+
+function NPC:onScan()
+	local scanAction = assert(loadstring(self.object.properties.onScan))
+	if scanAction then
+		self.scene:run(scanAction()(self))
+	else
+		return Action()
 	end
 end
 
@@ -130,6 +144,9 @@ function NPC:init(useBaseUpdate)
 		elseif self.alignment == NPC.ALIGN_TOPRIGHT then
 			self.x = self.x + self.sprite.w*2
 		elseif self.alignment == NPC.ALIGN_BOTLEFT then
+			self.y = self.y - self.sprite.h*2 + self.scene:getTileHeight()
+		elseif self.alignment == NPC.ALIGN_BOTCENTER then
+			self.x = self.x - self.sprite.w/2
 			self.y = self.y - self.sprite.h*2 + self.scene:getTileHeight()
 		elseif self.alignment == NPC.ALIGN_BOTRIGHT then
 			self.x = self.x + self.sprite.w*2
@@ -225,48 +242,40 @@ function NPC:messageBox()
 	if self.collided then
 		return
 	end
-
-	self.collided = true
 	
 	local objProps = self.object.properties
 	local action = Serial{}
 	
-	if self.friendlyCond and self.friendlyCond(self) then
-		local msg = objProps.friendlyMsg or ""
-		local messages = {msg:split(';')}
-		for _,message in pairs(messages) do
-			action:add(self.scene, MessageBox {message=message, blocking=true})
+	local msg = objProps.msg or ""
+	local messages = {msg:split(';')}
+	for _,message in pairs(messages) do
+		action:add(self.scene, MessageBox {message=message, blocking=true})
+	end
+	if objProps.battle then
+		self.collided = true
+
+		local battleArgs = {}
+		if objProps.boss then
+			battleArgs.music = "boss"
+			battleArgs.bossBattle = true
 		end
-	else
-		local msg = objProps.msg or ""
-		local messages = {msg:split(';')}
-		for _,message in pairs(messages) do
-			action:add(self.scene, MessageBox {message=message, blocking=true})
-		end
-		if objProps.battle then
-			local battleArgs = {}
-			if objProps.boss then
-				battleArgs.music = "boss"
-				battleArgs.bossBattle = true
-			end
-			
-			battleArgs.initiative = self:getInitiative()
-			
-			local npcArgs = self:getBattleArgs()
-			if next(npcArgs) then
-				for k, v in pairs(npcArgs) do
-					battleArgs[k] = v
-				end
-			end
 		
-			action = BlockInput {
-				action,
-				self.scene:enterBattle(battleArgs),
-				Do(function()
-					self:onBattleComplete()
-				end)
-			}
+		battleArgs.initiative = self:getInitiative()
+		
+		local npcArgs = self:getBattleArgs()
+		if next(npcArgs) then
+			for k, v in pairs(npcArgs) do
+				battleArgs[k] = v
+			end
 		end
+	
+		action = BlockInput {
+			action,
+			self.scene:enterBattle(battleArgs),
+			Do(function()
+				self:onBattleComplete()
+			end)
+		}
 	end
 	self.scene:run(action)
 end
@@ -361,20 +370,6 @@ function NPC:update(dt)
 			end)
 		}
 		return
-	end
-	
-	-- Add/remove interactable based on friendly condition
-	if self.friendlyCond then
-		if self.friendlyCond(self) then
-			self:addHandler("interact", NPC.messageBox, self, self.object)
-			self:removeHandler("collision", NPC.messageBox, self)
-		else
-			self:removeHandler("interact", NPC.messageBox, self)
-
-			if self.object.properties.battleOnCollide then
-				self:addHandler("collision", NPC.messageBox, self, self.object)
-			end
-		end
 	end
 	
 	for _,coord in ipairs(self.collision) do

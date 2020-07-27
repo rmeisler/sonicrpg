@@ -213,6 +213,8 @@ return function(scene)
 			MessageBox {message="Sally: I'm not sure... {p20}this isn't on any of my father's maps...", blocking = true}
 		},
 		
+		Wait(1),
+		
 		Ease(nicole.color, 4, 0, 5),
 		Animate(sprites.sally.sprite, "idledown"),
 		
@@ -241,7 +243,7 @@ return function(scene)
 			scene.audio:stopMusic()
 		end),
 
-		MessageBox {message= "Sonic: Uh{p20}.{p20}.{p20}. Hey little buddy!", blocking = true, textSpeed = 4},
+		MessageBox {message= "Sonic: Uh{p20}.{p20}.{p20}. hey little buddy!", blocking = true, textSpeed = 4},
 		Wait(0.2),
 		PlayAudio("music", "follow", 0.7, true),
 
@@ -272,9 +274,9 @@ return function(scene)
 		Animate(sprites.sonic.sprite, "thinking"),
 		MessageBox {message= "Sonic: Was it something I said?", blocking = true, textSpeed = 4},
 		Animate(sprites.sally.sprite, "idleleft"),
-		MessageBox {message= "Sally: He doesn't seem to be under Robotnik's control.", blocking = true, textSpeed = 4},
+		MessageBox {message= "Sally: Sonic, he doesn't seem to be under Robotnik's control.", blocking = true, textSpeed = 4},
 		Animate(sprites.sonic.sprite, "idleright"),
-		MessageBox {message= "Sally: We should follow him. {p30}Maybe he can help us find a way out of here.", blocking = true, textSpeed = 4},
+		MessageBox {message= "Sally: We should follow him! {p30}Maybe he can help us find a way out of here.", blocking = true, textSpeed = 4},
 		walkin,
 		Do(function()
 			scene.player.cinematic = false
