@@ -58,6 +58,7 @@ function Player:construct(scene, layer, object)
 	self.layer = layer
 	self.object = object
 	self.cinematicStack = 0
+	self.spriteOverride = {}
 	
 	-- A hashset of objects that are contributing to our hiding in shadow
 	-- Note: If hashset is empty, we are not in shadows. If it has at least
@@ -450,11 +451,15 @@ function Player:updateSprite()
 	if self.sprite then
 		self.sprite:remove()
 	end
+	local spriteName = GameState.party[GameState.leader].sprite
+	if self.spriteOverride[GameState.leader] then
+		spriteName = self.spriteOverride[GameState.leader]
+	end
 	self.sprite = SpriteNode(
 		self.scene,
 		self.transform,
 		self.color,
-		GameState.party[GameState.leader].sprite,
+		spriteName,
 		nil,
 		nil,
 		self.layer.name
@@ -481,6 +486,10 @@ function Player:updateShadows()
 		self.sprite.color[2] = 255
 		self.sprite.color[3] = 255
 	end
+end
+
+function Player:updateSpriteForMember(member, sprite)
+	self.spriteOverride[member] = "sprites/"..sprite
 end
 
 function Player:createVisuals()

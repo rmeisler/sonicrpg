@@ -394,7 +394,7 @@ end</property>
   <object id="115" name="ConveyorObj1" type="Switch" gid="1227" x="480" y="2208" width="288" height="160">
    <properties>
     <property name="align" value="top_left"/>
-    <property name="defaultAnim" value="right_inactive"/>
+    <property name="defaultAnim" value="right_active"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="onScan">local Menu = require &quot;actions/Menu&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
@@ -407,12 +407,17 @@ local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
 
 return function(self)
+    local activateText = &quot;activate&quot;
+    if self.sprite.selected == &quot;right_active&quot; then
+        activateText = &quot;deactivate&quot;
+    end
+
     local menu = Menu {
             layout = Layout {
                 {Layout.Text(&quot;Yes&quot;),
                     choose = function(menu)
                         menu:close()
-                        self.sprite:setAnimation(&quot;right_active&quot;)
+                        self.sprite:setAnimation(self.sprite.selected == &quot;right_active&quot; and &quot;right_inactive&quot; or &quot;right_active&quot;)
                     end},
                 {Layout.Text(&quot;No&quot;),
                     choose = function(menu)
@@ -424,7 +429,7 @@ return function(self)
             blocking = true
         }
     local mbox = MessageBox {
-                message=&quot;Nicole: Would you like to activate the conveyor{p50}, Sally?&quot;,
+                message=&quot;Nicole: Would you like to &quot;..activateText..&quot; the conveyor{p50}, Sally?&quot;,
                 closeAction = YieldUntil(function() return menu.closing end)
             }
 
@@ -444,23 +449,55 @@ return function(self)
     }
 end</property>
     <property name="overrideScript">local MessageBox = require &quot;actions/MessageBox&quot;
+local Serial = require &quot;actions/Serial&quot;
 
 return function(self)
-    if GameState.leader == &quot;sally&quot; then
-        return MessageBox {
-            message=&quot;Sally: I wonder if I can crack this with Nicole...&quot;,
-            blocking=true
+    if self.itemAvailable then
+        local response
+        if GameState.leader == &quot;sally&quot; then
+            response = MessageBox {
+                message=&quot;Sally: If we can get enough bot parts, we should be able to impersonate a Swatbot!&quot;,
+                blocking=true
+            }
+        elseif GameState.leader == &quot;antoine&quot; then
+            response = MessageBox {
+                message=&quot;Antoine: Oh! Could we use this to be looking as a Swatbot?&quot;,
+                blocking=true
+            }
+        elseif GameState.leader == &quot;sonic&quot; then
+            response = MessageBox {
+                message=&quot;Sonic: Hey! I bet we could disguise ourselves as a Swatbutt if we collect some more of these parts!&quot;,
+                blocking=true
+            }
+        end
+
+        local item = require &quot;data/accessories/BotHead&quot;
+        GameState:grantItem(item, 1)
+        self.scene.audio:playSfx(&quot;choose&quot;, nil, true)
+        return Serial {
+            MessageBox {
+                message = &quot;You received a Bot Head!&quot;,
+                blocking = true
+            },
+            response
         }
-    elseif GameState.leader == &quot;antoine&quot; then
-        return MessageBox {
-            message=&quot;Antoine: Hmmm... {p50}I don't have one clue.&quot;,
-            blocking=true
-        }
-    elseif GameState.leader == &quot;sonic&quot; then
-        return MessageBox {
-            message=&quot;Sonic: This techno-junk gives me a headache.&quot;,
-            blocking=true
-        }
+    else
+        if GameState.leader == &quot;sally&quot; then
+            return MessageBox {
+                message=&quot;Sally: I wonder if I can crack this with Nicole...&quot;,
+                blocking=true
+            }
+        elseif GameState.leader == &quot;antoine&quot; then
+            return MessageBox {
+                message=&quot;Antoine: Hmmm... {p50}I don't have one clue.&quot;,
+                blocking=true
+            }
+        elseif GameState.leader == &quot;sonic&quot; then
+            return MessageBox {
+                message=&quot;Sonic: This techno-junk gives me a headache.&quot;,
+                blocking=true
+            }
+        end
     end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorobject.png"/>
@@ -482,12 +519,17 @@ local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
 
 return function(self)
+    local activateText = &quot;activate&quot;
+    if self.sprite.selected == &quot;left_active&quot; then
+        activateText = &quot;deactivate&quot;
+    end
+
     local menu = Menu {
             layout = Layout {
                 {Layout.Text(&quot;Yes&quot;),
                     choose = function(menu)
                         menu:close()
-                        self.sprite:setAnimation(&quot;left_active&quot;)
+                        self.sprite:setAnimation(self.sprite.selected == &quot;left_active&quot; and &quot;left_inactive&quot; or &quot;left_active&quot;)
                     end},
                 {Layout.Text(&quot;No&quot;),
                     choose = function(menu)
@@ -499,7 +541,7 @@ return function(self)
             blocking = true
         }
     local mbox = MessageBox {
-                message=&quot;Nicole: Would you like to activate the conveyor{p50}, Sally?&quot;,
+                message=&quot;Nicole: Would you like to &quot;..activateText..&quot; the conveyor{p50}, Sally?&quot;,
                 closeAction = YieldUntil(function() return menu.closing end)
             }
 
@@ -519,23 +561,34 @@ return function(self)
     }
 end</property>
     <property name="overrideScript">local MessageBox = require &quot;actions/MessageBox&quot;
+local Serial = require &quot;actions/Serial&quot;
 
 return function(self)
-    if GameState.leader == &quot;sally&quot; then
+    if self.itemAvailable then
+        local item = require &quot;data/weapons/BotArm&quot;
+        GameState:grantItem(item, 1)
+        self.scene.audio:playSfx(&quot;choose&quot;, nil, true)
         return MessageBox {
-            message=&quot;Sally: I wonder if I can crack this with Nicole...&quot;,
-            blocking=true
-        }
-    elseif GameState.leader == &quot;antoine&quot; then
-        return MessageBox {
-            message=&quot;Antoine: Hmmm... {p50}I don't have one clue.&quot;,
-            blocking=true
-        }
-    elseif GameState.leader == &quot;sonic&quot; then
-        return MessageBox {
-            message=&quot;Sonic: This techno-junk gives me a headache.&quot;,
-            blocking=true
-        }
+            message = &quot;You received a Bot Arm!&quot;,
+            blocking = true
+         }
+    else
+        if GameState.leader == &quot;sally&quot; then
+            return MessageBox {
+                message=&quot;Sally: I wonder if I can crack this with Nicole...&quot;,
+                blocking=true
+            }
+        elseif GameState.leader == &quot;antoine&quot; then
+            return MessageBox {
+                message=&quot;Antoine: Hmmm... {p50}I don't have one clue.&quot;,
+                blocking=true
+            }
+        elseif GameState.leader == &quot;sonic&quot; then
+            return MessageBox {
+                message=&quot;Sonic: This techno-junk gives me a headache.&quot;,
+                blocking=true
+            }
+        end
     end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorobject.png"/>
@@ -557,12 +610,17 @@ local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
 
 return function(self)
+    local activateText = &quot;activate&quot;
+    if self.sprite.selected == &quot;right_active&quot; then
+        activateText = &quot;deactivate&quot;
+    end
+
     local menu = Menu {
             layout = Layout {
                 {Layout.Text(&quot;Yes&quot;),
                     choose = function(menu)
                         menu:close()
-                        self.sprite:setAnimation(&quot;right_active&quot;)
+                        self.sprite:setAnimation(self.sprite.selected == &quot;right_active&quot; and &quot;right_inactive&quot; or &quot;right_active&quot;)
                     end},
                 {Layout.Text(&quot;No&quot;),
                     choose = function(menu)
@@ -574,7 +632,7 @@ return function(self)
             blocking = true
         }
     local mbox = MessageBox {
-                message=&quot;Nicole: Would you like to activate the conveyor{p50}, Sally?&quot;,
+                message=&quot;Nicole: Would you like to &quot;..activateText..&quot; the conveyor{p50}, Sally?&quot;,
                 closeAction = YieldUntil(function() return menu.closing end)
             }
 
@@ -594,23 +652,34 @@ return function(self)
     }
 end</property>
     <property name="overrideScript">local MessageBox = require &quot;actions/MessageBox&quot;
+local Serial = require &quot;actions/Serial&quot;
 
 return function(self)
-    if GameState.leader == &quot;sally&quot; then
+    if self.itemAvailable then
+        local item = require &quot;data/armor/BotTorso&quot;
+        GameState:grantItem(item, 1)
+        self.scene.audio:playSfx(&quot;choose&quot;, nil, true)
         return MessageBox {
-            message=&quot;Sally: I wonder if I can crack this with Nicole...&quot;,
-            blocking=true
-        }
-    elseif GameState.leader == &quot;antoine&quot; then
-        return MessageBox {
-            message=&quot;Antoine: Hmmm... {p50}I don't have one clue.&quot;,
-            blocking=true
-        }
-    elseif GameState.leader == &quot;sonic&quot; then
-        return MessageBox {
-            message=&quot;Sonic: This techno-junk gives me a headache.&quot;,
-            blocking=true
-        }
+            message = &quot;You received a Bot Torso!&quot;,
+            blocking = true
+         }
+    else
+        if GameState.leader == &quot;sally&quot; then
+            return MessageBox {
+                message=&quot;Sally: I wonder if I can crack this with Nicole...&quot;,
+                blocking=true
+            }
+        elseif GameState.leader == &quot;antoine&quot; then
+            return MessageBox {
+                message=&quot;Antoine: Hmmm... {p50}I don't have one clue.&quot;,
+                blocking=true
+            }
+        elseif GameState.leader == &quot;sonic&quot; then
+            return MessageBox {
+                message=&quot;Sonic: This techno-junk gives me a headache.&quot;,
+                blocking=true
+            }
+        end
     end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorobject.png"/>
@@ -1097,89 +1166,140 @@ local Parallel = require &quot;actions/Parallel&quot;
 local Move = require &quot;actions/Move&quot;
 local Animate = require &quot;actions/Animate&quot;
 local Wait = require &quot;actions/Wait&quot;
+local Action = require &quot;actions/Action&quot;
 local Repeat = require &quot;actions/Repeat&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
 local Do = require &quot;actions/Do&quot;
 
 return function(self)
     return Repeat(Serial {
         Wait(1.5),
-        Parallel {
-            Serial {
-                Move(self, self.scene.objectLookup.ClawWaypoint1),
-                Move(self, self.scene.objectLookup.ClawWaypoint2),
-                Move(self, self.scene.objectLookup.ClawWaypoint3)
-            },
-            Do(function()
-                local grabbed = self.scene.objectLookup.ClawTemplate3
-                grabbed.x = self.x
-                grabbed.y = self.y + grabbed.sprite.h
-                grabbed.visible = self.scene.objectLookup.ConveyorObj3.sprite.selected == &quot;right_active&quot;
-            end)
-        },
-        Animate(self.sprite, &quot;release&quot;),
-        Move(self.scene.objectLookup.ClawTemplate3, self.scene.objectLookup.ClawTemplateWaypoint1),
-        Animate(self.sprite, &quot;idle&quot;),
-        Parallel {
-            Move(self.scene.objectLookup.ClawTemplate3, self.scene.objectLookup.ClawTemplateWaypoint2),
-            Serial {
-                Move(self, self.scene.objectLookup.ClawWaypoint3),
-                Move(self, self.scene.objectLookup.ClawWaypoint2),
-                Move(self, self.scene.objectLookup.ClawWaypoint1),
-                Move(self, self.scene.objectLookup.ClawWaypoint0)
+
+        Do(function()
+            local conveyor3Action = Action()
+            local conveyor2Action = Action()
+            local conveyor1Action = Action()
+            if self.scene.objectLookup.ConveyorObj3.sprite.selected == &quot;right_active&quot; then
+                conveyor3Action = Serial {
+                    Parallel {
+                        Serial {
+                            Move(self, self.scene.objectLookup.ClawWaypoint1),
+                            Move(self, self.scene.objectLookup.ClawWaypoint2),
+                            Move(self, self.scene.objectLookup.ClawWaypoint3)
+                        },
+                        Do(function()
+                            local grabbed = self.scene.objectLookup.ClawTemplate3
+                            grabbed.x = self.x
+                            grabbed.y = self.y + grabbed.sprite.h
+                        end)
+                    },
+                    Animate(self.sprite, &quot;release&quot;),
+                    Do(function()
+                        self.scene.objectLookup.ConveyorObj3.itemAvailable = true
+                    end),
+                    Move(self.scene.objectLookup.ClawTemplate3, self.scene.objectLookup.ClawTemplateWaypoint1),
+                    Animate(self.sprite, &quot;idle&quot;),
+                    Parallel {
+                        Move(self.scene.objectLookup.ClawTemplate3, self.scene.objectLookup.ClawTemplateWaypoint2),
+                        Serial {
+                            Move(self, self.scene.objectLookup.ClawWaypoint3),
+                            Move(self, self.scene.objectLookup.ClawWaypoint2),
+                            Move(self, self.scene.objectLookup.ClawWaypoint1),
+                            Move(self, self.scene.objectLookup.ClawWaypoint0)
+                        }
+                    },
+                    Do(function()
+                        self.scene.objectLookup.ConveyorObj3.itemAvailable = false
+                    end),
+                }
+            end
+            
+            if self.scene.objectLookup.ConveyorObj2.sprite.selected == &quot;left_active&quot; then
+                conveyor2Action = Serial {
+                    Parallel {
+                        Serial {
+                            Move(self, self.scene.objectLookup.ClawWaypoint1),
+                            Move(self, self.scene.objectLookup.ClawWaypoint4),
+                            Move(self, self.scene.objectLookup.ClawWaypoint5)
+                        },
+                        Do(function()
+                            local grabbed = self.scene.objectLookup.ClawTemplate2
+                            grabbed.x = self.x
+                            grabbed.y = self.y + grabbed.sprite.h*4
+                        end)
+                    },
+                    Animate(self.sprite, &quot;release&quot;),
+                    Do(function()
+                        self.scene.objectLookup.ConveyorObj2.itemAvailable = true
+                    end),
+                    Move(self.scene.objectLookup.ClawTemplate2, self.scene.objectLookup.ClawTemplateWaypoint3),
+                    Animate(self.sprite, &quot;idle&quot;),
+                    Parallel {
+                        Move(self.scene.objectLookup.ClawTemplate2, self.scene.objectLookup.ClawTemplateWaypoint4),
+                        Serial {
+                            Move(self, self.scene.objectLookup.ClawWaypoint5),
+                            Move(self, self.scene.objectLookup.ClawWaypoint4),
+                            Move(self, self.scene.objectLookup.ClawWaypoint1),
+                            Move(self, self.scene.objectLookup.ClawWaypoint0)
+                        }
+                    },
+                    Do(function()
+                        self.scene.objectLookup.ConveyorObj2.itemAvailable = false
+                    end),
+                }
+            end
+            
+            if self.scene.objectLookup.ConveyorObj1.sprite.selected == &quot;right_active&quot; then
+                conveyor1Action = Serial {
+                    Parallel {
+                        Serial {
+                            Move(self, self.scene.objectLookup.ClawWaypoint1),
+                            Move(self, self.scene.objectLookup.ClawWaypoint6),
+                            Move(self, self.scene.objectLookup.ClawWaypoint7)
+                        },
+                        Do(function()
+                            local grabbed = self.scene.objectLookup.ClawTemplate1
+                            grabbed.x = self.x
+                            grabbed.y = self.y + grabbed.sprite.h*3
+                        end)
+                    },
+                    Animate(self.sprite, &quot;release&quot;),
+                    Do(function()
+                        self.scene.objectLookup.ConveyorObj1.itemAvailable = true
+                    end),
+                    Move(self.scene.objectLookup.ClawTemplate1, self.scene.objectLookup.ClawTemplateWaypoint5),
+                    Animate(self.sprite, &quot;idle&quot;),
+                    Parallel {
+                        Move(self.scene.objectLookup.ClawTemplate1, self.scene.objectLookup.ClawTemplateWaypoint6),
+                        Serial {
+                            Move(self, self.scene.objectLookup.ClawWaypoint7),
+                            Move(self, self.scene.objectLookup.ClawWaypoint6),
+                            Move(self, self.scene.objectLookup.ClawWaypoint1),
+                            Move(self, self.scene.objectLookup.ClawWaypoint0)
+                        }
+                    },
+                    Do(function()
+                        self.scene.objectLookup.ConveyorObj1.itemAvailable = false
+                    end)
+                }
+            end
+            
+            self:run {
+                conveyor3Action,
+                conveyor2Action,
+                conveyor1Action,
+                Do(function()
+                    print(&quot;progress&quot;)
+                    self.progress = true
+                end)
             }
-        },
+        end),
         
-        Parallel {
-            Serial {
-                Move(self, self.scene.objectLookup.ClawWaypoint1),
-                Move(self, self.scene.objectLookup.ClawWaypoint4),
-                Move(self, self.scene.objectLookup.ClawWaypoint5)
-            },
-            Do(function()
-                local grabbed = self.scene.objectLookup.ClawTemplate2
-                grabbed.x = self.x
-                grabbed.y = self.y + grabbed.sprite.h*4
-                grabbed.visible = self.scene.objectLookup.ConveyorObj2.sprite.selected == &quot;left_active&quot;
-            end)
-        },
-        Animate(self.sprite, &quot;release&quot;),
-        Move(self.scene.objectLookup.ClawTemplate2, self.scene.objectLookup.ClawTemplateWaypoint3),
-        Animate(self.sprite, &quot;idle&quot;),
-        Parallel {
-            Move(self.scene.objectLookup.ClawTemplate2, self.scene.objectLookup.ClawTemplateWaypoint4),
-            Serial {
-                Move(self, self.scene.objectLookup.ClawWaypoint5),
-                Move(self, self.scene.objectLookup.ClawWaypoint4),
-                Move(self, self.scene.objectLookup.ClawWaypoint1),
-                Move(self, self.scene.objectLookup.ClawWaypoint0)
-            }
-        },
-        
-        Parallel {
-            Serial {
-                Move(self, self.scene.objectLookup.ClawWaypoint1),
-                Move(self, self.scene.objectLookup.ClawWaypoint6),
-                Move(self, self.scene.objectLookup.ClawWaypoint7)
-            },
-            Do(function()
-                local grabbed = self.scene.objectLookup.ClawTemplate1
-                grabbed.x = self.x
-                grabbed.y = self.y + grabbed.sprite.h*3
-                grabbed.visible = self.scene.objectLookup.ConveyorObj1.sprite.selected == &quot;right_active&quot;
-            end)
-        },
-        Animate(self.sprite, &quot;release&quot;),
-        Move(self.scene.objectLookup.ClawTemplate1, self.scene.objectLookup.ClawTemplateWaypoint5),
-        Animate(self.sprite, &quot;idle&quot;),
-        Parallel {
-            Move(self.scene.objectLookup.ClawTemplate1, self.scene.objectLookup.ClawTemplateWaypoint6),
-            Serial {
-                Move(self, self.scene.objectLookup.ClawWaypoint7),
-                Move(self, self.scene.objectLookup.ClawWaypoint6),
-                Move(self, self.scene.objectLookup.ClawWaypoint1),
-                Move(self, self.scene.objectLookup.ClawWaypoint0)
-            }
-        }
+        YieldUntil(function()
+            return self.progress
+        end),
+
+        Do(function() self.progress = false end)
     })
 end</property>
     <property name="ghost" type="bool" value="true"/>

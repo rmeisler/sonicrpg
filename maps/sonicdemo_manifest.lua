@@ -742,11 +742,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/majorplan.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
 		file = "audio/music/openingmission2.ogg",
 		category = "music",
 		looping = true,

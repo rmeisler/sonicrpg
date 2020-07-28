@@ -53,7 +53,9 @@ return {
 	items = {
 		{count = 1, item = require "data/items/GreenLeaf"},
 		{count = 1, item = require "data/items/CrystalWater"},
-		{count = 1, item = require "data/items/Mine"},
+		{count = 1, item = require "data/weapons/BotArm"},
+		{count = 1, item = require "data/armor/BotTorso"},
+		{count = 1, item = require "data/accessories/BotHead"},
 	},
 
 	levelup = {

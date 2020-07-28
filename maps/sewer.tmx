@@ -133,7 +133,7 @@
     <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
-  <object id="224" name="Ratbot1" type="Ratbot" gid="1227" x="448" y="1056" width="64" height="32">
+  <object id="224" name="Ratbot1" type="Ratbot" gid="1227" x="480" y="1056" width="32" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="battle" type="file" value="../data/monsters/ratbot.lua"/>
@@ -142,7 +142,6 @@
     <property name="follow" value="Waypoint1,Waypoint2,Waypoint1,Waypoint5,Waypoint3,Waypoint4,Waypoint3,Waypoint5"/>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="ignoreCollision" value=""/>
     <property name="sprite" type="file" value="../art/sprites/ratbot.png"/>
    </properties>
   </object>

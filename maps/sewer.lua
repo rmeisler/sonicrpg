@@ -269,9 +269,9 @@ return {
           name = "Ratbot1",
           type = "Ratbot",
           shape = "rectangle",
-          x = 448,
+          x = 480,
           y = 1056,
-          width = 64,
+          width = 32,
           height = 32,
           rotation = 0,
           gid = 1227,
@@ -284,7 +284,6 @@ return {
             ["follow"] = "Waypoint1,Waypoint2,Waypoint1,Waypoint5,Waypoint3,Waypoint4,Waypoint3,Waypoint5",
             ["followRepeat"] = true,
             ["ghost"] = true,
-            ["ignoreCollision"] = "",
             ["sprite"] = "../art/sprites/ratbot.png"
           }
         },

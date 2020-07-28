@@ -2,12 +2,13 @@ local WeaponType = require "util/WeaponType"
 local ItemType = require "util/ItemType"
 
 return {
-	name = "Bot Head",
+	name = "Bot Arm",
 	desc = "This could be useful...",
-	type = ItemType.Accessory,
+	type = ItemType.Weapon,
+	subtype = WeaponType.Sword,
 	usableBy = {"antoine", "sally", "sonic", "rotor", "bunny"},
 	stats = {
-		defense = 1,
+		attack = 2,
 		speed = -1,
 	},
 
