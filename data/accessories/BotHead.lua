@@ -16,10 +16,12 @@ return {
 			GameState:isEquipped(member, ItemType.Armor, "Bot Torso") and
 			GameState:isEquipped(member, ItemType.Weapon, "Bot Arm")
 		then
+			player.isSwatbot[member] = true
 			player:updateSpriteForMember(member, "swatbot")
 		end
 	end,
 	onUnequip = function(member, player)
 		player:updateSpriteForMember(member, member)
+		player.isSwatbot[member] = nil
 	end
 }

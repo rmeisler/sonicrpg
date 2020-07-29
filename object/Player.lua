@@ -60,6 +60,9 @@ function Player:construct(scene, layer, object)
 	self.cinematicStack = 0
 	self.spriteOverride = {}
 	
+	self.isSwatbot = {}
+	self.lastSwatbotStepSfx = love.timer.getTime()
+	
 	-- A hashset of objects that are contributing to our hiding in shadow
 	-- Note: If hashset is empty, we are not in shadows. If it has at least
 	-- one element, then we are in shadows.
@@ -155,6 +158,11 @@ function Player:showKeyHint(showPressX, specialHint)
 		self.keyHint = {}
 	end
 	local keyHintActions = {}
+	
+	-- Ignore special hint if that player is pretending to be a swatbot
+	if self.isSwatbot[specialHint] then
+		specialHint = nil
+	end
 	
 	if specialHint ~= nil and not self.showPressLsh then
 		if self.showPressX then
@@ -557,9 +565,16 @@ function Player:basicUpdate(dt)
 	if not self.sprite then
 		return
 	end
+	
+	local isSwatbot = self.isSwatbot[GameState.leader]
 
 	-- Scale movespeed by time
-	local movespeed = self.movespeed * (dt/0.016)
+	local baseMoveSpeed = self.movespeed
+	if isSwatbot then
+		baseMoveSpeed = 3
+	end
+	
+	local movespeed = baseMoveSpeed * (dt/0.016)
 	
 	self:updateShadows()
 	self:updateVisuals()
@@ -589,7 +604,7 @@ function Player:basicUpdate(dt)
 		return
 	end
 	
-	if love.keyboard.isDown("lshift") then
+	if not isSwatbot and love.keyboard.isDown("lshift") then
 		self:onSpecialMove()
 		return
 	end
@@ -616,7 +631,7 @@ function Player:basicUpdate(dt)
 			moving = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
-			if spot and not (love.keyboard.isDown("up") or love.keyboard.isDown("down")) then
+			if not isSwatbot and spot and not (love.keyboard.isDown("up") or love.keyboard.isDown("down")) then
 				self.y = spot.y + spot.sprite.h*2 - self.sprite.h + 1
 				--self.sprite.sortOrderY = spot.y + spot.sprite.h*2 + 1
 				self.state = Player.STATE_HIDERIGHT
@@ -676,7 +691,7 @@ function Player:basicUpdate(dt)
 			moving = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
-			if spot and not (love.keyboard.isDown("up") or love.keyboard.isDown("down")) then
+			if not isSwatbot and spot and not (love.keyboard.isDown("up") or love.keyboard.isDown("down")) then
 				self.y = spot.y + spot.sprite.h*2 - self.sprite.h + 1
 				--self.sprite.sortOrderY = spot.y + spot.sprite.h*2 + 1
 				self.state = Player.STATE_HIDELEFT
@@ -729,7 +744,7 @@ function Player:basicUpdate(dt)
 			end
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
-			if spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
+			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
 				self.state = Player.STATE_HIDEDOWN
 				self.x = spot.x + self.scene:getTileWidth() + (spot.object.properties.hideOffset or 0) - 7
 				self.cinematic = true
@@ -814,7 +829,7 @@ function Player:basicUpdate(dt)
 			end
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
-			if spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
+			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
 				self.state = Player.STATE_HIDEUP
 				self.x = spot.x + self.scene:getTileWidth() + (spot.object.properties.hideOffset or 0) - 7
 				self.cinematic = true
@@ -855,6 +870,12 @@ function Player:basicUpdate(dt)
 			end
 		end
     end
+	
+	-- Swatbot step sounds
+	if moving and isSwatbot and love.timer.getTime() - self.lastSwatbotStepSfx > 0.8 then
+		self.scene.audio:playSfx("swatbotstep", 1.0)
+		self.lastSwatbotStepSfx = love.timer.getTime()
+	end
 
 	if prevState ~= self.state then
 		self.sprite.animations[self.state]:reset()

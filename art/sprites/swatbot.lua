@@ -11,6 +11,9 @@ return {
 		backward = {
 			frames = {{5,0}}
 		},
+		pose = {
+			frames = {{0,3}}
+		},
 		shoot = {
 			frames = {{7,3},{8,3}},
 			speed = 0.06
