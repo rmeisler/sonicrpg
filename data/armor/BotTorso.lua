@@ -18,10 +18,12 @@ return {
 		then
 			player.isSwatbot[member] = true
 			player:updateSpriteForMember(member, "swatbot")
+			player:updateSprite()
 		end
 	end,
 	onUnequip = function(member, player)
-		player:updateSpriteForMember(member, member)
 		player.isSwatbot[member] = nil
+		player:updateSpriteForMember(member, member)
+		player:updateSprite()
 	end
 }

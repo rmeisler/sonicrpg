@@ -8,7 +8,7 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 189,
+  nextobjectid = 191,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_start.lua",
@@ -642,7 +642,7 @@ return {
           gid = 3501,
           visible = true,
           properties = {
-            ["CrystalWater"] = 1,
+            ["Microchip"] = 1,
             ["sprite"] = "../art/sprites/chest.png"
           }
         },
@@ -660,6 +660,22 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 190,
+          name = "Save",
+          type = "SavePoint",
+          shape = "rectangle",
+          x = 512,
+          y = 1568,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["sprite"] = "../art/sprites/save.png"
           }
         }
       }

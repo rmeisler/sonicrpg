@@ -124,10 +124,8 @@ return {
 						PlayAudio("sfx", "pressx", 1.0, true),
 						Parallel {
 							Serial {
-								Animate(target.sprite, "crouch"),
-								Wait(0.1),
 								Animate(target.sprite, "leap_dodge"),
-								Ease(target.sprite.transform, "y", target.sprite.transform.y - target.sprite.h*2, 6, "linear"),
+								Ease(target.sprite.transform, "y", target.sprite.transform.y - target.sprite.h*2, 8, "linear"),
 								Ease(target.sprite.transform, "y", target.sprite.transform.y, 6, "quad"),
 								Animate(target.sprite, "crouch"),
 								Wait(0.1),

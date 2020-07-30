@@ -88,11 +88,11 @@ return function(scene)
 				}, 17),
 				
 				Serial {
+					Wait(2),
 					AudioFade("music", scene.audio:getMusicVolume(), 0, 1),
 					Do(function()
 						scene.audio:stopMusic()
 					end),
-					Wait(2),
 					PlayAudio("music", "sonictheme", 1.0, true)
 				}
 			},

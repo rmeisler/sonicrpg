@@ -163,8 +163,6 @@ return function(scene)
 		
 		Wait(0.2),
 		
-		PlayAudio("music", "mysterious", 1.0, true),
-		
 		Ease(scene.player, "y", 1578, 0.5, "inout"),
 		
 		Do(function()
@@ -193,8 +191,16 @@ return function(scene)
 		walkout,
 		Animate(sprites.sonic.sprite, "idleright"),
 		Animate(sprites.sally.sprite, "idleleft"),
+		MessageBox {message="Sonic: You ok, Sal?", blocking = true},
+		MessageBox {message="Sally: Yeah. You?", blocking = true},
 		
-		MessageBox {message="Sonic: Where are we, Sal?", blocking = true},
+		MessageBox {message="Sonic: Just a little damp...", blocking = true},
+		
+		PlayAudio("music", "mysterious", 1.0, true),
+		Animate(sprites.sonic.sprite, "thinking"),
+		MessageBox {message="Sonic: But yo... {p30}where are we exactly?", blocking = true},
+		
+		Wait(1),
 		
 		Parallel {
 			Serial {
@@ -210,10 +216,24 @@ return function(scene)
 				end),
 				Ease(nicole.color, 4, 220, 5)
 			},
-			MessageBox {message="Sally: I'm not sure... {p20}this isn't on any of my father's maps...", blocking = true}
+			Serial {
+				MessageBox {message="Sally: Let's find out...", blocking = true},
+				Wait(2),
+				MessageBox {message="Sally: That's strange... {p20}this place isn't on any of my father's maps...", blocking = true},
+				
+				Move(scene.objectLookup.R, scene.objectLookup.Waypoint1, "walk"),
+				Animate(scene.objectLookup.R.sprite, "idledown"),
+				
+				Parallel {
+					MessageBox {message= "???: ...!", blocking = true},
+					Serial {
+						Wait(0.5),
+						Ease(scene.objectLookup.R, "y", function() return scene.objectLookup.R.y - 50 end, 8, "linear"),
+						Ease(scene.objectLookup.R, "y", function() return scene.objectLookup.R.y + 50 end, 8, "linear"),
+					}
+				},
+			}
 		},
-		
-		Wait(1),
 		
 		Ease(nicole.color, 4, 0, 5),
 		Animate(sprites.sally.sprite, "idledown"),
@@ -221,18 +241,6 @@ return function(scene)
 		Do(function()
 			nicole:remove()
 		end),
-		
-		Move(scene.objectLookup.R, scene.objectLookup.Waypoint1, "walk"),
-		Animate(scene.objectLookup.R.sprite, "idledown"),
-		
-		Parallel {
-			MessageBox {message= "???: ...!", blocking = true},
-			Serial {
-				Wait(0.5),
-				Ease(scene.objectLookup.R, "y", function() return scene.objectLookup.R.y - 50 end, 8, "linear"),
-				Ease(scene.objectLookup.R, "y", function() return scene.objectLookup.R.y + 50 end, 8, "linear"),
-			}
-		},
 		
 		Animate(sprites.sonic.sprite, "idleup"),
 		Animate(sprites.sally.sprite, "idleup"),
@@ -274,7 +282,7 @@ return function(scene)
 		Animate(sprites.sonic.sprite, "thinking"),
 		MessageBox {message= "Sonic: Was it something I said?", blocking = true, textSpeed = 4},
 		Animate(sprites.sally.sprite, "idleleft"),
-		MessageBox {message= "Sally: Sonic, he doesn't seem to be under Robotnik's control.", blocking = true, textSpeed = 4},
+		MessageBox {message= "Sally: Sonic{p20}, he doesn't seem to be under Robotnik's control.", blocking = true, textSpeed = 4},
 		Animate(sprites.sonic.sprite, "idleright"),
 		MessageBox {message= "Sally: We should follow him! {p30}Maybe he can help us find a way out of here.", blocking = true, textSpeed = 4},
 		walkin,

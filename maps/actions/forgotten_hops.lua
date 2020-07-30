@@ -29,6 +29,10 @@ local BasicNPC = require "object/BasicNPC"
 local TARGET_OFFSET_X = 400
 
 return function(scene)
+	if GameState:isFlagSet("fogotten_hops") then
+		return Action()
+	end
+
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
 	scene.player.cinematic = true
@@ -71,6 +75,8 @@ return function(scene)
 			scene.player.cinematic = false
 			scene.player.noIdle = false
 			scene.player.state = "idleup"
+			
+			GameState:setFlag("fogotten_hops")
 		end),
 	}
 end

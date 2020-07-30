@@ -8,7 +8,7 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 230,
+  nextobjectid = 231,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_fans.lua",
@@ -343,6 +343,22 @@ return {
             ["script"] = "local Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    self.scene.audio:playSfx(\"openchasm\")\n    return Serial {\n        Parallel {\n            Ease(self.scene.objectLookup.WallEdge1, \"y\", self.scene.objectLookup.WallEdge1.y - 100, 2, \"linear\"),\n            Ease(self.scene.objectLookup.WallEdge2, \"y\", self.scene.objectLookup.WallEdge2.y - 100, 2, \"linear\"),\n        },\n        Do(function()\n            self.scene.objectLookup.WallEdge1:remove()\n            self.scene.objectLookup.WallEdge2:remove()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/wall.png"
           }
+        },
+        {
+          id = 230,
+          name = "OpenWall",
+          type = "TouchTrigger",
+          shape = "rectangle",
+          x = 576,
+          y = 1120,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["script"] = "local Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\nlocal Action = require \"actions/Action\"\n\nreturn function(self)\n    if self.scene.objectLookup.WallEdge1:isRemoved() then return Action() end\n    self.scene.audio:playSfx(\"openchasm\")\n    return Serial {\n        Parallel {\n            Ease(self.scene.objectLookup.WallEdge1, \"y\", self.scene.objectLookup.WallEdge1.y - 100, 2, \"linear\"),\n            Ease(self.scene.objectLookup.WallEdge2, \"y\", self.scene.objectLookup.WallEdge2.y - 100, 2, \"linear\"),\n        },\n        Do(function()\n            self.scene.objectLookup.WallEdge1:remove()\n            self.scene.objectLookup.WallEdge2:remove()\n        end)\n    }\nend"
+          }
         }
       }
     },
@@ -669,7 +685,7 @@ return {
           gid = 3501,
           visible = true,
           properties = {
-            ["CrystalWater"] = 1,
+            ["Oscillator"] = 1,
             ["sprite"] = "../art/sprites/chest.png"
           }
         },

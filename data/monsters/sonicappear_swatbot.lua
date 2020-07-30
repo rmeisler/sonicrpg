@@ -65,7 +65,7 @@ return {
 			local prevMusic = self.scene.audio:getCurrentMusic()
 			return Serial {
 				MessageBox {message="Sally: We're in trouble!"},
-				MessageBox {message="Antoine: Not to be worried! {p100}I will get us right out of this!!"},
+				MessageBox {message="Antoine: Not to be worried, my princess! {p40}I will get us right out of this!!"},
 				action,
 				
 				While(

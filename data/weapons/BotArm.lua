@@ -5,7 +5,6 @@ return {
 	name = "Bot Arm",
 	desc = "This could be useful...",
 	type = ItemType.Weapon,
-	subtype = WeaponType.Sword,
 	usableBy = {"antoine", "sally", "sonic", "rotor", "bunny"},
 	stats = {
 		attack = 2,
@@ -19,10 +18,12 @@ return {
 		then
 			player.isSwatbot[member] = true
 			player:updateSpriteForMember(member, "swatbot")
+			player:updateSprite()
 		end
 	end,
 	onUnequip = function(member, player)
-		player:updateSpriteForMember(member, member)
 		player.isSwatbot[member] = nil
+		player:updateSprite()
+		player:updateSpriteForMember(member, member)
 	end
 }

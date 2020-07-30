@@ -179,9 +179,9 @@
 2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,0,0,0,0,0,0,0,0,2677,2676,2677,2676,2677,2676,2677,2676,2677,0,
 2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,0,0,0,0,0,0,0,0,2677,2676,2677,2676,2677,2676,2677,2676,2677,0,
 2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,0,0,0,0,0,0,0,0,2677,2676,2677,2676,2677,2676,2677,2676,2677,0,
-2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,0,0,0,0,0,0,0,0,2677,2676,2677,2676,2677,2676,2677,2676,2677,0,
-2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,0,1262,1262,1262,1262,1262,0,0,2677,2676,2677,2676,2677,2676,2677,2676,2677,0,
-2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,1262,1262,1262,1262,1262,1262,1262,0,2677,2676,2677,2676,2677,2676,2677,2676,2677,0,
+2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,2677,0,
+2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,2677,1262,1262,1262,1262,1262,2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,2677,0,
+2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,1262,1262,1262,1262,1262,1262,1262,2676,2677,2676,2677,2676,2677,2676,2677,2676,2677,0,
 2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,1262,1262,1262,1262,1262,1262,1262,1262,2677,2676,2677,2676,2677,2676,2677,2676,2677,0,
 2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,1262,1262,1262,1262,1262,1262,1262,1262,2677,2676,2677,2676,2677,2676,2677,2676,2677,0,
 2677,2676,2677,2676,2677,2676,2677,2676,2677,2676,3597,3597,3597,3597,3597,3597,3597,3597,2677,2676,2677,2676,2677,2676,2677,2676,2677,0,
@@ -420,9 +420,9 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
-  <object id="115" name="ConveyorObj1" type="Switch" gid="1227" x="480" y="2208" width="288" height="160">
+  <object id="115" name="ConveyorObj1" type="Switch" gid="1227" x="480" y="2208" width="288" height="128">
    <properties>
-    <property name="align" value="top_left"/>
+    <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="right_active"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="onScan">local Menu = require &quot;actions/Menu&quot;
@@ -458,7 +458,7 @@ return function(self)
             blocking = true
         }
     local mbox = MessageBox {
-                message=&quot;Nicole: Would you like to &quot;..activateText..&quot; the conveyor{p50}, Sally?&quot;,
+                message=&quot;Nicole: Would you like to &quot;..activateText..&quot; the conveyor{p20}, Sally?&quot;,
                 closeAction = YieldUntil(function() return menu.closing end)
             }
 
@@ -532,9 +532,9 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorobject.png"/>
    </properties>
   </object>
-  <object id="119" name="ConveyorObj2" type="Switch" gid="1227" x="96" y="1856" width="288" height="160">
+  <object id="119" name="ConveyorObj2" type="Switch" gid="1227" x="96" y="1856" width="288" height="128">
    <properties>
-    <property name="align" value="top_left"/>
+    <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="left_inactive"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="onScan">local Menu = require &quot;actions/Menu&quot;
@@ -570,7 +570,7 @@ return function(self)
             blocking = true
         }
     local mbox = MessageBox {
-                message=&quot;Nicole: Would you like to &quot;..activateText..&quot; the conveyor{p50}, Sally?&quot;,
+                message=&quot;Nicole: Would you like to &quot;..activateText..&quot; the conveyor{p20}, Sally?&quot;,
                 closeAction = YieldUntil(function() return menu.closing end)
             }
 
@@ -623,9 +623,9 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorobject.png"/>
    </properties>
   </object>
-  <object id="124" name="ConveyorObj3" type="Switch" gid="1227" x="480" y="1344" width="288" height="160">
+  <object id="124" name="ConveyorObj3" type="Switch" gid="1227" x="480" y="1344" width="288" height="128">
    <properties>
-    <property name="align" value="top_left"/>
+    <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="right_inactive"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="onScan">local Menu = require &quot;actions/Menu&quot;
@@ -661,7 +661,7 @@ return function(self)
             blocking = true
         }
     local mbox = MessageBox {
-                message=&quot;Nicole: Would you like to &quot;..activateText..&quot; the conveyor{p50}, Sally?&quot;,
+                message=&quot;Nicole: Would you like to &quot;..activateText..&quot; the conveyor{p20}, Sally?&quot;,
                 closeAction = YieldUntil(function() return menu.closing end)
             }
 
@@ -875,7 +875,7 @@ end</property>
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>
     <property name="scene" type="file" value="datacenter_f4.lua"/>
-    <property name="spawn_point" value="Exit"/>
+    <property name="spawn_point" value="Exit1"/>
     <property name="walkin" type="bool" value="true"/>
    </properties>
   </object>
@@ -886,9 +886,9 @@ end</property>
 1262,1262,1262,1262,0,0,0,0,0,0,2677,2676,2677,2676,2677,2676,2677,2676,0,0,0,0,0,0,2417,2417,2417,2417,
 1262,1262,1262,1262,0,0,0,0,0,0,2677,2676,2677,2676,2677,2676,2677,2676,0,0,0,0,0,0,2417,2417,2417,2417,
 1262,1262,1262,1262,0,0,0,0,0,0,2677,2676,2677,2676,2677,2676,2677,2676,0,0,0,0,0,0,2417,2417,2417,2417,
-1262,1262,1262,1262,0,0,0,0,0,0,2677,2676,2677,2676,2677,2676,2677,2676,0,0,0,0,0,0,2417,2417,2417,2417,
-1262,1262,1262,1262,0,0,0,0,0,0,2677,0,0,0,0,0,2677,2676,0,0,0,0,0,0,2417,2417,2417,2417,
-1262,1262,1262,1262,0,0,0,0,0,0,0,0,0,0,0,0,0,2676,0,0,0,0,0,0,2452,2417,2417,2417,
+1262,1262,1262,1262,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2417,2417,2417,2417,
+1262,1262,1262,1262,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2417,2417,2417,2417,
+1262,1262,1262,1262,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2452,2417,2417,2417,
 2417,2417,2383,2384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2388,2389,2452,2417,
 2452,2452,2418,2981,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2816,2424,2452,2417,
 2452,2452,2453,3016,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2851,2424,2452,2417,
@@ -1056,7 +1056,7 @@ end</property>
   </object>
  </objectgroup>
  <objectgroup name="upperobjects" opacity="0.7">
-  <object id="18" name="ConveyorBelt1" type="BasicNPC" gid="1227" x="-320" y="4320" width="1504" height="96">
+  <object id="18" name="ConveyorBelt1" type="BasicNPC" gid="1227" x="-320" y="4256" width="1504" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="right"/>
@@ -1064,7 +1064,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorbelt.png"/>
    </properties>
   </object>
-  <object id="19" name="ConveyorBelt2" type="BasicNPC" gid="1227" x="-320" y="3616" width="1504" height="96">
+  <object id="19" name="ConveyorBelt2" type="BasicNPC" gid="1227" x="-320" y="3552" width="1504" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="left"/>
@@ -1072,7 +1072,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorbelt.png"/>
    </properties>
   </object>
-  <object id="20" name="ConveyorBelt3" type="BasicNPC" gid="1227" x="-320" y="2912" width="1504" height="96">
+  <object id="20" name="ConveyorBelt3" type="BasicNPC" gid="1227" x="-320" y="2848" width="1504" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="right"/>
@@ -1096,7 +1096,7 @@ return function(self)
             Ease(self.sprite.color, 4, 50, 2, &quot;inout&quot;),
             Move(self, self.scene.objectLookup.Waypoint1),
             Serial {
-                YieldUntil(function() return self.x &gt; 720 end),
+                YieldUntil(function() return self.x &gt; 800 end),
                 Ease(self.sprite.color, 4, 0, 2, &quot;inout&quot;),
                 Do(function() self:remove() end)
             }
@@ -1129,7 +1129,7 @@ return function(self)
             Ease(self.sprite.color, 4, 50, 2, &quot;inout&quot;),
             Move(self, self.scene.objectLookup.Waypoint2),
             Serial {
-                YieldUntil(function() return self.x &lt; 150 end),
+                YieldUntil(function() return self.x &lt; 0 end),
                 Ease(self.sprite.color, 4, 0, 2, &quot;inout&quot;),
                 Do(function() self:remove() end)
             }
@@ -1162,7 +1162,7 @@ return function(self)
             Ease(self.sprite.color, 4, 30, 2, &quot;inout&quot;),
             Move(self, self.scene.objectLookup.Waypoint3),
             Serial {
-                YieldUntil(function() return self.x &gt; 690 end),
+                YieldUntil(function() return self.x &gt; 800 end),
                 Ease(self.sprite.color, 4, 0, 2, &quot;inout&quot;),
                 Do(function() self:remove() end)
             }

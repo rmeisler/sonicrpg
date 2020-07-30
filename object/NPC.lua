@@ -88,12 +88,13 @@ function NPC:onInteract()
 end
 
 function NPC:onScan()
-	local scanAction = assert(loadstring(self.object.properties.onScan))
-	if scanAction then
-		self.scene:run(scanAction()(self))
-	else
-		return Action()
+	if self.object.properties.onScan then
+		local scanAction = assert(loadstring(self.object.properties.onScan))
+		if scanAction then
+			self.scene:run(scanAction()(self))
+		end
 	end
+	return Action()
 end
 
 function NPC:updateCollision()
@@ -144,13 +145,13 @@ function NPC:init(useBaseUpdate)
 		elseif self.alignment == NPC.ALIGN_TOPRIGHT then
 			self.x = self.x + self.sprite.w*2
 		elseif self.alignment == NPC.ALIGN_BOTLEFT then
-			self.y = self.y - self.sprite.h*2 + self.scene:getTileHeight()
+			self.y = self.y - self.sprite.h*2 + self.object.height
 		elseif self.alignment == NPC.ALIGN_BOTCENTER then
 			self.x = self.x - self.sprite.w/2
-			self.y = self.y - self.sprite.h*2 + self.scene:getTileHeight()
+			self.y = self.y - self.sprite.h*2 + self.object.height
 		elseif self.alignment == NPC.ALIGN_BOTRIGHT then
 			self.x = self.x + self.sprite.w*2
-			self.y = self.y - self.sprite.h*2 + self.scene:getTileHeight()
+			self.y = self.y - self.sprite.h*2 + self.object.height
 		end
 		self.x = self.x + (self.object.properties.alignOffsetX or 0)
 		self.y = self.y + (self.object.properties.alignOffsetY or 0)
