@@ -227,6 +227,7 @@ function BasicScene:onReEnter(args)
 	
 	self.enteringBattle = false
 	self.player.cinematic = false
+	self.reentering = true
 	
 	self.blur = nil
 	
@@ -255,7 +256,11 @@ function BasicScene:onReEnter(args)
 			end)
 		},
 		
-		onLoadAction
+		onLoadAction,
+		
+		Do(function()
+			self.reentering = false
+		end)
 	}
 end
 

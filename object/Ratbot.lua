@@ -29,13 +29,6 @@ function Ratbot:construct(scene, layer, object)
 		left = self.flashlightSprite
 	}
 	
-	self.hotspotOffsets = {
-		right_top = {x = 0, y = 0},
-		right_bot = {x = 0, y = 0},
-		left_top  = {x = 0, y = 0},
-		left_bot  = {x = 0, y = 0}
-	}
-	
 	Swatbot.init(self)
 	self.collision = {}
 	
@@ -47,8 +40,6 @@ function Ratbot:construct(scene, layer, object)
 	}
 	
 	self.dropShadow.sprite.transform.sx = 5
-	
-	self:addSceneHandler("update", Ratbot.updateEyes)
 
 	self.stepSfx = nil
 end

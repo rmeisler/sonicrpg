@@ -43,8 +43,18 @@ return function(scene)
 			MessageBox {message = "Sally: This should be our rendevous point.", blocking = true},
 			MessageBox {message = "Antoine: We are having no sign of Sonic?", blocking = true},
 			MessageBox {message = "Sally: Not yet. {p50}We'll have to make due.", blocking = true},
+			Ease(scene.camPos, "y", scene.camPos.y + 250, 1, "inout"),
+			MessageBox {message = "Sally: This is the entrance to the Swatbot factory.", blocking = true},
+			Ease(scene.camPos, "x", scene.camPos.x + 150, 1, "inout"),
+			MessageBox {message = "Sally: I need access to that terminal to get us in, but we need to get rid of the guard somehow...", blocking = true},
+			Parallel {
+				Ease(scene.camPos, "x", 0, 1, "inout"),
+				Ease(scene.camPos, "y", 0, 1, "inout")
+			},
 			walkin,
 			Do(function()
+				scene.player.x = scene.player.x + 60
+				scene.player.y = scene.player.y + 60
 				GameState:setFlag("robotterminal_enter")
 				scene.player.cinematic = false
 			end)
@@ -97,15 +107,31 @@ return function(scene)
 			end)
 		}
 	elseif GameState:isFlagSet("roboterminal_used") then
-		scene.audio:playMusic("patrol", 1.0, true)
-		scene.audio:setLooping("music", true)
 		scene.objectLookup.Door.sprite:setAnimation("open")
 		scene.objectLookup.Door:removeCollision()
 	
-		return Action()
+		if scene.reentering then
+			return Serial {
+				AudioFade("music", 1.0, 0.0, 2),
+				Do(function()
+					scene.audio:stopMusic()
+				end),
+				PlayAudio("music", "patrol", 1.0, true, true)
+			}
+		else
+			return PlayAudio("music", "patrol", 1.0, true, true)
+		end
 	else
-		scene.audio:playMusic("patrol", 1.0, true)
-		scene.audio:setLooping("music", true)
-		return Action()
+		if scene.reentering then
+			return Serial {
+				AudioFade("music", 1.0, 0.0, 2),
+				Do(function()
+					scene.audio:stopMusic()
+				end),
+				PlayAudio("music", "patrol", 1.0, true, true)
+			}
+		else
+			return PlayAudio("music", "patrol", 1.0, true, true)
+		end
 	end
 end

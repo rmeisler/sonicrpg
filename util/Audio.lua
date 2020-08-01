@@ -161,6 +161,10 @@ function Audio:getCurrentMusic()
 	return nil
 end
 
+function Audio:isMusicPlaying()
+	return self.current.music:isPlaying()
+end
+
 function Audio:playMusic(name, volume, stopCurrent)
 	local music = self.music[name]
 	if self.current.music == music then

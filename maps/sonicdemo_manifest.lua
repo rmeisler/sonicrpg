@@ -2,7 +2,7 @@ return {
     {
         type = "map",
 		file = "maps/robo_opening2.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -96,7 +96,7 @@ return {
 	{
         type = "map",
         file = "maps/sewer.lua",
-		primary = true
+		--primary = true
     },
 	
 	{

@@ -88,7 +88,7 @@ return function(scene)
 				}, 17),
 				
 				Serial {
-					Wait(2),
+					Wait(2.7),
 					AudioFade("music", scene.audio:getMusicVolume(), 0, 1),
 					Do(function()
 						scene.audio:stopMusic()

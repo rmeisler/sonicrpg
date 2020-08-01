@@ -51,11 +51,22 @@ return function(scene)
 			}
 		}
 	end
-	
-	scene.audio:stopMusic()
 
 	scene.audio:playSfx("factoryfloor", 0.1)
 	scene.audio:setLooping("sfx", true)
+	
+	local musicAction
+	if scene.reentering then
+		musicAction = PlayAudio("music", "factory", 1.0, true, true)
+	else
+		musicAction = Serial {
+			AudioFade("music", 1.0, 0.0, 1),
+			Do(function()
+				scene.audio:stopMusic()
+			end),
+			PlayAudio("music", "factory", 1.0, true, true)
+		}
+	end
 	
 	return Serial {
 		Spawn(Serial {
@@ -72,6 +83,6 @@ return function(scene)
 			}
 		}),
 		
-		PlayAudio("music", "factory", 1.0, true, true)
+		musicAction
 	}
 end

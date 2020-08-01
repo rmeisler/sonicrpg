@@ -2,7 +2,7 @@ return {
     image = "factorybot.png",
     starting = "idle",
     w = 50,
-    h = 60,
+    h = 70,
 
     animations = {
 		idle = {

@@ -467,7 +467,7 @@ function Swatbot:noticePlayer(ignoreShadow)
 		end
 	end
 	
-	if self:distanceFromPlayerSq() < audibleDistance*audibleDistance and self.scene.player:isMoving() then
+	if self:distanceFromPlayerSq() < audibleDistance*audibleDistance and (self.hearWithoutMovement or self.scene.player:isMoving()) then
 		return Swatbot.NOTICE_HEAR
 	end
 
