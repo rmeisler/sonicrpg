@@ -20,6 +20,7 @@ BattleActor.STATE_ATTACK = "attack"
 BattleActor.STATE_DEAD   = "dead"
 BattleActor.STATE_CAST   = "cast"
 BattleActor.STATE_HURT   = "hurt"
+BattleActor.STATE_IMMOBILIZED = "immobile"
 
 function BattleActor:construct(scene, data)
 	self.scene = scene
@@ -72,28 +73,33 @@ function BattleActor:defend(target)
 end
 
 function BattleActor:shockKnockback(impact, direction)
+	local sprite = self:getSprite()
 	return Serial {
 		PlayAudio("sfx", "shocked", nil, true),
 		Parallel {
 			Repeat(Serial {
 				Do(function()
-					self.sprite:setInvertedColor()
+					sprite:setInvertedColor()
 				end),
 				Wait(0.1),
 				Do(function()
-					self.sprite:removeInvertedColor()
+					sprite:removeInvertedColor()
 				end),
 				Wait(0.1),
 			}, 3),
 			Serial {
-				Ease(self.sprite.transform, "x", self.sprite.transform.x - (impact/3 * direction), 20, "quad"),
-				Ease(self.sprite.transform, "x", self.sprite.transform.x + (impact/3 * direction), 20, "quad"),
-				Ease(self.sprite.transform, "x", self.sprite.transform.x - (impact/6 * direction), 20, "quad"),
-				Ease(self.sprite.transform, "x", self.sprite.transform.x + (impact/6 * direction), 20, "quad"),
-				Ease(self.sprite.transform, "x", self.sprite.transform.x, 20, "linear")
+				Ease(sprite.transform, "x", sprite.transform.x - (impact/3 * direction), 20, "quad"),
+				Ease(sprite.transform, "x", sprite.transform.x + (impact/3 * direction), 20, "quad"),
+				Ease(sprite.transform, "x", sprite.transform.x - (impact/6 * direction), 20, "quad"),
+				Ease(sprite.transform, "x", sprite.transform.x + (impact/6 * direction), 20, "quad"),
+				Ease(sprite.transform, "x", sprite.transform.x, 20, "linear"),
 			}
 		}
 	}
+end
+
+function BattleActor:getSprite()
+	return self.sprite
 end
 
 function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
@@ -101,14 +107,16 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 	
 	isPassive = isPassive or false
 	
+	local sprite = self:getSprite()
+	
 	-- Reset animation if backward
-	local prevAnim = self.sprite.selected
+	local prevAnim = sprite.selected
 	if prevAnim == "backward" then
 		prevAnim = "idle"
 	end
 
 	-- Calculate damage based on stats of the attacker combined with our own
-	local direction = (self.sprite.transform.x > love.graphics.getWidth()/2) and 1 or -1
+	local direction = (sprite.transform.x > love.graphics.getWidth()/2) and 1 or -1
 	local defense = math.random(selfStats.defense * 2, selfStats.defense * 3)
 	local damage = math.max(0, math.floor((stats.attack * 10 + math.random(stats.attack)) - defense))
 	local impact = 50
@@ -129,8 +137,8 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 		
 		-- Flash transparency
 		knockBackAction = Serial {
-			Ease(self.sprite.color, 4, 0, 10, "quad"),
-			Ease(self.sprite.color, 4, 255, 2, "linear")
+			Ease(sprite.color, 4, 0, 10, "quad"),
+			Ease(sprite.color, 4, 255, 2, "linear")
 		}
 	else
 		-- Random chance of crit
@@ -144,11 +152,11 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 		else
 			knockBackAction = Serial {
 				PlayAudio("sfx", self.hurtSfx, nil, true),
-				Ease(self.sprite.transform, "x", self.sprite.transform.x - (impact/3 * direction), 20, "quad"),
-				Ease(self.sprite.transform, "x", self.sprite.transform.x + (impact/3 * direction), 20, "quad"),
-				Ease(self.sprite.transform, "x", self.sprite.transform.x - (impact/6 * direction), 20, "quad"),
-				Ease(self.sprite.transform, "x", self.sprite.transform.x + (impact/6 * direction), 20, "quad"),
-				Ease(self.sprite.transform, "x", self.sprite.transform.x, 20, "linear"),
+				Ease(sprite.transform, "x", sprite.transform.x + (impact/3 * direction), 20, "quad"),
+				Ease(sprite.transform, "x", sprite.transform.x - (impact/6 * direction), 20, "quad"),
+				Ease(sprite.transform, "x", sprite.transform.x - (impact/3 * direction), 20, "quad"),
+				Ease(sprite.transform, "x", sprite.transform.x + (impact/6 * direction), 20, "quad"),
+				Ease(sprite.transform, "x", sprite.transform.x, 20, "linear"),
 			}
 		end
 	end
@@ -164,19 +172,19 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 		
 		Serial {
 			Animate(
-				self.sprite,
-				(damage > 0 and self.sprite.animations["hurt"])
+				sprite,
+				(damage > 0 and sprite.animations["hurt"] and not self.noHurtAnim)
 					and "hurt" or prevAnim,
 				true
 			),
 			Serial {
 				Parallel {
-					Ease(self.sprite.color, 1, 500, 10, "quad"),
-					Ease(self.sprite.transform, "x", self.sprite.transform.x + (impact * direction), 10, "quad")
+					Ease(sprite.color, 1, 500, 10, "quad"),
+					Ease(sprite.transform, "x", sprite.transform.x + (impact * direction), 10, "quad")
 				},
 				Parallel {
 					knockBackAction,
-					Ease(self.sprite.color, 1, self.color[1], 2, "linear"),
+					Ease(sprite.color, 1, self.color[1], 2, "linear"),
 				}
 			},
 			
@@ -198,7 +206,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 				Do(function() self.hp = math.floor(self.hp) end)
 			}
 		},
-		Animate(self.sprite, prevAnim, true),
+		Animate(sprite, prevAnim, true),
 		Do(function() self.hp = endHp end)
 	}
 	if self.hp - damage <= 0 then
@@ -238,7 +246,8 @@ function BattleActor:die()
 	return Do(function()
 		self.hp = 0
 		self.state = BattleActor.STATE_DEAD
-		self.sprite:setAnimation("dead")
+		
+		self:getSprite():setAnimation("dead")
 	end)
 end
 

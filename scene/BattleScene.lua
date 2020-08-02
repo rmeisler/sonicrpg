@@ -43,6 +43,8 @@ BattleScene.STATE_MONSTERTURN_COMPLETE = "monsterdone"
 BattleScene.STATE_PLAYERWIN            = "playerwin"
 BattleScene.STATE_MONSTERWIN           = "monsterwin"
 
+BattleScene.STATE_CUSTOM               = "custom"
+
 function BattleScene:onEnter(args)
 	self:pushLayer("tiles")
 	self:pushLayer("sprites")
@@ -378,17 +380,19 @@ function BattleScene:update(dt)
 end
 
 function BattleScene:earlyExit()
-	-- Make sure party hp is reflected back into GameState if you run away...
-	for _,mem in ipairs(self.party) do
-		local partyMember = GameState.party[mem.id]
-		partyMember.hp = mem.hp
-		partyMember.sp = mem.sp
-	end
-
 	return Serial {
 		-- Fade out current music
 		AudioFade("music", self.audio:getMusicVolume(), 0, 2),
-		Do(function() self.sceneMgr:popScene{} end)
+		Do(function()
+			-- Make sure party hp is reflected back into GameState if you run away...
+			for _,mem in ipairs(self.party) do
+				local partyMember = GameState.party[mem.id]
+				partyMember.hp = mem.hp
+				partyMember.sp = mem.sp
+			end
+			
+			self.sceneMgr:popScene{}
+		end)
 	}
 end
 
@@ -408,6 +412,13 @@ function BattleScene:onExit(args)
 				Ease(self.bgColor, 1, 0, 1, "linear"),
 				Ease(self.bgColor, 2, 0, 1, "linear"),
 				Ease(self.bgColor, 3, 0, 1, "linear"),
+				
+				Serial {
+					AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+					Do(function()
+						self.audio:stopMusic("nomore")
+					end)
+				},
 				Do(function()
 					ScreenShader:sendColor("multColor", self.bgColor)
 				end)
@@ -467,6 +478,18 @@ function BattleScene:addMonster(monster)
 		},
 		Do(function()
 			oppo:setShadow(mem.hasDropShadow)
+			
+			if mem.mockSprite then
+				oppo.sprite.visible = false
+				oppo.mockSprite = SpriteNode(
+					self,
+					Transform.from(mem.sprite.transform),
+					{255,255,255,255},
+					mem.mockSprite
+				)
+				oppo.mockSprite.transform.x = oppo.mockSprite.transform.x + mem.mockSpriteOffset.x
+				oppo.mockSprite.transform.y = oppo.mockSprite.transform.y + mem.mockSpriteOffset.y
+			end
 		end)
 	})
 	

@@ -28,7 +28,7 @@ local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
     GameState:removeFromParty("antoine")
-	
+	--[[
 	scene.camPos.y = 1300
 	
 	local sonicfall = BasicNPC(
@@ -218,7 +218,8 @@ return function(scene)
 			},
 			Serial {
 				MessageBox {message="Sally: Let's find out...", blocking = true},
-				Wait(2),
+				Wait(1),
+				Animate(sprites.sonic.sprite, "idledown"),
 				MessageBox {message="Sally: That's strange... {p20}this place isn't on any of my father's maps...", blocking = true},
 				
 				Move(scene.objectLookup.R, scene.objectLookup.Waypoint1, "walk"),
@@ -289,5 +290,6 @@ return function(scene)
 		Do(function()
 			scene.player.cinematic = false
 		end)
-	}
+	}]]
+	return Action()
 end

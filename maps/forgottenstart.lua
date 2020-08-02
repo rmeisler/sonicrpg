@@ -8,7 +8,7 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 191,
+  nextobjectid = 192,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_start.lua",
@@ -676,6 +676,27 @@ return {
           visible = true,
           properties = {
             ["sprite"] = "../art/sprites/save.png"
+          }
+        },
+        {
+          id = 191,
+          name = "MechaArm5",
+          type = "MechaArm",
+          shape = "rectangle",
+          x = 1248,
+          y = 1728,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/mechaarm.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["facing"] = "left",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/mechaarm.png"
           }
         }
       }

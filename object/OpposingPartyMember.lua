@@ -46,6 +46,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.hurtSfx = "smack"
 	self.behavior = data.behavior or function() end
 	self.onDead = data.onDead or function() return Action() end
+	self.onEnter = data.onEnter or function() return Action() end
 	self.onAttack = data.onAttack
 	self.textOffset = data.textOffset or Transform(0, self.sprite.h/2 - 15)
 	self.color = data.color or {255,255,255,255}
@@ -56,9 +57,10 @@ function OpposingPartyMember:construct(scene, data)
 end
 
 function OpposingPartyMember:setShadow(visible)
+	local sprite = self:getSprite()
 	self.dropShadow = SpriteNode(
 		self.scene,
-		Transform(self.sprite.transform.x - self.sprite.w + 18, self.sprite.transform.y + self.sprite.h - 14, 2, 2),
+		Transform(sprite.transform.x - sprite.w + 18, sprite.transform.y + sprite.h - 14, 2, 2),
 		nil,
 		"dropshadow"
 	)
@@ -81,6 +83,8 @@ function OpposingPartyMember:beginTurn()
 		end
 	end
 	
+	local sprite = self:getSprite()
+	
 	local additionalActions = {}
 	
 	-- Choose action based on current state
@@ -92,33 +96,33 @@ function OpposingPartyMember:beginTurn()
 			end),
 
 			Ease(
-				self.sprite.transform,
+				sprite.transform,
 				"x",
-				self.sprite.transform.x + 7,
+				sprite.transform.x + 7,
 				10
 			),
 			Ease(
-				self.sprite.transform,
+				sprite.transform,
 				"x",
-				self.sprite.transform.x - 7,
+				sprite.transform.x - 7,
 				10
 			),
 			Ease(
-				self.sprite.transform,
+				sprite.transform,
 				"x",
-				self.sprite.transform.x + 3,
+				sprite.transform.x + 3,
 				10
 			),
 			Ease(
-				self.sprite.transform,
+				sprite.transform,
 				"x",
-				self.sprite.transform.x - 3,
+				sprite.transform.x - 3,
 				10
 			),
 			Ease(
-				self.sprite.transform,
+				sprite.transform,
 				"x",
-				self.sprite.transform.x,
+				sprite.transform.x,
 				10
 			),
 			
@@ -145,7 +149,7 @@ function OpposingPartyMember:beginTurn()
 					if self.prevAnim == "backward" then
 						self.prevAnim = "idle"
 					end
-					self.sprite:setAnimation(self.prevAnim)
+					sprite:setAnimation(self.prevAnim)
 					self.immobilized = false
 					self.chanceToEscape = nil
 				end),
@@ -168,7 +172,7 @@ function OpposingPartyMember:beginTurn()
 	elseif self.lostTurns > 0 then
 		self.action = Telegraph(self, self.name.."'s boredom has subsided.", {self.color[1],self.color[2],self.color[3],50})
 		self.lostTurns = self.lostTurns - 1
-		self.sprite:setAnimation("idle")
+		sprite:setAnimation("idle")
 	else
 		-- Choose action based on behavior
 		self.action = self.behavior(self, self.scene.party[self.selectedTarget]) or Action()
@@ -182,8 +186,8 @@ function OpposingPartyMember:beginTurn()
 				Parallel {
 					Animate(function()
 						local xform = Transform(
-							self.sprite.transform.x - 50,
-							self.sprite.transform.y - 50,
+							sprite.transform.x - 50,
+							sprite.transform.y - 50,
 							2,
 							2
 						)
@@ -217,6 +221,10 @@ function OpposingPartyMember:isTurnOver()
 	return not self.action or self.action:isDone()
 end
 
+function OpposingPartyMember:getSprite()
+	return self.mockSprite or self.sprite
+end
+
 function OpposingPartyMember:die()
 	-- Don't do counter attack
 	self.onAttack = nil
@@ -226,11 +234,13 @@ function OpposingPartyMember:die()
 		extraAnim = self.scene.partyByName["bunny"].reverseAnimation
 	end
 	
+	local sprite = self:getSprite()
+	
 	if self.scene.bossBattle then
 		return Serial {
 			Parallel {
 				extraAnim,
-				Ease(self.sprite.color, 1, 800, 5),
+				Ease(self:getSprite().color, 1, 800, 5),
 				
 				Repeat(Serial {
 					Do(function()
@@ -238,33 +248,33 @@ function OpposingPartyMember:die()
 					end),
 
 					Ease(
-						self.sprite.transform,
+						sprite.transform,
 						"x",
-						self.sprite.transform.x + 7,
+						sprite.transform.x + 7,
 						10
 					),
 					Ease(
-						self.sprite.transform,
+						sprite.transform,
 						"x",
-						self.sprite.transform.x - 7,
+						sprite.transform.x - 7,
 						10
 					),
 					Ease(
-						self.sprite.transform,
+						sprite.transform,
 						"x",
-						self.sprite.transform.x + 3,
+						sprite.transform.x + 3,
 						10
 					),
 					Ease(
-						self.sprite.transform,
+						sprite.transform,
 						"x",
-						self.sprite.transform.x - 3,
+						sprite.transform.x - 3,
 						10
 					),
 					Ease(
-						self.sprite.transform,
+						sprite.transform,
 						"x",
-						self.sprite.transform.x,
+						sprite.transform.x,
 						10
 					),
 				}, 10)
@@ -273,12 +283,12 @@ function OpposingPartyMember:die()
 				self.scene.audio:playSfx("oppdeath")
 				self.dropShadow:remove()
 			end),
-			Ease(self.sprite.color, 4, 0, 2),
+			Ease(sprite.color, 4, 0, 2),
 			
 			Do(function()
 				self.hp = 0
 				self.state = BattleActor.STATE_DEAD
-				self.sprite:remove()
+				sprite:remove()
 			end),
 			
 			self.onDead(self),
@@ -297,14 +307,14 @@ function OpposingPartyMember:die()
 			-- Fade out with red and play sound
 			Parallel {
 				extraAnim,
-				Ease(self.sprite.color, 1, 800, 5),
-				Ease(self.sprite.color, 4, 0, 2)
+				Ease(sprite.color, 1, 800, 5),
+				Ease(sprite.color, 4, 0, 2)
 			},
 			
 			Do(function()
 				self.hp = 0
 				self.state = BattleActor.STATE_DEAD
-				self.sprite:remove()
+				sprite:remove()
 			end),
 			
 			self.onDead(self),

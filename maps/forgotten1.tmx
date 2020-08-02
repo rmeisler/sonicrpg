@@ -376,7 +376,7 @@
     <property name="spawn_point" value="Exit1"/>
    </properties>
   </object>
-  <object id="175" name="MechaArm5" type="MechaArm" gid="1227" x="64" y="1568" width="32" height="32">
+  <object id="175" name="MechaArm5" type="MechaArm" gid="1227" x="32" y="1568" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/mechaarm.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>

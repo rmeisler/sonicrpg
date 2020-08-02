@@ -9,6 +9,7 @@ local Executor = require "actions/Executor"
 local Repeat = require "actions/Repeat"
 local Action = require "actions/Action"
 local Do = require "actions/Do"
+local MessageBox = require "actions/MessageBox"
 local Animate = require "actions/Animate"
 
 local Layout = require "util/Layout"
@@ -103,16 +104,67 @@ function PartyMember:setShadow()
 end
 
 function PartyMember:beginTurn()
-	BattleActor.beginTurn(self)
-	
-	self.turnover = false
+	if self.state == BattleActor.STATE_IMMOBILIZED then
+		self.turnover = false
 
-	self.mainMenu = Menu {
-		transform = Transform(250, love.graphics.getHeight() - 97),
-		layout = Layout(self.options),	
-	}
-	self.mainMenu:addHandler("cancel", PartyMember.skipTurn, self, self.mainMenu)
-	self.scene:run(self.mainMenu)
+		self.scene:run {
+			Repeat(Serial {
+				Do(function()
+					self.scene.audio:playSfx("bang")
+				end),
+
+				Ease(
+					self.sprite.transform,
+					"x",
+					function() return self.sprite.transform.x + 7 end,
+					10
+				),
+				Ease(
+					self.sprite.transform,
+					"x",
+					function() return self.sprite.transform.x - 7 end,
+					10
+				),
+				Ease(
+					self.sprite.transform,
+					"x",
+					function() return self.sprite.transform.x + 3 end,
+					10
+				),
+				Ease(
+					self.sprite.transform,
+					"x",
+					function() return self.sprite.transform.x - 3 end,
+					10
+				),
+				Ease(
+					self.sprite.transform,
+					"x",
+					function() return self.sprite.transform.x end,
+					10
+				),
+				
+				Wait(0.5)
+			}, 2),
+
+			MessageBox {message=self.name.." is immobilized!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)},
+			
+			Do(function()
+				self:endTurn()
+			end)
+		}
+	else
+		BattleActor.beginTurn(self)
+		
+		self.turnover = false
+
+		self.mainMenu = Menu {
+			transform = Transform(250, love.graphics.getHeight() - 97),
+			layout = Layout(self.options),	
+		}
+		self.mainMenu:addHandler("cancel", PartyMember.skipTurn, self, self.mainMenu)
+		self.scene:run(self.mainMenu)
+	end
 end
 
 function PartyMember:skipTurn(actionMenu)

@@ -5,6 +5,8 @@ return {
 	name = "Bot Arm",
 	desc = "This could be useful...",
 	type = ItemType.Weapon,
+	subtype = WeaponType.Sword,
+	sprite = "sword",
 	usableBy = {"antoine", "sally", "sonic", "rotor", "bunny"},
 	stats = {
 		attack = 2,
