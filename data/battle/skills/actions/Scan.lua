@@ -30,11 +30,11 @@ return function(self, target)
 		PlayAudio("sfx", "nicholescan", 1.0, true),
 		-- Parallax over enemy
 		Do(function()
-			target.sprite:setParallax(2)
+			target:getSprite():setParallax(2)
 		end),
 		Wait(1.6),
 		Do(function()
-			target.sprite:removeParallax()
+			target:getSprite():removeParallax()
 		end),
 		weaknessMessage,
 		MessageBox {

@@ -111,14 +111,14 @@ return {
 				}
 			end
 		else
-			self.grabbed = target.id
-			self.grabProgress = 1
-			
 			-- Mechaarm is confused, do nothing
-			local targetMem = self.scene.partyByName[self.grabbed]
+			local targetMem = self.scene.partyByName[target.id]
 			if not targetMem then
 				return Action()
 			end
+			
+			self.grabbed = target.id
+			self.grabProgress = 1
 			
 			local targetSprite = targetMem.sprite
 			self.grabbedXform = Transform(targetSprite.transform.x, targetSprite.transform.y)
