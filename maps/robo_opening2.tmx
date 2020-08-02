@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="97" height="180" tilewidth="32" tileheight="32" infinite="0" nextobjectid="241">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="97" height="180" tilewidth="32" tileheight="32" infinite="0" nextobjectid="244">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/robo_intro2.lua"/>
@@ -972,7 +972,7 @@
     <property name="sprite" type="file" value="../art/sprites/heap.png"/>
    </properties>
   </object>
-  <object id="200" name="CHeap3" type="BasicNPC" gid="1922" x="1216" y="1504" width="128" height="32">
+  <object id="200" name="CHeap4" type="BasicNPC" gid="1922" x="1280" y="1504" width="128" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hideOffset" type="int" value="26"/>
@@ -1072,7 +1072,7 @@ end
     <property name="spawn_point" value="Spawn 1"/>
    </properties>
   </object>
-  <object id="225" name="Cambot2" type="Cambot" gid="37" x="1344" y="1728" width="32" height="96">
+  <object id="225" name="Cambot2" type="Cambot" gid="37" x="1344" y="1696" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="battle" type="file" value="../data/monsters/cambot.lua"/>
@@ -1081,7 +1081,7 @@ end
     <property name="follow" value="Waypoint7,Waypoint20,Waypoint10,Waypoint20"/>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="ignoreCollision" value="CHeap1,CHeap2,CHeap3,CHeap5"/>
+    <property name="ignoreCollision" value="CHeap1,CHeap2,CHeap3,CHeap4,CHeap5,CHeap6,CHeap7"/>
     <property name="sprite" type="file" value="../art/sprites/cambot.png"/>
    </properties>
   </object>
@@ -1152,6 +1152,30 @@ end
   <object id="240" name="Waypoint20" type="BasicNPC" gid="37" x="1536" y="1696" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="241" name="CHeap6" type="BasicNPC" gid="1922" x="1920" y="1504" width="128" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="hideOffset" type="int" value="26"/>
+    <property name="hidingspot" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/heap.png"/>
+   </properties>
+  </object>
+  <object id="242" name="CHeap7" type="BasicNPC" gid="1922" x="2048" y="1504" width="128" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="hideOffset" type="int" value="26"/>
+    <property name="hidingspot" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/heap.png"/>
+   </properties>
+  </object>
+  <object id="243" name="CHeap3" type="BasicNPC" gid="1922" x="1024" y="1504" width="128" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="hideOffset" type="int" value="26"/>
+    <property name="hidingspot" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/heap.png"/>
    </properties>
   </object>
  </objectgroup>
@@ -1586,9 +1610,9 @@ end
 0,0,0,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,1776,0,0,1775,0,0,0,0,0,0,0,1775,0,0,0,0,0,
 0,0,0,1776,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1776,0,0,1775,0,0,0,0,0,0,0,1775,0,0,0,0,0,
 0,0,0,1776,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1776,0,0,1775,0,0,0,0,0,0,0,1775,0,0,0,0,0,
-0,0,0,1776,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1775,1775,1775,1775,1775,1775,1775,0,0,0,0,0,0,0,0,0,0,0,1775,1775,1775,1775,1775,0,0,0,0,0,0,0,0,0,0,0,1775,0,0,1775,0,0,0,0,0,0,0,1775,0,0,0,0,0,
-0,0,0,1776,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1775,0,0,0,0,0,1776,0,0,0,0,0,0,0,0,0,0,0,1775,0,0,0,1776,0,0,0,0,0,0,0,0,0,0,0,1776,0,0,1775,0,0,0,0,0,0,0,1775,0,0,0,0,0,
-0,0,0,1776,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1775,1775,1775,1776,1776,1775,0,0,0,0,0,0,0,0,0,0,0,0,1775,1775,1775,1775,1775,0,0,0,0,0,0,0,0,0,0,0,1775,0,0,1775,0,0,0,0,0,0,0,1775,0,0,0,0,0,
+0,0,0,1776,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1775,0,0,1775,0,0,0,0,0,0,0,1775,0,0,0,0,0,
+0,0,0,1776,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1776,0,0,1775,0,0,0,0,0,0,0,1775,0,0,0,0,0,
+0,0,0,1776,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1775,0,0,1775,0,0,0,0,0,0,0,1775,0,0,0,0,0,
 0,0,0,1776,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1775,0,0,1775,0,0,0,0,0,0,0,1775,0,0,0,0,0,
 0,0,0,1776,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1775,1775,1775,0,0,0,0,0,0,0,0,1775,0,0,0,0,0,
 0,0,0,1776,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1775,0,0,0,0,0,

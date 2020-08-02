@@ -1340,7 +1340,7 @@ return {
           name = "MechaArm1",
           type = "MechaArm",
           shape = "rectangle",
-          x = 1216,
+          x = 1184,
           y = 1792,
           width = 32,
           height = 32,

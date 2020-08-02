@@ -675,7 +675,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/wall.png"/>
    </properties>
   </object>
-  <object id="318" name="MechaArm1" type="MechaArm" gid="1227" x="1216" y="1792" width="32" height="32">
+  <object id="318" name="MechaArm1" type="MechaArm" gid="1227" x="1184" y="1792" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/mechaarm.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>

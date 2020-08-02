@@ -171,12 +171,11 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 		isPassive = isPassive,
 		
 		Serial {
-			Animate(
-				sprite,
-				(damage > 0 and sprite.animations["hurt"] and not self.noHurtAnim)
-					and "hurt" or prevAnim,
-				true
-			),
+			Do(function()
+				if (damage > 0 and sprite.animations["hurt"] and not self.noHurtAnim) then
+					sprite:setAnimation("hurt")
+				end
+			end),
 			Serial {
 				Parallel {
 					Ease(sprite.color, 1, 500, 10, "quad"),
@@ -206,8 +205,10 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 				Do(function() self.hp = math.floor(self.hp) end)
 			}
 		},
-		Animate(sprite, prevAnim, true),
-		Do(function() self.hp = endHp end)
+		Do(function()
+			sprite:setAnimation(prevAnim)
+			self.hp = endHp
+		end)
 	}
 	if self.hp - damage <= 0 then
 		action:add(self.scene, self:die())

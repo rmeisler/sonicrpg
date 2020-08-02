@@ -32,7 +32,7 @@ Swatbot.BEHAVIOR_CHASING       = 2
 function Swatbot:construct(scene, layer, object)	
 	self.action = Serial{}
 	
-	self.ghost = true
+	--self.ghost = true
 	self.alignment = NPC.ALIGN_BOTLEFT
 	self.ignorePlayer = object.properties.ignorePlayer
 	self.noInvestigate = object.properties.noInvestigate
@@ -53,14 +53,7 @@ function Swatbot:construct(scene, layer, object)
 
 	self.facing = "right"
 	
-	self.dropShadow = BasicNPC(
-		self.scene,
-		{name = "objects"},
-		{name = "dropshadow", x = 0, y = 0, width = 36, height = 6,
-			properties = {nocollision = true, sprite = "art/sprites/dropshadow.png", align = NPC.ALIGN_TOPLEFT}
-		}
-	)
-	self.scene:addObject(self.dropShadow)
+	self:createDropShadow()
 	
 	self.udflashlight = SpriteNode(
 		self.scene,
@@ -491,6 +484,17 @@ function Swatbot:hop(waitTime)
 	}
 end
 
+function Swatbot:createDropShadow()
+	self.dropShadow = BasicNPC(
+		self.scene,
+		{name = "objects"},
+		{name = "dropshadow", x = 0, y = 0, width = 36, height = 6,
+			properties = {nocollision = true, sprite = "art/sprites/dropshadow.png", align = NPC.ALIGN_TOPLEFT}
+		}
+	)
+	self.scene:addObject(self.dropShadow)
+end
+
 function Swatbot:updateDropShadowPos(xonly)
 	self.dropShadow.x = self.x + 18
 	
@@ -635,8 +639,8 @@ function Swatbot:updateAction(dt)
 		local cx = self.x + 20
 		local cy = self.y + self.sprite.h*2 - self.scene:getTileHeight()
 		local cx2 = cx + self.scene:getTileWidth()
-		if  self.scene.player:isTouching(cx, cy) or
-			self.scene.player:isTouching(cx2, cy)
+		if  self.scene.player:isTouching(cx, cy, self.object.width, self.object.height) or
+			self.scene.player:isTouching(cx2, cy, self.object.width, self.object.height)
 		then
 			self.state = NPC.STATE_TOUCHING
 			self:invoke("collision")
