@@ -23,11 +23,6 @@ return {
 	
 	{
         type = "map",
-        file = "maps/factoryvents.lua"
-    },
-	
-	{
-        type = "map",
         file = "maps/factoryfloor2.lua"
     },
 	
@@ -99,12 +94,12 @@ return {
 		primary = true
     },
 	
-	{
+	--[[{
 		type = "map",
 		file = "maps/knothole.lua",
 		music = "music/knothole",
 		--primary = true
-	},
+	},]]
 	
 	{
 		type = "gradient",
