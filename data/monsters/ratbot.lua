@@ -112,6 +112,7 @@ return {
 			Animate(self.sprite, prefix.."pose"),
 			Parallel {
 				Serial {
+					PlayAudio("sfx", "swing", 1.0, true),
 					Wait(0.2),
 					Animate(self.sprite, prefix.."tail"),
 					Animate(self.sprite, "pose")

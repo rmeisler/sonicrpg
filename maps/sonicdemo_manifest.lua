@@ -90,8 +90,13 @@ return {
 	
 	{
         type = "map",
-        file = "maps/sewer.lua",
+        file = "maps/sewer1.lua",
 		primary = true
+    },
+	
+	{
+        type = "map",
+        file = "maps/sewer2.lua"
     },
 	
 	--[[{
@@ -616,12 +621,22 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/ratstep.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/cambotpic.ogg",
 		category = "sfx"
 	},
 	{
 		type = "sound",
 		file = "audio/sfx/swatbotlaser.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/swing.ogg",
 		category = "sfx"
 	},
 	{
@@ -790,6 +805,12 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/robobuilding.ogg",
+		category = "music",
+		looping = true,
+	},
+	{
+		type = "sound",
+		file = "audio/music/underground.ogg",
 		category = "music",
 		looping = true,
 	},

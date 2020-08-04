@@ -43,7 +43,7 @@ function Ratbot:construct(scene, layer, object)
 	
 	self.dropShadow.sprite.transform.sx = 5
 
-	self.stepSfx = nil
+	self.stepSfx = "ratstep"
 end
 
 function Swatbot:createDropShadow()
