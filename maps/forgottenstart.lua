@@ -677,27 +677,6 @@ return {
           properties = {
             ["sprite"] = "../art/sprites/save.png"
           }
-        },
-        {
-          id = 191,
-          name = "MechaArm5",
-          type = "MechaArm",
-          shape = "rectangle",
-          x = 1248,
-          y = 1728,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/mechaarm.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
-            ["facing"] = "left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/mechaarm.png"
-          }
         }
       }
     },

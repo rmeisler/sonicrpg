@@ -335,7 +335,7 @@ return {
           shape = "rectangle",
           x = 736,
           y = 1152,
-          width = 64,
+          width = 32,
           height = 32,
           rotation = 0,
           gid = 2311,
@@ -471,8 +471,8 @@ return {
             ["ghost"] = true,
             ["key"] = "down",
             ["orientation"] = "up",
-            ["scene"] = "factoryfloor3.lua",
-            ["spawn_point"] = "Exit2"
+            ["scene"] = "factoryfloor.lua",
+            ["spawn_point"] = "Exit1"
           }
         },
         {

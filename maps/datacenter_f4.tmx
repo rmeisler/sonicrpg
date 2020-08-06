@@ -187,7 +187,7 @@
 </data>
  </layer>
  <objectgroup name="computerobject">
-  <object id="497" name="Computer1" type="Computer" gid="2311" x="736" y="1152" width="64" height="32">
+  <object id="497" name="Computer1" type="Computer" gid="2311" x="736" y="1152" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="int" value="-32"/>
@@ -627,8 +627,8 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="down"/>
     <property name="orientation" value="up"/>
-    <property name="scene" type="file" value="factoryfloor3.lua"/>
-    <property name="spawn_point" value="Exit2"/>
+    <property name="scene" type="file" value="factoryfloor.lua"/>
+    <property name="spawn_point" value="Exit1"/>
    </properties>
   </object>
   <object id="493" name="Rover1" type="Swatbot" gid="37" x="-64" y="2432" width="32" height="32">

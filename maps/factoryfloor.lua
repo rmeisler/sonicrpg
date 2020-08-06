@@ -8,7 +8,7 @@ return {
   height = 161,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 171,
+  nextobjectid = 172,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/factoryfloor.lua",
@@ -507,7 +507,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -32,
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"factoryfloor_door1\") then\n        return Action()\n    end\n\n    if self.scene.player.isSwatbot[GameState.leader] then\n        GameState:setFlag(self)\n        self.scene.objectLookup.Door2:removeCollision()\n        return Serial {\n            MessageBox { message = \"Computer: Access granted.\", textSpeed = 4, blocking = true, sfx = \"levelup\"},\n            Animate(self.scene.objectLookup.Door2.sprite, \"opening\"),\n            Animate(self.scene.objectLookup.Door2.sprite, \"open\"),\n            Do(function()\n                print(\"animation over?\")\n                GameState:setFlag(\"factoryfloor_door1\")\n                self.scene.player.state = \"idledown\"\n            end)\n        }\n    elseif GameState.leader == \"sally\" then\n        return Serial {\n            MessageBox { message = \"Computer: Only security bots may enter.\", textSpeed = 4, blocking = true, sfx = \"error\"},\n            Do(function() self.scene.player.state = \"thinking\" end),\n            MessageBox { message = \"Sally: Hmmm...\", blocking = true},\n            Do(function() self.scene.player.state = \"idledown\" end)\n        }\n    elseif GameState.leader == \"sonic\" then\n        return Serial {\n            MessageBox { message = \"Computer: Only security bots may enter.\", textSpeed = 4, blocking = true, sfx = \"error\"},\n            MessageBox { message = \"Sonic: How do we get in there?\", blocking = true},\n            Do(function() self.scene.player.state = \"idledown\" end)\n        }\n    elseif GameState.leader == \"antoine\" then\n        local walkout, walkin, _sprites = self.scene.player:split()\n        return Serial {\n            MessageBox { message = \"Computer: Only security bots may enter.\", textSpeed = 4, blocking = true, sfx = \"error\"},\n            walkout,\n            MessageBox { message = \"Antoine: Oh well. I guess zis is as far as we may go!\", blocking = true},\n            MessageBox { message = \"Sally: Nice try, Antoine.\", blocking = true},\n            MessageBox { message = \"Antoine: Bonte gracieuse...\", blocking = true},\n            walkin,\n            Do(function()\n                self.scene.player.state = \"idledown\"\n                self.scene.player.x = self.scene.player.x + 60\n                self.scene.player.y = self.scene.player.y + 60\n            end)\n        }\n    end\nend",
+            ["onScan"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"factoryfloor_door1\") then\n        return Action()\n    end\n\n    if not GameState.items[\"Keycard\"] then\n        local walkout, walkin, sprites = self.scene.player:split()\n        return Serial {\n            Wait(1),\n            MessageBox { message = \"Computer: Keycard required.\", textSpeed = 4, blocking = true, sfx = \"error\"},\n            walkout,\n            MessageBox { message = \"Antoine: Oh well. I guess zis is as far as we may go!\", blocking = true},\n            MessageBox { message = \"Sally: Nice try, Antoine.\", blocking = true},\n            MessageBox { message = \"Antoine: Bonte gracieuse...\", blocking = true},\n            walkin,\n            Do(function()\n                self.scene.player.state = \"idledown\"\n                self.scene.player.x = self.scene.player.x + 60\n                self.scene.player.y = self.scene.player.y + 60\n            end)\n        }\n    else\n        GameState:setFlag(self)\n        self.scene.objectLookup.Door2:removeCollision()\n        return Serial {\n            Wait(1),\n            MessageBox { message = \"Computer: Access granted.\", textSpeed = 4, blocking = true, sfx = \"levelup\"},\n            Animate(self.scene.objectLookup.Door2.sprite, \"opening\"),\n            Animate(self.scene.objectLookup.Door2.sprite, \"open\"),\n            Do(function()\n                print(\"animation over?\")\n                GameState:setFlag(\"factoryfloor_door1\")\n                self.scene.player.state = \"idledown\"\n            end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/computer.png"
           }
         },
@@ -524,31 +524,14 @@ return {
           gid = 3501,
           visible = true,
           properties = {
-            ["ThickGloves"] = 1,
-            ["sprite"] = "../art/sprites/chest.png"
-          }
-        },
-        {
-          id = 111,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 704,
-          y = 2048,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 3501,
-          visible = true,
-          properties = {
-            ["Mine"] = 1,
+            ["BlueLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest.png"
           }
         },
         {
           id = 115,
           name = "ConveyorObj1",
-          type = "Switch",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 480,
           y = 2208,
@@ -561,15 +544,13 @@ return {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "right_active",
             ["ghost"] = false,
-            ["onScan"] = "local Menu = require \"actions/Menu\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Action = require \"actions/Action\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    local activateText = \"activate\"\n    if self.sprite.selected == \"right_active\" then\n        activateText = \"deactivate\"\n    end\n\n    local menu = Menu {\n            layout = Layout {\n                {Layout.Text(\"Yes\"),\n                    choose = function(menu)\n                        menu:close()\n                        self.sprite:setAnimation(self.sprite.selected == \"right_active\" and \"right_inactive\" or \"right_active\")\n                    end},\n                {Layout.Text(\"No\"),\n                    choose = function(menu)\n                        menu:close()\n                    end},\n            },\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight() - 60),\n            cancellable = true,\n            blocking = true\n        }\n    local mbox = MessageBox {\n                message=\"Nicole: Would you like to \"..activateText..\" the conveyor{p20}, Sally?\",\n                closeAction = YieldUntil(function() return menu.closing end)\n            }\n\n    return Serial {\n        MessageBox {\n            message=\"Nicole: {p30}.{p30}.{p30}.\",\n            blocking=true,\n            closeAction=Action()\n        },\n        Parallel {\n            mbox,\n            Serial {\n                YieldUntil(function() return mbox.opened end),\n                menu\n            }\n        }\n    }\nend",
-            ["overrideScript"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    if self.itemAvailable then\n        local response\n        if GameState.leader == \"sally\" then\n            response = MessageBox {\n                message=\"Sally: If we can get enough bot parts, we should be able to impersonate a Swatbot!\",\n                blocking=true\n            }\n        elseif GameState.leader == \"antoine\" then\n            response = MessageBox {\n                message=\"Antoine: Oh! Could we use this to be looking as a Swatbot?\",\n                blocking=true\n            }\n        elseif GameState.leader == \"sonic\" then\n            response = MessageBox {\n                message=\"Sonic: Hey! I bet we could disguise ourselves as a Swatbutt if we collect some more of these parts!\",\n                blocking=true\n            }\n        end\n\n        local item = require \"data/accessories/BotHead\"\n        GameState:grantItem(item, 1)\n        self.scene.audio:playSfx(\"choose\", nil, true)\n        return Serial {\n            MessageBox {\n                message = \"You received a Bot Head!\",\n                blocking = true\n            },\n            response\n        }\n    else\n        if GameState.leader == \"sally\" then\n            return MessageBox {\n                message=\"Sally: I wonder if I can crack this with Nicole...\",\n                blocking=true\n            }\n        elseif GameState.leader == \"antoine\" then\n            return MessageBox {\n                message=\"Antoine: Hmmm... {p50}I don't have one clue.\",\n                blocking=true\n            }\n        elseif GameState.leader == \"sonic\" then\n            return MessageBox {\n                message=\"Sonic: This techno-junk gives me a headache.\",\n                blocking=true\n            }\n        end\n    end\nend",
             ["sprite"] = "../art/sprites/conveyorobject.png"
           }
         },
         {
           id = 119,
           name = "ConveyorObj2",
-          type = "Switch",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 96,
           y = 1856,
@@ -580,17 +561,15 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "left_inactive",
+            ["defaultAnim"] = "left_active",
             ["ghost"] = false,
-            ["onScan"] = "local Menu = require \"actions/Menu\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Action = require \"actions/Action\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    local activateText = \"activate\"\n    if self.sprite.selected == \"left_active\" then\n        activateText = \"deactivate\"\n    end\n\n    local menu = Menu {\n            layout = Layout {\n                {Layout.Text(\"Yes\"),\n                    choose = function(menu)\n                        menu:close()\n                        self.sprite:setAnimation(self.sprite.selected == \"left_active\" and \"left_inactive\" or \"left_active\")\n                    end},\n                {Layout.Text(\"No\"),\n                    choose = function(menu)\n                        menu:close()\n                    end},\n            },\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight() - 60),\n            cancellable = true,\n            blocking = true\n        }\n    local mbox = MessageBox {\n                message=\"Nicole: Would you like to \"..activateText..\" the conveyor{p20}, Sally?\",\n                closeAction = YieldUntil(function() return menu.closing end)\n            }\n\n    return Serial {\n        MessageBox {\n            message=\"Nicole: {p30}.{p30}.{p30}.\",\n            blocking=true,\n            closeAction=Action()\n        },\n        Parallel {\n            mbox,\n            Serial {\n                YieldUntil(function() return mbox.opened end),\n                menu\n            }\n        }\n    }\nend",
-            ["overrideScript"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    if self.itemAvailable then\n        local item = require \"data/weapons/BotArm\"\n        GameState:grantItem(item, 1)\n        self.scene.audio:playSfx(\"choose\", nil, true)\n        return MessageBox {\n            message = \"You received a Bot Arm!\",\n            blocking = true\n         }\n    else\n        if GameState.leader == \"sally\" then\n            return MessageBox {\n                message=\"Sally: I wonder if I can crack this with Nicole...\",\n                blocking=true\n            }\n        elseif GameState.leader == \"antoine\" then\n            return MessageBox {\n                message=\"Antoine: Hmmm... {p50}I don't have one clue.\",\n                blocking=true\n            }\n        elseif GameState.leader == \"sonic\" then\n            return MessageBox {\n                message=\"Sonic: This techno-junk gives me a headache.\",\n                blocking=true\n            }\n        end\n    end\nend",
             ["sprite"] = "../art/sprites/conveyorobject.png"
           }
         },
         {
           id = 124,
           name = "ConveyorObj3",
-          type = "Switch",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 480,
           y = 1344,
@@ -601,10 +580,8 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "right_inactive",
+            ["defaultAnim"] = "right_active",
             ["ghost"] = false,
-            ["onScan"] = "local Menu = require \"actions/Menu\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Action = require \"actions/Action\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    local activateText = \"activate\"\n    if self.sprite.selected == \"right_active\" then\n        activateText = \"deactivate\"\n    end\n\n    local menu = Menu {\n            layout = Layout {\n                {Layout.Text(\"Yes\"),\n                    choose = function(menu)\n                        menu:close()\n                        self.sprite:setAnimation(self.sprite.selected == \"right_active\" and \"right_inactive\" or \"right_active\")\n                    end},\n                {Layout.Text(\"No\"),\n                    choose = function(menu)\n                        menu:close()\n                    end},\n            },\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight() - 60),\n            cancellable = true,\n            blocking = true\n        }\n    local mbox = MessageBox {\n                message=\"Nicole: Would you like to \"..activateText..\" the conveyor{p20}, Sally?\",\n                closeAction = YieldUntil(function() return menu.closing end)\n            }\n\n    return Serial {\n        MessageBox {\n            message=\"Nicole: {p30}.{p30}.{p30}.\",\n            blocking=true,\n            closeAction=Action()\n        },\n        Parallel {\n            mbox,\n            Serial {\n                YieldUntil(function() return mbox.opened end),\n                menu\n            }\n        }\n    }\nend",
-            ["overrideScript"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    if self.itemAvailable then\n        local item = require \"data/armor/BotTorso\"\n        GameState:grantItem(item, 1)\n        self.scene.audio:playSfx(\"choose\", nil, true)\n        return MessageBox {\n            message = \"You received a Bot Torso!\",\n            blocking = true\n         }\n    else\n        if GameState.leader == \"sally\" then\n            return MessageBox {\n                message=\"Sally: I wonder if I can crack this with Nicole...\",\n                blocking=true\n            }\n        elseif GameState.leader == \"antoine\" then\n            return MessageBox {\n                message=\"Antoine: Hmmm... {p50}I don't have one clue.\",\n                blocking=true\n            }\n        elseif GameState.leader == \"sonic\" then\n            return MessageBox {\n                message=\"Sonic: This techno-junk gives me a headache.\",\n                blocking=true\n            }\n        end\n    end\nend",
             ["sprite"] = "../art/sprites/conveyorobject.png"
           }
         },
@@ -661,7 +638,7 @@ return {
         {
           id = 139,
           name = "FactoryBot1",
-          type = "Swatbot",
+          type = "FactoryBot",
           shape = "rectangle",
           x = 416,
           y = 1440,
@@ -671,7 +648,7 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["audibleDistance"] = 150,
+            ["audibleDistance"] = 200,
             ["battle"] = "../data/monsters/factorybot.lua",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
@@ -681,9 +658,8 @@ return {
             ["ghost"] = true,
             ["ignoreCollision"] = "Pillar5,ConveyorBelt1,ConveyorBelt2,ConveyorBelt3,Pillar6",
             ["ignorePlayer"] = false,
-            ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/factorybot.png",
-            ["visibleDistance"] = 150
+            ["visibleDistance"] = 200
           }
         },
         {
@@ -983,7 +959,7 @@ return {
         {
           id = 168,
           name = "FactoryBot2",
-          type = "Swatbot",
+          type = "FactoryBot",
           shape = "rectangle",
           x = 416,
           y = 896,
@@ -993,7 +969,7 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["audibleDistance"] = 150,
+            ["audibleDistance"] = 200,
             ["battle"] = "../data/monsters/factorybot.lua",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
@@ -1003,9 +979,8 @@ return {
             ["ghost"] = true,
             ["ignoreCollision"] = "Pillar5,ConveyorBelt1,ConveyorBelt2,ConveyorBelt3,Pillar6",
             ["ignorePlayer"] = false,
-            ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/factorybot.png",
-            ["visibleDistance"] = 150
+            ["visibleDistance"] = 200
           }
         },
         {
@@ -1046,6 +1021,23 @@ return {
             ["scene"] = "datacenter_f4.lua",
             ["spawn_point"] = "Exit1",
             ["walkin"] = true
+          }
+        },
+        {
+          id = 171,
+          name = "Chest2",
+          type = "Chest",
+          shape = "rectangle",
+          x = 736,
+          y = 1184,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 3501,
+          visible = true,
+          properties = {
+            ["Keycard"] = 1,
+            ["sprite"] = "../art/sprites/chest.png"
           }
         }
       }
@@ -1338,7 +1330,7 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["actions"] = "local Serial = require \"actions/Serial\"\nlocal Move = require \"actions/Move\"\nlocal Do = require \"actions/Do\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nreturn function(self)\n    return Serial {\n        Do(function() self.sprite.color[4] = 0 end),\n        Parallel {\n            Ease(self.sprite.color, 4, 50, 2, \"inout\"),\n            Move(self, self.scene.objectLookup.Waypoint1),\n            Serial {\n                YieldUntil(function() return self.x > 720 end),\n                Ease(self.sprite.color, 4, 0, 2, \"inout\"),\n                Do(function() self:remove() end)\n            }\n        }\n    }\nend",
+            ["actions"] = "local Serial = require \"actions/Serial\"\nlocal Move = require \"actions/Move\"\nlocal Do = require \"actions/Do\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nreturn function(self)\n    return Serial {\n        Do(function() self.sprite.color[4] = 0 end),\n        Parallel {\n            Ease(self.sprite.color, 4, 50, 2, \"inout\"),\n            Move(self, self.scene.objectLookup.Waypoint1),\n            Serial {\n                YieldUntil(function() return self.x > 800 end),\n                Ease(self.sprite.color, 4, 0, 2, \"inout\"),\n                Do(function() self:remove() end)\n            }\n        }\n    }\nend",
             ["every"] = 2,
             ["ghost"] = true,
             ["ignoreMapCollision"] = true,
@@ -1362,7 +1354,7 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["actions"] = "local Serial = require \"actions/Serial\"\nlocal Move = require \"actions/Move\"\nlocal Do = require \"actions/Do\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nreturn function(self)\n    return Serial {\n        Do(function() self.sprite.color[4] = 0 end),\n        Parallel {\n            Ease(self.sprite.color, 4, 50, 2, \"inout\"),\n            Move(self, self.scene.objectLookup.Waypoint2),\n            Serial {\n                YieldUntil(function() return self.x < 150 end),\n                Ease(self.sprite.color, 4, 0, 2, \"inout\"),\n                Do(function() self:remove() end)\n            }\n        }\n    }\nend",
+            ["actions"] = "local Serial = require \"actions/Serial\"\nlocal Move = require \"actions/Move\"\nlocal Do = require \"actions/Do\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nreturn function(self)\n    return Serial {\n        Do(function() self.sprite.color[4] = 0 end),\n        Parallel {\n            Ease(self.sprite.color, 4, 50, 2, \"inout\"),\n            Move(self, self.scene.objectLookup.Waypoint2),\n            Serial {\n                YieldUntil(function() return self.x < 0 end),\n                Ease(self.sprite.color, 4, 0, 2, \"inout\"),\n                Do(function() self:remove() end)\n            }\n        }\n    }\nend",
             ["every"] = 2,
             ["ghost"] = true,
             ["ignoreMapCollision"] = true,
@@ -1386,7 +1378,7 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["actions"] = "local Serial = require \"actions/Serial\"\nlocal Move = require \"actions/Move\"\nlocal Do = require \"actions/Do\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nreturn function(self)\n    return Serial {\n        Do(function() self.sprite.color[4] = 0 end),\n        Parallel {\n            Ease(self.sprite.color, 4, 30, 2, \"inout\"),\n            Move(self, self.scene.objectLookup.Waypoint3),\n            Serial {\n                YieldUntil(function() return self.x > 690 end),\n                Ease(self.sprite.color, 4, 0, 2, \"inout\"),\n                Do(function() self:remove() end)\n            }\n        }\n    }\nend",
+            ["actions"] = "local Serial = require \"actions/Serial\"\nlocal Move = require \"actions/Move\"\nlocal Do = require \"actions/Do\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nreturn function(self)\n    return Serial {\n        Do(function() self.sprite.color[4] = 0 end),\n        Parallel {\n            Ease(self.sprite.color, 4, 30, 2, \"inout\"),\n            Move(self, self.scene.objectLookup.Waypoint3),\n            Serial {\n                YieldUntil(function() return self.x > 800 end),\n                Ease(self.sprite.color, 4, 0, 2, \"inout\"),\n                Do(function() self:remove() end)\n            }\n        }\n    }\nend",
             ["every"] = 2,
             ["ghost"] = true,
             ["ignoreMapCollision"] = true,

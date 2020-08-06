@@ -61,5 +61,35 @@ return {
             frames = {{3,0},{3,0},{3,0},{3,0}},
 			speed = 0.2
         },
+		
+		lightdown = {
+            frames = {{0,0}}
+        },
+		lightup = {
+            frames = {{1,0}}
+        },
+		lightright = {
+            frames = {{2,0}}
+        },
+		lightleft = {
+            frames = {{3,0}}
+        },
+		
+		lightwalkright = {
+            frames = {{2,0},{2,0},{2,0},{2,0}},
+			speed = 0.2
+        },
+		lightwalkleft = {
+            frames = {{3,0},{3,0},{3,0},{3,0}},
+			speed = 0.2
+        },
+		lightwalkdown = {
+            frames = {{0,0},{0,0},{0,0},{0,0}},
+			speed = 0.2
+        },
+		lightwalkup = {
+            frames = {{1,0},{1,0},{1,0},{1,0}},
+			speed = 0.2
+        },
     }
 }

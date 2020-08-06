@@ -456,16 +456,6 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
-  <object id="191" name="MechaArm5" type="MechaArm" gid="1227" x="1248" y="1728" width="32" height="32">
-   <properties>
-    <property name="battle" type="file" value="../data/monsters/mechaarm.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="facing" value="left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/mechaarm.png"/>
-   </properties>
-  </object>
  </objectgroup>
  <layer name="upper" width="50" height="84">
   <data encoding="csv">

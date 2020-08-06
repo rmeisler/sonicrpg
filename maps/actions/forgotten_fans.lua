@@ -71,7 +71,7 @@ return function(scene)
 				Wait(0.5),
 				Do(function()
 					scene.objectLookup.Switch1:flip()
-					scene.audio:playSfx("fan", 0.3)
+					scene.audio:playSfx("fan", 0.6)
 					scene.audio:setLooping("sfx", true)
 				end),
 				Wait(0.5),

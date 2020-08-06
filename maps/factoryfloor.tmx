@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="28" height="161" tilewidth="32" tileheight="32" infinite="0" nextobjectid="171">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="28" height="161" tilewidth="32" tileheight="32" infinite="0" nextobjectid="172">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="onload" type="file" value="actions/factoryfloor.lua"/>
@@ -351,47 +351,23 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="int" value="-32"/>
-    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+    <property name="onScan">local MessageBox = require &quot;actions/MessageBox&quot;
 local Animate = require &quot;actions/Animate&quot;
 local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
 local Action = require &quot;actions/Action&quot;
+local Wait = require &quot;actions/Wait&quot;
 
 return function(self)
     if GameState:isFlagSet(&quot;factoryfloor_door1&quot;) then
         return Action()
     end
 
-    if self.scene.player.isSwatbot[GameState.leader] then
-        GameState:setFlag(self)
-        self.scene.objectLookup.Door2:removeCollision()
+    if not GameState.items[&quot;Keycard&quot;] then
+        local walkout, walkin, sprites = self.scene.player:split()
         return Serial {
-            MessageBox { message = &quot;Computer: Access granted.&quot;, textSpeed = 4, blocking = true, sfx = &quot;levelup&quot;},
-            Animate(self.scene.objectLookup.Door2.sprite, &quot;opening&quot;),
-            Animate(self.scene.objectLookup.Door2.sprite, &quot;open&quot;),
-            Do(function()
-                print(&quot;animation over?&quot;)
-                GameState:setFlag(&quot;factoryfloor_door1&quot;)
-                self.scene.player.state = &quot;idledown&quot;
-            end)
-        }
-    elseif GameState.leader == &quot;sally&quot; then
-        return Serial {
-            MessageBox { message = &quot;Computer: Only security bots may enter.&quot;, textSpeed = 4, blocking = true, sfx = &quot;error&quot;},
-            Do(function() self.scene.player.state = &quot;thinking&quot; end),
-            MessageBox { message = &quot;Sally: Hmmm...&quot;, blocking = true},
-            Do(function() self.scene.player.state = &quot;idledown&quot; end)
-        }
-    elseif GameState.leader == &quot;sonic&quot; then
-        return Serial {
-            MessageBox { message = &quot;Computer: Only security bots may enter.&quot;, textSpeed = 4, blocking = true, sfx = &quot;error&quot;},
-            MessageBox { message = &quot;Sonic: How do we get in there?&quot;, blocking = true},
-            Do(function() self.scene.player.state = &quot;idledown&quot; end)
-        }
-    elseif GameState.leader == &quot;antoine&quot; then
-        local walkout, walkin, _sprites = self.scene.player:split()
-        return Serial {
-            MessageBox { message = &quot;Computer: Only security bots may enter.&quot;, textSpeed = 4, blocking = true, sfx = &quot;error&quot;},
+            Wait(1),
+            MessageBox { message = &quot;Computer: Keycard required.&quot;, textSpeed = 4, blocking = true, sfx = &quot;error&quot;},
             walkout,
             MessageBox { message = &quot;Antoine: Oh well. I guess zis is as far as we may go!&quot;, blocking = true},
             MessageBox { message = &quot;Sally: Nice try, Antoine.&quot;, blocking = true},
@@ -403,6 +379,20 @@ return function(self)
                 self.scene.player.y = self.scene.player.y + 60
             end)
         }
+    else
+        GameState:setFlag(self)
+        self.scene.objectLookup.Door2:removeCollision()
+        return Serial {
+            Wait(1),
+            MessageBox { message = &quot;Computer: Access granted.&quot;, textSpeed = 4, blocking = true, sfx = &quot;levelup&quot;},
+            Animate(self.scene.objectLookup.Door2.sprite, &quot;opening&quot;),
+            Animate(self.scene.objectLookup.Door2.sprite, &quot;open&quot;),
+            Do(function()
+                print(&quot;animation over?&quot;)
+                GameState:setFlag(&quot;factoryfloor_door1&quot;)
+                self.scene.player.state = &quot;idledown&quot;
+            end)
+        }
     end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/computer.png"/>
@@ -410,307 +400,31 @@ end</property>
   </object>
   <object id="80" name="Chest1" type="Chest" gid="3501" x="192" y="4544" width="32" height="32">
    <properties>
-    <property name="ThickGloves" type="int" value="1"/>
+    <property name="BlueLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
-  <object id="111" name="Chest1" type="Chest" gid="3501" x="704" y="2048" width="32" height="32">
-   <properties>
-    <property name="Mine" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest.png"/>
-   </properties>
-  </object>
-  <object id="115" name="ConveyorObj1" type="Switch" gid="1227" x="480" y="2208" width="288" height="128">
+  <object id="115" name="ConveyorObj1" type="BasicNPC" gid="1227" x="480" y="2208" width="288" height="128">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="right_active"/>
     <property name="ghost" type="bool" value="false"/>
-    <property name="onScan">local Menu = require &quot;actions/Menu&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Serial = require &quot;actions/Serial&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Action = require &quot;actions/Action&quot;
-local YieldUntil = require &quot;actions/YieldUntil&quot;
-
-local Layout = require &quot;util/Layout&quot;
-local Transform = require &quot;util/Transform&quot;
-
-return function(self)
-    local activateText = &quot;activate&quot;
-    if self.sprite.selected == &quot;right_active&quot; then
-        activateText = &quot;deactivate&quot;
-    end
-
-    local menu = Menu {
-            layout = Layout {
-                {Layout.Text(&quot;Yes&quot;),
-                    choose = function(menu)
-                        menu:close()
-                        self.sprite:setAnimation(self.sprite.selected == &quot;right_active&quot; and &quot;right_inactive&quot; or &quot;right_active&quot;)
-                    end},
-                {Layout.Text(&quot;No&quot;),
-                    choose = function(menu)
-                        menu:close()
-                    end},
-            },
-            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight() - 60),
-            cancellable = true,
-            blocking = true
-        }
-    local mbox = MessageBox {
-                message=&quot;Nicole: Would you like to &quot;..activateText..&quot; the conveyor{p20}, Sally?&quot;,
-                closeAction = YieldUntil(function() return menu.closing end)
-            }
-
-    return Serial {
-        MessageBox {
-            message=&quot;Nicole: {p30}.{p30}.{p30}.&quot;,
-            blocking=true,
-            closeAction=Action()
-        },
-        Parallel {
-            mbox,
-            Serial {
-                YieldUntil(function() return mbox.opened end),
-                menu
-            }
-        }
-    }
-end</property>
-    <property name="overrideScript">local MessageBox = require &quot;actions/MessageBox&quot;
-local Serial = require &quot;actions/Serial&quot;
-
-return function(self)
-    if self.itemAvailable then
-        local response
-        if GameState.leader == &quot;sally&quot; then
-            response = MessageBox {
-                message=&quot;Sally: If we can get enough bot parts, we should be able to impersonate a Swatbot!&quot;,
-                blocking=true
-            }
-        elseif GameState.leader == &quot;antoine&quot; then
-            response = MessageBox {
-                message=&quot;Antoine: Oh! Could we use this to be looking as a Swatbot?&quot;,
-                blocking=true
-            }
-        elseif GameState.leader == &quot;sonic&quot; then
-            response = MessageBox {
-                message=&quot;Sonic: Hey! I bet we could disguise ourselves as a Swatbutt if we collect some more of these parts!&quot;,
-                blocking=true
-            }
-        end
-
-        local item = require &quot;data/accessories/BotHead&quot;
-        GameState:grantItem(item, 1)
-        self.scene.audio:playSfx(&quot;choose&quot;, nil, true)
-        return Serial {
-            MessageBox {
-                message = &quot;You received a Bot Head!&quot;,
-                blocking = true
-            },
-            response
-        }
-    else
-        if GameState.leader == &quot;sally&quot; then
-            return MessageBox {
-                message=&quot;Sally: I wonder if I can crack this with Nicole...&quot;,
-                blocking=true
-            }
-        elseif GameState.leader == &quot;antoine&quot; then
-            return MessageBox {
-                message=&quot;Antoine: Hmmm... {p50}I don't have one clue.&quot;,
-                blocking=true
-            }
-        elseif GameState.leader == &quot;sonic&quot; then
-            return MessageBox {
-                message=&quot;Sonic: This techno-junk gives me a headache.&quot;,
-                blocking=true
-            }
-        end
-    end
-end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorobject.png"/>
    </properties>
   </object>
-  <object id="119" name="ConveyorObj2" type="Switch" gid="1227" x="96" y="1856" width="288" height="128">
+  <object id="119" name="ConveyorObj2" type="BasicNPC" gid="1227" x="96" y="1856" width="288" height="128">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="left_inactive"/>
+    <property name="defaultAnim" value="left_active"/>
     <property name="ghost" type="bool" value="false"/>
-    <property name="onScan">local Menu = require &quot;actions/Menu&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Serial = require &quot;actions/Serial&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Action = require &quot;actions/Action&quot;
-local YieldUntil = require &quot;actions/YieldUntil&quot;
-
-local Layout = require &quot;util/Layout&quot;
-local Transform = require &quot;util/Transform&quot;
-
-return function(self)
-    local activateText = &quot;activate&quot;
-    if self.sprite.selected == &quot;left_active&quot; then
-        activateText = &quot;deactivate&quot;
-    end
-
-    local menu = Menu {
-            layout = Layout {
-                {Layout.Text(&quot;Yes&quot;),
-                    choose = function(menu)
-                        menu:close()
-                        self.sprite:setAnimation(self.sprite.selected == &quot;left_active&quot; and &quot;left_inactive&quot; or &quot;left_active&quot;)
-                    end},
-                {Layout.Text(&quot;No&quot;),
-                    choose = function(menu)
-                        menu:close()
-                    end},
-            },
-            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight() - 60),
-            cancellable = true,
-            blocking = true
-        }
-    local mbox = MessageBox {
-                message=&quot;Nicole: Would you like to &quot;..activateText..&quot; the conveyor{p20}, Sally?&quot;,
-                closeAction = YieldUntil(function() return menu.closing end)
-            }
-
-    return Serial {
-        MessageBox {
-            message=&quot;Nicole: {p30}.{p30}.{p30}.&quot;,
-            blocking=true,
-            closeAction=Action()
-        },
-        Parallel {
-            mbox,
-            Serial {
-                YieldUntil(function() return mbox.opened end),
-                menu
-            }
-        }
-    }
-end</property>
-    <property name="overrideScript">local MessageBox = require &quot;actions/MessageBox&quot;
-local Serial = require &quot;actions/Serial&quot;
-
-return function(self)
-    if self.itemAvailable then
-        local item = require &quot;data/weapons/BotArm&quot;
-        GameState:grantItem(item, 1)
-        self.scene.audio:playSfx(&quot;choose&quot;, nil, true)
-        return MessageBox {
-            message = &quot;You received a Bot Arm!&quot;,
-            blocking = true
-         }
-    else
-        if GameState.leader == &quot;sally&quot; then
-            return MessageBox {
-                message=&quot;Sally: I wonder if I can crack this with Nicole...&quot;,
-                blocking=true
-            }
-        elseif GameState.leader == &quot;antoine&quot; then
-            return MessageBox {
-                message=&quot;Antoine: Hmmm... {p50}I don't have one clue.&quot;,
-                blocking=true
-            }
-        elseif GameState.leader == &quot;sonic&quot; then
-            return MessageBox {
-                message=&quot;Sonic: This techno-junk gives me a headache.&quot;,
-                blocking=true
-            }
-        end
-    end
-end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorobject.png"/>
    </properties>
   </object>
-  <object id="124" name="ConveyorObj3" type="Switch" gid="1227" x="480" y="1344" width="288" height="128">
+  <object id="124" name="ConveyorObj3" type="BasicNPC" gid="1227" x="480" y="1344" width="288" height="128">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="right_inactive"/>
+    <property name="defaultAnim" value="right_active"/>
     <property name="ghost" type="bool" value="false"/>
-    <property name="onScan">local Menu = require &quot;actions/Menu&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Serial = require &quot;actions/Serial&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Action = require &quot;actions/Action&quot;
-local YieldUntil = require &quot;actions/YieldUntil&quot;
-
-local Layout = require &quot;util/Layout&quot;
-local Transform = require &quot;util/Transform&quot;
-
-return function(self)
-    local activateText = &quot;activate&quot;
-    if self.sprite.selected == &quot;right_active&quot; then
-        activateText = &quot;deactivate&quot;
-    end
-
-    local menu = Menu {
-            layout = Layout {
-                {Layout.Text(&quot;Yes&quot;),
-                    choose = function(menu)
-                        menu:close()
-                        self.sprite:setAnimation(self.sprite.selected == &quot;right_active&quot; and &quot;right_inactive&quot; or &quot;right_active&quot;)
-                    end},
-                {Layout.Text(&quot;No&quot;),
-                    choose = function(menu)
-                        menu:close()
-                    end},
-            },
-            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight() - 60),
-            cancellable = true,
-            blocking = true
-        }
-    local mbox = MessageBox {
-                message=&quot;Nicole: Would you like to &quot;..activateText..&quot; the conveyor{p20}, Sally?&quot;,
-                closeAction = YieldUntil(function() return menu.closing end)
-            }
-
-    return Serial {
-        MessageBox {
-            message=&quot;Nicole: {p30}.{p30}.{p30}.&quot;,
-            blocking=true,
-            closeAction=Action()
-        },
-        Parallel {
-            mbox,
-            Serial {
-                YieldUntil(function() return mbox.opened end),
-                menu
-            }
-        }
-    }
-end</property>
-    <property name="overrideScript">local MessageBox = require &quot;actions/MessageBox&quot;
-local Serial = require &quot;actions/Serial&quot;
-
-return function(self)
-    if self.itemAvailable then
-        local item = require &quot;data/armor/BotTorso&quot;
-        GameState:grantItem(item, 1)
-        self.scene.audio:playSfx(&quot;choose&quot;, nil, true)
-        return MessageBox {
-            message = &quot;You received a Bot Torso!&quot;,
-            blocking = true
-         }
-    else
-        if GameState.leader == &quot;sally&quot; then
-            return MessageBox {
-                message=&quot;Sally: I wonder if I can crack this with Nicole...&quot;,
-                blocking=true
-            }
-        elseif GameState.leader == &quot;antoine&quot; then
-            return MessageBox {
-                message=&quot;Antoine: Hmmm... {p50}I don't have one clue.&quot;,
-                blocking=true
-            }
-        elseif GameState.leader == &quot;sonic&quot; then
-            return MessageBox {
-                message=&quot;Sonic: This techno-junk gives me a headache.&quot;,
-                blocking=true
-            }
-        end
-    end
-end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorobject.png"/>
    </properties>
   </object>
@@ -731,9 +445,9 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="139" name="FactoryBot1" type="Swatbot" gid="1227" x="416" y="1440" width="32" height="32">
+  <object id="139" name="FactoryBot1" type="FactoryBot" gid="1227" x="416" y="1440" width="32" height="32">
    <properties>
-    <property name="audibleDistance" type="int" value="150"/>
+    <property name="audibleDistance" type="int" value="200"/>
     <property name="battle" type="file" value="../data/monsters/factorybot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idledown"/>
@@ -743,9 +457,8 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreCollision" value="Pillar5,ConveyorBelt1,ConveyorBelt2,ConveyorBelt3,Pillar6"/>
     <property name="ignorePlayer" type="bool" value="false"/>
-    <property name="noInvestigate" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/factorybot.png"/>
-    <property name="visibleDistance" type="int" value="150"/>
+    <property name="visibleDistance" type="int" value="200"/>
    </properties>
   </object>
   <object id="142" name="Exit" type="SceneEdge" gid="1227" x="288" y="5120" width="288" height="32">
@@ -844,9 +557,9 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="168" name="FactoryBot2" type="Swatbot" gid="1227" x="416" y="896" width="32" height="32">
+  <object id="168" name="FactoryBot2" type="FactoryBot" gid="1227" x="416" y="896" width="32" height="32">
    <properties>
-    <property name="audibleDistance" type="int" value="150"/>
+    <property name="audibleDistance" type="int" value="200"/>
     <property name="battle" type="file" value="../data/monsters/factorybot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idledown"/>
@@ -856,9 +569,8 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreCollision" value="Pillar5,ConveyorBelt1,ConveyorBelt2,ConveyorBelt3,Pillar6"/>
     <property name="ignorePlayer" type="bool" value="false"/>
-    <property name="noInvestigate" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/factorybot.png"/>
-    <property name="visibleDistance" type="int" value="150"/>
+    <property name="visibleDistance" type="int" value="200"/>
    </properties>
   </object>
   <object id="169" name="Pillar6" type="BasicNPC" gid="3112" x="544" y="1120" width="64" height="32">
@@ -877,6 +589,12 @@ end</property>
     <property name="scene" type="file" value="datacenter_f4.lua"/>
     <property name="spawn_point" value="Exit1"/>
     <property name="walkin" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="171" name="Chest2" type="Chest" gid="3501" x="736" y="1184" width="32" height="32">
+   <properties>
+    <property name="Keycard" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
  </objectgroup>

@@ -28,7 +28,7 @@ local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
     GameState:removeFromParty("antoine")
-	--[[
+
 	scene.camPos.y = 1300
 	
 	local sonicfall = BasicNPC(
@@ -124,37 +124,6 @@ return function(scene)
 		},
 		
 		Wait(0.5),
-		
-		Do(function()
-			sonicfall.sprite:setAnimation("swimup")
-			sallyfall.sprite:setAnimation("swimup")
-		end),
-		
-		Do(function()
-			scene.sonicripple = BasicNPC(
-				scene,
-				{name="objects"},
-				{name = "sonicripple", x = sonicfall.x, y = sonicfall.y, width = 59, height = 47,
-					properties = {
-						ghost = true,
-						sprite = "art/sprites/lakeripple.png"
-					}
-				}
-			)
-			scene:addObject(scene.sonicripple)
-
-			scene.sallyripple = BasicNPC(
-				scene,
-				{name="objects"},
-				{name = "sallyripple", x = sallyfall.x, y = sallyfall.y, width = 59, height = 47,
-					properties = {
-						ghost = true,
-						sprite = "art/sprites/lakeripple.png"
-					}
-				}
-			)
-			scene:addObject(scene.sallyripple)
-		end),
 		
 		Parallel {
 			Ease(sonicfall, "y", 2000, 0.5, "linear"),
@@ -290,6 +259,5 @@ return function(scene)
 		Do(function()
 			scene.player.cinematic = false
 		end)
-	}]]
-	return Action()
+	}
 end

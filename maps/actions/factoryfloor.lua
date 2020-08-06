@@ -32,7 +32,7 @@ return function(scene)
 		Transform(50, 500),
 		{255, 255, 255, 0},
 		FontCache.Techno,
-		"1F",
+		"Assembly",
 		100
 	)
 	

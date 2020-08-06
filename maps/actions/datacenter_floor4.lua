@@ -22,7 +22,7 @@ return function(scene)
 		Transform(50, 470),
 		{255, 255, 255, 0},
 		FontCache.TehnoSmall,
-		"Data Center",
+		"Swatbot Factory",
 		100
 	)
 	
@@ -30,7 +30,7 @@ return function(scene)
 		Transform(50, 500),
 		{255, 255, 255, 0},
 		FontCache.Techno,
-		"4F",
+		"Mainframe",
 		100
 	)
 	Executor(scene):act(Serial {
