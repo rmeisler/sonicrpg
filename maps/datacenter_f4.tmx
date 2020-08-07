@@ -622,7 +622,7 @@ end</property>
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="5" name="Exit1" type="SceneEdge" gid="2374" x="704" y="2432" width="128" height="32">
+  <object id="5" name="Exit1" type="SceneEdge" gid="2374" x="672" y="2432" width="64" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="down"/>

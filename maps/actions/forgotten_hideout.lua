@@ -27,23 +27,5 @@ local Repeat = require "actions/Repeat"
 local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
-	
-	local text = TypeText(
-		Transform(50, 500),
-		{255, 255, 255, 0},
-		FontCache.Techno,
-		"???",
-		100
-	)
-	
-	return Serial {
-		Spawn(Serial {
-			text,
-			Ease(text.color, 4, 255, 1),
-			Wait(2),
-			Ease(text.color, 4, 0, 1)
-		}),
-		
-		PlayAudio("music", "forgottenhideout", 1.0, true, true)
-	}
+	return PlayAudio("music", "forgottenhideout", 1.0, true, true)
 end

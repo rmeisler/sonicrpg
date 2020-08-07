@@ -123,14 +123,14 @@ local RunUpdate = function(self, dt)
 				self.fx = 3.1
 				self.fy = 0
 				self.bigDust = true
-			elseif love.keyboard.isDown("down") and self.fy < 0 and self.cooldownCounter <= 0 then
+			elseif love.keyboard.isDown("down") and self.fy < 0 and self.cooldownCounter <= 0 and not next(self.stairs) then
 				self.state = "juicedownleft"
 				self.bx = -ORTHO_BURST_MAGNITUDE
 				self.fx = 0
 				self.fy = 3.1
 				self.bigDust = true
 				self.cooldownCounter = RUN_DIRCHANGE_COOLDOWN
-			elseif love.keyboard.isDown("up") and self.fy > 0 and self.cooldownCounter <= 0 then
+			elseif love.keyboard.isDown("up") and self.fy > 0 and self.cooldownCounter <= 0 and not next(self.stairs) then
 				self.state = "juiceupright"
 				self.bx = ORTHO_BURST_MAGNITUDE
 				self.fx = 0
@@ -175,7 +175,7 @@ local RunUpdate = function(self, dt)
 		end
 		
 		if not self.cinematic then
-			if love.keyboard.isDown("up") then
+			if love.keyboard.isDown("up") and not next(self.stairs) then
 				if self.fx > 0 then
 					self.state = "juiceupright"
 					self.bx = ORTHO_BURST_MAGNITUDE
@@ -186,7 +186,7 @@ local RunUpdate = function(self, dt)
 				self.fx = 0
 				self.fy = -3.1
 				self.bigDust = true
-			elseif love.keyboard.isDown("down") then
+			elseif love.keyboard.isDown("down") and not next(self.stairs) then
 				if self.fx > 0 then
 					self.state = "juicedownright"
 					self.bx = ORTHO_BURST_MAGNITUDE
@@ -221,6 +221,24 @@ local RunUpdate = function(self, dt)
 	-- Step forward
 	self.x = self.x + fx + self.bx
 	self.y = self.y + fy + self.by
+	
+	-- Going up stairs
+	local _, stairs = next(self.stairs)
+	if stairs then
+		if stairs.direction == "up_right" then
+			if fx > 0 then
+				self.y = self.y - (fx + self.bx) * 0.7
+			else
+				self.y = self.y - (fx + self.bx) * 0.7
+			end
+		elseif stairs.direction == "up_left" then
+			if fx > 0 then
+				self.y = self.y + (fx + self.bx) * 0.7
+			else
+				self.y = self.y + (fx + self.bx) * 0.7
+			end
+		end
+	end
 
 	-- Reduce burst force
 	if math.abs(self.bx) < 0.1 then

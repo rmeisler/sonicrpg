@@ -7,6 +7,7 @@ local Do = require "actions/Do"
 local Wait = require "actions/Wait"
 local Ease = require "actions/Ease"
 local TypeText = require "actions/TypeText"
+local YieldUntil = require "actions/YieldUntil"
 
 local Scene = require "scene/Scene"
 
@@ -14,9 +15,10 @@ local CreatorSplashScene = class(Scene)
 
 function CreatorSplashScene:onEnter()
 	self:pushLayer("ui")
-
+	
 	self.bgColor = {0,0,0,255}
 	ScreenShader:sendColor("multColor", self.bgColor)
+
 	return Serial {
 		Parallel {
 			Ease(self.bgColor, 1, 255, 0.5, "linear"),

@@ -209,6 +209,9 @@ return {
 		thinking = {
 			frames = {{0,5}}
 		},
+		irritated = {
+			frames = {{0,6}}
+		},
 		swimup = {
 			frames = {{13,3}}
 		}

@@ -272,7 +272,7 @@ function Player:split()
 				}
 			}
 		)
-		--self.partySprites[id].sprite.color = self.color
+		self.partySprites[id].sprite.color = self:inShadow() and {150,150,150,255} or {255,255,255,255}
 		self.partySprites[id].sprite.visible = false
 		self.scene:addObject(self.partySprites[id])
 

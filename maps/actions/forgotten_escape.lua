@@ -150,7 +150,28 @@ return function(scene)
 				scene.player.sprite:setAnimation("juiceup")
 			end),
 			
-			YieldUntil(function() return scene.player.y < 0 and not scene.player.dead end)
+			YieldUntil(function() return scene.player.y < 0 and not scene.player.dead end),
+			
+			Wait(1),
+			
+			Do(function()
+				scene.sceneMgr:switchScene {
+					class = "BasicScene",
+					mapName = "maps/forgottenhideout.lua",
+					map = scene.maps["maps/forgottenhideout.lua"],
+					maps = scene.maps,
+					region = scene.region,
+					spawn_point = "Spawn 1",
+					spawn_point_offset = Transform(),
+					fadeInSpeed = 0.2,
+					fadeOutSpeed = 0.2,
+					images = scene.images,
+					animations = scene.animations,
+					audio = scene.audio,
+					doingSpecialMove = false,
+					cache = true
+				}
+			end)
 		},
 		
 		Serial {

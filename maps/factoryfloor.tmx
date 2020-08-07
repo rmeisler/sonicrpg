@@ -382,13 +382,25 @@ return function(self)
     else
         GameState:setFlag(self)
         self.scene.objectLookup.Door2:removeCollision()
+        local walkout, walkin, sprites = self.scene.player:split()
         return Serial {
             Wait(1),
+            MessageBox { message = &quot;Computer: Keycard required.&quot;, textSpeed = 4, blocking = true, sfx = &quot;error&quot;},
+            walkout,
+            MessageBox { message = &quot;Antoine: Did we not find a Keycard, my princess?&quot;, blocking = true},
+            MessageBox { message = &quot;Sally: You're right, Antoine! {p30}Let's try it!&quot;, blocking = true},
+            Animate(sprites.sonic.sprite, &quot;idleup&quot;),
+            Animate(sprites.sally.sprite, &quot;idleup&quot;),
+            Animate(sprites.antoine.sprite, &quot;idleup&quot;),
             MessageBox { message = &quot;Computer: Access granted.&quot;, textSpeed = 4, blocking = true, sfx = &quot;levelup&quot;},
             Animate(self.scene.objectLookup.Door2.sprite, &quot;opening&quot;),
             Animate(self.scene.objectLookup.Door2.sprite, &quot;open&quot;),
+            Animate(sprites.sally.sprite, &quot;pose&quot;),
+            MessageBox { message = &quot;Sally: Yes!&quot;, blocking = true},
+            walkin,
             Do(function()
-                print(&quot;animation over?&quot;)
+                self.scene.player.x = self.scene.player.x + 60
+                self.scene.player.y = self.scene.player.y + 60
                 GameState:setFlag(&quot;factoryfloor_door1&quot;)
                 self.scene.player.state = &quot;idledown&quot;
             end)
@@ -600,9 +612,9 @@ end</property>
  </objectgroup>
  <layer name="upper" width="28" height="161">
   <data encoding="csv">
-1262,1262,1262,1262,0,0,0,0,0,0,2677,2676,2677,2676,2677,2676,2677,2676,0,0,0,0,0,0,2417,2417,2417,2417,
-1262,1262,1262,1262,0,0,0,0,0,0,2677,2676,2677,2676,2677,2676,2677,2676,0,0,0,0,0,0,2417,2417,2417,2417,
-1262,1262,1262,1262,0,0,0,0,0,0,2677,2676,2677,2676,2677,2676,2677,2676,0,0,0,0,0,0,2417,2417,2417,2417,
+1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,
+1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,
+1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,1262,
 1262,1262,1262,1262,0,0,0,0,0,0,2677,2676,2677,2676,2677,2676,2677,2676,0,0,0,0,0,0,2417,2417,2417,2417,
 1262,1262,1262,1262,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2417,2417,2417,2417,
 1262,1262,1262,1262,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2417,2417,2417,2417,
