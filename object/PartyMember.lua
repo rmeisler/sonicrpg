@@ -367,7 +367,8 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 		elseif key == "left" or key == "right" then
 			-- Change target type
 			self.targetType = self.targetType == TargetType.Opponent and TargetType.Party or TargetType.Opponent
-			self.selectedTarget = (self.selectedTarget % #self.scene[self.targetType]) + 1
+			self.selectedTarget = 1
+			--self.selectedTarget = (self.selectedTarget % #self.scene[self.targetType]) + 1
 			target = self.scene[self.targetType][self.selectedTarget]
 			invalidateArrowPos = true
 		

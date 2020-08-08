@@ -494,6 +494,14 @@ function BattleScene:addMonster(monster)
 	})
 	
 	table.insert(self.opponents, oppo)
+	
+	-- Sort by y position, which makes it so our cursor implicitly moves across bots in order of their screen position
+	table.sort(
+		self.opponents,
+		function(a,b)
+			return a.sprite.transform.y < b.sprite.transform.y
+		end
+	)
 	oppo.index = #self.opponents
 end
 
