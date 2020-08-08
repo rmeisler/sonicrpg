@@ -141,23 +141,45 @@ function OpposingPartyMember:beginTurn()
 				Telegraph(self, self.name.." is immobilized!", {self.color[1],self.color[2],self.color[3],50}),
 			}
 		else
-			-- Retract bunny ext arm and linkages and go back to idle anim
-			self.action = Serial {
-				shake,
-				
-				Do(function()
-					if self.prevAnim == "backward" then
-						self.prevAnim = "idle"
-					end
-					sprite:setAnimation(self.prevAnim)
-					self.state = BattleActor.STATE_IDLE
-					self.chanceToEscape = nil
-				end),
-				
-				self.scene.partyByName["bunny"].reverseAnimation,
-				
-				Telegraph(self, self.name.." broke free!", {self.color[1],self.color[2],self.color[3],50}),
-			}
+			-- If the immobilizer is bunny...
+			if self.immobilizedBy == "bunny" then
+				-- Retract bunny ext arm and linkages and go back to idle anim
+				self.action = Serial {
+					shake,
+					
+					Do(function()
+						if self.prevAnim == "backward" or not self.prevAnim then
+							self.prevAnim = "idle"
+						end
+						sprite:setAnimation(self.prevAnim)
+						self.state = BattleActor.STATE_IDLE
+						self.chanceToEscape = nil
+						
+						self:invoke("escape")
+					end),
+					
+					self.scene.partyByName.bunny.reverseAnimation,
+					
+					Telegraph(self, self.name.." broke free!", {self.color[1],self.color[2],self.color[3],50}),
+				}
+			else
+				self.action = Serial {
+					shake,
+					
+					Do(function()
+						if self.prevAnim == "backward" or not self.prevAnim then
+							self.prevAnim = "idle"
+						end
+						sprite:setAnimation(self.prevAnim)
+						self.state = BattleActor.STATE_IDLE
+						self.chanceToEscape = nil
+						
+						self:invoke("escape")
+					end),
+					
+					Telegraph(self, self.name.." broke free!", {self.color[1],self.color[2],self.color[3],50}),
+				}
+			end
 		end
 	elseif self.confused then
 		self.selectedTarget = math.random(#self.scene.opponents)

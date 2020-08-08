@@ -106,53 +106,85 @@ end
 function PartyMember:beginTurn()
 	if self.state == BattleActor.STATE_IMMOBILIZED then
 		self.turnover = false
-
-		self.scene:run {
-			Repeat(Serial {
-				Do(function()
-					self.scene.audio:playSfx("bang")
-				end),
-
-				Ease(
-					self.sprite.transform,
-					"x",
-					function() return self.sprite.transform.x + 7 end,
-					10
-				),
-				Ease(
-					self.sprite.transform,
-					"x",
-					function() return self.sprite.transform.x - 7 end,
-					10
-				),
-				Ease(
-					self.sprite.transform,
-					"x",
-					function() return self.sprite.transform.x + 3 end,
-					10
-				),
-				Ease(
-					self.sprite.transform,
-					"x",
-					function() return self.sprite.transform.x - 3 end,
-					10
-				),
-				Ease(
-					self.sprite.transform,
-					"x",
-					function() return self.sprite.transform.x end,
-					10
-				),
-				
-				Wait(0.5)
-			}, 2),
-
-			MessageBox {message=self.name.." is immobilized!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)},
-			
+		
+		if not self.turnsImmobilized then
+			self.turnsImmobilized = 1
+		else
+			self.turnsImmobilized = self.turnsImmobilized + 1
+		end
+		
+		local shake = Repeat(Serial {
 			Do(function()
-				self:endTurn()
-			end)
-		}
+				self.scene.audio:playSfx("bang")
+			end),
+
+			Ease(
+				self.sprite.transform,
+				"x",
+				function() return self.sprite.transform.x + 7 end,
+				10
+			),
+			Ease(
+				self.sprite.transform,
+				"x",
+				function() return self.sprite.transform.x - 7 end,
+				10
+			),
+			Ease(
+				self.sprite.transform,
+				"x",
+				function() return self.sprite.transform.x + 3 end,
+				10
+			),
+			Ease(
+				self.sprite.transform,
+				"x",
+				function() return self.sprite.transform.x - 3 end,
+				10
+			),
+			Ease(
+				self.sprite.transform,
+				"x",
+				function() return self.sprite.transform.x end,
+				10
+			),
+			
+			Wait(0.5)
+		}, 2)
+		
+		-- Escape
+		if math.random() < self.turnsImmobilized * (self.stats.luck/20) then
+			BattleActor.beginTurn(self)
+			
+			self.turnsImmobilized = nil
+
+			self.mainMenu = Menu {
+				transform = Transform(250, love.graphics.getHeight() - 97),
+				layout = Layout(self.options),	
+			}
+			self.mainMenu:addHandler("cancel", PartyMember.skipTurn, self, self.mainMenu)
+			self.state = BattleActor.STATE_IDLE
+			
+			self.scene:run {
+				shake,
+				self.escapeAction or Action(),
+				Do(function()
+					self.sprite:setAnimation("idle")
+					self:invoke("escape")
+					self.escapeAction = nil
+				end),
+				MessageBox {message=self.name.." broke free!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)},
+				self.mainMenu
+			}
+		else
+			self.scene:run {
+				shake,
+				MessageBox {message=self.name.." is immobilized!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)},
+				Do(function()
+					self:endTurn()
+				end)
+			}
+		end
 	else
 		BattleActor.beginTurn(self)
 		
@@ -211,7 +243,10 @@ function PartyMember:chooseTarget(menu, targetType, unusable, callback, ...)
 	-- Hide menu arrow
 	menu.showCursor = false
 	
-	self.selectedTarget = 1
+	-- Choose previous target, unless first time
+	if not self.selectedTarget then
+		self.selectedTarget	= 1
+	end
 	self.targetType = targetType
 	self.callback = callback
 	self.callbackArgs = {...}
@@ -368,7 +403,6 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 			-- Change target type
 			self.targetType = self.targetType == TargetType.Opponent and TargetType.Party or TargetType.Opponent
 			self.selectedTarget = 1
-			--self.selectedTarget = (self.selectedTarget % #self.scene[self.targetType]) + 1
 			target = self.scene[self.targetType][self.selectedTarget]
 			invalidateArrowPos = true
 		

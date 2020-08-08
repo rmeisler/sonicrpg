@@ -7,12 +7,20 @@ local PlayAudio = require "actions/PlayAudio"
 local Animate = require "actions/Animate"
 local Ease = require "actions/Ease"
 local Parallel = require "actions/Parallel"
+local Executor = require "actions/Executor"
 
 local Transform = require "util/Transform"
 
 local Heal = require "data/items/actions/Heal"
 local Telegraph = require "data/monsters/actions/Telegraph"
 local Smack = require "data/monsters/actions/Smack"
+
+local sendHome
+sendHome = function(self, target)
+	target:removeHandler("escape", sendHome, self)
+	self.grabbed = nil
+	self.sprite:setAnimation("idle")
+end
 
 return {
 	name = "Mecha Arm",
@@ -119,6 +127,8 @@ return {
 			
 			self.grabbed = target.id
 			self.grabProgress = 1
+
+			target:addHandler("escape", sendHome, self, target)
 			
 			local targetSprite = targetMem.sprite
 			self.grabbedXform = Transform(targetSprite.transform.x, targetSprite.transform.y)
@@ -139,6 +149,24 @@ return {
 					self.grabProgress = self.grabProgress + 1
 					
 					target.state = target.STATE_IMMOBILIZED
+					target.escapeAction = Parallel {
+						Do(function() self.mockSprite:setAnimation("idle") end),
+						Serial {
+							Animate(target.sprite, "leap_dodge"),
+							Parallel {
+								Ease(target.sprite.transform, "x", self.grabbedXform.x, 4, "linear"),
+								Serial {
+									Ease(target.sprite.transform, "y", math.min(target.sprite.transform.y, self.grabbedXform.y) - target.sprite.h*2, 8, "linear"),
+									Ease(target.sprite.transform, "y", self.grabbedXform.y, 6, "quad"),
+								}
+							},
+							Animate(target.sprite, "crouch"),
+							Wait(0.1),
+							Animate(target.sprite, "victory"),
+							Wait(0.3),
+							Animate(target.sprite, "idle")
+						}
+					}
 				end),
 				Animate(target.sprite, "hurt"),
 				MessageBox {message=self.name.." grabbed "..target.name.."!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)},

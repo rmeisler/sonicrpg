@@ -3,7 +3,7 @@ local ItemType = require "util/ItemType"
 
 return {
 	name = "Backpack",
-	desc = "Allows you to carry x1 Power Ring.",
+	desc = "Allows you to use Power Rings in battle.",
 	type = ItemType.Accessory,
 	usableBy = {"sonic"},
 	stats = {

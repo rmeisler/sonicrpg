@@ -125,6 +125,9 @@ return function(scene)
 		
 		Wait(0.5),
 		
+		Animate(sonicfall.sprite, "idleup"),
+		Animate(sallyfall.sprite, "idleup"),
+		
 		Parallel {
 			Ease(sonicfall, "y", 2000, 0.5, "linear"),
 			Ease(sallyfall, "y", 2000, 0.5, "linear")

@@ -8,7 +8,7 @@ return {
   height = 83,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 323,
+  nextobjectid = 324,
   properties = {
     ["battlebg"] = "../art/backgrounds/forgotten.png",
     ["onload"] = "actions/forgotten_hops.lua",
@@ -556,7 +556,6 @@ return {
           visible = true,
           properties = {
             ["battle"] = "../data/monsters/mechaarm.lua",
-            ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["facing"] = "right",
             ["ghost"] = true,
@@ -569,7 +568,7 @@ return {
           type = "MechaArm",
           shape = "rectangle",
           x = 416,
-          y = 2304,
+          y = 2272,
           width = 32,
           height = 32,
           rotation = 0,
@@ -577,7 +576,6 @@ return {
           visible = true,
           properties = {
             ["battle"] = "../data/monsters/mechaarm.lua",
-            ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["facing"] = "left",
             ["ghost"] = true,
@@ -598,7 +596,6 @@ return {
           visible = true,
           properties = {
             ["battle"] = "../data/monsters/mechaarm.lua",
-            ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["facing"] = "right",
             ["ghost"] = true,
@@ -1340,7 +1337,7 @@ return {
           name = "MechaArm1",
           type = "MechaArm",
           shape = "rectangle",
-          x = 1184,
+          x = 1024,
           y = 1792,
           width = 32,
           height = 32,
@@ -1349,9 +1346,8 @@ return {
           visible = true,
           properties = {
             ["battle"] = "../data/monsters/mechaarm.lua",
-            ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
-            ["facing"] = "left",
+            ["facing"] = "right",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/mechaarm.png"
           }
@@ -1361,8 +1357,8 @@ return {
           name = "MechaArm3",
           type = "MechaArm",
           shape = "rectangle",
-          x = 1152,
-          y = 992,
+          x = 1216,
+          y = 864,
           width = 32,
           height = 32,
           rotation = 0,
@@ -1370,7 +1366,6 @@ return {
           visible = true,
           properties = {
             ["battle"] = "../data/monsters/mechaarm.lua",
-            ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["facing"] = "left",
             ["ghost"] = true,
@@ -1413,6 +1408,22 @@ return {
             ["defaultAnim"] = "darkhiddenright",
             ["script"] = "local Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    self.scene.audio:playSfx(\"openchasm\")\n    return Serial {\n        Parallel {\n            Ease(self.scene.objectLookup.WallEdge3, \"y\", self.scene.objectLookup.WallEdge3.y - 100, 2, \"linear\"),\n            Ease(self.scene.objectLookup.WallEdge4, \"y\", self.scene.objectLookup.WallEdge4.y - 100, 2, \"linear\"),\n        },\n        Do(function()\n            self.scene.objectLookup.WallEdge3:remove()\n            self.scene.objectLookup.WallEdge4:remove()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/wall.png"
+          }
+        },
+        {
+          id = 323,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 864,
+          y = 2624,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1586,
+          visible = true,
+          properties = {
+            ["orientation"] = "up"
           }
         }
       }
@@ -1763,12 +1774,12 @@ return {
         0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0,
         0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0,
         0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0,
-        0, 0, 0, 2966, 2966, 2966, 2966, 2966, 2966, 0, 0, 0, 2966, 2966, 2966, 2966, 2966, 2966, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 2966, 2966, 2966, 2966, 2966, 0, 0, 0, 0, 0, 0, 2966, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 2966, 2966, 2966, 2966, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 2966, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 2966, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 2966, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 2966, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 2966, 2966, 0, 0, 0, 2966, 2966, 2966, 2966, 2966, 2966, 2966, 2966, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 2966, 0,
+        0, 0, 0, 2966, 2966, 2966, 2966, 2966, 2966, 0, 0, 0, 2966, 2966, 2966, 2966, 2966, 2966, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 2966, 2966, 2966, 2966, 2966, 2966, 2966, 2966, 0, 0, 0, 0, 0, 0, 2966, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 2966, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 2966, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 2966, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 2966, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 2966, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 2966, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 2966, 2966, 2966, 2966, 2966, 2966, 2966, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 2966, 2966, 2966, 2966, 2966, 2966, 2966, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2966, 0, 0, 0, 2966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

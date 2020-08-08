@@ -56,6 +56,13 @@ return function(scene)
 			end)
 		},
 		Animate(R.sprite, "idleup"),
+		Wait(0.5),
+		Animate(R.sprite, "idleleft"),
+		Wait(0.5),
+		Animate(R.sprite, "idleright"),
+		Wait(0.5),
+		Animate(R.sprite, "idleup"),
+		
 		Parallel {
 			Ease(scene.player, "x", 864, 1, "inout"),
 			Ease(scene.player, "y", 2688, 1, "inout")
@@ -69,7 +76,7 @@ return function(scene)
 			scene.player.sprite:setAnimation("walkup")
 		end),
 		
-		Ease(scene.player, "y", 2588, 1.5, "linear"),
+		Ease(scene.player, "y", 2558, 1.5, "linear"),
 
 		Do(function()
 			scene.player.cinematic = false

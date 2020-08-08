@@ -25,6 +25,9 @@ local TitleSplashScene = class(Scene)
 function TitleSplashScene:onEnter()
 	self:pushLayer("ui")
 	
+	-- Hack: if we came from factory
+	self.audio:stopSfx("factoryfloor")
+	
 	self.images = {}
 	self.animations = {}
 	self.images["pressx"] = love.graphics.newImage("art/sprites/pressx.png")

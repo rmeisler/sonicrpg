@@ -20,6 +20,8 @@ local sendHome
 
 sendHome = function(self, target)
 	target:removeHandler("dead", sendHome, self)
+	target:removeHandler("escape", sendHome, self)
+	self.grabbing = nil
 	return self.scene:run {
 		Animate(self.sprite, "idle"),
 		Parallel {
@@ -64,8 +66,8 @@ return {
 		elseif not self.grabbing then
 			self.originalLocation = Transform(self.sprite.transform.x, self.sprite.transform.y)
 			
-			-- Make sure your target isn't already grabbed. If so, choose a new target
-			if target.state == target.STATE_IMMOBILIZED then
+			-- Make sure your target isn't already grabbed, or yourself. If so, choose a new target
+			if target.state == target.STATE_IMMOBILIZED or newTarget == self then
 				local targets = self.scene.party
 				if self.confused then
 					targets = self.scene.opponents
@@ -73,7 +75,7 @@ return {
 				
 				target = nil
 				for _, newTarget in pairs(targets) do
-					if newTarget.state == newTarget.STATE_IDLE then
+					if newTarget.state == newTarget.STATE_IDLE and newTarget ~= self then
 						target = newTarget
 					end
 				end
@@ -127,11 +129,12 @@ return {
 				MessageBox {message=self.name.." grabbed "..target.name.."!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)},
 				Do(function()
 					target.state = target.STATE_IMMOBILIZED
-					self.grabbing = target.id
+					self.grabbing = target
 					self.grabTurns = 0
 					
-					-- Send home if target dies
+					-- Send home if target dies or escapes mobilization
 					target:addHandler("dead", sendHome, self, target)
+					target:addHandler("escape", sendHome, self, target)
 				end)
 			}
 
@@ -145,7 +148,7 @@ return {
 						Serial {
 							PlayAudio("sfx", "pressx", 1.0, true),
 							Do(function()
-								target.sprite.sortOrderY = target.sprite.transform.y
+								target.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h*2 - self.sprite.h*2
 							end),
 							Parallel {
 								Serial {
@@ -204,13 +207,17 @@ return {
 			}
 		else
 			-- Chance to escape grip
-			local grabbed = self.scene.partyByName[self.grabbing]
+			local grabbed = self.grabbing
 			if  math.random() < (0.5 + (self.grabTurns * grabbed.stats.luck/20)) or
 				self.grabTurns == 3
 			then
 				return Serial {
 					Telegraph(self, self.name.."'s lost its grip!", {255, 255, 255, 50}),
 					Animate(self.sprite, "idle"),
+					Animate(grabbed.sprite, "idle"),
+					Do(function()
+						grabbed.state = self.STATE_IDLE
+					end),
 					Parallel {
 						Ease(self.sprite.transform, "x", self.originalLocation.x, 1, "inout"),
 						Ease(self.sprite.transform, "y", self.originalLocation.y, 1, "inout")
@@ -227,7 +234,7 @@ return {
 		return Do(
 			function()
 				if self.grabbing then
-					local grabbed = self.scene.partyByName[self.grabbing]
+					local grabbed = self.grabbing
 					grabbed.state = self.STATE_IDLE
 					grabbed.sprite:setAnimation("idle")
 					grabbed:removeHandler("dead", sendHome, self)

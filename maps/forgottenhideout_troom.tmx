@@ -144,7 +144,7 @@
     <property name="spawn_point" value="RightExit"/>
    </properties>
   </object>
-  <object id="215" name="T" type="BasicNPC" gid="1227" x="672" y="448" width="32" height="32">
+  <object id="215" name="T" type="BasicNPC" gid="1227" x="640" y="448" width="64" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="tleft"/>

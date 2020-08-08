@@ -27,7 +27,7 @@ return function(self, target)
 			Do(function()
 				self.scene.audio:playSfx("sonicrunturn", nil, true)
 				self.sprite.prevSortOrderY = self.sprite.sortOrderY
-				self.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h*2 - 10
+				self.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h*2 - self.sprite.h*2 - 20
 				target.sprite:setAnimation("idle")
 			end),
 			Parallel {
