@@ -109,7 +109,7 @@ return function(self, target)
 	
 	-- Save prev anim
 	target.prevAnim = target.sprite.selected
-	target.immobilized = true
+	target.state = target.STATE_IMMOBILIZED
 	
 	return Serial {
 		Animate(self.sprite, "extend"),
@@ -137,7 +137,7 @@ return function(self, target)
 							
 							Do(function()
 								target.sprite:setAnimation("idle")
-								target.immobilized = false
+								target.state = target.STATE_IDLE
 								target.chanceToEscape = nil
 								self:endTurn()
 							end)

@@ -75,6 +75,9 @@ return function(player)
 			return love.keyboard.isDown("lshift") or player.antoineSpecialGoneTooFar
 		end,
 		Serial {
+			Do(function()
+				player.sprite.sortOrderY = player.y
+			end),
 			PlayAudio("sfx", "antoinescared", 1.0, true),
 			Animate(player.sprite, "scaredhop1"),
 			Wait(0.1),
@@ -89,6 +92,7 @@ return function(player)
 			aggro,
 			Do(function()
 				player.basicUpdate = player.origUpdate
+				player.sprite.sortOrderY = nil
 			end)
 		},
 		Serial {
@@ -100,6 +104,7 @@ return function(player)
 			},
 			Do(function()
 				player.basicUpdate = player.origUpdate
+				player.sprite.sortOrderY = nil
 				if bots[1] then
 					bots[1].pauseMove = false
 				end

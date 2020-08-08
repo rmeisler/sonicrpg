@@ -91,5 +91,13 @@ return {
             frames = {{1,0},{1,0},{1,0},{1,0}},
 			speed = 0.2
         },
+		
+		grabbing = {
+			frames = {{2,0},{4,0},{5,0}},
+			speed = 0.2
+		},
+		grab = {
+			frames = {{5,0}}
+		}
     }
 }

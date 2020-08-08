@@ -503,6 +503,11 @@ function BattleScene:addMonster(monster)
 		end
 	)
 	oppo.index = #self.opponents
+	
+	if self.opponentTurns then
+		self.opponentTurns = self.opponentTurns + 1
+		self.maxOpponentTurns = #self.opponents
+	end
 end
 
 function BattleScene:cleanMonsters()

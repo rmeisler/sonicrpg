@@ -13,13 +13,12 @@ local Do = require "actions/Do"
 local PlayAudio = require "actions/PlayAudio"
 local Repeat = require "actions/Repeat"
 
-local BattleActor = class()
+local EventHandler = require "util/EventHandler"
+
+local BattleActor = class(EventHandler)
 
 BattleActor.STATE_IDLE   = "idle"
-BattleActor.STATE_ATTACK = "attack"
 BattleActor.STATE_DEAD   = "dead"
-BattleActor.STATE_CAST   = "cast"
-BattleActor.STATE_HURT   = "hurt"
 BattleActor.STATE_IMMOBILIZED = "immobile"
 
 function BattleActor:construct(scene, data)
@@ -249,6 +248,7 @@ function BattleActor:die()
 		self.state = BattleActor.STATE_DEAD
 		
 		self:getSprite():setAnimation("dead")
+		self:invoke("dead")
 	end)
 end
 

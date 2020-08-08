@@ -88,7 +88,7 @@ function OpposingPartyMember:beginTurn()
 	local additionalActions = {}
 	
 	-- Choose action based on current state
-	if self.immobilized then
+	if self.state == BattleActor.STATE_IMMOBILIZED then
 		-- Shake left and right
 		local shake = Repeat(Serial {
 			Do(function()
@@ -150,7 +150,7 @@ function OpposingPartyMember:beginTurn()
 						self.prevAnim = "idle"
 					end
 					sprite:setAnimation(self.prevAnim)
-					self.immobilized = false
+					self.state = BattleActor.STATE_IDLE
 					self.chanceToEscape = nil
 				end),
 				
@@ -230,7 +230,7 @@ function OpposingPartyMember:die()
 	self.onAttack = nil
 	
 	local extraAnim = Action()
-	if self.immobilized then
+	if self.state == BattleActor.STATE_IMMOBILIZED then
 		extraAnim = self.scene.partyByName["bunny"].reverseAnimation
 	end
 	
@@ -289,6 +289,8 @@ function OpposingPartyMember:die()
 				self.hp = 0
 				self.state = BattleActor.STATE_DEAD
 				sprite:remove()
+
+				self:invoke("dead")
 			end),
 			
 			self.onDead(self),
@@ -315,6 +317,8 @@ function OpposingPartyMember:die()
 				self.hp = 0
 				self.state = BattleActor.STATE_DEAD
 				sprite:remove()
+				
+				self:invoke("dead")
 			end),
 			
 			self.onDead(self),

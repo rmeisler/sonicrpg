@@ -9,7 +9,9 @@ local SpriteNode = require "object/SpriteNode"
 
 return function(self, target, success, fail, timeout)
 	-- If opponent v opponent, no press X event
-	if self.side == TargetType.Opponent and target.side == TargetType.Opponent then
+	if (self.side == TargetType.Opponent and target.side == TargetType.Opponent) or
+		target.state == self.STATE_IMMOBILIZED
+	then
 		return fail
 	end
 

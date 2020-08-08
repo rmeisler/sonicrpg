@@ -325,7 +325,7 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 				targets = table.clone(self.scene.opponents)
 				for index, target in pairs(targets) do
 					if not unusable or not unusable(target) then
-						table.insert(onAttackActions, (target.onAttack and not target.immobilized) and target:onAttack(self) or Action())
+						table.insert(onAttackActions, (target.onAttack and target.state ~= BattleActor.STATE_IMMOBILIZED) and target:onAttack(self) or Action())
 					else
 						targets[index] = nil
 					end
@@ -405,7 +405,7 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 						end),
 						Serial {
 							self.callback(self, target, unpack(self.callbackArgs)),
-							(target.onAttack and not target.immobilized) and target:onAttack(self) or Action(),
+							(target.onAttack and target.state ~= BattleActor.STATE_IMMOBILIZED) and target:onAttack(self) or Action(),
 							Do(function() self:endTurn() end)
 						}
 					},

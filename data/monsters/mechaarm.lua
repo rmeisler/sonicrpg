@@ -141,7 +141,7 @@ return {
 					target.state = target.STATE_IMMOBILIZED
 				end),
 				Animate(target.sprite, "hurt"),
-				MessageBox {message="Mecha Arm grabbed "..target.name.."!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)},
+				MessageBox {message=self.name.." grabbed "..target.name.."!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)},
 			}
 		end
 	end,
