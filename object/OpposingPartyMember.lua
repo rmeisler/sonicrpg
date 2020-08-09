@@ -30,7 +30,6 @@ function OpposingPartyMember:construct(scene, data)
 	self.transform = transform
 	self.playerSlot = data.playerSlot
 	self.sprite = data.sprite
-	self.turns = 0
 	self.lostTurns = 0
 	self.malfunctioningTurns = 0
 	self.state = BattleActor.STATE_IDLE

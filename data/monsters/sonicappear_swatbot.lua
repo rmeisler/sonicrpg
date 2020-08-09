@@ -211,17 +211,11 @@ return {
 						Do(function()
 							table.insert(self.scene.party, 1, partyMember)
 							self.scene.partyByName.sonic = partyMember
-							self.scene.partyByName.sonic.index = 1
-							self.scene.partyByName.sally.index = 2
-							self.scene.partyByName.antoine.index = 3
-							
-							self.scene.partyByName.sally.turns = 0
 							
 							-- Make sure our leader is still Sally
 							GameState.leader = "sally"
 
-							partyMember.turns = 1
-							self.scene.playerTurns = self.scene.playerTurns + 1
+							table.insert(self.scene.partyTurns, 1, partyMember)
 						end),
 						
 						antoineAction,

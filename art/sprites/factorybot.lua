@@ -94,7 +94,7 @@ return {
 		
 		grabbing = {
 			frames = {{2,0},{4,0},{5,0}},
-			speed = 0.2
+			speed = 0.1
 		},
 		grab = {
 			frames = {{5,0}}

@@ -34,7 +34,6 @@ function PartyMember:construct(scene, data)
 	self.sprite = data.sprite
 	self.hp = data.hp or 0
 	self.sp = data.sp or 0
-	self.turns = 0
 	self.charge = 100
 	
 	self.raw = data
@@ -242,11 +241,7 @@ function PartyMember:chooseTarget(menu, targetType, unusable, callback, ...)
 	
 	-- Hide menu arrow
 	menu.showCursor = false
-	
-	-- Choose previous target, unless first time
-	if not self.selectedTarget then
-		self.selectedTarget	= 1
-	end
+
 	self.targetType = targetType
 	self.callback = callback
 	self.callbackArgs = {...}
@@ -306,7 +301,7 @@ function PartyMember:chooseTarget(menu, targetType, unusable, callback, ...)
 			table.insert(self.arrow, arrow)
 		end
 	else
-		local target = self.scene[self.targetType][self.selectedTarget]
+		local target = self.scene[self.targetType][self.scene.selectedTarget]
 		self.arrow = SpriteNode(
 			self.scene,
 			Transform(
@@ -384,26 +379,26 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 			self:cleanupChooseTarget()
 		end
 	else
-		local target = self.scene[self.targetType][self.selectedTarget]
+		local target = self.scene[self.targetType][self.scene.selectedTarget]
 		local invalidateArrowPos = false
 
 		if key == "up" then
 			self.scene.audio:playSfx("cursor", nil, true)
-			self.selectedTarget = (self.selectedTarget == 1) and #self.scene[self.targetType] or (self.selectedTarget - 1)
-			target = self.scene[self.targetType][self.selectedTarget]
+			self.scene.selectedTarget = (self.scene.selectedTarget == 1) and #self.scene[self.targetType] or (self.scene.selectedTarget - 1)
+			target = self.scene[self.targetType][self.scene.selectedTarget]
 			invalidateArrowPos = true
 
 		elseif key == "down" then
 			self.scene.audio:playSfx("cursor", nil, true)
-			self.selectedTarget = (self.selectedTarget == #self.scene[self.targetType]) and 1 or (self.selectedTarget + 1)
-			target = self.scene[self.targetType][self.selectedTarget]
+			self.scene.selectedTarget = (self.scene.selectedTarget == #self.scene[self.targetType]) and 1 or (self.scene.selectedTarget + 1)
+			target = self.scene[self.targetType][self.scene.selectedTarget]
 			invalidateArrowPos = true
 			
 		elseif key == "left" or key == "right" then
 			-- Change target type
 			self.targetType = self.targetType == TargetType.Opponent and TargetType.Party or TargetType.Opponent
-			self.selectedTarget = 1
-			target = self.scene[self.targetType][self.selectedTarget]
+			self.scene.selectedTarget = 1
+			target = self.scene[self.targetType][self.scene.selectedTarget]
 			invalidateArrowPos = true
 		
 		elseif key == "x" then

@@ -28,7 +28,6 @@ function BattleActor:construct(scene, data)
 	self.sprite = data.sprite
 	self.hp = data.hp or 0
 	self.sp = data.sp or 0
-	self.turns = 0
 	self.color = {255,255,255,255}
 	
 	self.raw = data

@@ -80,12 +80,15 @@ function BattleScene:onEnter(args)
 	
 	self.cachedMonsters = {}
 	self.opponents = {}
+	self.opponentTurns = {}
 	for k,v in pairs(args.opponents) do
 		self:addMonster(v)
 	end
 	
 	self.partyByName = {}
 	self.party = {}
+	self.partyTurns = {}
+	self.selectedTarget = 1
 	
 	local slotsByPartySize = {{2}, {2,3}, {1,2,3}, {1,2,3,4}}
 	local partySize = table.count(GameState.party)
@@ -124,17 +127,9 @@ function BattleScene:onEnter(args)
 		self.party,
 		self.opponents
 	)
-	
-	self.currentPlayer = 1
-	local member = self.party[self.currentPlayer]
-	member.turns = member.turns + 1
-	
-	self.currentOpponent = 1
+
 	self.initialized = false
 	self.state = BattleScene.STATE_PLAYERTURN
-	self.playerTurns = #self.party
-	self.maxOpponentTurns = #self.opponents
-	self.opponentTurns = self.maxOpponentTurns
 	
 	local initiativeAction = Action()
 
@@ -143,7 +138,18 @@ function BattleScene:onEnter(args)
 		for _, opponent in pairs(self.opponents) do
 			opponent.sprite:setAnimation("backward")
 		end
-		self.playerTurns = #self.party * 2
+		
+		-- Double the turns
+		for _, mem in pairs(self.party) do
+			if mem.state ~= BattleActor.STATE_DEAD then
+				table.insert(self.partyTurns, mem)
+			end
+		end
+		for _, mem in pairs(self.party) do
+			if mem.state ~= BattleActor.STATE_DEAD then
+				table.insert(self.partyTurns, mem)
+			end
+		end
 
 		if #self.opponents == 1 then
 			initiativeAction = MessageBox {
@@ -168,7 +174,13 @@ function BattleScene:onEnter(args)
 		initiativeAction = MessageBox {
 			message="You were caught off guard!",
 			rect=MessageBox.HEADLINER_RECT
-		}		
+		}	
+	else
+		for _, mem in pairs(self.party) do
+			if mem.state ~= BattleActor.STATE_DEAD then
+				table.insert(self.partyTurns, mem)
+			end
+		end
 	end
 	
 	self.musicVolume = 1.0
@@ -203,26 +215,23 @@ function BattleScene:update(dt)
 	
 	if self.state == BattleScene.STATE_PLAYERTURN then
 		-- Resolve against dead players
-		local deadPlayerCount = 0
-		for index, mem in pairs(self.party) do
-			if mem.state == BattleActor.STATE_DEAD then
-				deadPlayerCount = deadPlayerCount + 1
-				self.playerTurns = self.playerTurns - 1
-			end
-			if deadPlayerCount == #self.party then
-				self.state = BattleScene.STATE_MONSTERWIN
-				return
-			end
+		self.currentPlayer = table.remove(self.partyTurns, 1)
+		while self.currentPlayer and self.currentPlayer.state == BattleActor.STATE_DEAD and next(self.partyTurns) do
+			self.currentPlayer = table.remove(self.partyTurns, 1)
 		end
-		-- Cycle through party till we hit someone who's alive
-		while self.party[self.currentPlayer].state == BattleActor.STATE_DEAD do
-			self.currentPlayer = (self.currentPlayer % #self.party) + 1
+		
+		if  not self.currentPlayer or
+			(self.currentPlayer.state == BattleActor.STATE_DEAD and not next(self.partyTurns))
+		then
+			self.state = BattleScene.STATE_MONSTERWIN
+			return
 		end
-		-- Player begin turn
-		self.party[self.currentPlayer]:beginTurn()
 
-		local sprite = self.party[self.currentPlayer].sprite
-		local playerId = self.party[self.currentPlayer].id
+		-- Player begin turn
+		self.currentPlayer:beginTurn()
+
+		local sprite = self.currentPlayer.sprite
+		local playerId = self.currentPlayer.id
 		self.topSprite = sprite
 
 		if playerId == "rotor" then
@@ -232,35 +241,19 @@ function BattleScene:update(dt)
 		end
 		self.state = BattleScene.STATE_PLAYERTURN_PENDING
 	elseif self.state == BattleScene.STATE_PLAYERTURN_PENDING then
-		local member = self.party[self.currentPlayer]
+		local member = self.currentPlayer
 		if member:isTurnOver() then
 			self.arrow:remove()
-			member.turns = member.turns - 1
-			if member.turns <= 0 then
-				self.currentPlayer = (self.currentPlayer % #self.party) + 1
-
-				print("turn over for "..member.id.." "..tostring(self.currentPlayer).." "..tostring(#self.party))
-				
-				member = self.party[self.currentPlayer]
-				member.turns = member.turns + 1
-				
-				print("turn starting for "..member.id.." "..tostring(self.currentPlayer).." "..tostring(#self.party))
-
-				self.state = BattleScene.STATE_PLAYERTURN_COMPLETE
-			else
-				print("extra turn for "..member.id)
-				self.state = BattleScene.STATE_PLAYERTURN
-			end
+			self.state = BattleScene.STATE_PLAYERTURN_COMPLETE
 		end
 	elseif self.state == BattleScene.STATE_PLAYERTURN_COMPLETE then
 		if self:cleanMonsters() then
-			if (self.currentOpponent > #self.opponents) then
-				self.currentOpponent = 1
-			end
+			if not next(self.partyTurns) then
+				-- Add turns for opponents
+				for _, mem in pairs(self.opponents) do
+					table.insert(self.opponentTurns, mem)
+				end
 			
-			self.playerTurns = self.playerTurns - 1
-			if self.playerTurns <= 0 then
-				self.playerTurns = #self.party
 				self.state = BattleScene.STATE_MONSTERTURN
 			else
 				self.state = BattleScene.STATE_PLAYERTURN
@@ -268,22 +261,36 @@ function BattleScene:update(dt)
 		end
 		
 	elseif self.state == BattleScene.STATE_MONSTERTURN then
-		self.opponents[self.currentOpponent]:beginTurn()
-		self.topSprite = self.opponents[self.currentOpponent].sprite
+		-- Resolve against dead opponents
+		self.currentOpponent = table.remove(self.opponentTurns, 1)
+		while self.currentOpponent.state == BattleActor.STATE_DEAD and next(self.opponentTurns) do
+			self.currentOpponent = table.remove(self.opponentTurns, 1)
+		end
+		
+		if self.currentOpponent.state == BattleActor.STATE_DEAD and not next(self.opponentTurns) then
+			self.state = BattleScene.STATE_PLAYERWIN
+			return
+		end
+		
+		self.currentOpponent:beginTurn()
+		self.topSprite = self.currentOpponent.sprite
 		self.state = BattleScene.STATE_MONSTERTURN_PENDING
 
 	elseif self.state == STATE_MONSTERTURN_PENDING then
-		if self.opponents[self.currentOpponent]:isTurnOver() then
+		if self.currentOpponent:isTurnOver() then
 			self.state = BattleScene.STATE_MONSTERTURN_COMPLETE
 		end
 
 	elseif self.state == BattleScene.STATE_MONSTERTURN_COMPLETE then
 		if self:cleanMonsters() then
-			self.currentOpponent = self.nextOpponentOverride or ((self.currentOpponent % #self.opponents) + 1)
-			
-			self.opponentTurns = self.opponentTurns - 1
-			if self.opponentTurns <= 0 then
-				self.opponentTurns = math.min(#self.opponents, self.maxOpponentTurns)
+			if not next(self.opponentTurns) then
+				-- Add turns for non-dead party members
+				for _, mem in pairs(self.party) do
+					if mem.state ~= BattleActor.STATE_DEAD then
+						table.insert(self.partyTurns, mem)
+					end
+				end
+
 				self.state = BattleScene.STATE_PLAYERTURN
 			else
 				self.state = BattleScene.STATE_MONSTERTURN
@@ -374,6 +381,10 @@ function BattleScene:update(dt)
 		-- Game over
 		self.musicVolume = self.audio:getMusicVolume()
 		self.bgColor = {255,255,255,255}
+		
+		-- HACK: For factoryfloor
+		self.audio:stopSfx("factoryfloor")
+		
 		self.sceneMgr:backToTitle()
 		self.state = "monsterwinpending"
 	end
@@ -502,12 +513,7 @@ function BattleScene:addMonster(monster)
 			return a.sprite.transform.y < b.sprite.transform.y
 		end
 	)
-	oppo.index = #self.opponents
-	
-	if self.opponentTurns then
-		self.opponentTurns = self.opponentTurns + 1
-		self.maxOpponentTurns = #self.opponents
-	end
+	table.insert(self.opponentTurns, oppo)
 end
 
 function BattleScene:cleanMonsters()
@@ -522,13 +528,15 @@ function BattleScene:cleanMonsters()
 			end
 			table.remove(self.opponents, index)
 			table.insert(self.opponentSlots, oppo.slot)
-			self.opponentTurns = self.opponentTurns - 1
+			
+			self.selectedTarget = 1
 		end
 	end
 	if next(self.opponents) == nil then
 		self.state = BattleScene.STATE_PLAYERWIN
 		return false -- Return whether battle should continue
 	else
+		table.sort(self.opponents, function(a, b) return a.sprite.transform.y < b.sprite.transform.y end)
 		return true
 	end
 end

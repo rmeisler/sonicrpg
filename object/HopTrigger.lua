@@ -17,7 +17,7 @@ end
 function HopTrigger:onCollision(prevState)
     NPC.onCollision(self, prevState)
 
-	if self.scene.player.isHopping then
+	if self.scene.player.isHopping or self.scene.player.doingSpecialMove then
 		return
 	end
 	
