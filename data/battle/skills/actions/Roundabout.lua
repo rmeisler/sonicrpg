@@ -27,7 +27,7 @@ return function(self, target)
 			Do(function()
 				self.scene.audio:playSfx("sonicrunturn", nil, true)
 				self.sprite.prevSortOrderY = self.sprite.sortOrderY
-				self.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h*2 - self.sprite.h*2 - 20
+				self.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h*2 - self.sprite.h*2 - 100
 				target.sprite:setAnimation("idle")
 			end),
 			Parallel {
@@ -99,19 +99,32 @@ return function(self, target)
 					dust.color[2] = 130
 					dust.color[3] = 200
 					dust.color[4] = 255
-					dust.sortOrderY = self.sprite.sortOrderY --self.sprite.transform.y + self.sprite.h*2 - 20
+					dust.sortOrderY = self.sprite.sortOrderY - 100 --self.sprite.transform.y + self.sprite.h*2 - 20
 					
-					if self.sprite.selected == "juiceleft" or self.sprite.selected == "juicedownleft" then
+					dust.transform.sx = 2
+					dust.transform.sy = 2
+					
+					if self.sprite.selected == "juiceleft" then
 						dust.transform.x = dust.transform.x + self.sprite.w
 						dust:setAnimation("left")
-					elseif self.sprite.selected == "juiceright" or self.sprite.selected == "juiceupright" then
+					elseif self.sprite.selected == "juiceright" then
 						dust.transform.x = dust.transform.x - self.sprite.w*2 - 5
+						dust:setAnimation("right")
+					elseif self.sprite.selected == "juicedownleft" or self.sprite.selected == "juicedownright" then
+						dust.transform.x = dust.transform.x + self.sprite.w - dust.w
+						dust.transform.y = dust.transform.y - dust.h*2
+						dust.transform.sx = 4
+						dust.transform.sy = 4
+						dust:setAnimation("left")
+					elseif self.sprite.selected == "juiceupleft" or self.sprite.selected == "juiceupright" then
+						dust.transform.x = dust.transform.x - self.sprite.w*2 - 5 - dust.w
+						dust.transform.y = dust.transform.y - dust.h*2
+						dust.transform.sx = 4
+						dust.transform.sy = 4
 						dust:setAnimation("right")
 					end
 					
 					dust.transform.y = dust.transform.y - 10
-					dust.transform.sx = 2
-					dust.transform.sy = 2
 					
 					dust.animations[dust.selected].callback = function()
 						local ref = dust
