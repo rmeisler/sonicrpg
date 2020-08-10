@@ -27,5 +27,5 @@ local Repeat = require "actions/Repeat"
 local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
-	return PlayAudio("music", "forgottenhideout", 1.0, true, true)
+	return PlayAudio("music", "forgottendiscovery", 1.0, true, true)
 end

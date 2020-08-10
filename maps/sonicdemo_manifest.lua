@@ -23,16 +23,6 @@ return {
 	
 	{
         type = "map",
-        file = "maps/factoryfloor2.lua"
-    },
-	
-	{
-        type = "map",
-        file = "maps/factoryfloor3.lua"
-    },
-	
-	{
-        type = "map",
         file = "maps/forgottenstart.lua",
 		--primary = true,
     },
@@ -40,7 +30,7 @@ return {
 	{
         type = "map",
         file = "maps/forgotten1.lua",
-		primary = true,
+		--primary = true,
     },
 	
 	{
@@ -57,14 +47,8 @@ return {
 	
 	{
         type = "map",
-        file = "maps/forgotten4.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
         file = "maps/forgottenhideout.lua",
-		--primary = true,
+		primary = true,
     },
 	
 	{
@@ -75,6 +59,12 @@ return {
 	{
         type = "map",
         file = "maps/forgottenhideout_jroom.lua",
+    },
+	
+	{
+        type = "map",
+        file = "maps/forgottenhideout_broom.lua",
+		--primary = true
     },
 	
 	{
@@ -702,7 +692,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/forgottenhideout.ogg",
+		file = "audio/music/forgottendiscovery.ogg",
 		category = "music",
 		looping = true,
 	},

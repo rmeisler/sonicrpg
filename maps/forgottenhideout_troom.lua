@@ -334,25 +334,6 @@ return {
             ["scene"] = "forgottenhideout.lua",
             ["spawn_point"] = "RightExit"
           }
-        },
-        {
-          id = 215,
-          name = "T",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 640,
-          y = 448,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["defaultAnim"] = "tleft",
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
-            ["sprite"] = "../art/sprites/P.png"
-          }
         }
       }
     },

@@ -8,7 +8,7 @@ return {
   height = 79,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 499,
+  nextobjectid = 500,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter2f.png",
     ["onload"] = "actions/datacenter_floor4.lua",
@@ -493,6 +493,26 @@ return {
             ["noInvestigate"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/rover.png"
+          }
+        },
+        {
+          id = 499,
+          name = "Exit2",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 704,
+          y = 2464,
+          width = 128,
+          height = 32,
+          rotation = 0,
+          gid = 2374,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["key"] = "down",
+            ["orientation"] = "up",
+            ["scene"] = "factoryfloor.lua",
+            ["spawn_point"] = "Exit1"
           }
         }
       }

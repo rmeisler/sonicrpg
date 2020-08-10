@@ -302,6 +302,10 @@ function PartyMember:chooseTarget(menu, targetType, unusable, callback, ...)
 		end
 	else
 		local target = self.scene[self.targetType][self.scene.selectedTarget]
+		if not target then
+			self.scene.selectedTarget = 1
+			target = self.scene[self.targetType][self.scene.selectedTarget]
+		end
 		self.arrow = SpriteNode(
 			self.scene,
 			Transform(

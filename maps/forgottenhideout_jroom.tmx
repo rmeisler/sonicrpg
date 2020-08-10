@@ -144,18 +144,6 @@
     <property name="spawn_point" value="LeftExit"/>
    </properties>
   </object>
-  <object id="214" name="R" type="BasicNPC" gid="1227" x="128" y="512" width="64" height="32">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="idledown"/>
-    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
-
-return function(self)
-    return MessageBox {message = &quot;R: Who are you, exactly?&quot;, blocking = true}
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/r.png"/>
-   </properties>
-  </object>
  </objectgroup>
  <layer name="above" width="32" height="26">
   <data encoding="csv">
