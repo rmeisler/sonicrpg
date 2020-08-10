@@ -27,5 +27,6 @@ local Repeat = require "actions/Repeat"
 local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
+	scene.player.noSonicCrash = true
 	return PlayAudio("music", "forgottendiscovery", 1.0, true, true)
 end

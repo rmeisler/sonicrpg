@@ -1,6 +1,6 @@
 return {
     image = "b.png",
-    starting = "idleleft",
+    starting = "idledown",
     w = 47,
     h = 55,
 

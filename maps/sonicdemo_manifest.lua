@@ -224,10 +224,6 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/avatar/b.png"
-	},
-	{
-		type = "image",
 		file = "art/avatar/sonic.png"
 	},
 	{
@@ -689,6 +685,11 @@ return {
 		file = "audio/music/mysterious.ogg",
 		category = "music",
 		looping = true,
+	},
+	{
+		type = "sound",
+		file = "audio/music/btheme.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",

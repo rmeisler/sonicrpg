@@ -332,145 +332,165 @@ local RunUpdate = function(self, dt)
 		end
 		
 		if collidedX and self.fx > 0 then
-			self.basicUpdate = function(player, dt) end
-			self:run(Parallel {
-				self.scene:screenShake(30, 20),
-				Serial {
-					Animate(self.sprite, "ouchright"),
-					Parallel {
-						While(
-							function()
-								local hotspots = Hotspots(self)
-								return  self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, -5, 0) and
-										self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, -5, 0)
-							end,
-							Ease(self, "x", self.x - 150, 3, "linear"),
-							Do(function()
-								self.x = self.x + 5
-							end)
-						),
-						Serial {
-							Ease(self, "y", self.y - 60, 8, "quad"),
-							Do(function() self.crashIntoWall = true end),
-							Wait(0.1),
-							Ease(self, "y", self.y, 8, "quad")
-						}
+			if not self.noSonicCrash then
+				self.basicUpdate = function(player, dt) end
+				self:run(Parallel {
+					self.scene:screenShake(30, 20),
+					Serial {
+						Animate(self.sprite, "ouchright"),
+						Parallel {
+							While(
+								function()
+									local hotspots = Hotspots(self)
+									return  self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, -5, 0) and
+											self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, -5, 0)
+								end,
+								Ease(self, "x", self.x - 150, 3, "linear"),
+								Do(function()
+									self.x = self.x + 5
+								end)
+							),
+							Serial {
+								Ease(self, "y", self.y - 60, 8, "quad"),
+								Do(function() self.crashIntoWall = true end),
+								Wait(0.1),
+								Ease(self, "y", self.y, 8, "quad")
+							}
+						},
+						Do(function()
+							self.state = "idleright"
+							self.basicUpdate = self.origUpdate
+							self.crashIntoWall = false
+						end)
 					},
 					Do(function()
-						self.state = "idleright"
-						self.basicUpdate = self.origUpdate
-						self.crashIntoWall = false
+						-- Update drop shadow position
+						self.dropShadow.x = self.x - 22
 					end)
-				},
-				Do(function()
-					-- Update drop shadow position
-					self.dropShadow.x = self.x - 22
-				end)
-			})
+				})
+			else
+				self.state = "idleright"
+				self.basicUpdate = self.origUpdate
+			end
 		elseif collidedX and self.fx < 0 then
-			self.basicUpdate = function(player, dt) end
-			self:run(Parallel {
-				self.scene:screenShake(30, 20),
-				Serial {
-					Animate(self.sprite, "ouchleft"),
-					Parallel {
+			if not self.noSonicCrash then
+				self.basicUpdate = function(player, dt) end
+				self:run(Parallel {
+					self.scene:screenShake(30, 20),
+					Serial {
+						Animate(self.sprite, "ouchleft"),
+						Parallel {
+							While(
+								function()
+									local hotspots = Hotspots(self)
+									return  self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, 5, 0) and
+											self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, 5, 0)
+								end,
+								Ease(self, "x", self.x + 150, 3, "linear"),
+								Do(function()
+									self.x = self.x - 5
+								end)
+							),
+							Serial {
+								Ease(self, "y", self.y - 60, 8, "quad"),
+								Do(function() self.crashIntoWall = true end),
+								Wait(0.1),
+								Ease(self, "y", self.y, 8, "quad")
+							}
+						},
+						Do(function()
+							self.state = "idleleft"
+							self.basicUpdate = self.origUpdate
+							self.crashIntoWall = false
+						end)
+					},
+					Do(function()
+						-- Update drop shadow position
+						self.dropShadow.x = self.x - 22
+					end)
+				})
+			else
+				self.state = "idleleft"
+				self.basicUpdate = self.origUpdate
+			end
+		elseif collidedY and self.fy > 0 then
+			if not self.noSonicCrash then
+				self.basicUpdate = function(player, dt) end
+				self:run(Parallel {
+					self.scene:screenShake(30, 20),
+					Serial {
+						Animate(self.sprite, "ouchdown"),
 						While(
 							function()
 								local hotspots = Hotspots(self)
-								return  self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, 5, 0) and
-										self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, 5, 0)
+								return  self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, 0, -5) and
+										self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, 0, -5)
 							end,
-							Ease(self, "x", self.x + 150, 3, "linear"),
+							Serial {
+								Ease(self, "y", self.y - 10, 10, "quad"),
+								Do(function() self.crashIntoWall = true end),
+								Ease(self, "y", self.y - 130, 5, "linear"),
+								Ease(self, "y", self.y - 150, 10, "quad")
+							},
 							Do(function()
-								self.x = self.x - 5
+								self.y = self.y + 5
 							end)
 						),
-						Serial {
-							Ease(self, "y", self.y - 60, 8, "quad"),
-							Do(function() self.crashIntoWall = true end),
-							Wait(0.1),
-							Ease(self, "y", self.y, 8, "quad")
-						}
+						Do(function()
+							self.state = "idledown"
+							self.basicUpdate = self.origUpdate
+							self.crashIntoWall = false
+						end)
 					},
 					Do(function()
-						self.state = "idleleft"
-						self.basicUpdate = self.origUpdate
-						self.crashIntoWall = false
+						-- Update drop shadow position
+						self.dropShadow.x = self.x - 22
+						self.dropShadow.y = self.y + self.sprite.h - 15
 					end)
-				},
-				Do(function()
-					-- Update drop shadow position
-					self.dropShadow.x = self.x - 22
-				end)
-			})
-		elseif collidedY and self.fy > 0 then
-			self.basicUpdate = function(player, dt) end
-			self:run(Parallel {
-				self.scene:screenShake(30, 20),
-				Serial {
-					Animate(self.sprite, "ouchdown"),
-					While(
-						function()
-							local hotspots = Hotspots(self)
-							return  self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, 0, -5) and
-									self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, 0, -5)
-						end,
-						Serial {
-							Ease(self, "y", self.y - 10, 10, "quad"),
-							Do(function() self.crashIntoWall = true end),
-							Ease(self, "y", self.y - 130, 5, "linear"),
-							Ease(self, "y", self.y - 150, 10, "quad")
-						},
-						Do(function()
-							self.y = self.y + 5
-						end)
-					),
-					Do(function()
-						self.state = "idledown"
-						self.basicUpdate = self.origUpdate
-						self.crashIntoWall = false
-					end)
-				},
-				Do(function()
-					-- Update drop shadow position
-					self.dropShadow.x = self.x - 22
-					self.dropShadow.y = self.y + self.sprite.h - 15
-				end)
-			})
+				})
+			else
+				self.state = "idledown"
+				self.basicUpdate = self.origUpdate
+			end
 		elseif collidedY and self.fy < 0 then
-			self.basicUpdate = function(player, dt) end
-			self:run(Parallel {
-				self.scene:screenShake(30, 20),
-				Serial {
-					Animate(self.sprite, "ouchup"),
-					While(
-						function()
-							local hotspots = Hotspots(self)
-							return  self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, 0, 5) and
-									self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, 0, 5)
-						end,
-						Serial {
-							Ease(self, "y", self.y + 10, 10, "quad"),
-							Do(function() self.crashIntoWall = true end),
-							Ease(self, "y", self.y + 130, 5, "linear"),
-							Ease(self, "y", self.y + 150, 10, "quad")
-						},
+			if not self.noSonicCrash then
+				self.basicUpdate = function(player, dt) end
+				self:run(Parallel {
+					self.scene:screenShake(30, 20),
+					Serial {
+						Animate(self.sprite, "ouchup"),
+						While(
+							function()
+								local hotspots = Hotspots(self)
+								return  self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, 0, 5) and
+										self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, 0, 5)
+							end,
+							Serial {
+								Ease(self, "y", self.y + 10, 10, "quad"),
+								Do(function() self.crashIntoWall = true end),
+								Ease(self, "y", self.y + 130, 5, "linear"),
+								Ease(self, "y", self.y + 150, 10, "quad")
+							},
+							Do(function()
+								self.y = self.y - 5
+							end)
+						),
 						Do(function()
-							self.y = self.y - 5
+							self.state = "idleup"
+							self.basicUpdate = self.origUpdate
+							self.crashIntoWall = false
 						end)
-					),
+					},
 					Do(function()
-						self.state = "idleup"
-						self.basicUpdate = self.origUpdate
-						self.crashIntoWall = false
+						-- Update drop shadow position
+						self.dropShadow.x = self.x - 22
+						self.dropShadow.y = self.y + self.sprite.h - 15
 					end)
-				},
-				Do(function()
-					-- Update drop shadow position
-					self.dropShadow.x = self.x - 22
-					self.dropShadow.y = self.y + self.sprite.h - 15
-				end)
-			})
+				})
+			else
+				self.state = "idleup"
+				self.basicUpdate = self.origUpdate
+			end
 		end
 		
 		-- Update hotspots for object collision based on final x, y coords
