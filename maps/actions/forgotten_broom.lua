@@ -35,22 +35,27 @@ return function(scene)
 		
 		Wait(1),
 		
-		PlayAudio("music", "btheme", 1.0, true),
-		MessageBox{message="Child Robian: {p30}.{p30}.{p30}. I'm sorry B.", blocking=true},
-		
-		Wait(0.5),
-		
-		MessageBox{message="Green Robian: You tried your best R...", blocking=true},
-		MessageBox{message="...B's forgetting has just spread too quickly...", blocking=true},
-		
-		Wait(0.5),
-		
-		MessageBox{message="Yellow Robian: Yeah, B would've been proud of you, kiddo.", blocking=true},
+		Parallel {
+			PlayAudio("music", "btheme", 1.0),
+			Serial {
+				MessageBox{message="Child Robian: {p30}.{p30}.{p30}. I'm sorry B.", blocking=true},
+				
+				Wait(0.5),
+				
+				MessageBox{message="Green Robian: You tried your best R...", blocking=true},
+				MessageBox{message="...B's forgetting has just spread too quickly...", blocking=true},
+				
+				Wait(0.5),
+				
+				MessageBox{message="Yellow Robian: Yeah, B would've been proud of you, kiddo.", blocking=true}
+			}
+		},
 		
 		Do(function()
 			scene.player.sprite.visible = true
 			scene.player.noIdle = true
 			scene.player.state = "walkup"
+			scene.player.sprite:setAnimation("walkup")
 		end),
 		
 		Ease(scene.player, "y", scene.player.y - 100, 1.5, "linear"),
@@ -61,33 +66,48 @@ return function(scene)
 		
 		-- All robians hop in surprise
 		
+		Wait(0.5),
+		
 		MessageBox{message="Yellow Robian: Mobians?!", blocking=true},
 		
-		MessageBox{message="Green Robian: Why are you here?", blocking=true},
+		MessageBox{message="Green Robian: What are they doing here?!", blocking=true},
 		
-		MessageBox{message="Child Robian: ...I think they followed me here.", blocking=true},
+		MessageBox{message="Child Robian: ...{p30}I think they followed me here.", blocking=true},
 		
-		MessageBox{message="Green Robian: --And Robotnik may follow them!", blocking=true},
+		MessageBox{message="Green Robian: And Robotnik will no doubt follow them!", blocking=true},
 		MessageBox{message="You Mobians must leave at once!", blocking=true},
 		
 		MessageBox{message="Sonic: Hey, hey, hey! {p30}We don't want to cause any trouble here.", blocking=true},
-		MessageBox{message="Sally: We aren't trying to hide here from Robotnik-- we just need help figuring out how to get back to the surface.", blocking=true},
+		MessageBox{message="Sally: We don't mean to stay here--{p30}we just need help figuring out how to get back to the surface.", blocking=true},
 		
+		PlayAudio("music", "sonicsad", 1.0, true, true),
 		MessageBox{message="Green Robian: ...", blocking=true},
-		MessageBox{message="Unfortunately... {p30}our friend B is the only person with that knowledge.", blocking=true},
+		MessageBox{message="Unfortunately... {p30}our friend B here is the only person with that knowledge.", blocking=true},
 		MessageBox{message="Sonic: Why 'unfortunately'?", blocking=true},
 		MessageBox{message="Green Robian: ...", blocking=true},
-		MessageBox{message="Yellow Robian: B's not feeling so well.", blocking=true},
-		MessageBox{message="He... {p30}well we're all in the same boat actually...{p30} ya see...", blocking=true},
+		MessageBox{message="Yellow Robian: B is...", blocking=true},
+		MessageBox{message="He uh... {p30}Well we're all in the same boat actually...{p30} ya see we...", blocking=true, closeAction=Wait(1)},
 		MessageBox{message="Child Robian: We forget stuff.", blocking=true},
 		
 		Animate(scene.player.sprite, "thinking"),
 		MessageBox{message="Sonic: Huh?", blocking=true},
 		MessageBox{message="Green Robian: The price we pay for liberation from Robotnik's mind control.", blocking=true},
-		MessageBox{message="We have forgotten our past lives. We have forgotten our own names. And overtime, we continue to forget things, until we become inoperable.", blocking=true},
-		MessageBox{message="Yellow Robian: We can delay the process by swapping out some of our old parts for newer ones...", blocking=true},
-		MessageBox{message="That's what little R was out doing. Looking for parts for B.{p30} Seems B has run out of time though.", blocking=true},
-		MessageBox{message="Green Robian: So now you understand the problem.{p30} Only B knows how to get back to the surface.", blocking=true},
+		MessageBox{message="We have forgotten our past lives. {p30}We have forgotten our own names. {p30}And we keep forgetting things... {p30}until we become inoperable.", blocking=true},
+		
+		Animate(scene.player.sprite, "idleup"),
+		MessageBox{message="Yellow Robian: We can delay the process by swapping out some of our old parts for newer ones.", blocking=true},
+		MessageBox{message="Little R here was just out looking for parts for B.{p30} Seems B has run out of time though.", blocking=true},
+		MessageBox{message="Sally: We're sorry to bother you, we will just be on our way then.", blocking=true},
+		MessageBox{message="Sonic: Hold up, Sal!", blocking=true, closeAction=Wait(1)},
+		MessageBox{message="Sonic: Yo, robos! {p30}I think I might be able to help B.", blocking=true},
+		
+		-- All robians hop in surprise
+		MessageBox{message="Child Robian: Really?!", blocking=true},
+		MessageBox{message="Green Robian: How?", blocking=true},
+		
+		PlayAudio("music", "ringlake", 1.0, true, true),
+		MessageBox{message="Sonic: My uncle Chuck is roboticized too... {p30}he's normally under Robotnik's mind control... {p30}but I can bring him back with a Power Ring.", blocking=true},
+		
 		--MessageBox{message="", blocking=true},
 
 		Do(function()
