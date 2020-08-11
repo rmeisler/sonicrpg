@@ -8,7 +8,7 @@ return {
   height = 26,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 215,
+  nextobjectid = 216,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["regionName"] = "Robotropolis",
@@ -228,8 +228,8 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4618, 4619, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4653, 4654, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 3716, 3716, 3716, 3716, 3716, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 3716, 3717, 3716, 3716, 3717, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 4569, 4570, 4571, 0, 0, 4034, 4001, 4002, 4003, 4004, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -336,12 +336,12 @@ return {
           }
         },
         {
-          id = 214,
-          name = "R",
+          id = 215,
+          name = "poster",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 128,
-          y = 512,
+          x = 448,
+          y = 384,
           width = 64,
           height = 32,
           rotation = 0,
@@ -349,9 +349,9 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["defaultAnim"] = "idledown",
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
-            ["sprite"] = "../art/sprites/r.png"
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    local walkout, walkin, sprites = self.scene.player:split()\n    self.scene.player:removeKeyHint()\n    self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1\n    return Serial {\n        walkout,\n        Animate(sprites.sonic.sprite, \"idleup\"),\n        Animate(sprites.sally.sprite, \"idleup\"),\n        MessageBox {message = \"Sally: Definitely not under Robotnik's control...\", blocking = true},\n        Animate(sprites.sonic.sprite, \"pose\"),\n        MessageBox {message = \"Sonic: These are my kinda people!\", blocking = true},\n        walkin,\n        Do(function()\n            self.scene.player.x = self.scene.player.x + 60\n            self.scene.player.y = self.scene.player.y + 60\n            self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1\n        end)\n    }\nend"
           }
         }
       }
@@ -422,7 +422,7 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3071, 3071, 3071, 3071, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         3071, 3071, 3071, 3071, 3071, 3071, 3071, 3071, 2965, 3071, 3071, 3071, 3071, 3071, 3071, 3071, 3071, 3071, 3071, 3071, 3071, 3071, 3071, 3071, 3071, 0, 0, 0, 0, 0, 0, 0,
         3071, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3071, 0, 0, 0, 0, 0, 0, 0,
         3071, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

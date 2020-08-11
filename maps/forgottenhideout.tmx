@@ -817,7 +817,7 @@ end</property>
     <property name="spawn_point" value="Exit1"/>
    </properties>
   </object>
-  <object id="221" name="Save" type="SavePoint" gid="2904" x="1120" y="2208" width="32" height="32">
+  <object id="221" name="Save" type="SavePoint" gid="2904" x="1088" y="2240" width="32" height="32">
    <properties>
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>

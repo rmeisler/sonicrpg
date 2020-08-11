@@ -688,6 +688,21 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/bremembers.ogg",
+		category = "music",
+	},
+	{
+		type = "sound",
+		file = "audio/music/bheart.ogg",
+		category = "music",
+	},
+	{
+		type = "sound",
+		file = "audio/music/ringlake.ogg",
+		category = "music",
+	},
+	{
+		type = "sound",
 		file = "audio/music/sonicsad.ogg",
 		category = "music"
 	},

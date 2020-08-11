@@ -29,6 +29,11 @@ local BasicNPC = require "object/BasicNPC"
 return function(scene)
 	scene.player.cinematicStack = scene.player.cinematicStack + 1
 	scene.player.sprite.visible = false
+	
+	-- Hack to reposition split
+	scene.player.y = scene.player.y - 210
+	local walkout, walkin, sprites = scene.player:split()
+	scene.player.y = scene.player.y + 210
 
 	return Serial {
 		AudioFade("music", 1, 0, 1),
@@ -36,9 +41,9 @@ return function(scene)
 		Wait(1),
 		
 		Parallel {
-			PlayAudio("music", "btheme", 1.0),
+			--PlayAudio("music", "btheme", 1.0),
 			Serial {
-				MessageBox{message="Child Robian: {p30}.{p30}.{p30}. I'm sorry B.", blocking=true},
+				MessageBox{message="Child Robian: {p30}.{p30}.{p30}. I'm sorry Uncle B.", blocking=true},
 				
 				Wait(0.5),
 				
@@ -58,13 +63,38 @@ return function(scene)
 			scene.player.sprite:setAnimation("walkup")
 		end),
 		
-		Ease(scene.player, "y", scene.player.y - 100, 1.5, "linear"),
+		Ease(scene.player, "y", scene.player.y - 150, 1.5, "linear"),
 		
 		Do(function()
 			scene.player.noIdle = false
 		end),
 		
+		walkout,
+		
+		Animate(sprites.sonic.sprite, "idleup"),
+		Animate(sprites.sally.sprite, "idleup"),
+		
+		-- Sonic and sally hop
+		Parallel {
+			Ease(sprites.sonic, "y", sprites.sonic.y - 50, 7, "linear"),
+			Ease(sprites.sally, "y", sprites.sally.y - 50, 7, "linear")
+		},
+		Parallel {
+			Ease(sprites.sonic, "y", sprites.sonic.y, 7, "linear"),
+			Ease(sprites.sally, "y", sprites.sally.y, 7, "linear")
+		},
+		
 		-- All robians hop in surprise
+		Parallel {
+			Ease(scene.objectLookup.R, "y", scene.objectLookup.R.y - 50, 7, "linear"),
+			Ease(scene.objectLookup.T, "y", scene.objectLookup.T.y - 50, 7, "linear"),
+			Ease(scene.objectLookup.P, "y", scene.objectLookup.P.y - 50, 7, "linear")
+		},
+		Parallel {
+			Ease(scene.objectLookup.R, "y", scene.objectLookup.R.y, 7, "linear"),
+			Ease(scene.objectLookup.T, "y", scene.objectLookup.T.y, 7, "linear"),
+			Ease(scene.objectLookup.P, "y", scene.objectLookup.P.y, 7, "linear")
+		},
 		
 		Wait(0.5),
 		
@@ -77,38 +107,86 @@ return function(scene)
 		MessageBox{message="Green Robian: And Robotnik will no doubt follow them!", blocking=true},
 		MessageBox{message="You Mobians must leave at once!", blocking=true},
 		
-		MessageBox{message="Sonic: Hey, hey, hey! {p30}We don't want to cause any trouble here.", blocking=true},
-		MessageBox{message="Sally: We don't mean to stay here--{p30}we just need help figuring out how to get back to the surface.", blocking=true},
+		MessageBox{message="Sonic: Hey, hey, hey! {p40}We don't want to cause any trouble here. We just came to ask for directions.", blocking=true},
+		MessageBox{message="Sally: Please...{p40} Robotnik captured our friend. {p40}We need to save him, before it's too late.", blocking=true},
 		
 		PlayAudio("music", "sonicsad", 1.0, true, true),
 		MessageBox{message="Green Robian: ...", blocking=true},
-		MessageBox{message="Unfortunately... {p30}our friend B here is the only person with that knowledge.", blocking=true},
+		MessageBox{message="Unfortunately... {p30}B here is the only person with that knowledge.", blocking=true},
 		MessageBox{message="Sonic: Why 'unfortunately'?", blocking=true},
 		MessageBox{message="Green Robian: ...", blocking=true},
 		MessageBox{message="Yellow Robian: B is...", blocking=true},
-		MessageBox{message="He uh... {p30}Well we're all in the same boat actually...{p30} ya see we...", blocking=true, closeAction=Wait(1)},
+		MessageBox{message="He uh... {p40}W-Well we're all in the same boat actually...{p40} ya see we{p30}.{p30}.{p30}.", blocking=true, closeAction=Wait(1)},
 		MessageBox{message="Child Robian: We forget stuff.", blocking=true},
+		MessageBox{message="Yellow Robian: Right.", blocking=true},
 		
-		Animate(scene.player.sprite, "thinking"),
+		Animate(sprites.sonic.sprite, "thinking"),
 		MessageBox{message="Sonic: Huh?", blocking=true},
-		MessageBox{message="Green Robian: The price we pay for liberation from Robotnik's mind control.", blocking=true},
-		MessageBox{message="We have forgotten our past lives. {p30}We have forgotten our own names. {p30}And we keep forgetting things... {p30}until we become inoperable.", blocking=true},
+		MessageBox{message="Green Robian: It's the price we pay for liberation from Robotnik's mind control.", blocking=true},
+		MessageBox{message="We've forgotten our past lives. {p40}We have forgotten our own names. {p40}And we keep forgetting things... {p60}until we become inoperable.", blocking=true},
 		
-		Animate(scene.player.sprite, "idleup"),
-		MessageBox{message="Yellow Robian: We can delay the process by swapping out some of our old parts for newer ones.", blocking=true},
-		MessageBox{message="Little R here was just out looking for parts for B.{p30} Seems B has run out of time though.", blocking=true},
-		MessageBox{message="Sally: We're sorry to bother you, we will just be on our way then.", blocking=true},
-		MessageBox{message="Sonic: Hold up, Sal!", blocking=true, closeAction=Wait(1)},
+		Animate(sprites.sonic.sprite, "idleup"),
+		MessageBox{message="Yellow Robian: We can delay the process a bit! {p40}By swapping out some of our old parts for newer ones, we can buy ourselves some time.", blocking=true},
+		MessageBox{message="Little R here was out looking for parts for B, when you came upon him.{p50} Seems like ol' B has maybe run out of time though.", blocking=true},
+		MessageBox{message="Sally: I can see this is not a good time...{p40} we're sorry to bother you, {p40}we will just be on our way then.", blocking=true},
+		Wait(0.5),
+		
+		Parallel {
+			Serial {
+				Move(sprites.sally, scene.objectLookup.Waypoint2, "walk", 1),
+				Animate(sprites.sally.sprite, "idledown")
+			},
+			Serial {
+				Wait(0.5),
+				Animate(sprites.sonic.sprite, "idledown"),
+				MessageBox{message="Sonic: Hold up, Sal!", blocking=true, closeAction=Wait(1)}
+			}
+		},
+		Animate(sprites.sonic.sprite, "idleup"),
 		MessageBox{message="Sonic: Yo, robos! {p30}I think I might be able to help B.", blocking=true},
 		
 		-- All robians hop in surprise
 		MessageBox{message="Child Robian: Really?!", blocking=true},
-		MessageBox{message="Green Robian: How?", blocking=true},
+		MessageBox{message="Green Robian: How?!", blocking=true},
+
+		Move(sprites.sally, scene.objectLookup.Waypoint3, "walk", 1),
+		Animate(sprites.sally.sprite, "idleleft"),
+		MessageBox{message="Sally: *Ahem. {p40}What are you doing Sonic?*", blocking=true},
+		MessageBox{message="Sonic: *Trust me on this.*", blocking=true},
 		
-		PlayAudio("music", "ringlake", 1.0, true, true),
-		MessageBox{message="Sonic: My uncle Chuck is roboticized too... {p30}he's normally under Robotnik's mind control... {p30}but I can bring him back with a Power Ring.", blocking=true},
+		AudioFade("music", 1, 0, 2),
+		PlayAudio("music", "ringlake", 1.0, true),
 		
-		--MessageBox{message="", blocking=true},
+		Move(sprites.sonic, scene.objectLookup.Waypoint),
+		
+		Animate(sprites.sonic.sprite, "idleleft"),
+		
+		Wait(2),
+		
+		AudioFade("music", 1, 0, 2),
+		
+		Parallel {
+			PlayAudio("music", "bremembers", 1.0),
+			
+			Serial {
+				Animate(scene.objectLookup.B.sprite, "wakeup1"),
+				Animate(scene.objectLookup.B.sprite, "wakeup2"),
+				Animate(scene.objectLookup.B.sprite, "wakeup3"),
+				Animate(scene.objectLookup.B.sprite, "wakeup"),
+				Animate(scene.objectLookup.B.sprite, "awake")
+			}
+		},
+		MessageBox{message="B: ...", blocking=true, closeAction=Wait(2)},
+		Parallel {
+			PlayAudio("music", "bheart", 1.0),
+			Serial {
+				Animate(scene.objectLookup.B.sprite, "lookright"),
+				MessageBox{message="B: W-W-What happened?...{p40}Where am I?", blocking=true},
+				
+				MessageBox{message="Child Robian: *gasp*!", blocking=true},
+				MessageBox{message="Green Robian: Incredible!", blocking=true}
+			}
+		},
 
 		Do(function()
 			scene.player.cinematicStack = scene.player.cinematicStack - 1
