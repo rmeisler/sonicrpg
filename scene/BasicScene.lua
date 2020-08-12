@@ -406,7 +406,8 @@ function BasicScene:enterBattle(args)
 				blur = self.blur,
 				opponents = args.opponents,
 				bossBattle = args.bossBattle,
-				initiative = args.initiative
+				initiative = args.initiative,
+				color = args.color
 			}
 		end),
 		

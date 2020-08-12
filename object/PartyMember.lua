@@ -36,6 +36,8 @@ function PartyMember:construct(scene, data)
 	self.sp = data.sp or 0
 	self.charge = 100
 	
+	self.sprite.color = table.clone(scene.color or {255,255,255,255})
+	
 	self.raw = data
 	
 	local stats = data.stats or {}

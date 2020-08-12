@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="79" tilewidth="32" tileheight="32" infinite="0" nextobjectid="500">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/datacenter2f.png"/>
   <property name="onload" type="file" value="actions/datacenter_floor4.lua"/>
   <property name="regionName" value="Robotropolis"/>
   <property name="sectorName" value="Data Center"/>

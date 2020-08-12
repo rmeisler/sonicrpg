@@ -59,6 +59,7 @@ function BattleScene:onEnter(args)
 	self.blur = args.blur
 	self.bossBattle = args.bossBattle
 	self.initiative = args.initiative
+	self.color = args.color
 
 	self.mboxGradient = self.images["mboxgradient"]
 

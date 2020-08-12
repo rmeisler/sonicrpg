@@ -10,7 +10,6 @@ return {
   tileheight = 32,
   nextobjectid = 500,
   properties = {
-    ["battlebg"] = "../art/backgrounds/datacenter2f.png",
     ["onload"] = "actions/datacenter_floor4.lua",
     ["regionName"] = "Robotropolis",
     ["sectorName"] = "Data Center"

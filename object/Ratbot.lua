@@ -46,7 +46,13 @@ function Ratbot:construct(scene, layer, object)
 	self.stepSfx = "ratstep"
 end
 
-function Swatbot:createDropShadow()
+function Ratbot:getBattleArgs()
+	local args = Swatbot.getBattleArgs(self)
+	args.color = {150,150,150,255}
+	return args
+end
+
+function Ratbot:createDropShadow()
 	self.dropShadow = BasicNPC(
 		self.scene,
 		{name = "ratshadow"},
