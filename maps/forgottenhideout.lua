@@ -8,7 +8,7 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 222,
+  nextobjectid = 225,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_hideout.lua",
@@ -811,8 +811,8 @@ return {
           name = "Spawn 1",
           type = "Player",
           shape = "rectangle",
-          x = 1120,
-          y = 2688,
+          x = 1088,
+          y = 2784,
           width = 32,
           height = 32,
           rotation = 0,
@@ -828,9 +828,9 @@ return {
           type = "Stairs",
           shape = "rectangle",
           x = 1280,
-          y = 2368,
+          y = 2400,
           width = 32,
-          height = 224,
+          height = 288,
           rotation = 0,
           gid = 1227,
           visible = true,
@@ -844,9 +844,9 @@ return {
           type = "Stairs",
           shape = "rectangle",
           x = 928,
-          y = 2368,
+          y = 2400,
           width = 32,
-          height = 224,
+          height = 288,
           rotation = 0,
           gid = 1227,
           visible = true,
@@ -1095,7 +1095,7 @@ return {
           type = "HidingSpot",
           shape = "rectangle",
           x = 1056,
-          y = 1920,
+          y = 1952,
           width = 128,
           height = 320,
           rotation = 0,
@@ -1188,16 +1188,16 @@ return {
           name = "P",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1760,
+          x = 1600,
           y = 1312,
-          width = 32,
+          width = 64,
           height = 32,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["defaultAnim"] = "pleft",
+            ["defaultAnim"] = "pright",
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
             ["sprite"] = "../art/sprites/P.png"
           }
@@ -1255,6 +1255,58 @@ return {
           visible = true,
           properties = {
             ["sprite"] = "../art/sprites/save.png"
+          }
+        },
+        {
+          id = 222,
+          name = "Spawn 2",
+          type = "SpawnPoint",
+          shape = "rectangle",
+          x = 1088,
+          y = 2336,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1586,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["orientation"] = "up"
+          }
+        },
+        {
+          id = 223,
+          name = "B",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1024,
+          y = 2176,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["defaultAnim"] = "idledown",
+            ["sprite"] = "../art/sprites/b.png"
+          }
+        },
+        {
+          id = 224,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 1760,
+          y = 1312,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 3501,
+          visible = true,
+          properties = {
+            ["CrystalWater"] = 2,
+            ["sprite"] = "../art/sprites/chest.png"
           }
         }
       }

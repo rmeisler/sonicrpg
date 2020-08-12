@@ -61,6 +61,9 @@ return {
 		hurt = {
 			frames = {{9,0}}
 		},
+		hurtdown = {
+			frames = {{9,0}}
+		},
 		
 		crouch = {
 			frames = {{9,0}}

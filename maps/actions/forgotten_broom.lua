@@ -27,6 +27,21 @@ local Repeat = require "actions/Repeat"
 local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
+	if GameState:isFlagSet("met_b") then
+		if not scene.objectLookup.B:isRemoved() then
+			scene.objectLookup.B:remove()
+			scene.objectLookup.R:remove()
+			scene.objectLookup.T:remove()
+			scene.objectLookup.P:remove()
+			scene.powerring:remove()
+			for _, s in pairs(scene.splitSprites) do
+				s:remove()
+			end
+			scene.player.cinematicStack = 0
+		end
+		return Action()
+	end
+
 	scene.player.cinematicStack = scene.player.cinematicStack + 1
 	scene.player.sprite.visible = false
 	
@@ -40,22 +55,20 @@ return function(scene)
 		
 		Wait(1),
 		
-		Parallel {
-			--PlayAudio("music", "btheme", 1.0),
-			Serial {
-				MessageBox{message="Child Robian: {p30}.{p30}.{p30}. I'm sorry Uncle B.", blocking=true},
-				
-				Wait(0.5),
-				
-				MessageBox{message="Green Robian: You tried your best R...", blocking=true},
-				MessageBox{message="...B's forgetting has just spread too quickly...", blocking=true},
-				
-				Wait(0.5),
-				
-				MessageBox{message="Yellow Robian: Yeah, B would've been proud of you, kiddo.", blocking=true}
-			}
-		},
+		PlayAudio("music", "btheme", 1.0, true),	
+			
+		MessageBox{message="Child Robian: {p30}.{p30}.{p30}. I'm sorry Uncle B.", blocking=true},
 		
+		Wait(0.5),
+		
+		MessageBox{message="Green Robian: You tried your best R...", blocking=true},
+		MessageBox{message="...B's forgetting has just spread too quickly...", blocking=true},
+		
+		Wait(0.5),
+		
+		MessageBox{message="Yellow Robian: Yeah, B would've been proud of you, kiddo.", blocking=true},
+		
+		AudioFade("music", 1.0, 0.0, 2),
 		Do(function()
 			scene.player.sprite.visible = true
 			scene.player.noIdle = true
@@ -72,7 +85,7 @@ return function(scene)
 		walkout,
 		
 		Animate(sprites.sonic.sprite, "idleup"),
-		Animate(sprites.sally.sprite, "idleup"),
+		Animate(sprites.sally.sprite, "idleup"),		
 		
 		-- Sonic and sally hop
 		Parallel {
@@ -96,18 +109,24 @@ return function(scene)
 			Ease(scene.objectLookup.P, "y", scene.objectLookup.P.y, 7, "linear")
 		},
 		
+		Animate(scene.objectLookup.R.sprite, "idleright"),
+		Animate(scene.objectLookup.T.sprite, "tright"),
+		Animate(scene.objectLookup.P.sprite, "pright"),
+		
 		Wait(0.5),
 		
+		PlayAudio("music", "follow", 1.0, true),
 		MessageBox{message="Yellow Robian: Mobians?!", blocking=true},
 		
 		MessageBox{message="Green Robian: What are they doing here?!", blocking=true},
 		
 		MessageBox{message="Child Robian: ...{p30}I think they followed me here.", blocking=true},
 		
+		AudioFade("music", 1.0, 0.0, 2),
 		MessageBox{message="Green Robian: And Robotnik will no doubt follow them!", blocking=true},
 		MessageBox{message="You Mobians must leave at once!", blocking=true},
-		
 		MessageBox{message="Sonic: Hey, hey, hey! {p40}We don't want to cause any trouble here. We just came to ask for directions.", blocking=true},
+		
 		MessageBox{message="Sally: Please...{p40} Robotnik captured our friend. {p40}We need to save him, before it's too late.", blocking=true},
 		
 		PlayAudio("music", "sonicsad", 1.0, true, true),
@@ -128,7 +147,7 @@ return function(scene)
 		Animate(sprites.sonic.sprite, "idleup"),
 		MessageBox{message="Yellow Robian: We can delay the process a bit! {p40}By swapping out some of our old parts for newer ones, we can buy ourselves some time.", blocking=true},
 		MessageBox{message="Little R here was out looking for parts for B, when you came upon him.{p50} Seems like ol' B has maybe run out of time though.", blocking=true},
-		MessageBox{message="Sally: I can see this is not a good time...{p40} we're sorry to bother you, {p40}we will just be on our way then.", blocking=true},
+		MessageBox{message="Sally: I can see this is not a good time...{p40} we're sorry to bother you. {p40}We will just be on our way then.", blocking=true},
 		Wait(0.5),
 		
 		Parallel {
@@ -145,7 +164,11 @@ return function(scene)
 		Animate(sprites.sonic.sprite, "idleup"),
 		MessageBox{message="Sonic: Yo, robos! {p30}I think I might be able to help B.", blocking=true},
 		
-		-- All robians hop in surprise
+		Animate(sprites.sally.sprite, "idleup"),
+		
+		-- R hop
+		Ease(scene.objectLookup.R, "y", scene.objectLookup.R.y - 50, 7, "linear"),
+		Ease(scene.objectLookup.R, "y", scene.objectLookup.R.y, 7, "linear"),
 		MessageBox{message="Child Robian: Really?!", blocking=true},
 		MessageBox{message="Green Robian: How?!", blocking=true},
 
@@ -155,41 +178,113 @@ return function(scene)
 		MessageBox{message="Sonic: *Trust me on this.*", blocking=true},
 		
 		AudioFade("music", 1, 0, 2),
-		PlayAudio("music", "ringlake", 1.0, true),
 		
+		Do(function()
+			-- Make Sonic appear above B
+			sprites.sonic.sprite.sortOrderY = 9999
+		end),
 		Move(sprites.sonic, scene.objectLookup.Waypoint),
 		
+		Animate(scene.objectLookup.R.sprite, "idleup"),
+		Animate(scene.objectLookup.T.sprite, "tleft"),
+		Animate(scene.objectLookup.P.sprite, "pleft"),
 		Animate(sprites.sonic.sprite, "idleleft"),
 		
-		Wait(2),
+		Wait(1),
 		
-		AudioFade("music", 1, 0, 2),
+		Parallel {
+			Serial {
+				Animate(sprites.sonic.sprite, "getring"),
+				Animate(sprites.sonic.sprite, "holdring")
+			},
+			MessageBox{message="Sonic: *If this worked for Uncle Chuck, I bet it'll work for B.*", blocking=true, closeAction=Wait(2)},
+		},
+		
+		Do(function()
+			scene.powerring = SpriteNode(
+				scene,
+				Transform.relative(sprites.sonic.sprite.transform, Transform(-8, sprites.sonic.sprite.h + 6)),
+				nil,
+				"powerring",
+				nil,
+				nil,
+				"objects"
+			)
+			scene.powerring.sortOrderY = 8888
+		end),
+		Animate(sprites.sonic.sprite, "sadleft"),
+		Wait(0.2),
+		Do(function()
+			scene.powerring.transform = Transform.relative(sprites.sonic.sprite.transform, Transform(-15, sprites.sonic.sprite.h + 5))
+			
+			Executor(scene):act(Serial {
+				Animate(scene.powerring, "shimmer"),
+				Animate(scene.powerring, "idle")
+			})
+		end),
+		Animate(sprites.sonic.sprite, "sadlefthand"),
+		
+		Wait(1),
 		
 		Parallel {
 			PlayAudio("music", "bremembers", 1.0),
 			
 			Serial {
+				Parallel {
+					Ease(scene.objectLookup.B.sprite.color, 1, 512, 0.5, "linear"),
+					Ease(scene.objectLookup.B.sprite.color, 2, 512, 0.5, "linear")
+				},
+				Wait(2),
+				Parallel {
+					Ease(scene.objectLookup.B.sprite.color, 1, 255, 0.5, "linear"),
+					Ease(scene.objectLookup.B.sprite.color, 2, 255, 0.5, "linear")
+				}
+			},
+			
+			Serial {
 				Animate(scene.objectLookup.B.sprite, "wakeup1"),
 				Animate(scene.objectLookup.B.sprite, "wakeup2"),
 				Animate(scene.objectLookup.B.sprite, "wakeup3"),
+				Animate(scene.objectLookup.B.sprite, "wakeup4"),
 				Animate(scene.objectLookup.B.sprite, "wakeup"),
 				Animate(scene.objectLookup.B.sprite, "awake")
 			}
 		},
 		MessageBox{message="B: ...", blocking=true, closeAction=Wait(2)},
-		Parallel {
-			PlayAudio("music", "bheart", 1.0),
-			Serial {
-				Animate(scene.objectLookup.B.sprite, "lookright"),
-				MessageBox{message="B: W-W-What happened?...{p40}Where am I?", blocking=true},
-				
-				MessageBox{message="Child Robian: *gasp*!", blocking=true},
-				MessageBox{message="Green Robian: Incredible!", blocking=true}
-			}
-		},
+		Do(function()
+			scene.powerring.transform = Transform.relative(sprites.sonic.sprite.transform, Transform(-8, sprites.sonic.sprite.h + 6))
+		end),
+		Animate(sprites.sonic.sprite, "idleleft"),
+		
+		PlayAudio("music", "bheart", 1.0, true),
+		Animate(scene.objectLookup.B.sprite, "lookright"),
+		MessageBox{message="B: W-W-What happened?...{p40}Where am I?", blocking=true},
+		
+		MessageBox{message="Child Robian: *gasp*!", blocking=true},
+		MessageBox{message="Green Robian: Incredible!", blocking=true},
+		MessageBox{message="Yellow Robian: We thought we lost ya, Uncle B!", blocking=true},
 
 		Do(function()
-			scene.player.cinematicStack = scene.player.cinematicStack - 1
+			GameState:setFlag("met_b")
+			
+			scene.splitSprites = sprites
+
+			scene.sceneMgr:switchScene {
+				class = "BasicScene",
+				mapName = "maps/forgottenhideout.lua",
+				map = scene.maps["maps/forgottenhideout.lua"],
+				maps = scene.maps,
+				region = scene.region,
+				spawn_point = "Spawn 2",
+				spawn_point_offset = Transform(),
+				fadeInSpeed = 0.2,
+				fadeOutSpeed = 0.2,
+				images = scene.images,
+				animations = scene.animations,
+				audio = scene.audio,
+				doingSpecialMove = false,
+				cache = true
+			}
 		end)
 	}
 end

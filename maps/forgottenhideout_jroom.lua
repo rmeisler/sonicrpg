@@ -8,7 +8,7 @@ return {
   height = 26,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 216,
+  nextobjectid = 218,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["regionName"] = "Robotropolis",
@@ -352,6 +352,42 @@ return {
             ["defaultAnim"] = "idleup",
             ["ghost"] = true,
             ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    local walkout, walkin, sprites = self.scene.player:split()\n    self.scene.player:removeKeyHint()\n    self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1\n    return Serial {\n        walkout,\n        Animate(sprites.sonic.sprite, \"idleup\"),\n        Animate(sprites.sally.sprite, \"idleup\"),\n        MessageBox {message = \"Sally: Definitely not under Robotnik's control...\", blocking = true},\n        Animate(sprites.sonic.sprite, \"pose\"),\n        MessageBox {message = \"Sonic: These are my kinda people!\", blocking = true},\n        walkin,\n        Do(function()\n            self.scene.player.x = self.scene.player.x + 60\n            self.scene.player.y = self.scene.player.y + 60\n            self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1\n        end)\n    }\nend"
+          }
+        },
+        {
+          id = 216,
+          name = "R",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 288,
+          y = 480,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["defaultAnim"] = "idleright",
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
+            ["sprite"] = "../art/sprites/r.png"
+          }
+        },
+        {
+          id = 217,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 224,
+          y = 672,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 3501,
+          visible = true,
+          properties = {
+            ["GreenLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest.png"
           }
         }
       }

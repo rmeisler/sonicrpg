@@ -8,7 +8,7 @@ return {
   height = 26,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 216,
+  nextobjectid = 220,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["regionName"] = "Robotropolis",
@@ -333,6 +333,42 @@ return {
             ["orientation"] = "right",
             ["scene"] = "forgottenhideout.lua",
             ["spawn_point"] = "RightExit"
+          }
+        },
+        {
+          id = 217,
+          name = "T",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 640,
+          y = 448,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["defaultAnim"] = "tleft",
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
+            ["sprite"] = "../art/sprites/P.png"
+          }
+        },
+        {
+          id = 219,
+          name = "Chest2",
+          type = "Chest",
+          shape = "rectangle",
+          x = 864,
+          y = 512,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 3501,
+          visible = true,
+          properties = {
+            ["BlueLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest.png"
           }
         }
       }

@@ -48,7 +48,7 @@ return {
 	{
         type = "map",
         file = "maps/forgottenhideout.lua",
-		primary = true,
+		--primary = true,
     },
 	
 	{
@@ -87,6 +87,12 @@ return {
 	{
         type = "map",
         file = "maps/sewer2.lua"
+    },
+	
+	{
+        type = "map",
+        file = "maps/sewer3.lua",
+		primary = true
     },
 	
 	--[[{
@@ -710,6 +716,12 @@ return {
 		type = "sound",
 		file = "audio/music/btheme.ogg",
 		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/bhero.ogg",
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",

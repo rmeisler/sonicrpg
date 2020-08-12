@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="70" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="222">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="70" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="225">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="onload" type="file" value="actions/forgotten_hideout.lua"/>
@@ -626,17 +626,17 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="172" name="Spawn 1" type="Player" gid="1586" x="1120" y="2688" width="32" height="32">
+  <object id="172" name="Spawn 1" type="Player" gid="1586" x="1088" y="2784" width="32" height="32">
    <properties>
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="185" name="Stairs2" type="Stairs" gid="1227" x="1280" y="2368" width="32" height="224">
+  <object id="185" name="Stairs2" type="Stairs" gid="1227" x="1280" y="2400" width="32" height="288">
    <properties>
     <property name="direction" value="up_right"/>
    </properties>
   </object>
-  <object id="190" name="Stairs1" type="Stairs" gid="1227" x="928" y="2368" width="32" height="224">
+  <object id="190" name="Stairs1" type="Stairs" gid="1227" x="928" y="2400" width="32" height="288">
    <properties>
     <property name="direction" value="up_left"/>
    </properties>
@@ -747,7 +747,7 @@ end</property>
     <property name="spawn_point" value="Exit1"/>
    </properties>
   </object>
-  <object id="211" name="HidingSpot1" type="HidingSpot" gid="3522" x="1056" y="1920" width="128" height="320"/>
+  <object id="211" name="HidingSpot1" type="HidingSpot" gid="3522" x="1056" y="1952" width="128" height="320"/>
   <object id="212" name="Stairs1" type="Stairs" gid="1227" x="896" y="2272" width="32" height="96">
    <properties>
     <property name="direction" value="up_left"/>
@@ -773,10 +773,10 @@ end</property>
     <property name="direction" value="up_right"/>
    </properties>
   </object>
-  <object id="217" name="P" type="BasicNPC" gid="1227" x="1760" y="1312" width="32" height="32">
+  <object id="217" name="P" type="BasicNPC" gid="1227" x="1600" y="1312" width="64" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="pleft"/>
+    <property name="defaultAnim" value="pright"/>
     <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
 
 return function(self)
@@ -820,6 +820,25 @@ end</property>
   <object id="221" name="Save" type="SavePoint" gid="2904" x="1088" y="2240" width="32" height="32">
    <properties>
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
+   </properties>
+  </object>
+  <object id="222" name="Spawn 2" type="SpawnPoint" gid="1586" x="1088" y="2336" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="orientation" value="up"/>
+   </properties>
+  </object>
+  <object id="223" name="B" type="BasicNPC" gid="1227" x="1024" y="2176" width="64" height="32">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="sprite" type="file" value="../art/sprites/b.png"/>
+   </properties>
+  </object>
+  <object id="224" name="Chest1" type="Chest" gid="3501" x="1760" y="1312" width="32" height="32">
+   <properties>
+    <property name="CrystalWater" type="int" value="2"/>
+    <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
  </objectgroup>

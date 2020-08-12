@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="32" height="26" tilewidth="32" tileheight="32" infinite="0" nextobjectid="216">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="32" height="26" tilewidth="32" tileheight="32" infinite="0" nextobjectid="220">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="regionName" value="Robotropolis"/>
@@ -142,6 +142,24 @@
     <property name="orientation" value="right"/>
     <property name="scene" type="file" value="forgottenhideout.lua"/>
     <property name="spawn_point" value="RightExit"/>
+   </properties>
+  </object>
+  <object id="217" name="T" type="BasicNPC" gid="1227" x="640" y="448" width="64" height="32">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="defaultAnim" value="tleft"/>
+    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return MessageBox {message = &quot;R: Who are you, exactly?&quot;, blocking = true}
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/P.png"/>
+   </properties>
+  </object>
+  <object id="219" name="Chest2" type="Chest" gid="3501" x="864" y="512" width="32" height="32">
+   <properties>
+    <property name="BlueLeaf" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
  </objectgroup>

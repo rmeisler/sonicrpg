@@ -214,6 +214,20 @@ return {
 		},
 		swimup = {
 			frames = {{13,3}}
+		},
+		
+		getring = {
+			frames = {{0,7},{1,7},{2,7},{3,7},{4,7},{4,7},{4,7},{4,7}},
+			speed = 0.4
+		},
+		holdring = {
+			frames = {{4,7}}
+		},
+		sadleft = {
+			frames = {{5,7}}
+		},
+		sadlefthand = {
+			frames = {{6,7}}
 		}
     }
 }

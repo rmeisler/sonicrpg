@@ -37,7 +37,7 @@ function ChapterSplashScene:loadingAnimation(tasks)
 	ScreenShader:sendColor("multColor", self.bgColor)
 	return Serial {
 		Parallel {
-			PlayAudio("music", "titlecard", 1.0, true),
+			PlayAudio("music", "titlecard", 0.8, true),
 
 			-- Loads maps, images, sounds
 			Parallel(tasks),

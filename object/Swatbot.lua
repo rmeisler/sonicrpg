@@ -642,6 +642,7 @@ function Swatbot:updateAction(dt)
 		if  self.scene.player:isTouching(cx, cy, self.object.width, self.object.height) or
 			self.scene.player:isTouching(cx2, cy, self.object.width, self.object.height)
 		then
+			self.scene.audio:stopSfx(self.stepSfx)
 			self.state = NPC.STATE_TOUCHING
 			self:invoke("collision")
 			self:onCollision()
