@@ -153,18 +153,17 @@
     <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
-  <object id="224" name="Ratbot1" type="Ratbot" gid="1227" x="768" y="1280" width="32" height="32">
+  <object id="224" name="Ratbot1" type="Ratbot" gid="1227" x="768" y="1280" width="96" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="alignOffsetX" type="int" value="-60"/>
-    <property name="alignOffsetY" type="int" value="70"/>
+    <property name="audibleDistance" type="int" value="170"/>
     <property name="battle" type="file" value="../data/monsters/ratbot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint1,Waypoint2,Waypoint3,Waypoint2,Waypoint1,Waypoint4"/>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/ratbot.png"/>
    </properties>
   </object>
@@ -199,8 +198,8 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>
-    <property name="scene" type="file" value="factoryfloor.lua"/>
-    <property name="spawn_point" value="Exit"/>
+    <property name="scene" type="file" value="sewer3.lua"/>
+    <property name="spawn_point" value="Spawn 1"/>
     <property name="walkin" type="bool" value="true"/>
    </properties>
   </object>
@@ -209,18 +208,17 @@
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="232" name="Ratbot2" type="Ratbot" gid="1227" x="1376" y="1280" width="32" height="32">
+  <object id="232" name="Ratbot2" type="Ratbot" gid="1227" x="1376" y="1280" width="96" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="alignOffsetX" type="int" value="-60"/>
-    <property name="alignOffsetY" type="int" value="70"/>
+    <property name="audibleDistance" type="int" value="170"/>
     <property name="battle" type="file" value="../data/monsters/ratbot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint5,Waypoint6,Waypoint7,Waypoint8,Waypoint7,Waypoint6"/>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/ratbot.png"/>
    </properties>
   </object>
@@ -253,7 +251,10 @@ local PlayAudio = require &quot;actions/PlayAudio&quot;
 
 return function(self)
     return Serial {
-        Do(function() self.scene.player.cinematic = true end),
+        Do(function()
+            self.scene.player.cinematic = true
+            self.scene:pauseEnemies(true)
+        end),
         Parallel {
             Ease(self.scene.camPos, &quot;x&quot;, -700, 1, &quot;inout&quot;),
             Ease(self.scene.camPos, &quot;y&quot;, 700, 1, &quot;inout&quot;)
@@ -271,13 +272,16 @@ return function(self)
             Ease(self.scene.camPos, &quot;x&quot;, 0, 2, &quot;inout&quot;),
             Ease(self.scene.camPos, &quot;y&quot;, 0, 2, &quot;inout&quot;)
         },
-        Do(function() self.scene.player.cinematic = false end)
+        Do(function()
+            self.scene.player.cinematic = false
+            self.scene:pauseEnemies(false)
+        end)
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/switch3.png"/>
    </properties>
   </object>
-  <object id="238" name="CHeap1" type="BasicNPC" gid="3112" x="960" y="1504" width="128" height="32">
+  <object id="238" name="CHeap1" type="BasicNPC" gid="3112" x="832" y="1504" width="128" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hideOffset" type="int" value="26"/>
@@ -285,7 +289,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/heap.png"/>
    </properties>
   </object>
-  <object id="239" name="CHeap2" type="BasicNPC" gid="3112" x="1280" y="1504" width="128" height="32">
+  <object id="239" name="CHeap2" type="BasicNPC" gid="3112" x="960" y="1504" width="128" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hideOffset" type="int" value="26"/>
@@ -293,7 +297,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/heap.png"/>
    </properties>
   </object>
-  <object id="240" name="CHeap3" type="BasicNPC" gid="3112" x="1408" y="1504" width="128" height="32">
+  <object id="240" name="CHeap3" type="BasicNPC" gid="3112" x="1344" y="1504" width="128" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hideOffset" type="int" value="26"/>

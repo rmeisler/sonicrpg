@@ -514,7 +514,6 @@ function BattleScene:addMonster(monster)
 			return a.sprite.transform.y < b.sprite.transform.y
 		end
 	)
-	table.insert(self.opponentTurns, oppo)
 end
 
 function BattleScene:cleanMonsters()

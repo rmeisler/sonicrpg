@@ -48,8 +48,6 @@ function Bot:construct(scene, layer, object)
 		left_bot  = {x = 20, y = 0}
 	}
 
-	--self.collision = {}
-
 	self.facing = "right"
 	
 	self:createDropShadow()
@@ -635,12 +633,11 @@ function Bot:updateAction(dt)
 	if  not (GameState.leader == "sonic" and self.scene.player.doingSpecialMove) and
 		not self.scene.player.falling
 	then
-		local cx = self.x + 20
-		local cy = self.y + self.sprite.h*2 - self.scene:getTileHeight()
-		local cx2 = cx + self.scene:getTileWidth()
-		if  self.scene.player:isTouching(cx, cy, self.object.width, self.object.height) or
-			self.scene.player:isTouching(cx2, cy, self.object.width, self.object.height)
-		then
+		local cx = self.hotspots.left_top.x + self.hotspotOffsets.left_top.x
+		local cy = self.hotspots.left_bot.y + self.hotspotOffsets.left_bot.y
+		local cw = (self.hotspots.right_top.x + self.hotspotOffsets.right_top.x) - cx
+		local ch = (self.hotspots.right_bot.y + self.hotspotOffsets.right_bot.y) - cy
+		if  self.scene.player:isTouching(cx, cy, cw, ch) then
 			self.scene.audio:stopSfx(self.stepSfx)
 			self.state = NPC.STATE_TOUCHING
 			self:invoke("collision")

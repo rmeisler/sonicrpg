@@ -81,7 +81,7 @@ return {
 	{
         type = "map",
         file = "maps/sewer1.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -92,7 +92,7 @@ return {
 	{
         type = "map",
         file = "maps/sewer3.lua",
-		primary = true
+		--primary = true
     },
 	
 	--[[{

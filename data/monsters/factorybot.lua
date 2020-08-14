@@ -55,8 +55,8 @@ return {
 	},
 
 	behavior = function (self, target)
-		-- If there's less than 3 opponents (cambot + 2 swatbots), spawn another swatbot
-		if #self.scene.opponents < 3 then
+		-- If there's less than 3 opponents, spawn a swatbot
+		if #self.scene.opponents < 3 and math.random() < 0.5 then
 			return Serial {
 				Telegraph(self, "Intruder alert!", {255,255,255,50}),
 				Do(function()

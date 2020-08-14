@@ -464,6 +464,14 @@ function BasicScene:playerMovable()
 			not self.enteringBattle
 end
 
+function BasicScene:pauseEnemies(active)
+	for _, object in pairs(self.map.objects) do
+		if object.isBot then
+			object.pauseMove = active
+		end
+	end
+end
+
 function BasicScene:pan(worldOffsetX, worldOffsetY)
 	if worldOffsetX > 0 then
 		worldOffsetX = self.camPos.x

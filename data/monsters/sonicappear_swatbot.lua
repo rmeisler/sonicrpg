@@ -214,8 +214,6 @@ return {
 							
 							-- Make sure our leader is still Sally
 							GameState.leader = "sally"
-
-							table.insert(self.scene.partyTurns, 1, partyMember)
 						end),
 						
 						antoineAction,

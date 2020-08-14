@@ -27,6 +27,10 @@ local Repeat = require "actions/Repeat"
 local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
+	if GameState:isFlagSet("forgotten_start") then
+		return Action()
+	end
+
     GameState:removeFromParty("antoine")
 
 	scene.camPos.y = 1300
@@ -261,6 +265,8 @@ return function(scene)
 		walkin,
 		Do(function()
 			scene.player.cinematic = false
+			
+			GameState:setFlag("forgotten_start")
 		end)
 	}
 end

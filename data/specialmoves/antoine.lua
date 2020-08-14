@@ -41,7 +41,7 @@ return function(player)
 	if bots[1] then
 		aggro = Serial {
 			Do(function()
-				bots[1].pauseMove = true
+				player.scene:pauseEnemies(true)
 			end),
 			Parallel {
 				Ease(player.scene.camPos, "x", function() return player.x - bots[1].x end, 1, "inout"),
@@ -54,7 +54,7 @@ return function(player)
 						bots[1].audibleDist = 2000
 						bots[1].maxUpdateDistance = 2000
 						bots[1].hearWithoutMovement = true
-						bots[1].pauseMove = false
+						player.scene:pauseEnemies(false)
 						player.antoineSpecialGoneTooFar = true
 					end)
 				}
@@ -105,9 +105,7 @@ return function(player)
 			Do(function()
 				player.basicUpdate = player.origUpdate
 				player.sprite.sortOrderY = nil
-				if bots[1] then
-					bots[1].pauseMove = false
-				end
+				player.scene:pauseEnemies(false)
 			end)
 		}
 	))

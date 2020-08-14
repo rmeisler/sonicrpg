@@ -387,10 +387,6 @@ function NPC:update(dt)
 				self:invoke("collision", prevState)
 				self:onCollision(prevState)
 				
-				if self.object.name == "Ratbot1" then
-					print("colliding")
-				end
-				
 				if prevState ~= NPC.STATE_TOUCHING and not self.disabled then
 					self.scene.player:showKeyHint(
 						self.isInteractable,

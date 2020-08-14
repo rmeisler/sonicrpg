@@ -8,7 +8,7 @@ return {
   height = 38,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 101,
+  nextobjectid = 102,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/roboterminal.lua",
@@ -608,6 +608,24 @@ return {
             ["scene"] = "factoryfloor.lua",
             ["spawn_point"] = "Exit",
             ["walkin"] = true
+          }
+        },
+        {
+          id = 101,
+          name = "AntoineHint",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1760,
+          y = 672,
+          width = 160,
+          height = 96,
+          rotation = 0,
+          gid = 2332,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["showOn"] = "Switch1",
+            ["specialHint"] = "antoine"
           }
         }
       }

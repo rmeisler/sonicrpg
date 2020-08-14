@@ -123,18 +123,17 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="224" name="Ratbot1" type="Ratbot" gid="1227" x="640" y="672" width="128" height="32">
+  <object id="224" name="Ratbot1" type="Ratbot" gid="1227" x="640" y="576" width="64" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="alignOffsetX" type="int" value="-80"/>
     <property name="battle" type="file" value="../data/monsters/ratbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="false"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint4,Waypoint1"/>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="ignoreMapCollision" type="bool" value="true"/>
-    <property name="ignorePlayer" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="false"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/ratbot.png"/>
    </properties>
   </object>
@@ -191,7 +190,7 @@ local PlayAudio = require &quot;actions/PlayAudio&quot;
 return function(self)
     return Serial {
         Do(function() self.scene.player.cinematic = true end),
-        Ease(self.scene.camPos, &quot;y&quot;, -100, 1, &quot;inout&quot;),
+        Ease(self.scene.camPos, &quot;y&quot;, 150, 1, &quot;inout&quot;),
         PlayAudio(&quot;sfx&quot;, &quot;openchasm&quot;, 1.0, true),
         Animate(self.scene.objectLookup.Door.sprite, &quot;opening&quot;),
         Animate(self.scene.objectLookup.Door.sprite, &quot;open&quot;),
@@ -235,7 +234,7 @@ end</property>
     <property name="follow" value=""/>
     <property name="followRepeat" type="bool" value="false"/>
     <property name="ghost" type="bool" value="false"/>
-    <property name="ignoreMapCollision" type="bool" value="false"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
     <property name="ignorePlayer" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/ratbot.png"/>
    </properties>
@@ -262,22 +261,22 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/heap.png"/>
    </properties>
   </object>
-  <object id="252" name="Waypoint1" type="BasicNPC" gid="1227" x="928" y="672" width="32" height="32">
+  <object id="252" name="Waypoint1" type="BasicNPC" gid="1227" x="928" y="544" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="253" name="Waypoint2" type="BasicNPC" gid="1227" x="800" y="384" width="32" height="32">
+  <object id="253" name="Waypoint2" type="BasicNPC" gid="1227" x="928" y="288" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="254" name="Waypoint3" type="BasicNPC" gid="1227" x="448" y="384" width="32" height="32">
+  <object id="254" name="Waypoint3" type="BasicNPC" gid="1227" x="416" y="288" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="255" name="Waypoint4" type="BasicNPC" gid="1227" x="416" y="672" width="32" height="32">
+  <object id="255" name="Waypoint4" type="BasicNPC" gid="1227" x="416" y="544" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>

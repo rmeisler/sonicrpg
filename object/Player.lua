@@ -130,6 +130,13 @@ function Player:construct(scene, layer, object)
 	
 	self:updateHotspots()
 	
+	self.hotspotOffsets = {
+		right_top = {x = 0, y = 0},
+		right_bot = {x = 0, y = 0},
+		left_top  = {x = 0, y = 0},
+		left_bot  = {x = 0, y = 0}
+	}
+	
 	self:createVisuals()
 	
 	self:addSceneHandler("update", Player.update)
