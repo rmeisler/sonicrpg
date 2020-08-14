@@ -101,7 +101,7 @@ function Fan:update(dt)
 		-- If so, start pulling them
 		for _, target in pairs(targets) do
 			if  target.hotspots.right_bot.y + target.hotspotOffsets.right_bot.y > self.y - self.object.height and
-				target.hotspots.left_top.y + target.hotspotOffsets.left_top.y < self.y + Fan.PULL_RANGE and
+				target.hotspots.left_top.y < self.y + Fan.PULL_RANGE and
 				target.hotspots.right_top.x + target.hotspotOffsets.right_top.x > self.x + Fan.WIDTH_OFFSET and
 				target.hotspots.left_top.x + target.hotspotOffsets.left_top.x < self.x + self.object.width - Fan.WIDTH_OFFSET
 			then
