@@ -1,15 +1,15 @@
 local Transform = require "util/Transform"
 
 local SpriteNode = require "object/SpriteNode"
-local Swatbot = require "object/Swatbot"
+local Bot = require "object/Bot"
 
-local FactoryBot = class(Swatbot)
+local FactoryBot = class(Bot)
 
 function FactoryBot:construct(scene, layer, object)
 	self.udflashlight:remove()
 	self.lrflashlight:remove()
 	
-	Swatbot.init(self)
+	Bot.init(self, true)
 	self.collision = {}
 	
 	self.stepSfx = nil

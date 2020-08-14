@@ -3,9 +3,9 @@ local Transform = require "util/Transform"
 local BasicNPC = require "object/BasicNPC"
 local NPC = require "object/NPC"
 local SpriteNode = require "object/SpriteNode"
-local Swatbot = require "object/Swatbot"
+local Bot = require "object/Bot"
 
-local Ratbot = class(Swatbot)
+local Ratbot = class(Bot)
 
 function Ratbot:construct(scene, layer, object)
 	self.udflashlight:remove()
@@ -31,14 +31,16 @@ function Ratbot:construct(scene, layer, object)
 		left = self.flashlightSprite
 	}
 	
-	Swatbot.init(self)
+	self.useObjectCollision = true
+	
+	Bot.init(self, true)
 	self.collision = {}
 	
 	self.hotspotOffsets = {
-		right_top = {x = -20, y = 50},
-		right_bot = {x = -20, y = 0},
-		left_top  = {x = 60, y = 50},
-		left_bot  = {x = 60, y = 0}
+		right_top = {x = 0, y = 0},
+		right_bot = {x = 0, y = 0},
+		left_top  = {x = 0, y = 0},
+		left_bot  = {x = 0, y = 0}
 	}
 	
 	self.dropShadow.sprite.transform.sx = 5

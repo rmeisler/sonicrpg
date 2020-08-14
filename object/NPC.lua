@@ -334,7 +334,7 @@ function NPC:update(dt)
 	end
 	
 	-- Update hotspots
-	if self.sprite then
+	if self.sprite and not self.useObjectCollision then
 		self.hotspots.right_top.x = self.x + self.sprite.w*2 + self.hotspotOffsets.right_top.x
 		self.hotspots.right_top.y = self.y + self.hotspotOffsets.right_top.y
 		self.hotspots.right_bot.x = self.x + self.sprite.w*2 + self.hotspotOffsets.right_bot.x
@@ -386,6 +386,10 @@ function NPC:update(dt)
 				self.state = NPC.STATE_TOUCHING
 				self:invoke("collision", prevState)
 				self:onCollision(prevState)
+				
+				if self.object.name == "Ratbot1" then
+					print("colliding")
+				end
 				
 				if prevState ~= NPC.STATE_TOUCHING and not self.disabled then
 					self.scene.player:showKeyHint(

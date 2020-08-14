@@ -27,6 +27,39 @@ local Repeat = require "actions/Repeat"
 local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
+	local subtext = TypeText(
+		Transform(50, 470),
+		{255, 255, 255, 0},
+		FontCache.TehnoSmall,
+		"Robotropolis",
+		100
+	)
+	local text = TypeText(
+		Transform(50, 500),
+		{255, 255, 255, 0},
+		FontCache.Techno,
+		"West Corridor",
+		100
+	)
+	Executor(scene):act(Serial {
+		Wait(0.5),
+		subtext,
+		text,
+		Parallel {
+			Ease(text.color, 4, 255, 1),
+			Ease(subtext.color, 4, 255, 1),
+		},
+		Wait(2),
+		Parallel {
+			Ease(text.color, 4, 0, 1),
+			Ease(subtext.color, 4, 0, 1)
+		}
+	})
+
+	if GameState:isFlagSet("robo_intro2_done") then
+		return Action()
+	end
+	
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
 	scene.player.cinematic = true
@@ -304,6 +337,8 @@ return function(scene)
 			scene.player.cinematic = false
 			scene.player.dontfuckingmove = false
 			scene.objectLookup.Swatbot1.ignorePlayer = false
+			
+			GameState:setFlag("robo_intro2_done")
 		end)
 	}
 end

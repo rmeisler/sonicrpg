@@ -1,9 +1,9 @@
 local Transform = require "util/Transform"
 
 local SpriteNode = require "object/SpriteNode"
-local Swatbot = require "object/Swatbot"
+local Bot = require "object/Bot"
 
-local Cambot = class(Swatbot)
+local Cambot = class(Bot)
 
 function Cambot:construct(scene, layer, object)
 	self.udflashlight:remove()
@@ -35,7 +35,7 @@ function Cambot:construct(scene, layer, object)
 		left_bot  = {x = 0, y = 0}
 	}
 	
-	Swatbot.init(self)
+	Bot.init(self, true)
 	self.collision = {}
 	
 	self.stepSfx = nil

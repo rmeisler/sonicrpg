@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="48" height="55" tilewidth="32" tileheight="32" infinite="0" nextobjectid="242">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
+  <property name="battlebg" type="file" value="../art/backgrounds/sewer.png"/>
   <property name="onload" type="file" value="actions/sewer1.lua"/>
   <property name="regionName" value="Robotropolis"/>
   <property name="sectorName" value="Swatbot Factory"/>

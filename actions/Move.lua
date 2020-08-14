@@ -35,6 +35,9 @@ function Move:update(dt)
 end
 
 function Move:stepToward(target, speed)
+	--print("self x = "..tostring(self.obj.hotspots.left_bot.x).." self y = "..tostring(self.obj.hotspots.left_bot.y)..
+	--      " target x = "..tostring(target.hotspots.left_bot.x).." target y = "..tostring(target.hotspots.left_bot.y))
+
 	if self.obj.hotspots.left_bot.x - target.hotspots.right_bot.x > speed then
 		if  self.obj.object.properties.ignoreMapCollision or
 			(self.obj.scene:canMoveWhitelist(self.obj.hotspots.left_top.x, self.obj.hotspots.left_top.y, -speed, 0, self.obj.ignoreCollision) and
