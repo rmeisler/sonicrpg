@@ -30,6 +30,51 @@ return function(scene)
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
 	scene.player.cinematic = true
+	scene.player.y = 0
+
+	local robotnik = scene.objectLookup.Robotnik
+	local snively = scene.objectLookup.Snively
+	
+	snively.sprite.color[1] = 180
+	snively.sprite.color[2] = 180
+	snively.sprite.color[3] = 180
+	
+	scene.bgColor = {255,255,255,255}
+
+	if GameState:isFlagSet("beatboss1") then
+		scene.objectLookup.RBComputer.sprite:setAnimation("onprison")
+		return Serial {
+			Ease(scene.player, "y", 750, 0.6, "inout"),
+			PlayAudio("music", "battle2", 1.0, true, true),
+			MessageBox{message="Snively: Security alert! Prison block 7!", blocking=true, closeAction=Wait(2)},
+			Animate(snively.sprite, "hesistantdown"),
+			Parallel {
+				MessageBox{message="Robotnik: GRRRAAAHHH!!!", blocking = true, closeAction=Wait(2)},
+				scene:screenShake(30, 20)
+			},
+			MessageBox{message="Robotnik: Don't let them get away, you pathetic fool!!", blocking=true, closeAction=Wait(2)},
+			Animate(snively.sprite, "lowdown"),
+			MessageBox{message="Snively: Y-Y-Yes sir!!", blocking=true, closeAction=Wait(2)},
+			
+			Do(function()
+				scene.player:run(AudioFade("music", 1, 0, 0.5))
+				scene.sceneMgr:switchScene {
+					class = "BasicScene",
+					mapName = "maps/run1.lua",
+					map = scene.maps["maps/run1.lua"],
+					maps = scene.maps,
+					region = scene.region,
+					fadeOutSpeed = 1,
+					fadeInSpeed = 1,
+					images = scene.images,
+					animations = scene.animations,
+					audio = scene.audio,
+					doingSpecialMove = false,
+					cache = true
+				}
+			end),
+		}
+	end
 
 	local antoine = BasicNPC(
 		scene,
@@ -55,15 +100,6 @@ return function(scene)
 	)
 	scene:addObject(rover)
 	rover.sprite:setAnimation("idleup")
-	
-	local robotnik = scene.objectLookup.Robotnik
-	local snively = scene.objectLookup.Snively
-	
-	snively.sprite.color[1] = 180
-	snively.sprite.color[2] = 180
-	snively.sprite.color[3] = 180
-	
-	scene.bgColor = {255,255,255,255}
 	
 	return Serial {
 	    Wait(1),

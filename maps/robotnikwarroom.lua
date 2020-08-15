@@ -8,7 +8,7 @@ return {
   height = 45,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 172,
+  nextobjectid = 173,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/robotnikantoinescene.lua",
@@ -144,18 +144,6 @@ return {
       }
     },
     {
-      type = "imagelayer",
-      name = "computer",
-      visible = true,
-      opacity = 1,
-      offsetx = 224,
-      offsety = 448,
-      image = "../art/sprites/robotnikcomputer.png",
-      properties = {
-        ["movespeed"] = 1
-      }
-    },
-    {
       type = "tilelayer",
       name = "above",
       x = 0,
@@ -277,6 +265,23 @@ return {
             ["defaultAnim"] = "computerup",
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/snively.png"
+          }
+        },
+        {
+          id = 172,
+          name = "RBComputer",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 246,
+          y = 768,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 3501,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/robotnikcomputer.png"
           }
         }
       }

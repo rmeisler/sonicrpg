@@ -22,8 +22,71 @@ return function(scene)
 	local SpriteNode = require "object/SpriteNode"
 	local Move = require "actions/Move"
 	
+	GameState:setFlag("beatboss1")
 	if GameState:isFlagSet("beatboss1") then
-		return Action()
+		scene.audio:stopMusic()
+		
+		scene.player.sprite.visible = true
+		scene.player.dropShadow.sprite.visible = true
+		
+		GameState.leader = "sonic"
+		scene.player:updateSprite()
+		scene.player.sprite:setAnimation("idledown")
+		
+		local walkout, walkin, sprites = scene.player:split()
+		
+		scene.objectLookup.Antoine:remove()
+		scene.objectLookup.Sonic:remove()
+		scene.objectLookup.Sally:remove()
+		
+		scene.objectLookup.Rover:remove()
+		scene.objectLookup.SwatbotSidekick1:remove()
+		scene.objectLookup.SwatbotSidekick2:remove()
+		scene.player.cinematicStack = 1
+		
+		return Serial {
+			walkout,
+			Animate(sprites.sally.sprite, "pose"),
+			Animate(sprites.sonic.sprite, "pose"),
+			Animate(sprites.antoine.sprite, "pose"),
+			MessageBox{message="Sally: We did it! {p50}Now let's get out of here!", blocking = true},
+			walkin,
+			
+			PlayAudio("music", "escapefanfare", 1.0, true),
+			
+			Do(function()
+				scene.player.x = scene.player.x + 50
+				scene.player.y = scene.player.y + 50
+				scene.player.state = "idleright"
+			end),
+			
+			Do(function()
+				scene.player.cinematic = true
+				scene.player.chargeSpeed = 3
+				scene.player.state = "idleright"
+				scene.player.ignoreSpecialMoveCollision = true
+				scene.player:onSpecialMove()
+			end),
+			MessageBox {message="Sonic: Juice and jam time!", closeAction=Wait(2)},
+			
+			Wait(1),
+			Do(function()
+				scene.sceneMgr:switchScene {
+					class = "BasicScene",
+					mapName = "maps/robotnikwarroom.lua",
+					map = scene.maps["maps/robotnikwarroom.lua"],
+					maps = scene.maps,
+					region = scene.region,
+					fadeOutSpeed = 0.2,
+					fadeInSpeed = 0.7,
+					images = scene.images,
+					animations = scene.animations,
+					audio = scene.audio,
+					doingSpecialMove = false,
+					cache = true
+				}
+			end)
+		}
 	end
 	
 	local subtext = TypeText(
@@ -195,11 +258,13 @@ return function(scene)
 		
 		Wait(1),
 		
+		Animate(antoine.sprite, "scaredhop5"),
+		Animate(scene.objectLookup.Sonic.sprite, "idledown"),
+		
 		PlayAudio("music", "robotrouble", 1.0, true),
 		
-		Animate(antoine.sprite, "scaredhop3"),
+		Wait(1),
 		Animate(scene.objectLookup.Sally.sprite, "thinking"),
-		Animate(scene.objectLookup.Sonic.sprite, "idledown"),
 		MessageBox{message="Sally: Not again!", blocking = true, closeAction=Wait(1)},
 		
 		Do(function()
@@ -214,24 +279,25 @@ return function(scene)
 		Ease(scene.player, "y", 1500, 2, "inout"),
 		
 		Parallel {
-			Move(scene.objectLookup.Rover, scene.objectLookup.Waypoint3, "walk"),
+			Serial {
+				Move(scene.objectLookup.Rover, scene.objectLookup.Waypoint3, "walk"),
+				Do(function()
+					GameState:setFlag("beatboss1")
+				end),
+				
+				scene:enterBattle {
+					opponents = {
+						"rover",
+						"swatbot",
+						"swatbot"
+					},
+					music = "boss",
+					bossBattle = true
+				}
+			},
 			Move(scene.objectLookup.SwatbotSidekick1, scene.objectLookup.Waypoint3, "run"),
 			Move(scene.objectLookup.SwatbotSidekick2, scene.objectLookup.Waypoint3, "run"),
 			Ease(scene.player, "y", 1056, 1, "inout")
-		},
-		
-		Do(function()
-			GameState:setFlag("beatboss1")
-		end),
-		
-		scene:enterBattle {
-			opponents = {
-				"rover",
-				"swatbot",
-				"swatbot"
-			},
-			music = "boss",
-			bossBattle = true
 		}
 	}
 end

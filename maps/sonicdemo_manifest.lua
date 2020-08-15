@@ -42,7 +42,7 @@ return {
 	{
         type = "map",
         file = "maps/forgotten3.lua",
-		primary = true,
+		--primary = true,
     },
 	
 	{
@@ -864,6 +864,13 @@ return {
 		file = "audio/music/battle.ogg",
 		category = "music",
 		volume = 0.3,
+		looping = true,
+	},
+	{
+		type = "sound",
+		file = "audio/music/battle2.ogg",
+		category = "music",
+		volume = 0.7,
 		looping = true,
 	},
 	{

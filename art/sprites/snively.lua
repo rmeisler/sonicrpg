@@ -12,6 +12,13 @@ return {
 			frames = {{11,4}}
 		},
 		
+		hesistantdown = {
+			frames = {{7,4}}
+		},
+		lowdown = {
+			frames = {{3,4}}
+		},
+		
 		stepup = {
 		    frames = {{0,3},{1,3},{0,3},{5,3}},
 			speed = 0.5

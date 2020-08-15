@@ -72,7 +72,16 @@ return function(scene)
 		end,
 		
 		Serial {
-			Wait(3),
+			Wait(1),
+			
+			MessageBox{message="Snively: *over radio* zzzzzz. Code Blue! {p30}I repeat--{p30}Code Blue!", blocking=true, closeAction=Wait(2)},
+			
+			Parallel {
+				AudioFade("music", 1, 0, 0.5),
+				MessageBox{message="Snively: Hedgehog is on route to the Eastern corridor! {p30}zzzz.", blocking=true, closeAction=Wait(2)},
+			},
+			
+			Wait(0.5),
 			
 			Do(function()
 				scene.audio:setMusicVolume(1.0)
