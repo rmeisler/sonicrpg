@@ -116,6 +116,9 @@ return {
 		},
 		peekup = {
 			frames = {{6,4}}
-		}
+		},
+		saddown = {
+			frames = {{10,1}}
+		},
     }
 }

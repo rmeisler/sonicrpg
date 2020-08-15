@@ -42,7 +42,7 @@ return {
 	{
         type = "map",
         file = "maps/forgotten3.lua",
-		--primary = true,
+		primary = true,
     },
 	
 	{
@@ -100,13 +100,6 @@ return {
         file = "maps/prison.lua",
 		primary = true
     },
-	
-	--[[{
-		type = "map",
-		file = "maps/knothole.lua",
-		music = "music/knothole",
-		--primary = true
-	},]]
 	
 	{
 		type = "gradient",
@@ -705,6 +698,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/prisonintro.ogg",
+		category = "music",
+	},
+	{
+		type = "sound",
 		file = "audio/music/bheart.ogg",
 		category = "music",
 	},
@@ -770,6 +768,12 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/doittoit.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/doittoit2.ogg",
 		category = "music",
 		looping = true
 	},

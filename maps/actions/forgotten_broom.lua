@@ -192,13 +192,10 @@ return function(scene)
 		
 		Wait(1),
 		
-		Parallel {
-			Serial {
-				Animate(sprites.sonic.sprite, "getring"),
-				Animate(sprites.sonic.sprite, "holdring")
-			},
-			MessageBox{message="Sonic: *If this worked for Uncle Chuck, I bet it'll work for B.*", blocking=true, closeAction=Wait(2)},
-		},
+		MessageBox{message="Sonic: *If this worked for Uncle Chuck, I bet it'll work for B.*", blocking=true, closeAction=Wait(2)},
+
+		Animate(sprites.sonic.sprite, "getring"),
+		Animate(sprites.sonic.sprite, "holdring"),
 		
 		Do(function()
 			scene.powerring = SpriteNode(
