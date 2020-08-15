@@ -8,9 +8,9 @@ return {
   height = 64,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 201,
+  nextobjectid = 202,
   properties = {
-    ["battlebg"] = "../art/backgrounds/datacenter1f.png",
+    ["battlebg"] = "../art/backgrounds/prisonbg.png",
     ["onload"] = "actions/prison.lua",
     ["regionName"] = "Robotropolis",
     ["sectorName"] = "Swatbot Factory"
@@ -510,7 +510,7 @@ return {
         {
           id = 191,
           name = "Swatbot1",
-          type = "Swatbot",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 544,
           y = 1024,
@@ -521,20 +521,15 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/swatbot.lua",
-            ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
-            ["disappearAfterBattle"] = true,
             ["ghost"] = true,
-            ["ignoreMapCollision"] = false,
-            ["ignorePlayer"] = true,
             ["sprite"] = "../art/sprites/swatbot.png"
           }
         },
         {
           id = 192,
           name = "Swatbot2",
-          type = "Swatbot",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 960,
           y = 1024,
@@ -545,13 +540,8 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/swatbot.lua",
-            ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
-            ["disappearAfterBattle"] = true,
             ["ghost"] = true,
-            ["ignoreMapCollision"] = false,
-            ["ignorePlayer"] = true,
             ["sprite"] = "../art/sprites/swatbot.png"
           }
         },
@@ -649,7 +639,7 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 896,
-          y = 1728,
+          y = 1824,
           width = 32,
           height = 32,
           rotation = 0,
@@ -669,7 +659,7 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 704,
-          y = 1728,
+          y = 1824,
           width = 32,
           height = 32,
           rotation = 0,
@@ -681,6 +671,22 @@ return {
             ["ghost"] = true,
             ["ignoreMapCollision"] = true,
             ["sprite"] = "../art/sprites/swatbot.png"
+          }
+        },
+        {
+          id = 201,
+          name = "Waypoint3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 704,
+          y = 1088,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

@@ -28,7 +28,7 @@ return {
 
 	stats = {
 		xp    = 30,
-		maxhp = 100, --1500
+		maxhp = 1500,
 		attack = 40,
 		defense = 20,
 		speed = 2,
@@ -36,6 +36,8 @@ return {
 		luck = 1,
 	},
 
+	boss = true,
+	
 	run_chance = 0.2,
 
 	coin = 0,

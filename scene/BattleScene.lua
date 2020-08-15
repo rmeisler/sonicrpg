@@ -72,9 +72,9 @@ function BattleScene:onEnter(args)
 		Transform(640,340,2,2)
 	}
 	self.opponentSlots = {
-		Transform(60,270,2,2),
 		Transform(220,150,2,2),
 		Transform(220,270,2,2),
+		Transform(60,270,2,2),
 		Transform(60,150,2,2),
 		Transform(140,210,2,2),
 	}
@@ -224,7 +224,18 @@ function BattleScene:update(dt)
 		if  not self.currentPlayer or
 			(self.currentPlayer.state == BattleActor.STATE_DEAD and not next(self.partyTurns))
 		then
-			self.state = BattleScene.STATE_MONSTERWIN
+			local allDead = true
+			for _, mem in pairs(self.party) do
+				if mem.state ~= BattleActor.STATE_DEAD then
+					allDead = false
+					break
+				end
+			end
+			if allDead then
+				self.state = BattleScene.STATE_MONSTERWIN
+			else
+				self.state = BattleScene.STATE_MONSTERTURN
+			end
 			return
 		end
 
@@ -269,7 +280,7 @@ function BattleScene:update(dt)
 		end
 		
 		if self.currentOpponent.state == BattleActor.STATE_DEAD and not next(self.opponentTurns) then
-			self.state = BattleScene.STATE_PLAYERWIN
+			self.state = BattleScene.STATE_MONSTERTURN_COMPLETE
 			return
 		end
 		

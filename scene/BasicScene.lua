@@ -11,6 +11,7 @@ local Do = require "actions/Do"
 local PlayAudio = require "actions/PlayAudio"
 local AudioFade = require "actions/AudioFade"
 local Spawn = require "actions/Spawn"
+local While = require "actions/While"
 
 local Subscreen = require "object/Subscreen"
 
@@ -369,21 +370,22 @@ end
 
 function BasicScene:enterBattle(args)
 	if self.enteringBattle then
-		return
+		return Action()
 	end
-	
-	self.player.cinematic = true
-	self.enteringBattle = true
-
 	if not self.blur then
 		self.blur = shine.boxblur()
 		self.blur.radius_v = 0.0
 		self.blur.radius_h = 0.0
 	end
-	
-	self.bgColor = {255,255,255,255}
-	ScreenShader:sendColor("multColor", self.bgColor)
 	return Serial {
+		Do(function()
+			self.player.cinematic = true
+			self.enteringBattle = true
+			
+			self.bgColor = {255,255,255,255}
+			ScreenShader:sendColor("multColor", self.bgColor)
+		end),
+	
 		-- Fade out current music
 		AudioFade("music", self.audio:getMusicVolume(), 0, 1),
 

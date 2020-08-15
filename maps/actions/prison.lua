@@ -22,6 +22,10 @@ return function(scene)
 	local SpriteNode = require "object/SpriteNode"
 	local Move = require "actions/Move"
 	
+	if GameState:isFlagSet("beatboss1") then
+		return Action()
+	end
+	
 	local subtext = TypeText(
 		Transform(50, 470),
 		{255, 255, 255, 0},
@@ -167,29 +171,35 @@ return function(scene)
 		
 		AudioFade("music", 1.0, 0.0, 1),
 		
-		Spawn(Repeat(
-             While(
-                function() return not scene.rovercinematicover end,
-                Parallel {
-                    Serial {
-                        Ease(scene.bgColor, 1, 510, 5, "quad"),
-                        Ease(scene.bgColor, 1, 255, 5, "quad"),
-                    },
-                    Do(function() 
-                        ScreenShader:sendColor("multColor", scene.bgColor)
-                    end)
-                },
-                Do(function() end)
-            ),
-            1000
-        )),
+		Do(function()
+			scene.player:run(
+				Repeat(
+					While(
+						function() return not scene.rovercinematicover end,
+						Parallel {
+							Serial {
+								Ease(scene.bgColor, 1, 510, 5, "quad"),
+								Ease(scene.bgColor, 1, 255, 5, "quad"),
+							},
+							Do(function() 
+								ScreenShader:sendColor("multColor", scene.bgColor)
+							end)
+						},
+						Do(function() end)
+					),
+					1000
+				)
+			)
+		end),
         Spawn(Repeat(While(function() return not scene.rovercinematicover end, PlayAudio("sfx", "alert", 0.3), Do(function() end)), 100)),
 		
 		Wait(1),
 		
 		PlayAudio("music", "robotrouble", 1.0, true),
 		
+		Animate(antoine.sprite, "scaredhop3"),
 		Animate(scene.objectLookup.Sally.sprite, "thinking"),
+		Animate(scene.objectLookup.Sonic.sprite, "idledown"),
 		MessageBox{message="Sally: Not again!", blocking = true, closeAction=Wait(1)},
 		
 		Do(function()
@@ -201,12 +211,27 @@ return function(scene)
 			scene.objectLookup.SwatbotSidekick2.movespeed = 4
 		end),
 		
-		Ease(scene.camPos, "y", -700, 2, "inout"),
+		Ease(scene.player, "y", 1500, 2, "inout"),
 		
 		Parallel {
-			Move(scene.objectLookup.Rover, antoine, "walk"),
-			Move(scene.objectLookup.SwatbotSidekick1, antoine, "run"),
-			Move(scene.objectLookup.SwatbotSidekick2, antoine, "run")
+			Move(scene.objectLookup.Rover, scene.objectLookup.Waypoint3, "walk"),
+			Move(scene.objectLookup.SwatbotSidekick1, scene.objectLookup.Waypoint3, "run"),
+			Move(scene.objectLookup.SwatbotSidekick2, scene.objectLookup.Waypoint3, "run"),
+			Ease(scene.player, "y", 1056, 1, "inout")
 		},
+		
+		Do(function()
+			GameState:setFlag("beatboss1")
+		end),
+		
+		scene:enterBattle {
+			opponents = {
+				"rover",
+				"swatbot",
+				"swatbot"
+			},
+			music = "boss",
+			bossBattle = true
+		}
 	}
 end

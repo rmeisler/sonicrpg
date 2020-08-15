@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="201">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="202">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
+  <property name="battlebg" type="file" value="../art/backgrounds/prisonbg.png"/>
   <property name="onload" type="file" value="actions/prison.lua"/>
   <property name="regionName" value="Robotropolis"/>
   <property name="sectorName" value="Swatbot Factory"/>
@@ -327,29 +327,19 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/door4.png"/>
    </properties>
   </object>
-  <object id="191" name="Swatbot1" type="Swatbot" gid="1227" x="544" y="1024" width="32" height="32">
+  <object id="191" name="Swatbot1" type="BasicNPC" gid="1227" x="544" y="1024" width="32" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/swatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idledown"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="ignoreMapCollision" type="bool" value="false"/>
-    <property name="ignorePlayer" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
    </properties>
   </object>
-  <object id="192" name="Swatbot2" type="Swatbot" gid="1227" x="960" y="1024" width="32" height="32">
+  <object id="192" name="Swatbot2" type="BasicNPC" gid="1227" x="960" y="1024" width="32" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/swatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idledown"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="ignoreMapCollision" type="bool" value="false"/>
-    <property name="ignorePlayer" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
    </properties>
   </object>
@@ -386,7 +376,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/rover.png"/>
    </properties>
   </object>
-  <object id="199" name="SwatbotSidekick2" type="BasicNPC" gid="1227" x="896" y="1728" width="32" height="32">
+  <object id="199" name="SwatbotSidekick2" type="BasicNPC" gid="1227" x="896" y="1824" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleup"/>
@@ -395,13 +385,18 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
    </properties>
   </object>
-  <object id="200" name="SwatbotSidekick1" type="BasicNPC" gid="1227" x="704" y="1728" width="32" height="32">
+  <object id="200" name="SwatbotSidekick1" type="BasicNPC" gid="1227" x="704" y="1824" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleup"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreMapCollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
+   </properties>
+  </object>
+  <object id="201" name="Waypoint3" type="BasicNPC" gid="1227" x="704" y="1088" width="64" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

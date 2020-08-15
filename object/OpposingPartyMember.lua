@@ -49,6 +49,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.onAttack = data.onAttack
 	self.textOffset = data.textOffset or Transform(0, self.sprite.h/2 - 15)
 	self.color = data.color or {255,255,255,255}
+	self.boss = data.boss
 	
 	self.sprite.color = self.color
 	
@@ -257,7 +258,7 @@ function OpposingPartyMember:die()
 	
 	local sprite = self:getSprite()
 	
-	if self.scene.bossBattle then
+	if self.scene.bossBattle and self.boss then
 		return Serial {
 			Parallel {
 				extraAnim,
