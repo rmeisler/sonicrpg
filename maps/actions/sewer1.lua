@@ -24,7 +24,7 @@ return function(scene)
 		Transform(50, 470),
 		{255, 255, 255, 0},
 		FontCache.TehnoSmall,
-		"Lower Robotropolis",
+		"Robotropolis",
 		100
 	)
 	
@@ -32,7 +32,7 @@ return function(scene)
 		Transform(50, 500),
 		{255, 255, 255, 0},
 		FontCache.Techno,
-		"1F",
+		"???",
 		100
 	)
 	

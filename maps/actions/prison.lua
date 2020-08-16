@@ -22,7 +22,6 @@ return function(scene)
 	local SpriteNode = require "object/SpriteNode"
 	local Move = require "actions/Move"
 	
-	GameState:setFlag("beatboss1")
 	if GameState:isFlagSet("beatboss1") then
 		scene.audio:stopMusic()
 		
@@ -277,6 +276,8 @@ return function(scene)
 		end),
 		
 		Ease(scene.player, "y", 1500, 2, "inout"),
+
+		Animate(scene.objectLookup.Sally.sprite, "idledown"),
 		
 		Parallel {
 			Serial {
