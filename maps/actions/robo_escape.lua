@@ -570,14 +570,20 @@ return function(scene)
 					},
 			
 					Do(function()
-						scene.player:run(Parallel {
-							Ease(scene.bgColor, 1, 0, 0.2, "inout"),
-							Ease(scene.bgColor, 2, 0, 0.2, "inout"),
-							Ease(scene.bgColor, 3, 0, 0.2, "inout"),
+						scene.player:run {
+							Parallel {
+								Ease(scene.bgColor, 1, 0, 0.2, "inout"),
+								Ease(scene.bgColor, 2, 0, 0.2, "inout"),
+								Ease(scene.bgColor, 3, 0, 0.2, "inout"),
+								Do(function()
+									ScreenShader:sendColor("multColor", scene.bgColor)
+								end)
+							},
+							
 							Do(function()
-								ScreenShader:sendColor("multColor", scene.bgColor)
+								sceneMgr:pushScene {class = "CreditsSplashScene"}
 							end)
-						})
+						}
 					end),
 				}
 			},

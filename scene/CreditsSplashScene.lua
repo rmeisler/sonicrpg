@@ -36,10 +36,11 @@ function CreditsSplashScene:onEnter()
 	-- Setup music
 	self.audio:registerAs("music", "sonicrpglogo", love.audio.newSource("audio/music/sonicrpglogo.ogg", "static"))
 	self.audio:registerAs("music", "bhero", love.audio.newSource("audio/music/bhero.ogg", "static"))
+	self.audio:registerAs("music", "bheart", love.audio.newSource("audio/music/bheart.ogg", "static"))
 	
 	self.bgColor = {0,0,0,255}
 	self.logoColor = {255,255,255,0}
-	self.logoXForm = Transform(400, 150, 2, 2)
+	self.logoXForm = Transform(400, 180, 2, 2)
 	
 	ScreenShader:sendColor("multColor", {255,255,255,255})
 	
@@ -51,27 +52,33 @@ function CreditsSplashScene:onEnter()
 			Ease(self.bgColor, 3, 255, 0.3, "linear"),
 			AudioFade("music", 0.5, 0.7, 0.3),
 			Serial {
-				Wait(1.5),
 				Spawn(Serial {
 					PlayAudio("music", "sonicrpglogo", 0.5),
 					Wait(2),
-					PlayAudio("music", "bhero", 1.0, true),
+					PlayAudio("music", "bhero", 1.0),
+					PlayAudio("music", "bheart", 1.0),
+					Do(function()
+						self.sceneMgr:backToTitle()
+					end)
 				}),
-				Wait(1),
+				Wait(3),
 				Parallel {
-					Ease(self.logoColor, 4, 255, 0.25, "inout"),
-					Ease(self.logoXForm, "sx", 0.4, 0.25, "inout"),
-					Ease(self.logoXForm, "sy", 0.4, 0.25, "inout")
-				}
+					Ease(self.logoColor, 4, 255, 0.3, "inout"),
+					Ease(self.logoXForm, "sx", 0.4, 0.3, "inout"),
+					Ease(self.logoXForm, "sy", 0.4, 0.3, "inout")
+				},
+				Wait(8)
 			},
 			Ease(self, "bgY", -466, 0.2, "inout")
 		},
 		
 		Parallel {
-			Ease(self.bgColor, 1, 0, 0.3, "linear"),
-			Ease(self.bgColor, 2, 0, 0.3, "linear"),
-			Ease(self.bgColor, 3, 0, 0.3, "linear")
+			Ease(self.bgColor, 1, 0, 0.6, "linear"),
+			Ease(self.bgColor, 2, 0, 0.6, "linear"),
+			Ease(self.bgColor, 3, 0, 0.6, "linear")
 		},
+		
+		Wait(1),
 		
 		Parallel {
 			Ease(self.logoXForm, "y", -550, 0.1, "linear"),
@@ -179,6 +186,15 @@ Jacob Berkley/Adventure Master 18
 
 
 
+
+
+
+
+
+
+
+
+
 The character of "T" (Tinker) is dedicated to
       the memory of a good friend.
 
@@ -186,6 +202,15 @@ The character of "T" (Tinker) is dedicated to
          we'll never forget you.
 
 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
 
            Thanks for playing!
     Join our discord for project updates!
@@ -200,7 +225,7 @@ The character of "T" (Tinker) is dedicated to
 		false
 	)
 	return Serial {
-		Ease(text.transform, "y", -3000, 0.012, "linear"),
+		Ease(text.transform, "y", -3500, 0.01, "linear"),
 		Do(function()
 			print("done")
 		end)
