@@ -580,8 +580,10 @@ return function(scene)
 								end)
 							},
 							
+							Wait(2),
+							
 							Do(function()
-								sceneMgr:pushScene {class = "CreditsSplashScene"}
+								scene.sceneMgr:pushScene {class = "CreditsSplashScene"}
 							end)
 						}
 					end),
