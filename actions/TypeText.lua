@@ -21,6 +21,7 @@ function TypeText:construct(transform, color, font, text, speed, noFastForward, 
 end
 
 function TypeText:setScene(scene)
+	'''This is a test commit'''
 	if self.scene then
 		return
 	end
