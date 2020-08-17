@@ -21,7 +21,10 @@ function TypeText:construct(transform, color, font, text, speed, noFastForward, 
 end
 
 function TypeText:setScene(scene)
-	'''This is a test commit'''
+	-- Set Scene
+		-- Sets upo the current scene for dynamic textx
+	-- Params:
+		-- takes in obect of the current scene that the player sees
 	if self.scene then
 		return
 	end
@@ -36,6 +39,11 @@ function TypeText:setScene(scene)
 end
 
 function TypeText:cleanup(scene)
+	--Clean Up 
+		-- Removes the text from the currently loaded scene.
+		-- For more text or the next scene
+	-- Params:
+		-- takes in obect of the current scene that the player sees
 	if not self.scene then
 		return
 	end
@@ -47,10 +55,14 @@ function TypeText:cleanup(scene)
 end
 
 function TypeText:isDone()
+	-- Is Done
+		-- The text is finished ouputting to the screen
     return self.charidx >= self.textlen
 end
 
 function TypeText:reset()
+	-- Reset
+		-- resets the window for the next dynamically loaded text
 	self.charidx = 1
 	self.elapsed = 0
 	self.curtext = self.text
@@ -58,6 +70,10 @@ function TypeText:reset()
 end
 
 function TypeText:update(dt)
+	-- Update
+		-- Updates the text field with the const speed, speed_mult and time elapsed.
+	-- Params
+		-- DT: 
 	local invalidateChar = false
 	self.elapsed = self.elapsed + dt * self.speed * self.speed_mult
 	if self.elapsed >= 1.0 then
