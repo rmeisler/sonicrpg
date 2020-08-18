@@ -1553,7 +1553,7 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 1440,
-          y = 5696,
+          y = 5664,
           width = 32,
           height = 32,
           rotation = 0,
@@ -2029,6 +2029,7 @@ return {
             ["ghost"] = true,
             ["ignorePlayer"] = true,
             ["movespeed"] = 1,
+            ["notAntoineTargetable"] = true,
             ["sprite"] = "../art/sprites/swatbot.png"
           }
         },

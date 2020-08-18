@@ -23,7 +23,18 @@ local Swatbot = class(Bot)
 
 function Swatbot:construct(scene, layer, object)
 	Bot.init(self, true)
+	
 	self.collision = {}
+	if self:isRemoved() then
+		return
+	end
+	
+	self.hotspotOffsets = {
+		right_top = {x = -20, y = self.sprite.h + 30},
+		right_bot = {x = -20, y = 0},
+		left_top  = {x = 20, y = self.sprite.h + 30},
+		left_bot  = {x = 20, y = 0}
+	}
 	
 	self.stepSfx = "swatbotstep"
 end

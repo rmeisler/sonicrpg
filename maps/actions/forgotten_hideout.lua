@@ -29,6 +29,25 @@ local BasicNPC = require "object/BasicNPC"
 return function(scene)
 	scene.player.noSonicCrash = true
 	
+	if (GameState:isFlagSet("b_speech") or
+		GameState:isFlagSet("met_b")) and
+		not scene.objectLookup.B
+	then
+		scene.objectLookup.B = BasicNPC(
+			scene,
+			{name = "objects"},
+			{
+				name = "B",
+				x = 1024,
+				y = 2176,
+				width = 64,
+				height = 32,
+				properties = {sprite = "art/sprites/b.png", align = "bottom_center", defaultAnim = "idledown"}
+			}
+		)
+		scene:addObject(scene.objectLookup.B)
+	end
+	
 	if GameState:isFlagSet("b_speech") then
 		return PlayAudio("music", "bheart", 1.0, true, true)
 	end

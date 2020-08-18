@@ -13,7 +13,7 @@ return {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_start.lua",
     ["regionName"] = "Robotropolis",
-    ["sectorName"] = "Swatbot Factory"
+    ["sectorName"] = "Water Landing"
   },
   tilesets = {
     {

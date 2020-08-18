@@ -170,6 +170,9 @@ function BattleScene:onEnter(args)
 				player.sprite:setAnimation("backward")
 			end
 		end
+		for _, oppo in pairs(self.opponents) do
+			table.insert(self.opponentTurns, oppo)
+		end
 		self.state = BattleScene.STATE_MONSTERTURN
 
 		initiativeAction = MessageBox {
@@ -275,11 +278,17 @@ function BattleScene:update(dt)
 	elseif self.state == BattleScene.STATE_MONSTERTURN then
 		-- Resolve against dead opponents
 		self.currentOpponent = table.remove(self.opponentTurns, 1)
-		while self.currentOpponent.state == BattleActor.STATE_DEAD and next(self.opponentTurns) do
+		while (not self.currentOpponent or
+			   self.currentOpponent.state == BattleActor.STATE_DEAD) and
+			   next(self.opponentTurns)
+		do
 			self.currentOpponent = table.remove(self.opponentTurns, 1)
 		end
 		
-		if self.currentOpponent.state == BattleActor.STATE_DEAD and not next(self.opponentTurns) then
+		if (not self.currentOpponent or
+			self.currentOpponent.state == BattleActor.STATE_DEAD) and
+			not next(self.opponentTurns)
+		then
 			self.state = BattleScene.STATE_MONSTERTURN_COMPLETE
 			return
 		end

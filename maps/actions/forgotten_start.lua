@@ -28,6 +28,7 @@ local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
 	if GameState:isFlagSet("forgotten_start") then
+		scene.objectLookup.R:remove()
 		return Action()
 	end
 

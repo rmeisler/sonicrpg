@@ -170,14 +170,14 @@ end
 
 function Bot:getInitiative()
 	if self.scene.player:isFacing(self.facing) then
-		if ((self.facing == "left"  and self.x < self.scene.player.x) or
-		    (self.facing == "right" and self.x > self.scene.player.x) or
+		if ((self.facing == "left"  and self.x > self.scene.player.x) or
+		    (self.facing == "right" and self.x < self.scene.player.x) or
 		    (self.facing == "up"    and self.y + self.sprite.h*2 > self.scene.player.y + self.scene.player.sprite.h*2) or
 		    (self.facing == "down"  and self.y + self.sprite.h*2 < self.scene.player.y + self.scene.player.sprite.h*2))
 		then
 			return "opponent"
-		elseif ((self.facing == "left"  and self.x > self.scene.player.x) or
-				(self.facing == "right" and self.x < self.scene.player.x) or
+		elseif ((self.facing == "left"  and self.x < self.scene.player.x) or
+				(self.facing == "right" and self.x > self.scene.player.x) or
 				(self.facing == "up"    and self.y + self.sprite.h*2 < self.scene.player.y + self.scene.player.sprite.h*2) or
 				(self.facing == "down"  and self.y + self.sprite.h*2 > self.scene.player.y + self.scene.player.sprite.h*2))
 		then
@@ -355,7 +355,7 @@ function Bot:follow(target, animType, speed, timeout, forever, earlyExitFun)
 	local moveAction
 	if forever then
 		moveAction = Repeat(Serial {
-			Move(self, target, animType),
+			Move(self, target, animType, nil, nil, true),
 			Do(function()
 				if self:isRemoved() then
 					self.action:stop()
@@ -363,7 +363,7 @@ function Bot:follow(target, animType, speed, timeout, forever, earlyExitFun)
 			end)
 		})
 	else
-		moveAction = Move(self, target, animType, timeout, earlyExitFun)
+		moveAction = Move(self, target, animType, timeout, earlyExitFun, true)
 	end
 
 	if self.stepSfx then
@@ -631,12 +631,12 @@ function Bot:updateAction(dt)
 	
 	-- Collide for battle, not applicable for sonic when running
 	if  not (GameState.leader == "sonic" and self.scene.player.doingSpecialMove) and
-		not self.scene.player.falling
+		not self.scene.player.falling and not self.scene.ignorePlayer
 	then
-		local cx = self.hotspots.left_top.x + self.hotspotOffsets.left_top.x
-		local cy = self.hotspots.left_bot.y + self.hotspotOffsets.left_bot.y
-		local cw = (self.hotspots.right_top.x + self.hotspotOffsets.right_top.x) - cx
-		local ch = (self.hotspots.right_bot.y + self.hotspotOffsets.right_bot.y) - cy
+		local cx = self.hotspots.left_top.x
+		local cy = self.hotspots.left_top.y
+		local cw = self.hotspots.right_top.x - cx
+		local ch = self.hotspots.right_bot.y - cy
 		if  self.scene.player:isTouching(cx, cy, cw, ch) then
 			self.scene.audio:stopSfx(self.stepSfx)
 			self.state = NPC.STATE_TOUCHING

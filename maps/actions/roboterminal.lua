@@ -59,51 +59,46 @@ return function(scene)
 				scene.player.cinematic = false
 			end)
 		}
-	elseif GameState:isFlagSet("rover_boss") then
-		scene.objectLookup.Door.sprite:setAnimation("open")
-		scene.objectLookup.Door:removeCollision()
-	
-		scene.player.sprite.color[4] = 0
-		scene.player.cinematic = true
+	elseif GameState:isFlagSet("roboterminal_openeddoor") then
+		scene.player:removeKeyHint()
+		scene.player.sprite:setAnimation("idledown")
+		scene.player.cinematicStack = scene.player.cinematicStack + 1
+		scene.player.noIdle = false
+		local walkout, walkin, sprites = scene.player:split()
+
 		return Serial {
-			Wait(1),
+			PlayAudio("music", "patrol", 1.0, true, true),
+			walkout,
+							
+			MessageBox {message="Sally: That was a close one.", blocking = true},
+			MessageBox {message="Sonic: Mighta bit off more than we can chew on this one, Sal. {p30}Should we abort?", blocking = true},
+			
+			MessageBox {message="Antoine: I will be voting yes on that!", blocking = true},
+			
+			Animate(sprites.sally.sprite, "thinking"),
+			MessageBox {message="Sally: Hmmm{p20}.{p20}.{p20}. {p50}I think we should keep going.", blocking = true},
+			
+			Animate(sprites.antoine.sprite, "scaredhop1"),
+			
+			MessageBox {message="Sally: We're almost there, and this could really hurt Robotnik!", blocking = true},
+			
+			Animate(sprites.sonic.sprite, "idledown"),
+			MessageBox {message="Sonic: Your call.", blocking = true},
+			
+			Animate(sprites.sonic.sprite, "thinking"),
+			
+			MessageBox {message="Sonic: Since when am I the cautious one?", blocking = true},
+			
+			Animate(sprites.antoine.sprite, "idledown"),
+			MessageBox {message="Antoine: Sacre bleu...", textSpeed = 4, blocking = true},
+			
+			walkin,
 			Do(function()
-				scene.player.state = "juicedown"
-			end),
-			Parallel {
-				Ease(scene.player.sprite.color, 4, 255, 3),
-				Ease(scene.player, "y", scene.player.y + 50, 3, "quad")
-			},
-			Do(function()
-				scene.player.state = "idledown"
-			end),
-			Wait(2),
-			-- Sirens
-			Do(function()
-				scene.player.state = "shock"
-			end),
-			Wait(1),
-			Do(function()
-				scene.player.state = "idleright"
-				scene.player.ignoreSpecialMoveCollision = true
-                scene.player:onSpecialMove()
-			end),
-			YieldUntil(function() return scene.player.x > scene:getMapWidth() end),
-			Wait(1),
-			Do(function()
-				scene.sceneMgr:switchScene {
-					class = "BasicScene",
-					mapName = "maps/run1.lua",
-					map = scene.maps["maps/run1.lua"],
-					spawn_point = "Spawn 1",
-					maps = scene.maps,
-					region = scene.region,
-					images = scene.images,
-					animations = scene.animations,
-					audio = scene.audio,
-					doingSpecialMove = false,
-					cache = true
-				}
+				scene.player.x = scene.player.x + 80
+				scene.player.y = scene.player.y + 70
+				
+				scene.player.cinematicStack = 0
+				scene.player.disableScan = false
 			end)
 		}
 	elseif GameState:isFlagSet("roboterminal_used") then

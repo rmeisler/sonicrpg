@@ -37,6 +37,10 @@ end
 function SceneNode:removeSceneHandler(type, func)
 	func = func or self[type]
     self.scene:removeHandler(type, func, self)
+	
+	if not self.internalHandlers[type] then
+        self.internalHandlers[type] = {}
+    end
     self.internalHandlers[type][tostring(func)] = nil
 end
 

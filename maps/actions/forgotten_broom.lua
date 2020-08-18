@@ -247,7 +247,7 @@ return function(scene)
 				Animate(scene.objectLookup.B.sprite, "awake")
 			}
 		},
-		MessageBox{message="B: ...", blocking=true, closeAction=Wait(2)},
+		MessageBox{message="B: ...", blocking=true, closeAction=Wait(1.5)},
 		Do(function()
 			scene.powerring.transform = Transform.relative(sprites.sonic.sprite.transform, Transform(-8, sprites.sonic.sprite.h + 6))
 		end),
@@ -255,11 +255,11 @@ return function(scene)
 		
 		PlayAudio("music", "bheart", 1.0, true),
 		Animate(scene.objectLookup.B.sprite, "lookright"),
-		MessageBox{message="B: W-W-What happened?...{p40}Where am I?", blocking=true},
+		MessageBox{message="B: W-W-What happened?...{p40}Where am I?", blocking=true, closeAction=Wait(2.5)},
 		
-		MessageBox{message="Child Robian: *gasp*!", blocking=true},
-		MessageBox{message="Green Robian: Incredible!", blocking=true},
-		MessageBox{message="Yellow Robian: We thought we lost ya, Uncle B!", blocking=true},
+		MessageBox{message="Child Robian: *gasp*!", blocking=true, closeAction=Wait(1)},
+		MessageBox{message="Green Robian: Incredible!", blocking=true, closeAction=Wait(1)},
+		MessageBox{message="Yellow Robian: We thought we lost ya, Uncle B!", blocking=true, closeAction=Wait(2)},
 
 		Do(function()
 			GameState:setFlag("met_b")

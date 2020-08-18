@@ -9,6 +9,10 @@ return {
 			frames = {{1,0}}
 		},
 		
+		backward = {
+			frames = {{3,0}}
+		},
+		
 		upright = {
             frames = {{0,0}}
         },

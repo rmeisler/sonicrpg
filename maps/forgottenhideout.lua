@@ -8,12 +8,12 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 225,
+  nextobjectid = 236,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_hideout.lua",
     ["regionName"] = "Robotropolis",
-    ["sectorName"] = "Swatbot Factory"
+    ["sectorName"] = "???"
   },
   tilesets = {
     {
@@ -798,6 +798,69 @@ return {
     },
     {
       type = "objectgroup",
+      name = "lowerobjects",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 231,
+          name = "Square1",
+          type = "RaceSquare",
+          shape = "rectangle",
+          x = 1152,
+          y = 2304,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/racesquare.png"
+          }
+        },
+        {
+          id = 234,
+          name = "Square2",
+          type = "RaceSquare",
+          shape = "rectangle",
+          x = 1632,
+          y = 2080,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/racesquare.png"
+          }
+        },
+        {
+          id = 235,
+          name = "Square3",
+          type = "RaceSquare",
+          shape = "rectangle",
+          x = 512,
+          y = 2080,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/racesquare.png"
+          }
+        }
+      }
+    },
+    {
+      type = "objectgroup",
       name = "objects",
       visible = true,
       opacity = 1,
@@ -1275,24 +1338,6 @@ return {
           }
         },
         {
-          id = 223,
-          name = "B",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1024,
-          y = 2176,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["defaultAnim"] = "idledown",
-            ["sprite"] = "../art/sprites/b.png"
-          }
-        },
-        {
           id = 224,
           name = "Chest1",
           type = "Chest",
@@ -1307,6 +1352,63 @@ return {
           properties = {
             ["CrystalWater"] = 2,
             ["sprite"] = "../art/sprites/chest.png"
+          }
+        },
+        {
+          id = 225,
+          name = "R",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 512,
+          y = 1920,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["defaultAnim"] = "idleright",
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
+            ["sprite"] = "../art/sprites/r.png"
+          }
+        },
+        {
+          id = 226,
+          name = "T",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1664,
+          y = 1888,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["defaultAnim"] = "tleft",
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
+            ["sprite"] = "../art/sprites/P.png"
+          }
+        },
+        {
+          id = 228,
+          name = "J",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 512,
+          y = 2144,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["defaultAnim"] = "idleright",
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
+            ["sprite"] = "../art/sprites/r.png"
           }
         }
       }

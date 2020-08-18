@@ -90,7 +90,6 @@ function HopTrigger:onCollision(prevState)
 				self.scene.player.noIdle = true
 				self.scene.player.dropShadowOverrideY = self.scene.player.y + self.scene.player.sprite.h - 15
 			end),
-			Animate(self.scene.player.sprite, "crouchleft"),
 			Wait(0.1),
 			Animate(self.scene.player.sprite, "jumpleft"),
 			Parallel {
@@ -118,7 +117,6 @@ function HopTrigger:onCollision(prevState)
 				self.scene.player.noIdle = true
 				self.scene.player.dropShadowOverrideY = self.scene.player.y + self.scene.player.sprite.h - 15
 			end),
-			Animate(self.scene.player.sprite, "crouchright"),
 			Wait(0.1),
 			Animate(self.scene.player.sprite, "jumpright"),
 			Parallel {

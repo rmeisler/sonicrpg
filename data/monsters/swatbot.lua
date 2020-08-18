@@ -76,7 +76,7 @@ return {
 							Animate(target.sprite, "crouch"),
 							Wait(0.1),
 							Animate(target.sprite, "victory"),
-							Wait(0.8),
+							Wait(0.6),
 							Animate(target.sprite, "idle"),
 						},
 						BouncyText(

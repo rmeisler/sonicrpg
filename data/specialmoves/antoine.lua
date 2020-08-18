@@ -25,7 +25,11 @@ return function(player)
 	local bots = {}
 	local maxDistance = 2000*2000
 	for _, object in pairs(player.scene.map.objects) do
-		if object.isBot and not object:isRemoved() and object:distanceFromPlayerSq() < maxDistance then
+		if  object.isBot and
+			not object:isRemoved() and
+			not object.object.properties.notAntoineTargetable and
+			object:distanceFromPlayerSq() < maxDistance
+		then
 			table.insert(bots, object)
 		end
 	end

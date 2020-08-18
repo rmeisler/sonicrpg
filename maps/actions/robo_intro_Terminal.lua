@@ -43,7 +43,7 @@ return function(self)
 		},
 		Do(function()
 			local Swatbot = require "object/Swatbot"
-			local swatbot1 = Swatbot(
+			self.scene.swatbot1 = Swatbot(
 				self.scene,
 				{name = "objects"},
 				{
@@ -58,21 +58,22 @@ return function(self)
 						battleOnCollide = true,
 						disappearAfterBattle = true,
 						battle = "/data/monsters/swatbot.lua",
-						noInvestigate = true
+						noInvestigate = true,
+						ignoreMapCollision = true
 					}
 				}
 			)
-			self.scene:addObject(swatbot1)
-			swatbot1.sprite:setAnimation("idledown")
-			swatbot1.sprite.color[4] = 0
-			swatbot1:run {
-				Ease(swatbot1.sprite.color, 4, 255, 2, "linear"),
-				Move(swatbot1, self.scene.objectLookup.Waypoint3),
+			self.scene:addObject(self.scene.swatbot1)
+			self.scene.swatbot1.sprite:setAnimation("idledown")
+			self.scene.swatbot1.sprite.color[4] = 0
+			self.scene.swatbot1:run {
+				Ease(self.scene.swatbot1.sprite.color, 4, 255, 2, "linear"),
+				Move(self.scene.swatbot1, self.scene.objectLookup.Waypoint3),
 				Do(function()
-					swatbot1.noticeDist = 1000
+					self.scene.swatbot1.noticeDist = 1000
 				end)
 			}
-			local swatbot2 = Swatbot(
+			self.scene.swatbot2 = Swatbot(
 				self.scene,
 				{name = "objects"},
 				{
@@ -87,24 +88,28 @@ return function(self)
 						battleOnCollide = true,
 						disappearAfterBattle = true,
 						battle = "/data/monsters/sonicappear_swatbot.lua",
-						noInvestigate = true
+						noInvestigate = true,
+						ignoreMapCollision = true
 					}
 				}
 			)
-			self.scene:addObject(swatbot2)
-			swatbot2.sprite:setAnimation("idledown")
-			swatbot2.sprite.color[4] = 0
-			swatbot2:run {
-				Ease(swatbot2.sprite.color, 4, 255, 2, "linear"),
-				Move(swatbot2, self.scene.objectLookup.Waypoint4),
+			self.scene:addObject(self.scene.swatbot2)
+			self.scene.swatbot2.sprite:setAnimation("idledown")
+			self.scene.swatbot2.sprite.color[4] = 0
+			self.scene.swatbot2:run {
+				Ease(self.scene.swatbot2.sprite.color, 4, 255, 2, "linear"),
+				Move(self.scene.swatbot2, self.scene.objectLookup.Waypoint4),
 				Do(function()
-					swatbot2.noticeDist = 1000
+					self.scene.swatbot2.noticeDist = 1000
 				end)
 			}
 		end),
 		Wait(1),
 		Do(function()
 			-- When we get back from this battle, have a cinematic
+			self.scene.swatbot1.flagForDeletion = true
+			self.scene.swatbot2.flagForDeletion = true
+			
 			local afterBattle
 			afterBattle = function()
 				self.scene.player:removeKeyHint()
@@ -112,9 +117,9 @@ return function(self)
 				self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
 				self.scene.player.noIdle = false
 				local walkout, walkin, sprites = self.scene.player:split()
+				
 				Executor(self.scene):act(
 					Serial {
-						PlayAudio("music", "patrol", 1.0, true, true),
 						walkout,
 						
 						MessageBox {message="Sally: That was a close one.", blocking = true},
@@ -152,7 +157,9 @@ return function(self)
 					}
 				)
 			end
-			self.scene:addHandler("enter", afterBattle)
+			--self.scene:addHandler("enter", afterBattle)
+			
+			GameState:setFlag("roboterminal_openeddoor")
 			
 			self.scene.player.sprite:setAnimation("shock")
 			self.scene.player.noIdle = true
@@ -160,7 +167,13 @@ return function(self)
 		MessageBox {
 			message = "Sally: Uh oh!",
 			blocking = true,
-			closeAction = Wait(2)
+			closeAction = Wait(1.3)
+		},
+		self.scene:enterBattle {
+			opponents = {
+				"swatbot",
+				"sonicappear_swatbot"
+			}
 		}
 	}
 end

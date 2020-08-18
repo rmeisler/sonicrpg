@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="70" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="225">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="70" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="236">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="onload" type="file" value="actions/forgotten_hideout.lua"/>
   <property name="regionName" value="Robotropolis"/>
-  <property name="sectorName" value="Swatbot Factory"/>
+  <property name="sectorName" value="???"/>
  </properties>
  <tileset firstgid="1" source="datacenter_interior.tsx"/>
  <tileset firstgid="1191" source="robotropolis.tsx"/>
@@ -625,6 +625,26 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,3632,3632,3632,3632,3632,3632,3632,3632,0,0,0,0,0,0,0,0,3632,3632,3632,3632,3632,3632,3632,3632,3632,3632,3632,3632,0,0,0,0,0,0,0,0,3632,3632,3632,3632,3632,3632,3632,3632,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="lowerobjects">
+  <object id="231" name="Square1" type="RaceSquare" gid="1227" x="1152" y="2304" width="96" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
+   </properties>
+  </object>
+  <object id="234" name="Square2" type="RaceSquare" gid="1227" x="1632" y="2080" width="96" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
+   </properties>
+  </object>
+  <object id="235" name="Square3" type="RaceSquare" gid="1227" x="512" y="2080" width="96" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="objects">
   <object id="172" name="Spawn 1" type="Player" gid="1586" x="1088" y="2784" width="32" height="32">
    <properties>
@@ -828,17 +848,46 @@ end</property>
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="223" name="B" type="BasicNPC" gid="1227" x="1024" y="2176" width="64" height="32">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="idledown"/>
-    <property name="sprite" type="file" value="../art/sprites/b.png"/>
-   </properties>
-  </object>
   <object id="224" name="Chest1" type="Chest" gid="3501" x="1760" y="1312" width="32" height="32">
    <properties>
     <property name="CrystalWater" type="int" value="2"/>
     <property name="sprite" type="file" value="../art/sprites/chest.png"/>
+   </properties>
+  </object>
+  <object id="225" name="R" type="BasicNPC" gid="1227" x="512" y="1920" width="64" height="32">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return MessageBox {message = &quot;R: Who are you, exactly?&quot;, blocking = true}
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/r.png"/>
+   </properties>
+  </object>
+  <object id="226" name="T" type="BasicNPC" gid="1227" x="1664" y="1888" width="64" height="32">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="defaultAnim" value="tleft"/>
+    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return MessageBox {message = &quot;R: Who are you, exactly?&quot;, blocking = true}
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/P.png"/>
+   </properties>
+  </object>
+  <object id="228" name="J" type="BasicNPC" gid="1227" x="512" y="2144" width="64" height="32">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return MessageBox {message = &quot;R: Who are you, exactly?&quot;, blocking = true}
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/r.png"/>
    </properties>
   </object>
  </objectgroup>

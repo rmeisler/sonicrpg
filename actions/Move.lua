@@ -2,7 +2,7 @@ local Wait = require "actions/Wait"
 local Transform = require "util/Transform"
 local Move = class(require "actions/Action")
 
-function Move:construct(obj, target, anim, ttl, earlyExitFun)
+function Move:construct(obj, target, anim, ttl, earlyExitFun, overlap)
 	self.obj = obj
 	self.target = target
 	self.anim = anim or "walk"
@@ -10,7 +10,8 @@ function Move:construct(obj, target, anim, ttl, earlyExitFun)
 	self.earlyExitFun = earlyExitFun or (function() return false end)
 	self.done = false
 	self.animCooldown = 0
-	self.switchAnim = nil 
+	self.switchAnim = nil
+	self.overlap = overlap
 end
 
 function Move:update(dt)
@@ -56,7 +57,7 @@ function Move:stepToward(target, speed)
 		end
 	end]]
 	
-	if objHS.left_bot.x - targetHS.right_bot.x > speed then
+	if objHS.left_bot.x - targetHS.left_bot.x > speed then
 		if  self.obj.object.properties.ignoreMapCollision or
 			(self.obj.scene:canMoveWhitelist(objHS.left_top.x, objHS.left_top.y, -speed, 0, self.obj.ignoreCollision) and
 			 self.obj.scene:canMoveWhitelist(objHS.left_bot.x, objHS.left_bot.y, -speed, 0, self.obj.ignoreCollision))
@@ -64,7 +65,7 @@ function Move:stepToward(target, speed)
 			self.obj.x = self.obj.x - speed
 			self.switchAnim = self.anim.."left"
 		end
-	elseif targetHS.left_bot.x - objHS.left_bot.x > speed then
+	elseif targetHS.right_bot.x - objHS.right_bot.x > speed then
 		if  self.obj.object.properties.ignoreMapCollision or
 			(self.obj.scene:canMoveWhitelist(objHS.right_top.x, objHS.right_top.y, speed, 0, self.obj.ignoreCollision) and
 		 	 self.obj.scene:canMoveWhitelist(objHS.right_bot.x, objHS.right_bot.y, speed, 0, self.obj.ignoreCollision))
@@ -74,7 +75,7 @@ function Move:stepToward(target, speed)
 		end 
 	end
 
-	if objHS.left_top.y - targetHS.left_top.y > speed then
+	if objHS.left_top.y - targetHS.left_top.y > speed then --or (self.overlap and objHS.left_top.y - self.target.y > speed) then
 		if  self.obj.object.properties.ignoreMapCollision or
 			(self.obj.scene:canMoveWhitelist(objHS.left_top.x, objHS.left_top.y, 0, -speed, self.obj.ignoreCollision) and
 			 self.obj.scene:canMoveWhitelist(objHS.right_top.x, objHS.right_top.y, 0, -speed, self.obj.ignoreCollision))

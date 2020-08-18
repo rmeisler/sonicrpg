@@ -76,7 +76,7 @@ function MechaArm:update(dt)
 	    self.sprite.visible = true
 		
 		local battleArgs = {
-			initiative = self:getInitiative(),
+			initiative = "opponent",
 			opponents = {self:getMonsterData()}
 		}
 		local npcArgs = self:getBattleArgs()
