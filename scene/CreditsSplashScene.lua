@@ -34,7 +34,7 @@ function CreditsSplashScene:onEnter()
 	self.bgY = 0
 	
 	-- Setup music
-	self.audio:registerAs("music", "sonicrpglogo", love.audio.newSource("audio/music/sonicrpglogo.ogg", "static"))
+	self.audio:registerAs("music", "sonicrpglogo", love.audio.newSource("audio/music/credits.ogg", "static"))
 	self.audio:registerAs("music", "bhero", love.audio.newSource("audio/music/bhero.ogg", "static"))
 	self.audio:registerAs("music", "bheart", love.audio.newSource("audio/music/bheart.ogg", "static"))
 	

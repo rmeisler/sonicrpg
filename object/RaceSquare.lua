@@ -5,6 +5,7 @@ local Do = require "actions/Do"
 local Action = require "actions/Action"
 local Wait = require "actions/Wait"
 local Animate = require "actions/Animate"
+local PlayAudio = require "actions/PlayAudio"
 
 local NPC = require "object/NPC"
 
@@ -67,6 +68,33 @@ function RaceSquare:onCollision(prevState)
 	self.scene.squareNumber = self.scene.squareNumber - 1
 	for _, sq in pairs(self.squares) do
 		sq.sprite:setAnimation(tostring(self.scene.squareNumber))
+	end
+	
+	if self.scene.squareNumber == 0 then
+		local prevMusic = self.scene.audio:getCurrentMusic()
+		self.scene:run {
+			Do(function()
+				self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
+			end),
+			
+			Parallel {
+				Ease(self.scene.camPos, "x", self.scene.player.x - self.scene.objectLookup.UpperDoor.x, 1, "inout"),
+				Ease(self.scene.camPos, "y", self.scene.player.y - self.scene.objectLookup.UpperDoor.y, 1, "inout"),
+			},
+			
+			PlayAudio("music", "puzzlesolve", 1.0),
+			
+			Parallel {
+				Ease(self.scene.camPos, "x", 0, 1, "inout"),
+				Ease(self.scene.camPos, "y", 0, 1, "inout"),
+			},
+			
+			PlayAudio("music", prevMusic, 1.0, true, true),
+			
+			Do(function()
+				self.scene.player.cinematicStack = 0
+			end),
+		}
 	end
 end
 

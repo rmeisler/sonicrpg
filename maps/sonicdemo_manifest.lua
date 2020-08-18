@@ -672,6 +672,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/puzzlesolve.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/boring.ogg",
 		category = "music"
 	},
