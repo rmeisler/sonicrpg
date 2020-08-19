@@ -6,6 +6,8 @@ local Action = require "actions/Action"
 local Wait = require "actions/Wait"
 local Animate = require "actions/Animate"
 local PlayAudio = require "actions/PlayAudio"
+local Repeat = require "actions/Repeat"
+local While = require "actions/While"
 
 local NPC = require "object/NPC"
 
@@ -35,6 +37,7 @@ function RaceSquare:postInit()
 	end
 	
 	self.scene.squareNumber = #self.squares
+	self.scene.totalSquares = #self.squares
 	for _, sq in pairs(self.squares) do
 		sq.sprite:setAnimation(tostring(self.scene.squareNumber))
 	end
@@ -59,18 +62,59 @@ end
 function RaceSquare:onCollision(prevState)
     NPC.onCollision(self, prevState)
 
-	if self.activated then
+	if  self.activated or
+		GameState:isFlagSet(self.scene.mapName..".squares_complete")
+	then
 		return
 	end
 	
 	self.activated = true
+	
+	-- The first square touched... start the timer!
+	if self.scene.squareNumber == self.scene.totalSquares then
+		self:run(While(
+			function()
+				return not GameState:isFlagSet(self.scene.mapName..".squares_complete")
+			end,
+			Serial {
+				Repeat(
+					Serial {
+						PlayAudio("sfx", "tick", 1.0),
+						Wait(0.5),
+						PlayAudio("sfx", "tick", 1.0),
+						Wait(0.5)
+					},
+					self.scene.totalSquares
+				),
 
+				Do(function()
+					self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
+				end),
+
+				PlayAudio("sfx", "error", 1.0),
+
+				Do(function()
+					self.scene.player.cinematicStack = 0
+					self.scene.squareNumber = self.scene.totalSquares
+					for _, sq in pairs(self.squares) do
+						sq.sprite:setAnimation(tostring(self.scene.squareNumber))
+						sq.activated = false
+					end
+				end)
+			},
+			Do(function()
+			
+			end)
+		))
+	end
+	
 	self.scene.squareNumber = self.scene.squareNumber - 1
 	for _, sq in pairs(self.squares) do
 		sq.sprite:setAnimation(tostring(self.scene.squareNumber))
 	end
 	
 	if self.scene.squareNumber == 0 then
+		GameState:setFlag(self.scene.mapName..".squares_complete")
 		local prevMusic = self.scene.audio:getCurrentMusic()
 		self.scene:run {
 			Do(function()

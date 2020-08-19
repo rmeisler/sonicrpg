@@ -8,7 +8,7 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 236,
+  nextobjectid = 239,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_hideout.lua",
@@ -807,28 +807,11 @@ return {
       properties = {},
       objects = {
         {
-          id = 231,
-          name = "Square1",
-          type = "RaceSquare",
-          shape = "rectangle",
-          x = 1152,
-          y = 2304,
-          width = 96,
-          height = 96,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["sprite"] = "../art/sprites/racesquare.png"
-          }
-        },
-        {
           id = 234,
           name = "Square2",
           type = "RaceSquare",
           shape = "rectangle",
-          x = 1632,
+          x = 1664,
           y = 2080,
           width = 96,
           height = 96,
@@ -845,8 +828,59 @@ return {
           name = "Square3",
           type = "RaceSquare",
           shape = "rectangle",
-          x = 512,
+          x = 480,
           y = 2080,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/racesquare.png"
+          }
+        },
+        {
+          id = 236,
+          name = "Square4",
+          type = "RaceSquare",
+          shape = "rectangle",
+          x = 1664,
+          y = 1408,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/racesquare.png"
+          }
+        },
+        {
+          id = 237,
+          name = "Square5",
+          type = "RaceSquare",
+          shape = "rectangle",
+          x = 480,
+          y = 1376,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/racesquare.png"
+          }
+        },
+        {
+          id = 238,
+          name = "Square1",
+          type = "RaceSquare",
+          shape = "rectangle",
+          x = 1056,
+          y = 1152,
           width = 96,
           height = 96,
           rotation = 0,
@@ -1247,25 +1281,6 @@ return {
           }
         },
         {
-          id = 217,
-          name = "P",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1600,
-          y = 1312,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["defaultAnim"] = "pright",
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
-            ["sprite"] = "../art/sprites/P.png"
-          }
-        },
-        {
           id = 218,
           name = "UpperDoor",
           type = "BasicNPC",
@@ -1352,63 +1367,6 @@ return {
           properties = {
             ["CrystalWater"] = 2,
             ["sprite"] = "../art/sprites/chest.png"
-          }
-        },
-        {
-          id = 225,
-          name = "R",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 512,
-          y = 1920,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["defaultAnim"] = "idleright",
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
-            ["sprite"] = "../art/sprites/r.png"
-          }
-        },
-        {
-          id = 226,
-          name = "T",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1664,
-          y = 1888,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["defaultAnim"] = "tleft",
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
-            ["sprite"] = "../art/sprites/P.png"
-          }
-        },
-        {
-          id = 228,
-          name = "J",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 512,
-          y = 2144,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["defaultAnim"] = "idleright",
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
-            ["sprite"] = "../art/sprites/r.png"
           }
         }
       }

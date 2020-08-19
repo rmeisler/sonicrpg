@@ -672,6 +672,16 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/tick.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/tock.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/music/puzzlesolve.ogg",
 		category = "music"
 	},
