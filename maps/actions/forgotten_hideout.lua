@@ -33,29 +33,110 @@ return function(scene)
 		GameState:isFlagSet("met_b")) and
 		not scene.objectLookup.B
 	then
-		scene.objectLookup.B = BasicNPC(
-			scene,
-			{name = "objects"},
-			{
-				name = "B",
-				x = 1024,
-				y = 2176,
-				width = 64,
-				height = 32,
-				properties = {sprite = "art/sprites/b.png", align = "bottom_center", defaultAnim = "idledown"}
-			}
+		local placeNPC = function(id, x, y, interact)
+			scene.objectLookup[id] = BasicNPC(
+				scene,
+				{name = "objects"},
+				{
+					name = id,
+					x = x,
+					y = y,
+					width = 64,
+					height = 32,
+					properties = {sprite = "art/sprites/"..id..".png", align = "bottom_center", defaultAnim = "idledown"}
+				}
+			)
+			scene:addObject(scene.objectLookup[id])
+			scene.objectLookup[id]:addInteract(interact)
+		end
+		placeNPC(
+			"b",
+			1632,
+			2176,
+			function(b)
+				scene:run {
+					MessageBox{message="B: I'm in your debt, Freedom Fighters.", blocking = true},
+					MessageBox{message="Sonic: Yo, {p40}we'll be back too. {p40}Ya know you'd all be a lot safer back in Knothole.", blocking = true},
+					Animate(b.sprite, "thinking"),
+					Wait(1),
+					MessageBox{message="B: You may be right about that, {p40}but it's much too risky a journey for us.", blocking = true},
+					Animate(b.sprite, "idledown"),
+				}
+			end
 		)
-		scene:addObject(scene.objectLookup.B)
+		placeNPC(
+			"r",
+			1632,
+			2176,
+			function(r)
+				scene:run {
+					MessageBox{message="B: I'm in your debt, Freedom Fighters.", blocking = true},
+					MessageBox{message="Sonic: Yo, {p40}we'll be back too. {p40}Ya know you'd all be a lot safer back in Knothole.", blocking = true},
+					Animate(r.sprite, "thinking"),
+					Wait(1),
+					MessageBox{message="B: You may be right about that, {p40}but it's much too risky a journey for us.", blocking = true},
+					Animate(r.sprite, "idledown"),
+				}
+			end
+		)
+		placeNPC(
+			"j",
+			1632,
+			2176,
+			function(j)
+				scene:run {
+					MessageBox{message="B: I'm in your debt, Freedom Fighters.", blocking = true},
+					MessageBox{message="Sonic: Yo, {p40}we'll be back too. {p40}Ya know you'd all be a lot safer back in Knothole.", blocking = true},
+					Animate(r.sprite, "thinking"),
+					Wait(1),
+					MessageBox{message="B: You may be right about that, {p40}but it's much too risky a journey for us.", blocking = true},
+					Animate(r.sprite, "idledown"),
+				}
+			end
+		)
+		placeNPC(
+			"t",
+			1632,
+			2176,
+			function(t)
+				scene:run {
+					MessageBox{message="B: I'm in your debt, Freedom Fighters.", blocking = true},
+					MessageBox{message="Sonic: Yo, {p40}we'll be back too. {p40}Ya know you'd all be a lot safer back in Knothole.", blocking = true},
+					Animate(r.sprite, "thinking"),
+					Wait(1),
+					MessageBox{message="B: You may be right about that, {p40}but it's much too risky a journey for us.", blocking = true},
+					Animate(r.sprite, "idledown"),
+				}
+			end
+		)
+		placeNPC(
+			"p",
+			1632,
+			2176,
+			function(p)
+				scene:run {
+					MessageBox{message="B: I'm in your debt, Freedom Fighters.", blocking = true},
+					MessageBox{message="Sonic: Yo, {p40}we'll be back too. {p40}Ya know you'd all be a lot safer back in Knothole.", blocking = true},
+					Animate(r.sprite, "thinking"),
+					Wait(1),
+					MessageBox{message="B: You may be right about that, {p40}but it's much too risky a journey for us.", blocking = true},
+					Animate(r.sprite, "idledown"),
+				}
+			end
+		)
 	end
 	
 	if GameState:isFlagSet("b_speech") then
-		return PlayAudio("music", "bheart", 1.0, true, true)
+		return PlayAudio("music", "bhero", 1.0, true, true)
 	end
 	
 	if GameState:isFlagSet("met_b") then
 		return Serial {
-			PlayAudio("music", "bheart", 1.0, true, true),
-			MessageBox{message="B: I've programmed directions into your computer Nicole to get you to the cell block, where I believe they are holding your friend.", blocking = true},
+			Spawn(Serial {
+				PlayAudio("music", "bheart", 1.0),
+				PlayAudio("music", "bhero", 1.0, true, true)
+			}),
+			MessageBox{message="B: I've uploaded maps into Nicole to get you to the cell block where I assume they are holding your friend.", blocking = true},
 			
 			Parallel {
 				MessageBox{message="B: When you're ready to leave, just go through that door...", blocking = true},
@@ -66,13 +147,6 @@ return function(scene)
 			Do(function()
 				GameState:setFlag("b_speech")
 			end)
-			
-			--[[MessageBox{message="B: I'm in your debt, Freedom Fighters.", blocking = true},
-			MessageBox{message="Sonic: Yo, {p40}we'll be back too. {p40}Ya know you'd all be a lot safer back in Knothole.", blocking = true},
-			Animate(scene.objectLookup.B.sprite, "thinking"),
-			MessageBox{message="B: You may be right about that, but I can't let my people take that risk.", blocking = true},
-			Animate(scene.objectLookup.B.sprite, "idleup"),
-			MessageBox{message="Sally: Goodbye B.", blocking = true},]]
 		}
 	end
 	

@@ -235,7 +235,10 @@ function OpposingPartyMember:beginTurn()
 	
 	self.scene:run {
 		Serial(additionalActions),
-		self.action
+		self.action,
+		Do(function()
+			-- Noop... why is this necessary in some cases?
+		end)
 	}
 end
 
@@ -323,8 +326,9 @@ function OpposingPartyMember:die()
 		}
 	else
 		return Serial {
+			PlayAudio("sfx", "oppdeath", 1.0, true),
+		
 			Do(function()
-				self.scene.audio:playSfx("oppdeath")
 				self.dropShadow:remove()
 			end),
 			

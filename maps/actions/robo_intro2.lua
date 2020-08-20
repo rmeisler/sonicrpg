@@ -224,8 +224,18 @@ return function(scene)
 			blocking=true
 		},
 		
-		scene.player:spin(2, 0.01, partySprites.antoine.sprite),
-		Animate(partySprites.antoine.sprite, "pose"),
+		Wait(0.2),
+		
+		Parallel {
+			Serial {
+				Animate(partySprites.antoine.sprite, "saluteleft"),
+				Animate(partySprites.antoine.sprite, "holdsaluteleft")
+			},
+			Serial {
+				Ease(partySprites.antoine, "y", function() return partySprites.antoine.y - 50 end, 10, "linear"),
+				Ease(partySprites.antoine, "y", function() return partySprites.antoine.y + 50 end, 10, "linear")
+			}
+		},
 		
 		MessageBox {
 			message="Antoine: I was ready when I was being born, my princess!",
@@ -289,7 +299,9 @@ return function(scene)
 		
 		-- Antoine correct
 		scene.player:spin(2, 0.01, partySprites.antoine.sprite),
-		Animate(partySprites.antoine.sprite, "pose"),
+		Do(function()
+			partySprites.antoine.sprite:setAnimation("proud")
+		end),
 		
 		Wait(1),
 		

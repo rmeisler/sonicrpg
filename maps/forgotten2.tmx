@@ -442,7 +442,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/r.png"/>
    </properties>
   </object>
-  <object id="188" name="Waypoint1" type="BasicNPC" gid="1227" x="800" y="2304" width="32" height="32">
+  <object id="188" name="Waypoint1" type="BasicNPC" gid="1227" x="864" y="2304" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -452,7 +452,7 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="191" name="Waypoint3" type="BasicNPC" gid="1227" x="832" y="1184" width="32" height="32">
+  <object id="191" name="Waypoint3" type="BasicNPC" gid="1227" x="896" y="1184" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>

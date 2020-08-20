@@ -8,7 +8,7 @@ return {
   height = 161,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 173,
+  nextobjectid = 176,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/factoryfloor.lua",
@@ -426,6 +426,72 @@ return {
     },
     {
       type = "objectgroup",
+      name = "lowerobjects",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 173,
+          name = "Square1",
+          type = "RaceSquare",
+          shape = "rectangle",
+          x = 384,
+          y = 672,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/racesquare.png",
+            ["subject"] = "Door2"
+          }
+        },
+        {
+          id = 174,
+          name = "Square2",
+          type = "RaceSquare",
+          shape = "rectangle",
+          x = 608,
+          y = 1632,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/racesquare.png",
+            ["subject"] = "Door2"
+          }
+        },
+        {
+          id = 175,
+          name = "Square3",
+          type = "RaceSquare",
+          shape = "rectangle",
+          x = 192,
+          y = 2112,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/racesquare.png",
+            ["subject"] = "Door2"
+          }
+        }
+      }
+    },
+    {
+      type = "objectgroup",
       name = "objects",
       visible = true,
       opacity = 1,
@@ -508,7 +574,7 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -32,
             ["ghost"] = true,
-            ["scanAction"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"factoryfloor_door1\") then\n        return Action()\n    end\n\n    if not GameState.items[\"Keycard\"] then\n        local walkout, walkin, sprites = self.scene.player:split()\n        return Serial {\n            Wait(1),\n            MessageBox { message = \"Computer: Keycard required.\", textSpeed = 4, blocking = true, sfx = \"error\"},\n            walkout,\n            MessageBox { message = \"Antoine: Oh well. I guess zis is as far as we may go!\", blocking = true},\n            MessageBox { message = \"Sally: Nice try, Antoine.\", blocking = true},\n            MessageBox { message = \"Antoine: Bonte gracieuse...\", blocking = true},\n            walkin,\n            Do(function()\n                self.scene.player.state = \"idledown\"\n                self.scene.player.x = self.scene.player.x + 60\n                self.scene.player.y = self.scene.player.y + 60\n            end)\n        }\n    else\n        GameState:setFlag(self)\n        self.scene.objectLookup.Door2:removeCollision()\n        local walkout, walkin, sprites = self.scene.player:split()\n        return Serial {\n            Wait(1),\n            MessageBox { message = \"Computer: Keycard required.\", textSpeed = 4, blocking = true, sfx = \"error\"},\n            walkout,\n            MessageBox { message = \"Antoine: Did we not find a Keycard, my princess?\", blocking = true},\n            MessageBox { message = \"Sally: You're right, Antoine! {p30}Let's try it!\", blocking = true},\n            Animate(sprites.sonic.sprite, \"idleup\"),\n            Animate(sprites.sally.sprite, \"idleup\"),\n            Animate(sprites.antoine.sprite, \"idleup\"),\n            MessageBox { message = \"Computer: Access granted.\", textSpeed = 4, blocking = true, sfx = \"levelup\"},\n            Animate(self.scene.objectLookup.Door2.sprite, \"opening\"),\n            Animate(self.scene.objectLookup.Door2.sprite, \"open\"),\n            Animate(sprites.sally.sprite, \"pose\"),\n            MessageBox { message = \"Sally: Yes!\", blocking = true},\n            walkin,\n            Do(function()\n                self.scene.player.x = self.scene.player.x + 60\n                self.scene.player.y = self.scene.player.y + 60\n                GameState:setFlag(\"factoryfloor_door1\")\n                self.scene.player.state = \"idledown\"\n            end)\n        }\n    end\nend",
+            ["scanAction"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    if GameState:isFlagSet(self.scene.objectLookup.Door2) then\n        return Action()\n    end\n\n        local walkout, walkin, sprites = self.scene.player:split()\n        return Serial {\n            Wait(1),\n            MessageBox { message = \"Nicole: I am unable to override the security protocol{p40}, Sally.\", textSpeed = 4, blocking = true, sfx = \"error\"},\n            walkout,\n            MessageBox { message = \"Antoine: Oh well. I guess zis is as far as we may go!\", blocking = true},\n            MessageBox { message = \"Sally: Nice try, Antoine.\", blocking = true},\n            MessageBox { message = \"Antoine: Bonte gracieuse...\", blocking = true},\n            MessageBox { message = \"Sally: There's gotta be some other way...\", blocking = true},\n            walkin,\n            Do(function()\n                self.scene.player.state = \"idledown\"\n                self.scene.player.x = self.scene.player.x + 60\n                self.scene.player.y = self.scene.player.y + 60\n            end)\n        }\nend",
             ["specialHint"] = "sally",
             ["sprite"] = "../art/sprites/computer.png"
           }
@@ -923,6 +989,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["onPuzzleSolve"] = "local Serial = require \"actions/Serial\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    return Serial {\n        Animate(self.sprite, \"opening\"),\n        Animate(self.sprite, \"open\"),\n        Do(function()\n            self:removeCollision()\n            GameState:setFlag(self)\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/door.png"
           }
         },
@@ -1023,23 +1090,6 @@ return {
             ["scene"] = "datacenter_f4.lua",
             ["spawn_point"] = "Exit1",
             ["walkin"] = true
-          }
-        },
-        {
-          id = 171,
-          name = "Chest2",
-          type = "Chest",
-          shape = "rectangle",
-          x = 736,
-          y = 1184,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 3501,
-          visible = true,
-          properties = {
-            ["Keycard"] = 1,
-            ["sprite"] = "../art/sprites/chest.png"
           }
         }
       }
@@ -1818,8 +1868,8 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 3070, 3070, 3070, 3070, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 3070, 3070, 3070, 3070, 3070, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 3070, 3070, 3070, 3070, 3070, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 3070, 3070, 3070, 3070, 3070, 3070, 3070, 0, 0, 0, 0, 0, 0, 0, 0, 3070, 3070, 3070, 3070, 3070, 3070, 3070, 0, 0, 0,
         0, 0, 0, 3070, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3070, 0, 0, 0,
         0, 0, 0, 3070, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3070, 0, 0, 0,

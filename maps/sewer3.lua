@@ -286,8 +286,8 @@ return {
             ["ghost"] = true,
             ["key"] = "up",
             ["orientation"] = "down",
-            ["scene"] = "factoryfloor.lua",
-            ["spawn_point"] = "Exit",
+            ["scene"] = "prison.lua",
+            ["spawn_point"] = "Spawn 1",
             ["walkin"] = true
           }
         },
@@ -391,7 +391,7 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 576,
-          y = 1376,
+          y = 1408,
           width = 128,
           height = 32,
           rotation = 0,

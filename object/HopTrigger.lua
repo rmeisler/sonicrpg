@@ -99,7 +99,6 @@ function HopTrigger:onCollision(prevState)
 					Ease(self.scene.player, "y", self.scene.player.y, 6, "inout")
 				},
 			},
-			Animate(self.scene.player.sprite, "crouchleft"),
 			Do(function()
 				self.scene.player.cinematic = false
 				self.scene.player.isHopping = false
@@ -126,7 +125,6 @@ function HopTrigger:onCollision(prevState)
 					Ease(self.scene.player, "y", self.scene.player.y, 6, "inout")
 				},
 			},
-			Animate(self.scene.player.sprite, "crouchright"),
 			Do(function()
 				self.scene.player.cinematic = false
 				self.scene.player.isHopping = false

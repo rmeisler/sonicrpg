@@ -210,7 +210,7 @@ return function(scene)
 			scene.powerring.sortOrderY = 8888
 		end),
 		Animate(sprites.sonic.sprite, "sadleft"),
-		Wait(0.2),
+		Wait(0.5),
 		Do(function()
 			scene.powerring.transform = Transform.relative(sprites.sonic.sprite.transform, Transform(-15, sprites.sonic.sprite.h + 5))
 			

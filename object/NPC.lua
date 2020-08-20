@@ -114,6 +114,16 @@ function NPC:updateCollision()
 	end
 end
 
+function NPC:onPuzzleSolve()
+	if self.object.properties.onPuzzleSolve then
+		local puzzleSolveFun = assert(loadstring(self.object.properties.onPuzzleSolve))()
+		if puzzleSolveFun then
+			return puzzleSolveFun(self)
+		end
+	end
+	return Action()
+end
+
 function NPC:removeCollision()
 	for _, pair in pairs(self.collision or {}) do
 		if self.scene.map.collisionMap[pair[2]] then

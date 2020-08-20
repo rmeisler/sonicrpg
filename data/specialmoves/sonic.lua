@@ -55,7 +55,7 @@ local RunUpdate = function(self, dt)
 		self.sprite.color = {255,255,255,255}
 	end
 	
-	if self.blocked or not self.scene:playerMovable() then
+	if self.blocked or not self.scene:playerMovable() or self.pausePlayer then
 		return
 	end
 	

@@ -184,7 +184,7 @@ end</property>
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="219" name="Waypoint" type="BasicNPC" gid="1227" x="128" y="384" width="64" height="32">
+  <object id="219" name="Waypoint" type="BasicNPC" gid="1227" x="160" y="384" width="64" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>

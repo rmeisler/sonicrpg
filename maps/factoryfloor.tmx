@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="28" height="161" tilewidth="32" tileheight="32" infinite="0" nextobjectid="173">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="28" height="161" tilewidth="32" tileheight="32" infinite="0" nextobjectid="176">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="onload" type="file" value="actions/factoryfloor.lua"/>
@@ -338,6 +338,29 @@
 2452,2452,2452,2452,2452,2452,2452,2452,2452,0,2452,2452,2452,2452,2452,2452,2452,2489,2452,2452,2452,2452,2452,2452,2452,2452,2452,0
 </data>
  </layer>
+ <objectgroup name="lowerobjects">
+  <object id="173" name="Square1" type="RaceSquare" gid="1227" x="384" y="672" width="96" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
+    <property name="subject" value="Door2"/>
+   </properties>
+  </object>
+  <object id="174" name="Square2" type="RaceSquare" gid="1227" x="608" y="1632" width="96" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
+    <property name="subject" value="Door2"/>
+   </properties>
+  </object>
+  <object id="175" name="Square3" type="RaceSquare" gid="1227" x="192" y="2112" width="96" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
+    <property name="subject" value="Door2"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="objects">
   <object id="2" name="Spawn 1" type="Player" gid="1227" x="288" y="5120" width="32" height="32">
    <properties>
@@ -360,19 +383,19 @@ local Action = require &quot;actions/Action&quot;
 local Wait = require &quot;actions/Wait&quot;
 
 return function(self)
-    if GameState:isFlagSet(&quot;factoryfloor_door1&quot;) then
+    if GameState:isFlagSet(self.scene.objectLookup.Door2) then
         return Action()
     end
 
-    if not GameState.items[&quot;Keycard&quot;] then
         local walkout, walkin, sprites = self.scene.player:split()
         return Serial {
             Wait(1),
-            MessageBox { message = &quot;Computer: Keycard required.&quot;, textSpeed = 4, blocking = true, sfx = &quot;error&quot;},
+            MessageBox { message = &quot;Nicole: I am unable to override the security protocol{p40}, Sally.&quot;, textSpeed = 4, blocking = true, sfx = &quot;error&quot;},
             walkout,
             MessageBox { message = &quot;Antoine: Oh well. I guess zis is as far as we may go!&quot;, blocking = true},
             MessageBox { message = &quot;Sally: Nice try, Antoine.&quot;, blocking = true},
             MessageBox { message = &quot;Antoine: Bonte gracieuse...&quot;, blocking = true},
+            MessageBox { message = &quot;Sally: There's gotta be some other way...&quot;, blocking = true},
             walkin,
             Do(function()
                 self.scene.player.state = &quot;idledown&quot;
@@ -380,33 +403,6 @@ return function(self)
                 self.scene.player.y = self.scene.player.y + 60
             end)
         }
-    else
-        GameState:setFlag(self)
-        self.scene.objectLookup.Door2:removeCollision()
-        local walkout, walkin, sprites = self.scene.player:split()
-        return Serial {
-            Wait(1),
-            MessageBox { message = &quot;Computer: Keycard required.&quot;, textSpeed = 4, blocking = true, sfx = &quot;error&quot;},
-            walkout,
-            MessageBox { message = &quot;Antoine: Did we not find a Keycard, my princess?&quot;, blocking = true},
-            MessageBox { message = &quot;Sally: You're right, Antoine! {p30}Let's try it!&quot;, blocking = true},
-            Animate(sprites.sonic.sprite, &quot;idleup&quot;),
-            Animate(sprites.sally.sprite, &quot;idleup&quot;),
-            Animate(sprites.antoine.sprite, &quot;idleup&quot;),
-            MessageBox { message = &quot;Computer: Access granted.&quot;, textSpeed = 4, blocking = true, sfx = &quot;levelup&quot;},
-            Animate(self.scene.objectLookup.Door2.sprite, &quot;opening&quot;),
-            Animate(self.scene.objectLookup.Door2.sprite, &quot;open&quot;),
-            Animate(sprites.sally.sprite, &quot;pose&quot;),
-            MessageBox { message = &quot;Sally: Yes!&quot;, blocking = true},
-            walkin,
-            Do(function()
-                self.scene.player.x = self.scene.player.x + 60
-                self.scene.player.y = self.scene.player.y + 60
-                GameState:setFlag(&quot;factoryfloor_door1&quot;)
-                self.scene.player.state = &quot;idledown&quot;
-            end)
-        }
-    end
 end</property>
     <property name="specialHint" value="sally"/>
     <property name="sprite" type="file" value="../art/sprites/computer.png"/>
@@ -558,6 +554,20 @@ end</property>
   <object id="163" name="Door2" type="BasicNPC" gid="1227" x="288" y="448" width="288" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="onPuzzleSolve">local Serial = require &quot;actions/Serial&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Do = require &quot;actions/Do&quot;
+
+return function(self)
+    return Serial {
+        Animate(self.sprite, &quot;opening&quot;),
+        Animate(self.sprite, &quot;open&quot;),
+        Do(function()
+            self:removeCollision()
+            GameState:setFlag(self)
+        end)
+    }
+end</property>
     <property name="sprite" type="file" value="../art/sprites/door.png"/>
    </properties>
   </object>
@@ -603,12 +613,6 @@ end</property>
     <property name="scene" type="file" value="datacenter_f4.lua"/>
     <property name="spawn_point" value="Exit1"/>
     <property name="walkin" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="171" name="Chest2" type="Chest" gid="3501" x="736" y="1184" width="32" height="32">
-   <properties>
-    <property name="Keycard" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
  </objectgroup>
@@ -1328,8 +1332,8 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,2965,0,0,0,0,0,0,0,0,2965,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,2965,0,0,0,0,0,0,0,0,2965,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,2965,0,0,0,0,0,0,0,0,2965,0,0,0,0,0,0,0,0,0,
-0,0,0,0,3070,3070,3070,3070,0,2965,0,0,0,0,0,0,0,0,2965,0,0,0,0,0,0,0,0,0,
+0,0,0,0,3070,3070,3070,3070,3070,2965,0,0,0,0,0,0,0,0,2965,0,0,0,0,0,0,0,0,0,
+0,0,0,0,3070,3070,3070,3070,3070,2965,0,0,0,0,0,0,0,0,2965,0,0,0,0,0,0,0,0,0,
 0,0,0,3070,3070,3070,3070,3070,3070,3070,0,0,0,0,0,0,0,0,3070,3070,3070,3070,3070,3070,3070,0,0,0,
 0,0,0,3070,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3070,0,0,0,
 0,0,0,3070,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3070,0,0,0,

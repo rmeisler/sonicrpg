@@ -227,6 +227,7 @@ function BasicScene:onReEnter(args)
 		end
 	end
 	
+	self.reenteringFromBattle = self.enteringBattle
 	self.enteringBattle = false
 	self.player.cinematic = false
 	self.reentering = true
@@ -262,6 +263,7 @@ function BasicScene:onReEnter(args)
 		
 		Do(function()
 			self.reentering = false
+			self.reenteringFromBattle = false
 		end)
 	}
 end
@@ -394,6 +396,8 @@ function BasicScene:enterBattle(args)
 
 		-- Motion blur + fade to black + fade music
 		Ease(self.blur, "radius_h", 150, 2),
+		
+		args.beforeBattle or Action(),
 		
 		Do(function()
 			self.audio.allowDucking = false

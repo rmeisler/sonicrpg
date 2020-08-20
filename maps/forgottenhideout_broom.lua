@@ -401,7 +401,7 @@ return {
           name = "Waypoint",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 96,
+          x = 160,
           y = 384,
           width = 64,
           height = 32,

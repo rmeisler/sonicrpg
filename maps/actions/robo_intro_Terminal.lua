@@ -22,7 +22,6 @@ return function(self)
 	return Serial {
 		Do(function()
 			self.disabled = true -- Disable computer
-			GameState:setFlag("roboterminal_used")
 			
 			-- Remove collision around door
 			self.scene.objectLookup.Door:removeCollision()
@@ -106,59 +105,6 @@ return function(self)
 		end),
 		Wait(1),
 		Do(function()
-			-- When we get back from this battle, have a cinematic
-			self.scene.swatbot1.flagForDeletion = true
-			self.scene.swatbot2.flagForDeletion = true
-			
-			local afterBattle
-			afterBattle = function()
-				self.scene.player:removeKeyHint()
-				self.scene.player.sprite:setAnimation("idledown")
-				self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
-				self.scene.player.noIdle = false
-				local walkout, walkin, sprites = self.scene.player:split()
-				
-				Executor(self.scene):act(
-					Serial {
-						walkout,
-						
-						MessageBox {message="Sally: That was a close one.", blocking = true},
-						MessageBox {message="Sonic: Mighta bit off more than we can chew on this one, Sal. {p30}Should we abort?", blocking = true},
-						
-						MessageBox {message="Antoine: I will be voting yes on that!", blocking = true},
-						
-						Animate(sprites.sally.sprite, "thinking"),
-						MessageBox {message="Sally: Hmmm{p20}.{p20}.{p20}. {p50}I think we should keep going.", blocking = true},
-						
-						Animate(sprites.antoine.sprite, "scaredhop1"),
-						
-						MessageBox {message="Sally: We're almost there, and this could really hurt Robotnik!", blocking = true},
-						
-						Animate(sprites.sonic.sprite, "idledown"),
-						MessageBox {message="Sonic: Your call.", blocking = true},
-						
-						Animate(sprites.sonic.sprite, "thinking"),
-						
-						MessageBox {message="Sonic: Since when am I the cautious one?", blocking = true},
-						
-						Animate(sprites.antoine.sprite, "idledown"),
-						MessageBox {message="Antoine: Sacre bleu...", textSpeed = 4, blocking = true},
-						
-						walkin,
-						Do(function()
-							self.scene.player.x = self.scene.player.x + 80
-							self.scene.player.y = self.scene.player.y + 70
-							
-							self.scene:removeHandler("enter", afterBattle)
-							
-							self.scene.player.cinematicStack = self.scene.player.cinematicStack - 2
-							self.scene.player.disableScan = false
-						end)
-					}
-				)
-			end
-			--self.scene:addHandler("enter", afterBattle)
-			
 			GameState:setFlag("roboterminal_openeddoor")
 			
 			self.scene.player.sprite:setAnimation("shock")
@@ -173,7 +119,11 @@ return function(self)
 			opponents = {
 				"swatbot",
 				"sonicappear_swatbot"
-			}
+			},
+			beforeBattle = Do(function()
+				self.scene.swatbot1:remove()
+				self.scene.swatbot2:remove()
+			end)
 		}
 	}
 end

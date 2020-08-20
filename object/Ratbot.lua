@@ -27,7 +27,7 @@ function Ratbot:construct(scene, layer, object)
 	
 	self.dropShadow.sprite.transform.sx = 5
 
-	self.stepSfx = "ratstep"
+	--self.stepSfx = "ratstep"
 end
 
 function Ratbot:getBattleArgs()

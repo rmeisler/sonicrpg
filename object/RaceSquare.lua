@@ -36,6 +36,7 @@ function RaceSquare:postInit()
 		end
 	end
 	
+	self.subject = self.scene.objectLookup[self.object.properties.subject]
 	self.scene.squareNumber = #self.squares
 	self.scene.totalSquares = #self.squares
 	for _, sq in pairs(self.squares) do
@@ -119,14 +120,20 @@ function RaceSquare:onCollision(prevState)
 		self.scene:run {
 			Do(function()
 				self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
+				self.scene:pauseEnemies(true)
+				self.scene.pausePlayer = true
 			end),
 			
+			PlayAudio("music", "puzzlesolve", 1.0),
+			
 			Parallel {
-				Ease(self.scene.camPos, "x", self.scene.player.x - self.scene.objectLookup.UpperDoor.x, 1, "inout"),
-				Ease(self.scene.camPos, "y", self.scene.player.y - self.scene.objectLookup.UpperDoor.y, 1, "inout"),
+				Ease(self.scene.camPos, "x", self.scene.player.x - self.subject.x, 1, "inout"),
+				Ease(self.scene.camPos, "y", self.scene.player.y - self.subject.y, 1, "inout"),
 			},
 			
-			PlayAudio("music", "puzzlesolve", 1.0),
+			self.subject:onPuzzleSolve(),
+			
+			Wait(1),
 			
 			Parallel {
 				Ease(self.scene.camPos, "x", 0, 1, "inout"),
@@ -137,6 +144,8 @@ function RaceSquare:onCollision(prevState)
 			
 			Do(function()
 				self.scene.player.cinematicStack = 0
+				self.scene:pauseEnemies(false)
+				self.scene.pausePlayer = false
 			end),
 		}
 	end

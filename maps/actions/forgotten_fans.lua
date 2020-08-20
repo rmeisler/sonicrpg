@@ -29,6 +29,10 @@ local BasicNPC = require "object/BasicNPC"
 local TARGET_OFFSET_X = 400
 
 return function(scene)
+	if GameState:isFlagSet("forgotten_fans") then
+		return Action()
+	end
+
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
 	scene.player.cinematic = true
@@ -119,6 +123,8 @@ return function(scene)
 			scene.player.cinematic = false
 			scene.player.noIdle = false
 			scene.player.state = "idleup"
+			
+			GameState:setFlag("forgotten_fans")
 		end),
 	}
 end

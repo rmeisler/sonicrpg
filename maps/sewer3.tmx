@@ -144,8 +144,8 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>
-    <property name="scene" type="file" value="factoryfloor.lua"/>
-    <property name="spawn_point" value="Exit"/>
+    <property name="scene" type="file" value="prison.lua"/>
+    <property name="spawn_point" value="Spawn 1"/>
     <property name="walkin" type="bool" value="true"/>
    </properties>
   </object>
@@ -211,7 +211,7 @@ end</property>
     <property name="on" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="249" name="CHeap1" type="BasicNPC" gid="3112" x="576" y="1376" width="128" height="32">
+  <object id="249" name="CHeap1" type="BasicNPC" gid="3112" x="576" y="1408" width="128" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hideOffset" type="int" value="26"/>

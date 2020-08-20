@@ -59,6 +59,21 @@ return function(scene)
 				scene.player.cinematic = false
 			end)
 		}
+	elseif GameState:isFlagSet("roboterminal_used") then
+		scene.objectLookup.Door.sprite:setAnimation("open")
+		scene.objectLookup.Door:removeCollision()
+	
+		if scene.reentering and not scene.reenteringFromBattle then
+			return Serial {
+				AudioFade("music", 1.0, 0.0, 2),
+				Do(function()
+					scene.audio:stopMusic()
+				end),
+				PlayAudio("music", "patrol", 1.0, true, true)
+			}
+		else
+			return PlayAudio("music", "patrol", 1.0, true, true)
+		end
 	elseif GameState:isFlagSet("roboterminal_openeddoor") then
 		scene.player:removeKeyHint()
 		scene.player.sprite:setAnimation("idledown")
@@ -99,25 +114,11 @@ return function(scene)
 				
 				scene.player.cinematicStack = 0
 				scene.player.disableScan = false
+				GameState:isFlagSet("roboterminal_used")
 			end)
 		}
-	elseif GameState:isFlagSet("roboterminal_used") then
-		scene.objectLookup.Door.sprite:setAnimation("open")
-		scene.objectLookup.Door:removeCollision()
-	
-		if scene.reentering then
-			return Serial {
-				AudioFade("music", 1.0, 0.0, 2),
-				Do(function()
-					scene.audio:stopMusic()
-				end),
-				PlayAudio("music", "patrol", 1.0, true, true)
-			}
-		else
-			return PlayAudio("music", "patrol", 1.0, true, true)
-		end
 	else
-		if scene.reentering then
+		if scene.reentering and not scene.reenteringFromBattle then
 			return Serial {
 				AudioFade("music", 1.0, 0.0, 2),
 				Do(function()

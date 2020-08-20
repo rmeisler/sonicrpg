@@ -50,10 +50,10 @@ function CreditsSplashScene:onEnter()
 			Ease(self.bgColor, 1, 255, 0.3, "linear"),
 			Ease(self.bgColor, 2, 255, 0.3, "linear"),
 			Ease(self.bgColor, 3, 255, 0.3, "linear"),
-			AudioFade("music", 0.5, 0.7, 0.3),
+			AudioFade("music", 0.7, 1.0, 0.3),
 			Serial {
 				Spawn(Serial {
-					PlayAudio("music", "sonicrpglogo", 0.5),
+					PlayAudio("music", "sonicrpglogo", 0.7),
 					Wait(2),
 					PlayAudio("music", "bhero", 1.0),
 					PlayAudio("music", "bheart", 1.0),

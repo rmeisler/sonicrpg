@@ -69,7 +69,7 @@ return function(scene)
 	scene.player:updateSprite()
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
-	scene.player.cinematic = true
+	scene.player.cinematicStack = scene.player.cinematicStack + 1
 	
 	local nicole = SpriteNode(
 		scene,
@@ -249,7 +249,6 @@ return function(scene)
 		Move(scene.objectLookup.R, scene.objectLookup.Waypoint, "walk"),
 		Do(function()
 			scene.objectLookup.R:remove()
-			scene.player.cinematic = true
 		end),
 		Parallel {
 			Ease(scene.objectLookup.WallEdge1, "y", scene.objectLookup.WallEdge1.y, 2, "linear"),
@@ -265,7 +264,7 @@ return function(scene)
 		MessageBox {message= "Sally: We should follow him! {p30}Maybe he can help us find a way out of here.", blocking = true, textSpeed = 4},
 		walkin,
 		Do(function()
-			scene.player.cinematic = false
+			scene.player.cinematicStack = 0
 			
 			GameState:setFlag("forgotten_start")
 		end)

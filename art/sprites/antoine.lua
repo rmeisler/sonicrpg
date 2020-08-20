@@ -120,5 +120,17 @@ return {
 		saddown = {
 			frames = {{10,1}}
 		},
+		
+		proud = {
+			frames = {{11,1},{12,1},{13,1},{14,1}},
+			speed = 0.2
+		},
+		saluteleft = {
+			frames = {{11,0},{12,0},{13,0}},
+			speed = 0.05
+		},
+		holdsaluteleft = {
+			frames = {{13,0}}
+		},
     }
 }
