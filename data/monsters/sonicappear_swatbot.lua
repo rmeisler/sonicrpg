@@ -186,7 +186,7 @@ return {
 							Spawn(Serial {
 								PlayAudio("music", "sonicenters", 1.0),
 								Wait(6),
-								PlayAudio("music", prevMusic, 1.0, true)
+								PlayAudio("music", prevMusic, 1.0, true, true)
 							}),
 							
 							Serial {

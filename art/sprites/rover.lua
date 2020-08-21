@@ -5,6 +5,10 @@ return {
     h = 81,
 
     animations = {
+		idle = {
+			frames = {{1,0}}
+		},
+		
 		crouched = {
 			frames = {{1,0}}
 		},
@@ -64,7 +68,7 @@ return {
 		},
 		
 		idleleft = {
-			frames = {{1,0}}
+			frames = {{3,0}}
 		},
 		
 		idleup = {

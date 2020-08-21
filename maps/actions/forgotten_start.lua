@@ -38,7 +38,7 @@ return function(scene)
 	
 	local sonicfall = BasicNPC(
 		scene,
-		{name="objects"},
+		{name="aboveobjects"},
 		{name = "sonicfall", x = 750, y = -120, width = 47, height = 55,
 			properties = {
 				ghost = true,
@@ -51,7 +51,7 @@ return function(scene)
 
 	local sallyfall = BasicNPC(
 		scene,
-		{name="objects"},
+		{name="aboveobjects"},
 		{name = "sallyfall", x = 870, y = -150, width = 47, height = 55,
 			properties = {
 				ghost = true,
@@ -173,7 +173,8 @@ return function(scene)
 		
 		MessageBox {message="Sonic: Just a little damp...", blocking = true},
 		
-		PlayAudio("music", "mysterious", 1.0, true),
+		PlayAudio("music", "mysterious", 0.0, true, true),
+		Spawn(AudioFade("music", 0.0, 1.0, 0.5)),
 		Animate(sprites.sonic.sprite, "thinking"),
 		MessageBox {message="Sonic: But yo... {p30}where are we exactly?", blocking = true},
 		
@@ -231,7 +232,7 @@ return function(scene)
 
 		MessageBox {message= "Sonic: Uh{p20}.{p20}.{p20}. hey little buddy!", blocking = true, textSpeed = 4},
 		Wait(0.2),
-		PlayAudio("music", "follow", 0.7, true),
+		PlayAudio("music", "follow", 0.7, true, true),
 
 		Do(function()
 			scene.player.cinematic = true

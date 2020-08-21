@@ -251,6 +251,7 @@ function Bot:update(dt)
 				}
 			)
 			self.scene:addObject(self.investigateProxy)
+			
 			self:run {
 				self:hop(1),
 				Do(function()
@@ -258,6 +259,9 @@ function Bot:update(dt)
 					self:addSceneHandler("update", Bot.investigateUpdate)
 					self.behavior = Bot.BEHAVIOR_INVESTIGATING
 					self.scene.player.investigators[tostring(self.name)] = self
+					
+					self.investigateProxy.x = self.scene.player.x
+					self.investigateProxy.y = self.scene.player.y
 				end),
 				self:follow(
 					self.investigateProxy,

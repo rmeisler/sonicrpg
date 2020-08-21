@@ -33,7 +33,7 @@ return function(scene)
 		GameState:isFlagSet("met_b")) and
 		not scene.objectLookup.B
 	then
-		local placeNPC = function(id, x, y, sprite, anim, interact)
+		local placeNPC = function(id, x, y, sprite, anim, interact, height, offsetY)
 			scene.objectLookup[id] = BasicNPC(
 				scene,
 				{name = "objects"},
@@ -42,8 +42,8 @@ return function(scene)
 					x = x,
 					y = y,
 					width = 96,
-					height = 64,
-					properties = {sprite = "art/sprites/"..sprite..".png", defaultAnim = anim, align = "bottom_center", alignOffsetX = 20, alignOffsetY = -32}
+					height = height or 64,
+					properties = {sprite = "art/sprites/"..sprite..".png", defaultAnim = anim, align = "bottom_center", alignOffsetX = 20, alignOffsetY = -32 + (offsetY or 0)}
 				}
 			)
 			scene:addObject(scene.objectLookup[id])
@@ -64,7 +64,9 @@ return function(scene)
 					MessageBox{message="B: Mmm...", blocking = true},
 					MessageBox{message="B: That's a very kind offer, but I can't let my people risk the journey.", blocking = true}
 				}
-			end
+			end,
+			96,
+			-32
 		)
 		placeNPC(
 			"r",
@@ -158,6 +160,8 @@ return function(scene)
 	scene.player.y = scene.player.y - 340
 	local walkout, walkin, sprites = scene.player:split()
 	scene.player.y = scene.player.y + 340
+	
+	scene.player.cinematicStack = 1
 
 	return Serial {
 		PlayAudio("music", "forgottendiscovery", 1.0, true, true),
@@ -182,6 +186,7 @@ return function(scene)
 		
 		Do(function()
 			scene.player.x = scene.player.x + 60
+			scene.player.cinematicStack = 0
 			GameState:setFlag("forgotten_enter")
 		end)
 	}

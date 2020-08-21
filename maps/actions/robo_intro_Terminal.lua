@@ -123,6 +123,9 @@ return function(self)
 			beforeBattle = Do(function()
 				self.scene.swatbot1:remove()
 				self.scene.swatbot2:remove()
+				self.scene.swatbot1:removeCollision()
+				self.scene.swatbot2:removeCollision()
+				print("removed swatbots")
 			end)
 		}
 	}

@@ -133,7 +133,7 @@ return function(scene)
 					Wait(0.8),
 					AudioFade("music", 1.0, 0, 0.5),
 					PlayAudio("music", "sallyenters", 1.0),
-					PlayAudio("music", "openingmission2", 1.0, true),
+					PlayAudio("music", "openingmission2", 1.0, true, true),
 				}),
 				
 				Wait(3),

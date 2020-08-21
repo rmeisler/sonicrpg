@@ -208,7 +208,7 @@ return function(scene)
 				local obstacle = EscapeObstacle(
 					scene,
 					{name = "objects"},
-					{name = "obstacle1", x = hoverbot1.x + 4500, y = 355, width = 88, height = 61,
+					{name = "obstacle1", x = hoverbot1.x + 4500, y = 455, width = 88, height = 61,
 						properties = {sprite = "art/sprites/heap.png", align = BasicNPC.ALIGN_BOTLEFT}
 					}
 				)

@@ -121,12 +121,12 @@ return function(scene)
 	
 		Wait(1),
 		Animate(snively.sprite, "smiledown"),
-		MessageBox{message="Well, well...", blocking=true, textSpeed = 4, closeAction=Wait(1)},
+		MessageBox{message="Well, well...", blocking=true, textSpeed = 2, closeAction=Wait(1)},
 		Animate(robotnik.sprite, "spinaround"),
 		Animate(robotnik.sprite, "facedowngrin"),
-		PlayAudio("music", "robotnik", 1.0, true),
+		PlayAudio("music", "robotnik", 1.0, true, true),
 		
-		MessageBox{message="What do we have here?", blocking=true, textSpeed = 4, closeAction=Wait(1)},
+		MessageBox{message="What do we have here?", blocking=true, textSpeed = 2, closeAction=Wait(1)},
 		Parallel {
             MessageBox{message="Antoine: Ro-{p20}ro-{p20}ro-{p20}robotnik!", blocking=true},
 			Serial {
@@ -134,27 +134,36 @@ return function(scene)
 			    Ease(antoine, "y", function() return antoine.y + 50 end, 8, "linear")
 			}
 		},
-		MessageBox{message="Antoine: My name is Antoine D'epardieu!", blocking=true},
-		MessageBox{message="Antoine: I am a member of ze princess' royal guard!", blocking=true},
+		MessageBox{message="Antoine: I-I-I...", blocking=true},
+		MessageBox{message="Antoine: I a-a-am a memberrr... {p40}of ze p-p-princess'... {p40}rrrroyal guard!!", blocking=true},
 		
 		Do(function()
 			robotnik.sprite:setAnimation("facedownsmile")
 		end),
-		MessageBox{message="Robotnik: Is that so?", blocking=true, textSpeed = 4},
-		MessageBox{message="Robotnik: Then tell me{p20}.{p20}.{p20}. {p20}what brings the princess to my fair city?...", blocking=true, textSpeed = 4},
+		MessageBox{message="Robotnik: Is that so?", blocking=true, textSpeed = 2},
+		
+		Do(function()
+			antoine.sprite:setAnimation("proud")
+		end),
+		MessageBox{message="Antoine: Yes that is so!", blocking=true},
+		MessageBox{message="Robotnik: Then tell me{p20}.{p20}.{p20}. {p20}what brings the princess to my fair city?...", blocking=true, textSpeed = 2},
+		
+		Animate(antoine.sprite, "scaredhop1"),
+		Wait(1),
+		Animate(antoine.sprite, "idleup"),
 		MessageBox{message="Antoine: I{p20}-I{p20}-I {p50}will n-n-never tell!", blocking=true},
 		Do(function()
 			robotnik.sprite:setAnimation("facedownangry")
 		end),
-		MessageBox{message="Robotnik: Now listen to me, you pathetic little rat!! {p50}You will tell me everything I want to know!", blocking=true, textSpeed = 4},
+		MessageBox{message="Robotnik: Now you listen to me, you pathetic little rodent! {p50}You will tell me everything I want to know!", blocking=true, textSpeed = 4},
 		Do(function()
 			robotnik.sprite:setAnimation("facedownsmile")
 		end),
-		MessageBox{message="Robotnik: ...or I will simply download it off your newly roboticized brain{p20}.{p20}.{p20}.", blocking=true, textSpeed = 4},
+		MessageBox{message="Robotnik: ...or I will simply download it off your newly roboticized brain{p20}.{p20}.{p20}.", blocking=true, textSpeed = 2},
 		Ease(antoine, "y", function() return antoine.y - 50 end, 8, "linear"),
 	    Ease(antoine, "y", function() return antoine.y + 50 end, 8, "linear"),
-		MessageBox{message="Antoine: {p30}.{p30}.{p30}.", blocking=true, textSpeed=4},
-		MessageBox{message="Antoine: *Sonic{p50}, Sally... {p50}where are you?...*", blocking=true, textSpeed=3},
+		MessageBox{message="Antoine: {p20}.{p20}.{p20}.", blocking=true, textSpeed=4},
+		MessageBox{message="Antoine: *Sonic{p40}, Sally... {p40}where are you?...*", blocking=true, textSpeed=3},
 		
 		Do(function()
 			scene.player:run {

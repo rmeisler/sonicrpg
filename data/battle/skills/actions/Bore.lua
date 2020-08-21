@@ -42,6 +42,8 @@ return function(self, targets)
 			}
 		)
 	end
+	
+	local prevMusic = self.scene.audio:getCurrentMusic()
 
 	return Serial {
 		MessageBox {
@@ -77,6 +79,6 @@ return function(self, targets)
 		},
 		
 		Animate(self.sprite, "idle"),
-		PlayAudio("music", "battle", 1.0, true, true),
+		PlayAudio("music", prevMusic, 1.0, true, true),
 	}
 end

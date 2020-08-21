@@ -194,7 +194,6 @@ function OpposingPartyMember:beginTurn()
 	elseif self.lostTurns > 0 then
 		self.action = Telegraph(self, self.name.."'s boredom has subsided.", {self.color[1],self.color[2],self.color[3],50})
 		self.lostTurns = self.lostTurns - 1
-		sprite:setAnimation("idle")
 	else
 		-- Choose action based on behavior
 		self.action = self.behavior(self, self.scene.party[self.selectedTarget]) or Action()

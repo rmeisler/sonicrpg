@@ -58,12 +58,12 @@ return function(scene)
 		
 		PlayAudio("music", "btheme", 1.0, true),	
 			
-		MessageBox{message="Child Robian: {p30}.{p30}.{p30}. I'm sorry Uncle B.", blocking=true},
+		MessageBox{message="Purple Robian: {p30}.{p30}.{p30}. I'm sorry Uncle B.", blocking=true},
 		
 		Wait(0.5),
 		
-		MessageBox{message="Green Robian: You tried your best R...", blocking=true},
-		MessageBox{message="...B's forgetting has just spread too quickly...", blocking=true},
+		MessageBox{message="Blue Robian: You tried your best, R...", blocking=true},
+		MessageBox{message="Blue Robian: ...B's forgetting 'as just spread too quickly...", blocking=true},
 		
 		Wait(0.5),
 		
@@ -124,7 +124,7 @@ return function(scene)
 		Animate(scene.objectLookup.T.sprite, "tdowncross"),
 		MessageBox{message="Green Robian: What are they doing here?!", blocking=true},
 		
-		MessageBox{message="Child Robian: ...{p30}I think they followed me here.", blocking=true},
+		MessageBox{message="Purple Robian: ...{p30}I think they followed me here.", blocking=true},
 		
 		AudioFade("music", 1.0, 0.0, 2),
 		MessageBox{message="Green Robian: And Robotnik will no doubt follow them!", blocking=true},
@@ -138,10 +138,10 @@ return function(scene)
 		MessageBox{message="Green Robian: Unfortunately... {p30}B here is the only person with that knowledge.", blocking=true},
 		MessageBox{message="Sonic: Why 'unfortunately'?", blocking=true},
 		MessageBox{message="Green Robian: ...", blocking=true},
-		MessageBox{message="Child Robian with Blue Hair: B is...", blocking=true},
-		MessageBox{message="Child Robian with Blue Hair: He uh... {p40}W-Well we're all in the same boat actually...{p40} ya see we{p30}.{p30}.{p30}.", blocking=true, closeAction=Wait(1)},
-		MessageBox{message="Child Robian: We forget stuff.", blocking=true},
-		MessageBox{message="Child Robian with Blue Hair: Right.", blocking=true},
+		MessageBox{message="Blue Robian: B is...", blocking=true},
+		MessageBox{message="Blue Robian: He uh... {p40}W-Well we're all in the same boat actually...{p40} ya see we{p30}.{p30}.{p30}.", blocking=true, closeAction=Wait(1)},
+		MessageBox{message="Purple Robian: We forget stuff.", blocking=true},
+		MessageBox{message="Blue Robian: Right.", blocking=true},
 		
 		Animate(sprites.sonic.sprite, "thinking"),
 		MessageBox{message="Sonic: Huh?", blocking=true},
@@ -173,7 +173,7 @@ return function(scene)
 		-- R hop
 		Ease(scene.objectLookup.R, "y", scene.objectLookup.R.y - 50, 7, "linear"),
 		Ease(scene.objectLookup.R, "y", scene.objectLookup.R.y, 7, "linear"),
-		MessageBox{message="Child Robian: Really?!", blocking=true},
+		MessageBox{message="Purple Robian: Really?!", blocking=true},
 		MessageBox{message="Green Robian: How?!", blocking=true},
 
 		Move(sprites.sally, scene.objectLookup.Waypoint3, "walk", 1),
@@ -261,8 +261,8 @@ return function(scene)
 		Animate(scene.objectLookup.B.sprite, "lookright"),
 		MessageBox{message="B: W-W-What happened?...{p40}Where am I?", blocking=true, closeAction=Wait(2.5)},
 		
-		MessageBox{message="Child Robian: *gasp*!", blocking=true, closeAction=Wait(1)},
-		MessageBox{message="Child Robian with Blue Hair: Blimey!", blocking=true, closeAction=Wait(1)},
+		MessageBox{message="Purple Robian: *gasp*!", blocking=true, closeAction=Wait(1)},
+		MessageBox{message="Blue Robian: Blimey!", blocking=true, closeAction=Wait(1)},
 		MessageBox{message="Green Robian: Incredible!", blocking=true, closeAction=Wait(1)},
 		MessageBox{message="Yellow Robian: We thought we lost ya there, B!", blocking=true, closeAction=Wait(2)},
 

@@ -471,7 +471,7 @@ function BattleScene:onExit(args)
 				AudioFade("music", self.audio:getMusicVolume(), 0, 1)
 			},
 			
-			PlayAudio("music", self.prevMusic, 1, true)
+			PlayAudio("music", self.prevMusic, 1, true, true)
 		}
 	end
 end

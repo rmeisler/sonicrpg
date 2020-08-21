@@ -37,10 +37,26 @@ function RaceSquare:postInit()
 	end
 	
 	self.subject = self.scene.objectLookup[self.object.properties.subject]
-	self.scene.squareNumber = #self.squares
+	if GameState:isFlagSet(self.scene.mapName..".squares_complete") then
+		self.scene.squareNumber = 0
+	else
+		self.scene.squareNumber = #self.squares
+	end
+	
 	self.scene.totalSquares = #self.squares
 	for _, sq in pairs(self.squares) do
 		sq.sprite:setAnimation(tostring(self.scene.squareNumber))
+	end
+	
+	self:addSceneHandler("exit", RaceSquare.exit)
+end
+
+function RaceSquare:exit()
+	if not GameState:isFlagSet(self.scene.mapName..".squares_complete") then
+		self.scene.squareNumber = #self.squares
+		for _, sq in pairs(self.squares) do
+			sq.sprite:setAnimation(tostring(self.scene.squareNumber))
+		end
 	end
 end
 
@@ -90,18 +106,15 @@ function RaceSquare:onCollision(prevState)
 
 				Do(function()
 					self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
-				end),
-
-				PlayAudio("sfx", "error", 1.0),
-
-				Do(function()
 					self.scene.player.cinematicStack = 0
 					self.scene.squareNumber = self.scene.totalSquares
 					for _, sq in pairs(self.squares) do
 						sq.sprite:setAnimation(tostring(self.scene.squareNumber))
 						sq.activated = false
 					end
-				end)
+				end),
+
+				PlayAudio("sfx", "error", 1.0)
 			},
 			Do(function()
 			

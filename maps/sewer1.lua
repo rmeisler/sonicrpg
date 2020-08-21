@@ -409,7 +409,7 @@ return {
           type = "Player",
           shape = "rectangle",
           x = 736,
-          y = 1760,
+          y = 1728,
           width = 32,
           height = 32,
           rotation = 0,

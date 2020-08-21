@@ -68,6 +68,12 @@ return function(scene)
 		}
 	end
 	
+	local door = scene.objectLookup.Door2
+	if GameState:isFlagSet(door) then
+		door.sprite:setAnimation("open")
+        door:removeCollision()
+	end
+	
 	return Serial {
 		Spawn(Serial {
 			subtext,

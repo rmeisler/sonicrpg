@@ -23,6 +23,8 @@ function PlayAudio:setScene(scene)
 		scene.audio:play(self.stype, self.name, self.volume, self.stopCurrent)
 		if self.loop then
 			scene.audio:setLooping(self.stype, self.loop)
+		else
+			scene.audio:setLooping(self.stype, false)
 		end
 	end
 end

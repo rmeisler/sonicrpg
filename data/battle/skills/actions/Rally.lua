@@ -26,6 +26,7 @@ return function(self, targets)
 		table.insert(resetActions, Animate(target.sprite, "idle"))
 	end
 
+	local prevMusic = self.scene.audio:getCurrentMusic()
 	return Serial {
 		MessageBox {
 			message="Sally: We can do this guys...",
@@ -53,6 +54,6 @@ return function(self, targets)
 		
 		Animate(self.sprite, "idle"),
 		Parallel(resetActions),
-		PlayAudio("music", "battle", 1.0, true, true),
+		PlayAudio("music", prevMusic, 1.0, true, true),
 	}
 end

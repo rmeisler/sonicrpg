@@ -29,7 +29,71 @@ local BasicNPC = require "object/BasicNPC"
 return function(scene)
 	scene.audio:stopSfx("factoryfloor")
 
-	if not GameState:isFlagSet("robotterminal_enter") then
+	if GameState:isFlagSet("roboterminal_used") then
+		scene.objectLookup.Door.sprite:setAnimation("open")
+		scene.objectLookup.Door:removeCollision()
+	
+		if scene.reentering and not scene.reenteringFromBattle then
+			return Serial {
+				AudioFade("music", 1.0, 0.0, 2),
+				Do(function()
+					scene.audio:stopMusic()
+				end),
+				PlayAudio("music", "patrol", 1.0, true, true)
+			}
+		else
+			return PlayAudio("music", "patrol", 1.0, true, true)
+		end
+	elseif GameState:isFlagSet("roboterminal_openeddoor") then
+		scene.player:removeKeyHint()
+		scene.player.sprite:setAnimation("idledown")
+		scene.player.cinematicStack = scene.player.cinematicStack + 1
+		scene.player.noIdle = false
+		local walkout, walkin, sprites = scene.player:split()
+
+		return Serial {
+			PlayAudio("music", "patrol", 1.0, true, true),
+			walkout,
+							
+			MessageBox {message="Sally: That was a close one.", blocking = true},
+			MessageBox {message="Sonic: Mighta bit off more than we can chew on this one, Sal. {p50}Should we abort?", blocking = true},
+			
+			MessageBox {message="Antoine: I will be voting yes on that!", blocking = true},
+			
+			Animate(sprites.sally.sprite, "thinking"),
+			MessageBox {message="Sally: Hmmm{p20}.{p20}.{p20}. {p50}I think we should keep going.", blocking = true},
+			
+			Animate(sprites.antoine.sprite, "scaredhop1"),
+			
+			MessageBox {message="Sally: We're almost there, and this could really hurt Robotnik!", blocking = true},
+			
+			Animate(sprites.sonic.sprite, "idledown"),
+			MessageBox {message="Sonic: Your call.", blocking = true},
+			
+			Animate(sprites.sonic.sprite, "thinking"),
+			
+			MessageBox {message="Sonic: Since when am I the cautious one?", blocking = true},
+			
+			Animate(sprites.antoine.sprite, "idledown"),
+			MessageBox {message="Antoine: Sacre bleu...", textSpeed = 4, blocking = true},
+			
+			walkin,
+			Do(function()
+				scene.player.x = scene.player.x + 80
+				scene.player.y = scene.player.y + 70
+				
+				-- Just in case...
+				scene.swatbot1:remove()
+				scene.swatbot2:remove()
+				scene.swatbot1:removeCollision()
+				scene.swatbot2:removeCollision()
+				
+				scene.player.cinematicStack = 0
+				scene.player.disableScan = false
+				GameState:setFlag("roboterminal_used")
+			end)
+		}
+	elseif not GameState:isFlagSet("robotterminal_enter") then
 		scene.player.cinematic = true
 		local walkout, walkin, partySprites = scene.player:split()
 		partySprites.sally.x = partySprites.sally.x + 50
@@ -59,75 +123,7 @@ return function(scene)
 				scene.player.cinematic = false
 			end)
 		}
-	elseif GameState:isFlagSet("roboterminal_used") then
-		scene.objectLookup.Door.sprite:setAnimation("open")
-		scene.objectLookup.Door:removeCollision()
-	
-		if scene.reentering and not scene.reenteringFromBattle then
-			return Serial {
-				AudioFade("music", 1.0, 0.0, 2),
-				Do(function()
-					scene.audio:stopMusic()
-				end),
-				PlayAudio("music", "patrol", 1.0, true, true)
-			}
-		else
-			return PlayAudio("music", "patrol", 1.0, true, true)
-		end
-	elseif GameState:isFlagSet("roboterminal_openeddoor") then
-		scene.player:removeKeyHint()
-		scene.player.sprite:setAnimation("idledown")
-		scene.player.cinematicStack = scene.player.cinematicStack + 1
-		scene.player.noIdle = false
-		local walkout, walkin, sprites = scene.player:split()
-
-		return Serial {
-			PlayAudio("music", "patrol", 1.0, true, true),
-			walkout,
-							
-			MessageBox {message="Sally: That was a close one.", blocking = true},
-			MessageBox {message="Sonic: Mighta bit off more than we can chew on this one, Sal. {p30}Should we abort?", blocking = true},
-			
-			MessageBox {message="Antoine: I will be voting yes on that!", blocking = true},
-			
-			Animate(sprites.sally.sprite, "thinking"),
-			MessageBox {message="Sally: Hmmm{p20}.{p20}.{p20}. {p50}I think we should keep going.", blocking = true},
-			
-			Animate(sprites.antoine.sprite, "scaredhop1"),
-			
-			MessageBox {message="Sally: We're almost there, and this could really hurt Robotnik!", blocking = true},
-			
-			Animate(sprites.sonic.sprite, "idledown"),
-			MessageBox {message="Sonic: Your call.", blocking = true},
-			
-			Animate(sprites.sonic.sprite, "thinking"),
-			
-			MessageBox {message="Sonic: Since when am I the cautious one?", blocking = true},
-			
-			Animate(sprites.antoine.sprite, "idledown"),
-			MessageBox {message="Antoine: Sacre bleu...", textSpeed = 4, blocking = true},
-			
-			walkin,
-			Do(function()
-				scene.player.x = scene.player.x + 80
-				scene.player.y = scene.player.y + 70
-				
-				scene.player.cinematicStack = 0
-				scene.player.disableScan = false
-				GameState:isFlagSet("roboterminal_used")
-			end)
-		}
 	else
-		if scene.reentering and not scene.reenteringFromBattle then
-			return Serial {
-				AudioFade("music", 1.0, 0.0, 2),
-				Do(function()
-					scene.audio:stopMusic()
-				end),
-				PlayAudio("music", "patrol", 1.0, true, true)
-			}
-		else
-			return PlayAudio("music", "patrol", 1.0, true, true)
-		end
+		return PlayAudio("music", "openingmission2", 1.0, true, true)
 	end
 end
