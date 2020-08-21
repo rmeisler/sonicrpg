@@ -120,6 +120,8 @@ return function(scene)
 	
 	local antoine = scene.objectLookup.Antoine
 	
+	GameState:addToParty("antoine", 2)
+	
 	return Serial {
 		Spawn(Serial {
 			AudioFade("music", 1.0, 0.0, 1),

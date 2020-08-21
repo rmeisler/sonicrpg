@@ -2,7 +2,7 @@ return {
     {
         type = "map",
 		file = "maps/robo_opening2.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -48,7 +48,7 @@ return {
 	{
         type = "map",
         file = "maps/forgottenhideout.lua",
-		--primary = true,
+		primary = true,
     },
 	
 	{

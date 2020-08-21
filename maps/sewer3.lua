@@ -283,6 +283,8 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["fade_in_speed"] = 0.2,
+            ["fade_out_speed"] = 0.2,
             ["ghost"] = true,
             ["key"] = "up",
             ["orientation"] = "down",

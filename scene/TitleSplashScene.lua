@@ -174,8 +174,8 @@ function TitleSplashScene:onExit(args)
 end
 
 function TitleSplashScene:newGame()
-	GameState:addToParty("sally", 1, true)
-	GameState:addToParty("antoine", 1, true)
+	GameState:addToParty("sally", 2, true)
+	--GameState:addToParty("antoine", 1, true)
 	--GameState:addToParty("rotor", 1, true)
 	GameState:addToParty("sonic", 2, true)
 	--GameState:addToParty("b", 1, true)

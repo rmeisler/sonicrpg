@@ -84,6 +84,7 @@ function NPC:construct(scene, layer, object)
 end
 
 function NPC:onInteract()
+	self.scene.player:removeKeyHint()
 	self.scene:run(assert(loadstring(self.object.properties.onInteract))()(self))
 end
 

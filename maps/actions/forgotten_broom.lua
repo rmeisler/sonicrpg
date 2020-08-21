@@ -33,6 +33,7 @@ return function(scene)
 			scene.objectLookup.R:remove()
 			scene.objectLookup.T:remove()
 			scene.objectLookup.P:remove()
+			scene.objectLookup.J:remove()
 			scene.powerring:remove()
 			for _, s in pairs(scene.splitSprites) do
 				s:remove()
@@ -101,53 +102,56 @@ return function(scene)
 		Parallel {
 			Ease(scene.objectLookup.R, "y", scene.objectLookup.R.y - 50, 7, "linear"),
 			Ease(scene.objectLookup.T, "y", scene.objectLookup.T.y - 50, 7, "linear"),
-			Ease(scene.objectLookup.P, "y", scene.objectLookup.P.y - 50, 7, "linear")
+			Ease(scene.objectLookup.P, "y", scene.objectLookup.P.y - 50, 7, "linear"),
+			Ease(scene.objectLookup.J, "y", scene.objectLookup.J.y - 50, 7, "linear")
 		},
 		Parallel {
 			Ease(scene.objectLookup.R, "y", scene.objectLookup.R.y, 7, "linear"),
 			Ease(scene.objectLookup.T, "y", scene.objectLookup.T.y, 7, "linear"),
-			Ease(scene.objectLookup.P, "y", scene.objectLookup.P.y, 7, "linear")
+			Ease(scene.objectLookup.P, "y", scene.objectLookup.P.y, 7, "linear"),
+			Ease(scene.objectLookup.J, "y", scene.objectLookup.J.y, 7, "linear")
 		},
 		
 		Animate(scene.objectLookup.R.sprite, "idleright"),
-		Animate(scene.objectLookup.T.sprite, "tright"),
-		Animate(scene.objectLookup.P.sprite, "pright"),
+		Animate(scene.objectLookup.T.sprite, "tdown"),
+		Animate(scene.objectLookup.P.sprite, "pdown"),
 		
 		Wait(0.5),
 		
 		PlayAudio("music", "follow", 1.0, true),
 		MessageBox{message="Yellow Robian: Mobians?!", blocking=true},
 		
+		Animate(scene.objectLookup.T.sprite, "tdowncross"),
 		MessageBox{message="Green Robian: What are they doing here?!", blocking=true},
 		
 		MessageBox{message="Child Robian: ...{p30}I think they followed me here.", blocking=true},
 		
 		AudioFade("music", 1.0, 0.0, 2),
 		MessageBox{message="Green Robian: And Robotnik will no doubt follow them!", blocking=true},
-		MessageBox{message="You Mobians must leave at once!", blocking=true},
+		MessageBox{message="Green Robian: You Mobians must leave at once!", blocking=true},
 		MessageBox{message="Sonic: Hey, hey, hey! {p40}We don't want to cause any trouble here. We just came to ask for directions.", blocking=true},
 		
 		MessageBox{message="Sally: Please...{p40} Robotnik captured our friend. {p40}We need to save him, before it's too late.", blocking=true},
 		
 		PlayAudio("music", "sonicsad", 1.0, true, true),
 		MessageBox{message="Green Robian: ...", blocking=true},
-		MessageBox{message="Unfortunately... {p30}B here is the only person with that knowledge.", blocking=true},
+		MessageBox{message="Green Robian: Unfortunately... {p30}B here is the only person with that knowledge.", blocking=true},
 		MessageBox{message="Sonic: Why 'unfortunately'?", blocking=true},
 		MessageBox{message="Green Robian: ...", blocking=true},
-		MessageBox{message="Yellow Robian: B is...", blocking=true},
-		MessageBox{message="He uh... {p40}W-Well we're all in the same boat actually...{p40} ya see we{p30}.{p30}.{p30}.", blocking=true, closeAction=Wait(1)},
+		MessageBox{message="Child Robian with Blue Hair: B is...", blocking=true},
+		MessageBox{message="Child Robian with Blue Hair: He uh... {p40}W-Well we're all in the same boat actually...{p40} ya see we{p30}.{p30}.{p30}.", blocking=true, closeAction=Wait(1)},
 		MessageBox{message="Child Robian: We forget stuff.", blocking=true},
-		MessageBox{message="Yellow Robian: Right.", blocking=true},
+		MessageBox{message="Child Robian with Blue Hair: Right.", blocking=true},
 		
 		Animate(sprites.sonic.sprite, "thinking"),
 		MessageBox{message="Sonic: Huh?", blocking=true},
 		MessageBox{message="Green Robian: It's the price we pay for liberation from Robotnik's mind control.", blocking=true},
-		MessageBox{message="We've forgotten our past lives. {p40}We have forgotten our own names. {p40}And we keep forgetting things... {p60}until we become inoperable.", blocking=true},
+		MessageBox{message="Green Robian: We've forgotten our past lives. {p40}We have forgotten our own names. {p40}And we keep forgetting things... {p60}until we become inoperable.", blocking=true},
 		
 		Animate(sprites.sonic.sprite, "idleup"),
-		MessageBox{message="Yellow Robian: We can delay the process a bit! {p40}By swapping out some of our old parts for newer ones, we can buy ourselves some time.", blocking=true},
-		MessageBox{message="Little R here was out looking for parts for B, when you came upon him.{p50} Seems like ol' B has maybe run out of time though.", blocking=true},
-		MessageBox{message="Sally: I can see this is not a good time...{p40} we're sorry to bother you. {p40}We will just be on our way then.", blocking=true},
+		MessageBox{message="Yellow Robian: We can delay the process a bit. {p40}By swapping out some of our old parts for newer ones, we can buy ourselves some time...", blocking=true},
+		MessageBox{message="Yellow Robian: Little R here was out looking for parts for B, when you came upon him.{p50} Seems like ol' B has maybe run out of time though.", blocking=true},
+		MessageBox{message="Sally: I can see this is not a good time...{p40} we're sorry to bother you, we will just be on our way then.", blocking=true},
 		Wait(0.5),
 		
 		Parallel {
@@ -186,7 +190,7 @@ return function(scene)
 		Move(sprites.sonic, scene.objectLookup.Waypoint),
 		
 		Animate(scene.objectLookup.R.sprite, "idleup"),
-		Animate(scene.objectLookup.T.sprite, "tleft"),
+		Animate(scene.objectLookup.T.sprite, "tleftcross"),
 		Animate(scene.objectLookup.P.sprite, "pleft"),
 		Animate(sprites.sonic.sprite, "idleleft"),
 		
@@ -210,7 +214,7 @@ return function(scene)
 			scene.powerring.sortOrderY = 8888
 		end),
 		Animate(sprites.sonic.sprite, "sadleft"),
-		Wait(0.5),
+		Wait(0.8),
 		Do(function()
 			scene.powerring.transform = Transform.relative(sprites.sonic.sprite.transform, Transform(-15, sprites.sonic.sprite.h + 5))
 			
@@ -258,8 +262,9 @@ return function(scene)
 		MessageBox{message="B: W-W-What happened?...{p40}Where am I?", blocking=true, closeAction=Wait(2.5)},
 		
 		MessageBox{message="Child Robian: *gasp*!", blocking=true, closeAction=Wait(1)},
+		MessageBox{message="Child Robian with Blue Hair: Blimey!", blocking=true, closeAction=Wait(1)},
 		MessageBox{message="Green Robian: Incredible!", blocking=true, closeAction=Wait(1)},
-		MessageBox{message="Yellow Robian: We thought we lost ya, Uncle B!", blocking=true, closeAction=Wait(2)},
+		MessageBox{message="Yellow Robian: We thought we lost ya there, B!", blocking=true, closeAction=Wait(2)},
 
 		Do(function()
 			GameState:setFlag("met_b")

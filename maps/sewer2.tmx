@@ -153,7 +153,7 @@
     <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
-  <object id="224" name="Ratbot1" type="Ratbot" gid="1227" x="768" y="1280" width="96" height="32">
+  <object id="224" name="Ratbot1" type="Ratbot" gid="1227" x="768" y="1312" width="96" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="audibleDistance" type="int" value="170"/>
@@ -167,27 +167,27 @@
     <property name="sprite" type="file" value="../art/sprites/ratbot.png"/>
    </properties>
   </object>
-  <object id="225" name="Waypoint1" type="BasicNPC" gid="1227" x="960" y="1280" width="32" height="32">
+  <object id="225" name="Waypoint1" type="BasicNPC" gid="1227" x="960" y="1312" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="226" name="Waypoint4" type="BasicNPC" gid="1227" x="640" y="1280" width="32" height="32">
+  <object id="226" name="Waypoint4" type="BasicNPC" gid="1227" x="640" y="1312" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="227" name="Waypoint5" type="BasicNPC" gid="1227" x="1760" y="1280" width="32" height="32">
+  <object id="227" name="Waypoint5" type="BasicNPC" gid="1227" x="1888" y="1312" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="228" name="Waypoint6" type="BasicNPC" gid="1227" x="1344" y="1280" width="32" height="32">
+  <object id="228" name="Waypoint6" type="BasicNPC" gid="1227" x="1344" y="1312" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="229" name="Waypoint8" type="BasicNPC" gid="1227" x="1760" y="640" width="32" height="32">
+  <object id="229" name="Waypoint8" type="BasicNPC" gid="1227" x="1952" y="640" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -208,7 +208,7 @@
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="232" name="Ratbot2" type="Ratbot" gid="1227" x="1376" y="1280" width="96" height="32">
+  <object id="232" name="Ratbot2" type="Ratbot" gid="1227" x="1408" y="1312" width="96" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="audibleDistance" type="int" value="170"/>
@@ -222,12 +222,12 @@
     <property name="sprite" type="file" value="../art/sprites/ratbot.png"/>
    </properties>
   </object>
-  <object id="234" name="Waypoint7" type="BasicNPC" gid="1227" x="1408" y="640" width="32" height="32">
+  <object id="234" name="Waypoint7" type="BasicNPC" gid="1227" x="1280" y="640" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="235" name="Waypoint2" type="BasicNPC" gid="1227" x="1152" y="1280" width="32" height="32">
+  <object id="235" name="Waypoint2" type="BasicNPC" gid="1227" x="1184" y="1280" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -305,7 +305,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/heap.png"/>
    </properties>
   </object>
-  <object id="241" name="CHeap4" type="BasicNPC" gid="3112" x="1280" y="960" width="128" height="32">
+  <object id="242" name="CHeap5" type="BasicNPC" gid="3112" x="896" y="960" width="128" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hideOffset" type="int" value="26"/>
@@ -313,15 +313,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/heap.png"/>
    </properties>
   </object>
-  <object id="242" name="CHeap5" type="BasicNPC" gid="3112" x="960" y="960" width="128" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="hideOffset" type="int" value="26"/>
-    <property name="hidingspot" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/heap.png"/>
-   </properties>
-  </object>
-  <object id="245" name="Waypoint3" type="BasicNPC" gid="1227" x="1152" y="896" width="32" height="32">
+  <object id="245" name="Waypoint3" type="BasicNPC" gid="1227" x="1184" y="896" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>

@@ -141,6 +141,8 @@
   <object id="230" name="Exit1" type="SceneEdge" gid="1227" x="608" y="224" width="96" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="fade_in_speed" type="float" value="0.2"/>
+    <property name="fade_out_speed" type="float" value="0.2"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>

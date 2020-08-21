@@ -33,7 +33,7 @@ return function(scene)
 		GameState:isFlagSet("met_b")) and
 		not scene.objectLookup.B
 	then
-		local placeNPC = function(id, x, y, interact)
+		local placeNPC = function(id, x, y, sprite, anim, interact)
 			scene.objectLookup[id] = BasicNPC(
 				scene,
 				{name = "objects"},
@@ -41,9 +41,9 @@ return function(scene)
 					name = id,
 					x = x,
 					y = y,
-					width = 64,
-					height = 32,
-					properties = {sprite = "art/sprites/"..id..".png", align = "bottom_center", defaultAnim = "idledown"}
+					width = 96,
+					height = 64,
+					properties = {sprite = "art/sprites/"..sprite..".png", defaultAnim = anim, align = "bottom_center", alignOffsetX = 20, alignOffsetY = -32}
 				}
 			)
 			scene:addObject(scene.objectLookup[id])
@@ -52,75 +52,76 @@ return function(scene)
 		placeNPC(
 			"b",
 			1632,
-			2176,
+			2142,
+			"b",
+			"idledown",
 			function(b)
+				scene.player:removeKeyHint()
 				scene:run {
 					MessageBox{message="B: I'm in your debt, Freedom Fighters.", blocking = true},
-					MessageBox{message="Sonic: Yo, {p40}we'll be back too. {p40}Ya know you'd all be a lot safer back in Knothole.", blocking = true},
-					Animate(b.sprite, "thinking"),
-					Wait(1),
-					MessageBox{message="B: You may be right about that, {p40}but it's much too risky a journey for us.", blocking = true},
-					Animate(b.sprite, "idledown"),
+					MessageBox{message="Sonic: Yo, B. {p50}Maybe you should all come with us. {p50}You would be safe in Knothole and we could keep your guys' minds sharp.", blocking = true},
+					Animate(b.sprite, "pose"),
+					MessageBox{message="B: Mmm...", blocking = true},
+					MessageBox{message="B: That's a very kind offer, but I can't let my people risk the journey.", blocking = true}
 				}
 			end
 		)
 		placeNPC(
 			"r",
-			1632,
-			2176,
+			608,
+			1888,
+			"r",
+			"idleright",
 			function(r)
-				scene:run {
-					MessageBox{message="B: I'm in your debt, Freedom Fighters.", blocking = true},
-					MessageBox{message="Sonic: Yo, {p40}we'll be back too. {p40}Ya know you'd all be a lot safer back in Knothole.", blocking = true},
-					Animate(r.sprite, "thinking"),
-					Wait(1),
-					MessageBox{message="B: You may be right about that, {p40}but it's much too risky a journey for us.", blocking = true},
-					Animate(r.sprite, "idledown"),
-				}
+				scene.player:removeKeyHint()
+				scene:run(MessageBox{message="R: Thanks for saving uncle B!{p50}\n...Can you bring us more of those \"Power Rings\"?", blocking = true})
 			end
 		)
 		placeNPC(
 			"j",
-			1632,
-			2176,
+			480,
+			1888,
+			"P",
+			"jdown",
 			function(j)
+				scene.player:removeKeyHint()
 				scene:run {
-					MessageBox{message="B: I'm in your debt, Freedom Fighters.", blocking = true},
-					MessageBox{message="Sonic: Yo, {p40}we'll be back too. {p40}Ya know you'd all be a lot safer back in Knothole.", blocking = true},
-					Animate(r.sprite, "thinking"),
-					Wait(1),
-					MessageBox{message="B: You may be right about that, {p40}but it's much too risky a journey for us.", blocking = true},
-					Animate(r.sprite, "idledown"),
+					MessageBox{message="J: I've read about a beautiful place far away from here called the \"Great Forest\"!", blocking = true},
+					MessageBox{message="J: I wanna build a little home there and go on adventures with my #1 mate, R!", blocking = true},
+					Animate(scene.objectLookup.r.sprite, "idleleft"),
+					MessageBox{message="R: *blush*", blocking = true},
+					Animate(scene.objectLookup.r.sprite, "idleright")
 				}
 			end
 		)
 		placeNPC(
 			"t",
-			1632,
-			2176,
+			2880,
+			1856,
+			"P",
+			"tleft",
 			function(t)
+				scene.player:removeKeyHint()
 				scene:run {
-					MessageBox{message="B: I'm in your debt, Freedom Fighters.", blocking = true},
-					MessageBox{message="Sonic: Yo, {p40}we'll be back too. {p40}Ya know you'd all be a lot safer back in Knothole.", blocking = true},
-					Animate(r.sprite, "thinking"),
-					Wait(1),
-					MessageBox{message="B: You may be right about that, {p40}but it's much too risky a journey for us.", blocking = true},
-					Animate(r.sprite, "idledown"),
+					Animate(t.sprite, "tleftcross"),
+					MessageBox{message="T: B is as stubborn as a goat! {p50}Even as he nearly dies from attrition, he insists that we are safer down here than anywhere else!", blocking = true},
+					MessageBox{message="T: I want to migrate our people to your village of Knothole. {p50}There, we can be safe from Robotnik, and I can study the \"Power Rings\"...", blocking = true},
+					MessageBox{message="T: ...{p50}if B would just listen to me...", blocking = true},
+					Animate(t.sprite, "tleft")
 				}
 			end
 		)
 		placeNPC(
 			"p",
-			1632,
-			2176,
+			2272,
+			1280,
+			"P",
+			"pdown",
 			function(p)
+				scene.player:removeKeyHint()
 				scene:run {
-					MessageBox{message="B: I'm in your debt, Freedom Fighters.", blocking = true},
-					MessageBox{message="Sonic: Yo, {p40}we'll be back too. {p40}Ya know you'd all be a lot safer back in Knothole.", blocking = true},
-					Animate(r.sprite, "thinking"),
-					Wait(1),
-					MessageBox{message="B: You may be right about that, {p40}but it's much too risky a journey for us.", blocking = true},
-					Animate(r.sprite, "idledown"),
+					MessageBox{message="P: None of us can really remember our full names anymore.", blocking = true},
+					MessageBox{message="P: Rather than everyone having partial names then, we all just go by the first letter of our first name--{p50} supposing we can still remember it!", blocking = true}
 				}
 			end
 		)

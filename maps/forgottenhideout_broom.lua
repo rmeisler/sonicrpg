@@ -8,7 +8,7 @@ return {
   height = 26,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 223,
+  nextobjectid = 224,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_broom.lua",
@@ -461,6 +461,25 @@ return {
             ["defaultAnim"] = "rest",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/bbed.png"
+          }
+        },
+        {
+          id = 223,
+          name = "J",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 192,
+          y = 416,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["defaultAnim"] = "jdown",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/P.png"
           }
         }
       }
