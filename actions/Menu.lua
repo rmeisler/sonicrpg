@@ -136,6 +136,7 @@ function Menu:updateLayout()
 		if not self.properties[c][r] then
 			self.properties[c][r] = {}
 		end
+		self.properties[c][r].noChooseSfx = v.noChooseSfx
 		self.properties[c][r].choose = v.choose
 		self.properties[c][r].change = v.change
 		self.properties[c][r].desc = v.desc
@@ -285,10 +286,13 @@ function Menu:keytriggered(key)
 	elseif key == "left" then
 		self.selectedCol = (self.selectedCol == 1) and self.itemcols or self.selectedCol - 1
 	elseif self.selectKeys[key] then
-		self.scene.audio:playSfx("choose", nil, true)
 		if self.options then
+			self.scene.audio:playSfx("choose", nil, true)
 			self:invoke((self.options[self.selectedCol] and self.options[self.selectedCol][self.selectedRow]) and self.options[self.selectedCol][self.selectedRow]:trim())
 		elseif self.properties then
+			if not self.properties[self.selectedCol][self.selectedRow].noChooseSfx then
+				self.scene.audio:playSfx("choose", nil, true)
+			end
 			(self.properties[self.selectedCol][self.selectedRow].choose)(self)
 		end
 	elseif self.cancelKeys[key] then

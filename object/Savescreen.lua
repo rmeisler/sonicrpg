@@ -49,6 +49,7 @@ function Savescreen(args)
 				row.choose = function()
 					scene.audio:playSfx("error", nil, true)
 				end
+				row.noChooseSfx = true
 			end
 			table.insert(rows, row)
 		end

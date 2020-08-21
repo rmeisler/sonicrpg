@@ -54,9 +54,6 @@ return function(self)
 					properties = {
 						ghost = true,
 						sprite = "art/sprites/swatbot.png",
-						battleOnCollide = true,
-						disappearAfterBattle = true,
-						battle = "/data/monsters/swatbot.lua",
 						noInvestigate = true,
 						ignoreMapCollision = true
 					}
@@ -84,9 +81,6 @@ return function(self)
 					properties = {
 						ghost = true,
 						sprite = "art/sprites/swatbot.png",
-						battleOnCollide = true,
-						disappearAfterBattle = true,
-						battle = "/data/monsters/sonicappear_swatbot.lua",
 						noInvestigate = true,
 						ignoreMapCollision = true
 					}

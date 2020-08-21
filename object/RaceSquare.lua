@@ -129,19 +129,18 @@ function RaceSquare:onCollision(prevState)
 	
 	if self.scene.squareNumber == 0 then
 		GameState:setFlag(self.scene.mapName..".squares_complete")
+		
+		self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
+		self.scene:pauseEnemies(true)
+		self.scene.pausePlayer = true
+		
 		local prevMusic = self.scene.audio:getCurrentMusic()
 		self.scene:run {
-			Do(function()
-				self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
-				self.scene:pauseEnemies(true)
-				self.scene.pausePlayer = true
-			end),
-			
 			PlayAudio("music", "puzzlesolve", 1.0),
 			
 			Parallel {
-				Ease(self.scene.camPos, "x", self.scene.player.x - self.subject.x, 1, "inout"),
-				Ease(self.scene.camPos, "y", self.scene.player.y - self.subject.y, 1, "inout"),
+				Ease(self.scene.camPos, "x", function() return self.scene.player.x - (self.subject.x + self.subject.sprite.w) end, 1, "inout"),
+				Ease(self.scene.camPos, "y", function() return self.scene.player.y - (self.subject.y + self.subject.sprite.h*2) end, 1, "inout"),
 			},
 			
 			self.subject:onPuzzleSolve(),

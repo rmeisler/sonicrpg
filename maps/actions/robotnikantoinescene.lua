@@ -42,6 +42,10 @@ return function(scene)
 	scene.bgColor = {255,255,255,255}
 
 	if GameState:isFlagSet("beatboss1") then
+		robotnik.sprite:setAnimation("faceup")
+		scene.objectLookup.Rover:remove()
+		scene.objectLookup.Antoine:remove()
+		
 		scene.objectLookup.RBComputer.sprite:setAnimation("onprison")
 		return Serial {
 			Ease(scene.player, "y", 750, 0.6, "inout"),
@@ -87,6 +91,7 @@ return function(scene)
 		}
 	)
 	scene:addObject(antoine)
+	scene.objectLookup.Antoine = antoine
 	
 	local rover = BasicNPC(
 		scene,
@@ -100,6 +105,7 @@ return function(scene)
 	)
 	scene:addObject(rover)
 	rover.sprite:setAnimation("idleup")
+	scene.objectLookup.Rover = rover
 	
 	return Serial {
 	    Wait(1),

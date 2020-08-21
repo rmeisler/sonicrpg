@@ -185,7 +185,7 @@
     <property name="walkin" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="231" name="Spawn 1" type="Player" gid="1586" x="736" y="1728" width="32" height="32">
+  <object id="231" name="Spawn 1" type="Player" gid="1586" x="704" y="1728" width="32" height="32">
    <properties>
     <property name="orientation" value="up"/>
    </properties>

@@ -143,11 +143,11 @@ function BasicScene:onEnter(args)
 			self.player.basicUpdate = self.player.origUpdate
 			self.player.state = spawn.properties.orientation and "idle"..spawn.properties.orientation or "idledown"
 			
-			-- Restart special move, if necessary
+			--[[ Restart special move, if necessary
 			if args.doingSpecialMove and not self.player.doingSpecialMove then
 				self.player.skipChargeSpecialMove = true
 				self.player:onSpecialMove()
-			end
+			end]]
 			
 			-- Make sure we render the camera in the correct spot now before fade-in
 			self:update(0)
@@ -220,11 +220,11 @@ function BasicScene:onReEnter(args)
 		self.player:updateSprite()
 		self.player.state = spawn.properties.orientation and "idle"..spawn.properties.orientation or "idledown"
 		
-		-- Restart special move, if necessary
+		--[[ Restart special move, if necessary
 		if args.doingSpecialMove and not self.player.doingSpecialMove then			
 			self.player.skipChargeSpecialMove = true
 			self.player:onSpecialMove()
-		end
+		end]]
 	end
 	
 	self.reenteringFromBattle = self.enteringBattle

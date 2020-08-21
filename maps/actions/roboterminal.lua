@@ -82,11 +82,11 @@ return function(scene)
 				scene.player.x = scene.player.x + 80
 				scene.player.y = scene.player.y + 70
 				
-				-- Just in case...
+				--[[ Just in case...
 				scene.swatbot1:remove()
 				scene.swatbot2:remove()
 				scene.swatbot1:removeCollision()
-				scene.swatbot2:removeCollision()
+				scene.swatbot2:removeCollision()]]
 				
 				scene.player.cinematicStack = 0
 				scene.player.disableScan = false

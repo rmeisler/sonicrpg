@@ -261,6 +261,20 @@ return function(scene)
 		Animate(scene.objectLookup.B.sprite, "lookright"),
 		MessageBox{message="B: W-W-What happened?...{p40}Where am I?", blocking=true, closeAction=Wait(2.5)},
 		
+		-- All robians hop in surprise
+		Parallel {
+			Ease(scene.objectLookup.R, "y", scene.objectLookup.R.y - 50, 7, "linear"),
+			Ease(scene.objectLookup.T, "y", scene.objectLookup.T.y - 50, 7, "linear"),
+			Ease(scene.objectLookup.P, "y", scene.objectLookup.P.y - 50, 7, "linear"),
+			Ease(scene.objectLookup.J, "y", scene.objectLookup.J.y - 50, 7, "linear")
+		},
+		Parallel {
+			Ease(scene.objectLookup.R, "y", scene.objectLookup.R.y, 7, "linear"),
+			Ease(scene.objectLookup.T, "y", scene.objectLookup.T.y, 7, "linear"),
+			Ease(scene.objectLookup.P, "y", scene.objectLookup.P.y, 7, "linear"),
+			Ease(scene.objectLookup.J, "y", scene.objectLookup.J.y, 7, "linear")
+		},
+		
 		MessageBox{message="Purple Robian: *gasp*!", blocking=true, closeAction=Wait(1)},
 		MessageBox{message="Blue Robian: Blimey!", blocking=true, closeAction=Wait(1)},
 		MessageBox{message="Green Robian: Incredible!", blocking=true, closeAction=Wait(1)},

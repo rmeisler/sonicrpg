@@ -377,25 +377,27 @@ function BattleScene:update(dt)
 				table.insert(victoryAnimActions, Animate(mem.sprite, "victory"))
 			end
 		end
-		
-		local victoryAction
-		table.insert(
-			spoilsActions,
-			Do(function() self.sceneMgr:popScene{} end)
-		)
-		victoryAction = Parallel {
-			PlayAudio("music", "victory", 1.0),
-			Parallel(victoryAnimActions),
-			Serial(spoilsActions)
-		}
-		
+				
 		self.bgColor = {255,255,255,255}
 		self:run {
 			-- Fade out current music
 			AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+			PlayAudio("music", "victory", 1.0, true, true),
 			
 			-- Play victory
-			victoryAction
+			Parallel {
+				Parallel(victoryAnimActions),
+				Serial(spoilsActions)
+			},
+			
+			Do(function()
+				print("pop scene")
+				self.sceneMgr:popScene{}
+			end),
+			
+			Do(function()
+				print("here")
+			end)
 		}
 		self.state = "playerwinpending"
 	elseif self.state == BattleScene.STATE_MONSTERWIN then

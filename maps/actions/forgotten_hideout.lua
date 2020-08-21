@@ -127,6 +127,8 @@ return function(scene)
 				}
 			end
 		)
+		scene.objectLookup.LowerDoor.sprite:setAnimation("open")
+		scene.objectLookup.LowerDoor:removeCollision()
 	end
 	
 	if GameState:isFlagSet("b_speech") then
@@ -162,16 +164,14 @@ return function(scene)
 	scene.player.y = scene.player.y + 340
 	
 	scene.player.cinematicStack = 1
+	scene.player.noIdle = true
+	scene.player.state = "walkup"
 
 	return Serial {
 		PlayAudio("music", "forgottendiscovery", 1.0, true, true),
 		
 		Wait(2),
 		
-		Do(function()
-			scene.player.noIdle = true
-			scene.player.state = "walkup"
-		end),
 		Ease(scene.player, "y", scene.player.y - 280, 1, "linear"),
 		Do(function()
 			scene.player.noIdle = false

@@ -416,7 +416,7 @@ return {
           name = "Spawn 1",
           type = "Player",
           shape = "rectangle",
-          x = 1184,
+          x = 1152,
           y = 2048,
           width = 32,
           height = 32,

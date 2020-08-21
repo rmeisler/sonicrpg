@@ -291,7 +291,7 @@ function GameState:save(scene, slot, spawnPoint)
 	for k, v in pairs(self.party) do
 		slots[slot].party[k] = v.sprite
 	end
-	love.filesystem.write("game_slots.sav", serpent.dump(slots))
+	love.filesystem.write("sage2020_game_slots.sav", serpent.dump(slots))
 	
 	-- Save party members
 	local data = {}

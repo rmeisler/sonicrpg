@@ -698,7 +698,7 @@ function Bot:remove()
 		self.scene.player.chasers[tostring(self.name)] = nil
 		self.scene.player.investigators[tostring(self.name)] = nil
 		
-		if not next(self.scene.player.chasers) and self.prevSceneMusic then
+		if not next(self.scene.player.chasers) and self.prevSceneMusic and not self.scene.enteringBattle then
 			self.scene.audio:playMusic(self.prevSceneMusic)
 		end
 	end
