@@ -415,10 +415,6 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/parallax/openingbackground.png"
-	},
-	{
-		type = "image",
 		file = "art/parallax/genericforwardbg2.png"
 	},
 	{
@@ -428,14 +424,6 @@ return {
 	{
 		type = "image",
 		file = "art/parallax/robobase.png"
-	},
-	{
-		type = "image",
-		file = "art/parallax/robobasepillar.png"
-	},
-	{
-		type = "image",
-		file = "art/parallax/robointro1.png"
 	},
 	{
 		type = "image",

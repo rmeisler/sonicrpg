@@ -263,10 +263,10 @@ function GameState:levelup(member)
 end
 
 function GameState:loadSlots()
-	local slots = love.filesystem.load("game_slots.sav")
+	local slots = love.filesystem.load("sage2020_game_slots.sav")
 	if not slots then
-		love.filesystem.write("game_slots.sav", serpent.dump({}))
-		slots = love.filesystem.load("game_slots.sav")
+		love.filesystem.write("sage2020_game_slots.sav", serpent.dump({}))
+		slots = love.filesystem.load("sage2020_game_slots.sav")
 	end
 	return slots()
 end
@@ -332,7 +332,7 @@ function GameState:save(scene, slot, spawnPoint)
 	data.spawnPoint = spawnPoint
 	data.music = scene.audio:getCurrentMusic()
 
-	love.filesystem.write("game"..tostring(slot)..".sav", serpent.dump(data))
+	love.filesystem.write("sage2020_game"..tostring(slot)..".sav", serpent.dump(data))
 end
 
 function GameState:load(scene, slot)
@@ -340,7 +340,7 @@ function GameState:load(scene, slot)
 		error("Only valid slot value is 1, 2, or 3")
 	end
 
-	local data = love.filesystem.load("game"..tostring(slot)..".sav")()
+	local data = love.filesystem.load("sage2020_game"..tostring(slot)..".sav")()
 	
 	-- Add party members, grant items, set flags
 	for k, v in pairs(data.party) do
