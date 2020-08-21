@@ -24,8 +24,8 @@ return function(self, target)
 
 	local RunCircle = function(speed, animLag)
 		return Serial {
+			PlayAudio("sfx", "sonicrunturn", 1.0, true),
 			Do(function()
-				self.scene.audio:playSfx("sonicrunturn", nil, true)
 				self.sprite.prevSortOrderY = self.sprite.sortOrderY
 				self.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h*2 - self.sprite.h*2 - 100
 				target.sprite:setAnimation("idle")
@@ -45,8 +45,9 @@ return function(self, target)
 				}
 			},
 			
+			PlayAudio("sfx", "sonicrunturn", 1.0, true),
+			
 			Do(function()
-				self.scene.audio:playSfx("sonicrunturn", nil, true)
 				target.sprite:setAnimation("backward")
 			end),
 			

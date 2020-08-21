@@ -217,6 +217,9 @@ return {
 					Animate(grabbed.sprite, "idle"),
 					Do(function()
 						grabbed.state = self.STATE_IDLE
+						grabbed:removeHandler("dead", sendHome, self)
+						grabbed:removeHandler("escape", sendHome, self)
+						self.grabbing = nil
 					end),
 					Parallel {
 						Ease(self.sprite.transform, "x", self.originalLocation.x, 1, "inout"),
