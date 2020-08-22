@@ -94,7 +94,7 @@ return function(scene)
 			end)
 		}
 	elseif not GameState:isFlagSet("robotterminal_enter") then
-		scene.player.cinematic = true
+		scene.player.cinematicStack = scene.player.cinematicStack + 1
 		local walkout, walkin, partySprites = scene.player:split()
 		partySprites.sally.x = partySprites.sally.x + 50
 		partySprites.sally.y = partySprites.sally.y - 50
@@ -120,7 +120,7 @@ return function(scene)
 				scene.player.x = scene.player.x + 60
 				scene.player.y = scene.player.y + 60
 				GameState:setFlag("robotterminal_enter")
-				scene.player.cinematic = false
+				scene.player.cinematicStack = 0
 			end)
 		}
 	else

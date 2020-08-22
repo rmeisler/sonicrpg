@@ -35,7 +35,7 @@ return function(scene)
 
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
-	scene.player.cinematic = true
+	scene.player.cinematicStack = scene.player.cinematicStack + 1
 	
 	local R = scene.objectLookup.R
 	R.movespeed = 4
@@ -79,7 +79,7 @@ return function(scene)
 		Ease(scene.player, "y", 2528, 1.5, "linear"),
 
 		Do(function()
-			scene.player.cinematic = false
+			scene.player.cinematicStack = 0
 			scene.player.noIdle = false
 			scene.player.state = "idleup"
 			

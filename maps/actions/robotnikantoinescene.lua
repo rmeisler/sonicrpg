@@ -29,7 +29,7 @@ local BasicNPC = require "object/BasicNPC"
 return function(scene)
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
-	scene.player.cinematic = true
+	scene.player.cinematicStack = scene.player.cinematicStack + 1
 	scene.player.y = 0
 
 	local robotnik = scene.objectLookup.Robotnik

@@ -136,6 +136,8 @@ return function(scene)
 	end
 	
 	if GameState:isFlagSet("met_b") then
+		scene.player.cinematicStack = scene.player.cinematicStack + 1
+	
 		return Serial {
 			Spawn(Serial {
 				PlayAudio("music", "bheart", 1.0),
@@ -151,6 +153,7 @@ return function(scene)
 			
 			Do(function()
 				GameState:setFlag("b_speech")
+				scene.player.cinematicStack = 0
 			end)
 		}
 	end
