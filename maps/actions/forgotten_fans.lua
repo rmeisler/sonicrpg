@@ -36,6 +36,7 @@ return function(scene)
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
 	scene.player.cinematicStack = scene.player.cinematicStack + 1
+	scene.player.cinematic = true
 	
 	local R = scene.objectLookup.R
 
@@ -121,6 +122,7 @@ return function(scene)
 
 		Do(function()
 			scene.player.cinematicStack = 0
+			scene.player.cinematic = false
 			scene.player.noIdle = false
 			scene.player.state = "idleup"
 			

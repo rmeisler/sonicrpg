@@ -83,7 +83,7 @@ return function(scene)
 			"j",
 			480,
 			1888,
-			"P",
+			"p",
 			"jdown",
 			function(j)
 				scene.player:removeKeyHint()
@@ -100,7 +100,7 @@ return function(scene)
 			"t",
 			2880,
 			1856,
-			"P",
+			"p",
 			"tleft",
 			function(t)
 				scene.player:removeKeyHint()
@@ -117,7 +117,7 @@ return function(scene)
 			"p",
 			2272,
 			1280,
-			"P",
+			"p",
 			"pdown",
 			function(p)
 				scene.player:removeKeyHint()
