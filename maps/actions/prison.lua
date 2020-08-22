@@ -123,11 +123,11 @@ return function(scene)
 	GameState:addToParty("antoine", 2)
 	
 	return Serial {
+		AudioFade("music", 1.0, 0.0, 1),
 		Wait(2),
+		PlayAudio("music", "prisonintro", 1.0, true),
 	
 		Spawn(Serial {
-			AudioFade("music", 1.0, 0.0, 1),
-			PlayAudio("music", "prisonintro", 1.0, true),
 			subtext,
 			text,
 			Parallel {

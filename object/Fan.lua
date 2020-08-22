@@ -113,6 +113,7 @@ function Fan:update(dt)
 					target.disabled = true
 					-- Knock out of fan three times, doing damage, until dead
 					if target.y < self.y then
+						self.scene.audio:setLooping("sfx", false)
 						self.scene.audio:playSfx("smack", 1.0)
 						self.scene.audio:playSfx("oppdeath", 1.0)
 						target.isBot = false

@@ -164,8 +164,8 @@ return function(scene)
 	scene.player.y = scene.player.y + 340
 	
 	scene.player.cinematicStack = 1
+	scene.player.sprite:setAnimation("walkup")
 	scene.player.noIdle = true
-	scene.player.state = "walkup"
 
 	return Serial {
 		PlayAudio("music", "forgottendiscovery", 1.0, true, true),
@@ -175,6 +175,7 @@ return function(scene)
 		Ease(scene.player, "y", scene.player.y - 280, 1, "linear"),
 		Do(function()
 			scene.player.noIdle = false
+			scene.player.sprite:setAnimation("idleup")
 		end),
 		
 		walkout,

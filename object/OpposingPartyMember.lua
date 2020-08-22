@@ -267,9 +267,7 @@ function OpposingPartyMember:die()
 				Ease(self:getSprite().color, 1, 800, 5),
 				
 				Repeat(Serial {
-					Do(function()
-						self.scene.audio:playSfx("bossdie")
-					end),
+					PlayAudio("sfx", "bossdie", 1.0, true),
 
 					Ease(
 						sprite.transform,
@@ -303,8 +301,8 @@ function OpposingPartyMember:die()
 					),
 				}, 10)
 			},
+			PlayAudio("sfx", "oppdeath", 1.0, true),
 			Do(function()
-				self.scene.audio:playSfx("oppdeath")
 				self.dropShadow:remove()
 			end),
 			Ease(sprite.color, 4, 0, 2),

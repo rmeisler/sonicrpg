@@ -43,9 +43,13 @@ return function(scene)
 
 	if GameState:isFlagSet("beatboss1") then
 		robotnik.sprite:setAnimation("faceup")
-		scene.objectLookup.Rover:remove()
-		scene.objectLookup.Antoine:remove()
-		
+		if scene.objectLookup.Rover then
+			scene.objectLookup.Rover:remove()
+			scene.objectLookup.Antoine:remove()
+		end
+		scene.player.x = 544
+		scene.player.y = 800
+		scene.objectLookup.Snively.sprite:setAnimation("computerup")
 		scene.objectLookup.RBComputer.sprite:setAnimation("onprison")
 		return Serial {
 			Ease(scene.player, "y", 750, 0.6, "inout"),
@@ -166,9 +170,8 @@ return function(scene)
 			robotnik.sprite:setAnimation("facedownsmile")
 		end),
 		MessageBox{message="Robotnik: ...or I will simply download it off your newly roboticized brain{p20}.{p20}.{p20}.", blocking=true, textSpeed = 2},
-		Ease(antoine, "y", function() return antoine.y - 50 end, 8, "linear"),
-	    Ease(antoine, "y", function() return antoine.y + 50 end, 8, "linear"),
 		MessageBox{message="Antoine: {p20}.{p20}.{p20}.", blocking=true, textSpeed=4},
+		Animate(antoine.sprite, "scaredhop1"),
 		MessageBox{message="Antoine: *Sonic{p40}, Sally... {p40}where are you?...*", blocking=true, textSpeed=3},
 		
 		Do(function()

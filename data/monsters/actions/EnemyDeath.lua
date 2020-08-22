@@ -1,6 +1,6 @@
 return function(self, target)
 	return Serial {
-		PlayAudio("sfx", "oppdeath"),
+		PlayAudio("sfx", "oppdeath", 1.0),
 		
 		-- Fade out with red and play sound
 		Parallel {

@@ -94,6 +94,7 @@ local RunUpdate = function(self, dt)
 				self.fx = math.min(0, self.fx + RETURN_SPEED)
 			end
 			if self.scene.audio:isFinished("sfx") then
+				self.scene.audio:setLooping("sfx", false)
 				self.scene.audio:playSfx("sonicrunturn", nil, true)
 			end
 		end
@@ -170,6 +171,7 @@ local RunUpdate = function(self, dt)
 				self.fy = math.min(0, self.fy + RETURN_SPEED)
 			end
 			if self.scene.audio:isFinished("sfx") then
+				self.scene.audio:setLooping("sfx", false)
 				self.scene.audio:playSfx("sonicrunturn", nil, true)
 			end
 		end
