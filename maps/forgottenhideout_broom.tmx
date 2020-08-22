@@ -150,7 +150,7 @@
 return function(self)
     return MessageBox {message = &quot;R: Who are you, exactly?&quot;, blocking = true}
 end</property>
-    <property name="sprite" type="file" value="../art/sprites/P.png"/>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
    </properties>
   </object>
   <object id="216" name="R" type="BasicNPC" gid="1227" x="128" y="608" width="64" height="32">
@@ -176,7 +176,7 @@ end</property>
 return function(self)
     return MessageBox {message = &quot;R: Who are you, exactly?&quot;, blocking = true}
 end</property>
-    <property name="sprite" type="file" value="../art/sprites/P.png"/>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
    </properties>
   </object>
   <object id="218" name="Spawn 1" type="Player" gid="1586" x="384" y="736" width="32" height="32">
@@ -212,7 +212,7 @@ end</property>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="jdown"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/P.png"/>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
    </properties>
   </object>
  </objectgroup>

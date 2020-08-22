@@ -337,7 +337,7 @@ return {
             ["defaultAnim"] = "tleft",
             ["ghost"] = true,
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
-            ["sprite"] = "../art/sprites/P.png"
+            ["sprite"] = "../art/sprites/p.png"
           }
         },
         {
@@ -377,7 +377,7 @@ return {
             ["defaultAnim"] = "pleft",
             ["ghost"] = true,
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
-            ["sprite"] = "../art/sprites/P.png"
+            ["sprite"] = "../art/sprites/p.png"
           }
         },
         {
@@ -479,7 +479,7 @@ return {
             ["align"] = "bottom_center",
             ["defaultAnim"] = "jdown",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/P.png"
+            ["sprite"] = "../art/sprites/p.png"
           }
         }
       }
