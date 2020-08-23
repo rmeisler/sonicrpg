@@ -35,6 +35,7 @@ ScreenShader = love.graphics.newShader([[
 GameState = (require "object/GameState")()
 
 local sceneMgr = (require "scene/SceneManager")()
+local fullScreen = false
 
 function love.load()
     love.profiler = require "lib/profile"
@@ -68,6 +69,15 @@ function love.draw()
 end
 
 function love.keypressed(key, uni)
+	if key == "tab" then
+		if not fullScreen then
+			love.window.setMode(800, 600, {fullscreen = true, fullscreentype = "exclusive"})
+		else
+			love.window.setMode(800, 600, {fullscreen = false, fullscreentype = "desktop"})
+		end
+		fullScreen = not fullScreen
+	end
+
     sceneMgr:keypressed(key, uni)
 end
 

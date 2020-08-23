@@ -250,7 +250,7 @@
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint1,Waypoint2"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="ignorePlayer" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
    </properties>

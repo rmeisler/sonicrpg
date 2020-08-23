@@ -450,7 +450,7 @@ return {
             ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint1,Waypoint2",
             ["ghost"] = true,
-            ["ignorePlayer"] = false,
+            ["ignorePlayer"] = true,
             ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/swatbot.png"
           }

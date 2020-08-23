@@ -120,6 +120,7 @@ return function(scene)
 				scene.player.x = scene.player.x + 60
 				scene.player.y = scene.player.y + 60
 				GameState:setFlag("robotterminal_enter")
+				scene.objectLookup.Swatbot3.ignorePlayer = false
 				scene.player.cinematicStack = 0
 			end)
 		}
