@@ -541,7 +541,7 @@ return {
           name = "CHeap2",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 960,
+          x = 992,
           y = 1504,
           width = 128,
           height = 32,

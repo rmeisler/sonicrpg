@@ -18,10 +18,6 @@ function Ratbot:construct(scene, layer, object)
 		left_bot  = {x = 40, y = 0}
 	}
 	
-	self.audibleDist = 300
-	
-	--self.useObjectCollision = true
-	
 	Bot.init(self, true)
 	self.collision = {}
 	
@@ -34,6 +30,59 @@ function Ratbot:getBattleArgs()
 	local args = Bot.getBattleArgs(self)
 	args.color = {200,200,200,255}
 	return args
+end
+
+function Ratbot:noticePlayer(ignoreShadow)
+	local audibleDistance = self.audibleDist or self.noticeDist or 250
+	
+	if self.forceSee then
+		return Bot.NOTICE_SEE
+	end
+	
+	if self.ignorePlayer then
+		return Bot.NOTICE_NONE
+	end
+
+	local isRightOfPlayer = (self.scene.player.x + self.scene.player.sprite.w) < (self.x + self.sprite.w)
+	local isLeftOfPlayer = (self.scene.player.x + self.scene.player.sprite.w) > (self.x + self.sprite.w)
+	local isAbovePlayer = (self.scene.player.y + self.scene.player.sprite.h*2) > (self.y + self.sprite.h*2)
+	local isBelowPlayer = (self.scene.player.y + self.scene.player.sprite.h*2) < (self.y + self.sprite.h*2)
+	
+	if  self.facing == "right" and isLeftOfPlayer and not self.scene.player:isHiding("left") and
+		not ((isAbovePlayer and self.scene.player:isHiding("up")) or
+			 (isBelowPlayer and self.scene.player:isHiding("down"))) and
+			self.facingTime > 0.3 and
+			self.visualColliders.right:isTouchingObj(self.scene.player)
+	then
+		return Bot.NOTICE_SEE
+	elseif  self.facing == "left" and isRightOfPlayer and not self.scene.player:isHiding("right") and
+			not ((isAbovePlayer and self.scene.player:isHiding("up")) or
+				 (isBelowPlayer and self.scene.player:isHiding("down"))) and
+			self.facingTime > 0.3 and
+			self.visualColliders.left:isTouchingObj(self.scene.player)
+	then
+		return Bot.NOTICE_SEE
+	elseif  self.facing == "up" and isBelowPlayer and not self.scene.player:isHiding("down") and
+			not ((isLeftOfPlayer and self.scene.player:isHiding("left")) or
+				 (isRightOfPlayer and self.scene.player:isHiding("right"))) and
+			self.facingTime > 0.3 and
+			self.visualColliders.up:isTouchingObj(self.scene.player)
+	then
+		return Bot.NOTICE_SEE
+	elseif  self.facing == "down" and isAbovePlayer and not self.scene.player:isHiding("up") and
+			not ((isLeftOfPlayer and self.scene.player:isHiding("left")) or
+				 (isRightOfPlayer and self.scene.player:isHiding("right"))) and
+			self.facingTime > 0.3 and
+			self.visualColliders.down:isTouchingObj(self.scene.player)
+	then
+		return Bot.NOTICE_SEE
+	end
+	
+	if self:distanceFromPlayerSq() < audibleDistance*audibleDistance and (self.hearWithoutMovement or self.scene.player:isMoving()) then
+		return Bot.NOTICE_HEAR
+	end
+
+	return Bot.NOTICE_NONE
 end
 
 function Ratbot:createDropShadow()

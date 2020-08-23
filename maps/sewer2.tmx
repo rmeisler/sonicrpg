@@ -287,7 +287,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/heap.png"/>
    </properties>
   </object>
-  <object id="239" name="CHeap2" type="BasicNPC" gid="3112" x="960" y="1504" width="128" height="32">
+  <object id="239" name="CHeap2" type="BasicNPC" gid="3112" x="992" y="1504" width="128" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hideOffset" type="int" value="26"/>

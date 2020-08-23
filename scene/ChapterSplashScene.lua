@@ -15,6 +15,7 @@ local TypeText = require "actions/TypeText"
 local Spawn = require "actions/Spawn"
 local Executor = require "actions/Executor"
 local While = require "actions/While"
+local Repeat = require "actions/Repeat"
 
 local Layout = require "util/Layout"
 
@@ -33,11 +34,33 @@ function ChapterSplashScene:loadingAnimation(tasks)
 	)
 	self.audio:registerAs("music", "titlecard", love.audio.newSource("audio/music/titlecard.ogg", "static"))
 	
+		local loadingText = TypeText(
+		Transform(600, love.graphics.getHeight()-50),
+		{255,255,255,255},
+		FontCache.Consolas,
+		"Loading",
+		4
+	)
+	local loadingDots = TypeText(
+		Transform(680, love.graphics.getHeight()-50),
+		{255,255,255,255},
+		FontCache.Consolas,
+		" ... ",
+		2
+	)
+	
 	self.bgColor = {0,0,0,255}
 	ScreenShader:sendColor("multColor", self.bgColor)
 	return Serial {
 		Parallel {
-			PlayAudio("music", "titlecard", 0.8, true),
+			Serial {
+				PlayAudio("music", "titlecard", 0.8),
+				Serial {
+					loadingText,
+					Repeat(loadingDots, nil, false),
+					isPassive = true
+				}
+			},
 
 			-- Loads maps, images, sounds
 			Parallel(tasks),
