@@ -461,6 +461,10 @@ end
 function Bot:noticePlayer(ignoreShadow)
 	local audibleDistance = self.audibleDist or self.noticeDist or 250
 	
+	if self.forceSee then
+		return Bot.NOTICE_SEE
+	end
+	
 	if self.ignorePlayer then
 		return Bot.NOTICE_NONE
 	end

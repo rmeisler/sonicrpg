@@ -5,7 +5,7 @@ return {
 	name = "Bunny",
 	altName = "Bunny",
 
-	avatar = "avatar/bunny",
+	avatar = "avatar/bunnyavatar",
 	sprite = "sprites/bunny",
 	battlesprite = "sprites/bunnybattle",
 

@@ -59,6 +59,7 @@ return function(self)
 					}
 				}
 			)
+			self.scene.swatbot1:postInit()
 			self.scene:addObject(self.scene.swatbot1)
 			self.scene.swatbot1.sprite:setAnimation("idledown")
 			self.scene.swatbot1.sprite.color[4] = 0
@@ -66,7 +67,7 @@ return function(self)
 				Ease(self.scene.swatbot1.sprite.color, 4, 255, 2, "linear"),
 				Move(self.scene.swatbot1, self.scene.objectLookup.Waypoint3),
 				Do(function()
-					self.scene.swatbot1.noticeDist = 1000
+					self.scene.swatbot1.forceSee = true
 				end)
 			}
 			self.scene.swatbot2 = Swatbot(
@@ -86,6 +87,7 @@ return function(self)
 					}
 				}
 			)
+			self.scene.swatbot2:postInit()
 			self.scene:addObject(self.scene.swatbot2)
 			self.scene.swatbot2.sprite:setAnimation("idledown")
 			self.scene.swatbot2.sprite.color[4] = 0
@@ -93,7 +95,7 @@ return function(self)
 				Ease(self.scene.swatbot2.sprite.color, 4, 255, 2, "linear"),
 				Move(self.scene.swatbot2, self.scene.objectLookup.Waypoint4),
 				Do(function()
-					self.scene.swatbot2.noticeDist = 1000
+					self.scene.swatbot2.forceSee = true
 				end)
 			}
 		end),

@@ -63,71 +63,66 @@ function EscapeLaser:update(dt)
 end
 
 function EscapeLaser:animate()
-	self:run(Parallel {
-		Serial {
-			Wait(0.1),
-			Do(function()
-				self.avoidCollider = self:createCollider(EscapeLaser.chanceToAvoidLaser, self.target)
-			end)
-		},
+	self:run {
+		Do(function()
+			self.avoidCollider = self:createCollider(EscapeLaser.chanceToAvoidLaser, self.target)
+		end),
+		Wait(0.1),
+		Animate(function()
+			return SpriteNode(self.scene, self.sprite.transform, nil, "beamfire", nil, nil, "objects"), true
+		end, "idle"),
 
-		Serial {
-			Animate(function()
-				return SpriteNode(self.scene, self.sprite.transform, nil, "beamfire", nil, nil, "objects"), true
-			end, "idle"),
+		PlayAudio("sfx", "swatbotlaser", 1.0, true),
+		
+		Do(function()
+			self.x = self.x + 12
+			self.y = self.y + 30
+			
+			local x1, y1 = self.x, self.y
+			local x2, y2 = self.target.x, self.target.y
 
-			PlayAudio("sfx", "swatbotlaser", 1.0, true),
-			
-			Do(function()
-				self.x = self.x + 12
-				self.y = self.y + 30
-				
-				local x1, y1 = self.x, self.y
-				local x2, y2 = self.target.x, self.target.y
+			local dx = (x2 - x1)
+			local dy = (y2 - y1)
 
-				local dx = (x2 - x1)
-				local dy = (y2 - y1)
-
-				local dot = dx * dx
-				local m1 = math.sqrt(dx*dx + dy*dy)
-				local m2 = dx
-				local angle = math.acos(dot / (m1 * m2))
-				
-				if self.y > self.target.y then
-					self.sprite.transform.angle = -angle
-				else
-					self.sprite.transform.angle = angle
-				end
-				
-				self.xDist = dx
-				self.yDist = dy
-				self.len = m1/self.sprite.w			
-			end),
+			local dot = dx * dx
+			local m1 = math.sqrt(dx*dx + dy*dy)
+			local m2 = dx
+			local angle = math.acos(dot / (m1 * m2))
 			
-			-- Beam stretch to target and recede
-			Ease(self.sprite.transform, "sx", function() return self.len end, 8),
+			if self.y > self.target.y then
+				self.sprite.transform.angle = -angle
+			else
+				self.sprite.transform.angle = angle
+			end
 			
-			Do(function()
-				self.sprite.transform.ox = self.sprite.w
-				
-				self.x = self.x + self.xDist
-				self.y = self.y + self.yDist
-				
-				self.collider = self:createCollider(EscapeLaser.touchLaser)
-			end),
+			self.xDist = dx
+			self.yDist = dy
+			self.len = m1/self.sprite.w			
+		end),
+		
+		-- Beam stretch to target and recede
+		Ease(self.sprite.transform, "sx", function() return self.len end, 8),
+		
+		Do(function()
+			self.sprite.transform.ox = self.sprite.w
 			
-			Ease(self.sprite.transform, "sx", 0, 8),
+			self.x = self.x + self.xDist
+			self.y = self.y + self.yDist
 			
-			Do(function()
-				self.sprite.transform.ox = 0
-				
-				self.scene:invoke("laserfired", self)
-				self.avoidCollider:remove()
-				self.collider:remove()
-				self:remove()
-			end)
-		}
-	})
+			self.collider = self:createCollider(EscapeLaser.touchLaser)
+		end),
+		
+		Ease(self.sprite.transform, "sx", 0, 8),
+		
+		Do(function()
+			self.sprite.transform.ox = 0
+			
+			self.scene:invoke("laserfired", self)
+			self.avoidCollider:remove()
+			self.collider:remove()
+			self:remove()
+		end)
+	}
 end
 
 function EscapeLaser:run(actions)

@@ -219,15 +219,15 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/avatar/rotor.png"
+		file = "art/avatar/rotoravatar.png"
 	},
 	{
 		type = "image",
-		file = "art/avatar/antoine.png"
+		file = "art/avatar/antoineavatar.png"
 	},
 	{
 		type = "image",
-		file = "art/avatar/sonic.png"
+		file = "art/avatar/sonicavatar.png"
 	},
 	{
 		type = "image",
@@ -243,7 +243,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/avatar/sally.png"
+		file = "art/avatar/sallyavatar.png"
 	},
 	{
 		type = "image",
@@ -251,7 +251,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/avatar/bunny.png"
+		file = "art/avatar/bunnyavatar.png"
 	},
 	{
 		type = "image",
