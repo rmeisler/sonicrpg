@@ -150,8 +150,7 @@ return {
 					Serial {
 						soundAction,
 						target:takeDamage(stats, true, self.electricTail and BattleActor.shockKnockback or nil)
-					},
-					0.3
+					}
 				)
 			},
 			leapBack(),

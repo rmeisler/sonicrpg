@@ -115,6 +115,14 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/leftrightview.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/updownview.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/fancenter.png"
 	},
 	{

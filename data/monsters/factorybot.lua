@@ -185,8 +185,7 @@ return {
 								target.sprite.sortOrderY = nil
 							end),
 						},
-						grabAction,
-						0.3
+						grabAction
 					)
 				}
 			else

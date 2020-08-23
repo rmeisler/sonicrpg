@@ -11,6 +11,7 @@ local NPC = require "object/NPC"
 local HopTrigger = class(NPC)
 
 function HopTrigger:construct(scene, layer, object)
+	self.ghost = true
 	NPC.init(self)
 end
 
@@ -25,7 +26,6 @@ function HopTrigger:onCollision(prevState)
 	
 	local action = Action()
 	if  love.keyboard.isDown("up") and
-		self.scene.player:isFacing("up") and
 		self.object.properties.up
 	then
 		action = Serial {
@@ -53,7 +53,6 @@ function HopTrigger:onCollision(prevState)
 			end),
 		}
 	elseif  love.keyboard.isDown("down") and
-			self.scene.player:isFacing("down") and
 			self.object.properties.down
 	then
 		action = Serial {
@@ -81,7 +80,6 @@ function HopTrigger:onCollision(prevState)
 			end),
 		}
 	elseif  love.keyboard.isDown("left") and
-			self.scene.player:isFacing("left") and
 			self.object.properties.left
 	then
 		action = Serial {
@@ -107,7 +105,6 @@ function HopTrigger:onCollision(prevState)
 			end),
 		}
 	elseif  love.keyboard.isDown("right") and
-			self.scene.player:isFacing("right") and
 			self.object.properties.right
 	then
 		action = Serial {

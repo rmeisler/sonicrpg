@@ -11,22 +11,33 @@ local Spawner = class(NPC)
 function Spawner:construct(scene, layer, object)
     self.ghost = true
 	
-	NPC.init(self)
+	NPC.init(self, false)
 	
+	self.spawnerChildren = {}
+	for i=0,(object.properties.max or 10) do
+		local inst = RunableNPC(scene, layer, object)
+		scene:addObject(inst)
+		inst.sprite.visible = false
+		table.insert(self.spawnerChildren, inst)
+	end
+
 	self.sprite.visible = false
+	self.time = 0
+end
+
+function Spawner:update(dt)
+	self.time = self.time + dt
 	
-	self:run(
-		Repeat(
-			Serial {
-				Do(function()
-					local inst = RunableNPC(scene, layer, object)
-					scene:addObject(inst)
-					inst:postInit()
-				end),
-				Wait(object.properties.every or 1)
-			}
-		)
-	)
+	if self.time > self.object.properties.every then
+		local inst = table.remove(self.spawnerChildren, 1)
+		table.insert(self.spawnerChildren, inst)
+		inst.x = self.x
+		inst.y = self.y
+		inst.sprite.visible = true
+		inst:postInit()
+
+		self.time = 0
+	end
 end
 
 function Spawner:postInit()

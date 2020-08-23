@@ -2,6 +2,7 @@ local Action = require "actions/Action"
 local Parallel = require "actions/Parallel"
 local Animate = require "actions/Animate"
 local Try = require "actions/Try"
+local Serial = require "actions/Serial"
 local Trigger = require "actions/Trigger"
 
 local TargetType = require "util/TargetType"
@@ -15,18 +16,25 @@ return function(self, target, success, fail, timeout)
 		return fail
 	end
 
-	return Parallel {
-		-- Press X!
-		Animate(function()
-			return SpriteNode(self.scene, target.sprite.transform, nil, "pressx", nil, nil, "ui"), true
-		end, "idle"),
-		
-		-- If they press x fast enough, success! Otherwise fail
-		Try(
-			Trigger("x", true),
-			success or Action(),
-			fail or Action(),
-			timeout or 0.2
-		)
-	}
+	return Try(
+		Trigger("x", true), -- If they press x too early, fail!
+		fail,
+		Serial {
+			Parallel {
+				-- Press X!
+				Animate(function()
+					return SpriteNode(self.scene, target.sprite.transform, nil, "pressx", nil, nil, "ui"), true
+				end, "idle"),
+				
+				-- If they press x fast enough, success! Otherwise fail
+				Try(
+					Trigger("x", true),
+					success or Action(),
+					fail or Action(),
+					0.2
+				)
+			}
+		},
+		0.2
+	)
 end

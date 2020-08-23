@@ -11,14 +11,14 @@ function Ratbot:construct(scene, layer, object)
 	self.udflashlight:remove()
 	self.lrflashlight:remove()
 	
-	self.noInvestigate = true
-	
 	self.hotspotOffsets = {
 		right_top = {x = -40, y = 100},
 		right_bot = {x = -40, y = 0},
 		left_top  = {x = 40, y = 100},
 		left_bot  = {x = 40, y = 0}
 	}
+	
+	self.audibleDist = 300
 	
 	--self.useObjectCollision = true
 	

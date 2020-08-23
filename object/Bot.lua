@@ -40,6 +40,7 @@ function Bot:construct(scene, layer, object)
 	self.visibleDist = object.properties.visibleDistance
 	self.audibleDist = object.properties.audibleDistance
 	
+	self.facingTime = 0
 	self.movespeed = 2
 	self.hotspotOffsets = {
 		right_top = {x = -20, y = self.sprite.h + 30},
@@ -119,6 +120,45 @@ function Bot:postInit()
 	end
 
 	self.behavior = Bot.BEHAVIOR_PATROLLING
+	
+	self.visualColliders = {}
+	self.visualColliders.left = BasicNPC(
+		self.scene,
+		{name = "objects"},
+		{name = "visualproxy", x = self.x - 32 * 12, y = self.y + self.sprite.h, width = 32 * 10, height = 32 * 5,
+			properties = {ghost = true, align = NPC.ALIGN_BOTLEFT, sprite = "art/sprites/leftrightview.png", useObjectCollision = true}
+		}
+	)
+	self.visualColliders.right = BasicNPC(
+		self.scene,
+		{name = "objects"},
+		{name = "visualproxy", x = self.x + self.sprite.w*2, y = self.y + self.sprite.h, width = 32 * 10, height = 32 * 5,
+			properties = {ghost = true, align = NPC.ALIGN_BOTLEFT, sprite = "art/sprites/leftrightview.png", useObjectCollision = true}
+		}
+	)
+	self.visualColliders.up = BasicNPC(
+		self.scene,
+		{name = "objects"},
+		{name = "visualproxy", x = self.x, y = self.y - 32 * 10, width = 32 * 5, height = 32 * 10,
+			properties = {ghost = true, align = NPC.ALIGN_BOTLEFT, sprite = "art/sprites/updownview.png", useObjectCollision = true}
+		}
+	)
+	self.visualColliders.down = BasicNPC(
+		self.scene,
+		{name = "objects"},
+		{name = "visualproxy", x = self.x, y = self.y + self.sprite.h*2, width = 32 * 5, height = 32 * 10,
+			properties = {ghost = true, align = NPC.ALIGN_BOTLEFT, sprite = "art/sprites/updownview.png", useObjectCollision = true}
+		}
+	)
+	self.scene:addObject(self.visualColliders.left)
+	self.scene:addObject(self.visualColliders.right)
+	self.scene:addObject(self.visualColliders.up)
+	self.scene:addObject(self.visualColliders.down)
+
+	self.visualColliders.left.sprite.visible = false
+	self.visualColliders.right.sprite.visible = false
+	self.visualColliders.up.sprite.visible = false
+	self.visualColliders.down.sprite.visible = false
 end
 
 function Bot:followActions()
@@ -254,7 +294,7 @@ function Bot:update(dt)
 			
 			self:run {
 				self:hop(1),
-				Do(function()
+				Do(function()					
 					self:removeSceneHandler("update", Bot.updateAction)
 					self:addSceneHandler("update", Bot.investigateUpdate)
 					self.behavior = Bot.BEHAVIOR_INVESTIGATING
@@ -419,43 +459,41 @@ function Bot:follow(target, animType, speed, timeout, forever, earlyExitFun)
 end
 
 function Bot:noticePlayer(ignoreShadow)
-	local visibleDistance = self.visibleDist or self.noticeDist or 200
 	local audibleDistance = self.audibleDist or self.noticeDist or 250
 	
 	if self.ignorePlayer then
 		return Bot.NOTICE_NONE
 	end
-	
-	-- If player is hiding then distance is halved
-	if self.scene.player:inShadow() and not ignoreShadow then
-		visibleDistance = visibleDistance / 6
-	end
 
 	local lineOfSight = 0
-	if self:distanceFromPlayerSq() < visibleDistance*visibleDistance then
+	if self:distanceFromPlayerSq() < 1000*1000 then
 		local isRightOfPlayer = (self.scene.player.x + self.scene.player.sprite.w) < (self.x + self.sprite.w - lineOfSight)
 		local isLeftOfPlayer = (self.scene.player.x + self.scene.player.sprite.w) > (self.x + self.sprite.w + lineOfSight)
-		local isAbovePlayer = (self.scene.player.y + self.scene.player.sprite.h) > (self.y + self.sprite.h - lineOfSight)
+		local isAbovePlayer = (self.scene.player.y + self.scene.player.sprite.h) > (self.y + self.sprite.h + lineOfSight)
 		local isBelowPlayer = (self.scene.player.y + self.scene.player.sprite.h) < (self.y + self.sprite.h - lineOfSight)
-
-		if  self.facing == "right" and isLeftOfPlayer and not self.scene.player:isHiding("left") and
+		
+		if  self.facing == "right" and self.facingTime > 0.3 and isLeftOfPlayer and not self.scene.player:isHiding("left") and
 			not ((isAbovePlayer and self.scene.player:isHiding("up")) or
-				 (isBelowPlayer and self.scene.player:isHiding("down")))
+				 (isBelowPlayer and self.scene.player:isHiding("down"))) and
+			self.visualColliders.right:isTouchingObj(self.scene.player)
 		then
 			return Bot.NOTICE_SEE
-		elseif  self.facing == "left" and isRightOfPlayer and not self.scene.player:isHiding("right") and
+		elseif  self.facing == "left" and self.facingTime > 0.3 and isRightOfPlayer and not self.scene.player:isHiding("right") and
 				not ((isAbovePlayer and self.scene.player:isHiding("up")) or
-					 (isBelowPlayer and self.scene.player:isHiding("down")))
+					 (isBelowPlayer and self.scene.player:isHiding("down"))) and
+				self.visualColliders.left:isTouchingObj(self.scene.player)
 		then
 			return Bot.NOTICE_SEE
-		elseif  self.facing == "up" and isBelowPlayer and not self.scene.player:isHiding("down") and
+		elseif  self.facing == "up" and self.facingTime > 0.3 and isBelowPlayer and not self.scene.player:isHiding("down") and
 				not ((isLeftOfPlayer and self.scene.player:isHiding("left")) or
-					 (isRightOfPlayer and self.scene.player:isHiding("right")))
+					 (isRightOfPlayer and self.scene.player:isHiding("right"))) and
+				self.visualColliders.up:isTouchingObj(self.scene.player)
 		then
 			return Bot.NOTICE_SEE
-		elseif  self.facing == "down" and isAbovePlayer and not self.scene.player:isHiding("up") and
+		elseif  self.facing == "down" and self.facingTime > 0.3 and isAbovePlayer and not self.scene.player:isHiding("up") and
 				not ((isLeftOfPlayer and self.scene.player:isHiding("left")) or
-					 (isRightOfPlayer and self.scene.player:isHiding("right")))
+					 (isRightOfPlayer and self.scene.player:isHiding("right"))) and
+				self.visualColliders.down:isTouchingObj(self.scene.player)
 		then
 			return Bot.NOTICE_SEE
 		end
@@ -549,14 +587,29 @@ function Bot:baseUpdate(dt)
 		return
 	end
 	
-	if self:isFacing("up") then
+	self.facingTime = self.facingTime + dt
+	
+	self.visualColliders.up.x = self.x + math.max(self.sprite.w*2 - self.visualColliders.up.sprite.w*3, 0)
+	self.visualColliders.up.y = self.y - 32 * 10 + self.sprite.h*2 - 32
+	self.visualColliders.down.x = self.x + math.max(self.sprite.w*2 - self.visualColliders.down.sprite.w*3, 0)
+	self.visualColliders.down.y = self.y + self.sprite.h*2
+	self.visualColliders.left.x = self.x - 32 * 10
+	self.visualColliders.left.y = self.y + self.sprite.h
+	self.visualColliders.right.x = self.x + self.sprite.w*2
+	self.visualColliders.right.y = self.y + self.sprite.h
+	
+	if self:isFacing("up") and self.facing ~= "up" then
 		self.facing = "up"
-	elseif self:isFacing("down") then
+		self.facingTime = 0
+	elseif self:isFacing("down") and self.facing ~= "down" then
 		self.facing = "down"
-	elseif self:isFacing("left") then
+		self.facingTime = 0
+	elseif self:isFacing("left") and self.facing ~= "left" then
 		self.facing = "left"
-	elseif self:isFacing("right") then
+		self.facingTime = 0
+	elseif self:isFacing("right") and self.facing ~= "right" then
 		self.facing = "right"
+		self.facingTime = 0
 	end
 	
 	-- Update drop shadow position

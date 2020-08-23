@@ -150,7 +150,7 @@ function NPC:init(useBaseUpdate)
 		)
 	end
 	
-	if self.sprite then
+	if self.sprite and not self.object.properties.useObjectCollision then
 		if self.alignment == NPC.ALIGN_TOPLEFT then
 			-- No-op
 		elseif self.alignment == NPC.ALIGN_TOPRIGHT then

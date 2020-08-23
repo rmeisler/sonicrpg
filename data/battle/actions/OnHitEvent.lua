@@ -49,11 +49,10 @@ return function(self, target, returnAction, knockbackActionFun, details)
 				self,
 				target,
 				Serial {
-					Do(function() self.scene.audio:playSfx("gotit", 1.0, false) end),
+					PlayAudio("sfx", "gotit", 1.0, true),
 					target:takeDamage(bonusStats, false, knockbackActionFun)
 				},
-				target:takeDamage(self.stats, false, knockbackActionFun),
-				0.3
+				target:takeDamage(self.stats, false, knockbackActionFun)
 			)
 		)
 		table.insert(actions, returnAction)
@@ -101,8 +100,7 @@ return function(self, target, returnAction, knockbackActionFun, details)
 						),
 					}
 				},
-				Action(),
-				0.3
+				Action()
 			)
 		)
 		table.insert(actions, returnAction)

@@ -165,8 +165,7 @@ return {
 							),
 						}
 					},
-					Do(function() end),
-					0.3
+					Do(function() end)
 				)
 			end
 		

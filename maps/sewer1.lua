@@ -290,7 +290,6 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["audibleDistance"] = 170,
             ["battle"] = "../data/monsters/ratbot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,

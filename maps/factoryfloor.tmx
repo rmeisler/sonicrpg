@@ -801,9 +801,9 @@ end</property>
 2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2453,3016,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2851,2424,2452,2417,2452,2452,2452,2452,2452,2452,2452,2452,2452,
 2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2488,3051,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2886,2459,2452,2417,2452,2452,2452,2452,2452,2452,2452,2452,2452,
 2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2418,2981,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2816,2494,2452,2417,2452,2452,2452,2452,2452,2452,2452,2452,2452,
-2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2453,3016,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2851,2424,2452,2417,2452,2452,2452,2452,2452,2452,2452,2452,2452,
-2452,2452,2452,2452,2452,2452,2452,2452,2562,2562,2562,2562,2562,2562,2562,2562,2562,2562,0,0,0,0,0,0,0,0,2559,2559,2559,2559,2559,2559,2559,2559,2559,2560,2452,2452,2452,2452,2452,2452,2452,2452,2452,
-2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,0,0,0,0,0,0,0,0,2452,2452,2452,2452,2452,2452,2452,2452,2452,2417,2452,2452,2452,2452,2452,2452,2452,2452,2452,
+2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2453,3016,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2851,2424,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,
+2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2562,2562,2562,2562,2562,2562,2562,2562,0,0,0,0,0,0,0,0,2559,2559,2559,2559,2559,2559,2559,2559,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,
+2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,0,0,0,0,0,0,0,0,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,
 2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,0,0,0,0,0,0,0,0,2452,2452,2452,2452,2452,2452,2452,2452,2452,2417,2452,2452,2452,2452,2452,2452,2452,2452,2452,
 2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,0,0,0,0,0,0,0,0,2452,2452,2452,2452,2452,2452,2452,2452,2452,2417,2452,2452,2452,2452,2452,2452,2452,2452,2452,
 2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,2452,0,0,0,0,0,0,0,0,2452,2452,2452,2452,2452,2452,2452,2452,2452,2417,2452,2452,2452,2452,2452,2452,2452,2452,2452,
@@ -846,7 +846,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/conveyorbelt.png"/>
    </properties>
   </object>
-  <object id="27" name="Template1" type="Spawner" gid="1227" x="160" y="4480" width="32" height="32">
+  <object id="27" name="Template1" type="Spawner" gid="1227" x="0" y="4480" width="32" height="32">
    <properties>
     <property name="actions">local Serial = require &quot;actions/Serial&quot;
 local Move = require &quot;actions/Move&quot;
@@ -862,9 +862,8 @@ return function(self)
             Ease(self.sprite.color, 4, 50, 2, &quot;inout&quot;),
             Move(self, self.scene.objectLookup.Waypoint1),
             Serial {
-                YieldUntil(function() return self.x &gt; 800 end),
-                Ease(self.sprite.color, 4, 0, 2, &quot;inout&quot;),
-                Do(function() self:remove() end)
+                YieldUntil(function() return self.x &gt; 1300 end),
+                Ease(self.sprite.color, 4, 0, 2, &quot;inout&quot;)
             }
         }
     }
@@ -872,6 +871,7 @@ end</property>
     <property name="every" type="int" value="2"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="max" type="int" value="10"/>
     <property name="movespeed" type="int" value="2"/>
     <property name="scalex" type="float" value="3"/>
     <property name="scaley" type="float" value="3"/>
@@ -879,7 +879,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/swatbothand.png"/>
    </properties>
   </object>
-  <object id="28" name="Template2" type="Spawner" gid="1227" x="1216" y="3776" width="32" height="32">
+  <object id="28" name="Template2" type="Spawner" gid="1227" x="1408" y="3776" width="32" height="32">
    <properties>
     <property name="actions">local Serial = require &quot;actions/Serial&quot;
 local Move = require &quot;actions/Move&quot;
@@ -895,9 +895,8 @@ return function(self)
             Ease(self.sprite.color, 4, 50, 2, &quot;inout&quot;),
             Move(self, self.scene.objectLookup.Waypoint2),
             Serial {
-                YieldUntil(function() return self.x &lt; 0 end),
-                Ease(self.sprite.color, 4, 0, 2, &quot;inout&quot;),
-                Do(function() self:remove() end)
+                YieldUntil(function() return self.x &lt; 100 end),
+                Ease(self.sprite.color, 4, 0, 2, &quot;inout&quot;)
             }
         }
     }
@@ -905,6 +904,7 @@ end</property>
     <property name="every" type="int" value="2"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="max" type="int" value="10"/>
     <property name="movespeed" type="int" value="2"/>
     <property name="scalex" type="float" value="3"/>
     <property name="scaley" type="float" value="3"/>
@@ -912,7 +912,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/swatbothelmet.png"/>
    </properties>
   </object>
-  <object id="29" name="Template3" type="Spawner" gid="1227" x="160" y="3040" width="32" height="32">
+  <object id="29" name="Template3" type="Spawner" gid="1227" x="0" y="3040" width="32" height="32">
    <properties>
     <property name="actions">local Serial = require &quot;actions/Serial&quot;
 local Move = require &quot;actions/Move&quot;
@@ -928,9 +928,8 @@ return function(self)
             Ease(self.sprite.color, 4, 30, 2, &quot;inout&quot;),
             Move(self, self.scene.objectLookup.Waypoint3),
             Serial {
-                YieldUntil(function() return self.x &gt; 800 end),
-                Ease(self.sprite.color, 4, 0, 2, &quot;inout&quot;),
-                Do(function() self:remove() end)
+                YieldUntil(function() return self.x &gt; 1300 end),
+                Ease(self.sprite.color, 4, 0, 2, &quot;inout&quot;)
             }
         }
     }
@@ -938,6 +937,7 @@ end</property>
     <property name="every" type="int" value="2"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="max" type="int" value="10"/>
     <property name="movespeed" type="int" value="2"/>
     <property name="scalex" type="float" value="3"/>
     <property name="scaley" type="float" value="3"/>
@@ -945,17 +945,17 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/swatbotarmor.png"/>
    </properties>
   </object>
-  <object id="30" name="Waypoint3" type="BasicNPC" gid="1227" x="1216" y="3040" width="32" height="32">
+  <object id="30" name="Waypoint3" type="BasicNPC" gid="1227" x="1408" y="3040" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="31" name="Waypoint2" type="BasicNPC" gid="1227" x="160" y="3776" width="32" height="32">
+  <object id="31" name="Waypoint2" type="BasicNPC" gid="1227" x="0" y="3776" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="32" name="Waypoint1" type="BasicNPC" gid="1227" x="1216" y="4480" width="32" height="32">
+  <object id="32" name="Waypoint1" type="BasicNPC" gid="1227" x="1408" y="4480" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -990,6 +990,7 @@ return function(self)
                         },
                         Do(function()
                             local grabbed = self.scene.objectLookup.ClawTemplate3
+                            grabbed.sprite.visible = true
                             grabbed.x = self.x
                             grabbed.y = self.y + grabbed.sprite.h
                         end)
@@ -1001,7 +1002,12 @@ return function(self)
                     Move(self.scene.objectLookup.ClawTemplate3, self.scene.objectLookup.ClawTemplateWaypoint1),
                     Animate(self.sprite, &quot;idle&quot;),
                     Parallel {
-                        Move(self.scene.objectLookup.ClawTemplate3, self.scene.objectLookup.ClawTemplateWaypoint2),
+                        Serial {
+                            Move(self.scene.objectLookup.ClawTemplate3, self.scene.objectLookup.ClawTemplateWaypoint2),
+                            Do(function()
+                                self.scene.objectLookup.ClawTemplate3.sprite.visible = false
+                            end)
+                        },
                         Serial {
                             Move(self, self.scene.objectLookup.ClawWaypoint3),
                             Move(self, self.scene.objectLookup.ClawWaypoint2),
@@ -1025,6 +1031,7 @@ return function(self)
                         },
                         Do(function()
                             local grabbed = self.scene.objectLookup.ClawTemplate2
+                            grabbed.sprite.visible = true
                             grabbed.x = self.x
                             grabbed.y = self.y + grabbed.sprite.h*4
                         end)
@@ -1036,7 +1043,12 @@ return function(self)
                     Move(self.scene.objectLookup.ClawTemplate2, self.scene.objectLookup.ClawTemplateWaypoint3),
                     Animate(self.sprite, &quot;idle&quot;),
                     Parallel {
-                        Move(self.scene.objectLookup.ClawTemplate2, self.scene.objectLookup.ClawTemplateWaypoint4),
+                        Serial {
+                            Move(self.scene.objectLookup.ClawTemplate2, self.scene.objectLookup.ClawTemplateWaypoint4),
+                            Do(function()
+                                self.scene.objectLookup.ClawTemplate2.sprite.visible = false
+                            end),
+                        },
                         Serial {
                             Move(self, self.scene.objectLookup.ClawWaypoint5),
                             Move(self, self.scene.objectLookup.ClawWaypoint4),
@@ -1060,6 +1072,7 @@ return function(self)
                         },
                         Do(function()
                             local grabbed = self.scene.objectLookup.ClawTemplate1
+                            grabbed.sprite.visible = true
                             grabbed.x = self.x
                             grabbed.y = self.y + grabbed.sprite.h*3
                         end)
@@ -1071,7 +1084,12 @@ return function(self)
                     Move(self.scene.objectLookup.ClawTemplate1, self.scene.objectLookup.ClawTemplateWaypoint5),
                     Animate(self.sprite, &quot;idle&quot;),
                     Parallel {
-                        Move(self.scene.objectLookup.ClawTemplate1, self.scene.objectLookup.ClawTemplateWaypoint6),
+                        Serial {
+                            Move(self.scene.objectLookup.ClawTemplate1, self.scene.objectLookup.ClawTemplateWaypoint6),
+                            Do(function()
+                                self.scene.objectLookup.ClawTemplate1.sprite.visible = false
+                            end),
+                        },
                         Serial {
                             Move(self, self.scene.objectLookup.ClawWaypoint7),
                             Move(self, self.scene.objectLookup.ClawWaypoint6),
@@ -1243,12 +1261,12 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,0,0,0,0,0,0,0,0,0,
+2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,
+2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,
+2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,
+2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,
+2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,
+2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1287,12 +1305,12 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,0,0,0,0,0,0,0,0,0,
+2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,
+2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,
+2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,
+2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,
+2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,
+2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,2837,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1313,6 +1331,18 @@ end</property>
 </data>
  </layer>
  <imagelayer name="Overlay1" offsetx="256" offsety="2688">
+  <image source="../art/sprites/overhang3.png" width="360" height="274"/>
+  <properties>
+   <property name="movespeed" type="float" value="1.1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Overlay1.2" offsetx="-64" offsety="2688">
+  <image source="../art/sprites/overhang3.png" width="360" height="274"/>
+  <properties>
+   <property name="movespeed" type="float" value="1.1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Overlay1.3" offsetx="1216" offsety="2688">
   <image source="../art/sprites/overhang3.png" width="360" height="274"/>
   <properties>
    <property name="movespeed" type="float" value="1.1"/>
@@ -1355,6 +1385,18 @@ end</property>
   </properties>
  </imagelayer>
  <imagelayer name="Overlay6" offsetx="864" offsety="4064">
+  <image source="../art/sprites/overhang3.png" width="360" height="274"/>
+  <properties>
+   <property name="movespeed" type="float" value="1.1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Overlay7" offsetx="1184" offsety="4064">
+  <image source="../art/sprites/overhang3.png" width="360" height="274"/>
+  <properties>
+   <property name="movespeed" type="float" value="1.1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Overlay8" offsetx="-96" offsety="4064">
   <image source="../art/sprites/overhang3.png" width="360" height="274"/>
   <properties>
    <property name="movespeed" type="float" value="1.1"/>

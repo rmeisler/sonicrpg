@@ -24,6 +24,7 @@ return {
 		idleup = {
 			frames = {{11,0}}
 		},
+		
 		walkright = {
 			frames = {{17,0},{18,0},{17,0},{16,0}},
 			speed = 0.15
@@ -37,6 +38,36 @@ return {
 			speed = 0.15
 		},
 		walkdown = {
+			frames = {{14,0},{15,0},{14,0},{13,0}},
+			speed = 0.15
+		},
+		
+		lightright = {
+            frames = {{17,0}}
+        },
+		lightleft = {
+			frames = {{20,0}}
+		},
+		lightdown = {
+			frames = {{14,0}}
+		},
+		lightup = {
+			frames = {{11,0}}
+		},
+		
+		lightwalkright = {
+			frames = {{17,0},{18,0},{17,0},{16,0}},
+			speed = 0.15
+		},
+		lightwalkleft = {
+			frames = {{20,0},{21,0},{20,0},{19,0}},
+			speed = 0.15
+		},
+		lightwalkup = {
+			frames = {{11,0},{12,0},{11,0},{10,0}},
+			speed = 0.15
+		},
+		lightwalkdown = {
 			frames = {{14,0},{15,0},{14,0},{13,0}},
 			speed = 0.15
 		},

@@ -156,7 +156,6 @@
   <object id="224" name="Ratbot1" type="Ratbot" gid="1227" x="768" y="1312" width="96" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="audibleDistance" type="int" value="170"/>
     <property name="battle" type="file" value="../data/monsters/ratbot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
@@ -211,7 +210,6 @@
   <object id="232" name="Ratbot2" type="Ratbot" gid="1227" x="1408" y="1312" width="96" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="audibleDistance" type="int" value="170"/>
     <property name="battle" type="file" value="../data/monsters/ratbot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
