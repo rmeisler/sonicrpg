@@ -12,8 +12,6 @@ function SceneManager:construct()
 	self.current = 0
 	self.cachedScenes = {}
 	self.sceneStack = {}
-	self.gamepad = false
-	self.gamepadLock = {}
 	
 	-- Kick off threads
 	Task.SpawnThreads()
@@ -166,19 +164,6 @@ function SceneManager:handleInput(type, ...)
 			scene[type](scene, ...)
 		end
 	end
-end
-
-function SceneManager:joystickadded(joystick)
-	self.gamepad = joystick
-	self:handleInput("joystickadded", joystick)
-end
-
-function SceneManager:gamepadpressed(joystick, button)
-	self:handleInput("gamepadpressed", joystick, button)
-end
-
-function SceneManager:gamepadreleased(joystick, button)
-	self:handleInput("gamepadreleased", joystick, button)
 end
 
 function SceneManager:keypressed(key, uni)

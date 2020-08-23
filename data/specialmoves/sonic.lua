@@ -852,9 +852,6 @@ return function(player)
 	player.basicUpdate = function(self, dt) end
 	player.counterWalkSpeed = player.walkspeed
 	
-	--player.scene.sceneMgr.gamepadLock.right = 1
-	--player.scene.sceneMgr.gamepadLock.lshift = 1
-	
 	-- Play charge animation based on facing direction
 	player.fx = 0
 	player.fy = 0

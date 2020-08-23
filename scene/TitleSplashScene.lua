@@ -138,11 +138,6 @@ function TitleSplashScene:onEnter()
 	))
 end
 
-function TitleSplashScene:gamepadpressed(joystick, button)
-	print("Gamepad button pressed "..button)
-	self:keytriggered(button)
-end
-
 function TitleSplashScene:keytriggered(key)
 	if self.menuOpen then
 		return
