@@ -60,7 +60,7 @@ function PartyMember:construct(scene, data)
 			end
 		else
 			fun = function(menu)
-				self:chooseTarget(menu, target, function(_target) return false end, action)
+				self:chooseTarget(menu, target, v.unusable, action)
 			end
 		end
 		table.insert(self.options, {Layout.Text(option), choose = fun})

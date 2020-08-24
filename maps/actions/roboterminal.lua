@@ -125,6 +125,12 @@ return function(scene)
 			end)
 		}
 	else
-		return PlayAudio("music", "openingmission2", 1.0, true, true)
+		return Serial {
+			PlayAudio("music", "openingmission2", 1.0, true, true),
+			Wait(2),
+			Do(function()
+				scene.objectLookup.Swatbot3.ignorePlayer = false
+			end)
+		}
 	end
 end

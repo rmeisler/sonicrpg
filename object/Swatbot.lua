@@ -22,12 +22,13 @@ local Player = require "object/Player"
 local Swatbot = class(Bot)
 
 function Swatbot:construct(scene, layer, object)
-	Bot.init(self, true)
-	
-	self.collision = {}
 	if self:isRemoved() then
 		return
 	end
+	
+	Bot.init(self, true)
+	
+	self.collision = {}
 	
 	self.hotspotOffsets = {
 		right_top = {x = -20, y = self.sprite.h + 30},

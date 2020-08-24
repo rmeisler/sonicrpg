@@ -8,6 +8,10 @@ local Bot = require "object/Bot"
 local Ratbot = class(Bot)
 
 function Ratbot:construct(scene, layer, object)
+	if self:isRemoved() then
+		return
+	end
+
 	self.udflashlight:remove()
 	self.lrflashlight:remove()
 	

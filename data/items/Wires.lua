@@ -5,5 +5,6 @@ return {
 	desc = "Some scrap bot parts",
 	target = TargetType.Party,
 	icon = "icon_item",
-	usableFromMenu = false
+	usableFromMenu = false,
+	usableFromBattle = false
 }

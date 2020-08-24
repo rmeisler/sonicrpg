@@ -104,6 +104,10 @@ function Bot:exit()
 end
 
 function Bot:postInit()
+	if self:isRemoved() then
+		return
+	end
+
 	self:run(self:followActions())
 
 	if self.object.properties.ignoreCollision then

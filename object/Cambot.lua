@@ -6,6 +6,10 @@ local Bot = require "object/Bot"
 local Cambot = class(Bot)
 
 function Cambot:construct(scene, layer, object)
+	if self:isRemoved() then
+		return
+	end
+
 	self.udflashlight:remove()
 	self.lrflashlight:remove()
 

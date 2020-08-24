@@ -40,10 +40,6 @@ return {
 	
 		-- If there's less than 3 opponents (cambot + 2 swatbots), spawn another swatbot
 		if #self.scene.opponents < 3 then
-			self.scene.nextOpponentOverride = self.index
-			self.scene.opponentTurns = 0
-			self.scene.maxOpponentTurns = 1
-
 			return Serial {
 				Telegraph(self, "Intruder alert!", {255,255,255,50}),
 				Do(function()
@@ -67,9 +63,6 @@ return {
 				end
 			end
 			
-			-- End turns of other monsters
-			self.scene.currentOpponent = self.index
-			
 			self.controlLinkEstablished = true
 			
 			local monicker = {
@@ -87,10 +80,6 @@ return {
 	end,
 	
 	onDead = function(self)
-		self.scene.nextOpponentOverride = nil
-		self.scene.currentOpponent = 1
-		self.scene.maxOpponentTurns = #self.scene.opponents -- Minus one because cambot is dead
-		self.scene.opponentTurns = self.scene.maxOpponentTurns
 		if self.controlLinkEstablished then
 			return MessageBox {message="Cambot control link broken!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1), blocking=true}
 		else
