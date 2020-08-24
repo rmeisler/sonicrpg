@@ -73,7 +73,8 @@ return function(self, mainMenu)
 				Layout.Text(record.item.name),
 				Layout.Text{text=tostring(record.count), color={255,255,0,255}},
 				choose = chooseFun,
-				desc = record.item.desc
+				desc = record.item.desc,
+				noChooseSfx = not record.item.usableFromBattle
 			}
 		)
 	end

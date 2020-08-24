@@ -57,7 +57,7 @@ return function(self, mainMenu)
 					self:chooseTarget(
 						menu,
 						skill.target,
-						function(_target) return false end,
+						skill.unusable or function(_target) return false end,
 						function(self, target)
 							self.sp = math.max(self.sp - skill.cost, 0)
 							menu:close()

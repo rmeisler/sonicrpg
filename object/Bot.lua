@@ -214,16 +214,16 @@ end
 
 function Bot:getInitiative()
 	if self.scene.player:isFacing(self.facing) then
-		if ((self.facing == "left"  and self.x + self.sprite.w*2 > self.scene.player.x + self.scene.player.sprite.w*2) or
+		if ((self.facing == "left"  and (self.x + self.sprite.w*2) > (self.scene.player.x + self.scene.player.sprite.w*2)) or
 		    (self.facing == "right" and self.x < self.scene.player.x) or
-		    (self.facing == "up"    and self.y + self.sprite.h*2 > self.scene.player.y + self.scene.player.sprite.h*2) or
-		    (self.facing == "down"  and self.y + self.sprite.h*2 < self.scene.player.y + self.scene.player.sprite.h*2))
+		    (self.facing == "up"    and (self.y + self.sprite.h*2) > (self.scene.player.y + self.scene.player.sprite.h*2)) or
+		    (self.facing == "down"  and (self.y + self.sprite.h*2) < (self.scene.player.y + self.scene.player.sprite.h*2)))
 		then
 			return "opponent"
-		elseif ((self.facing == "left"  and self.x + self.sprite.w*2 < self.scene.player.x + self.scene.player.sprite.w*2) or
+		elseif ((self.facing == "left"  and (self.x + self.sprite.w*2) < (self.scene.player.x + self.scene.player.sprite.w*2)) or
 				(self.facing == "right" and self.x > self.scene.player.x) or
-				(self.facing == "up"    and self.y + self.sprite.h*2 < self.scene.player.y + self.scene.player.sprite.h*2) or
-				(self.facing == "down"  and self.y + self.sprite.h*2 > self.scene.player.y + self.scene.player.sprite.h*2))
+				(self.facing == "up"    and (self.y + self.sprite.h*2) < (self.scene.player.y + self.scene.player.sprite.h*2)) or
+				(self.facing == "down"  and (self.y + self.sprite.h*2) > (self.scene.player.y + self.scene.player.sprite.h*2)))
 		then
 			return "player"
 		end
@@ -600,14 +600,16 @@ function Bot:baseUpdate(dt)
 	
 	self.facingTime = self.facingTime + dt
 	
-	self.visualColliders.up.x = self.x + math.max(self.sprite.w*2 - self.visualColliders.up.sprite.w*3, 0)
-	self.visualColliders.up.y = self.y - 32 * 8 + self.sprite.h*2 - 32
-	self.visualColliders.down.x = self.x + math.max(self.sprite.w*2 - self.visualColliders.down.sprite.w*3, 0)
-	self.visualColliders.down.y = self.y + self.sprite.h*2
-	self.visualColliders.left.x = self.x - 32 * 8
-	self.visualColliders.left.y = self.y + self.sprite.h
-	self.visualColliders.right.x = self.x + self.sprite.w*2
-	self.visualColliders.right.y = self.y + self.sprite.h
+	if self.visualColliders then
+		self.visualColliders.up.x = self.x + math.max(self.sprite.w*2 - self.visualColliders.up.sprite.w*3, 0)
+		self.visualColliders.up.y = self.y - 32 * 8 + self.sprite.h*2 - 32
+		self.visualColliders.down.x = self.x + math.max(self.sprite.w*2 - self.visualColliders.down.sprite.w*3, 0)
+		self.visualColliders.down.y = self.y + self.sprite.h*2
+		self.visualColliders.left.x = self.x - 32 * 8
+		self.visualColliders.left.y = self.y + self.sprite.h
+		self.visualColliders.right.x = self.x + self.sprite.w*2
+		self.visualColliders.right.y = self.y + self.sprite.h
+	end
 	
 	if self:isFacing("up") and self.facing ~= "up" then
 		self.facing = "up"

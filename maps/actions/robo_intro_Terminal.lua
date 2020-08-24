@@ -55,10 +55,12 @@ return function(self)
 						ghost = true,
 						sprite = "art/sprites/swatbot.png",
 						noInvestigate = true,
-						ignoreMapCollision = true
+						ignoreMapCollision = true,
+						visibleDistance = 0
 					}
 				}
 			)
+			self.scene.swatbot1:postInit()
 			self.scene:addObject(self.scene.swatbot1)
 			self.scene.swatbot1.sprite:setAnimation("idledown")
 			self.scene.swatbot1.sprite.color[4] = 0
@@ -69,7 +71,6 @@ return function(self)
 					self.scene.swatbot1.forceSee = true
 				end)
 			}
-			self.scene.swatbot1:postInit()
 			self.scene.swatbot2 = Swatbot(
 				self.scene,
 				{name = "objects"},
@@ -83,10 +84,12 @@ return function(self)
 						ghost = true,
 						sprite = "art/sprites/swatbot.png",
 						noInvestigate = true,
-						ignoreMapCollision = true
+						ignoreMapCollision = true,
+						visibleDistance = 0
 					}
 				}
 			)
+			self.scene.swatbot2:postInit()
 			self.scene:addObject(self.scene.swatbot2)
 			self.scene.swatbot2.sprite:setAnimation("idledown")
 			self.scene.swatbot2.sprite.color[4] = 0
@@ -97,7 +100,6 @@ return function(self)
 					self.scene.swatbot2.forceSee = true
 				end)
 			}
-			self.scene.swatbot2:postInit()
 		end),
 		Wait(1),
 		Do(function()

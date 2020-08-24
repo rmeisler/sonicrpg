@@ -377,7 +377,7 @@ function Player:keytriggered(key)
 end
 
 function Player:onChangeChar()
-	if self.doingSpecialMove or self.doingChangeChar or self.cinematic then
+	if self.doingSpecialMove or self.doingChangeChar or self.cinematic or self.cinematicStack > 0 then
 		return
 	end	
 	

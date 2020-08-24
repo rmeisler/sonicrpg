@@ -31,7 +31,7 @@ return function(scene)
 	
 	if (GameState:isFlagSet("b_speech") or
 		GameState:isFlagSet("met_b")) and
-		not scene.objectLookup.B
+		not scene.objectLookup.b
 	then
 		local placeNPC = function(id, x, y, sprite, anim, interact, height, offsetY)
 			scene.objectLookup[id] = BasicNPC(

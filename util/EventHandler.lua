@@ -41,9 +41,6 @@ end
 
 function EventHandler:unfocus(type)
 	table.remove(self.focusStack[type], 1)
-	if type == "keytriggered" then
-		print("popping from focus stack ")
-	end
 end
 
 function EventHandler:invoke(type, ...)
@@ -73,7 +70,6 @@ function EventHandler:invoke(type, ...)
 			end
 			
 			if result then
-				print "squash next event handler"
 				return
 			end
         end
