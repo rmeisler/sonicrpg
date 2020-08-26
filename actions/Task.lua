@@ -26,6 +26,7 @@ end
 
 function Task:update(dt)
 	if not self.sent then
+		print("Loaded "..tostring(self.message.type).." "..tostring(self.message.file)..". Processing...")
 		love.thread.getChannel("threadin"):push(self.message)
 		self.sent = true
 	end
@@ -37,7 +38,11 @@ function Task:update(dt)
 	local res = channel:peek()
 	if res and res.id == self.message.id then
 		channel:pop()
+		print("Loaded "..tostring(self.message.type).." "..tostring(self.message.file)..". Processing...")
+		
 		self[res.type.."_callback"](self, res)
+		
+		print("Processed "..tostring(self.message.type).." "..tostring(self.message.file)..".")
 		self.done = true
 	end
 end

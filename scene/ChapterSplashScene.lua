@@ -63,7 +63,15 @@ function ChapterSplashScene:loadingAnimation(tasks)
 			},
 
 			-- Loads maps, images, sounds
-			Parallel(tasks),
+			Serial {
+				Do(function()
+					print("Loading tasks...")
+				end),
+				Parallel(tasks),
+				Do(function()
+					print("All tasks loaded.")
+				end)
+			},
 			
 			-- Fade in screen
 			Ease(self.bgColor, 1, 255, 1),

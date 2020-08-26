@@ -131,6 +131,7 @@ Ibeh Dubem/Flame-The-Hedgehog
 Reggie Meisler/RedG
 Unstoppable Thombo
 Damien
+Anya Stocks/Frostdrop1
 E-122-Psi
 
 [Tiles]
@@ -171,7 +172,7 @@ Jacob Berkley/Adventure Master 18
 Mister Acidic
 Captain Jotaro
 sonicevan
-Flame the hedgehog
+Ibeh Dubem/Flame-The-Hedgehog
 Rocks the Squirrel
 Zero Neoz
 Joey "The Plokman" Tripp Nimmo
@@ -205,13 +206,6 @@ The character of "T" (Tinker) is dedicated to
 
   Rest in piece my Senegal Parrot brother,
          we'll never forget you.
-
-
-		 
-		 
-		 
-		 
-		 
 		 
 		 
 		 
