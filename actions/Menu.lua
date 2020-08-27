@@ -337,7 +337,6 @@ function Menu:closeDesc()
 end
 
 function Menu:showDesc()
-	print(self.tag)
 	local prop = (self.properties and self.properties[self.selectedCol]) and self.properties[self.selectedCol][self.selectedRow]
 	if prop and prop.desc then
 		local descBox = DescBox(prop.desc)

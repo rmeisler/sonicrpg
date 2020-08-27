@@ -115,7 +115,6 @@ Reggie Meisler/RedG
 [Music]
 Reggie Meisler/RedG
 Michael Tavera
-Edan Koch
 
 [Sound]
 Anya Stocks/Frostdrop1
@@ -196,6 +195,7 @@ Audacity
 Fans United for SatAM
 Sea3on
 Jacob Berkley/Adventure Master 18
+
 
 
 

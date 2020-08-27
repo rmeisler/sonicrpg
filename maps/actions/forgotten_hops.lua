@@ -30,6 +30,7 @@ local TARGET_OFFSET_X = 400
 
 return function(scene)
 	if GameState:isFlagSet("fogotten_hops") then
+		scene.audio:stopSfx("fan")
 		return Action()
 	end
 

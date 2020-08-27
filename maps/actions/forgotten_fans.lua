@@ -30,6 +30,8 @@ local TARGET_OFFSET_X = 400
 
 return function(scene)
 	if GameState:isFlagSet("forgotten_fans") then
+		scene.audio:playSfx("fan", 0.6)
+		scene.audio:setLooping("sfx", true)
 		return Action()
 	end
 

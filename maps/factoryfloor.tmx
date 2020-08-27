@@ -491,7 +491,7 @@ end</property>
     <property name="visibleDistance" type="int" value="200"/>
    </properties>
   </object>
-  <object id="142" name="Exit" type="SceneEdge" gid="1227" x="544" y="5440" width="288" height="32">
+  <object id="142" name="Exit" type="SceneEdge" gid="1227" x="544" y="5472" width="224" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>

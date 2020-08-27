@@ -56,7 +56,7 @@ function EscapePlayer:update(dt)
 		self.animationStack = {}
 	end
 	
-	if self.blocked or not self.scene:playerMovable() then
+	if self.blocked or not self.scene:playerMovable() or self.scene.playerDead then
 		return
 	end
 	
@@ -278,93 +278,100 @@ function EscapePlayer:dodgeLaser()
 end
 
 function EscapePlayer:hitByLaser()
-	return Serial {
-		Do(function()
-			self.cinematic = true
-			self.noDust = true
-			self.noGas = true
-			self.origY = self.y
-		end),
-		-- Shock sfx and anim
-		PlayAudio("sfx", "shocked", nil, true),
-		Animate(self.sprite, "ouchright"),
-		
-		Parallel {
-			-- Blink
-			Repeat(Serial {
-				Do(function()
-					self.sprite:setInvertedColor()
-				end),
-				Wait(0.1),
-				Do(function()
-					self.sprite:removeInvertedColor()
-				end),
-				Wait(0.1),
-			}, 5),
+	return While(
+		function()
+			return not self.scene.playerDead
+		end,
+		Serial {
+			Do(function()
+				self.cinematic = true
+				self.noDust = true
+				self.noGas = true
+				self.origY = self.y
+			end),
+			-- Shock sfx and anim
+			PlayAudio("sfx", "shocked", nil, true),
+			Animate(self.sprite, "ouchright"),
 			
-			-- Hop
-			Serial {
-				Ease(self, "y", function() return self.origY - 100 end, 8, "quad"),
-				Wait(0.1),
+			Parallel {
+				-- Blink
+				Repeat(Serial {
+					Do(function()
+						self.sprite:setInvertedColor()
+					end),
+					Wait(0.1),
+					Do(function()
+						self.sprite:removeInvertedColor()
+					end),
+					Wait(0.1),
+				}, 5),
 				
-				Do(function()
-					self.noDust = false
-				end),
-				Ease(self, "y", function() return self.origY end, 8, "quad"),
-				Wait(0.1),
-				Do(function()
-					self.noDust = true
-				end),
-				
-				Ease(self, "y", function() return self.origY - 60 end, 11, "quad"),
-				Wait(0.1),
-				
-				Do(function()
-					self.noDust = false
-				end),
-				Ease(self, "y", function() return self.origY end, 13, "quad"),
-				Wait(0.1),				
-				Do(function()
-					self.noDust = true
-				end),
+				-- Hop
+				Serial {
+					Ease(self, "y", function() return self.origY - 100 end, 8, "quad"),
+					Wait(0.1),
+					
+					Do(function()
+						self.noDust = false
+					end),
+					Ease(self, "y", function() return self.origY end, 8, "quad"),
+					Wait(0.1),
+					Do(function()
+						self.noDust = true
+					end),
+					
+					Ease(self, "y", function() return self.origY - 60 end, 11, "quad"),
+					Wait(0.1),
+					
+					Do(function()
+						self.noDust = false
+					end),
+					Ease(self, "y", function() return self.origY end, 13, "quad"),
+					Wait(0.1),				
+					Do(function()
+						self.noDust = true
+					end),
 
-				Ease(self, "y", function() return self.origY - 40 end, 13, "quad"),
-				Wait(0.1),
+					Ease(self, "y", function() return self.origY - 40 end, 13, "quad"),
+					Wait(0.1),
+					
+					Do(function()
+						self.noDust = false
+					end),
+					Ease(self, "y", function() return self.origY end, 13, "quad"),
+					Wait(0.2)
+				},
 				
-				Do(function()
-					self.noDust = false
-				end),
-				Ease(self, "y", function() return self.origY end, 13, "quad"),
-				Wait(0.2)
+				Ease(self, "fx", 7, 0.8, "quad")
 			},
 			
-			Ease(self, "fx", 7, 0.8, "quad")
-		},
-		
-		Do(function()
-			self.by = 0
-			self.fy = 0
-			self.noGas = false
-			self.noDust = false
-			self.cinematic = false
-			self.origY = nil
-		end),
-		Parallel {
-			YieldUntil(
-				function()
-					return self.x > self.scene.objectLookup.hoverbot1.x + self.hoverbotOffset
-				end
-			),
 			Do(function()
-				self.bigDust = true
-				self.stateOverride = "juicecrouchright"
-				self.extraBx = 10
+				self.by = 0
+				self.fy = 0
+				self.noGas = false
+				self.noDust = false
+				self.cinematic = false
+				self.origY = nil
+			end),
+			Parallel {
+				YieldUntil(
+					function()
+						return self.x > self.scene.objectLookup.hoverbot1.x + self.hoverbotOffset
+					end
+				),
+				Do(function()
+					self.bigDust = true
+					self.stateOverride = "juicecrouchright"
+					self.extraBx = 10
+				end)
+			},
+			Do(function()
+				self.cinematic = false
 			end)
 		},
 		Do(function()
-			self.cinematic = false
 		end)
-	}
+	)
 end
 
 function EscapePlayer:die()

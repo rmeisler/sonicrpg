@@ -637,6 +637,7 @@ end</property>
     <property name="ignorePlayer" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="notAntoineTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/rover.png"/>
    </properties>
   </object>

@@ -517,6 +517,7 @@ return {
             ["ignorePlayer"] = true,
             ["noInvestigate"] = true,
             ["nocollision"] = true,
+            ["notAntoineTargetable"] = true,
             ["sprite"] = "../art/sprites/rover.png"
           }
         },

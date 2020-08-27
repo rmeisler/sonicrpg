@@ -251,18 +251,6 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/avatar/bunnyavatar.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/bunny.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/bunnybattle.png"
-	},
-	{
-		type = "image",
 		file = "art/sprites/mechaarmbattle.png"
 	},
 	{

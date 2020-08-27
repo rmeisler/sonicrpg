@@ -63,6 +63,7 @@ return function(scene)
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
 	scene.player.cinematic = true
+	scene.player.cinematicStack = scene.player.cinematicStack + 1
 	scene.player.dontfuckingmove = true
 	
 	scene.ignorePlayer = true
@@ -349,6 +350,7 @@ return function(scene)
 			scene.player.cinematic = false
 			scene.player.dontfuckingmove = false
 			scene.objectLookup.Swatbot1.ignorePlayer = false
+			scene.player.cinematicStack = 0
 			
 			GameState:setFlag("robo_intro2_done")
 		end)
