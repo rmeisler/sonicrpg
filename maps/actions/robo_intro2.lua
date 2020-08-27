@@ -145,6 +145,8 @@ return function(scene)
 					scene.player.sprite.visible = true
 					scene.player.dropShadow.sprite.visible = true
 					scene.player.state = "hidedown"
+					
+					cambot:remove()
 				end),
 					
 				Parallel {

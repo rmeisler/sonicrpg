@@ -124,7 +124,9 @@ return function(self)
 				self.scene.swatbot1:removeCollision()
 				self.scene.swatbot2:removeCollision()
 				print("removed swatbots")
-			end)
+			end),
+			initiative = "opponent",
+			prevMusic = "patrol"
 		}
 	}
 end

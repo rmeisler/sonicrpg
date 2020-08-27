@@ -403,7 +403,7 @@
     <property name="sprite" type="file" value="../art/sprites/mechaarm.png"/>
    </properties>
   </object>
-  <object id="244" name="Hop" type="HopTrigger" gid="1227" x="800" y="2176" width="32" height="288">
+  <object id="244" name="Hop" type="HopTrigger" gid="1227" x="800" y="2112" width="32" height="224">
    <properties>
     <property name="left" type="bool" value="true"/>
    </properties>
@@ -413,7 +413,7 @@
     <property name="left" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="247" name="Hop" type="HopTrigger" gid="1227" x="576" y="1984" width="32" height="96">
+  <object id="247" name="Hop" type="HopTrigger" gid="1227" x="576" y="1952" width="32" height="64">
    <properties>
     <property name="left" type="bool" value="true"/>
    </properties>
@@ -473,7 +473,7 @@
     <property name="right" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="261" name="Hop" type="HopTrigger" gid="1227" x="544" y="1984" width="32" height="96">
+  <object id="261" name="Hop" type="HopTrigger" gid="1227" x="544" y="1952" width="32" height="64">
    <properties>
     <property name="right" type="bool" value="true"/>
    </properties>
@@ -568,7 +568,7 @@
     <property name="up" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="294" name="Hop" type="HopTrigger" gid="1227" x="768" y="2176" width="32" height="288">
+  <object id="294" name="Hop" type="HopTrigger" gid="1227" x="768" y="2112" width="32" height="224">
    <properties>
     <property name="right" type="bool" value="true"/>
    </properties>
@@ -677,15 +677,6 @@ end</property>
     <property name="battle" type="file" value="../data/monsters/mechaarm.lua"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="facing" value="right"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/mechaarm.png"/>
-   </properties>
-  </object>
-  <object id="319" name="MechaArm3" type="MechaArm" gid="1227" x="1216" y="864" width="32" height="32">
-   <properties>
-    <property name="battle" type="file" value="../data/monsters/mechaarm.lua"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="facing" value="left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/mechaarm.png"/>
    </properties>

@@ -1284,10 +1284,11 @@ return {
           gid = 1227,
           visible = true,
           properties = {
+            ["actions"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    if GameState:isFlagSet(self) then\n        self.sprite:setAnimation(\"open\")\n        self:removeCollision()\n    end\n    return Action()\nend\n",
             ["align"] = "bottom_left",
             ["defaultAnim"] = "closed",
             ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self)\n    self.scene.player:removeKeyHint()\n    return MessageBox {message = \"Locked.\", blocking = true}\nend\n",
-            ["onPuzzleSolve"] = "local Serial = require \"actions/Serial\"\nlocal Animate = require \"actions/Animate\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    return Serial {\n        PlayAudio(\"sfx\", \"openchasm\", 1.0, true),\n        Animate(self.sprite, \"opening\"),\n        Animate(self.sprite, \"open\"),\n        Do(function()\n            self:removeCollision()\n        end)\n    }\nend",
+            ["onPuzzleSolve"] = "local Serial = require \"actions/Serial\"\nlocal Animate = require \"actions/Animate\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    return Serial {\n        PlayAudio(\"sfx\", \"openchasm\", 1.0, true),\n        Animate(self.sprite, \"opening\"),\n        Animate(self.sprite, \"open\"),\n        Do(function()\n            GameState:setFlag(self)\n            self:removeCollision()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/door3.png"
           }
         },

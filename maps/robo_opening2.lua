@@ -2261,7 +2261,7 @@ return {
             ["key"] = "up",
             ["orientation"] = "down",
             ["scene"] = "roboterminal.lua",
-            ["spawn_point"] = "Spawn 1"
+            ["spawn_point"] = "Exit2"
           }
         },
         {

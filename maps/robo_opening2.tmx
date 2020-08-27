@@ -1115,7 +1115,7 @@ end
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>
     <property name="scene" type="file" value="roboterminal.lua"/>
-    <property name="spawn_point" value="Spawn 1"/>
+    <property name="spawn_point" value="Exit2"/>
    </properties>
   </object>
   <object id="225" name="Cambot2" type="Cambot" gid="37" x="1344" y="1696" width="32" height="32">

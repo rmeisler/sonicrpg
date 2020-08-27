@@ -789,6 +789,16 @@ end</property>
   </object>
   <object id="218" name="UpperDoor" type="BasicNPC" gid="1227" x="1696" y="512" width="128" height="32">
    <properties>
+    <property name="actions">local Action = require &quot;actions/Action&quot;
+
+return function(self)
+    if GameState:isFlagSet(self) then
+        self.sprite:setAnimation(&quot;open&quot;)
+        self:removeCollision()
+    end
+    return Action()
+end
+</property>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="closed"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
@@ -813,6 +823,7 @@ return function(self)
         Animate(self.sprite, &quot;opening&quot;),
         Animate(self.sprite, &quot;open&quot;),
         Do(function()
+            GameState:setFlag(self)
             self:removeCollision()
         end)
     }
