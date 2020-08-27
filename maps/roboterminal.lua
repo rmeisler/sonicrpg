@@ -8,7 +8,7 @@ return {
   height = 38,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 102,
+  nextobjectid = 104,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/roboterminal.lua",
@@ -654,6 +654,50 @@ return {
             ["ghost"] = true,
             ["showOn"] = "Switch1",
             ["specialHint"] = "antoine"
+          }
+        },
+        {
+          id = 102,
+          name = "Exit1.2",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 736,
+          y = 480,
+          width = 224,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["key"] = "up",
+            ["orientation"] = "down",
+            ["scene"] = "factoryfloor.lua",
+            ["spawn_point"] = "Exit",
+            ["walkin"] = true
+          }
+        },
+        {
+          id = 103,
+          name = "Exit1.3",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 736,
+          y = 448,
+          width = 224,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["key"] = "up",
+            ["orientation"] = "down",
+            ["scene"] = "factoryfloor.lua",
+            ["spawn_point"] = "Exit",
+            ["walkin"] = true
           }
         }
       }

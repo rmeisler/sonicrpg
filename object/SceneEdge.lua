@@ -93,7 +93,7 @@ function SceneEdge:goToScene()
 	-- Spawn offset based on whether this is a horizontal, vertical, or single-tile (do nothing) exit
 	local spawnOffset = Transform()
 	if self.object.width > self.object.height then
-		spawnOffset.x = self.scene.player.x - self.object.x
+		spawnOffset.x = math.max(0, self.scene.player.x - self.object.x - self.scene:getTileWidth())
 	elseif self.object.height > self.object.width then
 		spawnOffset.y = self.scene.player.y - self.object.y
 	end
