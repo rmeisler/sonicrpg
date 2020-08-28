@@ -306,5 +306,21 @@ return {
 				end)
 			}
 		end
+	end,
+	
+	getIdleAnim = function(self)
+		if self.state == "upright" or self.state == "transition_to_upright" then
+			return "upright"
+		else
+			return "idle"
+		end
+	end,
+	
+	getBackwardAnim = function(self)
+		if self.state == "upright" or self.state == "transition_to_upright" then
+			return "uprightbackward"
+		else
+			return "backward"
+		end
 	end
 }

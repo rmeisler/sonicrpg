@@ -232,6 +232,22 @@ return {
 		end
 	end,
 	
+	getIdleAnim = function(self)
+		if self.grabbing then
+			return "grab"
+		else
+			return "idle"
+		end
+	end,
+	
+	getBackwardAnim = function(self)
+		if self.grabbing then
+			return "grab"
+		else
+			return "backward"
+		end
+	end,
+	
 	onDead = function(self)
 		return Do(
 			function()

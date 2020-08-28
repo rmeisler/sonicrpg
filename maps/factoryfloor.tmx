@@ -407,7 +407,9 @@ return function(self)
         return Action()
     end
 
+        self.scene.player.x = self.x + self.sprite.w
         local walkout, walkin, sprites = self.scene.player:split()
+
         return Serial {
             Wait(1),
             MessageBox { message = &quot;Nicole: I am unable to override the security protocol{p40}, Sally.&quot;, textSpeed = 4, blocking = true, sfx = &quot;error&quot;},
@@ -997,6 +999,7 @@ end</property>
     <property name="actions">local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Move = require &quot;actions/Move&quot;
+local SimpleMove = require &quot;actions/SimpleMove&quot;
 local Animate = require &quot;actions/Animate&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Action = require &quot;actions/Action&quot;
@@ -1016,9 +1019,9 @@ return function(self)
                 conveyor3Action = Serial {
                     Parallel {
                         Serial {
-                            Move(self, self.scene.objectLookup.ClawWaypoint1),
-                            Move(self, self.scene.objectLookup.ClawWaypoint2),
-                            Move(self, self.scene.objectLookup.ClawWaypoint3)
+                            SimpleMove(self, &quot;left&quot;, 658),
+                            SimpleMove(self, &quot;down&quot;, 1400),
+                            SimpleMove(self, &quot;right&quot;, 736),
                         },
                         Do(function()
                             local grabbed = self.scene.objectLookup.ClawTemplate3
@@ -1041,10 +1044,9 @@ return function(self)
                             end)
                         },
                         Serial {
-                            Move(self, self.scene.objectLookup.ClawWaypoint3),
-                            Move(self, self.scene.objectLookup.ClawWaypoint2),
-                            Move(self, self.scene.objectLookup.ClawWaypoint1),
-                            Move(self, self.scene.objectLookup.ClawWaypoint0)
+                            SimpleMove(self, &quot;left&quot;, 658),
+                            SimpleMove(self, &quot;up&quot;, 1312),
+                            SimpleMove(self, &quot;right&quot;, 1056)
                         }
                     },
                     Do(function()

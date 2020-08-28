@@ -21,6 +21,10 @@ return {
             frames = {{0,0}}
         },
 		
+		uprightbackward = {
+			frames = {{4,0}}
+		},
+		
 		transition = {
 			frames = {{1,0}, {0,0},{1,0}, {0,0},{1,0}, {0,0},{1,0}, {0,0},{1,0}, {0,0},{1,0}, {0,0}},
 			speed = 0.05

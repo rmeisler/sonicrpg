@@ -28,7 +28,7 @@ return function(self, target)
 			Do(function()
 				self.sprite.prevSortOrderY = self.sprite.sortOrderY
 				self.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h*2 - self.sprite.h*2 - 100
-				target.sprite:setAnimation("idle")
+				target.sprite:setAnimation(target:getIdleAnim())
 			end),
 			Parallel {
 				Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h*2, 20, "inout"),
@@ -48,7 +48,7 @@ return function(self, target)
 			PlayAudio("sfx", "sonicrunturn", 1.0, true),
 			
 			Do(function()
-				target.sprite:setAnimation("backward")
+				target.sprite:setAnimation(target:getBackwardAnim())
 			end),
 			
 			Parallel {

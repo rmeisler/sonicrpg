@@ -71,9 +71,9 @@ end
 function love.keypressed(key, uni)
 	if key == "tab" then
 		if not fullScreen then
-			love.window.setMode(800, 600, {fullscreen = true, fullscreentype = "exclusive"})
+			love.window.setFullscreen(true, "exclusive")
 		else
-			love.window.setMode(800, 600, {fullscreen = false, fullscreentype = "desktop"})
+			love.window.setFullscreen(false, "desktop")
 		end
 		fullScreen = not fullScreen
 	end

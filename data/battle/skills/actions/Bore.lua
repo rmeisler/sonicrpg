@@ -37,7 +37,8 @@ return function(self, targets)
 				Do(function()
 					target.sweatdrop:remove()
 					target.lostTurns = target.lostTurns + 1
-					target.sprite:setAnimation("backward")
+					
+					target.sprite:setAnimation(target:getBackwardAnim())
 				end)
 			}
 		)

@@ -8,7 +8,7 @@ return {
   height = 83,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 324,
+  nextobjectid = 327,
   properties = {
     ["battlebg"] = "../art/backgrounds/forgotten.png",
     ["onload"] = "actions/forgotten_hops.lua",
@@ -1404,6 +1404,66 @@ return {
           visible = true,
           properties = {
             ["orientation"] = "up"
+          }
+        },
+        {
+          id = 324,
+          name = "Exit2.1",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 672,
+          y = 0,
+          width = 320,
+          height = 32,
+          rotation = 0,
+          gid = 3564,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["key"] = "up",
+            ["orientation"] = "down",
+            ["scene"] = "forgotten2.lua",
+            ["spawn_point"] = "Exit1"
+          }
+        },
+        {
+          id = 325,
+          name = "Exit2.2",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 672,
+          y = 64,
+          width = 320,
+          height = 32,
+          rotation = 0,
+          gid = 3564,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["key"] = "up",
+            ["orientation"] = "down",
+            ["scene"] = "forgotten2.lua",
+            ["spawn_point"] = "Exit1"
+          }
+        },
+        {
+          id = 326,
+          name = "Exit1.1",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 832,
+          y = 2624,
+          width = 96,
+          height = 32,
+          rotation = 0,
+          gid = 3564,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["key"] = "down",
+            ["orientation"] = "up",
+            ["scene"] = "forgottenstart.lua",
+            ["spawn_point"] = "Exit1"
           }
         }
       }

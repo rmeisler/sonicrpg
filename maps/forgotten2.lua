@@ -8,7 +8,7 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 232,
+  nextobjectid = 236,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_fans.lua",
@@ -788,22 +788,6 @@ return {
           }
         },
         {
-          id = 195,
-          name = "Waypoint9",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 800,
-          y = -96,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
           id = 196,
           name = "Waypoint0",
           type = "BasicNPC",
@@ -1301,6 +1285,82 @@ return {
           gid = 3522,
           visible = true,
           properties = {}
+        },
+        {
+          id = 232,
+          name = "Exit2.1",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 736,
+          y = 32,
+          width = 160,
+          height = 32,
+          rotation = 180,
+          gid = 1073745388,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["key"] = "up",
+            ["orientation"] = "down",
+            ["scene"] = "forgotten3.lua",
+            ["spawn_point"] = "Spawn 1"
+          }
+        },
+        {
+          id = 233,
+          name = "Exit1.2",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 672,
+          y = 2656,
+          width = 320,
+          height = 32,
+          rotation = 0,
+          gid = 3564,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["key"] = "down",
+            ["orientation"] = "up",
+            ["scene"] = "forgotten1.lua",
+            ["spawn_point"] = "Exit2"
+          }
+        },
+        {
+          id = 234,
+          name = "Waypoint9",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 800,
+          y = -32,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 235,
+          name = "Exit2.2",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 736,
+          y = -32,
+          width = 160,
+          height = 32,
+          rotation = 180,
+          gid = 1073745388,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["key"] = "up",
+            ["orientation"] = "down",
+            ["scene"] = "forgotten3.lua",
+            ["spawn_point"] = "Spawn 1"
+          }
         }
       }
     },
