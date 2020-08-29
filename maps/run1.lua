@@ -46,6 +46,18 @@ return {
   },
   layers = {
     {
+      type = "imagelayer",
+      name = "Parallax",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = -96,
+      image = "../art/parallax/sky.png",
+      properties = {
+        ["type"] = "Parallax"
+      }
+    },
+    {
       type = "tilelayer",
       name = "Ground",
       x = 0,

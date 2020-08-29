@@ -994,7 +994,7 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="144" name="Claw" type="BasicNPC" gid="1227" x="1056" y="1344" width="32" height="32">
+  <object id="144" name="Claw" type="BasicNPC" gid="1227" x="1056" y="1302" width="32" height="32">
    <properties>
     <property name="actions">local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
@@ -1045,7 +1045,7 @@ return function(self)
                         },
                         Serial {
                             SimpleMove(self, &quot;left&quot;, 658),
-                            SimpleMove(self, &quot;up&quot;, 1312),
+                            SimpleMove(self, &quot;up&quot;, 1302),
                             SimpleMove(self, &quot;right&quot;, 1056)
                         }
                     },
@@ -1059,9 +1059,9 @@ return function(self)
                 conveyor2Action = Serial {
                     Parallel {
                         Serial {
-                            Move(self, self.scene.objectLookup.ClawWaypoint1),
-                            Move(self, self.scene.objectLookup.ClawWaypoint4),
-                            Move(self, self.scene.objectLookup.ClawWaypoint5)
+                            SimpleMove(self, &quot;left&quot;, 658),
+                            SimpleMove(self, &quot;down&quot;, 1910),
+                            SimpleMove(self, &quot;left&quot;, 578),
                         },
                         Do(function()
                             local grabbed = self.scene.objectLookup.ClawTemplate2
@@ -1084,10 +1084,9 @@ return function(self)
                             end),
                         },
                         Serial {
-                            Move(self, self.scene.objectLookup.ClawWaypoint5),
-                            Move(self, self.scene.objectLookup.ClawWaypoint4),
-                            Move(self, self.scene.objectLookup.ClawWaypoint1),
-                            Move(self, self.scene.objectLookup.ClawWaypoint0)
+                            SimpleMove(self, &quot;right&quot;, 658),
+                            SimpleMove(self, &quot;up&quot;, 1302),
+                            SimpleMove(self, &quot;right&quot;, 1056)
                         }
                     },
                     Do(function()
@@ -1100,9 +1099,9 @@ return function(self)
                 conveyor1Action = Serial {
                     Parallel {
                         Serial {
-                            Move(self, self.scene.objectLookup.ClawWaypoint1),
-                            Move(self, self.scene.objectLookup.ClawWaypoint6),
-                            Move(self, self.scene.objectLookup.ClawWaypoint7)
+                            SimpleMove(self, &quot;left&quot;, 658),
+                            SimpleMove(self, &quot;down&quot;, 2262),
+                            SimpleMove(self, &quot;right&quot;, 736),
                         },
                         Do(function()
                             local grabbed = self.scene.objectLookup.ClawTemplate1
@@ -1125,10 +1124,9 @@ return function(self)
                             end),
                         },
                         Serial {
-                            Move(self, self.scene.objectLookup.ClawWaypoint7),
-                            Move(self, self.scene.objectLookup.ClawWaypoint6),
-                            Move(self, self.scene.objectLookup.ClawWaypoint1),
-                            Move(self, self.scene.objectLookup.ClawWaypoint0)
+                            SimpleMove(self, &quot;left&quot;, 658),
+                            SimpleMove(self, &quot;up&quot;, 1302),
+                            SimpleMove(self, &quot;right&quot;, 1056)
                         }
                     },
                     Do(function()
