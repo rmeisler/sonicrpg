@@ -116,7 +116,7 @@ return function(scene)
 	scene.bgColor = {255,255,255,255}
 	ScreenShader:sendColor("multColor", scene.bgColor)
 	
-	scene.player.cinematicStack = 1
+	scene.player.cinematicStack = scene.player.cinematicStack + 1
 	
 	local antoine = scene.objectLookup.Antoine
 	
@@ -229,8 +229,6 @@ return function(scene)
 		
 		Do(function()
 			scene.objectLookup.Switch1:flip()
-			
-			scene.player.cinematicStack = 0
 		end),
 		
 		Wait(1),
@@ -287,6 +285,7 @@ return function(scene)
 			Serial {
 				Move(scene.objectLookup.Rover, scene.objectLookup.Waypoint3, "walk"),
 				Do(function()
+					scene.player.cinematicStack = 0
 					GameState:setFlag("beatboss1")
 				end),
 				
