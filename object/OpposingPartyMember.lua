@@ -265,15 +265,15 @@ function OpposingPartyMember:die()
 	if self.scene.bossBattle and self.boss then
 	
 		local explosions = {}
-		for i=0,50 do
+		for i=0,20 do
 			table.insert(
 				explosions,
 				Serial {
-					Wait(math.max(0, 5 - i/10)),
+					Wait(math.max(0, 5 - i/4)),
 					PlayAudio("sfx", "explosion", 1.0, true),
 					Animate(function()
 						local xform = Transform.from(self.sprite.transform) 
-						return SpriteNode(self.scene, Transform(xform.x - math.random(40,80) + math.random(0,50), xform.y - math.random(40,80) + math.random(0,50), 2, 2), nil, "explosion", nil, nil, "ui"), true
+						return SpriteNode(self.scene, Transform(xform.x - 20 - math.random(40,80) + math.random(0,50), xform.y - math.random(40,80) + math.random(0,50), 2, 2), nil, "explosion", nil, nil, "ui"), true
 					end, "explode")
 				}
 			)
@@ -284,7 +284,10 @@ function OpposingPartyMember:die()
 				extraAnim,
 				Ease(self:getSprite().color, 1, 800, 5),
 				
-				Parallel(explosions),
+				Serial {
+					Wait(1),
+					Parallel(explosions)
+				},
 				
 				Repeat(Serial {
 					PlayAudio("sfx", "bossdie", 1.0, true),
