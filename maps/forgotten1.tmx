@@ -376,20 +376,11 @@
     <property name="spawn_point" value="Exit1"/>
    </properties>
   </object>
-  <object id="175" name="MechaArm5" type="MechaArm" gid="1227" x="32" y="1568" width="32" height="32">
+  <object id="175" name="MechaArm5" type="MechaArm" gid="1227" x="22" y="1568" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/mechaarm.lua"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="facing" value="right"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/mechaarm.png"/>
-   </properties>
-  </object>
-  <object id="176" name="MechaArm4" type="MechaArm" gid="1227" x="416" y="2272" width="32" height="32">
-   <properties>
-    <property name="battle" type="file" value="../data/monsters/mechaarm.lua"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="facing" value="left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/mechaarm.png"/>
    </properties>

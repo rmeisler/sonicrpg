@@ -194,7 +194,7 @@
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="233" name="CHeap1" type="BasicNPC" gid="3112" x="384" y="1152" width="128" height="32">
+  <object id="233" name="CHeap1" type="BasicNPC" gid="3112" x="352" y="1152" width="128" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hideOffset" type="int" value="26"/>
@@ -218,7 +218,7 @@
     <property name="sprite" type="file" value="../art/sprites/heap.png"/>
    </properties>
   </object>
-  <object id="236" name="CHeap4" type="BasicNPC" gid="3112" x="992" y="1152" width="128" height="32">
+  <object id="236" name="CHeap4" type="BasicNPC" gid="3112" x="1024" y="1152" width="128" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hideOffset" type="int" value="26"/>

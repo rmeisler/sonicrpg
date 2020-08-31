@@ -547,7 +547,7 @@ return {
           name = "MechaArm5",
           type = "MechaArm",
           shape = "rectangle",
-          x = 32,
+          x = 22,
           y = 1568,
           width = 32,
           height = 32,
@@ -558,26 +558,6 @@ return {
             ["battle"] = "../data/monsters/mechaarm.lua",
             ["disappearAfterBattle"] = true,
             ["facing"] = "right",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/mechaarm.png"
-          }
-        },
-        {
-          id = 176,
-          name = "MechaArm4",
-          type = "MechaArm",
-          shape = "rectangle",
-          x = 416,
-          y = 2272,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/mechaarm.lua",
-            ["disappearAfterBattle"] = true,
-            ["facing"] = "left",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/mechaarm.png"
           }

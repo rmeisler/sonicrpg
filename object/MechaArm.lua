@@ -12,6 +12,8 @@ local Move = require "actions/Move"
 local PlayAudio = require "actions/PlayAudio"
 local AudioFade = require "actions/AudioFade"
 local BlockInput = require "actions/BlockInput"
+local YieldUntil = require "actions/YieldUntil"
+local Try = require "actions/Try"
 
 local Transform = require "util/Transform"
 
@@ -36,6 +38,20 @@ function MechaArm:construct(scene, layer, object)
 
 	self.facing = object.properties.facing or "right"
 	self.sprite.visible = false
+	
+	self.disturbance = BasicNPC(
+		scene,
+		{name="objects"},
+		{name = "splash", x = self.x - 50, y = self.y + 128, width = 32, height = 32,
+			properties = {
+				nocollision = true,
+				sprite = "art/sprites/lakesplash.png",
+				defaultAnim = "hint",
+				align = NPC.ALIGN_BOTLEFT
+			}
+		}
+	)
+	scene:addObject(self.disturbance)
 	
 	if GameState:isFlagSet(self:getFlag()) then
 		self:removeSceneHandler("update", NPC.update)
@@ -74,10 +90,14 @@ function MechaArm:update(dt)
 	-- If player close enough, leap toward him
 	if self:noticePlayer() == MechaArm.NOTICE_SEE and self.sprite.visible == false then
 	    self.sprite.visible = true
+		self.disturbance.sprite.visible = false
 		
 		local battleArgs = {
 			initiative = "opponent",
-			opponents = {self:getMonsterData()}
+			opponents = {self:getMonsterData()},
+			beforeBattle = Do(function()
+				self.scene.player.cinematicStack = 0
+			end)
 		}
 		local npcArgs = self:getBattleArgs()
 		if next(npcArgs) then
@@ -86,21 +106,33 @@ function MechaArm:update(dt)
 			end
 		end
 		
-		self:run(Serial {
+		self:run {
 			Wait(0.5),
+			PlayAudio("sfx", "splash2", 1.0, true),
 			Animate(self.sprite, "dive"..self.facing, true),
 			Animate(self.sprite, "grabbed"..self.facing),
 			
-			Wait(0.2),
-			Do(function()
-				self.scene.player.cinematic = true
-				self.scene.player.noIdle = true
-				self.scene.player.sprite:setAnimation("shock")
-				self.flagForDeletion = true
-				
-				self.scene:run(self.scene:enterBattle(battleArgs))
-			end),
-		})
+			Try(
+				YieldUntil(function() return self:distanceFromPlayerSq() < 100*100 end),
+				Do(function()
+					self.scene.player.cinematic = true
+					self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
+					self.scene.player.noIdle = true
+					self.scene.player.sprite:setAnimation("shock")
+					self.flagForDeletion = true
+					self.disturbance:remove()
+					self.scene:run(self.scene:enterBattle(battleArgs))
+				end),
+				Serial {
+					Animate(self.sprite, "retract"..self.facing),
+					Do(function()
+						self.sprite.visible = false
+						self.disturbance.sprite.visible = true
+					end)
+				},
+				0.2
+			)
+		}
 	end
 	
 	self.distanceFromPlayer = nil
