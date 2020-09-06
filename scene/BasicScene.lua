@@ -262,6 +262,7 @@ function BasicScene:onReEnter(args)
 		onLoadAction,
 		
 		Do(function()
+			self.player.cinematicStack = 0
 			self.reentering = false
 			self.reenteringFromBattle = false
 		end)
