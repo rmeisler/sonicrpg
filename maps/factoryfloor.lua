@@ -526,7 +526,7 @@ return {
           type = "Player",
           shape = "rectangle",
           x = 544,
-          y = 5440,
+          y = 5408,
           width = 32,
           height = 32,
           rotation = 0,

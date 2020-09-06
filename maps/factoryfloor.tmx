@@ -382,7 +382,7 @@
   </object>
  </objectgroup>
  <objectgroup name="objects">
-  <object id="2" name="Spawn 1" type="Player" gid="1227" x="544" y="5440" width="32" height="32">
+  <object id="2" name="Spawn 1" type="Player" gid="1227" x="544" y="5408" width="32" height="32">
    <properties>
     <property name="orientation" value="up"/>
    </properties>

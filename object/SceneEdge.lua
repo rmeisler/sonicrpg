@@ -3,6 +3,7 @@ local Do = require "actions/Do"
 local Serial = require "actions/Serial"
 local Action = require "actions/Action"
 local Animate = require "actions/Animate"
+local Ease = require "actions/Ease"
 
 local Player = require "object/Player"
 
@@ -101,6 +102,60 @@ function SceneEdge:goToScene()
 	
 	self.scene.player.ignoreSpecialMoveCollision = true
 	self.scene.player.cinematicStack = 1
+	
+	if self.object.properties.key == "up" then
+		self.scene.player:run {
+			Do(function()
+				self.scene.player.noIdle = true
+				self.scene.player.sprite:setAnimation("walkup")
+			end),
+			
+			Ease(self.scene.player, "y", self.scene.player.y - 100, 3, "linear"),
+			
+			Do(function()
+				self.scene.player.noIdle = false
+			end),
+		}
+	elseif self.object.properties.key == "down" then
+		self.scene.player:run {
+			Do(function()
+				self.scene.player.noIdle = true
+				self.scene.player.sprite:setAnimation("walkdown")
+			end),
+			
+			Ease(self.scene.player, "y", self.scene.player.y + 100, 3, "linear"),
+			
+			Do(function()
+				self.scene.player.noIdle = false
+			end),
+		}
+	elseif self.object.properties.key == "left" then
+		self.scene.player:run {
+			Do(function()
+				self.scene.player.noIdle = true
+				self.scene.player.sprite:setAnimation("walkleft")
+			end),
+			
+			Ease(self.scene.player, "x", self.scene.player.x - 100, 3, "linear"),
+			
+			Do(function()
+				self.scene.player.noIdle = false
+			end),
+		}
+	elseif self.object.properties.key == "right" then
+		self.scene.player:run {
+			Do(function()
+				self.scene.player.noIdle = true
+				self.scene.player.sprite:setAnimation("walkright")
+			end),
+			
+			Ease(self.scene.player, "x", self.scene.player.x + 100, 3, "linear"),
+			
+			Do(function()
+				self.scene.player.noIdle = false
+			end),
+		}
+	end
 	
 	self.scene.sceneMgr:switchScene {
 		class = "BasicScene",

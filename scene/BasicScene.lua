@@ -249,6 +249,10 @@ function BasicScene:onReEnter(args)
 	self.bgColor = {0,0,0,255}
 	ScreenShader:sendColor("multColor", self.bgColor)
 	return Serial {
+		Do(function()
+			self.player.cinematicStack = 1
+		end),
+	
 		Parallel {
 			-- Fade in
 			Ease(self.bgColor, 1, 255, 2 * fadeInSpeed, "linear"),
@@ -258,6 +262,10 @@ function BasicScene:onReEnter(args)
 				ScreenShader:sendColor("multColor", self.bgColor)
 			end)
 		},
+		
+		Do(function()
+			self.player.cinematicStack = 0
+		end),
 		
 		onLoadAction,
 		

@@ -337,6 +337,7 @@ local RunUpdate = function(self, dt)
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
 				local yOrig = self.y
+				self.sprite.sortOrderY = yOrig
 				self:run(Parallel {
 					self.scene:screenShake(30, 20),
 					Serial {
@@ -364,6 +365,7 @@ local RunUpdate = function(self, dt)
 							self.state = "idleright"
 							self.basicUpdate = self.origUpdate
 							self.crashIntoWall = false
+							self.sprite.sortOrderY = nil
 						end)
 					},
 					Do(function()
@@ -379,6 +381,7 @@ local RunUpdate = function(self, dt)
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
 				local yOrig = self.y
+				self.sprite.sortOrderY = yOrig
 				self:run(Parallel {
 					self.scene:screenShake(30, 20),
 					Serial {
@@ -406,6 +409,7 @@ local RunUpdate = function(self, dt)
 							self.state = "idleleft"
 							self.basicUpdate = self.origUpdate
 							self.crashIntoWall = false
+							self.sprite.sortOrderY = nil
 						end)
 					},
 					Do(function()
