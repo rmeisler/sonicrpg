@@ -336,6 +336,7 @@ local RunUpdate = function(self, dt)
 		if collidedX and self.fx > 0 then
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
+				local yOrig = self.y
 				self:run(Parallel {
 					self.scene:screenShake(30, 20),
 					Serial {
@@ -344,8 +345,8 @@ local RunUpdate = function(self, dt)
 							While(
 								function()
 									local hotspots = Hotspots(self)
-									return  self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, -5, 0) and
-											self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, -5, 0)
+									return  self.scene:canMove(hotspots.left_top.x, yOrig, -5, 0) and
+											self.scene:canMove(hotspots.left_bot.x, yOrig, -5, 0)
 								end,
 								Ease(self, "x", self.x - 150, 3, "linear"),
 								Do(function()
@@ -377,6 +378,7 @@ local RunUpdate = function(self, dt)
 		elseif collidedX and self.fx < 0 then
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
+				local yOrig = self.y
 				self:run(Parallel {
 					self.scene:screenShake(30, 20),
 					Serial {
@@ -385,8 +387,8 @@ local RunUpdate = function(self, dt)
 							While(
 								function()
 									local hotspots = Hotspots(self)
-									return  self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, 5, 0) and
-											self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, 5, 0)
+									return  self.scene:canMove(hotspots.right_top.x, yOrig, 5, 0) and
+											self.scene:canMove(hotspots.right_bot.x, yOrig, 5, 0)
 								end,
 								Ease(self, "x", self.x + 150, 3, "linear"),
 								Do(function()

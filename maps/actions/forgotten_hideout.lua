@@ -27,7 +27,7 @@ local Repeat = require "actions/Repeat"
 local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
-	scene.player.noSonicCrash = true
+	scene.player.noSonicCrash = false
 	
 	if (GameState:isFlagSet("b_speech") or
 		GameState:isFlagSet("met_b")) and
