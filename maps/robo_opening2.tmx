@@ -1118,17 +1118,19 @@ end
     <property name="spawn_point" value="Exit2"/>
    </properties>
   </object>
-  <object id="225" name="Cambot2" type="Cambot" gid="37" x="1344" y="1696" width="32" height="32">
+  <object id="225" name="Cambot2" type="Cambot" gid="37" x="1152" y="1696" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="audibleDistance" type="int" value="200"/>
     <property name="battle" type="file" value="../data/monsters/cambot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="follow" value="Waypoint7,Waypoint20,Waypoint10,Waypoint20"/>
+    <property name="follow" value="Waypoint10,Waypoint20,Waypoint7,Waypoint20"/>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreCollision" value="CHeap1,CHeap2,CHeap3,CHeap4,CHeap5,CHeap6,CHeap7"/>
     <property name="sprite" type="file" value="../art/sprites/cambot.png"/>
+    <property name="visibleDistance" type="int" value="100"/>
    </properties>
   </object>
   <object id="227" name="CHeap5" type="BasicNPC" gid="1922" x="1792" y="1504" width="128" height="32">

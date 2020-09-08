@@ -1,12 +1,13 @@
 local PlayAudio = class(require "actions/Action")
 
-function PlayAudio:construct(stype, name, volume, isPassive, loop, stopCurrent)
+function PlayAudio:construct(stype, name, volume, isPassive, loop, stopCurrent, skipSecs)
 	self.stype = stype
 	self.name = name
 	self.volume = volume
 	self.isPassive = isPassive or false
 	self.loop = loop or false
 	self.stopCurrent = stopCurrent
+	self.skipSecs = skipSecs
 	self.done = false
 	self.type = "PlayAudio"
 end
@@ -20,7 +21,7 @@ function PlayAudio:setScene(scene)
 	if scene.audio:getVolumeFor(self.stype, self.name) == 0 then
 		self.done = true
 	else
-		scene.audio:play(self.stype, self.name, self.volume, self.stopCurrent)
+		scene.audio:play(self.stype, self.name, self.volume, self.stopCurrent, self.skipSecs)
 		if self.loop then
 			scene.audio:setLooping(self.stype, self.loop)
 		else

@@ -165,7 +165,7 @@ function Audio:isMusicPlaying()
 	return self.current.music:isPlaying()
 end
 
-function Audio:playMusic(name, volume, stopCurrent)
+function Audio:playMusic(name, volume, stopCurrent, skipSecs)
 	local music = self.music[name]
 	if self.current.music == music then
 		return
@@ -180,6 +180,10 @@ function Audio:playMusic(name, volume, stopCurrent)
 		self:setVolume("music", volume)
 	end
 	love.audio.play(self.current.music)
+
+	if skipSecs then
+		music:seek(skipSecs, "seconds")
+	end
 end
 
 function Audio:stopMusic()

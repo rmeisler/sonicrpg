@@ -2269,7 +2269,7 @@ return {
           name = "Cambot2",
           type = "Cambot",
           shape = "rectangle",
-          x = 1344,
+          x = 1152,
           y = 1696,
           width = 32,
           height = 32,
@@ -2278,14 +2278,16 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["audibleDistance"] = 200,
             ["battle"] = "../data/monsters/cambot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
-            ["follow"] = "Waypoint7,Waypoint20,Waypoint10,Waypoint20",
+            ["follow"] = "Waypoint10,Waypoint20,Waypoint7,Waypoint20",
             ["followRepeat"] = true,
             ["ghost"] = true,
             ["ignoreCollision"] = "CHeap1,CHeap2,CHeap3,CHeap4,CHeap5,CHeap6,CHeap7",
-            ["sprite"] = "../art/sprites/cambot.png"
+            ["sprite"] = "../art/sprites/cambot.png",
+            ["visibleDistance"] = 100
           }
         },
         {
