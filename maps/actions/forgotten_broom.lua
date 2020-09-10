@@ -34,8 +34,10 @@ return function(scene)
 			scene.objectLookup.T:remove()
 			scene.objectLookup.P:remove()
 			scene.objectLookup.J:remove()
-			scene.powerring:remove()
-			for _, s in pairs(scene.splitSprites) do
+			if scene.powerring then
+				scene.powerring:remove()
+			end
+			for _, s in pairs(scene.splitSprites or {}) do
 				s:remove()
 			end
 			scene.player.cinematicStack = 0

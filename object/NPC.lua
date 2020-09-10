@@ -456,6 +456,11 @@ function NPC:addInteract(fun)
 	self.isInteractable = true
 end
 
+function NPC:removeInteract(fun)
+	self:removeHandler("interact", fun, self)
+	self.isInteractable = false
+end
+
 function NPC:onCollision(prevState)
 	if  GameState.leader == "sally" and
 		self.scene.player.doingSpecialMove and

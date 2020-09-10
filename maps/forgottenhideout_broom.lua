@@ -8,7 +8,7 @@ return {
   height = 26,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 224,
+  nextobjectid = 225,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_broom.lua",
@@ -276,7 +276,7 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4208, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4209, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 4614, 4615, 4616, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4637, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4637, 0, 0, 0,
@@ -480,6 +480,23 @@ return {
             ["defaultAnim"] = "jdown",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/p.png"
+          }
+        },
+        {
+          id = 224,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 448,
+          y = 416,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 3501,
+          visible = true,
+          properties = {
+            ["ElbowPads"] = 1,
+            ["sprite"] = "../art/sprites/chest.png"
           }
         }
       }

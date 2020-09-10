@@ -15,6 +15,7 @@ function Switch:construct(scene, layer, object)
 		self:addInteract(Switch.flip)
 		self.animState = self.offState
 	else
+		self:removeInteract(Switch.flip)
 		self.animState = self.onState
 	end
 
@@ -40,6 +41,7 @@ function Switch:flip()
 		end
 		
 		GameState:setFlag(self)
+		self:removeInteract(Switch.flip)
 	end
 end
  

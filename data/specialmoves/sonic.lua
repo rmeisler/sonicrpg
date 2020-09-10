@@ -23,7 +23,7 @@ local ANIMATION_WAIT = 0.01
 
 local SLOWDOWN_SPEED = 1
 local SLOWDOWN_STOP_SPEED = 1
-local RETURN_SPEED = 0.8
+local RETURN_SPEED = 1
 
 local RUN_DIRCHANGE_COOLDOWN = 0.2 -- Num secs to delay direction change
 
