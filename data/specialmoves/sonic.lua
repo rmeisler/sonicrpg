@@ -221,8 +221,8 @@ local RunUpdate = function(self, dt)
 	local fy = self.fy
 	
 	-- Step forward
-	self.x = self.x + fx + self.bx
-	self.y = self.y + fy + self.by
+	self.x = self.x + (fx + self.bx) * (dt/0.016)
+	self.y = self.y + (fy + self.by) * (dt/0.016)
 	
 	-- Going up stairs
 	local _, stairs = next(self.stairs)
