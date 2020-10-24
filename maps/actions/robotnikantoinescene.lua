@@ -40,7 +40,7 @@ return function(scene)
 	snively.sprite.color[3] = 180
 	
 	scene.bgColor = {255,255,255,255}
-
+	
 	if GameState:isFlagSet("beatboss1") then
 		robotnik.sprite:setAnimation("faceup")
 		if scene.objectLookup.Rover then
@@ -53,7 +53,7 @@ return function(scene)
 		scene.objectLookup.RBComputer.sprite:setAnimation("onprison")
 		return Serial {
 			Ease(scene.player, "y", 750, 0.6, "inout"),
-			PlayAudio("music", "battle2", 1.0, true, true),
+			PlayAudio("music", "battle2", 1.0, true, true, false, 12),
 			MessageBox{message="Snively: Security alert! Prison block 7!", blocking=true, closeAction=Wait(2)},
 			Animate(snively.sprite, "hesistantdown"),
 			Parallel {

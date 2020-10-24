@@ -20,7 +20,10 @@ return function(self, targets)
 			Serial {
 				Animate(target.sprite, "victory"),
 				Wait(0.1),
-				Heal("hp", 200)(self, target)
+				Heal("hp", 400)(self, target),
+				Do(function()
+					target.state = target.STATE_IDLE
+				end)
 			}
 		)
 		table.insert(resetActions, Animate(target.sprite, "idle"))

@@ -51,7 +51,7 @@ return function(self, targets)
 			rect=MessageBox.HEADLINER_RECT,
 			message="Antoine: Ah-- the Great Maurice D'epardieu...",
 			textSpeed=8,
-			closeAction=Wait(0.6)
+			closeAction=Wait(1)
 		},
 		
 		Animate(self.sprite, "victory"),
@@ -65,7 +65,7 @@ return function(self, targets)
 				MessageBox {
 					message="Antoine: ...and he made a very fine duck confit...",
 					rect=MessageBox.HEADLINER_RECT,
-					closeAction=Wait(0.6)
+					closeAction=Wait(1)
 				},
 				MessageBox {
 					message="All bots are bored!",

@@ -1,5 +1,5 @@
 return {
-    {
+	{
         type = "map",
 		file = "maps/robo_opening2.lua",
 		primary = true
@@ -8,7 +8,6 @@ return {
 	{
         type = "map",
         file = "maps/robotnikwarroom.lua",
-		--primary = true
     },
 	
 	{
@@ -88,6 +87,12 @@ return {
 	{
         type = "map",
         file = "maps/prison.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+        file = "maps/knothole.lua",
 		--primary = true
     },
 	
@@ -396,6 +401,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/sparkle.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/star.png"
 	},
 	{
 		type = "image",

@@ -7,8 +7,7 @@ local PlayAudio = require "actions/PlayAudio"
 local WaitForFrame = require "actions/WaitForFrame"
 local Do = require "actions/Do"
 
-local PressX = require "data/battle/actions/PressX"
-local OnHitEvent = require "data/battle/actions/OnHitEvent"
+local TimedAttackEvent = require "data/battle/actions/TimedAttackEvent"
 
 local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
@@ -56,37 +55,28 @@ return function(self, target)
 		Wait(0.1),
 
 		Animate(self.sprite, "leap", true),
-		Parallel {
-			Ease(self.sprite.transform, "x", target.sprite.transform.x + math.abs(target.sprite.transform.x - self.sprite.transform.x)/2, 4, "linear"),
-			Ease(self.sprite.transform, "y", self.sprite.transform.y - self.sprite.h*3, 6, "linear"),
-		},
 
 		Parallel {
-			Ease(self.sprite.transform, "x", target.sprite.transform.x + target.sprite.w, 4, "linear"),
 			Serial {
-				Wait(0.09),
-				Animate(self.sprite, "spin", true),
-				Ease(self.sprite.transform, "y", target.sprite.transform.y - self.sprite.h, 6, "linear")
+				Parallel {
+					Ease(self.sprite.transform, "x", target.sprite.transform.x + math.abs(target.sprite.transform.x - self.sprite.transform.x)/2, 4, "linear"),
+					Ease(self.sprite.transform, "y", self.sprite.transform.y - self.sprite.h*3, 6, "linear"),	
+				},
+
+				Parallel {
+					Ease(self.sprite.transform, "x", target.sprite.transform.x + target.sprite.w, 4, "linear"),
+					Serial {
+						Wait(0.09),
+						Animate(self.sprite, "spin", true),
+						Ease(self.sprite.transform, "y", target.sprite.transform.y - self.sprite.h, 6, "linear")
+					}
+				}
+			},
+			Serial {
+				Wait(0.1),
+				-- Smack and bounce off
+				TimedAttackEvent(self, target, LeapBackward(self, target))
 			}
 		},
-		
-		Parallel {
-			Animate(function()
-				local xform = Transform(
-					target.sprite.transform.x,
-					target.sprite.transform.y,
-					3,
-					3
-				)
-				return SpriteNode(target.scene, xform, nil, "smack", nil, nil, "ui"), true
-			end, "idle"),
-			
-			-- Smack and bounce off
-			OnHitEvent(
-				self,
-				target,
-				LeapBackward(self, target)
-			)
-		}
 	}
 end

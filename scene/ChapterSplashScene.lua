@@ -57,8 +57,7 @@ function ChapterSplashScene:loadingAnimation(tasks)
 				PlayAudio("music", "titlecard", 0.8),
 				Serial {
 					loadingText,
-					Repeat(loadingDots, nil, false),
-					isPassive = true
+					Spawn(Repeat(loadingDots))
 				}
 			},
 

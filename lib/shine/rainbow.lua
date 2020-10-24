@@ -24,7 +24,7 @@ draw = function(self, func, ...)
 	local co = {love.graphics.getColor()}
 	love.graphics.setShader(self.shader)
 	
-	self.t = self.t + 0.16
+	self.t = self.t + 0.016
 	self.shader:send("time", self.t)
 	func()
 	
