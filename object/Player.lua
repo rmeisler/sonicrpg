@@ -377,7 +377,7 @@ function Player:keytriggered(key)
 end
 
 function Player:onChangeChar()
-	if self.doingSpecialMove or self.doingChangeChar or self.cinematic or self.cinematicStack > 0 then
+	if self.noChangeChar or self.doingSpecialMove or self.doingChangeChar or self.cinematic or self.cinematicStack > 0 then
 		return
 	end	
 	
@@ -429,8 +429,10 @@ function Player:onChangeChar()
 end
 
 function Player:onSpecialMove()
-	self.doingSpecialMove = true
-	GameState.party[GameState.leader].specialmove(self)
+	if not self.noSpecialMove then
+		self.doingSpecialMove = true
+		GameState.party[GameState.leader].specialmove(self)
+	end
 end
 
 function Player:addVisual(partyMember, location, name, sprite, transformOffset)

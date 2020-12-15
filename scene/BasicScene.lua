@@ -75,6 +75,7 @@ function BasicScene:onEnter(args)
 				
 				-- If object is marked as a player spawn location
 				if  object.type == "Player" or
+					object.type == "TinyPlayer" or
 					object.type == "EscapePlayer" or
 					object.type == "EscapePlayerVert" or
 					object.type == "SavePoint" or
@@ -502,8 +503,8 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 
 	for _,obj in ipairs(self.map.objects) do
 		if obj.sprite and obj.sprite.transform and obj.x then
-			obj.sprite.transform.x = obj.x + worldOffsetX
-			obj.sprite.transform.y = obj.y + worldOffsetY
+			obj.sprite.transform.x = math.floor(obj.x + worldOffsetX)
+			obj.sprite.transform.y = math.floor(obj.y + worldOffsetY)
 		end
 	end
 	
@@ -512,8 +513,8 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 			layer.x = worldOffsetX
 			layer.y = worldOffsetY
 		else
-			layer.x = (layer.offsetx + worldOffsetX)*(layer.properties.movespeed or 1.05)
-			layer.y = (layer.offsety + worldOffsetY)*(layer.properties.movespeed or 1.05)
+			layer.x = math.floor((layer.offsetx + worldOffsetX)*(layer.properties.movespeed or 1.05))
+			layer.y = math.floor((layer.offsety + worldOffsetY)*(layer.properties.movespeed or 1.05))
 		end
 	end
 end

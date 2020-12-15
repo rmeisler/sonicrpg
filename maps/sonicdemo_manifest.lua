@@ -1,13 +1,32 @@
 return {
 	{
         type = "map",
-		file = "maps/robo_opening2.lua",
+		file = "maps/worldmap.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/sonicshut.lua",
 		primary = true
     },
 	
 	{
         type = "map",
+		file = "maps/sallyshut.lua",
+		--primary = true
+    },
+
+	{
+        type = "map",
+		file = "maps/robo_opening2.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
         file = "maps/robotnikwarroom.lua",
+		--primary = true
     },
 	
 	{
@@ -854,6 +873,12 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/knothole.ogg",
+		category = "music",
+		looping = true,
+	},
+	{
+		type = "sound",
+		file = "audio/music/knotholehut.ogg",
 		category = "music",
 		looping = true,
 	},
