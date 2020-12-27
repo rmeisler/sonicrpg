@@ -8,13 +8,13 @@ return {
 	{
         type = "map",
 		file = "maps/sonicshut.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
         type = "map",
 		file = "maps/sallyshut.lua",
-		--primary = true
+		primary = true
     },
 
 	{
@@ -132,6 +132,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/movingground.png"
+	},
+	{
+		type = "image",
+		file = "art/splash/sonicpicture.png"
 	},
 	{
 		type = "image",
@@ -681,6 +685,11 @@ return {
 		type = "sound",
 		file = "audio/sfx/tock.ogg",
 		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/sonicguitar.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",

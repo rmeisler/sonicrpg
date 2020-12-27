@@ -645,6 +645,24 @@ function BasicScene:draw()
 		love.graphics.setDefaultFilter("nearest", "nearest")
 		Scene.draw(self)
 	end
+	
+	
+	--[[ Draw elipses boundaries for the knothole hut.
+	-- We will use two circles to define the collision within the hut
+	-- and do collision detection on either the top or bottom circle based
+	-- on which we are closer to
+	local circleY = 300
+	if self.player.y > self:getMapHeight() - 300 then
+		circleY = circleY - ((self:getMapHeight() - 300) - 300)
+	elseif self.player.y > 300 then
+		circleY = circleY - (self.player.y - 300)
+	end
+
+	love.graphics.setColor(255, 0, 0)
+	love.graphics.circle("line", 400, circleY + 70, 200)
+	love.graphics.setColor(255, 255, 0)
+	love.graphics.circle("line", 400, circleY + 115, 200)
+	love.graphics.setColor(255, 255, 255)]]
 end
 
 

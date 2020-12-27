@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 5,
+  nextobjectid = 9,
   properties = {
     ["onload"] = "actions/knotholehut.lua"
   },
@@ -261,6 +261,40 @@ return {
             ["alignOffsetY"] = -32,
             ["sprite"] = "../art/sprites/hutdoor.png"
           }
+        },
+        {
+          id = 5,
+          name = "Photo",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 512,
+          y = 256,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6607,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\n\nlocal SpriteNode = require \"object/SpriteNode\"\nlocal Transform = require \"util/Transform\"\nlocal Rect = unpack(require \"util/Shapes\")\n\nreturn function(self)\n    local pic = SpriteNode(self.scene, Transform(0,0,1,1), {255,255,255,0}, \"splash/sonicpicture\", nil, nil, \"ui\")\n\n    local w = (love.graphics.getWidth() - 10)\n    local h = 160\n    local rect = Rect(Transform(love.graphics.getWidth() / 2, h/2), w, h)\n\n    return Serial {\n        Ease(pic.color, 4, 255, 1, \"linear\"),\n        MessageBox {\n            message = \"Sonic: Uncle Chuck and Muttski...\",\n            textSpeed = 3,\n            rect = rect,\n            blocking = true\n        },\n        MessageBox {\n            message = \"Sonic: Don't worry guys, {p40}I'll save ya one of these days.\",\n            rect = rect,\n            blocking = true\n        },\n        Ease(pic.color, 4, 0, 1, \"linear\"),\n        Do(function() pic:remove() end)\n    }\nend"
+          }
+        },
+        {
+          id = 7,
+          name = "Guitar",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 224,
+          y = 320,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 6607,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Menu = require \"actions/Menu\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    return Menu {\n        layout = Layout {\n            {Layout.Text(\"Play guitar?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    MessageBox {\n                        message = \"Sonic: Eh, {p40}a little heavy metal isn't the worst way to start the morning...\",\n                        blocking = true\n                    },\n                    PlayAudio(\"music\", \"sonicguitar\", 1.0),\n                    MessageBox {\n                        message = \"Sonic: Way past cool! {p40}I need to play this thing more.\",\n                        blocking = true\n                    }\n                }\n            end},\n            {Layout.Text(\"No\"), choose = function(menu) menu:close() end},\n        },\n        cancellable = true,\n        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n        selectedRow = 2,\n        blocking = true\n    }\nend"
+          }
         }
       }
     },
@@ -285,8 +319,8 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 119, 119, 119, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 119, 119, 0, 119, 119, 0, 119, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 119, 0, 119, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 119, 119, 0, 119, 119, 119, 119, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 119, 119, 119, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,

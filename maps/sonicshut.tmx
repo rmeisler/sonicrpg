@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="5">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="9">
  <properties>
   <property name="onload" type="file" value="actions/knotholehut.lua"/>
  </properties>
@@ -100,6 +100,86 @@
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
+  <object id="5" name="Photo" type="BasicNPC" gid="6607" x="512" y="256" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Do = require &quot;actions/Do&quot;
+
+local SpriteNode = require &quot;object/SpriteNode&quot;
+local Transform = require &quot;util/Transform&quot;
+local Rect = unpack(require &quot;util/Shapes&quot;)
+
+return function(self)
+    local pic = SpriteNode(self.scene, Transform(0,0,1,1), {255,255,255,0}, &quot;splash/sonicpicture&quot;, nil, nil, &quot;ui&quot;)
+
+    local w = (love.graphics.getWidth() - 10)
+    local h = 160
+    local rect = Rect(Transform(love.graphics.getWidth() / 2, h/2), w, h)
+
+    return Serial {
+        Ease(pic.color, 4, 255, 1, &quot;linear&quot;),
+        MessageBox {
+            message = &quot;Sonic: Uncle Chuck and Muttski...&quot;,
+            textSpeed = 3,
+            rect = rect,
+            blocking = true
+        },
+        MessageBox {
+            message = &quot;Sonic: Don't worry guys, {p40}I'll save ya one of these days.&quot;,
+            rect = rect,
+            blocking = true
+        },
+        Ease(pic.color, 4, 0, 1, &quot;linear&quot;),
+        Do(function() pic:remove() end)
+    }
+end</property>
+   </properties>
+  </object>
+  <object id="7" name="Guitar" type="BasicNPC" gid="6607" x="224" y="320" width="64" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Do = require &quot;actions/Do&quot;
+local Menu = require &quot;actions/Menu&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    return Menu {
+        layout = Layout {
+            {Layout.Text(&quot;Play guitar?&quot;), selectable = false},
+            {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                menu:close()
+                self.scene:run {
+                    menu,
+                    MessageBox {
+                        message = &quot;Sonic: Eh, {p40}a little heavy metal isn't the worst way to start the morning...&quot;,
+                        blocking = true
+                    },
+                    PlayAudio(&quot;music&quot;, &quot;sonicguitar&quot;, 1.0),
+                    MessageBox {
+                        message = &quot;Sonic: Way past cool! {p40}I need to play this thing more.&quot;,
+                        blocking = true
+                    }
+                }
+            end},
+            {Layout.Text(&quot;No&quot;), choose = function(menu) menu:close() end},
+        },
+        cancellable = true,
+        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+        selectedRow = 2,
+        blocking = true
+    }
+end</property>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="Collision" width="25" height="20" visible="0">
   <data encoding="csv">
@@ -110,8 +190,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,119,119,119,119,119,119,119,119,119,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,119,119,0,119,119,0,119,0,0,119,119,0,0,0,0,0,0,0,
-0,0,0,0,0,0,119,119,0,0,0,119,0,119,0,0,0,119,119,0,0,0,0,0,0,
+0,0,0,0,0,0,0,119,119,0,119,119,119,119,0,0,119,119,0,0,0,0,0,0,0,
+0,0,0,0,0,0,119,119,0,0,0,119,119,119,0,0,0,119,119,0,0,0,0,0,0,
 0,0,0,0,0,119,119,0,0,0,0,119,119,119,0,0,0,119,119,119,0,0,0,0,0,
 0,0,0,0,0,119,0,0,0,0,0,0,0,0,0,0,0,0,0,119,0,0,0,0,0,
 0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
