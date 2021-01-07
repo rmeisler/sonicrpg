@@ -38,7 +38,11 @@ function SceneManager:pushScene(args)
 		if scene then
 			scene:run {
 				scene:onReEnter(args) or Action(),
-				Do(function() self.transitioning = false end)
+				Do(function()
+					scene:invoke("enter")
+					self:invoke("enter", scene)
+					self.transitioning = false
+				end)
 			}
 		else
 			scene = require("scene/"..args.class)(self)

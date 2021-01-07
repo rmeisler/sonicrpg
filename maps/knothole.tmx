@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="300" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="16">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="300" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="19">
  <properties>
   <property name="onload" type="file" value="actions/knothole.lua"/>
   <property name="regionName" value="Great Forest"/>
@@ -738,19 +738,19 @@
 </data>
  </layer>
  <imagelayer name="KnotholeHut1" visible="0" offsetx="1120" offsety="480">
-  <image source="../art/sprites/knotholehut.png" width="494" height="382"/>
+  <image source="../art/sprites/knotholehut.png" width="240" height="164"/>
   <properties>
    <property name="movespeed" type="float" value="1"/>
   </properties>
  </imagelayer>
  <imagelayer name="Copy of KnotholeHut1" visible="0" offsetx="1600" offsety="480">
-  <image source="../art/sprites/knotholehut.png" width="494" height="382"/>
+  <image source="../art/sprites/knotholehut.png" width="240" height="164"/>
   <properties>
    <property name="movespeed" type="float" value="1"/>
   </properties>
  </imagelayer>
  <imagelayer name="Copy of Copy of KnotholeHut1" visible="0" offsetx="1696" offsety="1408">
-  <image source="../art/sprites/knotholehut.png" width="494" height="382"/>
+  <image source="../art/sprites/knotholehut.png" width="240" height="164"/>
   <properties>
    <property name="movespeed" type="float" value="1"/>
   </properties>
@@ -1172,13 +1172,13 @@
 </data>
  </layer>
  <imagelayer name="Copy of Copy of KnotholeHut1" visible="0" offsetx="1120" offsety="160">
-  <image source="../art/sprites/knotholehut.png" width="494" height="382"/>
+  <image source="../art/sprites/knotholehut.png" width="240" height="164"/>
   <properties>
    <property name="movespeed" type="float" value="1"/>
   </properties>
  </imagelayer>
  <imagelayer name="Copy of Copy of Copy of KnotholeHut1" visible="0" offsetx="1600" offsety="160">
-  <image source="../art/sprites/knotholehut.png" width="494" height="382"/>
+  <image source="../art/sprites/knotholehut.png" width="240" height="164"/>
   <properties>
    <property name="movespeed" type="float" value="1"/>
   </properties>
@@ -1189,7 +1189,7 @@
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="2" name="KnotholeHut1" type="BasicNPC" gid="4743" x="1152" y="800" width="416" height="128">
+  <object id="2" name="SallyHut" type="BasicNPC" gid="4743" x="1152" y="800" width="416" height="128">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-32"/>
@@ -1234,7 +1234,7 @@
     <property name="sprite" type="file" value="../art/sprites/rotorworkshop.png"/>
    </properties>
   </object>
-  <object id="12" name="KnotholeHut2" type="BasicNPC" gid="4743" x="1632" y="800" width="416" height="128">
+  <object id="12" name="SonicHut" type="BasicNPC" gid="4743" x="1632" y="800" width="416" height="128">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-32"/>
@@ -1260,6 +1260,32 @@
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-32"/>
     <property name="sprite" type="file" value="../art/sprites/knotholehut.png"/>
+   </properties>
+  </object>
+  <object id="17" name="SonicHutDoor" type="Door" gid="7080" x="1824" y="810" width="64" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-44"/>
+    <property name="alignOffsetY" type="float" value="-5"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="key" value="up"/>
+    <property name="orientation" value="down"/>
+    <property name="scene" type="file" value="sonicshut.lua"/>
+    <property name="spawn_point" value="Door"/>
+    <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
+   </properties>
+  </object>
+  <object id="18" name="SallyHutDoor" type="Door" gid="7080" x="1344" y="810" width="64" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-44"/>
+    <property name="alignOffsetY" type="float" value="-5"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="key" value="up"/>
+    <property name="orientation" value="down"/>
+    <property name="scene" type="file" value="sallyshut.lua"/>
+    <property name="spawn_point" value="Door"/>
+    <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
  </objectgroup>

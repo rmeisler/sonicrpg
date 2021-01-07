@@ -80,6 +80,7 @@ function BasicScene:onEnter(args)
 					object.type == "EscapePlayerVert" or
 					object.type == "SavePoint" or
 					object.type == "SceneEdge" or
+					object.type == "Door" or
 					object.type == "SpawnPoint"
 				then
 					self.spawnPoints[object.name] = object

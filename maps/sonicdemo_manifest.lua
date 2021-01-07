@@ -8,13 +8,13 @@ return {
 	{
         type = "map",
 		file = "maps/sonicshut.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
         type = "map",
 		file = "maps/sallyshut.lua",
-		primary = true
+		--primary = true
     },
 
 	{

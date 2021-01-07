@@ -88,11 +88,16 @@
     <property name="sprite" type="file" value="../art/sprites/bigchest.png"/>
    </properties>
   </object>
-  <object id="2" name="Door" type="BasicNPC" gid="6607" x="352" y="608" width="64" height="32">
+  <object id="2" name="Door" type="Door" gid="6607" x="352" y="608" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-20"/>
     <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="key" value="down"/>
+    <property name="orientation" value="up"/>
+    <property name="scene" type="file" value="knothole.lua"/>
+    <property name="spawn_point" value="SallyHutDoor"/>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
@@ -120,14 +125,14 @@
     <property name="sprite" type="file" value="../art/sprites/stool.png"/>
    </properties>
   </object>
-  <object id="8" name="SallysStool" type="BasicNPC" gid="6607" x="512" y="288" width="32" height="32">
+  <object id="8" name="DeskUpper" type="BasicNPC" gid="6607" x="512" y="288" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/sallycomputerdeskupper.png"/>
    </properties>
   </object>
-  <object id="9" name="SallysStool" type="BasicNPC" gid="6607" x="544" y="384" width="32" height="64">
+  <object id="9" name="DeskLower" type="BasicNPC" gid="6607" x="544" y="384" width="32" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>

@@ -231,12 +231,12 @@ return {
         {
           id = 2,
           name = "Door",
-          type = "BasicNPC",
+          type = "Door",
           shape = "rectangle",
           x = 352,
           y = 608,
           width = 64,
-          height = 32,
+          height = 64,
           rotation = 0,
           gid = 6607,
           visible = true,
@@ -244,6 +244,11 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -20,
             ["alignOffsetY"] = -32,
+            ["ghost"] = true,
+            ["key"] = "down",
+            ["orientation"] = "up",
+            ["scene"] = "knothole.lua",
+            ["spawn_point"] = "SallyHutDoor",
             ["sprite"] = "../art/sprites/hutdoor.png"
           }
         },
@@ -317,7 +322,7 @@ return {
         },
         {
           id = 8,
-          name = "SallysStool",
+          name = "DeskUpper",
           type = "BasicNPC",
           shape = "rectangle",
           x = 512,
@@ -335,7 +340,7 @@ return {
         },
         {
           id = 9,
-          name = "SallysStool",
+          name = "DeskLower",
           type = "BasicNPC",
           shape = "rectangle",
           x = 544,

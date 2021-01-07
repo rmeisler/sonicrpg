@@ -8,7 +8,7 @@ return {
   height = 100,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 16,
+  nextobjectid = 19,
   properties = {
     ["onload"] = "actions/knothole.lua",
     ["regionName"] = "Great Forest",
@@ -1485,7 +1485,7 @@ return {
         },
         {
           id = 2,
-          name = "KnotholeHut1",
+          name = "SallyHut",
           type = "BasicNPC",
           shape = "rectangle",
           x = 1152,
@@ -1596,7 +1596,7 @@ return {
         },
         {
           id = 12,
-          name = "KnotholeHut2",
+          name = "SonicHut",
           type = "BasicNPC",
           shape = "rectangle",
           x = 1632,
@@ -1664,6 +1664,54 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -32,
             ["sprite"] = "../art/sprites/knotholehut.png"
+          }
+        },
+        {
+          id = 17,
+          name = "SonicHutDoor",
+          type = "Door",
+          shape = "rectangle",
+          x = 1824,
+          y = 810,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 7080,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -44,
+            ["alignOffsetY"] = -5,
+            ["ghost"] = true,
+            ["key"] = "up",
+            ["orientation"] = "down",
+            ["scene"] = "sonicshut.lua",
+            ["spawn_point"] = "Door",
+            ["sprite"] = "../art/sprites/hutdoor.png"
+          }
+        },
+        {
+          id = 18,
+          name = "SallyHutDoor",
+          type = "Door",
+          shape = "rectangle",
+          x = 1344,
+          y = 810,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 7080,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -44,
+            ["alignOffsetY"] = -5,
+            ["ghost"] = true,
+            ["key"] = "up",
+            ["orientation"] = "down",
+            ["scene"] = "sallyshut.lua",
+            ["spawn_point"] = "Door",
+            ["sprite"] = "../art/sprites/hutdoor.png"
           }
         }
       }
