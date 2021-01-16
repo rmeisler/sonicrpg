@@ -47,6 +47,10 @@ Player.ToIdle = {
 	[Player.STATE_IDLERIGHT] = Player.STATE_IDLERIGHT
 }
 
+Player.DEFAULT_DUST_COLOR      = {255, 255, 255, 255}
+Player.ROBOTROPOLIS_DUST_COLOR = {130, 130, 200, 255}
+Player.FOREST_DUST_COLOR       = {255, 255, 200, 255}
+
 function Player:construct(scene, layer, object)
     self.resistx = 0
     self.resisty = 0
@@ -59,6 +63,7 @@ function Player:construct(scene, layer, object)
 	self.object = object
 	self.cinematicStack = 0
 	self.spriteOverride = {}
+	self.dustColor = Player.DEFAULT_DUST_COLOR
 	
 	self.isSwatbot = {}
 	self.lastSwatbotStepSfx = love.timer.getTime()

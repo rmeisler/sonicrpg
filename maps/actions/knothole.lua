@@ -17,11 +17,12 @@ return function(scene)
 	local shine = require "lib/shine"
 	local SpriteNode = require "object/SpriteNode"
 	local NameScreen = require "actions/NameScreen"
+	local Player = require "object/Player"
 	
 	local subtext = TypeText(
 		Transform(50, 470),
 		{255, 255, 255, 0},
-		FontCache.TehnoSmall,
+		FontCache.TechnoSmall,
 		"Great Forest",
 		100
 	)
@@ -49,6 +50,8 @@ return function(scene)
 	})
 	
 	scene.audio:playMusic("knothole", 1.0)
+	
+	scene.player.dustColor = Player.FOREST_DUST_COLOR
 
 	return Action()
 end

@@ -14,15 +14,13 @@ return function(scene)
 	local Executor = require "actions/Executor"
 	local Wait = require "actions/Wait"
 	local Do = require "actions/Do"
-	local shine = require "lib/shine"
 	local SpriteNode = require "object/SpriteNode"
-	local NameScreen = require "actions/NameScreen"
 	
 	local text = TypeText(
-		Transform(50, 470),
+		Transform(50, 500),
 		{255, 255, 255, 0},
-		FontCache.TehnoSmall,
-		"Sonic's Room",
+		FontCache.Techno,
+		scene.map.properties.regionName,
 		100
 	)
 	
@@ -60,12 +58,12 @@ return function(scene)
 			-- If player is outside the circle
 			if (dx*dx) + (dy*dy) > cr*cr then
 				-- Determine the angle between their position and the center of the circle
-				local radians = math.asin(dy / math.sqrt((dx*dx) + (dy*dy)))
+				local radians = math.atan(dy / dx)
 				local inv = px > cx and 1 or -1
 
 				-- Use that angle to reposition them at the outer edge of the collision circle
 				scene.player.x = cx + inv * (math.cos(radians) * cr)
-				scene.player.y = cy - scene.player.height + math.sin(radians) * cr
+				scene.player.y = cy - scene.player.height + inv * (math.sin(radians) * cr)
 			end
 		end
 	)

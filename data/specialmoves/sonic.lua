@@ -539,10 +539,7 @@ local RunUpdate = function(self, dt)
 				properties = {nocollision = true, sprite = "art/sprites/dust.png", align = NPC.ALIGN_BOTLEFT}
 			}
 		)
-		dustObject.sprite.color[1] = 130
-		dustObject.sprite.color[2] = 130
-		dustObject.sprite.color[3] = 200
-		dustObject.sprite.color[4] = 255
+		dustObject.sprite.color = self.dustColor
 		
 		if self.bigDust then
 			dustObject.x = dustObject.x - dustObject.sprite.w

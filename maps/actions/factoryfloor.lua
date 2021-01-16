@@ -23,7 +23,7 @@ return function(scene)
 	local subtext = TypeText(
 		Transform(50, 470),
 		{255, 255, 255, 0},
-		FontCache.TehnoSmall,
+		FontCache.TechnoSmall,
 		"Swatbot Factory",
 		100
 	)

@@ -10,7 +10,8 @@ return {
   tileheight = 32,
   nextobjectid = 10,
   properties = {
-    ["onload"] = "actions/knotholehut.lua"
+    ["onload"] = "actions/knotholehut.lua",
+    ["regionName"] = "Sally's Room"
   },
   tilesets = {
     {
