@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 10,
+  nextobjectid = 12,
   properties = {
     ["onload"] = "actions/knotholehut.lua",
     ["regionName"] = "Sally's Room"
@@ -355,6 +355,42 @@ return {
             ["align"] = "bottom_left",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/sallycomputerdesklower.png"
+          }
+        },
+        {
+          id = 10,
+          name = "Brightness",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 256,
+          y = 320,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6628,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["notColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = nil\nend",
+            ["whileColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = true\nend"
+          }
+        },
+        {
+          id = 11,
+          name = "Brightness",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 320,
+          y = 320,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6628,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["notColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = nil\nend",
+            ["whileColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = true\nend"
           }
         }
       }

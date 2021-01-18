@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="10">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="12">
  <properties>
   <property name="onload" type="file" value="actions/knotholehut.lua"/>
   <property name="regionName" value="Sally's Room"/>
@@ -138,6 +138,28 @@
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/sallycomputerdesklower.png"/>
+   </properties>
+  </object>
+  <object id="10" name="Brightness" type="BasicNPC" gid="6628" x="256" y="320" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="notColliding">return function(self, player)
+    player.lights[tostring(self)] = nil
+end</property>
+    <property name="whileColliding">return function(self, player)
+    player.lights[tostring(self)] = true
+end</property>
+   </properties>
+  </object>
+  <object id="11" name="Brightness" type="BasicNPC" gid="6628" x="320" y="320" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="notColliding">return function(self, player)
+    player.lights[tostring(self)] = nil
+end</property>
+    <property name="whileColliding">return function(self, player)
+    player.lights[tostring(self)] = true
+end</property>
    </properties>
   </object>
  </objectgroup>

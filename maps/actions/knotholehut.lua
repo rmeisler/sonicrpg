@@ -15,7 +15,7 @@ return function(scene)
 	local Wait = require "actions/Wait"
 	local Do = require "actions/Do"
 	local SpriteNode = require "object/SpriteNode"
-	
+
 	local text = TypeText(
 		Transform(50, 500),
 		{255, 255, 255, 0},
@@ -23,7 +23,7 @@ return function(scene)
 		scene.map.properties.regionName,
 		100
 	)
-	
+
 	Executor(scene):act(Serial {
 		Wait(0.5),
 		text,
@@ -31,9 +31,9 @@ return function(scene)
 		Wait(2),
 		Ease(text.color, 4, 0, 1)
 	})
-	
+
 	scene.audio:playMusic("knotholehut", 1.0)
-	
+
 	scene:addHandler(
 		"update",
 		function(dt)
@@ -46,15 +46,15 @@ return function(scene)
 			local cx = 400
 			local cy = 370
 			local cr = 200
-			
+
 			-- Player is above center of screen, use lower circle rather than higher circle
 			if py < love.graphics.getWidth()/2 then
 				cy = 435
 			end
-			
+
 			local dx = px - cx
 			local dy = py - cy
-			
+	
 			-- If player is outside the circle
 			if (dx*dx) + (dy*dy) > cr*cr then
 				-- Determine the angle between their position and the center of the circle

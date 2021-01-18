@@ -53,6 +53,10 @@ function NPC:construct(scene, layer, object)
 		self.whileColliding = assert(loadstring(object.properties.whileColliding))()
 	end
 	
+	if object.properties.notColliding then
+		self.notColliding = assert(loadstring(object.properties.notColliding))()
+	end
+	
 	if object.properties.onInteract then
 		self:addInteract(NPC.onInteract)
 	end
@@ -415,11 +419,15 @@ function NPC:update(dt)
 		end
 	end
 	
-	if 	self.state ~= NPC.STATE_TOUCHING and
-		self.scene.player.keyHintObj == tostring(self)
-	then
-		self.scene.player.touching[tostring(self)] = nil
-		self.scene.player:removeKeyHint()
+	if self.state ~= NPC.STATE_TOUCHING then
+		if self.notColliding then
+			self.notColliding(self, self.scene.player)
+		end
+
+		if self.scene.player.keyHintObj == tostring(self) then
+			self.scene.player.touching[tostring(self)] = nil
+			self.scene.player:removeKeyHint()
+		end
 	end
 end
 

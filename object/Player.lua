@@ -69,9 +69,10 @@ function Player:construct(scene, layer, object)
 	self.lastSwatbotStepSfx = love.timer.getTime()
 	
 	-- A hashset of objects that are contributing to our hiding in shadow
-	-- Note: If hashset is empty, we are not in shadows. If it has at least
-	-- one element, then we are in shadows.
+	-- Note: If hashset is empty, we are not in shadows/light. If it has at least
+	-- one element, then we are in shadows/light.
 	self.shadows = {}
+	self.lights = {}
 	
 	-- A hashset of bots that are investigating you
 	self.investigators = {}
@@ -503,6 +504,10 @@ function Player:updateShadows()
 		self.sprite.color[1] = 150
 		self.sprite.color[2] = 150
 		self.sprite.color[3] = 150
+	elseif self:inLight() then
+		self.sprite.color[1] = 412
+		self.sprite.color[2] = 412
+		self.sprite.color[3] = 412
 	else
 		self.sprite.color[1] = 255
 		self.sprite.color[2] = 255
@@ -573,6 +578,10 @@ end
 
 function Player:inShadow()
 	return next(self.shadows)
+end
+
+function Player:inLight()
+	return next(self.lights)
 end
 
 function Player:basicUpdate(dt)
