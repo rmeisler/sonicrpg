@@ -40,11 +40,14 @@ local fullScreen = false
 function love.load()
     love.profiler = require "lib/profile"
     love.profiler.hookall("Lua")
+	--love.filesystem.setIdentity('screenshot');
 
 	love.graphics.setShader(ScreenShader)
 	
 	
 	sceneMgr:pushScene {class = "SageSplashScene"}
+	
+	
 end
 
 function love.update(dt)
@@ -68,7 +71,16 @@ function love.draw()
 end
 
 function love.keypressed(key, uni)
+	
+	
 
+	if key == "f12" then
+     local screenshot = love.graphics.newScreenshot();
+		screenshot:encode('png', os.time() .. '.png');
+   end
+
+	
+	
    if key == "'" then
       local state = not love.mouse.isVisible()   -- the opposite of whatever it currently is
       love.mouse.setVisible(state)
