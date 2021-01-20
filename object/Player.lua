@@ -173,7 +173,7 @@ function Player:updateHotspots()
 end
 
 function Player:updateKeyHint()
-	if self.erasingKeyHint or self.doingChangeChar or self.blockingKeyHint then
+	if self.erasingKeyHint then
 		return
 	end
 
@@ -187,7 +187,6 @@ function Player:updateKeyHint()
 				closestKeyHint = obj
 			end
 			if not specialKeyHint and obj.specialHintPlayer then
-				print("special hint for obj is "..(obj.specialHintPlayer))
 				specialKeyHint = obj
 			end
 		end
@@ -205,7 +204,7 @@ function Player:updateKeyHint()
 end
 
 function Player:showKeyHint(showPressX, specialHint)
-	if self.erasingKeyHint or self.doingChangeChar or self.blockingKeyHint then
+	if self.erasingKeyHint then
 		return
 	end
 

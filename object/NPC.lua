@@ -489,6 +489,7 @@ function NPC:keytriggered(key, uni)
     if  tostring(self.scene.player.curKeyHint) == tostring(self) and
 		key == "x"
 	then
+		self.scene.player.hidekeyhints[tostring(self)] = self
 		self:invoke("interact")
 	end
 end
