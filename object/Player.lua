@@ -92,6 +92,16 @@ function Player:construct(scene, layer, object)
 	-- A hashset of stairs we are touching
 	self.stairs = {}
 	
+	-- A hashset of keyhints we are touching
+	self.keyhints = {}
+
+	-- A hashset of keyhints to suppress
+	self.hidekeyhints = {}
+	
+	-- Current keyhint sprite and obj
+	self.curKeyHintSprite = nil
+	self.curKeyHint = nil
+	
 	-- Place player
 	self.x = object.x
 	self.y = object.y
@@ -162,6 +172,38 @@ function Player:updateHotspots()
 	return self.hotspots
 end
 
+function Player:updateKeyHint()
+	if self.erasingKeyHint or self.doingChangeChar or self.blockingKeyHint then
+		return
+	end
+
+	-- Figure out if we are colliding with multiple key hints,
+	-- resolve to the best one based on distance and context
+	local closestKeyHint = nil
+	local specialKeyHint = nil
+	for _, obj in pairs(self.keyhints) do
+		if not self.hidekeyhints[tostring(obj)] then
+			if not closestKeyHint or self:distanceFromSq(obj) > self:distanceFromSq(closestKeyHint) then
+				closestKeyHint = obj
+			end
+			if not specialKeyHint and obj.specialHintPlayer then
+				print("special hint for obj is "..(obj.specialHintPlayer))
+				specialKeyHint = obj
+			end
+		end
+	end
+
+	if specialKeyHint then
+		self.curKeyHint = specialKeyHint
+		self:showKeyHint(false, specialKeyHint.specialHintPlayer)
+	elseif closestKeyHint then
+		self.curKeyHint = closestKeyHint
+		self:showKeyHint(true, nil)
+	else
+		self:removeKeyHint()
+	end
+end
+
 function Player:showKeyHint(showPressX, specialHint)
 	if self.erasingKeyHint or self.doingChangeChar or self.blockingKeyHint then
 		return
@@ -173,17 +215,11 @@ function Player:showKeyHint(showPressX, specialHint)
 	local keyHintActions = {}
 	
 	-- Ignore special hint if that player is pretending to be a swatbot
-	if self.isSwatbot[specialHint] then
+	if specialHint and self.isSwatbot[specialHint] then
 		specialHint = nil
 	end
-	
-	if specialHint ~= nil and not self.showPressLsh then
-		if self.showPressX then
-			local pressX = table.remove(self.keyHint)
-			pressX:remove()
-			self.showPressX = false
-		end
-		
+
+	if specialHint ~= nil and not self.showPressLsh then		
 		local pressLshXForm = Transform.relative(
 			self.transform,
 			Transform(self.sprite.w - 12, 0)
@@ -198,7 +234,7 @@ function Player:showKeyHint(showPressX, specialHint)
 			"objects"
 		)
 		pressLsh.sortOrderY = self.transform.y + self.sprite.h*2
-		table.insert(self.keyHint, pressLsh)
+		self.curKeyHintSprite = pressLsh
 		table.insert(keyHintActions, Ease(pressLsh.color, 4, 255, 5))
 		self.showPressLsh = true
 	elseif showPressX and not self.showPressX and not self.showPressLsh then
@@ -216,7 +252,7 @@ function Player:showKeyHint(showPressX, specialHint)
 			"objects"
 		)
 		pressX.sortOrderY = self.transform.y + self.sprite.h*2
-		table.insert(self.keyHint, pressX)
+		self.curKeyHintSprite = pressX
 		table.insert(keyHintActions, Ease(pressX.color, 4, 255, 5))
 		self.showPressX = true
 	end
@@ -226,36 +262,22 @@ function Player:showKeyHint(showPressX, specialHint)
 	end
 end
 
-function Player:removeKeyHint(refreshKeyHint)
-	if 	self.keyHint and
+function Player:removeKeyHint()
+	if 	self.curKeyHintSprite and
 		not self.erasingKeyHint
 	then
 		self.erasingKeyHint = true
-		
-		local keyHintActions = {}
-		for _, v in pairs(self.keyHint) do
-			table.insert(keyHintActions, Serial {
-				Ease(v.color, 4, 0, 5),
-				Do(function()
-					v:remove()
-				end)
-			})
-		end
+
 		self:run {
-			Parallel(keyHintActions),
+			Ease(self.curKeyHintSprite.color, 4, 0, 5),
 			Do(function()
-				self.keyHint = nil
-				self.erasingKeyHint = false
+				self.curKeyHintSprite:remove()
+				self.curKeyHintSprite = nil
+				self.curKeyHint = nil
+				
 				self.showPressLsh = false
 				self.showPressX = false
-				
-				-- Refresh collision with objects
-				if refreshKeyHint then
-					for _, obj in pairs(self.scene.player.touching) do
-						print("idle state for "..obj.name)
-						obj.state = NPC.STATE_IDLE
-					end
-				end
+				self.erasingKeyHint = false
 			end)
 		}
 	end
@@ -395,6 +417,11 @@ function Player:onChangeChar()
 		self:updateVisuals()
 	end
 	
+	-- Suppress keyhints
+	for k,obj in pairs(self.keyhints) do
+		self.hidekeyhints[k] = obj
+	end
+	
 	self.scene.audio:playSfx("switchcharshort", 1.0)
 	
 	-- Spin around, change sprite/leader, spin, pose
@@ -429,7 +456,9 @@ function Player:onChangeChar()
 			self.doingChangeChar = false
 			
 			-- Update keyhint
-			self:removeKeyHint(true)
+			for k in pairs(self.keyhints) do
+				self.hidekeyhints[k] = nil
+			end
 		end)
 	}
 end
@@ -601,6 +630,7 @@ function Player:basicUpdate(dt)
 	
 	self:updateShadows()
 	self:updateVisuals()
+	self:updateKeyHint()
 	
 	-- Update drop shadow position
 	self.dropShadow.x = self.x - 22
@@ -927,6 +957,12 @@ function Player:basicUpdate(dt)
 	end
 	
 	self.sprite:setAnimation(self.state)
+end
+
+function Player:distanceFromSq(obj)
+	local dx = self.x - obj.x
+	local dy = self.y - obj.y
+	return dx*dx + dy*dy
 end
 
 function Player:peakDistance(dir)
