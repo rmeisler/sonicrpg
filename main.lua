@@ -15,7 +15,7 @@ FontCache = {
 	ConsolasSmall = love.graphics.newFont("art/fonts/consola.ttf", 14),
 	Outline = love.graphics.newFont("art/fonts/outline.ttf", 36),
 	Stonebangs = love.graphics.newFont("art/fonts/stonebangs.ttf", 42),
-	TehnoSmall = love.graphics.newFont("art/fonts/techno.ttf", 24),
+	TechnoSmall = love.graphics.newFont("art/fonts/techno.ttf", 24),
 	Techno = love.graphics.newFont("art/fonts/techno.ttf", 72),
 }
 
@@ -43,7 +43,6 @@ function love.load()
 
 	love.graphics.setShader(ScreenShader)
 	
-	math.randomseed(os.time())
 	
 	sceneMgr:pushScene {class = "SageSplashScene"}
 end
@@ -69,6 +68,12 @@ function love.draw()
 end
 
 function love.keypressed(key, uni)
+
+   if key == "'" then
+      local state = not love.mouse.isVisible()   -- the opposite of whatever it currently is
+      love.mouse.setVisible(state)
+   end
+
 	if key == "tab" then
 		if not fullScreen then
 			love.window.setFullscreen(true, "exclusive")
