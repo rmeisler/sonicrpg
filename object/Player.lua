@@ -51,6 +51,8 @@ Player.DEFAULT_DUST_COLOR      = {255, 255, 255, 255}
 Player.ROBOTROPOLIS_DUST_COLOR = {130, 130, 200, 255}
 Player.FOREST_DUST_COLOR       = {255, 255, 200, 255}
 
+Player.MAX_SORT_ORDER_Y = 999999999
+
 function Player:construct(scene, layer, object)
     self.resistx = 0
     self.resisty = 0
@@ -232,7 +234,7 @@ function Player:showKeyHint(showPressX, specialHint)
 			nil,
 			"objects"
 		)
-		pressLsh.sortOrderY = self.transform.y + self.sprite.h*2
+		pressLsh.sortOrderY = Player.MAX_SORT_ORDER_Y
 		self.curKeyHintSprite = pressLsh
 		table.insert(keyHintActions, Ease(pressLsh.color, 4, 255, 5))
 		self.showPressLsh = true
@@ -250,7 +252,7 @@ function Player:showKeyHint(showPressX, specialHint)
 			nil,
 			"objects"
 		)
-		pressX.sortOrderY = self.transform.y + self.sprite.h*2
+		pressX.sortOrderY = Player.MAX_SORT_ORDER_Y
 		self.curKeyHintSprite = pressX
 		table.insert(keyHintActions, Ease(pressX.color, 4, 255, 5))
 		self.showPressX = true
@@ -266,13 +268,13 @@ function Player:removeKeyHint()
 		not self.erasingKeyHint
 	then
 		self.erasingKeyHint = true
+		self.curKeyHint = nil
 
 		self:run {
 			Ease(self.curKeyHintSprite.color, 4, 0, 5),
 			Do(function()
 				self.curKeyHintSprite:remove()
 				self.curKeyHintSprite = nil
-				self.curKeyHint = nil
 				
 				self.showPressLsh = false
 				self.showPressX = false

@@ -494,6 +494,10 @@ function NPC:keytriggered(key, uni)
 	end
 end
 
+function NPC:refreshKeyHint()
+	self.scene.player.hidekeyhints[tostring(self)] = nil
+end
+
 function NPC:draw()
 	-- draw collision
 	love.graphics.setColor(255,255,255,255)

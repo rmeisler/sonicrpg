@@ -36,6 +36,7 @@ function Door:onCollision(prevState)
 		self.scene.player:isFacing(self.object.properties.key) and
 		not self.scene.sceneMgr.transitioning
 	then
+		self.scene.player.cinematic = true
 		self.scene.sceneMgr:pushScene {
 			class = "BasicScene",
 			map = self.scene.maps["maps/"..tostring(self.object.properties.scene)],
