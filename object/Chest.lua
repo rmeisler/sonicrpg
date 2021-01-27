@@ -75,6 +75,8 @@ function Chest:open()
 			if self.disappearOnGrabbed then
 				self:remove()
 			end
+			
+			self:refreshKeyHint()
 		end)
 	}
 end

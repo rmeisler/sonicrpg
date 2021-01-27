@@ -53,6 +53,10 @@ function NPC:construct(scene, layer, object)
 		self.whileColliding = assert(loadstring(object.properties.whileColliding))()
 	end
 	
+	if object.properties.notColliding then
+		self.notColliding = assert(loadstring(object.properties.notColliding))()
+	end
+	
 	if object.properties.onInteract then
 		self:addInteract(NPC.onInteract)
 	end
@@ -84,7 +88,7 @@ function NPC:construct(scene, layer, object)
 end
 
 function NPC:onInteract()
-	self.scene.player:removeKeyHint()
+	self.scene.player.hidekeyhints[tostring(self)] = self
 	self.scene:run(assert(loadstring(self.object.properties.onInteract))()(self))
 end
 
@@ -399,12 +403,10 @@ function NPC:update(dt)
 				self:onCollision(prevState)
 				
 				if prevState ~= NPC.STATE_TOUCHING and not self.disabled then
-					self.scene.player:showKeyHint(
-						self.isInteractable,
-						self.specialHintPlayer
-					)
-					self.scene.player.keyHintObj = tostring(self)
-					
+					if self.isInteractable or self.specialHintPlayer then
+						self.scene.player.keyhints[tostring(self)] = self
+					end
+
 					if not self.scene.player.touching then
 						self.scene.player.touching = {}
 					end
@@ -415,11 +417,16 @@ function NPC:update(dt)
 		end
 	end
 	
-	if 	self.state ~= NPC.STATE_TOUCHING and
-		self.scene.player.keyHintObj == tostring(self)
-	then
+	if self.state ~= NPC.STATE_TOUCHING then
+		if self.notColliding then
+			self.notColliding(self, self.scene.player)
+		end
+
+		if self.isInteractable or self.specialHintPlayer then
+			self.scene.player.keyhints[tostring(self)] = nil
+			self.scene.player.hidekeyhints[tostring(self)] = nil
+		end
 		self.scene.player.touching[tostring(self)] = nil
-		self.scene.player:removeKeyHint()
 	end
 end
 
@@ -479,12 +486,16 @@ function NPC:onCollision(prevState)
 end
 
 function NPC:keytriggered(key, uni)
-    if  self.scene.player.keyHint and
-		self.scene.player.keyHintObj == tostring(self) and
+    if  tostring(self.scene.player.curKeyHint) == tostring(self) and
 		key == "x"
 	then
+		self.scene.player.hidekeyhints[tostring(self)] = self
 		self:invoke("interact")
 	end
+end
+
+function NPC:refreshKeyHint()
+	self.scene.player.hidekeyhints[tostring(self)] = nil
 end
 
 function NPC:draw()

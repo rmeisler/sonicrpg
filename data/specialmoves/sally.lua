@@ -35,8 +35,8 @@ return function(player)
 		if self.scanning then
 			return
 		end
-		
-		self:removeKeyHint()
+
+		self.hidekeyhints[tostring(target)] = target
 
 		self.cinematic = true
 		self.cinematicStack = self.cinematicStack + 1
@@ -66,11 +66,7 @@ return function(player)
 				self.basicUpdate = origUpdate
 
 				-- Refresh keyhint
-				self:showKeyHint(
-					target.isInteractable,
-					target.specialHintPlayer
-				)
-				self.keyHintObj = tostring(target)
+				self.hidekeyhints[tostring(target)] = nil
 			end)
 		}
 	end
