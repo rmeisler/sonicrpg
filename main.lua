@@ -74,7 +74,7 @@ function love.keypressed(key, uni)
 	
 	
 
-	if key == "f12" then
+	if key == "]" then
      local screenshot = love.graphics.newScreenshot();
 		screenshot:encode('png', os.time() .. '.png');
    end
