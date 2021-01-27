@@ -562,12 +562,12 @@ function BasicScene:update(dt)
 	end
 
 	-- Shift tiles based on player position
-	local worldOffsetX = (-self.player.x + love.graphics.getWidth()/2)
-	local worldOffsetY = (-self.player.y + love.graphics.getHeight()/2)
+	local worldOffsetX = math.floor((-self.player.x + love.graphics.getWidth()/2))
+	local worldOffsetY = math.floor((-self.player.y + love.graphics.getHeight()/2))
 	
 	self:pan(
-		worldOffsetX + self.camPos.x,
-		worldOffsetY + self.camPos.y,
+		math.floor((worldOffsetX + self.camPos.x)),
+		math.floor((worldOffsetY + self.camPos.y)),
 		self.isScreenShaking
 	)
 	self:updatePlayerPos()
@@ -647,8 +647,8 @@ function BasicScene:draw()
 		Scene.draw(self)
 	end
 	
-	
-	--[[ Draw elipses boundaries for the knothole hut.
+	--[[
+	-- Draw elipses boundaries for the knothole hut.
 	-- We will use two circles to define the collision within the hut
 	-- and do collision detection on either the top or bottom circle based
 	-- on which we are closer to
@@ -663,7 +663,8 @@ function BasicScene:draw()
 	love.graphics.circle("line", 400, circleY + 70, 200)
 	love.graphics.setColor(255, 255, 0)
 	love.graphics.circle("line", 400, circleY + 115, 200)
-	love.graphics.setColor(255, 255, 255)]]
+	love.graphics.setColor(255, 255, 255)
+	]]
 end
 
 
