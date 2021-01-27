@@ -562,12 +562,12 @@ function BasicScene:update(dt)
 	end
 
 	-- Shift tiles based on player position
-	local worldOffsetX = (-self.player.x + love.graphics.getWidth()/2)
-	local worldOffsetY = (-self.player.y + love.graphics.getHeight()/2)
+	local worldOffsetX = math.floor((-self.player.x + love.graphics.getWidth()/2))
+	local worldOffsetY = math.floor((-self.player.y + love.graphics.getHeight()/2))
 	
 	self:pan(
-		worldOffsetX + self.camPos.x,
-		worldOffsetY + self.camPos.y,
+		math.floor((worldOffsetX + self.camPos.x)),
+		math.floor((worldOffsetY + self.camPos.y)),
 		self.isScreenShaking
 	)
 	self:updatePlayerPos()

@@ -15,7 +15,7 @@ FontCache = {
 	ConsolasSmall = love.graphics.newFont("art/fonts/consola.ttf", 14),
 	Outline = love.graphics.newFont("art/fonts/outline.ttf", 36),
 	Stonebangs = love.graphics.newFont("art/fonts/stonebangs.ttf", 42),
-	TehnoSmall = love.graphics.newFont("art/fonts/techno.ttf", 24),
+	TechnoSmall = love.graphics.newFont("art/fonts/techno.ttf", 24),
 	Techno = love.graphics.newFont("art/fonts/techno.ttf", 72),
 }
 
@@ -40,12 +40,14 @@ local fullScreen = false
 function love.load()
     love.profiler = require "lib/profile"
     love.profiler.hookall("Lua")
+	--love.filesystem.setIdentity('screenshot');
 
 	love.graphics.setShader(ScreenShader)
 	
-	math.randomseed(os.time())
 	
 	sceneMgr:pushScene {class = "SageSplashScene"}
+	
+	
 end
 
 function love.update(dt)
@@ -69,6 +71,21 @@ function love.draw()
 end
 
 function love.keypressed(key, uni)
+	
+	
+
+	if key == "]" then
+     local screenshot = love.graphics.newScreenshot();
+		screenshot:encode('png', os.time() .. '.png');
+   end
+
+	
+	
+   if key == "'" then
+      local state = not love.mouse.isVisible()   -- the opposite of whatever it currently is
+      love.mouse.setVisible(state)
+   end
+
 	if key == "tab" then
 		if not fullScreen then
 			love.window.setFullscreen(true, "exclusive")
