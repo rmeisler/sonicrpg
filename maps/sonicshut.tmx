@@ -88,7 +88,7 @@
     <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
-  <object id="3" name="Spawn 1" type="Player" gid="4333" x="384" y="448" width="32" height="32">
+  <object id="3" name="Spawn 1" type="Player" gid="4333" x="416" y="448" width="32" height="32">
    <properties>
     <property name="orientation" value="up"/>
    </properties>
@@ -173,7 +173,8 @@ return function(self)
                     MessageBox {
                         message = &quot;Sonic: Way past cool! {p40}I need to play this thing more.&quot;,
                         blocking = true
-                    }
+                    },
+                    PlayAudio(&quot;music&quot;, &quot;knotholehut&quot;, 1.0, true),
                 }
             end},
             {Layout.Text(&quot;No&quot;), choose = function(menu) menu:close() end},
