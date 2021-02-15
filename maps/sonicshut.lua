@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 12,
+  nextobjectid = 19,
   properties = {
     ["onload"] = "actions/knotholehut.lua",
     ["regionName"] = "Sonic's Room"
@@ -150,12 +150,12 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 467, 468, 469, 470, 471, 472, 0, 137, 138, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 496, 497, 498, 188, 189, 190, 0, 166, 167, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 525, 526, 527, 217, 218, 219, 0, 0, 0, 342, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 554, 555, 556, 246, 247, 248, 0, 0, 0, 371, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 583, 584, 585, 275, 276, 277, 0, 0, 0, 400, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 373, 373, 374, 0, 0, 304, 305, 306, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 402, 404, 403, 0, 15, 16, 17, 18, 19, 20, 0, 401, 401, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 402, 402, 403, 43, 44, 45, 46, 47, 48, 49, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 525, 526, 527, 217, 218, 219, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 554, 555, 556, 246, 247, 248, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 583, 584, 585, 275, 276, 277, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 304, 305, 306, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 16, 17, 18, 19, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 43, 44, 45, 46, 47, 48, 49, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 72, 73, 74, 75, 76, 77, 78, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 101, 102, 103, 104, 105, 106, 107, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 130, 131, 132, 133, 134, 135, 136, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -189,10 +189,10 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 221, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 195, 196, 0, 250, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 224, 225, 0, 0, 0, 0, 0, 0, 0, 0, 193, 194, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 373, 374, 374, 0, 0, 0, 0, 0, 0, 0, 0, 222, 223, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 404, 403, 374, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 402, 403, 403, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 432, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 222, 223, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -318,6 +318,139 @@ return {
             ["ghost"] = true,
             ["notColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = nil\nend",
             ["whileColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = true\nend"
+          }
+        },
+        {
+          id = 12,
+          name = "Pot",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 224,
+          y = 416,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6607,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "tall",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/pot.png"
+          }
+        },
+        {
+          id = 13,
+          name = "Pot",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 192,
+          y = 416,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6607,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "tall",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/pot.png"
+          }
+        },
+        {
+          id = 14,
+          name = "Pot",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 224,
+          y = 384,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6607,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "tall",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/pot.png"
+          }
+        },
+        {
+          id = 15,
+          name = "Pot",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 192,
+          y = 384,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6607,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "tall",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/pot.png"
+          }
+        },
+        {
+          id = 16,
+          name = "Pot",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 544,
+          y = 384,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6607,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "short",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/pot.png"
+          }
+        },
+        {
+          id = 17,
+          name = "Pot",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 576,
+          y = 384,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6607,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "short",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/pot.png"
+          }
+        },
+        {
+          id = 18,
+          name = "Pot",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 544,
+          y = 320,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6607,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "plant",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/pot.png"
           }
         }
       }

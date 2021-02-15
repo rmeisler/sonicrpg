@@ -4,6 +4,7 @@ local Parallel = require "actions/Parallel"
 local PlayAudio = require "actions/PlayAudio"
 local Serial = require "actions/Serial"
 local Animate = require "actions/Animate"
+local MessageBox = require "actions/MessageBox"
 local SceneManager = require "scene/SceneManager"
 
 local Player = require "object/Player"
@@ -13,6 +14,7 @@ local Door = class(NPC)
 
 function Door:construct(scene, layer, object)
 	self.opensfx = object.properties.opensfx or "door"
+	self.locked = object.properties.locked
 	self.open = false
 
 	NPC.init(self)
@@ -51,20 +53,30 @@ function Door:onCollision(prevState)
 end
 
 function Door:interact()
-	self:removeInteract(Door.interact)
+	if self.locked then
+		self:run {
+			PlayAudio("sfx", "locked", 1.0, true),
+			MessageBox {message = "Locked.", blocking = true},
+			Do(function()
+				self.scene.player.hidekeyhints[tostring(self)] = nil
+			end)
+		}
+	else
+		self:removeInteract(Door.interact)
 
-    self:run {
-		Parallel {
-			PlayAudio("sfx", self.opensfx, 1.0),
-			Serial {
-				Animate(self.sprite, "opening"),
-				Animate(self.sprite, "open")
-			}
-		},
-		Do(function()
-			self.open = true
-		end)
-	}
+		self:run {
+			Parallel {
+				PlayAudio("sfx", self.opensfx, 1.0),
+				Serial {
+					Animate(self.sprite, "opening"),
+					Animate(self.sprite, "open")
+				}
+			},
+			Do(function()
+				self.open = true
+			end)
+		}
+	end
 end
 
 
