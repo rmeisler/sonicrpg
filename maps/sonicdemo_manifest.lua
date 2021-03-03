@@ -468,6 +468,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/locked.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/openchasm.ogg",
 		category = "sfx"
 	},
