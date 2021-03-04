@@ -7,8 +7,20 @@ return {
 	
 	{
         type = "map",
-		file = "maps/sonicshut.lua",
+		file = "maps/greatforest1.lua",
 		primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/greatforest2.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/sonicshut.lua",
+		--primary = true
     },
 	
 	{
@@ -31,40 +43,6 @@ return {
 	
 	{
         type = "map",
-        file = "maps/roboterminal.lua"
-    },
-	
-	{
-        type = "map",
-        file = "maps/factoryfloor.lua"
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgottenstart.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgotten1.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgotten2.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgotten3.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
         file = "maps/forgottenhideout.lua",
 		--primary = true,
     },
@@ -77,35 +55,7 @@ return {
 	
 	{
         type = "map",
-        file = "maps/datacenter_f4.lua"
-    },
-	
-	{
-        type = "map",
         file = "maps/run1.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-        file = "maps/sewer1.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-        file = "maps/sewer2.lua"
-    },
-	
-	{
-        type = "map",
-        file = "maps/sewer3.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-        file = "maps/prison.lua",
 		--primary = true
     },
 	
@@ -698,6 +648,12 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/greatforest.ogg",
+		category = "music",
+		looping = true,
+	},
+	{
+		type = "sound",
 		file = "audio/music/puzzlesolve.ogg",
 		category = "music"
 	},
@@ -942,7 +898,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/save.wav",
+		file = "audio/sfx/save.ogg",
 		category = "sfx"
 	},
 	{

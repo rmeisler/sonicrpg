@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 19,
+  nextobjectid = 20,
   properties = {
     ["onload"] = "actions/knotholehut.lua",
     ["regionName"] = "Sonic's Room"
@@ -451,6 +451,23 @@ return {
             ["defaultAnim"] = "plant",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/pot.png"
+          }
+        },
+        {
+          id = 19,
+          name = "AlarmClock",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 320,
+          y = 256,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6607,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return Serial {\n        Do(function()\n            self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1\n            self.scene.player.noIdle = true\n        end),\n        MessageBox {\n            message = \"Sonic: Ugh. {p40}I can't believe Sal is making us use these alarm clocks...\"\n        },\n        Parallel {\n            Animate(self.scene.player.sprite, \"irritated\", true),\n            MessageBox {\n                message = \"Sonic: Doesn't she know that a hedgehog needs his beauty sleep?!\"\n            }\n        },\n        Do(function()\n            self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1\n            self.scene.player.noIdle = false\n            self.scene.player.state = \"idledown\"\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend"
           }
         }
       }

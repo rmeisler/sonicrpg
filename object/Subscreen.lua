@@ -225,7 +225,7 @@ function Subscreen:openSkillsMenu(player)
 end
 
 function Subscreen:openEquipMenu(player)
-	local orderedEquip = {ItemType.Weapon, ItemType.Armor, ItemType.Accessory}
+	local orderedEquip = {ItemType.Weapon, ItemType.Armor, ItemType.Legs, ItemType.Accessory}
 	local layout = {}
 	for _,itemType in pairs(orderedEquip) do
 		table.insert(layout, self:getEquipEntry(itemType, player.equip[itemType]))
@@ -309,12 +309,22 @@ function Subscreen:getItemEntry(record)
 	}
 end
 
+function Subscreen:itemTypeToSlotName(itemType)
+	local mapping = {
+		[ItemType.Weapon] = "Hands",
+		[ItemType.Armor] = "Body",
+		[ItemType.Legs] = "Legs",
+		[ItemType.Accessory] = "Special"
+	}
+	return mapping[itemType]
+end
+
 function Subscreen:getEquipEntry(itemType, item)
 	local itemName = item and item.name or "None"
 	local itemStats = item and item.stats or {}
 	local itemEvent = item and item.event or nil
 	local row = {
-		Layout.Text(itemType:gsub("^%l", string.upper)),
+		Layout.Text(self:itemTypeToSlotName(itemType)), --itemType:gsub("^%l", string.upper)),
 		Layout.Text{text={{255,255,0,255}, itemName}},
 	}
 	-- Reorder stats based on "order"

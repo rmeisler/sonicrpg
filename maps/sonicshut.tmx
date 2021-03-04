@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="19">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="20">
  <properties>
   <property name="onload" type="file" value="actions/knotholehut.lua"/>
   <property name="regionName" value="Sonic's Room"/>
@@ -252,6 +252,40 @@ end</property>
     <property name="defaultAnim" value="plant"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/pot.png"/>
+   </properties>
+  </object>
+  <object id="19" name="AlarmClock" type="BasicNPC" gid="6607" x="320" y="256" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Do = require &quot;actions/Do&quot;
+local Animate = require &quot;actions/Animate&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return Serial {
+        Do(function()
+            self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
+            self.scene.player.noIdle = true
+        end),
+        MessageBox {
+            message = &quot;Sonic: Ugh. {p40}I can't believe Sal is making us use these alarm clocks...&quot;
+        },
+        Parallel {
+            Animate(self.scene.player.sprite, &quot;irritated&quot;, true),
+            MessageBox {
+                message = &quot;Sonic: Doesn't she know that a hedgehog needs his beauty sleep?!&quot;
+            }
+        },
+        Do(function()
+            self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1
+            self.scene.player.noIdle = false
+            self.scene.player.state = &quot;idledown&quot;
+            self.scene.player.hidekeyhints[tostring(self)] = nil
+        end)
+    }
+end</property>
    </properties>
   </object>
  </objectgroup>
