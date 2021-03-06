@@ -12,6 +12,8 @@ local PlayAudio = require "actions/PlayAudio"
 local AudioFade = require "actions/AudioFade"
 local Spawn = require "actions/Spawn"
 local While = require "actions/While"
+local Repeat = require "actions/Repeat"
+local Executor = require "actions/Executor"
 
 local Subscreen = require "object/Subscreen"
 
@@ -516,6 +518,20 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 		else
 			layer.x = math.floor((layer.offsetx + worldOffsetX)*(layer.properties.movespeed or 1.05))
 			layer.y = math.floor((layer.offsety + worldOffsetY)*(layer.properties.movespeed or 1.05))
+			
+			-- If image layer is configured to shimmer, setup a shimmer cycle and remove config
+			if layer.properties.shimmer then
+				local originalOpacity = layer.opacity
+				Executor(self):act(
+					Repeat(
+						Serial {
+							Ease(layer, "opacity", originalOpacity/1.5, 3, "quad"),
+							Ease(layer, "opacity", originalOpacity, 3, "quad")
+						}
+					)
+				)
+				layer.properties.shimmer = nil
+			end
 		end
 	end
 end

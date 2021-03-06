@@ -19,6 +19,18 @@ return {
 	
 	{
         type = "map",
+		file = "maps/greatforest3.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/greatforest4.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
 		file = "maps/sonicshut.lua",
 		--primary = true
     },

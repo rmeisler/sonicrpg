@@ -870,6 +870,19 @@ return {
       }
     },
     {
+      type = "imagelayer",
+      name = "godrays",
+      visible = true,
+      opacity = 0.5,
+      offsetx = 128,
+      offsety = 160,
+      image = "../art/parallax/godrays.png",
+      properties = {
+        ["movespeed"] = 1,
+        ["shimmer"] = true
+      }
+    },
+    {
       type = "tilelayer",
       name = "treeoverlay",
       x = 0,
@@ -1454,19 +1467,21 @@ return {
       offsety = 704,
       image = "../art/parallax/godrays.png",
       properties = {
-        ["movespeed"] = 1
+        ["movespeed"] = 1,
+        ["shimmer"] = true
       }
     },
     {
       type = "imagelayer",
-      name = "Copy of godrays",
+      name = "godrays",
       visible = true,
       opacity = 0.5,
       offsetx = 384,
       offsety = -960,
       image = "../art/parallax/godrays.png",
       properties = {
-        ["movespeed"] = 1
+        ["movespeed"] = 1,
+        ["shimmer"] = true
       }
     },
     {
