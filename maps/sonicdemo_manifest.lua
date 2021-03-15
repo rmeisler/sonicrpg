@@ -8,12 +8,18 @@ return {
 	{
         type = "map",
 		file = "maps/greatforest1.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
         type = "map",
 		file = "maps/greatforest2.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/greatforest2_rightpath.lua",
 		--primary = true
     },
 	
@@ -38,6 +44,12 @@ return {
 	{
         type = "map",
 		file = "maps/sallyshut.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/bunnieshut.lua",
 		--primary = true
     },
 
@@ -74,7 +86,7 @@ return {
 	{
         type = "map",
         file = "maps/knothole.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -218,6 +230,10 @@ return {
 	{
 		type = "image",
 		file = "art/avatar/sonicavatar.png"
+	},
+	{
+		type = "image",
+		file = "art/avatar/bunnyavatar.png"
 	},
 	{
 		type = "image",
