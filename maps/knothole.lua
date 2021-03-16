@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 107,
+  nextobjectid = 108,
   properties = {
     ["onload"] = "actions/knothole.lua",
     ["regionName"] = "Great Forest",
@@ -2824,6 +2824,24 @@ return {
             ["alignOffsetX"] = 25,
             ["alignOffsetY"] = -15,
             ["sprite"] = "../art/sprites/tailshut.png"
+          }
+        },
+        {
+          id = 107,
+          name = "HayPatch",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 320,
+          y = 1312,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 10798,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/haypatch.png"
           }
         }
       }

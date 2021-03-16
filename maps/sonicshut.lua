@@ -11,7 +11,7 @@ return {
   nextobjectid = 20,
   properties = {
     ["onload"] = "actions/knotholehut.lua",
-    ["regionName"] = "Sonic's Room"
+    ["regionName"] = "Sonic's Hut"
   },
   tilesets = {
     {

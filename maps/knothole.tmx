@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="107">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="108">
  <properties>
   <property name="onload" type="file" value="actions/knothole.lua"/>
   <property name="regionName" value="Great Forest"/>
@@ -1693,6 +1693,13 @@ end</property>
     <property name="alignOffsetX" type="float" value="25"/>
     <property name="alignOffsetY" type="float" value="-15"/>
     <property name="sprite" type="file" value="../art/sprites/tailshut.png"/>
+   </properties>
+  </object>
+  <object id="107" name="HayPatch" type="BasicNPC" gid="10798" x="320" y="1312" width="96" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
    </properties>
   </object>
  </objectgroup>
