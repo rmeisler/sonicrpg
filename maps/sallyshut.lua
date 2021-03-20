@@ -226,6 +226,7 @@ return {
           properties = {
             ["GreenLeaf"] = 1,
             ["align"] = "bottom_left",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return MessageBox {message=\"Sonic: This is Sal's special chest, past down through the royal family for centuries... She says things you put in it will get a little better if you leave them in there... Yeah right!\", blocking = true}\n    elseif GameState.leader == \"sally\" then\n        return Serial {\n            MessageBox {message=\"Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.\", blocking = true},\n            MessageBox {message=\"Sally: Maybe I could read it to Tails.\", blocking = true}\n        }\n    end\n    return Action()\nend",
             ["sprite"] = "../art/sprites/bigchest.png"
           }
         },
@@ -301,6 +302,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return MessageBox {message=\"Sonic: Boooring.\", blocking = true}\n    elseif GameState.leader == \"sally\" then\n        return Serial {\n            MessageBox {message=\"Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.\", blocking = true},\n            MessageBox {message=\"Sally: Maybe I could read it to Tails.\", blocking = true}\n        }\n    end\n    return Action()\nend",
             ["sprite"] = "../art/sprites/sallybookshelf.png"
           }
         },
@@ -318,6 +320,8 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return MessageBox {message=\"Sonic: I don't know how Sal makes sense of any of this techno junk!\", textSpeed = 3, blocking = true}\n    elseif GameState.leader == \"sally\" then\n        return Menu {\n            layout = Layout {\n                {Layout.Text(\"What would you like to do?\"), selectable = false},\n                {Layout.Text(\"Search databank\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        MessageBox {\n                            message = \"Databank is empty...\",\n                            blocking = true\n                        }\n                    }\n                end},\n                {Layout.Text(\"Logout\"), choose = function(menu) menu:close() end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2,\n            blocking = true\n        }\n    end\n    return Action()\nend",
             ["sprite"] = "../art/sprites/stool.png"
           }
         },

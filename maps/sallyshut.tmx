@@ -86,6 +86,25 @@
    <properties>
     <property name="GreenLeaf" type="int" value="1"/>
     <property name="align" value="bottom_left"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local Action = require &quot;actions/Action&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    if GameState.leader == &quot;sonic&quot; then
+        return MessageBox {message=&quot;Sonic: This is Sal's special chest, past down through the royal family for centuries... She says things you put in it will get a little better if you leave them in there... Yeah right!&quot;, blocking = true}
+    elseif GameState.leader == &quot;sally&quot; then
+        return Serial {
+            MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.&quot;, blocking = true},
+            MessageBox {message=&quot;Sally: Maybe I could read it to Tails.&quot;, blocking = true}
+        }
+    end
+    return Action()
+end</property>
     <property name="sprite" type="file" value="../art/sprites/bigchest.png"/>
    </properties>
   </object>
@@ -117,12 +136,67 @@
   <object id="5" name="SallysBookshelf" type="BasicNPC" gid="6607" x="512" y="512" width="64" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local Action = require &quot;actions/Action&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    if GameState.leader == &quot;sonic&quot; then
+        return MessageBox {message=&quot;Sonic: Boooring.&quot;, blocking = true}
+    elseif GameState.leader == &quot;sally&quot; then
+        return Serial {
+            MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.&quot;, blocking = true},
+            MessageBox {message=&quot;Sally: Maybe I could read it to Tails.&quot;, blocking = true}
+        }
+    end
+    return Action()
+end</property>
     <property name="sprite" type="file" value="../art/sprites/sallybookshelf.png"/>
    </properties>
   </object>
   <object id="7" name="SallysStool" type="BasicNPC" gid="6607" x="512" y="320" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local Action = require &quot;actions/Action&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    if GameState.leader == &quot;sonic&quot; then
+        return MessageBox {message=&quot;Sonic: I don't know how Sal makes sense of any of this techno junk!&quot;, textSpeed = 3, blocking = true}
+    elseif GameState.leader == &quot;sally&quot; then
+        return Menu {
+            layout = Layout {
+                {Layout.Text(&quot;What would you like to do?&quot;), selectable = false},
+                {Layout.Text(&quot;Search databank&quot;), choose = function(menu)
+                    menu:close()
+                    self.scene:run {
+                        menu,
+                        MessageBox {
+                            message = &quot;Databank is empty...&quot;,
+                            blocking = true
+                        }
+                    }
+                end},
+                {Layout.Text(&quot;Logout&quot;), choose = function(menu) menu:close() end},
+            },
+            cancellable = true,
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+            selectedRow = 2,
+            blocking = true
+        }
+    end
+    return Action()
+end</property>
     <property name="sprite" type="file" value="../art/sprites/stool.png"/>
    </properties>
   </object>

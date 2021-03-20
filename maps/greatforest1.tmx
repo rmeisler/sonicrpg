@@ -492,7 +492,7 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>
-    <property name="scene" type="file" value="greatforest2_rightpath.lua"/>
+    <property name="scene" type="file" value="greatforest2_uppath.lua"/>
     <property name="spawn_point" value="DownPath"/>
    </properties>
   </object>

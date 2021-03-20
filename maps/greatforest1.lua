@@ -903,7 +903,7 @@ return {
             ["ghost"] = true,
             ["key"] = "up",
             ["orientation"] = "down",
-            ["scene"] = "greatforest2_rightpath.lua",
+            ["scene"] = "greatforest2_uppath.lua",
             ["spawn_point"] = "DownPath"
           }
         }

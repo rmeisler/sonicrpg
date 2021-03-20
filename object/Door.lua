@@ -28,7 +28,9 @@ function Door:construct(scene, layer, object)
 end
 
 function Door:enter()
-	self.sprite:setAnimation("closed")
+	if self.sprite then
+		self.sprite:setAnimation("closed")
+	end
 	self.open = false
 	self:addInteract(Door.interact)
 end
@@ -64,13 +66,18 @@ function Door:interact()
 	else
 		self:removeInteract(Door.interact)
 
+		local anim = Serial{}
+		if self.sprite then
+			anim = Serial {
+				Animate(self.sprite, "opening"),
+				Animate(self.sprite, "open")
+			}
+		end
+		
 		self:run {
 			Parallel {
 				PlayAudio("sfx", self.opensfx, 1.0),
-				Serial {
-					Animate(self.sprite, "opening"),
-					Animate(self.sprite, "open")
-				}
+				anim
 			},
 			Do(function()
 				self.open = true

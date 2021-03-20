@@ -25,6 +25,12 @@ return {
 	
 	{
         type = "map",
+		file = "maps/greatforest2_uppath.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
 		file = "maps/greatforest3.lua",
 		--primary = true
     },
@@ -44,6 +50,12 @@ return {
 	{
         type = "map",
 		file = "maps/sallyshut.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/tailshut.lua",
 		--primary = true
     },
 	

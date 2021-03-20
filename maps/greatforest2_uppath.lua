@@ -8,7 +8,7 @@ return {
   height = 22,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 101,
+  nextobjectid = 102,
   properties = {
     ["regionName"] = "",
     ["sectorName"] = "Great Forest"
@@ -295,6 +295,36 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "lower",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 101,
+          name = "QuickSand",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 288,
+          y = 352,
+          width = 128,
+          height = 64,
+          rotation = 0,
+          gid = 10798,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/quicksand.png"
+          }
+        }
       }
     },
     {
