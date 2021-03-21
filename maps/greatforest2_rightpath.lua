@@ -8,7 +8,7 @@ return {
   height = 100,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 135,
+  nextobjectid = 136,
   properties = {
     ["regionName"] = "",
     ["sectorName"] = "Great Forest"
@@ -792,6 +792,26 @@ return {
           properties = {
             ["BlueLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest.png"
+          }
+        },
+        {
+          id = 135,
+          name = "CavePath1",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 1408,
+          y = 2368,
+          width = 96,
+          height = 64,
+          rotation = 0,
+          gid = 10735,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["key"] = "up",
+            ["orientation"] = "down",
+            ["scene"] = "greatforest2_rightpath_cave1.lua",
+            ["spawn_point"] = "Entrance"
           }
         }
       }

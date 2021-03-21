@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="160" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="135">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="160" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="136">
  <properties>
   <property name="regionName" value=""/>
   <property name="sectorName" value="Great Forest"/>
@@ -491,6 +491,15 @@
    <properties>
     <property name="BlueLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest.png"/>
+   </properties>
+  </object>
+  <object id="135" name="CavePath1" type="SceneEdge" gid="10735" x="1408" y="2368" width="96" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="key" value="up"/>
+    <property name="orientation" value="down"/>
+    <property name="scene" type="file" value="greatforest2_rightpath_cave1.lua"/>
+    <property name="spawn_point" value="Entrance"/>
    </properties>
   </object>
  </objectgroup>

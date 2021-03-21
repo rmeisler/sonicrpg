@@ -25,6 +25,12 @@ return {
 	
 	{
         type = "map",
+		file = "maps/greatforest2_rightpath_cave1.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
 		file = "maps/greatforest2_uppath.lua",
 		--primary = true
     },

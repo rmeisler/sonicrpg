@@ -44,7 +44,7 @@ return function(scene)
 			local px = scene.player.x
 			local py = scene.player.y + scene.player.height
 			local cx = 400
-			local cy = 370
+			local cy = scene.map.properties.lowerCollisionCircleY or 370
 			local cr = 200
 
 			-- Player is above center of screen, use lower circle rather than higher circle
