@@ -70,6 +70,11 @@ return {
 		file = "maps/bunnieshut.lua",
 		--primary = true
     },
+	
+	{
+        type = "map",
+		file = "maps/rotorsworkshop.lua"
+    },
 
 	{
         type = "map",
@@ -792,11 +797,6 @@ return {
 		type = "sound",
 		file = "audio/music/sonicenters.ogg",
 		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/chapter1.ogg",
-		category = "music",
 	},
 	{
 		type = "sound",
