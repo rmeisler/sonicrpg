@@ -49,8 +49,8 @@ return {
       spacing = 0,
       margin = 0,
       image = "../art/tiles/knotholeinterior.png",
-      imagewidth = 3064,
-      imageheight = 1688,
+      imagewidth = 1696,
+      imageheight = 1088,
       transparentcolor = "#b326bd",
       tileoffset = {
         x = 0,
@@ -63,12 +63,12 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 4940,
+      tilecount = 1802,
       tiles = {}
     },
     {
       name = "robotropolis",
-      firstgid = 8425,
+      firstgid = 5287,
       filename = "robotropolis.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -94,7 +94,7 @@ return {
     },
     {
       name = "forest2",
-      firstgid = 11925,
+      firstgid = 8787,
       filename = "forest2.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -120,7 +120,7 @@ return {
     },
     {
       name = "knotholehut",
-      firstgid = 17100,
+      firstgid = 13962,
       tilewidth = 32,
       tileheight = 32,
       spacing = 0,
@@ -145,7 +145,7 @@ return {
     },
     {
       name = "cave",
-      firstgid = 17912,
+      firstgid = 14774,
       filename = "cave.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -364,18 +364,21 @@ return {
         {
           id = 101,
           name = "QuickSand",
-          type = "BasicNPC",
+          type = "SceneEdge",
           shape = "rectangle",
           x = 288,
           y = 224,
           width = 128,
           height = 64,
           rotation = 0,
-          gid = 10798,
+          gid = 7660,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
             ["ghost"] = true,
+            ["key"] = "up",
+            ["scene"] = "quicksand_cave1.lua",
+            ["spawn_point"] = "Entrance",
             ["sprite"] = "../art/sprites/quicksand.png"
           }
         }
@@ -401,7 +404,7 @@ return {
           width = 192,
           height = 32,
           rotation = 0,
-          gid = 8461,
+          gid = 5323,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -419,7 +422,7 @@ return {
           width = 160,
           height = 64,
           rotation = 0,
-          gid = 10735,
+          gid = 7597,
           visible = true,
           properties = {
             ["ghost"] = true,

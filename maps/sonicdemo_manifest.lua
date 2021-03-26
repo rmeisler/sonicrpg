@@ -8,7 +8,7 @@ return {
 	{
         type = "map",
 		file = "maps/greatforest1.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -44,6 +44,12 @@ return {
 	{
         type = "map",
 		file = "maps/greatforest4.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/quicksand_cave1.lua",
 		--primary = true
     },
 	
@@ -109,7 +115,7 @@ return {
 	{
         type = "map",
         file = "maps/knothole.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
