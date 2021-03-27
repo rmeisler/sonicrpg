@@ -55,6 +55,11 @@ return {
 	
 	{
         type = "map",
+		file = "maps/quicksand_cave2.lua"
+    },
+	
+	{
+        type = "map",
 		file = "maps/sonicshut.lua",
 		--primary = true
     },
