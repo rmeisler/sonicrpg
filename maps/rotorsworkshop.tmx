@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="21">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="24" tilewidth="32" tileheight="32" infinite="0" nextobjectid="23">
  <properties>
   <property name="onload" type="file" value="actions/rotorsworkshop.lua"/>
   <property name="regionName">Rotor's
@@ -12,7 +12,7 @@ Workshop</property>
  <tileset firstgid="4297" source="robotropolis.tsx"/>
  <tileset firstgid="7797" source="forest2.tsx"/>
  <tileset firstgid="12972" source="knotholeindoors.tsx"/>
- <layer name="floor" width="25" height="20">
+ <layer name="floor" width="25" height="24">
   <data encoding="csv">
 0,0,0,13437,13438,13439,13440,13384,13385,13437,13438,13439,13440,13437,13438,13386,13387,13439,13440,13439,13440,0,0,0,0,
 0,0,0,13384,13385,13386,13387,13437,13438,13490,13491,13492,13493,13490,13491,13439,13440,13384,13385,13386,13387,0,0,0,0,
@@ -33,10 +33,14 @@ Workshop</property>
 0,0,0,0,0,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5456,5457,0,0,0,0,
 0,0,0,0,0,0,0,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5456,5457,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,5387,5387,5387,5387,5387,5387,5456,5457,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="above" width="25" height="20">
+ <layer name="above" width="25" height="24">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13601,13602,13603,13604,13605,13606,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13654,13655,13656,13657,13658,13659,0,0,0,0,
@@ -57,10 +61,14 @@ Workshop</property>
 0,0,0,5454,5455,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,5454,5455,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,5454,5455,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="above2" width="25" height="20">
+ <layer name="above2" width="25" height="24">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -81,24 +89,56 @@ Workshop</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="4" name="Door" type="Door" gid="6607" x="352" y="608" width="64" height="32">
+  <object id="4" name="Door" type="Door" gid="6607" x="352" y="640" width="64" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-42"/>
+    <property name="alignOffsetX" type="float" value="-20"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="down"/>
     <property name="orientation" value="up"/>
     <property name="scene" type="file" value="knothole.lua"/>
     <property name="spawn_point" value="WorkshopDoor"/>
-    <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
+    <property name="sprite" type="file" value="../art/sprites/rotordoor.png"/>
+   </properties>
+  </object>
+  <object id="21" name="Rotor" type="BasicNPC" gid="4333" x="352" y="384" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return Serial {
+        MessageBox {
+            message = &quot;Sonic: Hey Robin!&quot;,
+            blocking = true
+        },
+        Do(function()
+            self.scene.player.hidekeyhints[tostring(self)] = nil
+        end)
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
+   </properties>
+  </object>
+  <object id="22" name="Spawn 1" type="Player" gid="4333" x="352" y="608" width="64" height="32">
+   <properties>
+    <property name="orientation" value="up"/>
    </properties>
   </object>
  </objectgroup>
- <layer name="Collision" width="25" height="20" visible="0">
+ <layer name="Collision" width="25" height="24" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -119,7 +159,11 @@ Workshop</property>
 0,0,13278,13278,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13278,13278,0,0,0,
 0,0,0,13278,13278,13278,0,0,0,0,0,0,0,0,0,0,0,0,13278,13278,13278,0,0,0,0,
 0,0,0,0,0,13278,13278,13278,0,0,0,0,0,0,0,0,13278,13278,13278,0,0,0,0,0,0,
-0,0,0,0,0,0,0,13278,13278,13278,13278,13278,13278,13278,13278,13278,13278,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,13278,13278,13278,13278,13278,13278,13278,13278,13278,13278,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
 </map>

@@ -57,14 +57,14 @@ return {
 				'shock',
 				'shock',
 				'electrical field',
-				'heal',
+				'repair',
 				'shock',
 				'shock',
 				'electrical field',
 				'countdown',
 				'countdown',
 				'countdown',
-				'photon ring'
+				'photon ring' -- Super powerful attack kills party
 			}
 			self.currentBehavior = 1
 			self.countdown = 3
@@ -80,15 +80,23 @@ return {
 			action = Serial {
 				Telegraph(self, "Electrical Field", {255,255,255,50})
 			}
-		elseif behavior == "heal" then
+		elseif behavior == "repair" then
 			action = Serial {
 				Telegraph(self, "Repair", {255,255,255,50})
 			}
 		elseif behavior == "countdown" then
-			action = Serial {
-				Telegraph(self, "Countdown", {255,255,255,50}),
-				Telegraph(self, tostring(self.countdown), {255,255,255,50}),
-			}
+			-- If you confuse Super Cambot mid-countdown,
+			-- they will lose track of what they were doing
+			if self.countdown == 3 then
+				action = Serial {
+					Telegraph(self, "Countdown", {255,255,255,50}),
+					Telegraph(self, tostring(self.countdown), {255,255,255,50}),
+				}
+			else
+				action = Serial {
+					Telegraph(self, tostring(self.countdown), {255,255,255,50}),
+				}
+			end
 			self.countdown = self.countdown - 1
 			if self.countdown == 0 then
 				self.countdown = 3
