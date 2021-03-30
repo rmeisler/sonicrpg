@@ -32,7 +32,7 @@ return function(scene)
 		Ease(text.color, 4, 0, 1)
 	})
 
-	scene.audio:playMusic("doittoit", 1.0)
+	scene.audio:playMusic("doittoit", 0.8)
 
 	return Action()
 end

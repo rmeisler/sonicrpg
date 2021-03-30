@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="23" tilewidth="32" tileheight="32" infinite="0" nextobjectid="23">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="23" tilewidth="32" tileheight="32" infinite="0" nextobjectid="26">
  <properties>
   <property name="onload" type="file" value="actions/rotorsworkshop.lua"/>
   <property name="regionName">Rotor's
@@ -78,12 +78,12 @@ Workshop</property>
 0,0,0,0,0,0,0,0,0,0,0,0,14025,14026,14027,14028,14029,14030,14031,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,14080,14081,14082,14083,14084,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3446,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3549,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3601,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3602,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -112,14 +112,30 @@ Workshop</property>
     <property name="alignOffsetX" type="float" value="25"/>
     <property name="defaultAnim" value="idledown"/>
     <property name="ghost" type="bool" value="false"/>
+    <property name="notColliding">return function(self, player)
+    if math.abs(self.x - player.x) &lt; math.abs(self.y - player.y) then
+        if player.y &gt; self.y then
+            self.sprite:setAnimation(&quot;idledown&quot;)
+        else
+            self.sprite:setAnimation(&quot;idleup&quot;)
+        end
+    else
+        if player.x &gt; self.x then
+            self.sprite:setAnimation(&quot;idleright&quot;)
+        else
+            self.sprite:setAnimation(&quot;idleleft&quot;)
+        end
+    end
+end</property>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 
 return function(self)
+    local playername = GameState.party[GameState.leader].altName
     return Serial {
         MessageBox {
-            message = &quot;Sonic: Hey Robin!&quot;,
+            message = &quot;Rotor: Hey &quot;..playername..&quot;! {p30}Got any items you want me to look at?&quot;,
             blocking = true
         },
         Do(function()
@@ -135,6 +151,96 @@ end</property>
     <property name="orientation" value="up"/>
    </properties>
   </object>
+  <object id="23" name="Mine" type="BasicNPC" gid="4333" x="576" y="352" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="48"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    return BlockPlayer {
+        MessageBox {
+            message = &quot;Rotor: That's a Mine! {p30}It can deal damage to even the toughest bots...&quot;
+        },
+        Menu {
+            layout = Layout {
+                {Layout.Text(&quot;Take Mine?&quot;), selectable = false},
+                {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                    menu:close()
+                    GameState:grantItem(require(&quot;data/items/Mine&quot;), 1)
+                    self.scene:run {
+                        menu,
+                        Do(function() self:remove() end),
+                        MessageBox {
+                            message = &quot;You received a Mine!&quot;,
+                            blocking = true
+                        }
+                    }
+                end},
+                {Layout.Text(&quot;No&quot;), choose = function(menu) menu:close() end},
+            },
+            cancellable = true,
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+            selectedRow = 2
+        }
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/mine.png"/>
+   </properties>
+  </object>
+  <object id="24" name="WaterBalloon" type="BasicNPC" gid="4333" x="576" y="448" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="32"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    return BlockPlayer {
+        MessageBox {
+            message = &quot;Rotor: That's a Water Balloon! {p30}Surprisingly effective against Swatbutts!&quot;
+        },
+        Menu {
+            layout = Layout {
+                {Layout.Text(&quot;Take Water Balloon?&quot;), selectable = false},
+                {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                    menu:close()
+                    GameState:grantItem(require(&quot;data/items/WaterBalloon&quot;), 1)
+                    self.scene:run {
+                        menu,
+                        Do(function() self:remove() end),
+                        MessageBox {
+                            message = &quot;You received a Water Balloon!&quot;,
+                            blocking = true
+                        }
+                    }
+                end},
+                {Layout.Text(&quot;No&quot;), choose = function(menu) menu:close() end},
+            },
+            cancellable = true,
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+            selectedRow = 2
+        }
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/blueballoon.png"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="Collision" width="25" height="23" visible="0">
   <data encoding="csv">
@@ -143,9 +249,9 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,13278,13278,13278,13278,13278,13278,13278,13278,13278,13278,0,0,0,0,0,0,0,0,
-0,0,0,0,0,13278,13278,13278,0,0,0,0,0,0,0,0,13278,13278,13278,0,0,0,0,0,0,
-0,0,0,13278,13278,13278,0,0,0,0,0,0,0,0,0,0,0,0,13278,13278,13278,0,0,0,0,
+0,0,0,0,0,0,0,13278,13278,13278,13278,13278,13278,13278,13278,13278,13278,13278,0,0,0,0,0,0,0,
+0,0,0,0,0,13278,13278,13278,0,0,0,0,13278,13278,13278,13278,13278,13278,13278,0,0,0,0,0,0,
+0,0,0,13278,13278,13278,0,0,0,0,0,0,13278,13278,13278,13278,13278,13278,13278,13278,13278,0,0,0,0,
 0,0,13278,13278,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13278,13278,0,0,0,
 0,0,13278,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13278,13278,13278,13278,0,0,0,
 0,0,13278,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13278,13278,13278,13278,0,0,0,

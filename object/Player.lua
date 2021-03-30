@@ -460,6 +460,7 @@ function Player:onChangeChar()
 			for k in pairs(self.keyhints) do
 				self.hidekeyhints[k] = nil
 			end
+			self.keyhints = {}
 		end)
 	}
 end
@@ -467,6 +468,8 @@ end
 function Player:onSpecialMove()
 	if not self.noSpecialMove then
 		self.doingSpecialMove = true
+		self.keyhints = {}
+		self.hidekeyhints = {}
 		GameState.party[GameState.leader].specialmove(self)
 	end
 end

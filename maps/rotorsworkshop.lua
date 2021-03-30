@@ -8,7 +8,7 @@ return {
   height = 23,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 23,
+  nextobjectid = 26,
   properties = {
     ["onload"] = "actions/rotorsworkshop.lua",
     ["regionName"] = "Rotor's\nWorkshop"
@@ -247,12 +247,12 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14025, 14026, 14027, 14028, 14029, 14030, 14031, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14080, 14081, 14082, 14083, 14084, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3446, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3549, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3601, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3602, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -312,7 +312,8 @@ return {
             ["alignOffsetX"] = 25,
             ["defaultAnim"] = "idledown",
             ["ghost"] = false,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return Serial {\n        MessageBox {\n            message = \"Sonic: Hey Robin!\",\n            blocking = true\n        },\n        Do(function()\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
+            ["notColliding"] = "return function(self, player)\n    if math.abs(self.x - player.x) < math.abs(self.y - player.y) then\n        if player.y > self.y then\n            self.sprite:setAnimation(\"idledown\")\n        else\n            self.sprite:setAnimation(\"idleup\")\n        end\n    else\n        if player.x > self.x then\n            self.sprite:setAnimation(\"idleright\")\n        else\n            self.sprite:setAnimation(\"idleleft\")\n        end\n    end\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    local playername = GameState.party[GameState.leader].altName\n    return Serial {\n        MessageBox {\n            message = \"Rotor: Hey \"..playername..\"! {p30}Got any items you want me to look at?\",\n            blocking = true\n        },\n        Do(function()\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/rotor.png"
           }
         },
@@ -330,6 +331,46 @@ return {
           visible = true,
           properties = {
             ["orientation"] = "up"
+          }
+        },
+        {
+          id = 23,
+          name = "Mine",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 576,
+          y = 352,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 4333,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = 48,
+            ["ghost"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {\n            message = \"Rotor: That's a Mine! {p30}It can deal damage to even the toughest bots...\"\n        },\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Take Mine?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    GameState:grantItem(require(\"data/items/Mine\"), 1)\n                    self.scene:run {\n                        menu,\n                        Do(function() self:remove() end),\n                        MessageBox {\n                            message = \"You received a Mine!\",\n                            blocking = true\n                        }\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu) menu:close() end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        }\n    }\nend",
+            ["sprite"] = "../art/sprites/mine.png"
+          }
+        },
+        {
+          id = 24,
+          name = "WaterBalloon",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 576,
+          y = 448,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 4333,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = 32,
+            ["ghost"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {\n            message = \"Rotor: That's a Water Balloon! {p30}Surprisingly effective against Swatbutts!\"\n        },\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Take Water Balloon?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    GameState:grantItem(require(\"data/items/WaterBalloon\"), 1)\n                    self.scene:run {\n                        menu,\n                        Do(function() self:remove() end),\n                        MessageBox {\n                            message = \"You received a Water Balloon!\",\n                            blocking = true\n                        }\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu) menu:close() end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        }\n    }\nend",
+            ["sprite"] = "../art/sprites/blueballoon.png"
           }
         }
       }
@@ -353,9 +394,9 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 13278, 13278, 13278, 13278, 13278, 13278, 13278, 13278, 13278, 13278, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 13278, 13278, 13278, 0, 0, 0, 0, 0, 0, 0, 0, 13278, 13278, 13278, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 13278, 13278, 13278, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13278, 13278, 13278, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 13278, 13278, 13278, 13278, 13278, 13278, 13278, 13278, 13278, 13278, 13278, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 13278, 13278, 13278, 0, 0, 0, 0, 13278, 13278, 13278, 13278, 13278, 13278, 13278, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 13278, 13278, 13278, 0, 0, 0, 0, 0, 0, 13278, 13278, 13278, 13278, 13278, 13278, 13278, 13278, 13278, 0, 0, 0, 0,
         0, 0, 13278, 13278, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13278, 13278, 0, 0, 0,
         0, 0, 13278, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13278, 13278, 13278, 13278, 0, 0, 0,
         0, 0, 13278, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13278, 13278, 13278, 13278, 0, 0, 0,

@@ -18,7 +18,7 @@ function SpriteNode:construct(scene, transform, color, imgsrc, w, h, layer)
 		self.w = meta.w --Ignore passed in w/h
 		self.h = meta.h
 		for anikey,anival in pairs(meta.animations) do
-			self:addAnimation(anikey, anival.frames, anival.speed or 0)
+			self:addAnimation(anikey, anival.frames, anival.speed or 0, anival.clip or {0, 0, self.w, self.h})
 			self.locationOffsets[anikey] = anival.locationoffsets
 		end
 		
@@ -29,7 +29,7 @@ function SpriteNode:construct(scene, transform, color, imgsrc, w, h, layer)
 		self.w = w or self.img:getWidth()
 		self.h = h or self.img:getHeight()
 		self.animations = {}
-		self:addAnimation("default", {{0,0}}, 1)
+		self:addAnimation("default", {{0,0}}, 1, {0, 0, self.w, self.h})
 	end
 	
 	self.drawWithParallax = false
@@ -44,7 +44,8 @@ function SpriteNode:construct(scene, transform, color, imgsrc, w, h, layer)
 	self:addSceneHandler("update", SpriteNode.update)
 end
 
-function SpriteNode:addAnimation(name, colrows, speed)
+function SpriteNode:addAnimation(name, colrows, speed, clip)
+    local cx,cy,cw,ch = unpack(clip)
     local animation = Animation.new(self.img, self.w, self.h, speed)
     for _, pair in pairs(colrows) do
 		if type(pair) ~= "table" then
@@ -52,7 +53,7 @@ function SpriteNode:addAnimation(name, colrows, speed)
 			print(self.imgsrc)
 		end
 	    local col, row = unpack(pair)
-        animation:addFrame(col*self.w, row*self.h, self.w, self.h, speed)
+        animation:addFrame((col*self.w)+cx, (row*self.h)+cy, cw, ch, speed)
     end
 	self.selected = name
     self.animations[self.selected] = animation

@@ -16,6 +16,15 @@ return {
 		
 		left = {
 			frames = {{1,0}}
-		}
+		},
+		
+		right_clipped = {
+			frames = {{0,0}},
+			clip = {100,0,350,300}
+		},
+		left_clipped = {
+			frames = {{1,0}},
+			clip = {0,0,350,300}
+		},
     }
 }
