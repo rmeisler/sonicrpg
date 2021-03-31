@@ -20,7 +20,7 @@ return {
 		
 		right_clipped = {
 			frames = {{0,0}},
-			clip = {100,0,350,300}
+			clip = {120,0,330,300}
 		},
 		left_clipped = {
 			frames = {{1,0}},

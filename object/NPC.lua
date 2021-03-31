@@ -61,6 +61,8 @@ function NPC:construct(scene, layer, object)
 		self:addInteract(NPC.onInteract)
 	end
 	
+	self.hidden = object.properties.hidden
+	
 	self.hotspotOffsets = {
 		right_top = {x = 0, y = 0},
 		right_bot = {x = 0, y = 0},
@@ -344,7 +346,11 @@ function NPC:update(dt)
 	local prevState = self.state
 	self.state = NPC.STATE_IDLE
 	
-	if not self.scene.player then
+	if self.sprite then
+		self.sprite.visible = not self.hidden
+	end
+
+	if not self.scene.player or self.hidden then
 		return
 	end
 	

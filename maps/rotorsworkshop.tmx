@@ -14,15 +14,15 @@ Workshop</property>
  <tileset firstgid="12972" source="knotholeindoors.tsx"/>
  <layer name="floor" width="25" height="23">
   <data encoding="csv">
-0,0,0,13437,13438,13437,13438,13437,13438,13435,13436,13435,13436,13435,13436,13439,13440,13439,13440,13439,13440,0,0,0,0,
-0,0,0,13437,13438,13437,13438,13437,13438,13435,13436,13435,13436,13435,13436,13439,13440,0,0,13439,13440,0,0,0,0,
-0,0,0,13437,13438,13437,13438,13437,13438,13382,13383,13382,13383,13382,13383,13439,13440,13439,13440,13439,13440,0,0,0,0,
-0,0,0,13437,13438,13437,13438,13437,13438,13435,13436,13435,13436,13435,13436,13439,13440,13439,13440,13439,13440,0,0,0,0,
-0,0,0,13437,13438,13437,13438,13490,13491,13488,13489,13488,13489,13488,13489,13492,13493,13439,13440,13439,13440,0,0,0,0,
-0,0,0,13437,13438,13490,13491,13543,13544,13541,13542,13541,13542,13541,13542,13545,13546,13492,13493,13439,13440,0,0,0,0,
-0,0,0,13490,13491,13543,13544,13596,13597,5387,5387,5387,5387,5387,5387,13598,13599,13545,13546,13492,13493,0,0,0,0,
-0,0,0,13543,13544,13596,13597,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,13598,13599,13545,13546,0,0,0,0,
-0,0,0,13596,13597,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,13598,13599,0,0,0,0,
+0,0,0,13437,13438,13437,13438,13485,13486,13394,13395,13394,13395,13394,13395,13439,13440,13439,13440,13439,13440,0,0,0,0,
+0,0,0,13437,13438,13536,13537,13538,13539,13447,13448,13447,13448,13447,13448,13439,13440,0,0,13439,13440,0,0,0,0,
+0,0,0,13437,13588,13589,13590,13591,13592,13394,13395,13394,13395,13394,13395,13439,13440,13439,13440,13439,13440,0,0,0,0,
+0,0,0,13437,13641,13642,13643,13644,13645,13447,13448,13447,13448,13447,13448,13439,13440,13439,13440,13439,13440,0,0,0,0,
+0,0,0,13437,13694,13695,13696,13697,13698,13500,13501,13500,13501,13500,13501,13492,13493,13439,13440,13439,13440,0,0,0,0,
+0,0,0,13437,13747,13748,13749,13750,13751,13553,13554,13553,13554,13553,13554,13545,13546,13492,13493,13439,13440,0,0,0,0,
+0,0,0,13490,13800,13801,13802,13803,13804,5387,5387,5387,5387,5387,5387,13598,13599,13545,13546,13492,13493,0,0,0,0,
+0,0,0,13543,13853,13854,13855,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,13598,13599,13545,13546,0,0,0,0,
+0,0,0,13596,13906,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,13598,13599,0,0,0,0,
 0,0,0,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,0,0,0,0,
 0,0,0,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,0,0,0,0,
 0,0,0,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,5387,0,0,0,0,
@@ -113,14 +113,20 @@ Workshop</property>
     <property name="defaultAnim" value="idledown"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="notColliding">return function(self, player)
-    if math.abs(self.x - player.x) &lt; math.abs(self.y - player.y) then
-        if player.y &gt; self.y then
+    local dx = self.x + self.sprite.w - player.x + player.sprite.w
+    local dy = self.y + self.sprite.h - player.y + player.sprite.h
+    if dx * dx + dy * dy &lt; 100*100 then
+        return
+    end
+
+    if math.abs(dx) &lt; math.abs(dy) then
+        if dy &lt; 0 then
             self.sprite:setAnimation(&quot;idledown&quot;)
         else
             self.sprite:setAnimation(&quot;idleup&quot;)
         end
     else
-        if player.x &gt; self.x then
+        if dx &lt; 0 then
             self.sprite:setAnimation(&quot;idleright&quot;)
         else
             self.sprite:setAnimation(&quot;idleleft&quot;)
@@ -132,7 +138,9 @@ local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 
 return function(self)
+    local facingMap = {idleup = &quot;idledown&quot;, idledown = &quot;idleup&quot;, idleleft = &quot;idleright&quot;, idleright = &quot;idleleft&quot;}
     local playername = GameState.party[GameState.leader].altName
+    self.sprite:setAnimation(facingMap[self.scene.player.state] or &quot;idledown&quot;)
     return Serial {
         MessageBox {
             message = &quot;Rotor: Hey &quot;..playername..&quot;! {p30}Got any items you want me to look at?&quot;,
@@ -161,6 +169,7 @@ local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Menu = require &quot;actions/Menu&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
@@ -173,7 +182,7 @@ return function(self)
         Menu {
             layout = Layout {
                 {Layout.Text(&quot;Take Mine?&quot;), selectable = false},
-                {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                {Layout.Text(&quot;Yes&quot;), noChooseSfx = true, choose = function(menu)
                     menu:close()
                     GameState:grantItem(require(&quot;data/items/Mine&quot;), 1)
                     self.scene:run {
@@ -181,7 +190,8 @@ return function(self)
                         Do(function() self:remove() end),
                         MessageBox {
                             message = &quot;You received a Mine!&quot;,
-                            blocking = true
+                            blocking = true,
+                            sfx = &quot;choose&quot;
                         }
                     }
                 end},
@@ -206,6 +216,7 @@ local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Menu = require &quot;actions/Menu&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
@@ -218,7 +229,7 @@ return function(self)
         Menu {
             layout = Layout {
                 {Layout.Text(&quot;Take Water Balloon?&quot;), selectable = false},
-                {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                {Layout.Text(&quot;Yes&quot;), noChooseSfx = true, choose = function(menu)
                     menu:close()
                     GameState:grantItem(require(&quot;data/items/WaterBalloon&quot;), 1)
                     self.scene:run {
@@ -226,7 +237,8 @@ return function(self)
                         Do(function() self:remove() end),
                         MessageBox {
                             message = &quot;You received a Water Balloon!&quot;,
-                            blocking = true
+                            blocking = true,
+                            sfx = &quot;choose&quot;
                         }
                     }
                 end},
