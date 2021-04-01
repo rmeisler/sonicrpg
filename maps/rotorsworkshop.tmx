@@ -163,6 +163,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="48"/>
+    <property name="defaultAnim" value="idle"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;

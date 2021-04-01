@@ -94,6 +94,9 @@ function Player:construct(scene, layer, object)
 	-- A hashset of stairs we are touching
 	self.stairs = {}
 	
+	-- A hashset of ladders we are touching
+	self.ladders = {}
+	
 	-- A hashset of keyhints we are touching
 	self.keyhints = {}
 
@@ -646,8 +649,7 @@ function Player:basicUpdate(dt)
 		self.state = Player.ToIdle[self.state] or self.state
 	end
 	
-	self.collisionX, self.collisionY = self.scene:worldCoordToCollisionCoord(self.x, self.y)
-	local hotspots = self:updateHotspots()
+	local hotspots = self:updateCollisionObj()
     
 	if 	self.cinematic or
 		self.cinematicStack > 0 or
@@ -961,6 +963,11 @@ function Player:basicUpdate(dt)
 	end
 	
 	self.sprite:setAnimation(self.state)
+end
+
+function Player:updateCollisionObj()
+	self.collisionX, self.collisionY = self.scene:worldCoordToCollisionCoord(self.x, self.y)
+	return self:updateHotspots()
 end
 
 function Player:distanceFromSq(obj)
