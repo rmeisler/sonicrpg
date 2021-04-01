@@ -9,11 +9,6 @@ local Transform = require "util/Transform"
 
 return function(attribute, amount, color)
 	return function (target, transform)
-		for k,v in pairs(target.stats) do
-			print("stat "..k.." = "..tostring(v))
-		end
-		print("attribute = "..attribute)
-		print("target attr = "..target[attribute])
 		local newstat = math.min(target[attribute] + amount, target.stats["max"..attribute])
 		return Do(function()
 			Executor(target.scene):act(Parallel {

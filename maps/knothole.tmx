@@ -1816,6 +1816,9 @@ end</property>
 local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Ease = require &quot;actions/Ease&quot;
+local Repeat = require &quot;actions/Repeat&quot;
+local Wait = require &quot;actions/Wait&quot;
+local While = require &quot;actions/While&quot;
 
 return function(self)
     self.sprite.color = {512,512,512,0}
@@ -1828,7 +1831,27 @@ return function(self)
             Ease(self.sprite.color, 2, 255, 2),
             Ease(self.sprite.color, 3, 255, 2),
             Ease(self.sprite.color, 4, 255, 2)
-        }
+        },
+        Do(function()
+            self:run(Repeat(
+                While(
+                    function()
+                        return not self:isRemoved()
+                    end,
+                    Serial {
+                        Do(function()
+                            self.sprite:setShine(3)
+                        end),
+                        Wait(1.0),
+                        Do(function()
+                            self.sprite:removeShine()
+                        end),
+                        Wait(5)
+                    },
+                    Do(function() end)
+                )
+            ))
+        end)
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/leaf.png"/>
