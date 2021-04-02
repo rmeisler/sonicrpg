@@ -49,7 +49,7 @@ function SceneEdge:update(dt)
 	
 	if  not self.scene.sceneMgr.transitioning and
 		self.state == self.STATE_TOUCHING and
-		self.scene.player:isFacing(self.object.properties.key) and
+		love.keyboard.isDown(self.object.properties.key) and
 		not self.readyMsgShowing and
 		(not self.needFlag or GameState:isFlagSet(self))
 	then

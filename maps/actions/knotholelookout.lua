@@ -14,39 +14,27 @@ return function(scene)
 	local Executor = require "actions/Executor"
 	local Wait = require "actions/Wait"
 	local Do = require "actions/Do"
+	local shine = require "lib/shine"
 	local SpriteNode = require "object/SpriteNode"
-
-	local subtext = TypeText(
-		Transform(50, 470),
-		{255, 255, 255, 0},
-		FontCache.TechnoSmall,
-		"Rotor's",
-		100
-	)
+	local NameScreen = require "actions/NameScreen"
+	local Player = require "object/Player"
 	
 	local text = TypeText(
 		Transform(50, 500),
 		{255, 255, 255, 0},
 		FontCache.Techno,
-		"Workshop",
+		"Lookout",
 		100
 	)
 	Executor(scene):act(Serial {
 		Wait(0.5),
-		subtext,
 		text,
-		Parallel {
-			Ease(text.color, 4, 255, 1),
-			Ease(subtext.color, 4, 255, 1),
-		},
+		Ease(text.color, 4, 255, 1),
 		Wait(2),
-		Parallel {
-			Ease(text.color, 4, 0, 1),
-			Ease(subtext.color, 4, 0, 1)
-		}
+		Ease(text.color, 4, 0, 1)
 	})
 
-	scene.audio:playMusic("doittoit", 0.8)
+	scene.audio:stopMusic()
 
 	return Action()
 end

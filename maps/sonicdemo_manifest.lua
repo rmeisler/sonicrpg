@@ -124,6 +124,11 @@ return {
     },
 	
 	{
+        type = "map",
+        file = "maps/knotholelookout.lua"
+    },
+	
+	{
 		type = "gradient",
 		name = "mboxgradient",
 		args = string.dump(function()
