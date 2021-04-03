@@ -127,7 +127,7 @@ end</property>
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="4" name="SallysBed" type="BasicNPC" gid="6607" x="192" y="384" width="224" height="64">
+  <object id="4" name="SallysBed" type="BasicNPC" gid="6607" x="192" y="384" width="192" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="8"/>

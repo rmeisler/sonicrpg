@@ -1851,34 +1851,50 @@ end</property>
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Menu = require &quot;actions/Menu&quot;
 local Action = require &quot;actions/Action&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
 
 return function(self)
-    return Menu {
+    return BlockPlayer { Menu {
             layout = Layout {
                 {Layout.Text(&quot;Check for Power Ring?&quot;), selectable = false},
                 {Layout.Text(&quot;Yes&quot;), choose = function(menu)
                     menu:close()
-                    self.scene:run {
-                        menu,
-                        MessageBox {
-                            message = &quot;Databank is empty...&quot;,
-                            blocking = true
+                    if GameState:hasItem(&quot;PowerRing&quot;) or GameState:isFlagSet(&quot;got_ring&quot;) then
+                        self.scene:run {
+                            menu,
+                            MessageBox {
+                                message = &quot;It doesn't look like it's ready...&quot;,
+                                blocking = true
+                            }
                         }
-                    }
+                    else
+                        GameState:setFlag(&quot;got_ring&quot;)
+                        GameState:grantItem(require(&quot;data/items/PowerRing&quot;), 1)
+                        self.scene:run {
+                            menu,
+                            MessageBox {
+                                message = &quot;You received a Power Ring!&quot;,
+                                blocking = true,
+                                sfx = &quot;levelup&quot;
+                            }
+                        }
+                    end
                 end},
                 {Layout.Text(&quot;No&quot;), choose = function(menu) menu:close() end},
             },
             cancellable = true,
             transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
-            selectedRow = 2,
-            blocking = true
-        }
+            selectedRow = 2
+        },
+        Do(function()  self.scene.player.hidekeyhints[tostring(self)] = nil end)
+    }
 end</property>
    </properties>
   </object>

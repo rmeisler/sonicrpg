@@ -36,6 +36,16 @@ function Ladder:whileColliding(player)
 		player.origUpdate = player.basicUpdate
 		player.basicUpdate = function(player, dt)
 			player:updateCollisionObj()
+
+			if 	player.cinematic or
+				player.cinematicStack > 0 or
+				player.blocked or
+				not player.scene:playerMovable() or
+				player.dontfuckingmove
+			then
+				player.sprite:setAnimation(Player.STATE_IDLEUP)
+				return
+			end
 			
 			local movespeed = player.movespeed * (dt/0.016)
 			player.state = Player.STATE_IDLEUP --CLIMBIDLE

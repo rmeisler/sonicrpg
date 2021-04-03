@@ -136,6 +136,10 @@ end</property>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+
+local Layout = require &quot;util/Layout&quot;
+local Transform = require &quot;util/Transform&quot;
 
 return function(self)
     local facingMap = {idleup = &quot;idledown&quot;, idledown = &quot;idleup&quot;, idleleft = &quot;idleright&quot;, idleright = &quot;idleleft&quot;}
@@ -143,8 +147,41 @@ return function(self)
     self.sprite:setAnimation(facingMap[self.scene.player.state] or &quot;idledown&quot;)
     return Serial {
         MessageBox {
-            message = &quot;Rotor: Hey &quot;..playername..&quot;! {p30}Got any items you want me to look at?&quot;,
+            message = &quot;Rotor: Hey &quot;..playername..&quot;! {p30}Got any spare parts for me?&quot;,
             blocking = true
+        },
+        Menu {
+            layout = Layout {
+                {Layout.Text(&quot;Show items to Rotor?&quot;), selectable = false},
+                {Layout.Text(&quot;Yes&quot;), noChooseSfx = true, choose = function(menu)
+                    menu:close()
+                    
+                    self.scene:run {
+                        menu,
+                        MessageBox {
+                            message = &quot;Rotor: Hmmm{p30}.{p30}.{p30}.&quot;,
+                            blocking = true
+                        },
+                        MessageBox {
+                            message = &quot;Rotor: Sorry guys, I need at least 3 junk parts in order to make something for you.&quot;,
+                            blocking = true
+                        },
+                    }
+                end},
+                {Layout.Text(&quot;No&quot;), choose = function(menu)
+                    menu:close()
+                    self.scene:run {
+                        menu,
+                        MessageBox {
+                            message = &quot;Rotor: If you find any junk parts, bring 'em to me!&quot;,
+                            blocking = true
+                        }
+                    }
+                end},
+            },
+            cancellable = true,
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+            selectedRow = 2
         },
         Do(function()
             self.scene.player.hidekeyhints[tostring(self)] = nil
@@ -226,7 +263,7 @@ local Layout = require &quot;util/Layout&quot;
 return function(self)
     return BlockPlayer {
         MessageBox {
-            message = &quot;Rotor: That's a Water Balloon! {p30}Surprisingly effective against Swatbutts!&quot;
+            message = &quot;Rotor: That's a Water Balloon! {p30}These are surprisingly effective against Swatbutts!&quot;
         },
         Menu {
             layout = Layout {

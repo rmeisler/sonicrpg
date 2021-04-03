@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="21">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="24">
  <properties>
   <property name="lowerCollisionCircleY" type="float" value="300"/>
   <property name="onload" type="file" value="actions/knotholehut.lua"/>
@@ -52,8 +52,8 @@
 0,0,0,0,0,0,233,538,539,0,659,660,661,662,663,317,0,0,245,0,0,0,0,0,0,
 0,0,0,0,0,0,0,567,568,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,597,598,599,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,626,627,628,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -98,7 +98,7 @@
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
-  <object id="11" name="Brightness" type="BasicNPC" gid="6628" x="256" y="320" width="96" height="64">
+  <object id="11" name="Brightness" type="BasicNPC" gid="6628" x="288" y="288" width="64" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)
@@ -117,6 +117,19 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/tailsbed.png"/>
    </properties>
   </object>
+  <object id="22" name="Drawer" type="BasicNPC" gid="6607" x="480" y="256" width="64" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return MessageBox {
+        message = &quot;Diary: I wanted to play dirt hockey with Sonic today, but he said he was too busy. {p30}Maybe he'll play with me tomorrow.&quot;,
+        blocking = true
+    }
+end</property>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="Collision" width="25" height="20" visible="0">
   <data encoding="csv">
@@ -130,11 +143,11 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13389,13389,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13389,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,514,514,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,514,514,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,514,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,514,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,10011,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

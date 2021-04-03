@@ -234,6 +234,11 @@ function GameState:levelup(member)
 	local member = self.party[member]
 	
 	member.level = member.level + 1
+
+	-- If Sonic levels up, unset ring flag, so we can get another ring from the lake
+	if member.id == "sonic" then
+		self:unsetFlag("got_ring")
+	end
 	
 	-- Scale them up to the requested level
 	member.stats = {}
