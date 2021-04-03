@@ -169,10 +169,10 @@ end
 
 function Player:updateHotspots()
 	self.hotspots = {
-		right_top = {x = self.x + 12, y = self.y + self.halfHeight + 5},
-		right_bot = {x = self.x + 12, y = self.y + self.height},
-		left_top  = {x = self.x - 15, y = self.y + self.halfHeight + 5},
-		left_bot  = {x = self.x - 15, y = self.y + self.height}
+		right_top = {x = self.x + 30, y = self.y + self.halfHeight + 5},
+		right_bot = {x = self.x + 30, y = self.y + self.height},
+		left_top  = {x = self.x - 30, y = self.y + self.halfHeight + 5},
+		left_bot  = {x = self.x - 30, y = self.y + self.height}
 	}
 	return self.hotspots
 end
