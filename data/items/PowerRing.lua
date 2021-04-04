@@ -8,10 +8,7 @@ return {
 	unusable = function(target)
 		return target.id ~= "sonic"
 	end,
-	icon = "icon_star",
-	cost = {
-		plant = 3
-	},
+	icon = "icon_ring",
 	battleAction = function()
 		local Heal = require "data/items/actions/Heal"
 		return Heal("hp", 100)

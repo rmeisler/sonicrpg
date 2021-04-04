@@ -52,7 +52,7 @@ return {
 
 	items = {
 		{count = 1, item = require "data/items/GreenLeaf"},
-		{count = 1, item = require "data/items/YellowLeaf"},
+		{count = 10, item = require "data/items/ScrapMetal"},
 	},
 	
 	levelup = {

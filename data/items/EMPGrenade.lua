@@ -4,7 +4,10 @@ return {
 	name = "EMP Grenade",
 	desc = "Bots lose a couple turns.",
 	target = TargetType.Party,
-	icon = "icon_item",
+	cost = 9,
+	subtype = "craft",
+	icon = "icon_charge",
+	img = "empgrenade",
 	usableFromMenu = false,
 	usableFromBattle = true,
 }

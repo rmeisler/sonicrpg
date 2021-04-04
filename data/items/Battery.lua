@@ -1,11 +1,10 @@
 local TargetType = require "util/TargetType"
 
 return {
-	name = "Oscillator",
-	desc = "Some scrap bot parts",
+	name = "Battery",
+	desc = "Maybe Rotor can find a use for this...",
 	target = TargetType.Party,
-	icon = "icon_accessory",
-	subtype = "junk",
+	icon = "icon_item",
 	usableFromMenu = false,
 	usableFromBattle = false,
 }

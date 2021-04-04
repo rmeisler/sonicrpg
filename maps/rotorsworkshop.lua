@@ -298,7 +298,7 @@ return {
         {
           id = 21,
           name = "Rotor",
-          type = "BasicNPC",
+          type = "Rotor",
           shape = "rectangle",
           x = 320,
           y = 448,
@@ -311,9 +311,6 @@ return {
             ["align"] = "bottom_center",
             ["alignOffsetX"] = 25,
             ["defaultAnim"] = "idledown",
-            ["ghost"] = false,
-            ["notColliding"] = "return function(self, player)\n    local dx = self.x + self.sprite.w - player.x + player.sprite.w\n    local dy = self.y + self.sprite.h - player.y + player.sprite.h\n    if dx * dx + dy * dy < 100*100 then\n        return\n    end\n\n    if math.abs(dx) < math.abs(dy) then\n        if dy < 0 then\n            self.sprite:setAnimation(\"idledown\")\n        else\n            self.sprite:setAnimation(\"idleup\")\n        end\n    else\n        if dx < 0 then\n            self.sprite:setAnimation(\"idleright\")\n        else\n            self.sprite:setAnimation(\"idleleft\")\n        end\n    end\nend",
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    local facingMap = {idleup = \"idledown\", idledown = \"idleup\", idleleft = \"idleright\", idleright = \"idleleft\"}\n    local playername = GameState.party[GameState.leader].altName\n    self.sprite:setAnimation(facingMap[self.scene.player.state] or \"idledown\")\n    return Serial {\n        MessageBox {\n            message = \"Rotor: Hey \"..playername..\"! {p30}Got any spare parts for me?\",\n            blocking = true\n        },\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Show items to Rotor?\"), selectable = false},\n                {Layout.Text(\"Yes\"), noChooseSfx = true, choose = function(menu)\n                    menu:close()\n                    \n                    self.scene:run {\n                        menu,\n                        MessageBox {\n                            message = \"Rotor: Hmmm{p30}.{p30}.{p30}.\",\n                            blocking = true\n                        },\n                        MessageBox {\n                            message = \"Rotor: Sorry guys, I need at least 3 junk parts in order to make something for you.\",\n                            blocking = true\n                        },\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        MessageBox {\n                            message = \"Rotor: If you find any junk parts, bring 'em to me!\",\n                            blocking = true\n                        }\n                    }\n                end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        },\n        Do(function()\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/rotor.png"
           }
         },
@@ -331,47 +328,6 @@ return {
           visible = true,
           properties = {
             ["orientation"] = "up"
-          }
-        },
-        {
-          id = 23,
-          name = "Mine",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 576,
-          y = 352,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 4333,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = 48,
-            ["defaultAnim"] = "idle",
-            ["ghost"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {\n            message = \"Rotor: That's a Mine! {p30}It can deal damage to even the toughest bots...\"\n        },\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Take Mine?\"), selectable = false},\n                {Layout.Text(\"Yes\"), noChooseSfx = true, choose = function(menu)\n                    menu:close()\n                    GameState:grantItem(require(\"data/items/Mine\"), 1)\n                    self.scene:run {\n                        menu,\n                        Do(function() self:remove() end),\n                        MessageBox {\n                            message = \"You received a Mine!\",\n                            blocking = true,\n                            sfx = \"choose\",\n                            textSpeed = 7\n                        }\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu) menu:close() end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        }\n    }\nend",
-            ["sprite"] = "../art/sprites/mine.png"
-          }
-        },
-        {
-          id = 24,
-          name = "WaterBalloon",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 576,
-          y = 448,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 4333,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = 32,
-            ["ghost"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {\n            message = \"Rotor: That's a Water Balloon! {p30}These are surprisingly effective against Swatbutts!\"\n        },\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Take Water Balloon?\"), selectable = false},\n                {Layout.Text(\"Yes\"), noChooseSfx = true, choose = function(menu)\n                    menu:close()\n                    GameState:grantItem(require(\"data/items/WaterBalloon\"), 1)\n                    self.scene:run {\n                        menu,\n                        Do(function() self:remove() end),\n                        MessageBox {\n                            message = \"You received a Water Balloon!\",\n                            blocking = true,\n                            sfx = \"choose\",\n                            textSpeed = 7\n                        }\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu) menu:close() end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        }\n    }\nend",
-            ["sprite"] = "../art/sprites/blueballoon.png"
           }
         }
       }

@@ -242,7 +242,7 @@ return {
           name = "Chest1",
           type = "Chest",
           shape = "rectangle",
-          x = 544,
+          x = 560,
           y = 416,
           width = 32,
           height = 32,
@@ -325,7 +325,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Menu = require \"actions/Menu\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    return Menu {\n        layout = Layout {\n            {Layout.Text(\"Play guitar?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    MessageBox {\n                        message = \"Sonic: Eh, {p40}a little heavy metal isn't the worst way to start the morning...\",\n                        blocking = true\n                    },\n                    PlayAudio(\"music\", \"sonicguitar\", 1.0),\n                    MessageBox {\n                        message = \"Sonic: Way past cool! {p40}I need to play this thing more.\",\n                        blocking = true\n                    },\n                    PlayAudio(\"music\", \"knotholehut\", 1.0, true),\n                }\n            end},\n            {Layout.Text(\"No\"), choose = function(menu) menu:close() end},\n        },\n        cancellable = true,\n        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n        selectedRow = 2,\n        blocking = true\n    }\nend"
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Menu = require \"actions/Menu\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    return BlockPlayer { Menu {\n        layout = Layout {\n            {Layout.Text(\"Play guitar?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    MessageBox {\n                        message = \"Sonic: Eh, {p40}a little heavy metal isn't the worst way to start the morning...\",\n                        blocking = true\n                    },\n                    PlayAudio(\"music\", \"sonicguitar\", 1.0),\n                    MessageBox {\n                        message = \"Sonic: Way past cool! {p40}I need to play this thing more.\",\n                        blocking = true\n                    },\n                    PlayAudio(\"music\", \"knotholehut\", 1.0, true),\n                }\n            end},\n            {Layout.Text(\"No\"), choose = function(menu) menu:close() end},\n        },\n        cancellable = true,\n        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n        selectedRow = 2,\n        blocking = true\n    }}\nend"
           }
         },
         {

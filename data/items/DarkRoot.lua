@@ -2,9 +2,9 @@ local TargetType = require "util/TargetType"
 
 return {
 	name = "Dark Root",
-	desc = "Maybe Rotor can find a use for this...",
+	desc = "Maybe Antoine can find a use for this...",
 	target = TargetType.Party,
-	icon = "icon_item",
+	icon = "icon_plant",
 	usableFromMenu = false,
 	usableFromBattle = false,
 }

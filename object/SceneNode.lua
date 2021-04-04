@@ -74,6 +74,8 @@ function SceneNode:postInit()
 end
 
 function SceneNode:remove()
+	self:invoke("remove")
+
 	-- Remove all children
 	for k,v in pairs(self.children) do
 	    v:remove()

@@ -1,13 +1,13 @@
 local TargetType = require "util/TargetType"
 
 return {
-	name = "Flash Grenade",
-	desc = "Confuse all bots.",
+	name = "Super Magnet",
+	desc = "All bots are paralyzed for entire battle.",
 	target = TargetType.Party,
-	cost = 6,
+	cost = 9,
 	subtype = "craft",
 	icon = "icon_charge",
-	img = "flashgrenade",
+	img = "supermagnet",
 	usableFromMenu = false,
 	usableFromBattle = true,
 }

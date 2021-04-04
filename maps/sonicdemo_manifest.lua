@@ -392,6 +392,14 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/icon_plant.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_ring.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/zevent.png"
 	},
 	{

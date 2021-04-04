@@ -83,7 +83,7 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="Chest1" type="Chest" gid="6607" x="544" y="416" width="32" height="32">
+  <object id="1" name="Chest1" type="Chest" gid="6607" x="560" y="416" width="32" height="32">
    <properties>
     <property name="GreenLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest.png"/>
@@ -154,12 +154,13 @@ local Ease = require &quot;actions/Ease&quot;
 local Do = require &quot;actions/Do&quot;
 local Menu = require &quot;actions/Menu&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
 
 return function(self)
-    return Menu {
+    return BlockPlayer { Menu {
         layout = Layout {
             {Layout.Text(&quot;Play guitar?&quot;), selectable = false},
             {Layout.Text(&quot;Yes&quot;), choose = function(menu)
@@ -184,7 +185,7 @@ return function(self)
         transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
         selectedRow = 2,
         blocking = true
-    }
+    }}
 end</property>
    </properties>
   </object>

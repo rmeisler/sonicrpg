@@ -4,7 +4,8 @@ return {
 	name = "Wires",
 	desc = "Some scrap bot parts",
 	target = TargetType.Party,
-	icon = "icon_item",
+	icon = "icon_accessory",
+	subtype = "junk",
 	usableFromMenu = false,
 	usableFromBattle = false
 }

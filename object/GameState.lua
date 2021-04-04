@@ -176,6 +176,16 @@ function GameState:hasItem(name)
 	return self.items[name] ~= nil
 end
 
+function GameState:getItemsOfSubtype(type)
+	local items = {}
+	for name, rec in pairs(self.items) do
+		if rec.item.subtype == type then
+			items[name] = rec
+		end
+	end
+	return items
+end
+
 function GameState:useItem(record)
 	record.count = record.count - 1
 	if (record.count == 0) then

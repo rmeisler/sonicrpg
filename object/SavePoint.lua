@@ -61,7 +61,10 @@ function SavePoint:savePrompt()
 			transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
 			selectedRow = 2,
 			cancellable = true
-		}
+		},
+		Do(function()
+            self.scene.player.hidekeyhints[tostring(self)] = nil
+        end)
 	})
 end
 
