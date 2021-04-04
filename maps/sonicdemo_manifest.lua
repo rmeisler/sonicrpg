@@ -493,6 +493,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/craft.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/locked.ogg",
 		category = "sfx"
 	},

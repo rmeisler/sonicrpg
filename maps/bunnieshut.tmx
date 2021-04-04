@@ -139,7 +139,7 @@ end</property>
 end</property>
    </properties>
   </object>
-  <object id="11" name="Brightness" type="BasicNPC" gid="6628" x="320" y="320" width="32" height="32">
+  <object id="11" name="Brightness" type="BasicNPC" gid="6628" x="320" y="320" width="32" height="64">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)

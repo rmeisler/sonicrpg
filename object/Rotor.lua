@@ -8,6 +8,8 @@ local Repeat = require "actions/Repeat"
 local Executor = require "actions/Executor"
 local Menu = require "actions/Menu"
 local Action = require "actions/Action"
+local AudioFade = require "actions/AudioFade"
+local PlayAudio = require "actions/PlayAudio"
 
 local BlockPlayer = require "actions/BlockPlayer"
 
@@ -21,17 +23,17 @@ local Rotor = class(NPC)
 
 function Rotor:construct(scene, layer, object)
 	self.craftItems = {
-		WaterBalloon = require("data/items/WaterBalloon"),
-		Mine = require("data/items/Mine"),
-		FlashGrenade = require("data/items/FlashGrenade"),
-		EMPGrenade = require("data/items/EMPGrenade"),
-		LaserShield = require("data/items/LaserShield"),
-		SuperMagnet = require("data/items/SuperMagnet")
+		{id = "WaterBalloon", item = require("data/items/WaterBalloon")},
+		{id = "Mine", item = require("data/items/Mine")},
+		{id = "FlashGrenade", item = require("data/items/FlashGrenade")},
+		{id = "LaserShield", item = require("data/items/LaserShield")},
+		{id = "EMPGrenade", item = require("data/items/EMPGrenade")},
+		{id = "SuperMagnet", item = require("data/items/SuperMagnet")}
 	}
 	self.itemSlots = {
-		Transform(576, 352),
-		Transform(576, 448),
-		Transform(576, 512)
+		Transform(576, 352 - 32),
+		Transform(576, 448 - 48),
+		Transform(576, 512 - 32)
 	}
 
 	NPC.init(self)
@@ -56,18 +58,34 @@ function Rotor:onInteract()
                 {Layout.Text("Show items to Rotor?"), selectable = false},
                 {Layout.Text("Yes"), noChooseSfx = true, choose = function(menu)
                     menu:close()
+					
+					if #self.itemSlots == 0 then
+						self.scene:run {
+                            menu,
+                            MessageBox {
+                                message = "Rotor: Maybe you can make some room on my table first?",
+                                blocking = true
+                            }
+                        }
+						return
+					end
+					
                     local junkItems = GameState:getItemsOfSubtype("junk")
                     local junkCount = 0
                     for _, rec in pairs(junkItems) do
                         junkCount = junkCount + rec.count
                     end
                     local menuParams = {}
-                    for file, item in pairs(self.craftItems) do
+                    for _, rec in pairs(self.craftItems) do
+						local id = rec.id
+						local item = rec.item
                         if item.cost <= junkCount then
                             table.insert(
 								menuParams,
 								{
+									Layout.Image{name=item.icon},
 									Layout.Text(item.name),
+									Layout.Text{text={{255,255,0,255},tostring(item.cost)}},
 									choose = function(menu)
 										menu:close()
 										
@@ -87,12 +105,12 @@ function Rotor:onInteract()
 											self.scene,
 											{name = "objects"},
 											{
-												name = file,
+												name = id,
 												x = slot.x,
 												y = slot.y,
 												width = 64,
 												height = 32,
-												properties = {item = file, sprite = "art/sprites/"..item.img..".png"}
+												properties = {item = id, sprite = "art/sprites/"..item.img..".png"}
 											}
 										)
 										self.scene:addObject(pickup)
@@ -103,8 +121,18 @@ function Rotor:onInteract()
 										
 										self.scene:run {
 											menu,
+											AudioFade("music", 0.8, 0, 2),
 											MessageBox { message = "Rotor: I'm on it!", blocking = true},
-											Ease(pickup.sprite.color, 4, 255, 2)
+											self:fadeOut(),
+											PlayAudio("sfx", "craft", 1.0),
+											self:fadeIn(),
+											Parallel {
+												Serial {
+													PlayAudio("music", "sallyrally", 1.0),
+													PlayAudio("music", "doittoit", 1.0, true, true)
+												},
+												Ease(pickup.sprite.color, 4, 255, 2)
+											}
 										}
 									end,
 									desc = item.desc
@@ -156,6 +184,30 @@ function Rotor:onInteract()
             self.scene.player.hidekeyhints[tostring(self)] = nil
         end)
     }
+end
+
+function Rotor:fadeOut()
+	return Parallel {	
+		-- Fade to black
+		Ease(self.scene.bgColor, 1, 0, 2, "linear"),
+		Ease(self.scene.bgColor, 2, 0, 2, "linear"),
+		Ease(self.scene.bgColor, 3, 0, 2, "linear"),
+		Do(function()
+			ScreenShader:sendColor("multColor", self.scene.bgColor)
+		end)
+	}
+end
+
+function Rotor:fadeIn()
+	return Parallel {	
+		-- Fade in
+		Ease(self.scene.bgColor, 1, 255, 2, "linear"),
+		Ease(self.scene.bgColor, 2, 255, 2, "linear"),
+		Ease(self.scene.bgColor, 3, 255, 2, "linear"),
+		Do(function()
+			ScreenShader:sendColor("multColor", self.scene.bgColor)
+		end)
+	}
 end
 
 function Rotor:exitMsg()
