@@ -63,7 +63,7 @@
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,510,0,512,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,541,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,11080,11081,11082,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,11133,11134,11135,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,613,614,11186,11187,11188,0,0,0,0,0,0,0,0,0,0,0,
@@ -128,18 +128,7 @@
     <property name="sprite" type="file" value="../art/sprites/bunniebed.png"/>
    </properties>
   </object>
-  <object id="10" name="Brightness" type="BasicNPC" gid="6628" x="256" y="320" width="64" height="64">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="notColliding">return function(self, player)
-    player.lights[tostring(self)] = nil
-end</property>
-    <property name="whileColliding">return function(self, player)
-    player.lights[tostring(self)] = true
-end</property>
-   </properties>
-  </object>
-  <object id="11" name="Brightness" type="BasicNPC" gid="6628" x="320" y="320" width="32" height="64">
+  <object id="10" name="Brightness" type="BasicNPC" gid="6628" x="256" y="320" width="96" height="64">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)

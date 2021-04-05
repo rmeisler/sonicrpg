@@ -233,7 +233,7 @@ return {
       data = {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 510, 0, 512, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 541, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11080, 11081, 11082, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11133, 11134, 11135, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 613, 614, 11186, 11187, 11188, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -348,25 +348,7 @@ return {
           shape = "rectangle",
           x = 256,
           y = 320,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 6628,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["notColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = nil\nend",
-            ["whileColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = true\nend"
-          }
-        },
-        {
-          id = 11,
-          name = "Brightness",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 320,
-          y = 320,
-          width = 32,
+          width = 96,
           height = 64,
           rotation = 0,
           gid = 6628,

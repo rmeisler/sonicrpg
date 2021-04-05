@@ -164,39 +164,81 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Menu = require &quot;actions/Menu&quot;
 local Action = require &quot;actions/Action&quot;
+local Wait = require &quot;actions/Wait&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local DescBox = require &quot;actions/DescBox&quot;
+local Do = require &quot;actions/Do&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
 
 return function(self)
-    if GameState.leader == &quot;sonic&quot; then
-        return MessageBox {message=&quot;Sonic: I don't know how Sal makes sense of any of this techno junk!&quot;, textSpeed = 3, blocking = true}
-    elseif GameState.leader == &quot;sally&quot; then
-        return Menu {
-            layout = Layout {
-                {Layout.Text(&quot;What would you like to do?&quot;), selectable = false},
-                {Layout.Text(&quot;Search databank&quot;), choose = function(menu)
-                    menu:close()
-                    self.scene:run {
-                        menu,
-                        MessageBox {
-                            message = &quot;Databank is empty...&quot;,
-                            blocking = true
-                        }
+    local descBox = MessageBox{message=&quot;Computer: What would you like to do?&quot;, noPressX = true}
+    return BlockPlayer {
+        PlayAudio(&quot;sfx&quot;, &quot;nicolebeep&quot;, 1.0, true),
+        Parallel {
+            descBox,
+            Serial { Wait(1.5),
+            Menu {
+        layout = Layout {
+            {Layout.Text(&quot;Learn how to fight&quot;), choose = function(menu)
+                menu:close()
+                self.scene:run {
+                    menu,
+                    descBox,
+                    MessageBox {
+                        message = &quot;Databank is empty...&quot;,
+                        blocking = true
                     }
-                end},
-                {Layout.Text(&quot;Logout&quot;), choose = function(menu) menu:close() end},
-            },
-            cancellable = true,
-            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
-            selectedRow = 2,
-            blocking = true
-        }
-    end
-    return Action()
+                }
+            end},
+            {Layout.Text(&quot;Learn how to avoid fighting&quot;), choose = function(menu)
+                menu:close()
+                self.scene:run {
+                    menu,
+                    descBox,
+                    MessageBox {
+                        message = &quot;Databank is empty...&quot;,
+                        blocking = true
+                    }
+                }
+            end},
+            {Layout.Text(&quot;Learn how to teach Nicole&quot;), choose = function(menu)
+                menu:close()
+                self.scene:run {
+                    menu,
+                    descBox,
+                    MessageBox {
+                        message = &quot;Databank is empty...&quot;,
+                        blocking = true
+                    }
+                }
+            end},
+            {Layout.Text(&quot;Learn what to do next&quot;), choose = function(menu)
+                menu:close()
+                self.scene:run {
+                    menu,
+                    descBox,
+                    MessageBox {
+                        message = &quot;Consult the Big Chest...&quot;,
+                        blocking = true
+                    }
+                }
+            end}
+        },
+        cancellable = true,
+        withClose = Do(function() descBox:close() end),
+        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)
+    }}},
+        Do(function()
+            self.scene.player.hidekeyhints[tostring(self)] = nil
+        end)
+    }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/stool.png"/>
    </properties>
