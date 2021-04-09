@@ -372,7 +372,7 @@ return {
           gid = 6607,
           visible = true,
           properties = {
-            ["GreenLeaf"] = 1,
+            ["Carrot"] = 2,
             ["sprite"] = "../art/sprites/chest.png"
           }
         }

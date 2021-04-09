@@ -8,6 +8,7 @@ local Repeat = require "actions/Repeat"
 local Executor = require "actions/Executor"
 local Menu = require "actions/Menu"
 local Action = require "actions/Action"
+local Animate = require "actions/Animate"
 local AudioFade = require "actions/AudioFade"
 local PlayAudio = require "actions/PlayAudio"
 
@@ -16,6 +17,7 @@ local BlockPlayer = require "actions/BlockPlayer"
 local Transform = require "util/Transform"
 local Layout = require "util/Layout"
 
+local SpriteNode = require "object/SpriteNode"
 local Pickup = require "object/Pickup"
 local NPC = require "object/NPC"
 
@@ -40,6 +42,8 @@ function Rotor:construct(scene, layer, object)
 
 	self:addInteract(Rotor.onInteract)
 	self:addSceneHandler("update")
+	
+	self.maxSparkleCount = 5
 end
 
 function Rotor:onInteract()
@@ -56,7 +60,7 @@ function Rotor:onInteract()
         BlockPlayer{ Menu {
             layout = Layout {
                 {Layout.Text("Show items to Rotor?"), selectable = false},
-                {Layout.Text("Yes"), noChooseSfx = true, choose = function(menu)
+                {Layout.Text("Yes"), choose = function(menu)
                     menu:close()
 					
 					if #self.itemSlots == 0 then
@@ -114,6 +118,9 @@ function Rotor:onInteract()
 											}
 										)
 										self.scene:addObject(pickup)
+										pickup.sprite.color[1] = 512
+										pickup.sprite.color[2] = 512
+										pickup.sprite.color[3] = 512
 										pickup.sprite.color[4] = 0
 										pickup:addHandler("remove", function()
 											table.insert(self.itemSlots, slot)
@@ -131,7 +138,52 @@ function Rotor:onInteract()
 													PlayAudio("music", "sallyrally", 1.0),
 													PlayAudio("music", "doittoit", 1.0, true, true)
 												},
-												Ease(pickup.sprite.color, 4, 255, 2)
+												Ease(pickup.sprite.color, 4, 255, 0.5),
+												Serial {
+													Wait(0.2),
+													Do(function() self.sparkleCount = self.maxSparkleCount end),
+													Repeat(Serial {
+														Do(function()
+															local sparkle = SpriteNode(
+																pickup.scene,
+																Transform(pickup.x, pickup.y - pickup.sprite.h*3),
+																{512,512,512,0},
+																"sparkle",
+																5,
+																5,
+																"ui"
+															)
+															Executor(pickup.scene):act(Parallel {
+																Repeat(Animate(sparkle, "idle"), nil, false),
+																Ease(sparkle.transform, "y", pickup.y - pickup.sprite.h*4, 1.5),
+																Ease(sparkle.color, 4, 255, 9),
+																Repeat(Serial {
+																	Parallel {
+																		Ease(sparkle.transform, "x", sparkle.transform.x, 6),
+																		Ease(sparkle.transform, "sx", 2, 12),
+																		Ease(sparkle.transform, "sy", 2, 12),
+																	},
+																	Parallel {
+																		Ease(sparkle.transform, "x", sparkle.transform.x + pickup.sprite.w*2, 6),
+																		Ease(sparkle.transform, "sx", 1, 12),
+																		Ease(sparkle.transform, "sy", 1, 12),
+																	}
+																}, 2, true),
+																Serial {
+																	Wait(1),
+																	Ease(sparkle.color, 4, 0, 3)
+																},
+															})
+															self.sparkleCount = self.sparkleCount + 1
+														end),
+														Wait(0.1)
+													}, 4),
+													Parallel {
+														Ease(pickup.sprite.color, 1, 255, 1),
+														Ease(pickup.sprite.color, 2, 255, 1),
+														Ease(pickup.sprite.color, 3, 255, 1),
+													}
+												}
 											}
 										}
 									end,

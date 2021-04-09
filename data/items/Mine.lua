@@ -2,7 +2,7 @@ local TargetType = require "util/TargetType"
 
 return {
 	name = "Mine",
-	desc = "Throw to damage enemies",
+	desc = "Throw to damage enemies.",
 	rotor = "It can deal damage to even the toughest bots!",
 	target = TargetType.Opponent,
 	usableFromMenu = false,

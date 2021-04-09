@@ -14,6 +14,14 @@ return {
 		peek = {
 			frames = {{8,4}}
 		},
+		
+		climb_1 = {
+			frames = {{8,7}}
+		},
+		climb_2 = {
+			frames = {{9,7}}
+		},
+		
 		hide = {
 			frames = {{2,4}}
 		},

@@ -18,9 +18,10 @@ end
 
 function Ladder:notColliding(player)
 	if player.ladders[tostring(self)] then
-		print("do I get here???")
 		player.ladders[tostring(self)] = nil
 		player.noSpecialMove = false
+		player.noChangeChar = false
+		player.movespeed = player.origMoveSpeed
 		player.basicUpdate = player.origUpdate
 	end
 end
@@ -33,7 +34,13 @@ function Ladder:whileColliding(player)
 	if not player.ladders[tostring(self)] then
 		player.ladders[tostring(self)] = self
 		player.noSpecialMove = true
+		player.noChangeChar = true
+		player.state = "climb_1"
+		player.origMoveSpeed = player.movespeed
+		player.movespeed = player.movespeed - 1
 		player.origUpdate = player.basicUpdate
+		
+		self.climbAnimTime = 0
 		player.basicUpdate = function(player, dt)
 			player:updateCollisionObj()
 
@@ -43,12 +50,11 @@ function Ladder:whileColliding(player)
 				not player.scene:playerMovable() or
 				player.dontfuckingmove
 			then
-				player.sprite:setAnimation(Player.STATE_IDLEUP)
+				player.sprite:setAnimation(player.state)
 				return
 			end
 			
 			local movespeed = player.movespeed * (dt/0.016)
-			player.state = Player.STATE_IDLEUP --CLIMBIDLE
 			player.x = self.x + self.object.width/2
 
 			-- Update drop shadow position to be bottom of ladder
@@ -56,11 +62,20 @@ function Ladder:whileColliding(player)
 			player.dropShadow.y = self.y + self.object.height + player.sprite.h*2
 
 			if love.keyboard.isDown("up") then
-				player.state = Player.STATE_WALKUP --CLIMB
 				player.y = player.y - movespeed
+				self.climbAnimTime = self.climbAnimTime + dt
 			elseif love.keyboard.isDown("down") then
-				player.state = Player.STATE_WALKUP
 				player.y = player.y + movespeed
+				self.climbAnimTime = self.climbAnimTime + dt
+			end
+			
+			if self.climbAnimTime > 0.2 then
+				if player.state == "climb_1" then
+					player.state = "climb_2"
+				else
+					player.state = "climb_1"
+				end
+				self.climbAnimTime = 0
 			end
 			
 			player.sprite:setAnimation(player.state)

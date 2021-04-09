@@ -141,7 +141,7 @@ end</property>
   </object>
   <object id="19" name="Chest1" type="Chest" gid="6607" x="496" y="288" width="32" height="32">
    <properties>
-    <property name="GreenLeaf" type="int" value="1"/>
+    <property name="Carrot" type="int" value="2"/>
     <property name="sprite" type="file" value="../art/sprites/chest.png"/>
    </properties>
   </object>
