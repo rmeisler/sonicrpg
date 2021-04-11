@@ -473,6 +473,7 @@ function Player:onSpecialMove()
 		self.doingSpecialMove = true
 		self.keyhints = {}
 		self.hidekeyhints = {}
+		self:removeKeyHint()
 		GameState.party[GameState.leader].specialmove(self)
 	end
 end

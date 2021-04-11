@@ -918,12 +918,14 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/knothole.ogg",
-		category = "music"
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",
 		file = "audio/music/knothole2.ogg",
-		category = "music"
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",

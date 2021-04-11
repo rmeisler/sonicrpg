@@ -89,7 +89,8 @@
   <object id="4" name="Door" type="Door" gid="6607" x="372" y="236" width="64" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-42"/>
+    <property name="alignOffsetX" type="float" value="-38"/>
+    <property name="alignOffsetY" type="float" value="-4"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>

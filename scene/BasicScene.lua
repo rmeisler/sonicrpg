@@ -480,7 +480,8 @@ function BasicScene:playerMovable()
 	return  (self.initialized) and
 			(not self.mbox or self.mbox:isDone()) and
 			(not self.subscreen or (self.subscreen.isRemoved and self.subscreen:isRemoved())) and
-			not self.enteringBattle
+			not self.enteringBattle and
+			not self.pausePlayer
 end
 
 function BasicScene:pauseEnemies(active)
@@ -564,7 +565,9 @@ function BasicScene:update(dt)
 	Scene.update(self, dt)
 
 	-- Cannot move while subscreen is up
-	if not self.player or not self:playerMovable() then
+	if (not self.player or not self:playerMovable()) and
+		not self.pausePlayer
+	then
 		return
 	end
 	

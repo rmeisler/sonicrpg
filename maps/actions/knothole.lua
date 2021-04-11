@@ -8,7 +8,6 @@ return function(scene)
 	local Menu = require "actions/Menu"
 	local MessageBox = require "actions/MessageBox"
 	local PlayAudio = require "actions/PlayAudio"
-	local Repeat = require "actions/Repeat"
 	local Ease = require "actions/Ease"
 	local Parallel = require "actions/Parallel"
 	local Serial = require "actions/Serial"
@@ -50,12 +49,7 @@ return function(scene)
 		}
 	})
 	
-	scene.player:run(
-		Repeat(Serial {
-			PlayAudio("music", "knothole", 1.0),
-			PlayAudio("music", "knothole2", 1.0)
-		})
-	)
+	scene.audio:playMusic("knothole", 1.0)
 	
 	scene.player.dustColor = Player.FOREST_DUST_COLOR
 

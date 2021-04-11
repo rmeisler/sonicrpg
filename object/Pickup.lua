@@ -60,7 +60,6 @@ function Pickup:grab()
 					}
 				end},
             },
-            cancellable = true,
             transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
             selectedRow = 2
         }

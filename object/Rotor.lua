@@ -140,7 +140,6 @@ function Rotor:onInteract()
 												},
 												Ease(pickup.sprite.color, 4, 255, 0.5),
 												Serial {
-													Wait(0.2),
 													Do(function() self.sparkleCount = self.maxSparkleCount end),
 													Repeat(Serial {
 														Do(function()

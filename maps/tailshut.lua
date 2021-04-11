@@ -304,7 +304,8 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["alignOffsetX"] = -42,
+            ["alignOffsetX"] = -38,
+            ["alignOffsetY"] = -4,
             ["ghost"] = true,
             ["key"] = "up",
             ["orientation"] = "down",
