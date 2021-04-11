@@ -333,7 +333,7 @@ local RunUpdate = function(self, dt)
 			end
 		end
 		
-		if collidedX and self.fx > 0 then
+		if (collidedX or self.specialCollidedX) and self.fx > 0 then
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
 				local yOrig = self.y
@@ -377,7 +377,7 @@ local RunUpdate = function(self, dt)
 				self.state = "idleright"
 				self.basicUpdate = self.origUpdate
 			end
-		elseif collidedX and self.fx < 0 then
+		elseif (collidedX or self.specialCollidedX) and self.fx < 0 then
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
 				local yOrig = self.y
@@ -421,7 +421,7 @@ local RunUpdate = function(self, dt)
 				self.state = "idleleft"
 				self.basicUpdate = self.origUpdate
 			end
-		elseif collidedY and self.fy > 0 then
+		elseif (collidedY or self.specialCollidedY) and self.fy > 0 then
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
 				self:run(Parallel {
@@ -460,7 +460,7 @@ local RunUpdate = function(self, dt)
 				self.state = "idledown"
 				self.basicUpdate = self.origUpdate
 			end
-		elseif collidedY and self.fy < 0 then
+		elseif (collidedY or self.specialCollidedY) and self.fy < 0 then
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
 				self:run(Parallel {

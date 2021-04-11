@@ -1752,11 +1752,57 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/tailshut.png"/>
    </properties>
   </object>
-  <object id="107" name="HayPatch" type="BasicNPC" gid="7660" x="320" y="1312" width="96" height="96">
+  <object id="107" name="HayPatch" type="BasicNPC" gid="7660" x="320" y="1280" width="96" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="alignOffsetY" type="float" value="32"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="notColliding">local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+
+return function(self, player)
+    if not player.hitHaypatch or (GameState.leader == &quot;sonic&quot; and player.doingSpecialMove) then
+        return
+    end
+    player.hitHaypatch = false
+
+    player.movespeed = player.origMoveSpeed or player.movespeed
+end</property>
     <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
+    <property name="whileColliding">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local Animate = require &quot;actions/Animate&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+
+return function(self, player)
+    if player.hitHaypatch then
+        return
+    end
+    player.hitHaypatch = true
+    if not (GameState.leader == &quot;sonic&quot; and player.doingSpecialMove) then
+        player.origMoveSpeed = player.movespeed
+        player.movespeed = 2
+        return
+    end
+
+    if player:isFacing(&quot;down&quot;) or player:isFacing(&quot;up&quot;) then
+        player.specialCollidedY = true
+    else
+        player.specialCollidedX = true
+    end
+
+    self:run {
+        Animate(self.sprite, &quot;bounce&quot;),
+        Do(function()
+            self.sprite:setAnimation(&quot;idle&quot;)
+            player.hitHaypatch = false
+            player.specialCollidedX = false
+            player.specialCollidedY = false
+        end)
+    }
+end</property>
    </properties>
   </object>
   <object id="108" name="LogRide" type="BasicNPC" gid="7660" x="0" y="1312" width="128" height="128">

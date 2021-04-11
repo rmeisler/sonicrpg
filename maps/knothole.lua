@@ -2991,16 +2991,19 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 320,
-          y = 1312,
+          y = 1280,
           width = 96,
-          height = 96,
+          height = 64,
           rotation = 0,
           gid = 7660,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["alignOffsetY"] = 32,
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/haypatch.png"
+            ["notColliding"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self, player)\n    if not player.hitHaypatch or (GameState.leader == \"sonic\" and player.doingSpecialMove) then\n        return\n    end\n    player.hitHaypatch = false\n\n    player.movespeed = player.origMoveSpeed or player.movespeed\nend",
+            ["sprite"] = "../art/sprites/haypatch.png",
+            ["whileColliding"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self, player)\n    if player.hitHaypatch then\n        return\n    end\n    player.hitHaypatch = true\n    if not (GameState.leader == \"sonic\" and player.doingSpecialMove) then\n        player.origMoveSpeed = player.movespeed\n        player.movespeed = 2\n        return\n    end\n\n    if player:isFacing(\"down\") or player:isFacing(\"up\") then\n        player.specialCollidedY = true\n    else\n        player.specialCollidedX = true\n    end\n\n    self:run {\n        Animate(self.sprite, \"bounce\"),\n        Do(function()\n            self.sprite:setAnimation(\"idle\")\n            player.hitHaypatch = false\n            player.specialCollidedX = false\n            player.specialCollidedY = false\n        end)\n    }\nend"
           }
         },
         {
