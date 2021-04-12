@@ -525,9 +525,11 @@ end
 
 function NPC:remove()
 	-- Remove from collision map
-	for _, pair in pairs(self.collision or {}) do
-		if self.scene.map.collisionMap[pair[2]] then
-			self.scene.map.collisionMap[pair[2]][pair[1]] = nil
+	if not self.ghost and not self.object.properties.ghost then
+		for _, pair in pairs(self.collision or {}) do
+			if self.scene.map.collisionMap[pair[2]] then
+				self.scene.map.collisionMap[pair[2]][pair[1]] = nil
+			end
 		end
 	end
 	

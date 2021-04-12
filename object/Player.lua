@@ -808,12 +808,9 @@ function Player:basicUpdate(dt)
 		if  self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, 0, movespeed) and
 			self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, 0, movespeed)
 		then
-			-- Not allowed to move up and down if going up stairs
-			if not next(self.stairs) then
-				self.y = self.y + movespeed
-				self.state = Player.STATE_WALKDOWN
-				moving = true
-			end
+			self.y = self.y + movespeed
+			self.state = Player.STATE_WALKDOWN
+			moving = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
 			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
@@ -897,12 +894,9 @@ function Player:basicUpdate(dt)
 		if  self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, 0, -movespeed) and
 			self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, 0, -movespeed)
 		then
-			-- Not allowed to move up and down if going up stairs
-			if not next(self.stairs) then
-				self.y = self.y - movespeed
-				self.state = Player.STATE_WALKUP
-				moving = true
-			end
+			self.y = self.y - movespeed
+			self.state = Player.STATE_WALKUP
+			moving = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
 			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then

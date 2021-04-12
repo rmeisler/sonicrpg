@@ -12,6 +12,10 @@ return {
 			frames = {{11,4}}
 		},
 		
+		kneeling = {
+			frames = {{10, 1}}
+		},
+		
 		leapdown = {
 			frames = {{5,2}}
 		},
