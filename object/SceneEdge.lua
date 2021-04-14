@@ -106,8 +106,10 @@ function SceneEdge:goToScene()
 	if self.object.properties.key == "up" then
 		self.scene.player:run {
 			Do(function()
-				self.scene.player.noIdle = true
-				self.scene.player.sprite:setAnimation("walkup")
+				if next(self.scene.player.ladders) == nil then
+					self.scene.player.noIdle = true
+					self.scene.player.sprite:setAnimation("walkup")
+				end
 			end),
 			
 			Ease(self.scene.player, "y", self.scene.player.y - 100, 3, "linear"),
@@ -119,8 +121,10 @@ function SceneEdge:goToScene()
 	elseif self.object.properties.key == "down" then
 		self.scene.player:run {
 			Do(function()
-				self.scene.player.noIdle = true
-				self.scene.player.sprite:setAnimation("walkdown")
+				if next(self.scene.player.ladders) == nil then
+					self.scene.player.noIdle = true
+					self.scene.player.sprite:setAnimation("walkdown")
+				end
 			end),
 			
 			Ease(self.scene.player, "y", self.scene.player.y + 100, 3, "linear"),

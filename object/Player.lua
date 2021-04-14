@@ -504,6 +504,25 @@ function Player:isFacing(direction)
 	return string.find(self.state, direction) ~= nil
 end
 
+function Player:isFacingObj(object)
+	return true
+	--[[if  math.abs(self.x - object.object.x) >
+		math.abs(self.y - object.object.y)
+	then
+		if self.x < object.object.x then
+			return self:isFacing("left")
+		else
+			return self:isFacing("right")
+		end
+	else
+		if self.y < object.object.y then
+			return self:isFacing("down")
+		else
+			return self:isFacing("up")
+		end
+	end]]
+end
+
 function Player:updateSprite()
 	if not GameState.leader then
 		return
