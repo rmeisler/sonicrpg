@@ -86,7 +86,7 @@
   <object id="1" name="Chest1" type="Chest" gid="6607" x="512" y="416" width="64" height="64">
    <properties>
     <property name="GreenLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest.png"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
   <object id="3" name="Spawn 1" type="Player" gid="4333" x="416" y="448" width="32" height="32">

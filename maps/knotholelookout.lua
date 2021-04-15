@@ -292,6 +292,16 @@ return {
       properties = {}
     },
     {
+      type = "imagelayer",
+      name = "Copy of Image Layer 1",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = -32,
+      image = "../art/parallax/overlook2.png",
+      properties = {}
+    },
+    {
       type = "tilelayer",
       name = "foundation",
       x = 0,

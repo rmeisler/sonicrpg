@@ -160,10 +160,10 @@ Workshop</property>
     <property name="sprite" type="file" value="../art/sprites/rotordoor.png"/>
    </properties>
   </object>
-  <object id="21" name="Rotor" type="Rotor" gid="4333" x="320" y="480" width="96" height="96">
+  <object id="21" name="Rotor" type="Rotor" gid="4333" x="352" y="480" width="80" height="96">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="alignOffsetX" type="float" value="20"/>
+    <property name="alignOffsetX" type="float" value="6"/>
     <property name="alignOffsetY" type="float" value="-16"/>
     <property name="defaultAnim" value="idledown"/>
     <property name="sprite" type="file" value="../art/sprites/rotor.png"/>

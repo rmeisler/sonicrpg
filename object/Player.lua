@@ -158,6 +158,13 @@ function Player:construct(scene, layer, object)
 		left_bot  = {x = 0, y = 0}
 	}
 	
+	self.collisionHSOffsets = {
+		right_top = {x = 18, y = 0},
+		right_bot = {x = 18, y = 0},
+		left_top = {x = -15, y = 0},
+		left_bot = {x = -15, y = 0},
+	}
+	
 	self:createVisuals()
 	
 	self:addSceneHandler("update", Player.update)
@@ -169,10 +176,10 @@ end
 
 function Player:updateHotspots()
 	self.hotspots = {
-		right_top = {x = self.x + 30, y = self.y + self.halfHeight + 5},
-		right_bot = {x = self.x + 30, y = self.y + self.height},
-		left_top  = {x = self.x - 30, y = self.y + self.halfHeight + 5},
-		left_bot  = {x = self.x - 30, y = self.y + self.height}
+		right_top = {x = self.x + 12, y = self.y + self.halfHeight + 5},
+		right_bot = {x = self.x + 12, y = self.y + self.height},
+		left_top  = {x = self.x - 15, y = self.y + self.halfHeight + 5},
+		left_bot  = {x = self.x - 15, y = self.y + self.height}
 	}
 	return self.hotspots
 end
@@ -670,6 +677,15 @@ function Player:basicUpdate(dt)
 	end
 	
 	local hotspots = self:updateCollisionObj()
+	
+	hotspots.right_top.x = hotspots.right_top.x + self.collisionHSOffsets.right_top.x
+	hotspots.right_top.y = hotspots.right_top.y + self.collisionHSOffsets.right_top.y
+	hotspots.right_bot.x = hotspots.right_bot.x + self.collisionHSOffsets.right_bot.x
+	hotspots.right_bot.y = hotspots.right_bot.y + self.collisionHSOffsets.right_bot.y
+	hotspots.left_top.x = hotspots.left_top.x + self.collisionHSOffsets.left_top.x
+	hotspots.left_top.y = hotspots.left_top.y + self.collisionHSOffsets.left_top.y
+	hotspots.left_bot.x = hotspots.left_bot.x + self.collisionHSOffsets.left_bot.x
+	hotspots.left_bot.y = hotspots.left_bot.y + self.collisionHSOffsets.left_bot.y
     
 	if 	self.cinematic or
 		self.cinematicStack > 0 or
@@ -1043,14 +1059,16 @@ function Player:isTouching(x, y, w, h)
 		return false
 	end
 	
-	w = w or self.scene:getTileWidth()
-	h = h or self.scene:getTileHeight()
+	local tw = self.scene:getTileWidth()
+	local th = self.scene:getTileHeight()
+	w = w or tw
+	h = h or th
 	
 	local fuzz = 5
 	return (x + w) >= (self.hotspots.left_bot.x - fuzz) and
 		x < (self.hotspots.right_bot.x + fuzz) and
 		(self.hotspots.left_bot.y + fuzz) >= y and
-		(self.hotspots.right_top.y - fuzz) <= (y + h)
+		(self.hotspots.right_top.y - fuzz) <= (y + math.max(th*2, h/2))
 end
 
 function Player:isTouchingObj(obj)

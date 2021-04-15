@@ -336,7 +336,7 @@ local RunUpdate = function(self, dt)
 		if (collidedX or self.specialCollidedX) and self.fx > 0 then
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
-				local yOrig = self.y
+				local yOrig = self.sprite.transform.y + self.sprite.h*2
 				self.sprite.sortOrderY = yOrig
 				self:run(Parallel {
 					self.scene:screenShake(30, 20),
@@ -380,7 +380,7 @@ local RunUpdate = function(self, dt)
 		elseif (collidedX or self.specialCollidedX) and self.fx < 0 then
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
-				local yOrig = self.y
+				local yOrig = self.sprite.transform.y + self.sprite.h*2
 				self.sprite.sortOrderY = yOrig
 				self:run(Parallel {
 					self.scene:screenShake(30, 20),

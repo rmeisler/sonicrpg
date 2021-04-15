@@ -251,7 +251,7 @@ return {
           visible = true,
           properties = {
             ["GreenLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest.png"
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         },
         {

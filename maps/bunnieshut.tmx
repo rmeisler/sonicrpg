@@ -124,7 +124,6 @@
   <object id="4" name="BunniesBed" type="BasicNPC" gid="6607" x="416" y="416" width="192" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="8"/>
     <property name="sprite" type="file" value="../art/sprites/bunniebed.png"/>
    </properties>
   </object>
@@ -139,10 +138,10 @@ end</property>
 end</property>
    </properties>
   </object>
-  <object id="19" name="Chest1" type="Chest" gid="6607" x="496" y="288" width="32" height="32">
+  <object id="19" name="Chest1" type="Chest" gid="6607" x="480" y="288" width="64" height="64">
    <properties>
     <property name="Carrot" type="int" value="2"/>
-    <property name="sprite" type="file" value="../art/sprites/chest.png"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
  </objectgroup>
@@ -180,10 +179,10 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,10559,0,0,0,10559,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,10559,10559,10559,10559,10559,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,10559,0,0,0,0,0,0,0,0,119,119,0,0,0,0,0,0,
-0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
-0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
-0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
+0,0,0,0,0,0,0,0,10559,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,10559,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

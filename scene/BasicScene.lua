@@ -14,6 +14,7 @@ local Spawn = require "actions/Spawn"
 local While = require "actions/While"
 local Repeat = require "actions/Repeat"
 local Executor = require "actions/Executor"
+local BlockPlayer = require "actions/BlockPlayer"
 
 local Subscreen = require "object/Subscreen"
 
@@ -455,7 +456,7 @@ function BasicScene:keytriggered(key, uni)
 		end
 		self.showingEscapeMenu = true
 		
-		self:run(Menu {
+		self:run(BlockPlayer{ Menu {
 			layout = Layout {
 				{Layout.Text("Exit game?"), selectable = false},
 				{Layout.Text("Yes"), choose = love.event.quit},
@@ -472,7 +473,7 @@ function BasicScene:keytriggered(key, uni)
 			transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
 			selectedRow = 2,
 			cancellable = true
-		})
+		}})
     end
 end
 

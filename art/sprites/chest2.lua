@@ -1,5 +1,5 @@
 return {
-    image = "chest.png",
+    image = "chest2.png",
     starting = "idle",
     w = 32,
     h = 32,

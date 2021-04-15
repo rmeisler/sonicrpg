@@ -272,8 +272,8 @@ function Rotor:update(dt)
 	NPC.update(self, dt)
 
 	local player = self.scene.player
-	local dx = self.x + self.sprite.w - player.x + player.sprite.w
-    local dy = self.y + self.sprite.h - player.y + player.sprite.h
+	local dx = self.x + self.sprite.w/2 - player.x
+    local dy = self.y + self.sprite.h/2 - player.y
     if dx * dx + dy * dy < 100*100 then
         return
     end
