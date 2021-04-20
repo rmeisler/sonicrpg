@@ -83,7 +83,7 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="BigChest" type="BasicNPC" gid="6607" x="384" y="256" width="96" height="32">
+  <object id="1" name="BigChest" type="BasicNPC" gid="6607" x="384" y="256" width="64" height="32">
    <properties>
     <property name="GreenLeaf" type="int" value="1"/>
     <property name="align" value="bottom_left"/>

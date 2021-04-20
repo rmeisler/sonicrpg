@@ -95,7 +95,7 @@ function FadePlatform:update(dt)
 								-- Reposition player at last safe platform
 								self.scene.player.x = self.scene.lastSafePlatform.x + self.scene.lastSafePlatform.object.width/2
 								self.scene.player.y = self.scene.lastSafePlatform.y - self.scene.lastSafePlatform.object.height
-								self.scene.player.basicUpdate = self.scene.player.origUpdate or origUpdate
+								self.scene.player.basicUpdate = self.scene.player.updateFun
 								self.scene.player.state = "idledown"
 								self.scene.player.falling = false
 								self.scene.player.cinematic = false
@@ -110,8 +110,7 @@ function FadePlatform:update(dt)
 							),
 							Do(function()
 								self.scene.player.cinematic = false
-								self.scene.player.basicUpdate = self.scene.player.origUpdate
-								self.scene.player.origUpdate = nil
+								self.scene.player.basicUpdate = self.scene.player.updateFun
 								self.scene.player.doingChangeChar = false
 								
 								-- Update keyhint

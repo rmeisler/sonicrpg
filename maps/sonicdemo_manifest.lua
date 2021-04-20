@@ -84,6 +84,12 @@ return {
 	
 	{
         type = "map",
+		file = "maps/antoineshut.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
 		file = "maps/rotorsworkshop.lua"
     },
 
@@ -389,6 +395,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/icon_accessory.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_key.png"
 	},
 	{
 		type = "image",

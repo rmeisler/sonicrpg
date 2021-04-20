@@ -1,10 +1,10 @@
 local TargetType = require "util/TargetType"
 
 return {
-	name = "Key",
+	name = "Antoine's Key",
 	desc = "The key to Antoine's hut.",
 	target = TargetType.Party,
-	icon = "icon_accessory",
+	icon = "icon_key",
 	usableFromMenu = false,
 	usableFromBattle = false
 }

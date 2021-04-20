@@ -68,8 +68,7 @@ local RunUpdate = function(self, dt)
 			self.fy = self.fy + (self.fy > 0 and -SLOWDOWN_STOP_SPEED or SLOWDOWN_STOP_SPEED)
 			if self.fy >= -1 and self.fy <= 1 then
 				self.state = "idle"..(self:isFacing("down") and "down" or "up")
-				self.basicUpdate = self.origUpdate
-				self.origUpdate = nil
+				self.basicUpdate = self.updateFun
 				return
 			end
 		elseif math.abs(self.fy) < RUN_FORCE_MAGNITUDE then
@@ -145,8 +144,7 @@ local RunUpdate = function(self, dt)
 			self.fx = self.fx + (self.fx > 0 and -SLOWDOWN_STOP_SPEED or SLOWDOWN_STOP_SPEED)
 			if self.fx >= -1 and self.fx <= 1 then
 				self.state = "idle"..(self:isFacing("right") and "right" or "left")
-				self.basicUpdate = self.origUpdate
-				self.origUpdate = nil
+				self.basicUpdate = self.updateFun
 				return
 			end
 		elseif math.abs(self.fx) < RUN_FORCE_MAGNITUDE then
@@ -363,8 +361,9 @@ local RunUpdate = function(self, dt)
 						},
 						Do(function()
 							self.state = "idleright"
-							self.basicUpdate = self.origUpdate
+							self.basicUpdate = self.updateFun
 							self.crashIntoWall = false
+							self.specialCollidedX = false
 							self.sprite.sortOrderY = nil
 						end)
 					},
@@ -375,7 +374,7 @@ local RunUpdate = function(self, dt)
 				})
 			else
 				self.state = "idleright"
-				self.basicUpdate = self.origUpdate
+				self.basicUpdate = self.updateFun
 			end
 		elseif (collidedX or self.specialCollidedX) and self.fx < 0 then
 			if not self.noSonicCrash then
@@ -407,7 +406,8 @@ local RunUpdate = function(self, dt)
 						},
 						Do(function()
 							self.state = "idleleft"
-							self.basicUpdate = self.origUpdate
+							self.basicUpdate = self.updateFun
+							self.specialCollidedX = false
 							self.crashIntoWall = false
 							self.sprite.sortOrderY = nil
 						end)
@@ -419,7 +419,7 @@ local RunUpdate = function(self, dt)
 				})
 			else
 				self.state = "idleleft"
-				self.basicUpdate = self.origUpdate
+				self.basicUpdate = self.updateFun
 			end
 		elseif (collidedY or self.specialCollidedY) and self.fy > 0 then
 			if not self.noSonicCrash then
@@ -446,7 +446,8 @@ local RunUpdate = function(self, dt)
 						),
 						Do(function()
 							self.state = "idledown"
-							self.basicUpdate = self.origUpdate
+							self.basicUpdate = self.updateFun
+							self.specialCollidedY = false
 							self.crashIntoWall = false
 						end)
 					},
@@ -458,7 +459,7 @@ local RunUpdate = function(self, dt)
 				})
 			else
 				self.state = "idledown"
-				self.basicUpdate = self.origUpdate
+				self.basicUpdate = self.updateFun
 			end
 		elseif (collidedY or self.specialCollidedY) and self.fy < 0 then
 			if not self.noSonicCrash then
@@ -485,7 +486,8 @@ local RunUpdate = function(self, dt)
 						),
 						Do(function()
 							self.state = "idleup"
-							self.basicUpdate = self.origUpdate
+							self.basicUpdate = self.updateFun
+							self.specialCollidedY = false
 							self.crashIntoWall = false
 						end)
 					},
@@ -497,7 +499,7 @@ local RunUpdate = function(self, dt)
 				})
 			else
 				self.state = "idleup"
-				self.basicUpdate = self.origUpdate
+				self.basicUpdate = self.updateFun
 			end
 		end
 		
@@ -736,7 +738,7 @@ local ChargeLeftRight = function(player, direction)
 				player.sprite.visible = true
 				
 				-- Stop running
-				player.basicUpdate = player.origUpdate
+				player.basicUpdate = player.updateFun
 			end)
 		}
 	))
@@ -843,7 +845,7 @@ local ChargeUpDown = function(player, direction)
 				player.sprite.visible = true
 				
 				-- Stop running
-				player.basicUpdate = player.origUpdate
+				player.basicUpdate = player.updateFun
 			end)
 		}
 	))
@@ -851,7 +853,6 @@ end
 
 return function(player)
 	-- Remember basic movement controls
-	player.origUpdate = player.basicUpdate
 	player.basicUpdate = function(self, dt) end
 	player.counterWalkSpeed = player.walkspeed
 	

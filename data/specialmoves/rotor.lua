@@ -18,7 +18,6 @@ local Executor = require "actions/Executor"
 
 return function(player)
 	-- Remember basic movement controls
-	player.origUpdate = player.basicUpdate
 	player.basicUpdate = function(self, dt) end
 	
 	local balloon = SpriteNode(
@@ -204,7 +203,7 @@ return function(player)
 
 				Do(function()
 					balloon:remove()
-					player.basicUpdate = player.origUpdate
+					player.basicUpdate = player.updateFun
 				end)
 			})
 		end

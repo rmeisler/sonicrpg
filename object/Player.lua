@@ -170,6 +170,8 @@ function Player:construct(scene, layer, object)
 	self:addSceneHandler("update", Player.update)
 	self:addSceneHandler("keytriggered", Player.keytriggered)
 	
+	self.updateFun = self.basicUpdate
+	
 	-- Set scene reference to this player
 	scene.player = self
 end
@@ -422,7 +424,6 @@ function Player:onChangeChar()
 	
 	self.doingChangeChar = true
 
-	self.origUpdate = self.basicUpdate
 	self.basicUpdate = function(self, dt)
 		self:updateShadows()
 		self:updateVisuals()
@@ -462,8 +463,7 @@ function Player:onChangeChar()
 		Wait(0.5),
 		
 		Do(function()
-			self.basicUpdate = self.origUpdate
-			self.origUpdate = nil
+			self.basicUpdate = self.updateFun
 			self.doingChangeChar = false
 			
 			-- Update keyhint

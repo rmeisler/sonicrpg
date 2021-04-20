@@ -15,6 +15,7 @@ local Door = class(NPC)
 function Door:construct(scene, layer, object)
 	self.opensfx = object.properties.opensfx or "door"
 	self.locked = object.properties.locked
+	self.keyToDoor = object.properties.keyToDoor
 	self.open = false
 
 	NPC.init(self)
@@ -55,7 +56,7 @@ function Door:onCollision(prevState)
 end
 
 function Door:interact()
-	if self.locked then
+	if self.locked and not GameState:hasItem(self.keyToDoor) then
 		self:run {
 			PlayAudio("sfx", "locked", 1.0, true),
 			MessageBox {message = "Locked.", blocking = true},

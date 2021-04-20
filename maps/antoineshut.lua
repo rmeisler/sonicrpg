@@ -8,10 +8,10 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 12,
+  nextobjectid = 13,
   properties = {
     ["onload"] = "actions/knotholehut.lua",
-    ["regionName"] = "Sally's Hut"
+    ["regionName"] = "Antoine's Hut"
   },
   tilesets = {
     {
@@ -173,19 +173,19 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 86, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 115, 0, 0, 0, 0, 0, 0, 0, 251, 252, 253, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 144, 0, 0, 0, 0, 0, 0, 0, 280, 281, 282, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 173, 0, 0, 0, 0, 0, 0, 168, 309, 310, 311, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 338, 339, 340, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 367, 368, 369, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 396, 397, 398, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 425, 426, 427, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 255, 256, 257, 258, 259, 0, 0, 0, 0, 0, 366, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 284, 285, 286, 287, 288, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 313, 314, 315, 316, 317, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 86, 0, 0, 0, 9299, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 115, 0, 0, 0, 9299, 0, 0, 9079, 9080, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 188, 189, 190, 0, 9132, 9080, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 217, 218, 219, 0, 9185, 9133, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 246, 247, 248, 0, 0, 9186, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 275, 276, 277, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 304, 305, 306, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 9081, 0, 0, 0, 0, 0, 9081, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 9134, 0, 0, 0, 0, 0, 9134, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 9187, 0, 0, 0, 0, 0, 9187, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -210,17 +210,17 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 613, 614, 615, 0, 0, 0, 110, 111, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 641, 642, 643, 644, 0, 0, 0, 139, 140, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 670, 671, 672, 673, 0, 0, 0, 168, 169, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 699, 700, 701, 702, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 728, 729, 730, 731, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 9349, 9349, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 9402, 9349, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 9349, 9402, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 9402, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9345, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9345, 9398, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9398, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -237,25 +237,6 @@ return {
       draworder = "topdown",
       properties = {},
       objects = {
-        {
-          id = 1,
-          name = "BigChest",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 384,
-          y = 256,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 6607,
-          visible = true,
-          properties = {
-            ["GreenLeaf"] = 1,
-            ["align"] = "bottom_left",
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return MessageBox {message=\"Sonic: This is Sal's special chest, past down through the royal family for centuries... She says things you put in it will get a little better if you leave them in there... Yeah right!\", blocking = true}\n    elseif GameState.leader == \"sally\" then\n        return Serial {\n            MessageBox {message=\"Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.\", blocking = true},\n            MessageBox {message=\"Sally: Maybe I could read it to Tails.\", blocking = true}\n        }\n    end\n    return Action()\nend",
-            ["sprite"] = "../art/sprites/bigchest.png"
-          }
-        },
         {
           id = 2,
           name = "Door",
@@ -276,151 +257,25 @@ return {
             ["key"] = "down",
             ["orientation"] = "up",
             ["scene"] = "knothole.lua",
-            ["spawn_point"] = "SallyHutDoor",
+            ["spawn_point"] = "AntoineHutDoor",
             ["sprite"] = "../art/sprites/hutdoor.png"
           }
         },
         {
-          id = 3,
-          name = "Spawn 1",
-          type = "Player",
+          id = 12,
+          name = "Chest1",
+          type = "Chest",
           shape = "rectangle",
-          x = 448,
+          x = 512,
           y = 352,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 4333,
-          visible = true,
-          properties = {
-            ["orientation"] = "up"
-          }
-        },
-        {
-          id = 4,
-          name = "SallysBed",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 192,
-          y = 384,
-          width = 192,
-          height = 64,
-          rotation = 0,
-          gid = 6607,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = 8,
-            ["sprite"] = "../art/sprites/sallybed.png"
-          }
-        },
-        {
-          id = 5,
-          name = "SallysBookshelf",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 512,
-          y = 512,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 6607,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return MessageBox {message=\"Sonic: Boooring.\", blocking = true}\n    elseif GameState.leader == \"sally\" then\n        return Serial {\n            MessageBox {message=\"Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.\", blocking = true},\n            MessageBox {message=\"Sally: Maybe I could read it to Tails.\", blocking = true}\n        }\n    end\n    return Action()\nend",
-            ["sprite"] = "../art/sprites/sallybookshelf.png"
-          }
-        },
-        {
-          id = 7,
-          name = "SallysStool",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 512,
-          y = 320,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 6607,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal DescBox = require \"actions/DescBox\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    local descBox = MessageBox{message=\"Computer: What would you like to do?\", noPressX = true}\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"nicolebeep\", 1.0, true),\n        Parallel {\n            descBox,\n            Serial { Wait(1.5),\n            Menu {\n        layout = Layout {\n            {Layout.Text(\"Learn how to fight\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    descBox,\n                    MessageBox {\n                        message = \"Databank is empty...\",\n                        blocking = true\n                    }\n                }\n            end},\n            {Layout.Text(\"Learn how to avoid fighting\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    descBox,\n                    MessageBox {\n                        message = \"Databank is empty...\",\n                        blocking = true\n                    }\n                }\n            end},\n            {Layout.Text(\"Learn how to teach Nicole\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    descBox,\n                    MessageBox {\n                        message = \"Databank is empty...\",\n                        blocking = true\n                    }\n                }\n            end},\n            {Layout.Text(\"Learn what to do next\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    descBox,\n                    MessageBox {\n                        message = \"Consult the Big Chest...\",\n                        blocking = true\n                    }\n                }\n            end}\n        },\n        cancellable = true,\n        withClose = Do(function() descBox:close() end),\n        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)\n    }}},\n        Do(function()\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
-            ["sprite"] = "../art/sprites/stool.png"
-          }
-        },
-        {
-          id = 8,
-          name = "DeskUpper",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 512,
-          y = 288,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 6607,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/sallycomputerdeskupper.png"
-          }
-        },
-        {
-          id = 9,
-          name = "DeskLower",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 544,
-          y = 384,
-          width = 32,
-          height = 64,
-          rotation = 0,
-          gid = 6607,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/sallycomputerdesklower.png"
-          }
-        },
-        {
-          id = 10,
-          name = "Brightness",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 256,
-          y = 320,
           width = 64,
           height = 64,
           rotation = 0,
-          gid = 6628,
+          gid = 6607,
           visible = true,
           properties = {
-            ["ghost"] = true,
-            ["notColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = nil\nend",
-            ["whileColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = true\nend"
-          }
-        },
-        {
-          id = 11,
-          name = "Brightness",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 320,
-          y = 320,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 6628,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["notColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = nil\nend",
-            ["whileColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = true\nend"
+            ["YellowLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }
@@ -443,12 +298,12 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 83, 84, 85, 86, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 112, 113, 114, 612, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 141, 142, 143, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 170, 171, 172, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 199, 200, 201, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 228, 229, 230, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

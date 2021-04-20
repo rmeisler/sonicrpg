@@ -114,7 +114,7 @@ function Rotor:onInteract()
 												y = slot.y,
 												width = 64,
 												height = 32,
-												properties = {item = id, sprite = "art/sprites/"..item.img..".png"}
+												properties = {item = id, sprite = "art/sprites/"..item.img..".png", rotorItem = true}
 											}
 										)
 										self.scene:addObject(pickup)

@@ -132,5 +132,10 @@ return {
 		holdsaluteleft = {
 			frames = {{13,0}}
 		},
+		
+		nervousleft = {
+			frames = {{15,1},{16,1}},
+			speed = 0.2
+		},
     }
 }

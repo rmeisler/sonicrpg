@@ -24,6 +24,15 @@ function Transform.from(xform)
 	return Transform(xform.x, xform.y, xform.sx, xform.sy, xform.angle)
 end
 
+function Transform.dot(xform1, xform2)
+	local angle = math.atan((xform2.y - xform1.y)/(xform2.x - xform1.x))
+	return Transform.mag(xform1) * Transform.mag(xform2) * math.cos(angle)
+end
+
+function Transform.mag(xform)
+	math.sqrt(xform.x * xform.x + xform.y * xform.y)
+end
+
 function Transform.relative(transform, offset)
     return setmetatable({},
 		{
