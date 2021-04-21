@@ -9,11 +9,11 @@ return {
             frames = {{0,0}}
         },
 		bounce = {
-            frames = {{0,0},{1,0},{2,0},{3,0}},
+            frames = {{1,0},{2,0},{3,0}},
 			speed = 0.1
         },
 		waffle = {
-            frames = {{0,0},{1,0}},
+            frames = {{1,0},{0,0}},
 			speed = 0.2
         }
     }

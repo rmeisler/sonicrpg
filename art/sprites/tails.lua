@@ -69,6 +69,28 @@ return {
 		},
 		peekup = {
 			frames = {{6,4}}
-		}
+		},
+		
+		sadright = {
+			frames = {{9,0}}
+		},
+		sadleft = {
+			frames = {{9,1}}
+		},
+		joyright = {
+			frames = {{10,0}}
+		},
+		joyleft = {
+			frames = {{10,1}}
+		},
+		
+		flyright = {
+			frames = {{11,0},{12,0}},
+			speed = 0.1
+		},
+		flyleft = {
+			frames = {{11,1},{12,1}},
+			speed = 0.1
+		},
     }
 }

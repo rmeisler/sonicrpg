@@ -738,6 +738,12 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/lookout.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
 		file = "audio/music/greatforest.ogg",
 		category = "music",
 		looping = true,

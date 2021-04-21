@@ -46,7 +46,7 @@ return function(scene)
 		}
 	})
 
-	scene.audio:playMusic("doittoit", 0.8)
+	scene.audio:playMusic("doittoit", 0.5)
 	
 	scene:addHandler(
 		"update",

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="193">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="194">
  <properties>
   <property name="onload" type="file" value="actions/knothole.lua"/>
   <property name="regionName" value="Great Forest"/>
@@ -1592,14 +1592,37 @@ end</property>
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
 
 return function(self)
-    return Serial {
+    return BlockPlayer {
         MessageBox {
-            message = &quot;Bunnie: Hey Suga-hog, there are some nasty pests eatin' up our veggies! {p50}Can you help me spray 'em before they end up ruinin' our yield?&quot;,
-            blocking = true
+            message = &quot;Bunnie: Hey Suga-hog, there are some nasty pests eatin' up our veggies! {p50}Can you help me spray 'em before they end up ruinin' our yield?&quot;
         },
         Menu {
+            layout = Layout {
+                {Layout.Text(&quot;Spray pests?&quot;), selectable = false},
+                {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                    menu:close()
+                    self.scene:run {
+                        menu,
+                        MessageBox {message = &quot;Bunnie: Thanks, sugah. {p40}Here's a spray bottle. {p40}Anytime you see some bugs show up, press (x) to spray them!&quot;}
+                    }
+                end},
+                {Layout.Text(&quot;No&quot;), choose = function(menu)
+                    menu:close()
+                    self.scene:run {
+                        menu,
+                        MessageBox {message = &quot;Bunnie: Well good heavens--{p40} what else you got goin' on right now?&quot;}
+                    }
+                end},
+            },
+            cancellable = true,
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+            selectedRow = 2
         },
         Do(function()
             self.scene.player.hidekeyhints[tostring(self)] = nil
@@ -2305,12 +2328,12 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
    </properties>
   </object>
-  <object id="191" name="Tails" type="BasicNPC" gid="5323" x="4736" y="2560" width="64" height="96">
+  <object id="191" name="Tails" type="BasicNPC" gid="5323" x="4736" y="2560" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-16"/>
     <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="idledown"/>
+    <property name="defaultAnim" value="idleright"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
@@ -2319,32 +2342,56 @@ local Animate = require &quot;actions/Animate&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Ease = require &quot;actions/Ease&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Menu = require &quot;actions/Menu&quot;
+
+local Layout = require &quot;util/Layout&quot;
+local Transform = require &quot;util/Transform&quot;
 
 return function(self)
     self.origY = self.y
     return BlockPlayer {
         MessageBox {
-            message = &quot;Antoine: Oh no, {p40}oh no, {p40}this is not being very good...&quot;,
+            message = &quot;Tails: Hey Sonic! {p40}Ya wanna play some dirt hockey?&quot;,
         },
-        Animate(self.sprite, &quot;scaredhop2&quot;),
-        Ease(self, &quot;y&quot;, function() return self.origY - 50 end, 7, &quot;linear&quot;),
-        Animate(self.sprite, &quot;scaredhop3&quot;),
-        Ease(self, &quot;y&quot;, function() return self.origY end, 7, &quot;linear&quot;),
-        Animate(self.sprite, &quot;scaredhop4&quot;),
-        Wait(0.1),
-        Animate(self.sprite, &quot;scaredhop5&quot;),
-        Wait(1),
-        Do(function() self.sprite:setAnimation(&quot;nervousleft&quot;) end),
-        MessageBox {
-            message = &quot;Antoine: Did I lose something?? {p40}Ha-ha! {p40}O-o-of course not! {p50}Why would you be having such a thought?&quot;,
+        Menu {
+            layout = Layout {
+                {Layout.Text(&quot;Play dirt hockey?&quot;), selectable = false},
+                {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                    menu:close()
+                    self.scene:run {
+                        menu,
+                        Animate(self.sprite, &quot;joyright&quot;),
+                        Ease(self, &quot;y&quot;, function() return self.origY - 50 end, 7, &quot;linear&quot;),
+                        Ease(self, &quot;y&quot;, function() return self.origY end, 7, &quot;linear&quot;),
+                        MessageBox {message = &quot;Tails: Alright! {p40}Let's do it to it!&quot;}
+                    }
+                end},
+                {Layout.Text(&quot;No&quot;), choose = function(menu)
+                    menu:close()
+                    self.scene:run {
+                        menu,
+                        Animate(self.sprite, &quot;sadright&quot;),
+                        MessageBox {message = &quot;Tails: Awww... ok. {p40}Maybe later.&quot;}
+                    }
+                end},
+            },
+            cancellable = true,
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+            selectedRow = 2
         },
         Do(function()
-            self.sprite:setAnimation(&quot;scaredhop1&quot;)
             self.scene.player.hidekeyhints[tostring(self)] = nil
         end)
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/tails.png"/>
+   </properties>
+  </object>
+  <object id="193" name="Pest" type="BasicNPC" gid="5323" x="672" y="2048" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/pest.png"/>
    </properties>
   </object>
  </objectgroup>

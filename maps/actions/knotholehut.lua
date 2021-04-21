@@ -32,7 +32,7 @@ return function(scene)
 		Ease(text.color, 4, 0, 1)
 	})
 
-	scene.audio:playMusic("knotholehut", 1.0)
+	scene.audio:playMusic("knotholehut", 0.8)
 
 	scene:addHandler(
 		"update",

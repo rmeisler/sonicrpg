@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 193,
+  nextobjectid = 194,
   properties = {
     ["onload"] = "actions/knothole.lua",
     ["regionName"] = "Great Forest",
@@ -2712,7 +2712,7 @@ return {
             ["alignOffsetY"] = -16,
             ["defaultAnim"] = "kneeling",
             ["ghost"] = false,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\n\nreturn function(self)\n    return Serial {\n        MessageBox {\n            message = \"Bunnie: Hey Suga-hog, there are some nasty pests eatin' up our veggies! {p50}Can you help me spray 'em before they end up ruinin' our yield?\",\n            blocking = true\n        },\n        Menu {\n        },\n        Do(function()\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {\n            message = \"Bunnie: Hey Suga-hog, there are some nasty pests eatin' up our veggies! {p50}Can you help me spray 'em before they end up ruinin' our yield?\"\n        },\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Spray pests?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        MessageBox {message = \"Bunnie: Thanks, sugah. {p40}Here's a spray bottle. {p40}Anytime you see some bugs show up, press (x) to spray them!\"}\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        MessageBox {message = \"Bunnie: Well good heavens--{p40} what else you got goin' on right now?\"}\n                    }\n                end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        },\n        Do(function()\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/bunny.png"
           }
         },
@@ -3906,7 +3906,7 @@ return {
           x = 4736,
           y = 2560,
           width = 64,
-          height = 96,
+          height = 64,
           rotation = 0,
           gid = 5323,
           visible = true,
@@ -3914,10 +3914,28 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -16,
             ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "idledown",
+            ["defaultAnim"] = "idleright",
             ["ghost"] = false,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    self.origY = self.y\n    return BlockPlayer {\n        MessageBox {\n            message = \"Antoine: Oh no, {p40}oh no, {p40}this is not being very good...\",\n        },\n        Animate(self.sprite, \"scaredhop2\"),\n        Ease(self, \"y\", function() return self.origY - 50 end, 7, \"linear\"),\n        Animate(self.sprite, \"scaredhop3\"),\n        Ease(self, \"y\", function() return self.origY end, 7, \"linear\"),\n        Animate(self.sprite, \"scaredhop4\"),\n        Wait(0.1),\n        Animate(self.sprite, \"scaredhop5\"),\n        Wait(1),\n        Do(function() self.sprite:setAnimation(\"nervousleft\") end),\n        MessageBox {\n            message = \"Antoine: Did I lose something?? {p40}Ha-ha! {p40}O-o-of course not! {p50}Why would you be having such a thought?\",\n        },\n        Do(function()\n            self.sprite:setAnimation(\"scaredhop1\")\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Menu = require \"actions/Menu\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    self.origY = self.y\n    return BlockPlayer {\n        MessageBox {\n            message = \"Tails: Hey Sonic! {p40}Ya wanna play some dirt hockey?\",\n        },\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Play dirt hockey?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        Animate(self.sprite, \"joyright\"),\n                        Ease(self, \"y\", function() return self.origY - 50 end, 7, \"linear\"),\n                        Ease(self, \"y\", function() return self.origY end, 7, \"linear\"),\n                        MessageBox {message = \"Tails: Alright! {p40}Let's do it to it!\"}\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        Animate(self.sprite, \"sadright\"),\n                        MessageBox {message = \"Tails: Awww... ok. {p40}Maybe later.\"}\n                    }\n                end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        },\n        Do(function()\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/tails.png"
+          }
+        },
+        {
+          id = 193,
+          name = "Pest",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 672,
+          y = 2048,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/pest.png"
           }
         }
       }

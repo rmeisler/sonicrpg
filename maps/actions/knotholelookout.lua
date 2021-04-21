@@ -34,7 +34,7 @@ return function(scene)
 		Ease(text.color, 4, 0, 1)
 	})
 
-	scene.audio:stopMusic()
+	scene.audio:playMusic("lookout", 1.0)
 
 	return Action()
 end
