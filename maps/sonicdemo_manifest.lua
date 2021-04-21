@@ -744,6 +744,12 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/games.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
 		file = "audio/music/greatforest.ogg",
 		category = "music",
 		looping = true,
