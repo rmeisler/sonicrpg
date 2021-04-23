@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="218">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="222">
  <properties>
   <property name="onload" type="file" value="actions/knothole.lua"/>
   <property name="regionName" value="Great Forest"/>
@@ -1105,86 +1105,136 @@
     <property name="direction" value="up_right"/>
    </properties>
   </object>
-  <object id="206" name="Food1" type="BasicNPC" gid="5323" x="480" y="1984" width="32" height="32">
+  <object id="206" name="Food1" type="InfestedPlant" gid="5323" x="480" y="1984" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="flag" value="bunnie_game_start"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/plant.png"/>
+    <property name="startSeconds" type="float" value="1"/>
    </properties>
   </object>
-  <object id="207" name="Food2" type="BasicNPC" gid="5323" x="608" y="1856" width="32" height="32">
+  <object id="207" name="Food2" type="InfestedPlant" gid="5323" x="608" y="1856" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="flag" value="bunnie_game_start"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/plant.png"/>
+    <property name="startSeconds" type="float" value="4"/>
    </properties>
   </object>
-  <object id="208" name="Food3" type="BasicNPC" gid="5323" x="736" y="1856" width="32" height="32">
+  <object id="208" name="Food3" type="InfestedPlant" gid="5323" x="736" y="1856" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="flag" value="bunnie_game_start"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/plant.png"/>
+    <property name="startSeconds" type="float" value="5"/>
    </properties>
   </object>
-  <object id="209" name="Food4" type="BasicNPC" gid="5323" x="1088" y="1888" width="32" height="32">
+  <object id="209" name="Food4" type="InfestedPlant" gid="5323" x="1088" y="1888" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="flag" value="bunnie_game_start"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/plant.png"/>
+    <property name="startSeconds" type="float" value="7"/>
    </properties>
   </object>
-  <object id="210" name="Food5" type="BasicNPC" gid="5323" x="448" y="2272" width="32" height="32">
+  <object id="210" name="Food5" type="InfestedPlant" gid="5323" x="736" y="2240" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="flag" value="bunnie_game_start"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/plant.png"/>
+    <property name="startSeconds" type="float" value="10"/>
    </properties>
   </object>
-  <object id="211" name="Food6" type="BasicNPC" gid="5323" x="992" y="2240" width="32" height="32">
+  <object id="211" name="Food6" type="InfestedPlant" gid="5323" x="992" y="2240" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="flag" value="bunnie_game_start"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/plant.png"/>
+    <property name="startSeconds" type="float" value="10"/>
    </properties>
   </object>
-  <object id="212" name="Food7" type="BasicNPC" gid="5323" x="1248" y="1856" width="32" height="32">
+  <object id="212" name="Food7" type="InfestedPlant" gid="5323" x="1248" y="1856" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="flag" value="bunnie_game_start"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/plant.png"/>
+    <property name="startSeconds" type="float" value="25"/>
    </properties>
   </object>
-  <object id="213" name="Food8" type="BasicNPC" gid="5323" x="704" y="2080" width="32" height="32">
+  <object id="213" name="Food8" type="InfestedPlant" gid="5323" x="704" y="2080" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="flag" value="bunnie_game_start"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/plant.png"/>
+    <property name="startSeconds" type="float" value="28"/>
    </properties>
   </object>
-  <object id="214" name="Food9" type="BasicNPC" gid="5323" x="1120" y="2432" width="32" height="32">
+  <object id="214" name="Food9" type="InfestedPlant" gid="5323" x="1120" y="2432" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="flag" value="bunnie_game_start"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/plant.png"/>
+    <property name="startSeconds" type="float" value="18"/>
    </properties>
   </object>
-  <object id="215" name="Food10" type="BasicNPC" gid="5323" x="1088" y="2080" width="32" height="32">
+  <object id="215" name="Food10" type="InfestedPlant" gid="5323" x="1088" y="2080" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="flag" value="bunnie_game_start"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/plant.png"/>
+    <property name="startSeconds" type="float" value="22"/>
    </properties>
   </object>
-  <object id="216" name="Food11" type="BasicNPC" gid="5323" x="704" y="2208" width="32" height="32">
+  <object id="216" name="Food11" type="InfestedPlant" gid="5323" x="608" y="2240" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="flag" value="bunnie_game_start"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/plant.png"/>
+    <property name="startSeconds" type="float" value="15"/>
    </properties>
   </object>
-  <object id="217" name="Food12" type="BasicNPC" gid="5323" x="608" y="2432" width="32" height="32">
+  <object id="217" name="Food12" type="InfestedPlant" gid="5323" x="608" y="2432" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="flag" value="bunnie_game_start"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
+    <property name="startSeconds" type="float" value="17"/>
+   </properties>
+  </object>
+  <object id="218" name="Food13" type="InfestedPlant" gid="5323" x="1248" y="2240" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="flag" value="bunnie_game_start"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
+    <property name="startSeconds" type="float" value="21"/>
+   </properties>
+  </object>
+  <object id="219" name="Food14" type="InfestedPlant" gid="5323" x="992" y="1984" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="flag" value="bunnie_game_start"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
+    <property name="startSeconds" type="float" value="29"/>
+   </properties>
+  </object>
+  <object id="220" name="FoodExample" type="BasicNPC" gid="5323" x="608" y="2048" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="dying1"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/plant.png"/>
    </properties>
@@ -1665,7 +1715,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
-  <object id="81" name="Bunnie" type="BasicNPC" gid="5323" x="736" y="2048" width="64" height="64">
+  <object id="81" name="Bunnie" type="BasicNPC" gid="5323" x="640" y="2048" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
@@ -1678,11 +1728,21 @@ local MessageBox = require &quot;actions/MessageBox&quot;
 local Menu = require &quot;actions/Menu&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
 
 return function(self)
+    if GameState:isFlagSet(&quot;bunnie_game_over&quot;) then
+        return MessageBox {message = &quot;Bunnie: My goodness, {p40}I sure am glad those pests are gone.&quot;, blocking = true}
+    end
+    if GameState:isFlagSet(&quot;bunnie_game_start&quot;) then
+        return Do(function() end)
+    end
+    local pestEx = self.scene.objectLookup.PestExample
     return BlockPlayer {
         MessageBox {
             message = &quot;Bunnie: There are some nasty pests eatin' up our veggies! {p60}Can you help me spray 'em before they end up ruinin' our whole yield?&quot;
@@ -1695,7 +1755,17 @@ return function(self)
                     self.scene:run {
                         menu,
                         MessageBox {message = &quot;Bunnie: Thanks, sugah! {p40}Here's a spray bottle, {p20}anytime you see some bugs show up, press (x) to spray them!&quot;, sfx=&quot;choose&quot;},
-                        PlayAudio(&quot;music&quot;, &quot;games&quot;, 1.0, true, true)
+                        Do(function() GameState:setFlag(&quot;bunnie_game_start&quot;) end),
+                        PlayAudio(&quot;music&quot;, &quot;games&quot;, 1.0, true, true),
+                        Wait(2),
+                        PlayAudio(&quot;sfx&quot;, &quot;oppdeath&quot;, 1.0, true),
+                        Parallel {
+                            Ease(pestEx.sprite.color, 1, 800, 5),
+                            Ease(pestEx.sprite.color, 4, 0, 2)
+                        },
+                        Do(function()
+                            pestEx:remove()
+                        end)
                     }
                 end},
                 {Layout.Text(&quot;No&quot;), choose = function(menu)
@@ -2473,7 +2543,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/tails.png"/>
    </properties>
   </object>
-  <object id="193" name="Pest" type="BasicNPC" gid="5323" x="672" y="2048" width="64" height="64">
+  <object id="193" name="PestExample" type="BasicNPC" gid="5323" x="608" y="2048" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>

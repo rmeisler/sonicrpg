@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 218,
+  nextobjectid = 222,
   properties = {
     ["onload"] = "actions/knothole.lua",
     ["regionName"] = "Great Forest",
@@ -1554,7 +1554,7 @@ return {
         {
           id = 206,
           name = "Food1",
-          type = "BasicNPC",
+          type = "InfestedPlant",
           shape = "rectangle",
           x = 480,
           y = 1984,
@@ -1565,14 +1565,16 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["flag"] = "bunnie_game_start",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png"
+            ["sprite"] = "../art/sprites/plant.png",
+            ["startSeconds"] = 1
           }
         },
         {
           id = 207,
           name = "Food2",
-          type = "BasicNPC",
+          type = "InfestedPlant",
           shape = "rectangle",
           x = 608,
           y = 1856,
@@ -1583,14 +1585,16 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["flag"] = "bunnie_game_start",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png"
+            ["sprite"] = "../art/sprites/plant.png",
+            ["startSeconds"] = 4
           }
         },
         {
           id = 208,
           name = "Food3",
-          type = "BasicNPC",
+          type = "InfestedPlant",
           shape = "rectangle",
           x = 736,
           y = 1856,
@@ -1601,14 +1605,16 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["flag"] = "bunnie_game_start",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png"
+            ["sprite"] = "../art/sprites/plant.png",
+            ["startSeconds"] = 5
           }
         },
         {
           id = 209,
           name = "Food4",
-          type = "BasicNPC",
+          type = "InfestedPlant",
           shape = "rectangle",
           x = 1088,
           y = 1888,
@@ -1619,17 +1625,19 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["flag"] = "bunnie_game_start",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png"
+            ["sprite"] = "../art/sprites/plant.png",
+            ["startSeconds"] = 7
           }
         },
         {
           id = 210,
           name = "Food5",
-          type = "BasicNPC",
+          type = "InfestedPlant",
           shape = "rectangle",
-          x = 448,
-          y = 2272,
+          x = 736,
+          y = 2240,
           width = 32,
           height = 32,
           rotation = 0,
@@ -1637,14 +1645,16 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["flag"] = "bunnie_game_start",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png"
+            ["sprite"] = "../art/sprites/plant.png",
+            ["startSeconds"] = 10
           }
         },
         {
           id = 211,
           name = "Food6",
-          type = "BasicNPC",
+          type = "InfestedPlant",
           shape = "rectangle",
           x = 992,
           y = 2240,
@@ -1655,14 +1665,16 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["flag"] = "bunnie_game_start",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png"
+            ["sprite"] = "../art/sprites/plant.png",
+            ["startSeconds"] = 10
           }
         },
         {
           id = 212,
           name = "Food7",
-          type = "BasicNPC",
+          type = "InfestedPlant",
           shape = "rectangle",
           x = 1248,
           y = 1856,
@@ -1673,14 +1685,16 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["flag"] = "bunnie_game_start",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png"
+            ["sprite"] = "../art/sprites/plant.png",
+            ["startSeconds"] = 25
           }
         },
         {
           id = 213,
           name = "Food8",
-          type = "BasicNPC",
+          type = "InfestedPlant",
           shape = "rectangle",
           x = 704,
           y = 2080,
@@ -1691,14 +1705,16 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["flag"] = "bunnie_game_start",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png"
+            ["sprite"] = "../art/sprites/plant.png",
+            ["startSeconds"] = 28
           }
         },
         {
           id = 214,
           name = "Food9",
-          type = "BasicNPC",
+          type = "InfestedPlant",
           shape = "rectangle",
           x = 1120,
           y = 2432,
@@ -1709,14 +1725,16 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["flag"] = "bunnie_game_start",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png"
+            ["sprite"] = "../art/sprites/plant.png",
+            ["startSeconds"] = 18
           }
         },
         {
           id = 215,
           name = "Food10",
-          type = "BasicNPC",
+          type = "InfestedPlant",
           shape = "rectangle",
           x = 1088,
           y = 2080,
@@ -1727,17 +1745,19 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["flag"] = "bunnie_game_start",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png"
+            ["sprite"] = "../art/sprites/plant.png",
+            ["startSeconds"] = 22
           }
         },
         {
           id = 216,
           name = "Food11",
-          type = "BasicNPC",
+          type = "InfestedPlant",
           shape = "rectangle",
-          x = 704,
-          y = 2208,
+          x = 608,
+          y = 2240,
           width = 32,
           height = 32,
           rotation = 0,
@@ -1745,14 +1765,16 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["flag"] = "bunnie_game_start",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png"
+            ["sprite"] = "../art/sprites/plant.png",
+            ["startSeconds"] = 15
           }
         },
         {
           id = 217,
           name = "Food12",
-          type = "BasicNPC",
+          type = "InfestedPlant",
           shape = "rectangle",
           x = 608,
           y = 2432,
@@ -1763,6 +1785,67 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["flag"] = "bunnie_game_start",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/plant.png",
+            ["startSeconds"] = 17
+          }
+        },
+        {
+          id = 218,
+          name = "Food13",
+          type = "InfestedPlant",
+          shape = "rectangle",
+          x = 1248,
+          y = 2240,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["flag"] = "bunnie_game_start",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/plant.png",
+            ["startSeconds"] = 21
+          }
+        },
+        {
+          id = 219,
+          name = "Food14",
+          type = "InfestedPlant",
+          shape = "rectangle",
+          x = 992,
+          y = 1984,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["flag"] = "bunnie_game_start",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/plant.png",
+            ["startSeconds"] = 29
+          }
+        },
+        {
+          id = 220,
+          name = "FoodExample",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 608,
+          y = 2048,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "dying1",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/plant.png"
           }
@@ -2915,7 +2998,7 @@ return {
           name = "Bunnie",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 736,
+          x = 640,
           y = 2048,
           width = 64,
           height = 64,
@@ -2928,7 +3011,7 @@ return {
             ["alignOffsetY"] = -16,
             ["defaultAnim"] = "kneeling",
             ["ghost"] = false,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {\n            message = \"Bunnie: There are some nasty pests eatin' up our veggies! {p60}Can you help me spray 'em before they end up ruinin' our whole yield?\"\n        },\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Spray pests?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        MessageBox {message = \"Bunnie: Thanks, sugah! {p40}Here's a spray bottle, {p20}anytime you see some bugs show up, press (x) to spray them!\", sfx=\"choose\"},\n                        PlayAudio(\"music\", \"games\", 1.0, true, true)\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        MessageBox {message = \"Bunnie: Well good heavens, Sonic--{p40} what else you got goin' on right now?\"}\n                    }\n                end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        },\n        Do(function()\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"bunnie_game_over\") then\n        return MessageBox {message = \"Bunnie: My goodness, {p40}I sure am glad those pests are gone.\", blocking = true}\n    end\n    if GameState:isFlagSet(\"bunnie_game_start\") then\n        return Do(function() end)\n    end\n    local pestEx = self.scene.objectLookup.PestExample\n    return BlockPlayer {\n        MessageBox {\n            message = \"Bunnie: There are some nasty pests eatin' up our veggies! {p60}Can you help me spray 'em before they end up ruinin' our whole yield?\"\n        },\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Spray pests?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        MessageBox {message = \"Bunnie: Thanks, sugah! {p40}Here's a spray bottle, {p20}anytime you see some bugs show up, press (x) to spray them!\", sfx=\"choose\"},\n                        Do(function() GameState:setFlag(\"bunnie_game_start\") end),\n                        PlayAudio(\"music\", \"games\", 1.0, true, true),\n                        Wait(2),\n                        PlayAudio(\"sfx\", \"oppdeath\", 1.0, true),\n                        Parallel {\n                            Ease(pestEx.sprite.color, 1, 800, 5),\n                            Ease(pestEx.sprite.color, 4, 0, 2)\n                        },\n                        Do(function()\n                            pestEx:remove()\n                        end)\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        MessageBox {message = \"Bunnie: Well good heavens, Sonic--{p40} what else you got goin' on right now?\"}\n                    }\n                end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        },\n        Do(function()\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/bunny.png"
           }
         },
@@ -4138,10 +4221,10 @@ return {
         },
         {
           id = 193,
-          name = "Pest",
+          name = "PestExample",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 672,
+          x = 608,
           y = 2048,
           width = 64,
           height = 64,
