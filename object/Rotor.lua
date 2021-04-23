@@ -278,19 +278,7 @@ function Rotor:update(dt)
         return
     end
 
-    if math.abs(dx) < math.abs(dy) then
-        if dy < 0 then
-            self.sprite:setAnimation("idledown")
-        else
-            self.sprite:setAnimation("idleup")
-        end
-    else
-        if dx < 0 then
-            self.sprite:setAnimation("idleright")
-        else
-            self.sprite:setAnimation("idleleft")
-        end
-    end
+	self:facePlayer()
 end
 
 

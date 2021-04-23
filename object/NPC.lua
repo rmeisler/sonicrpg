@@ -256,6 +256,26 @@ function NPC:isFacing(direction)
 	return string.find(self.sprite.selected, direction) ~= nil
 end
 
+function NPC:facePlayer()
+	local player = self.scene.player
+	local dx = self.x + self.sprite.w/2 - player.x
+    local dy = self.y + self.sprite.h/2 - player.y
+
+    if math.abs(dx) < math.abs(dy) then
+        if dy < 0 then
+            self.sprite:setAnimation("idledown")
+        else
+            self.sprite:setAnimation("idleup")
+        end
+    else
+        if dx < 0 then
+            self.sprite:setAnimation("idleright")
+        else
+            self.sprite:setAnimation("idleleft")
+        end
+    end
+end
+
 function NPC:messageBox()
 	if self.collided then
 		return

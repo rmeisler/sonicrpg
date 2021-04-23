@@ -29,14 +29,17 @@ end
 function InfestedPlant:spray()
 	self.scene.audio:playSfx("choose", nil, true)
 	GameState:setFlag(self)
-	
-	-- Destroy all pests
+	self:destroyPests()
+	self:checkEndCondition()
+end
+
+function InfestedPlant:destroyPests()
 	for _, pest in pairs(self.pests) do
 		pest:run {
 			PlayAudio("sfx", "oppdeath", 1.0, true),
 			Parallel {
 				Ease(pest.sprite.color, 1, 800, 5),
-				Ease(pest.sprite.color, 4, 0, 2)
+				Ease(pest.sprite.color, 4, 0, 5)
 			},
 			Do(function()
 				pest:remove()
@@ -45,7 +48,6 @@ function InfestedPlant:spray()
 	end
 	self.pests = {}
 	self:removeInteract(InfestedPlant.spray)
-	self:checkEndCondition()
 end
 
 function InfestedPlant:update(dt)
@@ -67,20 +69,8 @@ function InfestedPlant:update(dt)
 
 	if self.lifeState == "step4" and
 	   love.timer.getTime() > self.startTime + 5 then
-		-- Food is dead
-		self:run {
-			PlayAudio("sfx", "oppdeath", 1.0, true),
-			Parallel {
-				Ease(self.sprite.color, 1, 800, 5),
-				Ease(self.sprite.color, 4, 0, 2)
-			},
-			Do(function()
-				self.sprite.color = {255,255,255,255}
-				self.sprite:setAnimation("dying3")
-				
-				self:checkEndCondition()
-			end)
-		}
+		self.sprite:setAnimation("dying3")
+		self:checkEndCondition()
 		GameState:setFlag(self)
 	elseif self.lifeState == "step3" and
 	       love.timer.getTime() > self.startTime + 3 then
@@ -110,7 +100,7 @@ function InfestedPlant:spawnPest(offsetX, offsetY)
 		{
 			name = "pest",
 			x = self.x + (offsetX or 0),
-			y = self.y + (offsetY or 0),
+			y = self.y + (offsetY or 0) - 32,
 			width = 64,
 			height = 64,
 			properties = {nocollision = true, sprite = "art/sprites/pest.png"}
@@ -137,28 +127,18 @@ function InfestedPlant:checkEndCondition()
 	end
 	
 	-- Game over
+	GameState:setFlag("bunnie_game_over")
 	self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
 	self.scene:pauseEnemies(true)
 	
+	-- Kill remaining pests
+	for _, plant in pairs(self.plants) do
+		plant:destroyPests()
+	end
+
 	-- Make bunnie face sonic
 	local bunnie = self.scene.objectLookup.Bunnie
-	local player = self.scene.player
-	local dx = bunnie.x + bunnie.sprite.w/2 - player.x
-    local dy = bunnie.y + bunnie.sprite.h/2 - player.y
-
-    if math.abs(dx) < math.abs(dy) then
-        if dy < 0 then
-            bunnie.sprite:setAnimation("idledown")
-        else
-            bunnie.sprite:setAnimation("idleup")
-        end
-    else
-        if dx < 0 then
-            bunnie.sprite:setAnimation("idleright")
-        else
-            bunnie.sprite:setAnimation("idleleft")
-        end
-    end
+	bunnie:facePlayer()
 	
 	local awardItem
 	if plantsKilled > 4 then
@@ -202,7 +182,16 @@ function InfestedPlant:checkEndCondition()
 			self.scene.player.cinematicStack = 0
 			self.scene:pauseEnemies(false)
 			self.scene.pausePlayer = false
-			GameState:setFlag("bunnie_game_over")
+			bunnie:addInteract(function()
+				bunnie.scene.player.hidekeyhints[tostring(bunnie)] = bunnie
+				bunnie:facePlayer()
+				bunnie.scene:run {
+					MessageBox {message = "Bunnie: My goodness, {p40}I sure am glad those pests are gone.", blocking = true},
+					Do(function()
+						bunnie:refreshKeyHint()
+					end)
+				}
+			end)
 			self.scene.audio:playMusic("knothole", 0.8)
 		end)
 	}

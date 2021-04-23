@@ -144,11 +144,36 @@ end</property>
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Do = require &quot;actions/Do&quot;
+local Layout = require &quot;util/Layout&quot;
+local Transform = require &quot;util/Transform&quot;
 
 return function(self)
-    return MessageBox {
-        message = &quot;Diary: I wanted to play dirt hockey with Sonic today, but he said he was too busy. {p30}Maybe he'll play with me tomorrow.&quot;,
-        blocking = true
+    return BlockPlayer {
+        MessageBox {message = &quot;Inside the drawer is Tails' diary...&quot;, blocking = true},
+        Menu {
+        layout = Layout {
+            {Layout.Text(&quot;Read it?&quot;), selectable = false},
+            {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                    menu:close()
+                    self.scene:run {
+                        menu,
+                        MessageBox{message=&quot;Diary: I wanted to play dirt hockey with Sonic today, but he said he was too busy. {p50}He always says that!&quot;, blocking = true}
+                    }
+                end},
+                {Layout.Text(&quot;No&quot;), choose = function(menu)
+                    menu:close()
+                end}
+            },
+            cancellable = true,
+            selectedRow = 2,
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)
+        },
+        Do(function()
+            self:refreshKeyHint()
+        end)
     }
 end</property>
    </properties>

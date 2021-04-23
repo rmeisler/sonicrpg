@@ -399,7 +399,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {\n        message = \"Diary: I wanted to play dirt hockey with Sonic today, but he said he was too busy. {p30}Maybe he'll play with me tomorrow.\",\n        blocking = true\n    }\nend"
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message = \"Inside the drawer is Tails' diary...\", blocking = true},\n        Menu {\n        layout = Layout {\n            {Layout.Text(\"Read it?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        MessageBox{message=\"Diary: I wanted to play dirt hockey with Sonic today, but he said he was too busy. {p50}He always says that!\", blocking = true}\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                end}\n            },\n            cancellable = true,\n            selectedRow = 2,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)\n        },\n        Do(function()\n            self:refreshKeyHint()\n        end)\n    }\nend"
           }
         }
       }

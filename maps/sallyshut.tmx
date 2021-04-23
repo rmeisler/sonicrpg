@@ -140,6 +140,7 @@ end</property>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Menu = require &quot;actions/Menu&quot;
+local Do = require &quot;actions/Do&quot;
 local Action = require &quot;actions/Action&quot;
 
 local Transform = require &quot;util/Transform&quot;
@@ -147,7 +148,10 @@ local Layout = require &quot;util/Layout&quot;
 
 return function(self)
     if GameState.leader == &quot;sonic&quot; then
-        return MessageBox {message=&quot;Sonic: Boooring.&quot;, blocking = true}
+        return Serial {
+            MessageBox {message=&quot;Sonic: Boooring.&quot;, blocking = true},
+            Do(function() self:refreshKeyHint() end)
+        }
     elseif GameState.leader == &quot;sally&quot; then
         return Serial {
             MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.&quot;, blocking = true},
@@ -236,7 +240,7 @@ return function(self)
         transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)
     }}},
         Do(function()
-            self.scene.player.hidekeyhints[tostring(self)] = nil
+            self:refreshKeyHint()
         end)
     }
 end</property>

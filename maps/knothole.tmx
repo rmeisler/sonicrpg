@@ -1715,7 +1715,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
-  <object id="81" name="Bunnie" type="BasicNPC" gid="5323" x="640" y="2048" width="64" height="64">
+  <object id="81" name="Bunnie" type="BasicNPC" gid="5323" x="640" y="2048" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
@@ -1735,13 +1735,9 @@ local Parallel = require &quot;actions/Parallel&quot;
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
 
+local NPC = require &quot;object/NPC&quot;
+
 return function(self)
-    if GameState:isFlagSet(&quot;bunnie_game_over&quot;) then
-        return MessageBox {message = &quot;Bunnie: My goodness, {p40}I sure am glad those pests are gone.&quot;, blocking = true}
-    end
-    if GameState:isFlagSet(&quot;bunnie_game_start&quot;) then
-        return Do(function() end)
-    end
     local pestEx = self.scene.objectLookup.PestExample
     return BlockPlayer {
         MessageBox {
@@ -1762,8 +1758,11 @@ return function(self)
                         Do(function()
                             pestEx:remove()
                         end),
-                        MessageBox {message = &quot;Bunnie: Thanks, sugah! {p40}Here's a spray bottle, {p20}anytime you see some bugs show up, press (x) to spray them!&quot;, sfx=&quot;choose&quot;},
-                        Do(function() GameState:setFlag(&quot;bunnie_game_start&quot;) end),
+                        MessageBox {message = &quot;Bunnie: Thanks, sugah! {p40}Here's a spray bottle, {p20}anytime you see some bugs show up, press (x) to spray them!&quot;},
+                        Do(function()
+                            GameState:setFlag(&quot;bunnie_game_start&quot;)
+                            self:removeInteract(NPC.onInteract)
+                        end),
                         PlayAudio(&quot;music&quot;, &quot;games&quot;, 1.0, true, true)
                     }
                 end},
@@ -1780,7 +1779,9 @@ return function(self)
             selectedRow = 2
         },
         Do(function()
-            self.scene.player.hidekeyhints[tostring(self)] = nil
+            if not GameState:isFlagSet(&quot;bunnie_game_start&quot;) then
+                self.scene.player.hidekeyhints[tostring(self)] = nil
+            end
         end)
     }
 end</property>
@@ -2448,6 +2449,24 @@ end</property>
     <property name="alignOffsetY" type="float" value="-16"/>
     <property name="defaultAnim" value="scaredhop1"/>
     <property name="ghost" type="bool" value="false"/>
+    <property name="notColliding">return function(self, player)
+    -- Shiver
+    if not self.shiverTime then
+        self.shiverTime = 0
+        self.shiverDir = &quot;right&quot;
+    end
+    self.shiverTime = self.shiverTime + love.timer.getDelta()
+
+    if self.shiverDir == &quot;left&quot; and self.shiverTime &gt; 0.1 then
+        self.x = self.x - 2
+        self.shiverTime = 0
+        self.shiverDir = &quot;right&quot;
+    elseif self.shiverDir == &quot;right&quot; and self.shiverTime &gt; 0.1 then
+        self.x = self.x + 2
+        self.shiverTime = 0
+        self.shiverDir = &quot;left&quot;
+    end
+end</property>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
