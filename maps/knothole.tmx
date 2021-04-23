@@ -1754,10 +1754,6 @@ return function(self)
                     menu:close()
                     self.scene:run {
                         menu,
-                        MessageBox {message = &quot;Bunnie: Thanks, sugah! {p40}Here's a spray bottle, {p20}anytime you see some bugs show up, press (x) to spray them!&quot;, sfx=&quot;choose&quot;},
-                        Do(function() GameState:setFlag(&quot;bunnie_game_start&quot;) end),
-                        PlayAudio(&quot;music&quot;, &quot;games&quot;, 1.0, true, true),
-                        Wait(2),
                         PlayAudio(&quot;sfx&quot;, &quot;oppdeath&quot;, 1.0, true),
                         Parallel {
                             Ease(pestEx.sprite.color, 1, 800, 5),
@@ -1765,7 +1761,10 @@ return function(self)
                         },
                         Do(function()
                             pestEx:remove()
-                        end)
+                        end),
+                        MessageBox {message = &quot;Bunnie: Thanks, sugah! {p40}Here's a spray bottle, {p20}anytime you see some bugs show up, press (x) to spray them!&quot;, sfx=&quot;choose&quot;},
+                        Do(function() GameState:setFlag(&quot;bunnie_game_start&quot;) end),
+                        PlayAudio(&quot;music&quot;, &quot;games&quot;, 1.0, true, true)
                     }
                 end},
                 {Layout.Text(&quot;No&quot;), choose = function(menu)

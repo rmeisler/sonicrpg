@@ -203,7 +203,7 @@ function InfestedPlant:checkEndCondition()
 			self.scene:pauseEnemies(false)
 			self.scene.pausePlayer = false
 			GameState:setFlag("bunnie_game_over")
-			scene.audio:playMusic("knothole", 0.8)
+			self.scene.audio:playMusic("knothole", 0.8)
 		end)
 	}
 end
