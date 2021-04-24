@@ -24,7 +24,7 @@ return {
       margin = 0,
       image = "../art/tiles/knotholehutinterior.png",
       imagewidth = 950,
-      imageheight = 914,
+      imageheight = 1170,
       transparentcolor = "#000000",
       tileoffset = {
         x = 0,
@@ -37,12 +37,12 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 812,
+      tilecount = 1044,
       tiles = {}
     },
     {
       name = "forest",
-      firstgid = 813,
+      firstgid = 1045,
       filename = "knothole.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -68,7 +68,7 @@ return {
     },
     {
       name = "robotropolis",
-      firstgid = 4297,
+      firstgid = 4529,
       filename = "robotropolis.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -94,7 +94,7 @@ return {
     },
     {
       name = "forest2",
-      firstgid = 7797,
+      firstgid = 8029,
       filename = "forest2.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -120,7 +120,7 @@ return {
     },
     {
       name = "knotholeindoors",
-      firstgid = 12972,
+      firstgid = 13204,
       filename = "knotholeindoors.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -146,7 +146,7 @@ return {
     },
     {
       name = "cave",
-      firstgid = 14774,
+      firstgid = 15006,
       filename = "cave.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -262,9 +262,9 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14811, 14811, 14811, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14811, 14811, 14811, 0, 535, 536, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13514, 13514, 14811, 0, 564, 565, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15043, 15043, 15043, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15043, 15043, 15043, 0, 535, 536, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13746, 13746, 15043, 0, 564, 565, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 593, 594, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 622, 623, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 583, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -336,7 +336,7 @@ return {
           width = 64,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -360,7 +360,7 @@ return {
           width = 64,
           height = 32,
           rotation = 0,
-          gid = 6628,
+          gid = 6860,
           visible = true,
           properties = {
             ["ghost"] = true,
@@ -378,7 +378,7 @@ return {
           width = 192,
           height = 64,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -395,11 +395,11 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message = \"Inside the drawer is Tails' diary...\", blocking = true},\n        Menu {\n        layout = Layout {\n            {Layout.Text(\"Read it?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        MessageBox{message=\"Diary: I wanted to play dirt hockey with Sonic today, but he said he was too busy. {p50}He always says that!\", blocking = true}\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                end}\n            },\n            cancellable = true,\n            selectedRow = 2,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)\n        },\n        Do(function()\n            self:refreshKeyHint()\n        end)\n    }\nend"
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message = \"Inside the drawer is Tails' diary...\", blocking = true, textSpeed = 3},\n        Menu {\n        layout = Layout {\n            {Layout.Text(\"Read it?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        MessageBox{message=\"Diary: I wanted to play dirt hockey with Sonic today, {p30}but he said he was too busy. {p50}He always says that!\", blocking = true, textSpeed = 3}\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                end}\n            },\n            cancellable = true,\n            selectedRow = 2,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)\n        },\n        Do(function()\n            self:refreshKeyHint()\n        end)\n    }\nend"
           }
         }
       }
@@ -424,9 +424,9 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10011, 10011, 10011, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10011, 10011, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10011, 10011, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10243, 10243, 10243, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10243, 10243, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10243, 10243, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

@@ -23,7 +23,7 @@ return {
       margin = 0,
       image = "../art/tiles/knotholehutinterior.png",
       imagewidth = 950,
-      imageheight = 914,
+      imageheight = 1170,
       transparentcolor = "#000000",
       tileoffset = {
         x = 0,
@@ -36,12 +36,12 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 812,
+      tilecount = 1044,
       tiles = {}
     },
     {
       name = "forest",
-      firstgid = 813,
+      firstgid = 1045,
       filename = "knothole.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -67,7 +67,7 @@ return {
     },
     {
       name = "robotropolis",
-      firstgid = 4297,
+      firstgid = 4529,
       filename = "robotropolis.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -93,7 +93,7 @@ return {
     },
     {
       name = "cave",
-      firstgid = 7797,
+      firstgid = 8029,
       filename = "cave.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -247,7 +247,7 @@ return {
           width = 64,
           height = 64,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["GreenLeaf"] = 1,
@@ -264,7 +264,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 4333,
+          gid = 4565,
           visible = true,
           properties = {
             ["orientation"] = "up"
@@ -280,7 +280,7 @@ return {
           width = 64,
           height = 64,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -304,7 +304,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["ghost"] = true,
@@ -321,7 +321,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["ghost"] = true,
@@ -338,7 +338,7 @@ return {
           width = 64,
           height = 64,
           rotation = 0,
-          gid = 6628,
+          gid = 6860,
           visible = true,
           properties = {
             ["ghost"] = true,
@@ -356,7 +356,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -375,7 +375,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -394,7 +394,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -413,7 +413,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -432,7 +432,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -451,7 +451,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -470,7 +470,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -489,7 +489,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["ghost"] = true,
