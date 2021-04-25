@@ -52,6 +52,7 @@ function Menu:construct(args)
 	self.animSpeed = args.animSpeed or Menu.ANIM_SPEED_DEFAULT
 	self.descBoxes = {}
 	self.tag = args.tag
+	self.args = args
 	
 	local list = args.list
 	if list then
@@ -105,9 +106,9 @@ end
 function Menu:updateLayout()
 	self.maxRows = self.layout.maxRows
 	self.maxCols = self.layout.maxCols
-	self.itemrows = self.maxRows
-	self.itemcols = self.maxCols
-	self.pages = 1 --math.floor(self.itemrows / (self.maxRows * self.maxCols)) + 1
+	self.itemrows = self.args.maxRows or self.maxRows
+	self.itemcols = self.args.maxCols or self.maxCols
+	self.pages = self.args.pagesOverride or 1 --math.floor(self.itemrows / (self.maxRows * self.maxCols)) + 1
 	
 	if self.selectedRow > self.itemrows * self.pages then
 		self.selectedRow = self.itemrows * self.pages
@@ -118,7 +119,7 @@ function Menu:updateLayout()
 	end
 	
 	self.w = self.layout.w
-	self.h = self.layout.h
+	self.h = self.layout.colHeight * self.itemrows
 	
 	self.spaceBetweenColumns = self.layout.spaceBetweenColumns
 	self.spaceBetweenEntries = self.layout.spaceBetweenEntries
@@ -259,6 +260,10 @@ function Menu:keytriggered(key)
 
 	if key == "down" then
 		if (self.selectedRow % self.itemrows) == 0 then
+			print("selected row = "..tostring(self.selectedRow))
+			print("itemrows = "..tostring(self.itemrows))
+			print("self.curPage = "..tostring(self.curPage))
+			print("self.pages = "..tostring(self.pages))
 			if self.curPage < self.pages then
 				self.curPage = self.curPage + 1
 				self.selectedRow = self.selectedRow + 1
@@ -437,7 +442,7 @@ function Menu:draw()
 	local yOffset = self.rowSpacing
 	if self.expand:isDone() and not self.closing and not self.hidden then
 		if self.layout then
-			self.layout:draw()
+			self.layout:draw(self.curPage, self.itemrows)
 		else
 			love.graphics.setFont(self.font)
 			

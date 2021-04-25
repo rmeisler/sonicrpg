@@ -60,6 +60,7 @@ function BattleScene:onEnter(args)
 	self.bossBattle = args.bossBattle
 	self.initiative = args.initiative
 	self.color = args.color
+	self.practice = args.practice
 
 	self.mboxGradient = self.images["mboxgradient"]
 
@@ -319,6 +320,29 @@ function BattleScene:update(dt)
 		end
 		
 	elseif self.state == BattleScene.STATE_PLAYERWIN then
+		if self.practice then
+			self.bgColor = {255,255,255,255}
+			self:run {
+				-- Fade out current music
+				AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+				PlayAudio("music", "victory", 1.0, true, true),
+				
+				MessageBox {
+					message="Computer: Well done.",
+					rect=MessageBox.HEADLINER_RECT
+				},
+				
+				Do(function()
+					self.sceneMgr:popScene{}
+				end),
+				
+				Do(function()
+				end)
+			}
+			self.state = "playerwinpending"
+			return
+		end
+	
 		-- Add up spoils of war from each opponent
 		local spoilsActions = {}
 		for _,reward in pairs(self.rewards) do
@@ -391,12 +415,10 @@ function BattleScene:update(dt)
 			},
 			
 			Do(function()
-				print("pop scene")
 				self.sceneMgr:popScene{}
 			end),
 			
 			Do(function()
-				print("here")
 			end)
 		}
 		self.state = "playerwinpending"
@@ -405,10 +427,28 @@ function BattleScene:update(dt)
 		self.musicVolume = self.audio:getMusicVolume()
 		self.bgColor = {255,255,255,255}
 		
-		-- HACK: For factoryfloor
-		self.audio:stopSfx("factoryfloor")
-		
-		self.sceneMgr:backToTitle()
+		if self.practice then
+			self:run {
+				AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+				PlayAudio("music", "nomore", 1.0, true),
+				MessageBox {
+					message="Computer: How embarassing for you...",
+					rect=MessageBox.HEADLINER_RECT,
+					textSpeed = 3
+				},
+				Do(function()
+					self.sceneMgr:popScene{}
+				end),
+				Do(function()
+				end)
+			}
+		else
+			-- HACK: For factoryfloor
+			self.audio:stopSfx("factoryfloor")
+			
+			self.sceneMgr:backToTitle()
+		end
+
 		self.state = "monsterwinpending"
 	end
 end

@@ -36,7 +36,6 @@ function Subscreen:construct(scene, transform, color, img)
 			{Layout.Text("Stats"),  choose = function() self:choosePlayer(Subscreen.openStatsMenu) end},
 			{Layout.Text("Quit"),   choose = function() self:quit() end}
 		},
-		maxRows = 6,
 		cancellable = true,
 		transform = Transform(150, 100),
 		colSpacing = 120,
@@ -181,9 +180,9 @@ function Subscreen:openItemMenu()
 		layout = Layout(rows),
 		cancellable = true,
 		transform = Transform(510, 165),
-		maxCols = 2,
+		colSpacing = 230,
 		maxRows = 6,
-		colSpacing = 230
+		pagesOverride = math.floor((#rows / 6) + 1)
 	}
 end
 

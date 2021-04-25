@@ -66,6 +66,8 @@ function Layout:construct(args)
 	self.maxRows = 0
 	self.maxCols = 0
 	
+	--self.maxViewableRows = args.maxViewableRows
+	
 	self.colHeights = {}
 	self.stackedEntryWidths = {}
 	
@@ -291,13 +293,17 @@ function Layout:visitEntries(fn)
 	end
 end
 
-function Layout:draw()
-	for _,cols in ipairs(self.rows) do
-		for _,entries in ipairs(cols) do
-			for _,entry in ipairs(entries) do
-				entry:draw()
+function Layout:draw(page)
+	for index,cols in ipairs(self.rows) do
+		--if index > (page - 1) * self.maxViewableRows and
+		--   index <= page * self.maxViewableRows
+		--then
+			for _,entries in ipairs(cols) do
+				for _,entry in ipairs(entries) do
+					entry:draw()
+				end
 			end
-		end
+		--end
 	end
 end
 

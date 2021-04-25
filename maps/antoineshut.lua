@@ -168,6 +168,31 @@ return {
       terrains = {},
       tilecount = 1156,
       tiles = {}
+    },
+    {
+      name = "knotholehut",
+      firstgid = 16162,
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/knotholehutinterior.png",
+      imagewidth = 950,
+      imageheight = 1170,
+      transparentcolor = "#000000",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 1044,
+      tiles = {}
     }
   },
   layers = {
@@ -364,7 +389,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["ghost"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal DescBox = require \"actions/DescBox\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Animate = require \"actions/Animate\"\nlocal Ease = require \"actions/Ease\"\nlocal AudioFade = require \"actions/AudioFade\"\n\nlocal SpriteNode = require \"object/SpriteNode\"\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"got_chilidog\") then\n        return Serial {\n            MessageBox{message=\"Sonic: It's no use. {p40}Ant's outta Chili!\", blocking = true},\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\n\n    self.scene.player.noIdle = true\n    return BlockPlayer {\n        Animate(self.scene.player.sprite, \"smileright\"),\n        MessageBox {message = \"Sonic: Antoine's got a way past cool kitchen!\"},\n        Animate(self.scene.player.sprite, \"thinking\"),\n        MessageBox {message = \"Sonic: I'm sure he won't mind if I borrow it for a Sonic second...\"},\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Cook some food?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        AudioFade(\"music\", 0.8, 0, 2),\n                        Wait(0.5),\n                        PlayAudio(\"sfx\", \"switchcharshort\", 1.0, true),\n                        self.scene.player:spin(1, 0.01),\n                        self.scene.player:spin(1, 0.02),\n                        Animate(self.scene.player.sprite, \"posechef\"),\n                        Wait(0.5),\n                        MessageBox {\n                            message = \"Sonic: Let's do it to it!\",\n                        },\n                        Parallel {\n                            -- Fade to black\n                            Ease(self.scene.bgColor, 1, 0, 2, \"linear\"),\n                            Ease(self.scene.bgColor, 2, 0, 2, \"linear\"),\n                            Ease(self.scene.bgColor, 3, 0, 2, \"linear\"),\n                            Do(function()\n                                ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n                            end)\n                        },\n                        PlayAudio(\"sfx\", \"cooking\", 1.0),\n                        Parallel {\n                            -- Fade in\n                            Ease(self.scene.bgColor, 1, 255, 2, \"linear\"),\n                            Ease(self.scene.bgColor, 2, 255, 2, \"linear\"),\n                            Ease(self.scene.bgColor, 3, 255, 2, \"linear\"),\n                            Do(function()\n                                ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n                            end)\n                        },\n                        PlayAudio(\"music\", \"sallyrally\", 1.0),\n                        PlayAudio(\"music\", \"knotholehut\", 1.0, true, true),\n                        Do(function() GameState:grantItem(require(\"data/items/Chilidog\"), 1) end),\n                        MessageBox {\n                            message = \"You received a Chilidog!\",\n                            blocking = true,\n                            sfx = \"choose\",\n                            textSpeed = 7\n                        },\n                        Do(function() GameState:setFlag(\"got_chilidog\") end)\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                end}\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        },\n        Do(function()\n            self:refreshKeyHint()\n            self.scene.player.noIdle = false\n        end)\n    }\nend"
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal DescBox = require \"actions/DescBox\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Animate = require \"actions/Animate\"\nlocal Ease = require \"actions/Ease\"\nlocal AudioFade = require \"actions/AudioFade\"\n\nlocal SpriteNode = require \"object/SpriteNode\"\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"got_chilidog\") then\n        return Serial {\n            MessageBox{message=\"Sonic: It's no use. {p40}Ant's outta Chili!\", blocking = true},\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\n\n    self.scene.player.noIdle = true\n    return BlockPlayer {\n        Animate(self.scene.player.sprite, \"smileright\"),\n        MessageBox {message = \"Sonic: Antoine's got a way past cool kitchen!\"},\n        Animate(self.scene.player.sprite, \"thinking\"),\n        MessageBox {message = \"Sonic: I'm sure he won't mind if I borrow it for a Sonic second...\"},\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Cook some food?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        AudioFade(\"music\", 0.8, 0, 2),\n                        Wait(0.5),\n                        PlayAudio(\"sfx\", \"switchcharshort\", 1.0, true),\n                        self.scene.player:spin(1, 0.01),\n                        self.scene.player:spin(1, 0.02),\n                        Animate(self.scene.player.sprite, \"posechef\"),\n                        Wait(0.5),\n                        MessageBox {\n                            message = \"Sonic: Let's do it to it!\",\n                        },\n                        Parallel {\n                            -- Fade to black\n                            Ease(self.scene.bgColor, 1, 0, 2, \"linear\"),\n                            Ease(self.scene.bgColor, 2, 0, 2, \"linear\"),\n                            Ease(self.scene.bgColor, 3, 0, 2, \"linear\"),\n                            Do(function()\n                                ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n                            end)\n                        },\n                        PlayAudio(\"sfx\", \"cooking\", 0.8),\n                        Parallel {\n                            -- Fade in\n                            Ease(self.scene.bgColor, 1, 255, 2, \"linear\"),\n                            Ease(self.scene.bgColor, 2, 255, 2, \"linear\"),\n                            Ease(self.scene.bgColor, 3, 255, 2, \"linear\"),\n                            Do(function()\n                                ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n                            end)\n                        },\n                        PlayAudio(\"music\", \"sallyrally\", 1.0),\n                        PlayAudio(\"music\", \"knotholehut\", 1.0, true, true),\n                        Do(function() GameState:grantItem(require(\"data/items/Chilidog\"), 1) end),\n                        MessageBox {\n                            message = \"You received a Chilidog!\",\n                            blocking = true,\n                            sfx = \"choose\",\n                            textSpeed = 7\n                        },\n                        Do(function() GameState:setFlag(\"got_chilidog\") end)\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                end}\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        },\n        Do(function()\n            self:refreshKeyHint()\n            self.scene.player.noIdle = false\n        end)\n    }\nend"
           }
         },
         {
@@ -464,15 +489,15 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 119, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 119, 119, 119, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 119, 119, 0, 119, 119, 119, 119, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 119, 119, 119, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 119, 119, 119, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 119, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

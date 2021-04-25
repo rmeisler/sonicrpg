@@ -314,6 +314,18 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/factorybot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/ratbot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/rover.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/dropshadow.png"
 	},
 	{

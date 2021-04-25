@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="12">
  <properties>
+  <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/knotholehut.lua"/>
   <property name="regionName" value="Sally's Hut"/>
  </properties>
@@ -91,13 +92,19 @@
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Menu = require &quot;actions/Menu&quot;
 local Action = require &quot;actions/Action&quot;
+local Do = require &quot;actions/Do&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
 
 return function(self)
     if GameState.leader == &quot;sonic&quot; then
-        return MessageBox {message=&quot;Sonic: Locked. {p50}I wonder what's in there...&quot;, blocking = true, textSpeed=4}
+        return Serial {
+            MessageBox {message=&quot;Sonic: Locked. {p50}I wonder what's in there...&quot;, blocking = true, textSpeed=4},
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
     elseif GameState.leader == &quot;sally&quot; then
         return Serial {
             MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.&quot;, blocking = true},
@@ -172,33 +179,81 @@ local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local DescBox = require &quot;actions/DescBox&quot;
 local Do = require &quot;actions/Do&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
 
 return function(self)
-    local descBox = MessageBox{message=&quot;Computer: What would you like to do?&quot;, noPressX = true}
+    self.menuClosing = false
+    local descBox = MessageBox{
+        message=&quot;Computer: What would you like to do?&quot;,
+        noPressX = true,
+        closeAction = YieldUntil(self, &quot;menuClosing&quot;)
+    }
     return BlockPlayer {
         PlayAudio(&quot;sfx&quot;, &quot;nicolebeep&quot;, 1.0, true),
         Parallel {
             descBox,
             Serial {
-                Wait(1.5),
+                Wait(1),
                 Menu {
                     layout = Layout {
                         {Layout.Text(&quot;Practice fighting&quot;), choose = function(menu)
-                            menu:close()
+                            local fightMenuOpts = {{Layout.Text(&quot;Which boss?&quot;), selectable = false}}
+                            local bots = {&quot;rover&quot;}
+                            for _, name in pairs(bots) do
+                                local bot = require (&quot;data/monsters/&quot;..name)
+                                table.insert(fightMenuOpts, {Layout.Text(bot.name), choose = function(menu2)
+                                    self.scene:run {
+                                        Menu {
+                                            layout = Layout {
+                                                {Layout.Text(&quot;Fight &quot;..bot.name..&quot;?&quot;), selectable = false},
+                                                {Layout.Text(&quot;Yes&quot;), choose = function(menu3)
+                                                    menu:close()
+                                                    menu2:close()
+                                                    menu3:close()
+                                                    self.menuClosing = true
+                                                    self.scene:run {
+                                                        menu3,
+                                                        menu2,
+                                                        menu,
+                                                        descBox,
+                                                        self.scene:enterBattle {
+                                                            opponents = {name},
+                                                            practice = true
+                                                        },
+                                                        MessageBox{message=&quot;Computer: Fighting simulation complete.&quot;, blocking = true},
+                                                        -- Hack to fix bug returning from battle
+                                                        Do(function()
+                                                            self.scene.player.cinematicStack = 1
+                                                        end)
+                                                    }
+                                                end},
+                                                {Layout.Text(&quot;No&quot;), choose = function(menu3)
+                                                    menu3:close()
+                                                end}
+                                            },
+                                            cancellable = true,
+                                            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2+30),
+                                            selectedRow = 2
+                                        }
+                                    }
+                                end})
+                            end
                             self.scene:run {
-                                menu,
-                                descBox,
-                                MessageBox {
-                                    message = &quot;Databank is empty...&quot;,
-                                    blocking = true
-                                }
+                                Parallel {menu,
+                                Menu {
+                                    layout = Layout(fightMenuOpts),
+                                    cancellable = true,
+                                    transform = Transform(love.graphics.getWidth()/2 + 200, love.graphics.getHeight()/2 + 30),
+                                    selectedRow = 2
+                                }}
                             }
-                        end, desc = &quot;Study bot behavior, learn their weaknesses.&quot;},
+                        end, desc = &quot;Practice fighting against past bosses.&quot;},
                         {Layout.Text(&quot;Practice sneaking&quot;), choose = function(menu)
                             menu:close()
+                            self.menuClosing = true
                             self.scene:run {
                                 menu,
                                 descBox,
@@ -210,11 +265,12 @@ return function(self)
                         end, desc = &quot;Fighting isn't the only option.&quot;},
                         {Layout.Text(&quot;Give me a hint&quot;), choose = function(menu)
                             menu:close()
-                                self.scene:run {
+                            self.menuClosing = true
+                            self.scene:run {
                                 menu,
                                 descBox,
                                 MessageBox {
-                                    message = &quot;Computer: Chill, {p30}Blue Streak, {p30}my man. {p50}This is just a micro-demo.&quot;,
+                                    message = &quot;Computer: Chill Blue Streak, my man. {p50}This is just a micro-demo.&quot;,
                                     blocking = true,
                                     textSpeed = 4
                                 }
@@ -305,7 +361,7 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,119,119,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,119,0,0,0,0,0,0,
 0,0,0,0,0,0,119,119,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
 0,0,0,0,0,0,119,119,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
