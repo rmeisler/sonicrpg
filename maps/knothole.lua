@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 222,
+  nextobjectid = 223,
   properties = {
     ["onload"] = "actions/knothole.lua",
     ["regionName"] = "Great Forest",
@@ -128,7 +128,7 @@ return {
       margin = 0,
       image = "../art/tiles/knotholehutinterior.png",
       imagewidth = 950,
-      imageheight = 914,
+      imageheight = 1170,
       transparentcolor = "#000000",
       tileoffset = {
         x = 0,
@@ -141,12 +141,12 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 812,
+      tilecount = 1044,
       tiles = {}
     },
     {
       name = "cave",
-      firstgid = 14774,
+      firstgid = 15006,
       filename = "cave.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -172,7 +172,7 @@ return {
     },
     {
       name = "knotholehut2",
-      firstgid = 17119,
+      firstgid = 17351,
       filename = "knotholehut2.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -3448,17 +3448,17 @@ return {
           name = "MusicRegion",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 7168,
-          y = 2208,
-          width = 384,
-          height = 256,
+          x = 7424,
+          y = 2144,
+          width = 192,
+          height = 128,
           rotation = 0,
           gid = 5323,
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["notColliding"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self, player)\n    if not player.enteredRingLake then\n        return\n    end\n    player.enteredRingLake = false\n\n    player:run {\n        AudioFade(\"music\", 1.0, 0.0, 0.5),\n        PlayAudio(\"music\", \"knothole\", 1.0, true, true)\n    }\nend",
-            ["whileColliding"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self, player)\n    if player.enteredRingLake then\n        return\n    end\n    player.enteredRingLake = true\n\n    player:run {\n        AudioFade(\"music\", 1.0, 0.0, 0.5),\n        PlayAudio(\"music\", \"ringlake\", 1.0, true, true)\n    }\nend"
+            ["notColliding"] = "local AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self, player)\n    if not player.enteredRingLake then\n        return\n    end\n    player.enteredRingLake = false\n\n    player:run {\n        AudioFade(\"music\", 1.0, 0.0, 0.5),\n        PlayAudio(\"music\", \"knothole\", 1.0, true, true),\n    }\nend",
+            ["whileColliding"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal While = require \"actions/While\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Repeat = require \"actions/Repeat\"\n\nreturn function(self, player)\n    if player.enteredRingLake then\n        return\n    end\n    player.enteredRingLake = true\n\n    player:run {\n        AudioFade(\"music\", 1.0, 0.0, 0.5),\n        PlayAudio(\"music\", \"ringlake\", 1.0, true, true)\n    }\nend"
           }
         },
         {
@@ -4135,7 +4135,7 @@ return {
           gid = 7597,
           visible = true,
           properties = {
-            ["LeatherJacket"] = 1,
+            ["BlueLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -4206,7 +4206,7 @@ return {
           x = 4736,
           y = 2560,
           width = 64,
-          height = 64,
+          height = 96,
           rotation = 0,
           gid = 5323,
           visible = true,
@@ -4216,7 +4216,7 @@ return {
             ["alignOffsetY"] = -32,
             ["defaultAnim"] = "idleright",
             ["ghost"] = false,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Menu = require \"actions/Menu\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    self.origY = self.y\n    return BlockPlayer {\n        MessageBox {\n            message = \"Tails: Hey Sonic! {p40}Ya wanna play some dirt hockey?\",\n        },\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Play dirt hockey?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        Animate(self.sprite, \"joyright\"),\n                        Ease(self, \"y\", function() return self.origY - 50 end, 7, \"linear\"),\n                        Ease(self, \"y\", function() return self.origY end, 7, \"linear\"),\n                        MessageBox {message = \"Tails: Alright! {p40}Let's do it to it!\"}\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        Animate(self.sprite, \"sadright\"),\n                        MessageBox {message = \"Tails: Awww... ok. {p40}Maybe later.\"}\n                    }\n                end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        },\n        Do(function()\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Menu = require \"actions/Menu\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    local dir = self.x > self.scene.player.x and \"left\" or \"right\"\n    if GameState:isFlagSet(\"missing_puc\") then\n        return Serial {\n            Animate(self.sprite, \"sad\"..dir),\n            MessageBox{message = \"Tails: If only I could find that puc...\", textSpeed = 3, blocking = true}\n        }\n    end\n\n    self.origY = self.y\n    return BlockPlayer {\n        Animate(self.sprite, \"idle\"..dir),\n        MessageBox {\n            message = \"Tails: Hey Sonic! {p40}Ya wanna play some dirt hockey?\",\n        },\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Play dirt hockey?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        Animate(self.sprite, \"joy\"..dir),\n                        Ease(self, \"y\", function() return self.origY - 80 end, 7, \"linear\"),\n                        Ease(self, \"y\", function() return self.origY end, 7, \"linear\"),\n                        MessageBox {message = \"Tails: Alright! {p40}Let's do it to it!\"},\n                        MessageBox {message = \"Tails: Oh wait...\"},\n                        Animate(self.sprite, \"sad\"..dir),\n                        MessageBox {message = \"Tails: Where's my puc?! {p50}I guess we can't play right now...\"},\n                        Do(function() GameState:setFlag(\"missing_puc\") end)\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        Animate(self.sprite, \"sad\"..dir),\n                        MessageBox {message = \"Tails: Awww... ok. {p40}Maybe later.\"}\n                    }\n                end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        },\n        Do(function()\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/tails.png"
           }
         },
@@ -4236,6 +4236,23 @@ return {
             ["align"] = "bottom_left",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/pest.png"
+          }
+        },
+        {
+          id = 222,
+          name = "Chest5",
+          type = "Chest",
+          shape = "rectangle",
+          x = 4672,
+          y = 1344,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["CrystalWater"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }

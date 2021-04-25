@@ -8,6 +8,9 @@ return {
 		pose = {
 			frames = {{16,4}}
 		},
+		posechef = {
+			frames = {{16,5}}
+		},
 		shock = {
 			frames = {{11,4}}
 		},
@@ -236,6 +239,12 @@ return {
 		},
 		sadlefthand = {
 			frames = {{6,7}}
+		},
+		smileright = {
+			frames = {{1,4}}
+		},
+		smileleft = {
+			frames = {{0,4}}
 		}
     }
 }

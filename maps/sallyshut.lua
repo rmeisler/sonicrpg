@@ -252,7 +252,7 @@ return {
           properties = {
             ["GreenLeaf"] = 1,
             ["align"] = "bottom_left",
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return MessageBox {message=\"Sonic: This is Sal's special chest, past down through the royal family for centuries... She says things you put in it will get a little better if you leave them in there... Yeah right!\", blocking = true}\n    elseif GameState.leader == \"sally\" then\n        return Serial {\n            MessageBox {message=\"Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.\", blocking = true},\n            MessageBox {message=\"Sally: Maybe I could read it to Tails.\", blocking = true}\n        }\n    end\n    return Action()\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return MessageBox {message=\"Sonic: Locked. {p50}I wonder what's in there...\", blocking = true, textSpeed=4}\n    elseif GameState.leader == \"sally\" then\n        return Serial {\n            MessageBox {message=\"Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.\", blocking = true},\n            MessageBox {message=\"Sally: Maybe I could read it to Tails.\", blocking = true}\n        }\n    end\n    return Action()\nend",
             ["sprite"] = "../art/sprites/bigchest.png"
           }
         },
@@ -278,22 +278,6 @@ return {
             ["scene"] = "knothole.lua",
             ["spawn_point"] = "SallyHutDoor",
             ["sprite"] = "../art/sprites/hutdoor.png"
-          }
-        },
-        {
-          id = 3,
-          name = "Spawn 1",
-          type = "Player",
-          shape = "rectangle",
-          x = 448,
-          y = 352,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 4565,
-          visible = true,
-          properties = {
-            ["orientation"] = "up"
           }
         },
         {
@@ -328,7 +312,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return Serial {\n            MessageBox {message=\"Sonic: Boooring.\", blocking = true},\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sally\" then\n        return Serial {\n            MessageBox {message=\"Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.\", blocking = true},\n            MessageBox {message=\"Sally: Maybe I could read it to Tails.\", blocking = true}\n        }\n    end\n    return Action()\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return Serial {\n            MessageBox {message=\"Sonic: Sal's science textbooks... {p50}Boooring.\", blocking = true, textSpeed=4},\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sally\" then\n        return Serial {\n            MessageBox {message=\"Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.\", blocking = true},\n            MessageBox {message=\"Sally: Maybe I could read it to Tails.\", blocking = true}\n        }\n    end\n    return Action()\nend",
             ["sprite"] = "../art/sprites/sallybookshelf.png"
           }
         },
@@ -347,7 +331,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["ghost"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal DescBox = require \"actions/DescBox\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    local descBox = MessageBox{message=\"Computer: What would you like to do?\", noPressX = true}\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"nicolebeep\", 1.0, true),\n        Parallel {\n            descBox,\n            Serial { Wait(1.5),\n            Menu {\n        layout = Layout {\n            {Layout.Text(\"Learn how to fight\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    descBox,\n                    MessageBox {\n                        message = \"Databank is empty...\",\n                        blocking = true\n                    }\n                }\n            end},\n            {Layout.Text(\"Learn how to avoid fighting\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    descBox,\n                    MessageBox {\n                        message = \"Databank is empty...\",\n                        blocking = true\n                    }\n                }\n            end},\n            {Layout.Text(\"Learn how to teach Nicole\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    descBox,\n                    MessageBox {\n                        message = \"Databank is empty...\",\n                        blocking = true\n                    }\n                }\n            end},\n            {Layout.Text(\"Learn what to do next\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    descBox,\n                    MessageBox {\n                        message = \"Consult the Big Chest...\",\n                        blocking = true\n                    }\n                }\n            end}\n        },\n        cancellable = true,\n        withClose = Do(function() descBox:close() end),\n        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)\n    }}},\n        Do(function()\n            self:refreshKeyHint()\n        end)\n    }\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal DescBox = require \"actions/DescBox\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    local descBox = MessageBox{message=\"Computer: What would you like to do?\", noPressX = true}\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"nicolebeep\", 1.0, true),\n        Parallel {\n            descBox,\n            Serial {\n                Wait(1.5),\n                Menu {\n                    layout = Layout {\n                        {Layout.Text(\"Practice fighting\"), choose = function(menu)\n                            menu:close()\n                            self.scene:run {\n                                menu,\n                                descBox,\n                                MessageBox {\n                                    message = \"Databank is empty...\",\n                                    blocking = true\n                                }\n                            }\n                        end, desc = \"Study bot behavior, learn their weaknesses.\"},\n                        {Layout.Text(\"Practice sneaking\"), choose = function(menu)\n                            menu:close()\n                            self.scene:run {\n                                menu,\n                                descBox,\n                                MessageBox {\n                                    message = \"Databank is empty...\",\n                                    blocking = true\n                                }\n                            }\n                        end, desc = \"Fighting isn't the only option.\"},\n                        {Layout.Text(\"Give me a hint\"), choose = function(menu)\n                            menu:close()\n                                self.scene:run {\n                                menu,\n                                descBox,\n                                MessageBox {\n                                    message = \"Computer: Chill, {p30}Blue Streak, {p30}my man. {p50}This is just a micro-demo.\",\n                                    blocking = true,\n                                    textSpeed = 4\n                                }\n                            }\n                        end, desc = \"Forgot what you were supposed to be doing?\"}\n                    },\n                    cancellable = true,\n                    withClose = Do(function() descBox:close() end),\n                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)\n                }\n            }\n        },\n        Do(function()\n            self:refreshKeyHint()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/stool.png"
           }
         },
@@ -481,11 +465,11 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

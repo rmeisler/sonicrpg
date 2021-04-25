@@ -4,12 +4,12 @@
   <property name="onload" type="file" value="actions/knotholehut.lua"/>
   <property name="regionName" value="Sally's Hut"/>
  </properties>
- <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="812" columns="29">
-  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="914"/>
+ <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
+  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
  </tileset>
- <tileset firstgid="813" source="knothole.tsx"/>
- <tileset firstgid="4297" source="robotropolis.tsx"/>
- <tileset firstgid="7797" source="knotholeindoors.tsx"/>
+ <tileset firstgid="1045" source="knothole.tsx"/>
+ <tileset firstgid="4529" source="robotropolis.tsx"/>
+ <tileset firstgid="8029" source="knotholeindoors.tsx"/>
  <layer name="floor" width="25" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -83,7 +83,7 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="BigChest" type="BasicNPC" gid="6607" x="384" y="256" width="32" height="32">
+  <object id="1" name="BigChest" type="BasicNPC" gid="6839" x="384" y="256" width="32" height="32">
    <properties>
     <property name="GreenLeaf" type="int" value="1"/>
     <property name="align" value="bottom_left"/>
@@ -97,7 +97,7 @@ local Layout = require &quot;util/Layout&quot;
 
 return function(self)
     if GameState.leader == &quot;sonic&quot; then
-        return MessageBox {message=&quot;Sonic: This is Sal's special chest, past down through the royal family for centuries... She says things you put in it will get a little better if you leave them in there... Yeah right!&quot;, blocking = true}
+        return MessageBox {message=&quot;Sonic: Locked. {p50}I wonder what's in there...&quot;, blocking = true, textSpeed=4}
     elseif GameState.leader == &quot;sally&quot; then
         return Serial {
             MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.&quot;, blocking = true},
@@ -109,7 +109,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/bigchest.png"/>
    </properties>
   </object>
-  <object id="2" name="Door" type="Door" gid="6607" x="352" y="608" width="64" height="64">
+  <object id="2" name="Door" type="Door" gid="6839" x="352" y="608" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-20"/>
@@ -122,19 +122,14 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
-  <object id="3" name="Spawn 1" type="Player" gid="4333" x="448" y="352" width="32" height="32">
-   <properties>
-    <property name="orientation" value="up"/>
-   </properties>
-  </object>
-  <object id="4" name="SallysBed" type="BasicNPC" gid="6607" x="192" y="384" width="192" height="64">
+  <object id="4" name="SallysBed" type="BasicNPC" gid="6839" x="192" y="384" width="192" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="8"/>
     <property name="sprite" type="file" value="../art/sprites/sallybed.png"/>
    </properties>
   </object>
-  <object id="5" name="SallysBookshelf" type="BasicNPC" gid="6607" x="512" y="512" width="64" height="32">
+  <object id="5" name="SallysBookshelf" type="BasicNPC" gid="6839" x="512" y="512" width="64" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
@@ -149,7 +144,7 @@ local Layout = require &quot;util/Layout&quot;
 return function(self)
     if GameState.leader == &quot;sonic&quot; then
         return Serial {
-            MessageBox {message=&quot;Sonic: Boooring.&quot;, blocking = true},
+            MessageBox {message=&quot;Sonic: Sal's science textbooks... {p50}Boooring.&quot;, blocking = true, textSpeed=4},
             Do(function() self:refreshKeyHint() end)
         }
     elseif GameState.leader == &quot;sally&quot; then
@@ -163,7 +158,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/sallybookshelf.png"/>
    </properties>
   </object>
-  <object id="7" name="SallysStool" type="BasicNPC" gid="6607" x="512" y="320" width="32" height="32">
+  <object id="7" name="SallysStool" type="BasicNPC" gid="6839" x="512" y="320" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
@@ -187,58 +182,51 @@ return function(self)
         PlayAudio(&quot;sfx&quot;, &quot;nicolebeep&quot;, 1.0, true),
         Parallel {
             descBox,
-            Serial { Wait(1.5),
-            Menu {
-        layout = Layout {
-            {Layout.Text(&quot;Learn how to fight&quot;), choose = function(menu)
-                menu:close()
-                self.scene:run {
-                    menu,
-                    descBox,
-                    MessageBox {
-                        message = &quot;Databank is empty...&quot;,
-                        blocking = true
-                    }
+            Serial {
+                Wait(1.5),
+                Menu {
+                    layout = Layout {
+                        {Layout.Text(&quot;Practice fighting&quot;), choose = function(menu)
+                            menu:close()
+                            self.scene:run {
+                                menu,
+                                descBox,
+                                MessageBox {
+                                    message = &quot;Databank is empty...&quot;,
+                                    blocking = true
+                                }
+                            }
+                        end, desc = &quot;Study bot behavior, learn their weaknesses.&quot;},
+                        {Layout.Text(&quot;Practice sneaking&quot;), choose = function(menu)
+                            menu:close()
+                            self.scene:run {
+                                menu,
+                                descBox,
+                                MessageBox {
+                                    message = &quot;Databank is empty...&quot;,
+                                    blocking = true
+                                }
+                            }
+                        end, desc = &quot;Fighting isn't the only option.&quot;},
+                        {Layout.Text(&quot;Give me a hint&quot;), choose = function(menu)
+                            menu:close()
+                                self.scene:run {
+                                menu,
+                                descBox,
+                                MessageBox {
+                                    message = &quot;Computer: Chill, {p30}Blue Streak, {p30}my man. {p50}This is just a micro-demo.&quot;,
+                                    blocking = true,
+                                    textSpeed = 4
+                                }
+                            }
+                        end, desc = &quot;Forgot what you were supposed to be doing?&quot;}
+                    },
+                    cancellable = true,
+                    withClose = Do(function() descBox:close() end),
+                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)
                 }
-            end},
-            {Layout.Text(&quot;Learn how to avoid fighting&quot;), choose = function(menu)
-                menu:close()
-                self.scene:run {
-                    menu,
-                    descBox,
-                    MessageBox {
-                        message = &quot;Databank is empty...&quot;,
-                        blocking = true
-                    }
-                }
-            end},
-            {Layout.Text(&quot;Learn how to teach Nicole&quot;), choose = function(menu)
-                menu:close()
-                self.scene:run {
-                    menu,
-                    descBox,
-                    MessageBox {
-                        message = &quot;Databank is empty...&quot;,
-                        blocking = true
-                    }
-                }
-            end},
-            {Layout.Text(&quot;Learn what to do next&quot;), choose = function(menu)
-                menu:close()
-                self.scene:run {
-                    menu,
-                    descBox,
-                    MessageBox {
-                        message = &quot;Consult the Big Chest...&quot;,
-                        blocking = true
-                    }
-                }
-            end}
+            }
         },
-        cancellable = true,
-        withClose = Do(function() descBox:close() end),
-        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)
-    }}},
         Do(function()
             self:refreshKeyHint()
         end)
@@ -247,21 +235,21 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/stool.png"/>
    </properties>
   </object>
-  <object id="8" name="DeskUpper" type="BasicNPC" gid="6607" x="512" y="288" width="32" height="32">
+  <object id="8" name="DeskUpper" type="BasicNPC" gid="6839" x="512" y="288" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/sallycomputerdeskupper.png"/>
    </properties>
   </object>
-  <object id="9" name="DeskLower" type="BasicNPC" gid="6607" x="544" y="384" width="32" height="64">
+  <object id="9" name="DeskLower" type="BasicNPC" gid="6839" x="544" y="384" width="32" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/sallycomputerdesklower.png"/>
    </properties>
   </object>
-  <object id="10" name="Brightness" type="BasicNPC" gid="6628" x="256" y="320" width="64" height="64">
+  <object id="10" name="Brightness" type="BasicNPC" gid="6860" x="256" y="320" width="64" height="64">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)
@@ -272,7 +260,7 @@ end</property>
 end</property>
    </properties>
   </object>
-  <object id="11" name="Brightness" type="BasicNPC" gid="6628" x="320" y="320" width="32" height="32">
+  <object id="11" name="Brightness" type="BasicNPC" gid="6860" x="320" y="320" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)
@@ -316,11 +304,11 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,119,119,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,119,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
+0,0,0,0,0,0,119,119,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
+0,0,0,0,0,0,119,119,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

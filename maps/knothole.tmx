@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="222">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="223">
  <properties>
   <property name="onload" type="file" value="actions/knothole.lua"/>
   <property name="regionName" value="Great Forest"/>
@@ -9,11 +9,11 @@
  <tileset firstgid="3485" source="knotholeindoors.tsx"/>
  <tileset firstgid="5287" source="robotropolis.tsx"/>
  <tileset firstgid="8787" source="forest2.tsx"/>
- <tileset firstgid="13962" name="knotholehut" tilewidth="32" tileheight="32" tilecount="812" columns="29">
-  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="914"/>
+ <tileset firstgid="13962" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
+  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
  </tileset>
- <tileset firstgid="14774" source="cave.tsx"/>
- <tileset firstgid="17119" source="knotholehut2.tsx"/>
+ <tileset firstgid="15006" source="cave.tsx"/>
+ <tileset firstgid="17351" source="knotholehut2.tsx"/>
  <layer name="river" width="275" height="88">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2137,12 +2137,10 @@ return function(self)
 end</property>
    </properties>
   </object>
-  <object id="120" name="MusicRegion" type="BasicNPC" gid="5323" x="7168" y="2208" width="384" height="256">
+  <object id="120" name="MusicRegion" type="BasicNPC" gid="5323" x="7424" y="2144" width="192" height="128">
    <properties>
     <property name="ghost" type="bool" value="true"/>
-    <property name="notColliding">local Serial = require &quot;actions/Serial&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local AudioFade = require &quot;actions/AudioFade&quot;
+    <property name="notColliding">local AudioFade = require &quot;actions/AudioFade&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
 
 return function(self, player)
@@ -2153,13 +2151,17 @@ return function(self, player)
 
     player:run {
         AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),
-        PlayAudio(&quot;music&quot;, &quot;knothole&quot;, 1.0, true, true)
+        PlayAudio(&quot;music&quot;, &quot;knothole&quot;, 1.0, true, true),
     }
 end</property>
     <property name="whileColliding">local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local AudioFade = require &quot;actions/AudioFade&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
+local While = require &quot;actions/While&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Do = require &quot;actions/Do&quot;
+local Repeat = require &quot;actions/Repeat&quot;
 
 return function(self, player)
     if player.enteredRingLake then
@@ -2424,7 +2426,7 @@ end</property>
   </object>
   <object id="183" name="Chest1" type="Chest" gid="7597" x="5024" y="1856" width="64" height="64">
    <properties>
-    <property name="LeatherJacket" type="int" value="1"/>
+    <property name="BlueLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -2502,7 +2504,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
    </properties>
   </object>
-  <object id="191" name="Tails" type="BasicNPC" gid="5323" x="4736" y="2560" width="64" height="64">
+  <object id="191" name="Tails" type="BasicNPC" gid="5323" x="4736" y="2560" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-16"/>
@@ -2522,8 +2524,17 @@ local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
 
 return function(self)
+    local dir = self.x &gt; self.scene.player.x and &quot;left&quot; or &quot;right&quot;
+    if GameState:isFlagSet(&quot;missing_puc&quot;) then
+        return Serial {
+            Animate(self.sprite, &quot;sad&quot;..dir),
+            MessageBox{message = &quot;Tails: If only I could find that puc...&quot;, textSpeed = 3, blocking = true}
+        }
+    end
+
     self.origY = self.y
     return BlockPlayer {
+        Animate(self.sprite, &quot;idle&quot;..dir),
         MessageBox {
             message = &quot;Tails: Hey Sonic! {p40}Ya wanna play some dirt hockey?&quot;,
         },
@@ -2534,17 +2545,21 @@ return function(self)
                     menu:close()
                     self.scene:run {
                         menu,
-                        Animate(self.sprite, &quot;joyright&quot;),
-                        Ease(self, &quot;y&quot;, function() return self.origY - 50 end, 7, &quot;linear&quot;),
+                        Animate(self.sprite, &quot;joy&quot;..dir),
+                        Ease(self, &quot;y&quot;, function() return self.origY - 80 end, 7, &quot;linear&quot;),
                         Ease(self, &quot;y&quot;, function() return self.origY end, 7, &quot;linear&quot;),
-                        MessageBox {message = &quot;Tails: Alright! {p40}Let's do it to it!&quot;}
+                        MessageBox {message = &quot;Tails: Alright! {p40}Let's do it to it!&quot;},
+                        MessageBox {message = &quot;Tails: Oh wait...&quot;},
+                        Animate(self.sprite, &quot;sad&quot;..dir),
+                        MessageBox {message = &quot;Tails: Where's my puc?! {p50}I guess we can't play right now...&quot;},
+                        Do(function() GameState:setFlag(&quot;missing_puc&quot;) end)
                     }
                 end},
                 {Layout.Text(&quot;No&quot;), choose = function(menu)
                     menu:close()
                     self.scene:run {
                         menu,
-                        Animate(self.sprite, &quot;sadright&quot;),
+                        Animate(self.sprite, &quot;sad&quot;..dir),
                         MessageBox {message = &quot;Tails: Awww... ok. {p40}Maybe later.&quot;}
                     }
                 end},
@@ -2566,6 +2581,12 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/pest.png"/>
+   </properties>
+  </object>
+  <object id="222" name="Chest5" type="Chest" gid="7597" x="4672" y="1344" width="64" height="64">
+   <properties>
+    <property name="CrystalWater" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
  </objectgroup>

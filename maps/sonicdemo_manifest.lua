@@ -508,6 +508,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/cooking.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/locked.ogg",
 		category = "sfx"
 	},
