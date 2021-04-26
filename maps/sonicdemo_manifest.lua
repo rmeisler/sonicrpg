@@ -354,6 +354,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/explosion2.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/blueballoon.png"
 	},
 	{

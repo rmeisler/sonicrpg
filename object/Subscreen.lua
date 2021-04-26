@@ -179,10 +179,9 @@ function Subscreen:openItemMenu()
 	self:runBackground {
 		layout = Layout(rows),
 		cancellable = true,
-		transform = Transform(510, 165),
-		colSpacing = 230,
-		maxRows = 6,
-		pagesOverride = math.floor((#rows / 6) + 1)
+		transform = Transform(510, 30 + (#rows * 40)/2),
+		colSpacing = 230
+		--pagesOverride = math.floor((#rows / 6) + 1)
 	}
 end
 

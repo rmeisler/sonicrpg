@@ -57,7 +57,7 @@ return {
 		{count = 1, item = require "data/items/Carrot"},
 		{count = 1, item = require "data/items/Mushroom"},
 		{count = 1, item = require "data/items/AntoineKey"},
-		{count = 1, item = require "data/items/Mine"},
+		{count = 4, item = require "data/items/Mine"},
 	},
 	
 	levelup = {

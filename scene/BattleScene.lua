@@ -61,6 +61,7 @@ function BattleScene:onEnter(args)
 	self.initiative = args.initiative
 	self.color = args.color
 	self.practice = args.practice
+	self.camPos = Transform()
 
 	self.mboxGradient = self.images["mboxgradient"]
 
@@ -322,10 +323,19 @@ function BattleScene:update(dt)
 	elseif self.state == BattleScene.STATE_PLAYERWIN then
 		if self.practice then
 			self.bgColor = {255,255,255,255}
+			
+			local victoryPoses = {}
+			for _, mem in pairs(self.party) do
+				if mem.state ~= BattleActor.STATE_DEAD then
+					table.insert(victoryPoses, Animate(mem.sprite, "victory"))
+				end
+			end
 			self:run {
 				-- Fade out current music
 				AudioFade("music", self.audio:getMusicVolume(), 0, 2),
 				PlayAudio("music", "victory", 1.0, true, true),
+				
+				Parallel(victoryPoses),
 				
 				MessageBox {
 					message="Computer: Well done.",
@@ -611,12 +621,23 @@ function BattleScene:keytriggered(key)
 end
 
 function BattleScene:draw()
+	local sceneLayer = self.sceneLookup.sprites
+	if self.isScreenShaking then
+		for _, node in pairs(sceneLayer.nodes) do
+			if not node.transform then
+				node.transform = Transform(0,0,1,1)
+			end
+			node.origXformY = node.transform.y
+			node.transform.y = node.transform.y + self.camPos.y
+		end
+	end
+
 	if self.blur then
 		self.blur(function()
 			love.graphics.setDefaultFilter("nearest", "nearest")
 			
 			love.graphics.setColor(255,255,255,255)
-			love.graphics.draw(self.bgimg, 0, 0)
+			love.graphics.draw(self.bgimg, 0, self.camPos.y)
 		
 			self:sortedDraw("sprites")
 			Scene.draw(self, "ui")
@@ -625,11 +646,43 @@ function BattleScene:draw()
 		love.graphics.setDefaultFilter("nearest", "nearest")
 		
 		love.graphics.setColor(255,255,255,255)
-		love.graphics.draw(self.bgimg, 0, 0)
+		love.graphics.draw(self.bgimg, 0, self.camPos.y)
 		
 		self:sortedDraw("sprites")
 		Scene.draw(self, "ui")
 	end
+	
+	if self.isScreenShaking then
+		for _, node in pairs(sceneLayer.nodes) do
+			node.transform.y = node.origXformY
+		end
+	end
+end
+
+-- Vertical screen shake
+function BattleScene:screenShake(strength, speed)
+	strength = strength or 50
+	speed = speed or 15
+	
+	return Serial {
+		Do(function()
+			self.isScreenShaking = true
+		end),
+		Ease(self.camPos, "y", self.camPos.y - strength, speed, "quad"),
+		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		Ease(self.camPos, "y", self.camPos.y + strength, speed, "quad"),
+		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		
+		Ease(self.camPos, "y", self.camPos.y - strength/2, speed, "quad"),
+		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		Ease(self.camPos, "y", self.camPos.y + strength/2, speed, "quad"),
+		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		
+		Do(function()
+			self.isScreenShaking = false
+			self.camPos = Transform()
+		end)
+	}
 end
 
 

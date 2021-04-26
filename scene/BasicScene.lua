@@ -356,8 +356,10 @@ function BasicScene:screenShake(strength, speed)
 	strength = strength or 50
 	speed = speed or 15
 	
-	self.isScreenShaking = true
 	return Serial {
+		Do(function()
+			self.isScreenShaking = true
+		end),
 		Ease(self.camPos, "y", self.camPos.y - strength, speed, "quad"),
 		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
 		Ease(self.camPos, "y", self.camPos.y + strength, speed, "quad"),
