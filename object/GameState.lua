@@ -27,6 +27,9 @@ function GameState:construct()
 	-- Armor in the shared inventory
 	self[ItemType.Armor] = {}
 	
+	-- Leg items in the shared inventory
+	self[ItemType.Legs] = {}
+	
 	-- Accessories in the shared inventory
 	self[ItemType.Accessory] = {}
 	
@@ -337,6 +340,7 @@ function GameState:save(scene, slot, spawnPoint)
 	-- Save inventory and flags
 	data[ItemType.Weapon] = self[ItemType.Weapon]
 	data[ItemType.Armor] = self[ItemType.Armor]
+	data[ItemType.Legs] = self[ItemType.Legs]
 	data[ItemType.Accessory] = self[ItemType.Accessory]
 	data.items = self.items
 	data.flags = self.flags
@@ -379,6 +383,7 @@ function GameState:load(scene, slot)
 	local types = {
 		ItemType.Weapon,
 		ItemType.Armor,
+		ItemType.Legs,
 		ItemType.Accessory,
 		"items"
 	}

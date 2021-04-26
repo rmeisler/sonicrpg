@@ -271,7 +271,7 @@ function Subscreen:openStatsMenu(player)
 end
 
 function Subscreen:getEquipTypeIndex(itemType)
-	for index, t in pairs({ItemType.Weapon, ItemType.Armor, ItemType.Accessory}) do
+	for index, t in pairs({ItemType.Weapon, ItemType.Armor, ItemType.Legs, ItemType.Accessory}) do
 		if t == itemType then
 			return index
 		end
@@ -458,8 +458,6 @@ function Subscreen:switch(equipMenu, itemType)
 			equipMenu.transform.x,
 			equipMenu.transform.y + 5 + (equipMenu.selectedRow - 1) * equipMenu.rowSpacing
 		),
-		maxCols = 1,
-		maxRows = 6,
 		colSpacing = 180
 	}
 	

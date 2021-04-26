@@ -490,19 +490,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/parallax/genericforwardbg.png"
-	},
-	{
-		type = "image",
-		file = "art/parallax/genericforwardbg2.png"
-	},
-	{
-		type = "image",
 		file = "art/parallax/robotropolis.png"
-	},
-	{
-		type = "image",
-		file = "art/parallax/robobase.png"
 	},
 	{
 		type = "image",
