@@ -351,6 +351,19 @@ function BasicScene:restart()
 	}
 end
 
+function BasicScene:changeScene(name, spawnPoint)
+	self.sceneMgr:pushScene {
+		class = "BasicScene",
+		map = self.maps["maps/"..name..".lua"],
+		maps = self.maps,
+		images = self.images,
+		animations = self.animations,
+		audio = self.audio,
+		spawn_point = spawnPoint,
+		cache = true
+	}
+end
+
 -- Vertical screen shake
 function BasicScene:screenShake(strength, speed)
 	strength = strength or 50

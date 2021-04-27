@@ -738,10 +738,7 @@ function Player:basicUpdate(dt)
 							return love.keyboard.isDown("right") and not next(self.investigators)
 						end,
 						Serial {
-							Parallel {
-								Ease(self.sprite.color, 4, 130, 2, "inout"),
-								Wait(1)
-							},
+							Wait(1),
 							Do(function()
 								self.state = "peekright"
 							end),
@@ -757,10 +754,7 @@ function Player:basicUpdate(dt)
 									--self.sprite.sortOrderY = nil
 								end
 							end),
-							Parallel {
-								Ease(self.sprite.color, 4, 255, 2, "inout"),
-								Wait(1)
-							},
+							Wait(1),
 							Do(function()
 								self.hidingDirection = nil
 							end)
@@ -804,10 +798,7 @@ function Player:basicUpdate(dt)
 							return love.keyboard.isDown("left") and not next(self.investigators)
 						end,
 						Serial {
-							Parallel {
-								Ease(self.sprite.color, 4, 130, 2, "inout"),
-								Wait(1)
-							},
+							Wait(1),
 							Do(function()
 								self.state = "peekleft"
 							end),
@@ -823,10 +814,7 @@ function Player:basicUpdate(dt)
 									--self.sprite.sortOrderY = nil
 								end
 							end),
-							Parallel {
-								Ease(self.sprite.color, 4, 255, 2, "inout"),
-								Wait(1)
-							},
+							Wait(1),
 							Do(function()
 								self.hidingDirection = nil
 							end)
@@ -872,7 +860,6 @@ function Player:basicUpdate(dt)
 						end,
 						Serial {
 							Parallel {
-								Ease(self.sprite.color, 4, 130, 2, "inout"),
 								Ease(self, "x", self.x - 20, 4, "inout"),
 								Wait(1)
 							},
@@ -909,10 +896,7 @@ function Player:basicUpdate(dt)
 									self.state = Player.STATE_IDLEUP
 								end
 							end),
-							Parallel {
-								Ease(self.sprite.color, 4, 255, 2, "inout"),
-								Wait(1)
-							},
+							Wait(1),
 							Do(function()
 								-- Hold hiding direction power for a little
 								self.hidingDirection = nil
@@ -946,10 +930,7 @@ function Player:basicUpdate(dt)
 							return love.keyboard.isDown("up") and not next(self.investigators)
 						end,
 						Serial {
-							Parallel {
-								Ease(self.sprite.color, 4, 130, 2, "inout"),
-								Wait(1)
-							},
+							Wait(1),
 							Do(function()
 								self.state = "peekup"
 							end),
@@ -965,10 +946,7 @@ function Player:basicUpdate(dt)
 									self.state = Player.STATE_IDLEUP
 								end
 							end),
-							Parallel {
-								Ease(self.sprite.color, 4, 255, 2, "inout"),
-								Wait(1)
-							},
+							Wait(1),
 							Do(function()
 								-- Hold hiding direction power for a little
 								self.hidingDirection = nil

@@ -252,15 +252,37 @@ return function(self)
                             }
                         end, desc = &quot;Practice fighting against past bosses.&quot;},
                         {Layout.Text(&quot;Practice sneaking&quot;), choose = function(menu)
-                            menu:close()
-                            self.menuClosing = true
                             self.scene:run {
-                                menu,
-                                descBox,
-                                MessageBox {
-                                    message = &quot;Databank is empty...&quot;,
-                                    blocking = true
-                                }
+                                Parallel {menu,
+                                Menu {
+                                    layout = Layout {
+                                        {Layout.Text(&quot;Are you sure?&quot;), selectable = false},
+                                        {Layout.Text(&quot;Yes&quot;), choose = function(menu2)
+                                            menu:close()
+                                            menu2:close()
+                                            self.menuClosing = true
+                                            self.scene:run {
+                                                menu2,
+                                                menu,
+                                                descBox,
+                                                Do(function()
+                                                    self.scene.audio:stopMusic()
+                                                    self.scene:changeScene(&quot;stealthtut1&quot;)
+                                                end),
+                                                MessageBox {
+                                                    message = &quot;Computer: Stealth simulation complete.&quot;,
+                                                    blocking = true
+                                                }
+                                            }
+                                        end},
+                                        {Layout.Text(&quot;No&quot;), choose = function(menu2)
+                                            menu2:close()
+                                        end}
+                                    },
+                                    cancellable = true,
+                                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2+30),
+                                    selectedRow = 2
+                                }}
                             }
                         end, desc = &quot;Fighting isn't the only option.&quot;},
                         {Layout.Text(&quot;Give me a hint&quot;), choose = function(menu)

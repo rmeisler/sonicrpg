@@ -60,6 +60,12 @@ return {
 	
 	{
         type = "map",
+		file = "maps/stealthtut1.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
 		file = "maps/sonicshut.lua",
 		--primary = true
     },

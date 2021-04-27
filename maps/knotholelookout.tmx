@@ -338,7 +338,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/sally.png"/>
    </properties>
   </object>
-  <object id="144" name="robotropolis" type="BasicNPC" gid="5323" x="2400" y="320" width="256" height="96">
+  <object id="144" name="robotropolis" type="BasicNPC" gid="5323" x="2080" y="416" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="false"/>

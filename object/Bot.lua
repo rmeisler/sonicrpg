@@ -163,6 +163,11 @@ function Bot:postInit()
 	self.visualColliders.right.sprite.visible = false
 	self.visualColliders.up.sprite.visible = false
 	self.visualColliders.down.sprite.visible = false
+	
+	self.visualColliders.left.hidden = true
+	self.visualColliders.right.hidden = true
+	self.visualColliders.up.hidden = true
+	self.visualColliders.down.hidden = true
 end
 
 function Bot:followActions()
