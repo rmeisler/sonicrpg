@@ -57,6 +57,10 @@ function NPC:construct(scene, layer, object)
 		self.notColliding = assert(loadstring(object.properties.notColliding))()
 	end
 	
+	if object.properties.onUpdate then
+		self.onUpdate = assert(loadstring(object.properties.onUpdate))()
+	end
+	
 	if object.properties.onInteract then
 		self:addInteract(NPC.onInteract)
 	end
@@ -372,6 +376,10 @@ function NPC:update(dt)
 
 	if not self.scene.player or self.hidden then
 		return
+	end
+	
+	if self.onUpdate then
+		self.onUpdate(self, dt)
 	end
 	
 	-- Update hotspots

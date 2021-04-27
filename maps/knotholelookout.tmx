@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="85" height="21" tilewidth="32" tileheight="32" infinite="0" nextobjectid="145">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="85" height="21" tilewidth="32" tileheight="32" infinite="0" nextobjectid="171">
  <properties>
   <property name="onload" type="file" value="actions/knotholelookout.lua"/>
  </properties>
@@ -36,40 +36,254 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <imagelayer name="Image Layer 1" offsetx="1024" offsety="0">
-  <image source="../art/parallax/overlooklayer4.png" width="1600" height="406"/>
+ <imagelayer name="Image Layer 7" offsetx="1088" offsety="32">
+  <image source="../art/parallax/overlooklayer5.png" width="1600" height="362"/>
   <properties>
-   <property name="movespeed" type="float" value="1"/>
+   <property name="movespeed" type="float" value="1.03"/>
   </properties>
  </imagelayer>
- <imagelayer name="Copy of Image Layer 1" offsetx="-384" offsety="0">
-  <image source="../art/parallax/overlooklayer4.png" width="1600" height="406"/>
+ <imagelayer name="Copy of Image Layer 7" offsetx="-384" offsety="32">
+  <image source="../art/parallax/overlooklayer5.png" width="1600" height="362"/>
   <properties>
-   <property name="movespeed" type="float" value="1"/>
+   <property name="movespeed" type="float" value="1.03"/>
   </properties>
  </imagelayer>
- <imagelayer name="Image Layer 2" offsetx="1024" offsety="384">
+ <objectgroup name="bgclouds">
+  <properties>
+   <property name="movespeed" type="float" value="1.03"/>
+  </properties>
+  <object id="152" name="smallcloud" type="BasicNPC" gid="5323" x="1696" y="249" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="cloud1"/>
+    <property name="movespeed" type="float" value="3"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="onUpdate">return function(self, dt)
+    self.x = self.x + self.object.properties.movespeed * dt
+    if self.x &gt; self.scene:getMapWidth() - 200 then
+        self.x = -self.sprite.w*2
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/overlooksmallcloud.png"/>
+   </properties>
+  </object>
+  <object id="155" name="tinycloud" type="BasicNPC" gid="5323" x="1568" y="345" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="cloud1"/>
+    <property name="movespeed" type="float" value="1.8"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="onUpdate">return function(self, dt)
+    self.x = self.x + self.object.properties.movespeed * dt
+    if self.x &gt; self.scene:getMapWidth() - 200 then
+        self.x = -self.sprite.w*2
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/overlooktinycloud.png"/>
+   </properties>
+  </object>
+  <object id="159" name="smallcloud" type="BasicNPC" gid="5323" x="2016" y="249" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="cloud2"/>
+    <property name="movespeed" type="float" value="2.8"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="onUpdate">return function(self, dt)
+    self.x = self.x + self.object.properties.movespeed * dt
+    if self.x &gt; self.scene:getMapWidth() - 200 then
+        self.x = -self.sprite.w*2
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/overlooksmallcloud.png"/>
+   </properties>
+  </object>
+  <object id="160" name="smallcloud" type="BasicNPC" gid="5323" x="2432" y="249" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="cloud3"/>
+    <property name="movespeed" type="float" value="3"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="onUpdate">return function(self, dt)
+    self.x = self.x + self.object.properties.movespeed * dt
+    if self.x &gt; self.scene:getMapWidth() - 200 then
+        self.x = -self.sprite.w*2
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/overlooksmallcloud.png"/>
+   </properties>
+  </object>
+  <object id="162" name="tinycloud" type="BasicNPC" gid="5323" x="1952" y="345" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="cloud2"/>
+    <property name="movespeed" type="float" value="2"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="onUpdate">return function(self, dt)
+    self.x = self.x + self.object.properties.movespeed * dt
+    if self.x &gt; self.scene:getMapWidth() - 200 then
+        self.x = -self.sprite.w*2
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/overlooktinycloud.png"/>
+   </properties>
+  </object>
+  <object id="163" name="tinycloud" type="BasicNPC" gid="5323" x="2304" y="345" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="cloud3"/>
+    <property name="movespeed" type="float" value="2"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="onUpdate">return function(self, dt)
+    self.x = self.x + self.object.properties.movespeed * dt
+    if self.x &gt; self.scene:getMapWidth() - 200 then
+        self.x = -self.sprite.w*2
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/overlooktinycloud.png"/>
+   </properties>
+  </object>
+  <object id="164" name="tinycloud" type="BasicNPC" gid="5323" x="2528" y="345" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="cloud1"/>
+    <property name="movespeed" type="float" value="1.8"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="onUpdate">return function(self, dt)
+    self.x = self.x + self.object.properties.movespeed * dt
+    if self.x &gt; self.scene:getMapWidth() - 200 then
+        self.x = -self.sprite.w*2
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/overlooktinycloud.png"/>
+   </properties>
+  </object>
+  <object id="168" name="smallcloud" type="BasicNPC" gid="5323" x="128" y="224" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="cloud1"/>
+    <property name="movespeed" type="float" value="3"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="onUpdate">return function(self, dt)
+    self.x = self.x + self.object.properties.movespeed * dt
+    if self.x &gt; self.scene:getMapWidth() - 200 then
+        self.x = -self.sprite.w*2
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/overlooksmallcloud.png"/>
+   </properties>
+  </object>
+  <object id="169" name="tinycloud" type="BasicNPC" gid="5323" x="0" y="320" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="cloud1"/>
+    <property name="movespeed" type="float" value="1.8"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="onUpdate">return function(self, dt)
+    self.x = self.x + self.object.properties.movespeed * dt
+    if self.x &gt; self.scene:getMapWidth() - 200 then
+        self.x = -self.sprite.w*2
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/overlooktinycloud.png"/>
+   </properties>
+  </object>
+  <object id="170" name="bigcloud" type="BasicNPC" gid="5323" x="-32" y="160" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="cloud1"/>
+    <property name="movespeed" type="float" value="5"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="onUpdate">return function(self, dt)
+    self.x = self.x + self.object.properties.movespeed * dt
+    if self.x &gt; self.scene:getMapWidth() - 200 then
+        self.x = -self.sprite.w*2
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/overlookbigcloud.png"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <imagelayer name="Image Layer 1" offsetx="1088" offsety="160">
+  <image source="../art/parallax/overlooklayer4.png" width="1600" height="265"/>
+  <properties>
+   <property name="movespeed" type="float" value="1.03"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Copy of Image Layer 1" offsetx="-384" offsety="160">
+  <image source="../art/parallax/overlooklayer4.png" width="1600" height="265"/>
+  <properties>
+   <property name="movespeed" type="float" value="1.03"/>
+  </properties>
+ </imagelayer>
+ <objectgroup name="mountainclouds">
+  <properties>
+   <property name="movespeed" type="float" value="1.04"/>
+  </properties>
+  <object id="150" name="bigcloud" type="BasicNPC" gid="5323" x="1536" y="185" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="cloud1"/>
+    <property name="movespeed" type="float" value="5"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="onUpdate">return function(self, dt)
+    self.x = self.x + self.object.properties.movespeed * dt
+    if self.x &gt; self.scene:getMapWidth() - 200 then
+        self.x = -self.sprite.w*2
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/overlookbigcloud.png"/>
+   </properties>
+  </object>
+  <object id="161" name="bigcloud" type="BasicNPC" gid="5323" x="2176" y="185" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="cloud2"/>
+    <property name="movespeed" type="float" value="5"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="onUpdate">return function(self, dt)
+    self.x = self.x + self.object.properties.movespeed * dt
+    if self.x &gt; self.scene:getMapWidth() - 200 then
+        self.x = -self.sprite.w*2
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/overlookbigcloud.png"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <imagelayer name="Image Layer 2" offsetx="1088" offsety="384">
   <image source="../art/parallax/overlooklayer2.png" width="1600" height="220"/>
   <properties>
-   <property name="movespeed" type="float" value="1.01"/>
+   <property name="movespeed" type="float" value="1.04"/>
   </properties>
  </imagelayer>
  <imagelayer name="Copy of Image Layer 2" offsetx="-384" offsety="384">
   <image source="../art/parallax/overlooklayer2.png" width="1600" height="220"/>
   <properties>
-   <property name="movespeed" type="float" value="1.01"/>
+   <property name="movespeed" type="float" value="1.04"/>
   </properties>
  </imagelayer>
- <imagelayer name="Image Layer 3" offsetx="1024" offsety="416">
+ <objectgroup name="robo">
+  <properties>
+   <property name="movespeed" type="float" value="1.04"/>
+  </properties>
+  <object id="167" name="robotropolis" type="BasicNPC" gid="5323" x="2048" y="403" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="sprite" type="file" value="../art/sprites/overlook_layer3.png"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <imagelayer name="Image Layer 3" offsetx="1088" offsety="416">
   <image source="../art/parallax/overlooklayer1.png" width="1600" height="342"/>
   <properties>
-   <property name="movespeed" type="float" value="1.03"/>
+   <property name="movespeed" type="float" value="1.05"/>
   </properties>
  </imagelayer>
  <imagelayer name="Copy of Image Layer 3" offsetx="-384" offsety="416">
   <image source="../art/parallax/overlooklayer1.png" width="1600" height="342"/>
   <properties>
-   <property name="movespeed" type="float" value="1.03"/>
+   <property name="movespeed" type="float" value="1.05"/>
   </properties>
  </imagelayer>
  <layer name="inbetween" width="85" height="21">
@@ -350,35 +564,74 @@ local Ease = require &quot;actions/Ease&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 
 return function(self)
+    if GameState:isFlagSet(&quot;sonic_staybehind&quot;) then
+        return Serial {
+            MessageBox{message=&quot;Sally: Sorry Sonic, but I've made up my mind.&quot;, blocking = true},
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    end
+
     return BlockPlayer {
+        Do(function()
+            self.scene.player.noIdle = true
+        end),
         MessageBox {
             message = &quot;Sonic: Whatcha doin' Sal?&quot;,
         },
+        Animate(self.sprite, &quot;binoculars_2&quot;),
         MessageBox {
             message = &quot;Sally: Trying to get a good look at Robotnik's coms tower...&quot;,
         },
+        Animate(self.sprite, &quot;binoculars_1&quot;),
         Ease(self.scene.camPos, &quot;x&quot;, -800, 0.3),
-        Wait(2),
-        Ease(self.scene.camPos, &quot;x&quot;, 0, 0.3),
-        Wait(0.5),
-        Animate(self.sprite, &quot;binoculars_2&quot;),
+        Wait(1),
         MessageBox {
-            message = &quot;Sally: That'll be our next target.&quot;,
+            message = &quot;Sally: You see that skinny tower next to the Death Egg?&quot;,
+        },
+        MessageBox {
+            message = &quot;Sally: That will be our next target.&quot;,
+        },
+        Ease(self.scene.camPos, &quot;x&quot;, 0, 0.3),
+        MessageBox {
+            message = &quot;Sonic: Awfully close to Buttnik's lair. {p50}What's the plan?&quot;,
+        },
+        Animate(self.scene.player.sprite, &quot;thinking&quot;),
+        MessageBox {
+            message = &quot;Sonic: Slam and jam? {p40}Smash and splash? {p40}Dump and--&quot;,
+            closeAction = Wait(2)
+        },
+        Animate(self.sprite, &quot;thinking&quot;),
+        MessageBox {
+            message = &quot;Sally: There will be no 'slamming', {p20}'jamming', {p20}'smashing', or {p20}'splashing'!&quot;
+        },
+        MessageBox {
+            message = &quot;Sally: This will be a stealth mission. {p50}And after what happened at the Power Grid mission, I think you should stay back.&quot;,
+        },
+        Animate(self.scene.player.sprite, &quot;idleright&quot;),
+        MessageBox {
+            message = &quot;Sonic: What! {p50}Come on Sal, you guys could use some muscle in the party.&quot;,
+        },
+        MessageBox {
+            message = &quot;Sally: That's why Bunnie will be joining Anotine and I.&quot;,
+        },
+        Animate(self.scene.player.sprite, &quot;irritated&quot;),
+        MessageBox {
+            message = &quot;Sonic: Antoine's going, but I can't go?! {p50}Coooome oooon.&quot;,
+        },
+        Animate(self.scene.player.sprite, &quot;irritated&quot;),
+        MessageBox {
+            message = &quot;Sally: You're staying here, Sonic Hedgehog! {p50}That's an order.&quot;,
         },
         Do(function()
-            self.sprite:setAnimation(&quot;binoculars_1&quot;)
-            self.scene.player.hidekeyhints[tostring(self)] = nil
+            self:refreshKeyHint()
+            self.scene.player.noIdle = false
+            GameState:setFlag(&quot;sonic_staybehind&quot;)
         end)
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/sally.png"/>
-   </properties>
-  </object>
-  <object id="144" name="robotropolis" type="BasicNPC" gid="5323" x="2048" y="400" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/overlook_layer3.png"/>
    </properties>
   </object>
  </objectgroup>

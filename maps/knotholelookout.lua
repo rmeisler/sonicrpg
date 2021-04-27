@@ -8,7 +8,7 @@ return {
   height = 21,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 145,
+  nextobjectid = 171,
   properties = {
     ["onload"] = "actions/knotholelookout.lua"
   },
@@ -209,14 +209,262 @@ return {
     },
     {
       type = "imagelayer",
+      name = "Image Layer 7",
+      visible = true,
+      opacity = 1,
+      offsetx = 1088,
+      offsety = 32,
+      image = "../art/parallax/overlooklayer5.png",
+      properties = {
+        ["movespeed"] = 1.03
+      }
+    },
+    {
+      type = "imagelayer",
+      name = "Copy of Image Layer 7",
+      visible = true,
+      opacity = 1,
+      offsetx = -384,
+      offsety = 32,
+      image = "../art/parallax/overlooklayer5.png",
+      properties = {
+        ["movespeed"] = 1.03
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "bgclouds",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {
+        ["movespeed"] = 1.03
+      },
+      objects = {
+        {
+          id = 152,
+          name = "smallcloud",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1696,
+          y = 249,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "cloud1",
+            ["movespeed"] = 3,
+            ["nocollision"] = true,
+            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
+            ["sprite"] = "../art/sprites/overlooksmallcloud.png"
+          }
+        },
+        {
+          id = 155,
+          name = "tinycloud",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1568,
+          y = 345,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "cloud1",
+            ["movespeed"] = 1.8,
+            ["nocollision"] = true,
+            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
+            ["sprite"] = "../art/sprites/overlooktinycloud.png"
+          }
+        },
+        {
+          id = 159,
+          name = "smallcloud",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2016,
+          y = 249,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "cloud2",
+            ["movespeed"] = 2.8,
+            ["nocollision"] = true,
+            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
+            ["sprite"] = "../art/sprites/overlooksmallcloud.png"
+          }
+        },
+        {
+          id = 160,
+          name = "smallcloud",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2432,
+          y = 249,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "cloud3",
+            ["movespeed"] = 3,
+            ["nocollision"] = true,
+            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
+            ["sprite"] = "../art/sprites/overlooksmallcloud.png"
+          }
+        },
+        {
+          id = 162,
+          name = "tinycloud",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1952,
+          y = 345,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "cloud2",
+            ["movespeed"] = 2,
+            ["nocollision"] = true,
+            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
+            ["sprite"] = "../art/sprites/overlooktinycloud.png"
+          }
+        },
+        {
+          id = 163,
+          name = "tinycloud",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2304,
+          y = 345,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "cloud3",
+            ["movespeed"] = 2,
+            ["nocollision"] = true,
+            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
+            ["sprite"] = "../art/sprites/overlooktinycloud.png"
+          }
+        },
+        {
+          id = 164,
+          name = "tinycloud",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2528,
+          y = 345,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "cloud1",
+            ["movespeed"] = 1.8,
+            ["nocollision"] = true,
+            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
+            ["sprite"] = "../art/sprites/overlooktinycloud.png"
+          }
+        },
+        {
+          id = 168,
+          name = "smallcloud",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 128,
+          y = 224,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "cloud1",
+            ["movespeed"] = 3,
+            ["nocollision"] = true,
+            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
+            ["sprite"] = "../art/sprites/overlooksmallcloud.png"
+          }
+        },
+        {
+          id = 169,
+          name = "tinycloud",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 0,
+          y = 320,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "cloud1",
+            ["movespeed"] = 1.8,
+            ["nocollision"] = true,
+            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
+            ["sprite"] = "../art/sprites/overlooktinycloud.png"
+          }
+        },
+        {
+          id = 170,
+          name = "bigcloud",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = -32,
+          y = 160,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "cloud1",
+            ["movespeed"] = 5,
+            ["nocollision"] = true,
+            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
+            ["sprite"] = "../art/sprites/overlookbigcloud.png"
+          }
+        }
+      }
+    },
+    {
+      type = "imagelayer",
       name = "Image Layer 1",
       visible = true,
       opacity = 1,
-      offsetx = 1024,
-      offsety = 0,
+      offsetx = 1088,
+      offsety = 160,
       image = "../art/parallax/overlooklayer4.png",
       properties = {
-        ["movespeed"] = 1
+        ["movespeed"] = 1.03
       }
     },
     {
@@ -225,10 +473,66 @@ return {
       visible = true,
       opacity = 1,
       offsetx = -384,
-      offsety = 0,
+      offsety = 160,
       image = "../art/parallax/overlooklayer4.png",
       properties = {
-        ["movespeed"] = 1
+        ["movespeed"] = 1.03
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "mountainclouds",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {
+        ["movespeed"] = 1.04
+      },
+      objects = {
+        {
+          id = 150,
+          name = "bigcloud",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1536,
+          y = 185,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "cloud1",
+            ["movespeed"] = 5,
+            ["nocollision"] = true,
+            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
+            ["sprite"] = "../art/sprites/overlookbigcloud.png"
+          }
+        },
+        {
+          id = 161,
+          name = "bigcloud",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2176,
+          y = 185,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "cloud2",
+            ["movespeed"] = 5,
+            ["nocollision"] = true,
+            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
+            ["sprite"] = "../art/sprites/overlookbigcloud.png"
+          }
+        }
       }
     },
     {
@@ -236,11 +540,11 @@ return {
       name = "Image Layer 2",
       visible = true,
       opacity = 1,
-      offsetx = 1024,
+      offsetx = 1088,
       offsety = 384,
       image = "../art/parallax/overlooklayer2.png",
       properties = {
-        ["movespeed"] = 1.01
+        ["movespeed"] = 1.04
       }
     },
     {
@@ -252,7 +556,39 @@ return {
       offsety = 384,
       image = "../art/parallax/overlooklayer2.png",
       properties = {
-        ["movespeed"] = 1.01
+        ["movespeed"] = 1.04
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "robo",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {
+        ["movespeed"] = 1.04
+      },
+      objects = {
+        {
+          id = 167,
+          name = "robotropolis",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2048,
+          y = 403,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = false,
+            ["sprite"] = "../art/sprites/overlook_layer3.png"
+          }
+        }
       }
     },
     {
@@ -260,11 +596,11 @@ return {
       name = "Image Layer 3",
       visible = true,
       opacity = 1,
-      offsetx = 1024,
+      offsetx = 1088,
       offsety = 416,
       image = "../art/parallax/overlooklayer1.png",
       properties = {
-        ["movespeed"] = 1.03
+        ["movespeed"] = 1.05
       }
     },
     {
@@ -276,7 +612,7 @@ return {
       offsety = 416,
       image = "../art/parallax/overlooklayer1.png",
       properties = {
-        ["movespeed"] = 1.03
+        ["movespeed"] = 1.05
       }
     },
     {
@@ -722,26 +1058,8 @@ return {
             ["alignOffsetY"] = -16,
             ["defaultAnim"] = "binoculars_1",
             ["ghost"] = false,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {\n            message = \"Sonic: Whatcha doin' Sal?\",\n        },\n        MessageBox {\n            message = \"Sally: Trying to get a good look at Robotnik's coms tower...\",\n        },\n        Ease(self.scene.camPos, \"x\", -800, 0.3),\n        Wait(2),\n        Ease(self.scene.camPos, \"x\", 0, 0.3),\n        Wait(0.5),\n        Animate(self.sprite, \"binoculars_2\"),\n        MessageBox {\n            message = \"Sally: That'll be our next target.\",\n        },\n        Do(function()\n            self.sprite:setAnimation(\"binoculars_1\")\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"sonic_staybehind\") then\n        return Serial {\n            MessageBox{message=\"Sally: Sorry Sonic, but I've made up my mind.\", blocking = true},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\n\n    return BlockPlayer {\n        Do(function()\n            self.scene.player.noIdle = true\n        end),\n        MessageBox {\n            message = \"Sonic: Whatcha doin' Sal?\",\n        },\n        Animate(self.sprite, \"binoculars_2\"),\n        MessageBox {\n            message = \"Sally: Trying to get a good look at Robotnik's coms tower...\",\n        },\n        Animate(self.sprite, \"binoculars_1\"),\n        Ease(self.scene.camPos, \"x\", -800, 0.3),\n        Wait(1),\n        MessageBox {\n            message = \"Sally: You see that skinny tower next to the Death Egg?\",\n        },\n        MessageBox {\n            message = \"Sally: That will be our next target.\",\n        },\n        Ease(self.scene.camPos, \"x\", 0, 0.3),\n        MessageBox {\n            message = \"Sonic: Awfully close to Buttnik's lair. {p50}What's the plan?\",\n        },\n        Animate(self.scene.player.sprite, \"thinking\"),\n        MessageBox {\n            message = \"Sonic: Slam and jam? {p40}Smash and splash? {p40}Dump and--\",\n            closeAction = Wait(2)\n        },\n        Animate(self.sprite, \"thinking\"),\n        MessageBox {\n            message = \"Sally: There will be no 'slamming', {p20}'jamming', {p20}'smashing', or {p20}'splashing'!\"\n        },\n        MessageBox {\n            message = \"Sally: This will be a stealth mission. {p50}And after what happened at the Power Grid mission, I think you should stay back.\",\n        },\n        Animate(self.scene.player.sprite, \"idleright\"),\n        MessageBox {\n            message = \"Sonic: What! {p50}Come on Sal, you guys could use some muscle in the party.\",\n        },\n        MessageBox {\n            message = \"Sally: That's why Bunnie will be joining Anotine and I.\",\n        },\n        Animate(self.scene.player.sprite, \"irritated\"),\n        MessageBox {\n            message = \"Sonic: Antoine's going, but I can't go?! {p50}Coooome oooon.\",\n        },\n        Animate(self.scene.player.sprite, \"irritated\"),\n        MessageBox {\n            message = \"Sally: You're staying here, Sonic Hedgehog! {p50}That's an order.\",\n        },\n        Do(function()\n            self:refreshKeyHint()\n            self.scene.player.noIdle = false\n            GameState:setFlag(\"sonic_staybehind\")\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/sally.png"
-          }
-        },
-        {
-          id = 144,
-          name = "robotropolis",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2048,
-          y = 400,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = false,
-            ["sprite"] = "../art/sprites/overlook_layer3.png"
           }
         }
       }

@@ -525,8 +525,13 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 
 	for _,obj in ipairs(self.map.objects) do
 		if obj.sprite and obj.sprite.transform and obj.x then
-			obj.sprite.transform.x = math.floor(obj.x + worldOffsetX)
-			obj.sprite.transform.y = math.floor(obj.y + worldOffsetY)
+			if obj.layer and obj.layer.properties and obj.layer.properties.movespeed then
+				obj.sprite.transform.x = math.floor((obj.x + worldOffsetX)*obj.layer.properties.movespeed)
+				obj.sprite.transform.y = math.floor((obj.y + worldOffsetY)*obj.layer.properties.movespeed)
+			else
+				obj.sprite.transform.x = math.floor(obj.x + worldOffsetX)
+				obj.sprite.transform.y = math.floor(obj.y + worldOffsetY)
+			end
 		end
 	end
 	
