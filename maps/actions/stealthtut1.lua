@@ -3,7 +3,7 @@ local Rect = unpack(require "util/Shapes")
 local Layout = require "util/Layout"
 
 local Move = require "actions/Move"
-local Action = require "actions/Action"
+local BlockPlayer = require "actions/BlockPlayer"
 local Animate = require "actions/Animate"
 local TypeText = require "actions/TypeText"
 local Menu = require "actions/Menu"
@@ -36,5 +36,17 @@ return function(scene)
 		left_bot = {x = 0, y = 0},
 	}
 	
-	return Do(function() end)
+	return BlockPlayer {
+		MessageBox {message="Computer: Welcome to the stealth tutorial!"},
+		MessageBox {message="Computer: Here you will learn how evade enemies and avoid battles!"},
+		Parallel {
+			Serial {
+				MessageBox {message="Computer: To your left is a Swatbot..."},
+				MessageBox {message="Computer: ...as well as several pillars you can hide behind..."},
+				Ease(scene.camPos, "x", 0, 0.5),
+				MessageBox {message="Computer: Try to hide behind the right-most pillar. {p50}Hold left against the pillar to hide and peak left."},
+			},
+			Ease(scene.camPos, "x", 650, 0.5)
+		}
+	}
 end

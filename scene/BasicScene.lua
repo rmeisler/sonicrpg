@@ -351,15 +351,16 @@ function BasicScene:restart()
 	}
 end
 
-function BasicScene:changeScene(name, spawnPoint)
+function BasicScene:changeScene(args)
 	self.sceneMgr:pushScene {
 		class = "BasicScene",
-		map = self.maps["maps/"..name..".lua"],
+		map = self.maps["maps/"..args.map..".lua"],
 		maps = self.maps,
 		images = self.images,
 		animations = self.animations,
 		audio = self.audio,
-		spawn_point = spawnPoint,
+		spawn_point = args.spawnPoint,
+		tutorial = args.tutorial,
 		cache = true
 	}
 end

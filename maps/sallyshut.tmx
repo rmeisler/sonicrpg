@@ -267,7 +267,7 @@ return function(self)
                                                 descBox,
                                                 Do(function()
                                                     self.scene.audio:stopMusic()
-                                                    self.scene:changeScene(&quot;stealthtut1&quot;)
+                                                    self.scene:changeScene{map=&quot;stealthtut1&quot;, tutorial=true}
                                                 end),
                                                 MessageBox {
                                                     message = &quot;Computer: Stealth simulation complete.&quot;,

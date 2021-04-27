@@ -847,6 +847,7 @@ function Player:basicUpdate(dt)
 					{name = "playerHideHand", x = self.x - 20, y = self.y + self.height, width = self.width, height = self.height,
 						properties = {
 							nocollision = true,
+							defaultAnim = "hidedownhand",
 							sprite = "art/sprites/"..GameState.party[GameState.leader].sprite..".png"
 						}
 					}
