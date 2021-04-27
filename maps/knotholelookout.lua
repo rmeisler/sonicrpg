@@ -208,6 +208,78 @@ return {
       }
     },
     {
+      type = "imagelayer",
+      name = "Image Layer 1",
+      visible = true,
+      opacity = 1,
+      offsetx = 1024,
+      offsety = 0,
+      image = "../art/parallax/overlooklayer4.png",
+      properties = {
+        ["movespeed"] = 1
+      }
+    },
+    {
+      type = "imagelayer",
+      name = "Copy of Image Layer 1",
+      visible = true,
+      opacity = 1,
+      offsetx = -384,
+      offsety = 0,
+      image = "../art/parallax/overlooklayer4.png",
+      properties = {
+        ["movespeed"] = 1
+      }
+    },
+    {
+      type = "imagelayer",
+      name = "Image Layer 2",
+      visible = true,
+      opacity = 1,
+      offsetx = 1024,
+      offsety = 384,
+      image = "../art/parallax/overlooklayer2.png",
+      properties = {
+        ["movespeed"] = 1.01
+      }
+    },
+    {
+      type = "imagelayer",
+      name = "Copy of Image Layer 2",
+      visible = true,
+      opacity = 1,
+      offsetx = -384,
+      offsety = 384,
+      image = "../art/parallax/overlooklayer2.png",
+      properties = {
+        ["movespeed"] = 1.01
+      }
+    },
+    {
+      type = "imagelayer",
+      name = "Image Layer 3",
+      visible = true,
+      opacity = 1,
+      offsetx = 1024,
+      offsety = 416,
+      image = "../art/parallax/overlooklayer1.png",
+      properties = {
+        ["movespeed"] = 1.03
+      }
+    },
+    {
+      type = "imagelayer",
+      name = "Copy of Image Layer 3",
+      visible = true,
+      opacity = 1,
+      offsetx = -384,
+      offsety = 416,
+      image = "../art/parallax/overlooklayer1.png",
+      properties = {
+        ["movespeed"] = 1.03
+      }
+    },
+    {
       type = "tilelayer",
       name = "inbetween",
       x = 0,
@@ -659,8 +731,8 @@ return {
           name = "robotropolis",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2080,
-          y = 416,
+          x = 2048,
+          y = 400,
           width = 32,
           height = 32,
           rotation = 0,

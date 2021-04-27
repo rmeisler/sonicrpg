@@ -1897,28 +1897,6 @@ return {
           }
         },
         {
-          id = 3,
-          name = "Vennie",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1664,
-          y = 2080,
-          width = 64,
-          height = 96,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -16,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "vennie",
-            ["ghost"] = false,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return Serial {\n        MessageBox {\n            message = \"Sonic: Hey Vennie!\",\n            blocking = true\n        },\n        Do(function()\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
-            ["sprite"] = "../art/sprites/vennie.png"
-          }
-        },
-        {
           id = 5,
           name = "Ripple",
           type = "BasicNPC",
@@ -2916,7 +2894,7 @@ return {
           x = 5952,
           y = 1888,
           width = 64,
-          height = 64,
+          height = 32,
           rotation = 0,
           gid = 7597,
           visible = true,

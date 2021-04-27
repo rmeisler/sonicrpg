@@ -36,6 +36,42 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <imagelayer name="Image Layer 1" offsetx="1024" offsety="0">
+  <image source="../art/parallax/overlooklayer4.png" width="1600" height="406"/>
+  <properties>
+   <property name="movespeed" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Copy of Image Layer 1" offsetx="-384" offsety="0">
+  <image source="../art/parallax/overlooklayer4.png" width="1600" height="406"/>
+  <properties>
+   <property name="movespeed" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Image Layer 2" offsetx="1024" offsety="384">
+  <image source="../art/parallax/overlooklayer2.png" width="1600" height="220"/>
+  <properties>
+   <property name="movespeed" type="float" value="1.01"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Copy of Image Layer 2" offsetx="-384" offsety="384">
+  <image source="../art/parallax/overlooklayer2.png" width="1600" height="220"/>
+  <properties>
+   <property name="movespeed" type="float" value="1.01"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Image Layer 3" offsetx="1024" offsety="416">
+  <image source="../art/parallax/overlooklayer1.png" width="1600" height="342"/>
+  <properties>
+   <property name="movespeed" type="float" value="1.03"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Copy of Image Layer 3" offsetx="-384" offsety="416">
+  <image source="../art/parallax/overlooklayer1.png" width="1600" height="342"/>
+  <properties>
+   <property name="movespeed" type="float" value="1.03"/>
+  </properties>
+ </imagelayer>
  <layer name="inbetween" width="85" height="21">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -338,7 +374,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/sally.png"/>
    </properties>
   </object>
-  <object id="144" name="robotropolis" type="BasicNPC" gid="5323" x="2080" y="416" width="32" height="32">
+  <object id="144" name="robotropolis" type="BasicNPC" gid="5323" x="2048" y="400" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="false"/>

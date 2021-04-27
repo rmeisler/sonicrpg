@@ -1253,31 +1253,6 @@
     <property name="sprite" type="file" value="../art/sprites/knotholehut.png"/>
    </properties>
   </object>
-  <object id="3" name="Vennie" type="BasicNPC" gid="5323" x="1664" y="2080" width="64" height="96">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-16"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="vennie"/>
-    <property name="ghost" type="bool" value="false"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-
-return function(self)
-    return Serial {
-        MessageBox {
-            message = &quot;Sonic: Hey Vennie!&quot;,
-            blocking = true
-        },
-        Do(function()
-            self.scene.player.hidekeyhints[tostring(self)] = nil
-        end)
-    }
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/vennie.png"/>
-   </properties>
-  </object>
   <object id="5" name="Ripple" type="BasicNPC" gid="5323" x="7680" y="2112" width="96" height="64">
    <properties>
     <property name="ghost" type="bool" value="true"/>
@@ -1674,7 +1649,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/knotholebasebg.png"/>
    </properties>
   </object>
-  <object id="77" name="Chest2" type="Chest" gid="7597" x="5952" y="1888" width="64" height="64">
+  <object id="77" name="Chest2" type="Chest" gid="7597" x="5952" y="1888" width="64" height="32">
    <properties>
     <property name="Gear" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
