@@ -321,7 +321,7 @@ function Player:split()
 			}
 		)
 		self.partySprites[id].sprite.color = self:inShadow() and {150,150,150,255} or {255,255,255,255}
-		self.partySprites[id].sprite.visible = false
+		self.partySprites[id].hidden = true
 		self.scene:addObject(self.partySprites[id])
 
 		local walkOutAnim, idleAnim, walkInAnim, dir = unpack(table.remove(paths, 1))
@@ -329,7 +329,7 @@ function Player:split()
 			walkOutActions,
 			Serial {
 				Do(function()
-					self.partySprites[id].sprite.visible = true
+					self.partySprites[id].hidden = false
 				end),
 				Animate(self.partySprites[id].sprite, walkOutAnim, true),
 				Parallel {
@@ -368,7 +368,7 @@ function Player:split()
 			-- Hide our primary sprite
 			self.sprite.visible = false
 			if self.dropShadow.sprite then
-				self.dropShadow.sprite.visible = false
+				self.dropShadow.hidden = true
 			end
 		end),
 		
@@ -386,7 +386,7 @@ function Player:split()
 			-- Show our primary sprite
 			self.sprite.visible = true
 			if self.dropShadow.sprite then
-				self.dropShadow.sprite.visible = true
+				self.dropShadow.hidden = false
 			end
 		end)
 	}
@@ -847,13 +847,13 @@ function Player:basicUpdate(dt)
 					{name = "playerHideHand", x = self.x - 20, y = self.y + self.height, width = self.width, height = self.height,
 						properties = {
 							nocollision = true,
+							hidden = true,
 							defaultAnim = "hidedownhand",
 							sprite = "art/sprites/"..GameState.party[GameState.leader].sprite..".png"
 						}
 					}
 				)
 				self.scene:addObject(self.hideHand)
-				self.hideHand.sprite.visible = false
 				self.scene:run(
 					While(
 						function()
@@ -870,7 +870,7 @@ function Player:basicUpdate(dt)
 								self.hideHand.sprite.transform.oy = self.hideHand.sprite.h
 								self.hideHand.sprite.transform.sx = 0
 								self.hideHand.sprite.transform.sy = 2
-								self.hideHand.sprite.visible = true
+								self.hideHand.hidden = false
 								self.hideHand.sprite.sortOrderY = self.hideHand.sprite.transform.y + self.hideHand.sprite.h*2 + 10
 							end),
 							Parallel {

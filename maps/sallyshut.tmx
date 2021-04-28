@@ -221,6 +221,8 @@ return function(self)
                                                         descBox,
                                                         self.scene:enterBattle {
                                                             opponents = {name},
+                                                            music = &quot;boss&quot;,
+                                                            bossBattle = true,
                                                             practice = true
                                                         },
                                                         MessageBox{message=&quot;Computer: Fighting simulation complete.&quot;, blocking = true},

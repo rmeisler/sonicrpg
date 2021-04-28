@@ -600,7 +600,7 @@ return function(self)
         Animate(self.scene.player.sprite, &quot;thinking&quot;),
         MessageBox {
             message = &quot;Sonic: Slam and jam? {p40}Smash and splash? {p40}Dump and--&quot;,
-            closeAction = Wait(2)
+            closeAction = Wait(0.5)
         },
         Animate(self.sprite, &quot;thinking&quot;),
         MessageBox {

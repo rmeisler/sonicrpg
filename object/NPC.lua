@@ -86,6 +86,9 @@ function NPC:construct(scene, layer, object)
 			nil,
 			self.layer.name
 		)
+		if self.hidden then
+			self.sprite.visible = false
+		end
 		self.sprite.sortOrderY = object.properties.sortOrderY
 		if self.object.properties.defaultAnim then
 			self.sprite:setAnimation(self.object.properties.defaultAnim)

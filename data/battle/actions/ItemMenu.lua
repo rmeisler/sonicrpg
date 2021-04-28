@@ -30,8 +30,10 @@ return function(self, mainMenu)
 					self.scene.audio:playSfx("error", nil, true)
 					return
 				end
-			
-				GameState:useItem(record)
+				
+				if not self.scene.practice then
+					GameState:useItem(record)
+				end
 				menu:close()
 				mainMenu:close()
 				return self.scene:run(Parallel {
@@ -53,7 +55,9 @@ return function(self, mainMenu)
 					record.item.target,
 					record.item.unusable or (function(_target) return false end),
 					function(self, target)
-						GameState:useItem(record)
+						if not self.scene.practice then
+							GameState:useItem(record)
+						end
 						menu:close()
 						mainMenuRef:close()
 						return Parallel {
