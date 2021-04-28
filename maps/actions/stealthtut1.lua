@@ -52,7 +52,7 @@ return function(scene)
 						scene,
 						{name = "objects"},
 						{
-							name = "cursor",
+							name = "Cursor",
 							x = pillar.x + pillar.sprite.w*2,
 							y = pillar.y + pillar.sprite.h*2 - scene.player.height * 2,
 							width = 32,
@@ -65,6 +65,7 @@ return function(scene)
 					cursor.sprite.transform.angle = math.pi/2
 					cursor.sprite.sortOrderY = 99999
 					scene:addObject(cursor)
+					scene.objectLookup.Cursor = cursor
 				end),
 				MessageBox {message="Computer: Try to hide behind this pillar. {p50}Hold left against the pillar to hide and peak left."},
 			},
