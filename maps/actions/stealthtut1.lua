@@ -24,6 +24,7 @@ local Executor = require "actions/Executor"
 local Spawn = require "actions/Spawn"
 local Repeat = require "actions/Repeat"
 
+local Player = require "object/Player"
 local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
@@ -35,6 +36,7 @@ return function(scene)
 		left_top = {x = 0, y = 0},
 		left_bot = {x = 0, y = 0},
 	}
+	scene.player.dustColor = Player.ROBOTROPOLIS_DUST_COLOR
 	
 	return BlockPlayer {
 		MessageBox {message="Computer: Welcome to the stealth tutorial!"},
@@ -44,7 +46,27 @@ return function(scene)
 				MessageBox {message="Computer: To your left is a Swatbot..."},
 				MessageBox {message="Computer: ...as well as several pillars you can hide behind..."},
 				Ease(scene.camPos, "x", 0, 0.5),
-				MessageBox {message="Computer: Try to hide behind the right-most pillar. {p50}Hold left against the pillar to hide and peak left."},
+				Do(function()
+					local pillar = scene.objectLookup.Pillar6
+					local cursor = BasicNPC(
+						scene,
+						{name = "objects"},
+						{
+							name = "cursor",
+							x = pillar.x + pillar.sprite.w*2,
+							y = pillar.y + pillar.sprite.h*2 - scene.player.height * 2,
+							width = 32,
+							height = 32,
+							properties = {nocollision = true, sprite = "art/sprites/cursor.png"}
+						}
+					)
+					cursor.sprite.transform.ox = 16
+					cursor.sprite.transform.oy = 16
+					cursor.sprite.transform.angle = math.pi/2
+					cursor.sprite.sortOrderY = 99999
+					scene:addObject(cursor)
+				end),
+				MessageBox {message="Computer: Try to hide behind this pillar. {p50}Hold left against the pillar to hide and peak left."},
 			},
 			Ease(scene.camPos, "x", 650, 0.5)
 		}

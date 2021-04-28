@@ -156,6 +156,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/cursor.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/movingground.png"
 	},
 	{
@@ -441,6 +445,22 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/pressz.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/pressup.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/pressdown.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/pressleft.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/pressright.png"
 	},
 	{
 		type = "image",

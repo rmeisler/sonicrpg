@@ -211,13 +211,40 @@ function Player:updateKeyHint()
 		self:showKeyHint(false, specialKeyHint.specialHintPlayer)
 	elseif closestKeyHint then
 		self.curKeyHint = closestKeyHint
-		self:showKeyHint(true, nil)
+		
+		if closestKeyHint.hidingSpot then
+			local dir
+			if  math.abs(self.x -
+						 (closestKeyHint.x + closestKeyHint.sprite.w)) >
+				math.abs((self.y + self.sprite.h) -
+						 (closestKeyHint.y + closestKeyHint.sprite.h*2))
+			then
+				if  self.x >
+					(closestKeyHint.x + closestKeyHint.sprite.w)
+				then
+					dir = "left"
+				else
+					dir = "right"
+				end
+			else
+				if (self.y + self.sprite.h) >
+				   (closestKeyHint.y + closestKeyHint.sprite.h*2)
+				then
+					dir = "up"
+				else
+					dir = "down"
+				end
+			end
+			self:showKeyHint(false, nil, "press"..dir)
+		else
+			self:showKeyHint(true, nil)
+		end
 	else
 		self:removeKeyHint()
 	end
 end
 
-function Player:showKeyHint(showPressX, specialHint)
+function Player:showKeyHint(showPressX, specialHint, showPressDir)
 	if self.erasingKeyHint then
 		return
 	end
@@ -232,7 +259,29 @@ function Player:showKeyHint(showPressX, specialHint)
 		specialHint = nil
 	end
 
-	if specialHint ~= nil and not self.showPressLsh then		
+	-- Highest precedence goes to dir press
+	if showPressDir and showPressDir ~= self.showPressDir then
+		if self.showPressDir then
+			self.curKeyHintSprite:remove()
+		end
+		local pressDirXForm = Transform.relative(
+			self.transform,
+			Transform(self.sprite.w - 10, 0)
+		)
+		local pressDir = SpriteNode(
+			self.scene,
+			pressDirXForm,
+			{255,255,255,0},
+			showPressDir,
+			nil,
+			nil,
+			"objects"
+		)
+		pressDir.sortOrderY = Player.MAX_SORT_ORDER_Y
+		self.curKeyHintSprite = pressDir
+		table.insert(keyHintActions, Ease(pressDir.color, 4, 255, 5))
+		self.showPressDir = showPressDir
+	elseif specialHint ~= nil and not self.showPressLsh then		
 		local pressLshXForm = Transform.relative(
 			self.transform,
 			Transform(self.sprite.w - 12, 0)
@@ -290,6 +339,7 @@ function Player:removeKeyHint()
 				
 				self.showPressLsh = false
 				self.showPressX = false
+				self.showPressDir = false
 				self.erasingKeyHint = false
 			end)
 		}

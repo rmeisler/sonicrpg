@@ -408,6 +408,7 @@ function NPC:update(dt)
 	
 	if self.hidingSpot then
 		self.scene.player.inHidingSpot[tostring(self)] = nil
+		self.scene.player.keyhints[tostring(self)] = self
 	end
 	
 	if 	self.disappearOn and
@@ -462,10 +463,8 @@ function NPC:update(dt)
 			self.notColliding(self, self.scene.player)
 		end
 
-		if self.isInteractable or self.specialHintPlayer then
-			self.scene.player.keyhints[tostring(self)] = nil
-			self.scene.player.hidekeyhints[tostring(self)] = nil
-		end
+		self.scene.player.keyhints[tostring(self)] = nil
+		self.scene.player.hidekeyhints[tostring(self)] = nil
 		self.scene.player.touching[tostring(self)] = nil
 	end
 end
