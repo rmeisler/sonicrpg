@@ -191,7 +191,9 @@ return function(self)
         transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
         selectedRow = 2,
         blocking = true
-    }}
+    },
+    Do(function() self:refreshKeyHint() end)
+    }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/guitar.png"/>
    </properties>

@@ -16,8 +16,6 @@ return function(scene)
 	local Do = require "actions/Do"
 	local BlockPlayer = require "actions/BlockPlayer"
 	local SpriteNode = require "object/SpriteNode"
-	
-	scene.camPos.y = 400
 
 	local text = TypeText(
 		Transform(50, 500),
@@ -65,6 +63,20 @@ return function(scene)
 			end
 		)
 	end
+	
+	if GameState:isFlagSet("sonichut_intro") then
+		scene.audio:playMusic("knotholehut", 0.8)
+		Executor(scene):act(Serial {
+			Wait(0.5),
+			text,
+			Ease(text.color, 4, 255, 1),
+			Wait(2),
+			Ease(text.color, 4, 0, 1)
+		})
+		return Action()
+	end
+	
+	scene.camPos.y = 400
 
 	return BlockPlayer {
 		Do(function()
@@ -153,6 +165,7 @@ return function(scene)
 
 			local alarm = scene.objectLookup.AlarmClock
 			scene.player.hidekeyhints[tostring(alarm)] = nil
+			GameState:setFlag("sonichut_intro")
 		end)
 	}
 end
