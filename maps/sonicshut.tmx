@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="20">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="22">
  <properties>
-  <property name="onload" type="file" value="actions/knotholehut.lua"/>
+  <property name="onload" type="file" value="actions/sonicshut_intro.lua"/>
   <property name="regionName" value="Sonic's Hut"/>
  </properties>
- <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="812" columns="29">
-  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="914"/>
+ <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
+  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
  </tileset>
- <tileset firstgid="813" source="knothole.tsx"/>
- <tileset firstgid="4297" source="robotropolis.tsx"/>
- <tileset firstgid="7797" source="cave.tsx"/>
+ <tileset firstgid="1045" source="knothole.tsx"/>
+ <tileset firstgid="4529" source="robotropolis.tsx"/>
+ <tileset firstgid="8029" source="cave.tsx"/>
  <layer name="floor" width="25" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -68,8 +68,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,192,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,221,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,195,196,0,250,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,224,225,0,0,0,0,0,0,0,0,193,194,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,196,0,250,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,193,194,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,222,223,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -83,18 +83,14 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="Chest1" type="Chest" gid="6607" x="544" y="448" width="64" height="64">
+  <object id="1" name="Chest1" type="Chest" gid="6839" x="544" y="448" width="64" height="64">
    <properties>
     <property name="GreenLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="3" name="Spawn 1" type="Player" gid="4333" x="416" y="448" width="32" height="32">
-   <properties>
-    <property name="orientation" value="up"/>
-   </properties>
-  </object>
-  <object id="4" name="Door" type="Door" gid="6607" x="352" y="608" width="64" height="64">
+  <object id="3" name="Spawn 1" type="Player" gid="4565" x="384" y="288" width="32" height="32"/>
+  <object id="4" name="Door" type="Door" gid="6839" x="352" y="608" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-20"/>
@@ -107,7 +103,7 @@
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
-  <object id="5" name="Photo" type="BasicNPC" gid="6607" x="480" y="224" width="32" height="32">
+  <object id="5" name="Photo" type="BasicNPC" gid="6839" x="480" y="224" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
@@ -145,8 +141,9 @@ return function(self)
 end</property>
    </properties>
   </object>
-  <object id="7" name="Guitar" type="BasicNPC" gid="6607" x="224" y="320" width="32" height="32">
+  <object id="7" name="Guitar" type="BasicNPC" gid="6839" x="224" y="320" width="32" height="32">
    <properties>
+    <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
@@ -171,11 +168,20 @@ return function(self)
                         message = &quot;Sonic: Eh, {p40}a little heavy metal isn't the worst way to start the morning...&quot;,
                         blocking = true
                     },
+                    Do(function()
+                        self.hidden = true
+                        self.scene.player.noIdle = true
+                        self.scene.player.sprite:setAnimation(&quot;guitarstrum&quot;)
+                    end),
                     PlayAudio(&quot;music&quot;, &quot;sonicguitar&quot;, 1.0),
                     MessageBox {
                         message = &quot;Sonic: Way past cool! {p40}I need to play this thing more.&quot;,
                         blocking = true
                     },
+                    Do(function()
+                        self.scene.player.noIdle = false
+                        self.hidden = false
+                    end),
                     PlayAudio(&quot;music&quot;, &quot;knotholehut&quot;, 1.0, true),
                 }
             end},
@@ -187,9 +193,10 @@ return function(self)
         blocking = true
     }}
 end</property>
+    <property name="sprite" type="file" value="../art/sprites/guitar.png"/>
    </properties>
   </object>
-  <object id="11" name="Brightness" type="BasicNPC" gid="6628" x="320" y="288" width="64" height="64">
+  <object id="11" name="Brightness" type="BasicNPC" gid="6860" x="320" y="288" width="64" height="64">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)
@@ -200,7 +207,7 @@ end</property>
 end</property>
    </properties>
   </object>
-  <object id="12" name="Pot" type="BasicNPC" gid="6607" x="224" y="416" width="32" height="32">
+  <object id="12" name="Pot" type="BasicNPC" gid="6839" x="224" y="416" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="tall"/>
@@ -208,7 +215,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/pot.png"/>
    </properties>
   </object>
-  <object id="13" name="Pot" type="BasicNPC" gid="6607" x="192" y="416" width="32" height="32">
+  <object id="13" name="Pot" type="BasicNPC" gid="6839" x="192" y="416" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="tall"/>
@@ -216,7 +223,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/pot.png"/>
    </properties>
   </object>
-  <object id="14" name="Pot" type="BasicNPC" gid="6607" x="224" y="384" width="32" height="32">
+  <object id="14" name="Pot" type="BasicNPC" gid="6839" x="224" y="384" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="tall"/>
@@ -224,7 +231,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/pot.png"/>
    </properties>
   </object>
-  <object id="15" name="Pot" type="BasicNPC" gid="6607" x="192" y="384" width="32" height="32">
+  <object id="15" name="Pot" type="BasicNPC" gid="6839" x="192" y="384" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="tall"/>
@@ -232,7 +239,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/pot.png"/>
    </properties>
   </object>
-  <object id="16" name="Pot" type="BasicNPC" gid="6607" x="544" y="384" width="32" height="32">
+  <object id="16" name="Pot" type="BasicNPC" gid="6839" x="544" y="384" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="short"/>
@@ -240,7 +247,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/pot.png"/>
    </properties>
   </object>
-  <object id="17" name="Pot" type="BasicNPC" gid="6607" x="576" y="384" width="32" height="32">
+  <object id="17" name="Pot" type="BasicNPC" gid="6839" x="576" y="384" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="short"/>
@@ -248,7 +255,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/pot.png"/>
    </properties>
   </object>
-  <object id="18" name="Pot" type="BasicNPC" gid="6607" x="544" y="320" width="32" height="32">
+  <object id="18" name="Pot" type="BasicNPC" gid="6839" x="544" y="320" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="plant"/>
@@ -256,8 +263,10 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/pot.png"/>
    </properties>
   </object>
-  <object id="19" name="AlarmClock" type="BasicNPC" gid="6607" x="320" y="256" width="32" height="32">
+  <object id="19" name="AlarmClock" type="BasicNPC" gid="6839" x="320" y="256" width="32" height="32">
    <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
@@ -288,6 +297,7 @@ return function(self)
         end)
     }
 end</property>
+    <property name="sprite" type="file" value="../art/sprites/clock.png"/>
    </properties>
   </object>
  </objectgroup>
@@ -302,10 +312,10 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,119,119,119,119,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,119,119,119,119,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,119,119,0,0,0,0,0,0,
-0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,119,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,119,119,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
+0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
+0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

@@ -2,9 +2,10 @@ local TargetType = require "util/TargetType"
 
 return {
 	name = "Power Ring",
-	desc = "Increases Sonic's stats for a single battle.",
+	desc = "A powerful item that only Sonic can use...",
 	target = TargetType.Party,
 	usableFromMenu = false,
+	usableFromBattle = false,
 	unusable = function(target)
 		return target.id ~= "sonic"
 	end,

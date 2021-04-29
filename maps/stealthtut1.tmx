@@ -220,7 +220,7 @@ local Do = require &quot;actions/Do&quot;
 local Wait = require &quot;actions/Wait&quot;
 
 return function(self, player)
-    if GameState:isFlagSet(&quot;tutorial:hide_pillar2&quot;) then
+    if GameState:isFlagSet(&quot;tutorial:hide_pillar2&quot;) or not GameState:isFlagSet(&quot;tutorial:hide_pillar6&quot;)  then
         return
     end
 
@@ -238,7 +238,7 @@ return function(self, player)
         GameState:setFlag(&quot;tutorial:hide_pillar2&quot;)
         self.scene:run(
             BlockPlayer {
-                MessageBox {message=&quot;Computer: Good.&quot;},
+                MessageBox {message=&quot;Computer: Good.&quot;, sfx=&quot;choose&quot;},
                 Do(function()
                     self.scene.objectLookup.Cursor.x = pillar.x - pillar.sprite.w
                     self.scene.objectLookup.Cursor.y = pillar.y + pillar.sprite.h*2 -  player.height*2
@@ -296,7 +296,7 @@ return function(self, player)
         GameState:setFlag(&quot;tutorial:hide_pillar6&quot;)
         self.scene:run(
             BlockPlayer {
-                MessageBox {message=&quot;Computer: Excellent work.&quot;},
+                MessageBox {message=&quot;Computer: Excellent work.&quot;, sfx=&quot;choose&quot;},
                 Do(function()
                     self.scene.objectLookup.Cursor.x = pillar.x + pillar.sprite.w
                     self.scene.objectLookup.Cursor.y = pillar.y + pillar.sprite.h*2 - 32 - player.height*2
@@ -329,7 +329,7 @@ local Do = require &quot;actions/Do&quot;
 local Wait = require &quot;actions/Wait&quot;
 
 return function(self, player)
-    if GameState:isFlagSet(&quot;tutorial:hide_pillar5&quot;) then
+    if GameState:isFlagSet(&quot;tutorial:hide_pillar5&quot;) or not GameState:isFlagSet(&quot;tutorial:hide_pillar4&quot;) then
         return
     end
 
@@ -361,6 +361,10 @@ return function(self, player)
                 end),
                 MessageBox {message=&quot;Computer: That concludes our stealth tutorial!&quot;},
                 Do(function()
+                    GameState:unsetFlag(&quot;tutorial:hide_pillar6&quot;)
+                    GameState:unsetFlag(&quot;tutorial:hide_pillar4&quot;)
+                    GameState:unsetFlag(&quot;tutorial:hide_pillar2&quot;)
+                    GameState:unsetFlag(&quot;tutorial:hide_pillar5&quot;)
                     self.scene.sceneMgr:popScene{}
                 end), Do(function() end)
             }
@@ -382,7 +386,7 @@ local Do = require &quot;actions/Do&quot;
 local Wait = require &quot;actions/Wait&quot;
 
 return function(self, player)
-    if GameState:isFlagSet(&quot;tutorial:hide_pillar4&quot;) then
+    if GameState:isFlagSet(&quot;tutorial:hide_pillar4&quot;) or not GameState:isFlagSet(&quot;tutorial:hide_pillar2&quot;) then
         return
     end
 
@@ -400,7 +404,7 @@ return function(self, player)
         GameState:setFlag(&quot;tutorial:hide_pillar4&quot;)
         self.scene:run(
             BlockPlayer {
-                MessageBox {message=&quot;Computer: That'll do.&quot;},
+                MessageBox {message=&quot;Computer: That'll do.&quot;, sfx=&quot;choose&quot;},
                 Do(function()
                     self.scene.objectLookup.Cursor.x = pillar.x + pillar.sprite.w
                     self.scene.objectLookup.Cursor.y = pillar.y + pillar.sprite.h*2 -  player.height
@@ -459,6 +463,7 @@ end</property>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreCollision" value="Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6"/>
+    <property name="noSetFlag" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
    </properties>
   </object>

@@ -1,8 +1,4 @@
 local Player      = require "object/Player"
-local Actor       = require "actions/Executor"
-local MessageBox  = require "actions/MessageBox"
-local Menu        = require "actions/Menu"
-local Animate     = require "actions/Animate"
 local BattleMenu  = require "object/BattleMenu"
 local SpriteNode  = require "object/SpriteNode"
 local TextNode    = require "object/TextNode"
@@ -16,6 +12,7 @@ local Rect       = unpack(require "util/Shapes")
 local Animation  = require "util/AnAL"
 local Transform  = require "util/Transform"
 local Gradient   = require "util/Gradient"
+local Layout     = require "util/Layout"
 local Audio      = require "util/Audio"
 
 local Action    = require "actions/Action"
@@ -28,6 +25,10 @@ local Wait      = require "actions/Wait"
 local TypeText  = require "actions/TypeText"
 local PlayAudio = require "actions/PlayAudio"
 local AudioFade = require "actions/AudioFade"
+local MessageBox  = require "actions/MessageBox"
+local Menu        = require "actions/Menu"
+local BlockPlayer = require "actions/BlockPlayer"
+local Animate     = require "actions/Animate"
 
 local Scene = require "scene/Scene"
 
@@ -615,8 +616,37 @@ end
 
 function BattleScene:keytriggered(key)
     -- Exit game
-    if key == "escape" then
-        --love.event.quit()
+    if key == "escape" and self.practice then
+        if self.showingEscapeMenu then
+			return
+		end
+		self.showingEscapeMenu = true
+		
+		self:run(BlockPlayer{ Menu {
+			layout = Layout {
+				{Layout.Text("Leave battle?"), selectable = false},
+				{Layout.Text("Yes"), choose = function(menu)
+					menu:close()
+					self:run {
+						menu,
+						Do(function() self.sceneMgr:popScene{} end),
+						Do(function() end)
+					}
+				end},
+				{Layout.Text("No"),
+					choose = function(menu)
+						menu:close()
+						self:run {
+							menu,
+							Do(function() self.showingEscapeMenu = false end)
+						}
+					end},
+				colWidth = 200
+			},
+			transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+			selectedRow = 2,
+			cancellable = true
+		}})
     end
 end
 

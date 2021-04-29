@@ -67,7 +67,7 @@ return {
 	{
         type = "map",
 		file = "maps/sonicshut.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -132,7 +132,7 @@ return {
 	{
         type = "map",
         file = "maps/knothole.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -1027,6 +1027,16 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/battlestart.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/alarm.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/jump.ogg",
 		category = "sfx"
 	},
 	{

@@ -28,6 +28,7 @@ local Player = require "object/Player"
 local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
+	scene.audio:stopMusic()
 	scene.audio:playMusic("openingmission2", 1.0)
 	
 	scene.player.collisionHSOffsets = {
@@ -37,7 +38,25 @@ return function(scene)
 		left_bot = {x = 0, y = 0},
 	}
 	scene.player.dustColor = Player.ROBOTROPOLIS_DUST_COLOR
+	scene.player:addHandler("caught", function(_bot)
+		scene.player.noIdle = true
+		GameState:unsetFlag("tutorial:hide_pillar6")
+		GameState:unsetFlag("tutorial:hide_pillar4")
+		GameState:unsetFlag("tutorial:hide_pillar2")
+		GameState:unsetFlag("tutorial:hide_pillar5")
+		scene.player.sprite:setAnimation("shock")
+		scene.player.state = "shock"
+		scene.player:removeKeyHint()
+		scene:run(
+			BlockPlayer {
+				Wait(2),
+				Do(function() scene:restart() end),
+				Do(function() end)
+			}
+		)
+	end)
 	
+	local pillar = scene.objectLookup.Pillar6
 	return BlockPlayer {
 		MessageBox {message="Computer: Welcome to the stealth tutorial!"},
 		MessageBox {message="Computer: Here you will learn how evade enemies and avoid battles!"},
@@ -45,9 +64,7 @@ return function(scene)
 			Serial {
 				MessageBox {message="Computer: To your left is a Swatbot..."},
 				MessageBox {message="Computer: ...as well as several pillars you can hide behind..."},
-				Ease(scene.camPos, "x", 0, 0.5),
 				Do(function()
-					local pillar = scene.objectLookup.Pillar6
 					local cursor = BasicNPC(
 						scene,
 						{name = "objects"},
@@ -67,7 +84,15 @@ return function(scene)
 					scene:addObject(cursor)
 					scene.objectLookup.Cursor = cursor
 				end),
-				MessageBox {message="Computer: Try to hide behind this pillar. {p50}Hold left against the pillar to hide and peak left."},
+				Parallel {
+                    Ease(scene.camPos, "x", scene.player.x - pillar.x, 1),
+                    Ease(scene.camPos, "y", scene.player.y - pillar.y - pillar.sprite.h*2, 1),
+					MessageBox {message="Computer: Try to hide behind this pillar. {p50}Hold left against the pillar to hide and peak left."}
+				},
+				Parallel {
+                    Ease(scene.camPos, "x", 0, 1),
+                    Ease(scene.camPos, "y", 0, 1)
+                }
 			},
 			Ease(scene.camPos, "x", 650, 0.5)
 		}

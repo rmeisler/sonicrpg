@@ -274,7 +274,11 @@ return function(self)
                                                 MessageBox {
                                                     message = &quot;Computer: Stealth simulation complete.&quot;,
                                                     blocking = true
-                                                }
+                                                },
+                                                -- Hack to fix bug returning from battle
+                                                Do(function()
+                                                    self.scene.player.cinematicStack = 1
+                                                end)
                                             }
                                         end},
                                         {Layout.Text(&quot;No&quot;), choose = function(menu2)

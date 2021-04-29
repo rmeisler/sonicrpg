@@ -27,7 +27,7 @@ function ChapterSplashScene:loadingAnimation(tasks)
 		self,
 		Transform(0, 0, 1, 1),
 		nil,
-		love.graphics.newImage("art/splash/sonictitlecard_entropy.png"),
+		love.graphics.newImage("art/splash/sonictitlecard_knothole.png"),
 		nil,
 		nil,
 		"ui"

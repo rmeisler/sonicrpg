@@ -46,6 +46,7 @@ function BasicScene:onEnter(args)
 	self.audio = args.audio
 	self.mboxGradient = args.images["mboxgradient"]
 	self.camPos = Transform()
+	self.tutorial = args.tutorial
 	
 	self.cacheSceneData = args.cache
 	
@@ -333,6 +334,7 @@ end
 function BasicScene:restart()
 	self.cacheSceneData = false
 	self.sceneMgr.cachedScenes[tostring(self.map)] = nil
+	self.isRestarting = true
 
 	self.sceneMgr:switchScene {
 		class = "BasicScene",
@@ -347,7 +349,8 @@ function BasicScene:restart()
 		fadeOutMusic = true,
 		images = self.images,
 		animations = self.animations,
-		audio = self.audio
+		audio = self.audio,
+		tutorial = self.tutorial
 	}
 end
 
@@ -361,7 +364,7 @@ function BasicScene:changeScene(args)
 		audio = self.audio,
 		spawn_point = args.spawnPoint,
 		tutorial = args.tutorial,
-		cache = true
+		cache = args.cache
 	}
 end
 
@@ -468,29 +471,62 @@ end
 
 function BasicScene:keytriggered(key, uni)
 	if key == "escape" then
-		if self.showingEscapeMenu then
-			love.event.quit()
-		end
-		self.showingEscapeMenu = true
-		
-		self:run(BlockPlayer{ Menu {
-			layout = Layout {
-				{Layout.Text("Exit game?"), selectable = false},
-				{Layout.Text("Yes"), choose = love.event.quit},
-				{Layout.Text("No"),
-					choose = function(menu)
+		if self.tutorial then
+			if self.showingEscapeMenu then
+				return
+			end
+			self.showingEscapeMenu = true
+			
+			self:run(BlockPlayer{ Menu {
+				layout = Layout {
+					{Layout.Text("Exit tutorial?"), selectable = false},
+					{Layout.Text("Yes"), choose = function(menu)
 						menu:close()
 						self:run {
 							menu,
-							Do(function() self.showingEscapeMenu = false end)
+							Do(function() self.sceneMgr:popScene{} end),
+							Do(function() end)
 						}
 					end},
-				colWidth = 200
-			},
-			transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
-			selectedRow = 2,
-			cancellable = true
-		}})
+					{Layout.Text("No"),
+						choose = function(menu)
+							menu:close()
+							self:run {
+								menu,
+								Do(function() self.showingEscapeMenu = false end)
+							}
+						end},
+					colWidth = 200
+				},
+				transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+				selectedRow = 2,
+				cancellable = true
+			}})
+		else
+			if self.showingEscapeMenu then
+				love.event.quit()
+			end
+			self.showingEscapeMenu = true
+			
+			self:run(BlockPlayer{ Menu {
+				layout = Layout {
+					{Layout.Text("Exit game?"), selectable = false},
+					{Layout.Text("Yes"), choose = love.event.quit},
+					{Layout.Text("No"),
+						choose = function(menu)
+							menu:close()
+							self:run {
+								menu,
+								Do(function() self.showingEscapeMenu = false end)
+							}
+						end},
+					colWidth = 200
+				},
+				transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+				selectedRow = 2,
+				cancellable = true
+			}})
+		end
     end
 end
 
