@@ -42,9 +42,11 @@ function Door:onCollision(prevState)
 		not self.scene.sceneMgr.transitioning
 	then
 		self.scene.player.cinematic = true
+		local mapName = "maps/"..tostring(self.object.properties.scene)
 		self.scene.sceneMgr:pushScene {
 			class = "BasicScene",
-			map = self.scene.maps["maps/"..tostring(self.object.properties.scene)],
+			map = self.scene.maps[mapName],
+			mapName = mapName,
 			maps = self.scene.maps,
 			images = self.scene.images,
 			animations = self.scene.animations,
