@@ -45,7 +45,7 @@ function love.load()
 	love.graphics.setShader(ScreenShader)
 	
 	
-	sceneMgr:pushScene {class = "SageSplashScene"}
+	sceneMgr:pushScene {class = "TitleSplashScene"}
 	
 	
 end

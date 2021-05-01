@@ -48,6 +48,7 @@ function Door:onCollision(prevState)
 			map = self.scene.maps[mapName],
 			mapName = mapName,
 			maps = self.scene.maps,
+			region = self.scene.region,
 			images = self.scene.images,
 			animations = self.scene.animations,
 			audio = self.scene.audio,

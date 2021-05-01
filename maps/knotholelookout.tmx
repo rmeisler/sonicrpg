@@ -599,12 +599,12 @@ return function(self)
         },
         Animate(self.scene.player.sprite, &quot;thinking&quot;),
         MessageBox {
-            message = &quot;Sonic: Slam and jam? {p40}Smash and splash? {p40}Dump and--&quot;,
+            message = &quot;Sonic: Slam and jam? {p40}Smash and dash? {p40}Dump and--&quot;,
             closeAction = Wait(0.5)
         },
         Animate(self.sprite, &quot;thinking&quot;),
         MessageBox {
-            message = &quot;Sally: There will be no 'slamming', {p20}'jamming', {p20}'smashing', or {p20}'splashing'!&quot;
+            message = &quot;Sally: There will be no 'slamming', {p20}'jamming', {p20}'smashing', or {p20}'dashing'!&quot;
         },
         MessageBox {
             message = &quot;Sally: This will be a stealth mission. {p50}And after what happened at the Power Grid mission, I think you should stay back.&quot;,

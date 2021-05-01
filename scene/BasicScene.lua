@@ -360,6 +360,7 @@ function BasicScene:changeScene(args)
 		map = self.maps["maps/"..args.map..".lua"],
 		maps = self.maps,
 		images = self.images,
+		region = self.region,
 		animations = self.animations,
 		audio = self.audio,
 		spawn_point = args.spawnPoint,
@@ -377,15 +378,15 @@ function BasicScene:screenShake(strength, speed)
 		Do(function()
 			self.isScreenShaking = true
 		end),
-		Ease(self.camPos, "y", self.camPos.y - strength, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y + strength, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y - strength end, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y + strength end, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad"),
 		
-		Ease(self.camPos, "y", self.camPos.y - strength/2, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y + strength/2, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y - strength/2 end, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y + strength/2 end, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad"),
 		
 		Do(function()
 			self.isScreenShaking = false
