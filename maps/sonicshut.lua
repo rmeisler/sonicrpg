@@ -8,10 +8,10 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 19,
+  nextobjectid = 22,
   properties = {
-    ["onload"] = "actions/knotholehut.lua",
-    ["regionName"] = "Sonic's Room"
+    ["onload"] = "actions/sonicshut_intro.lua",
+    ["regionName"] = "Sonic's Hut"
   },
   tilesets = {
     {
@@ -23,7 +23,7 @@ return {
       margin = 0,
       image = "../art/tiles/knotholehutinterior.png",
       imagewidth = 950,
-      imageheight = 914,
+      imageheight = 1170,
       transparentcolor = "#000000",
       tileoffset = {
         x = 0,
@@ -36,12 +36,12 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 812,
+      tilecount = 1044,
       tiles = {}
     },
     {
       name = "forest",
-      firstgid = 813,
+      firstgid = 1045,
       filename = "knothole.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -67,7 +67,7 @@ return {
     },
     {
       name = "robotropolis",
-      firstgid = 4297,
+      firstgid = 4529,
       filename = "robotropolis.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -89,6 +89,32 @@ return {
       properties = {},
       terrains = {},
       tilecount = 3500,
+      tiles = {}
+    },
+    {
+      name = "cave",
+      firstgid = 8029,
+      filename = "cave.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/caves.png",
+      imagewidth = 1120,
+      imageheight = 2144,
+      transparentcolor = "#b326bd",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 2345,
       tiles = {}
     }
   },
@@ -187,8 +213,8 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 221, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 195, 196, 0, 250, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 224, 225, 0, 0, 0, 0, 0, 0, 0, 0, 193, 194, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 196, 0, 250, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 193, 194, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 222, 223, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -217,15 +243,15 @@ return {
           type = "Chest",
           shape = "rectangle",
           x = 544,
-          y = 416,
-          width = 32,
-          height = 32,
+          y = 448,
+          width = 64,
+          height = 64,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["GreenLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest.png"
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         },
         {
@@ -233,16 +259,14 @@ return {
           name = "Spawn 1",
           type = "Player",
           shape = "rectangle",
-          x = 416,
-          y = 448,
+          x = 384,
+          y = 288,
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 4333,
+          gid = 4565,
           visible = true,
-          properties = {
-            ["orientation"] = "up"
-          }
+          properties = {}
         },
         {
           id = 4,
@@ -254,7 +278,7 @@ return {
           width = 64,
           height = 64,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -273,12 +297,12 @@ return {
           name = "Photo",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 512,
-          y = 256,
+          x = 480,
+          y = 224,
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["ghost"] = true,
@@ -292,14 +316,16 @@ return {
           shape = "rectangle",
           x = 224,
           y = 320,
-          width = 64,
+          width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
+            ["align"] = "bottom_left",
             ["ghost"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Menu = require \"actions/Menu\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    return Menu {\n        layout = Layout {\n            {Layout.Text(\"Play guitar?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    MessageBox {\n                        message = \"Sonic: Eh, {p40}a little heavy metal isn't the worst way to start the morning...\",\n                        blocking = true\n                    },\n                    PlayAudio(\"music\", \"sonicguitar\", 1.0),\n                    MessageBox {\n                        message = \"Sonic: Way past cool! {p40}I need to play this thing more.\",\n                        blocking = true\n                    },\n                    PlayAudio(\"music\", \"knotholehut\", 1.0, true),\n                }\n            end},\n            {Layout.Text(\"No\"), choose = function(menu) menu:close() end},\n        },\n        cancellable = true,\n        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n        selectedRow = 2,\n        blocking = true\n    }\nend"
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Menu = require \"actions/Menu\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    return BlockPlayer { Menu {\n        layout = Layout {\n            {Layout.Text(\"Play guitar?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    MessageBox {\n                        message = \"Sonic: Eh, {p40}a little heavy metal isn't the worst way to start the morning...\",\n                        blocking = true\n                    },\n                    Do(function()\n                        self.hidden = true\n                        self.scene.player.noIdle = true\n                        self.scene.player.sprite:setAnimation(\"guitarstrum\")\n                    end),\n                    PlayAudio(\"music\", \"sonicguitar\", 1.0),\n                    MessageBox {\n                        message = \"Sonic: Way past cool! {p40}I need to play this thing more.\",\n                        blocking = true\n                    },\n                    Do(function()\n                        self.scene.player.noIdle = false\n                        self.hidden = false\n                    end),\n                    PlayAudio(\"music\", \"knotholehut\", 1.0, true),\n                }\n            end},\n            {Layout.Text(\"No\"), choose = function(menu) menu:close() end},\n        },\n        cancellable = true,\n        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n        selectedRow = 2,\n        blocking = true\n    },\n    Do(function() self:refreshKeyHint() end)\n    }\nend",
+            ["sprite"] = "../art/sprites/guitar.png"
           }
         },
         {
@@ -312,7 +338,7 @@ return {
           width = 64,
           height = 64,
           rotation = 0,
-          gid = 6628,
+          gid = 6860,
           visible = true,
           properties = {
             ["ghost"] = true,
@@ -330,7 +356,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -349,7 +375,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -368,7 +394,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -387,7 +413,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -406,7 +432,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -425,7 +451,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -444,13 +470,33 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "plant",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/pot.png"
+          }
+        },
+        {
+          id = 19,
+          name = "AlarmClock",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 320,
+          y = 256,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetY"] = -32,
+            ["ghost"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return Serial {\n        Do(function()\n            self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1\n            self.scene.player.noIdle = true\n        end),\n        MessageBox {\n            message = \"Sonic: Ugh. {p40}I can't believe Sal is making us use these alarm clocks...\"\n        },\n        Parallel {\n            Animate(self.scene.player.sprite, \"irritated\", true),\n            MessageBox {\n                message = \"Sonic: Doesn't she know that a hedgehog needs his beauty sleep?!\"\n            }\n        },\n        Do(function()\n            self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1\n            self.scene.player.noIdle = false\n            self.scene.player.state = \"idledown\"\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
+            ["sprite"] = "../art/sprites/clock.png"
           }
         }
       }
@@ -478,10 +524,46 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "tilelayer",
+      name = "BunnyExtCollision",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      visible = false,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

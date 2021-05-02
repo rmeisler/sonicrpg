@@ -36,7 +36,6 @@ function Subscreen:construct(scene, transform, color, img)
 			{Layout.Text("Stats"),  choose = function() self:choosePlayer(Subscreen.openStatsMenu) end},
 			{Layout.Text("Quit"),   choose = function() self:quit() end}
 		},
-		maxRows = 6,
 		cancellable = true,
 		transform = Transform(150, 100),
 		colSpacing = 120,
@@ -180,10 +179,9 @@ function Subscreen:openItemMenu()
 	self:runBackground {
 		layout = Layout(rows),
 		cancellable = true,
-		transform = Transform(510, 165),
-		maxCols = 2,
-		maxRows = 6,
+		transform = Transform(510, 30 + (#rows * 40)/2),
 		colSpacing = 230
+		--pagesOverride = math.floor((#rows / 6) + 1)
 	}
 end
 
@@ -225,7 +223,7 @@ function Subscreen:openSkillsMenu(player)
 end
 
 function Subscreen:openEquipMenu(player)
-	local orderedEquip = {ItemType.Weapon, ItemType.Armor, ItemType.Accessory}
+	local orderedEquip = {ItemType.Weapon, ItemType.Armor, ItemType.Legs, ItemType.Accessory}
 	local layout = {}
 	for _,itemType in pairs(orderedEquip) do
 		table.insert(layout, self:getEquipEntry(itemType, player.equip[itemType]))
@@ -273,7 +271,7 @@ function Subscreen:openStatsMenu(player)
 end
 
 function Subscreen:getEquipTypeIndex(itemType)
-	for index, t in pairs({ItemType.Weapon, ItemType.Armor, ItemType.Accessory}) do
+	for index, t in pairs({ItemType.Weapon, ItemType.Armor, ItemType.Legs, ItemType.Accessory}) do
 		if t == itemType then
 			return index
 		end
@@ -309,12 +307,22 @@ function Subscreen:getItemEntry(record)
 	}
 end
 
+function Subscreen:itemTypeToSlotName(itemType)
+	local mapping = {
+		[ItemType.Weapon] = "Hands",
+		[ItemType.Armor] = "Body",
+		[ItemType.Legs] = "Legs",
+		[ItemType.Accessory] = "Special"
+	}
+	return mapping[itemType]
+end
+
 function Subscreen:getEquipEntry(itemType, item)
 	local itemName = item and item.name or "None"
 	local itemStats = item and item.stats or {}
 	local itemEvent = item and item.event or nil
 	local row = {
-		Layout.Text(itemType:gsub("^%l", string.upper)),
+		Layout.Text(self:itemTypeToSlotName(itemType)), --itemType:gsub("^%l", string.upper)),
 		Layout.Text{text={{255,255,0,255}, itemName}},
 	}
 	-- Reorder stats based on "order"
@@ -450,8 +458,6 @@ function Subscreen:switch(equipMenu, itemType)
 			equipMenu.transform.x,
 			equipMenu.transform.y + 5 + (equipMenu.selectedRow - 1) * equipMenu.rowSpacing
 		),
-		maxCols = 1,
-		maxRows = 6,
 		colSpacing = 180
 	}
 	

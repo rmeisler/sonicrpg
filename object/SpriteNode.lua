@@ -18,7 +18,7 @@ function SpriteNode:construct(scene, transform, color, imgsrc, w, h, layer)
 		self.w = meta.w --Ignore passed in w/h
 		self.h = meta.h
 		for anikey,anival in pairs(meta.animations) do
-			self:addAnimation(anikey, anival.frames, anival.speed or 0)
+			self:addAnimation(anikey, anival.frames, anival.speed or 0, anival.clip or {0, 0, self.w, self.h})
 			self.locationOffsets[anikey] = anival.locationoffsets
 		end
 		
@@ -29,9 +29,10 @@ function SpriteNode:construct(scene, transform, color, imgsrc, w, h, layer)
 		self.w = w or self.img:getWidth()
 		self.h = h or self.img:getHeight()
 		self.animations = {}
-		self:addAnimation("default", {{0,0}}, 1)
+		self:addAnimation("default", {{0,0}}, 1, {0, 0, self.w, self.h})
 	end
 	
+	self.drawWithShine = false
 	self.drawWithParallax = false
 	self.drawWithGlow = false
 	self.glowColor = {0,0,0,0}
@@ -44,7 +45,8 @@ function SpriteNode:construct(scene, transform, color, imgsrc, w, h, layer)
 	self:addSceneHandler("update", SpriteNode.update)
 end
 
-function SpriteNode:addAnimation(name, colrows, speed)
+function SpriteNode:addAnimation(name, colrows, speed, clip)
+    local cx,cy,cw,ch = unpack(clip)
     local animation = Animation.new(self.img, self.w, self.h, speed)
     for _, pair in pairs(colrows) do
 		if type(pair) ~= "table" then
@@ -52,7 +54,7 @@ function SpriteNode:addAnimation(name, colrows, speed)
 			print(self.imgsrc)
 		end
 	    local col, row = unpack(pair)
-        animation:addFrame(col*self.w, row*self.h, self.w, self.h, speed)
+        animation:addFrame((col*self.w)+cx, (row*self.h)+cy, cw, ch, speed)
     end
 	self.selected = name
     self.animations[self.selected] = animation
@@ -103,6 +105,11 @@ function SpriteNode:update(dt)
 		SpriteNode.scanShader:send("time", self.t)
 	end
 	
+	if self.drawWithShine then
+		self.t = self.t + dt * self.shineSpeed
+		SpriteNode.shineShader:send("time", self.t)
+	end
+	
     self.animations[self.selected]:update(dt)
 end
 
@@ -135,6 +142,40 @@ end
 
 function SpriteNode:removeGlow()
 	self.drawWithGlow = false
+end
+
+function SpriteNode:setShine(speed)
+	self.drawWithShine = true
+	self.t = 0
+	self.shineSpeed = speed or 1.0
+	
+	if not SpriteNode.shineMap then
+		SpriteNode.shineMap = love.graphics.newCanvas()
+		SpriteNode.shineShader = love.graphics.newShader [[
+			extern number time;
+			vec4 effect(vec4 colour, Image tex, vec2 tc, vec2 sc)
+			{
+				if (time < 1.0) {
+					if (tc.x < time) {
+						return vec4(1,1,1,0) + Texel(tex, tc);
+					} else {
+						return Texel(tex, tc);
+					}
+				} else {
+					if ((tc.x + 1.0) < time) {
+						return Texel(tex, tc);
+					} else {
+						return vec4(1,1,1,0) + Texel(tex, tc);
+					}
+				}
+			}
+		]]
+		SpriteNode.shineShader:send("time", 0)
+	end
+end
+
+function SpriteNode:removeShine()
+	self.drawWithShine = false
 end
 
 function SpriteNode:setParallax(speed)
@@ -230,6 +271,14 @@ function SpriteNode:draw(override)
 	elseif self.drawWithInvertedColor then
 		local prevShader = love.graphics.getShader()
 		love.graphics.setShader(SpriteNode.invertedColorShader)
+		
+		drawSprite()
+		
+		love.graphics.setShader(prevShader)
+	elseif self.drawWithShine then
+		local prevShader = love.graphics.getShader()
+		
+		love.graphics.setShader(SpriteNode.shineShader)
 		
 		drawSprite()
 		

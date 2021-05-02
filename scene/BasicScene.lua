@@ -12,6 +12,9 @@ local PlayAudio = require "actions/PlayAudio"
 local AudioFade = require "actions/AudioFade"
 local Spawn = require "actions/Spawn"
 local While = require "actions/While"
+local Repeat = require "actions/Repeat"
+local Executor = require "actions/Executor"
+local BlockPlayer = require "actions/BlockPlayer"
 
 local Subscreen = require "object/Subscreen"
 
@@ -43,6 +46,7 @@ function BasicScene:onEnter(args)
 	self.audio = args.audio
 	self.mboxGradient = args.images["mboxgradient"]
 	self.camPos = Transform()
+	self.tutorial = args.tutorial
 	
 	self.cacheSceneData = args.cache
 	
@@ -142,7 +146,7 @@ function BasicScene:onEnter(args)
 			-- Reset player state
 			self.player.doingSpecialMove = false
 			self.player.ignoreSpecialMoveCollision = false
-			self.player.basicUpdate = self.player.origUpdate
+			self.player.basicUpdate = self.player.origUpdate or self.player.basicUpdate
 			self.player.state = spawn.properties.orientation and "idle"..spawn.properties.orientation or "idledown"
 			
 			--[[ Restart special move, if necessary
@@ -330,6 +334,7 @@ end
 function BasicScene:restart()
 	self.cacheSceneData = false
 	self.sceneMgr.cachedScenes[tostring(self.map)] = nil
+	self.isRestarting = true
 
 	self.sceneMgr:switchScene {
 		class = "BasicScene",
@@ -344,7 +349,23 @@ function BasicScene:restart()
 		fadeOutMusic = true,
 		images = self.images,
 		animations = self.animations,
-		audio = self.audio
+		audio = self.audio,
+		tutorial = self.tutorial
+	}
+end
+
+function BasicScene:changeScene(args)
+	self.sceneMgr:pushScene {
+		class = "BasicScene",
+		map = self.maps["maps/"..args.map..".lua"],
+		maps = self.maps,
+		images = self.images,
+		region = self.region,
+		animations = self.animations,
+		audio = self.audio,
+		spawn_point = args.spawnPoint,
+		tutorial = args.tutorial,
+		cache = args.cache
 	}
 end
 
@@ -353,17 +374,19 @@ function BasicScene:screenShake(strength, speed)
 	strength = strength or 50
 	speed = speed or 15
 	
-	self.isScreenShaking = true
 	return Serial {
-		Ease(self.camPos, "y", self.camPos.y - strength, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y + strength, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		Do(function()
+			self.isScreenShaking = true
+		end),
+		Ease(self.camPos, "y", function() return self.camPos.y - strength end, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y + strength end, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad"),
 		
-		Ease(self.camPos, "y", self.camPos.y - strength/2, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y + strength/2, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y - strength/2 end, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y + strength/2 end, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad"),
 		
 		Do(function()
 			self.isScreenShaking = false
@@ -424,7 +447,8 @@ function BasicScene:enterBattle(args)
 				opponents = args.opponents,
 				bossBattle = args.bossBattle,
 				initiative = args.initiative,
-				color = args.color
+				color = args.color,
+				practice = args.practice
 			}
 		end),
 		
@@ -448,29 +472,62 @@ end
 
 function BasicScene:keytriggered(key, uni)
 	if key == "escape" then
-		if self.showingEscapeMenu then
-			love.event.quit()
-		end
-		self.showingEscapeMenu = true
-		
-		self:run(Menu {
-			layout = Layout {
-				{Layout.Text("Exit game?"), selectable = false},
-				{Layout.Text("Yes"), choose = love.event.quit},
-				{Layout.Text("No"),
-					choose = function(menu)
+		if self.tutorial then
+			if self.showingEscapeMenu then
+				return
+			end
+			self.showingEscapeMenu = true
+			
+			self:run(BlockPlayer{ Menu {
+				layout = Layout {
+					{Layout.Text("Exit tutorial?"), selectable = false},
+					{Layout.Text("Yes"), choose = function(menu)
 						menu:close()
 						self:run {
 							menu,
-							Do(function() self.showingEscapeMenu = false end)
+							Do(function() self.sceneMgr:popScene{} end),
+							Do(function() end)
 						}
 					end},
-				colWidth = 200
-			},
-			transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
-			selectedRow = 2,
-			cancellable = true
-		})
+					{Layout.Text("No"),
+						choose = function(menu)
+							menu:close()
+							self:run {
+								menu,
+								Do(function() self.showingEscapeMenu = false end)
+							}
+						end},
+					colWidth = 200
+				},
+				transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+				selectedRow = 2,
+				cancellable = true
+			}})
+		else
+			if self.showingEscapeMenu then
+				love.event.quit()
+			end
+			self.showingEscapeMenu = true
+			
+			self:run(BlockPlayer{ Menu {
+				layout = Layout {
+					{Layout.Text("Exit game?"), selectable = false},
+					{Layout.Text("Yes"), choose = love.event.quit},
+					{Layout.Text("No"),
+						choose = function(menu)
+							menu:close()
+							self:run {
+								menu,
+								Do(function() self.showingEscapeMenu = false end)
+							}
+						end},
+					colWidth = 200
+				},
+				transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+				selectedRow = 2,
+				cancellable = true
+			}})
+		end
     end
 end
 
@@ -478,7 +535,8 @@ function BasicScene:playerMovable()
 	return  (self.initialized) and
 			(not self.mbox or self.mbox:isDone()) and
 			(not self.subscreen or (self.subscreen.isRemoved and self.subscreen:isRemoved())) and
-			not self.enteringBattle
+			not self.enteringBattle and
+			not self.pausePlayer
 end
 
 function BasicScene:pauseEnemies(active)
@@ -504,8 +562,13 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 
 	for _,obj in ipairs(self.map.objects) do
 		if obj.sprite and obj.sprite.transform and obj.x then
-			obj.sprite.transform.x = math.floor(obj.x + worldOffsetX)
-			obj.sprite.transform.y = math.floor(obj.y + worldOffsetY)
+			if obj.layer and obj.layer.properties and obj.layer.properties.movespeed then
+				obj.sprite.transform.x = (obj.x + worldOffsetX)*obj.layer.properties.movespeed
+				obj.sprite.transform.y = (obj.y + worldOffsetY)*obj.layer.properties.movespeed
+			else
+				obj.sprite.transform.x = math.floor(obj.x + worldOffsetX)
+				obj.sprite.transform.y = math.floor(obj.y + worldOffsetY)
+			end
 		end
 	end
 	
@@ -516,6 +579,20 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 		else
 			layer.x = math.floor((layer.offsetx + worldOffsetX)*(layer.properties.movespeed or 1.05))
 			layer.y = math.floor((layer.offsety + worldOffsetY)*(layer.properties.movespeed or 1.05))
+			
+			-- If image layer is configured to shimmer, setup a shimmer cycle and remove config
+			if layer.properties.shimmer then
+				local originalOpacity = layer.opacity
+				Executor(self):act(
+					Repeat(
+						Serial {
+							Ease(layer, "opacity", originalOpacity/1.5, 3, "quad"),
+							Ease(layer, "opacity", originalOpacity, 3, "quad")
+						}
+					)
+				)
+				layer.properties.shimmer = nil
+			end
 		end
 	end
 end
@@ -548,7 +625,9 @@ function BasicScene:update(dt)
 	Scene.update(self, dt)
 
 	-- Cannot move while subscreen is up
-	if not self.player or not self:playerMovable() then
+	if (not self.player or not self:playerMovable()) and
+		not self.pausePlayer
+	then
 		return
 	end
 	
@@ -567,8 +646,7 @@ function BasicScene:update(dt)
 	
 	self:pan(
 		math.floor((worldOffsetX + self.camPos.x)),
-		math.floor((worldOffsetY + self.camPos.y)),
-		self.isScreenShaking
+		math.floor((worldOffsetY + self.camPos.y))
 	)
 	self:updatePlayerPos()
 end
@@ -646,25 +724,6 @@ function BasicScene:draw()
 		love.graphics.setDefaultFilter("nearest", "nearest")
 		Scene.draw(self)
 	end
-	
-	--[[
-	-- Draw elipses boundaries for the knothole hut.
-	-- We will use two circles to define the collision within the hut
-	-- and do collision detection on either the top or bottom circle based
-	-- on which we are closer to
-	local circleY = 300
-	if self.player.y > self:getMapHeight() - 300 then
-		circleY = circleY - ((self:getMapHeight() - 300) - 300)
-	elseif self.player.y > 300 then
-		circleY = circleY - (self.player.y - 300)
-	end
-
-	love.graphics.setColor(255, 0, 0)
-	love.graphics.circle("line", 400, circleY + 70, 200)
-	love.graphics.setColor(255, 255, 0)
-	love.graphics.circle("line", 400, circleY + 115, 200)
-	love.graphics.setColor(255, 255, 255)
-	]]
 end
 
 

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="12">
  <properties>
+  <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/knotholehut.lua"/>
-  <property name="regionName" value="Sally's Room"/>
+  <property name="regionName" value="Sally's Hut"/>
  </properties>
- <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="812" columns="29">
-  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="914"/>
+ <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
+  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
  </tileset>
- <tileset firstgid="813" source="knothole.tsx"/>
- <tileset firstgid="4297" source="robotropolis.tsx"/>
+ <tileset firstgid="1045" source="knothole.tsx"/>
+ <tileset firstgid="4529" source="robotropolis.tsx"/>
+ <tileset firstgid="8029" source="knotholeindoors.tsx"/>
  <layer name="floor" width="25" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -82,14 +84,39 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="BigChest" type="BasicNPC" gid="6607" x="384" y="256" width="96" height="32">
+  <object id="1" name="BigChest" type="BasicNPC" gid="6839" x="384" y="256" width="32" height="32">
    <properties>
     <property name="GreenLeaf" type="int" value="1"/>
     <property name="align" value="bottom_left"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local Action = require &quot;actions/Action&quot;
+local Do = require &quot;actions/Do&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    if GameState.leader == &quot;sonic&quot; then
+        return Serial {
+            MessageBox {message=&quot;Sonic: Locked. {p50}I wonder what's in there...&quot;, blocking = true, textSpeed=4},
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif GameState.leader == &quot;sally&quot; then
+        return Serial {
+            MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.&quot;, blocking = true},
+            MessageBox {message=&quot;Sally: Maybe I could read it to Tails.&quot;, blocking = true}
+        }
+    end
+    return Action()
+end</property>
     <property name="sprite" type="file" value="../art/sprites/bigchest.png"/>
    </properties>
   </object>
-  <object id="2" name="Door" type="Door" gid="6607" x="352" y="608" width="64" height="64">
+  <object id="2" name="Door" type="Door" gid="6839" x="352" y="608" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-20"/>
@@ -102,45 +129,211 @@
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
-  <object id="3" name="Spawn 1" type="Player" gid="4333" x="448" y="352" width="32" height="32">
-   <properties>
-    <property name="orientation" value="up"/>
-   </properties>
-  </object>
-  <object id="4" name="SallysBed" type="BasicNPC" gid="6607" x="192" y="384" width="224" height="64">
+  <object id="4" name="SallysBed" type="BasicNPC" gid="6839" x="192" y="384" width="192" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="8"/>
     <property name="sprite" type="file" value="../art/sprites/sallybed.png"/>
    </properties>
   </object>
-  <object id="5" name="SallysBookshelf" type="BasicNPC" gid="6607" x="512" y="512" width="64" height="32">
+  <object id="5" name="SallysBookshelf" type="BasicNPC" gid="6839" x="512" y="512" width="64" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local Do = require &quot;actions/Do&quot;
+local Action = require &quot;actions/Action&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    if GameState.leader == &quot;sonic&quot; then
+        return Serial {
+            MessageBox {message=&quot;Sonic: Sal's science textbooks... {p50}Boooring.&quot;, blocking = true, textSpeed=4},
+            Do(function() self:refreshKeyHint() end)
+        }
+    elseif GameState.leader == &quot;sally&quot; then
+        return Serial {
+            MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.&quot;, blocking = true},
+            MessageBox {message=&quot;Sally: Maybe I could read it to Tails.&quot;, blocking = true}
+        }
+    end
+    return Action()
+end</property>
     <property name="sprite" type="file" value="../art/sprites/sallybookshelf.png"/>
    </properties>
   </object>
-  <object id="7" name="SallysStool" type="BasicNPC" gid="6607" x="512" y="320" width="32" height="32">
+  <object id="7" name="SallysStool" type="BasicNPC" gid="6839" x="512" y="320" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local Action = require &quot;actions/Action&quot;
+local Wait = require &quot;actions/Wait&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local DescBox = require &quot;actions/DescBox&quot;
+local Do = require &quot;actions/Do&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    self.menuClosing = false
+    local descBox = MessageBox{
+        message=&quot;Computer: What would you like to do?&quot;,
+        noPressX = true,
+        closeAction = YieldUntil(self, &quot;menuClosing&quot;)
+    }
+    return BlockPlayer {
+        PlayAudio(&quot;sfx&quot;, &quot;nicolebeep&quot;, 1.0, true),
+        Parallel {
+            descBox,
+            Serial {
+                Wait(1),
+                Menu {
+                    layout = Layout {
+                        {Layout.Text(&quot;Practice fighting&quot;), choose = function(menu)
+                            local fightMenuOpts = {{Layout.Text(&quot;Which boss?&quot;), selectable = false}}
+                            local bots = {&quot;rover&quot;}
+                            for _, name in pairs(bots) do
+                                local bot = require (&quot;data/monsters/&quot;..name)
+                                table.insert(fightMenuOpts, {Layout.Text(bot.name), choose = function(menu2)
+                                    self.scene:run {
+                                        Menu {
+                                            layout = Layout {
+                                                {Layout.Text(&quot;Fight &quot;..bot.name..&quot;?&quot;), selectable = false},
+                                                {Layout.Text(&quot;Yes&quot;), choose = function(menu3)
+                                                    menu:close()
+                                                    menu2:close()
+                                                    menu3:close()
+                                                    self.menuClosing = true
+                                                    self.scene:run {
+                                                        menu3,
+                                                        menu2,
+                                                        menu,
+                                                        descBox,
+                                                        self.scene:enterBattle {
+                                                            opponents = {name},
+                                                            music = &quot;boss&quot;,
+                                                            bossBattle = true,
+                                                            practice = true
+                                                        },
+                                                        MessageBox{message=&quot;Computer: Fighting simulation complete.&quot;, blocking = true},
+                                                        -- Hack to fix bug returning from battle
+                                                        Do(function()
+                                                            self.scene.player.cinematicStack = 1
+                                                        end)
+                                                    }
+                                                end},
+                                                {Layout.Text(&quot;No&quot;), choose = function(menu3)
+                                                    menu3:close()
+                                                end}
+                                            },
+                                            cancellable = true,
+                                            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2+30),
+                                            selectedRow = 2
+                                        }
+                                    }
+                                end})
+                            end
+                            self.scene:run {
+                                Parallel {menu,
+                                Menu {
+                                    layout = Layout(fightMenuOpts),
+                                    cancellable = true,
+                                    transform = Transform(love.graphics.getWidth()/2 + 200, love.graphics.getHeight()/2 + 30),
+                                    selectedRow = 2
+                                }}
+                            }
+                        end, desc = &quot;Practice fighting against past bosses.&quot;},
+                        {Layout.Text(&quot;Practice sneaking&quot;), choose = function(menu)
+                            self.scene:run {
+                                Parallel {menu,
+                                Menu {
+                                    layout = Layout {
+                                        {Layout.Text(&quot;Are you sure?&quot;), selectable = false},
+                                        {Layout.Text(&quot;Yes&quot;), choose = function(menu2)
+                                            menu:close()
+                                            menu2:close()
+                                            self.menuClosing = true
+                                            self.scene:run {
+                                                menu2,
+                                                menu,
+                                                descBox,
+                                                Do(function()
+                                                    self.scene.audio:stopMusic()
+                                                    self.scene:changeScene{map=&quot;stealthtut1&quot;, tutorial=true}
+                                                end),
+                                                MessageBox {
+                                                    message = &quot;Computer: Stealth simulation complete.&quot;,
+                                                    blocking = true
+                                                },
+                                                -- Hack to fix bug returning from battle
+                                                Do(function()
+                                                    self.scene.player.cinematicStack = 1
+                                                end)
+                                            }
+                                        end},
+                                        {Layout.Text(&quot;No&quot;), choose = function(menu2)
+                                            menu2:close()
+                                        end}
+                                    },
+                                    cancellable = true,
+                                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2+30),
+                                    selectedRow = 2
+                                }}
+                            }
+                        end, desc = &quot;Fighting isn't the only option.&quot;},
+                        {Layout.Text(&quot;Give me a hint&quot;), choose = function(menu)
+                            menu:close()
+                            self.menuClosing = true
+                            self.scene:run {
+                                menu,
+                                descBox,
+                                MessageBox {
+                                    message = &quot;Computer: Chill Blue Streak, my man. {p50}This is just a micro-demo.&quot;,
+                                    blocking = true,
+                                    textSpeed = 4
+                                }
+                            }
+                        end, desc = &quot;Forgot what you were supposed to be doing?&quot;}
+                    },
+                    cancellable = true,
+                    withClose = Do(function() descBox:close() end),
+                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)
+                }
+            }
+        },
+        Do(function()
+            self:refreshKeyHint()
+        end)
+    }
+end</property>
     <property name="sprite" type="file" value="../art/sprites/stool.png"/>
    </properties>
   </object>
-  <object id="8" name="DeskUpper" type="BasicNPC" gid="6607" x="512" y="288" width="32" height="32">
+  <object id="8" name="DeskUpper" type="BasicNPC" gid="6839" x="512" y="288" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/sallycomputerdeskupper.png"/>
    </properties>
   </object>
-  <object id="9" name="DeskLower" type="BasicNPC" gid="6607" x="544" y="384" width="32" height="64">
+  <object id="9" name="DeskLower" type="BasicNPC" gid="6839" x="544" y="384" width="32" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/sallycomputerdesklower.png"/>
    </properties>
   </object>
-  <object id="10" name="Brightness" type="BasicNPC" gid="6628" x="256" y="320" width="64" height="64">
+  <object id="10" name="Brightness" type="BasicNPC" gid="6860" x="256" y="320" width="64" height="64">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)
@@ -151,7 +344,7 @@ end</property>
 end</property>
    </properties>
   </object>
-  <object id="11" name="Brightness" type="BasicNPC" gid="6628" x="320" y="320" width="32" height="32">
+  <object id="11" name="Brightness" type="BasicNPC" gid="6860" x="320" y="320" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)
@@ -195,12 +388,36 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,119,0,0,0,0,0,0,
+0,0,0,0,0,0,119,119,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
+0,0,0,0,0,0,119,119,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="BunnyExtCollision" width="25" height="20" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

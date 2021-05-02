@@ -9,7 +9,7 @@ local Transform = require "util/Transform"
 
 return function(attribute, amount, color)
 	return function (target, transform)
-		local newhp = math.min(target[attribute] + amount, target.stats["max"..attribute])
+		local newstat = math.min(target[attribute] + amount, target.stats["max"..attribute])
 		return Do(function()
 			Executor(target.scene):act(Parallel {
 				BouncyText(
@@ -21,7 +21,7 @@ return function(attribute, amount, color)
 					false,
 					true -- outline
 				),
-				Ease(target, attribute, newhp, 7),
+				Ease(target, attribute, newstat, 7),
 				Do(function() target[attribute] = math.floor(target[attribute]) end)
 			})
 		end)

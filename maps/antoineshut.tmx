@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="16">
+ <properties>
+  <property name="onload" type="file" value="actions/knotholehut.lua"/>
+  <property name="regionName" value="Antoine's Hut"/>
+ </properties>
+ <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
+  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
+ </tileset>
+ <tileset firstgid="1045" source="knothole.tsx"/>
+ <tileset firstgid="4529" source="robotropolis.tsx"/>
+ <tileset firstgid="8029" source="knotholeindoors.tsx"/>
+ <tileset firstgid="9831" source="forest2.tsx"/>
+ <tileset firstgid="15006" source="knotholehut2.tsx"/>
+ <tileset firstgid="16162" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
+  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
+ </tileset>
+ <layer name="floor" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1,2,3,4,5,6,7,8,9,10,11,12,13,0,0,0,0,0,0,
+0,0,0,0,0,0,30,31,32,33,34,35,36,37,38,39,40,41,42,0,0,0,0,0,0,
+0,0,0,0,0,0,59,60,61,62,63,64,65,66,67,68,69,70,71,0,0,0,0,0,0,
+0,0,0,0,0,0,88,89,90,91,92,93,94,95,96,97,98,99,100,0,0,0,0,0,0,
+0,0,0,0,0,0,117,118,119,120,121,122,123,124,125,126,127,128,129,0,0,0,0,0,0,
+0,0,0,0,0,0,146,147,148,149,150,151,152,153,154,155,156,157,158,0,0,0,0,0,0,
+0,0,0,0,0,0,175,176,177,178,179,180,181,182,183,184,185,186,187,0,0,0,0,0,0,
+0,0,0,0,0,0,204,205,206,207,208,209,210,211,212,213,214,215,216,0,0,0,0,0,0,
+0,0,0,0,0,0,233,234,235,236,237,238,239,240,241,242,243,244,245,0,0,0,0,0,0,
+0,0,0,0,0,0,262,263,264,265,266,267,268,269,270,271,272,273,274,0,0,0,0,0,0,
+0,0,0,0,0,0,291,292,293,294,295,296,297,298,299,300,301,302,303,0,0,0,0,0,0,
+0,0,0,0,0,0,320,321,322,323,324,325,326,327,328,329,330,331,332,0,0,0,0,0,0,
+0,0,0,0,0,0,349,350,351,352,353,354,355,356,357,358,359,360,361,0,0,0,0,0,0,
+0,0,0,0,0,0,378,379,380,381,382,383,384,385,386,387,388,389,390,0,0,0,0,0,0,
+0,0,0,0,0,0,407,408,409,410,411,412,413,414,415,416,417,418,419,0,0,0,0,0,0,
+0,0,0,0,0,0,436,437,438,439,440,441,442,443,444,445,446,447,448,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="floor2" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,474,475,476,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,503,504,505,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,590,591,0,0,0,590,591,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,619,620,0,0,0,619,620,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,694,829,830,831,832,833,834,835,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,858,859,860,861,862,863,864,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,887,888,889,890,891,892,893,317,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,916,917,918,919,920,921,922,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,945,946,947,948,949,950,951,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,974,975,976,977,978,979,980,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="above" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,685,686,687,688,689,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,714,715,716,717,718,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,86,0,743,744,745,746,747,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,115,0,772,773,774,775,776,0,793,794,795,796,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,801,802,803,804,805,0,822,823,824,825,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,851,852,853,854,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,880,881,882,883,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,909,910,911,912,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,938,939,940,941,0,0,0,0,0,
+0,0,0,0,0,0,0,9249,9250,9251,0,0,0,0,0,0,967,968,969,970,0,0,0,0,0,
+0,0,0,0,0,0,0,9302,9303,9304,0,0,0,0,0,0,996,997,998,999,0,0,0,0,0,
+0,0,0,0,0,0,0,9355,9356,9357,0,0,0,0,0,0,1025,1026,1027,1028,0,0,0,0,0,
+0,0,0,0,0,0,0,9408,9409,9410,0,0,0,0,0,9313,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,9366,0,0,0,0,0,9366,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,9419,0,0,0,0,0,9419,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="above2" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,650,651,652,653,654,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,679,680,681,682,683,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,708,709,710,711,712,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,737,738,739,740,741,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,9359,0,766,767,768,769,770,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,9412,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,9360,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,9413,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="objects">
+  <object id="2" name="Door" type="Door" gid="6839" x="352" y="608" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-20"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="key" value="down"/>
+    <property name="orientation" value="up"/>
+    <property name="scene" type="file" value="knothole.lua"/>
+    <property name="spawn_point" value="AntoineHutDoor"/>
+    <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
+   </properties>
+  </object>
+  <object id="13" name="Stove" type="BasicNPC" gid="6839" x="544" y="320" width="32" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local Action = require &quot;actions/Action&quot;
+local Wait = require &quot;actions/Wait&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local DescBox = require &quot;actions/DescBox&quot;
+local Do = require &quot;actions/Do&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Ease = require &quot;actions/Ease&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
+
+local SpriteNode = require &quot;object/SpriteNode&quot;
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    if GameState:isFlagSet(&quot;got_chilidog&quot;) then
+        return Serial {
+            MessageBox{message=&quot;Sonic: It's no use. {p40}Ant's outta Chili!&quot;, blocking = true},
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+
+    self.scene.player.noIdle = true
+    return BlockPlayer {
+        Animate(self.scene.player.sprite, &quot;smileright&quot;),
+        MessageBox {message = &quot;Sonic: Antoine's got a way past cool kitchen!&quot;},
+        Animate(self.scene.player.sprite, &quot;thinking&quot;),
+        MessageBox {message = &quot;Sonic: I'm sure he won't mind if I borrow it for a Sonic second...&quot;},
+        Menu {
+            layout = Layout {
+                {Layout.Text(&quot;Cook some food?&quot;), selectable = false},
+                {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                    menu:close()
+                    self.scene:run {
+                        menu,
+                        AudioFade(&quot;music&quot;, 0.8, 0, 2),
+                        Wait(0.5),
+                        PlayAudio(&quot;sfx&quot;, &quot;switchcharshort&quot;, 1.0, true),
+                        self.scene.player:spin(1, 0.01),
+                        self.scene.player:spin(1, 0.02),
+                        Animate(self.scene.player.sprite, &quot;posechef&quot;),
+                        Wait(0.5),
+                        MessageBox {
+                            message = &quot;Sonic: Let's do it to it!&quot;,
+                        },
+                        Parallel {
+                            -- Fade to black
+                            Ease(self.scene.bgColor, 1, 0, 2, &quot;linear&quot;),
+                            Ease(self.scene.bgColor, 2, 0, 2, &quot;linear&quot;),
+                            Ease(self.scene.bgColor, 3, 0, 2, &quot;linear&quot;),
+                            Do(function()
+                                ScreenShader:sendColor(&quot;multColor&quot;, self.scene.bgColor)
+                            end)
+                        },
+                        PlayAudio(&quot;sfx&quot;, &quot;cooking&quot;, 0.8),
+                        Parallel {
+                            -- Fade in
+                            Ease(self.scene.bgColor, 1, 255, 2, &quot;linear&quot;),
+                            Ease(self.scene.bgColor, 2, 255, 2, &quot;linear&quot;),
+                            Ease(self.scene.bgColor, 3, 255, 2, &quot;linear&quot;),
+                            Do(function()
+                                ScreenShader:sendColor(&quot;multColor&quot;, self.scene.bgColor)
+                            end)
+                        },
+                        PlayAudio(&quot;music&quot;, &quot;sallyrally&quot;, 1.0),
+                        PlayAudio(&quot;music&quot;, &quot;knotholehut&quot;, 1.0, true, true),
+                        Do(function() GameState:grantItem(require(&quot;data/items/Chilidog&quot;), 1) end),
+                        MessageBox {
+                            message = &quot;You received a Chilidog!&quot;,
+                            blocking = true,
+                            sfx = &quot;choose&quot;,
+                            textSpeed = 7
+                        },
+                        Do(function() GameState:setFlag(&quot;got_chilidog&quot;) end)
+                    }
+                end},
+                {Layout.Text(&quot;No&quot;), choose = function(menu)
+                    menu:close()
+                end}
+            },
+            cancellable = true,
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+            selectedRow = 2
+        },
+        Do(function()
+            self:refreshKeyHint()
+            self.scene.player.noIdle = false
+        end)
+    }
+end</property>
+   </properties>
+  </object>
+  <object id="14" name="Pot" type="BasicNPC" gid="6839" x="480" y="544" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="plant"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/pot.png"/>
+   </properties>
+  </object>
+  <object id="15" name="Pot" type="BasicNPC" gid="6839" x="288" y="544" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="plant"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/pot.png"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="top" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Collision" width="25" height="20" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,119,119,0,119,119,119,119,119,119,119,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,119,119,0,0,0,119,119,119,0,0,0,119,119,0,0,0,0,0,0,
+0,0,0,0,0,0,119,119,119,0,0,119,119,119,0,0,0,119,119,0,0,0,0,0,0,
+0,0,0,0,0,0,0,119,119,0,0,0,0,0,0,0,0,119,119,0,0,0,0,0,0,
+0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,119,119,0,0,0,0,0,0,
+0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,119,119,0,0,0,0,0,0,
+0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,119,119,0,0,0,0,0,0,
+0,0,0,0,0,0,119,119,119,119,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,119,119,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="BunnyExtCollision" width="25" height="20" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

@@ -23,7 +23,7 @@ local ANIMATION_WAIT = 0.01
 
 local SLOWDOWN_SPEED = 1
 local SLOWDOWN_STOP_SPEED = 1
-local RETURN_SPEED = 1
+local RETURN_SPEED = 2
 
 local RUN_DIRCHANGE_COOLDOWN = 0.2 -- Num secs to delay direction change
 
@@ -55,7 +55,7 @@ local RunUpdate = function(self, dt)
 		self.sprite.color = {255,255,255,255}
 	end
 	
-	if self.blocked or not self.scene:playerMovable() or self.scene.pausePlayer then
+	if self.blocked or not self.scene:playerMovable() then
 		return
 	end
 	
@@ -68,8 +68,9 @@ local RunUpdate = function(self, dt)
 			self.fy = self.fy + (self.fy > 0 and -SLOWDOWN_STOP_SPEED or SLOWDOWN_STOP_SPEED)
 			if self.fy >= -1 and self.fy <= 1 then
 				self.state = "idle"..(self:isFacing("down") and "down" or "up")
-				self.basicUpdate = self.origUpdate
-				self.origUpdate = nil
+				self.scene.camPos.x = 0
+				self.scene.camPos.y = 0
+				self.basicUpdate = self.updateFun
 				return
 			end
 		elseif math.abs(self.fy) < RUN_FORCE_MAGNITUDE then
@@ -145,8 +146,9 @@ local RunUpdate = function(self, dt)
 			self.fx = self.fx + (self.fx > 0 and -SLOWDOWN_STOP_SPEED or SLOWDOWN_STOP_SPEED)
 			if self.fx >= -1 and self.fx <= 1 then
 				self.state = "idle"..(self:isFacing("right") and "right" or "left")
-				self.basicUpdate = self.origUpdate
-				self.origUpdate = nil
+				self.scene.camPos.x = 0
+				self.scene.camPos.y = 0
+				self.basicUpdate = self.updateFun
 				return
 			end
 		elseif math.abs(self.fx) < RUN_FORCE_MAGNITUDE then
@@ -221,8 +223,8 @@ local RunUpdate = function(self, dt)
 	local fy = self.fy
 	
 	-- Step forward
-	self.x = self.x + (fx + self.bx) * (dt/0.016)
 	self.y = self.y + (fy + self.by) * (dt/0.016)
+	self.x = self.x + (fx + self.bx) * (dt/0.016)
 	
 	-- Going up stairs
 	local _, stairs = next(self.stairs)
@@ -274,6 +276,41 @@ local RunUpdate = function(self, dt)
 			self.state = "juiceleft"
 		end
 	end
+
+	--[[
+	if math.abs(self.fx) > math.abs(self.fy) then
+		if self.fx > RUN_FORCE_MAGNITUDE*0.8 then
+			self.scene.camPos.x = math.max(-250, self.scene.camPos.x - 3 * (dt/0.016))
+		elseif self.fx < -RUN_FORCE_MAGNITUDE*0.8 then
+			self.scene.camPos.x = math.min(250, self.scene.camPos.x + 3 * (dt/0.016))
+		elseif self.scene.camPos.x < 0 then
+			self.scene.camPos.x = math.min(0, self.scene.camPos.x + 3 * (dt/0.016))
+		elseif self.scene.camPos.x > 0 then
+			self.scene.camPos.x = math.max(0, self.scene.camPos.x - 3 * (dt/0.016))
+		end
+		
+		if self.scene.camPos.y < 0 then
+			self.scene.camPos.y = math.min(0, self.scene.camPos.y + 3 * (dt/0.016))
+		elseif self.scene.camPos.y > 0 then
+			self.scene.camPos.y = math.max(0, self.scene.camPos.y - 3 * (dt/0.016))
+		end
+	else
+		if self.fy > RUN_FORCE_MAGNITUDE*0.8 then
+			self.scene.camPos.y = math.max(-150, self.scene.camPos.y - 3 * (dt/0.016))
+		elseif self.fy < -RUN_FORCE_MAGNITUDE*0.8 then
+			self.scene.camPos.y = math.min(150, self.scene.camPos.y + 3 * (dt/0.016))
+		elseif self.scene.camPos.y < 0 then
+			self.scene.camPos.y = math.min(0, self.scene.camPos.y + 3 * (dt/0.016))
+		elseif self.scene.camPos.y > 0 then
+			self.scene.camPos.y = math.max(0, self.scene.camPos.y - 3 * (dt/0.016))
+		end
+		
+		if self.scene.camPos.x < 0 then
+			self.scene.camPos.x = math.min(0, self.scene.camPos.x + 3 * (dt/0.016))
+		elseif self.scene.camPos.x > 0 then
+			self.scene.camPos.x = math.max(0, self.scene.camPos.x - 3 * (dt/0.016))
+		end
+	end]]
 	
 	self.sprite:setAnimation(self.stateOverride or self.state)
 	self.stateOverride = nil
@@ -333,10 +370,10 @@ local RunUpdate = function(self, dt)
 			end
 		end
 		
-		if collidedX and self.fx > 0 then
+		if (collidedX or self.specialCollidedX) and self.fx > 0 then
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
-				local yOrig = self.y
+				local yOrig = self.sprite.transform.y + self.sprite.h*2
 				self.sprite.sortOrderY = yOrig
 				self:run(Parallel {
 					self.scene:screenShake(30, 20),
@@ -363,8 +400,11 @@ local RunUpdate = function(self, dt)
 						},
 						Do(function()
 							self.state = "idleright"
-							self.basicUpdate = self.origUpdate
+							self.scene.camPos.x = 0
+							self.scene.camPos.y = 0
+							self.basicUpdate = self.updateFun
 							self.crashIntoWall = false
+							self.specialCollidedX = false
 							self.sprite.sortOrderY = nil
 						end)
 					},
@@ -375,12 +415,12 @@ local RunUpdate = function(self, dt)
 				})
 			else
 				self.state = "idleright"
-				self.basicUpdate = self.origUpdate
+				self.basicUpdate = self.updateFun
 			end
-		elseif collidedX and self.fx < 0 then
+		elseif (collidedX or self.specialCollidedX) and self.fx < 0 then
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
-				local yOrig = self.y
+				local yOrig = self.sprite.transform.y + self.sprite.h*2
 				self.sprite.sortOrderY = yOrig
 				self:run(Parallel {
 					self.scene:screenShake(30, 20),
@@ -407,7 +447,10 @@ local RunUpdate = function(self, dt)
 						},
 						Do(function()
 							self.state = "idleleft"
-							self.basicUpdate = self.origUpdate
+							self.scene.camPos.x = 0
+							self.scene.camPos.y = 0
+							self.basicUpdate = self.updateFun
+							self.specialCollidedX = false
 							self.crashIntoWall = false
 							self.sprite.sortOrderY = nil
 						end)
@@ -419,9 +462,9 @@ local RunUpdate = function(self, dt)
 				})
 			else
 				self.state = "idleleft"
-				self.basicUpdate = self.origUpdate
+				self.basicUpdate = self.updateFun
 			end
-		elseif collidedY and self.fy > 0 then
+		elseif (collidedY or self.specialCollidedY) and self.fy > 0 then
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
 				self:run(Parallel {
@@ -445,8 +488,11 @@ local RunUpdate = function(self, dt)
 							end)
 						),
 						Do(function()
+							self.scene.camPos.x = 0
+							self.scene.camPos.y = 0
 							self.state = "idledown"
-							self.basicUpdate = self.origUpdate
+							self.basicUpdate = self.updateFun
+							self.specialCollidedY = false
 							self.crashIntoWall = false
 						end)
 					},
@@ -458,9 +504,9 @@ local RunUpdate = function(self, dt)
 				})
 			else
 				self.state = "idledown"
-				self.basicUpdate = self.origUpdate
+				self.basicUpdate = self.updateFun
 			end
-		elseif collidedY and self.fy < 0 then
+		elseif (collidedY or self.specialCollidedY) and self.fy < 0 then
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
 				self:run(Parallel {
@@ -484,8 +530,11 @@ local RunUpdate = function(self, dt)
 							end)
 						),
 						Do(function()
+							self.scene.camPos.x = 0
+							self.scene.camPos.y = 0
 							self.state = "idleup"
-							self.basicUpdate = self.origUpdate
+							self.basicUpdate = self.updateFun
+							self.specialCollidedY = false
 							self.crashIntoWall = false
 						end)
 					},
@@ -497,7 +546,7 @@ local RunUpdate = function(self, dt)
 				})
 			else
 				self.state = "idleup"
-				self.basicUpdate = self.origUpdate
+				self.basicUpdate = self.updateFun
 			end
 		end
 		
@@ -653,6 +702,11 @@ local ChargeLeftRight = function(player, direction)
 	
 	player.sprite.visible = false
 	
+	local origBodyX = body.transform.x
+	local origHeadX = head.transform.x
+	local origLeg1X = leg1.transform.x
+	local origLeg2X = leg2.transform.x
+
 	local chargeSpeed = (player.chargeSpeed or 1)
 	
 	player:run(While(
@@ -662,6 +716,14 @@ local ChargeLeftRight = function(player, direction)
 		Serial {
 			PlayAudio("sfx", "sonicrun", 1.0, true, false, true),
 			Parallel {
+				--[[Do(function()
+					if direction > 0 then
+						player.scene.camPos.x = math.max(-250, player.scene.camPos.x - 3 * (love.timer.getDelta()/0.016))
+					else
+						player.scene.camPos.x = math.min(250, player.scene.camPos.x + 3 * (love.timer.getDelta()/0.016))
+					end
+				end),]]
+				
 				-- Gently rotate sprite
 				Serial {
 					Parallel {
@@ -736,7 +798,7 @@ local ChargeLeftRight = function(player, direction)
 				player.sprite.visible = true
 				
 				-- Stop running
-				player.basicUpdate = player.origUpdate
+				player.basicUpdate = player.updateFun
 			end)
 		}
 	))
@@ -790,6 +852,10 @@ local ChargeUpDown = function(player, direction)
 	
 	player.sprite.visible = false
 	
+	local origBodyY = body.transform.y
+	local origHeadY = head.transform.y
+	local origLegsY = legs.transform.y
+	
 	local chargeSpeed = (player.chargeSpeed or 1)
 	
 	player:run(While(
@@ -812,6 +878,14 @@ local ChargeUpDown = function(player, direction)
 						Ease(legs.transform, "y", legs.transform.y, 12 / chargeSpeed),
 					}
 				}
+				
+				--[[Do(function()
+					if direction > 0 then
+						player.scene.camPos.y = math.max(-150, player.scene.camPos.y - 3 * (love.timer.getDelta()/0.016))
+					else
+						player.scene.camPos.y = math.min(150, player.scene.camPos.y + 3 * (love.timer.getDelta()/0.016))
+					end
+				end)]]
 			},
 			Do(function()
 				legs:remove()
@@ -843,7 +917,7 @@ local ChargeUpDown = function(player, direction)
 				player.sprite.visible = true
 				
 				-- Stop running
-				player.basicUpdate = player.origUpdate
+				player.basicUpdate = player.updateFun
 			end)
 		}
 	))
@@ -851,7 +925,6 @@ end
 
 return function(player)
 	-- Remember basic movement controls
-	player.origUpdate = player.basicUpdate
 	player.basicUpdate = function(self, dt) end
 	player.counterWalkSpeed = player.walkspeed
 	

@@ -18,7 +18,6 @@ local Repeat = require "actions/Repeat"
 
 return function(player)
 	-- Remember basic movement controls
-	player.origUpdate = player.basicUpdate
 	player.basicUpdate = function(self, dt) end
 	
 	-- Find nearest bot
@@ -95,7 +94,7 @@ return function(player)
 			Animate(player.sprite, "scaredhop5"),
 			aggro,
 			Do(function()
-				player.basicUpdate = player.origUpdate
+				player.basicUpdate = player.updateFun
 				player.sprite.sortOrderY = nil
 			end)
 		},
@@ -107,7 +106,7 @@ return function(player)
 				Ease(player.scene.camPos, "y", 0, 3, "linear")
 			},
 			Do(function()
-				player.basicUpdate = player.origUpdate
+				player.basicUpdate = player.updateFun
 				player.sprite.sortOrderY = nil
 				player.scene:pauseEnemies(false)
 			end)

@@ -45,7 +45,7 @@ function FallArea:update(dt)
 					self.scene.player.x = self.scene.lastSafePlatform.x + self.scene.lastSafePlatform.object.width/2
 					self.scene.player.y = self.scene.lastSafePlatform.y
 					self.scene.player.platforms[tostring(self.scene.lastSafePlatform)] = self.scene.lastSafePlatform
-					self.scene.player.basicUpdate = self.scene.player.origUpdate or origUpdate
+					self.scene.player.basicUpdate = self.scene.player.updateFun
 					self.scene.player.state = "idledown"
 					self.scene.player.falling = false
 					self.scene.player.cinematic = false
@@ -60,8 +60,7 @@ function FallArea:update(dt)
 				),
 				Do(function()
 					self.scene.player.cinematic = false
-					self.scene.player.basicUpdate = self.scene.player.origUpdate
-					self.scene.player.origUpdate = nil
+					self.scene.player.basicUpdate = self.scene.player.updateFun
 					self.scene.player.doingChangeChar = false
 					
 					-- Update keyhint

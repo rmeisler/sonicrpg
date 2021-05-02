@@ -153,5 +153,12 @@ return {
 		swimup = {
 			frames = {{10,3}}
 		},
+		
+		binoculars_1 = {
+			frames = {{12,1}}
+		},
+		binoculars_2 = {
+			frames = {{11,1}}
+		},
     }
 }

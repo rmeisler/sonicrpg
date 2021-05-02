@@ -15,11 +15,6 @@ end
 function Stairs:update(dt)
 	local player = self.scene.player
 	if self.state == NPC.STATE_TOUCHING then
-		-- On first touch, update position
-		if not next(player.stairs) then
-			player.x = self.x + self.object.width/2
-			player.y = self.y + self.object.height/2 - player.sprite.h
-		end
 		player.stairs[tostring(self)] = self
 	else
 		player.stairs[tostring(self)] = nil

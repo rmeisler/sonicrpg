@@ -135,7 +135,7 @@ function RaceSquare:onCollision(prevState)
 		self.scene.pausePlayer = true
 		
 		local prevMusic = self.scene.audio:getCurrentMusic()
-		self.scene:run {
+		self.scene.player:run {
 			PlayAudio("music", "puzzlesolve", 1.0),
 			
 			Parallel {

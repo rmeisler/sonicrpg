@@ -94,5 +94,9 @@ return {
 		liftring_idle = {
 			frames = {{1,3}}
 		},
+		throw = {
+			frames = {{1,10},{2,10},{3,10},{3,10},{3,10},{3,10}},
+			speed = 0.1
+		},
     }
 }

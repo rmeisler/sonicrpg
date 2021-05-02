@@ -10,8 +10,9 @@ return {
   tileheight = 32,
   nextobjectid = 12,
   properties = {
+    ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/knotholehut.lua",
-    ["regionName"] = "Sally's Room"
+    ["regionName"] = "Sally's Hut"
   },
   tilesets = {
     {
@@ -23,7 +24,7 @@ return {
       margin = 0,
       image = "../art/tiles/knotholehutinterior.png",
       imagewidth = 950,
-      imageheight = 914,
+      imageheight = 1170,
       transparentcolor = "#000000",
       tileoffset = {
         x = 0,
@@ -36,12 +37,12 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 812,
+      tilecount = 1044,
       tiles = {}
     },
     {
       name = "forest",
-      firstgid = 813,
+      firstgid = 1045,
       filename = "knothole.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -67,7 +68,7 @@ return {
     },
     {
       name = "robotropolis",
-      firstgid = 4297,
+      firstgid = 4529,
       filename = "robotropolis.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -89,6 +90,32 @@ return {
       properties = {},
       terrains = {},
       tilecount = 3500,
+      tiles = {}
+    },
+    {
+      name = "knotholeindoors",
+      firstgid = 8029,
+      filename = "knotholeindoors.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/knotholeinterior.png",
+      imagewidth = 1696,
+      imageheight = 1088,
+      transparentcolor = "#b326bd",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 1802,
       tiles = {}
     }
   },
@@ -218,14 +245,15 @@ return {
           shape = "rectangle",
           x = 384,
           y = 256,
-          width = 96,
+          width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["GreenLeaf"] = 1,
             ["align"] = "bottom_left",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\nlocal Do = require \"actions/Do\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return Serial {\n            MessageBox {message=\"Sonic: Locked. {p50}I wonder what's in there...\", blocking = true, textSpeed=4},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    elseif GameState.leader == \"sally\" then\n        return Serial {\n            MessageBox {message=\"Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.\", blocking = true},\n            MessageBox {message=\"Sally: Maybe I could read it to Tails.\", blocking = true}\n        }\n    end\n    return Action()\nend",
             ["sprite"] = "../art/sprites/bigchest.png"
           }
         },
@@ -239,7 +267,7 @@ return {
           width = 64,
           height = 64,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -254,32 +282,16 @@ return {
           }
         },
         {
-          id = 3,
-          name = "Spawn 1",
-          type = "Player",
-          shape = "rectangle",
-          x = 448,
-          y = 352,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 4333,
-          visible = true,
-          properties = {
-            ["orientation"] = "up"
-          }
-        },
-        {
           id = 4,
           name = "SallysBed",
           type = "BasicNPC",
           shape = "rectangle",
           x = 192,
           y = 384,
-          width = 224,
+          width = 192,
           height = 64,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -297,10 +309,11 @@ return {
           width = 64,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return Serial {\n            MessageBox {message=\"Sonic: Sal's science textbooks... {p50}Boooring.\", blocking = true, textSpeed=4},\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sally\" then\n        return Serial {\n            MessageBox {message=\"Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.\", blocking = true},\n            MessageBox {message=\"Sally: Maybe I could read it to Tails.\", blocking = true}\n        }\n    end\n    return Action()\nend",
             ["sprite"] = "../art/sprites/sallybookshelf.png"
           }
         },
@@ -314,10 +327,12 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal DescBox = require \"actions/DescBox\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    self.menuClosing = false\n    local descBox = MessageBox{\n        message=\"Computer: What would you like to do?\",\n        noPressX = true,\n        closeAction = YieldUntil(self, \"menuClosing\")\n    }\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"nicolebeep\", 1.0, true),\n        Parallel {\n            descBox,\n            Serial {\n                Wait(1),\n                Menu {\n                    layout = Layout {\n                        {Layout.Text(\"Practice fighting\"), choose = function(menu)\n                            local fightMenuOpts = {{Layout.Text(\"Which boss?\"), selectable = false}}\n                            local bots = {\"rover\"}\n                            for _, name in pairs(bots) do\n                                local bot = require (\"data/monsters/\"..name)\n                                table.insert(fightMenuOpts, {Layout.Text(bot.name), choose = function(menu2)\n                                    self.scene:run {\n                                        Menu {\n                                            layout = Layout {\n                                                {Layout.Text(\"Fight \"..bot.name..\"?\"), selectable = false},\n                                                {Layout.Text(\"Yes\"), choose = function(menu3)\n                                                    menu:close()\n                                                    menu2:close()\n                                                    menu3:close()\n                                                    self.menuClosing = true\n                                                    self.scene:run {\n                                                        menu3,\n                                                        menu2,\n                                                        menu,\n                                                        descBox,\n                                                        self.scene:enterBattle {\n                                                            opponents = {name},\n                                                            music = \"boss\",\n                                                            bossBattle = true,\n                                                            practice = true\n                                                        },\n                                                        MessageBox{message=\"Computer: Fighting simulation complete.\", blocking = true},\n                                                        -- Hack to fix bug returning from battle\n                                                        Do(function()\n                                                            self.scene.player.cinematicStack = 1\n                                                        end)\n                                                    }\n                                                end},\n                                                {Layout.Text(\"No\"), choose = function(menu3)\n                                                    menu3:close()\n                                                end}\n                                            },\n                                            cancellable = true,\n                                            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2+30),\n                                            selectedRow = 2\n                                        }\n                                    }\n                                end})\n                            end\n                            self.scene:run {\n                                Parallel {menu,\n                                Menu {\n                                    layout = Layout(fightMenuOpts),\n                                    cancellable = true,\n                                    transform = Transform(love.graphics.getWidth()/2 + 200, love.graphics.getHeight()/2 + 30),\n                                    selectedRow = 2\n                                }}\n                            }\n                        end, desc = \"Practice fighting against past bosses.\"},\n                        {Layout.Text(\"Practice sneaking\"), choose = function(menu)\n                            self.scene:run {\n                                Parallel {menu,\n                                Menu {\n                                    layout = Layout {\n                                        {Layout.Text(\"Are you sure?\"), selectable = false},\n                                        {Layout.Text(\"Yes\"), choose = function(menu2)\n                                            menu:close()\n                                            menu2:close()\n                                            self.menuClosing = true\n                                            self.scene:run {\n                                                menu2,\n                                                menu,\n                                                descBox,\n                                                Do(function()\n                                                    self.scene.audio:stopMusic()\n                                                    self.scene:changeScene{map=\"stealthtut1\", tutorial=true}\n                                                end),\n                                                MessageBox {\n                                                    message = \"Computer: Stealth simulation complete.\",\n                                                    blocking = true\n                                                },\n                                                -- Hack to fix bug returning from battle\n                                                Do(function()\n                                                    self.scene.player.cinematicStack = 1\n                                                end)\n                                            }\n                                        end},\n                                        {Layout.Text(\"No\"), choose = function(menu2)\n                                            menu2:close()\n                                        end}\n                                    },\n                                    cancellable = true,\n                                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2+30),\n                                    selectedRow = 2\n                                }}\n                            }\n                        end, desc = \"Fighting isn't the only option.\"},\n                        {Layout.Text(\"Give me a hint\"), choose = function(menu)\n                            menu:close()\n                            self.menuClosing = true\n                            self.scene:run {\n                                menu,\n                                descBox,\n                                MessageBox {\n                                    message = \"Computer: Chill Blue Streak, my man. {p50}This is just a micro-demo.\",\n                                    blocking = true,\n                                    textSpeed = 4\n                                }\n                            }\n                        end, desc = \"Forgot what you were supposed to be doing?\"}\n                    },\n                    cancellable = true,\n                    withClose = Do(function() descBox:close() end),\n                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)\n                }\n            }\n        },\n        Do(function()\n            self:refreshKeyHint()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/stool.png"
           }
         },
@@ -331,7 +346,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -349,7 +364,7 @@ return {
           width = 32,
           height = 64,
           rotation = 0,
-          gid = 6607,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -367,7 +382,7 @@ return {
           width = 64,
           height = 64,
           rotation = 0,
-          gid = 6628,
+          gid = 6860,
           visible = true,
           properties = {
             ["ghost"] = true,
@@ -385,7 +400,7 @@ return {
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6628,
+          gid = 6860,
           visible = true,
           properties = {
             ["ghost"] = true,
@@ -451,12 +466,48 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 119, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 119, 119, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "tilelayer",
+      name = "BunnyExtCollision",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      visible = false,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

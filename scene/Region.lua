@@ -183,6 +183,7 @@ function Region:finalize()
 		-- Inject imagelayer image
 		for _,layer in pairs(map.layers) do
 			if layer.image then
+				print("Loading layer image "..tostring(layer.image))
 				local img = self.images[layer.image:match("/(%w+)%.")]
 				img:setFilter("nearest", "nearest")
 				layer.image = img

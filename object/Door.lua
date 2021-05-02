@@ -15,6 +15,7 @@ local Door = class(NPC)
 function Door:construct(scene, layer, object)
 	self.opensfx = object.properties.opensfx or "door"
 	self.locked = object.properties.locked
+	self.keyToDoor = object.properties.keyToDoor
 	self.open = false
 
 	NPC.init(self)
@@ -28,7 +29,9 @@ function Door:construct(scene, layer, object)
 end
 
 function Door:enter()
-	self.sprite:setAnimation("closed")
+	if self.sprite then
+		self.sprite:setAnimation("closed")
+	end
 	self.open = false
 	self:addInteract(Door.interact)
 end
@@ -39,10 +42,13 @@ function Door:onCollision(prevState)
 		not self.scene.sceneMgr.transitioning
 	then
 		self.scene.player.cinematic = true
+		local mapName = "maps/"..tostring(self.object.properties.scene)
 		self.scene.sceneMgr:pushScene {
 			class = "BasicScene",
-			map = self.scene.maps["maps/"..tostring(self.object.properties.scene)],
+			map = self.scene.maps[mapName],
+			mapName = mapName,
 			maps = self.scene.maps,
+			region = self.scene.region,
 			images = self.scene.images,
 			animations = self.scene.animations,
 			audio = self.scene.audio,
@@ -53,7 +59,7 @@ function Door:onCollision(prevState)
 end
 
 function Door:interact()
-	if self.locked then
+	if self.locked and not GameState:hasItem(self.keyToDoor) then
 		self:run {
 			PlayAudio("sfx", "locked", 1.0, true),
 			MessageBox {message = "Locked.", blocking = true},
@@ -64,13 +70,18 @@ function Door:interact()
 	else
 		self:removeInteract(Door.interact)
 
+		local anim = Serial{}
+		if self.sprite then
+			anim = Serial {
+				Animate(self.sprite, "opening"),
+				Animate(self.sprite, "open")
+			}
+		end
+		
 		self:run {
 			Parallel {
 				PlayAudio("sfx", self.opensfx, 1.0),
-				Serial {
-					Animate(self.sprite, "opening"),
-					Animate(self.sprite, "open")
-				}
+				anim
 			},
 			Do(function()
 				self.open = true

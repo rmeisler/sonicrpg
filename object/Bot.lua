@@ -39,6 +39,7 @@ function Bot:construct(scene, layer, object)
 	self.noMusic = object.properties.noMusic
 	self.visibleDist = object.properties.visibleDistance
 	self.audibleDist = object.properties.audibleDistance
+	self.noSetFlag = object.properties.noSetFlag
 	
 	self.facingTime = 0
 	self.movespeed = 2
@@ -163,6 +164,11 @@ function Bot:postInit()
 	self.visualColliders.right.sprite.visible = false
 	self.visualColliders.up.sprite.visible = false
 	self.visualColliders.down.sprite.visible = false
+	
+	self.visualColliders.left.hidden = true
+	self.visualColliders.right.hidden = true
+	self.visualColliders.up.hidden = true
+	self.visualColliders.down.hidden = true
 end
 
 function Bot:followActions()
@@ -277,6 +283,7 @@ function Bot:update(dt)
 					if not self.scene.enteringBattle and not self.noMusic then
 						self.scene.audio:playMusic("trouble", 1.0, true)
 					end
+					self.scene.player:invoke("caught", self)
 				end),
 				Wait(1),
 				self:follow(self.scene.player, "run", 5, nil, true)
@@ -367,6 +374,7 @@ function Bot:investigateUpdate(dt)
 				if not self.scene.enteringBattle and not self.noMusic then
 					self.scene.audio:playMusic("trouble", 1.0, true)
 				end
+				self.scene.player:invoke("caught", self)
 			end),
 			Wait(1),
 			self:follow(self.scene.player, "run", 5, nil, true)
@@ -769,8 +777,10 @@ function Bot:remove()
 		end
 	end
 
-	GameState:setFlag(self:getFlag())
-	
+	if not self.scene.isRestarting and not self.noSetFlag then
+		GameState:setFlag(self:getFlag())
+	end
+
 	self:removeAllUpdates()
 
 	NPC.remove(self)

@@ -1,8 +1,4 @@
 local Player      = require "object/Player"
-local Actor       = require "actions/Executor"
-local MessageBox  = require "actions/MessageBox"
-local Menu        = require "actions/Menu"
-local Animate     = require "actions/Animate"
 local BattleMenu  = require "object/BattleMenu"
 local SpriteNode  = require "object/SpriteNode"
 local TextNode    = require "object/TextNode"
@@ -16,6 +12,7 @@ local Rect       = unpack(require "util/Shapes")
 local Animation  = require "util/AnAL"
 local Transform  = require "util/Transform"
 local Gradient   = require "util/Gradient"
+local Layout     = require "util/Layout"
 local Audio      = require "util/Audio"
 
 local Action    = require "actions/Action"
@@ -28,6 +25,10 @@ local Wait      = require "actions/Wait"
 local TypeText  = require "actions/TypeText"
 local PlayAudio = require "actions/PlayAudio"
 local AudioFade = require "actions/AudioFade"
+local MessageBox  = require "actions/MessageBox"
+local Menu        = require "actions/Menu"
+local BlockPlayer = require "actions/BlockPlayer"
+local Animate     = require "actions/Animate"
 
 local Scene = require "scene/Scene"
 
@@ -60,6 +61,8 @@ function BattleScene:onEnter(args)
 	self.bossBattle = args.bossBattle
 	self.initiative = args.initiative
 	self.color = args.color
+	self.practice = args.practice
+	self.camPos = Transform()
 
 	self.mboxGradient = self.images["mboxgradient"]
 
@@ -319,6 +322,38 @@ function BattleScene:update(dt)
 		end
 		
 	elseif self.state == BattleScene.STATE_PLAYERWIN then
+		if self.practice then
+			self.bgColor = {255,255,255,255}
+			
+			local victoryPoses = {}
+			for _, mem in pairs(self.party) do
+				if mem.state ~= BattleActor.STATE_DEAD then
+					table.insert(victoryPoses, Animate(mem.sprite, "victory"))
+				end
+			end
+			self:run {
+				-- Fade out current music
+				AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+				PlayAudio("music", "victory", 1.0, true, true),
+				
+				Parallel(victoryPoses),
+				
+				MessageBox {
+					message="Computer: Well done.",
+					rect=MessageBox.HEADLINER_RECT
+				},
+				
+				Do(function()
+					self.sceneMgr:popScene{}
+				end),
+				
+				Do(function()
+				end)
+			}
+			self.state = "playerwinpending"
+			return
+		end
+	
 		-- Add up spoils of war from each opponent
 		local spoilsActions = {}
 		for _,reward in pairs(self.rewards) do
@@ -391,12 +426,10 @@ function BattleScene:update(dt)
 			},
 			
 			Do(function()
-				print("pop scene")
 				self.sceneMgr:popScene{}
 			end),
 			
 			Do(function()
-				print("here")
 			end)
 		}
 		self.state = "playerwinpending"
@@ -405,10 +438,28 @@ function BattleScene:update(dt)
 		self.musicVolume = self.audio:getMusicVolume()
 		self.bgColor = {255,255,255,255}
 		
-		-- HACK: For factoryfloor
-		self.audio:stopSfx("factoryfloor")
-		
-		self.sceneMgr:backToTitle()
+		if self.practice then
+			self:run {
+				AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+				PlayAudio("music", "nomore", 1.0, true),
+				MessageBox {
+					message="Computer: How embarassing for you...",
+					rect=MessageBox.HEADLINER_RECT,
+					textSpeed = 3
+				},
+				Do(function()
+					self.sceneMgr:popScene{}
+				end),
+				Do(function()
+				end)
+			}
+		else
+			-- HACK: For factoryfloor
+			self.audio:stopSfx("factoryfloor")
+			
+			self.sceneMgr:backToTitle()
+		end
+
 		self.state = "monsterwinpending"
 	end
 end
@@ -565,18 +616,58 @@ end
 
 function BattleScene:keytriggered(key)
     -- Exit game
-    if key == "escape" then
-        --love.event.quit()
+    if key == "escape" and self.practice then
+        if self.showingEscapeMenu then
+			return
+		end
+		self.showingEscapeMenu = true
+		
+		self:run(BlockPlayer{ Menu {
+			layout = Layout {
+				{Layout.Text("Leave battle?"), selectable = false},
+				{Layout.Text("Yes"), choose = function(menu)
+					menu:close()
+					self:run {
+						menu,
+						Do(function() self.sceneMgr:popScene{} end),
+						Do(function() end)
+					}
+				end},
+				{Layout.Text("No"),
+					choose = function(menu)
+						menu:close()
+						self:run {
+							menu,
+							Do(function() self.showingEscapeMenu = false end)
+						}
+					end},
+				colWidth = 200
+			},
+			transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+			selectedRow = 2,
+			cancellable = true
+		}})
     end
 end
 
 function BattleScene:draw()
+	local sceneLayer = self.sceneLookup.sprites
+	if self.isScreenShaking then
+		for _, node in pairs(sceneLayer.nodes) do
+			if not node.transform then
+				node.transform = Transform(0,0,1,1)
+			end
+			node.origXformY = node.transform.y
+			node.transform.y = node.transform.y + self.camPos.y
+		end
+	end
+
 	if self.blur then
 		self.blur(function()
 			love.graphics.setDefaultFilter("nearest", "nearest")
 			
 			love.graphics.setColor(255,255,255,255)
-			love.graphics.draw(self.bgimg, 0, 0)
+			love.graphics.draw(self.bgimg, 0, self.camPos.y)
 		
 			self:sortedDraw("sprites")
 			Scene.draw(self, "ui")
@@ -585,11 +676,43 @@ function BattleScene:draw()
 		love.graphics.setDefaultFilter("nearest", "nearest")
 		
 		love.graphics.setColor(255,255,255,255)
-		love.graphics.draw(self.bgimg, 0, 0)
+		love.graphics.draw(self.bgimg, 0, self.camPos.y)
 		
 		self:sortedDraw("sprites")
 		Scene.draw(self, "ui")
 	end
+	
+	if self.isScreenShaking then
+		for _, node in pairs(sceneLayer.nodes) do
+			node.transform.y = node.origXformY
+		end
+	end
+end
+
+-- Vertical screen shake
+function BattleScene:screenShake(strength, speed)
+	strength = strength or 50
+	speed = speed or 15
+	
+	return Serial {
+		Do(function()
+			self.isScreenShaking = true
+		end),
+		Ease(self.camPos, "y", self.camPos.y - strength, speed, "quad"),
+		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		Ease(self.camPos, "y", self.camPos.y + strength, speed, "quad"),
+		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		
+		Ease(self.camPos, "y", self.camPos.y - strength/2, speed, "quad"),
+		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		Ease(self.camPos, "y", self.camPos.y + strength/2, speed, "quad"),
+		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		
+		Do(function()
+			self.isScreenShaking = false
+			self.camPos = Transform()
+		end)
+	}
 end
 
 

@@ -57,9 +57,15 @@ function NPC:construct(scene, layer, object)
 		self.notColliding = assert(loadstring(object.properties.notColliding))()
 	end
 	
+	if object.properties.onUpdate then
+		self.onUpdate = assert(loadstring(object.properties.onUpdate))()
+	end
+	
 	if object.properties.onInteract then
 		self:addInteract(NPC.onInteract)
 	end
+	
+	self.hidden = object.properties.hidden
 	
 	self.hotspotOffsets = {
 		right_top = {x = 0, y = 0},
@@ -80,6 +86,9 @@ function NPC:construct(scene, layer, object)
 			nil,
 			self.layer.name
 		)
+		if self.hidden then
+			self.sprite.visible = false
+		end
 		self.sprite.sortOrderY = object.properties.sortOrderY
 		if self.object.properties.defaultAnim then
 			self.sprite:setAnimation(self.object.properties.defaultAnim)
@@ -254,6 +263,26 @@ function NPC:isFacing(direction)
 	return string.find(self.sprite.selected, direction) ~= nil
 end
 
+function NPC:facePlayer()
+	local player = self.scene.player
+	local dx = self.x + self.sprite.w/2 - player.x
+    local dy = self.y + self.sprite.h/2 - player.y
+
+    if math.abs(dx) < math.abs(dy) then
+        if dy < 0 then
+            self.sprite:setAnimation("idledown")
+        else
+            self.sprite:setAnimation("idleup")
+        end
+    else
+        if dx < 0 then
+            self.sprite:setAnimation("idleright")
+        else
+            self.sprite:setAnimation("idleleft")
+        end
+    end
+end
+
 function NPC:messageBox()
 	if self.collided then
 		return
@@ -344,8 +373,16 @@ function NPC:update(dt)
 	local prevState = self.state
 	self.state = NPC.STATE_IDLE
 	
-	if not self.scene.player then
+	if self.sprite then
+		self.sprite.visible = not self.hidden
+	end
+
+	if not self.scene.player or self.hidden then
 		return
+	end
+	
+	if self.onUpdate then
+		self.onUpdate(self, dt)
 	end
 	
 	-- Update hotspots
@@ -371,6 +408,7 @@ function NPC:update(dt)
 	
 	if self.hidingSpot then
 		self.scene.player.inHidingSpot[tostring(self)] = nil
+		self.scene.player.keyhints[tostring(self)] = self
 	end
 	
 	if 	self.disappearOn and
@@ -402,7 +440,10 @@ function NPC:update(dt)
 				self:invoke("collision", prevState)
 				self:onCollision(prevState)
 				
-				if prevState ~= NPC.STATE_TOUCHING and not self.disabled then
+				if  prevState ~= NPC.STATE_TOUCHING and
+					not self.disabled and
+					self.scene.player:isFacingObj(self)
+				then
 					if self.isInteractable or self.specialHintPlayer then
 						self.scene.player.keyhints[tostring(self)] = self
 					end
@@ -422,10 +463,8 @@ function NPC:update(dt)
 			self.notColliding(self, self.scene.player)
 		end
 
-		if self.isInteractable or self.specialHintPlayer then
-			self.scene.player.keyhints[tostring(self)] = nil
-			self.scene.player.hidekeyhints[tostring(self)] = nil
-		end
+		self.scene.player.keyhints[tostring(self)] = nil
+		self.scene.player.hidekeyhints[tostring(self)] = nil
 		self.scene.player.touching[tostring(self)] = nil
 	end
 end
@@ -519,9 +558,11 @@ end
 
 function NPC:remove()
 	-- Remove from collision map
-	for _, pair in pairs(self.collision or {}) do
-		if self.scene.map.collisionMap[pair[2]] then
-			self.scene.map.collisionMap[pair[2]][pair[1]] = nil
+	if not self.ghost and not self.object.properties.ghost then
+		for _, pair in pairs(self.collision or {}) do
+			if self.scene.map.collisionMap[pair[2]] then
+				self.scene.map.collisionMap[pair[2]][pair[1]] = nil
+			end
 		end
 	end
 	

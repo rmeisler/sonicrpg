@@ -2,8 +2,8 @@ local Fun = require "util/EasingFunctions"
 
 return {
 	id = "bunny",
-	name = "Bunny",
-	altName = "Bunny",
+	name = "Bunnie",
+	altName = "Bunnie",
 
 	avatar = "avatar/bunnyavatar",
 	sprite = "sprites/bunny",

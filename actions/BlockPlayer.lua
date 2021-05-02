@@ -11,7 +11,7 @@ function BlockPlayer:setScene(scene)
 		scene,
 		Do(function()
 			if scene.player then
-				scene.player.cinematic = true
+				scene.player.cinematicStack = scene.player.cinematicStack + 1
 			end
 		end)
 	)
@@ -19,7 +19,7 @@ function BlockPlayer:setScene(scene)
 		scene,
 		Do(function()
 			if scene.player then
-				scene.player.cinematic = false
+				scene.player.cinematicStack = scene.player.cinematicStack - 1
 			end
 		end)
 	)

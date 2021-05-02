@@ -27,6 +27,9 @@ function GameState:construct()
 	-- Armor in the shared inventory
 	self[ItemType.Armor] = {}
 	
+	-- Leg items in the shared inventory
+	self[ItemType.Legs] = {}
+	
 	-- Accessories in the shared inventory
 	self[ItemType.Accessory] = {}
 	
@@ -38,12 +41,14 @@ function GameState:construct()
 end
 
 function GameState:calcNextXp(member, level)
-	local member = self.party[member]	
-	local fun = member.growth.startxp
-	local a = member.startingstats.startxp
-	local b = member.maxstats.startxp
-	local t = level/GameState.MAX_LEVEL_CAP	
+	return self:calcNextStat(self.party[member], level, "startxp")
+end
 
+function GameState:calcNextStat(profile, level, stat)
+	local fun = profile.growth[stat]
+	local a = profile.startingstats[stat]
+	local b = profile.maxstats[stat]
+	local t = level/GameState.MAX_LEVEL_CAP
 	return math.ceil(a + fun(t) * (b-a))
 end
 
@@ -59,16 +64,14 @@ function GameState:loadPartyMember(member, level, new)
 	-- Scale them up to the requested level
 	profile.stats = {}
 	for stat,fun in pairs(profile.growth) do
-		local a = profile.startingstats[stat]
-		local b = profile.maxstats[stat]
-		local t = (level - 1)/GameState.MAX_LEVEL_CAP
-		profile.stats[stat] = math.ceil(a + fun(t) * (b-a))
+		profile.stats[stat] = self:calcNextStat(profile, level-1, stat)
 	end
 	
 	profile.level = level
 	profile.hp = profile.stats.maxhp
 	profile.sp = profile.stats.maxsp
 	profile.xp = profile.stats.startxp
+	profile.stats.maxxp = self:calcNextStat(profile, level, "startxp")
 	
 	-- Add items and calculate bonuses from starting equipment
 	if new then
@@ -88,6 +91,7 @@ function GameState:loadPartyMember(member, level, new)
 		self.profiles[member] = {}
 	end
 	self.profiles[member][level] = profile
+	
 	return profile
 end
 
@@ -175,6 +179,16 @@ function GameState:hasItem(name)
 	return self.items[name] ~= nil
 end
 
+function GameState:getItemsOfSubtype(type)
+	local items = {}
+	for name, rec in pairs(self.items) do
+		if rec.item.subtype == type then
+			items[name] = rec
+		end
+	end
+	return items
+end
+
 function GameState:useItem(record)
 	record.count = record.count - 1
 	if (record.count == 0) then
@@ -233,15 +247,19 @@ function GameState:levelup(member)
 	local member = self.party[member]
 	
 	member.level = member.level + 1
+
+	-- If Sonic levels up, unset ring flag, so we can get another ring from the lake
+	if member.id == "sonic" then
+		self:unsetFlag("got_ring")
+	end
 	
 	-- Scale them up to the requested level
 	member.stats = {}
 	for stat,fun in pairs(member.growth) do
-		local a = member.startingstats[stat]
-		local b = member.maxstats[stat]
-		local t = (member.level - 1)/GameState.MAX_LEVEL_CAP
-		member.stats[stat] = math.ceil(a + fun(t) * (b-a))
+		member.stats[stat] = self:calcNextStat(member, member.level-1, stat)
 	end
+
+	member.stats.maxxp = self:calcNextXp(member.id, member.level) - member.stats.startxp
 
 	-- Add stat bonuses from equipment
 	for _, equip in pairs(member.equip) do
@@ -322,6 +340,7 @@ function GameState:save(scene, slot, spawnPoint)
 	-- Save inventory and flags
 	data[ItemType.Weapon] = self[ItemType.Weapon]
 	data[ItemType.Armor] = self[ItemType.Armor]
+	data[ItemType.Legs] = self[ItemType.Legs]
 	data[ItemType.Accessory] = self[ItemType.Accessory]
 	data.items = self.items
 	data.flags = self.flags
@@ -364,6 +383,7 @@ function GameState:load(scene, slot)
 	local types = {
 		ItemType.Weapon,
 		ItemType.Armor,
+		ItemType.Legs,
 		ItemType.Accessory,
 		"items"
 	}

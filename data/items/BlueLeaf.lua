@@ -8,10 +8,7 @@ return {
 	unusable = function(target)
 		return target.hp == 0
 	end,
-	icon = "icon_item",
-	cost = {
-		plant = 3
-	},
+	icon = "icon_plant",
 	battleAction = function()
 		local SpHeal = require "data/items/actions/SpHeal"
 		return SpHeal("sp", 10)

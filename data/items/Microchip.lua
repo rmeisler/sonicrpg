@@ -4,7 +4,8 @@ return {
 	name = "Microchip",
 	desc = "Some scrap bot parts",
 	target = TargetType.Party,
-	icon = "icon_item",
+	subtype = "junk",
+	icon = "icon_accessory",
 	usableFromMenu = false,
 	usableFromBattle = false,
 }

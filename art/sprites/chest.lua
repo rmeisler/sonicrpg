@@ -1,8 +1,8 @@
 return {
     image = "chest.png",
     starting = "idle",
-    w = 16,
-    h = 16,
+    w = 32,
+    h = 32,
 
     animations = {
         idle = {

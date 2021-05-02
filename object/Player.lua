@@ -94,6 +94,9 @@ function Player:construct(scene, layer, object)
 	-- A hashset of stairs we are touching
 	self.stairs = {}
 	
+	-- A hashset of ladders we are touching
+	self.ladders = {}
+	
 	-- A hashset of keyhints we are touching
 	self.keyhints = {}
 
@@ -155,10 +158,19 @@ function Player:construct(scene, layer, object)
 		left_bot  = {x = 0, y = 0}
 	}
 	
+	self.collisionHSOffsets = {
+		right_top = {x = 18, y = 0},
+		right_bot = {x = 18, y = 0},
+		left_top = {x = -15, y = 0},
+		left_bot = {x = -15, y = 0},
+	}
+	
 	self:createVisuals()
 	
 	self:addSceneHandler("update", Player.update)
 	self:addSceneHandler("keytriggered", Player.keytriggered)
+	
+	self.updateFun = self.basicUpdate
 	
 	-- Set scene reference to this player
 	scene.player = self
@@ -199,13 +211,40 @@ function Player:updateKeyHint()
 		self:showKeyHint(false, specialKeyHint.specialHintPlayer)
 	elseif closestKeyHint then
 		self.curKeyHint = closestKeyHint
-		self:showKeyHint(true, nil)
+		
+		if closestKeyHint.hidingSpot then
+			local dir
+			if  math.abs(self.x -
+						 (closestKeyHint.x + closestKeyHint.sprite.w)) >
+				math.abs((self.y + self.sprite.h) -
+						 (closestKeyHint.y + closestKeyHint.sprite.h*2))
+			then
+				if  self.x >
+					(closestKeyHint.x + closestKeyHint.sprite.w)
+				then
+					dir = "left"
+				else
+					dir = "right"
+				end
+			else
+				if (self.y + self.sprite.h) >
+				   (closestKeyHint.y + closestKeyHint.sprite.h*2)
+				then
+					dir = "up"
+				else
+					dir = "down"
+				end
+			end
+			self:showKeyHint(false, nil, "press"..dir)
+		else
+			self:showKeyHint(true, nil)
+		end
 	else
 		self:removeKeyHint()
 	end
 end
 
-function Player:showKeyHint(showPressX, specialHint)
+function Player:showKeyHint(showPressX, specialHint, showPressDir)
 	if self.erasingKeyHint then
 		return
 	end
@@ -220,7 +259,29 @@ function Player:showKeyHint(showPressX, specialHint)
 		specialHint = nil
 	end
 
-	if specialHint ~= nil and not self.showPressLsh then		
+	-- Highest precedence goes to dir press
+	if showPressDir and showPressDir ~= self.showPressDir then
+		if self.showPressDir then
+			self.curKeyHintSprite:remove()
+		end
+		local pressDirXForm = Transform.relative(
+			self.transform,
+			Transform(self.sprite.w - 10, 0)
+		)
+		local pressDir = SpriteNode(
+			self.scene,
+			pressDirXForm,
+			{255,255,255,0},
+			showPressDir,
+			nil,
+			nil,
+			"objects"
+		)
+		pressDir.sortOrderY = Player.MAX_SORT_ORDER_Y
+		self.curKeyHintSprite = pressDir
+		table.insert(keyHintActions, Ease(pressDir.color, 4, 255, 5))
+		self.showPressDir = showPressDir
+	elseif specialHint ~= nil and not self.showPressLsh then		
 		local pressLshXForm = Transform.relative(
 			self.transform,
 			Transform(self.sprite.w - 12, 0)
@@ -278,6 +339,7 @@ function Player:removeKeyHint()
 				
 				self.showPressLsh = false
 				self.showPressX = false
+				self.showPressDir = false
 				self.erasingKeyHint = false
 			end)
 		}
@@ -309,7 +371,7 @@ function Player:split()
 			}
 		)
 		self.partySprites[id].sprite.color = self:inShadow() and {150,150,150,255} or {255,255,255,255}
-		self.partySprites[id].sprite.visible = false
+		self.partySprites[id].hidden = true
 		self.scene:addObject(self.partySprites[id])
 
 		local walkOutAnim, idleAnim, walkInAnim, dir = unpack(table.remove(paths, 1))
@@ -317,7 +379,7 @@ function Player:split()
 			walkOutActions,
 			Serial {
 				Do(function()
-					self.partySprites[id].sprite.visible = true
+					self.partySprites[id].hidden = false
 				end),
 				Animate(self.partySprites[id].sprite, walkOutAnim, true),
 				Parallel {
@@ -356,7 +418,7 @@ function Player:split()
 			-- Hide our primary sprite
 			self.sprite.visible = false
 			if self.dropShadow.sprite then
-				self.dropShadow.sprite.visible = false
+				self.dropShadow.hidden = true
 			end
 		end),
 		
@@ -374,7 +436,7 @@ function Player:split()
 			-- Show our primary sprite
 			self.sprite.visible = true
 			if self.dropShadow.sprite then
-				self.dropShadow.sprite.visible = true
+				self.dropShadow.hidden = false
 			end
 		end)
 	}
@@ -412,7 +474,6 @@ function Player:onChangeChar()
 	
 	self.doingChangeChar = true
 
-	self.origUpdate = self.basicUpdate
 	self.basicUpdate = function(self, dt)
 		self:updateShadows()
 		self:updateVisuals()
@@ -452,14 +513,14 @@ function Player:onChangeChar()
 		Wait(0.5),
 		
 		Do(function()
-			self.basicUpdate = self.origUpdate
-			self.origUpdate = nil
+			self.basicUpdate = self.updateFun
 			self.doingChangeChar = false
 			
 			-- Update keyhint
 			for k in pairs(self.keyhints) do
 				self.hidekeyhints[k] = nil
 			end
+			self.keyhints = {}
 		end)
 	}
 end
@@ -467,6 +528,9 @@ end
 function Player:onSpecialMove()
 	if not self.noSpecialMove then
 		self.doingSpecialMove = true
+		self.keyhints = {}
+		self.hidekeyhints = {}
+		self:removeKeyHint()
 		GameState.party[GameState.leader].specialmove(self)
 	end
 end
@@ -495,6 +559,25 @@ function Player:isFacing(direction)
 		return false
 	end
 	return string.find(self.state, direction) ~= nil
+end
+
+function Player:isFacingObj(object)
+	return true
+	--[[if  math.abs(self.x - object.object.x) >
+		math.abs(self.y - object.object.y)
+	then
+		if self.x < object.object.x then
+			return self:isFacing("left")
+		else
+			return self:isFacing("right")
+		end
+	else
+		if self.y < object.object.y then
+			return self:isFacing("down")
+		else
+			return self:isFacing("up")
+		end
+	end]]
 end
 
 function Player:updateSprite()
@@ -643,8 +726,16 @@ function Player:basicUpdate(dt)
 		self.state = Player.ToIdle[self.state] or self.state
 	end
 	
-	self.collisionX, self.collisionY = self.scene:worldCoordToCollisionCoord(self.x, self.y)
-	local hotspots = self:updateHotspots()
+	local hotspots = self:updateCollisionObj()
+	
+	hotspots.right_top.x = hotspots.right_top.x + self.collisionHSOffsets.right_top.x
+	hotspots.right_top.y = hotspots.right_top.y + self.collisionHSOffsets.right_top.y
+	hotspots.right_bot.x = hotspots.right_bot.x + self.collisionHSOffsets.right_bot.x
+	hotspots.right_bot.y = hotspots.right_bot.y + self.collisionHSOffsets.right_bot.y
+	hotspots.left_top.x = hotspots.left_top.x + self.collisionHSOffsets.left_top.x
+	hotspots.left_top.y = hotspots.left_top.y + self.collisionHSOffsets.left_top.y
+	hotspots.left_bot.x = hotspots.left_bot.x + self.collisionHSOffsets.left_bot.x
+	hotspots.left_bot.y = hotspots.left_bot.y + self.collisionHSOffsets.left_bot.y
     
 	if 	self.cinematic or
 		self.cinematicStack > 0 or
@@ -697,10 +788,7 @@ function Player:basicUpdate(dt)
 							return love.keyboard.isDown("right") and not next(self.investigators)
 						end,
 						Serial {
-							Parallel {
-								Ease(self.sprite.color, 4, 130, 2, "inout"),
-								Wait(1)
-							},
+							Wait(1),
 							Do(function()
 								self.state = "peekright"
 							end),
@@ -716,10 +804,7 @@ function Player:basicUpdate(dt)
 									--self.sprite.sortOrderY = nil
 								end
 							end),
-							Parallel {
-								Ease(self.sprite.color, 4, 255, 2, "inout"),
-								Wait(1)
-							},
+							Wait(1),
 							Do(function()
 								self.hidingDirection = nil
 							end)
@@ -763,10 +848,7 @@ function Player:basicUpdate(dt)
 							return love.keyboard.isDown("left") and not next(self.investigators)
 						end,
 						Serial {
-							Parallel {
-								Ease(self.sprite.color, 4, 130, 2, "inout"),
-								Wait(1)
-							},
+							Wait(1),
 							Do(function()
 								self.state = "peekleft"
 							end),
@@ -782,10 +864,7 @@ function Player:basicUpdate(dt)
 									--self.sprite.sortOrderY = nil
 								end
 							end),
-							Parallel {
-								Ease(self.sprite.color, 4, 255, 2, "inout"),
-								Wait(1)
-							},
+							Wait(1),
 							Do(function()
 								self.hidingDirection = nil
 							end)
@@ -802,12 +881,9 @@ function Player:basicUpdate(dt)
 		if  self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, 0, movespeed) and
 			self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, 0, movespeed)
 		then
-			-- Not allowed to move up and down if going up stairs
-			if not next(self.stairs) then
-				self.y = self.y + movespeed
-				self.state = Player.STATE_WALKDOWN
-				moving = true
-			end
+			self.y = self.y + movespeed
+			self.state = Player.STATE_WALKDOWN
+			moving = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
 			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
@@ -821,12 +897,13 @@ function Player:basicUpdate(dt)
 					{name = "playerHideHand", x = self.x - 20, y = self.y + self.height, width = self.width, height = self.height,
 						properties = {
 							nocollision = true,
+							hidden = true,
+							defaultAnim = "hidedownhand",
 							sprite = "art/sprites/"..GameState.party[GameState.leader].sprite..".png"
 						}
 					}
 				)
 				self.scene:addObject(self.hideHand)
-				self.hideHand.sprite.visible = false
 				self.scene:run(
 					While(
 						function()
@@ -834,7 +911,6 @@ function Player:basicUpdate(dt)
 						end,
 						Serial {
 							Parallel {
-								Ease(self.sprite.color, 4, 130, 2, "inout"),
 								Ease(self, "x", self.x - 20, 4, "inout"),
 								Wait(1)
 							},
@@ -844,7 +920,7 @@ function Player:basicUpdate(dt)
 								self.hideHand.sprite.transform.oy = self.hideHand.sprite.h
 								self.hideHand.sprite.transform.sx = 0
 								self.hideHand.sprite.transform.sy = 2
-								self.hideHand.sprite.visible = true
+								self.hideHand.hidden = false
 								self.hideHand.sprite.sortOrderY = self.hideHand.sprite.transform.y + self.hideHand.sprite.h*2 + 10
 							end),
 							Parallel {
@@ -871,10 +947,7 @@ function Player:basicUpdate(dt)
 									self.state = Player.STATE_IDLEUP
 								end
 							end),
-							Parallel {
-								Ease(self.sprite.color, 4, 255, 2, "inout"),
-								Wait(1)
-							},
+							Wait(1),
 							Do(function()
 								-- Hold hiding direction power for a little
 								self.hidingDirection = nil
@@ -891,12 +964,9 @@ function Player:basicUpdate(dt)
 		if  self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, 0, -movespeed) and
 			self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, 0, -movespeed)
 		then
-			-- Not allowed to move up and down if going up stairs
-			if not next(self.stairs) then
-				self.y = self.y - movespeed
-				self.state = Player.STATE_WALKUP
-				moving = true
-			end
+			self.y = self.y - movespeed
+			self.state = Player.STATE_WALKUP
+			moving = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
 			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
@@ -911,10 +981,7 @@ function Player:basicUpdate(dt)
 							return love.keyboard.isDown("up") and not next(self.investigators)
 						end,
 						Serial {
-							Parallel {
-								Ease(self.sprite.color, 4, 130, 2, "inout"),
-								Wait(1)
-							},
+							Wait(1),
 							Do(function()
 								self.state = "peekup"
 							end),
@@ -930,10 +997,7 @@ function Player:basicUpdate(dt)
 									self.state = Player.STATE_IDLEUP
 								end
 							end),
-							Parallel {
-								Ease(self.sprite.color, 4, 255, 2, "inout"),
-								Wait(1)
-							},
+							Wait(1),
 							Do(function()
 								-- Hold hiding direction power for a little
 								self.hidingDirection = nil
@@ -958,6 +1022,11 @@ function Player:basicUpdate(dt)
 	end
 	
 	self.sprite:setAnimation(self.state)
+end
+
+function Player:updateCollisionObj()
+	self.collisionX, self.collisionY = self.scene:worldCoordToCollisionCoord(self.x, self.y)
+	return self:updateHotspots()
 end
 
 function Player:distanceFromSq(obj)
@@ -1019,14 +1088,16 @@ function Player:isTouching(x, y, w, h)
 		return false
 	end
 	
-	w = w or self.scene:getTileWidth()
-	h = h or self.scene:getTileHeight()
+	local tw = self.scene:getTileWidth()
+	local th = self.scene:getTileHeight()
+	w = w or tw
+	h = h or th
 	
 	local fuzz = 5
 	return (x + w) >= (self.hotspots.left_bot.x - fuzz) and
 		x < (self.hotspots.right_bot.x + fuzz) and
 		(self.hotspots.left_bot.y + fuzz) >= y and
-		(self.hotspots.right_top.y - fuzz) <= (y + h)
+		(self.hotspots.right_top.y - fuzz) <= (y + math.max(th*2, h/2))
 end
 
 function Player:isTouchingObj(obj)

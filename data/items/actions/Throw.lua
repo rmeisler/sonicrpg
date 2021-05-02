@@ -48,14 +48,16 @@ return function(sprite, stats)
 			
 			Do(function()
 				explosionXForm = throwable.transform
+				explosionXForm.y = explosionXForm.y + 100
 				throwable:remove()
 			end),
 			PlayAudio("sfx", "explosion", 1.0, true),
 			Parallel {
 				Animate(function()
-					local sprite = SpriteNode(target.scene, explosionXForm, nil, "explosion", nil, nil, "ui")
+					local sprite = SpriteNode(target.scene, explosionXForm, nil, "explosion2", nil, nil, "ui")
 					return sprite, true
 				end, "explode"),
+				target.scene:screenShake(),
 				target:takeDamage(stats, true)
 			},
 			Do(function()

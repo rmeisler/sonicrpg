@@ -7,6 +7,65 @@ return {
 	
 	{
         type = "map",
+		file = "maps/greatforest1.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/greatforest2.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/greatforest2_rightpath.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/greatforest2_rightpath_cave1.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/greatforest2_uppath.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/greatforest3.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/greatforest4.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/quicksand_cave1.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/quicksand_cave2.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/stealthtut1.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
 		file = "maps/sonicshut.lua",
 		primary = true
     },
@@ -15,6 +74,29 @@ return {
         type = "map",
 		file = "maps/sallyshut.lua",
 		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/tailshut.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/bunnieshut.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/antoineshut.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/rotorsworkshop.lua"
     },
 
 	{
@@ -31,40 +113,6 @@ return {
 	
 	{
         type = "map",
-        file = "maps/roboterminal.lua"
-    },
-	
-	{
-        type = "map",
-        file = "maps/factoryfloor.lua"
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgottenstart.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgotten1.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgotten2.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgotten3.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
         file = "maps/forgottenhideout.lua",
 		--primary = true,
     },
@@ -77,35 +125,7 @@ return {
 	
 	{
         type = "map",
-        file = "maps/datacenter_f4.lua"
-    },
-	
-	{
-        type = "map",
         file = "maps/run1.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-        file = "maps/sewer1.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-        file = "maps/sewer2.lua"
-    },
-	
-	{
-        type = "map",
-        file = "maps/sewer3.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-        file = "maps/prison.lua",
 		--primary = true
     },
 	
@@ -113,6 +133,11 @@ return {
         type = "map",
         file = "maps/knothole.lua",
 		--primary = true
+    },
+	
+	{
+        type = "map",
+        file = "maps/knotholelookout.lua"
     },
 	
 	{
@@ -128,6 +153,10 @@ return {
 				{5, 0, 100}
 			}
 		end)
+	},
+	{
+		type = "image",
+		file = "art/sprites/cursor.png"
 	},
 	{
 		type = "image",
@@ -259,6 +288,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/avatar/bunnyavatar.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/sonicbattle.png"
 	},
 	{
@@ -291,6 +324,18 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/factorybot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/ratbot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/rover.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/dropshadow.png"
 	},
 	{
@@ -316,6 +361,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/explosion.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/explosion2.png"
 	},
 	{
 		type = "image",
@@ -375,6 +424,18 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/icon_key.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_plant.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_ring.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/zevent.png"
 	},
 	{
@@ -384,6 +445,22 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/pressz.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/pressup.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/pressdown.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/pressleft.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/pressright.png"
 	},
 	{
 		type = "image",
@@ -439,19 +516,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/parallax/genericforwardbg.png"
-	},
-	{
-		type = "image",
-		file = "art/parallax/genericforwardbg2.png"
-	},
-	{
-		type = "image",
 		file = "art/parallax/robotropolis.png"
-	},
-	{
-		type = "image",
-		file = "art/parallax/robobase.png"
 	},
 	{
 		type = "image",
@@ -464,6 +529,16 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/usering.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/craft.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/cooking.ogg",
 		category = "sfx"
 	},
 	{
@@ -698,6 +773,24 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/lookout.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/games.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/greatforest.ogg",
+		category = "music",
+		looping = true,
+	},
+	{
+		type = "sound",
 		file = "audio/music/puzzlesolve.ogg",
 		category = "music"
 	},
@@ -793,11 +886,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/chapter1.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
 		file = "audio/music/doittoit.ogg",
 		category = "music",
 		looping = true
@@ -888,7 +976,13 @@ return {
 		type = "sound",
 		file = "audio/music/knothole.ogg",
 		category = "music",
-		looping = true,
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/knothole2.ogg",
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",
@@ -937,12 +1031,22 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/alarm.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/jump.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/antoinescared.ogg",
 		category = "sfx"
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/save.wav",
+		file = "audio/sfx/save.ogg",
 		category = "sfx"
 	},
 	{

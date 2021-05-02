@@ -10,6 +10,7 @@ function Chest:construct(scene, layer, object)
 	object.properties.sprite = nil
 	object.properties.defaultAnim = nil
 	object.properties.appearAfter = nil
+	object.properties.alphaOverride = nil
 	
 	self.disappearOnGrabbed = object.properties.disappearOnGrabbed
 	object.properties.disappearOnGrabbed = nil
