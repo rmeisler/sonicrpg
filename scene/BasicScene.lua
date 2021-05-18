@@ -563,8 +563,8 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 	for _,obj in ipairs(self.map.objects) do
 		if obj.sprite and obj.sprite.transform and obj.x then
 			if obj.layer and obj.layer.properties and obj.layer.properties.movespeed then
-				obj.sprite.transform.x = (obj.x + worldOffsetX)*obj.layer.properties.movespeed
-				obj.sprite.transform.y = (obj.y + worldOffsetY)*obj.layer.properties.movespeed
+				obj.sprite.transform.x = math.floor((obj.x + worldOffsetX)*obj.layer.properties.movespeed)
+				obj.sprite.transform.y = math.floor((obj.y + worldOffsetY)*obj.layer.properties.movespeed)
 			else
 				obj.sprite.transform.x = math.floor(obj.x + worldOffsetX)
 				obj.sprite.transform.y = math.floor(obj.y + worldOffsetY)
@@ -605,19 +605,19 @@ function BasicScene:updatePlayerPos()
 	end
 
 	if  self.player.x < xCap then
-		self.player.sprite.transform.x = self.player.x - self.player.width + self.camPos.x
+		self.player.sprite.transform.x = math.floor(self.player.x - self.player.width + self.camPos.x)
 	elseif self.player.x > self:getMapWidth() - xCap then
-		self.player.sprite.transform.x = self.player.x - (self:getMapWidth() - love.graphics.getWidth()) - self.player.width + self.camPos.x
+		self.player.sprite.transform.x = math.floor(self.player.x - (self:getMapWidth() - love.graphics.getWidth()) - self.player.width + self.camPos.x)
 	else
-		self.player.sprite.transform.x = xCap - self.player.width + self.camPos.x
+		self.player.sprite.transform.x = math.floor(xCap - self.player.width + self.camPos.x)
 	end
 	
 	if  self.player.y < yCap then
-		self.player.sprite.transform.y = self.player.y - self.player.height + self.camPos.y
+		self.player.sprite.transform.y = math.floor(self.player.y - self.player.height + self.camPos.y)
 	elseif self.player.y > self:getMapHeight() - yCap then
-		self.player.sprite.transform.y = self.player.y - (self:getMapHeight() - love.graphics.getHeight()) - self.player.height + self.camPos.y
+		self.player.sprite.transform.y = math.floor(self.player.y - (self:getMapHeight() - love.graphics.getHeight()) - self.player.height + self.camPos.y)
 	else
-		self.player.sprite.transform.y = yCap - self.player.height + self.camPos.y
+		self.player.sprite.transform.y = math.floor(yCap - self.player.height + self.camPos.y)
 	end
 end
 
