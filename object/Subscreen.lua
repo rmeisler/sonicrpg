@@ -155,10 +155,16 @@ function Subscreen:useSkill(player, skill)
 end
 
 function Subscreen:runBackground(menuArgs)
-	menuArgs.withClose = Ease(self.color, 4, 255, 6)
+	menuArgs.withClose = Parallel {
+		Ease(self.color, 1, 255, 6),
+		Ease(self.color, 2, 255, 6),
+		Ease(self.color, 3, 255, 6)
+	}
 	local menu = Menu(menuArgs)
 	self.scene:run(Parallel {
-		Ease(self.color, 4, 200, 6),
+		Ease(self.color, 1, 200, 6),
+		Ease(self.color, 2, 200, 6),
+		Ease(self.color, 3, 200, 6),
 		menu,
 	})
 end
@@ -480,7 +486,7 @@ end
 
 function Subscreen:draw()
 	-- Avatar window background
-	love.graphics.setColor(255, 255, 255, self.color[4] * 0.8)
+	love.graphics.setColor(self.color[1], self.color[2], self.color[3], self.color[4] * 0.8)
 	local rect = Rect(
 		Transform(100, 0),
 		love.graphics.getWidth() - 200 - 15,
