@@ -436,6 +436,14 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/icon_carrot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_mushroom.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/zevent.png"
 	},
 	{
