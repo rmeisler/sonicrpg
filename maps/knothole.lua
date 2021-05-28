@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 278,
+  nextobjectid = 279,
   properties = {
     ["onload"] = "actions/knothole.lua",
     ["regionName"] = "Great Forest",
@@ -1393,9 +1393,9 @@ return {
           name = "CartBG",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 8000,
+          x = 8064,
           y = 672,
-          width = 192,
+          width = 64,
           height = 32,
           rotation = 0,
           gid = 5323,
@@ -1404,6 +1404,7 @@ return {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "background",
             ["ghost"] = true,
+            ["ignoreMapCollision"] = true,
             ["sprite"] = "../art/sprites/pulleycart.png"
           }
         },
@@ -3125,9 +3126,9 @@ return {
           name = "Cart",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 8000,
+          x = 8064,
           y = 672,
-          width = 192,
+          width = 64,
           height = 32,
           rotation = 0,
           gid = 5323,
@@ -3136,6 +3137,8 @@ return {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "foreground",
             ["ghost"] = true,
+            ["ignoreMapCollision"] = true,
+            ["onInteract"] = "local Menu = require \"actions/Menu\"\nlocal Move = require \"actions/Move\"\nlocal Do = require \"actions/Do\"\nlocal Parallel = require \"actions/Parallel\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    return BlockPlayer { Menu {\n        layout = Layout {\n            {Layout.Text(\"Leave Knothole?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    Parallel {\n                        Do(function()\n                            local cart = self.scene.objectLookup.CartBG\n                            self.scene.player.x = cart.x + cart.sprite.w\n                            self.scene.player.y = cart.y + cart.sprite.h\n                        end),\n                        Move(self.scene.objectLookup.CartBG, self.scene.objectLookup.CartWaypoint, null),\n                        Move(self, self.scene.objectLookup.CartWaypoint, null)\n                    },\n                    Do(function()\n                        self.scene.audio:stopMusic()\n                        self.scene:changeScene{map=\"worldmap\"}\n                    end),\n                    Do(function() end)\n                }\n            end},\n            {Layout.Text(\"No\"), choose = function(menu)\n                menu:close()\n            end}\n        },\n        cancellable = true,\n        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n        selectedRow = 2\n    }}\nend",
             ["sprite"] = "../art/sprites/pulleycart.png"
           }
         },
@@ -4289,6 +4292,22 @@ return {
             ["ghost"] = false,
             ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    return BlockPlayer {\n        Do(function()\n            self:facePlayer()\n        end),\n        MessageBox {\n            message = \"Bunnie: I haven't seen Sally-girl all day, {p40}have you?\", closeAction = Wait(0.7)\n        },\n        MessageBox {\n           message = \"Bunnie: Maybe you should check on her. {p40}She seemed awfully upset about how the last mission went.\"\n        },\n        Do(function()\n            self.sprite:setAnimation(\"idleup\")\n            self:refreshKeyHint()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/bunny.png"
+          }
+        },
+        {
+          id = 278,
+          name = "CartWaypoint",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 8032,
+          y = -160,
+          width = 96,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

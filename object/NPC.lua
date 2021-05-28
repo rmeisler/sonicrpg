@@ -49,6 +49,10 @@ function NPC:construct(scene, layer, object)
 	self.movespeed = object.properties.movespeed or 3
 	self.disappearOn = object.properties.disappearOn
 	
+	if object.properties.onInit then
+		self.onInit = assert(loadstring(object.properties.onInit))()
+	end
+	
 	if object.properties.whileColliding then
 		self.whileColliding = assert(loadstring(object.properties.whileColliding))()
 	end
@@ -217,6 +221,10 @@ function NPC:init(useBaseUpdate)
 		self.followStack = pack((self.object.properties.follow):split(','))
 	end
 	self.followRepeat = self.object.properties.followRepeat
+	
+	if self.onInit then
+		self.onInit(self)
+	end
 	
     self:addSceneHandler("keytriggered")
 	self:addSceneHandler("update", useBaseUpdate and NPC.update)
