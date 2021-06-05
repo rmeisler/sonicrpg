@@ -1,5 +1,4 @@
 local TypeText = class(require "actions/Action")
---local TextNode = require "object/TextNode"
 function TypeText:construct(transform, color, font, text, speed, noFastForward, outline, wordwrap)
 	    
 	self.transform = transform
