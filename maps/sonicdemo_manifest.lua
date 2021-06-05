@@ -7,8 +7,13 @@ return {
 	
 	{
         type = "map",
-		file = "maps/greatforest1.lua",
+		file = "maps/deathegg_elevator.lua",
 		primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/greatforest1.lua"
     },
 	
 	{
@@ -317,6 +322,22 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/swatbot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/juggerbotbody.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/juggerbothead.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/juggerbotleftarm.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/juggerbotrightarm.png"
 	},
 	{
 		type = "image",
@@ -917,6 +938,12 @@ return {
 		type = "sound",
 		file = "audio/music/worldmap.ogg",
 		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/mission2.ogg",
+		category = "music",
+		looping = true,
 	},
 	{
 		type = "sound",

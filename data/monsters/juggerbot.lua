@@ -24,14 +24,14 @@ local BattleActor = require "object/BattleActor"
 return {
 	name = "Juggerbot",
 	altName = "Juggerbot",
-	sprite = "sprites/juggerbot",
+	sprite = "sprites/juggerbot2body",
 
 	stats = {
 		xp    = 100,
 		maxhp = 2000,
 		attack = 20,
-		defense = 30,
-		speed = 2,
+		defense = 50,
+		speed = 1,
 		focus = 1,
 		luck = 1,
 	},
@@ -43,10 +43,52 @@ return {
 	coin = 0,
 
 	drops = {
-		{item = require "data/items/MetallicPlate", count = 2, chance = 0.8},
+		{item = require "data/items/MetallicPlate", count = 6, chance = 1.0},
 	},
 	
 	scan = "Juggerbot is succeptible to water damage.",
+	
+	parts = {
+		{
+			sprite = "sprites/juggerbot2head",
+			offset = {x = 50, y = 0},
+			stats = {
+				xp      = 0,
+				maxhp   = 1000,
+				attack  = 30,
+				defense = 10,
+				speed   = 1,
+				focus   = 1,
+				luck    = 1,
+			}
+		},
+		{
+			sprite = "sprites/juggerbot2leftarm",
+			offset = {x = -20, y = 20},
+			stats = {
+				xp      = 0,
+				maxhp   = 1000,
+				attack  = 30,
+				defense = 10,
+				speed   = 1,
+				focus   = 1,
+				luck    = 1,
+			}
+		},
+		{
+			sprite = "sprites/juggerbot2rightarm",
+			offset = {x = 70, y = 20},
+			stats = {
+				xp      = 0,
+				maxhp   = 1000,
+				attack  = 20,
+				defense = 10,
+				speed   = 1,
+				focus   = 1,
+				luck    = 1,
+			}
+		}
+	},
 
 	behavior = function (self, target)
 		-- Init state vars
