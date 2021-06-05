@@ -38,6 +38,64 @@ local Hotspots = function(player, x, y)
 	}
 end
 
+local PerPixelCollisionCheck = function(self, curX, curY)
+	-- Resolve collision by sweeping hotspot checks from prev pos to next pos
+	local stepX = curX > self.x and -1 or 1
+	local stepY = curY > self.y and -1 or 1
+	
+	local collidedX = false
+	local collidedY = false
+
+	local dx = 0
+	local dy = 0
+	for y = curY, self.y, stepY do
+		dy = dy + stepY
+		dx = 0
+		for x = curX, self.x, stepX do
+			local hotspots = Hotspots(self, x, y)		
+			
+			dx = dx + stepX
+			if not collidedX then
+				if stepX > 0 then
+					if  not self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, dx, dy) or
+						not self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, dx, dy)
+					then
+						self.x = self.x - math.abs(x - self.x)
+						collidedX = true
+					end
+				else
+					if  not self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, dx, dy) or
+						not self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, dx, dy)
+					then
+						self.x = self.x + math.abs(x - self.x)
+						collidedX = true
+					end
+				end
+			end
+			
+			if not collidedY then
+				if stepY > 0 then
+					if  not self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, dx, dy) or
+						not self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, dx, dy)
+					then
+						self.y = self.y - math.abs(y - self.y)
+						collidedY = true
+					end
+				else
+					if  not self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, dx, dy) or
+						not self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, dx, dy)
+					then
+						self.y = self.y + math.abs(y - self.y)
+						collidedY = true
+					end
+				end
+			end
+		end
+	end
+	
+	return collidedX, collidedY
+end
+
 local RunUpdate = function(self, dt)
 	if not self.frameCounter then
 		self.frameCounter = 0
@@ -316,59 +374,7 @@ local RunUpdate = function(self, dt)
 	self.stateOverride = nil
 	
 	if not self.ignoreSpecialMoveCollision then
-		-- Resolve collision by sweeping hotspot checks from prev pos to next pos
-		local stepX = curX > self.x and -1 or 1
-		local stepY = curY > self.y and -1 or 1
-		
-		local collidedX = false
-		local collidedY = false
-
-		local dx = 0
-		local dy = 0
-		for y = curY, self.y, stepY do
-			dy = dy + stepY
-			dx = 0
-			for x = curX, self.x, stepX do
-				local hotspots = Hotspots(self, x, y)		
-				
-				dx = dx + stepX
-				if not collidedX then
-					if stepX > 0 then
-						if  not self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, dx, dy) or
-							not self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, dx, dy)
-						then
-							self.x = self.x - math.abs(x - self.x)
-							collidedX = true
-						end
-					else
-						if  not self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, dx, dy) or
-							not self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, dx, dy)
-						then
-							self.x = self.x + math.abs(x - self.x)
-							collidedX = true
-						end
-					end
-				end
-				
-				if not collidedY then
-					if stepY > 0 then
-						if  not self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, dx, dy) or
-							not self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, dx, dy)
-						then
-							self.y = self.y - math.abs(y - self.y)
-							collidedY = true
-						end
-					else
-						if  not self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, dx, dy) or
-							not self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, dx, dy)
-						then
-							self.y = self.y + math.abs(y - self.y)
-							collidedY = true
-						end
-					end
-				end
-			end
-		end
+		local collidedX, collidedY = PerPixelCollisionCheck(self, curX, curY)
 		
 		if (collidedX or self.specialCollidedX) and self.fx > 0 then
 			if not self.noSonicCrash then

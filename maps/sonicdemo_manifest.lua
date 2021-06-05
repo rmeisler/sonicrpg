@@ -8,7 +8,7 @@ return {
 	{
         type = "map",
 		file = "maps/greatforest1.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -67,7 +67,7 @@ return {
 	{
         type = "map",
 		file = "maps/sonicshut.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -433,6 +433,18 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/icon_ring.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_carrot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_mushroom.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_meat.png"
 	},
 	{
 		type = "image",
