@@ -82,7 +82,6 @@ function TypeText:update(dt)
 		-- Updates the text field with the const speed, speed_mult and time elapsed.
 	-- Params
 		-- DT: 
-  --  self.textTable = strtoTable(self.curtext:sub(1,self.charidx),1,self.charidx,self.isColor)
 
 	local invalidateChar = false
 	self.elapsed = self.elapsed + dt * self.speed * self.speed_mult
@@ -117,7 +116,7 @@ function TypeText:update(dt)
 				self.curtext:sub(self.lastSpaceIdx+1, self.curtext:len())
 				self.charCounter = 0
 
-          self.textTable = self:clroffset(self.lastSpaceIdx+1, self.curtext:len())
+                self.textTable = self:clroffset(self.lastSpaceIdx+1, self.curtext:len())
 
 			end
 			self.lastSpaceIdx = self.charidx
@@ -250,16 +249,13 @@ end
 
 function TypeText:hlighttext(strt,fin,clr)
 	local table = {}
-	--local clrs = {}
+
 for k, v in ipairs(self.textTable) do
    table[k] = v
 end
 
    	for i = strt, fin do
-	--clrs[i] = clr
-	--clr[4] = self.isColor[4]
 	table[(i*2)-1] = clr
-        
 	end
 	
 	return table 
@@ -272,7 +268,7 @@ local table = {}-- self.textTable
 for k, v in ipairs(self.textTable) do
    table[k] = v
 end
-               --(((self.lastSpaceIdx+1)*2)+1)
+               
 
 for i = strt,  fin do
 
