@@ -1,6 +1,6 @@
 local TypeText = class(require "actions/Action")
-
 function TypeText:construct(transform, color, font, text, speed, noFastForward, outline, wordwrap)
+	    
 	self.transform = transform
 	self.color = color
 	self.font = font
@@ -18,6 +18,12 @@ function TypeText:construct(transform, color, font, text, speed, noFastForward, 
 	self.outline = outline
 	self.noFastForward = noFastForward
 	self.type = "TypeText"
+    self.textFont = font
+    self.textTable = {}
+    self.textTable = self:UpdateText(text or " ")
+    self.hlText = " "
+    self.hlcolor = {0,255,255,self.color[4]}
+    self.outlineCLR = {0,0,0,self.color[4]}
 end
 
 function TypeText:setScene(scene)
@@ -57,6 +63,7 @@ end
 function TypeText:isDone()
 	-- Is Done
 		-- The text is finished ouputting to the screen
+
     return self.charidx >= self.textlen
 end
 
@@ -67,6 +74,7 @@ function TypeText:reset()
 	self.elapsed = 0
 	self.curtext = self.text
 	self.textlen = #self.text
+   self.textTable=self:UpdateText(self.curtext)
 end
 
 function TypeText:update(dt)
@@ -74,6 +82,7 @@ function TypeText:update(dt)
 		-- Updates the text field with the const speed, speed_mult and time elapsed.
 	-- Params
 		-- DT: 
+
 	local invalidateChar = false
 	self.elapsed = self.elapsed + dt * self.speed * self.speed_mult
 	if self.elapsed >= 1.0 then
@@ -89,6 +98,8 @@ function TypeText:update(dt)
 		self.speed_mult = 1.0
 	end
 
+
+    
 	-- Look ahead for special character codes
 	if invalidateChar then
 		local nextChar = self.curtext:sub(self.charidx, self.charidx)
@@ -101,9 +112,12 @@ function TypeText:update(dt)
 			
 			if self.charCounter > self.wordwrap then
 				self.curtext = self.curtext:sub(1, self.lastSpaceIdx)..
-					"\n"..
-					self.curtext:sub(self.lastSpaceIdx + 1, self.curtext:len())
+				"\n"..
+				self.curtext:sub(self.lastSpaceIdx+1, self.curtext:len())
 				self.charCounter = 0
+
+                self.textTable = self:clroffset(self.lastSpaceIdx+1, self.curtext:len())
+
 			end
 			self.lastSpaceIdx = self.charidx
 		elseif nextChar == '\n' then
@@ -112,6 +126,15 @@ function TypeText:update(dt)
 			self.charCounter = self.charCounter + 1
 		end
 	end
+
+
+for k,v in pairs(self.textTable) do
+    if type(v) == "table" then
+        v[4] = self.color[4]
+    end
+end
+
+
 end
 
 function TypeText:oncode_s(idx)
@@ -131,25 +154,133 @@ function TypeText:oncode_p(idx)
 	
 	-- Move back one char
 	self.charidx = math.max(self.charidx - 1, 1)
+
+ 
+
 end
 
+function TypeText:oncode_h(idx)
+
+
+   
+
+self.hltext = self.curtext:sub(self.charidx + 3, idx - 1)
+
+
+  
+	-- Remove event from string feed
+	self.curtext = self.curtext:sub(1, self.charidx - 1)..self.curtext:sub(idx + 1, self.curtext:len())
+	self.textlen = #self.curtext
+	
+
+	--adding the {h} inbetween text back
+   self.curtext = self.curtext:sub(1, self.charidx - 1)..self.hltext..self.curtext:sub(self.charidx, self.curtext:len())
+
+	--self.curtext = self.curtext:sub(1, self.charidx - 1)..self.hltext..self.curtext:sub(self.charidx, self.curtext:len())
+	-- Move back one char
+		self.charidx = math.max(self.charidx - 1, 1)
+
+
+     
+     self.textTable=self:hlighttext(self.charidx+1,(self.charidx + self.hltext:len()), self.hlcolor)
+
+
+
+
+end
+
+
+
+
+
+
 function TypeText:draw()
-	love.graphics.setFont(self.font)
+   
+
+
+   love.graphics.setFont(self.textFont)
+
+
+
 
 	if self.outline then
 		-- Draw black outline
-		love.graphics.setColor(0,0,0,self.color[4])
 		for x=-2,2,2 do
 			for y=-2,2,2 do
-				love.graphics.print(self.curtext:sub(1, self.charidx), self.transform.x + x, self.transform.y + y, 0, self.transform.sx, self.transform.sy)
-			end
+				love.graphics.print({self.outlineCLR,self.curtext:sub(1, self.charidx)}, self.transform.x + x, self.transform.y + y, 0, self.transform.sx, self.transform.sy)
+	
+
+				end
 		end
+
 	end
 	
-	-- Draw over outline
-	love.graphics.setColor(self.color)
-	love.graphics.print(self.curtext:sub(1, self.charidx), self.transform.x, self.transform.y, 0, self.transform.sx, self.transform.sy)
+love.graphics.print(self:UpdateText(self.curtext:sub(1, self.charidx)), self.transform.x, self.transform.y, 0, self.transform.sx, self.transform.sy)
+
+
+
+end
+
+function TypeText:UpdateText(string)
+local table = {}
+
+
+for i = 1,  #string do
+    if self.textTable[(i*2)-1] == nil then
+       
+       self.textTable[(i*2)-1] = self.color
+    end
+
+  if self.textTable[(i*2)] == nil then
+       
+       self.textTable[(i*2)] = "nil"
+    end
+
+
+
+	table[(i*2)-1] =  self.textTable[(i*2)-1]
+	table[(i*2)] =  string:sub(i, i)
+end
+
+return table
+
+
+end
+
+function TypeText:hlighttext(strt,fin,clr)
+	local table = {}
+
+for k, v in ipairs(self.textTable) do
+   table[k] = v
+end
+
+   	for i = strt, fin do
+	table[(i*2)-1] = clr
+	end
+	
+	return table 
 end
 
 
+function TypeText:clroffset(strt,fin)
+local table = {}-- self.textTable
+
+for k, v in ipairs(self.textTable) do
+   table[k] = v
+end
+               
+
+for i = strt,  fin do
+
+
+	table[((i*2)+1)] = self.textTable[(((i*2)+1)-2)]
+end
+
+return table 
+end
+
+
+
 return TypeText
+
+
