@@ -127,6 +127,8 @@ function TypeText:update(dt)
             v[4] = self.color[4]
         end
     end
+
+    self.outlineCLR[4] = self.color[4]
 end
 
 function TypeText:oncode_s(idx)
