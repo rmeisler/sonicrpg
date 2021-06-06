@@ -10,6 +10,7 @@ return {
   tileheight = 32,
   nextobjectid = 6,
   properties = {
+    ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/deathegg.lua"
   },
   tilesets = {
@@ -476,9 +477,12 @@ return {
           gid = 37,
           visible = true,
           properties = {
+            ["battle"] = "../data/monsters/juggerbot.lua",
+            ["battleOnCollide"] = true,
+            ["boss"] = true,
             ["follow"] = "Path1,Path2",
             ["followRepeat"] = true,
-            ["ignorePlayer"] = true,
+            ["ignorePlayer"] = false,
             ["sprite"] = "../art/sprites/juggerbotbody.png"
           }
         },

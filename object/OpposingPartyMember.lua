@@ -46,6 +46,8 @@ function OpposingPartyMember:construct(scene, data)
 	self.behavior = data.behavior or function() end
 	self.onDead = data.onDead or function() return Action() end
 	self.onEnter = data.onEnter or function() return Action() end
+	self.onPreInit = data.onPreInit or function() end
+	self.onInit = data.onInit or function() end
 	self.getIdleAnim = data.getIdleAnim or function(_self) return "idle" end
 	self.getBackwardAnim = data.getBackwardAnim or function(_self) return "backward" end
 	self.onAttack = data.onAttack

@@ -2,7 +2,7 @@ return {
     image = "juggerbotbody.png",
     starting = "idleright",
     w = 66,
-    h = 97,
+    h = 93,
 
     animations = {
 		idleright = {

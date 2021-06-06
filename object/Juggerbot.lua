@@ -58,7 +58,7 @@ function Juggerbot:construct(scene, layer, object)
 	
 	self.dropShadow.sprite.transform.sx = 4
 	
-	self:addSceneHandler("update", Juggerbot.moveArms)
+	self:addSceneHandler("update", Juggerbot.moveEffects)
 	
 	self.stepSfx = "juggerbotstep"
 	self.walkspeed = 2
@@ -72,7 +72,7 @@ function Juggerbot:updateDropShadowPos(xonly)
 	end
 end
 
-function Juggerbot:moveArms(dt)
+function Juggerbot:moveEffects(dt)
 	if self.sprite.selected == "walkright" then
 		self.rightarm:setAnimation("walkright")
 		self.leftarm:setAnimation("walkright")

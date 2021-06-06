@@ -22,13 +22,13 @@ local Transform = require "util/Transform"
 local BattleActor = require "object/BattleActor"
 
 return {
-	name = "Juggerbot",
-	altName = "Juggerbot",
-	sprite = "sprites/juggerbot2body",
+	name = "Torso",
+	altName = "Torso",
+	sprite = "sprites/juggerbotbody",
 
 	stats = {
 		xp    = 100,
-		maxhp = 2000,
+		maxhp = 3000,
 		attack = 20,
 		defense = 50,
 		speed = 1,
@@ -43,81 +43,94 @@ return {
 	coin = 0,
 
 	drops = {
-		{item = require "data/items/MetallicPlate", count = 6, chance = 1.0},
+		--{item = require "data/items/MetallicPlate", count = 6, chance = 1.0},
 	},
 	
-	scan = "Juggerbot is succeptible to water damage.",
+	scan = "Focus damage on Juggerbot's weapons systems.",
 	
-	parts = {
-		{
-			sprite = "sprites/juggerbot2head",
-			offset = {x = 50, y = 0},
-			stats = {
-				xp      = 0,
-				maxhp   = 1000,
-				attack  = 30,
-				defense = 10,
-				speed   = 1,
-				focus   = 1,
-				luck    = 1,
-			}
-		},
-		{
-			sprite = "sprites/juggerbot2leftarm",
-			offset = {x = -20, y = 20},
-			stats = {
-				xp      = 0,
-				maxhp   = 1000,
-				attack  = 30,
-				defense = 10,
-				speed   = 1,
-				focus   = 1,
-				luck    = 1,
-			}
-		},
-		{
-			sprite = "sprites/juggerbot2rightarm",
-			offset = {x = 70, y = 20},
-			stats = {
-				xp      = 0,
-				maxhp   = 1000,
-				attack  = 20,
-				defense = 10,
-				speed   = 1,
-				focus   = 1,
-				luck    = 1,
-			}
-		}
-	},
+	skipAnimation = true,
 
-	behavior = function (self, target)
-		-- Init state vars
-		if not self.grabCount then
-			self.grabCount = 0
-		end
+	onPreInit = function(self)
+		self.scene.juggerbotbody = self
+		self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h
+
+		self.scene:addMonster("juggerbothead")
+		self.scene:addMonster("juggerbotleftarm")
+		self.scene:addMonster("juggerbotrightarm")
+		
+		self.sprite.h = self.sprite.h + 10
+	end,
 	
-		-- Starting state (2x grab, 1x punch, repeat)
-		if self.hp > 1000 then
-			if self.grabCount < 2 then
-				-- Grab
-				
-				self.grabCount = self.grabCount + 1
-			else
-				-- Punch
-				
-				self.grabCount = 0
+	behavior = function (self, target)
+		-- Turn 1 roar
+		-- Turn 2 stun gun (while gun arm available)
+		-- Turn 3 missile launcher
+		
+		-- If you destroy head, juggerbot misses on each attack
+		-- If you destroy right arm, no benefit		
+		-- If you destroy left arm, move on to next behavior
+
+		-- Turn 1 roar
+		-- Turn 2 charge plasma cannon (3)
+		-- Turn 3 charge plasma cannon (2)
+		-- Turn 4 charge plasma cannon (1)
+		-- Turn 5 fire plasma cannon (kills whole party unless you use laser shield)
+		
+		-- Can interrupt the plasma cannon if you destroy a body part,
+		-- including left arm or head.
+		
+		-- Can delay it if you use Bunnie's grab or Sonic's roundabout
+		
+		-- Can interrupt plasma cannon with Mine
+		
+		-- Can survive plasma cannon if you are using a laser shield
+		
+		--[[
+		if not self.turnCount then
+			self.turnCount = 0
+			self.turnPhase = 1
+		end
+		
+		local action
+		
+		if self.turnPhase == 1 then
+			if self.parts.leftarm.hp <= 0 then
+				self.turnCount = 0
+				self.turnPhase = 2
 			end
-		-- Weakened state (2x grab, 1x pound, repeat)
-		else
-			if self.grabCount < 2 then
-				-- Grab
+			
+			local turnIdx = self.turnCount % 3
+
+			-- roar
+			if turnIdx == 0 then
 				
-				self.grabCount = self.grabCount + 1
-			else
-				-- Punch
+			-- stun
+			elseif turnIdx == 1 then
 				
-				self.grabCount = 0
+			-- missile
+			elseif turnIdx == 2 then
+				
 			end
 		end
+		
+		if self.turnPhase == 2 then
+			local turnIdx = self.turnCount % 4
+
+			-- roar
+			if turnIdx == 0 then
+				
+			-- charge
+			elseif turnIdx < 3 then
+				
+			-- plasma cannon
+			elseif turnIdx == 3 then
+				
+			end
+		end
+		
+		self.turnCount = self.turnCount + 1
+		
+		return action]]
+		return Action()
 	end
 }

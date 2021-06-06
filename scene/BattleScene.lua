@@ -86,7 +86,11 @@ function BattleScene:onEnter(args)
 	self.opponents = {}
 	self.opponentTurns = {}
 	for k,v in pairs(args.opponents) do
-		self:addMonster(v)
+		local oppo = self:addMonster(v)
+		oppo:onPreInit()
+	end
+	for _,oppo in pairs(self.opponents) do
+		oppo:onInit()
 	end
 	
 	self.partyByName = {}
@@ -555,28 +559,45 @@ function BattleScene:addMonster(monster)
 	oppo.slot = slot
 	
 	-- Monster add animation
-	Executor(self):act(Serial {
-		Ease(mem.sprite.transform, "sx", (origPosX + mem.sprite.w*4)/mem.sprite.w, 7, "log"),
-		Parallel {
-			Ease(mem.sprite.transform, "sx", 2, 7, "quad"),
-			Ease(mem.sprite.transform, "x", origPosX, 7, "quad"),
-		},
-		Do(function()
-			oppo:setShadow(mem.hasDropShadow)
-			
-			if mem.mockSprite then
-				oppo.sprite.visible = false
-				oppo.mockSprite = SpriteNode(
-					self,
-					Transform.from(mem.sprite.transform),
-					{255,255,255,255},
-					mem.mockSprite
-				)
-				oppo.mockSprite.transform.x = oppo.mockSprite.transform.x + mem.mockSpriteOffset.x
-				oppo.mockSprite.transform.y = oppo.mockSprite.transform.y + mem.mockSpriteOffset.y
-			end
-		end)
-	})
+	if not mem.skipAnimation then
+		Executor(self):act(Serial {
+			Ease(mem.sprite.transform, "sx", (origPosX + mem.sprite.w*4)/mem.sprite.w, 7, "log"),
+			Parallel {
+				Ease(mem.sprite.transform, "sx", 2, 7, "quad"),
+				Ease(mem.sprite.transform, "x", origPosX, 7, "quad"),
+			},
+			Do(function()
+				oppo:setShadow(mem.hasDropShadow)
+				
+				if mem.mockSprite then
+					oppo.sprite.visible = false
+					oppo.mockSprite = SpriteNode(
+						self,
+						Transform.from(mem.sprite.transform),
+						{255,255,255,255},
+						mem.mockSprite
+					)
+					oppo.mockSprite.transform.x = oppo.mockSprite.transform.x + mem.mockSpriteOffset.x
+					oppo.mockSprite.transform.y = oppo.mockSprite.transform.y + mem.mockSpriteOffset.y
+				end
+			end)
+		})
+	else
+		mem.sprite.transform.x = origPosX
+		oppo:setShadow(mem.hasDropShadow)
+		
+		if mem.mockSprite then
+			oppo.sprite.visible = false
+			oppo.mockSprite = SpriteNode(
+				self,
+				Transform.from(mem.sprite.transform),
+				{255,255,255,255},
+				mem.mockSprite
+			)
+			oppo.mockSprite.transform.x = oppo.mockSprite.transform.x + mem.mockSpriteOffset.x
+			oppo.mockSprite.transform.y = oppo.mockSprite.transform.y + mem.mockSpriteOffset.y
+		end
+	end
 	
 	table.insert(self.opponents, oppo)
 	
@@ -587,6 +608,8 @@ function BattleScene:addMonster(monster)
 			return a.sprite.transform.y < b.sprite.transform.y
 		end
 	)
+	
+	return oppo
 end
 
 function BattleScene:cleanMonsters()
