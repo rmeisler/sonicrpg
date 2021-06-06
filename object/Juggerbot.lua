@@ -26,7 +26,7 @@ function Juggerbot:construct(scene, layer, object)
 	-- Create follow parts
 	self.head = SpriteNode(
 		scene,
-		Transform.relative(self.sprite.transform, Transform(90, 15)),
+		Transform.relative(self.sprite.transform, Transform(89, 15)),
 		nil,
 		"juggerbothead",
 		nil,
@@ -60,7 +60,8 @@ function Juggerbot:construct(scene, layer, object)
 	
 	self:addSceneHandler("update", Juggerbot.moveArms)
 	
-	self.stepSfx = "swatbotstep"
+	self.stepSfx = "juggerbotstep"
+	self.walkspeed = 2
 end
 
 function Juggerbot:updateDropShadowPos(xonly)
@@ -75,9 +76,17 @@ function Juggerbot:moveArms(dt)
 	if self.sprite.selected == "walkright" then
 		self.rightarm:setAnimation("walkright")
 		self.leftarm:setAnimation("walkright")
+		self.head:setAnimation("walkright")
+		
+		if  self.head:getFrame() == 3 or
+			self.head:getFrame() == 1
+		then
+			self.scene:run(self.scene:screenShake(30,40))
+		end
 	else
 		self.rightarm:setAnimation("idleright")
 		self.leftarm:setAnimation("idleright")
+		self.head:setAnimation("idleright")
 	end
 end
 

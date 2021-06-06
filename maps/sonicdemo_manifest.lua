@@ -731,6 +731,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/juggerbotstep.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/ratstep.ogg",
 		category = "sfx"
 	},

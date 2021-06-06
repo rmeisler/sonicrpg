@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="36" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="3">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="36" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="6">
  <properties>
   <property name="onload" type="file" value="actions/deathegg.lua"/>
  </properties>
@@ -307,8 +307,10 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="Juggerbot" type="Juggerbot" gid="37" x="320" y="1152" width="32" height="32">
+  <object id="1" name="Juggerbot" type="Juggerbot" gid="37" x="352" y="1152" width="32" height="32">
    <properties>
+    <property name="follow" value="Path1,Path2"/>
+    <property name="followRepeat" type="bool" value="true"/>
     <property name="ignorePlayer" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/juggerbotbody.png"/>
    </properties>
@@ -317,6 +319,16 @@
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="orientation" value="down"/>
+   </properties>
+  </object>
+  <object id="4" name="Path1" type="BasicNPC" gid="9040" x="800" y="1152" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="5" name="Path2" type="BasicNPC" gid="9040" x="288" y="1152" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

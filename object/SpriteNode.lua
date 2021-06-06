@@ -79,6 +79,10 @@ function SpriteNode:setFrame(position)
 	self.animations[self.selected].position = position
 end
 
+function SpriteNode:getFrame()
+	return self.animations[self.selected].position
+end
+
 function SpriteNode:onAnimationComplete(callback)
 	self.animations[self.selected].callback = callback
 end

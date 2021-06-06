@@ -43,6 +43,9 @@ function Bot:construct(scene, layer, object)
 	
 	self.facingTime = 0
 	self.movespeed = 2
+	self.walkspeed = 3
+	self.investigatespeed = 1
+	self.runspeed = 5
 	self.hotspotOffsets = {
 		right_top = {x = -20, y = self.sprite.h + 30},
 		right_bot = {x = -20, y = 0},
@@ -200,7 +203,7 @@ function Bot:followActions()
 			table.insert(
 				actions,
 				Serial {
-					self:follow(self.scene.objectLookup[target], "walk", 3),
+					self:follow(self.scene.objectLookup[target], "walk", self.walkspeed),
 					Do(function()
 						self.lastTarget = target
 						self.sprite:setAnimation("idle"..self.facing)
@@ -286,7 +289,7 @@ function Bot:update(dt)
 					self.scene.player:invoke("caught", self)
 				end),
 				Wait(1),
-				self:follow(self.scene.player, "run", 5, nil, true)
+				self:follow(self.scene.player, "run", self.runspeed, nil, true)
 			}
 		elseif lineOfSight == Bot.NOTICE_HEAR then
 			self:removeSceneHandler("update")
@@ -318,8 +321,8 @@ function Bot:update(dt)
 				self:follow(
 					self.investigateProxy,
 					"lightwalk",
-					1,
-					3,
+					self.investigatespeed,
+					5,
 					false,
 					function()
 						local dx = (self.investigateProxy.x - (self.x + self.sprite.w))
@@ -377,7 +380,7 @@ function Bot:investigateUpdate(dt)
 				self.scene.player:invoke("caught", self)
 			end),
 			Wait(1),
-			self:follow(self.scene.player, "run", 5, nil, true)
+			self:follow(self.scene.player, "run", self.runspeed, nil, true)
 		}
 		return
 	end

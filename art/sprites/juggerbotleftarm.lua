@@ -10,15 +10,15 @@ return {
 		},
 		walkright = {
 			frames = {{0,0},{1,0},{2,0},{1,0}},
-			speed = 0.2
+			speed = 0.25
 		},
 		cannonright = {
 			frames = {{3,0},{4,0},{5,0},{6,0},{7,0}},
-			speed = 0.2
+			speed = 0.25
 		},
 		missilecannonright = {
 			frames = {{8,0},{9,0},{10,0}},
-			speed = 0.2
+			speed = 0.25
 		},
 		idlecannonright = {
 			frames = {{7,0}}

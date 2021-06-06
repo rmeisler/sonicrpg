@@ -8,7 +8,7 @@ return {
   height = 56,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 3,
+  nextobjectid = 6,
   properties = {
     ["onload"] = "actions/deathegg.lua"
   },
@@ -468,7 +468,7 @@ return {
           name = "Juggerbot",
           type = "Juggerbot",
           shape = "rectangle",
-          x = 320,
+          x = 352,
           y = 1152,
           width = 32,
           height = 32,
@@ -476,6 +476,8 @@ return {
           gid = 37,
           visible = true,
           properties = {
+            ["follow"] = "Path1,Path2",
+            ["followRepeat"] = true,
             ["ignorePlayer"] = true,
             ["sprite"] = "../art/sprites/juggerbotbody.png"
           }
@@ -495,6 +497,38 @@ return {
           properties = {
             ["ghost"] = true,
             ["orientation"] = "down"
+          }
+        },
+        {
+          id = 4,
+          name = "Path1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 800,
+          y = 1152,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 5,
+          name = "Path2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 288,
+          y = 1152,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }
