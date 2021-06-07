@@ -482,7 +482,7 @@ return {
             ["boss"] = true,
             ["follow"] = "Path1,Path2",
             ["followRepeat"] = true,
-            ["ignorePlayer"] = false,
+            ["ignorePlayer"] = true,
             ["sprite"] = "../art/sprites/juggerbotbody.png"
           }
         },

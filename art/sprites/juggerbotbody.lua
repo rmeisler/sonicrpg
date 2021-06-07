@@ -18,6 +18,10 @@ return {
 		},
 		idlecannonright = {
 			frames = {{12,0}}
+		},
+		undocannonright = {
+			frames = {{12,0},{11,0},{10,0},{9,0},{8,0}},
+			speed = 0.13
 		}
     }
 }

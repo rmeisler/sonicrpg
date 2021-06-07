@@ -54,22 +54,16 @@ return {
 		self.scene.juggerbotbody = self
 		self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h
 
-		self.scene:addMonster("juggerbothead")
-		self.scene:addMonster("juggerbotleftarm")
-		self.scene:addMonster("juggerbotrightarm")
+		local parts = {"juggerbothead", "juggerbotleftarm", "juggerbotrightarm"}
+		for k,v in pairs(parts) do
+			local oppo = self.scene:addMonster(v)
+			oppo:onPreInit()
+		end
 		
 		self.sprite.h = self.sprite.h + 10
 	end,
 	
 	behavior = function (self, target)
-		-- Turn 1 roar
-		-- Turn 2 stun gun (while gun arm available)
-		-- Turn 3 missile launcher
-		
-		-- If you destroy head, juggerbot misses on each attack
-		-- If you destroy right arm, no benefit		
-		-- If you destroy left arm, move on to next behavior
-
 		-- Turn 1 roar
 		-- Turn 2 charge plasma cannon (3)
 		-- Turn 3 charge plasma cannon (2)
@@ -85,52 +79,136 @@ return {
 		
 		-- Can survive plasma cannon if you are using a laser shield
 		
-		--[[
 		if not self.turnCount then
 			self.turnCount = 0
 			self.turnPhase = 1
 		end
 		
-		local action
+		local action = Action()
+		local isblind = self.scene.juggerbothead.hp <= 0
 		
+		-- First phase of boss:
+		-- roar, stun (all), missile (all)
 		if self.turnPhase == 1 then
-			if self.parts.leftarm.hp <= 0 then
+			local blindAction = Action()
+			local turnIdx = self.turnCount % 3
+
+			-- If lost leftarm, move on to next boss phase
+			if self.scene.juggerbotleftarm.hp <= 0 then
+				turnIdx = -1
 				self.turnCount = 0
 				self.turnPhase = 2
+			else
+				-- If lost head, this affects boss' sight/aim
+				if isblind then
+					blindAction = Telegraph(self, self.name.." can't see!", {255,255,255,50})
+					
+					-- Skip roar
+					if turnIdx == 0 then
+						turnIdx = 1
+					end
+				end
+				
+				-- If lost rightarm, can no longer do stun
+				local lostrightarm = self.scene.juggerbotrightarm.hp <= 0
+				if lostrightarm then
+					-- Skip stun
+					if turnIdx == 1 then
+						turnIdx = 2
+					end
+				end
 			end
-			
-			local turnIdx = self.turnCount % 3
 
 			-- roar
 			if turnIdx == 0 then
-				
+				action = Serial {
+					Animate(self.scene.juggerbothead:getSprite(), "roar"),
+					Animate(self.scene.juggerbothead:getSprite(), "idleright")
+				}
 			-- stun
 			elseif turnIdx == 1 then
-				
+				action = Serial {
+					blindAction,
+					Telegraph(self, "Phasic Stun", {255,255,255,50}),
+					Do(function()
+						local spr = self.scene.juggerbotrightarm:getSprite()
+						spr.transform.ox = 32
+						spr.transform.oy = 6
+						spr.transform.x = spr.transform.x + 64
+						spr.transform.y = spr.transform.y + 12
+					end),
+					Ease(self.scene.juggerbotrightarm:getSprite().transform, "angle", -math.pi/2, 1.3),
+					Wait(2),
+					Ease(self.scene.juggerbotrightarm:getSprite().transform, "angle", 0, 1.3),
+					Do(function()
+						local spr = self.scene.juggerbotrightarm:getSprite()
+						spr.transform.ox = 0
+						spr.transform.oy = 0
+						spr.transform.x = spr.transform.x - 64
+						spr.transform.y = spr.transform.y - 12
+					end),
+				}
 			-- missile
 			elseif turnIdx == 2 then
-				
+				action = Serial {
+					blindAction,
+					Telegraph(self, "Missile Launcher", {255,255,255,50}),
+					Animate(self.scene.juggerbotleftarm:getSprite(), "cannonright"),
+					Animate(self.scene.juggerbotleftarm:getSprite(), "missilecannonright"),
+					Animate(self.scene.juggerbotleftarm:getSprite(), "idlecannonright"),
+					Wait(1),
+					Animate(self.scene.juggerbotleftarm:getSprite(), "undocannonright")
+				}
 			end
 		end
 		
+		-- Second phase of boss:
+		-- roar, charge up plasma cannon for three turns, fire (can kill whole party)
 		if self.turnPhase == 2 then
-			local turnIdx = self.turnCount % 4
+			local turnIdx = self.turnCount % 5
+			
+			-- If lost head
+			if isblind then
+				-- Skip roar
+				if turnIdx == 0 then
+					turnIdx = 1
+				end
+			end
 
 			-- roar
 			if turnIdx == 0 then
-				
+				action = Serial {
+					Animate(self.scene.juggerbothead:getSprite(), "roar"),
+					Animate(self.scene.juggerbothead:getSprite(), "idleright")
+				}
 			-- charge
-			elseif turnIdx < 3 then
-				
-			-- plasma cannon
+			elseif turnIdx == 1 then
+				action = Serial {
+					Animate(self:getSprite(), "cannonright"),
+					Animate(self:getSprite(), "idlecannonright"),
+					Telegraph(self, "3...", {255,255,255,50}),
+				}
+			elseif turnIdx == 2 then
+				action = Serial {
+					Telegraph(self, "2...", {255,255,255,50}),
+				}
 			elseif turnIdx == 3 then
-				
+				action = Serial {
+					Telegraph(self, "1...", {255,255,255,50}),
+				}
+			-- plasma cannon
+			elseif turnIdx == 4 then
+				action = Serial {
+					Telegraph(self, "Plasma Beam", {255,255,255,50}),
+					Wait(1),
+					Animate(self:getSprite(), "undocannonright")
+				}
 			end
 		end
 		
 		self.turnCount = self.turnCount + 1
 		
-		return action]]
-		return Action()
+		return action
+		--return Action()
 	end
 }

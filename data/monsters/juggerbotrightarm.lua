@@ -1,4 +1,4 @@
-local Action = require "actions/Action"
+local Do = require "actions/Do"
 
 local Transform = require "util/Transform"
 
@@ -14,7 +14,7 @@ return {
 
 	stats = {
 		xp      = 0,
-		maxhp   = 1000,
+		maxhp   = 500,
 		attack  = 1,
 		defense = 10,
 		speed   = 1,
@@ -45,7 +45,7 @@ return {
 		self.mockSprite.transform.oy = 0
 		self.mockSprite.transform.x = body.sprite.transform.x - body.sprite.w - 10
 		self.mockSprite.transform.y = body.sprite.transform.y - body.sprite.h + 50
-		self.mockSprite.sortOrderY = body.sprite.sortOrderY + 1
+		self.mockSprite.sortOrderY = self.scene.juggerbothead:getSprite().sortOrderY + 100
 		
 		-- Locate where we want the cursor to be
 		self.sprite.transform.x = body.sprite.transform.x - 40
@@ -54,6 +54,6 @@ return {
 	end,
 	
 	behavior = function (self, target)
-		return Action()
+		return Do(function() end)
 	end
 }

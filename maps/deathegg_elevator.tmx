@@ -315,7 +315,7 @@
     <property name="boss" type="bool" value="true"/>
     <property name="follow" value="Path1,Path2"/>
     <property name="followRepeat" type="bool" value="true"/>
-    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="ignorePlayer" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/juggerbotbody.png"/>
    </properties>
   </object>

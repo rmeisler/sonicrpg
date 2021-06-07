@@ -1,4 +1,4 @@
-local Action = require "actions/Action"
+local Do = require "actions/Do"
 
 local Transform = require "util/Transform"
 
@@ -54,6 +54,6 @@ return {
 	end,
 	
 	behavior = function (self, target)
-		return Action()
+		return Do(function() end)
 	end
 }

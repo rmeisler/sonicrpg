@@ -16,15 +16,16 @@ return {
 			frames = {{3,0},{4,0},{5,0},{6,0},{7,0}},
 			speed = 0.25
 		},
+		undocannonright = {
+			frames = {{7,0},{6,0},{5,0},{4,0},{3,0}},
+			speed = 0.25
+		},
 		missilecannonright = {
 			frames = {{8,0},{9,0},{10,0}},
 			speed = 0.25
 		},
 		idlecannonright = {
 			frames = {{7,0}}
-		},
-		idlemissilecannonright = {
-			frames = {{10,0}}
 		}
     }
 }
