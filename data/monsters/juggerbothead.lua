@@ -49,7 +49,7 @@ return {
 		self.mockSprite.sortOrderY = body.sprite.sortOrderY + 1
 		
 		-- Locate where we want the cursor to be
-		self.sprite.transform.x = body.sprite.transform.x + 25
+		self.sprite.transform.x = body.sprite.transform.x + 45
 		self.sprite.transform.y = body.sprite.transform.y + 5
 		self.sprite.h = self.sprite.h - 5
 	end,

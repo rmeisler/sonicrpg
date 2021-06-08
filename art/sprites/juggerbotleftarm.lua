@@ -20,6 +20,9 @@ return {
 			frames = {{7,0},{6,0},{5,0},{4,0},{3,0}},
 			speed = 0.25
 		},
+		idle = {
+			frames = {{3,0}}
+		},
 		missilecannonright = {
 			frames = {{8,0},{9,0},{10,0}},
 			speed = 0.25

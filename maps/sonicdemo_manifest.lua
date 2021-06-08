@@ -741,6 +741,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/juggerbotroar.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/cambotpic.ogg",
 		category = "sfx"
 	},

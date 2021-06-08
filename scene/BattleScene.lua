@@ -29,6 +29,7 @@ local MessageBox  = require "actions/MessageBox"
 local Menu        = require "actions/Menu"
 local BlockPlayer = require "actions/BlockPlayer"
 local Animate     = require "actions/Animate"
+local Repeat      = require "actions/Repeat"
 
 local Scene = require "scene/Scene"
 
@@ -713,18 +714,22 @@ function BattleScene:draw()
 end
 
 -- Vertical screen shake
-function BattleScene:screenShake(strength, speed)
+function BattleScene:screenShake(strength, speed, repeatTimes)
 	strength = strength or 50
 	speed = speed or 15
+	repeatTimes = repeatTimes or 1
 	
 	return Serial {
 		Do(function()
 			self.isScreenShaking = true
 		end),
-		Ease(self.camPos, "y", self.camPos.y - strength, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y + strength, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		
+		Repeat(Serial {
+			Ease(self.camPos, "y", self.camPos.y - strength, speed, "quad"),
+			Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+			Ease(self.camPos, "y", self.camPos.y + strength, speed, "quad"),
+			Ease(self.camPos, "y", self.camPos.y, speed, "quad")
+		}, repeatTimes),
 		
 		Ease(self.camPos, "y", self.camPos.y - strength/2, speed, "quad"),
 		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),

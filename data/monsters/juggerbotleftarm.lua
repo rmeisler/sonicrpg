@@ -36,6 +36,7 @@ return {
 
 	onPreInit = function(self)
 		self.scene.juggerbotleftarm = self
+		self:getSprite():setAnimation("idle")
 	end,
 	
 	onInit = function(self)

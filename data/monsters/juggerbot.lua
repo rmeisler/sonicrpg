@@ -11,6 +11,7 @@ local Ease = require "actions/Ease"
 local Animate = require "actions/Animate"
 local PlayAudio = require "actions/PlayAudio"
 local BouncyText = require "actions/BouncyText"
+local Repeat = require "actions/Repeat"
 
 local PressX = require "data/battle/actions/PressX"
 local Heal = require "data/items/actions/Heal"
@@ -22,8 +23,8 @@ local Transform = require "util/Transform"
 local BattleActor = require "object/BattleActor"
 
 return {
-	name = "Torso",
-	altName = "Torso",
+	name = "Juggerbot",
+	altName = "Juggerbot",
 	sprite = "sprites/juggerbotbody",
 
 	stats = {
@@ -54,6 +55,7 @@ return {
 		self.scene.juggerbotbody = self
 		self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h
 
+		-- Spawn body parts
 		local parts = {"juggerbothead", "juggerbotleftarm", "juggerbotrightarm"}
 		for k,v in pairs(parts) do
 			local oppo = self.scene:addMonster(v)
@@ -64,21 +66,7 @@ return {
 	end,
 	
 	behavior = function (self, target)
-		-- Turn 1 roar
-		-- Turn 2 charge plasma cannon (3)
-		-- Turn 3 charge plasma cannon (2)
-		-- Turn 4 charge plasma cannon (1)
-		-- Turn 5 fire plasma cannon (kills whole party unless you use laser shield)
-		
-		-- Can interrupt the plasma cannon if you destroy a body part,
-		-- including left arm or head.
-		
-		-- Can delay it if you use Bunnie's grab or Sonic's roundabout
-		
-		-- Can interrupt plasma cannon with Mine
-		
-		-- Can survive plasma cannon if you are using a laser shield
-		
+		-- Initialize battle data
 		if not self.turnCount then
 			self.turnCount = 0
 			self.turnPhase = 1
@@ -101,11 +89,12 @@ return {
 			else
 				-- If lost head, this affects boss' sight/aim
 				if isblind then
-					blindAction = Telegraph(self, self.name.." can't see!", {255,255,255,50})
+					blindAction = Telegraph(self, "Juggerbot can't see!", {255,255,255,50})
 					
 					-- Skip roar
 					if turnIdx == 0 then
 						turnIdx = 1
+						self.turnCount = self.turnCount + 1
 					end
 				end
 				
@@ -115,15 +104,26 @@ return {
 					-- Skip stun
 					if turnIdx == 1 then
 						turnIdx = 2
+						self.turnCount = self.turnCount + 1
 					end
 				end
 			end
 
 			-- roar
 			if turnIdx == 0 then
+				local headSp = self.scene.juggerbothead:getSprite()
 				action = Serial {
-					Animate(self.scene.juggerbothead:getSprite(), "roar"),
-					Animate(self.scene.juggerbothead:getSprite(), "idleright")
+					PlayAudio("sfx", "juggerbotroar", 0.5, true),
+					Animate(headSp, "roar"),
+					Parallel {
+						self.scene:screenShake(20, 30, 7),
+						Repeat(Serial {
+							Ease(headSp.transform, "x", headSp.transform.x - 1, 10),
+							Ease(headSp.transform, "x", headSp.transform.x + 1, 10),
+						}, 10)
+					},
+					Animate(headSp, "undoroar"),
+					Animate(headSp, "idleright")
 				}
 			-- stun
 			elseif turnIdx == 1 then
@@ -172,6 +172,7 @@ return {
 				-- Skip roar
 				if turnIdx == 0 then
 					turnIdx = 1
+					self.turnCount = self.turnCount + 1
 				end
 			end
 
@@ -198,6 +199,14 @@ return {
 				}
 			-- plasma cannon
 			elseif turnIdx == 4 then
+				-- Can interrupt the plasma cannon if you destroy a body part,
+				-- including left arm or head.
+				
+				-- Can delay it if you use Bunnie's grab or Sonic's roundabout
+				
+				-- Can interrupt plasma cannon with Mine
+				
+				-- Can survive plasma cannon if you are using a laser shield
 				action = Serial {
 					Telegraph(self, "Plasma Beam", {255,255,255,50}),
 					Wait(1),
@@ -209,6 +218,5 @@ return {
 		self.turnCount = self.turnCount + 1
 		
 		return action
-		--return Action()
 	end
 }
