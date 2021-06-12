@@ -93,6 +93,7 @@ function BattleScene:onEnter(args)
 	for _,oppo in pairs(self.opponents) do
 		oppo:onInit()
 	end
+	table.sort(self.opponents, function(a, b) return a.sprite.transform.y < b.sprite.transform.y end)
 	
 	self.partyByName = {}
 	self.party = {}
@@ -615,6 +616,7 @@ end
 
 function BattleScene:cleanMonsters()
 	-- Check if all monsters dead (This can happen due to counter attack or reflection)
+	local toremove = {}
 	for index,oppo in pairs(self.opponents) do
 		if oppo.state == BattleActor.STATE_DEAD then
 			self.xpGain = self.xpGain + oppo.stats.xp				
@@ -623,11 +625,14 @@ function BattleScene:cleanMonsters()
 					table.insert(self.rewards, drop)
 				end
 			end
-			table.remove(self.opponents, index)
+			table.insert(toremove, 1, index)
 			table.insert(self.opponentSlots, oppo.slot)
 			
 			self.selectedTarget = 1
 		end
+	end
+	for _,index in pairs(toremove) do
+		table.remove(self.opponents, index)
 	end
 	if next(self.opponents) == nil then
 		self.state = BattleScene.STATE_PLAYERWIN

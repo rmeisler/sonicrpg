@@ -12,6 +12,7 @@ local Animate = require "actions/Animate"
 local Executor = require "actions/Executor"
 local Repeat = require "actions/Repeat"
 local Action = require "actions/Action"
+local Spawn = require "actions/Spawn"
 local Do = require "actions/Do"
 local Lazy = require "util/Lazy"
 local MessageBox = require "actions/MessageBox"
@@ -280,6 +281,13 @@ function OpposingPartyMember:die()
 				}
 			)
 		end
+		
+		local killOtherMonsters = {}
+		for _, v in pairs(self.scene.opponents) do
+			if v ~= self then
+				table.insert(killOtherMonsters, v:die())
+			end
+		end
 	
 		return Serial {
 			Parallel {
@@ -327,6 +335,7 @@ function OpposingPartyMember:die()
 				}, 10)
 			},
 			PlayAudio("sfx", "oppdeath", 1.0, true),
+			Spawn(Parallel(killOtherMonsters)),
 			Do(function()
 				self.dropShadow:remove()
 			end),

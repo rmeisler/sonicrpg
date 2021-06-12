@@ -307,15 +307,6 @@ return {
 		if self.turnPhase == 2 then
 			local turnIdx = self.turnCount % 5
 			
-			-- If lost head
-			if isblind then
-				-- Skip roar
-				if turnIdx == 0 then
-					turnIdx = 1
-					self.turnCount = self.turnCount + 1
-				end
-			end
-			
 			-- Reduce defense in phase 2
 			if self.stats.defense > 20 then
 				turnIdx = -1
@@ -324,6 +315,15 @@ return {
 					Telegraph(self, "Juggerbot's defenses are down!", {255,255,255,50}),
 					isblind and Action() or Roar(self)
 				}
+			end
+			
+			-- If lost head
+			if isblind then
+				-- Skip roar
+				if turnIdx == 0 then
+					turnIdx = 1
+					self.turnCount = self.turnCount + 1
+				end
 			end
 
 			-- roar
