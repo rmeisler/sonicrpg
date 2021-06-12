@@ -517,6 +517,18 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/stuneffect.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/blast1.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/fireshot.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/smack.png"
 	},
 	{

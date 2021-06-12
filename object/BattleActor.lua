@@ -124,8 +124,8 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 	local damageTextColor = {255, 0, 20, 255}
 
 	-- Random chance of miss
-	if damage == 0 or math.random() > (0.95 - (selfStats.speed/100) + math.random(stats.speed/100)) then
-		if damage > 0 then
+	if stats.miss or damage == 0 or math.random() > (0.95 - (selfStats.speed/100) + math.random(stats.speed/100)) then
+		if damage > 0 or stats.miss then
 			damageText = "miss"
 			damage = 0
 			damageTextColor = {255,255,255,255}

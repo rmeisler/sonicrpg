@@ -14,11 +14,11 @@ return {
 		},
 		cannonright = {
 			frames = {{3,0},{4,0},{5,0},{6,0},{7,0}},
-			speed = 0.25
+			speed = 0.12
 		},
 		undocannonright = {
 			frames = {{7,0},{6,0},{5,0},{4,0},{3,0}},
-			speed = 0.25
+			speed = 0.12
 		},
 		idle = {
 			frames = {{3,0}}

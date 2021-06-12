@@ -12,6 +12,7 @@ local Animate = require "actions/Animate"
 local PlayAudio = require "actions/PlayAudio"
 local BouncyText = require "actions/BouncyText"
 local Repeat = require "actions/Repeat"
+local While = require "actions/While"
 
 local PressX = require "data/battle/actions/PressX"
 local Heal = require "data/items/actions/Heal"
@@ -21,6 +22,24 @@ local Smack = require "data/monsters/actions/Smack"
 local Transform = require "util/Transform"
 
 local BattleActor = require "object/BattleActor"
+local SpriteNode = require "object/SpriteNode"
+
+local Roar = function(self)
+	local headSp = self.scene.juggerbothead:getSprite()
+	return Serial {
+		PlayAudio("sfx", "juggerbotroar", 0.5, true),
+		Animate(headSp, "roar"),
+		Parallel {
+			self.scene:screenShake(20, 30, 7),
+			Repeat(Serial {
+				Ease(headSp.transform, "x", headSp.transform.x - 1, 10),
+				Ease(headSp.transform, "x", headSp.transform.x + 1, 10),
+			}, 10)
+		},
+		Animate(headSp, "undoroar"),
+		Animate(headSp, "idleright")
+	}
+end
 
 return {
 	name = "Juggerbot",
@@ -29,7 +48,7 @@ return {
 
 	stats = {
 		xp    = 100,
-		maxhp = 3000,
+		maxhp = 1000,
 		attack = 20,
 		defense = 50,
 		speed = 1,
@@ -70,10 +89,18 @@ return {
 		if not self.turnCount then
 			self.turnCount = 0
 			self.turnPhase = 1
+			
+			-- Setup blast
+			self.blastSprite = SpriteNode(self.scene, Transform(), nil, "blast1", nil, nil, "ui")
+			self.blastSprite.transform.sx = 2
+			self.blastSprite.transform.sy = 2
+			self.blastSprite.transform.ox = 0
+			self.blastSprite.color[4] = 0
 		end
 		
 		local action = Action()
 		local isblind = self.scene.juggerbothead.hp <= 0
+		local misschance = isblind and 0.8 or 0
 		
 		-- First phase of boss:
 		-- roar, stun (all), missile (all)
@@ -111,20 +138,7 @@ return {
 
 			-- roar
 			if turnIdx == 0 then
-				local headSp = self.scene.juggerbothead:getSprite()
-				action = Serial {
-					PlayAudio("sfx", "juggerbotroar", 0.5, true),
-					Animate(headSp, "roar"),
-					Parallel {
-						self.scene:screenShake(20, 30, 7),
-						Repeat(Serial {
-							Ease(headSp.transform, "x", headSp.transform.x - 1, 10),
-							Ease(headSp.transform, "x", headSp.transform.x + 1, 10),
-						}, 10)
-					},
-					Animate(headSp, "undoroar"),
-					Animate(headSp, "idleright")
-				}
+				action = Roar(self)
 			-- stun
 			elseif turnIdx == 1 then
 				action = Serial {
@@ -148,16 +162,142 @@ return {
 						spr.transform.y = spr.transform.y - 12
 					end),
 				}
-			-- missile
+			-- fire shot
 			elseif turnIdx == 2 then
+				local dodgeAction = Do(function()
+					target.dodged = false
+				end)
+				if target.id == "sonic" then
+					dodgeAction = PressX(
+						self,
+						target,
+						Serial {
+							Do(function()
+								target.dodged = true
+							end),
+							PlayAudio("sfx", "pressx", 1.0, true),
+							Parallel {
+								Serial {
+									Animate(target.sprite, "leap_dodge"),
+									Ease(target.sprite.transform, "y", target.sprite.transform.y - target.sprite.h*2, 6, "linear"),
+									Wait(0.1),
+									Ease(target.sprite.transform, "y", target.sprite.transform.y, 6, "quad"),
+									Animate(target.sprite, "crouch"),
+									Wait(0.1),
+									Animate(target.sprite, "victory"),
+									Wait(0.6),
+									Animate(target.sprite, "idle"),
+								},
+								BouncyText(
+									Transform(
+										target.sprite.transform.x + 10 + (target.textOffset.x),
+										target.sprite.transform.y + (target.textOffset.y)),
+									{255,255,255,255},
+									FontCache.ConsolasLarge,
+									"miss",
+									6,
+									false,
+									true -- outline
+								),
+							}
+						},
+						Serial {
+							Do(function()
+								target.dodged = false
+							end)
+						}
+					)
+				end
+			
 				action = Serial {
 					blindAction,
-					Telegraph(self, "Missile Launcher", {255,255,255,50}),
+					Telegraph(self, "Fire Shot", {255,255,255,50}),
 					Animate(self.scene.juggerbotleftarm:getSprite(), "cannonright"),
-					Animate(self.scene.juggerbotleftarm:getSprite(), "missilecannonright"),
-					Animate(self.scene.juggerbotleftarm:getSprite(), "idlecannonright"),
-					Wait(1),
-					Animate(self.scene.juggerbotleftarm:getSprite(), "undocannonright")
+					
+					Parallel {
+						dodgeAction,
+						Animate(function()
+							local leftarmSp = self.scene.juggerbotleftarm:getSprite()
+							local xform = Transform(
+								leftarmSp.transform.x + leftarmSp.w * 1.5,
+								leftarmSp.transform.y + leftarmSp.h/2 - 5,
+								2,
+								2
+							)
+							return SpriteNode(self.scene, xform, nil, "fireshot", nil, nil, "ui"), true
+						end, "fire"),
+						Serial {
+							Wait(0.2),
+							Do(function()
+								local leftarmSp = self.scene.juggerbotleftarm:getSprite()
+								self.blastSprite.transform.x = leftarmSp.transform.x + leftarmSp.w + self.blastSprite.w
+								self.blastSprite.transform.y = leftarmSp.transform.y + leftarmSp.h/2 + self.blastSprite.h*3
+								self.blastSprite.transform.ox = 0
+								self.blastSprite.transform.sx = 2
+								self.blastSprite.color[4] = 255
+								
+								local x1, y1 = self.blastSprite.transform.x, self.blastSprite.transform.y
+								local x2, y2 = target.sprite.transform.x, target.sprite.transform.y
+
+								local dx = (x2 - x1)
+								local dy = (y2 - y1)
+
+								local dot = dx * dx
+								local m1 = math.sqrt(dx*dx + dy*dy)
+								local m2 = dx
+								local angle = math.acos(dot / (m1 * m2))
+								
+								if self.blastSprite.transform.y > target.sprite.transform.y then
+									self.blastSprite.transform.angle = -angle
+								else
+									self.blastSprite.transform.angle = angle
+								end
+								
+								self.xDist = dx
+								self.yDist = dy
+								self.len = m1/self.blastSprite.w	
+							end),
+							
+							Do(function()
+								self.blastSprite.transform.ox = self.blastSprite.w
+								self.blastSprite.transform.x = self.blastSprite.transform.x + self.blastSprite.w
+							end),
+							
+							While(
+								function()
+									return target.dodged == nil or target.dodged == false
+								end,
+								Serial {
+									Parallel {
+										Ease(self.blastSprite.transform, "x", target.sprite.transform.x, 6),
+										Ease(self.blastSprite.transform, "y", target.sprite.transform.y, 6)
+									},
+									Parallel {
+										Ease(self.blastSprite.transform, "sx", 0, 10),
+										target:takeDamage(
+											math.random() > misschance
+												and self.stats
+												or {attack = 0, speed = 0, miss = true},
+											true,
+											BattleActor.shockKnockback
+										)
+									}
+								},
+								Serial {
+									Parallel {
+										Ease(self.blastSprite.transform, "x", target.sprite.transform.x, 6),
+										Ease(self.blastSprite.transform, "y", target.sprite.transform.y, 6)
+									},
+									Ease(self.blastSprite.transform, "sx", 0, 10)
+								}
+							),
+							
+							Animate(self.scene.juggerbotleftarm:getSprite(), "undocannonright")
+						}
+					},
+					Do(function()
+						target.dodged = nil
+					end)
 				}
 			end
 		end
@@ -175,26 +315,36 @@ return {
 					self.turnCount = self.turnCount + 1
 				end
 			end
+			
+			-- Reduce defense in phase 2
+			if self.stats.defense > 20 then
+				turnIdx = -1
+				self.stats.defense = 20
+				action = Serial {
+					Telegraph(self, "Juggerbot's defenses are down!", {255,255,255,50}),
+					isblind and Action() or Roar(self)
+				}
+			end
 
 			-- roar
 			if turnIdx == 0 then
-				action = Serial {
-					Animate(self.scene.juggerbothead:getSprite(), "roar"),
-					Animate(self.scene.juggerbothead:getSprite(), "idleright")
-				}
+				action = Roar(self)
 			-- charge
 			elseif turnIdx == 1 then
 				action = Serial {
 					Animate(self:getSprite(), "cannonright"),
 					Animate(self:getSprite(), "idlecannonright"),
+					PlayAudio("sfx", "lockon", 1.0, true),
 					Telegraph(self, "3...", {255,255,255,50}),
 				}
 			elseif turnIdx == 2 then
 				action = Serial {
+					PlayAudio("sfx", "lockon", 1.0, true),
 					Telegraph(self, "2...", {255,255,255,50}),
 				}
 			elseif turnIdx == 3 then
 				action = Serial {
+					PlayAudio("sfx", "lockon", 1.0, true),
 					Telegraph(self, "1...", {255,255,255,50}),
 				}
 			-- plasma cannon
