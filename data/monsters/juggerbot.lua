@@ -13,6 +13,7 @@ local PlayAudio = require "actions/PlayAudio"
 local BouncyText = require "actions/BouncyText"
 local Repeat = require "actions/Repeat"
 local While = require "actions/While"
+local Executor = require "actions/Executor"
 
 local PressX = require "data/battle/actions/PressX"
 local Heal = require "data/items/actions/Heal"
@@ -27,7 +28,7 @@ local SpriteNode = require "object/SpriteNode"
 local Roar = function(self)
 	local headSp = self.scene.juggerbothead:getSprite()
 	return Serial {
-		PlayAudio("sfx", "juggerbotroar", 0.5, true),
+		PlayAudio("sfx", "juggerbotroar", 0.3, true),
 		Animate(headSp, "roar"),
 		Parallel {
 			self.scene:screenShake(20, 30, 7),
@@ -90,6 +91,16 @@ return {
 			self.turnCount = 0
 			self.turnPhase = 1
 			
+			-- Setup stun sprites
+			self.stunSprites = {}
+			for i=1, 15 do
+				local sp = SpriteNode(self.scene, Transform(), nil, "stuneffect", nil, nil, "ui")
+				sp.transform.ox = sp.w/2
+				sp.transform.oy = sp.h/2
+				sp.color[4] = 0
+				table.insert(self.stunSprites, sp)
+			end
+			
 			-- Setup blast
 			self.blastSprite = SpriteNode(self.scene, Transform(), nil, "blast1", nil, nil, "ui")
 			self.blastSprite.transform.sx = 2
@@ -103,7 +114,7 @@ return {
 		local misschance = isblind and 0.8 or 0
 		
 		-- First phase of boss:
-		-- roar, stun (all), missile (all)
+		-- roar, stun (all), missile (one)
 		if self.turnPhase == 1 then
 			local blindAction = Action()
 			local turnIdx = self.turnCount % 3
@@ -152,7 +163,50 @@ return {
 						spr.transform.y = spr.transform.y + 12
 					end),
 					Ease(self.scene.juggerbotrightarm:getSprite().transform, "angle", -math.pi/2, 1.3),
-					Wait(2),
+					
+					PlayAudio("sfx", "stun", 1.0, true),
+					Do(function()
+						local rightArmSp = self.scene.juggerbotrightarm:getSprite()
+						for index,sp in pairs(self.stunSprites) do
+							Executor(self.scene):act(Serial {
+								Wait(0.1 * index),
+								Do(function()
+									sp.transform.x = rightArmSp.transform.x + rightArmSp.h*1.5
+									sp.transform.y = rightArmSp.transform.y + 16
+									sp.transform.sx = 2
+									sp.transform.sy = 2
+									sp.color[4] = 255
+								end),
+								Parallel {
+									Ease(sp.transform, "sy", 3, 1.5),
+									Ease(sp.transform, "x", target.sprite.transform.x - target.sprite.w/2, 1.3),
+									Ease(sp.transform, "y", target.sprite.transform.y, 1.3),
+									
+									Serial {
+										Wait(0.3),
+										Do(function()
+											if target.sprite.selected ~= "hurt" then
+												target.sprite:setAnimation("hurt")										
+												Executor(self.scene):act(Serial {
+													Repeat(Serial {
+														Ease(target.sprite.color, 1, 512, 8),
+														Ease(target.sprite.color, 1, 300, 8)
+													}, 10),
+													Ease(target.sprite.color, 1, 255, 8)
+												})
+											end
+										end)
+									}
+								},
+								Parallel {
+									Ease(sp.transform, "sy", 7, 8),
+									Ease(sp.color, 4, 0, 4)
+								}
+							})
+						end
+					end),
+
+					Wait(1.6),
 					Ease(self.scene.juggerbotrightarm:getSprite().transform, "angle", 0, 1.3),
 					Do(function()
 						local spr = self.scene.juggerbotrightarm:getSprite()
@@ -161,6 +215,11 @@ return {
 						spr.transform.x = spr.transform.x - 64
 						spr.transform.y = spr.transform.y - 12
 					end),
+					
+					Telegraph(target, target.name.." is stunned!", {255,255,255,50}),
+					Do(function()
+						target.sprite:setAnimation("idle")
+					end)
 				}
 			-- fire shot
 			elseif turnIdx == 2 then
@@ -231,7 +290,7 @@ return {
 							Do(function()
 								local leftarmSp = self.scene.juggerbotleftarm:getSprite()
 								self.blastSprite.transform.x = leftarmSp.transform.x + leftarmSp.w + self.blastSprite.w
-								self.blastSprite.transform.y = leftarmSp.transform.y + leftarmSp.h/2 + self.blastSprite.h*3
+								self.blastSprite.transform.y = leftarmSp.transform.y + leftarmSp.h/2 + self.blastSprite.h*3 + 5
 								self.blastSprite.transform.ox = 0
 								self.blastSprite.transform.sx = 2
 								self.blastSprite.color[4] = 255
@@ -269,8 +328,8 @@ return {
 								end,
 								Serial {
 									Parallel {
-										Ease(self.blastSprite.transform, "x", target.sprite.transform.x, 6),
-										Ease(self.blastSprite.transform, "y", target.sprite.transform.y, 6)
+										Ease(self.blastSprite.transform, "x", target.sprite.transform.x, 5),
+										Ease(self.blastSprite.transform, "y", target.sprite.transform.y, 5)
 									},
 									Parallel {
 										Ease(self.blastSprite.transform, "sx", 0, 10),

@@ -673,6 +673,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/stun.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/laser.ogg",
 		category = "sfx"
 	},
