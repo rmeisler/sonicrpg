@@ -265,6 +265,14 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/bunny.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/bunnybattle.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/b.png"
 	},
 	{
@@ -678,6 +686,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/stun.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/plasmabeam.ogg",
 		category = "sfx"
 	},
 	{

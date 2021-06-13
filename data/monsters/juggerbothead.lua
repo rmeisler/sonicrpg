@@ -1,8 +1,29 @@
+local Serial = require "actions/Serial"
+local Parallel = require "actions/Parallel"
 local Do = require "actions/Do"
+local MessageBox = require "actions/MessageBox"
+local Wait = require "actions/Wait"
+local Action = require "actions/Action"
+local YieldUntil = require "actions/YieldUntil"
+local Try = require "actions/Try"
+local Action = require "actions/Action"
+local Ease = require "actions/Ease"
+local Animate = require "actions/Animate"
+local PlayAudio = require "actions/PlayAudio"
+local BouncyText = require "actions/BouncyText"
+local Repeat = require "actions/Repeat"
+local While = require "actions/While"
+local Executor = require "actions/Executor"
+
+local PressX = require "data/battle/actions/PressX"
+local Heal = require "data/items/actions/Heal"
+local Telegraph = require "data/monsters/actions/Telegraph"
+local Smack = require "data/monsters/actions/Smack"
 
 local Transform = require "util/Transform"
 
 local BattleActor = require "object/BattleActor"
+local SpriteNode = require "object/SpriteNode"
 
 return {
 	name = "Head",
@@ -14,7 +35,7 @@ return {
 
 	stats = {
 		xp      = 0,
-		maxhp   = 800,
+		maxhp   = 1000,
 		attack  = 1,
 		defense = 10,
 		speed   = 1,
@@ -55,6 +76,23 @@ return {
 	end,
 	
 	behavior = function (self, target)
-		return Do(function() end)
+		local headSp = self:getSprite()
+		return Serial {
+			PlayAudio("sfx", "juggerbotroar", 0.3, true),
+			Animate(headSp, "roar"),
+			Parallel {
+				self.scene:screenShake(20, 30, 7),
+				Repeat(Serial {
+					Ease(headSp.transform, "x", headSp.transform.x - 1, 10),
+					Ease(headSp.transform, "x", headSp.transform.x + 1, 10),
+				}, 10)
+			},
+			Animate(headSp, "undoroar"),
+			Animate(headSp, "idleright")
+		}
+	end,
+	
+	getBackwardAnim = function(self)
+		return "idleright"
 	end
 }

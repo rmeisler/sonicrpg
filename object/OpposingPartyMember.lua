@@ -135,7 +135,7 @@ function OpposingPartyMember:beginTurn()
 		}, 2)
 		
 		if not self.chanceToEscape then
-			self.chanceToEscape = 0.4
+			self.chanceToEscape = 0.2
 		else
 			self.chanceToEscape = self.chanceToEscape * 2
 		end
@@ -148,6 +148,7 @@ function OpposingPartyMember:beginTurn()
 		else
 			-- If the immobilizer is bunny...
 			if self.immobilizedBy == "bunny" then
+				self.immobilizedBy = nil
 				-- Retract bunny ext arm and linkages and go back to idle anim
 				self.action = Serial {
 					shake,

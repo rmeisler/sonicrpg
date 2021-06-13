@@ -243,13 +243,21 @@ function BattleActor:getStats()
 end
 
 function BattleActor:die()
-	return Do(function()
-		self.hp = 0
-		self.state = BattleActor.STATE_DEAD
-		
-		self:getSprite():setAnimation("dead")
-		self:invoke("dead")
-	end)
+	local revAction = Action()
+	if self.reverseAnimation then
+		revAction = self.reverseAnimation
+	end
+
+	return Serial {
+		revAction,
+		Do(function()
+			self.hp = 0
+			self.state = BattleActor.STATE_DEAD
+			
+			self:getSprite():setAnimation("dead")
+			self:invoke("dead")
+		end)
+	}
 end
 
 

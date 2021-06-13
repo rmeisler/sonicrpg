@@ -6,7 +6,13 @@ return {
 
     animations = {
 		idleright = {
-			frames = {{0,0}}
+			frames = {{3,0}}
+		},
+		idle = {
+			frames = {{3,0}}
+		},
+		hurt = {
+			frames = {{3,0}}
 		},
 		walkright = {
 			frames = {{0,0},{1,0},{2,0},{1,0}},
@@ -19,9 +25,6 @@ return {
 		undocannonright = {
 			frames = {{7,0},{6,0},{5,0},{4,0},{3,0}},
 			speed = 0.12
-		},
-		idle = {
-			frames = {{3,0}}
 		},
 		missilecannonright = {
 			frames = {{8,0},{9,0},{10,0}},
