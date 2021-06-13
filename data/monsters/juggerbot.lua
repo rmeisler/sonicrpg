@@ -107,6 +107,16 @@ return {
 			self.blastSprite.transform.sy = 2
 			self.blastSprite.transform.ox = 0
 			self.blastSprite.color[4] = 0
+			
+			-- Setup plasma beam sprites
+			self.beamSprites = {}
+			for i=1, 16 do
+				local sp = SpriteNode(self.scene, Transform(), nil, "plasmabeam", nil, nil, "ui")
+				sp.transform.ox = sp.w/2
+				sp.transform.oy = sp.h/2
+				sp.color[4] = 0
+				table.insert(self.beamSprites, sp)
+			end
 		end
 		
 		local action = Action()
@@ -179,8 +189,8 @@ return {
 								end),
 								Parallel {
 									Ease(sp.transform, "sy", 3, 1.5),
-									Ease(sp.transform, "x", target.sprite.transform.x - target.sprite.w/2, 1.3),
-									Ease(sp.transform, "y", target.sprite.transform.y, 1.3),
+									Ease(sp.transform, "x", target.sprite.transform.x - target.sprite.w/2, 1.6),
+									Ease(sp.transform, "y", target.sprite.transform.y, 1.6),
 									
 									Serial {
 										Wait(0.3),
@@ -188,9 +198,17 @@ return {
 											if target.sprite.selected ~= "hurt" then
 												target.sprite:setAnimation("hurt")										
 												Executor(self.scene):act(Serial {
-													Repeat(Serial {
-														Ease(target.sprite.color, 1, 512, 8),
-														Ease(target.sprite.color, 1, 300, 8)
+													Repeat(Parallel {
+														Serial {
+															Ease(target.sprite.color, 1, 512, 8),
+															Ease(target.sprite.color, 1, 300, 8)
+														},
+														Serial {
+															Ease(target.sprite.transform, "x", function() return target.sprite.transform.x + 1 end, 20),
+															Ease(target.sprite.transform, "x", function() return target.sprite.transform.x - 1 end, 20),
+															Ease(target.sprite.transform, "x", function() return target.sprite.transform.x + 1 end, 20),
+															Ease(target.sprite.transform, "x", function() return target.sprite.transform.x - 1 end, 20)
+														}
 													}, 10),
 													Ease(target.sprite.color, 1, 255, 8)
 												})
@@ -214,19 +232,19 @@ return {
 						spr.transform.oy = 0
 						spr.transform.x = spr.transform.x - 64
 						spr.transform.y = spr.transform.y - 12
+						
+						target.state = BattleActor.STATE_IMMOBILIZED
+						target.turnsImmobilized = 2
+						target.sprite:setAnimation("dead")
 					end),
-					
-					Telegraph(target, target.name.." is stunned!", {255,255,255,50}),
-					Do(function()
-						target.sprite:setAnimation("idle")
-					end)
+					Telegraph(target, target.name.." is stunned!", {255,255,255,50})
 				}
 			-- fire shot
 			elseif turnIdx == 2 then
 				local dodgeAction = Do(function()
 					target.dodged = false
 				end)
-				if target.id == "sonic" then
+				if target.id == "sonic" and target.state ~= BattleActor.STATE_IMMOBILIZED then
 					dodgeAction = PressX(
 						self,
 						target,
@@ -418,6 +436,23 @@ return {
 				-- Can survive plasma cannon if you are using a laser shield
 				action = Serial {
 					Telegraph(self, "Plasma Beam", {255,255,255,50}),
+					Do(function()
+						local bodySp = self:getSprite()
+						local lastSp
+						for _,sp in pairs(self.beamSprites) do
+							if not lastSp then
+								sp:setAnimation("right")
+								sp.transform.x = bodySp.transform.x + bodySp.w + 20
+								sp.transform.y = bodySp.transform.y + bodySp.h
+
+								lastSp = sp
+							else
+								sp:setAnimation("center")
+								sp.transform.x = lastSp.transform.x + lastSp.w
+								sp.transform.y = lastSp.transform.y
+							end
+						end
+					end),
 					Wait(1),
 					Animate(self:getSprite(), "undocannonright")
 				}

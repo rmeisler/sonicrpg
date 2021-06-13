@@ -135,6 +135,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 		
 		-- Flash transparency
 		knockBackAction = Serial {
+			PlayAudio("sfx", "tock", 1.0, true),
 			Ease(sprite.color, 4, 0, 10, "quad"),
 			Ease(sprite.color, 4, 255, 2, "linear")
 		}

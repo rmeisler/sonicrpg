@@ -529,6 +529,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/plasmabeam.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/smack.png"
 	},
 	{
