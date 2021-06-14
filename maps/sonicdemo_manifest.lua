@@ -241,6 +241,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/lasershield.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/surprise.png"
 	},
 	{
@@ -586,6 +590,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/usering.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/shield.ogg",
 		category = "sfx"
 	},
 	{
