@@ -98,7 +98,7 @@ return {
 		local dodgeAction = Do(function()
 			target.dodged = false
 		end)
-		if target.id == "sonic" and target.state ~= BattleActor.STATE_IMMOBILIZED then
+		if target.id == "sonic" and not target.laserShield and target.state ~= BattleActor.STATE_IMMOBILIZED then
 			dodgeAction = PressX(
 				self,
 				target,

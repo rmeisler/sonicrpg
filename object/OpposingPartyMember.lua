@@ -89,6 +89,7 @@ function OpposingPartyMember:beginTurn()
 	end
 	
 	local sprite = self:getSprite()
+	local target
 	
 	local additionalActions = {}
 	
@@ -202,7 +203,12 @@ function OpposingPartyMember:beginTurn()
 		self.lostTurns = self.lostTurns - 1
 	else
 		-- Choose action based on behavior
-		self.action = self.behavior(self, self.scene.party[self.selectedTarget]) or Action()
+		target = self.scene.party[self.selectedTarget]
+		if target.laserShield and target.sprite ~= target.laserShield then
+			target.lastSprite = target.sprite
+			target.sprite = target.laserShield
+		end
+		self.action = self.behavior(self, target) or Action()
 	end
 	
 	if self.malfunctioningTurns > 1 then
@@ -242,6 +248,10 @@ function OpposingPartyMember:beginTurn()
 		Serial(additionalActions),
 		self.action,
 		Do(function()
+			if target and target.lastSprite then
+				target.sprite = target.lastSprite
+				target.lastSprite = nil
+			end
 			-- Noop... why is this necessary in some cases?
 		end)
 	}

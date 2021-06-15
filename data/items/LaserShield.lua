@@ -8,6 +8,9 @@ return {
 	subtype = "craft",
 	icon = "icon_defense",
 	img = "lasershield",
+	unusable = function(target)
+		return target.laserShield
+	end,
 	usableFromMenu = false,
 	usableFromBattle = true,
 	battleAction = function()

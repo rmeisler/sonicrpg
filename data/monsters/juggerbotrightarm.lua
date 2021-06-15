@@ -160,11 +160,14 @@ return {
 				spr.transform.x = spr.transform.x - 64
 				spr.transform.y = spr.transform.y - 12
 				
-				target.state = BattleActor.STATE_IMMOBILIZED
-				target.turnsImmobilized = 2
-				target.sprite:setAnimation("dead")
+				if not target.laserShield then
+					target.state = BattleActor.STATE_IMMOBILIZED
+					target.turnsImmobilized = 2
+					target.sprite:setAnimation("dead")
+				end
 			end),
-			Telegraph(target, target.name.." is stunned!", {255,255,255,50})
+			not target.laserShield and Telegraph(target, target.name.." is stunned!", {255,255,255,50})
+				or target:takeDamage({attack = 0, defense = 0, miss = true})
 		}
 	end,
 	

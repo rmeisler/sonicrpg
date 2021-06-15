@@ -8,6 +8,12 @@ return {
         idle = {
             frames = {{0,0},{1,0}},
 			speed = 0.2
+        },
+		hurt = {
+            frames = {{0,0}}
+        },
+		dead = {
+            frames = {{0,0}}
         }
     }
 }

@@ -32,7 +32,7 @@ return {
 
 	stats = {
 		xp    = 100,
-		maxhp = 2000,
+		maxhp = 1000,
 		attack = 20,
 		defense = 50,
 		speed = 1,
@@ -141,7 +141,9 @@ return {
 						hurtActions,
 						Serial {
 							Do(function()
-								p.sprite:setAnimation("hurt")
+								if not p.laserShield then
+									p.sprite:setAnimation("hurt")
+								end
 							end),
 							Repeat(Serial {
 								Ease(p.sprite.transform, "x", function() return p.sprite.transform.x + 1 end, 20),

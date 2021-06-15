@@ -174,6 +174,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 				if (damage > 0 and sprite.animations["hurt"] and not self.noHurtAnim) then
 					sprite:setAnimation("hurt")
 				end
+				self:invoke("hit")
 			end),
 			Serial {
 				Parallel {

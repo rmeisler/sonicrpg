@@ -139,7 +139,7 @@ return {
 			}
 
 			local grabWithDodgeAction
-			if target.id == "sonic" then
+			if target.id == "sonic" and not target.laserShield then
 				grabWithDodgeAction = Serial {
 					Wait(0.5),
 					PressX(
