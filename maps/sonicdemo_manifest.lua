@@ -577,6 +577,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/boulder.png"
+	},
+	{
+		type = "image",
 		file = "art/parallax/robotropolis.png"
 	},
 	{

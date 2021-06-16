@@ -76,6 +76,14 @@ return {
 	end,
 	
 	behavior = function (self, target)
+		if not self.headturns then
+			self.headturns = -1
+		end
+		self.headturns = self.headturns + 1
+		if (self.headturns % 3) > 0 then
+			return Action()
+		end
+		
 		local headSp = self:getSprite()
 		return Serial {
 			PlayAudio("sfx", "juggerbotroar", 0.3, true),

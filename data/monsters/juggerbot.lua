@@ -32,7 +32,7 @@ return {
 
 	stats = {
 		xp    = 100,
-		maxhp = 1000,
+		maxhp = 1200,
 		attack = 20,
 		defense = 50,
 		speed = 1,
@@ -72,6 +72,7 @@ return {
 		-- Initialize battle data
 		if not self.turnPhase then
 			self.turnPhase = 1
+			self.turnCount = 0
 			
 			-- Setup plasma beam sprites
 			self.beamSpriteStart = SpriteNode(self.scene, Transform(), nil, "plasmabeam", nil, nil, "ui")
@@ -97,19 +98,19 @@ return {
 			local turnIdx = self.turnCount % 4
 			-- charge
 			if turnIdx == 0 then
-				local parts = {
-					self.scene.juggerbotbody,
-					self.scene.juggerbothead,
-					self.scene.juggerbotrightarm
+				local headSp = self.scene.juggerbothead:getSprite()
+				local rightarmSp = self.scene.juggerbotrightarm:getSprite()
+				local moveBackActions = {
+					Animate(self:getSprite(), "cannonright"),
+					Ease(self:getSprite().transform, "x", self:getSprite().transform.x - 8, 1),
+					Ease(rightarmSp.transform, "x", rightarmSp.transform.x - 8, 1),
+					Parallel {
+						Ease(headSp.transform, "x", headSp.transform.x - 12, 1),
+						Ease(headSp.transform, "y", headSp.transform.y - 8, 1),
+					}
 				}
-				local moveBackActions = {Animate(self:getSprite(), "cannonright")}
-				for _,sp in pairs(parts) do
-					table.insert(
-						moveBackActions,
-						Ease(sp:getSprite().transform, "x", sp:getSprite().transform.x - 8, 1)
-					)
-				end
-			
+				
+				self.sprite:pushOverride("hurt", "idlecannonright")
 				action = Serial {
 					Parallel(moveBackActions),
 					Animate(self:getSprite(), "idlecannonright"),
@@ -167,18 +168,20 @@ return {
 					)
 				end
 				
-				local parts = {
-					self.scene.juggerbotbody,
-					self.scene.juggerbothead,
-					self.scene.juggerbotrightarm
+				local headSp = self.scene.juggerbothead:getSprite()
+				local rightarmSp = self.scene.juggerbotrightarm:getSprite()
+				local moveForwardActions = {
+					Serial {
+						Animate(self:getSprite(), "undocannonright"),
+						Animate(self:getSprite(), "idle")
+					},
+					Ease(self:getSprite().transform, "x", self:getSprite().transform.x + 8, 1),
+					Ease(rightarmSp.transform, "x", rightarmSp.transform.x + 8, 1),
+					Parallel {
+						Ease(headSp.transform, "x", headSp.transform.x + 12, 1),
+						Ease(headSp.transform, "y", headSp.transform.y + 8, 1),
+					}
 				}
-				local moveForwardActions = {Animate(self:getSprite(), "undocannonright")}
-				for _,sp in pairs(parts) do
-					table.insert(
-						moveForwardActions,
-						Ease(sp:getSprite().transform, "x", sp:getSprite().transform.x + 8, 1)
-					)
-				end
 				
 				action = Serial {
 					Telegraph(self, "Plasma Beam", {255,255,255,50}),
@@ -193,7 +196,10 @@ return {
 						Ease(self.beamSprite.transform, "sy", 0, 3)
 					},
 					Wait(1),
-					Parallel(moveForwardActions)
+					Parallel(moveForwardActions),
+					Do(function()
+						self.sprite:popOverride("hurt")
+					end)
 				}
 			end
 

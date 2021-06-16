@@ -76,7 +76,6 @@ return {
 	end,
 	
 	onDead = function(self)
-		self.scene.juggerbotbody.turnCount = 0
 		self.scene.juggerbotbody.turnPhase = 2
 
 		-- Reduce defense on body
