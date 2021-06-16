@@ -12,7 +12,7 @@ function Animate:construct(sprite, animation, isPassive, frameActions, stopOnCom
 end
 
 function Animate:update(dt)
-	local anim = self.sprite.animations[self.animation]
+	local anim = self.sprite:getAnimation(self.animation)
 	if not anim then
 		return
 	end
@@ -52,7 +52,7 @@ function Animate:reset()
 		self.sprite:addSceneNode(self.layer)
 	end
 	self.sprite:setAnimation(self.animation)
-	local anim = self.sprite.animations[self.animation]
+	local anim = self.sprite:getAnimation(self.animation)
 	if not anim then
 		return
 	end

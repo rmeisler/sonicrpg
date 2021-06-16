@@ -163,8 +163,7 @@ return function(scene)
 		Do(function()
 			scene.audio:playMusic("knotholehut", 0.8)
 
-			local alarm = scene.objectLookup.AlarmClock
-			scene.player.hidekeyhints[tostring(alarm)] = nil
+			scene.objectLookup.AlarmClock:refreshKeyHint()
 			GameState:setFlag("sonichut_intro")
 		end)
 	}

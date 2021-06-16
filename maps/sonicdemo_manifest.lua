@@ -7,8 +7,13 @@ return {
 	
 	{
         type = "map",
-		file = "maps/greatforest1.lua",
+		file = "maps/deathegg_elevator.lua",
 		primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/greatforest1.lua"
     },
 	
 	{
@@ -236,6 +241,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/lasershield.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/surprise.png"
 	},
 	{
@@ -257,6 +266,14 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/sonic.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/bunny.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/bunnybattle.png"
 	},
 	{
 		type = "image",
@@ -317,6 +334,22 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/swatbot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/juggerbotbody.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/juggerbothead.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/juggerbotleftarm.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/juggerbotrightarm.png"
 	},
 	{
 		type = "image",
@@ -496,6 +529,22 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/stuneffect.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/blast1.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/fireshot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/plasmabeam.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/smack.png"
 	},
 	{
@@ -528,6 +577,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/boulder.png"
+	},
+	{
+		type = "image",
 		file = "art/parallax/robotropolis.png"
 	},
 	{
@@ -541,6 +594,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/usering.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/shield.ogg",
 		category = "sfx"
 	},
 	{
@@ -640,6 +698,16 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/stun.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/plasmabeam.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/laser.ogg",
 		category = "sfx"
 	},
@@ -710,7 +778,17 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/juggerbotstep.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/ratstep.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/juggerbotroar.ogg",
 		category = "sfx"
 	},
 	{
@@ -917,6 +995,12 @@ return {
 		type = "sound",
 		file = "audio/music/worldmap.ogg",
 		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/mission2.ogg",
+		category = "music",
+		looping = true,
 	},
 	{
 		type = "sound",

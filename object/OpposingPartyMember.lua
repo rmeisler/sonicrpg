@@ -12,6 +12,7 @@ local Animate = require "actions/Animate"
 local Executor = require "actions/Executor"
 local Repeat = require "actions/Repeat"
 local Action = require "actions/Action"
+local Spawn = require "actions/Spawn"
 local Do = require "actions/Do"
 local Lazy = require "util/Lazy"
 local MessageBox = require "actions/MessageBox"
@@ -46,12 +47,15 @@ function OpposingPartyMember:construct(scene, data)
 	self.behavior = data.behavior or function() end
 	self.onDead = data.onDead or function() return Action() end
 	self.onEnter = data.onEnter or function() return Action() end
+	self.onPreInit = data.onPreInit or function() end
+	self.onInit = data.onInit or function() end
 	self.getIdleAnim = data.getIdleAnim or function(_self) return "idle" end
 	self.getBackwardAnim = data.getBackwardAnim or function(_self) return "backward" end
 	self.onAttack = data.onAttack
 	self.textOffset = data.textOffset or Transform(0, self.sprite.h/2 - 15)
 	self.color = data.color or {255,255,255,255}
 	self.boss = data.boss
+	self.targetOverrideStack = {}
 	
 	self.sprite.color = self.color
 	
@@ -86,6 +90,7 @@ function OpposingPartyMember:beginTurn()
 	end
 	
 	local sprite = self:getSprite()
+	local target
 	
 	local additionalActions = {}
 	
@@ -132,7 +137,7 @@ function OpposingPartyMember:beginTurn()
 		}, 2)
 		
 		if not self.chanceToEscape then
-			self.chanceToEscape = 0.4
+			self.chanceToEscape = 0.2
 		else
 			self.chanceToEscape = self.chanceToEscape * 2
 		end
@@ -145,6 +150,7 @@ function OpposingPartyMember:beginTurn()
 		else
 			-- If the immobilizer is bunny...
 			if self.immobilizedBy == "bunny" then
+				self.immobilizedBy = nil
 				-- Retract bunny ext arm and linkages and go back to idle anim
 				self.action = Serial {
 					shake,
@@ -197,8 +203,26 @@ function OpposingPartyMember:beginTurn()
 		self.action = Telegraph(self, self.name.."'s boredom has subsided.", {self.color[1],self.color[2],self.color[3],50})
 		self.lostTurns = self.lostTurns - 1
 	else
+		local targetOverride = table.remove(self.targetOverrideStack, 1)
+		if targetOverride then
+			self.selectedTarget = targetOverride
+		end
+
 		-- Choose action based on behavior
-		self.action = self.behavior(self, self.scene.party[self.selectedTarget]) or Action()
+		target = self.scene.party[self.selectedTarget]
+		if target.laserShield and target.sprite ~= target.laserShield then
+			target.lastSprite = target.sprite
+			target.sprite = target.laserShield
+		end
+		
+		self.action = self.behavior(self, target) or Action()
+		
+		if targetOverride then
+			self.action = Serial {
+				Telegraph(self, self.name.." feels compelled to attack "..target.name.."!", {255,255,255,50}),
+				self.action
+			}
+		end
 	end
 	
 	if self.malfunctioningTurns > 1 then
@@ -238,6 +262,10 @@ function OpposingPartyMember:beginTurn()
 		Serial(additionalActions),
 		self.action,
 		Do(function()
+			if target and target.lastSprite then
+				target.sprite = target.lastSprite
+				target.lastSprite = nil
+			end
 			-- Noop... why is this necessary in some cases?
 		end)
 	}
@@ -277,6 +305,13 @@ function OpposingPartyMember:die()
 					end, "explode")
 				}
 			)
+		end
+		
+		local killOtherMonsters = {}
+		for _, v in pairs(self.scene.opponents) do
+			if v ~= self then
+				table.insert(killOtherMonsters, v:die())
+			end
 		end
 	
 		return Serial {
@@ -325,6 +360,7 @@ function OpposingPartyMember:die()
 				}, 10)
 			},
 			PlayAudio("sfx", "oppdeath", 1.0, true),
+			Spawn(Parallel(killOtherMonsters)),
 			Do(function()
 				self.dropShadow:remove()
 			end),

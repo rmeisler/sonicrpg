@@ -77,6 +77,15 @@ return {
 				require "data/battle/skills/Rally",
 			}
 		},
+		[5] = {
+			messages = {"Sally learned \"Reveal\"!"},
+			skills = {
+				require "data/battle/skills/Scan",
+				require "data/battle/skills/Infect",
+				require "data/battle/skills/Rally",
+				require "data/battle/skills/Reveal"
+			}
+		},
 	},
 	
 	specialmove = require "data/specialmoves/sally",

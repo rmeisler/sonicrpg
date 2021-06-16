@@ -154,7 +154,7 @@ function PartyMember:beginTurn()
 		}, 2)
 		
 		-- Escape
-		if math.random() < self.turnsImmobilized * (self.stats.luck/20) then
+		if math.random() < self.turnsImmobilized * (self.stats.luck/50) then
 			BattleActor.beginTurn(self)
 			
 			self.turnsImmobilized = nil

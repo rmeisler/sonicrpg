@@ -104,6 +104,8 @@ return function(self, target)
 			
 			self.options = self.origOptions
 			self.sprite:setAnimation("idle")
+			self.reverseAnimation = nil
+			target.state = self.STATE_IDLE
 		end)
 	}
 	
@@ -121,9 +123,22 @@ return function(self, target)
 		Animate(target.sprite, "hurt"),
 		
 		Do(function()
+			target.immobilizedBy = "bunny"
+		
 			-- Update battle menu
 			self.origOptions = self.options
 			self.options = {
+				{Layout.Text("Hold"),
+					choose = function(menu)
+						menu:close()
+						
+						self.scene:run {
+							menu,
+							Do(function()
+								self:endTurn()
+							end)
+						}
+					end},
 				{Layout.Text("Release"),
 					choose = function(menu)
 						menu:close()
@@ -142,15 +157,7 @@ return function(self, target)
 								self:endTurn()
 							end)
 						}
-					end},
-				{Layout.Text{text="Skills", color={100,100,100,255}},
-					choose = function(menu)
-						self.scene.audio:playSfx("error", nil, true)
-					end},
-				{Layout.Text{text="Items", color={100,100,100,255}},
-					choose = function(menu)
-						self.scene.audio:playSfx("error", nil, true)
-					end},
+					end}
 			}
 		end),
 		

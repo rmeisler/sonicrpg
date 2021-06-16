@@ -39,6 +39,23 @@ return {
         },
 		extend = {
 			frames = {{3,2}}
+		},
+		
+		fly1 = {
+			frames = {{3,3},{3,4},{4,3},{4,4}},
+			speed = 0.2
+		},
+		fly2 = {
+			frames = {{1,3},{2,3}},
+			speed = 0.2
+		},
+		
+		hold = {
+			frames = {{0,4}}
+		},
+		throw = {
+			frames = {{1,4},{2,4},{0,5}},
+			speed = 0.2
 		}
     }
 }

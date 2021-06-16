@@ -5,6 +5,7 @@ local SpriteNode = class(require "object/DrawableNode")
 
 function SpriteNode:construct(scene, transform, color, imgsrc, w, h, layer)
 	self.locationOffsets = {}
+	self.animationOverrideStack = {}
 	if type(imgsrc) == "string" then
 		self.imgsrc = imgsrc
 		self.img = scene.images[imgsrc]
@@ -71,12 +72,62 @@ function SpriteNode:trySetAnimation(name)
 	end
 end
 
+function SpriteNode:pushOverride(name, overrideName)
+	if not self.animationOverrideStack[name] then
+		self.animationOverrideStack[name] = {overrideName}
+		if self.selected == name then
+			self.selected = overrideName
+		end
+	else
+		if self.selected == self.animationOverrideStack[name][1] then
+			self.selected = overrideName
+		end
+		table.insert(self.animationOverrideStack[name], 1, overrideName)
+	end
+end
+
+function SpriteNode:popOverride(name)
+	if  not self.animationOverrideStack[name] or
+		next(self.animationOverrideStack[name]) == nil
+	then
+		return
+	end
+	local current = self.animationOverrideStack[name][1]
+	table.remove(self.animationOverrideStack[name], 1)
+	if next(self.animationOverrideStack[name]) == nil then
+		self.animationOverrideStack[name] = nil
+		if self.selected == current then
+			self.selected = name
+		end
+	else
+		if self.selected == current then
+			self.selected = self.animationOverrideStack[name][1]
+		end
+	end
+end
+
 function SpriteNode:setAnimation(name)
-    self.selected = name
+	if self.animationOverrideStack[name] then
+		self.selected = self.animationOverrideStack[name][1]
+	else
+		self.selected = name
+	end
+end
+
+function SpriteNode:getAnimation(name)
+	if self.animationOverrideStack[name] then
+		return self.animations[self.animationOverrideStack[name][1]]
+	else
+		return self.animations[name]
+	end
 end
 
 function SpriteNode:setFrame(position)
 	self.animations[self.selected].position = position
+end
+
+function SpriteNode:getFrame()
+	return self.animations[self.selected].position
 end
 
 function SpriteNode:onAnimationComplete(callback)

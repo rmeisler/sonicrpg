@@ -58,7 +58,7 @@ return {
 		end
 		
 		local dodgeAction = Action()
-		if target.id == "sonic" then
+		if target.id == "sonic" and not target.laserShield then
 			dodgeAction = PressX(
 				self,
 				target,

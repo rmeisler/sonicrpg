@@ -124,8 +124,8 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 	local damageTextColor = {255, 0, 20, 255}
 
 	-- Random chance of miss
-	if damage == 0 or math.random() > (0.95 - (selfStats.speed/100) + math.random(stats.speed/100)) then
-		if damage > 0 then
+	if stats.miss or damage == 0 or math.random() > (0.95 - (selfStats.speed/100) + math.random(stats.speed/100)) then
+		if damage > 0 or stats.miss then
 			damageText = "miss"
 			damage = 0
 			damageTextColor = {255,255,255,255}
@@ -135,6 +135,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 		
 		-- Flash transparency
 		knockBackAction = Serial {
+			PlayAudio("sfx", "pressx", 1.0, true),
 			Ease(sprite.color, 4, 0, 10, "quad"),
 			Ease(sprite.color, 4, 255, 2, "linear")
 		}
@@ -173,6 +174,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 				if (damage > 0 and sprite.animations["hurt"] and not self.noHurtAnim) then
 					sprite:setAnimation("hurt")
 				end
+				self:invoke("hit")
 			end),
 			Serial {
 				Parallel {
@@ -242,13 +244,21 @@ function BattleActor:getStats()
 end
 
 function BattleActor:die()
-	return Do(function()
-		self.hp = 0
-		self.state = BattleActor.STATE_DEAD
-		
-		self:getSprite():setAnimation("dead")
-		self:invoke("dead")
-	end)
+	local revAction = Action()
+	if self.reverseAnimation then
+		revAction = self.reverseAnimation
+	end
+
+	return Serial {
+		revAction,
+		Do(function()
+			self.hp = 0
+			self.state = BattleActor.STATE_DEAD
+			
+			self:getSprite():setAnimation("dead")
+			self:invoke("dead")
+		end)
+	}
 end
 
 

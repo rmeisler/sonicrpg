@@ -114,27 +114,27 @@ return function(self, target, returnAction, knockbackActionFun, details)
 									Parallel {
 										Animate(function()
 											local xform = Transform(
-												self.sprite.transform.x,
-												self.sprite.transform.y,
+												self:getSprite().transform.x,
+												self:getSprite().transform.y,
 												3,
 												3
 											)
 											return SpriteNode(self.scene, xform, nil, "smack", nil, nil, "ui"), true
 										end, "idle"),
 										Serial {
-											Ease(self.sprite.transform, "x", self.sprite.transform.x + (impact/1.5 * direction), 20, "quad"),
-											Ease(self.sprite.transform, "x", self.sprite.transform.x - (impact/3 * direction), 20, "quad"),
-											Ease(self.sprite.transform, "x", self.sprite.transform.x - (impact/1.5 * direction), 20, "quad"),
-											Ease(self.sprite.transform, "x", self.sprite.transform.x + (impact/3 * direction), 20, "quad"),
-											Ease(self.sprite.transform, "x", self.sprite.transform.x + (impact/2 * direction), 20, "quad"),
-											Ease(self.sprite.transform, "x", self.sprite.transform.x - (impact/4 * direction), 20, "quad"),
-											Ease(self.sprite.transform, "x", self.sprite.transform.x + (impact/3 * direction), 20, "quad"),
-											Ease(self.sprite.transform, "x", self.sprite.transform.x - (impact/6 * direction), 20, "quad"),
-											Ease(self.sprite.transform, "x", self.sprite.transform.x, 20, "linear")
+											Ease(self:getSprite().transform, "x", self:getSprite().transform.x + (impact/1.5 * direction), 20, "quad"),
+											Ease(self:getSprite().transform, "x", self:getSprite().transform.x - (impact/3 * direction), 20, "quad"),
+											Ease(self:getSprite().transform, "x", self:getSprite().transform.x - (impact/1.5 * direction), 20, "quad"),
+											Ease(self:getSprite().transform, "x", self:getSprite().transform.x + (impact/3 * direction), 20, "quad"),
+											Ease(self:getSprite().transform, "x", self:getSprite().transform.x + (impact/2 * direction), 20, "quad"),
+											Ease(self:getSprite().transform, "x", self:getSprite().transform.x - (impact/4 * direction), 20, "quad"),
+											Ease(self:getSprite().transform, "x", self:getSprite().transform.x + (impact/3 * direction), 20, "quad"),
+											Ease(self:getSprite().transform, "x", self:getSprite().transform.x - (impact/6 * direction), 20, "quad"),
+											Ease(self:getSprite().transform, "x", self:getSprite().transform.x, 20, "linear")
 										},
 										Serial {
-											Ease(self.sprite.color, 1, 800, 2.7, "linear"),
-											Ease(self.sprite.color, 1, 255, 2.7, "linear")
+											Ease(self:getSprite().color, 1, 800, 2.7, "linear"),
+											Ease(self:getSprite().color, 1, 255, 2.7, "linear")
 										}
 									}
 								}
