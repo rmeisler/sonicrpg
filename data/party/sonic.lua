@@ -71,6 +71,14 @@ return {
 				require "data/battle/skills/Roundabout",
 			}
 		},
+		[4] = {
+			messages = {"Sonic learned \"Tease\"!"},
+			skills = {
+				require "data/battle/skills/Spindash",
+				require "data/battle/skills/Roundabout",
+				require "data/battle/skills/Tease"
+			}
+		},
 	},
 	
 	specialmove = require "data/specialmoves/sonic",

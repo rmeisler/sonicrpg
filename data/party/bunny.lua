@@ -59,6 +59,21 @@ return {
 				require "data/battle/skills/Grab"
 			}
 		},
+		[4] = {
+			messages = {"Bunnie learned \"Rocket Punch\"!"},
+			skills = {
+				require "data/battle/skills/Grab",
+				require "data/battle/skills/RocketPunch"
+			}
+		},
+		[5] = {
+			messages = {"Bunnie learned \"Boulder\"!"},
+			skills = {
+				require "data/battle/skills/Grab",
+				require "data/battle/skills/RocketPunch",
+				require "data/battle/skills/Boulder"
+			}
+		}
 	},
 	
 	specialmove = require "data/specialmoves/bunny",

@@ -50,9 +50,6 @@ return function(self, target)
 				shield:remove()
 				target.laserShield = nil
 				target.stats.defense = target.stats.prevDefense
-			end),
-			Do(function()
-				print("done with laser shield")
 			end)
 		})
 		target:removeHandler("hit", hitHandler)

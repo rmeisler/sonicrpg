@@ -36,22 +36,23 @@ return function(scene)
 		100
 	)
 	
-	scene.audio:playMusic("mission2", 1.0)
-	
 	return Serial {
-		subtext,
-		text,
-		Parallel {
-			Ease(text.color, 4, 255, 1),
-			Ease(subtext.color, 4, 255, 1),
-		},
-		Wait(2),
-		Parallel {
-			Ease(text.color, 4, 0, 1),
-			Ease(subtext.color, 4, 0, 1)
-		},
+		Spawn(Serial {
+			PlayAudio("music", "mission2", 1.0, true, true),
+			subtext,
+			text,
+			Parallel {
+				Ease(text.color, 4, 255, 1),
+				Ease(subtext.color, 4, 255, 1),
+			},
+			Wait(2),
+			Parallel {
+				Ease(text.color, 4, 0, 1),
+				Ease(subtext.color, 4, 0, 1)
+			}
+		})--,
 		
-		MessageBox {message="Sonic: What a time be in the {h Death Egg}..."}
+		--MessageBox {message="Sonic: What a time be in the {h Death Egg}...", blocking = true}
 	}
 	
 end

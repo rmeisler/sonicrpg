@@ -97,8 +97,21 @@ return {
 			local turnIdx = self.turnCount % 4
 			-- charge
 			if turnIdx == 0 then
+				local parts = {
+					self.scene.juggerbotbody,
+					self.scene.juggerbothead,
+					self.scene.juggerbotrightarm
+				}
+				local moveBackActions = {Animate(self:getSprite(), "cannonright")}
+				for _,sp in pairs(parts) do
+					table.insert(
+						moveBackActions,
+						Ease(sp:getSprite().transform, "x", sp:getSprite().transform.x - 8, 1)
+					)
+				end
+			
 				action = Serial {
-					Animate(self:getSprite(), "cannonright"),
+					Parallel(moveBackActions),
 					Animate(self:getSprite(), "idlecannonright"),
 					PlayAudio("sfx", "lockon", 1.0, true),
 					Telegraph(self, "3...", {255,255,255,50}),
@@ -154,6 +167,19 @@ return {
 					)
 				end
 				
+				local parts = {
+					self.scene.juggerbotbody,
+					self.scene.juggerbothead,
+					self.scene.juggerbotrightarm
+				}
+				local moveForwardActions = {Animate(self:getSprite(), "undocannonright")}
+				for _,sp in pairs(parts) do
+					table.insert(
+						moveForwardActions,
+						Ease(sp:getSprite().transform, "x", sp:getSprite().transform.x + 8, 1)
+					)
+				end
+				
 				action = Serial {
 					Telegraph(self, "Plasma Beam", {255,255,255,50}),
 					PlayAudio("sfx", "plasmabeam", 1.0, true),
@@ -167,7 +193,7 @@ return {
 						Ease(self.beamSprite.transform, "sy", 0, 3)
 					},
 					Wait(1),
-					Animate(self:getSprite(), "undocannonright")
+					Parallel(moveForwardActions)
 				}
 			end
 

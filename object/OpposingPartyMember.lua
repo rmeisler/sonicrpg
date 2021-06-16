@@ -55,6 +55,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.textOffset = data.textOffset or Transform(0, self.sprite.h/2 - 15)
 	self.color = data.color or {255,255,255,255}
 	self.boss = data.boss
+	self.targetOverrideStack = {}
 	
 	self.sprite.color = self.color
 	
@@ -202,13 +203,26 @@ function OpposingPartyMember:beginTurn()
 		self.action = Telegraph(self, self.name.."'s boredom has subsided.", {self.color[1],self.color[2],self.color[3],50})
 		self.lostTurns = self.lostTurns - 1
 	else
+		local targetOverride = table.remove(self.targetOverrideStack, 1)
+		if targetOverride then
+			self.selectedTarget = targetOverride
+		end
+
 		-- Choose action based on behavior
 		target = self.scene.party[self.selectedTarget]
 		if target.laserShield and target.sprite ~= target.laserShield then
 			target.lastSprite = target.sprite
 			target.sprite = target.laserShield
 		end
+		
 		self.action = self.behavior(self, target) or Action()
+		
+		if targetOverride then
+			self.action = Serial {
+				Telegraph(self, self.name.." feels compelled to attack "..target.name.."!", {255,255,255,50}),
+				self.action
+			}
+		end
 	end
 	
 	if self.malfunctioningTurns > 1 then
