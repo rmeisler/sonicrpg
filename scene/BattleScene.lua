@@ -719,10 +719,10 @@ function BattleScene:draw()
 end
 
 -- Vertical screen shake
-function BattleScene:screenShake(strength, speed, repeatTimes)
-	strength = strength or 50
-	speed = speed or 15
-	repeatTimes = repeatTimes or 1
+function BattleScene:screenShake(str, sp, rp)
+	local strength = str or 50
+	local speed = sp or 15
+	local repeatTimes = rp or 1
 	
 	return Serial {
 		Do(function()
@@ -730,16 +730,12 @@ function BattleScene:screenShake(strength, speed, repeatTimes)
 		end),
 		
 		Repeat(Serial {
-			Ease(self.camPos, "y", self.camPos.y - strength, speed, "quad"),
-			Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
-			Ease(self.camPos, "y", self.camPos.y + strength, speed, "quad"),
-			Ease(self.camPos, "y", self.camPos.y, speed, "quad")
+			Ease(self.camPos, "y", function() return self.camPos.y - strength end, speed, "quad"),
+			Ease(self.camPos, "y", function() return self.camPos.y + strength end, speed, "quad")
 		}, repeatTimes),
 		
-		Ease(self.camPos, "y", self.camPos.y - strength/2, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y + strength/2, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y - strength/2 end, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y + strength/2 end, speed, "quad"),
 		
 		Do(function()
 			self.isScreenShaking = false

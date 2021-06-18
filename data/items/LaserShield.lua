@@ -4,7 +4,7 @@ return {
 	name = "Laser Shield",
 	desc = "Blocks all laser damage from a single attack.",
 	target = TargetType.Party,
-	cost = 6,
+	cost = 3,
 	subtype = "craft",
 	icon = "icon_defense",
 	img = "lasershield",
