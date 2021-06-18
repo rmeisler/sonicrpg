@@ -93,7 +93,7 @@ function PartyMember:construct(scene, data)
 	self:addHandler("hit", function(damage)
 		if damage > 0 and self.state == BattleActor.STATE_IMMOBILIZED then
 			self.state = BattleActor.STATE_IDLE
-			self.sprite:setAnimation("idle")
+			self.prevAnim = "idle"
 		end
 	end)
 	

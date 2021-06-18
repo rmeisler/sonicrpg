@@ -59,7 +59,6 @@ return function(self, targets)
 		Ease(boulderSp.transform, "y", self.sprite.transform.y - 45, 2, "quad"),
 		Animate(self.sprite, "hold"),
 		Spawn(self.scene:screenShake(20, 40)),
-		Wait(0.1),
 		Repeat(Serial {
 			Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + 1 end, 20),
 			Ease(self.sprite.transform, "y", function() return self.sprite.transform.y - 1 end, 20)
@@ -104,7 +103,7 @@ return function(self, targets)
 						Repeat(Serial {
 							Ease(boulderSp.transform, "y", function() return boulderSp.transform.y + 1 end, 20),
 							Ease(boulderSp.transform, "y", function() return boulderSp.transform.y - 1 end, 20)
-						}, 4)
+						}, 2)
 					}
 				},
 				Ease(boulderSp.color, 4, 0, 2),

@@ -108,9 +108,9 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 	local sprite = self:getSprite()
 	
 	-- Reset animation if backward
-	local prevAnim = sprite.selected
-	if prevAnim == "backward" then
-		prevAnim = "idle"
+	self.prevAnim = sprite.selected
+	if self.prevAnim == "backward" then
+		self.prevAnim = "idle"
 	end
 
 	-- Calculate damage based on stats of the attacker combined with our own
@@ -206,7 +206,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 			}
 		},
 		Do(function()
-			sprite:setAnimation(prevAnim)
+			sprite:setAnimation(self.prevAnim)
 			self.hp = endHp
 		end)
 	}

@@ -219,6 +219,16 @@ function OpposingPartyMember:beginTurn()
 		
 		self.action = self.behavior(self, target) or Action()
 		
+		if target.laserShield then
+			self.action = Serial {
+				self.action,
+				Do(function()
+					target.sprite = target.lastSprite
+					target.lastSprite = nil
+				end)
+			}
+		end
+		
 		if targetOverride then
 			self.action = Serial {
 				Telegraph(self, self.name.." feels compelled to attack "..target.name.."!", {255,255,255,50}),
@@ -264,10 +274,6 @@ function OpposingPartyMember:beginTurn()
 		Serial(additionalActions),
 		self.action,
 		Do(function()
-			if target and target.lastSprite then
-				target.sprite = target.lastSprite
-				target.lastSprite = nil
-			end
 			-- Noop... why is this necessary in some cases?
 		end)
 	}
