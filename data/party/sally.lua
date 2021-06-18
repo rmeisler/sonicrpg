@@ -78,12 +78,12 @@ return {
 			}
 		},
 		[5] = {
-			messages = {"Sally learned \"Reveal\"!"},
+			messages = {"Sally learned \"Interrupt\"!"},
 			skills = {
 				require "data/battle/skills/Scan",
 				require "data/battle/skills/Infect",
 				require "data/battle/skills/Rally",
-				require "data/battle/skills/Reveal"
+				require "data/battle/skills/Interrupt"
 			}
 		},
 	},

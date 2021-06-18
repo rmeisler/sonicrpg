@@ -90,6 +90,13 @@ function PartyMember:construct(scene, data)
 		self.sprite:setAnimation("dead")
 	end
 	
+	self:addHandler("hit", function(damage)
+		if damage > 0 and self.state == BattleActor.STATE_IMMOBILIZED then
+			self.state = BattleActor.STATE_IDLE
+			self.sprite:setAnimation("idle")
+		end
+	end)
+	
 	self.side = TargetType.Party
 end
 

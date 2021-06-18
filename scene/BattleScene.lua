@@ -739,7 +739,8 @@ function BattleScene:screenShake(str, sp, rp)
 		
 		Do(function()
 			self.isScreenShaking = false
-			self.camPos = Transform()
+			self.camPos.x = 0
+			self.camPos.y = 0
 		end)
 	}
 end

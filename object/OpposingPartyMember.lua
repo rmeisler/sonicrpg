@@ -197,10 +197,12 @@ function OpposingPartyMember:beginTurn()
 		}
 		self.confused = false
 	elseif self.lostTurns > 1 then
-		self.action = Telegraph(self, self.name.." is still bored!", {self.color[1],self.color[2],self.color[3],50})
+		local lostTurnMsg = self.name.." is still "..(self.lostTurnType or "bored").."!"
+		self.action = Telegraph(self, lostTurnMsg, {self.color[1],self.color[2],self.color[3],50})
 		self.lostTurns = self.lostTurns - 1
 	elseif self.lostTurns > 0 then
-		self.action = Telegraph(self, self.name.."'s boredom has subsided.", {self.color[1],self.color[2],self.color[3],50})
+		local lostTurnMsg = self.name.."'s "..(self.lostTurnType or "boredom").." has subsided."
+		self.action = Telegraph(self, lostTurnMsg, {self.color[1],self.color[2],self.color[3],50})
 		self.lostTurns = self.lostTurns - 1
 	else
 		local targetOverride = table.remove(self.targetOverrideStack, 1)
