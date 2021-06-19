@@ -43,7 +43,7 @@ return {
 		
 		fly1 = {
 			frames = {{3,3},{3,4},{4,3},{4,4}},
-			speed = 0.2
+			speed = 0.4
 		},
 		fly2 = {
 			frames = {{1,3},{2,3}},

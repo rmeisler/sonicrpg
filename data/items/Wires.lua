@@ -2,7 +2,7 @@ local TargetType = require "util/TargetType"
 
 return {
 	name = "Wires",
-	desc = "Some scrap bot parts",
+	desc = "Some scrap bot parts.",
 	target = TargetType.Party,
 	icon = "icon_accessory",
 	subtype = "junk",

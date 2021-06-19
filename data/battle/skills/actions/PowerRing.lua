@@ -98,7 +98,7 @@ return function(self, target)
 		table.insert(
 			ringbeamActions,
 			Serial {
-				Wait((index % 3) / 2),
+				Wait((index % 3) / 3),
 				
 				Parallel {
 					Ease(sprite.transform, "sy", (index % 3 == 0) and 3 or 1, 2),
@@ -106,7 +106,7 @@ return function(self, target)
 					Repeat(Serial {
 						Ease(sprite.color, 4, 125, 20),
 						Ease(sprite.color, 4, 100, 20)
-					}, 20 - 5 * (index % 3))
+					}, 20 - 6 * (index % 3))
 				},
 				Ease(sprite.color, 4, 255, 3),
 				Ease(sprite.color, 4, 0, 3),

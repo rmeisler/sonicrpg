@@ -54,19 +54,21 @@ return {
 		{count = 1, item = require "data/items/Carrot"},
 		{count = 1, item = require "data/items/Mushroom"},
 		{count = 2, item = require "data/items/LaserShield"},
+		{count = 2, item = require "data/items/PowerRing"},
 	},
 	
 	levelup = {
 		[1] = {
 			messages = {},
 			skills = {
+				require "data/battle/skills/PowerRing",
 				require "data/battle/skills/Spindash",
-				--require "data/battle/skills/PowerRing"
 			}
 		},
 		[2] = {
 			messages = {"Sonic learned \"Roundabout\"!"},
 			skills = {
+				require "data/battle/skills/PowerRing",
 				require "data/battle/skills/Spindash",
 				require "data/battle/skills/Roundabout",
 			}
@@ -74,6 +76,7 @@ return {
 		[4] = {
 			messages = {"Sonic learned \"Tease\"!"},
 			skills = {
+				require "data/battle/skills/PowerRing",
 				require "data/battle/skills/Spindash",
 				require "data/battle/skills/Roundabout",
 				require "data/battle/skills/Tease"

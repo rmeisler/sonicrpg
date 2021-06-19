@@ -5,7 +5,7 @@ local ReviveText = require "data/items/actions/ReviveText"
 
 return {
 	name = "Rainbow Syrup",
-	desc = "Revives a fallen ally and recovers all hp",
+	desc = "Revives a fallen ally and recovers all hp.",
 	target = TargetType.Party,
 	usableFromMenu = true,
 	battleAction = function() return Revive(10000) end,

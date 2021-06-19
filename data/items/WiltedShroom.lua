@@ -5,7 +5,7 @@ local HealText = require "data/items/actions/HealText"
 
 return {
 	name = "Wilted Shroom",
-	desc = "Recovers hp",
+	desc = "Recovers hp.",
 	target = TargetType.Party,
 	usableFromMenu = true,
 	unusable = function(target)
