@@ -14,6 +14,7 @@ local Action = require "actions/Action"
 
 local PressX = require "data/battle/actions/PressX"
 local OnHitEvent = require "data/battle/actions/OnHitEvent"
+local Telegraph = require "data/monsters/actions/Telegraph"
 
 local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
@@ -116,30 +117,46 @@ return function(self, target)
 			}
 		)
 	end
+	
+	local action
+	if not GameState:hasItem("Power Ring") then
+		action = Serial {
+			Animate(self.sprite, "noring_idle"),
+			Telegraph(self, "No Power Ring in inventory...", {255,255,255,50})
+		}
+	else
+		action = Serial {
+			Spawn(Serial {
+				PlayAudio("music", "sonicring", 1.0),
+				PlayAudio("music", "sonicring2", 1.0)
+			}),
+			Animate(self.sprite, "foundring_backpack"),
+			Do(function() self.sprite:setGlow({255,255,0,255},2) end),
+			PlayAudio("sfx", "usering", 1.0, true),
+			Parallel {
+				Serial {
+					Animate(self.sprite, "liftring_idle", true),
+					Wait(0.5),
+					Parallel(ringbeamActions)
+				},
+				Ease(self.sprite, "glowSize", 6, 2),
+				Ease(self.sprite.color, 1, 500, 2),
+				Ease(self.sprite.color, 2, 500, 2),
+			},
+			Parallel {
+				Ease(self.sprite.glowColor, 4, 0, 5, "quad"),
+				Ease(self.sprite, "glowSize", 2, 5, "quad"),
+				Ease(self.sprite.color, 1, 255, 5, "quad"),
+				Ease(self.sprite.color, 2, 255, 5, "quad"),
+			},
+			Do(function() self.sprite:removeGlow() end),
+			Animate(self.sprite, "liftring"),
+			Wait(2)
+		}
+	end
 
 	return Serial {
 		Animate(self.sprite, "fish_backpack"),
-		Spawn(PlayAudio("music", "sonicring", 1.0)),
-		Animate(self.sprite, "foundring_backpack"),
-		Do(function() self.sprite:setGlow({255,255,0,255},2) end),
-		Parallel {
-			Serial {
-				Animate(self.sprite, "liftring_idle", true),
-				Wait(0.5),
-				Parallel(ringbeamActions)
-			},
-			Ease(self.sprite, "glowSize", 6, 2),
-			Ease(self.sprite.color, 1, 500, 2),
-			Ease(self.sprite.color, 2, 500, 2),
-		},
-		Parallel {
-			Ease(self.sprite.glowColor, 4, 0, 5, "quad"),
-			Ease(self.sprite, "glowSize", 2, 5, "quad"),
-			Ease(self.sprite.color, 1, 255, 5, "quad"),
-			Ease(self.sprite.color, 2, 255, 5, "quad"),
-		},
-		Do(function() self.sprite:removeGlow() end),
-		Animate(self.sprite, "liftring"),
-		Wait(2)
+		action
 	}
 end

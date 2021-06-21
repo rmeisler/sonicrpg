@@ -1111,7 +1111,13 @@ return {
 		type = "sound",
 		file = "audio/music/sonicring.ogg",
 		category = "music",
-		volume = 0.3,
+		volume = 1.0,
+	},
+	{
+		type = "sound",
+		file = "audio/music/sonicring2.ogg",
+		category = "music",
+		volume = 1.0,
 	},
 	{
 		type = "sound",

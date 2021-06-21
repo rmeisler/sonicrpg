@@ -20,10 +20,7 @@ local Transform = require "util/Transform"
 return function(self, target)
 	local origLocation = {x=self.sprite.transform.x, y=self.sprite.transform.y}
 	return Serial {
-		Do(function()
-			self.sprite:setAnimation("fly1")
-		end),
-		Wait(2),
+		Animate(self.sprite, "fly1"),
 		Do(function()
 			self.sprite:setAnimation("fly2")
 		end),
@@ -45,10 +42,8 @@ return function(self, target)
 			Ease(self.sprite.transform, "x", origLocation.x, 3, "log"),
 			Ease(self.sprite.transform, "y", origLocation.y, 3, "log")
 		},
-		Do(function()
-			self.sprite:setAnimation("fly1")
-		end),
-		Wait(1.5),
+		Animate(self.sprite, "fly1"),
+		Animate(self.sprite, "fly3"),
 		Do(function()
 			self.sprite:setAnimation("idle")
 		end)
