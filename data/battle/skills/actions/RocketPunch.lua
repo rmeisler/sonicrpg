@@ -19,6 +19,9 @@ local Transform = require "util/Transform"
 
 return function(self, target)
 	local origLocation = {x=self.sprite.transform.x, y=self.sprite.transform.y}
+	self.origStats = self.stats
+	self.stats = table.clone(self.origStats)
+	self.stats.attack = self.stats.attack*2
 	return Serial {
 		Animate(self.sprite, "fly1"),
 		Do(function()
@@ -26,26 +29,26 @@ return function(self, target)
 		end),
 		Parallel {
 			Ease(self.sprite.transform, "x", target.sprite.transform.x, 4, "quad"),
-			Ease(self.sprite.transform, "y", target.sprite.transform.y, 4, "quad")
-		},
-		
-		Parallel {
-			target:takeDamage({attack = self.stats.attack * 2, speed = self.stats.speed, luck = self.stats.luck}), 
-			Ease(self.sprite.transform, "x", -100, 8, "quad")
-		},
-		
-		Do(function()
-			self.sprite.transform.x = 900
-		end),
-		
-		Parallel {
-			Ease(self.sprite.transform, "x", origLocation.x, 3, "log"),
-			Ease(self.sprite.transform, "y", origLocation.y, 3, "log")
-		},
-		Animate(self.sprite, "fly1"),
-		Animate(self.sprite, "fly3"),
-		Do(function()
-			self.sprite:setAnimation("idle")
-		end)
+			
+			Serial {
+				Ease(self.sprite.transform, "y", target.sprite.transform.y, 4, "quad"),
+				Ease(self.sprite.transform, "x", -100, 8, "quad"),
+				Do(function()
+					self.sprite.transform.x = 900
+				end),
+				
+				Parallel {
+					Ease(self.sprite.transform, "x", origLocation.x, 3, "log"),
+					Ease(self.sprite.transform, "y", origLocation.y, 3, "log")
+				},
+				Animate(self.sprite, "fly1"),
+				Do(function()
+					self.sprite:setAnimation("idle")
+					self.stats = self.origStats
+				end)
+			},
+
+			OnHitEvent(self, target)
+		}
 	}
 end

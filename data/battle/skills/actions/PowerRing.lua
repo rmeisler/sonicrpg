@@ -151,7 +151,27 @@ return function(self, target)
 			},
 			Do(function() self.sprite:removeGlow() end),
 			Animate(self.sprite, "liftring"),
-			Wait(2)
+			Wait(0.1),
+			Animate(self.sprite, "ring_chargerun1"),
+			Do(function()
+				self.sprite:setAnimation("ring_chargerun2")
+			end),
+			Wait(0.8),
+			Do(function()
+				self.sprite:setAnimation("ring_runleft")
+			end),
+			Wait(0.05),
+			Ease(self.sprite.transform, "x", -200, 8, "quad"),
+			Do(function()
+				self.sprite:setAnimation("ring_runright")
+			end),
+			Ease(self.sprite.transform, "x", 1000, 8, "quad"),
+			Ease(self.sprite.transform, "x", -200, 10, "quad"),
+			Ease(self.sprite.transform, "x", 1000, 10, "quad"),
+			Ease(self.sprite.transform, "x", -200, 10, "quad"),
+			Ease(self.sprite.transform, "x", 1000, 10, "quad"),
+			Ease(self.sprite.transform, "x", -200, 10, "quad"),
+			Ease(self.sprite.transform, "x", 1000, 10, "quad"),
 		}
 	end
 
