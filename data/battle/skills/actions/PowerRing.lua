@@ -11,6 +11,7 @@ local Executor = require "actions/Executor"
 local Repeat = require "actions/Repeat"
 local Spawn = require "actions/Spawn"
 local Action = require "actions/Action"
+local While = require "actions/While"
 
 local PressX = require "data/battle/actions/PressX"
 local OnHitEvent = require "data/battle/actions/OnHitEvent"
@@ -122,9 +123,14 @@ return function(self, target)
 	if not GameState:hasItem("Power Ring") then
 		action = Serial {
 			Animate(self.sprite, "noring_idle"),
-			Telegraph(self, "No Power Ring in inventory...", {255,255,255,50})
+			Telegraph(self, "No Power Ring in inventory...", {255,255,255,50}),
+			Do(function()
+				self.sprite:setAnimation("idle")
+			end)
 		}
 	else
+		GameState:useItem(GameState:getItem("Power Ring"))
+		local startingLocationX = self.sprite.transform.x
 		action = Serial {
 			Spawn(Serial {
 				PlayAudio("music", "sonicring", 1.0),
@@ -161,17 +167,80 @@ return function(self, target)
 				self.sprite:setAnimation("ring_runleft")
 			end),
 			Wait(0.05),
-			Ease(self.sprite.transform, "x", -200, 8, "quad"),
+			Spawn(
+				While(
+					function()
+						return self.sprite.selected ~= "idle"
+					end,
+					Repeat(Do(function()
+						if not self.dustTime or self.dustTime > 0.005 then
+							self.dustTime = 0
+						elseif self.dustTime < 0.005 then
+							self.dustTime = self.dustTime + love.timer.getDelta()
+							return
+						end
+						
+						local dust = SpriteNode(
+							self.scene,
+							Transform(self.sprite.transform.x, self.sprite.transform.y),
+							nil,
+							"flametrail",
+							nil,
+							nil,
+							"sprites"
+						)
+						dust.color[1] = 130
+						dust.color[2] = 130
+						dust.color[3] = 200
+						dust.color[4] = 255
+						--dust.sortOrderY = self.sprite.sortOrderY - 100 --self.sprite.transform.y + self.sprite.h*2 - 20
+						
+						dust.transform.sx = 2
+						dust.transform.sy = 2
+						
+						if self.sprite.selected == "ring_runleft" then
+							dust.transform.x = dust.transform.x + self.sprite.w
+							dust:setAnimation("left")
+						elseif self.sprite.selected == "ring_runright" then
+							dust.transform.x = dust.transform.x - self.sprite.w*2 - 5
+							dust:setAnimation("right")
+						end
+						
+						dust.transform.y = dust.transform.y - 10
+						
+						dust:onAnimationComplete(function()
+							local ref = dust
+							if ref then
+								ref:remove()
+							end
+						end)
+						
+						self.dustTime = self.dustTime + love.timer.getDelta()
+					end)),
+					Action()
+				)
+			),
+			Ease(self.sprite.transform, "x", -200, 3, "quad"),
 			Do(function()
 				self.sprite:setAnimation("ring_runright")
 			end),
-			Ease(self.sprite.transform, "x", 1000, 8, "quad"),
-			Ease(self.sprite.transform, "x", -200, 10, "quad"),
-			Ease(self.sprite.transform, "x", 1000, 10, "quad"),
-			Ease(self.sprite.transform, "x", -200, 10, "quad"),
-			Ease(self.sprite.transform, "x", 1000, 10, "quad"),
-			Ease(self.sprite.transform, "x", -200, 10, "quad"),
-			Ease(self.sprite.transform, "x", 1000, 10, "quad"),
+			Ease(self.sprite.transform, "x", 1000, 3, "quad"),
+			
+			Repeat(Serial {
+				Do(function()
+					self.sprite:setAnimation("ring_runleft")
+				end),
+				Ease(self.sprite.transform, "x", -200, 3, "quad"),
+				Do(function()
+					self.sprite:setAnimation("ring_runright")
+				end),
+				Ease(self.sprite.transform, "x", 1000, 3, "quad")
+			}, 5),
+			
+			Ease(self.sprite.transform, "x", startingLocationX, 3),
+			Do(function()
+				self.sprite:setAnimation("idle")
+			end)
 		}
 	end
 
