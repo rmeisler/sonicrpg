@@ -308,9 +308,9 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="Juggerbot" type="Juggerbot" gid="37" x="352" y="1152" width="32" height="32">
+  <object id="1" name="Juggerbot" type="Juggerbot" gid="37" x="416" y="1152" width="32" height="32">
    <properties>
-    <property name="battle" type="file" value="../data/monsters/juggerbot.lua"/>
+    <property name="battle" type="file" value="../data/monsters/swatbotx4.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="boss" type="bool" value="true"/>
     <property name="follow" value="Path1,Path2"/>

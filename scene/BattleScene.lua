@@ -49,7 +49,9 @@ BattleScene.STATE_CUSTOM               = "custom"
 
 function BattleScene:onEnter(args)
 	self:pushLayer("tiles")
+	self:pushLayer("behind")
 	self:pushLayer("sprites")
+	self:pushLayer("infront")
 	self:pushLayer("ui")
 
 	self.images = args.images
@@ -698,7 +700,9 @@ function BattleScene:draw()
 			love.graphics.setColor(255,255,255,255)
 			love.graphics.draw(self.bgimg, 0, self.camPos.y)
 		
+			self:sortedDraw("behind")
 			self:sortedDraw("sprites")
+			self:sortedDraw("infront")
 			Scene.draw(self, "ui")
 		end)
 	else
@@ -707,7 +711,9 @@ function BattleScene:draw()
 		love.graphics.setColor(255,255,255,255)
 		love.graphics.draw(self.bgimg, 0, self.camPos.y)
 		
+		self:sortedDraw("behind")
 		self:sortedDraw("sprites")
+		self:sortedDraw("infront")
 		Scene.draw(self, "ui")
 	end
 	

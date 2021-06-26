@@ -469,7 +469,7 @@ return {
           name = "Juggerbot",
           type = "Juggerbot",
           shape = "rectangle",
-          x = 352,
+          x = 416,
           y = 1152,
           width = 32,
           height = 32,
@@ -477,7 +477,7 @@ return {
           gid = 37,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/juggerbot.lua",
+            ["battle"] = "../data/monsters/swatbotx4.lua",
             ["battleOnCollide"] = true,
             ["boss"] = true,
             ["follow"] = "Path1,Path2",

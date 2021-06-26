@@ -20,70 +20,53 @@ local Telegraph = require "data/monsters/actions/Telegraph"
 local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
 
-local LeapBackward = function(self, target)
+local RunCircle = function(self, speed, animLag)
 	return Serial {
-		-- Bounce off target
+		PlayAudio("sfx", "sonicrunturn", 1.0, true),
+		Do(function()
+			self.sprite.sortOrderY = 0
+		end),
 		Parallel {
-			Ease(self.sprite.transform, "y", target.sprite.transform.y - self.sprite.h*2.5, 4, "linear"),
-			Ease(self.sprite.transform, "x", target.sprite.transform.x + self.sprite.w*2, 4, "linear"),
-		},
-		Parallel {
-			Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 4, "linear"),
-			Ease(self.sprite.transform, "x", target.sprite.transform.x + self.sprite.w*3, 4, "linear")
-		},
-		
-		-- Land on ground
-		Animate(self.sprite, "crouch"),
-		Wait(0.1),
-		Animate(self.sprite, "idle"),
-		Wait(0.2),
-		
-		-- Leap backward
-		Animate(self.sprite, "crouch"),
-		Wait(0.1),
-		Animate(self.sprite, "leap"),
-		Parallel {
-			Ease(self.sprite.transform, "x", self.sprite.transform.x, 3),
 			Serial {
-				Ease(self.sprite.transform, "y", self.sprite.transform.y - math.abs(target.sprite.transform.y - self.sprite.transform.y) - self.sprite.h, 4),
-				Ease(self.sprite.transform, "y", self.sprite.transform.y, 6)
+				Ease(self.sprite.transform, "y", 200, speed, "inout"),
+				Ease(self.sprite.transform, "y", 220, speed*2, "inout")
+			},
+			Serial {
+				Do(function() self.sprite:setAnimation("juiceupleft") end),
+				Wait(animLag),
+				Do(function() self.sprite:setAnimation("juiceupright") end),
+				Wait(animLag),
+				Do(function() self.sprite:setAnimation("ring_runright") end)
+			},
+			Serial {
+				Ease(self.sprite.transform, "x", 35, speed*2, "inout"),
+				Ease(self.sprite.transform, "x", 375, speed, "inout"),
 			}
 		},
 		
-		Animate(self.sprite, "crouch"),
-		Wait(0.1),
-		Animate(self.sprite, "idle"),
+		PlayAudio("sfx", "sonicrunturn", 1.0, true),
+		
+		Parallel {
+			Serial {
+				Ease(self.sprite.transform, "y", 370, speed, "inout"),
+				Do(function()
+					self.sprite.sortOrderY = 9999
+				end),
+				Ease(self.sprite.transform, "y", 350, speed*2, "inout"),
+			},
+			Serial {
+				Do(function() self.sprite:setAnimation("juicedownright") end),
+				Wait(animLag),
+				Do(function() self.sprite:setAnimation("juicedownleft") end),
+				Wait(animLag),
+				Do(function() self.sprite:setAnimation("ring_runleft") end)
+			},
+			Serial {
+				Ease(self.sprite.transform, "x", 385, speed*2, "inout"),
+				Ease(self.sprite.transform, "x", 45, speed, "inout"),
+			}
+		}
 	}
-end
-
-local ChargeSpin = function(self, key)
-	if key == "x" then
-		self.spinCharge = self.spinCharge + 1
-		self.scene.audio:stopSfx()
-		self.scene.audio:playSfx("spincharge")
-		self.sprite:setAnimation("spincharge")
-		Executor(self.scene):act(
-			Animate(function()
-				local xform = Transform.from(self.sprite.transform)
-				xform.y = xform.y + self.sprite.h
-				local sprite = SpriteNode(self.scene, xform, nil, "spindust", nil, nil, "ui")
-				sprite.transform.y = sprite.transform.y - sprite.h*2
-				return sprite, true
-			end, "idle")
-		)
-	end
-end
-
-local SawSpark = function(self, angle, xOffset, yOffset)
-	return Animate(function()
-		local xform = Transform.from(self.sprite.transform)
-		xform.angle = angle
-		xform.ox = 8
-		xform.oy = 0
-		xform.x = xform.x + xOffset
-		xform.y = xform.y + yOffset
-		return SpriteNode(self.scene, xform, nil, "spark", nil, nil, "ui"), true
-	end, "idle")
 end
 
 return function(self, target)
@@ -131,6 +114,18 @@ return function(self, target)
 	else
 		GameState:useItem(GameState:getItem("Power Ring"))
 		local startingLocationX = self.sprite.transform.x
+		
+		local tornadoSprites = {
+			SpriteNode(self.scene, Transform(35, 200, 2, 3), {255,255,255,0}, "tornado", nil, nil, "behind"),
+			SpriteNode(self.scene, Transform(35, 200, 2, 3), {255,255,255,0}, "tornado", nil, nil, "infront"),
+			SpriteNode(self.scene, Transform(35, 70, 2, 3),  {255,255,255,0}, "tornado", nil, nil, "behind"),
+			SpriteNode(self.scene, Transform(35, 70, 2, 3),  {255,255,255,0}, "tornado", nil, nil, "infront")
+		}
+		tornadoSprites[1]:setAnimation("top_ground")
+		tornadoSprites[2]:setAnimation("bot_ground")
+		tornadoSprites[3]:setAnimation("top_air")
+		tornadoSprites[4]:setAnimation("bot_air")
+		
 		action = Serial {
 			Spawn(Serial {
 				PlayAudio("music", "sonicring", 1.0),
@@ -157,89 +152,131 @@ return function(self, target)
 			},
 			Do(function() self.sprite:removeGlow() end),
 			Animate(self.sprite, "liftring"),
-			Wait(0.1),
-			Animate(self.sprite, "ring_chargerun1"),
-			Do(function()
-				self.sprite:setAnimation("ring_chargerun2")
-			end),
-			Wait(0.8),
+			Parallel {
+				MessageBox {message="Sonic: Gotta juice and cut it loose!", closeAction=Wait(0.7)},
+				Serial {
+					Animate(self.sprite, "ring_chargerun1"),
+					Do(function()
+						self.sprite:setAnimation("ring_chargerun2")
+					end),
+					Wait(0.4),
+					PlayAudio("sfx", "sonicrun", 1.0, true),
+					Wait(0.4)
+				}
+			},
 			Do(function()
 				self.sprite:setAnimation("ring_runleft")
 			end),
 			Wait(0.05),
-			Spawn(
-				While(
-					function()
-						return self.sprite.selected ~= "idle"
-					end,
-					Repeat(Do(function()
-						if not self.dustTime or self.dustTime > 0.005 then
-							self.dustTime = 0
-						elseif self.dustTime < 0.005 then
-							self.dustTime = self.dustTime + love.timer.getDelta()
-							return
-						end
-						
-						local dust = SpriteNode(
-							self.scene,
-							Transform(self.sprite.transform.x, self.sprite.transform.y),
-							nil,
-							"flametrail",
-							nil,
-							nil,
-							"sprites"
-						)
-						dust.color[1] = 130
-						dust.color[2] = 130
-						dust.color[3] = 200
-						dust.color[4] = 255
-						--dust.sortOrderY = self.sprite.sortOrderY - 100 --self.sprite.transform.y + self.sprite.h*2 - 20
-						
-						dust.transform.sx = 2
-						dust.transform.sy = 2
-						
-						if self.sprite.selected == "ring_runleft" then
-							dust.transform.x = dust.transform.x + self.sprite.w
-							dust:setAnimation("left")
-						elseif self.sprite.selected == "ring_runright" then
-							dust.transform.x = dust.transform.x - self.sprite.w*2 - 5
-							dust:setAnimation("right")
-						end
-						
-						dust.transform.y = dust.transform.y - 10
-						
-						dust:onAnimationComplete(function()
-							local ref = dust
-							if ref then
-								ref:remove()
-							end
-						end)
-						
+			Spawn(Serial {
+				Wait(0.5),
+				Parallel {
+					Ease(tornadoSprites[1].color, 4, 200, 5),
+					Ease(tornadoSprites[2].color, 4, 200, 5)
+				},
+				Repeat(Serial {
+					Parallel {
+						Ease(tornadoSprites[1].color, 4, 100, 5),
+						Ease(tornadoSprites[2].color, 4, 100, 5)
+					},
+					Parallel {
+						Ease(tornadoSprites[1].color, 4, 200, 5),
+						Ease(tornadoSprites[2].color, 4, 200, 5)
+					}
+				},50)
+			}),
+			
+			Spawn(Serial {
+				Wait(1.5),
+				Parallel {
+					Ease(tornadoSprites[3].color, 4, 200, 5),
+					Ease(tornadoSprites[4].color, 4, 200, 5)
+				},
+				Repeat(Serial {
+					Parallel {
+						Ease(tornadoSprites[3].color, 4, 100, 5),
+						Ease(tornadoSprites[4].color, 4, 100, 5)
+					},
+					Parallel {
+						Ease(tornadoSprites[3].color, 4, 200, 5),
+						Ease(tornadoSprites[4].color, 4, 200, 5)
+					}
+				},50)
+			}),
+			
+			Parallel {
+				
+				Repeat(Do(function()
+					if not self.dustTime or self.dustTime > 0.005 then
+						self.dustTime = 0
+					elseif self.dustTime < 0.005 then
 						self.dustTime = self.dustTime + love.timer.getDelta()
-					end)),
-					Action()
-				)
-			),
-			Ease(self.sprite.transform, "x", -200, 3, "quad"),
+						return
+					end
+					
+					local dust = SpriteNode(
+						self.scene,
+						Transform(self.sprite.transform.x, self.sprite.transform.y),
+						nil,
+						"flametrail",
+						nil,
+						nil,
+						"sprites"
+					)
+					--dust.color[1] = 130
+					--dust.color[2] = 130
+					--dust.color[3] = 200
+					--dust.color[4] = 255
+					--dust.sortOrderY = self.sprite.sortOrderY - 100 --self.sprite.transform.y + self.sprite.h*2 - 20
+					
+					dust.transform.sx = 2
+					dust.transform.sy = 2
+					
+					if self.sprite.selected == "ring_runleft" then
+						dust.transform.x = dust.transform.x + self.sprite.w
+						dust:setAnimation("left")
+					elseif self.sprite.selected == "ring_runright" then
+						--dust.transform.x = dust.transform.x - self.sprite.w*2 - 5
+						dust:setAnimation("right")
+						dust.transform.sx = -2
+					end
+					
+					dust.transform.y = dust.transform.y - 10
+					
+					dust:onAnimationComplete(function()
+						local ref = dust
+						if ref then
+							ref:remove()
+						end
+					end)
+					
+					self.dustTime = self.dustTime + love.timer.getDelta()
+				end), 10),
+				
+				Serial {
+					Ease(self.sprite.transform, "y", 350, 5, "inout"),
+					Do(function()
+						self.sprite.sortOrderY = 9999
+					end),
+					Ease(self.sprite.transform, "y", 330, 10, "inout"),
+				},
+				Serial {
+					Ease(self.sprite.transform, "x", 385, 10, "inout"),
+					Ease(self.sprite.transform, "x", 45, 5, "inout")
+				}
+			},
+			
+			Repeat(RunCircle(self, 5, 0.01), 3),
+			Repeat(RunCircle(self, 10, 0.01), 3),
+			Repeat(RunCircle(self, 20, 0.01), 30),
+			
 			Do(function()
 				self.sprite:setAnimation("ring_runright")
 			end),
-			Ease(self.sprite.transform, "x", 1000, 3, "quad"),
-			
-			Repeat(Serial {
-				Do(function()
-					self.sprite:setAnimation("ring_runleft")
-				end),
-				Ease(self.sprite.transform, "x", -200, 3, "quad"),
-				Do(function()
-					self.sprite:setAnimation("ring_runright")
-				end),
-				Ease(self.sprite.transform, "x", 1000, 3, "quad")
-			}, 5),
-			
 			Ease(self.sprite.transform, "x", startingLocationX, 3),
 			Do(function()
 				self.sprite:setAnimation("idle")
+				self.sprite.sortOrderY = nil
 			end)
 		}
 	end

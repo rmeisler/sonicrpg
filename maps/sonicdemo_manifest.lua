@@ -385,6 +385,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/tornado.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/ringbeam.png"
 	},
 	{
