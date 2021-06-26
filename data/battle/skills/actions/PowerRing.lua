@@ -48,11 +48,11 @@ local RunCircle = function(self, speed, animLag)
 		
 		Parallel {
 			Serial {
-				Ease(self.sprite.transform, "y", 370, speed, "inout"),
+				Ease(self.sprite.transform, "y", 390, speed, "inout"),
 				Do(function()
 					self.sprite.sortOrderY = 9999
 				end),
-				Ease(self.sprite.transform, "y", 350, speed*2, "inout"),
+				Ease(self.sprite.transform, "y", 370, speed*2, "inout"),
 			},
 			Serial {
 				Do(function() self.sprite:setAnimation("juicedownright") end),
@@ -69,7 +69,72 @@ local RunCircle = function(self, speed, animLag)
 	}
 end
 
-return function(self, target)
+local Spin = function(target, speed, iterations)
+	return Repeat(Serial {
+		Do(function()
+			target.sprite.sortOrderY = 0
+		end),
+		Parallel {
+			Serial {
+				Ease(target.sprite.transform, "x", 160, speed, "linear"),
+				Ease(target.sprite.transform, "x", 300, speed-1, "linear"),
+				Ease(target.sprite.transform, "x", 385, speed, "linear"),
+			},
+			Serial {
+				Ease(target.sprite.transform, "y", 160, speed, "linear"),
+				Ease(target.sprite.transform, "y", 100, speed-1, "linear"),
+				Ease(target.sprite.transform, "y", 160, speed, "linear")
+			}
+		},
+		Do(function()
+			target.sprite.sortOrderY = 99999
+		end),
+		Parallel {
+			Serial {
+				Ease(target.sprite.transform, "x", 300, speed, "linear"),
+				Ease(target.sprite.transform, "x", 160, speed-1, "linear"),
+				Ease(target.sprite.transform, "x", 35,  speed, "linear"),
+			},
+			Serial {
+				Ease(target.sprite.transform, "y", 300, speed, "linear"),
+				Ease(target.sprite.transform, "y", 390, speed-1, "linear"),
+				Ease(target.sprite.transform, "y", 300, speed, "linear")
+			}
+		}
+	}, iterations)
+end
+
+local PickedUp = function(target, iterations)
+	target.origTransform = Transform.from(target.sprite.transform)
+	return Serial {
+		Wait(0.2),
+		Do(function()
+			target.sprite:setAnimation("hurt")
+		end),
+		Repeat(Serial {
+			Ease(target.sprite.transform, "y", function() return target.sprite.transform.y - 2 end, 20),
+			Ease(target.sprite.transform, "y", function() return target.sprite.transform.y + 2 end, 20)
+		}, iterations),
+		Do(function()
+			target.sprite:trySetAnimation("hurtdown")
+		end),
+		Spin(target, 4, 1),
+		Spin(target, 7, 1),
+		Spin(target, 12, 6),
+		Parallel {
+			Ease(target.sprite.transform, "angle", math.pi, 2),
+			Ease(target.sprite.transform, "sx", 50, 2),
+			Ease(target.sprite.transform, "sy", 50, 2),
+			Ease(target.sprite.color, 4, 0, 2),
+		},
+		Do(function()
+			target.hp = 0
+			target.state = target.STATE_DEAD
+		end)
+	}
+end
+
+return function(self, targets)
 	local ringbeamActions = {}
 	for index=1,12 do
 		local sprite = SpriteNode(self.scene, Transform.from(self.sprite.transform), nil, "ringbeam", nil, nil, "ui")
@@ -126,6 +191,14 @@ return function(self, target)
 		tornadoSprites[3]:setAnimation("top_air")
 		tornadoSprites[4]:setAnimation("bot_air")
 		
+		local pickupActions = {}
+		for index, target in pairs(targets) do
+			table.insert(
+				pickupActions,
+				Spawn(PickedUp(target, 20 + index*3))
+			)
+		end
+		
 		action = Serial {
 			Spawn(Serial {
 				PlayAudio("music", "sonicring", 1.0),
@@ -169,7 +242,8 @@ return function(self, target)
 			end),
 			Wait(0.05),
 			Spawn(Serial {
-				Wait(0.5),
+				Wait(0.7),
+				Parallel(pickupActions),
 				Parallel {
 					Ease(tornadoSprites[1].color, 4, 200, 5),
 					Ease(tornadoSprites[2].color, 4, 200, 5)
@@ -183,11 +257,19 @@ return function(self, target)
 						Ease(tornadoSprites[1].color, 4, 200, 5),
 						Ease(tornadoSprites[2].color, 4, 200, 5)
 					}
-				},50)
+				},20),
+				Parallel {
+					Ease(tornadoSprites[1].color, 4, 0, 1),
+					Ease(tornadoSprites[2].color, 4, 0, 1)
+				},
+				Do(function()
+					tornadoSprites[1]:remove()
+					tornadoSprites[2]:remove()
+				end)
 			}),
 			
 			Spawn(Serial {
-				Wait(1.5),
+				Wait(2),
 				Parallel {
 					Ease(tornadoSprites[3].color, 4, 200, 5),
 					Ease(tornadoSprites[4].color, 4, 200, 5)
@@ -201,7 +283,15 @@ return function(self, target)
 						Ease(tornadoSprites[3].color, 4, 200, 5),
 						Ease(tornadoSprites[4].color, 4, 200, 5)
 					}
-				},50)
+				},20),
+				Parallel {
+					Ease(tornadoSprites[3].color, 4, 0, 1),
+					Ease(tornadoSprites[4].color, 4, 0, 1)
+				},
+				Do(function()
+					tornadoSprites[3]:remove()
+					tornadoSprites[4]:remove()
+				end)
 			}),
 			
 			Parallel {
@@ -223,12 +313,6 @@ return function(self, target)
 						nil,
 						"sprites"
 					)
-					--dust.color[1] = 130
-					--dust.color[2] = 130
-					--dust.color[3] = 200
-					--dust.color[4] = 255
-					--dust.sortOrderY = self.sprite.sortOrderY - 100 --self.sprite.transform.y + self.sprite.h*2 - 20
-					
 					dust.transform.sx = 2
 					dust.transform.sy = 2
 					
@@ -236,7 +320,6 @@ return function(self, target)
 						dust.transform.x = dust.transform.x + self.sprite.w
 						dust:setAnimation("left")
 					elseif self.sprite.selected == "ring_runright" then
-						--dust.transform.x = dust.transform.x - self.sprite.w*2 - 5
 						dust:setAnimation("right")
 						dust.transform.sx = -2
 					end
@@ -266,9 +349,8 @@ return function(self, target)
 				}
 			},
 			
-			Repeat(RunCircle(self, 5, 0.01), 3),
 			Repeat(RunCircle(self, 10, 0.01), 3),
-			Repeat(RunCircle(self, 20, 0.01), 30),
+			Repeat(RunCircle(self, 20, 0.01), 40),
 			
 			Do(function()
 				self.sprite:setAnimation("ring_runright")
@@ -277,7 +359,8 @@ return function(self, target)
 			Do(function()
 				self.sprite:setAnimation("idle")
 				self.sprite.sortOrderY = nil
-			end)
+			end),
+			Wait(3)
 		}
 	end
 
