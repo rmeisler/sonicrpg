@@ -50,7 +50,7 @@ local RunCircle = function(self, speed, animLag)
 			Serial {
 				Ease(self.sprite.transform, "y", 390, speed, "inout"),
 				Do(function()
-					self.sprite.sortOrderY = 9999
+					self.sprite.sortOrderY = 900
 				end),
 				Ease(self.sprite.transform, "y", 370, speed*2, "inout"),
 			},
@@ -71,9 +71,6 @@ end
 
 local Spin = function(target, speed, iterations)
 	return Repeat(Serial {
-		Do(function()
-			target.sprite.sortOrderY = 0
-		end),
 		Parallel {
 			Serial {
 				Ease(target.sprite.transform, "x", 160, speed, "linear"),
@@ -86,9 +83,6 @@ local Spin = function(target, speed, iterations)
 				Ease(target.sprite.transform, "y", 160, speed, "linear")
 			}
 		},
-		Do(function()
-			target.sprite.sortOrderY = 99999
-		end),
 		Parallel {
 			Serial {
 				Ease(target.sprite.transform, "x", 300, speed, "linear"),
@@ -110,6 +104,7 @@ local PickedUp = function(target, iterations)
 		Wait(0.2),
 		Do(function()
 			target.sprite:setAnimation("hurt")
+			target.sprite.sortOrderY = 99999
 		end),
 		Repeat(Serial {
 			Ease(target.sprite.transform, "y", function() return target.sprite.transform.y - 2 end, 20),
@@ -118,8 +113,7 @@ local PickedUp = function(target, iterations)
 		Do(function()
 			target.sprite:trySetAnimation("hurtdown")
 		end),
-		Spin(target, 4, 1),
-		Spin(target, 7, 1),
+		Spin(target, 7, 2),
 		Spin(target, 12, 6),
 		Parallel {
 			Ease(target.sprite.transform, "angle", math.pi, 2),
@@ -180,6 +174,7 @@ return function(self, targets)
 		GameState:useItem(GameState:getItem("Power Ring"))
 		local startingLocationX = self.sprite.transform.x
 		
+		local powerring = SpriteNode(self.scene, Transform(0,0,2,2), {255,255,255,0}, "powerring", nil, nil, "sprites")
 		local tornadoSprites = {
 			SpriteNode(self.scene, Transform(35, 200, 2, 3), {255,255,255,0}, "tornado", nil, nil, "behind"),
 			SpriteNode(self.scene, Transform(35, 200, 2, 3), {255,255,255,0}, "tornado", nil, nil, "infront"),
@@ -228,6 +223,11 @@ return function(self, targets)
 			Parallel {
 				MessageBox {message="Sonic: Gotta juice and cut it loose!", closeAction=Wait(0.7)},
 				Serial {
+					Do(function()
+						powerring.transform.x = self.sprite.transform.x - powerring.w - 40
+						powerring.transform.y = self.sprite.transform.y - powerring.h - 12
+						powerring.color[4] = 255
+					end),
 					Animate(self.sprite, "ring_chargerun1"),
 					Do(function()
 						self.sprite:setAnimation("ring_chargerun2")
@@ -237,6 +237,9 @@ return function(self, targets)
 					Wait(0.4)
 				}
 			},
+			Do(function()
+				powerring:remove()
+			end),
 			Do(function()
 				self.sprite:setAnimation("ring_runleft")
 			end),
@@ -297,9 +300,9 @@ return function(self, targets)
 			Parallel {
 				
 				Repeat(Do(function()
-					if not self.dustTime or self.dustTime > 0.005 then
+					if not self.dustTime or self.dustTime > 0.002 then
 						self.dustTime = 0
-					elseif self.dustTime < 0.005 then
+					elseif self.dustTime < 0.002 then
 						self.dustTime = self.dustTime + love.timer.getDelta()
 						return
 					end
@@ -334,7 +337,7 @@ return function(self, targets)
 					end)
 					
 					self.dustTime = self.dustTime + love.timer.getDelta()
-				end), 10),
+				end), 15),
 				
 				Serial {
 					Ease(self.sprite.transform, "y", 350, 5, "inout"),
@@ -360,7 +363,7 @@ return function(self, targets)
 				self.sprite:setAnimation("idle")
 				self.sprite.sortOrderY = nil
 			end),
-			Wait(3)
+			Wait(2.5)
 		}
 	end
 
