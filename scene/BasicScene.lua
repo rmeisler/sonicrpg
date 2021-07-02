@@ -207,8 +207,8 @@ function BasicScene:onReEnter(args)
 	-- Recreate player
 	self.player:remove()
 	local prevPlayer = self.player
-	local Player = require "object/Player"
-	self.player = Player(self, self.player.layer, self.player.object)
+	local PlayerClass = require("object/"..(prevPlayer.playerType or "Player"))
+	self.player = PlayerClass(self, self.player.layer, self.player.object)
 	self.player.x = prevPlayer.x
 	self.player.y = prevPlayer.y
 
@@ -355,9 +355,11 @@ function BasicScene:restart()
 end
 
 function BasicScene:changeScene(args)
+	local mapName = "maps/"..args.map..".lua"
 	self.sceneMgr:pushScene {
 		class = "BasicScene",
-		map = self.maps["maps/"..args.map..".lua"],
+		map = self.maps[mapName],
+		mapName = mapName,
 		maps = self.maps,
 		images = self.images,
 		region = self.region,

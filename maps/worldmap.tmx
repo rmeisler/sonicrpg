@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="198">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="230">
  <properties>
   <property name="onload" type="file" value="actions/worldmap.lua"/>
  </properties>
  <tileset firstgid="1" source="worldmap.tsx"/>
  <tileset firstgid="3485" source="robotropolis.tsx"/>
+ <tileset firstgid="6985" source="knothole.tsx"/>
+ <tileset firstgid="10469" source="datacenter.tsx"/>
  <layer name="ground" width="100" height="100">
   <data encoding="csv">
 2709,2709,2709,2709,2657,2657,2657,2658,2710,2710,2657,2658,2658,2658,2657,2657,2657,2657,2657,2657,2709,2761,2761,2761,2709,2709,2709,2709,2709,2657,2657,2657,2657,2657,2658,2762,2710,2762,2762,2762,2762,2762,2710,2657,2658,2658,2658,2710,2762,2762,2710,2762,2762,2762,2761,2761,2761,2761,2761,2709,2709,2709,2657,2657,2658,2658,2710,2710,2710,2658,2658,2658,2658,2658,2710,2657,2657,2657,2657,2657,2657,2761,2761,2761,2761,2761,2762,2657,2658,2658,2710,2657,2658,2658,2710,2762,2762,2709,2657,2658,
@@ -233,35 +235,48 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="notColliding">return function(self, player)
+    if player.onSubLocation == self then
+        player.onSubLocation = nil
+        self.scene:removeHandler(&quot;keytriggered&quot;, player.knotholeCallback)
+    end
+end</property>
     <property name="sprite" type="file" value="../art/sprites/knotholemap.png"/>
     <property name="whileColliding">local TypeText = require &quot;actions/TypeText&quot;
 local Serial = require &quot;actions/Serial&quot;
 local Spawn = require &quot;actions/Spawn&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Do = require &quot;actions/Do&quot;
-local Wait = require &quot;actions/Wait&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
 
 local Transform = require &quot;util/Transform&quot;
 
-return function(self, player)
-    if player.touchingDeathEgg then
+return function(self, player, prevState)
+    if player.onSubLocation == self then
         return
     end
-    player.touchingDeathEgg = true
+    player.onSubLocation = self
 
-    local text = TypeText(
-        Transform(50, 500),
+    player.knotholeCallback = function(key)
+        if player.onSubLocation == self and not self.scene.sceneMgr.transitioning and key == &quot;x&quot; then
+            self.scene:changeScene{map=&quot;knothole&quot;}
+            self.scene:removeHandler(&quot;keytriggered&quot;, player.knotholeCallback)
+        end
+    end
+    self.scene:addHandler(&quot;keytriggered&quot;, player.knotholeCallback)
+
+    self.typeText = TypeText(
+        Transform(50, 470),
         {255, 255, 255, 0},
-        FontCache.Techno,
+        FontCache.TechnoSmall,
         &quot;Knothole&quot;,
         100
     )
     self.scene:run(Spawn(Serial {
-        text,
-        Ease(text.color, 4, 255, 1),
-        Wait(2),
-        Ease(text.color, 4, 0, 1),
-        Do(function() player.touchingDeathEgg = false end)
+        self.typeText,
+        Ease(self.typeText.color, 4, 255, 1),
+        YieldUntil(function() return self.state ~= self.STATE_TOUCHING end),
+        Ease(self.typeText.color, 4, 0, 1)
     }))
 end</property>
    </properties>
@@ -271,36 +286,6 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/deathegg.png"/>
-    <property name="whileColliding">local TypeText = require &quot;actions/TypeText&quot;
-local Serial = require &quot;actions/Serial&quot;
-local Spawn = require &quot;actions/Spawn&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Do = require &quot;actions/Do&quot;
-local Wait = require &quot;actions/Wait&quot;
-
-local Transform = require &quot;util/Transform&quot;
-
-return function(self, player)
-    if player.touchingDeathEgg then
-        return
-    end
-    player.touchingDeathEgg = true
-
-    local text = TypeText(
-        Transform(50, 500),
-        {255, 255, 255, 0},
-        FontCache.Techno,
-        &quot;Robotropolis&quot;,
-        100
-    )
-    self.scene:run(Spawn(Serial {
-        text,
-        Ease(text.color, 4, 255, 1),
-        Wait(2),
-        Ease(text.color, 4, 0, 1),
-        Do(function() player.touchingDeathEgg = false end)
-    }))
-end</property>
    </properties>
   </object>
   <object id="6" name="Building3" type="BasicNPC" gid="3521" x="1632" y="1568" width="128" height="32">
@@ -1443,6 +1428,110 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/worldmaptrees2.png"/>
    </properties>
   </object>
+  <object id="198" name="RegionRobotropolis" type="BasicNPC" gid="3521" x="1568" y="1664" width="448" height="416">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="notColliding">return function(self, player)
+    if player.onLocation == self then
+        self.scene:removeHandler(&quot;keytriggered&quot;, player.robotropCallback)
+        player.onLocation = nil
+    end
+end</property>
+    <property name="whileColliding">local TypeText = require &quot;actions/TypeText&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Spawn = require &quot;actions/Spawn&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Do = require &quot;actions/Do&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
+
+local Transform = require &quot;util/Transform&quot;
+
+return function(self, player, prevState)
+    if player.onLocation == self then
+        return
+    end
+    player.onLocation = self
+
+    player.robotropCallback = function(key)
+        if player.onLocation == self and
+           not player.onSubLocation and
+           not self.scene.sceneMgr.transitioning and
+           key == &quot;x&quot;
+        then
+            self.scene:changeScene{map=&quot;stealthtut1&quot;}
+            self.scene:removeHandler(&quot;keytriggered&quot;, player.robotropCallback)
+        end
+    end
+    self.scene:addHandler(&quot;keytriggered&quot;, player.robotropCallback)
+
+    self.typeText = TypeText(
+        Transform(50, 500),
+        {255, 255, 255, 0},
+        FontCache.TechnoMed,
+        &quot;Robotropolis&quot;,
+        100
+    )
+    self.scene:run(Spawn(Serial {
+        self.typeText,
+        Ease(self.typeText.color, 4, 255, 1),
+        YieldUntil(function() return self.state ~= self.STATE_TOUCHING end),
+        Ease(self.typeText.color, 4, 0, 1)
+    }))
+end</property>
+   </properties>
+  </object>
+  <object id="199" name="RegionGreatForest" type="BasicNPC" gid="3521" x="544" y="2240" width="736" height="1344">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="notColliding">return function(self, player)
+    if player.onLocation == self then
+        player.onLocation = nil
+        self.scene:removeHandler(&quot;keytriggered&quot;, player.greatForestCallback)
+    end
+end</property>
+    <property name="whileColliding">local TypeText = require &quot;actions/TypeText&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Spawn = require &quot;actions/Spawn&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Do = require &quot;actions/Do&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
+
+local Transform = require &quot;util/Transform&quot;
+
+return function(self, player, prevState)
+    if player.onLocation == self then
+        return
+    end
+    player.onLocation = self
+
+    player.greatForestCallback = function(key)
+        if player.onLocation == self and
+           not player.onSubLocation and
+           not self.scene.sceneMgr.transitioning and
+           key == &quot;x&quot;
+       then
+            self.scene:changeScene{map=&quot;greatforest1&quot;}
+            self.scene:removeHandler(&quot;keytriggered&quot;, player.greatForestCallback)
+        end
+    end
+    self.scene:addHandler(&quot;keytriggered&quot;, player.greatForestCallback)
+
+    self.typeText = TypeText(
+        Transform(50, 500),
+        {255, 255, 255, 0},
+        FontCache.TechnoMed,
+        &quot;The Great Forest&quot;,
+        100
+    )
+    self.scene:run(Spawn(Serial {
+        self.typeText,
+        Ease(self.typeText.color, 4, 255, 1),
+        YieldUntil(function() return self.state ~= self.STATE_TOUCHING end),
+        Ease(self.typeText.color, 4, 0, 1)
+    }))
+end</property>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="fog" opacity="0.4">
   <object id="82" name="DarkFog" type="BasicNPC" gid="3521" x="1568" y="1632" width="352" height="32">
@@ -1614,9 +1703,9 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,1449,1449,0,1449,1449,0,0,0,0,0,1449,1449,1449,1449,1449,1449,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,1449,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,1449,1449,0,0,1449,1449,0,0,0,0,0,1449,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,1449,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,1449,1449,0,0,1449,1449,0,0,0,0,1449,1449,1449,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,1449,0,0,0,1449,1449,0,0,0,1449,1449,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,1449,0,0,0,1449,1449,0,0,0,1449,1449,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,1449,1449,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,1449,1449,1449,0,0,1449,1449,0,0,0,1449,1449,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,1449,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,1449,1449,1449,1449,1449,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,1449,0,0,0,1449,1449,0,0,1449,1449,1449,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,1449,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,1449,1449,1449,1449,1449,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,1449,0,0,0,1449,1449,0,0,1449,1449,1449,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,1449,1449,1449,1449,1449,1449,1449,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,1449,1449,0,0,0,1449,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,1449,0,0,1449,1449,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,1449,0,0,0,0,1449,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,1449,0,0,1449,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,1449,0,0,0,0,1449,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,1449,1449,0,0,1449,1449,1449,1449,1449,0,0,0,0,0,0,0,0,0,0,0,1449,1449,1449,1449,0,0,0,0,0,0,0,0,

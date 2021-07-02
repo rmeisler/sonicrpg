@@ -2,13 +2,13 @@ return {
 	{
         type = "map",
 		file = "maps/worldmap.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
         type = "map",
 		file = "maps/deathegg_elevator.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -103,12 +103,6 @@ return {
         type = "map",
 		file = "maps/rotorsworkshop.lua"
     },
-
-	{
-        type = "map",
-		file = "maps/robo_opening2.lua",
-		--primary = true
-    },
 	
 	{
         type = "map",
@@ -125,12 +119,6 @@ return {
 	{
         type = "map",
         file = "maps/forgottenhideout_broom.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-        file = "maps/run1.lua",
 		--primary = true
     },
 	
@@ -165,7 +153,11 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/movingground.png"
+		file = "art/sprites/worldmapdot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/worldmapbigdot.png"
 	},
 	{
 		type = "image",

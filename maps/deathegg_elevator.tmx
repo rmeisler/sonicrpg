@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="36" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="6">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
+  <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/deathegg.lua"/>
  </properties>
  <tileset firstgid="1" source="datacenter.tsx"/>

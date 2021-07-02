@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="80" tilewidth="32" tileheight="32" infinite="0" nextobjectid="100">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="80" tilewidth="32" tileheight="32" infinite="0" nextobjectid="102">
  <properties>
   <property name="onload" type="file" value="actions/greatforest.lua"/>
   <property name="regionName" value=""/>
@@ -9,8 +9,8 @@
  <tileset firstgid="3485" source="knotholeindoors.tsx"/>
  <tileset firstgid="5287" source="robotropolis.tsx"/>
  <tileset firstgid="8787" source="forest2.tsx"/>
- <tileset firstgid="13962" name="knotholehut" tilewidth="32" tileheight="32" tilecount="812" columns="29">
-  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="914"/>
+ <tileset firstgid="13962" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
+  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
  </tileset>
  <layer name="ground" width="25" height="80">
   <data encoding="csv">
@@ -349,7 +349,7 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="Spawn 1" type="Player" gid="5323" x="416" y="2368" width="32" height="32">
+  <object id="1" name="Spawn 1" type="Player" gid="5323" x="416" y="2496" width="32" height="32">
    <properties>
     <property name="orientation" value="up"/>
    </properties>
@@ -494,6 +494,14 @@
     <property name="orientation" value="down"/>
     <property name="scene" type="file" value="greatforest2_uppath.lua"/>
     <property name="spawn_point" value="DownPath"/>
+   </properties>
+  </object>
+  <object id="101" name="Entrance" type="SceneEdge" gid="7660" x="0" y="2560" width="800" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="key" value="down"/>
+    <property name="orientation" value="up"/>
+    <property name="scene" type="file" value="worldmap.lua"/>
    </properties>
   </object>
  </objectgroup>

@@ -8,7 +8,7 @@ return {
   height = 80,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 100,
+  nextobjectid = 102,
   properties = {
     ["onload"] = "actions/greatforest.lua",
     ["regionName"] = "",
@@ -128,7 +128,7 @@ return {
       margin = 0,
       image = "../art/tiles/knotholehutinterior.png",
       imagewidth = 950,
-      imageheight = 914,
+      imageheight = 1170,
       transparentcolor = "#000000",
       tileoffset = {
         x = 0,
@@ -141,7 +141,7 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 812,
+      tilecount = 1044,
       tiles = {}
     }
   },
@@ -546,7 +546,7 @@ return {
           type = "Player",
           shape = "rectangle",
           x = 416,
-          y = 2368,
+          y = 2496,
           width = 32,
           height = 32,
           rotation = 0,
@@ -905,6 +905,25 @@ return {
             ["orientation"] = "down",
             ["scene"] = "greatforest2_uppath.lua",
             ["spawn_point"] = "DownPath"
+          }
+        },
+        {
+          id = 101,
+          name = "Entrance",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 0,
+          y = 2560,
+          width = 800,
+          height = 64,
+          rotation = 0,
+          gid = 7660,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["key"] = "down",
+            ["orientation"] = "up",
+            ["scene"] = "worldmap.lua"
           }
         }
       }
