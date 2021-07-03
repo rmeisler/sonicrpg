@@ -290,6 +290,16 @@ return {
 		},
 		saw = {
 			frames = {{14,8}}
+		},
+		
+		sit_sad = {
+			frames = {{10,7}}
+		},
+		sit_encouraging = {
+			frames = {{11,7}}
+		},
+		sit_smile = {
+			frames = {{12,7}}
 		}
     }
 }

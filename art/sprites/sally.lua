@@ -160,5 +160,15 @@ return {
 		binoculars_2 = {
 			frames = {{11,1}}
 		},
+		
+		sit_sad = {
+			frames = {{13,1}}
+		},
+		sit_laugh = {
+			frames = {{14,1}}
+		},
+		sit_smile = {
+			frames = {{15,1}}
+		}
     }
 }
