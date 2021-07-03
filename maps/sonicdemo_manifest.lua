@@ -2,7 +2,7 @@ return {
 	{
         type = "map",
 		file = "maps/worldmap.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -72,7 +72,7 @@ return {
 	{
         type = "map",
 		file = "maps/sonicshut.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
