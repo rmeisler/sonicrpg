@@ -1031,7 +1031,7 @@
 </data>
  </layer>
  <objectgroup name="lower">
-  <object id="92" name="CartBG" type="BasicNPC" gid="5323" x="8064" y="672" width="64" height="32">
+  <object id="92" name="CartBG" type="BasicNPC" gid="5323" x="8042" y="672" width="64" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="background"/>
@@ -1818,7 +1818,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/fence.png"/>
    </properties>
   </object>
-  <object id="90" name="Cart" type="BasicNPC" gid="5323" x="8064" y="672" width="64" height="32">
+  <object id="90" name="Cart" type="BasicNPC" gid="5323" x="8042" y="672" width="64" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="foreground"/>

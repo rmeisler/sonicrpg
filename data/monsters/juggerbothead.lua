@@ -89,7 +89,7 @@ return {
 			PlayAudio("sfx", "juggerbotroar", 0.3, true),
 			Animate(headSp, "roar"),
 			Parallel {
-				self.scene:screenShake(20, 30, 7),
+				self.scene:screenShake(20, 30, 14),
 				Repeat(Serial {
 					Ease(headSp.transform, "x", headSp.transform.x - 1, 10),
 					Ease(headSp.transform, "x", headSp.transform.x + 1, 10),

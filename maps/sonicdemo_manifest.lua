@@ -8,7 +8,7 @@ return {
 	{
         type = "map",
 		file = "maps/deathegg_elevator.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -72,7 +72,7 @@ return {
 	{
         type = "map",
 		file = "maps/sonicshut.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -103,12 +103,6 @@ return {
         type = "map",
 		file = "maps/rotorsworkshop.lua"
     },
-
-	{
-        type = "map",
-		file = "maps/robo_opening2.lua",
-		--primary = true
-    },
 	
 	{
         type = "map",
@@ -125,12 +119,6 @@ return {
 	{
         type = "map",
         file = "maps/forgottenhideout_broom.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-        file = "maps/run1.lua",
 		--primary = true
     },
 	
@@ -165,7 +153,11 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/movingground.png"
+		file = "art/sprites/worldmapdot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/worldmapbigdot.png"
 	},
 	{
 		type = "image",
@@ -378,6 +370,14 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/spindust.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/flametrail.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/tornado.png"
 	},
 	{
 		type = "image",
@@ -1111,7 +1111,13 @@ return {
 		type = "sound",
 		file = "audio/music/sonicring.ogg",
 		category = "music",
-		volume = 0.3,
+		volume = 1.0,
+	},
+	{
+		type = "sound",
+		file = "audio/music/sonicring2.ogg",
+		category = "music",
+		volume = 1.0,
 	},
 	{
 		type = "sound",

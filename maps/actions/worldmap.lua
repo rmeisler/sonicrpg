@@ -18,6 +18,7 @@ return function(scene)
 	local Do = require "actions/Do"
 	local Animate = require "actions/Animate"
 	local SpriteNode = require "object/SpriteNode"
+	local TextNode = require "object/TextNode"
 	local Move = require "actions/Move"
 	
 	local text = TypeText(
@@ -29,6 +30,47 @@ return function(scene)
 	)
 	
 	local musicAction = PlayAudio("music", "worldmap", 1.0, true, true)
+	
+	-- Add ui elements
+	scene.pressXText = TextNode(
+		scene,
+		Transform(80, 550),
+		{255,255,255,255},
+		"enter",
+		FontCache.Consolas,
+		"ui",
+		false
+	)
+	scene.pressX = SpriteNode(
+		scene,
+		Transform(50, 550, 2, 2),
+		{255,255,255,255},
+		"pressx",
+		12,
+		12,
+		"ui"
+	)
+	scene.pressX:setAnimation("nopress")
+	
+	scene.pressZText = TextNode(
+		scene,
+		Transform(200, 550),
+		{255,255,255,255},
+		"menu",
+		FontCache.Consolas,
+		"ui",
+		false
+	)
+	scene.pressZ = SpriteNode(
+		scene,
+		Transform(170, 550, 2, 2),
+		{255,255,255,255},
+		"pressz",
+		12,
+		12,
+		"ui"
+	)
+	scene.pressZ:setAnimation("nopress")
 	
 	--[[return Serial {
 		Spawn(Serial {

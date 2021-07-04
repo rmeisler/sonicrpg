@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="36" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="6">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
+  <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/deathegg.lua"/>
  </properties>
  <tileset firstgid="1" source="datacenter.tsx"/>
@@ -308,9 +308,9 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="Juggerbot" type="Juggerbot" gid="37" x="352" y="1152" width="32" height="32">
+  <object id="1" name="Juggerbot" type="Juggerbot" gid="37" x="416" y="1152" width="32" height="32">
    <properties>
-    <property name="battle" type="file" value="../data/monsters/juggerbot.lua"/>
+    <property name="battle" type="file" value="../data/monsters/swatbotx4.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="boss" type="bool" value="true"/>
     <property name="follow" value="Path1,Path2"/>

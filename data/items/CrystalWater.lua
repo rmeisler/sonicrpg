@@ -2,7 +2,7 @@ local TargetType = require "util/TargetType"
 
 return {
 	name = "Crystal Water",
-	desc = "Revives a fallen ally",
+	desc = "Revives a fallen ally.",
 	target = TargetType.Party,
 	usableFromMenu = true,
 	unusable = function(target)

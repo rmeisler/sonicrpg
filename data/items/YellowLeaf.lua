@@ -2,7 +2,7 @@ local TargetType = require "util/TargetType"
 
 return {
 	name = "Yellow Leaf",
-	desc = "Grants xp",
+	desc = "Grants xp.",
 	target = TargetType.Party,
 	usableFromMenu = true,
 	usableFromBattle = false,

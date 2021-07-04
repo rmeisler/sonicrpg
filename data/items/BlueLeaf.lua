@@ -2,7 +2,7 @@ local TargetType = require "util/TargetType"
 
 return {
 	name = "Blue Leaf",
-	desc = "Recovers sp",
+	desc = "Recovers sp.",
 	target = TargetType.Party,
 	usableFromMenu = true,
 	unusable = function(target)

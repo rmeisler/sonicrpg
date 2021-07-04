@@ -524,7 +524,7 @@ function NPC:onCollision(prevState)
 	end
 	
 	if self.whileColliding then
-		self.whileColliding(self, self.scene.player)
+		self.whileColliding(self, self.scene.player, prevState)
 	end
 	
 	if self.hidingSpot then

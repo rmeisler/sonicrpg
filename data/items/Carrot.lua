@@ -2,7 +2,7 @@ local TargetType = require "util/TargetType"
 
 return {
 	name = "Carrot",
-	desc = "Recovers a little hp",
+	desc = "Recovers a little hp.",
 	target = TargetType.Party,
 	usableFromMenu = true,
 	unusable = function(target)

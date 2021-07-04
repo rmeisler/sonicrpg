@@ -37,7 +37,7 @@ return function(self, target)
 	target.laserShield = shield
 
 	local hitHandler
-	hitHandler = function()
+	hitHandler = function(damage)
 		Executor(self.scene):act(Serial {
 			Parallel {
 				Ease(shield.color, 4, 0, 4),

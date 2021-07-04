@@ -91,8 +91,27 @@ return {
 			frames = {{1,3},{2,3},{3,3},{4,3},{1,4},{2,4},{3,4},{4,4},{1,3}},
 			speed = 0.1
 		},
+		noring_idle = {
+			frames = {{6,0}}
+		},
 		liftring_idle = {
 			frames = {{1,3}}
+		},
+		ring_chargerun1 = {
+			frames = {{4,11},{5,11},{6,11},{4,12}},
+			speed = 0.07
+		},
+		ring_chargerun2 = {
+			frames = {{5,12},{6,12},{4,13},{5,13}},
+			speed = 0.02
+		},
+		ring_runleft = {
+			frames = {{0,11},{1,11},{2,11},{3,11}},
+			speed = 0.02
+		},
+		ring_runright = {
+			frames = {{0,12},{1,12},{2,12},{3,12}},
+			speed = 0.02
 		},
 		throw = {
 			frames = {{1,10},{2,10},{3,10},{3,10},{3,10},{3,10}},

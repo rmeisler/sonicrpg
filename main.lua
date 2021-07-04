@@ -16,6 +16,7 @@ FontCache = {
 	Outline = love.graphics.newFont("art/fonts/outline.ttf", 36),
 	Stonebangs = love.graphics.newFont("art/fonts/stonebangs.ttf", 42),
 	TechnoSmall = love.graphics.newFont("art/fonts/techno.ttf", 24),
+	TechnoMed = love.graphics.newFont("art/fonts/techno.ttf", 42),
 	Techno = love.graphics.newFont("art/fonts/techno.ttf", 72),
 }
 
@@ -40,14 +41,12 @@ local fullScreen = false
 function love.load()
     love.profiler = require "lib/profile"
     love.profiler.hookall("Lua")
-	--love.filesystem.setIdentity('screenshot');
 
 	love.graphics.setShader(ScreenShader)
 	
+	math.randomseed(os.time())
 	
 	sceneMgr:pushScene {class = "TitleSplashScene"}
-	
-	
 end
 
 function love.update(dt)
@@ -57,11 +56,11 @@ function love.update(dt)
         love.profiler.reset()
     end
 
-    --[[if love.keyboard.isDown("f") then
+    if love.keyboard.isDown("f") then
         dt = dt * 10
 	elseif love.keyboard.isDown("s") then
         dt = dt / 4
-    end]]
+    end
 
     sceneMgr:update(dt)
 end
@@ -70,22 +69,98 @@ function love.draw()
     sceneMgr:draw()
 end
 
+local isDown = love.keyboard.isDown
+
+love.keyboard.isDown = function(key)
+	local dpadMapping = {
+		up = function()
+			return isDown("up") or (sceneMgr.gamepad and sceneMgr.gamepad:getAxis(2) < 0)
+		end,
+
+		down = function()
+			return isDown("down") or (sceneMgr.gamepad and sceneMgr.gamepad:getAxis(2) > 0)
+		end,
+
+		left = function()
+			return isDown("left") or (sceneMgr.gamepad and sceneMgr.gamepad:getAxis(1) < 0)
+		end,
+
+		right = function()
+			return isDown("right") or (sceneMgr.gamepad and sceneMgr.gamepad:getAxis(1) > 0)
+		end,
+
+		lshift = function()
+			return isDown("lshift") or (sceneMgr.gamepad and sceneMgr.gamepad:isDown(3))
+		end
+	}
+
+	local fun = dpadMapping[key]
+	if fun then
+		return fun()
+	else
+		return isDown(key)
+	end
+end
+
+function love.joystickadded(joystick)
+	sceneMgr:joystickadded(joystick)
+end
+
+function love.joystickaxis(joystick, axis, value)
+	-- Gamepad mapping
+	-- x, y = self.sceneMgr.gamepad:getAxes()
+	-- -1 = up
+	-- 1 = down
+	-- -1 = left
+	-- 1 = right
+	local dpadMapping = {
+		["1"] = {["1"] = "right", ["-1"] = "left"},
+		["2"] = {["1"] = "down",  ["-1"] = "up"},
+	}
+
+	if dpadMapping[tostring(axis)] then
+		local val = dpadMapping[tostring(axis)][tostring(value)]
+		sceneMgr:keypressed(val, val)
+	end
+end
+
+function love.joystickpressed(joystick, button)
+	-- 1 = "x"
+	-- 2 = "a"
+	-- 3 = "b"
+	-- 4 = "y"
+	-- 5 = "L"
+	-- 6 = "R"
+	-- 9 = "select"
+	-- 10 = "start"
+	local buttonMap = {
+		[1] = "z",
+		[2] = "x",
+		--[3] = "lshift",
+		[4] = "z",
+		[5] = "c",
+		[6] = "c"
+	}
+
+	local val = buttonMap[button]
+    sceneMgr:keypressed(val, val)
+end
+
+function love.joystickreleased(joystick, button)
+    local buttonMap = {
+		[1] = "z",
+		[2] = "x",
+		--[3] = "lshift",
+		[4] = "z",
+		[5] = "c",
+		[6] = "c"
+	}
+
+	local val = buttonMap[button]
+    sceneMgr:keyreleased(val, val)
+end
+
 function love.keypressed(key, uni)
-	
-	
-
-	if key == "]" then
-     local screenshot = love.graphics.newScreenshot();
-		screenshot:encode('png', os.time() .. '.png');
-   end
-
-	
-	
-   if key == "'" then
-      local state = not love.mouse.isVisible()   -- the opposite of whatever it currently is
-      love.mouse.setVisible(state)
-   end
-
 	if key == "tab" then
 		if not fullScreen then
 			love.window.setFullscreen(true, "exclusive")

@@ -8,10 +8,10 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 12,
+  nextobjectid = 14,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
-    ["onload"] = "actions/knotholehut.lua",
+    ["onload"] = "actions/sallyhut.lua",
     ["regionName"] = "Sally's Hut"
   },
   tilesets = {
@@ -406,6 +406,42 @@ return {
             ["ghost"] = true,
             ["notColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = nil\nend",
             ["whileColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = true\nend"
+          }
+        },
+        {
+          id = 12,
+          name = "SallySad",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 256,
+          y = 416,
+          width = 32,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "sit_sad",
+            ["sprite"] = "../art/sprites/sally.png"
+          }
+        },
+        {
+          id = 13,
+          name = "Waypoint",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 320,
+          y = 384,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true
           }
         }
       }

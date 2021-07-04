@@ -49,7 +49,9 @@ BattleScene.STATE_CUSTOM               = "custom"
 
 function BattleScene:onEnter(args)
 	self:pushLayer("tiles")
+	self:pushLayer("behind")
 	self:pushLayer("sprites")
+	self:pushLayer("infront")
 	self:pushLayer("ui")
 
 	self.images = args.images
@@ -698,7 +700,9 @@ function BattleScene:draw()
 			love.graphics.setColor(255,255,255,255)
 			love.graphics.draw(self.bgimg, 0, self.camPos.y)
 		
+			self:sortedDraw("behind")
 			self:sortedDraw("sprites")
+			self:sortedDraw("infront")
 			Scene.draw(self, "ui")
 		end)
 	else
@@ -707,7 +711,9 @@ function BattleScene:draw()
 		love.graphics.setColor(255,255,255,255)
 		love.graphics.draw(self.bgimg, 0, self.camPos.y)
 		
+		self:sortedDraw("behind")
 		self:sortedDraw("sprites")
+		self:sortedDraw("infront")
 		Scene.draw(self, "ui")
 	end
 	
@@ -719,10 +725,10 @@ function BattleScene:draw()
 end
 
 -- Vertical screen shake
-function BattleScene:screenShake(strength, speed, repeatTimes)
-	strength = strength or 50
-	speed = speed or 15
-	repeatTimes = repeatTimes or 1
+function BattleScene:screenShake(str, sp, rp)
+	local strength = str or 50
+	local speed = sp or 15
+	local repeatTimes = rp or 1
 	
 	return Serial {
 		Do(function()
@@ -730,20 +736,17 @@ function BattleScene:screenShake(strength, speed, repeatTimes)
 		end),
 		
 		Repeat(Serial {
-			Ease(self.camPos, "y", self.camPos.y - strength, speed, "quad"),
-			Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
-			Ease(self.camPos, "y", self.camPos.y + strength, speed, "quad"),
-			Ease(self.camPos, "y", self.camPos.y, speed, "quad")
+			Ease(self.camPos, "y", function() return self.camPos.y - strength end, speed, "quad"),
+			Ease(self.camPos, "y", function() return self.camPos.y + strength end, speed, "quad")
 		}, repeatTimes),
 		
-		Ease(self.camPos, "y", self.camPos.y - strength/2, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y + strength/2, speed, "quad"),
-		Ease(self.camPos, "y", self.camPos.y, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y - strength/2 end, speed, "quad"),
+		Ease(self.camPos, "y", function() return self.camPos.y + strength/2 end, speed, "quad"),
 		
 		Do(function()
 			self.isScreenShaking = false
-			self.camPos = Transform()
+			self.camPos.x = 0
+			self.camPos.y = 0
 		end)
 	}
 end

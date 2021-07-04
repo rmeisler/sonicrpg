@@ -8,7 +8,7 @@ return {
   height = 100,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 198,
+  nextobjectid = 230,
   properties = {
     ["onload"] = "actions/worldmap.lua"
   },
@@ -63,6 +63,58 @@ return {
       properties = {},
       terrains = {},
       tilecount = 3500,
+      tiles = {}
+    },
+    {
+      name = "forest",
+      firstgid = 6985,
+      filename = "knothole.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/knotholeexterior.png",
+      imagewidth = 1664,
+      imageheight = 2144,
+      transparentcolor = "#b326c3",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 3484,
+      tiles = {}
+    },
+    {
+      name = "datacenter",
+      firstgid = 10469,
+      filename = "datacenter.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/datacenterinterior2.png",
+      imagewidth = 1376,
+      imageheight = 2368,
+      transparentcolor = "#009e00",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 3182,
       tiles = {}
     }
   },
@@ -371,8 +423,9 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["ghost"] = true,
+            ["notColliding"] = "return function(self, player)\n    if player.onSubLocation == self then\n        player.onSubLocation = nil\n        self.scene:removeHandler(\"keytriggered\", player.knotholeCallback)\n    end\nend",
             ["sprite"] = "../art/sprites/knotholemap.png",
-            ["whileColliding"] = "local TypeText = require \"actions/TypeText\"\nlocal Serial = require \"actions/Serial\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\n\nlocal Transform = require \"util/Transform\"\n\nreturn function(self, player)\n    if player.touchingDeathEgg then\n        return\n    end\n    player.touchingDeathEgg = true\n\n    local text = TypeText(\n        Transform(50, 500),\n        {255, 255, 255, 0},\n        FontCache.Techno,\n        \"Knothole\",\n        100\n    )\n    self.scene:run(Spawn(Serial {\n        text,\n        Ease(text.color, 4, 255, 1),\n        Wait(2),\n        Ease(text.color, 4, 0, 1),\n        Do(function() player.touchingDeathEgg = false end)\n    }))\nend"
+            ["whileColliding"] = "local TypeText = require \"actions/TypeText\"\nlocal Serial = require \"actions/Serial\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nlocal Transform = require \"util/Transform\"\n\nreturn function(self, player, prevState)\n    if player.onSubLocation == self then\n        return\n    end\n    player.onSubLocation = self\n\n    player.knotholeCallback = function(key)\n        if player.onSubLocation == self and not self.scene.sceneMgr.transitioning and key == \"x\" then\n            self.scene:changeScene{map=\"knothole\"}\n            self.scene:removeHandler(\"keytriggered\", player.knotholeCallback)\n        end\n    end\n    self.scene:addHandler(\"keytriggered\", player.knotholeCallback)\n\n    self.typeText = TypeText(\n        Transform(50, 470),\n        {255, 255, 255, 0},\n        FontCache.TechnoSmall,\n        \"Knothole\",\n        100\n    )\n    self.scene:run(Spawn(Serial {\n        self.typeText,\n        Ease(self.typeText.color, 4, 255, 1),\n        YieldUntil(function() return self.state ~= self.STATE_TOUCHING end),\n        Ease(self.typeText.color, 4, 0, 1)\n    }))\nend"
           }
         },
         {
@@ -390,8 +443,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/deathegg.png",
-            ["whileColliding"] = "local TypeText = require \"actions/TypeText\"\nlocal Serial = require \"actions/Serial\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\n\nlocal Transform = require \"util/Transform\"\n\nreturn function(self, player)\n    if player.touchingDeathEgg then\n        return\n    end\n    player.touchingDeathEgg = true\n\n    local text = TypeText(\n        Transform(50, 500),\n        {255, 255, 255, 0},\n        FontCache.Techno,\n        \"Robotropolis\",\n        100\n    )\n    self.scene:run(Spawn(Serial {\n        text,\n        Ease(text.color, 4, 255, 1),\n        Wait(2),\n        Ease(text.color, 4, 0, 1),\n        Do(function() player.touchingDeathEgg = false end)\n    }))\nend"
+            ["sprite"] = "../art/sprites/deathegg.png"
           }
         },
         {
@@ -3117,6 +3169,42 @@ return {
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/worldmaptrees2.png"
           }
+        },
+        {
+          id = 198,
+          name = "RegionRobotropolis",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1568,
+          y = 1664,
+          width = 448,
+          height = 416,
+          rotation = 0,
+          gid = 3521,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["notColliding"] = "return function(self, player)\n    if player.onLocation == self then\n        self.scene:removeHandler(\"keytriggered\", player.robotropCallback)\n        player.onLocation = nil\n    end\nend",
+            ["whileColliding"] = "local TypeText = require \"actions/TypeText\"\nlocal Serial = require \"actions/Serial\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nlocal Transform = require \"util/Transform\"\n\nreturn function(self, player, prevState)\n    if player.onLocation == self then\n        return\n    end\n    player.onLocation = self\n\n    player.robotropCallback = function(key)\n        if player.onLocation == self and\n           not player.onSubLocation and\n           not self.scene.sceneMgr.transitioning and\n           key == \"x\"\n        then\n            self.scene:changeScene{map=\"stealthtut1\"}\n            self.scene:removeHandler(\"keytriggered\", player.robotropCallback)\n        end\n    end\n    self.scene:addHandler(\"keytriggered\", player.robotropCallback)\n\n    self.typeText = TypeText(\n        Transform(50, 500),\n        {255, 255, 255, 0},\n        FontCache.TechnoMed,\n        \"Robotropolis\",\n        100\n    )\n    self.scene:run(Spawn(Serial {\n        self.typeText,\n        Ease(self.typeText.color, 4, 255, 1),\n        YieldUntil(function() return self.state ~= self.STATE_TOUCHING end),\n        Ease(self.typeText.color, 4, 0, 1)\n    }))\nend"
+          }
+        },
+        {
+          id = 199,
+          name = "RegionGreatForest",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 544,
+          y = 2240,
+          width = 736,
+          height = 1344,
+          rotation = 0,
+          gid = 3521,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["notColliding"] = "return function(self, player)\n    if player.onLocation == self then\n        player.onLocation = nil\n        self.scene:removeHandler(\"keytriggered\", player.greatForestCallback)\n    end\nend",
+            ["whileColliding"] = "local TypeText = require \"actions/TypeText\"\nlocal Serial = require \"actions/Serial\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nlocal Transform = require \"util/Transform\"\n\nreturn function(self, player, prevState)\n    if player.onLocation == self then\n        return\n    end\n    player.onLocation = self\n\n    player.greatForestCallback = function(key)\n        if player.onLocation == self and\n           not player.onSubLocation and\n           not self.scene.sceneMgr.transitioning and\n           key == \"x\"\n       then\n            self.scene:changeScene{map=\"greatforest1\"}\n            self.scene:removeHandler(\"keytriggered\", player.greatForestCallback)\n        end\n    end\n    self.scene:addHandler(\"keytriggered\", player.greatForestCallback)\n\n    self.typeText = TypeText(\n        Transform(50, 500),\n        {255, 255, 255, 0},\n        FontCache.TechnoMed,\n        \"The Great Forest\",\n        100\n    )\n    self.scene:run(Spawn(Serial {\n        self.typeText,\n        Ease(self.typeText.color, 4, 255, 1),\n        YieldUntil(function() return self.state ~= self.STATE_TOUCHING end),\n        Ease(self.typeText.color, 4, 0, 1)\n    }))\nend"
+          }
         }
       }
     },
@@ -3454,9 +3542,9 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 1449, 1449, 0, 1449, 1449, 0, 0, 0, 0, 0, 1449, 1449, 1449, 1449, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 1449, 1449, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 1449, 1449, 0, 0, 1449, 1449, 0, 0, 0, 0, 1449, 1449, 1449, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 1449, 0, 0, 0, 1449, 1449, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 1449, 0, 0, 0, 1449, 1449, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 1449, 1449, 1449, 0, 0, 1449, 1449, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 1449, 1449, 1449, 1449, 1449, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 1449, 0, 0, 0, 1449, 1449, 0, 0, 1449, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 0, 1449, 1449, 1449, 1449, 1449, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 1449, 0, 0, 0, 1449, 1449, 0, 0, 1449, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 1449, 1449, 1449, 1449, 1449, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 1449, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 1449, 0, 0, 1449, 1449, 0, 0, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 0, 0, 0, 1449, 0, 0, 0, 0, 1449, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 1449, 0, 0, 1449, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 0, 0, 0, 1449, 0, 0, 0, 0, 1449, 0, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 1449, 1449, 0, 0, 1449, 1449, 1449, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1449, 1449, 1449, 1449, 0, 0, 0, 0, 0, 0, 0, 0,

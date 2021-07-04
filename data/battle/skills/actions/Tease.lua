@@ -38,6 +38,9 @@ return function(self, target)
 			textSpeed=8,
 			closeAction=Wait(0.8)
 		},
-		Telegraph(target, target.name.." feels compelled to attack Sonic!", {255,255,255,50})
+		Telegraph(target, target.name.." feels compelled to attack Sonic!", {255,255,255,50}),
+		Do(function()
+			self.sprite:setAnimation("idle")
+		end)
 	}
 end

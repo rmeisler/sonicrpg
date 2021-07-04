@@ -2,11 +2,11 @@ local TargetType = require "util/TargetType"
 
 return {
 	name = "Power Ring",
-	target = TargetType.Opponent,
+	target = TargetType.AllOpponents,
 	unusable = function(target)
 		return target.side == TargetType.Party
 	end,
 	cost = 0,
-	desc = "Multiplies all stats by 2!",
+	desc = "Allows Sonic to dispatch all non-boss bots.",
 	action = require "data/battle/skills/actions/PowerRing"
 }

@@ -5,7 +5,10 @@ return {
     h = 12,
 
     animations = {
-        idle = {
+        nopress = {
+            frames = {{0,0}}
+        },
+		idle = {
             frames = {{0,0},{1,0}},
             speed = 0.2
         },

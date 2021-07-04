@@ -197,10 +197,12 @@ function OpposingPartyMember:beginTurn()
 		}
 		self.confused = false
 	elseif self.lostTurns > 1 then
-		self.action = Telegraph(self, self.name.." is still bored!", {self.color[1],self.color[2],self.color[3],50})
+		local lostTurnMsg = self.name.." is still "..(self.lostTurnType or "bored").."!"
+		self.action = Telegraph(self, lostTurnMsg, {self.color[1],self.color[2],self.color[3],50})
 		self.lostTurns = self.lostTurns - 1
 	elseif self.lostTurns > 0 then
-		self.action = Telegraph(self, self.name.."'s boredom has subsided.", {self.color[1],self.color[2],self.color[3],50})
+		local lostTurnMsg = self.name.."'s "..(self.lostTurnType or "boredom").." has subsided."
+		self.action = Telegraph(self, lostTurnMsg, {self.color[1],self.color[2],self.color[3],50})
 		self.lostTurns = self.lostTurns - 1
 	else
 		local targetOverride = table.remove(self.targetOverrideStack, 1)
@@ -216,6 +218,16 @@ function OpposingPartyMember:beginTurn()
 		end
 		
 		self.action = self.behavior(self, target) or Action()
+		
+		if target.laserShield then
+			self.action = Serial {
+				self.action,
+				Do(function()
+					target.sprite = target.lastSprite
+					target.lastSprite = nil
+				end)
+			}
+		end
 		
 		if targetOverride then
 			self.action = Serial {
@@ -262,10 +274,6 @@ function OpposingPartyMember:beginTurn()
 		Serial(additionalActions),
 		self.action,
 		Do(function()
-			if target and target.lastSprite then
-				target.sprite = target.lastSprite
-				target.lastSprite = nil
-			end
 			-- Noop... why is this necessary in some cases?
 		end)
 	}

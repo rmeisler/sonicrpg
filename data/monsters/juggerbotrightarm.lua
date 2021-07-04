@@ -35,7 +35,7 @@ return {
 
 	stats = {
 		xp      = 0,
-		maxhp   = 500,
+		maxhp   = 1000,
 		attack  = 1,
 		defense = 10,
 		speed   = 1,
@@ -96,7 +96,7 @@ return {
 				spr.transform.x = spr.transform.x + 64
 				spr.transform.y = spr.transform.y + 12
 			end),
-			Ease(self.scene.juggerbotrightarm:getSprite().transform, "angle", -math.pi/2, 1.3),
+			Ease(self.scene.juggerbotrightarm:getSprite().transform, "angle", -math.pi/2, 2),
 			
 			PlayAudio("sfx", "stun", 1.0, true),
 			Do(function()
@@ -152,7 +152,7 @@ return {
 			end),
 
 			Wait(1.6),
-			Ease(self.scene.juggerbotrightarm:getSprite().transform, "angle", 0, 1.3),
+			Ease(self.scene.juggerbotrightarm:getSprite().transform, "angle", 0, 2),
 			Do(function()
 				local spr = self.scene.juggerbotrightarm:getSprite()
 				spr.transform.ox = 0
@@ -166,8 +166,19 @@ return {
 					target.sprite:setAnimation("dead")
 				end
 			end),
-			not target.laserShield and Telegraph(target, target.name.." is stunned!", {255,255,255,50})
-				or target:takeDamage({attack = 0, defense = 0, miss = true})
+			not target.laserShield
+				and Telegraph(target, target.name.." is stunned!", {255,255,255,50})
+				or BouncyText(
+					Transform(
+						target.sprite.transform.x + 10 + (target.textOffset.x),
+						target.sprite.transform.y + (target.textOffset.y)),
+					{255,255,255,255},
+					FontCache.ConsolasLarge,
+					"miss",
+					6,
+					false,
+					true -- outline
+				)
 		}
 	end,
 	

@@ -179,6 +179,10 @@ function GameState:hasItem(name)
 	return self.items[name] ~= nil
 end
 
+function GameState:getItem(name)
+	return self.items[name]
+end
+
 function GameState:getItemsOfSubtype(type)
 	local items = {}
 	for name, rec in pairs(self.items) do

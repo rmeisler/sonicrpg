@@ -23,6 +23,8 @@ function TinyPlayer:construct(scene, layer, object)
 	-- Set scene reference to this player
 	scene.player = self
 	
+	self.worldLocations = {}
+	
 	self.sprite.transform.sx = 1.45
 	self.sprite.transform.sy = 1.45
 	self.noSpecialMove = true
@@ -31,6 +33,8 @@ function TinyPlayer:construct(scene, layer, object)
 	self.dropShadow:remove()
 	
 	self:updateHotspots()
+	
+	self.playerType = "TinyPlayer"
 end
 
 function TinyPlayer:updateHotspots()
