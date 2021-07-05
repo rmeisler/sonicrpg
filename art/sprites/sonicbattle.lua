@@ -21,8 +21,7 @@ return {
 			frames = {{5,0}}
 		},
 		victory = {
-			frames = {{0,1}, {1,1}},
-			speed = 0.1
+			frames = {{1,1}}
 		},
         pummel = {
             frames = {{0,2},{1,2},{2,2},{3,2},{0,2},{1,2},{2,2},{3,2},{0,2},{1,2},{2,2},{3,2},{0,0},{2,0}},
@@ -120,6 +119,21 @@ return {
 		tease = {
 			frames = {{4,10},{5,10},{6,10}},
 			speed = 0.2
+		},
+		shock = {
+			frames = {{6,4}}
+		},
+		annoyed = {
+			frames = {{4,8}}
+		},
+		thinking = {
+			frames = {{4,9}}
+		},
+		criticizing = {
+			frames = {{5,9}}
+		},
+		criticizing_sad = {
+			frames = {{5,6}}
 		}
     }
 }

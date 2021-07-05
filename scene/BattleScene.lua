@@ -66,6 +66,8 @@ function BattleScene:onEnter(args)
 	self.color = args.color
 	self.practice = args.practice
 	self.camPos = Transform()
+	
+	local onEnterCallback = args.onEnter or function(scene) return Action() end
 
 	self.mboxGradient = self.images["mboxgradient"]
 
@@ -207,7 +209,9 @@ function BattleScene:onEnter(args)
 			Ease(self.bgColor, 1, 255, 1, "linear"),
 			Ease(self.bgColor, 2, 255, 1, "linear"),
 			Ease(self.bgColor, 3, 255, 1, "linear"),
-			Do(function() ScreenShader:sendColor("multColor", self.bgColor) end)
+			Do(function() ScreenShader:sendColor("multColor", self.bgColor) end),
+			
+			onEnterCallback(self)
 		},
 		initiativeAction
 	}

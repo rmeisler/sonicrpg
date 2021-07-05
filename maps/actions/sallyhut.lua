@@ -8,6 +8,7 @@ return function(scene)
 	local Menu = require "actions/Menu"
 	local MessageBox = require "actions/MessageBox"
 	local PlayAudio = require "actions/PlayAudio"
+	local AudioFade = require "actions/AudioFade"
 	local Ease = require "actions/Ease"
 	local Parallel = require "actions/Parallel"
 	local Serial = require "actions/Serial"
@@ -17,6 +18,7 @@ return function(scene)
 	local SpriteNode = require "object/SpriteNode"
 	local Animate = require "actions/Animate"
 	local Move = require "actions/Move"
+	local BlockInput = require "actions/BlockInput"
 
 	local text = TypeText(
 		Transform(50, 500),
@@ -76,12 +78,13 @@ return function(scene)
 		scene.objectLookup.SallySad:remove()
 		return Action()
 	else
-		scene.audio:stopMusic()
 		scene.player.cinematicStack = scene.player.cinematicStack + 1
 		local origMoveSpeed = scene.player.movespeed
 		scene.player.movespeed = 1
 		scene.player.noIdle = true
 		return Serial {
+			AudioFade("music", 1, 0, 1),
+			Do(function() scene.audio:stopMusic() end),
 			Wait(1),
 			MessageBox {message="Sonic: How ya doin' Sal?"},
 			MessageBox {message="Sally: Oh, hey Sonic. {p40}I'm... {p40}doin' alright."},
@@ -99,32 +102,32 @@ return function(scene)
 				scene.player.x = scene.player.x - 15
 				scene.player.y = scene.player.y - 58
 				scene.player.sprite:setAnimation("sit_sad")
-				scene.audio:playMusic("knotholehut", 0.8)
 			end),
-			MessageBox {message="Sally: *sigh*{p40} It's nothing{p40}... it's just that...{p40} so many things went wrong on our last mission...", textSpeed=4},
+			MessageBox {message="Sally: *sigh*{p40} It's nothing{p40}... it's just that...", textSpeed=4},
+			MessageBox {message="Sally: ...so many things went wrong on our last mission.", textSpeed=4},
 			MessageBox {message="Sally: We didn't end up taking out the Swatbot Factory{p40}, Antoine got captured{p40}, we were nearly killed by that Rover...", textSpeed=2},
 			Do(function()
 				scene.player.sprite:setAnimation("sit_smile")
 			end),
-			MessageBox {message="Sonic: Yeah, {p20}'and'{p20} we found some mondo cool new allies!"},
-			MessageBox {message="Sonic: Heck, {p20}with B's help{p20}, I bet we could sneak into Buttnik's headquarters, no prob!"},
+			MessageBox {message="Sonic: Yeah-- {p30}'and'{p30} we found some mondo cool new allies!"},
+			MessageBox {message="Sonic: Heck, {p40}with B's help{p40}, I bet we could sneak all the way into Buttnik's headquarters, no prob!"},
 			MessageBox {message="Sally: We still failed the mission, Sonic."},
 			MessageBox {message="Sally: It just feels like we haven't made any progress in actually taking back Mobotropolis or freeing our roboticized family members..."},
 			Do(function()
 				scene.player.sprite:setAnimation("sit_sad")
 			end),
-			MessageBox {message="Sally: When we started the Freedom Fighters-- {p40}I guess I just thought we'd be farther along by now."},
+			MessageBox {message="Sally: When we started the Freedom Fighters-- {p50}I guess I just thought we'd be farther along by now."},
 			MessageBox {message="Sally: {p20}.{p20}.{p20}.{p40}I sometimes wonder if I'm really fit to be a leader...", textSpeed=4},
 			MessageBox {message="Sonic: Hold up, Sal!"},
-			MessageBox {message="Sonic: Sure{p20}, there's been some failed missions, here and there{p20}, but we've also kicked some serious Robuttnik tail!"},
+			MessageBox {message="Sonic: Sure{p20}, there have been some failed missions recently{p40}, but we've also kicked some serious Robuttnik tail!"},
 			Do(function()
 				scene.player.sprite:setAnimation("sit_encouraging")
 			end),
 			MessageBox {message="Sonic: Remember when we stopped Buttnik from pulling that giant energy crystal out of the ground and destroying the Great Forest?"},
 			MessageBox {message="Sally: Yes..."},
-			MessageBox {message="Sonic: Or when we went all the way up into space to crash Buttnik's sattelite?"},
+			MessageBox {message="Sonic: Or when we went all the way up into space to crash his sattelite?"},
 			MessageBox {message="Sally: Yes, Sonic."},
-			MessageBox {message="Sonic: What about when we destroyed both his primary and {h backup} generators?"},
+			MessageBox {message="Sonic: What about when we destroyed both the primary {p30}'and'{p30} {h backup} power generators?"},
 			MessageBox {message="Sonic: That set ol' lard butt back for weeks!"},
 			Do(function()
 				scene.objectLookup.SallySad.sprite:setAnimation("sit_laugh")
@@ -138,9 +141,11 @@ return function(scene)
 			Do(function()
 				scene.objectLookup.SallySad.sprite:setAnimation("sit_smile")
 			end),
-			MessageBox {message="Sally: Thanks Sonic. {p40}I do feel a little bit better now."},
-			MessageBox {message="Sonic: Cool. {p40}Wanna go grab some fresh air?"},
-			MessageBox {message="Sally: Sure, {p20}why not?"},
+			MessageBox {message="Sally: Thanks Sonic. {p40}I do feel a bit better now.", textSpeed=4},
+			MessageBox {message="Sonic: Cool. {p40}Wanna grab some fresh air?", textSpeed=4},
+			MessageBox {message="Sally: Sure, {p40}why not?", textSpeed=4},
+			MessageBox {message="Sally joined your party!", sfx="levelup"},
+			
 			Do(function()
 				scene.player.cinematicStack = scene.player.cinematicStack - 1
 				scene.player.movespeed = origMoveSpeed

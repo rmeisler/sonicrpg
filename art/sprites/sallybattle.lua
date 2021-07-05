@@ -54,6 +54,21 @@ return {
 		},
 		annoyed = {
 			frames = {{2,4}}
+		},
+		shock = {
+			frames = {{1,4}}
+		},
+		thinking = {
+			frames = {{0,4}}
+		},
+		thinking2 = {
+			frames = {{3,4}}
+		},
+		thinking3 = {
+			frames = {{4,4}}
+		},
+		sad = {
+			frames = {{0,5}}
 		}
     }
 }

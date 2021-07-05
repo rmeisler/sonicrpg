@@ -454,7 +454,8 @@ function BasicScene:enterBattle(args)
 				bossBattle = args.bossBattle,
 				initiative = args.initiative,
 				color = args.color,
-				practice = args.practice
+				practice = args.practice,
+				onEnter = args.onEnter
 			}
 		end),
 		

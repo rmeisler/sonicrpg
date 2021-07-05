@@ -86,6 +86,22 @@ return {
 		},
 		extendup = {
 			frames = {{9,3}}
-		}
+		},
+		
+		explaining_right1 = {
+			frames = {{1,4}}
+		},
+		explaining_right2 = {
+			frames = {{4,4}}
+		},
+		explaining_left1 = {
+			frames = {{2,4}}
+		},
+		explaining_left2 = {
+			frames = {{5,4}}
+		},
+		thinking = {
+			frames = {{3,4}}
+		},
     }
 }

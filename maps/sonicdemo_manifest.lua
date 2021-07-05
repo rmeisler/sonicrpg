@@ -863,7 +863,19 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/areyouready.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
 		file = "audio/music/lookout.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/lookout2.ogg",
 		category = "music",
 		looping = true
 	},
