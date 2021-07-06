@@ -69,6 +69,9 @@ return {
 		},
 		sad = {
 			frames = {{0,5}}
-		}
+		},
+		idleup = {
+			frames = {{1,5}}
+		},
     }
 }

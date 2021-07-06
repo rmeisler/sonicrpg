@@ -132,6 +132,7 @@ return function(scene)
 		return Action()
 	else
 		--scene.audio:playMusic("doittoit", 0.5)
+		GameState:setFlag("rotorreveal_done")
 		return Serial {
 			AudioFade("music", 1, 0, 1),
 			Do(function() scene.audio:stopMusic() end),
@@ -155,7 +156,7 @@ return function(scene)
 						Wait(2),
 						MessageBox {message="Sonic: What's the deal with the Swatbutt, Rote?"},
 						Do(function()
-							rotor:setAnimation("explaining_right2")
+							rotor:setAnimation("explaining_right1")
 						end),
 						MessageBox {message="Rotor: I found this guy wandering around Sector 2."},
 						MessageBox {message="Rotor: But he's not exactly a regular Swatbot. {p70}Watch this."},
@@ -204,18 +205,21 @@ return function(scene)
 							battleScene.partyByName.sonic.sprite:setAnimation("idle")
 							rotor:setAnimation("thinking")
 						end),
+						AudioFade("music", 1, 0, 1),
 						MessageBox {message="Rotor: Well... {p40}based on what I'm seeing...{p40} this malfunction isn't caused by faulty {h hardware}..."},
 						Do(function()
-							battleScene.audio:playMusic("areyouready", 0.6)
 							battleScene.partyByName.sally.sprite:setAnimation("thinking")
 						end),
 						MessageBox {message="Sally: *gasp*! {p50}But that must mean...", textSpeed=3, closeAction=Wait(1)},
+						Do(function()
+							battleScene.audio:playMusic("areyouready", 0.4)
+						end),
 						MessageBox {message="Rotor: Yeah... {p40}I'm thinking it's exploitable.", textSpeed=4},
 						Do(function()
 							battleScene.partyByName.sonic.sprite:setAnimation("annoyed")
 						end),
 						MessageBox {message="Sonic: Guys, {p30}guys, {p30}can someone speak english here?"},
-						MessageBox {message="Sally: Well... {p40}basically... {p40}the Swatbot is{p40}, uh{p20}.{p20}.{p20}.{p40} {h glitchin'}.", textSpeed=3},
+						MessageBox {message="Sally: Well... {p40}basically... {p40}the Swatbot is, uh{p20}.{p20}.{p20}.{p40} {h glitchin'}.", textSpeed=4},
 						MessageBox {message="Rotor: Right. {p40}And because this glitch showed up in a production model, {p40}my theory is, {p40}we could potentially mask this glitch as a {h software patch}.", textSpeed=3},
 						MessageBox {message="Sally: Meaning, {p40}we could spread this glitch to other bots!", textSpeed=3},
 						Do(function()
@@ -228,21 +232,24 @@ return function(scene)
 						Do(function()
 							battleScene.partyByName.sonic.sprite:setAnimation("criticizing")
 						end),
-						AudioFade("music", 1, 0, 1),
 						MessageBox {message="Sonic: Sounds like somethin' ol' Buttnik would be heavily guarding..."},
-						MessageBox {message="Rotor: You're right. {p50}As far as I know, {p20}the only terminal which can produce a certificate of authenticity is.{p20}.{p20}.{p20} {p50}{h the Death Egg}.", textSpeed=3},
+						MessageBox {message="Rotor: You're right. {p50}As far as I know, {p20}the only terminal which can produce a certificate of authenticity is {h the Death Egg}.", textSpeed=3},
+						AudioFade("music", 0.4, 0, 1),
 						Wait(2),
 						Do(function()
 							battleScene.partyByName.sally.sprite:setAnimation("sad")
 							battleScene.audio:playMusic("sonicsad", 0.8)
 						end),
 						MessageBox {message="Sally: *sigh* {p40}Well{p20}.{p20}.{p20}. {p40}so much for that plan...", textSpeed=2},
+						Do(function()
+							rotor:setAnimation("sad")
+						end),
 						Wait(1),
 						Do(function()
 							battleScene.partyByName.sonic.sprite:setAnimation("criticizing_sad")
 						end),
 						MessageBox {message="Sonic: ...", textSpeed=2},
-						AudioFade("music", 0.6, 0, 1),
+						AudioFade("music", 0.8, 0, 1),
 						Wait(1),
 						Do(function()
 							battleScene.partyByName.sonic.sprite:setAnimation("thinking")
@@ -254,6 +261,8 @@ return function(scene)
 						MessageBox {message="Sonic: B could get us into Robotnik's headquarters!"},
 						Do(function()
 							battleScene.audio:playMusic("doittoit2", 0.8)
+							battleScene.partyByName.sally.sprite:setAnimation("idleup")
+							rotor:setAnimation("idleright")
 						end),
 						MessageBox {message="Sally: A-Are you sure?"},
 						MessageBox {message="Sonic: Hey, do I look like a guy who isn't sure?"},
@@ -263,12 +272,18 @@ return function(scene)
 						end),
 						MessageBox {message="Sally: Ok, {p40}far be it from me to say this, {p40}but I think we've been playing it safe for long enough."},
 						MessageBox {message="Sally: We need to do this."},
-						MessageBox {message="Sonic: Alright!"},
-						MessageBox {message="Rotor: Yeah!"},
 						Do(function()
 							battleScene.partyByName.sonic.sprite:setAnimation("victory")
-							battleScene.partyByName.sally.sprite:setAnimation("victory")
+						end),
+						MessageBox {message="Sonic: Alright!"},
+						Do(function()
 							rotor:setAnimation("pose")
+						end),
+						MessageBox {message="Rotor: Yeah!"},
+						Do(function()
+							battleScene.partyByName.sally.sprite:setAnimation("victory")
+							
+							battleScene.partyByName.sonic.id = "sonic"
 						end),
 						MessageBox {message="All: Let's do it to it!", textSpeed=4},
 						battleScene:earlyExit()
