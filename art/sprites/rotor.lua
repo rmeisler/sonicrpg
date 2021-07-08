@@ -103,5 +103,8 @@ return {
 		thinking = {
 			frames = {{3,4}}
 		},
+		sad = {
+			frames = {{0,5}}
+		},
     }
 }

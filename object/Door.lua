@@ -5,6 +5,7 @@ local PlayAudio = require "actions/PlayAudio"
 local Serial = require "actions/Serial"
 local Animate = require "actions/Animate"
 local MessageBox = require "actions/MessageBox"
+local Action = require "actions/Action"
 local SceneManager = require "scene/SceneManager"
 
 local Player = require "object/Player"
@@ -16,12 +17,19 @@ function Door:construct(scene, layer, object)
 	self.opensfx = object.properties.opensfx or "door"
 	self.locked = object.properties.locked
 	self.keyToDoor = object.properties.keyToDoor
+	self.flagForDoor = object.properties.flagForDoor
 	self.open = false
 
 	NPC.init(self)
 	
 	self:addSceneHandler("enter")
 	self:addInteract(Door.interact)
+
+	if object.properties.onOpen then
+		self.onOpen = assert(loadstring(object.properties.onOpen))()
+	else
+		self.onOpen = function(self) return Action() end
+	end
 	
 	if scene.lastSpawnPoint == self.name then
 		scene.player = Player(self.scene, self.layer, table.clone(self.object))
@@ -59,7 +67,10 @@ function Door:onCollision(prevState)
 end
 
 function Door:interact()
-	if self.locked and not GameState:hasItem(self.keyToDoor) then
+	if self.locked and
+		(self.keyToDoor and not GameState:hasItem(self.keyToDoor)) or
+		(self.flagForDoor and not GameState:isFlagSet(self.flagForDoor))
+	then
 		self:run {
 			PlayAudio("sfx", "locked", 1.0, true),
 			MessageBox {message = "Locked.", blocking = true},
@@ -83,6 +94,7 @@ function Door:interact()
 				PlayAudio("sfx", self.opensfx, 1.0),
 				anim
 			},
+			self.onOpen(self),
 			Do(function()
 				self.open = true
 			end)

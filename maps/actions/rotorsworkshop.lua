@@ -233,7 +233,7 @@ return function(scene)
 							battleScene.partyByName.sonic.sprite:setAnimation("criticizing")
 						end),
 						MessageBox {message="Sonic: Sounds like somethin' ol' Buttnik would be heavily guarding..."},
-						MessageBox {message="Rotor: You're right. {p50}As far as I know, {p20}the only terminal which can produce a certificate of authenticity is {h the Death Egg}.", textSpeed=3},
+						MessageBox {message="Rotor: You're right. {p50}As far as I know, {p20}the only terminal which can produce a certificate of authenticity is in the {h Death Egg}.", textSpeed=3},
 						AudioFade("music", 0.4, 0, 1),
 						Wait(2),
 						Do(function()
@@ -260,7 +260,7 @@ return function(scene)
 						end),
 						MessageBox {message="Sonic: B could get us into Robotnik's headquarters!"},
 						Do(function()
-							battleScene.audio:playMusic("doittoit2", 0.8)
+							battleScene.audio:playMusic("doittoit2", 1.0)
 							battleScene.partyByName.sally.sprite:setAnimation("idleup")
 							rotor:setAnimation("idleright")
 						end),
@@ -286,6 +286,7 @@ return function(scene)
 							battleScene.partyByName.sonic.id = "sonic"
 						end),
 						MessageBox {message="All: Let's do it to it!", textSpeed=4},
+						AudioFade("music", 1, 0),
 						battleScene:earlyExit()
 					}
 				end

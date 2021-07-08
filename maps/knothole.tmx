@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="282">
  <properties>
+  <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/knothole.lua"/>
   <property name="regionName" value="Great Forest"/>
   <property name="sectorName" value="Knothole"/>
@@ -2234,8 +2235,223 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-20"/>
+    <property name="flagForDoor" value="sallysad_over"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
+    <property name="onOpen">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Action = require &quot;actions/Action&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local SpriteNode = require &quot;object/SpriteNode&quot;
+local BasicNPC = require &quot;object/BasicNPC&quot;
+
+return function(self)
+    if GameState:isFlagSet(&quot;rotorreveal_done&quot;) then
+        return Action()
+    end
+
+    GameState:setFlag(&quot;rotorreveal_done&quot;)
+    local scene = self.scene
+    local rotor = BasicNPC(
+        scene,
+        {name = &quot;objects&quot;},
+        {
+            name = &quot;Rotor&quot;,
+            x = scene.player.x - 50,
+            y = scene.player.y - 10,
+            width = 65,
+            height = 55,
+            properties = {nocollision = true, sprite = &quot;art/sprites/rotor.png&quot;, align = &quot;bottom_left&quot;}
+        }
+    )
+    return BlockPlayer {
+        AudioFade(&quot;music&quot;, 1, 0, 1),
+        PlayAudio(&quot;music&quot;, &quot;rotorsworkshop&quot;, 1.0, true),
+        MessageBox {message=(GameState.leader == &quot;sonic&quot; and &quot;Sonic: Yo! {p40}You in there, Rote?&quot; or &quot;Sally: Rotor? {p40}Are you in there?...&quot;)},
+        Wait(1),
+        MessageBox {message=(GameState.leader == &quot;sonic&quot; and &quot;Sonic: ?...&quot; or &quot;Sally: ?...&quot;)},
+        Do(function()
+            rotor.sprite:setAnimation(&quot;pose&quot;)
+            scene:addObject(rotor)
+            scene.player.noIdle = true
+            scene.player.sprite:setAnimation(&quot;shock&quot;)
+        end),
+        Parallel {
+            MessageBox {message=&quot;Rotor: Hey guys!&quot;},
+            Ease(scene.player, &quot;y&quot;, scene.player.y + 20, 3)
+        },
+        Do(function()
+            rotor.sprite:setAnimation(&quot;idledown&quot;)
+            scene.player.sprite:setAnimation(&quot;idleup&quot;)
+        end),
+        MessageBox {message=&quot;Rotor: Uh... {p70}you're gonna wanna see this!&quot;},
+        scene:enterBattle {
+            opponents = {
+                &quot;swatbot&quot;
+            },
+            music = &quot;doittoit&quot;,
+            beforeBattle = Do(function() rotor:remove() end),
+            onEnter = function(battleScene)
+                local rotor = SpriteNode(battleScene, table.remove(battleScene.opponentSlots, 1), nil, &quot;rotor&quot;, nil, nil, &quot;sprites&quot;)
+                rotor:setAnimation(&quot;idleright&quot;)
+            
+                battleScene.partyByName.sonic.id = &quot;notsonic&quot;
+                battleScene.opponents[1].stats.miss = true
+            
+                local Swatbot = require &quot;data/monsters/swatbot&quot;
+                return Serial {
+                    Wait(2),
+                    MessageBox {message=&quot;Sonic: What's the deal with the Swatbutt, Rote?&quot;},
+                    Do(function()
+                        rotor:setAnimation(&quot;explaining_right1&quot;)
+                    end),
+                    MessageBox {message=&quot;Rotor: I found this guy wandering around Sector 2.&quot;},
+                    MessageBox {message=&quot;Rotor: But he's not exactly a regular Swatbot. {p70}Watch this.&quot;},
+                    Do(function()
+                        rotor:setAnimation(&quot;idleright&quot;)
+                    end),
+                    MessageBox {message=&quot;Rotor: Swatbot. {p40}Target Sonic the Hedgehog.&quot;},
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;shock&quot;)
+                        battleScene.partyByName.sally.sprite:setAnimation(&quot;shock&quot;)
+                    end),
+                    Parallel {
+                        MessageBox {message=&quot;Sonic: What!? {p40}Not cool, Rote!!&quot;},
+                        Swatbot.behavior(battleScene.opponents[1], battleScene.partyByName.sonic)
+                    },
+                
+                    -- Swatbot fires at Sonic, misses
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;idle&quot;)
+                        battleScene.partyByName.sally.sprite:setAnimation(&quot;idle&quot;)
+                    end),
+                    MessageBox {message=&quot;Sonic: Huh?...&quot;},
+                    MessageBox {message=&quot;Rotor: Swatbot. {p40}Target Princess Sally.&quot;},
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;shock&quot;)
+                        battleScene.partyByName.sally.sprite:setAnimation(&quot;shock&quot;)
+                    end),
+                    Parallel {
+                        MessageBox {message=&quot;Sally: Rotor!!&quot;},
+                        Swatbot.behavior(battleScene.opponents[1], battleScene.partyByName.sally)
+                    },
+                
+                    -- Swatbot fires at Rotor, misses
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;idle&quot;)
+                        battleScene.partyByName.sally.sprite:setAnimation(&quot;idle&quot;)
+                        rotor:setAnimation(&quot;explaining_right2&quot;)
+                    end),
+                    MessageBox {message=&quot;Rotor: See? {p40}He can't hit his target!&quot;},
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;criticizing&quot;)
+                    end),
+                    MessageBox {message=&quot;Sonic: Ya tryin' to give us a heart attack?!&quot;},
+                    MessageBox {message=&quot;Sonic: Why ya showing us this, Rote?&quot;},
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;idle&quot;)
+                        rotor:setAnimation(&quot;thinking&quot;)
+                    end),
+                    AudioFade(&quot;music&quot;, 1, 0, 1),
+                    MessageBox {message=&quot;Rotor: Well... {p40}based on what I'm seeing...{p40} this malfunction isn't caused by faulty {h hardware}...&quot;},
+                    Do(function()
+                        battleScene.partyByName.sally.sprite:setAnimation(&quot;thinking&quot;)
+                    end),
+                    MessageBox {message=&quot;Sally: *gasp*! {p50}But that must mean...&quot;, textSpeed=3, closeAction=Wait(1)},
+                    Do(function()
+                        battleScene.audio:playMusic(&quot;areyouready&quot;, 0.4)
+                    end),
+                    MessageBox {message=&quot;Rotor: Yeah... {p40}I'm thinking it's exploitable.&quot;, textSpeed=4},
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;annoyed&quot;)
+                    end),
+                    MessageBox {message=&quot;Sonic: Guys, {p30}guys, {p30}can someone speak english here?&quot;},
+                    MessageBox {message=&quot;Sally: Well... {p40}basically... {p40}the Swatbot is, uh{p20}.{p20}.{p20}.{p40} {h glitchin'}.&quot;, textSpeed=4},
+                    MessageBox {message=&quot;Rotor: Right. {p40}And because this glitch showed up in a production model, {p40}my theory is, {p40}we could potentially mask this glitch as a {h software patch}.&quot;, textSpeed=3},
+                    MessageBox {message=&quot;Sally: Meaning, {p40}we could spread this glitch to other bots!&quot;, textSpeed=3},
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;thinking&quot;)
+                    end),
+                    MessageBox {message=&quot;Sonic: Whoah guys, {p40}are you really telling me what I think you're telling me?&quot;, textSpeed=3},
+                    MessageBox {message=&quot;Sally: If we do this right, {p40}we could upload this glitch to Robotnik's entire army! {p50}They wouldn't be able to lay a finger on us!&quot;, textSpeed=3},
+                    MessageBox {message=&quot;Sally: ...But how are we going to make the software patch look authentic?&quot;},
+                    MessageBox {message=&quot;Rotor: We'll need to use Buttnik's terminal to create a {h certificate of authenticity}.&quot;},
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;criticizing&quot;)
+                    end),
+                    MessageBox {message=&quot;Sonic: Sounds like somethin' ol' Buttnik would be heavily guarding...&quot;},
+                    MessageBox {message=&quot;Rotor: You're right. {p50}As far as I know, {p20}the only terminal which can produce a certificate of authenticity is in the {h Death Egg}.&quot;, textSpeed=3},
+                    AudioFade(&quot;music&quot;, 0.4, 0, 1),
+                    Wait(2),
+                    Do(function()
+                        battleScene.partyByName.sally.sprite:setAnimation(&quot;sad&quot;)
+                        battleScene.audio:playMusic(&quot;sonicsad&quot;, 0.8)
+                    end),
+                    MessageBox {message=&quot;Sally: *sigh* {p40}Well{p20}.{p20}.{p20}. {p40}so much for that plan...&quot;, textSpeed=2},
+                    Do(function()
+                        rotor:setAnimation(&quot;sad&quot;)
+                    end),
+                    Wait(1),
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;criticizing_sad&quot;)
+                    end),
+                    MessageBox {message=&quot;Sonic: ...&quot;, textSpeed=2},
+                    AudioFade(&quot;music&quot;, 0.8, 0, 1),
+                    Wait(1),
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;thinking&quot;)
+                    end),
+                    MessageBox {message=&quot;Sonic: Wait a sonic second!&quot;},
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;victory&quot;)
+                    end),
+                    MessageBox {message=&quot;Sonic: B could get us into Robotnik's headquarters!&quot;},
+                    Do(function()
+                        battleScene.audio:playMusic(&quot;doittoit2&quot;, 1.0)
+                        battleScene.partyByName.sally.sprite:setAnimation(&quot;idleup&quot;)
+                        rotor:setAnimation(&quot;idleright&quot;)
+                    end),
+                    MessageBox {message=&quot;Sally: A-Are you sure?&quot;},
+                    MessageBox {message=&quot;Sonic: Hey, do I look like a guy who isn't sure?&quot;},
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;idle&quot;)
+                        battleScene.partyByName.sally.sprite:setAnimation(&quot;thinking3&quot;)
+                    end),
+                    MessageBox {message=&quot;Sally: Ok, {p40}far be it from me to say this, {p40}but I think we've been playing it safe for long enough.&quot;},
+                    MessageBox {message=&quot;Sally: We need to do this.&quot;},
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;victory&quot;)
+                    end),
+                    MessageBox {message=&quot;Sonic: Alright!&quot;},
+                    Do(function()
+                        rotor:setAnimation(&quot;pose&quot;)
+                    end),
+                    MessageBox {message=&quot;Rotor: Yeah!&quot;},
+                    Do(function()
+                        battleScene.partyByName.sally.sprite:setAnimation(&quot;victory&quot;)
+                    
+                        battleScene.partyByName.sonic.id = &quot;sonic&quot;
+                    end),
+                    MessageBox {message=&quot;All: Let's do it to it!&quot;, textSpeed=4},
+                    AudioFade(&quot;music&quot;, 1, 0),
+                    battleScene:earlyExit()
+                }
+            end
+        }
+    }
+end</property>
     <property name="orientation" value="down"/>
     <property name="scene" type="file" value="rotorsworkshop.lua"/>
     <property name="spawn_point" value="Spawn 1"/>

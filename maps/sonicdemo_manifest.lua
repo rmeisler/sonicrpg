@@ -863,6 +863,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/rotorsworkshop.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/areyouready.ogg",
 		category = "music",
 		looping = true
