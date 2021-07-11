@@ -86,14 +86,15 @@ return function(scene)
 			AudioFade("music", 1, 0, 1),
 			Do(function() scene.audio:stopMusic() end),
 			Wait(1),
-			MessageBox {message="Sonic: How ya doin' Sal?"},
-			MessageBox {message="Sally: Oh, hey Sonic. {p40}I'm... {p40}doin' alright."},
-			MessageBox {message="Sonic: Just alright?"},
 			Move(scene.player, scene.objectLookup.Waypoint, "walk"),
 			Do(function()
 				scene.player.sortOrder = 999
 				scene.player.sprite:setAnimation("idleup")
 			end),
+			PlayAudio("music", "talkingtosally", 1.0, true),
+			MessageBox {message="Sonic: How ya doin' Sal?"},
+			MessageBox {message="Sally: Oh, hey Sonic. {p40}I'm... {p40}doin' alright."},
+			MessageBox {message="Sonic: Just alright?"},
 			MessageBox {message="Sonic: What's up?", textSpeed=4},
 			MessageBox {message="Sally: It's nothing, Sonic.", textSpeed=4},
 			MessageBox {message="Sonic: Sal, come on, I can tell when something's up, and something is definitely up!", textSpeed=4},

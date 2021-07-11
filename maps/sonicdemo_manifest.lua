@@ -8,7 +8,7 @@ return {
 	{
         type = "map",
 		file = "maps/deathegg_elevator.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -72,7 +72,7 @@ return {
 	{
         type = "map",
 		file = "maps/sonicshut.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -1132,9 +1132,10 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/sonicring2.ogg",
+		file = "audio/music/talkingtosally.ogg",
 		category = "music",
 		volume = 1.0,
+		looping = true,
 	},
 	{
 		type = "sound",
