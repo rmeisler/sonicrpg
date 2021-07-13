@@ -90,8 +90,8 @@ return function(scene)
 			Do(function()
 				scene.player.sortOrder = 999
 				scene.player.sprite:setAnimation("idleup")
+				scene.audio:playMusic("talkingtosally", 1.0)
 			end),
-			PlayAudio("music", "talkingtosally", 1.0, true),
 			MessageBox {message="Sonic: How ya doin' Sal?"},
 			MessageBox {message="Sally: Oh, hey Sonic. {p40}I'm... {p40}doin' alright."},
 			MessageBox {message="Sonic: Just alright?"},

@@ -39,6 +39,7 @@ function Bot:construct(scene, layer, object)
 	self.noMusic = object.properties.noMusic
 	self.visibleDist = object.properties.visibleDistance
 	self.audibleDist = object.properties.audibleDistance
+	self.viewRange = object.properties.viewRange
 	self.noSetFlag = object.properties.noSetFlag
 	
 	self.facingTime = 0
@@ -128,6 +129,10 @@ function Bot:postInit()
 	end
 
 	self.behavior = Bot.BEHAVIOR_PATROLLING
+	
+	if self.viewRange then
+		self.viewRange = self.scene.objectLookup[self.viewRange]
+	end
 	
 	self.visualColliders = {}
 	self.visualColliders.left = BasicNPC(
@@ -268,6 +273,10 @@ function Bot:update(dt)
 	end
 	
 	if not self.friendlyCond or not self.friendlyCond(self) then
+		if self.viewRange and self.viewRange.state ~= NPC.STATE_TOUCHING then
+			return
+		end
+
 		local lineOfSight = self:noticePlayer(false)
 		if lineOfSight == Bot.NOTICE_SEE or (lineOfSight == Bot.NOTICE_HEAR and self.noInvestigate) then
 			self:removeSceneHandler("update")
@@ -353,6 +362,10 @@ end
 
 function Bot:investigateUpdate(dt)
 	if not self:baseUpdate(dt) then
+		return
+	end
+	
+	if self.viewRange and self.viewRange.state ~= NPC.STATE_TOUCHING then
 		return
 	end
 
@@ -696,7 +709,7 @@ function Bot:baseUpdate(dt)
 end
 
 function Bot:updateAction(dt)
-	if not self.action:isDone() then
+	if not self.grabbed and not self.action:isDone() then
 		self.action:update(dt)
 
 		if self.action:isDone() then

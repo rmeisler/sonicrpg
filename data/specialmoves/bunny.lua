@@ -157,7 +157,7 @@ return function(player)
 			
 			if  not love.keyboard.isDown("lshift") or
 				self.extenderArmColliding or
-				#extenderPieces == 50
+				#extenderPieces == 80
 			then
 				retracting = true
 			end
@@ -169,6 +169,8 @@ return function(player)
 				if not self.extenderPull then
 					self.x = self.x + deltaX
 					self.y = self.y + deltaY
+					self.dropShadow.x = self.dropShadow.x + deltaX
+					self.dropShadow.y = self.dropShadow.y + deltaY
 				else
 					-- Pull object to us
 					self.extenderPull.x = self.extenderPull.x - deltaX

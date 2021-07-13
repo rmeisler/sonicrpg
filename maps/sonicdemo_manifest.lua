@@ -13,6 +13,21 @@ return {
 	
 	{
         type = "map",
+		file = "maps/deathegg1.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deathegg2.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deathegg3.lua"
+    },
+	
+	{
+        type = "map",
 		file = "maps/greatforest1.lua"
     },
 	
