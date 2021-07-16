@@ -173,6 +173,7 @@ return function(self, targets)
 	else
 		GameState:useItem(GameState:getItem("Power Ring"))
 		local startingLocationX = self.sprite.transform.x
+		local startingLocationY = self.sprite.transform.y
 		
 		local powerring = SpriteNode(self.scene, Transform(0,0,2,2), {255,255,255,0}, "powerring", nil, nil, "sprites")
 		local tornadoSprites = {
@@ -355,7 +356,10 @@ return function(self, targets)
 			Do(function()
 				self.sprite:setAnimation("ring_runright")
 			end),
-			Ease(self.sprite.transform, "x", startingLocationX, 3),
+			Parallel {
+				Ease(self.sprite.transform, "x", startingLocationX, 3),
+				Ease(self.sprite.transform, "y", startingLocationY, 3),
+			},
 			Do(function()
 				self.sprite:setAnimation("idle")
 				self.sprite.sortOrderY = nil

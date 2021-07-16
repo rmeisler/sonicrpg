@@ -480,7 +480,7 @@ return {
           type = "ExtPost",
           shape = "rectangle",
           x = 576,
-          y = 576,
+          y = 544,
           width = 32,
           height = 32,
           rotation = 0,
@@ -534,7 +534,7 @@ return {
           type = "ExtPost",
           shape = "rectangle",
           x = 576,
-          y = 1248,
+          y = 1280,
           width = 32,
           height = 32,
           rotation = 0,
@@ -551,31 +551,8 @@ return {
           name = "Swatbot2",
           type = "Swatbot",
           shape = "rectangle",
-          x = 160,
-          y = 928,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 6703,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/swatbot.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
-            ["follow"] = "Waypoint3,Waypoint2,Waypoint1,Waypoint4",
-            ["followRepeat"] = true,
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/swatbot.png",
-            ["viewRange"] = "SwatbotVisibility"
-          }
-        },
-        {
-          id = 17,
-          name = "Swatbot1",
-          type = "Swatbot",
-          shape = "rectangle",
-          x = 160,
-          y = 864,
+          x = 768,
+          y = 832,
           width = 32,
           height = 32,
           rotation = 0,
@@ -584,76 +561,33 @@ return {
           properties = {
             ["battle"] = "../data/monsters/armedswatbot.lua",
             ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
-            ["follow"] = "Waypoint1,Waypoint2,Waypoint3,Waypoint4",
-            ["followRepeat"] = true,
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/swatbotwithblaster.png",
             ["viewRange"] = "SwatbotVisibility"
           }
         },
         {
-          id = 18,
-          name = "Waypoint4",
-          type = "BasicNPC",
+          id = 17,
+          name = "Swatbot1",
+          type = "Swatbot",
           shape = "rectangle",
-          x = 160,
-          y = 864,
+          x = 384,
+          y = 832,
           width = 32,
           height = 32,
           rotation = 0,
           gid = 6703,
           visible = true,
           properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 19,
-          name = "Waypoint1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 992,
-          y = 864,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 6703,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 20,
-          name = "Waypoint2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 992,
-          y = 960,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 6703,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 21,
-          name = "Waypoint3",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 160,
-          y = 960,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 6703,
-          visible = true,
-          properties = {
-            ["ghost"] = true
+            ["battle"] = "../data/monsters/armedswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swatbotwithblaster.png",
+            ["viewRange"] = "SwatbotVisibility"
           }
         },
         {

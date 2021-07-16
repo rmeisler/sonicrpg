@@ -348,6 +348,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/blaster2.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/juggerbotbody.png"
 	},
 	{

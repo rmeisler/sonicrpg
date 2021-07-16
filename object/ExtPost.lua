@@ -17,6 +17,19 @@ function ExtPost:construct(scene, layer, object)
 	self:addSceneHandler("update")
 end
 
+function ExtPost:distanceFromPlayerSq()
+	if not self.scene.player then
+		return 0
+	end
+
+	if not self.distanceFromPlayer then
+		local dx = (self.scene.player.x - (self.x + self.sprite.w))
+		local dy = (self.scene.player.y - (self.y + self.sprite.h))
+		self.distanceFromPlayer = (dx*dx + dy*dy)
+	end
+	return self.distanceFromPlayer
+end
+
 function ExtPost:update(dt)
 	self.state = NPC.STATE_IDLE
 	
@@ -26,6 +39,10 @@ function ExtPost:update(dt)
 	
 	local extenderarm = self.scene.player.extenderarm
 	if not extenderarm then
+		return
+	end
+	
+	if self:distanceFromPlayerSq() <= 10000 then
 		return
 	end
 	

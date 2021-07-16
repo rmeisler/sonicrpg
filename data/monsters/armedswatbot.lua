@@ -44,7 +44,7 @@ return {
 
 	drops = {},
 	
-	scan = "Use Bunnie's 'Grab' to disarm these Swatbots.",
+	scan = "A Laser Shield can be useful against these bots.",
 	
 	onInit = function(self)
 		-- Start out as "armed"
@@ -76,23 +76,51 @@ return {
 		
 		-- When we get hit and lose the majority of our hp, lose the rifle
 		local hitHandler
-		hitHandler = function(_damage)
-			if self.armed and self.hp <= 300 then
+		hitHandler = function(damage)
+			if self.scene.state ~= self.scene.STATE_MONSTERTURN_PENDING and
+				self.armed and damage > 0 and self.hp <= 300
+			then
 				self.armed = false
 				self.sprite:pushOverride("hurt", "hurt_nopistol")
+				self.sprite:pushOverride("hurtdown", "hurtdown_nopistol")
 				self.sprite:pushOverride("idle", "idle_nopistol")
 				
+				-- Drop attack power
+				self.stats.attack = 12
+				
+				-- Setup gun sprite
+				local gunSprite = SpriteNode(
+					self.scene,
+					Transform(self.sprite.transform.x, self.sprite.transform.y, 2, 2),
+					nil,
+					"blaster2",
+					nil,
+					nil,
+					"ui"
+				)
+				gunSprite.transform.ox = gunSprite.w/2
+				gunSprite.transform.oy = gunSprite.h/2
+				gunSprite.color = {255,255,255,255}
+				
 				-- Create pistol sprite, then animate it bouncing
-				--[[ away from you and fading out
+				-- away from you and fading out
 				Executor(self.scene):act(Serial {
 					Parallel {
-						Ease(shield.color, 4, 0, 4),
+						Ease(gunSprite.transform, "angle", math.pi*3, 2),
+						Ease(gunSprite.transform, "x", function() return gunSprite.transform.x + 100 end, 2),
 						Serial {
-							Ease(shield.transform, "sy", 3, 8, "quad"),
-							Ease(shield.transform, "sy", 0, 8, "quad")
+							Ease(gunSprite.transform, "y", function() return gunSprite.transform.y - 50 end, 4),
+							Ease(gunSprite.transform, "y", function() return gunSprite.transform.y + 50 end, 4)
+						},
+						Serial {
+							Wait(0.5),
+							Ease(gunSprite.color, 4, 0, 2),
+							Do(function()
+								gunSprite:remove()
+							end)
 						}
 					}
-				})]]
+				})
 				self:removeHandler("hit", hitHandler)
 			end
 		end
@@ -104,11 +132,12 @@ return {
 		-- Stun & Laser Rifle
 		if self.armed then
 			-- Find not-yet stunned player
-			local originalTarget = target
-			for k, v in pairs(self.scene.party) do
-				if v.state ~= v.STATE_IMMOBILIZED then
-					target = v
-					break
+			if target.state ~= target.STATE_IDLE then
+				for k, v in pairs(self.scene.party) do
+					if v.state == v.STATE_IDLE then
+						target = v
+						break
+					end
 				end
 			end
 
@@ -200,6 +229,11 @@ return {
 				}
 			-- Laser rifle turn
 			else
+				if self.lastStunned then
+					target = self.lastStunned
+					self.lastStunned = nil
+				end
+
 				local dodgeAction = Action()
 				if target.id == "sonic" and not target.laserShield then
 					dodgeAction = PressX(

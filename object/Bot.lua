@@ -673,7 +673,9 @@ function Bot:baseUpdate(dt)
 	
 	-- Extender arm logic
 	local extenderarm = self.scene.player.extenderarm
-	if extenderarm and not self.grabbed and not self.object.properties.noCollideBunnyExt then
+	if extenderarm and not self.grabbed and not self.object.properties.noCollideBunnyExt and
+		self:distanceFromPlayerSq() > 10000
+	then
 		-- Check if we are colliding with Bunny's extender arm
 		if  extenderarm.transform.x + extenderarm.w*2 > self.sprite.transform.x + self.sprite.w - 10 and
 			extenderarm.transform.x <= self.sprite.transform.x + self.sprite.w*2 - 20 and
