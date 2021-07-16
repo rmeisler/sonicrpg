@@ -582,13 +582,13 @@ return {
           gid = 6703,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/swatbot.lua",
+            ["battle"] = "../data/monsters/armedswatbot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint1,Waypoint2,Waypoint3,Waypoint4",
             ["followRepeat"] = true,
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/swatbot.png",
+            ["sprite"] = "../art/sprites/swatbotwithblaster.png",
             ["viewRange"] = "SwatbotVisibility"
           }
         },

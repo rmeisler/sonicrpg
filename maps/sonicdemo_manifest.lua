@@ -344,6 +344,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/swatbotwithblaster.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/juggerbotbody.png"
 	},
 	{

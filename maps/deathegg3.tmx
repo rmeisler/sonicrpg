@@ -289,13 +289,13 @@
   </object>
   <object id="17" name="Swatbot1" type="Swatbot" gid="6703" x="160" y="864" width="32" height="32">
    <properties>
-    <property name="battle" type="file" value="../data/monsters/swatbot.lua"/>
+    <property name="battle" type="file" value="../data/monsters/armedswatbot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint1,Waypoint2,Waypoint3,Waypoint4"/>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwithblaster.png"/>
     <property name="viewRange" value="SwatbotVisibility"/>
    </properties>
   </object>
