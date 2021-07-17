@@ -113,8 +113,8 @@ local PickedUp = function(target, iterations)
 		Do(function()
 			target.sprite:trySetAnimation("hurtdown")
 		end),
-		Spin(target, 7, 2),
-		Spin(target, 12, 6),
+		Spin(target, 12, 3),
+		Spin(target, 24, 14),
 		Parallel {
 			Ease(target.sprite.transform, "angle", math.pi, 2),
 			Ease(target.sprite.transform, "sx", 50, 2),

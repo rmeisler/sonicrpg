@@ -304,7 +304,7 @@ function NPC:messageBox()
 	for _,message in pairs(messages) do
 		action:add(self.scene, MessageBox {message=message, blocking=true})
 	end
-	if objProps.battle then
+	if objProps.battle and not self.falling then
 		self.collided = true
 
 		local battleArgs = {}
@@ -364,7 +364,7 @@ function NPC:getFlag()
 end
 
 function NPC:drop()
-	self:removeSceneHandler("update")
+	print("falling3")
 	self:run {
 		Wait(0.2),
 		Parallel {

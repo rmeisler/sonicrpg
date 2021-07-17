@@ -655,22 +655,6 @@ function Bot:baseUpdate(dt)
 	-- Hack
 	self:hideFlashlight()
 	
-	-- If colliding with fall object, fall
-	if self.grabbed then
-		for _, obj in pairs(self.scene.map.fallables or {}) do
-			if  self.x + self.sprite.w*2 > obj.x and
-				self.x <= obj.x + obj.width*2 and
-				self.y + self.sprite.h*2 > obj.y and
-				self.y + self.sprite.h*2 - self.scene:getTileHeight() <= obj.y + obj.height*2
-			then
-				self:removeAllUpdates()
-				self:addSceneHandler("update", Bot.updateAction)
-				self:drop()
-				return false
-			end
-		end
-	end
-	
 	-- Extender arm logic
 	local extenderarm = self.scene.player.extenderarm
 	if extenderarm and not self.grabbed and not self.object.properties.noCollideBunnyExt and
@@ -711,7 +695,9 @@ function Bot:baseUpdate(dt)
 end
 
 function Bot:updateAction(dt)
-	if not self.grabbed and not self.action:isDone() then
+	if (not self.grabbed or self.falling) and
+		not self.action:isDone()
+	then
 		self.action:update(dt)
 
 		if self.action:isDone() then
@@ -725,8 +711,26 @@ function Bot:updateAction(dt)
 		return
 	end
 	
+	-- If colliding with fall object, fall
+	if self.grabbed and not self.falling then
+		for _, obj in pairs(self.scene.map.fallables or {}) do
+			if  self.x + self.sprite.w*2 > obj.x and
+				self.x <= obj.x + obj.width*2 and
+				self.y + self.sprite.h*2 > obj.y and
+				self.y + self.sprite.h*2 - self.scene:getTileHeight() <= obj.y + obj.height*2
+			then
+				self.falling = true
+				self:removeAllUpdates()
+				self:addSceneHandler("update", Bot.updateAction)
+				self:drop()
+				return
+			end
+		end
+	end
+	
 	-- Collide for battle, not applicable for sonic when running
-	if  not (GameState.leader == "sonic" and self.scene.player.doingSpecialMove) and
+	if  not (self.scene.player.doingSpecialMove and
+			(GameState.leader == "sonic" or GameState.leader == "bunny")) and
 		not self.scene.player.falling and not self.scene.ignorePlayer
 	then
 		local cx = self.hotspots.left_top.x

@@ -84,8 +84,11 @@ return {
 				self.sprite:pushOverride("hurt", "hurt_nopistol")
 				self.sprite:pushOverride("hurtdown", "hurtdown_nopistol")
 				self.sprite:pushOverride("idle", "idle_nopistol")
+				self.sprite:pushOverride("backward", "backward_nopistol")
+				self.sprite:pushOverride("dead", "dead_nopistol")
 				
 				-- Drop attack power
+				self.stats = table.clone(self.stats)
 				self.stats.attack = 12
 				
 				-- Setup gun sprite
@@ -110,7 +113,7 @@ return {
 						Ease(gunSprite.transform, "x", function() return gunSprite.transform.x + 100 end, 2),
 						Serial {
 							Ease(gunSprite.transform, "y", function() return gunSprite.transform.y - 50 end, 4),
-							Ease(gunSprite.transform, "y", function() return gunSprite.transform.y + 50 end, 4)
+							Ease(gunSprite.transform, "y", function() return gunSprite.transform.y + 80 end, 4)
 						},
 						Serial {
 							Wait(0.5),
@@ -229,7 +232,7 @@ return {
 				}
 			-- Laser rifle turn
 			else
-				if self.lastStunned then
+				if self.lastStunned and not self.confused then
 					target = self.lastStunned
 					self.lastStunned = nil
 				end
@@ -324,7 +327,10 @@ return {
 							dodgeAction
 						},
 						
-						Animate(self.sprite, "pistol"),
+						Do(function()
+							self:getSprite():setAnimation("pistol")
+							print("do I get here?")
+						end),
 						
 						Serial {
 							Animate(function()
@@ -386,8 +392,10 @@ return {
 								end),
 								target:takeDamage(self.stats, true, BattleActor.shockKnockback)
 							),
-
-							Animate(self.sprite, "idle")
+							
+							Do(function()
+								self:getSprite():setAnimation("idle")
+							end)
 						}
 					}
 				}

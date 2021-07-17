@@ -27,7 +27,7 @@ return {
 		},
 		
 		pistol = {
-			frames = {{8,5},{9,5},{8,5}},
+			frames = {{8,5},{9,5},{8,5},{8,5},{8,5},{8,5},{8,5},{8,5},{8,5},{8,5},{8,5},{8,5},{8,5},{8,5},{8,5},{8,5},{8,5},{8,5},{8,5},{8,5}},
 			speed = 0.3
 		},
 		pistol_idle = {
@@ -121,14 +121,23 @@ return {
 		hurt = {
 			frames = {{8,1}}
 		},
+		dead = {
+			frames = {{8,1}}
+		},
 		idle_nopistol = {
 			frames = {{8,6}}
+		},
+		backward_nopistol = {
+			frames = {{9,6}}
 		},
 		hurt_nopistol = {
 			frames = {{9,1}}
 		},
 		hurtdown_nopistol = {
 			frames = {{9,3}}
+		},
+		dead_nopistol = {
+			frames = {{9,1}}
 		},
     }
 }

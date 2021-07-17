@@ -18,16 +18,9 @@ function ExtPost:construct(scene, layer, object)
 end
 
 function ExtPost:distanceFromPlayerSq()
-	if not self.scene.player then
-		return 0
-	end
-
-	if not self.distanceFromPlayer then
-		local dx = (self.scene.player.x - (self.x + self.sprite.w))
-		local dy = (self.scene.player.y - (self.y + self.sprite.h))
-		self.distanceFromPlayer = (dx*dx + dy*dy)
-	end
-	return self.distanceFromPlayer
+	local dx = (self.scene.player.x - (self.x + self.sprite.w))
+	local dy = (self.scene.player.y - (self.y + self.sprite.h))
+	return (dx*dx + dy*dy)
 end
 
 function ExtPost:update(dt)
