@@ -189,7 +189,7 @@
     <property name="orientation" value="down"/>
    </properties>
   </object>
-  <object id="9" name="RightEntrance" type="SceneEdge" gid="9040" x="1120" y="640" width="64" height="64">
+  <object id="9" name="RightEntrance" type="SceneEdge" gid="9040" x="1088" y="672" width="64" height="128">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
@@ -198,7 +198,7 @@
     <property name="spawn_point" value="LeftEntrance"/>
    </properties>
   </object>
-  <object id="10" name="LeftEntrance" type="SceneEdge" gid="9040" x="-32" y="640" width="64" height="64">
+  <object id="10" name="LeftEntrance" type="SceneEdge" gid="9040" x="0" y="672" width="64" height="128">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="left"/>

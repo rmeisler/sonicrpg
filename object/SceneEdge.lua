@@ -49,7 +49,9 @@ function SceneEdge:update(dt)
 	
 	if  not self.scene.sceneMgr.transitioning and
 		self.state == self.STATE_TOUCHING and
-		love.keyboard.isDown(self.object.properties.key) and
+		(love.keyboard.isDown(self.object.properties.key) or
+			(GameState.leader == "sonic" and self.scene.player.doingSpecialMove and
+			 self.scene.player:isFacing(self.object.properties.key))) and
 		not self.readyMsgShowing and
 		(not self.needFlag or GameState:isFlagSet(self))
 	then
@@ -91,13 +93,13 @@ function SceneEdge:update(dt)
 end
 
 function SceneEdge:goToScene()
-	-- Spawn offset based on whether this is a horizontal, vertical, or single-tile (do nothing) exit
+	--[[ Spawn offset based on whether this is a horizontal, vertical, or single-tile (do nothing) exit
 	local spawnOffset = Transform()
 	if self.object.width > self.object.height then
 		spawnOffset.x = math.max(0, self.scene.player.x - self.object.x - self.scene:getTileWidth())
 	elseif self.object.height > self.object.width then
 		spawnOffset.y = self.scene.player.y - self.object.y
-	end
+	end]]
 	local mapName = "maps/"..self.object.properties.scene
 	
 	self.scene.player.ignoreSpecialMoveCollision = true
@@ -168,7 +170,7 @@ function SceneEdge:goToScene()
 		maps = self.scene.maps,
 		region = self.scene.region,
 		spawn_point = self.object.properties.spawn_point,
-		spawn_point_offset = self.ignoreSpawnOffset and Transform() or spawnOffset,
+		--spawn_point_offset = self.ignoreSpawnOffset and Transform() or spawnOffset,
 		fadeInSpeed = self.object.properties.fade_in_speed,
 		fadeOutSpeed = self.object.properties.fade_out_speed,
 		fadeOutMusic = self.object.properties.fade_out_music,

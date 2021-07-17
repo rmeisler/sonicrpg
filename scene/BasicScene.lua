@@ -8,6 +8,7 @@ local Ease = require "actions/Ease"
 local Parallel = require "actions/Parallel"
 local Serial = require "actions/Serial"
 local Do = require "actions/Do"
+local Wait = require "actions/Wait"
 local PlayAudio = require "actions/PlayAudio"
 local AudioFade = require "actions/AudioFade"
 local Spawn = require "actions/Spawn"
@@ -134,26 +135,36 @@ function BasicScene:onEnter(args)
 	if self.player then
 		-- Place player at spawn point and orient them appropriately
 		if self.lastSpawnPoint then
-			local spawnOffset = args.spawn_point_offset or Transform()
 			local spawn = self.spawnPoints[self.lastSpawnPoint]
-			
+			local spawnOffset = args.spawn_point_offset or
+				Transform(spawn.width/2, spawn.height/2)
 			if not self.player.object.properties.strictLocation then
 				-- Place player
-				self.player.x = spawn.x + spawnOffset.x + self:getTileWidth()/2
-				self.player.y = spawn.y + spawnOffset.y - self.player.halfHeight + 5
+				self.player.x = spawn.x + spawnOffset.x
+				self.player.y = spawn.y + spawnOffset.y - self.player.height
 			end
 				
 			-- Reset player state
 			self.player.doingSpecialMove = false
 			self.player.ignoreSpecialMoveCollision = false
-			self.player.basicUpdate = self.player.origUpdate or self.player.basicUpdate
 			self.player.state = spawn.properties.orientation and "idle"..spawn.properties.orientation or "idledown"
 			
-			--[[ Restart special move, if necessary
-			if args.doingSpecialMove and not self.player.doingSpecialMove then
-				self.player.skipChargeSpecialMove = true
-				self.player:onSpecialMove()
-			end]]
+			-- Restart special move, if necessary
+			if args.doingSpecialMove then
+				self.player.basicUpdate = function(p, dt) end
+				self.player.sprite.visible = false
+				self.player:run(BlockPlayer {
+					Wait(0.5),
+					Do(function()
+						self.player.skipChargeSpecialMove = true
+						self.player.sprite.visible = true
+						self.player:onSpecialMove()
+					end)
+				})
+			else
+				self.player.basicUpdate = self.player.origUpdate or self.player.basicUpdate
+				self.player:updateSprite()
+			end
 			
 			-- Make sure we render the camera in the correct spot now before fade-in
 			self:update(0)
@@ -215,22 +226,32 @@ function BasicScene:onReEnter(args)
 	-- Place player at spawn point and orient them appropriately
 	if args.spawn_point then
 		local spawn = self.spawnPoints[args.spawn_point]
-		local spawnOffset = args.spawn_point_offset or Transform()
-		self.player.x = spawn.x + spawnOffset.x + self:getTileWidth()/2
-		self.player.y = spawn.y + spawnOffset.y - self.player.halfHeight + 5
+		local spawnOffset = args.spawn_point_offset or
+			Transform(spawn.width/2, spawn.height/2)
+		self.player.x = spawn.x + spawnOffset.x
+		self.player.y = spawn.y + spawnOffset.y - self.player.height
 		
 		-- Reset player state
 		self.player.doingSpecialMove = false
 		self.player.ignoreSpecialMoveCollision = false
-		self.player.basicUpdate = self.player.origUpdate
-		self.player:updateSprite()
 		self.player.state = spawn.properties.orientation and "idle"..spawn.properties.orientation or "idledown"
 		
-		--[[ Restart special move, if necessary
-		if args.doingSpecialMove and not self.player.doingSpecialMove then			
-			self.player.skipChargeSpecialMove = true
-			self.player:onSpecialMove()
-		end]]
+		-- Restart special move, if necessary
+		if args.doingSpecialMove then
+			self.player.basicUpdate = function(p, dt) end
+			self.player.sprite.visible = false
+			self.player:run(BlockPlayer {
+				Wait(0.5),
+				Do(function()
+					self.player.skipChargeSpecialMove = true
+					self.player.sprite.visible = true
+					self.player:onSpecialMove()
+				end)
+			})
+		else
+			self.player.basicUpdate = self.player.origUpdate
+			self.player:updateSprite()
+		end
 	end
 	
 	self.reenteringFromBattle = self.enteringBattle

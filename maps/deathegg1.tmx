@@ -310,7 +310,7 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="2" name="RightEntrance" type="SceneEdge" gid="9040" x="1120" y="1152" width="64" height="64">
+  <object id="2" name="RightEntrance" type="SceneEdge" gid="9040" x="1088" y="1184" width="64" height="128">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
@@ -333,7 +333,7 @@
     <property name="sprite" type="file" value="../art/sprites/lightpost.png"/>
    </properties>
   </object>
-  <object id="9" name="LeftEntrance" type="SceneEdge" gid="9040" x="-32" y="1152" width="64" height="64">
+  <object id="9" name="LeftEntrance" type="SceneEdge" gid="9040" x="0" y="1184" width="64" height="128">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="left"/>

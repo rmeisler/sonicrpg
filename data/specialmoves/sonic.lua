@@ -381,44 +381,58 @@ local RunUpdate = function(self, dt)
 				self.basicUpdate = function(player, dt) end
 				local yOrig = self.sprite.transform.y + self.sprite.h*2
 				self.sprite.sortOrderY = yOrig
-				self:run(Parallel {
-					self.scene:screenShake(30, 20),
-					Serial {
-						Animate(self.sprite, "ouchright"),
+				self:run(
+					While(
+						function() return not self.ignoreSpecialMoveCollision end,
 						Parallel {
-							While(
-								function()
-									local hotspots = Hotspots(self)
-									return  self.scene:canMove(hotspots.left_top.x, yOrig, -5, 0) and
-											self.scene:canMove(hotspots.left_bot.x, yOrig, -5, 0)
-								end,
-								Ease(self, "x", self.x - 150, 3, "linear"),
-								Do(function()
-									self.x = self.x + 5
-								end)
-							),
+							self.scene:screenShake(30, 20),
 							Serial {
-								Ease(self, "y", self.y - 60, 8, "quad"),
-								Do(function() self.crashIntoWall = true end),
-								Wait(0.1),
-								Ease(self, "y", self.y, 8, "quad")
-							}
+								Animate(self.sprite, "ouchright"),
+								Parallel {
+									While(
+										function()
+											local hotspots = Hotspots(self)
+											return  self.scene:canMove(hotspots.left_top.x, yOrig, -5, 0) and
+													self.scene:canMove(hotspots.left_bot.x, yOrig, -5, 0)
+										end,
+										Ease(self, "x", self.x - 150, 3, "linear"),
+										Do(function()
+											self.x = self.x + 5
+										end)
+									),
+									Serial {
+										Ease(self, "y", self.y - 60, 8, "quad"),
+										Do(function() self.crashIntoWall = true end),
+										Wait(0.1),
+										Ease(self, "y", self.y, 8, "quad")
+									}
+								},
+								Do(function()
+									self.state = "idleright"
+									self.scene.camPos.x = 0
+									self.scene.camPos.y = 0
+									self.basicUpdate = self.updateFun
+									self.crashIntoWall = false
+									self.specialCollidedX = false
+									self.sprite.sortOrderY = nil
+								end)
+							},
+							Do(function()
+								-- Update drop shadow position
+								self.dropShadow.x = self.x - 22
+							end)
 						},
 						Do(function()
-							self.state = "idleright"
+							--[[self.state = "idleright"
 							self.scene.camPos.x = 0
 							self.scene.camPos.y = 0
 							self.basicUpdate = self.updateFun
 							self.crashIntoWall = false
 							self.specialCollidedX = false
-							self.sprite.sortOrderY = nil
+							self.sprite.sortOrderY = nil]]
 						end)
-					},
-					Do(function()
-						-- Update drop shadow position
-						self.dropShadow.x = self.x - 22
-					end)
-				})
+					)
+				)
 			else
 				self.state = "idleright"
 				self.basicUpdate = self.updateFun
@@ -428,44 +442,51 @@ local RunUpdate = function(self, dt)
 				self.basicUpdate = function(player, dt) end
 				local yOrig = self.sprite.transform.y + self.sprite.h*2
 				self.sprite.sortOrderY = yOrig
-				self:run(Parallel {
-					self.scene:screenShake(30, 20),
-					Serial {
-						Animate(self.sprite, "ouchleft"),
+				self:run(
+					While(
+						function() return not self.ignoreSpecialMoveCollision end,
 						Parallel {
-							While(
-								function()
-									local hotspots = Hotspots(self)
-									return  self.scene:canMove(hotspots.right_top.x, yOrig, 5, 0) and
-											self.scene:canMove(hotspots.right_bot.x, yOrig, 5, 0)
-								end,
-								Ease(self, "x", self.x + 150, 3, "linear"),
-								Do(function()
-									self.x = self.x - 5
-								end)
-							),
+							self.scene:screenShake(30, 20),
 							Serial {
-								Ease(self, "y", self.y - 60, 8, "quad"),
-								Do(function() self.crashIntoWall = true end),
-								Wait(0.1),
-								Ease(self, "y", self.y, 8, "quad")
-							}
+								Animate(self.sprite, "ouchleft"),
+								Parallel {
+									While(
+										function()
+											local hotspots = Hotspots(self)
+											return  self.scene:canMove(hotspots.right_top.x, yOrig, 5, 0) and
+													self.scene:canMove(hotspots.right_bot.x, yOrig, 5, 0)
+										end,
+										Ease(self, "x", self.x + 150, 3, "linear"),
+										Do(function()
+											self.x = self.x - 5
+										end)
+									),
+									Serial {
+										Ease(self, "y", self.y - 60, 8, "quad"),
+										Do(function() self.crashIntoWall = true end),
+										Wait(0.1),
+										Ease(self, "y", self.y, 8, "quad")
+									}
+								},
+								Do(function()
+									self.state = "idleleft"
+									self.scene.camPos.x = 0
+									self.scene.camPos.y = 0
+									self.basicUpdate = self.updateFun
+									self.specialCollidedX = false
+									self.crashIntoWall = false
+									self.sprite.sortOrderY = nil
+								end)
+							},
+							Do(function()
+								-- Update drop shadow position
+								self.dropShadow.x = self.x - 22
+							end)
 						},
 						Do(function()
-							self.state = "idleleft"
-							self.scene.camPos.x = 0
-							self.scene.camPos.y = 0
-							self.basicUpdate = self.updateFun
-							self.specialCollidedX = false
-							self.crashIntoWall = false
-							self.sprite.sortOrderY = nil
 						end)
-					},
-					Do(function()
-						-- Update drop shadow position
-						self.dropShadow.x = self.x - 22
-					end)
-				})
+					)
+				)
 			else
 				self.state = "idleleft"
 				self.basicUpdate = self.updateFun
@@ -473,41 +494,48 @@ local RunUpdate = function(self, dt)
 		elseif (collidedY or self.specialCollidedY) and self.fy > 0 then
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
-				self:run(Parallel {
-					self.scene:screenShake(30, 20),
-					Serial {
-						Animate(self.sprite, "ouchdown"),
-						While(
-							function()
-								local hotspots = Hotspots(self)
-								return  self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, 0, -5) and
-										self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, 0, -5)
-							end,
+				self:run(
+					While(
+						function() return not self.ignoreSpecialMoveCollision end,
+						Parallel {
+							self.scene:screenShake(30, 20),
 							Serial {
-								Ease(self, "y", self.y - 10, 10, "quad"),
-								Do(function() self.crashIntoWall = true end),
-								Ease(self, "y", self.y - 130, 5, "linear"),
-								Ease(self, "y", self.y - 150, 10, "quad")
+								Animate(self.sprite, "ouchdown"),
+								While(
+									function()
+										local hotspots = Hotspots(self)
+										return  self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, 0, -5) and
+												self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, 0, -5)
+									end,
+									Serial {
+										Ease(self, "y", self.y - 10, 10, "quad"),
+										Do(function() self.crashIntoWall = true end),
+										Ease(self, "y", self.y - 130, 5, "linear"),
+										Ease(self, "y", self.y - 150, 10, "quad")
+									},
+									Do(function()
+										self.y = self.y + 5
+									end)
+								),
+								Do(function()
+									self.scene.camPos.x = 0
+									self.scene.camPos.y = 0
+									self.state = "idledown"
+									self.basicUpdate = self.updateFun
+									self.specialCollidedY = false
+									self.crashIntoWall = false
+								end)
 							},
 							Do(function()
-								self.y = self.y + 5
+								-- Update drop shadow position
+								self.dropShadow.x = self.x - 22
+								self.dropShadow.y = self.y + self.sprite.h - 15
 							end)
-						),
+						},
 						Do(function()
-							self.scene.camPos.x = 0
-							self.scene.camPos.y = 0
-							self.state = "idledown"
-							self.basicUpdate = self.updateFun
-							self.specialCollidedY = false
-							self.crashIntoWall = false
 						end)
-					},
-					Do(function()
-						-- Update drop shadow position
-						self.dropShadow.x = self.x - 22
-						self.dropShadow.y = self.y + self.sprite.h - 15
-					end)
-				})
+					)
+				)
 			else
 				self.state = "idledown"
 				self.basicUpdate = self.updateFun
@@ -515,41 +543,48 @@ local RunUpdate = function(self, dt)
 		elseif (collidedY or self.specialCollidedY) and self.fy < 0 then
 			if not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
-				self:run(Parallel {
-					self.scene:screenShake(30, 20),
-					Serial {
-						Animate(self.sprite, "ouchup"),
-						While(
-							function()
-								local hotspots = Hotspots(self)
-								return  self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, 0, 5) and
-										self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, 0, 5)
-							end,
+				self:run(
+					While(
+						function() return not self.ignoreSpecialMoveCollision end,
+						Parallel {
+							self.scene:screenShake(30, 20),
 							Serial {
-								Ease(self, "y", self.y + 10, 10, "quad"),
-								Do(function() self.crashIntoWall = true end),
-								Ease(self, "y", self.y + 130, 5, "linear"),
-								Ease(self, "y", self.y + 150, 10, "quad")
+								Animate(self.sprite, "ouchup"),
+								While(
+									function()
+										local hotspots = Hotspots(self)
+										return  self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, 0, 5) and
+												self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, 0, 5)
+									end,
+									Serial {
+										Ease(self, "y", self.y + 10, 10, "quad"),
+										Do(function() self.crashIntoWall = true end),
+										Ease(self, "y", self.y + 130, 5, "linear"),
+										Ease(self, "y", self.y + 150, 10, "quad")
+									},
+									Do(function()
+										self.y = self.y - 5
+									end)
+								),
+								Do(function()
+									self.scene.camPos.x = 0
+									self.scene.camPos.y = 0
+									self.state = "idleup"
+									self.basicUpdate = self.updateFun
+									self.specialCollidedY = false
+									self.crashIntoWall = false
+								end)
 							},
 							Do(function()
-								self.y = self.y - 5
+								-- Update drop shadow position
+								self.dropShadow.x = self.x - 22
+								self.dropShadow.y = self.y + self.sprite.h - 15
 							end)
-						),
+						},
 						Do(function()
-							self.scene.camPos.x = 0
-							self.scene.camPos.y = 0
-							self.state = "idleup"
-							self.basicUpdate = self.updateFun
-							self.specialCollidedY = false
-							self.crashIntoWall = false
 						end)
-					},
-					Do(function()
-						-- Update drop shadow position
-						self.dropShadow.x = self.x - 22
-						self.dropShadow.y = self.y + self.sprite.h - 15
-					end)
-				})
+					)
+				)
 			else
 				self.state = "idleup"
 				self.basicUpdate = self.updateFun

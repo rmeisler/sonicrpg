@@ -320,17 +320,16 @@ return {
 							Ease(self.targetSprite.color, 4, 0, 5),
 						}
 					},
+					
+					Do(function()
+						self:getSprite():setAnimation("pistol")
+					end),
 
 					Parallel {
 						Serial {
 							Wait(0.2),
 							dodgeAction
 						},
-						
-						Do(function()
-							self:getSprite():setAnimation("pistol")
-							print("do I get here?")
-						end),
 						
 						Serial {
 							Animate(function()

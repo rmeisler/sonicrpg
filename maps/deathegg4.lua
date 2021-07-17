@@ -8,7 +8,7 @@ return {
   height = 67,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 35,
+  nextobjectid = 38,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/deathegg.lua"
@@ -493,8 +493,8 @@ return {
           name = "Swatbot2",
           type = "Swatbot",
           shape = "rectangle",
-          x = 608,
-          y = 1216,
+          x = 800,
+          y = 1344,
           width = 32,
           height = 32,
           rotation = 0,
@@ -515,8 +515,8 @@ return {
           name = "Swatbot1",
           type = "Swatbot",
           shape = "rectangle",
-          x = 544,
-          y = 1216,
+          x = 384,
+          y = 1344,
           width = 32,
           height = 32,
           rotation = 0,
@@ -554,9 +554,9 @@ return {
           name = "UpEntrance",
           type = "SceneEdge",
           shape = "rectangle",
-          x = 544,
+          x = 512,
           y = 64,
-          width = 128,
+          width = 192,
           height = 64,
           rotation = 0,
           gid = 9040,
@@ -675,6 +675,64 @@ return {
             ["align"] = "bottom_left",
             ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/pillar.png"
+          }
+        },
+        {
+          id = 35,
+          name = "Swatbot3",
+          type = "Swatbot",
+          shape = "rectangle",
+          x = 608,
+          y = 1632,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6703,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/armedswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
+            ["disappearAfterBattle"] = true,
+            ["follow"] = "Waypoint2,Waypoint1",
+            ["followRepeat"] = true,
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swatbotwithblaster.png",
+            ["viewRange"] = "SwatbotVisibility"
+          }
+        },
+        {
+          id = 36,
+          name = "Waypoint1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 576,
+          y = 1696,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8588,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 37,
+          name = "Waypoint2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 576,
+          y = 960,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8588,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true
           }
         }
       }
