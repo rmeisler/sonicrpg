@@ -320,6 +320,8 @@ return {
             ["orientation"] = "up",
             ["scene"] = "knothole.lua",
             ["spawn_point"] = "BunnieHutDoor",
+            ["spawn_point_offset_x"] = 16,
+            ["spawn_point_offset_y"] = 40,
             ["sprite"] = "../art/sprites/hutdoor.png"
           }
         },

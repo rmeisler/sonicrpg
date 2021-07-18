@@ -126,6 +126,8 @@ end</property>
     <property name="orientation" value="up"/>
     <property name="scene" type="file" value="knothole.lua"/>
     <property name="spawn_point" value="SallyHutDoor"/>
+    <property name="spawn_point_offset_x" type="float" value="16"/>
+    <property name="spawn_point_offset_y" type="float" value="40"/>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>

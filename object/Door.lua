@@ -8,6 +8,7 @@ local MessageBox = require "actions/MessageBox"
 local Action = require "actions/Action"
 local SceneManager = require "scene/SceneManager"
 
+local Transform = require "util/Transform"
 local Player = require "object/Player"
 
 local NPC = require "object/NPC"
@@ -61,6 +62,13 @@ function Door:onCollision(prevState)
 			animations = self.scene.animations,
 			audio = self.scene.audio,
 			spawn_point = self.object.properties.spawn_point,
+			spawn_point_offset =
+				(self.object.properties.spawn_point_offset_x or
+				 self.object.properties.spawn_point_offset_y)
+				and Transform(
+				    self.object.properties.spawn_point_offset_x or 0,
+				    self.object.properties.spawn_point_offset_y or 0
+				) or nil,
 			cache = true
 		}
 	end
