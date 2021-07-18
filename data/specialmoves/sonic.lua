@@ -377,7 +377,7 @@ local RunUpdate = function(self, dt)
 		local collidedX, collidedY = PerPixelCollisionCheck(self, curX, curY)
 		
 		if (collidedX or self.specialCollidedX) and self.fx > 0 then
-			if not self.noSonicCrash then
+			if false and not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
 				local yOrig = self.sprite.transform.y + self.sprite.h*2
 				self.sprite.sortOrderY = yOrig
@@ -434,11 +434,11 @@ local RunUpdate = function(self, dt)
 					)
 				)
 			else
-				self.state = "idleright"
-				self.basicUpdate = self.updateFun
+				--self.state = "idleright"
+				--self.basicUpdate = self.updateFun
 			end
 		elseif (collidedX or self.specialCollidedX) and self.fx < 0 then
-			if not self.noSonicCrash then
+			if false and not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
 				local yOrig = self.sprite.transform.y + self.sprite.h*2
 				self.sprite.sortOrderY = yOrig
@@ -488,11 +488,11 @@ local RunUpdate = function(self, dt)
 					)
 				)
 			else
-				self.state = "idleleft"
-				self.basicUpdate = self.updateFun
+				--self.state = "idleleft"
+				--self.basicUpdate = self.updateFun
 			end
 		elseif (collidedY or self.specialCollidedY) and self.fy > 0 then
-			if not self.noSonicCrash then
+			if false and not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
 				self:run(
 					While(
@@ -537,11 +537,11 @@ local RunUpdate = function(self, dt)
 					)
 				)
 			else
-				self.state = "idledown"
-				self.basicUpdate = self.updateFun
+				--self.state = "idledown"
+				--self.basicUpdate = self.updateFun
 			end
 		elseif (collidedY or self.specialCollidedY) and self.fy < 0 then
-			if not self.noSonicCrash then
+			if false and not self.noSonicCrash then
 				self.basicUpdate = function(player, dt) end
 				self:run(
 					While(
@@ -586,8 +586,8 @@ local RunUpdate = function(self, dt)
 					)
 				)
 			else
-				self.state = "idleup"
-				self.basicUpdate = self.updateFun
+				--self.state = "idleup"
+				--self.basicUpdate = self.updateFun
 			end
 		end
 		

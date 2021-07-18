@@ -8,7 +8,7 @@ return {
   height = 110,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 28,
+  nextobjectid = 37,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/deathegg.lua"
@@ -936,6 +936,153 @@ return {
             ["orientation"] = "up",
             ["scene"] = "deathegg4.lua",
             ["spawn_point"] = "UpEntrance"
+          }
+        },
+        {
+          id = 28,
+          name = "LaserTrap1",
+          type = "LaserTrap",
+          shape = "rectangle",
+          x = 512,
+          y = 1664,
+          width = 192,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["spawnPointLeft"] = "LaserTrapShooter1",
+            ["spawnPointRight"] = "LaserTrapShooter2"
+          }
+        },
+        {
+          id = 29,
+          name = "LaserTrapShooter1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 320,
+          y = 1664,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["nocollision"] = true
+          }
+        },
+        {
+          id = 30,
+          name = "LaserTrapShooter2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 864,
+          y = 1664,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["nocollision"] = true
+          }
+        },
+        {
+          id = 31,
+          name = "LaserTrap2",
+          type = "LaserTrap",
+          shape = "rectangle",
+          x = 512,
+          y = 2240,
+          width = 192,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["spawnPointLeft"] = "LaserTrapShooter3",
+            ["spawnPointRight"] = "LaserTrapShooter4"
+          }
+        },
+        {
+          id = 32,
+          name = "LaserTrapShooter3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 320,
+          y = 2240,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["nocollision"] = true
+          }
+        },
+        {
+          id = 33,
+          name = "LaserTrapShooter4",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 864,
+          y = 2240,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["nocollision"] = true
+          }
+        },
+        {
+          id = 34,
+          name = "LaserTrap3",
+          type = "LaserTrap",
+          shape = "rectangle",
+          x = 512,
+          y = 2816,
+          width = 192,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["spawnPointLeft"] = "LaserTrapShooter5",
+            ["spawnPointRight"] = "LaserTrapShooter6"
+          }
+        },
+        {
+          id = 35,
+          name = "LaserTrapShooter5",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 320,
+          y = 2816,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["nocollision"] = true
+          }
+        },
+        {
+          id = 36,
+          name = "LaserTrapShooter6",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 864,
+          y = 2816,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["nocollision"] = true
           }
         }
       }
