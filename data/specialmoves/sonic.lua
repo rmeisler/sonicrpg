@@ -95,17 +95,17 @@ local PerPixelCollisionCheck = function(self, curX, curY)
 	
 	if collidedX then
 		if self.fx > 0 then
-			self.sbx = -10
+			self.sbx = -12
 		elseif self.fx < 0 then
-			self.sbx = 10
+			self.sbx = 12
 		end
 	end
 	
 	if collidedY then
 		if self.fy > 0 then
-			self.sby = -10
+			self.sby = -12
 		elseif self.fy < 0 then
-			self.sby = 10
+			self.sby = 12
 		end
 	end
 	
