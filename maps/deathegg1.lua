@@ -8,7 +8,7 @@ return {
   height = 56,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 11,
+  nextobjectid = 12,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/deathegg.lua"
@@ -607,6 +607,27 @@ return {
           properties = {
             ["Microchip"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 11,
+          name = "Terminal",
+          type = "Computer",
+          shape = "rectangle",
+          x = 554,
+          y = 1216,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -2,
+            ["alignOffsetY"] = -65,
+            ["interface"] = "actions/deathegg1_interface.lua",
+            ["interfaceName"] = "Elevator\nControl Interace",
+            ["sprite"] = "../art/sprites/computer2.png"
           }
         }
       }

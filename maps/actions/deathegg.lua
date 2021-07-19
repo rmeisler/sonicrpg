@@ -18,7 +18,13 @@ return function(scene)
 	local Animate = require "actions/Animate"
 	local shine = require "lib/shine"
 	local SpriteNode = require "object/SpriteNode"
-	local NameScreen = require "actions/NameScreen"
+	
+	scene.player.collisionHSOffsets = {
+		right_top = {x = 0, y = 0},
+		right_bot = {x = 0, y = 0},
+		left_top = {x = 0, y = 0},
+		left_bot = {x = 0, y = 0},
+	}
 	
 	local subtext = TypeText(
 		Transform(50, 470),

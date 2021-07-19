@@ -93,6 +93,22 @@ local PerPixelCollisionCheck = function(self, curX, curY)
 		end
 	end
 	
+	if collidedX then
+		if self.fx > 0 then
+			self.sbx = -10
+		elseif self.fx < 0 then
+			self.sbx = 10
+		end
+	end
+	
+	if collidedY then
+		if self.fy > 0 then
+			self.sby = -10
+		elseif self.fy < 0 then
+			self.sby = 10
+		end
+	end
+	
 	return collidedX, collidedY
 end
 
@@ -281,23 +297,23 @@ local RunUpdate = function(self, dt)
 	local fy = self.fy
 	
 	-- Step forward
-	self.y = self.y + (fy + self.by) * (dt/0.016)
-	self.x = self.x + (fx + self.bx) * (dt/0.016)
+	self.x = self.x + (fx + self.bx + self.sbx) * (dt/0.016)
+	self.y = self.y + (fy + self.by + self.sby) * (dt/0.016)
 	
 	-- Going up stairs
 	local _, stairs = next(self.stairs)
 	if stairs then
 		if stairs.direction == "up_right" then
 			if fx > 0 then
-				self.y = self.y - (fx + self.bx) * 0.7
+				self.y = self.y - (fx + self.bx + self.sbx) * 0.7
 			else
-				self.y = self.y - (fx + self.bx) * 0.7
+				self.y = self.y - (fx + self.bx + self.sbx) * 0.7
 			end
 		elseif stairs.direction == "up_left" then
 			if fx > 0 then
-				self.y = self.y + (fx + self.bx) * 0.7
+				self.y = self.y + (fx + self.bx + self.sbx) * 0.7
 			else
-				self.y = self.y + (fx + self.bx) * 0.7
+				self.y = self.y + (fx + self.bx + self.sbx) * 0.7
 			end
 		end
 	end
@@ -317,6 +333,23 @@ local RunUpdate = function(self, dt)
 		self.by = self.by - SLOWDOWN_SPEED
 	elseif self.by < 0 then
 		self.by = self.by + SLOWDOWN_SPEED
+	end
+	
+	-- Reduce special burst force
+	if math.abs(self.sbx) < 0.1 then
+		self.sbx = 0
+	elseif self.sbx > 0 then
+		self.sbx = self.sbx - SLOWDOWN_SPEED
+	elseif self.sbx < 0 then
+		self.sbx = self.sbx + SLOWDOWN_SPEED
+	end
+	
+	if math.abs(self.sby) < 0.1 then
+		self.sby = 0
+	elseif self.sby > 0 then
+		self.sby = self.sby - SLOWDOWN_SPEED
+	elseif self.sby < 0 then
+		self.sby = self.sby + SLOWDOWN_SPEED
 	end
 	
 	if not self.stateOverride and self.cooldownCounter <= RUN_DIRCHANGE_COOLDOWN/3 then
@@ -974,6 +1007,8 @@ return function(player)
 	player.fy = 0
 	player.bx = 0
 	player.by = 0
+	player.sbx = 0
+	player.sby = 0
 	player.state = Player.ToIdle[player.state]
 	if player.state == Player.STATE_IDLEUP then
 		player.fy = -RUN_FORCE_MAGNITUDE
