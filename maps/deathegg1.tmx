@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="36" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="12">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="36" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="13">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
-  <property name="onload" type="file" value="actions/deathegg.lua"/>
+  <property name="onload" type="file" value="actions/deathegg1_cinematic.lua"/>
  </properties>
  <tileset firstgid="1" source="datacenter.tsx"/>
  <tileset firstgid="3183" source="knothole.tsx"/>
@@ -348,15 +348,25 @@
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="11" name="Terminal" type="Computer" gid="9040" x="554" y="1216" width="64" height="96">
+  <object id="11" name="Terminal" type="Computer" gid="9040" x="554" y="1184" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-2"/>
-    <property name="alignOffsetY" type="float" value="-65"/>
+    <property name="alignOffsetY" type="float" value="-33"/>
     <property name="interface" type="file" value="actions/deathegg1_interface.lua"/>
     <property name="interfaceName">Elevator
 Control Interace</property>
     <property name="sprite" type="file" value="../art/sprites/computer2.png"/>
+   </properties>
+  </object>
+  <object id="12" name="FactoryBot1" type="FactoryBot" gid="6703" x="534" y="1248" width="64" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/factorybot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idleup"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/factorybot.png"/>
    </properties>
   </object>
  </objectgroup>

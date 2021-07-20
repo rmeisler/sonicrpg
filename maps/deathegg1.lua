@@ -8,10 +8,10 @@ return {
   height = 56,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 12,
+  nextobjectid = 13,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
-    ["onload"] = "actions/deathegg.lua"
+    ["onload"] = "actions/deathegg1_cinematic.lua"
   },
   tilesets = {
     {
@@ -615,19 +615,40 @@ return {
           type = "Computer",
           shape = "rectangle",
           x = 554,
-          y = 1216,
+          y = 1184,
           width = 64,
-          height = 96,
+          height = 64,
           rotation = 0,
           gid = 9040,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -2,
-            ["alignOffsetY"] = -65,
+            ["alignOffsetY"] = -33,
             ["interface"] = "actions/deathegg1_interface.lua",
             ["interfaceName"] = "Elevator\nControl Interace",
             ["sprite"] = "../art/sprites/computer2.png"
+          }
+        },
+        {
+          id = 12,
+          name = "FactoryBot1",
+          type = "FactoryBot",
+          shape = "rectangle",
+          x = 534,
+          y = 1248,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 6703,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/factorybot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idleup",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/factorybot.png"
           }
         }
       }

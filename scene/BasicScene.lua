@@ -16,6 +16,7 @@ local While = require "actions/While"
 local Repeat = require "actions/Repeat"
 local Executor = require "actions/Executor"
 local BlockPlayer = require "actions/BlockPlayer"
+local YieldUntil = require "actions/YieldUntil"
 
 local Subscreen = require "object/Subscreen"
 
@@ -155,6 +156,9 @@ function BasicScene:onEnter(args)
 				self.player.sprite.visible = false
 				self.player:run(BlockPlayer {
 					Wait(0.5),
+					YieldUntil(function()
+						return not self.cinematicPause
+					end),
 					Do(function()
 						self.player.skipChargeSpecialMove = true
 						self.player.sprite.visible = true
