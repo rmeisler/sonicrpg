@@ -17,8 +17,11 @@ return function(scene)
 	local Do = require "actions/Do"
 	local Animate = require "actions/Animate"
 	local BlockPlayer = require "actions/BlockPlayer"
+	local Move = require "actions/Move"
 	local shine = require "lib/shine"
+	
 	local SpriteNode = require "object/SpriteNode"
+	local FactoryBot = require "object/FactoryBot"
 	
 	scene.player.collisionHSOffsets = {
 		right_top = {x = 0, y = 0},
@@ -27,8 +30,43 @@ return function(scene)
 		left_bot = {x = 0, y = 0},
 	}
 	
+	if scene.reenteringFromBattle then
+		return Action()
+	end
+	
+	local fbot = scene.objectLookup.FactoryBot1
+	if not fbot or fbot:isRemoved() then
+		fbot = FactoryBot(
+			scene,
+			{name="objects"},
+			{
+				name = "FactoryBot2",
+				x = 534,
+				y = 1248 - 32,
+				width = 64,
+				height = 32,
+				properties = {
+					battle = "data/monsters/factorybot.lua",
+					battleOnColllide = true,
+					disappearAfterBattle = true,
+					defaultAnim = "idleup",
+					ghost = true,
+					sprite = "art/sprites/factorybot.png"
+				}
+			}
+		)
+		scene:addObject(fbot)
+		scene.objectLookup.FactoryBot1 = fbot
+	else
+		fbot.x = 534
+		fbot.y = 1248 - fbot.sprite.h*2
+		fbot.sprite:setAnimation("idleup")
+	end
+	
 	scene.player.sprite.visible = false
 	scene.cinematicPause = true
+	
+	local terminal = scene.objectLookup.Terminal
 	
 	return BlockPlayer {
 		Wait(1),
@@ -36,44 +74,56 @@ return function(scene)
 		Wait(2),
 		PlayAudio("sfx", "lockon", 1.0, true),
 		Do(function()
-			scene.objectLookup.Terminal.sprite:setAnimation("num_1")
+			terminal.sprite:setAnimation("num_1")
 		end),
-		Wait(1),
+		Wait(0.5),
 		Do(function()
-			scene.objectLookup.Terminal.sprite:setAnimation("idle")
+			terminal.sprite:setAnimation("idle")
 		end),
-		Wait(1),
+		Wait(0.5),
 		PlayAudio("sfx", "lockon", 1.0, true),
 		Do(function()
-			scene.objectLookup.Terminal.sprite:setAnimation("num_6")
+			terminal.sprite:setAnimation("num_6")
 		end),
-		Wait(1),
+		Wait(0.5),
 		Do(function()
-			scene.objectLookup.Terminal.sprite:setAnimation("idle")
+			terminal.sprite:setAnimation("idle")
 		end),
-		Wait(1),
+		Wait(0.5),
 		PlayAudio("sfx", "lockon", 1.0, true),
 		Do(function()
-			scene.objectLookup.Terminal.sprite:setAnimation("num_6")
+			terminal.sprite:setAnimation("num_8")
 		end),
-		Wait(1),
+		Wait(0.5),
 		Do(function()
-			scene.objectLookup.Terminal.sprite:setAnimation("idle")
+			terminal.sprite:setAnimation("idle")
 		end),
-		Wait(1),
+		Wait(0.5),
 		PlayAudio("sfx", "lockon", 1.0, true),
 		Do(function()
-			scene.objectLookup.Terminal.sprite:setAnimation("num_8")
+			terminal.sprite:setAnimation("num_3")
 		end),
-		Wait(1),
+		Wait(0.5),
+		PlayAudio("sfx", "levelup", 1.0, true),
 		Do(function()
-			scene.objectLookup.Terminal.sprite:setAnimation("idle")
+			terminal.sprite:setAnimation("idle")
 		end),
+		Wait(0.5),
+		Spawn(Serial {
+			Move(fbot, scene.objectLookup.RightEntrance),
+			Do(function()
+				fbot:remove()
+			end)
+		}),
 		Wait(1),
 		Ease(scene.camPos, "x", 0, 1),
 		Do(function()
 			scene.player.sprite.visible = true
 			scene.cinematicPause = false
+			
+			if not fbot:isRemoved() then
+				fbot:remove()
+			end
 		end)
 	}
 end

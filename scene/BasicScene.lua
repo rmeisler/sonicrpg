@@ -246,6 +246,9 @@ function BasicScene:onReEnter(args)
 			self.player.sprite.visible = false
 			self.player:run(BlockPlayer {
 				Wait(0.5),
+				YieldUntil(function()
+					return not self.cinematicPause
+				end),
 				Do(function()
 					self.player.skipChargeSpecialMove = true
 					self.player.sprite.visible = true

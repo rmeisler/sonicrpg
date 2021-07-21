@@ -405,6 +405,33 @@ end
 
 function Bot:chaseUpdate(dt)
 	self:baseUpdate(dt)
+
+	-- If other bots are too close, push them away
+	for _, object in pairs(self.scene.map.objects) do
+		if object.isBot and
+			not object:isRemoved() and
+			object.name ~= self.name
+		then
+			print("should move away?")
+			local dx = self.x - object.x
+			local dy = self.y - object.y
+			local sqdist = dx*dx + dy*dy
+			if sqdist < 100*100 then
+				local dist = math.sqrt(sqdist)
+				print("move away!")
+				if self.x > object.x then
+					self.x = self.x + self.movespeed * (dt/0.016)
+				else
+					self.x = self.x - self.movespeed * (dt/0.016)
+				end
+				if self.y > object.y then
+					self.y = self.y + self.movespeed * (dt/0.016)
+				else
+					self.y = self.y - self.movespeed * (dt/0.016)
+				end
+			end
+		end
+	end
 end
 
 function Bot:getFlashlightOffset()

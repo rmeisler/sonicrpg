@@ -348,19 +348,25 @@
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="11" name="Terminal" type="Computer" gid="9040" x="554" y="1184" width="64" height="64">
+  <object id="11" name="Terminal" type="BasicNPC" gid="9040" x="554" y="1184" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-2"/>
     <property name="alignOffsetY" type="float" value="-33"/>
-    <property name="interface" type="file" value="actions/deathegg1_interface.lua"/>
-    <property name="interfaceName">Elevator
-Control Interace</property>
+    <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local NumScreen = require &quot;actions/NumScreen&quot;
+
+return function(self)
+    return BlockPlayer {
+        NumScreen {prompt=&quot;Enter access code&quot;, expected=&quot;1683&quot;}
+    }
+end</property>
     <property name="sprite" type="file" value="../art/sprites/computer2.png"/>
    </properties>
   </object>
   <object id="12" name="FactoryBot1" type="FactoryBot" gid="6703" x="534" y="1248" width="64" height="32">
    <properties>
+    <property name="align" value="bottom_left"/>
     <property name="battle" type="file" value="../data/monsters/factorybot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleup"/>
