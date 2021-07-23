@@ -52,6 +52,10 @@ function BasicScene:onEnter(args)
 	
 	self.cacheSceneData = args.cache
 	
+	-- NOTE: This is how we draw the lua map data
+	-- There is a draw function on the sti map object.
+	-- All our SceneNode drawing interface requires is a
+	-- draw function, so this works out fine.
 	self:addNode(self.map, "tiles")
 	
 	local placeholder
@@ -129,7 +133,7 @@ function BasicScene:onEnter(args)
 	
 	local onLoadAction = Action()
 	if self.map.properties.onload then
-		onLoadAction = love.filesystem.load("maps/"..self.map.properties.onload)()(self)
+		onLoadAction = love.filesystem.load("maps/"..self.map.properties.onload)()(self, args.hint)
 	end
 	
 	-- Pan to player
@@ -276,7 +280,7 @@ function BasicScene:onReEnter(args)
 	
 	local onLoadAction = Action()
 	if self.map.properties.onload then
-		onLoadAction = love.filesystem.load("maps/"..self.map.properties.onload)()(self)
+		onLoadAction = love.filesystem.load("maps/"..self.map.properties.onload)()(self, args.hint)
 	end
 
 	local fadeInSpeed = args.fadeInSpeed or 1.0
@@ -394,6 +398,7 @@ function BasicScene:changeScene(args)
 		animations = self.animations,
 		audio = self.audio,
 		spawn_point = args.spawnPoint,
+		hint = args.hint,
 		tutorial = args.tutorial,
 		cache = args.cache
 	}
@@ -609,8 +614,8 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 	
 	for _,layer in ipairs(self.map.layers) do
 		if not layer.image then
-			layer.x = worldOffsetX
-			layer.y = worldOffsetY
+			layer.x = layer.offsetx + worldOffsetX
+			layer.y = layer.offsety + worldOffsetY
 		else
 			layer.x = math.floor((layer.offsetx + worldOffsetX)*(layer.properties.movespeed or 1.05))
 			layer.y = math.floor((layer.offsety + worldOffsetY)*(layer.properties.movespeed or 1.05))

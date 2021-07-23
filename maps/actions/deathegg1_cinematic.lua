@@ -30,7 +30,10 @@ return function(scene)
 		left_bot = {x = 0, y = 0},
 	}
 	
-	if scene.reenteringFromBattle then
+	if  scene.reenteringFromBattle or
+		scene.player.x > 400 or
+		not GameState:isFlagSet("deathegg_checkleft1")
+	then
 		return Action()
 	end
 	
@@ -55,11 +58,13 @@ return function(scene)
 				}
 			}
 		)
+		fbot.movespeed = 4
 		scene:addObject(fbot)
 		scene.objectLookup.FactoryBot1 = fbot
 	else
 		fbot.x = 534
 		fbot.y = 1248 - fbot.sprite.h*2
+		fbot.sprite.visible = true
 		fbot.sprite:setAnimation("idleup")
 	end
 	
@@ -69,9 +74,8 @@ return function(scene)
 	local terminal = scene.objectLookup.Terminal
 	
 	return BlockPlayer {
-		Wait(1),
 		Ease(scene.camPos, "x", -150, 1),
-		Wait(2),
+		Wait(1),
 		PlayAudio("sfx", "lockon", 1.0, true),
 		Do(function()
 			terminal.sprite:setAnimation("num_1")
@@ -112,7 +116,9 @@ return function(scene)
 		Spawn(Serial {
 			Move(fbot, scene.objectLookup.RightEntrance),
 			Do(function()
-				fbot:remove()
+				fbot.x = 0
+				fbot.y = 0
+				fbot.sprite.visible = false
 			end)
 		}),
 		Wait(1),
@@ -120,10 +126,9 @@ return function(scene)
 		Do(function()
 			scene.player.sprite.visible = true
 			scene.cinematicPause = false
-			
-			if not fbot:isRemoved() then
-				fbot:remove()
-			end
+			fbot.x = 0
+			fbot.y = 0
+			fbot.sprite.visible = false
 		end)
 	}
 end

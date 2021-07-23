@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="36" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="29">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="36" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="30">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
+  <property name="onload" type="file" value="actions/deathegg5.lua"/>
  </properties>
  <tileset firstgid="1" source="datacenter.tsx"/>
  <tileset firstgid="3183" source="knothole.tsx"/>
@@ -333,6 +334,7 @@
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwithblaster.png"/>
+    <property name="viewRange" value="SwatbotVisibility"/>
    </properties>
   </object>
   <object id="13" name="Chest1" type="Chest" gid="8977" x="448" y="992" width="64" height="64">
@@ -355,7 +357,7 @@
     <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
    </properties>
   </object>
-  <object id="19" name="Fallable1" type="NPC" gid="9040" x="0" y="1504" width="1152" height="128">
+  <object id="19" name="Fallable1" type="NPC" gid="9040" x="0" y="1504" width="1152" height="96">
    <properties>
     <property name="fallable" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -375,7 +377,7 @@
     <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
    </properties>
   </object>
-  <object id="23" name="Fallable2" type="NPC" gid="9040" x="192" y="1376" width="96" height="416">
+  <object id="23" name="Fallable2" type="NPC" gid="9040" x="192" y="1376" width="32" height="416">
    <properties>
     <property name="fallable" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -390,6 +392,7 @@
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwithblaster.png"/>
+    <property name="viewRange" value="SwatbotVisibility"/>
    </properties>
   </object>
   <object id="25" name="Grabbable" type="ExtPost" gid="9040" x="992" y="768" width="32" height="32">
@@ -413,9 +416,14 @@
     <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
    </properties>
   </object>
-  <object id="28" name="Fallable3" type="NPC" gid="9040" x="0" y="864" width="1152" height="128">
+  <object id="28" name="Fallable3" type="NPC" gid="9040" x="0" y="800" width="1152" height="64">
    <properties>
     <property name="fallable" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="29" name="SwatbotVisibility" type="BasicNPC" gid="6703" x="288" y="1344" width="544" height="480">
+   <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>

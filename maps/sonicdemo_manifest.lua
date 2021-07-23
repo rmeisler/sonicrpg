@@ -7,8 +7,18 @@ return {
 	
 	{
         type = "map",
-		file = "maps/deathegg_elevator.lua",
+		file = "maps/deathegg_elevator1.lua",
 		primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/deathegg_elevator2.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deathegg_elevator3.lua"
     },
 	
 	{
@@ -34,6 +44,16 @@ return {
 	{
         type = "map",
 		file = "maps/deathegg5.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deatheggf2_1.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deatheggf2_2.lua"
     },
 	
 	{
