@@ -56,6 +56,7 @@ return function(scene, hint)
 		end
 	end
 
+	scene.player.state = "idledown"
 	return BlockPlayer {
 		Spawn(Serial {
 			PlayAudio("music", "mission2", 1.0, true, true),
@@ -72,9 +73,6 @@ return function(scene, hint)
 			}
 		}),
 
-		Do(function()
-			scene.player.state = "idledown"
-		end),
 		Parallel {
 			Ease(elevatorLayer, "offsety", function() return elevatorLayer.offsety + 300 end, 0.5, "linear"),
 			Ease(scene.player, "y", function() return scene.player.y + 300 end, 0.5, "linear"),

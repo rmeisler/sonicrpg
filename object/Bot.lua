@@ -88,6 +88,13 @@ function Bot:construct(scene, layer, object)
 		left = self.lrflashlight
 	}
 	
+	if object.properties.noflashlight then
+		self.flashlight.up:remove()
+		self.flashlight.down:remove()
+		self.flashlight.left:remove()
+		self.flashlight.right:remove()
+	end
+	
 	self.stepSfx = nil
 	
 	if GameState:isFlagSet(self:getFlag()) then
@@ -703,7 +710,7 @@ function Bot:baseUpdate(dt)
 			self.scene:run {
 				PlayAudio("sfx", "smack", 1.0),
 				Do(function()
-					self.scene.player.extenderArmColliding = true
+					self.scene.player.extenderArmColliding = self
 					self.scene.player.extenderPull = self
 					self.grabbed = true
 					

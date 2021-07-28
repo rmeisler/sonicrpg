@@ -29,7 +29,6 @@ function NumScreen:construct(args)
 	self.currentSequence = ""
 	self.closing = false
 	self.done = false
-	self.descBoxes = {}
 	self.prompt = DescBox(args.prompt)
 	self.expected = args.expected
 end
@@ -96,13 +95,8 @@ function NumScreen:isDone()
 	if self.done then
 		return true
 	end
-	if self.action:isDone() then
+	if self.action:isDone() and self.prompt:isDone() then
 		self.scene:removeNode(self)
-		
-		for _,v in pairs(self.descBoxes) do
-			v:close()
-		end
-
 		self.done = true
 		return true
 	end
@@ -160,6 +154,7 @@ function NumScreen:keytriggered(key)
 			)
 		end
 		self.prompt:close()
+		self.prompt:interrupt()
 		self.scene:removeHandler("keytriggered", NumScreen.keytriggered, self)
 		self.scene:unfocus("keytriggered")
 		self.closing = true

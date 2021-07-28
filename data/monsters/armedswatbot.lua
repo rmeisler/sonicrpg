@@ -30,7 +30,7 @@ return {
 
 	stats = {
 		xp    = 15,
-		maxhp = 500,
+		maxhp = 800,
 		attack = 25,
 		defense = 25,
 		speed = 10,
@@ -57,6 +57,7 @@ return {
 		self.beamSprite.transform.sy = 1
 		self.beamSprite.transform.ox = 0
 		self.beamSprite.color = {512,255,512,255}
+		self.beamSprite:setAnimation("purple")
 
 		-- Setup target sprite
 		self.targetSprite = SpriteNode(self.scene, Transform(0, 0, 2, 2), nil, "target", nil, nil, "ui")
@@ -86,6 +87,7 @@ return {
 				self.sprite:pushOverride("idle", "idle_nopistol")
 				self.sprite:pushOverride("backward", "backward_nopistol")
 				self.sprite:pushOverride("dead", "dead_nopistol")
+				self.beamSprite:setAnimation("blue")
 				
 				-- Drop attack power
 				self.stats = table.clone(self.stats)
@@ -332,13 +334,6 @@ return {
 						},
 						
 						Serial {
-							Animate(function()
-								local xform = Transform.from(self.sprite.transform)
-								xform.x = xform.x + 25
-								xform.y = xform.y - 50
-								return SpriteNode(self.scene, xform, {512,255,512,255}, "beamfire", nil, nil, "ui"), true
-							end, "idle"),
-
 							PlayAudio("sfx", "swatbotlaser", 1.0, true),
 							
 							Do(function()

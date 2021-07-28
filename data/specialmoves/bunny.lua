@@ -215,9 +215,13 @@ return function(player)
 				self.extenderarm.transform.y = self.extenderarm.transform.y - deltaY
 			end
 		else
+			if not self.extenderPull and self.extenderArmColliding and self.extenderArmColliding.snapToObject then
+				self.x = self.extenderArmColliding.x + self.extenderArmColliding.sprite.w
+				self.y = self.extenderArmColliding.y + self.extenderArmColliding.sprite.h*2 - self.height
+			end
 			self.extenderarm:remove()
 			self.extenderarm = nil
-			self.extenderArmColliding = false
+			self.extenderArmColliding = nil
 			self.extenderPull = nil
 			self.basicUpdate = origUpdate
 		end

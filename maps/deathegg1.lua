@@ -8,7 +8,7 @@ return {
   height = 56,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 13,
+  nextobjectid = 14,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/deathegg1_cinematic.lua"
@@ -625,8 +625,24 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -2,
             ["alignOffsetY"] = -33,
-            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal NumScreen = require \"actions/NumScreen\"\n\nreturn function(self)\n    return BlockPlayer {\n        NumScreen {prompt=\"Enter access code\", expected=\"1683\"}\n    }\nend",
+            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal NumScreen = require \"actions/NumScreen\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    return BlockPlayer {\n        Wait(0.8),\n        NumScreen {prompt=\"Enter access code\", expected=\"1683\"}\n    }\nend",
             ["sprite"] = "../art/sprites/computer2.png"
+          }
+        },
+        {
+          id = 13,
+          name = "Waypoint",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 896,
+          y = 1152,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8977,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

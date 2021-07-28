@@ -41,8 +41,7 @@ return function(player)
 		self.cinematic = true
 		self.cinematicStack = self.cinematicStack + 1
 		self.scanning = true
-		
-		print("scan again")
+
 		self:run {
 			PlayAudio("sfx", "nicholescan", 1.0, true),
 

@@ -58,7 +58,6 @@ return function(scene)
 				}
 			}
 		)
-		fbot.movespeed = 4
 		scene:addObject(fbot)
 		scene.objectLookup.FactoryBot1 = fbot
 	else
@@ -74,6 +73,7 @@ return function(scene)
 	local terminal = scene.objectLookup.Terminal
 	
 	return BlockPlayer {
+		Wait(1),
 		Ease(scene.camPos, "x", -150, 1),
 		Wait(1),
 		PlayAudio("sfx", "lockon", 1.0, true),
@@ -113,22 +113,19 @@ return function(scene)
 			terminal.sprite:setAnimation("idle")
 		end),
 		Wait(0.5),
-		Spawn(Serial {
-			Move(fbot, scene.objectLookup.RightEntrance),
-			Do(function()
-				fbot.x = 0
-				fbot.y = 0
-				fbot.sprite.visible = false
-			end)
-		}),
-		Wait(1),
-		Ease(scene.camPos, "x", 0, 1),
+		Parallel {
+			Move(fbot, scene.objectLookup.Waypoint),
+			Serial {
+				Wait(1),
+				Ease(scene.camPos, "x", 0, 1)
+			}
+		},
 		Do(function()
-			scene.player.sprite.visible = true
-			scene.cinematicPause = false
 			fbot.x = 0
 			fbot.y = 0
 			fbot.sprite.visible = false
+			scene.player.sprite.visible = true
+			scene.cinematicPause = false
 		end)
 	}
 end

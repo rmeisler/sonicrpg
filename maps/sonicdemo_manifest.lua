@@ -28,11 +28,6 @@ return {
 	
 	{
         type = "map",
-		file = "maps/deathegg2.lua"
-    },
-	
-	{
-        type = "map",
 		file = "maps/deathegg3.lua"
     },
 	

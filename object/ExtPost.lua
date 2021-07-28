@@ -45,7 +45,7 @@ function ExtPost:update(dt)
 		extenderarm.transform.y + extenderarm.h*2 > self.sprite.transform.y and
 		extenderarm.transform.y <= self.sprite.transform.y + self.sprite.h*2
 	then
-		self.scene.player.extenderArmColliding = true
+		self.scene.player.extenderArmColliding = self
 	end
 end
 
