@@ -49,6 +49,32 @@ return {
 			speed = 0.08
 		},
 		
+		hideright = {
+			frames = {{12,0}}
+		},
+		hideleft = {
+			frames = {{12,1}}
+		},
+		hideup = {
+			frames = {{12,3}}
+		},
+		hidedown = {
+			frames = {{12,2}}
+		},
+		hidedownhand = {
+			frames = {{13,2}}
+		},
+		
+		peekright = {
+			frames = {{13,0}}
+		},
+		peekleft = {
+			frames = {{13,1}}
+		},
+		peekup = {
+			frames = {{13,3}}
+		},
+		
 		extendright = {
 			frames = {{9,0}}
 		},

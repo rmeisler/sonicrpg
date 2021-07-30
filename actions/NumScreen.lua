@@ -30,6 +30,8 @@ function NumScreen:construct(args)
 	self.closing = false
 	self.done = false
 	self.prompt = DescBox(args.prompt)
+	self.success = args.success or Action()
+	self.failure = args.failure or Action()
 	self.expected = args.expected
 end
 
@@ -143,11 +145,13 @@ function NumScreen:keytriggered(key)
 	local fullyEntered = string.len(self.currentSequence) == 4
 	if key == "z" or fullyEntered then
 		if self.currentSequence == self.expected then
+			self.action:add(self.scene, self.success)
 			self.action:inject(
 				self.scene,
 				MessageBox {message="Access granted.", sfx="levelup", blocking=true}
 			)
 		elseif fullyEntered then
+			self.action:add(self.scene, self.failure)
 			self.action:inject(
 				self.scene,
 				MessageBox {message="Access denied.", sfx="error", blocking=true}

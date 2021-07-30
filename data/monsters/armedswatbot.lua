@@ -338,7 +338,7 @@ return {
 							
 							Do(function()
 								self.beamSprite.transform.x = self.sprite.transform.x + 25 + self.beamSprite.w
-								self.beamSprite.transform.y = self.sprite.transform.y - 45 + self.beamSprite.h*2
+								self.beamSprite.transform.y = self.sprite.transform.y - 40 + self.beamSprite.h*2
 								self.beamSprite.transform.ox = 0
 								
 								local x1, y1 = self.beamSprite.transform.x, self.beamSprite.transform.y

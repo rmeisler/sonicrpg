@@ -2,6 +2,7 @@
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="37" height="120" tilewidth="32" tileheight="32" infinite="0" nextobjectid="66">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
+  <property name="onload" type="file" value="actions/deathegg_player.lua"/>
  </properties>
  <tileset firstgid="1" source="datacenter.tsx"/>
  <tileset firstgid="3183" source="knothole.tsx"/>
@@ -648,25 +649,25 @@
   </object>
   <object id="51" name="Chest1" type="Chest" gid="8977" x="512" y="3424" width="64" height="64">
    <properties>
-    <property name="Microchip" type="int" value="1"/>
+    <property name="CrystalWater" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
   <object id="52" name="Chest2" type="Chest" gid="8977" x="608" y="3424" width="64" height="64">
    <properties>
-    <property name="Microchip" type="int" value="1"/>
+    <property name="CrystalWater" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
   <object id="53" name="Chest3" type="Chest" gid="8977" x="512" y="3488" width="64" height="64">
    <properties>
-    <property name="Microchip" type="int" value="1"/>
+    <property name="Mine" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
   <object id="54" name="Chest4" type="Chest" gid="8977" x="608" y="3488" width="64" height="64">
    <properties>
-    <property name="Microchip" type="int" value="1"/>
+    <property name="LaserShield" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>

@@ -338,7 +338,7 @@
   </object>
   <object id="13" name="Chest1" type="Chest" gid="8977" x="448" y="992" width="64" height="64">
    <properties>
-    <property name="Microchip" type="int" value="1"/>
+    <property name="Gear" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>

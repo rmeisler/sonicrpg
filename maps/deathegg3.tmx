@@ -470,7 +470,7 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
     <property name="orientation" value="left"/>
-    <property name="scene" type="file" value="deathegg2.lua"/>
+    <property name="scene" type="file" value="deathegg_elevator1.lua"/>
     <property name="spawn_point" value="LeftEntrance"/>
    </properties>
   </object>
@@ -614,13 +614,13 @@
     <property name="nocollision" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="37" name="Chest1" type="Chest" gid="8977" x="64" y="928" width="64" height="64">
+  <object id="37" name="Chest1" type="Chest" gid="8977" x="256" y="928" width="64" height="64">
    <properties>
     <property name="BlueLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="38" name="Chest2" type="Chest" gid="8977" x="1024" y="928" width="64" height="64">
+  <object id="38" name="Chest2" type="Chest" gid="8977" x="864" y="928" width="64" height="64">
    <properties>
     <property name="GreenLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>

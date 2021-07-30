@@ -48,6 +48,7 @@ function NPC:construct(scene, layer, object)
 	self.hidingSpot = object.properties.hidingspot
 	self.movespeed = object.properties.movespeed or 3
 	self.disappearOn = object.properties.disappearOn
+	self.angle = (object.properties.angle or 0) * (math.pi/180)
 	
 	if object.properties.onInit then
 		self.onInit = assert(loadstring(object.properties.onInit))()
@@ -96,6 +97,13 @@ function NPC:construct(scene, layer, object)
 		self.sprite.sortOrderY = object.properties.sortOrderY
 		if self.object.properties.defaultAnim then
 			self.sprite:setAnimation(self.object.properties.defaultAnim)
+		end
+		if self.angle > 0 or self.angle < 0 then
+			self.sprite.transform.ox = self.sprite.w/2
+			self.sprite.transform.oy = self.sprite.h/2
+			self.x = self.x + self.sprite.w
+			self.y = self.y + self.sprite.h
+			self.sprite.transform.angle = self.angle
 		end
 	end
 end

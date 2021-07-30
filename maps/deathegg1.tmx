@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="36" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="14">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="36" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="17">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/deathegg1_cinematic.lua"/>
@@ -310,7 +310,7 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="2" name="RightEntrance" type="SceneEdge" gid="9040" x="1088" y="1184" width="64" height="128">
+  <object id="2" name="RightEntrance" type="SceneEdge" gid="9040" x="1088" y="896" width="64" height="128">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
@@ -353,14 +353,84 @@
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-2"/>
     <property name="alignOffsetY" type="float" value="-33"/>
-    <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local NumScreen = require &quot;actions/NumScreen&quot;
-local Wait = require &quot;actions/Wait&quot;
+    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+local Do = require &quot;actions/Do&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 
 return function(self)
+    local leaderMem = GameState.party[GameState.leader]
+    if GameState.leader == &quot;sally&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: Nicole should be able to interface with this terminal.&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif GameState.leader == &quot;bunny&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: Oh my stars{p50}, this stuff looks complicated!&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif GameState.leader == &quot;sonic&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: This is really more of Sal's domain...&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif GameState.leader == &quot;antoine&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: This is not for me, I am thinking...&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    end
+end</property>
+    <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local NumScreen = require &quot;actions/NumScreen&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Do = require &quot;actions/Do&quot;
+
+return function(self)
+    local wallLayer
+    for _,layer in pairs(self.scene.map.layers) do
+        if layer.name == &quot;RightWall&quot; then
+            wallLayer = layer
+            break
+        end
+    end
+    
+    local onSuccess = Serial {
+        Ease(self.scene.camPos, &quot;x&quot;, -200, 1),
+        Ease(wallLayer, &quot;offsety&quot;, -32*3, 1),
+        Ease(self.scene.camPos, &quot;x&quot;, 0, 1),
+        Do(function()
+            self.scene.objectLookup.RightEntrance.y = self.scene.objectLookup.RightEntranceBlock.y
+            self.scene.objectLookup.RightEntrance.object.y = self.scene.objectLookup.RightEntranceBlock.y
+            self.scene.objectLookup.RightEntrance:updateCollision()
+            self.scene.objectLookup.RightEntranceBlock:remove()
+        end)
+    }
     return BlockPlayer {
         Wait(0.8),
-        NumScreen {prompt=&quot;Enter access code&quot;, expected=&quot;1683&quot;}
+        NumScreen {prompt=&quot;Enter access code&quot;, expected=&quot;1683&quot;, success=onSuccess}
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/computer2.png"/>
@@ -371,7 +441,82 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
+  <object id="16" name="RightEntranceBlock" type="BasicNPC" gid="8977" x="1088" y="1184" width="64" height="128">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Do = require &quot;actions/Do&quot;
+
+return function(self)
+    return BlockPlayer {
+        MessageBox {message=&quot;Locked.&quot;},
+        Do(function() self:refreshKeyHint() end)
+    }
+end</property>
+   </properties>
+  </object>
  </objectgroup>
+ <layer name="RightWall" width="36" height="56">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7415,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7415,8279,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7415,8279,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7413,8244,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
  <layer name="Tile Layer 2" width="36" height="56">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,10179,10180,10181,10182,10183,10184,10185,10186,10187,0,0,0,0,0,0,0,0,0,0,0,0,0,

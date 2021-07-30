@@ -26,43 +26,6 @@ return function(scene)
 		left_bot = {x = 0, y = 0},
 	}
 	
-	if GameState:isFlagSet("deathegg_first") then
-		return Action()
-	end
-	
-	GameState:setFlag("deathegg_first")
-	
-	local subtext = TypeText(
-		Transform(50, 470),
-		{255, 255, 255, 0},
-		FontCache.TechnoSmall,
-		"DEATH EGG",
-		100
-	)
-	
-	local text = TypeText(
-		Transform(50, 500),
-		{255, 255, 255, 0},
-		FontCache.Techno,
-		"1F",
-		100
-	)
-	
-	return Serial {
-		Spawn(Serial {
-			PlayAudio("music", "mission2", 1.0, true, true),
-			subtext,
-			text,
-			Parallel {
-				Ease(text.color, 4, 255, 1),
-				Ease(subtext.color, 4, 255, 1),
-			},
-			Wait(2),
-			Parallel {
-				Ease(text.color, 4, 0, 1),
-				Ease(subtext.color, 4, 0, 1)
-			}
-		})
-	}
+	return Action()
 	
 end

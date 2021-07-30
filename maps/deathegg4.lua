@@ -10,7 +10,8 @@ return {
   tileheight = 32,
   nextobjectid = 66,
   properties = {
-    ["battlebg"] = "../art/backgrounds/robotropolis1.png"
+    ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["onload"] = "actions/deathegg_player.lua"
   },
   tilesets = {
     {
@@ -1051,7 +1052,7 @@ return {
           gid = 8977,
           visible = true,
           properties = {
-            ["Microchip"] = 1,
+            ["CrystalWater"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1068,7 +1069,7 @@ return {
           gid = 8977,
           visible = true,
           properties = {
-            ["Microchip"] = 1,
+            ["CrystalWater"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1085,7 +1086,7 @@ return {
           gid = 8977,
           visible = true,
           properties = {
-            ["Microchip"] = 1,
+            ["Mine"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1102,7 +1103,7 @@ return {
           gid = 8977,
           visible = true,
           properties = {
-            ["Microchip"] = 1,
+            ["LaserShield"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },

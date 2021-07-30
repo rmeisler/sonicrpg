@@ -675,7 +675,7 @@ return {
             ["ghost"] = true,
             ["key"] = "right",
             ["orientation"] = "left",
-            ["scene"] = "deathegg2.lua",
+            ["scene"] = "deathegg_elevator1.lua",
             ["spawn_point"] = "LeftEntrance"
           }
         },
@@ -1055,7 +1055,7 @@ return {
           name = "Chest1",
           type = "Chest",
           shape = "rectangle",
-          x = 64,
+          x = 256,
           y = 928,
           width = 64,
           height = 64,
@@ -1072,7 +1072,7 @@ return {
           name = "Chest2",
           type = "Chest",
           shape = "rectangle",
-          x = 1024,
+          x = 864,
           y = 928,
           width = 64,
           height = 64,
