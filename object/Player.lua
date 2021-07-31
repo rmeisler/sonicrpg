@@ -520,7 +520,6 @@ function Player:onChangeChar()
 			for k in pairs(self.keyhints) do
 				self.hidekeyhints[k] = nil
 			end
-			self.keyhints = {}
 		end)
 	}
 end

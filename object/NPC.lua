@@ -372,12 +372,19 @@ function NPC:getFlag()
 end
 
 function NPC:drop()
-	print("falling3")
 	self:run {
 		Wait(0.2),
 		Parallel {
-			Ease(self, "y", self.y + self.sprite.h + 200, 1),
-			Ease(self.sprite.color, 4, 0, 1.5)
+			Ease(self, "y", self.y + 9999, 0.3),
+			Ease(self.sprite.color, 4, 0, 0.3),
+			
+			Serial {
+				Wait(0.05),
+				Do(function()
+					self.sprite:swapLayer("under")
+					self.dropShadow.sprite:swapLayer("under")
+				end)
+			}
 		},
 		Do(function()
 			self:remove()

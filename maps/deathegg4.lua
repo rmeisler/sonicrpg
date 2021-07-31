@@ -10,7 +10,7 @@ return {
   tileheight = 32,
   nextobjectid = 66,
   properties = {
-    ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
     ["onload"] = "actions/deathegg_player.lua"
   },
   tilesets = {
@@ -281,6 +281,17 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
       }
+    },
+    {
+      type = "objectgroup",
+      name = "under",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {}
     },
     {
       type = "tilelayer",
@@ -1069,7 +1080,7 @@ return {
           gid = 8977,
           visible = true,
           properties = {
-            ["CrystalWater"] = 1,
+            ["LeatherSash"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1223,7 +1234,7 @@ return {
           x = 0,
           y = 2144,
           width = 448,
-          height = 64,
+          height = 128,
           rotation = 0,
           gid = 9040,
           visible = true,
@@ -1240,7 +1251,7 @@ return {
           x = 736,
           y = 2144,
           width = 448,
-          height = 64,
+          height = 128,
           rotation = 0,
           gid = 9040,
           visible = true,

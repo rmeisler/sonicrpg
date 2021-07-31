@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="37" height="120" tilewidth="32" tileheight="32" infinite="0" nextobjectid="66">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
+  <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
   <property name="onload" type="file" value="actions/deathegg_player.lua"/>
  </properties>
  <tileset firstgid="1" source="datacenter.tsx"/>
@@ -133,6 +133,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="under"/>
  <layer name="Tile Layer 4" width="37" height="120">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -655,7 +656,7 @@
   </object>
   <object id="52" name="Chest2" type="Chest" gid="8977" x="608" y="3424" width="64" height="64">
    <properties>
-    <property name="CrystalWater" type="int" value="1"/>
+    <property name="LeatherSash" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -713,13 +714,13 @@
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
    </properties>
   </object>
-  <object id="62" name="Fallable1" type="NPC" gid="9040" x="0" y="2144" width="448" height="64">
+  <object id="62" name="Fallable1" type="NPC" gid="9040" x="0" y="2144" width="448" height="128">
    <properties>
     <property name="fallable" type="bool" value="true"/>
     <property name="ghost" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="63" name="Fallable2" type="NPC" gid="9040" x="736" y="2144" width="448" height="64">
+  <object id="63" name="Fallable2" type="NPC" gid="9040" x="736" y="2144" width="448" height="128">
    <properties>
     <property name="fallable" type="bool" value="true"/>
     <property name="ghost" type="bool" value="false"/>

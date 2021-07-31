@@ -743,6 +743,11 @@ function Bot:updateAction(dt)
 		return
 	end
 	
+	if self.grabbed or self.falling then
+		-- Update drop shadow position
+		self:updateDropShadowPos()
+	end
+	
 	-- If colliding with fall object, fall
 	if self.grabbed and not self.falling then
 		for _, obj in pairs(self.scene.map.fallables or {}) do

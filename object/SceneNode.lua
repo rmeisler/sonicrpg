@@ -60,6 +60,11 @@ function SceneNode:removeSceneNode()
 	self.scene:removeNode(self)
 end
 
+function SceneNode:swapLayer(newLayer)
+	self.scene:removeNode(self)
+	self.scene:addNode(self, newLayer)
+end
+
 function SceneNode:getSceneLayer()
 	return self.sceneLayer
 end

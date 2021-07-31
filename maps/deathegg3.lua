@@ -10,7 +10,7 @@ return {
   tileheight = 32,
   nextobjectid = 39,
   properties = {
-    ["battlebg"] = "../art/backgrounds/robotropolis1.png"
+    ["battlebg"] = "../art/backgrounds/deatheggbattle.png"
   },
   tilesets = {
     {
@@ -145,6 +145,17 @@ return {
     }
   },
   layers = {
+    {
+      type = "objectgroup",
+      name = "under",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {}
+    },
     {
       type = "tilelayer",
       name = "Tile Layer 3",
@@ -855,9 +866,9 @@ return {
           type = "NPC",
           shape = "rectangle",
           x = 0,
-          y = 800,
+          y = 768,
           width = 1152,
-          height = 160,
+          height = 128,
           rotation = 0,
           gid = 9040,
           visible = true,
@@ -874,7 +885,7 @@ return {
           x = 0,
           y = 1184,
           width = 1152,
-          height = 160,
+          height = 128,
           rotation = 0,
           gid = 9040,
           visible = true,

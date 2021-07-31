@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="36" height="110" tilewidth="32" tileheight="32" infinite="0" nextobjectid="39">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
+  <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
  </properties>
  <tileset firstgid="1" source="datacenter.tsx"/>
  <tileset firstgid="3183" source="knothole.tsx"/>
  <tileset firstgid="6667" source="robotropolis.tsx"/>
  <tileset firstgid="10167" source="deathegg.tsx"/>
  <tileset firstgid="11517" source="datacenter_interior.tsx"/>
+ <objectgroup name="under"/>
  <layer name="Tile Layer 3" width="36" height="110">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -545,13 +546,13 @@
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="25" name="Fallable1" type="NPC" gid="9040" x="0" y="800" width="1152" height="160">
+  <object id="25" name="Fallable1" type="NPC" gid="9040" x="0" y="768" width="1152" height="128">
    <properties>
     <property name="fallable" type="bool" value="true"/>
     <property name="ghost" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="26" name="Fallable2" type="NPC" gid="9040" x="0" y="1184" width="1152" height="160">
+  <object id="26" name="Fallable2" type="NPC" gid="9040" x="0" y="1184" width="1152" height="128">
    <properties>
     <property name="fallable" type="bool" value="true"/>
     <property name="ghost" type="bool" value="false"/>

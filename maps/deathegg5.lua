@@ -8,9 +8,10 @@ return {
   height = 56,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 30,
+  nextobjectid = 32,
   properties = {
-    ["battlebg"] = "../art/backgrounds/robotropolis1.png"
+    ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
+    ["onload"] = "actions/deathegg5.lua"
   },
   tilesets = {
     {
@@ -216,6 +217,17 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
       }
+    },
+    {
+      type = "objectgroup",
+      name = "under",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {}
     },
     {
       type = "tilelayer",
@@ -537,7 +549,7 @@ return {
         },
         {
           id = 10,
-          name = "Chest1",
+          name = "Chest2",
           type = "Chest",
           shape = "rectangle",
           x = 448,
@@ -548,7 +560,7 @@ return {
           gid = 8977,
           visible = true,
           properties = {
-            ["Microchip"] = 1,
+            ["ElbowPads"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -588,7 +600,7 @@ return {
           gid = 8977,
           visible = true,
           properties = {
-            ["Gear"] = 1,
+            ["ElbowPads"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -636,7 +648,7 @@ return {
           x = 0,
           y = 1504,
           width = 1152,
-          height = 96,
+          height = 128,
           rotation = 0,
           gid = 9040,
           visible = true,
@@ -688,7 +700,7 @@ return {
           shape = "rectangle",
           x = 192,
           y = 1376,
-          width = 32,
+          width = 64,
           height = 416,
           rotation = 0,
           gid = 9040,
@@ -781,9 +793,9 @@ return {
           type = "NPC",
           shape = "rectangle",
           x = 0,
-          y = 800,
+          y = 832,
           width = 1152,
-          height = 64,
+          height = 96,
           rotation = 0,
           gid = 9040,
           visible = true,
@@ -805,6 +817,40 @@ return {
           gid = 6703,
           visible = true,
           properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 30,
+          name = "Fallable1",
+          type = "NPC",
+          shape = "rectangle",
+          x = 864,
+          y = 1376,
+          width = 288,
+          height = 160,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["fallable"] = true,
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 31,
+          name = "Fallable1",
+          type = "NPC",
+          shape = "rectangle",
+          x = 896,
+          y = 1056,
+          width = 256,
+          height = 224,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["fallable"] = true,
             ["ghost"] = true
           }
         }
