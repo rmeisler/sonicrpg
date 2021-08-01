@@ -813,12 +813,12 @@ return {
           gid = 6703,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/armedswatbot.lua",
+            ["battle"] = "../data/monsters/swatbot.lua",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/swatbotwithblaster.png",
+            ["sprite"] = "../art/sprites/swatbot.png",
             ["viewRange"] = "SwatbotVisibility"
           }
         },
@@ -835,12 +835,12 @@ return {
           gid = 6703,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/armedswatbot.lua",
+            ["battle"] = "../data/monsters/swatbot.lua",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/swatbotwithblaster.png",
+            ["sprite"] = "../art/sprites/swatbot.png",
             ["viewRange"] = "SwatbotVisibility"
           }
         },

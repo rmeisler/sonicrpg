@@ -72,6 +72,15 @@ function Juggerbot:updateDropShadowPos(xonly)
 	end
 end
 
+function Juggerbot:moveAnim(dir)
+	return Serial {
+		Animate(self.sprite, "walk"..dir.."_step1"),
+		self.scene:run(self.scene:screenShake(30,40)),
+		Animate(self.sprite, "walk"..dir.."_step2"),
+		self.scene:run(self.scene:screenShake(30,40))
+	}
+end
+
 function Juggerbot:moveEffects(dt)
 	if self.sprite.selected == "walkright" then
 		self.rightarm:setAnimation("walkright")

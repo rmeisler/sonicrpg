@@ -305,7 +305,7 @@ function Bot:update(dt)
 					self.scene.player:invoke("caught", self)
 				end),
 				Wait(1),
-				self:follow(self.scene.player, "run", self.runspeed, nil, true)
+				self:follow(self.scene.player, "run", self.runspeed, nil, true, function() return self.grabbed end)
 			}
 		elseif lineOfSight == Bot.NOTICE_HEAR then
 			self:removeSceneHandler("update")
@@ -400,7 +400,7 @@ function Bot:investigateUpdate(dt)
 				self.scene.player:invoke("caught", self)
 			end),
 			Wait(1),
-			self:follow(self.scene.player, "run", self.runspeed, nil, true)
+			self:follow(self.scene.player, "run", self.runspeed, nil, true, function() return self.grabbed end)
 		}
 		return
 	end
@@ -460,14 +460,20 @@ end
 function Bot:follow(target, animType, speed, timeout, forever, earlyExitFun)
 	local moveAction
 	if forever then
-		moveAction = Repeat(Serial {
-			Move(self, target, animType, nil, nil, true),
-			Do(function()
-				if self:isRemoved() then
-					self.action:stop()
-				end
-			end)
-		})
+		moveAction = While(
+			function()
+				return not earlyExitFun()
+			end,
+			Repeat(Serial {
+				Move(self, target, animType, nil, earlyExitFun, true),
+				Do(function()
+					if self:isRemoved() then
+						self.action:stop()
+					end
+				end)
+			}),
+			Do(function() end)
+		)
 	else
 		moveAction = Move(self, target, animType, timeout, earlyExitFun, true)
 	end

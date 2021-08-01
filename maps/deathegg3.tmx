@@ -521,23 +521,23 @@
   </object>
   <object id="16" name="Swatbot2" type="Swatbot" gid="6703" x="864" y="832" width="32" height="32">
    <properties>
-    <property name="battle" type="file" value="../data/monsters/armedswatbot.lua"/>
+    <property name="battle" type="file" value="../data/monsters/swatbot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idledown"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/swatbotwithblaster.png"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
     <property name="viewRange" value="SwatbotVisibility"/>
    </properties>
   </object>
   <object id="17" name="Swatbot1" type="Swatbot" gid="6703" x="288" y="832" width="32" height="32">
    <properties>
-    <property name="battle" type="file" value="../data/monsters/armedswatbot.lua"/>
+    <property name="battle" type="file" value="../data/monsters/swatbot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idledown"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/swatbotwithblaster.png"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
     <property name="viewRange" value="SwatbotVisibility"/>
    </properties>
   </object>
