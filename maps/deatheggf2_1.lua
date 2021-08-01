@@ -8,7 +8,7 @@ return {
   height = 47,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 596,
+  nextobjectid = 597,
   properties = {
     ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
     ["onload"] = "actions/deathegg_player.lua"
@@ -1203,23 +1203,6 @@ return {
           }
         },
         {
-          id = 573,
-          name = "LaserTrap1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 3040,
-          y = 896,
-          width = 32,
-          height = 128,
-          rotation = 0,
-          gid = 9040,
-          visible = true,
-          properties = {
-            ["spawnPointDown"] = "LaserTrapShooter2",
-            ["spawnPointUp"] = "LaserTrapShooter1"
-          }
-        },
-        {
           id = 576,
           name = "Swatbot4",
           type = "Swatbot",
@@ -1453,9 +1436,26 @@ return {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "idleleft",
             ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Serial = require \"actions/Serial\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    if GameState:isFlagSet(self.scene.objectLookup.Terminal) then\n        return Serial {\n            MessageBox {message=\"Cambot: Well done, Freedom Fighter! {p40}\\n{h If you ever want any more hints, just ask}!\"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\n\n    local botname = \"Cambot\"\n    local firstResp = Action()\n    local secondResp = Action()\n    if GameState.leader == \"sonic\" then\n        firstResp = MessageBox {message = \"Sonic: Wha?\", textspeed=4}\n        secondResp = MessageBox {message = \"Sonic: Uh, {p20}thanks Polaroid!\", textspeed=4}\n        GameState:setFlag(\"name_cambot\")\n        botname = \"Polaroid\"\n    elseif GameState.leader == \"sally\" then\n        firstResp = MessageBox {message = \"Sally: Uh{p20}.{p20}.{p20}. hello?\", textspeed=4}\n        secondResp = MessageBox {message = \"Sally: A-{p20}Ah, {p40}thank you.\", textspeed=4}\n    elseif GameState.leader == \"bunny\" then\n        firstResp = MessageBox {message = \"Bunnie: Uh{p20}.{p20}.{p20}. hey sugah-bot.\", textspeed=4}\n        secondResp = MessageBox {message = \"Bunnie: Well thank-you!\", textspeed=4}\n    end\n\n    return BlockPlayer {\n        MessageBox {message = \"Cambot: Hello there.\", textspeed=4},\n        Do(function()\n            self.scene.player.noIdle = true\n            self.playerPrevAnim = self.scene.player.sprite.selected\n            self.scene.player.sprite:setAnimation(\"shock\")\n        end),\n        Wait(0.5),\n        Do(function()\n            self.scene.player.noIdle = false\n            self.scene.player.sprite:setAnimation(self.playerPrevAnim)\n        end),\n        firstResp,\n        MessageBox {message = \"Cambot: Fear not. {p40}I will not alert Robotnik of your presence.\", textspeed=4},\n        secondResp,\n        MessageBox {message = \"Cambot: My pleasure!\"},\n        GameState.leader == \"sonic\"\n            and Serial {\n                MessageBox {message = \"Cambot: Hmmm... {h Polaroid}...\", textspeed=4},\n                MessageBox {message = \"Cambot: I like this name. {p40}I will use it from now on.\", textspeed=4},\n                Do(function()\n                    self.scene.player.noIdle = true\n                    self.playerPrevAnim = self.scene.player.sprite.selected\n                    self.scene.player.sprite:setAnimation(\"pose\")\n                end),\n                MessageBox {message = \"Sonic: Ha ha ha! {p40}Way past cool, Polaroid!\", textspeed=4},\n                Do(function()\n                    self.scene.player.noIdle = false\n                    self.scene.player.sprite:setAnimation(self.playerPrevAnim)\n                end)\n            } or Action(),\n        MessageBox {message = botname..\": And while I'm at it, {p40}let me give you a {h hint}...\", textspeed=4},\n        Parallel {\n            MessageBox {message = botname..\": The computer up ahead controls these two fans...\"},\n            Ease(self.scene.camPos, \"x\", -400, 1),\n            Ease(self.scene.camPos, \"y\", 300, 1)\n        },\n        Parallel {\n            MessageBox {message = botname..\": ...the access code is the\\n{h year the Great War ended}...\"},\n            Ease(self.scene.camPos, \"x\", 0, 1),\n            Ease(self.scene.camPos, \"y\", 0, 1)\n        },\n        Do(function() self:refreshKeyHint() end)\n    }\nend",
-            ["onScan"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    local cambotName = GameState:setFlag(\"name_cambot\") and \"Polaroid\" or \"Cambot\"\n    return MessageBox {message=cambotName..\": *giggles*{p40}, hey! {p40}That tickles!\", textspeed=4}\nend",
+            ["onScan"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Wait = require \"actions/Wait\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    local cambotName = GameState:setFlag(\"name_cambot\") and \"Polaroid\" or \"Cambot\"\n    return Serial {\n        Wait(1),\n        MessageBox {message=cambotName..\": *giggles*{p40}, hey! {p40}That tickles!\", textspeed=4}\n    }\nend",
             ["onUpdate"] = "return function(self, dt)\n    self:facePlayer()\nend",
             ["sprite"] = "../art/sprites/cambot.png"
+          }
+        },
+        {
+          id = 596,
+          name = "Chest3",
+          type = "Chest",
+          shape = "rectangle",
+          x = 1184,
+          y = 800,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 8977,
+          visible = true,
+          properties = {
+            ["GreenLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }

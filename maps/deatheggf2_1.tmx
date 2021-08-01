@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="47" tilewidth="32" tileheight="32" infinite="0" nextobjectid="596">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="47" tilewidth="32" tileheight="32" infinite="0" nextobjectid="597">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
   <property name="onload" type="file" value="actions/deathegg_player.lua"/>
@@ -587,12 +587,6 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/computer.png"/>
    </properties>
   </object>
-  <object id="573" name="LaserTrap1" type="BasicNPC" gid="9040" x="3040" y="896" width="32" height="128">
-   <properties>
-    <property name="spawnPointDown" value="LaserTrapShooter2"/>
-    <property name="spawnPointUp" value="LaserTrapShooter1"/>
-   </properties>
-  </object>
   <object id="576" name="Swatbot4" type="Swatbot" gid="6703" x="1248" y="800" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/swatbot.lua"/>
@@ -762,15 +756,26 @@ return function(self)
     }
 end</property>
     <property name="onScan">local MessageBox = require &quot;actions/MessageBox&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Serial = require &quot;actions/Serial&quot;
 
 return function(self)
     local cambotName = GameState:setFlag(&quot;name_cambot&quot;) and &quot;Polaroid&quot; or &quot;Cambot&quot;
-    return MessageBox {message=cambotName..&quot;: *giggles*{p40}, hey! {p40}That tickles!&quot;, textspeed=4}
+    return Serial {
+        Wait(1),
+        MessageBox {message=cambotName..&quot;: *giggles*{p40}, hey! {p40}That tickles!&quot;, textspeed=4}
+    }
 end</property>
     <property name="onUpdate">return function(self, dt)
     self:facePlayer()
 end</property>
     <property name="sprite" type="file" value="../art/sprites/cambot.png"/>
+   </properties>
+  </object>
+  <object id="596" name="Chest3" type="Chest" gid="8977" x="1184" y="800" width="64" height="64">
+   <properties>
+    <property name="GreenLeaf" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
  </objectgroup>
