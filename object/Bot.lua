@@ -39,7 +39,6 @@ function Bot:construct(scene, layer, object)
 	self.noMusic = object.properties.noMusic
 	self.visibleDist = object.properties.visibleDistance
 	self.audibleDist = object.properties.audibleDistance
-	self.viewRange = object.properties.viewRange
 	self.noSetFlag = object.properties.noSetFlag
 	
 	self.facingTime = 0
@@ -54,7 +53,8 @@ function Bot:construct(scene, layer, object)
 		left_bot  = {x = 20, y = 0}
 	}
 
-	self.facing = "right"
+	self:updateFacing()
+	self.originalFacing = self.facing
 	
 	self:createDropShadow()
 	
@@ -103,6 +103,17 @@ function Bot:construct(scene, layer, object)
 		return
 	end
 	
+	self.originalX = self.x
+	self.originalY = self.y
+	self.originalLocation = BasicNPC(
+		self.scene,
+		{name = "objects"},
+		{name = "botloc", x = self.x, y = self.y, width = 32, height = 32,
+			properties = {ghost = true, align = NPC.ALIGN_BOTLEFT}
+		}
+	)
+	self.scene:addObject(self.originalLocation)
+	
 	self:addSceneHandler("update", Bot.update)
 	self:addSceneHandler("exit", Bot.exit)
 	
@@ -113,6 +124,12 @@ function Bot:exit()
 	if self.prevSceneMusic and not self.scene.enteringBattle then
 		self.scene.audio:playMusic(self.prevSceneMusic)
 	end
+	
+	-- Go back to regular patrolling
+	self:removeAllUpdates()
+	self:addSceneHandler("update")
+	self:postInit()
+	self.scene.player.chasers[tostring(self.name)] = nil
 end
 
 function Bot:postInit()
@@ -137,53 +154,55 @@ function Bot:postInit()
 
 	self.behavior = Bot.BEHAVIOR_PATROLLING
 	
-	if self.viewRange then
-		self.viewRange = self.scene.objectLookup[self.viewRange]
+	if self.object.properties.viewRange then
+		self.viewRange = self.scene.objectLookup[self.object.properties.viewRange]
 	end
 	
-	self.visualColliders = {}
-	self.visualColliders.left = BasicNPC(
-		self.scene,
-		{name = "objects"},
-		{name = "visualproxy", x = self.x - 32 * 8, y = self.y + self.sprite.h, width = 32 * 8, height = 32 * 5,
-			properties = {ghost = true, align = NPC.ALIGN_BOTLEFT, sprite = "art/sprites/leftrightview.png", useObjectCollision = true}
-		}
-	)
-	self.visualColliders.right = BasicNPC(
-		self.scene,
-		{name = "objects"},
-		{name = "visualproxy", x = self.x + self.sprite.w*2, y = self.y + self.sprite.h, width = 32 * 8, height = 32 * 5,
-			properties = {ghost = true, align = NPC.ALIGN_BOTLEFT, sprite = "art/sprites/leftrightview.png", useObjectCollision = true}
-		}
-	)
-	self.visualColliders.up = BasicNPC(
-		self.scene,
-		{name = "objects"},
-		{name = "visualproxy", x = self.x, y = self.y - 32 * 8, width = 32 * 5, height = 32 * 8,
-			properties = {ghost = true, align = NPC.ALIGN_BOTLEFT, sprite = "art/sprites/updownview.png", useObjectCollision = true}
-		}
-	)
-	self.visualColliders.down = BasicNPC(
-		self.scene,
-		{name = "objects"},
-		{name = "visualproxy", x = self.x, y = self.y + self.sprite.h*2, width = 32 * 5, height = 32 * 8,
-			properties = {ghost = true, align = NPC.ALIGN_BOTLEFT, sprite = "art/sprites/updownview.png", useObjectCollision = true}
-		}
-	)
-	self.scene:addObject(self.visualColliders.left)
-	self.scene:addObject(self.visualColliders.right)
-	self.scene:addObject(self.visualColliders.up)
-	self.scene:addObject(self.visualColliders.down)
+	if not self.visualColliders then
+		self.visualColliders = {}
+		self.visualColliders.left = BasicNPC(
+			self.scene,
+			{name = "objects"},
+			{name = "visualproxy", x = self.x - 32 * 8, y = self.y + self.sprite.h, width = 32 * 8, height = 32 * 5,
+				properties = {ghost = true, align = NPC.ALIGN_BOTLEFT, sprite = "art/sprites/leftrightview.png", useObjectCollision = true}
+			}
+		)
+		self.visualColliders.right = BasicNPC(
+			self.scene,
+			{name = "objects"},
+			{name = "visualproxy", x = self.x + self.sprite.w*2, y = self.y + self.sprite.h, width = 32 * 8, height = 32 * 5,
+				properties = {ghost = true, align = NPC.ALIGN_BOTLEFT, sprite = "art/sprites/leftrightview.png", useObjectCollision = true}
+			}
+		)
+		self.visualColliders.up = BasicNPC(
+			self.scene,
+			{name = "objects"},
+			{name = "visualproxy", x = self.x, y = self.y - 32 * 8, width = 32 * 5, height = 32 * 8,
+				properties = {ghost = true, align = NPC.ALIGN_BOTLEFT, sprite = "art/sprites/updownview.png", useObjectCollision = true}
+			}
+		)
+		self.visualColliders.down = BasicNPC(
+			self.scene,
+			{name = "objects"},
+			{name = "visualproxy", x = self.x, y = self.y + self.sprite.h*2, width = 32 * 5, height = 32 * 8,
+				properties = {ghost = true, align = NPC.ALIGN_BOTLEFT, sprite = "art/sprites/updownview.png", useObjectCollision = true}
+			}
+		)
+		self.scene:addObject(self.visualColliders.left)
+		self.scene:addObject(self.visualColliders.right)
+		self.scene:addObject(self.visualColliders.up)
+		self.scene:addObject(self.visualColliders.down)
 
-	self.visualColliders.left.sprite.visible = false
-	self.visualColliders.right.sprite.visible = false
-	self.visualColliders.up.sprite.visible = false
-	self.visualColliders.down.sprite.visible = false
-	
-	self.visualColliders.left.hidden = true
-	self.visualColliders.right.hidden = true
-	self.visualColliders.up.hidden = true
-	self.visualColliders.down.hidden = true
+		self.visualColliders.left.sprite.visible = false
+		self.visualColliders.right.sprite.visible = false
+		self.visualColliders.up.sprite.visible = false
+		self.visualColliders.down.sprite.visible = false
+		
+		self.visualColliders.left.hidden = true
+		self.visualColliders.right.hidden = true
+		self.visualColliders.up.hidden = true
+		self.visualColliders.down.hidden = true
+	end
 end
 
 function Bot:followActions()
@@ -229,22 +248,29 @@ function Bot:followActions()
 		else
 			return Serial(actions)
 		end
+	else
+		return Serial {
+			self:follow(self.originalLocation, "walk", self.walkspeed),
+			Do(function()
+				self.sprite:setAnimation("idle"..self.originalFacing)
+			end),
+			Wait(2)
+		}
 	end
-	return Action()
 end
 
 function Bot:getInitiative()
 	if self.scene.player:isFacing(self.facing) then
-		if ((self.facing == "left"  and (self.x + self.sprite.w*2) > (self.scene.player.x + self.scene.player.sprite.w*2)) or
-		    (self.facing == "right" and self.x < self.scene.player.x) or
-		    (self.facing == "up"    and (self.y + self.sprite.h*2) > (self.scene.player.y + self.scene.player.sprite.h*2)) or
-		    (self.facing == "down"  and (self.y + self.sprite.h*2) < (self.scene.player.y + self.scene.player.sprite.h*2)))
+		if ((self.facing == "left"  and self.x > (self.scene.player.x + self.scene.player.sprite.w)) or
+		    (self.facing == "right" and (self.x + self.sprite.w*2) < (self.scene.player.x - self.scene.player.sprite.w)) or
+		    (self.facing == "up"    and self.y > (self.scene.player.y + self.scene.player.sprite.h)) or
+		    (self.facing == "down"  and (self.y + self.sprite.h*2) < (self.scene.player.y - self.scene.player.sprite.h)))
 		then
 			return "opponent"
-		elseif ((self.facing == "left"  and (self.x + self.sprite.w*2) < (self.scene.player.x + self.scene.player.sprite.w*2)) or
-				(self.facing == "right" and self.x > self.scene.player.x) or
-				(self.facing == "up"    and (self.y + self.sprite.h*2) < (self.scene.player.y + self.scene.player.sprite.h*2)) or
-				(self.facing == "down"  and (self.y + self.sprite.h*2) > (self.scene.player.y + self.scene.player.sprite.h*2)))
+		elseif ((self.facing == "left"  and (self.x + self.sprite.w*2) < (self.scene.player.x - self.scene.player.sprite.w)) or
+				(self.facing == "right" and self.x > (self.scene.player.x + self.scene.player.sprite.w)) or
+				(self.facing == "up"    and (self.y + self.sprite.h*2) < (self.scene.player.y - self.scene.player.sprite.h)) or
+				(self.facing == "down"  and self.y > (self.scene.player.y + self.scene.player.sprite.h)))
 		then
 			return "player"
 		end
@@ -544,10 +570,10 @@ function Bot:noticePlayer(ignoreShadow)
 	end
 
 	if self:distanceFromPlayerSq() < visibleDistance*visibleDistance then
-		local isRightOfPlayer = (self.scene.player.x + self.scene.player.sprite.w) < (self.x + self.sprite.w)
-		local isLeftOfPlayer = (self.scene.player.x + self.scene.player.sprite.w) > (self.x + self.sprite.w)
-		local isAbovePlayer = (self.scene.player.y + self.scene.player.sprite.h*2) > (self.y + self.sprite.h*2)
-		local isBelowPlayer = (self.scene.player.y + self.scene.player.sprite.h*2) < (self.y + self.sprite.h*2)
+		local isRightOfPlayer = (self.scene.player.x + self.scene.player.sprite.w) < self.x
+		local isLeftOfPlayer = self.scene.player.x > (self.x + self.sprite.w)
+		local isAbovePlayer = (self.scene.player.y + self.scene.player.sprite.h) > (self.y + self.sprite.h*2)
+		local isBelowPlayer = (self.scene.player.y + self.scene.player.sprite.h) < (self.y + self.sprite.h*2)
 		
 		if  self.facing == "right" and isLeftOfPlayer and not self.scene.player:isHiding("left") and
 			not ((isAbovePlayer and self.scene.player:isHiding("up")) or
@@ -605,6 +631,22 @@ function Bot:createDropShadow()
 		}
 	)
 	self.scene:addObject(self.dropShadow)
+end
+
+function Bot:updateFacing()
+	if self:isFacing("up") and self.facing ~= "up" then
+		self.facing = "up"
+		self.facingTime = 0
+	elseif self:isFacing("down") and self.facing ~= "down" then
+		self.facing = "down"
+		self.facingTime = 0
+	elseif self:isFacing("left") and self.facing ~= "left" then
+		self.facing = "left"
+		self.facingTime = 0
+	elseif self:isFacing("right") and self.facing ~= "right" then
+		self.facing = "right"
+		self.facingTime = 0
+	end
 end
 
 function Bot:updateDropShadowPos(xonly)
@@ -673,19 +715,7 @@ function Bot:baseUpdate(dt)
 		self.visualColliders.right.y = self.y + self.sprite.h
 	end
 	
-	if self:isFacing("up") and self.facing ~= "up" then
-		self.facing = "up"
-		self.facingTime = 0
-	elseif self:isFacing("down") and self.facing ~= "down" then
-		self.facing = "down"
-		self.facingTime = 0
-	elseif self:isFacing("left") and self.facing ~= "left" then
-		self.facing = "left"
-		self.facingTime = 0
-	elseif self:isFacing("right") and self.facing ~= "right" then
-		self.facing = "right"
-		self.facingTime = 0
-	end
+	self:updateFacing()
 	
 	-- Update drop shadow position
 	self:updateDropShadowPos()
@@ -702,7 +732,7 @@ function Bot:baseUpdate(dt)
 		if  extenderarm.transform.x + extenderarm.w*2 > self.sprite.transform.x + self.sprite.w - 10 and
 			extenderarm.transform.x <= self.sprite.transform.x + self.sprite.w*2 - 20 and
 			extenderarm.transform.y + extenderarm.h*2 > self.sprite.transform.y + self.sprite.h - 10 and
-			extenderarm.transform.y <= self.sprite.transform.y + self.sprite.h + 25
+			extenderarm.transform.y <= self.sprite.transform.y + self.sprite.h*2 - 10
 		then
 			-- Pause the update
 			local extenderUpdate = self.scene.player.basicUpdate
@@ -712,17 +742,19 @@ function Bot:baseUpdate(dt)
 			self.sprite:setAnimation("hurt"..self.facing)
 			self:removeAllUpdates()
 			self:addSceneHandler("update", Bot.updateAction)
+			self.scene.player.chasers[tostring(self.name)] = nil
+
+			self.grabbed = true
+			self.scene.player.extenderArmColliding = self
+			self.scene.player.extenderPull = self
 
 			self.scene:run {
 				PlayAudio("sfx", "smack", 1.0),
 				Do(function()
-					self.scene.player.extenderArmColliding = self
-					self.scene.player.extenderPull = self
-					self.grabbed = true
-					
-					self:removeSceneHandler("update", Bot.updateAction)
+					self:removeAllUpdates()
 					self:addSceneHandler("update")
-					
+					self.readyToFall = true
+
 					-- Resume update
 					self.scene.player.basicUpdate = extenderUpdate
 				end)
@@ -755,7 +787,7 @@ function Bot:updateAction(dt)
 	end
 	
 	-- If colliding with fall object, fall
-	if self.grabbed and not self.falling then
+	if self.readyToFall and not self.falling then
 		for _, obj in pairs(self.scene.map.fallables or {}) do
 			if  self.x + self.sprite.w*2 > obj.x and
 				self.x <= obj.x + obj.width*2 and
@@ -802,7 +834,7 @@ function Bot:getBattleArgs()
 		self:getMonsterData()
 	}
 	for _, npc in pairs(self.scene.player.chasers) do
-		if npc.name ~= self.name then
+		if npc.name ~= self.name and not npc:isRemoved() and not npc.falling then
 			npc.flagForDeletion = true
 			npc.collided = true
 			table.insert(args.opponents, npc:getMonsterData())
@@ -832,6 +864,7 @@ function Bot:remove()
 	for _, light in pairs(self.flashlight) do
 		light:remove()
 	end
+	self.originalLocation:remove()
 	
 	if self.scene.player then
 		self.scene.player.chasers[tostring(self.name)] = nil

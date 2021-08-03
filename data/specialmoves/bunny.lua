@@ -171,10 +171,15 @@ return function(player)
 					self.y = self.y + deltaY
 					self.dropShadow.x = self.dropShadow.x + deltaX
 					self.dropShadow.y = self.dropShadow.y + deltaY
-				else
+				elseif self.extenderPull.grabbed then
 					-- Pull object to us
 					self.extenderPull.x = self.extenderPull.x - deltaX
 					self.extenderPull.y = self.extenderPull.y - deltaY
+					
+					if self.extenderPull.state == NPC.STATE_TOUCHING then
+						self.extenderPull.grabbed = false
+						self.extenderPull.readyToFall = false
+					end
 				end
 				
 				for _,piece in pairs(extenderPieces) do
@@ -218,6 +223,10 @@ return function(player)
 			if not self.extenderPull and self.extenderArmColliding and self.extenderArmColliding.snapToObject then
 				self.x = self.extenderArmColliding.x + self.extenderArmColliding.sprite.w
 				self.y = self.extenderArmColliding.y + self.extenderArmColliding.sprite.h*2 - self.height
+			end
+			if self.extenderPull and not self.extenderPull.falling then
+				self.extenderPull.grabbed = false
+				self.extenderPull.readyToFall = false
 			end
 			self.extenderarm:remove()
 			self.extenderarm = nil

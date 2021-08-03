@@ -110,6 +110,9 @@ return {
 		hurtdown = {
 			frames = {{9,4}}
 		},
+		hurtup = {
+			frames = {{9,4}}
+		},
 		hurt = {
 			frames = {{8,1}}
 		},

@@ -559,7 +559,6 @@ return function(self)
     if GameState:isFlagSet(self) then
         return Action()
     end
-    GameState:setFlag(self)
     
     local onSuccess = Serial {
         Ease(self.scene.camPos, &quot;y&quot;, 200, 1),
@@ -577,7 +576,8 @@ return function(self)
         Parallel {
             Ease(self.scene.camPos, &quot;x&quot;, 0, 1),
             Ease(self.scene.camPos, &quot;y&quot;, 0, 1)
-        }
+        },
+        Do(function() GameState:setFlag(self) end)
     }
     return BlockPlayer {
         Wait(0.8),

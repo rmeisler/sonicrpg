@@ -77,7 +77,7 @@ function PartyMember:construct(scene, data)
 	self.defenseEvent = false
 
 	if data.equip.weapon and data.equip.weapon.event then
-		self.attackEvent = data.equip.weapon.event.action
+		self.defenseEvent = data.equip.weapon.event.action
 	end
 	if data.equip.armor and data.equip.armor.event then
 		self.defenseEvent = data.equip.armor.event.action

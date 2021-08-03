@@ -94,6 +94,10 @@ return {
 				},
 				Do(function() end)
 			)
+		else
+			dodgeAction = target.defenseEvent and
+				target.defenseEvent(self, target) or
+				dodgeAction
 		end
 	
 		return Serial {
