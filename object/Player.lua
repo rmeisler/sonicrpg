@@ -888,6 +888,7 @@ function Player:basicUpdate(dt)
 			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
 				self.state = Player.STATE_HIDEDOWN
 				self.x = spot.x + self.scene:getTileWidth() + (spot.object.properties.hideOffset or 0) - 7
+				self.y = spot.y + spot.sprite.h*2 - self.height - self.scene:getTileHeight()*1.5
 				self.cinematic = true
 				self.hidingDirection = "down"
 				self.hideHand = BasicNPC(

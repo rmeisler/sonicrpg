@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="47" height="120" tilewidth="32" tileheight="32" infinite="0" nextobjectid="66">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="47" height="120" tilewidth="32" tileheight="32" infinite="0" nextobjectid="68">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
   <property name="onload" type="file" value="actions/deathegg_player.lua"/>
@@ -667,14 +667,14 @@
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="55" name="LightPost" type="ExtPost" gid="9040" x="416" y="1888" width="32" height="32">
+  <object id="55" name="LightPost" type="BasicNPC" gid="9040" x="384" y="1760" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/lightpost.png"/>
    </properties>
   </object>
-  <object id="56" name="LightPost" type="ExtPost" gid="9040" x="1056" y="1888" width="32" height="32">
+  <object id="56" name="LightPost" type="BasicNPC" gid="9040" x="1120" y="1760" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
@@ -731,6 +731,20 @@
    <properties>
     <property name="fallable" type="bool" value="true"/>
     <property name="ghost" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="66" name="Grabbable" type="ExtPost" gid="9040" x="416" y="1888" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
+   </properties>
+  </object>
+  <object id="67" name="Grabbable" type="ExtPost" gid="9040" x="1056" y="1888" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
    </properties>
   </object>
  </objectgroup>

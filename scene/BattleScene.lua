@@ -339,7 +339,7 @@ function BattleScene:update(dt)
 			
 			local victoryPoses = {}
 			for _, mem in pairs(self.party) do
-				if mem.state ~= BattleActor.STATE_DEAD then
+				if mem.state == BattleActor.STATE_IDLE then
 					table.insert(victoryPoses, Animate(mem.sprite, "victory"))
 				end
 			end

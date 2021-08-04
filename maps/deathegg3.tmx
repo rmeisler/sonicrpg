@@ -475,7 +475,7 @@
     <property name="spawn_point" value="LeftEntrance"/>
    </properties>
   </object>
-  <object id="8" name="LightPost" type="ExtPost" gid="9040" x="352" y="512" width="32" height="32">
+  <object id="8" name="LightPost" type="BasicNPC" gid="9040" x="352" y="512" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="nocollision" type="bool" value="true"/>
@@ -505,7 +505,7 @@
     <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
    </properties>
   </object>
-  <object id="14" name="LightPost" type="ExtPost" gid="9040" x="800" y="512" width="32" height="32">
+  <object id="14" name="LightPost" type="BasicNPC" gid="9040" x="800" y="512" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="nocollision" type="bool" value="true"/>

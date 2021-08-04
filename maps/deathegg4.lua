@@ -8,7 +8,7 @@ return {
   height = 120,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 66,
+  nextobjectid = 68,
   properties = {
     ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
     ["onload"] = "actions/deathegg_player.lua"
@@ -1116,10 +1116,10 @@ return {
         {
           id = 55,
           name = "LightPost",
-          type = "ExtPost",
+          type = "BasicNPC",
           shape = "rectangle",
-          x = 416,
-          y = 1888,
+          x = 384,
+          y = 1760,
           width = 32,
           height = 32,
           rotation = 0,
@@ -1134,10 +1134,10 @@ return {
         {
           id = 56,
           name = "LightPost",
-          type = "ExtPost",
+          type = "BasicNPC",
           shape = "rectangle",
-          x = 1056,
-          y = 1888,
+          x = 1120,
+          y = 1760,
           width = 32,
           height = 32,
           rotation = 0,
@@ -1287,6 +1287,42 @@ return {
           properties = {
             ["fallable"] = true,
             ["ghost"] = false
+          }
+        },
+        {
+          id = 66,
+          name = "Grabbable",
+          type = "ExtPost",
+          shape = "rectangle",
+          x = 416,
+          y = 1888,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/extpost2.png"
+          }
+        },
+        {
+          id = 67,
+          name = "Grabbable",
+          type = "ExtPost",
+          shape = "rectangle",
+          x = 1056,
+          y = 1888,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/extpost2.png"
           }
         }
       }

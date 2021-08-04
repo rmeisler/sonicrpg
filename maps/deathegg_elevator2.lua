@@ -8,7 +8,7 @@ return {
   height = 30,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 13,
+  nextobjectid = 14,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/deatheggf1.lua"
@@ -495,6 +495,25 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 13,
+          name = "Robotnik",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 576,
+          y = 608,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "grab_snively_grin",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/robotnik_down.png"
           }
         }
       }

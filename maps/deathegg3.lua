@@ -693,7 +693,7 @@ return {
         {
           id = 8,
           name = "LightPost",
-          type = "ExtPost",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 352,
           y = 512,
@@ -767,7 +767,7 @@ return {
         {
           id = 14,
           name = "LightPost",
-          type = "ExtPost",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 800,
           y = 512,

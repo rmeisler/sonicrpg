@@ -588,7 +588,7 @@ return {
             ["ghost"] = true,
             ["key"] = "left",
             ["orientation"] = "right",
-            ["scene"] = "deathegg_elevator1.lua",
+            ["scene"] = "deathegg6.lua",
             ["spawn_point"] = "RightEntrance"
           }
         },
