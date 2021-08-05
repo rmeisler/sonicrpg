@@ -20,6 +20,7 @@ function LaserTrap:construct(scene, layer, object)
 	self.ghost = true
 	self.alwaysOn = object.properties.alwaysOn
 	self.deactivated = object.properties.deactivated
+	self.respawnName = object.properties.respawn
 
 	NPC.init(self)
 
@@ -72,6 +73,10 @@ function LaserTrap:postInit()
 	self.laser2.sprite.transform.sy = 1.0
 	self.laser2.sprite.sortOrderY = 99999
 	self.scene:addObject(self.laser2)
+	
+	if self.respawnName then
+		self.respawn = self.scene.objectLookup[self.respawnName]
+	end
 	
 	if self.alwaysOn then
 		self:lasersOn()
@@ -186,6 +191,26 @@ end
 
 function LaserTrap:shockPlayer()
 	local player = self.scene.player
+	local respawnAction = Action()
+	
+	if self.respawn then
+		respawnAction = Serial {
+			Ease(player.sprite.color, 4, 0, 1),
+			Do(function()
+				player.x = self.respawn.x
+				player.y = self.respawn.y
+			end),
+			-- Blink transparency
+			Repeat(
+				Serial {
+					Ease(player.sprite.color, 4, 0, 20, "quad"),
+					Ease(player.sprite.color, 4, 255, 20, "quad")
+				},
+				10
+			)
+		}
+	end
+
 	player:run(Parallel {
 		BlockPlayer {
 			Do(function()
@@ -204,7 +229,10 @@ function LaserTrap:shockPlayer()
 			}, 3),
 		},
 		Serial {
-			Ease(player, "y", player.y - 100, 8, "linear"),
+			Parallel {
+				Ease(player, "y", player.y - 100, 8, "linear"),
+				respawnAction
+			},
 			Do(function()
 				player.state = "idledown"
 			end)
