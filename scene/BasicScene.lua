@@ -405,10 +405,10 @@ function BasicScene:changeScene(args)
 end
 
 -- Vertical screen shake
-function BasicScene:screenShake(strength, speed, repeatTimes)
-	strength = strength or 50
-	speed = speed or 15
-	repeatTimes = repeatTimes or 1
+function BasicScene:screenShake(str, sp, rp)
+	local strength = str or 50
+	local speed = sp or 15
+	local repeatTimes = rp or 1
 	
 	return Serial {
 		Do(function()
@@ -417,19 +417,16 @@ function BasicScene:screenShake(strength, speed, repeatTimes)
 		
 		Repeat(Serial {
 			Ease(self.camPos, "y", function() return self.camPos.y - strength end, speed, "quad"),
-			Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad"),
-			Ease(self.camPos, "y", function() return self.camPos.y + strength end, speed, "quad"),
-			Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad")
+			Ease(self.camPos, "y", function() return self.camPos.y + strength end, speed, "quad")
 		}, repeatTimes),
 		
 		Ease(self.camPos, "y", function() return self.camPos.y - strength/2 end, speed, "quad"),
-		Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad"),
 		Ease(self.camPos, "y", function() return self.camPos.y + strength/2 end, speed, "quad"),
-		Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad"),
 		
 		Do(function()
 			self.isScreenShaking = false
-			self.camPos = Transform()
+			self.camPos.x = 0
+			self.camPos.y = 0
 		end)
 	}
 end

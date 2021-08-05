@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="47" height="120" tilewidth="32" tileheight="32" infinite="0" nextobjectid="68">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="47" height="120" tilewidth="32" tileheight="32" infinite="0" nextobjectid="71">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
   <property name="onload" type="file" value="actions/deathegg_player.lua"/>
@@ -630,7 +630,7 @@
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="49" name="LaserTrap3" type="LaserTrap" gid="9040" x="608" y="2848" width="288" height="32">
+  <object id="49" name="LaserTrap3" type="LaserTrap" gid="9040" x="608" y="2816" width="288" height="32">
    <properties>
     <property name="alwaysOn" type="bool" value="true"/>
     <property name="spawnPointLeft" value="LaserTrapShooter5"/>
@@ -643,25 +643,25 @@
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="51" name="Chest1" type="Chest" gid="8977" x="672" y="3424" width="64" height="64">
+  <object id="51" name="Chest1" type="Chest" gid="8977" x="672" y="3392" width="32" height="32">
    <properties>
     <property name="CrystalWater" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="52" name="Chest2" type="Chest" gid="8977" x="768" y="3424" width="64" height="64">
+  <object id="52" name="Chest2" type="Chest" gid="8977" x="768" y="3392" width="32" height="32">
    <properties>
     <property name="LeatherSash" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="53" name="Chest3" type="Chest" gid="8977" x="672" y="3488" width="64" height="64">
+  <object id="53" name="Chest3" type="Chest" gid="8977" x="672" y="3456" width="32" height="32">
    <properties>
     <property name="Mine" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="54" name="Chest4" type="Chest" gid="8977" x="768" y="3488" width="64" height="64">
+  <object id="54" name="Chest4" type="Chest" gid="8977" x="768" y="3456" width="32" height="32">
    <properties>
     <property name="LaserShield" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
@@ -741,6 +741,27 @@
    </properties>
   </object>
   <object id="67" name="Grabbable" type="ExtPost" gid="9040" x="1056" y="1888" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
+   </properties>
+  </object>
+  <object id="68" name="Grabbable" type="ExtPost" gid="9040" x="736" y="2208" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
+   </properties>
+  </object>
+  <object id="69" name="Grabbable" type="ExtPost" gid="9040" x="736" y="2528" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
+   </properties>
+  </object>
+  <object id="70" name="Grabbable" type="ExtPost" gid="9040" x="736" y="2848" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="nocollision" type="bool" value="true"/>

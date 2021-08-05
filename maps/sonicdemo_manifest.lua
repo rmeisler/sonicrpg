@@ -23,6 +23,12 @@ return {
 	
 	{
         type = "map",
+		file = "maps/deathegg_elevator4.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
 		file = "maps/deathegg1.lua"
     },
 	

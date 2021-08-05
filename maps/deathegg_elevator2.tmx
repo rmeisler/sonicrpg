@@ -302,14 +302,6 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="13" name="Robotnik" type="BasicNPC" gid="9040" x="576" y="608" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="grab_snively_grin"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/robotnik_down.png"/>
-   </properties>
-  </object>
  </objectgroup>
  <layer name="Tile Layer 2" width="36" height="30">
   <data encoding="csv">

@@ -496,25 +496,6 @@ return {
           properties = {
             ["ghost"] = true
           }
-        },
-        {
-          id = 13,
-          name = "Robotnik",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 576,
-          y = 608,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 9040,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "grab_snively_grin",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/robotnik_down.png"
-          }
         }
       }
     },
