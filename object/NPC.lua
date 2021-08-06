@@ -375,7 +375,7 @@ function NPC:drop()
 	self:run {
 		Wait(0.2),
 		Parallel {
-			Ease(self, "y", self.y + 800, 1),
+			Ease(self, "y", self.y + 500, 1),
 			Ease(self.sprite.color, 4, 0, 0.3),
 			
 			Serial {

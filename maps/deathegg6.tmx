@@ -474,19 +474,19 @@
     <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
    </properties>
   </object>
-  <object id="608" name="Chest1" type="Chest" gid="8977" x="2496" y="1088" width="32" height="32">
+  <object id="608" name="Chest3" type="Chest" gid="8977" x="2496" y="1120" width="64" height="64">
    <properties>
     <property name="BlueLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="609" name="Chest2" type="Chest" gid="8977" x="1344" y="1120" width="32" height="32">
+  <object id="609" name="Chest2" type="Chest" gid="8977" x="1344" y="1120" width="64" height="64">
    <properties>
     <property name="CrystalWater" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="610" name="Chest1" type="Chest" gid="8977" x="2208" y="1696" width="32" height="32">
+  <object id="610" name="Chest1" type="Chest" gid="8977" x="2208" y="1696" width="64" height="64">
    <properties>
     <property name="GreenLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>

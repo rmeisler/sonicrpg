@@ -194,7 +194,7 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
     <property name="orientation" value="left"/>
-    <property name="scene" type="file" value="deathegg6.lua"/>
+    <property name="scene" type="file" value="deathegg1.lua"/>
     <property name="spawn_point" value="LeftEntrance"/>
    </properties>
   </object>

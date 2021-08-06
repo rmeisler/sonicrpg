@@ -155,7 +155,10 @@ function Bot:postInit()
 	self.behavior = Bot.BEHAVIOR_PATROLLING
 	
 	if self.object.properties.viewRange then
-		self.viewRange = self.scene.objectLookup[self.object.properties.viewRange]
+		self.viewRanges = {}
+		for _, view in pairs(pack((self.object.properties.viewRange):split(','))) do
+			table.insert(self.viewRanges, self.scene.objectLookup[view])
+		end
 	end
 	
 	if not self.visualColliders then
@@ -306,8 +309,19 @@ function Bot:update(dt)
 	end
 	
 	if not self.friendlyCond or not self.friendlyCond(self) then
-		if self.viewRange and self.viewRange.state ~= NPC.STATE_TOUCHING then
-			return
+		if self.viewRanges then
+			local touching = false
+			for _, v in pairs(self.viewRanges) do
+				if v.state == NPC.STATE_TOUCHING and
+				   self:isTouching(v.x, v.y, v.object.width, v.object.height)
+				then
+					touching = true
+					break
+				end
+			end
+			if not touching then
+				return
+			end
 		end
 
 		local lineOfSight = self:noticePlayer(false)
@@ -732,7 +746,7 @@ function Bot:baseUpdate(dt)
 		if  extenderarm.transform.x + extenderarm.w*2 > self.sprite.transform.x + self.sprite.w - 10 and
 			extenderarm.transform.x <= self.sprite.transform.x + self.sprite.w*2 - 20 and
 			extenderarm.transform.y + extenderarm.h*2 > self.sprite.transform.y + self.sprite.h - 10 and
-			extenderarm.transform.y <= self.sprite.transform.y + self.sprite.h*2 - 10
+			extenderarm.transform.y <= self.sprite.transform.y + self.sprite.h*2 - 30
 		then
 			-- Pause the update
 			local extenderUpdate = self.scene.player.basicUpdate

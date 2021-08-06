@@ -8,7 +8,7 @@ return {
   height = 64,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 19,
+  nextobjectid = 22,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/deathegg_robotnikcinematic.lua"
@@ -722,7 +722,7 @@ return {
       visible = true,
       opacity = 1,
       offsetx = 0,
-      offsety = -1500,
+      offsety = 0,
       draworder = "topdown",
       properties = {},
       objects = {
@@ -732,7 +732,7 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 512,
-          y = 1728,
+          y = 195,
           width = 32,
           height = 32,
           rotation = 0,
@@ -751,7 +751,7 @@ return {
           type = "Player",
           shape = "rectangle",
           x = 576,
-          y = 1696,
+          y = 160,
           width = 32,
           height = 32,
           rotation = 0,
@@ -884,6 +884,42 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message=\"Locked.\"},\n        Do(function() self:refreshKeyHint() end)\n    }\nend"
+          }
+        },
+        {
+          id = 19,
+          name = "Grabbable",
+          type = "ExtPost",
+          shape = "rectangle",
+          x = 192,
+          y = 1696,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/extpost2.png"
+          }
+        },
+        {
+          id = 20,
+          name = "Grabbable",
+          type = "ExtPost",
+          shape = "rectangle",
+          x = 960,
+          y = 1696,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/extpost2.png"
           }
         }
       }

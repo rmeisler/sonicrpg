@@ -135,12 +135,14 @@ function RaceSquare:onCollision(prevState)
 		self.scene.pausePlayer = true
 		
 		local prevMusic = self.scene.audio:getCurrentMusic()
+		local subjWidth = self.subject.sprite and self.subject.sprite.w*2 or self.subject.object.width
+		local subjHeight = self.subject.sprite and self.subject.sprite.h*2 or self.subject.object.height/2
 		self.scene.player:run {
 			PlayAudio("music", "puzzlesolve", 1.0),
 			
 			Parallel {
-				Ease(self.scene.camPos, "x", function() return self.scene.player.x - (self.subject.x + self.subject.sprite.w) end, 1, "inout"),
-				Ease(self.scene.camPos, "y", function() return self.scene.player.y - (self.subject.y + self.subject.sprite.h*2) end, 1, "inout"),
+				Ease(self.scene.camPos, "x", function() return self.scene.player.x - (self.subject.x + subjWidth/2) end, 1, "inout"),
+				Ease(self.scene.camPos, "y", function() return self.scene.player.y - (self.subject.y + subjHeight) end, 1, "inout"),
 			},
 			
 			self.subject:onPuzzleSolve(),
