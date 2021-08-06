@@ -774,6 +774,7 @@ end</property>
 local Serial = require &quot;actions/Serial&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Do = require &quot;actions/Do&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
 local Action = require &quot;actions/Action&quot;
 
 return function(self)
@@ -786,6 +787,7 @@ return function(self)
     end
 
     return BlockPlayer {
+        PlayAudio(&quot;sfx&quot;, &quot;openchasm&quot;, 1.0, true),
         Ease(wallLayer, &quot;offsety&quot;, -32*3, 1),
         Do(function()
             self.scene.objectLookup.RightEntrance.y = self.scene.objectLookup.RightEntranceBlock.y

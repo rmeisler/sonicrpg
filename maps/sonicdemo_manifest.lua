@@ -61,6 +61,11 @@ return {
         type = "map",
 		file = "maps/deatheggf2_2.lua"
     },
+	{
+        type = "map",
+		file = "maps/deatheggf2_4.lua",
+		--primary = true
+    },
 	
 	{
         type = "map",

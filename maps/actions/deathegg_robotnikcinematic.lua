@@ -14,10 +14,15 @@ return function(scene)
 	local Wait = require "actions/Wait"
 	local Repeat = require "actions/Repeat"
 	local Spawn = require "actions/Spawn"
+	local BlockPlayer = require "actions/BlockPlayer"
+	local Move = require "actions/Move"
 	local Do = require "actions/Do"
 	local Animate = require "actions/Animate"
 	local shine = require "lib/shine"
+	
 	local SpriteNode = require "object/SpriteNode"
+	local BasicNPC = require "object/BasicNPC"
+	local FactoryBot = require "object/FactoryBot"
 	
 	scene.player.collisionHSOffsets = {
 		right_top = {x = 0, y = 0},
@@ -33,37 +38,112 @@ return function(scene)
 	GameState:setFlag("deathegg_robotnikcinematic")
 	
 	local elevatorLayer
+	local wallLayer
 	for _,layer in pairs(scene.map.layers) do
 		if layer.name == "elevator" then
 			elevatorLayer = layer
+		elseif layer.name == "RightWall" then
+            wallLayer = layer
+        end
+		
+		if elevatorLayer ~= nil and wallLayer ~= nil then
+			break
 		end
 	end
 	
 	local stepAction = function()
 		return Serial {
 			PlayAudio("sfx", "juggerbotstep", 0.3, true),
-			scene:screenShake(10, 40),
+			scene:screenShake(20, 40),
 			Wait(1),
 			PlayAudio("sfx", "juggerbotstep", 0.3, true),
-			scene:screenShake(10, 40)
+			scene:screenShake(20, 40)
 		}
 	end
 	
+	local fbot = FactoryBot(
+		scene,
+		{name="objects"},
+		{
+			name = "FactoryBot",
+			x = 384,
+			y = scene.objectLookup["Spawn 1"].y + 32,
+			width = 64,
+			height = 32,
+			properties = {
+				battle = "data/monsters/factorybot.lua",
+				battleOnColllide = true,
+				disappearAfterBattle = true,
+				defaultAnim = "idleup",
+				ghost = true,
+				sprite = "art/sprites/factorybot.png",
+				ignorePlayer = true
+			}
+		}
+	)
+	scene:addObject(fbot)
+	
+	scene.player.sprite.visible = false
+	scene.cinematicPause = true
+	
 	return Serial {
+		Do(function()
+			scene.player.sprite.visible = false
+			scene.cinematicPause = true
+		end),
 		-- Factorybot enters from left
 		-- Go to elevator computer
 		-- Face up
+		Wait(1),
+		Move(fbot, scene.objectLookup.Waypoint),
+		Animate(fbot.sprite, "idleup"),
+
 		-- Beep boop
-		-- Face right
-		-- Camera pans up to see Robotnik on elevator with Snively, riding down
-		-- Robotnik dialogue
-		-- Factorybot walks onto elevator with them, all continue to ride down
-		-- pan to left entrance, player enters
+		PlayAudio("sfx", "lockon", 1.0),
+		Wait(0.2),
+		PlayAudio("sfx", "lockon", 1.0),
+		Wait(0.2),
+		PlayAudio("sfx", "lockon", 1.0),
+		Wait(0.2),
+		PlayAudio("sfx", "lockon", 1.0),
+		Wait(0.5),
+		PlayAudio("sfx", "nicolebeep", 1.0),
+		Wait(1),
+		
+		Animate(fbot.sprite, "idleright"),
 		
 		Parallel {
-			Ease(elevatorLayer, "offsety", 0, 0.1),
-			Ease(scene.player, "y", 1728 - scene.player.sprite.h*2, 0.1),
-			Ease(scene.objectLookup.Robotnik, "y", 1728 - scene.objectLookup.Robotnik.sprite.h*2, 0.1),
+			Ease(scene.camPos, "x", -500, 0.3),
+			Ease(scene.camPos, "y", 1500, 0.3)
+		},
+		
+		Do(function()
+			scene.player.y = scene.player.y - 1500
+			scene.camPos.y = 0
+		end),
+		
+		Parallel {
+			Serial {
+				Ease(elevatorLayer, "offsety", 0, 0.1),
+				Wait(0.5),
+				Move(fbot, scene.objectLookup.Waypoint2),
+				Wait(0.5),
+				PlayAudio("sfx", "openchasm", 0.8, true),
+				Ease(wallLayer, "offsety", -32*3, 1),
+				Do(function()
+					scene.objectLookup.RightEntrance.y = scene.objectLookup.RightEntranceBlock.y
+					scene.objectLookup.RightEntrance.object.y = scene.objectLookup.RightEntranceBlock.y
+					scene.objectLookup.RightEntrance:updateCollision()
+					scene.objectLookup.RightEntranceBlock:remove()
+				end),
+				Move(fbot, scene.objectLookup.Waypoint3),
+				Do(function()
+					fbot:remove()
+				end)
+			},
+			
+			Ease(scene.player, "y", 2528 - scene.player.sprite.h*2, 0.1),
+			Ease(scene.objectLookup.Robotnik, "y", 2528 - scene.objectLookup.Robotnik.sprite.h*2, 0.1),
 
 			Serial {
 				Animate(scene.objectLookup.Robotnik.sprite, "grab_snively_smile"),
@@ -90,7 +170,38 @@ return function(scene)
 				scene:screenShake(10, 30, 14),
 				
 				Animate(scene.objectLookup.Robotnik.sprite, "grab_snively_grin"),
-				MessageBox {message="Robotnik: O{p5}o{p5}o{p5}h, {p80}that's good Snively. {p80}That's very good indeed.", textspeed=0.2},
+				Parallel {
+					MessageBox {message="Robotnik: O{p5}o{p5}o{p5}h, {p80}that's good Snively. {p80}That's very good indeed.", textspeed=0.2},
+
+					Ease(elevatorLayer, "offsety", 900, 0.2),
+					Ease(scene.objectLookup.Robotnik, "y", function() return scene.objectLookup.Robotnik.y + 900 end, 0.2),
+					Serial {
+						Wait(2),
+						Ease(scene.camPos, "x", 0, 1),
+						Do(function()
+							scene.player.x = 384
+							scene.player.y = 2496
+							scene.player.sprite.visible = true
+							scene.player.state = "idleright"
+							scene.cinematicPause = false
+							
+							local block = BasicNPC(
+								scene,
+								{name="objects"},
+								{
+									name = "Block",
+									x = 640,
+									y = 2496,
+									width = 32,
+									height = 192,
+									properties = {}
+								}
+							)
+							scene:addObject(block)
+							scene.objectLookup.Block = block
+						end)
+					}
+				}
 			}
 		}
 	}

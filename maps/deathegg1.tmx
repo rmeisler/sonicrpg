@@ -408,6 +408,7 @@ local Ease = require &quot;actions/Ease&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Do = require &quot;actions/Do&quot;
 local Action = require &quot;actions/Action&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
 
 return function(self)
     local wallLayer
@@ -422,6 +423,7 @@ return function(self)
     if not GameState:isFlagSet(self.scene.objectLookup.RightEntranceBlock) then
         onSuccess = Serial {
             Ease(self.scene.camPos, &quot;x&quot;, -200, 1),
+            PlayAudio(&quot;sfx&quot;, &quot;openchasm&quot;, 1.0, true),
             Ease(wallLayer, &quot;offsety&quot;, -32*3, 1),
             Ease(self.scene.camPos, &quot;x&quot;, 0, 1),
             Do(function()

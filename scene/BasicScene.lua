@@ -425,7 +425,6 @@ function BasicScene:screenShake(str, sp, rp)
 		
 		Do(function()
 			self.isScreenShaking = false
-			self.camPos.x = 0
 			self.camPos.y = 0
 		end)
 	}
