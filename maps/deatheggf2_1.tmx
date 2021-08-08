@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="47" tilewidth="32" tileheight="32" infinite="0" nextobjectid="597">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="47" tilewidth="32" tileheight="32" infinite="0" nextobjectid="598">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
   <property name="onload" type="file" value="actions/deathegg_player.lua"/>
@@ -271,7 +271,7 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
     <property name="orientation" value="left"/>
-    <property name="scene" type="file" value="deatheggf2_2.lua"/>
+    <property name="scene" type="file" value="deatheggf2_sneak2.lua"/>
     <property name="spawn_point" value="LeftEntrance"/>
    </properties>
   </object>
@@ -280,7 +280,7 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="left"/>
     <property name="orientation" value="right"/>
-    <property name="scene" type="file" value="deathegg_elevator3.lua"/>
+    <property name="scene" type="file" value="deatheggf2_sneak1.lua"/>
     <property name="spawn_point" value="RightEntrance"/>
    </properties>
   </object>
@@ -450,7 +450,7 @@
   <object id="546" name="Wall" type="BasicNPC" gid="9040" x="896" y="1088" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/wall2.png"/>
    </properties>
   </object>
@@ -776,6 +776,13 @@ end</property>
    <properties>
     <property name="GreenLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="597" name="Wall" type="BasicNPC" gid="9040" x="2560" y="1152" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/wall2.png"/>
    </properties>
   </object>
  </objectgroup>

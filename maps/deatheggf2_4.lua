@@ -10,7 +10,8 @@ return {
   tileheight = 32,
   nextobjectid = 27,
   properties = {
-    ["battlebg"] = "../art/backgrounds/robotropolis1.png"
+    ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["onload"] = "actions/deatheggf2_4.lua"
   },
   tilesets = {
     {
@@ -732,7 +733,7 @@ return {
           shape = "rectangle",
           x = 416,
           y = 1568,
-          width = 288,
+          width = 320,
           height = 32,
           rotation = 0,
           gid = 9040,
@@ -740,6 +741,9 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -144,
+            ["defaultAnim"] = "active",
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    local leaderMem = GameState.party[GameState.leader]\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            MessageBox {\n                message=leaderMem.name..\": Nicole should be able to interface with this terminal.\",\n                blocking=true\n            },\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    elseif GameState.leader == \"bunny\" then\n        return BlockPlayer {\n            MessageBox {\n                message=leaderMem.name..\": Oh my stars{p50}, this stuff looks complicated!\",\n                blocking=true\n            },\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    elseif GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            MessageBox {\n                message=leaderMem.name..\": This is really more of Sal's domain...\",\n                blocking=true\n            },\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    elseif GameState.leader == \"antoine\" then\n        return BlockPlayer {\n            MessageBox {\n                message=leaderMem.name..\": This is not for me, I am thinking...\",\n                blocking=true\n            },\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\nend",
+            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Ease = require \"actions/Ease\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Do = require \"actions/Do\"\nlocal Move = require \"actions/Move\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    local elevatorLayer\n    for _,layer in pairs(self.scene.map.layers) do\n        if layer.name == \"elevator\" then\n            elevatorLayer = layer\n            break\n        end\n    end\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: Shall I call the elevator, {p40}Sally?\", textspeed=4},\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Call elevator?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        PlayAudio(\"sfx\", \"lockon\", 1.0),\n                        Wait(0.2),\n                        PlayAudio(\"sfx\", \"lockon\", 1.0),\n                        Wait(0.2),\n                        PlayAudio(\"sfx\", \"lockon\", 1.0),\n                        Wait(0.2),\n                        PlayAudio(\"sfx\", \"lockon\", 1.0),\n                        Wait(0.5),\n                        PlayAudio(\"sfx\", \"nicolebeep\", 1.0),\n                        Wait(1),\n                        Do(function()\n                            self.scene.player.state = \"idleright\"\n                            elevatorLayer.offsety = -1500\n                        end),\n                        Parallel {\n                            Ease(self.scene.camPos, \"x\", -300, 0.3),\n                            Ease(self.scene.camPos, \"y\", 1500, 0.3)\n                        },\n                        Parallel {\n                            Ease(elevatorLayer, \"offsety\", 0, 0.3),\n                            Ease(self.scene.camPos, \"y\", 0, 0.3)\n                        },\n                        Ease(self.scene.camPos, \"x\", 0, 1),\n                        Do(function() self.scene.objectLookup.Block:remove() end)\n                    }\n                 end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                 end}\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        }\n    }\nend",
             ["sprite"] = "../art/sprites/robotnikcomputer.png"
           }
         }
@@ -796,61 +800,6 @@ return {
           }
         },
         {
-          id = 12,
-          name = "ElevatorControl",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 224,
-          y = 1664,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 9040,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["onInteract"] = "local DescBox = require \"actions/DescBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Parallel = require \"actions/Parallel\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    return BlockPlayer { Parallel {\n        DescBox(\"Elevator Access Control\"),\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Up\"), choose = function(menu)\n                    menu:close()\n                end}\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2 + 150, love.graphics.getHeight()/2 + 30)\n        }\n    }}\nend",
-            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Ease = require \"actions/Ease\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal Move = require \"actions/Move\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    local elevatorLayer\n    for _,layer in pairs(self.scene.map.layers) do\n        if layer.name == \"elevator\" then\n            elevatorLayer = layer\n            print(\"found elevator layer\")\n            break\n        end\n    end\n\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: The round platform ahead of us is an elevator.{p40}\\nThis terminal controls that elevator.\"},\n        Do(function()\n            self.scene.player.noIdle = true\n            self.scene.player.sprite:setAnimation(\"walkright\")\n        end),\n        Ease(self.scene.player, \"x\", self.scene.objectLookup.Waypoint.x, 1, \"linear\"),\n        Do(function()\n            self.scene.player.noIdle = false\n            self.scene.player.state = \"idledown\"\n        end),\n        Wait(1),\n        Parallel {\n            Ease(self.scene.player, \"y\", self.scene.player.y - 300, 0.5, \"linear\"),\n            Ease(elevatorLayer, \"offsety\", elevatorLayer.offsety - 300, 0.5, \"linear\"),\n            Do(function()\n                -- Update drop shadow position\n                self.scene.player.dropShadow.x = self.scene.player.x - 22\n                self.scene.player.dropShadow.y = self.scene.player.dropShadowOverrideY or self.scene.player.y + self.scene.player.sprite.h - 15\n            end)\n        },\n        Do(function() self.scene:changeScene {map=\"deathegg_elevator3\", hint=\"frombelow\"} end)\n    }\nend",
-            ["sprite"] = "../art/sprites/terminal.png"
-          }
-        },
-        {
-          id = 13,
-          name = "LightPost",
-          type = "ExtPost",
-          shape = "rectangle",
-          x = 128,
-          y = 1664,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 9040,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["nocollision"] = true,
-            ["sprite"] = "../art/sprites/lightpost.png"
-          }
-        },
-        {
-          id = 14,
-          name = "LightPost",
-          type = "ExtPost",
-          shape = "rectangle",
-          x = 992,
-          y = 1664,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 9040,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["nocollision"] = true,
-            ["sprite"] = "../art/sprites/lightpost.png"
-          }
-        },
-        {
           id = 15,
           name = "RightEntranceBlock",
           type = "BasicNPC",
@@ -865,59 +814,6 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message=\"Locked.\"},\n        Do(function() self:refreshKeyHint() end)\n    }\nend"
-          }
-        },
-        {
-          id = 19,
-          name = "Grabbable",
-          type = "ExtPost",
-          shape = "rectangle",
-          x = 192,
-          y = 1696,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 9040,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/extpost2.png"
-          }
-        },
-        {
-          id = 20,
-          name = "Grabbable",
-          type = "ExtPost",
-          shape = "rectangle",
-          x = 960,
-          y = 1696,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 9040,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/extpost2.png"
-          }
-        },
-        {
-          id = 26,
-          name = "Spawn 1",
-          type = "Player",
-          shape = "rectangle",
-          x = 576,
-          y = 1696,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 9040,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["orientation"] = "down"
           }
         }
       }
@@ -974,12 +870,12 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10238, 10239, 0, 0, 0, 0, 0, 0, 0, 10217, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10268, 10269, 0, 0, 0, 0, 0, 0, 0, 10247, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10298, 10299, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        8037, 8038, 8037, 8038, 8037, 8038, 7898, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        7893, 7893, 7893, 7893, 7893, 7893, 7897, 7898, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        7893, 7893, 7893, 7893, 7893, 7893, 7893, 7968, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        7893, 7893, 7893, 7893, 7893, 7893, 7893, 7968, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        7893, 7893, 7893, 7893, 7893, 7893, 7893, 7933, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7895, 8037, 8038, 8037, 8037, 8038, 8037,
-        7893, 7893, 7893, 7893, 7893, 7893, 7893, 7968, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7895, 7896, 7893, 7893, 7893, 7893, 7893, 7893,
+        8037, 8038, 8037, 8038, 8037, 8038, 7898, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7895, 8037, 8038, 8037, 8038, 8037, 8038,
+        7893, 7893, 7893, 7893, 7893, 7893, 7897, 7898, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7895, 7896, 7893, 7893, 7893, 7893, 7893, 7893,
+        7893, 7893, 7893, 7893, 7893, 7893, 7893, 7968, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7930, 7893, 7893, 7893, 7893, 7893, 7893, 7893,
+        7893, 7893, 7893, 7893, 7893, 7893, 7893, 7968, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7965, 7893, 7893, 7893, 7893, 7893, 7893, 7893,
+        7893, 7893, 7893, 7893, 7893, 7893, 7893, 7933, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7930, 7893, 7893, 7893, 7893, 7893, 7893, 7893,
+        7893, 7893, 7893, 7893, 7893, 7893, 7893, 7968, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7965, 7893, 7893, 7893, 7893, 7893, 7893, 7893,
         7861, 7864, 7863, 7863, 7860, 7861, 7864, 8077, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8076, 7862, 7863, 7862, 7863, 7863, 7862, 7863,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10509, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         10617, 10618, 10619, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10538, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10622, 10623, 10624,

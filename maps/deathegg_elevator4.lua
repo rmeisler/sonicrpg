@@ -944,7 +944,7 @@ return {
             ["ghost"] = true,
             ["key"] = "left",
             ["orientation"] = "right",
-            ["scene"] = "deathegg3.lua",
+            ["scene"] = "deatheggf2_sneak3.lua",
             ["spawn_point"] = "RightEntrance"
           }
         },
@@ -1006,7 +1006,7 @@ return {
         {
           id = 24,
           name = "Spawn 1",
-          type = "Player",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 384,
           y = 2528,

@@ -18,6 +18,7 @@ return function(scene)
 	local Move = require "actions/Move"
 	local Do = require "actions/Do"
 	local Animate = require "actions/Animate"
+	local AudioFade = require "actions/AudioFade"
 	local shine = require "lib/shine"
 	
 	local SpriteNode = require "object/SpriteNode"
@@ -86,15 +87,17 @@ return function(scene)
 	scene.player.sprite.visible = false
 	scene.cinematicPause = true
 	
-	return Serial {
+	return BlockPlayer {
 		Do(function()
 			scene.player.sprite.visible = false
 			scene.cinematicPause = true
 		end),
+		
+		AudioFade("music", scene.audio:getMusicVolume(), 0, 1),
+		
 		-- Factorybot enters from left
 		-- Go to elevator computer
 		-- Face up
-		Wait(1),
 		Move(fbot, scene.objectLookup.Waypoint),
 		Animate(fbot.sprite, "idleup"),
 
@@ -164,7 +167,7 @@ return function(scene)
 
 				stepAction(),
 
-				MessageBox {message="Snively: I took the liberty of releasing him--{p60} t-{p20}-t{p20}-to guard the central mainframe computer in\nour absence."},
+				MessageBox {message="Snively: I took the liberty of releasing him--{p60} t-{p20}-t{p20}-to guard the Death Egg in our absence."},
 				
 				PlayAudio("sfx", "juggerbotroar", 0.1, true),
 				scene:screenShake(10, 30, 14),
@@ -199,6 +202,16 @@ return function(scene)
 							)
 							scene:addObject(block)
 							scene.objectLookup.Block = block
+							
+							-- Continuous stepping sounds from Juggerbot in bg
+							scene:run(Spawn(
+								Repeat(
+									Serial {
+										stepAction(),
+										Wait(5)
+									}
+								)
+							))
 						end)
 					}
 				}

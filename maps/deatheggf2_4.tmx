@@ -2,6 +2,7 @@
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="36" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="27">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
+  <property name="onload" type="file" value="actions/deatheggf2_4.lua"/>
  </properties>
  <tileset firstgid="1" source="datacenter.tsx"/>
  <tileset firstgid="3183" source="knothole.tsx"/>
@@ -488,10 +489,126 @@
 </data>
  </layer>
  <objectgroup name="elevatorobjects">
-  <object id="25" name="MainframeComputer" type="BasicNPC" gid="9040" x="416" y="1568" width="288" height="32">
+  <object id="25" name="MainframeComputer" type="BasicNPC" gid="9040" x="416" y="1568" width="320" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-144"/>
+    <property name="defaultAnim" value="active"/>
+    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+local Do = require &quot;actions/Do&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+
+return function(self)
+    local leaderMem = GameState.party[GameState.leader]
+    if GameState.leader == &quot;sally&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: Nicole should be able to interface with this terminal.&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif GameState.leader == &quot;bunny&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: Oh my stars{p50}, this stuff looks complicated!&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif GameState.leader == &quot;sonic&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: This is really more of Sal's domain...&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif GameState.leader == &quot;antoine&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: This is not for me, I am thinking...&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    end
+end</property>
+    <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Ease = require &quot;actions/Ease&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local Do = require &quot;actions/Do&quot;
+local Move = require &quot;actions/Move&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+
+local Layout = require &quot;util/Layout&quot;
+local Transform = require &quot;util/Transform&quot;
+
+return function(self)
+    local elevatorLayer
+    for _,layer in pairs(self.scene.map.layers) do
+        if layer.name == &quot;elevator&quot; then
+            elevatorLayer = layer
+            break
+        end
+    end
+    return BlockPlayer {
+        MessageBox {message=&quot;Nicole: Shall I call the elevator, {p40}Sally?&quot;, textspeed=4},
+        Menu {
+            layout = Layout {
+                {Layout.Text(&quot;Call elevator?&quot;), selectable = false},
+                {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                    menu:close()
+                    self.scene:run {
+                        menu,
+                        PlayAudio(&quot;sfx&quot;, &quot;lockon&quot;, 1.0),
+                        Wait(0.2),
+                        PlayAudio(&quot;sfx&quot;, &quot;lockon&quot;, 1.0),
+                        Wait(0.2),
+                        PlayAudio(&quot;sfx&quot;, &quot;lockon&quot;, 1.0),
+                        Wait(0.2),
+                        PlayAudio(&quot;sfx&quot;, &quot;lockon&quot;, 1.0),
+                        Wait(0.5),
+                        PlayAudio(&quot;sfx&quot;, &quot;nicolebeep&quot;, 1.0),
+                        Wait(1),
+                        Do(function()
+                            self.scene.player.state = &quot;idleright&quot;
+                            elevatorLayer.offsety = -1500
+                        end),
+                        Parallel {
+                            Ease(self.scene.camPos, &quot;x&quot;, -300, 0.3),
+                            Ease(self.scene.camPos, &quot;y&quot;, 1500, 0.3)
+                        },
+                        Parallel {
+                            Ease(elevatorLayer, &quot;offsety&quot;, 0, 0.3),
+                            Ease(self.scene.camPos, &quot;y&quot;, 0, 0.3)
+                        },
+                        Ease(self.scene.camPos, &quot;x&quot;, 0, 1),
+                        Do(function() self.scene.objectLookup.Block:remove() end)
+                    }
+                 end},
+                {Layout.Text(&quot;No&quot;), choose = function(menu)
+                    menu:close()
+                 end}
+            },
+            cancellable = true,
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+            selectedRow = 2
+        }
+    }
+end</property>
     <property name="sprite" type="file" value="../art/sprites/robotnikcomputer.png"/>
    </properties>
   </object>
@@ -515,91 +632,6 @@
     <property name="spawn_point" value="RightEntrance"/>
    </properties>
   </object>
-  <object id="12" name="ElevatorControl" type="BasicNPC" gid="9040" x="224" y="1664" width="64" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="onInteract">local DescBox = require &quot;actions/DescBox&quot;
-local Menu = require &quot;actions/Menu&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-
-local Layout = require &quot;util/Layout&quot;
-local Transform = require &quot;util/Transform&quot;
-
-return function(self)
-    return BlockPlayer { Parallel {
-        DescBox(&quot;Elevator Access Control&quot;),
-        Menu {
-            layout = Layout {
-                {Layout.Text(&quot;Up&quot;), choose = function(menu)
-                    menu:close()
-                end}
-            },
-            cancellable = true,
-            transform = Transform(love.graphics.getWidth()/2 + 150, love.graphics.getHeight()/2 + 30)
-        }
-    }}
-end</property>
-    <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local Ease = require &quot;actions/Ease&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Do = require &quot;actions/Do&quot;
-local Move = require &quot;actions/Move&quot;
-local Serial = require &quot;actions/Serial&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Wait = require &quot;actions/Wait&quot;
-
-return function(self)
-    local elevatorLayer
-    for _,layer in pairs(self.scene.map.layers) do
-        if layer.name == &quot;elevator&quot; then
-            elevatorLayer = layer
-            print(&quot;found elevator layer&quot;)
-            break
-        end
-    end
-
-    return BlockPlayer {
-        MessageBox {message=&quot;Nicole: The round platform ahead of us is an elevator.{p40}\nThis terminal controls that elevator.&quot;},
-        Do(function()
-            self.scene.player.noIdle = true
-            self.scene.player.sprite:setAnimation(&quot;walkright&quot;)
-        end),
-        Ease(self.scene.player, &quot;x&quot;, self.scene.objectLookup.Waypoint.x, 1, &quot;linear&quot;),
-        Do(function()
-            self.scene.player.noIdle = false
-            self.scene.player.state = &quot;idledown&quot;
-        end),
-        Wait(1),
-        Parallel {
-            Ease(self.scene.player, &quot;y&quot;, self.scene.player.y - 300, 0.5, &quot;linear&quot;),
-            Ease(elevatorLayer, &quot;offsety&quot;, elevatorLayer.offsety - 300, 0.5, &quot;linear&quot;),
-            Do(function()
-                -- Update drop shadow position
-                self.scene.player.dropShadow.x = self.scene.player.x - 22
-                self.scene.player.dropShadow.y = self.scene.player.dropShadowOverrideY or self.scene.player.y + self.scene.player.sprite.h - 15
-            end)
-        },
-        Do(function() self.scene:changeScene {map=&quot;deathegg_elevator3&quot;, hint=&quot;frombelow&quot;} end)
-    }
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/terminal.png"/>
-   </properties>
-  </object>
-  <object id="13" name="LightPost" type="ExtPost" gid="9040" x="128" y="1664" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/lightpost.png"/>
-   </properties>
-  </object>
-  <object id="14" name="LightPost" type="ExtPost" gid="9040" x="992" y="1664" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/lightpost.png"/>
-   </properties>
-  </object>
   <object id="15" name="RightEntranceBlock" type="BasicNPC" gid="8977" x="1088" y="1760" width="64" height="128">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -613,26 +645,6 @@ return function(self)
         Do(function() self:refreshKeyHint() end)
     }
 end</property>
-   </properties>
-  </object>
-  <object id="19" name="Grabbable" type="ExtPost" gid="9040" x="192" y="1696" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
-   </properties>
-  </object>
-  <object id="20" name="Grabbable" type="ExtPost" gid="9040" x="960" y="1696" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
-   </properties>
-  </object>
-  <object id="26" name="Spawn 1" type="Player" gid="9040" x="576" y="1696" width="32" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="orientation" value="down"/>
    </properties>
   </object>
  </objectgroup>
@@ -676,12 +688,12 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,10238,10239,0,0,0,0,0,0,0,10217,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,10268,10269,0,0,0,0,0,0,0,10247,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,10298,10299,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-8037,8038,8037,8038,8037,8038,7898,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7893,7893,7893,7893,7893,7893,7897,7898,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7893,7893,7893,7893,7893,7893,7893,7968,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7893,7893,7893,7893,7893,7893,7893,7968,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7893,7893,7893,7893,7893,7893,7893,7933,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7895,8037,8038,8037,8037,8038,8037,
-7893,7893,7893,7893,7893,7893,7893,7968,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7895,7896,7893,7893,7893,7893,7893,7893,
+8037,8038,8037,8038,8037,8038,7898,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7895,8037,8038,8037,8038,8037,8038,
+7893,7893,7893,7893,7893,7893,7897,7898,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7895,7896,7893,7893,7893,7893,7893,7893,
+7893,7893,7893,7893,7893,7893,7893,7968,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7930,7893,7893,7893,7893,7893,7893,7893,
+7893,7893,7893,7893,7893,7893,7893,7968,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7965,7893,7893,7893,7893,7893,7893,7893,
+7893,7893,7893,7893,7893,7893,7893,7933,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7930,7893,7893,7893,7893,7893,7893,7893,
+7893,7893,7893,7893,7893,7893,7893,7968,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7965,7893,7893,7893,7893,7893,7893,7893,
 7861,7864,7863,7863,7860,7861,7864,8077,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8076,7862,7863,7862,7863,7863,7862,7863,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,10509,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 10617,10618,10619,0,0,0,0,0,0,0,0,0,0,10538,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10622,10623,10624,

@@ -228,34 +228,60 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
     <property name="orientation" value="left"/>
-    <property name="scene" type="file" value="deatheggf2_1.lua"/>
+    <property name="scene" type="file" value="deatheggf2_sneak1.lua"/>
     <property name="spawn_point" value="LeftEntrance"/>
    </properties>
   </object>
   <object id="11" name="ElevatorControl" type="BasicNPC" gid="9040" x="864" y="576" width="64" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="onInteract">local DescBox = require &quot;actions/DescBox&quot;
-local Menu = require &quot;actions/Menu&quot;
-local Parallel = require &quot;actions/Parallel&quot;
+    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+local Do = require &quot;actions/Do&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 
-local Layout = require &quot;util/Layout&quot;
-local Transform = require &quot;util/Transform&quot;
-
 return function(self)
-    return BlockPlayer { Parallel {
-        DescBox(&quot;Elevator Access Control&quot;),
-        Menu {
-            layout = Layout {
-                {Layout.Text(&quot;Up&quot;), choose = function(menu)
-                    menu:close()
-                end}
+    local leaderMem = GameState.party[GameState.leader]
+    if GameState.leader == &quot;sally&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: Nicole should be able to interface with this terminal.&quot;,
+                blocking=true
             },
-            cancellable = true,
-            transform = Transform(love.graphics.getWidth()/2 + 150, love.graphics.getHeight()/2 + 30)
+            Do(function()
+                self:refreshKeyHint()
+            end)
         }
-    }}
+    elseif GameState.leader == &quot;bunny&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: Oh my stars{p50}, this stuff looks complicated!&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif GameState.leader == &quot;sonic&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: This is really more of Sal's domain...&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif GameState.leader == &quot;antoine&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: This is not for me, I am thinking...&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    end
 end</property>
     <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Ease = require &quot;actions/Ease&quot;

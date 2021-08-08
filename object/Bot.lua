@@ -40,6 +40,7 @@ function Bot:construct(scene, layer, object)
 	self.visibleDist = object.properties.visibleDistance
 	self.audibleDist = object.properties.audibleDistance
 	self.noSetFlag = object.properties.noSetFlag
+	self.removeAfterFollow = object.properties.removeAfterFollow
 	
 	self.facingTime = 0
 	self.movespeed = 2
@@ -249,6 +250,9 @@ function Bot:followActions()
 		if self.followRepeat then
 			return Repeat(Serial(actions))
 		else
+			if self.removeAfterFollow then
+				table.insert(actions, Do(function() self:remove() end))
+			end
 			return Serial(actions)
 		end
 	else

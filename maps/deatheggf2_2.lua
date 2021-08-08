@@ -702,7 +702,7 @@ return {
             ["ghost"] = true,
             ["key"] = "right",
             ["orientation"] = "left",
-            ["scene"] = "deatheggf2_1.lua",
+            ["scene"] = "deatheggf2_sneak3.lua",
             ["spawn_point"] = "LeftEntrance"
           }
         },
@@ -722,7 +722,7 @@ return {
             ["ghost"] = true,
             ["key"] = "left",
             ["orientation"] = "right",
-            ["scene"] = "deatheggf2_1.lua",
+            ["scene"] = "deatheggf2_sneak2.lua",
             ["spawn_point"] = "RightEntrance"
           }
         },

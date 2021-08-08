@@ -8,7 +8,7 @@ return {
 	{
         type = "map",
 		file = "maps/deathegg_elevator1.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -24,7 +24,7 @@ return {
 	{
         type = "map",
 		file = "maps/deathegg_elevator4.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -54,6 +54,21 @@ return {
 	
 	{
         type = "map",
+		file = "maps/deatheggf2_sneak1.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deatheggf2_sneak2.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deatheggf2_sneak3.lua"
+    },
+	
+	{
+        type = "map",
 		file = "maps/deatheggf2_1.lua"
     },
 	
@@ -61,10 +76,20 @@ return {
         type = "map",
 		file = "maps/deatheggf2_2.lua"
     },
+	
 	{
         type = "map",
-		file = "maps/deatheggf2_4.lua",
-		--primary = true
+		file = "maps/deatheggf2_2.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deatheggf2_2.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deatheggf2_4.lua"
     },
 	
 	{

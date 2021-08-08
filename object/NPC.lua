@@ -372,6 +372,7 @@ function NPC:getFlag()
 end
 
 function NPC:drop()
+	self:removeCollision()
 	self:run {
 		Wait(0.2),
 		Parallel {

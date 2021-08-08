@@ -10,6 +10,10 @@ return {
         },
 		onprison = {
             frames = {{1,0}}
-        }
+        },
+		active = {
+			frames = {{2,0},{3,0}},
+			speed = 0.3
+		}
     }
 }

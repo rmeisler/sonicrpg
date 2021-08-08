@@ -421,7 +421,7 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
     <property name="orientation" value="left"/>
-    <property name="scene" type="file" value="deatheggf2_1.lua"/>
+    <property name="scene" type="file" value="deatheggf2_sneak3.lua"/>
     <property name="spawn_point" value="LeftEntrance"/>
    </properties>
   </object>
@@ -430,7 +430,7 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="left"/>
     <property name="orientation" value="right"/>
-    <property name="scene" type="file" value="deatheggf2_1.lua"/>
+    <property name="scene" type="file" value="deatheggf2_sneak2.lua"/>
     <property name="spawn_point" value="RightEntrance"/>
    </properties>
   </object>

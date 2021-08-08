@@ -8,7 +8,7 @@ return {
   height = 47,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 597,
+  nextobjectid = 598,
   properties = {
     ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
     ["onload"] = "actions/deathegg_player.lua"
@@ -498,7 +498,7 @@ return {
             ["ghost"] = true,
             ["key"] = "right",
             ["orientation"] = "left",
-            ["scene"] = "deatheggf2_2.lua",
+            ["scene"] = "deatheggf2_sneak2.lua",
             ["spawn_point"] = "LeftEntrance"
           }
         },
@@ -518,7 +518,7 @@ return {
             ["ghost"] = true,
             ["key"] = "left",
             ["orientation"] = "right",
-            ["scene"] = "deathegg_elevator3.lua",
+            ["scene"] = "deatheggf2_sneak1.lua",
             ["spawn_point"] = "RightEntrance"
           }
         },
@@ -1073,7 +1073,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = true,
+            ["nocollision"] = true,
             ["sprite"] = "../art/sprites/wall2.png"
           }
         },
@@ -1456,6 +1456,24 @@ return {
           properties = {
             ["GreenLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 597,
+          name = "Wall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2560,
+          y = 1152,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/wall2.png"
           }
         }
       }
