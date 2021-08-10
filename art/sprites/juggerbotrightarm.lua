@@ -17,6 +17,14 @@ return {
 		walkright = {
 			frames = {{0,0},{1,0},{2,0},{1,0}},
 			speed = 0.25
+		},
+		walkright_step1 = {
+			frames = {{0,0},{1,0}},
+			speed = 0.2
+		},
+		walkright_step2 = {
+			frames = {{2,0},{1,0}},
+			speed = 0.2
 		}
     }
 }

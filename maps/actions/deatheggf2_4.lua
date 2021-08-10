@@ -12,6 +12,7 @@ return function(scene)
 	local Parallel = require "actions/Parallel"
 	local Serial = require "actions/Serial"
 	local Wait = require "actions/Wait"
+	local While = require "actions/While"
 	local Repeat = require "actions/Repeat"
 	local Spawn = require "actions/Spawn"
 	local BlockPlayer = require "actions/BlockPlayer"
@@ -27,14 +28,28 @@ return function(scene)
 		left_bot = {x = 0, y = 0},
 	}
 	
+	if GameState:isFlagSet("ep2boss") then
+		scene.camPos.x = 0
+		scene.player.sprite.visible = false
+		scene.player.dropShadow.sprite.visible = false
+		scene.audio:stopMusic()
+		return Action()
+	end
+	
 	local stepAction = function()
-		return Serial {
-			PlayAudio("sfx", "juggerbotstep", 0.3, true),
-			scene:screenShake(20, 40),
-			Wait(1),
-			PlayAudio("sfx", "juggerbotstep", 0.3, true),
-			scene:screenShake(20, 40)
-		}
+		scene.juggerbotstepVolume = 0.3
+		return While(function()
+				return not GameState:isFlagSet("ep2boss")
+		    end,
+			Serial {
+				PlayAudio("sfx", "juggerbotstep", scene.juggerbotstepVolume, true),
+				scene:screenShake(20, 40),
+				Wait(1),
+				PlayAudio("sfx", "juggerbotstep", scene.juggerbotstepVolume, true),
+				scene:screenShake(20, 40)
+			},
+			Action()
+		)
 	end
 
 	-- Continuous stepping sounds from Juggerbot in bg

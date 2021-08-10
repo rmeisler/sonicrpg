@@ -169,6 +169,9 @@ return {
 		},
 		sit_smile = {
 			frames = {{15,1}}
-		}
+		},
+		frustrateddown = {
+			frames = {{0,5}}
+		},
     }
 }

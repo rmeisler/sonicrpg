@@ -8,7 +8,7 @@ return {
 	{
         type = "map",
 		file = "maps/deathegg_elevator1.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -89,7 +89,8 @@ return {
 	
 	{
         type = "map",
-		file = "maps/deatheggf2_4.lua"
+		file = "maps/deatheggf2_4.lua",
+		primary = true
     },
 	
 	{

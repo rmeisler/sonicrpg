@@ -32,26 +32,30 @@ return function(scene)
 	scene.player.sprite.visible = false
 	scene.cinematicPause = true
 	
-	scene.player:addHandler("caught", function(bot)
+	local caughtHandler
+	caughtHandler = function(bot)
 		scene.player.noIdle = true
 		scene.player.sprite:setAnimation("shock")
 		scene.player.state = "shock"
 		scene.player:removeKeyHint()
+		scene.player:removeHandler("caught", caughtHandler)
 		scene:run(
 			BlockPlayer {
 				Wait(1),
 				Do(function()
-					scene.objectLookup.FBot:remove()
 					scene:restart()
+					scene.objectLookup.FBot:remove()
 				end),
 				Do(function() end)
 			}
 		)
-	end)
+	end
+	scene.player:addHandler("caught", caughtHandler)
 
 	return BlockPlayer {
 		Do(function()
 			scene.player.sprite.visible = false
+			scene.player.dropShadow.sprite.visible = false
 			scene.cinematicPause = true
 		end),
 		
@@ -87,6 +91,7 @@ return function(scene)
 		
 		Do(function()
 			scene.player.sprite.visible = true
+			scene.player.dropShadow.sprite.visible = true
 			scene.cinematicPause = false
 			scene.objectLookup.FBot.ignorePlayer = false
 		end)

@@ -127,10 +127,12 @@ function Bot:exit()
 	end
 	
 	-- Go back to regular patrolling
-	self:removeAllUpdates()
-	self:addSceneHandler("update")
-	self:postInit()
-	self.scene.player.chasers[tostring(self.name)] = nil
+	if not self:isRemoved() then
+		self:removeAllUpdates()
+		self:addSceneHandler("update")
+		self:postInit()
+		self.scene.player.chasers[tostring(self.name)] = nil
+	end
 end
 
 function Bot:postInit()
@@ -259,7 +261,9 @@ function Bot:followActions()
 		return Serial {
 			self:follow(self.originalLocation, "walk", self.walkspeed),
 			Do(function()
-				self.sprite:setAnimation("idle"..self.originalFacing)
+				if self.originalFacing then
+					self.sprite:setAnimation("idle"..self.originalFacing)
+				end
 			end),
 			Wait(2)
 		}
@@ -878,11 +882,17 @@ function Bot:run(actions)
 end
 
 function Bot:remove()
+	if self:isRemoved() then
+		return
+	end
+
 	self.dropShadow:remove()
 	for _, light in pairs(self.flashlight) do
 		light:remove()
 	end
-	self.originalLocation:remove()
+	if self.originalLocation then
+		self.originalLocation:remove()
+	end
 	
 	if self.scene.player then
 		self.scene.player.chasers[tostring(self.name)] = nil

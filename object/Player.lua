@@ -346,7 +346,7 @@ function Player:removeKeyHint()
 	end
 end
 
-function Player:split()
+function Player:split(orderedParty)
 	-- Create sprites for all party members
 	local paths = {
 		{"walkright", "idleleft",  "walkleft",  Transform(self.movespeed, 0)},
@@ -358,7 +358,8 @@ function Player:split()
 	local walkInActions = {}
 	
 	self.partySprites = {}
-	for id, member in pairs(GameState.party) do
+	for _, member in pairs(orderedParty or GameState.party) do
+		local id = member.id
 		local xform = Transform.from(self.transform)
 		self.partySprites[id] = BasicNPC(
 			self.scene,
@@ -373,6 +374,7 @@ function Player:split()
 		self.partySprites[id].sprite.color = self:inShadow() and {150,150,150,255} or {255,255,255,255}
 		self.partySprites[id].hidden = true
 		self.scene:addObject(self.partySprites[id])
+		self.scene.partySprites = self.partySprites
 
 		local walkOutAnim, idleAnim, walkInAnim, dir = unpack(table.remove(paths, 1))
 		table.insert(

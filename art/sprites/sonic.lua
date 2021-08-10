@@ -18,6 +18,10 @@ return {
 			frames = {{8,4}}
 		},
 		
+		worried = {
+			frames = {{13,8}}
+		},
+		
 		climb_1 = {
 			frames = {{8,7}}
 		},
@@ -239,6 +243,9 @@ return {
 		},
 		sadlefthand = {
 			frames = {{6,7}}
+		},
+		earnestleft = {
+			frames = {{7,7}}
 		},
 		smileright = {
 			frames = {{1,4}}
