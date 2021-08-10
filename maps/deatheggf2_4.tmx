@@ -643,12 +643,12 @@ return function(self)
                         &quot;juggerbot&quot;
                     },
                     music = &quot;boss&quot;,
-                    bossBattle = true
+                    bossBattle = true,
+                    beforeBattle = Do(function() self.scene.objectLookup.JBot:remove() end)
                 },
 
                 BlockPlayer {
                     Do(function()
-                        self.scene.objectLookup.JBot:remove()
                         self.scene.camPos.x = 0
                         self.scene.player.sprite.visible = false
                         self.scene.player.hidekeyhints[tostring(self)] = self
@@ -743,7 +743,8 @@ return function(self)
 
                     Do(function()
                         GameState.leader = &quot;sonic&quot;
-                        --self.scene.player.x = self.scene.player.x + 50
+                        self.scene.player.x = self.scene.player.x - 50
+                        self.scene.player.y = self.scene.player.y + 50
                         self.scene.player.cinematic = true
                         self.scene.player.chargeSpeed = 3
                         self.scene.player.state = &quot;idleright&quot;

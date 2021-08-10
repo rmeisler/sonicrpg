@@ -117,6 +117,20 @@ function Juggerbot:moveAnim(dir)
 	}
 end
 
+function Juggerbot:hurtAnim()
+	-- Shake
+	-- Red
+	-- Sound
+	-- 
+end
+
+function Juggerbot:slicedAnim()
+	-- Sound
+	-- Separate
+	-- Blink
+	-- Behind juggerbot is Leon
+end
+
 function Juggerbot:moveEffects(dt)
 	if self.sprite.selected == "walkright" then
 		self.rightarm:setAnimation("walkright")
