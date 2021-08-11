@@ -355,6 +355,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/leon.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/sonicchargebody.png"
 	},
 	{
@@ -680,6 +684,16 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/hoverbot.png"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/fleetsmack.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/slice.ogg",
+		category = "sfx"
 	},
 	{
 		type = "sound",

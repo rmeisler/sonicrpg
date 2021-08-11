@@ -29,6 +29,8 @@ return function(scene)
 	}
 	
 	if GameState:isFlagSet("ep2boss") then
+	    local mainframe = scene.objectLookup.MainframeComputer
+	    scene.player.hidekeyhints[tostring(mainframe)] = mainframe
 		scene.camPos.x = 0
 		scene.player.sprite.visible = false
 		scene.player.dropShadow.sprite.visible = false

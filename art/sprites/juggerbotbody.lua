@@ -39,6 +39,14 @@ return {
 		undocannonright = {
 			frames = {{12,0},{11,0},{10,0},{9,0},{8,0}},
 			speed = 0.13
+		},
+		
+		sliced = {
+			frames = {{13,0}}
+		},
+		sliced2 = {
+			frames = {{13,0},{14,0},{15,0}},
+			speed = 0.2
 		}
     }
 }
