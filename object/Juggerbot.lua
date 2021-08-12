@@ -137,6 +137,7 @@ function Juggerbot:fleetHurtAnim()
 	fleet.sprite.transform.oy = 42
 	fleet.sprite.sortOrderY = 9999
 	fleet.sprite.transform.angle = (math.pi / 18)
+	self.scene.objectLookup.Fleet = fleet
 	self.scene:addObject(fleet)
 	
 	local ivan = BasicNPC(
@@ -154,6 +155,7 @@ function Juggerbot:fleetHurtAnim()
 	ivan.sprite.transform.ox = 20
 	ivan.sprite.transform.oy = 38
 	ivan.sprite.color[4] = 0
+	self.scene.objectLookup.Ivan = ivan
 	self.scene:addObject(ivan)
 
 	return Serial {
@@ -260,6 +262,7 @@ function Juggerbot:leonHurtAnim()
 	)
 	leon.sprite.transform.ox = 27
 	leon.sprite.transform.oy = 40
+	self.scene.objectLookup.Leon = leon
 	self.scene:addObject(leon)
 	
 	return Serial {

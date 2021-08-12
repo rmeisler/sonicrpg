@@ -619,12 +619,11 @@ return function(self)
                 Do(function()
                     local jbot = self.scene.objectLookup.JBot
                     jbot:run {
-                        jbot:moveAnim(&quot;left&quot;),
                         jbot:moveAnim(&quot;left&quot;)
                     }
                 end),
-                Wait(3),
                 PlayAudio(&quot;music&quot;, &quot;robotrouble&quot;, 1.0, true),
+                Wait(1),
 
                 Animate(sprites.sally.sprite, &quot;shock&quot;),
                 Animate(sprites.bunny.sprite, &quot;shock&quot;),
@@ -743,7 +742,7 @@ return function(self)
                     MessageBox{message=&quot;Sonic: Alright guys...&quot;, textspeed=2, closeAction=Wait(0.5)},
                     walkin,
 
-                    Ease(self.scene.camPos, &quot;x&quot;, -200, 1),
+                    Ease(self.scene.camPos, &quot;x&quot;, -300, 1),
                     Do(function()
                         local jbot2 = self.scene.objectLookup.JBot2
                         jbot2:run {
@@ -758,6 +757,7 @@ return function(self)
                         self.scene.player.x = self.scene.player.x - 50
                         self.scene.player.y = self.scene.player.y + 50
                         self.scene.player.cinematic = true
+                        self.scene.player:updateSprite()
                         self.scene.player.chargeSpeed = 3
                         self.scene.player.state = &quot;idleright&quot;
                         self.scene.player.ignoreSpecialMoveCollision = true
@@ -767,7 +767,11 @@ return function(self)
                     Do(function()
                         self.scene.audio:stopMusic()
                         self.scene.player.cinematic = false
-                        self.scene.player.state = &quot;idleleft&quot;
+                        self.scene.player.state = &quot;shock&quot;
+                    end),
+                    MessageBox{message=&quot;Sonic: Whoooah!&quot;, closeAction = Wait(0.5)},
+                    Do(function()
+                        self.scene.player.state = &quot;idleright&quot;
                     end),
 
                     YieldUntil(self.scene, &quot;nextStep&quot;),
@@ -775,12 +779,59 @@ return function(self)
                     Ease(self.scene.camPos, &quot;x&quot;, 200, 1),
                     Do(function()
                         local jbot1 = self.scene.objectLookup.JBot1
+                        self.scene.player.state = &quot;idleleft&quot;
                         jbot1:run {
                             jbot1:leonHurtAnim(),
                             Do(function() self.scene.nextStep2 = true end)
                         }
                     end),
-                    YieldUntil(self.scene, &quot;nextStep2&quot;)
+                    YieldUntil(self.scene, &quot;nextStep2&quot;),
+                    
+                    Ease(self.scene.camPos, &quot;x&quot;, 0, 1),
+                    
+                    Do(function()
+                        local walkout2, walkin2, sprites2 = self.scene.player:split()
+                        self.scene:run(BlockPlayer {
+                            walkout2,
+                            Animate(sprites2.sonic.sprite, &quot;thinking&quot;),
+                            MessageBox{message=&quot;Sonic: What!?{p60}... Who are--?{p60} How did--?&quot;, textspeed=4},
+                            MessageBox{message=&quot;Fleet (Bird): We saved your butts-- {p60}that's what we do!&quot;, textspeed=4},
+                            Animate(sprites2.sonic.sprite, &quot;irritated&quot;),
+                            MessageBox{message=&quot;Sonic: Who says we needed savin'? {p60}I had everything under control!&quot;, textspeed=4},
+                            Animate(self.scene.objectLookup.Fleet.sprite, &quot;fleetsmile&quot;),
+                            MessageBox{message=&quot;Fleet (Bird): Riiight, {p40}and the laser about to slice you into tiny little bits was probably all part of your brilliant plan!&quot;},
+                            MessageBox{message=&quot;Fleet (Bird): Get sliced into millions of pieces and fight robotnik as a thousand tiny yous! {p60}Great plan, {p40}you'll clearly go far in life.&quot;},
+                            Animate(self.scene.objectLookup.Fleet.sprite, &quot;fleetlaugh&quot;),
+                            MessageBox{message=&quot;Fleet (Bird): Then again, {p40}I can't imagine you getting much tinier than you already are, {p40}shorty.&quot;},
+
+                            MessageBox{message=&quot;Sonic: Shorty!?&quot;},
+                            MessageBox{message=&quot;Leon (Lion): Fleet. {p60}Compose yourself.&quot;, textspeed=2},
+                            MessageBox{message=&quot;Sally: Excuse me, but who are you people?&quot;},
+                            MessageBox{message=&quot;Leon (Lion): We call ourselves {h the Rebellion}.&quot;, textspeed=2},
+                            MessageBox{message=&quot;Leon (Lion): ...I was once the leader of your father's royal guard...&quot;, textspeed=2},
+                            MessageBox{message=&quot;Leon (Lion): It's a pleasure to see you again, {p40}Princess Sally.&quot;, textspeed=2},
+                            MessageBox{message=&quot;Bunnie: Oh my stars!&quot;, textspeed=4},
+                            MessageBox{message=&quot;Sally: O-{p20}Of course!... {p60}Commander Leon...&quot;, textspeed=4},
+                            MessageBox{message=&quot;Sonic: Royal guard?&quot;, textspeed=4},
+                            MessageBox{message=&quot;Leon (Lion): I know it's a lot to process, {p40}but the time for explanation comes later. {p60}We must make our escape before the {h good doctor} becomes aware of our presence...&quot;, textspeed=2},
+                            MessageBox{message=&quot;Sally: H-{p30}He's right.&quot;, textspeed=4},
+                            MessageBox{message=&quot;Sally: Leon, {p40}if you follow us, we can lead you to Knothole. {p60}You and your team will be safe there.&quot;, textspeed=4},
+                            MessageBox{message=&quot;Sonic: Whoah, Sal! {p40}*whispers* Are you sure we can trust these guys?&quot;, textspeed=3},
+                            MessageBox{message=&quot;Sally: I believe he is who he says he is. {p60}And if Leon trusts the others then I trust them too.&quot;, textspeed=3},
+                            MessageBox{message=&quot;Bunnie: Well that's good enough for me, Sally-girl.&quot;, textspeed=3},
+                            MessageBox{message=&quot;Sally: Sonic?&quot;, textspeed=3},
+                            MessageBox{message=&quot;Sonic: ...&quot;, textspeed=3},
+                            MessageBox{message=&quot;Logan (Pig): Um, {p40}not trying to rush you guys, but...&quot;},
+                            MessageBox{message=&quot;Logan (Pig): Actually, I totally am. {p40}Robotnik will probably capture us soon if we don't get movin'.&quot;},
+                            MessageBox{message=&quot;Ivan (Jackal): Indeed. {p60}Being captured would be most unfortunate.&quot;, textspeed=2},
+                            MessageBox{message=&quot;Sonic: Fine! {p40}Everyone grab on!&quot;, textspeed=3},
+                            MessageBox{message=&quot;Fleet: We're good, actually. {p60}As the fastest living being on Mobius, I can manage transportation for my team.&quot;},
+                            MessageBox{message=&quot;Sonic: Excuse me?!&quot;, textspeed=3},
+                            MessageBox{message=&quot;Sally: Sonic! {p40}We have to go now!&quot;, textspeed=3},
+                            MessageBox{message=&quot;Sonic: Ok, ok!&quot;, textspeed=3},
+                            MessageBox{message=&quot;Sonic: Up! {p60}Over! {p60}And gone!&quot;}
+                        })
+                    end),
                 }
             })
         end)
