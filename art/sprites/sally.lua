@@ -12,6 +12,11 @@ return {
 			frames = {{11,4}}
 		},
 		
+		stepback = {
+		    frames = {{0,3},{1,3},{0,3},{5,3}},
+			speed = 0.5
+		},
+		
 		leapdown = {
 			frames = {{5,2}}
 		},
@@ -101,11 +106,6 @@ return {
 					{x = 0, y = 0}, {x = 0, y = 2}, {x = 0, y = 4}, {x = 0, y = 2}
 				}
 			}
-		},
-		
-		stepback = {
-		    frames = {{0,2},{1,2},{0,2},{5,2}},
-			speed = 0.5
 		},
 		
 		nicholeright = {

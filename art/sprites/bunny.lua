@@ -75,6 +75,11 @@ return {
 			frames = {{13,3}}
 		},
 		
+		stepback = {
+		    frames = {{0,3},{1,3},{0,3},{5,3}},
+			speed = 0.5
+		},
+		
 		extendright = {
 			frames = {{9,0}}
 		},

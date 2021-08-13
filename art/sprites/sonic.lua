@@ -217,6 +217,11 @@ return {
 		ouchup = {
 			frames = {{16,3}}
 		},
+		
+		stepback = {
+		    frames = {{0,3},{1,3},{0,3},{5,3}},
+			speed = 0.5
+		},
 
 		layright = {
 			frames = {{13,5}}

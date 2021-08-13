@@ -1,62 +1,91 @@
 return {
     image = "leon.png",
     starting = "leonidle",
-    w = 60,
+    w = 80,
     h = 70,
 
     animations = {
         leonidle = {
-            frames = {{5,0}}
+            frames = {{8,0}}
         },
+		leonland = {
+			frames = {{1,0},{0,0}},
+			speed = 0.2
+		},
+		leonfall = {
+			frames = {{2,0},{3,0}},
+			speed = 0.2
+		},
 		leondash = {
             frames = {{0,0}}
         },
 		leonsword = {
-            frames = {{1,0}}
+            frames = {{4,0}}
         },
 		leonswordaway = {
-            frames = {{2,0},{3,0},{4,0}},
+            frames = {{5,0},{6,0},{7,0}},
 			speed = 0.2
         },
 		
 		fleetidle = {
-			frames = {{6,0}}
+			frames = {{9,0}}
+		},
+		fleetland = {
+			frames = {{10,0},{9,0}},
+			speed = 0.2
+		},
+		fleetfloat = {
+			frames = {{13,0}}
 		},
 		fleetsmile = {
-			frames = {{7,0}}
+			frames = {{14,0}}
 		},
 		fleetlaugh = {
-			frames = {{9,0},{8,0}},
+			frames = {{15,0},{16,0}},
 			speed = 0.2
 		},
 		fleetfly = {
-			frames = {{10,0}}
+			frames = {{17,0}}
 		},
 		
 		loganidle = {
-			frames = {{11,0}}
+			frames = {{20,0}}
+		},
+		loganfall = {
+			frames = {{18,0}}
+		},
+		loganland = {
+			frames = {{19,0},{20,0}},
+			speed = 0.2
 		},
 		loganresearch = {
-			frames = {{12,0}}
+			frames = {{22,0}}
+		},
+		loganresearchshow = {
+			frames = {{21,0}}
+		},
+		loganresearchshow = {
+			frames = {{21,0}}
 		},
 		
 		ivanidle = {
-			frames = {{13,0}}
+			frames = {{25,0}}
 		},
 		ivancross = {
-			frames = {{14,0}}
+			frames = {{28,0}}
+		},
+		ivanland = {
+			frames = {{29,0},{28,0}},
+			speed = 0.2
+		},
+		ivanfall = {
+			frames = {{30,0}}
 		},
 		ivanthinking = {
-			frames = {{15,0}}
-		},
-		ivanlookup = {
-			frames = {{16,0}}
-		},
-		ivanlift = {
-			frames = {{17,0}}
+			frames = {{31,0}}
 		},
 		ivanpush = {
-			frames = {{18,0}}
+			frames = {{34,0}}
 		}
     }
 }

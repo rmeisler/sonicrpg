@@ -9,6 +9,7 @@ local Wait = require "actions/Wait"
 local Do = require "actions/Do"
 local Repeat = require "actions/Repeat"
 local Spawn = require "actions/Spawn"
+local YieldUntil = require "actions/YieldUntil"
 
 local SpriteNode = require "object/SpriteNode"
 local Bot = require "object/Bot"
@@ -123,20 +124,19 @@ end
 function Juggerbot:fleetHurtAnim()
 	local fleet = BasicNPC(
 		self.scene,
-		{name = "upper"},
+		{name = "objects"},
 		{
 			name = "Fleet",
-			x = self.x,
-			y = self.y,
+			x = self.x - 800,
+			y = self.y + self.sprite.h,
 			width = 64,
 			height = 64,
 			properties = {nocollision = true, sprite = "art/sprites/leon.png", defaultAnim = "fleetfly"}
 		}
 	)
-	fleet.sprite.transform.ox = 32
+	fleet.sprite.transform.ox = 42
 	fleet.sprite.transform.oy = 42
-	fleet.sprite.sortOrderY = 9999
-	fleet.sprite.transform.angle = (math.pi / 18)
+	fleet.sprite.transform.angle = (math.pi/10)
 	self.scene.objectLookup.Fleet = fleet
 	self.scene:addObject(fleet)
 	
@@ -146,104 +146,60 @@ function Juggerbot:fleetHurtAnim()
 		{
 			name = "Ivan",
 			x = self.x - self.sprite.w*1.5,
-			y = self.y + self.sprite.h + 50,
+			y = self.y + self.sprite.h,
 			width = 64,
 			height = 64,
 			properties = {nocollision = true, sprite = "art/sprites/leon.png", defaultAnim = "ivanpush"}
 		}
 	)
-	ivan.sprite.transform.ox = 20
-	ivan.sprite.transform.oy = 38
+	ivan.sprite.transform.ox = 30
+	ivan.sprite.transform.oy = 37
 	ivan.sprite.color[4] = 0
 	self.scene.objectLookup.Ivan = ivan
 	self.scene:addObject(ivan)
 
 	return Serial {
-		Repeat(Serial {
-			Do(function()
-				fleet.sprite.transform.sx = 2
-				fleet.x = self.x + self.sprite.w
-				fleet.y = self.y - self.sprite.h / 2
-			end),
-			PlayAudio("sfx", "fleetsmack", 1.0, true, false, true),
-			Parallel {
-				Repeat(Serial {
-					Ease(self, "x", function() return self.x - 5 end, 20),
-					Ease(self, "x", function() return self.x + 5 end, 20)
-				}, 4),
-				Repeat(Serial {
-					Ease(fleet.sprite.color, 4, 0, 20, "quad"),
-					Ease(fleet.sprite.color, 4, 150, 20, "quad")
-				}, 4)
-			},
+		PlayAudio("sfx", "sonicrunturn", 1.0, true),
+		Ease(fleet, "x", self.x + 800, 0.7),
 
-			Do(function()
-				fleet.sprite.transform.sx = -2
-				fleet.x = self.x - self.sprite.w * 4
-				fleet.y = self.y - self.sprite.h / 2
-			end),
-			PlayAudio("sfx", "fleetsmack", 1.0, true, false, true),
-			Parallel {
-				Repeat(Serial {
-					Ease(self, "x", function() return self.x - 5 end, 20),
-					Ease(self, "x", function() return self.x + 5 end, 20)
-				}, 4),
-				Repeat(Serial {
-					Ease(fleet.sprite.color, 4, 0, 20, "quad"),
-					Ease(fleet.sprite.color, 4, 150, 20, "quad")
-				}, 4)
-			},
-			
-			Do(function()
-				fleet.sprite.transform.sx = 2
-				fleet.x = self.x - self.sprite.w * 4
-				fleet.y = self.y + self.sprite.h * 2
-			end),
-			PlayAudio("sfx", "fleetsmack", 1.0, true, false, true),
-			Parallel {
-				Repeat(Serial {
-					Ease(self, "x", function() return self.x - 5 end, 20),
-					Ease(self, "x", function() return self.x + 5 end, 20)
-				}, 4),
-				Repeat(Serial {
-					Ease(fleet.sprite.color, 4, 0, 20, "quad"),
-					Ease(fleet.sprite.color, 4, 150, 20, "quad")
-				}, 4)
-			},
-			
-			Do(function()
-				fleet.sprite.transform.sx = -2
-				fleet.x = self.x + self.sprite.w
-				fleet.y = self.y + self.sprite.h * 2
-			end),
-			PlayAudio("sfx", "fleetsmack", 1.0, true, false, true),
-			Parallel {
-				Repeat(Serial {
-					Ease(self, "x", function() return self.x - 5 end, 20),
-					Ease(self, "x", function() return self.x + 5 end, 20)
-				}, 4),
-				Repeat(Serial {
-					Ease(fleet.sprite.color, 4, 0, 20, "quad"),
-					Ease(fleet.sprite.color, 4, 150, 20, "quad")
-				}, 4)
-			}
-		}, 2),
-		
-		PlayAudio("sfx", "smack", 1.0, true),
-		
 		Do(function()
 			fleet.sprite.color[4] = 0
 			ivan.sprite.color[4] = 255
 		end),
 		
-		Ease(self, "y", function() return self.y + 200 end, 5, "log"),
-		Wait(1),
-		Ease(self, "y", function() return self.y + 900 end, 2, "quad"),
+		Parallel {
+			Serial {
+				Do(function()
+					fleet.sprite.color[4] = 255
+					fleet.sprite.transform.sx = -2
+					fleet.sprite.transform.angle = -(math.pi/10)
+				end),
+				PlayAudio("sfx", "sonicrunturn", 1.0, true),
+				Ease(fleet, "x", self.x - 800, 0.7),
+				Do(function()
+					fleet.sprite.color[4] = 0
+				end)
+			},
+			Serial {
+				Wait(0.5),
+				PlayAudio("sfx", "smack", 1.0, true),
+				Ease(self, "y", function() return self.y + 200 end, 5, "log"),
+				Ease(self, "y", function() return self.y - 10 end, 15, "log"),
+				Ease(self, "y", function() return self.y + 10 end, 15, "log"),
+				Ease(self, "y", function() return self.y - 3 end, 15, "log"),
+				Ease(self, "y", function() return self.y + 3 end, 15, "log"),
+			},
+			Serial {
+				YieldUntil(function() return fleet.x < ivan.x end),
+				Do(function()
+					ivan.sprite.color[4] = 0
+				end)
+			}
+		},
+		Ease(self, "y", function() return self.y + 900 end, 3, "quad"),
 		Ease(self.sprite.color, 4, 0, 1),
-		
 		Animate(ivan.sprite, "ivancross"),
-		
-		Wait(1),
+		Wait(1)
 	}
 end
 
@@ -260,15 +216,30 @@ function Juggerbot:leonHurtAnim()
 			properties = {nocollision = true, sprite = "art/sprites/leon.png", defaultAnim = "leondash"}
 		}
 	)
-	leon.sprite.transform.ox = 27
+	leon.sprite.transform.ox = 37
 	leon.sprite.transform.oy = 40
+	leon.sprite.color[4] = 0
 	self.scene.objectLookup.Leon = leon
 	self.scene:addObject(leon)
 	
+	local fleet = self.scene.objectLookup.Fleet
 	return Serial {
+	    Do(function()
+			fleet.sprite.color[4] = 255
+			fleet.x = self.x + 800
+			fleet.sprite.transform.sx = -2
+			fleet.sprite.transform.angle = -(math.pi/10)
+		end),
+		PlayAudio("sfx", "sonicrunturn", 1.0, true),
+		Ease(fleet, "x", self.x - 800, 0.7),
+		Do(function()
+			leon.sprite.color[4] = 255
+			fleet.sprite.color[4] = 0
+		end),
+
 		Animate(self.sprite, "sliced"),
 		Parallel {
-			PlayAudio("sfx", "slice", 1.0),
+			PlayAudio("sfx", "slice", 0.1),
 			Animate(function()
 				return SpriteNode(
 					self.scene,
@@ -281,8 +252,27 @@ function Juggerbot:leonHurtAnim()
 				), true
 			end, "idle")
 		},
-		Wait(0.5),
-		Animate(self.sprite, "sliced2"),
+		Parallel {
+			Animate(self.sprite, "sliced2"),
+			Serial {
+				Do(function()
+					fleet.sprite.color[4] = 255
+					fleet.sprite.transform.sx = 2
+					fleet.sprite.transform.angle = (math.pi/10)
+				end),
+				PlayAudio("sfx", "sonicrunturn", 1.0, true),
+				Ease(fleet, "x", self.x + 800, 0.7),
+				Do(function()
+					fleet.sprite.color[4] = 0
+				end)
+			},
+			Serial {
+				YieldUntil(function() return fleet.x > leon.x end),
+				Do(function()
+					leon.sprite.color[4] = 0
+				end)
+			}
+		},
 		Repeat(Serial {
 			Parallel {
 				Ease(self.sprite.color, 4, 0, 20, "quad"),
