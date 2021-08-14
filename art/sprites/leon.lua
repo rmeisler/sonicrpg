@@ -22,8 +22,15 @@ return {
 		leonsword = {
             frames = {{4,0}}
         },
+		leonadjust = {
+            frames = {{7,0}}
+        },
 		leonswordaway = {
             frames = {{5,0},{6,0},{7,0}},
+			speed = 0.2
+        },
+		leonwalkdown = {
+            frames = {{8,0},{35,0},{8,0},{36,0}},
 			speed = 0.2
         },
 		
@@ -60,9 +67,6 @@ return {
 		},
 		loganresearch = {
 			frames = {{22,0}}
-		},
-		loganresearchshow = {
-			frames = {{21,0}}
 		},
 		loganresearchshow = {
 			frames = {{21,0}}

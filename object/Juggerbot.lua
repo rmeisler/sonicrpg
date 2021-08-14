@@ -146,7 +146,7 @@ function Juggerbot:fleetHurtAnim()
 		{
 			name = "Ivan",
 			x = self.x - self.sprite.w*1.5,
-			y = self.y + self.sprite.h,
+			y = self.y + self.sprite.h + 40,
 			width = 64,
 			height = 64,
 			properties = {nocollision = true, sprite = "art/sprites/leon.png", defaultAnim = "ivanpush"}

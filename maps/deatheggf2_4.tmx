@@ -521,6 +521,7 @@ local Wait = require &quot;actions/Wait&quot;
 local Animate = require &quot;actions/Animate&quot;
 local YieldUntil = require &quot;actions/YieldUntil&quot;
 
+local BasicNPC = require &quot;object/BasicNPC&quot;
 local Juggerbot = require &quot;object/Juggerbot&quot;
 local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
@@ -795,6 +796,83 @@ return function(self)
                         sprites.sonic.sprite:setAnimation(&quot;stepback&quot;)
                         sprites.sally.sprite:setAnimation(&quot;stepback&quot;)
                         sprites.bunny.sprite:setAnimation(&quot;stepback&quot;)
+                        
+                        local fleet = self.scene.objectLookup.Fleet
+                        local leon = self.scene.objectLookup.Leon
+                        local ivan = self.scene.objectLookup.Ivan
+                        local logan = BasicNPC(
+                            self.scene,
+                            {name = &quot;upper&quot;},
+                            {
+                                name = &quot;Logan&quot;,
+                                x = fleet.x,
+                                y = fleet.y,
+                                width = 64,
+                                height = 64,
+                                properties = {nocollision = true, sprite = &quot;art/sprites/leon.png&quot;, defaultAnim = &quot;loganfall&quot;}
+                            }
+                        )
+                        logan.sprite.transform.ox = 30
+                        logan.sprite.transform.oy = 43
+                        logan.sprite.color[4] = 0
+                        self.scene.objectLookup.Logan = logan
+                        self.scene:addObject(logan)
+
+                        logan:run {
+                            Wait(1),
+                            Do(function()
+                                logan.sprite.color[4] = 255
+                                leon.sprite.color[4] = 255
+                                ivan.sprite.color[4] = 255
+                                leon.x = fleet.x
+                                leon.y = fleet.y
+                                leon.sprite.color[4] = 255
+                                leon.sprite:swapLayer(&quot;upper&quot;)
+                                leon.sprite:setAnimation(&quot;leonfall&quot;)
+
+                                ivan.x = fleet.x
+                                ivan.y = fleet.y
+                                ivan.sprite:swapLayer(&quot;upper&quot;)
+                                ivan.sprite:setAnimation(&quot;ivanfall&quot;)
+
+                                logan.x = fleet.x
+                                logan.y = fleet.y
+                            end),
+                            Parallel {
+                                Serial {
+                                    Ease(logan, &quot;y&quot;, function() return logan.y - 60 end, 2),
+                                    Ease(logan, &quot;y&quot;, 1580, 1),
+                                },
+                                Serial {
+                                    Ease(ivan, &quot;y&quot;, function() return ivan.y - 60 end, 2),
+                                    Ease(ivan, &quot;y&quot;, 1550, 1),
+                                },
+                                Serial {
+                                    Ease(leon, &quot;y&quot;, function() return leon.y - 60 end, 2),
+                                    Ease(leon, &quot;y&quot;, 1550, 1),
+                                },
+                                Ease(ivan, &quot;x&quot;, function() return ivan.x + 50 end, 1),
+                                Ease(leon, &quot;x&quot;, function() return leon.x - 70 end, 1),
+                                Ease(logan, &quot;x&quot;, function() return logan.x - 140 end, 1)
+                            },
+                            Parallel {
+                                Serial {
+                                    Animate(ivan.sprite, &quot;ivanland&quot;),
+                                    Animate(ivan.sprite, &quot;ivancross&quot;)
+                                },
+                                Serial {
+                                    Animate(leon.sprite, &quot;leonland&quot;),
+                                    Animate(leon.sprite, &quot;leonsword&quot;),
+                                    Wait(0.5),
+                                    Animate(leon.sprite, &quot;leonswordaway&quot;),
+                                    Animate(leon.sprite, &quot;leonidle&quot;)
+                                },
+                                Serial {
+                                    Animate(logan.sprite, &quot;loganland&quot;),
+                                    Animate(logan.sprite, &quot;loganidle&quot;)
+                                }
+                            }
+                        }
                     end),
                     Parallel {
                         Ease(self.scene.camPos, &quot;y&quot;, -100, 0.3),
@@ -814,38 +892,87 @@ return function(self)
                     Animate(sprites.sonic.sprite, &quot;irritated&quot;),
                     MessageBox{message=&quot;Sonic: Who says we needed savin'? {p60}I had everything under control!&quot;, textspeed=4},
                     Animate(function() return self.scene.objectLookup.Fleet.sprite end, &quot;fleetsmile&quot;),
-                    MessageBox{message=&quot;Fleet (Bird): Riiight, {p40}and the laser about to slice you into tiny little bits was probably all part of your brilliant plan!&quot;},
-                    MessageBox{message=&quot;Fleet (Bird): Get sliced into millions of pieces and fight robotnik as a thousand tiny yous! {p60}Great plan, {p40}you'll clearly go far in life.&quot;},
-                    Animate(function() return self.scene.objectLookup.Fleet.sprite end, &quot;fleetlaugh&quot;),
-                    MessageBox{message=&quot;Fleet (Bird): Then again, {p40}I can't imagine you getting much tinier than you already are, {p40}shorty.&quot;},
+                    MessageBox{message=&quot;Fleet (Bird): Riiight, {p20}and the laser about to slice you into tiny little bits was probably all part of your brilliant plan!&quot;},
+                    MessageBox{message=&quot;Fleet (Bird): Get sliced into millions of pieces and fight robotnik as a thousand tiny yous! {p20}Great plan, you'll clearly go far in life.&quot;},
+                    Do(function() self.scene.objectLookup.Fleet.sprite:setAnimation(&quot;fleetlaugh&quot;) end),
+                    MessageBox{message=&quot;Fleet (Bird): Then again, {p40}I can't imagine you getting much tinier than you already are, {p60}shorty.&quot;},
 
+                    Animate(sprites.sonic.sprite, &quot;shock&quot;),
+                    Wait(0.5),
+                    Animate(sprites.sonic.sprite, &quot;irritated&quot;),
                     MessageBox{message=&quot;Sonic: Shorty!?&quot;},
+                    Do(function()
+                        local leon = self.scene.objectLookup.Leon
+                        leon.sprite:setAnimation(&quot;leonwalkdown&quot;)
+                        leon:run {
+                            Ease(leon, &quot;y&quot;, function() return leon.y  + 60 end, 1),
+                            Do(function() leon.sprite:setAnimation(&quot;leonidle&quot;) end)
+                        }
+                    end),
                     MessageBox{message=&quot;Leon (Lion): Fleet. {p60}Compose yourself.&quot;, textspeed=2},
+                    Do(function()
+                        self.scene.objectLookup.Fleet.sprite:setAnimation(&quot;fleetidle&quot;)
+                    end),
                     MessageBox{message=&quot;Fleet (Bird): Fine, fine.&quot;},
+                    Do(function()
+                        sprites.sonic.sprite:setAnimation(&quot;idleup&quot;)
+                    end),
                     MessageBox{message=&quot;Leon (Lion): Logan, {p60}are there any other Juggerbots nearby?&quot;, textspeed=2},
-                    MessageBox{message=&quot;Logan (Pig): Scanning... {p60}I think we got 'em.&quot;, textspeed=3},
+                    Do(function() self.scene.objectLookup.Logan.sprite:setAnimation(&quot;loganresearch&quot;) end),
+                    MessageBox{message=&quot;Logan (Pig): Scanning...&quot;, textspeed=3},
                     MessageBox{message=&quot;Sally: Excuse me, but who are you people?&quot;},
+                    Do(function()
+                        self.scene.objectLookup.Leon.sprite:setAnimation(&quot;leonadjust&quot;)
+                    end),
                     MessageBox{message=&quot;Leon (Lion): We call ourselves {h the Rebellion}.&quot;, textspeed=2},
                     MessageBox{message=&quot;Leon (Lion): ...I was once the leader of your father's royal guard...&quot;, textspeed=2},
                     MessageBox{message=&quot;Leon (Lion): It's a pleasure to see you again, {p40}Princess Sally.&quot;, textspeed=2},
+
+                    Animate(sprites.sonic.sprite, &quot;shock&quot;),
+                    Animate(sprites.sally.sprite, &quot;shock&quot;),
+                    Animate(sprites.bunny.sprite, &quot;shock&quot;),
+                    Wait(0.7),
+                    Animate(sprites.sonic.sprite, &quot;idleup&quot;),
+                    Animate(sprites.sally.sprite, &quot;idleup&quot;),
+                    Animate(sprites.bunny.sprite, &quot;idleup&quot;),
+
                     MessageBox{message=&quot;Bunnie: Oh my stars!&quot;, textspeed=4},
                     MessageBox{message=&quot;Sally: O-{p20}Of course!... {p60}Commander Leon...&quot;, textspeed=4},
+
+                    Animate(sprites.sonic.sprite, &quot;thinking&quot;),
+
                     MessageBox{message=&quot;Sonic: Royal guard?&quot;, textspeed=4},
                     MessageBox{message=&quot;Leon (Lion): I know it's a lot to process, {p40}but the time for explanation comes later. {p60}We must make our escape before the {h good doctor} becomes aware of our presence...&quot;, textspeed=2},
+                    Wait(0.5),
+                    Animate(sprites.sally.sprite, &quot;idledown&quot;),
                     MessageBox{message=&quot;Sally: H-{p30}He's right.&quot;, textspeed=4},
+                    Animate(sprites.sally.sprite, &quot;idleup&quot;),
+                    Animate(sprites.sonic.sprite, &quot;idleup&quot;),
                     MessageBox{message=&quot;Sally: Leon, {p40}if you follow us, we can lead you to Knothole. {p60}You and your team will be safe there.&quot;, textspeed=4},
-                    MessageBox{message=&quot;Sonic: Whoah, Sal! {p40}*whispers* Are you sure we can trust these guys?&quot;, textspeed=3},
-                    MessageBox{message=&quot;Sally: I believe he is who he says he is. {p60}And if Leon trusts the others then I trust them too.&quot;, textspeed=3},
-                    MessageBox{message=&quot;Bunnie: Well that's good enough for me, Sally-girl.&quot;, textspeed=3},
-                    MessageBox{message=&quot;Sally: Sonic?&quot;, textspeed=3},
+                    Animate(sprites.sonic.sprite, &quot;idleleft&quot;),
+                    MessageBox{message=&quot;Sonic: Whoah, Sal! {p40}*whisper* Are you sure we can trust these guys?&quot;, textspeed=3},
+                    Animate(sprites.sally.sprite, &quot;idledown&quot;),
+                    Animate(sprites.bunny.sprite, &quot;idleright&quot;),
+                    MessageBox{message=&quot;Sally: *whisper* I believe he is who he says he is. {p60}And if Leon trusts the others then I trust them too.&quot;, textspeed=3},
+                    MessageBox{message=&quot;Bunnie: *whisper* Well that's good enough for me, Sally-girl.&quot;, textspeed=3},
+                    MessageBox{message=&quot;Sally: *whisper* Sonic?&quot;, textspeed=3}, 
+                    Animate(sprites.sonic.sprite, &quot;irritated&quot;),
                     MessageBox{message=&quot;Sonic: ...&quot;, textspeed=3},
+                    
+                    Do(function() self.scene.objectLookup.Logan.sprite:setAnimation(&quot;loganresearchshow&quot;) end),
                     MessageBox{message=&quot;Logan (Pig): Um, {p40}not trying to rush you guys, but...&quot;},
                     MessageBox{message=&quot;Logan (Pig): Actually, I totally am. {p40}Robotnik will probably capture us soon if we don't get movin'.&quot;},
+                    Do(function() self.scene.objectLookup.Ivan.sprite:setAnimation(&quot;ivanthinking&quot;) end),
                     MessageBox{message=&quot;Ivan (Jackal): Indeed. {p60}Being captured would be most unfortunate.&quot;, textspeed=2},
+                    Animate(sprites.sonic.sprite, &quot;crouchright&quot;),
                     MessageBox{message=&quot;Sonic: Fine! {p40}Everyone grab on!&quot;, textspeed=3},
+                    Do(function() self.scene.objectLookup.Fleet.sprite:setAnimation(&quot;fleetsmile&quot;) end),
                     MessageBox{message=&quot;Fleet: We're good, actually. {p60}As the fastest living being on Mobius, I can manage transportation for my team.&quot;},
+                    Animate(sprites.sonic.sprite, &quot;idleup&quot;),
                     MessageBox{message=&quot;Sonic: Excuse me?!&quot;, textspeed=3},
+                    Animate(sprites.sally.sprite, &quot;frustrateddown&quot;),
                     MessageBox{message=&quot;Sally: Sonic! {p40}We have to go now!&quot;, textspeed=3},
+                    Animate(sprites.sonic.sprite, &quot;crouchright&quot;),
                     MessageBox{message=&quot;Sonic: Ok, ok!&quot;, textspeed=3},
                     PlayAudio(&quot;music&quot;, &quot;escapefanfare&quot;, 1.0, true),
                     MessageBox{message=&quot;Sonic: Up! {p60}Over! {p60}And gone!&quot;}
