@@ -687,6 +687,17 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/sallymeetsleon.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/meettherebellion.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/fleetsmack.ogg",
 		category = "sfx"
 	},

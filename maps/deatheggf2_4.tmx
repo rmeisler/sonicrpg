@@ -516,6 +516,7 @@ local Move = require &quot;actions/Move&quot;
 local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
 local Repeat = require &quot;actions/Repeat&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Animate = require &quot;actions/Animate&quot;
@@ -792,6 +793,7 @@ return function(self)
                     end),
 
                     Ease(self.scene.camPos, &quot;y&quot;, 500, 1),
+                    PlayAudio(&quot;music&quot;, &quot;meettherebellion&quot;, 1.0, true, true),
 
                     Do(function()
                         sprites.sonic.sprite:setAnimation(&quot;stepback&quot;)
@@ -894,7 +896,7 @@ return function(self)
                     MessageBox{message=&quot;Sonic: Who says we needed savin'? {p60}I had everything under control!&quot;, textspeed=4},
                     Animate(function() return self.scene.objectLookup.Fleet.sprite end, &quot;fleetsmile&quot;),
                     MessageBox{message=&quot;Fleet (Bird): Riiight, {p20}and the laser about to slice you into tiny little bits was probably all part of your brilliant plan!&quot;},
-                    MessageBox{message=&quot;Fleet (Bird): Get sliced into millions of pieces and fight robotnik as a thousand tiny yous! {p20}Great plan, you'll clearly go far in life.&quot;},
+                    MessageBox{message=&quot;Fleet (Bird): Get sliced into a million pieces and fight Robotnik as a million tiny yous! {p20}Great plan, you'll clearly go far in life.&quot;},
                     Do(function() self.scene.objectLookup.Fleet.sprite:setAnimation(&quot;fleetlaugh&quot;) end),
                     MessageBox{message=&quot;Fleet (Bird): Then again, {p40}I can't imagine you getting much tinier than you already are, {p60}shorty.&quot;},
 
@@ -906,7 +908,7 @@ return function(self)
                         local leon = self.scene.objectLookup.Leon
                         leon.sprite:setAnimation(&quot;leonwalkdown&quot;)
                         leon:run {
-                            Ease(leon, &quot;y&quot;, function() return leon.y  + 60 end, 0.4),
+                            Ease(leon, &quot;y&quot;, function() return leon.y  + 60 end, 0.4, &quot;linear&quot;),
                             Do(function() leon.sprite:setAnimation(&quot;leonidle&quot;) end)
                         }
                     end),
@@ -921,12 +923,17 @@ return function(self)
                     MessageBox{message=&quot;Leon (Lion): Logan, {p60}are there any other Juggerbots nearby?&quot;, textspeed=2},
                     Do(function() self.scene.objectLookup.Logan.sprite:setAnimation(&quot;loganresearch&quot;) end),
                     MessageBox{message=&quot;Logan (Pig): Scanning...&quot;, textspeed=3},
+                    Animate(sprites.sally.sprite, &quot;thinking&quot;),
                     MessageBox{message=&quot;Sally: Excuse me, but who are you people?&quot;},
                     Do(function()
                         self.scene.objectLookup.Leon.sprite:setAnimation(&quot;leonadjust&quot;)
                     end),
-                    MessageBox{message=&quot;Leon (Lion): We call ourselves {h the Rebellion}.&quot;, textspeed=2},
-                    MessageBox{message=&quot;Leon (Lion): I am the leader of this group... {p60}and I was once the leader of your father's royal guard...&quot;, textspeed=2},
+                    Parallel {
+                        MessageBox{message=&quot;Leon (Lion): We call ourselves {h the Rebellion}.&quot;, textspeed=2},
+                        AudioFade(&quot;music&quot;, 1.0, 0.0, 1),
+                    },
+                    MessageBox{message=&quot;Leon (Lion): I am the leader of this group... {p60}and I was once the leader of your father's {h royal guard}...&quot;, textspeed=2},
+                    PlayAudio(&quot;music&quot;, &quot;sallymeetsleon&quot;, 1.0, true),
                     MessageBox{message=&quot;Leon (Lion): It's a pleasure to see you again, {p40}Princess Sally.&quot;, textspeed=2},
 
                     Animate(sprites.sonic.sprite, &quot;shock&quot;),
@@ -952,7 +959,7 @@ return function(self)
                     MessageBox{message=&quot;Sally: H-{p30}He's right.&quot;, textspeed=4},
                     Animate(sprites.sally.sprite, &quot;idleup&quot;),
                     Animate(sprites.sonic.sprite, &quot;idleup&quot;),
-                    MessageBox{message=&quot;Sally: Leon, {p40}if you follow us, we can lead you to Knothole. {p60}You and your team will be safe there.&quot;, textspeed=4},
+                    MessageBox{message=&quot;Sally: Leon, {p40}if you follow us, we can lead you to\n{h Knothole}. {p60}You and your team will be safe there.&quot;, textspeed=4},
                     Animate(sprites.sonic.sprite, &quot;idleleft&quot;),
                     MessageBox{message=&quot;Sonic: Whoah, Sal! {p40}*whisper* Are you sure we can trust these guys?&quot;, textspeed=3},
                     Animate(sprites.sally.sprite, &quot;idledown&quot;),
