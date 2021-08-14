@@ -198,8 +198,7 @@ function Juggerbot:fleetHurtAnim()
 		},
 		Ease(self, "y", function() return self.y + 900 end, 3, "quad"),
 		Ease(self.sprite.color, 4, 0, 1),
-		Animate(ivan.sprite, "ivancross"),
-		Wait(1)
+		Animate(ivan.sprite, "ivancross")
 	}
 end
 

@@ -650,6 +650,7 @@ return function(self)
                     Do(function()
                         self.scene.camPos.x = 0
                         self.scene.player.sprite.visible = false
+                        self.scene.player.dropShadow.hidden = true
                         self.scene.player.hidekeyhints[tostring(self)] = self
                     end),
                     Animate(sprites.sally.sprite, &quot;idledown&quot;),
@@ -784,7 +785,7 @@ return function(self)
                         fleet.sprite:swapLayer(&quot;upper&quot;)
                         fleet.sprite:setAnimation(&quot;fleetfloat&quot;)
                         fleet:run {
-                            Ease(fleet, &quot;y&quot;, fleet.y + 500, 0.2),
+                            Ease(fleet, &quot;y&quot;, fleet.y + 510, 0.2),
                             Animate(fleet.sprite, &quot;fleetland&quot;),
                             Animate(fleet.sprite, &quot;fleetidle&quot;)
                         }
@@ -841,15 +842,15 @@ return function(self)
                             Parallel {
                                 Serial {
                                     Ease(logan, &quot;y&quot;, function() return logan.y - 60 end, 2),
-                                    Ease(logan, &quot;y&quot;, 1580, 1),
+                                    Ease(logan, &quot;y&quot;, 1580, 1, &quot;quad&quot;),
                                 },
                                 Serial {
                                     Ease(ivan, &quot;y&quot;, function() return ivan.y - 60 end, 2),
-                                    Ease(ivan, &quot;y&quot;, 1550, 1),
+                                    Ease(ivan, &quot;y&quot;, 1550, 1, &quot;quad&quot;),
                                 },
                                 Serial {
                                     Ease(leon, &quot;y&quot;, function() return leon.y - 60 end, 2),
-                                    Ease(leon, &quot;y&quot;, 1550, 1),
+                                    Ease(leon, &quot;y&quot;, 1550, 1, &quot;quad&quot;),
                                 },
                                 Ease(ivan, &quot;x&quot;, function() return ivan.x + 50 end, 1),
                                 Ease(leon, &quot;x&quot;, function() return leon.x - 70 end, 1),
@@ -863,7 +864,7 @@ return function(self)
                                 Serial {
                                     Animate(leon.sprite, &quot;leonland&quot;),
                                     Animate(leon.sprite, &quot;leonsword&quot;),
-                                    Wait(0.5),
+                                    Wait(1),
                                     Animate(leon.sprite, &quot;leonswordaway&quot;),
                                     Animate(leon.sprite, &quot;leonidle&quot;)
                                 },
@@ -905,7 +906,7 @@ return function(self)
                         local leon = self.scene.objectLookup.Leon
                         leon.sprite:setAnimation(&quot;leonwalkdown&quot;)
                         leon:run {
-                            Ease(leon, &quot;y&quot;, function() return leon.y  + 60 end, 1),
+                            Ease(leon, &quot;y&quot;, function() return leon.y  + 60 end, 0.4),
                             Do(function() leon.sprite:setAnimation(&quot;leonidle&quot;) end)
                         }
                     end),
@@ -925,13 +926,13 @@ return function(self)
                         self.scene.objectLookup.Leon.sprite:setAnimation(&quot;leonadjust&quot;)
                     end),
                     MessageBox{message=&quot;Leon (Lion): We call ourselves {h the Rebellion}.&quot;, textspeed=2},
-                    MessageBox{message=&quot;Leon (Lion): ...I was once the leader of your father's royal guard...&quot;, textspeed=2},
+                    MessageBox{message=&quot;Leon (Lion): I am the leader of this group... {p60}and I was once the leader of your father's royal guard...&quot;, textspeed=2},
                     MessageBox{message=&quot;Leon (Lion): It's a pleasure to see you again, {p40}Princess Sally.&quot;, textspeed=2},
 
                     Animate(sprites.sonic.sprite, &quot;shock&quot;),
                     Animate(sprites.sally.sprite, &quot;shock&quot;),
                     Animate(sprites.bunny.sprite, &quot;shock&quot;),
-                    Wait(0.7),
+                    Wait(1),
                     Animate(sprites.sonic.sprite, &quot;idleup&quot;),
                     Animate(sprites.sally.sprite, &quot;idleup&quot;),
                     Animate(sprites.bunny.sprite, &quot;idleup&quot;),
@@ -942,6 +943,9 @@ return function(self)
                     Animate(sprites.sonic.sprite, &quot;thinking&quot;),
 
                     MessageBox{message=&quot;Sonic: Royal guard?&quot;, textspeed=4},
+                    Do(function()
+                        self.scene.objectLookup.Leon.sprite:setAnimation(&quot;leonidle&quot;)
+                    end),
                     MessageBox{message=&quot;Leon (Lion): I know it's a lot to process, {p40}but the time for explanation comes later. {p60}We must make our escape before the {h good doctor} becomes aware of our presence...&quot;, textspeed=2},
                     Wait(0.5),
                     Animate(sprites.sally.sprite, &quot;idledown&quot;),
@@ -954,7 +958,7 @@ return function(self)
                     Animate(sprites.sally.sprite, &quot;idledown&quot;),
                     Animate(sprites.bunny.sprite, &quot;idleright&quot;),
                     MessageBox{message=&quot;Sally: *whisper* I believe he is who he says he is. {p60}And if Leon trusts the others then I trust them too.&quot;, textspeed=3},
-                    MessageBox{message=&quot;Bunnie: *whisper* Well that's good enough for me, Sally-girl.&quot;, textspeed=3},
+                    MessageBox{message=&quot;Bunnie: *whisper* Well that's good enough for me, \nSally-girl.&quot;, textspeed=3},
                     MessageBox{message=&quot;Sally: *whisper* Sonic?&quot;, textspeed=3}, 
                     Animate(sprites.sonic.sprite, &quot;irritated&quot;),
                     MessageBox{message=&quot;Sonic: ...&quot;, textspeed=3},
