@@ -12,6 +12,9 @@ return {
 			frames = {{1,0},{0,0}},
 			speed = 0.2
 		},
+		leoncrouch = {
+			frames = {{1,0}}
+		},
 		leonfall = {
 			frames = {{2,0},{3,0}},
 			speed = 0.2
@@ -54,12 +57,22 @@ return {
 		fleetfly = {
 			frames = {{17,0}}
 		},
+		fleetcrouch = {
+			frames = {{10,0}}
+		},
+		fleettakeoff = {
+			frames = {{10,0},{11,0},{12,0},{13,0}},
+			speed = 0.2
+		},
 		
 		loganidle = {
 			frames = {{20,0}}
 		},
 		loganfall = {
 			frames = {{18,0}}
+		},
+		logancrouch = {
+			frames = {{19,0}}
 		},
 		loganland = {
 			frames = {{19,0},{20,0}},
@@ -74,6 +87,9 @@ return {
 		
 		ivanidle = {
 			frames = {{25,0}}
+		},
+		ivancrouch = {
+			frames = {{29,0}}
 		},
 		ivancross = {
 			frames = {{28,0}}

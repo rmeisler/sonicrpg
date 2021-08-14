@@ -552,6 +552,7 @@ return function(self)
                 Animate(sprites.bunny.sprite, &quot;idleright&quot;),
                 Animate(sprites.sonic.sprite, &quot;idleleft&quot;),
                 MessageBox {message=&quot;Sally: This is it, guys! {p60}With this terminal we can produce the certificate of authenticity that we'll need to weaponize Rotor's glitch!&quot;, textspeed=4},
+                Animate(sprites.bunny.sprite, &quot;concernedright&quot;),
                 MessageBox {message=&quot;Bunnie: Well let's get it quickly, Sally-girl! {p60}This place makes my skin crawl!&quot;, textspeed=4},
                 MessageBox {message=&quot;Sonic: It doesn't smell so great, either!&quot;, textspeed=4},
                 MessageBox {message=&quot;Sally: Here goes nothin'...&quot;, textspeed=4},
@@ -928,11 +929,11 @@ return function(self)
                     Do(function()
                         self.scene.objectLookup.Leon.sprite:setAnimation(&quot;leonadjust&quot;)
                     end),
+                    MessageBox{message=&quot;Leon (Lion): We call ourselves {h the Rebellion}.&quot;, textspeed=2},
                     Parallel {
-                        MessageBox{message=&quot;Leon (Lion): We call ourselves {h the Rebellion}.&quot;, textspeed=2},
+                        MessageBox{message=&quot;Leon (Lion): I am the leader of this group... {p60}and I was once the leader of your father's {h royal guard}...&quot;, textspeed=2},
                         AudioFade(&quot;music&quot;, 1.0, 0.0, 1),
                     },
-                    MessageBox{message=&quot;Leon (Lion): I am the leader of this group... {p60}and I was once the leader of your father's {h royal guard}...&quot;, textspeed=2},
                     PlayAudio(&quot;music&quot;, &quot;sallymeetsleon&quot;, 1.0, true),
                     MessageBox{message=&quot;Leon (Lion): It's a pleasure to see you again, {p40}Princess Sally.&quot;, textspeed=2},
 
@@ -981,12 +982,86 @@ return function(self)
                     MessageBox{message=&quot;Fleet: We're good, actually. {p60}As the fastest living being on Mobius, I can manage transportation for my team.&quot;},
                     Animate(sprites.sonic.sprite, &quot;idleup&quot;),
                     MessageBox{message=&quot;Sonic: Excuse me?!&quot;, textspeed=3},
-                    Animate(sprites.sally.sprite, &quot;frustrateddown&quot;),
-                    MessageBox{message=&quot;Sally: Sonic! {p40}We have to go now!&quot;, textspeed=3},
-                    Animate(sprites.sonic.sprite, &quot;crouchright&quot;),
-                    MessageBox{message=&quot;Sonic: Ok, ok!&quot;, textspeed=3},
-                    PlayAudio(&quot;music&quot;, &quot;escapefanfare&quot;, 1.0, true),
-                    MessageBox{message=&quot;Sonic: Up! {p60}Over! {p60}And gone!&quot;}
+
+                    Do(function()
+                        local fleet = self.scene.objectLookup.Fleet
+                        local ivan = self.scene.objectLookup.Ivan
+                        local logan = self.scene.objectLookup.Logan
+                        local leon = self.scene.objectLookup.Leon
+                        fleet:run {
+                            Animate(fleet.sprite, &quot;fleetcrouch&quot;),
+                            Wait(0.5),
+                            Parallel {
+                                Animate(fleet.sprite, &quot;fleettakeoff&quot;),
+                                Ease(fleet, &quot;y&quot;, function() return fleet.y - 100 end, 0.5),
+                                Serial {
+                                    Animate(ivan.sprite, &quot;ivancrouch&quot;),
+                                    Wait(0.5),
+                                    Animate(ivan.sprite, &quot;ivanfall&quot;),
+                                    Parallel {
+                                        Ease(ivan, &quot;x&quot;, function() return fleet.x end, 1),
+                                        Serial {
+                                            Ease(ivan, &quot;y&quot;, function() return ivan.y - 200 end, 1),
+                                            Ease(ivan, &quot;y&quot;, function() return fleet.y end, 2)
+                                        }
+                                    },
+                                    Do(function() ivan:remove() end)
+                                },
+                                Serial {
+                                    Animate(logan.sprite, &quot;logancrouch&quot;),
+                                    Wait(0.5),
+                                    Animate(logan.sprite, &quot;loganfall&quot;),
+                                    Parallel {
+                                        Ease(logan, &quot;x&quot;, function() return fleet.x end, 1),
+                                        Serial {
+                                            Ease(logan, &quot;y&quot;, function() return logan.y - 200 end, 1),
+                                            Ease(logan, &quot;y&quot;, function() return fleet.y end, 2)
+                                        }
+                                    },
+                                    Do(function() logan:remove() end)
+                                },
+                                Serial {
+                                    Animate(leon.sprite, &quot;leoncrouch&quot;),
+                                    Wait(0.5),
+                                    Animate(leon.sprite, &quot;leonfall&quot;),
+                                    Parallel {
+                                        Ease(leon, &quot;x&quot;, function() return fleet.x end, 1),
+                                        Serial {
+                                            Ease(leon, &quot;y&quot;, function() return leon.y - 200 end, 1),
+                                            Ease(leon, &quot;y&quot;, function() return fleet.y end, 2)
+                                        }
+                                    },
+                                    Do(function() leon:remove() end)
+                                }
+                            },
+                            PlayAudio(&quot;sfx&quot;, &quot;sonicrunturn&quot;, 1.0, true),
+                            Ease(fleet, &quot;y&quot;, function() return fleet.y - 900 end, 1),
+                        }
+                    end),
+                    Parallel {
+                        Ease(self.scene.camPos, &quot;y&quot;, 0, 1),
+                        Serial {
+                            Animate(sprites.sally.sprite, &quot;frustrateddown&quot;),
+                            MessageBox{message=&quot;Sally: Sonic! {p40}We have to go now!&quot;, textspeed=3},
+                            PlayAudio(&quot;music&quot;, &quot;escapefanfare&quot;, 1.0, true),
+                            Animate(sprites.sonic.sprite, &quot;crouchright&quot;),
+                            MessageBox{message=&quot;Sonic: Ok, ok!&quot;, textspeed=3, closeAction=Wait(1)}
+                        }
+                    },
+
+                    walkin,
+                    Do(function()
+                        GameState.leader = &quot;sonic&quot;
+                        self.scene.player:updateSprite()
+                        self.scene.player.cinematic = true
+                        self.scene.player.chargeSpeed = 3
+                        self.scene.player.state = &quot;idleright&quot;
+                        self.scene.player.ignoreSpecialMoveCollision = true
+                        self.scene.player:onSpecialMove()
+                        self.scene.player.y = self.scene.player.y + 100
+                    end),
+                    MessageBox{message=&quot;Sonic: Up! {p60}Over! {p60}And gone!&quot;, closeAction=Wait(1)},
+                    Wait(100)
                 }
             })
         end)

@@ -11,6 +11,9 @@ return {
 		shock = {
 			frames = {{11,4}}
 		},
+		concernedright = {
+			frames = {{11,0}}
+		},
 		
 		kneeling = {
 			frames = {{10, 1}}
