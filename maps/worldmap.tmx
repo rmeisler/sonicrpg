@@ -261,7 +261,7 @@ return function(self, player, prevState)
 
     player.knotholeCallback = function(key)
         if player.onSubLocation == self and not self.scene.sceneMgr.transitioning and key == &quot;x&quot; then
-            self.scene:changeScene{map=&quot;knothole&quot;}
+            self.scene:changeScene{map=&quot;knothole&quot;, hint=&quot;fromworldmap&quot;}
             self.scene:removeHandler(&quot;keytriggered&quot;, player.knotholeCallback)
         end
     end

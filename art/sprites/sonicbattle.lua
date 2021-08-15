@@ -134,6 +134,9 @@ return {
 		},
 		criticizing_sad = {
 			frames = {{5,6}}
+		},
+		idleup = {
+			frames = {{4,6}}
 		}
     }
 }

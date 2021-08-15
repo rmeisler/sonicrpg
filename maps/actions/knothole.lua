@@ -1,4 +1,4 @@
-return function(scene)
+return function(scene, hint)
 	local Transform = require "util/Transform"
 	local Rect = unpack(require "util/Shapes")
 	local Layout = require "util/Layout"
@@ -13,7 +13,9 @@ return function(scene)
 	local Serial = require "actions/Serial"
 	local Executor = require "actions/Executor"
 	local Wait = require "actions/Wait"
+	local BlockPlayer = require "actions/BlockPlayer"
 	local Do = require "actions/Do"
+	local Move = require "actions/Move"
 	local shine = require "lib/shine"
 	local SpriteNode = require "object/SpriteNode"
 	local NameScreen = require "actions/NameScreen"
@@ -53,5 +55,19 @@ return function(scene)
 	
 	scene.player.dustColor = Player.FOREST_DUST_COLOR
 
-	return Action()
+	if hint == "fromworldmap" then
+		return BlockPlayer {
+			Parallel {
+				Do(function()
+					local cart = scene.objectLookup.CartBG
+					scene.player.x = cart.x + cart.sprite.w
+					scene.player.y = cart.y + cart.sprite.h
+				end),
+				Move(scene.objectLookup.CartBG, scene.objectLookup.CartWaypoint2),
+				Move(scene.objectLookup.Cart, scene.objectLookup.CartWaypoint2)
+			}
+		}
+	else
+		return Action()
+	end
 end

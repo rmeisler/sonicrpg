@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="282">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="287">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="onload" type="file" value="actions/knothole.lua"/>
@@ -1849,8 +1849,8 @@ return function(self)
                             self.scene.player.x = cart.x + cart.sprite.w
                             self.scene.player.y = cart.y + cart.sprite.h
                         end),
-                        Move(self.scene.objectLookup.CartBG, self.scene.objectLookup.CartWaypoint, null),
-                        Move(self, self.scene.objectLookup.CartWaypoint, null)
+                        Move(self.scene.objectLookup.CartBG, self.scene.objectLookup.CartWaypoint),
+                        Move(self, self.scene.objectLookup.CartWaypoint)
                     },
                     Do(function()
                         self.scene.audio:stopMusic()
@@ -2425,26 +2425,31 @@ return function(self)
                         rotor:setAnimation(&quot;idleright&quot;)
                     end),
                     MessageBox {message=&quot;Sally: A-Are you sure?&quot;},
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;victory&quot;)
+                    end),
                     MessageBox {message=&quot;Sonic: Hey, do I look like a guy who isn't sure?&quot;},
                     Do(function()
                         battleScene.partyByName.sonic.sprite:setAnimation(&quot;idle&quot;)
                         battleScene.partyByName.sally.sprite:setAnimation(&quot;thinking3&quot;)
                     end),
                     MessageBox {message=&quot;Sally: Ok, {p40}far be it from me to say this, {p40}but I think we've been playing it safe for long enough.&quot;},
-                    MessageBox {message=&quot;Sally: We need to do this.&quot;},
+                    MessageBox {message=&quot;Sally: We need to do this. {p60}This could be our chance to take down Robotnik, {p20}once and for all!&quot;},
                     Do(function()
                         battleScene.partyByName.sonic.sprite:setAnimation(&quot;victory&quot;)
                     end),
-                    MessageBox {message=&quot;Sonic: Alright!&quot;},
+                    MessageBox {message=&quot;Sonic: Whoah-- Sal! {p20}I'm liking this new attitude!&quot;},
+                    MessageBox {message=&quot;Rotor: This is a pretty crazy plan...&quot;},
                     Do(function()
                         rotor:setAnimation(&quot;pose&quot;)
                     end),
-                    MessageBox {message=&quot;Rotor: Yeah!&quot;},
+                    MessageBox {message=&quot;Rotor: ...but if Sally believes we can do it, than I do too!&quot;},
                     Do(function()
                         battleScene.partyByName.sally.sprite:setAnimation(&quot;victory&quot;)
                     
                         battleScene.partyByName.sonic.id = &quot;sonic&quot;
                     end),
+                    MessageBox {message=&quot;Sally: Alright guys!&quot;, closeAction=Wait(1)},
                     MessageBox {message=&quot;All: Let's do it to it!&quot;, textSpeed=4},
                     AudioFade(&quot;music&quot;, 1, 0),
                     battleScene:earlyExit()
@@ -2832,6 +2837,39 @@ end</property>
   <object id="278" name="CartWaypoint" type="BasicNPC" gid="5323" x="8032" y="-160" width="96" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="282" name="CartWaypoint2" type="BasicNPC" gid="5323" x="8032" y="704" width="96" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="283" name="AntoineMtg" type="BasicNPC" gid="7597" x="4898" y="1845" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idleleft"/>
+    <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
+   </properties>
+  </object>
+  <object id="284" name="BunnieMtg" type="BasicNPC" gid="7597" x="4832" y="1845" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idleleft"/>
+    <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
+   </properties>
+  </object>
+  <object id="285" name="SonicMtg" type="BasicNPC" gid="7597" x="4768" y="1845" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idleleft"/>
+    <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
+   </properties>
+  </object>
+  <object id="286" name="SallyMtg" type="BasicNPC" gid="7597" x="4694" y="1824" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="sprite" type="file" value="../art/sprites/sally.png"/>
    </properties>
   </object>
  </objectgroup>
