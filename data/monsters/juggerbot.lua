@@ -85,6 +85,20 @@ return {
 		self.sprite.h = self.sprite.h + 10
 	end,
 	
+	onBeforeAttack = function (self, target)
+		self.sprite:swapLayer("behind")
+		self.scene.juggerbothead.sprite:swapLayer("behind")
+		self.scene.juggerbotleftarm.sprite:swapLayer("behind")
+		self.scene.juggerbotrightarm.sprite:swapLayer("behind")
+	end,
+	
+	onAttack = function (self, target)
+		self.sprite:swapLayer("sprites")
+		self.scene.juggerbothead.sprite:swapLayer("sprites")
+		self.scene.juggerbotleftarm.sprite:swapLayer("sprites")
+		self.scene.juggerbotrightarm.sprite:swapLayer("sprites")
+	end,
+	
 	behavior = function (self, target)
 		if self.turnPhase == 1 then
 			action = Action()

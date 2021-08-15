@@ -302,6 +302,18 @@ function Juggerbot:leonHurtAnim()
 	}
 end
 
+function Juggerbot:deployLaserAnim()
+	local headSp = self.head
+	local rightarmSp = self.rightarm
+	return Serial {
+		Parallel {
+			Animate(self.sprite, "cannonright"),
+			Ease(self, "x", function() return self.x + (self.facingleft and -30 or 30) end, 1)
+		},
+		Animate(self.sprite, "idlecannonright")
+	}
+end
+
 function Juggerbot:moveEffects(dt)
 	if self.sprite.selected == "walkright" then
 		self.rightarm:setAnimation("walkright")

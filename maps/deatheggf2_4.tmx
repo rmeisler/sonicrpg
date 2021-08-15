@@ -554,14 +554,56 @@ return function(self)
                 MessageBox {message=&quot;Sally: This is it, guys! {p60}With this terminal we can produce the certificate of authenticity that we'll need to weaponize Rotor's glitch!&quot;, textspeed=4},
                 Animate(sprites.bunny.sprite, &quot;concernedright&quot;),
                 MessageBox {message=&quot;Bunnie: Well let's get it quickly, Sally-girl! {p60}This place makes my skin crawl!&quot;, textspeed=4},
-                MessageBox {message=&quot;Sonic: It doesn't smell so great, either!&quot;, textspeed=4},
+                MessageBox {message=&quot;Sonic: It doesn't smell so great either!&quot;, textspeed=4},
                 MessageBox {message=&quot;Sally: Here goes nothin'...&quot;, textspeed=4},
                 -- Beep boop, boop, show loading animation
-                Wait(1),
+                Do(function()
+                    local loadinganim1 = BasicNPC(
+                        self.scene,
+                        {name = &quot;upperlower&quot;},
+                        {
+                            name = &quot;ComputerLoading&quot;,
+                            x = self.x + self.sprite.w,
+                            y = self.y + self.sprite.h/2 - 20,
+                            width = 64,
+                            height = 64,
+                            properties = {nocollision = true, sprite = &quot;art/sprites/computerloading.png&quot;, defaultAnim = &quot;idle&quot;}
+                        }
+                    )
+                    self.scene:addObject(loadinganim1)
+                    loadinganim1.sprite.color[4] = 0
+
+                    local loadinganim2 = BasicNPC(
+                        self.scene,
+                        {name = &quot;upperlower&quot;},
+                        {
+                            name = &quot;ComputerLoading&quot;,
+                            x = self.x + self.sprite.w,
+                            y = self.y + self.sprite.h/2,
+                            width = 64,
+                            height = 64,
+                            properties = {nocollision = true, sprite = &quot;art/sprites/computerloadingcircle.png&quot;, defaultAnim = &quot;0&quot;}
+                        }
+                    )
+                    self.scene:addObject(loadinganim2)
+                    loadinganim2:run {
+                        Repeat(Serial {
+                            Ease(loadinganim2.sprite.color, 4, 0, 20, &quot;linear&quot;),
+                            Ease(loadinganim2.sprite.color, 4, 255, 20, &quot;linear&quot;)
+                        }, 5),
+                        Do(function() loadinganim1.sprite.color[4] = 255 end),
+                        Animate(loadinganim2.sprite, &quot;loading&quot;),
+                        PlayAudio(&quot;sfx&quot;, &quot;nicolebeep&quot;, 1.0),
+                        Do(function()
+                            loadinganim1:remove()
+                            self.gotit = true
+                        end)
+                    }
+                end),
                 Animate(sprites.sonic.sprite, &quot;idleup&quot;),
                 Animate(sprites.sally.sprite, &quot;idleup&quot;),
                 Animate(sprites.bunny.sprite, &quot;idleup&quot;),
-                Wait(1),
+                YieldUntil(self, &quot;gotit&quot;),
                 Animate(sprites.sally.sprite, &quot;pose&quot;),
                 Animate(sprites.bunny.sprite, &quot;idleright&quot;),
                 Animate(sprites.sonic.sprite, &quot;idleleft&quot;),
@@ -658,7 +700,7 @@ return function(self)
                     Animate(sprites.sally.sprite, &quot;idledown&quot;),
                     Animate(sprites.bunny.sprite, &quot;idleright&quot;),
                     Animate(sprites.sonic.sprite, &quot;pose&quot;),
-                    MessageBox{message=&quot;Sonic: Yeah! {p60}Hedgehog 'one', {p40}Buttnik 'zero'!&quot;, textspeed=4},
+                    MessageBox{message=&quot;Sonic: Yeah! {p40}Hedgehog 'one', Buttnik 'zero'!&quot;, textspeed=4},
                     Animate(sprites.sally.sprite, &quot;frustrateddown&quot;),
                     MessageBox{message=&quot;Sally: Sonic! {p60}We need to get out of here!&quot;, textspeed=4},
                     Animate(sprites.sonic.sprite, &quot;idleup&quot;),
@@ -685,7 +727,9 @@ return function(self)
                         self.scene:addObject(jbot1)
                         self.scene.objectLookup.JBot1 = jbot1
                         jbot1:run {
-                            jbot1:moveAnim(&quot;right&quot;)
+                            jbot1:moveAnim(&quot;right&quot;),
+                            Wait(1),
+                            jbot1:deployLaserAnim()
                         }
                         
                         local jbot2 = Juggerbot(
@@ -710,7 +754,9 @@ return function(self)
                         jbot2:faceLeft()
                         jbot2:run {
                             Wait(1),
-                            jbot2:moveAnim(&quot;left&quot;)
+                            jbot2:moveAnim(&quot;left&quot;),
+                            Wait(1),
+                            jbot2:deployLaserAnim()
                         }
                     end),
             
@@ -932,7 +978,7 @@ return function(self)
                     MessageBox{message=&quot;Leon (Lion): We call ourselves {h the Rebellion}.&quot;, textspeed=2},
                     Parallel {
                         MessageBox{message=&quot;Leon (Lion): I am the leader of this group... {p60}and I was once the leader of your father's {h royal guard}...&quot;, textspeed=2},
-                        AudioFade(&quot;music&quot;, 1.0, 0.0, 1),
+                        AudioFade(&quot;music&quot;, 1.0, 0.0, 0.3),
                     },
                     PlayAudio(&quot;music&quot;, &quot;sallymeetsleon&quot;, 1.0, true),
                     MessageBox{message=&quot;Leon (Lion): It's a pleasure to see you again, {p40}Princess Sally.&quot;, textspeed=2},
@@ -973,6 +1019,7 @@ return function(self)
                     
                     Do(function() self.scene.objectLookup.Logan.sprite:setAnimation(&quot;loganresearchshow&quot;) end),
                     MessageBox{message=&quot;Logan (Pig): Um, {p40}not trying to rush you guys, but...&quot;},
+                    PlayAudio(&quot;music&quot;, &quot;robotropolis&quot;, 1.0, true),
                     MessageBox{message=&quot;Logan (Pig): Actually, I totally am. {p40}Robotnik will probably capture us soon if we don't get movin'.&quot;},
                     Do(function() self.scene.objectLookup.Ivan.sprite:setAnimation(&quot;ivanthinking&quot;) end),
                     MessageBox{message=&quot;Ivan (Jackal): Indeed. {p60}Being captured would be most unfortunate.&quot;, textspeed=2},
@@ -1038,35 +1085,23 @@ return function(self)
                             Ease(fleet, &quot;y&quot;, function() return fleet.y - 900 end, 1),
                         }
                     end),
-                    Parallel {
-                        Ease(self.scene.camPos, &quot;y&quot;, 0, 1),
-                        Serial {
-                            Animate(sprites.sally.sprite, &quot;frustrateddown&quot;),
-                            MessageBox{message=&quot;Sally: Sonic! {p40}We have to go now!&quot;, textspeed=3},
-                            PlayAudio(&quot;music&quot;, &quot;escapefanfare&quot;, 1.0, true),
-                            Animate(sprites.sonic.sprite, &quot;crouchright&quot;),
-                            MessageBox{message=&quot;Sonic: Ok, ok!&quot;, textspeed=3, closeAction=Wait(1)}
-                        }
-                    },
-
+                    Animate(sprites.sally.sprite, &quot;frustrateddown&quot;),
+                    MessageBox{message=&quot;Sally: Sonic! {p40}We have to go now!&quot;, textspeed=3},
+                    Animate(sprites.sonic.sprite, &quot;crouchright&quot;),
+                    MessageBox{message=&quot;Sonic: Ok, ok!&quot;, textspeed=3, closeAction=Wait(1)},
+                    Ease(self.scene.camPos, &quot;y&quot;, 0, 1),
                     walkin,
                     Do(function()
                         GameState.leader = &quot;sonic&quot;
                         self.scene.player:updateSprite()
+                        self.scene.player.state = &quot;idleright&quot;
+                        self.scene.player.y = self.scene.player.y + 100
                         self.scene.player.cinematic = true
                         self.scene.player.chargeSpeed = 3
-                        self.scene.player.state = &quot;idleright&quot;
                         self.scene.player.ignoreSpecialMoveCollision = true
                         self.scene.player:onSpecialMove()
-                        self.scene.player.y = self.scene.player.y + 100
                     end),
-                    MessageBox{message=&quot;Sonic: Up! {p60}Over! {p60}And gone!&quot;, closeAction=Wait(1)},
-                    Wait(100)
-                }
-            })
-        end)
-    }
-end</property>
+                    MessageBox{message=&quot;Sonic: </property>
     <property name="sprite" type="file" value="../art/sprites/robotnikcomputer.png"/>
    </properties>
   </object>
@@ -1077,6 +1112,7 @@ end</property>
    </properties>
   </object>
  </objectgroup>
+ <objectgroup name="upperlower"/>
  <layer name="RightWall" width="54" height="64">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

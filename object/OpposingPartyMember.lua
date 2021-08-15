@@ -52,6 +52,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.getIdleAnim = data.getIdleAnim or function(_self) return "idle" end
 	self.getBackwardAnim = data.getBackwardAnim or function(_self) return "backward" end
 	self.onAttack = data.onAttack
+	self.onBeforeAttack = data.onBeforeAttack
 	self.textOffset = data.textOffset or Transform(0, self.sprite.h/2 - 15)
 	self.color = data.color or {255,255,255,255}
 	self.boss = data.boss

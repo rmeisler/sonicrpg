@@ -35,8 +35,7 @@ function CreditsSplashScene:onEnter()
 	
 	-- Setup music
 	self.audio:registerAs("music", "sonicrpglogo", love.audio.newSource("audio/music/credits.ogg", "static"))
-	self.audio:registerAs("music", "bhero", love.audio.newSource("audio/music/bhero.ogg", "static"))
-	self.audio:registerAs("music", "bheart", love.audio.newSource("audio/music/bheart.ogg", "static"))
+	self.audio:registerAs("music", "sallymeetsleon", love.audio.newSource("audio/music/sallymeetsleon.ogg", "static"))
 	
 	self.bgColor = {0,0,0,255}
 	self.logoColor = {255,255,255,0}
@@ -55,8 +54,7 @@ function CreditsSplashScene:onEnter()
 				Spawn(Serial {
 					PlayAudio("music", "sonicrpglogo", 0.7),
 					Wait(2),
-					PlayAudio("music", "bhero", 1.0),
-					PlayAudio("music", "bheart", 1.0),
+					PlayAudio("music", "sallymeetsleon", 1.0),
 					Do(function()
 						self.sceneMgr:backToTitle()
 					end)
@@ -134,6 +132,7 @@ Anya Stocks/Frostdrop1
 E-122-Psi
 
 [Tiles]
+Lucas Melo (Death Egg)
 Square Enix
 daemoth
 Reggie Meisler/RedG
@@ -164,18 +163,8 @@ Riggo
 [2020 Box Art]
 SEGAMew (@segamew)
 
-[Testing]
-Foxy Grandpa (Pix)
-Anya Stocks/Frostdrop1
-Jacob Berkley/Adventure Master 18
-Mister Acidic
-Captain Jotaro
-sonicevan
-Ibeh Dubem/Flame-The-Hedgehog
-Rocks the Squirrel
-Zero Neoz
-supermariobro58
-Joey "The Plokman" Tripp Nimmo
+[2021 Box Art]
+sqrly jack
 
 [Framework]
 Reggie Meisler/RedG
@@ -185,6 +174,7 @@ Love2D
 
 [Programming]
 Reggie Meisler/RedG
+Tailsluver
 
 [Tools]
 Tiled
@@ -202,11 +192,6 @@ Jacob Berkley/Adventure Master 18
 
 
 
-The character of "T" (Tinker) is dedicated to
-      the memory of a good friend.
-
-  Rest in piece my Senegal Parrot brother,
-         we'll never forget you.
 		 
 		 
 		 
@@ -214,6 +199,13 @@ The character of "T" (Tinker) is dedicated to
 
            Thanks for playing!
     Join our discord for project updates!
+	
+	
+	
+	        www.satamrpg.com
+			
+			
+			
 ]]
 	local text = TextNode(
 		self,

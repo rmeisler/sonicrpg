@@ -235,11 +235,15 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/worldmapdot.png"
+		file = "art/sprites/cursor.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/worldmapbigdot.png"
+		file = "art/sprites/computerloading.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/computerloadingcircle.png"
 	},
 	{
 		type = "image",
@@ -1227,7 +1231,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/battle2.ogg",
+		file = "audio/music/robotropolis.ogg",
 		category = "music",
 		volume = 0.7,
 		looping = true,

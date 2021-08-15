@@ -29,7 +29,7 @@ return {
             frames = {{7,0}}
         },
 		leonswordaway = {
-            frames = {{5,0},{6,0},{7,0}},
+            frames = {{5,0},{6,0},{7,0},{7,0}},
 			speed = 0.2
         },
 		leonwalkdown = {
