@@ -36,6 +36,7 @@ function CreditsSplashScene:onEnter()
 	-- Setup music
 	self.audio:registerAs("music", "sonicrpglogo", love.audio.newSource("audio/music/credits.ogg", "static"))
 	self.audio:registerAs("music", "sallymeetsleon", love.audio.newSource("audio/music/sallymeetsleon.ogg", "static"))
+	self.audio:registerAs("music", "meettherebellion", love.audio.newSource("audio/music/meettherebellion.ogg", "static"))
 	
 	self.bgColor = {0,0,0,255}
 	self.logoColor = {255,255,255,0}
@@ -54,7 +55,8 @@ function CreditsSplashScene:onEnter()
 				Spawn(Serial {
 					PlayAudio("music", "sonicrpglogo", 0.7),
 					Wait(2),
-					PlayAudio("music", "sallymeetsleon", 1.0)
+					PlayAudio("music", "sallymeetsleon", 1.0),
+					PlayAudio("music", "meettherebellion", 1.0)
 				}),
 				Wait(3),
 				Parallel {

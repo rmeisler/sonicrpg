@@ -90,7 +90,7 @@ return {
 	{
         type = "map",
 		file = "maps/deatheggf2_4.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -102,7 +102,7 @@ return {
 	{
         type = "map",
 		file = "maps/sonicshut.lua",
-		primary = true
+		--primary = true
     },
 	
 	{

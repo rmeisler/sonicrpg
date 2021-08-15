@@ -53,6 +53,7 @@ function Menu:construct(args)
 	self.descBoxes = {}
 	self.tag = args.tag
 	self.args = args
+	self.pagesContent = args.pages
 	
 	local list = args.list
 	if list then
@@ -108,10 +109,10 @@ function Menu:updateLayout()
 	self.maxCols = self.layout.maxCols
 	self.itemrows = self.args.maxRows or self.maxRows
 	self.itemcols = self.args.maxCols or self.maxCols
-	self.pages = self.args.pagesOverride or 1 --math.floor(self.itemrows / (self.maxRows * self.maxCols)) + 1
+	self.pages = self.pagesContent and table.count(self.pagesContent) or 1 --math.floor(self.itemrows / (self.maxRows * self.maxCols)) + 1
 	
-	if self.selectedRow > self.itemrows * self.pages then
-		self.selectedRow = self.itemrows * self.pages
+	if self.selectedRow > self.itemrows then
+		self.selectedRow = self.itemrows
 	end
 	
 	if self.selectedCol >= self.itemcols then
@@ -260,16 +261,22 @@ function Menu:keytriggered(key)
 
 	if key == "down" then
 		if (self.selectedRow % self.itemrows) == 0 then
-			print("selected row = "..tostring(self.selectedRow))
-			print("itemrows = "..tostring(self.itemrows))
-			print("self.curPage = "..tostring(self.curPage))
-			print("self.pages = "..tostring(self.pages))
 			if self.curPage < self.pages then
 				self.curPage = self.curPage + 1
-				self.selectedRow = self.selectedRow + 1
 			else
 				self.curPage = 1
-				self.selectedRow = 1
+			end
+			self.selectedRow = 1
+			if self.layout and self.pagesContent then
+				for i=1,self.itemrows do
+					local row = self.pagesContent[self.curPage][i]
+					if row then
+						self.layout:updateCol(i, 1, row)
+					else
+						self.layout:updateCol(i, 1, {choose = function() end, noChooseSfx = true})
+					end
+				end
+				self:updateLayout()
 			end
 		else
 			self.selectedRow = self.selectedRow + 1
@@ -278,10 +285,20 @@ function Menu:keytriggered(key)
 		if (self.selectedRow - 1) % self.maxRows == 0 then
 			if self.curPage > 1 then
 				self.curPage = self.curPage - 1
-				self.selectedRow = self.selectedRow - 1
 			else
 				self.curPage = self.pages
-				self.selectedRow = self.itemrows * self.pages
+			end
+			self.selectedRow = self.itemrows
+			if self.layout and self.pagesContent then
+				for i=1,self.itemrows do
+					local row = self.pagesContent[self.curPage][i]
+					if row then
+						self.layout:updateCol(i, 1, row)
+					else
+						self.layout:updateCol(i, 1, {choose = function() end, noChooseSfx = true})
+					end
+				end
+				self:updateLayout()
 			end
 		else
 			self.selectedRow = self.selectedRow - 1

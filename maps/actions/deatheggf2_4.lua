@@ -40,27 +40,26 @@ return function(scene)
 	
 	local stepAction = function()
 		scene.juggerbotstepVolume = 0.3
-		return While(function()
-				return not GameState:isFlagSet("ep2boss")
-		    end,
-			Serial {
-				PlayAudio("sfx", "juggerbotstep", scene.juggerbotstepVolume, true),
-				scene:screenShake(20, 40),
-				Wait(1),
-				PlayAudio("sfx", "juggerbotstep", scene.juggerbotstepVolume, true),
-				scene:screenShake(20, 40)
-			},
-			Action()
-		)
+		return Serial {
+			PlayAudio("sfx", "juggerbotstep", scene.juggerbotstepVolume, true),
+			scene:screenShake(20, 40),
+			Wait(1),
+			PlayAudio("sfx", "juggerbotstep", scene.juggerbotstepVolume, true),
+			scene:screenShake(20, 40)
+		}
 	end
 
 	-- Continuous stepping sounds from Juggerbot in bg
 	scene:run(Spawn(
-		Repeat(
-			Serial {
+		While(
+			function()
+				return not GameState:isFlagSet("ep2boss")
+		    end,
+			Repeat(Serial {
 				stepAction(),
 				Wait(5)
-			}
+			}),
+			Action()
 		)
 	))
 	

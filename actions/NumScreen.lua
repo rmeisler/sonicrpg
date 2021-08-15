@@ -124,14 +124,14 @@ function NumScreen:keytriggered(key)
 			self.selectedNumber = self.selectedNumber + 3
 		end
 	elseif key == "left" then
-		if self.selectedNumber == 1 then
-			self.selectedNumber = 9
+		if self.selectedNumber == 1 or self.selectedNumber == 4 or self.selectedNumber == 7 then
+			self.selectedNumber = self.selectedNumber + 2
 		else
 			self.selectedNumber = self.selectedNumber - 1
 		end
 	elseif key == "right" then
-		if self.selectedNumber == 9 then
-			self.selectedNumber = 1
+		if self.selectedNumber == 3 or self.selectedNumber == 6 or self.selectedNumber == 9 then
+			self.selectedNumber = self.selectedNumber - 2
 		else
 			self.selectedNumber = self.selectedNumber + 1
 		end

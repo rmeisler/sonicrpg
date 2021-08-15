@@ -19,9 +19,17 @@ local Layout = require "util/Layout"
 return function(self, mainMenu)
 	-- Build item list from data.items
 	local itemCount = 0
-	local options = {}
+	local pageCount = 1
+	local itemsPerPage = 6
+	local numberOfItems = 0
+	local optionPages = {{}}
 	for _, record in pairs(GameState.items) do
 		itemCount = itemCount + record.count
+		numberOfItems = numberOfItems + 1
+		if numberOfItems % itemsPerPage == 0 then
+			pageCount = pageCount + 1
+			table.insert(optionPages, {})
+		end
 
 		local chooseFun
 		if record.item.target == TargetType.None then
@@ -71,7 +79,7 @@ return function(self, mainMenu)
 		end
 
 		table.insert(
-			options,
+			optionPages[pageCount],
 			{
 				Layout.Image(record.item.icon),
 				Layout.Text(record.item.name),
@@ -88,10 +96,11 @@ return function(self, mainMenu)
 	end
 
 	return Menu {
-		layout = Layout(options),
+		layout = Layout(optionPages[1]),
 		cancellable = true,
 		transform = Transform(300, love.graphics.getHeight() - 97),
 		color = {255,255,255,255},
 		colSpacing = 230,
+		pages = optionPages
 	}
 end

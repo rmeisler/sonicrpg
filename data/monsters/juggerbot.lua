@@ -32,7 +32,7 @@ return {
 
 	stats = {
 		xp    = 100,
-		maxhp = 1,--800,
+		maxhp = 800,
 		attack = 20,
 		defense = 50,
 		speed = 1,
@@ -76,27 +76,16 @@ return {
 		self.beamSprite.transform.sy = 0
 
 		-- Spawn body parts
-		local parts = {"juggerbothead", "juggerbotrightarm", "juggerbotleftarm"}
+		local parts = {"juggerbotleftarm", "juggerbothead", "juggerbotrightarm"}
 		for k,v in pairs(parts) do
 			local oppo = self.scene:addMonster(v)
 			oppo:onPreInit()
+			oppo.mockSprite:swapLayer("behind")
 		end
 		
-		self.sprite.h = self.sprite.h + 10
-	end,
-	
-	onBeforeAttack = function (self, target)
 		self.sprite:swapLayer("behind")
-		self.scene.juggerbothead.sprite:swapLayer("behind")
-		self.scene.juggerbotleftarm.sprite:swapLayer("behind")
-		self.scene.juggerbotrightarm.sprite:swapLayer("behind")
-	end,
-	
-	onAttack = function (self, target)
-		self.sprite:swapLayer("sprites")
-		self.scene.juggerbothead.sprite:swapLayer("sprites")
-		self.scene.juggerbotleftarm.sprite:swapLayer("sprites")
-		self.scene.juggerbotrightarm.sprite:swapLayer("sprites")
+		
+		self.sprite.h = self.sprite.h + 10
 	end,
 	
 	behavior = function (self, target)

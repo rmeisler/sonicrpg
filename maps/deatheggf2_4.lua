@@ -10,7 +10,7 @@ return {
   tileheight = 32,
   nextobjectid = 30,
   properties = {
-    ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
     ["onload"] = "actions/deatheggf2_4.lua"
   },
   tilesets = {

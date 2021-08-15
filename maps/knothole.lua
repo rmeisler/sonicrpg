@@ -10,7 +10,7 @@ return {
   tileheight = 32,
   nextobjectid = 282,
   properties = {
-    ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["onload"] = "actions/knothole.lua",
     ["regionName"] = "Great Forest",
     ["sectorName"] = "Knothole"
