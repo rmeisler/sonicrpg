@@ -90,59 +90,7 @@ return {
 	{
         type = "map",
 		file = "maps/deatheggf2_4.lua",
-		primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/greatforest1.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/greatforest2.lua",
 		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/greatforest2_rightpath.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/greatforest2_rightpath_cave1.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/greatforest2_uppath.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/greatforest3.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/greatforest4.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/quicksand_cave1.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/quicksand_cave2.lua"
     },
 	
 	{
@@ -154,7 +102,7 @@ return {
 	{
         type = "map",
 		file = "maps/sonicshut.lua",
-		--primary = true
+		primary = true
     },
 	
 	{

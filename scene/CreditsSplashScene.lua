@@ -54,10 +54,7 @@ function CreditsSplashScene:onEnter()
 				Spawn(Serial {
 					PlayAudio("music", "sonicrpglogo", 0.7),
 					Wait(2),
-					PlayAudio("music", "sallymeetsleon", 1.0),
-					Do(function()
-						self.sceneMgr:backToTitle()
-					end)
+					PlayAudio("music", "sallymeetsleon", 1.0)
 				}),
 				Wait(3),
 				Parallel {
@@ -83,6 +80,9 @@ function CreditsSplashScene:onEnter()
 			
 			self:getScrollingCredits()
 		},
+		Do(function()
+			self.sceneMgr:backToTitle()
+		end)
 	}
 end
 
@@ -217,7 +217,7 @@ Jacob Berkley/Adventure Master 18
 		false
 	)
 	return Serial {
-		Ease(text.transform, "y", -3500, 0.01, "linear"),
+		Ease(text.transform, "y", -3000, 0.01, "linear"),
 		Do(function()
 			print("done")
 		end)

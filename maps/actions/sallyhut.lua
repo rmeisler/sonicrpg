@@ -82,7 +82,14 @@ return function(scene)
 		local origMoveSpeed = scene.player.movespeed
 		scene.player.movespeed = 1
 		scene.player.noIdle = true
+		
+		local sallydoor = scene.objectLookup.Door
+		scene.player.hidekeyhints[tostring(sallydoor)] = sallydoor
+
 		return Serial {
+			Do(function()
+				scene.player.hidekeyhints[tostring(sallydoor)] = sallydoor
+			end),
 			AudioFade("music", 1, 0, 1),
 			Do(function() scene.audio:stopMusic() end),
 			Wait(1),
@@ -99,9 +106,14 @@ return function(scene)
 			MessageBox {message="Sally: It's nothing, Sonic.", textSpeed=4},
 			MessageBox {message="Sonic: Sal, come on, I can tell when something's up, and something is definitely up!", textSpeed=4},
 			MessageBox {message="Sally: ...", textSpeed=4},
+			
+			Do(function()
+				scene.player.sprite:setAnimation("walkup")
+			end),
+			Ease(scene.player, "y", function() return scene.player.y - 20 end, 2, "linear"),
 			Do(function()
 				scene.player.x = scene.player.x - 15
-				scene.player.y = scene.player.y - 58
+				scene.player.y = scene.player.y - 38
 				scene.player.sprite:setAnimation("sit_sad")
 			end),
 			MessageBox {message="Sally: *sigh*{p40} It's nothing{p40}... it's just that...", textSpeed=4},
@@ -153,6 +165,7 @@ return function(scene)
 				scene.player.noIdle = false
 				scene.objectLookup.SallySad:remove()
 				GameState:addToParty("sally", 3, true)
+				GameState.leader = "sonic"
 				
 				GameState:setFlag("sallysad_over")
 			end)

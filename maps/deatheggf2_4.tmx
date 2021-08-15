@@ -587,10 +587,11 @@ return function(self)
                     )
                     self.scene:addObject(loadinganim2)
                     loadinganim2:run {
+                        Wait(1),
                         Repeat(Serial {
                             Ease(loadinganim2.sprite.color, 4, 0, 20, &quot;linear&quot;),
                             Ease(loadinganim2.sprite.color, 4, 255, 20, &quot;linear&quot;)
-                        }, 5),
+                        }, 10),
                         Do(function() loadinganim1.sprite.color[4] = 255 end),
                         Animate(loadinganim2.sprite, &quot;loading&quot;),
                         PlayAudio(&quot;sfx&quot;, &quot;nicolebeep&quot;, 1.0),
@@ -1102,6 +1103,7 @@ return function(self)
                         self.scene.player:onSpecialMove()
                     end),
                     MessageBox{message=&quot;Sonic: Up! {p60}Over! {p60}And gone!&quot;, closeAction=Wait(1)},
+                    AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),
                     Do(function()
                         self.scene.sceneMgr:pushScene {class = &quot;CreditsSplashScene&quot;}
                     end)
