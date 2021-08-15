@@ -1101,7 +1101,15 @@ return function(self)
                         self.scene.player.ignoreSpecialMoveCollision = true
                         self.scene.player:onSpecialMove()
                     end),
-                    MessageBox{message=&quot;Sonic: </property>
+                    MessageBox{message=&quot;Sonic: Up! {p60}Over! {p60}And gone!&quot;, closeAction=Wait(1)},
+                    Do(function()
+                        self.scene.sceneMgr:pushScene {class = &quot;CreditsSplashScene&quot;}
+                    end)
+                }
+            })
+        end)
+    }
+end</property>
     <property name="sprite" type="file" value="../art/sprites/robotnikcomputer.png"/>
    </properties>
   </object>
