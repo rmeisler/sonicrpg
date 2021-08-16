@@ -15,6 +15,13 @@ return {
 			frames = {{11,0}}
 		},
 		
+		sitlookforward = {
+			frames = {{4,4}}
+		},
+		sitlookleft = {
+			frames = {{5,4}}
+		},
+		
 		kneeling = {
 			frames = {{10, 1}}
 		},

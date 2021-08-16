@@ -21,6 +21,13 @@ return {
 			speed = 0.5
 		},
 		
+		sitlookforward = {
+			frames = {{12,4}}
+		},
+		sitlookleft = {
+			frames = {{13,4}}
+		},
+		
 		crouchleft = {
 		    frames = {{13,6}}
 		},
