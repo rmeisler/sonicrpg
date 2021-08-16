@@ -150,6 +150,15 @@ return {
 		thinking = {
 			frames = {{10,4}}
 		},
+		thinking2 = {
+			frames = {{9,4}}
+		},
+		thinking3 = {
+			frames = {{10,5}}
+		},
+		planning = {
+			frames = {{11,5}}
+		},
 		swimup = {
 			frames = {{10,3}}
 		},

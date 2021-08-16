@@ -400,6 +400,7 @@ function BasicScene:changeScene(args)
 		spawn_point = args.spawnPoint,
 		hint = args.hint,
 		tutorial = args.tutorial,
+		fadeOutSpeed = args.fadeOutSpeed,
 		cache = args.cache
 	}
 end

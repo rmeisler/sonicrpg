@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="16">
  <properties>
-  <property name="onload" type="file" value="actions/knotholehut.lua"/>
+  <property name="onload" type="file" value="actions/antoineknotholehut.lua"/>
   <property name="regionName" value="Antoine's Hut"/>
  </properties>
  <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
@@ -15,6 +15,7 @@
  <tileset firstgid="16162" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
   <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
  </tileset>
+ <tileset firstgid="17206" source="worldmap.tsx"/>
  <layer name="floor" width="25" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -82,6 +83,30 @@
 0,0,0,0,0,0,0,9408,9409,9410,0,0,0,0,0,9313,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,9366,0,0,0,0,0,9366,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,9419,0,0,0,0,0,9419,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="mess" width="25" height="20" opacity="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17038,17039,17040,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17067,17068,17069,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17096,17097,17098,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17125,17126,17127,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17154,17155,17156,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17183,17184,17185,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -190,6 +215,14 @@ return function(self)
                             end)
                         },
                         PlayAudio(&quot;sfx&quot;, &quot;cooking&quot;, 0.8),
+                        Do(function()
+                            for _,layer in pairs(self.scene.map.layers) do
+                                if layer.name == &quot;mess&quot; then
+                                    layer.opacity = 1.0
+                                    break
+                                end
+                            end
+                        end),
                         Parallel {
                             -- Fade in
                             Ease(self.scene.bgColor, 1, 255, 2, &quot;linear&quot;),

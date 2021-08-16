@@ -585,6 +585,7 @@ return function(self)
                             properties = {nocollision = true, sprite = &quot;art/sprites/computerloadingcircle.png&quot;, defaultAnim = &quot;0&quot;}
                         }
                     )
+                    loadinganim2.sprite.color[4] = 0
                     self.scene:addObject(loadinganim2)
                     loadinganim2:run {
                         Wait(1),
@@ -1105,7 +1106,7 @@ return function(self)
                     MessageBox{message=&quot;Sonic: Up! {p60}Over! {p60}And gone!&quot;, closeAction=Wait(1)},
                     AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),
                     Do(function()
-                        self.scene.sceneMgr:pushScene {class = &quot;CreditsSplashScene&quot;}
+                        self.scene.sceneMgr:pushScene {class = &quot;CreditsSplashScene&quot;, fadeOutSpeed = 0.5}
                     end)
                 }
             })

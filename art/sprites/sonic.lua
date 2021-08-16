@@ -222,6 +222,13 @@ return {
 		    frames = {{0,3},{1,3},{0,3},{5,3}},
 			speed = 0.5
 		},
+		
+		sitlookforward = {
+			frames = {{4,8}}
+		},
+		sitlookleft = {
+			frames = {{12,4}}
+		},
 
 		layright = {
 			frames = {{13,5}}
