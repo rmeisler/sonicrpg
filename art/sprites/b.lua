@@ -59,12 +59,22 @@ return {
 			speed = 0.09
 		},
 		walkdown = {
-			frames = {{1,2}, {2,2}, {3,2}, {4,2}, {5,2}, {6,2}, {7,2}, {8,2}},
-			speed = 0.09
+			frames = {{0,2}, {1,2}, {0,2}, {2,2}},
+			speed = 0.2
 		},
 		walkup = {
 			frames = {{1,3}, {2,3}, {3,3}, {2,3},{1,3}, {4,3}, {5,3}, {6,3}, {5,3}, {4,3}},
 			speed = 0.08
+		},
+		
+		seriousdown = {
+			frames = {{6,2}}
+		},
+		crouchdown = {
+			frames = {{4,2}}
+		},
+		leapdown = {
+			frames = {{5,2}}
 		},
 		
 		hideright = {

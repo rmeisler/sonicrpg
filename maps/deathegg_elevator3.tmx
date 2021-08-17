@@ -286,46 +286,74 @@ end</property>
     <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Ease = require &quot;actions/Ease&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
 local Do = require &quot;actions/Do&quot;
 local Move = require &quot;actions/Move&quot;
 local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
 local Wait = require &quot;actions/Wait&quot;
+
+local Layout = require &quot;util/Layout&quot;
+local Transform = require &quot;util/Transform&quot;
 
 return function(self)
     local elevatorLayer
     for _,layer in pairs(self.scene.map.layers) do
         if layer.name == &quot;elevator&quot; then
             elevatorLayer = layer
-            print(&quot;found elevator layer&quot;)
             break
         end
     end
-
     return BlockPlayer {
-        MessageBox {message=&quot;Nicole: The round platform ahead of us is an elevator.{p40}\nThis terminal controls that elevator.&quot;},
-        Do(function()
-            self.scene.player.noIdle = true
-            self.scene.player.sprite:setAnimation(&quot;walkleft&quot;)
-        end),
-        Ease(self.scene.player, &quot;x&quot;, self.scene.objectLookup.Waypoint.x, 1, &quot;linear&quot;),
-        Do(function()
-            self.scene.player.noIdle = false
-            self.scene.player.state = &quot;idledown&quot;
-        end),
-        Wait(1),
-        Parallel {
-            Ease(self.scene.player, &quot;y&quot;, self.scene.player.y + 400, 0.5, &quot;linear&quot;),
-            Ease(elevatorLayer, &quot;offsety&quot;, elevatorLayer.offsety + 400, 0.5, &quot;linear&quot;),
-            Do(function()
-                -- Update drop shadow position
-                self.scene.player.dropShadow.x = self.scene.player.x - 22
-                self.scene.player.dropShadow.y = self.scene.player.dropShadowOverrideY or self.scene.player.y + self.scene.player.sprite.h - 15
-            end),
-            Serial {
-                Wait(0.5),
-                Do(function() self.scene:changeScene {map=&quot;deathegg_elevator2&quot;, hint = &quot;fromabove&quot;} end)
-            }
+        MessageBox {message=&quot;Nicole: Shall I operate the elevator, {p40}Sally?&quot;, textspeed=4},
+        Menu {
+            layout = Layout {
+                {Layout.Text(&quot;Going up?&quot;), selectable = false},
+                {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                    menu:close()
+                    self.scene:run {
+                        menu,
+                        PlayAudio(&quot;sfx&quot;, &quot;lockon&quot;, 1.0),
+                        Wait(0.2),
+                        PlayAudio(&quot;sfx&quot;, &quot;lockon&quot;, 1.0),
+                        Wait(0.2),
+                        PlayAudio(&quot;sfx&quot;, &quot;lockon&quot;, 1.0),
+                        Wait(0.2),
+                        PlayAudio(&quot;sfx&quot;, &quot;lockon&quot;, 1.0),
+                        Wait(0.5),
+                        PlayAudio(&quot;sfx&quot;, &quot;nicolebeep&quot;, 1.0),
+                        Wait(1),
+                        Do(function()
+                            self.scene.player.noIdle = true
+                            self.scene.player.sprite:setAnimation(&quot;walkright&quot;)
+                        end),
+                        Ease(self.scene.player, &quot;x&quot;, self.scene.objectLookup.Waypoint.x, 1, &quot;linear&quot;),
+                        Do(function()
+                            self.scene.player.noIdle = false
+                            self.scene.player.state = &quot;idledown&quot;
+                        end),
+                        Wait(1),
+                        Parallel {
+                            Ease(self.scene.player, &quot;y&quot;, self.scene.player.y + 400, 0.5, &quot;linear&quot;),
+                            Ease(elevatorLayer, &quot;offsety&quot;, elevatorLayer.offsety + 400, 0.5, &quot;linear&quot;),
+                            Do(function()
+                                -- Update drop shadow position
+                                self.scene.player.dropShadow.x = self.scene.player.x - 22
+                                self.scene.player.dropShadow.y = self.scene.player.dropShadowOverrideY or self.scene.player.y + self.scene.player.sprite.h - 15
+                            end)
+                        },
+                        Do(function() self.scene:changeScene {map=&quot;deathegg_elevator2&quot;, hint=&quot;fromabove&quot;} end),
+                        Do(function() end)
+                    }
+                 end},
+                {Layout.Text(&quot;No&quot;), choose = function(menu)
+                    menu:close()
+                 end}
+            },
+            cancellable = true,
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+            selectedRow = 2
         }
     }
 end</property>

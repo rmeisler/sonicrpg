@@ -8,7 +8,7 @@ return {
 	{
         type = "map",
 		file = "maps/deathegg_elevator1.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -102,7 +102,7 @@ return {
 	{
         type = "map",
 		file = "maps/sonicshut.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -636,6 +636,11 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/hoverbot.png"
+	},
+	{
+		type = "sound",
+		file = "audio/music/exciting.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",

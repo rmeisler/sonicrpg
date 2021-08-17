@@ -169,9 +169,9 @@ function TitleSplashScene:onExit(args)
 end
 
 function TitleSplashScene:newGame()
-	--GameState:addToParty("sally", 3, true)
+	GameState:addToParty("sally", 3, true)
 	--GameState:addToParty("antoine", 1, true)
-	--GameState:addToParty("bunny", 3, true)
+	GameState:addToParty("bunny", 3, true)
 	GameState:addToParty("sonic", 3, true)
 	--GameState:addToParty("b", 1, true)
 	--GameState.leader = "sally"

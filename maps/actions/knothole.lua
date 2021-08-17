@@ -137,7 +137,10 @@ return function(scene, hint)
 			MessageBox {message="Bunnie: Who ya got in mind for the strike team, Sally-girl?"},
 			MessageBox {message="Sally: I wanna keep the team small, but versatile. {p40}\nYou, me, and Sonic."},
 			MessageBox {message="Bunnie: You got it, sugah."},
+			AudioFade("music", 1.0, 0.0, 0.5),
+			Wait(1),
 			Animate(sally.sprite, "planning_smile"),
+			PlayAudio("music", "exciting", 1.0, true),
 			MessageBox {message="Sally: Alright guys. {p60}This is the opportunity we've all been waiting for..."},
 			MessageBox {message="Sally: Let's do it to it!"},
 			Do(function()

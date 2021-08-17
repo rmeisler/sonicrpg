@@ -300,10 +300,10 @@ return function(self)
         end
     end
     return BlockPlayer {
-        MessageBox {message=&quot;Nicole: Shall I call the elevator, {p40}Sally?&quot;, textspeed=4},
+        MessageBox {message=&quot;Nicole: Shall I operate the elevator, {p40}Sally?&quot;, textspeed=4},
         Menu {
             layout = Layout {
-                {Layout.Text(&quot;Call elevator?&quot;), selectable = false},
+                {Layout.Text(&quot;Going up?&quot;), selectable = false},
                 {Layout.Text(&quot;Yes&quot;), choose = function(menu)
                     menu:close()
                     self.scene:run {

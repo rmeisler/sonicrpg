@@ -32,6 +32,7 @@ return function(scene)
 	
 	if  scene.reenteringFromBattle or
 		scene.player.x > 400 or
+		GameState:isFlagSet(scene.objectLookup.RightEntranceBlock) or
 		not GameState:isFlagSet("deathegg_checkleft1")
 	then
 		return Action()
