@@ -88,6 +88,21 @@ return function(scene, hint)
 		scene.objectLookup.BunnieMtg.hidden = false
 		
 		local sally = scene.objectLookup.SallyMtg
+		local antoine = scene.objectLookup.AntoineMtg
+		local sonic = scene.objectLookup.SonicMtg
+		local rotor = scene.objectLookup.RotorMtg
+		local bunnie = scene.objectLookup.BunnieMtg
+		
+		local hop = function(obj)
+			return Serial {
+				Ease(obj, "y", function() return obj.y - 30 end, 8),
+				Ease(obj, "y", function() return obj.y + 30 end, 8, "quad"),
+				Ease(obj, "y", function() return obj.y - 5 end, 20, "quad"),
+				Ease(obj, "y", function() return obj.y + 5 end, 20, "quad"),
+				Ease(obj, "y", function() return obj.y - 2 end, 20, "quad"),
+				Ease(obj, "y", function() return obj.y + 2 end, 20, "quad")
+			}
+		end
 
 		scene.player.sprite.visible = false
 		scene.player.dropShadow.hidden = true
@@ -101,6 +116,7 @@ return function(scene, hint)
 			MessageBox {message="Sally: From there, we'll meet up with B, who has already agreed to escort us into the Death Egg..."},
 			Animate(sally.sprite, "planning_lookdown"),
 			MessageBox {message="Sally: Once inside, we'll need to find a master terminal. {p60}Only master terminals are capable of producing a certificate of authenticity--"},
+			hop(antoine),
 			MessageBox {message="Antoine: Ahem. {p60}I am having a question."},
 			Animate(sally.sprite, "planning"),
 			MessageBox {message="Sally: Go ahead, Antoine."},
@@ -109,6 +125,7 @@ return function(scene, hint)
 			MessageBox {message="Sally: Unfortunately, intel on the internal layout of the Death Egg is sparse. {p60}We won't know exactly where B will take us, nor where the closest master terminal will be."},
 			MessageBox {message="Sally: We will have to timebox our search of course, but it could take several hours."},
 			MessageBox {message="Sally: Any other questions?"},
+			hop(sonic),
 			MessageBox {message="Sonic: Yeah! {p60}Are we having dinner after this? {p40}I'm starving!"},
 			Animate(sally.sprite, "planning_irritated"),
 			MessageBox {message="Sally: Sonic! {p40}Be serious!"},
@@ -116,6 +133,7 @@ return function(scene, hint)
 			MessageBox {message="Sally: Fine. {p60}We'll have dinner immediately after this meeting."},
 			Animate(sally.sprite, "planning"),
 			MessageBox {message="Sally: Are there any \"real\" questions?"},
+			hop(bunnie),
 			MessageBox {message="Bunnie: Who ya got in mind for the strike team, Sally-girl?"},
 			MessageBox {message="Sally: I wanna keep the team small, but versatile. {p40}\nYou, me, and Sonic."},
 			MessageBox {message="Bunnie: You got it, sugah."},
@@ -123,17 +141,8 @@ return function(scene, hint)
 			MessageBox {message="Sally: Alright guys. {p60}This is the opportunity we've all been waiting for..."},
 			MessageBox {message="Sally: Let's do it to it!"},
 			Do(function()
-				GameState:addToParty("bunny", 3, true)
-				GameState.leader = "sonic"
-				scene.player:updateSprite()
-				scene.player.x = scene.objectLookup.CartWaypoint2.x + 64 - 50
-				scene.player.y = scene.objectLookup.CartWaypoint2.y - 50
-				local walkout, walkin, sprites = scene.player:split {
-					GameState.party.sonic,
-					GameState.party.bunny,
-					GameState.party.sally
-				}
-				scene:run(BlockPlayer {
+				scene.player.cinematic = true
+				sally:run(BlockPlayer {
 					Parallel {
 						Serial {
 							scene:fadeOut(0.5),
@@ -144,14 +153,46 @@ return function(scene, hint)
 					Do(function()
 						scene.player.sprite.visible = true
 						scene.player.dropShadow.hidden = false
-						scene.player.x = scene.objectLookup.CartWaypoint2.x + 64
-						scene.player.y = scene.objectLookup.CartWaypoint2.y
-					end),
-					scene:fadeIn(),
-					Wait(0.5),
-					walkout,
-					MessageBox{message="Sally: When you're both ready to go, we can just ride the pulley cart out of Knothole."},
-					walkin
+						
+						sally.hidden = true
+						rotor.hidden = true
+						bunnie.hidden = true
+						sonic.hidden = true
+						antoine.hidden = true
+						
+						GameState:addToParty("bunny", 3, true)
+						GameState.leader = "sonic"
+						scene.player:updateSprite()
+						
+						local cart = scene.objectLookup.Cart
+						scene.player.hidekeyhints[tostring(cart)] = cart
+						
+						scene.player.x = scene.objectLookup.CartWaypoint2.x + 64 - 50
+						scene.player.y = scene.objectLookup.CartWaypoint2.y + 50 - 50
+						
+						local walkout, walkin, sprites = scene.player:split {
+							GameState.party.sonic,
+							GameState.party.bunny,
+							GameState.party.sally
+						}
+						
+						scene.player.x = scene.objectLookup.CartWaypoint2.x + 94
+						scene.player.y = scene.objectLookup.CartWaypoint2.y + 50
+						
+						scene.player.cinematicStack = scene.player.cinematicStack + 1
+						scene.player.cinematic = false
+
+						sonic:run(BlockPlayer {
+							scene:fadeIn(0.5),
+							Wait(0.5),
+							walkout,
+							Do(function()
+								scene.audio:playMusic("knothole", 0.8)
+							end),
+							MessageBox{message="Sally: When you're both ready to go, we can just ride this pulley cart out of Knothole."},
+							walkin
+						})
+					end)
 				})
 			end)
 		}

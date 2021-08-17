@@ -287,7 +287,50 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="notColliding">return function(self, player)
+    if player.onSubLocation == self then
+        player.onSubLocation = nil
+        self.scene:removeHandler(&quot;keytriggered&quot;, player.deatheggCallback)
+    end
+end</property>
     <property name="sprite" type="file" value="../art/sprites/deathegg.png"/>
+    <property name="whileColliding">local TypeText = require &quot;actions/TypeText&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Spawn = require &quot;actions/Spawn&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Do = require &quot;actions/Do&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
+
+local Transform = require &quot;util/Transform&quot;
+
+return function(self, player, prevState)
+    if player.onSubLocation == self or not GameState:isFlagSet(&quot;ffmeeting&quot;) then
+        return
+    end
+    player.onSubLocation = self
+
+    player.deatheggCallback = function(key)
+        if player.onSubLocation == self and not self.scene.sceneMgr.transitioning and key == &quot;x&quot; then
+            self.scene:changeScene{map=&quot;deathegg_elevator1&quot;, hint=&quot;fromworldmap&quot;}
+            self.scene:removeHandler(&quot;keytriggered&quot;, player.deatheggCallback)
+        end
+    end
+    self.scene:addHandler(&quot;keytriggered&quot;, player.deatheggCallback)
+
+    self.typeText = TypeText(
+        Transform(50, 470),
+        {255, 255, 255, 0},
+        FontCache.TechnoSmall,
+        &quot;Death Egg&quot;,
+        100
+    )
+    self.scene:run(Spawn(Serial {
+        self.typeText,
+        Ease(self.typeText.color, 4, 255, 1),
+        YieldUntil(function() return self.state ~= self.STATE_TOUCHING end),
+        Ease(self.typeText.color, 4, 0, 1)
+    }))
+end</property>
    </properties>
   </object>
   <object id="6" name="Building3" type="BasicNPC" gid="3521" x="1632" y="1568" width="128" height="32">
@@ -1464,7 +1507,7 @@ return function(self, player, prevState)
             self.scene:removeHandler(&quot;keytriggered&quot;, player.robotropCallback)
         end
     end
-    self.scene:addHandler(&quot;keytriggered&quot;, player.robotropCallback)
+    --self.scene:addHandler(&quot;keytriggered&quot;, player.robotropCallback)
 
     self.typeText = TypeText(
         Transform(50, 500),

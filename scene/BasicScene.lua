@@ -352,33 +352,27 @@ end
 
 function BasicScene:fadeIn(speed)
 	speed = speed or 1
-	return Serial {
-		Do(function() self.bgColor = 0 end),
-		Parallel {
-			-- Fade from black
-			Ease(self.bgColor, 1, 255, 2 * speed, "linear"),
-			Ease(self.bgColor, 2, 255, 2 * speed, "linear"),
-			Ease(self.bgColor, 3, 255, 2 * speed, "linear"),
-			Do(function()
-				ScreenShader:sendColor("multColor", self.bgColor)
-			end)
-		}
+	return Parallel {
+		-- Fade from black
+		Ease(self.bgColor, 1, 255, 2 * speed, "linear"),
+		Ease(self.bgColor, 2, 255, 2 * speed, "linear"),
+		Ease(self.bgColor, 3, 255, 2 * speed, "linear"),
+		Do(function()
+			ScreenShader:sendColor("multColor", self.bgColor)
+		end)
 	}
 end
 
 function BasicScene:fadeOut(speed)
 	speed = speed or 1
-	return Serial {
-		Do(function() self.bgColor = 255 end),
-		Parallel {
-			-- Fade to black
-			Ease(self.bgColor, 1, 0, 2 * speed, "linear"),
-			Ease(self.bgColor, 2, 0, 2 * speed, "linear"),
-			Ease(self.bgColor, 3, 0, 2 * speed, "linear"),
-			Do(function()
-				ScreenShader:sendColor("multColor", self.bgColor)
-			end)
-		}
+	return Parallel {
+		-- Fade to black
+		Ease(self.bgColor, 1, 0, 2 * speed, "linear"),
+		Ease(self.bgColor, 2, 0, 2 * speed, "linear"),
+		Ease(self.bgColor, 3, 0, 2 * speed, "linear"),
+		Do(function()
+			ScreenShader:sendColor("multColor", self.bgColor)
+		end)
 	}
 end
 

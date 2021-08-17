@@ -46,7 +46,9 @@ return function(scene)
 		GameState:unsetFlag("tutorial:hide_pillar5")
 		scene.player.sprite:setAnimation("shock")
 		scene.player.state = "shock"
-		scene.player:removeKeyHint()
+		for k,v in pairs(scene.player.keyhints) do
+			scene.player.hidekeyhints[k] = v
+		end
 		scene:run(
 			BlockPlayer {
 				Wait(2),

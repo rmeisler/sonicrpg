@@ -2239,8 +2239,7 @@ end</property>
     <property name="flagForDoor" value="sallysad_over"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
-    <property name="onOpen">
-local Serial = require &quot;actions/Serial&quot;
+    <property name="onOpen">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Menu = require &quot;actions/Menu&quot;
@@ -2380,7 +2379,7 @@ return function(self)
                         battleScene.partyByName.sonic.sprite:setAnimation(&quot;annoyed&quot;)
                     end),
                     MessageBox {message=&quot;Sonic: Guys, {p30}guys, {p30}can someone speak english here?&quot;},
-                    MessageBox {message=&quot;Sally: Well... {p40}basically... {p40}the Swatbot is, uh{p20}.{p20}.{p20}.{p40} {h glitchin'}.&quot;, textSpeed=4},
+                    MessageBox {message=&quot;Sally: Well... {p40}basically... {p40}the Swatbot is, uh{p10}.{p10}.{p10}.{p40} {h glitchin'}.&quot;, textSpeed=4},
                     MessageBox {message=&quot;Rotor: Right. {p40}And because this glitch showed up in a production model, {p40}my theory is, {p40}we could potentially mask this glitch as a {h software patch}.&quot;, textSpeed=3},
                     MessageBox {message=&quot;Sally: Meaning, {p40}we could spread this glitch to other bots!&quot;, textSpeed=3},
                     Do(function()
@@ -2401,7 +2400,7 @@ return function(self)
                         battleScene.partyByName.sally.sprite:setAnimation(&quot;sad&quot;)
                         battleScene.audio:playMusic(&quot;sonicsad&quot;, 0.8)
                     end),
-                    MessageBox {message=&quot;Sally: *sigh* {p40}Well{p20}.{p20}.{p20}. {p40}so much for that plan...&quot;, textSpeed=2},
+                    MessageBox {message=&quot;Sally: *sigh* {p40}Well{p10}.{p10}.{p10}. {p40}so much for that plan...&quot;, textSpeed=4},
                     Do(function()
                         rotor:setAnimation(&quot;sad&quot;)
                     end),
