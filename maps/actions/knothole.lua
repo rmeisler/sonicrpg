@@ -123,7 +123,10 @@ return function(scene, hint)
 			MessageBox {message="Antoine: Once you are inside zee Egg of Death, how are you to know where zis terminal even is?"},
 			MessageBox {message="Sally: Good question, Antoine."},
 			MessageBox {message="Sally: Unfortunately, intel on the internal layout of the Death Egg is sparse. {p60}We won't know exactly where B will take us, nor where the closest master terminal will be."},
-			MessageBox {message="Sally: We will have to timebox our search of course, but it could take several hours."},
+			MessageBox {message="Sally: But-- {p40}according to Griff-- {p40}Factorybots need to refresh their security access codes with a master terminal every couple of hours..."},
+			MessageBox {message="Rotor: ...so all you need to do is find one of these bots and follow it around until it leads you to a master terminal?"},
+			MessageBox {message="Sally: Right!"},
+			MessageBox {message="Bunnie: My goodness, Sally-girl! How do you come up with this stuff?"},
 			MessageBox {message="Sally: Any other questions?"},
 			hop(sonic),
 			MessageBox {message="Sonic: Yeah! {p60}Are we having dinner after this? {p40}I'm starving!"},
@@ -134,9 +137,9 @@ return function(scene, hint)
 			Animate(sally.sprite, "planning"),
 			MessageBox {message="Sally: Are there any \"real\" questions?"},
 			hop(bunnie),
-			MessageBox {message="Bunnie: Who ya got in mind for the strike team, Sally-girl?"},
+			MessageBox {message="Bunnie: Who ya got in mind for the mission?"},
 			MessageBox {message="Sally: I wanna keep the team small, but versatile. {p40}\nYou, me, and Sonic."},
-			MessageBox {message="Bunnie: You got it, sugah."},
+			MessageBox {message="Bunnie: You got it, sugah!"},
 			AudioFade("music", 1.0, 0.0, 0.5),
 			Wait(1),
 			Animate(sally.sprite, "planning_smile"),
@@ -148,10 +151,10 @@ return function(scene, hint)
 				sally:run(BlockPlayer {
 					Parallel {
 						Serial {
-							scene:fadeOut(0.5),
+							scene:fadeOut(0.2),
 							Wait(1)
 						},
-						AudioFade("music", 1.0, 0.0, 0.5)
+						AudioFade("music", 1.0, 0.0, 0.2)
 					},
 					Do(function()
 						scene.player.sprite.visible = true
