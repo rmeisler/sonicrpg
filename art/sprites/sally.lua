@@ -159,6 +159,18 @@ return {
 		planning = {
 			frames = {{11,5}}
 		},
+		planning_lookdown = {
+			frames = {{12,5}}
+		},
+		planning_lookdown_point = {
+			frames = {{13,5}}
+		},
+		planning_smile = {
+			frames = {{14,5}}
+		},
+		planning_irritated = {
+			frames = {{15,5}}
+		},
 		swimup = {
 			frames = {{10,3}}
 		},

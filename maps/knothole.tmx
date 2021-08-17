@@ -2239,7 +2239,8 @@ end</property>
     <property name="flagForDoor" value="sallysad_over"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
-    <property name="onOpen">local Serial = require &quot;actions/Serial&quot;
+    <property name="onOpen">
+local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Menu = require &quot;actions/Menu&quot;
@@ -2429,6 +2430,11 @@ return function(self)
                         battleScene.partyByName.sonic.sprite:setAnimation(&quot;victory&quot;)
                     end),
                     MessageBox {message=&quot;Sonic: Hey, do I look like a guy who isn't sure?&quot;},
+                    MessageBox {message=&quot;Rotor: B? {p60}Who's B?&quot;},
+                    Do(function()
+                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;explain&quot;)
+                    end),
+                    MessageBox {message=&quot;Sonic: We met him on our last mission. {p40}B helped us rescue Antoine. {p40}He knows all sorts of secret pathways throughout Robotropolis, some that even Griff doesn't\nknow about!&quot;},
                     Do(function()
                         battleScene.partyByName.sonic.sprite:setAnimation(&quot;idle&quot;)
                         battleScene.partyByName.sally.sprite:setAnimation(&quot;thinking3&quot;)
@@ -2864,7 +2870,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
    </properties>
   </object>
-  <object id="300" name="SonicMtg" type="BasicNPC" gid="7597" x="4743" y="1837" width="32" height="32">
+  <object id="300" name="SonicMtg" type="BasicNPC" gid="7597" x="4743" y="1830" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="sitlookforward"/>

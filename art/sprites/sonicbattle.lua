@@ -135,6 +135,9 @@ return {
 		criticizing_sad = {
 			frames = {{5,6}}
 		},
+		explain = {
+			frames = {{4,5}}
+		},
 		idleup = {
 			frames = {{4,6}}
 		}
