@@ -282,6 +282,11 @@
     <property name="orientation" value="right"/>
     <property name="scene" type="file" value="deatheggf2_sneak1.lua"/>
     <property name="spawn_point" value="RightEntrance"/>
+    <property name="whileColliding">return function(self)
+    if not GameState:isFlagSet(&quot;deathegg:sneak1_done&quot;) then
+        GameState:setFlag(&quot;deathegg:sneak1_done&quot;)
+    end
+end</property>
    </properties>
   </object>
   <object id="12" name="Grabbable" type="ExtPost" gid="9040" x="768" y="704" width="32" height="32">

@@ -236,25 +236,32 @@ function Bot:followActions()
 		end
 		
 		local actions = {}
-		for _, target in pairs(self.followStack) do
-			table.insert(
-				actions,
-				Serial {
-					self:follow(self.scene.objectLookup[target], "walk", self.walkspeed),
-					Do(function()
-						self.lastTarget = target
-						self.sprite:setAnimation("idle"..self.facing)
-					end),
-					Wait(2)
-				}
-			)
+		for index, target in pairs(self.followStack) do
+			if self.removeAfterFollow and index == #self.followStack then
+				table.insert(
+					actions,
+					Serial {
+						self:follow(self.scene.objectLookup[target], "walk", self.walkspeed),
+						Do(function() self:remove() end)
+					}
+				)
+			else
+				table.insert(
+					actions,
+					Serial {
+						self:follow(self.scene.objectLookup[target], "walk", self.walkspeed),
+						Do(function()
+							self.lastTarget = target
+							self.sprite:setAnimation("idle"..self.facing)
+						end),
+						Wait(2)
+					}
+				)
+			end
 		end
 		if self.followRepeat then
 			return Repeat(Serial(actions))
 		else
-			if self.removeAfterFollow then
-				table.insert(actions, Do(function() self:remove() end))
-			end
 			return Serial(actions)
 		end
 	else
@@ -898,7 +905,10 @@ function Bot:remove()
 		self.scene.player.chasers[tostring(self.name)] = nil
 		self.scene.player.investigators[tostring(self.name)] = nil
 		
-		if not next(self.scene.player.chasers) and self.prevSceneMusic and not self.scene.enteringBattle then
+		if  not next(self.scene.player.chasers) and
+			self.prevSceneMusic and
+			not self.scene.enteringBattle
+		then
 			self.scene.audio:playMusic(self.prevSceneMusic)
 		end
 	end

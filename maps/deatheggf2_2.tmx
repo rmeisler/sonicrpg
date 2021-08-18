@@ -432,6 +432,11 @@
     <property name="orientation" value="right"/>
     <property name="scene" type="file" value="deatheggf2_sneak2.lua"/>
     <property name="spawn_point" value="RightEntrance"/>
+    <property name="whileCollliding">return function(self)
+    if not GameState:isFlagSet(&quot;deathegg:sneak2_done&quot;) then
+        GameState:setFlag(&quot;deathegg:sneak2_done&quot;)
+    end
+end</property>
    </properties>
   </object>
   <object id="641" name="Pillar3" type="BasicNPC" gid="8588" x="672" y="736" width="64" height="32">

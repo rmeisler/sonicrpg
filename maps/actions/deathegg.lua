@@ -89,6 +89,7 @@ return function(scene)
 		Do(function()
 			GameState:addToParty("b", 1, true)
 			scene.player.x = scene.player.x - 50
+			scene.camPos.x = -50
 			local walkout, walkin, sprites = scene.player:split {
 				GameState.party.sonic,
 				GameState.party.bunny,
@@ -111,7 +112,8 @@ return function(scene)
 				Do(function()
 					GameState:removeFromParty("b")
 					GameState.leader = "sonic"
-					scene.player.x = scene.player.x + 100
+					scene.camPos.x = 0
+					scene.player.x = scene.player.x + 90
 					scene.player.y = scene.player.y + 50
 				end)
 			}

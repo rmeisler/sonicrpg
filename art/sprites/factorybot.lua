@@ -14,6 +14,9 @@ return {
 		hurt = {
 			frames = {{2,0}}
 		},
+		hurtdown = {
+			frames = {{2,0}}
+		},
 	
         idledown = {
             frames = {{0,0}}

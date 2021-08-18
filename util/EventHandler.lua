@@ -6,6 +6,10 @@ function EventHandler:construct()
 	self.children = {}
 end
 
+function EventHandler:handlerExists(type)
+	return self.handlers[type] ~= nil
+end
+
 function EventHandler:addHandler(type, func, obj, ...)
     if not self.handlers[type] then
         self.handlers[type] = {}

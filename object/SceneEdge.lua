@@ -20,6 +20,12 @@ function SceneEdge:construct(scene, layer, object)
 	self.ignoreSpawnOffset = self.object.properties.ignore_spawn_offset
 	self.needFlag = self.object.properties.needFlag
 	
+	if object.properties.onLeave then
+		self.onLeave = assert(loadstring(object.properties.onLeave))()
+	else
+		self.onLeave = function(self) return Action() end
+	end
+
 	if scene.lastSpawnPoint == self.name then
 		scene.player = Player(self.scene, self.layer, table.clone(self.object))
 	end
@@ -118,7 +124,7 @@ function SceneEdge:goToScene()
 			
 			Do(function()
 				self.scene.player.noIdle = false
-			end),
+			end)
 		}
 	elseif self.object.properties.key == "down" then
 		self.scene.player:run {
@@ -133,7 +139,7 @@ function SceneEdge:goToScene()
 			
 			Do(function()
 				self.scene.player.noIdle = false
-			end),
+			end)
 		}
 	elseif self.object.properties.key == "left" then
 		self.scene.player:run {
@@ -146,7 +152,7 @@ function SceneEdge:goToScene()
 			
 			Do(function()
 				self.scene.player.noIdle = false
-			end),
+			end)
 		}
 	elseif self.object.properties.key == "right" then
 		self.scene.player:run {
@@ -161,10 +167,12 @@ function SceneEdge:goToScene()
 				if self.scene.player then
 					self.scene.player.noIdle = false
 				end
-			end),
+			end)
 		}
 	end
-	
+
+	self:onLeave()
+
 	self.scene.sceneMgr:switchScene {
 		class = "BasicScene",
 		mapName = mapName,

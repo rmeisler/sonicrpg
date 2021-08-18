@@ -583,6 +583,7 @@ return {
           properties = {
             ["ghost"] = true,
             ["key"] = "left",
+            ["onLeave"] = "return function(self)\n    if not GameState:isFlagSet(\"deathegg:sneak1_done\") then\n        self.scene.cacheSceneData = false\n        self.scene.sceneMgr.cachedScenes[tostring(self.scene.map)] = nil\n        self.scene.isRestarting = true\n    end\nend",
             ["orientation"] = "right",
             ["scene"] = "deathegg_elevator3.lua",
             ["spawn_point"] = "RightEntrance"

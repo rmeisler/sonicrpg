@@ -583,6 +583,7 @@ return {
           properties = {
             ["ghost"] = true,
             ["key"] = "left",
+            ["onLeave"] = "return function(self)\n    if not GameState:isFlagSet(\"deathegg:sneak2_done\") then\n        self.scene.cacheSceneData = false\n        self.scene.sceneMgr.cachedScenes[tostring(self.scene.map)] = nil\n        self.scene.isRestarting = true\n    end\nend",
             ["orientation"] = "right",
             ["scene"] = "deatheggf2_1.lua",
             ["spawn_point"] = "RightEntrance"
@@ -750,6 +751,7 @@ return {
           properties = {
             ["defaultAnim"] = "idledown",
             ["ghost"] = true,
+            ["noMusic"] = true,
             ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/swatbotwithblaster.png",
             ["viewRange"] = "SwatbotVisibility1"
@@ -770,6 +772,7 @@ return {
           properties = {
             ["defaultAnim"] = "idledown",
             ["ghost"] = true,
+            ["noMusic"] = true,
             ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/swatbotwithblaster.png",
             ["viewRange"] = "SwatbotVisibility2"
@@ -834,8 +837,8 @@ return {
           name = "Grabbable",
           type = "ExtPost",
           shape = "rectangle",
-          x = 992,
-          y = 1408,
+          x = 1024,
+          y = 1376,
           width = 32,
           height = 32,
           rotation = 0,
@@ -870,8 +873,8 @@ return {
           name = "Grabbable",
           type = "ExtPost",
           shape = "rectangle",
-          x = 1760,
-          y = 1408,
+          x = 1728,
+          y = 1376,
           width = 32,
           height = 32,
           rotation = 0,
@@ -1150,7 +1153,7 @@ return {
           name = "FWaypoint6",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2304,
+          x = 2272,
           y = 1088,
           width = 32,
           height = 32,

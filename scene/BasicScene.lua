@@ -389,7 +389,7 @@ function BasicScene:remove()
 	self.player = nil
 end
 
-function BasicScene:restart()
+function BasicScene:restart(args)
 	self.cacheSceneData = false
 	self.sceneMgr.cachedScenes[tostring(self.map)] = nil
 	self.isRestarting = true
@@ -404,11 +404,12 @@ function BasicScene:restart()
 		spawn_point_offset = Transform(),
 		fadeInSpeed = 2,
 		fadeOutSpeed = 2,
-		fadeOutMusic = true,
+		fadeOutMusic = args.fadeOutMusic,
 		images = self.images,
 		animations = self.animations,
 		audio = self.audio,
-		tutorial = self.tutorial
+		tutorial = self.tutorial,
+		hint = args.hint
 	}
 end
 

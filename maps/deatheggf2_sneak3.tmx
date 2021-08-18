@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="61" height="83" tilewidth="32" tileheight="32" infinite="0" nextobjectid="754">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="61" height="83" tilewidth="32" tileheight="32" infinite="0" nextobjectid="756">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
   <property name="onload" type="file" value="actions/deatheggf2_sneak3.lua"/>
@@ -625,6 +625,13 @@
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="left"/>
+    <property name="onLeave">return function(self)
+    if not GameState:isFlagSet(&quot;deathegg:sneak3_done&quot;) then
+        self.scene.cacheSceneData = false
+        self.scene.sceneMgr.cachedScenes[tostring(self.scene.map)] = nil
+        self.scene.isRestarting = true
+    end
+end</property>
     <property name="orientation" value="right"/>
     <property name="scene" type="file" value="deatheggf2_2.lua"/>
     <property name="spawn_point" value="RightEntrance"/>
@@ -639,20 +646,6 @@
     <property name="spawn_point" value="LeftEntrance"/>
    </properties>
   </object>
-  <object id="724" name="Grabbable" type="ExtPost" gid="9040" x="1568" y="1888" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
-   </properties>
-  </object>
-  <object id="725" name="Grabbable" type="ExtPost" gid="9040" x="1760" y="2464" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
-   </properties>
-  </object>
   <object id="726" name="Chest1" type="Chest" gid="8977" x="1440" y="544" width="64" height="64">
    <properties>
     <property name="CrystalWater" type="int" value="1"/>
@@ -665,6 +658,7 @@
     <property name="follow" value="Waypoint1,Waypoint2,Waypoint3,Waypoint2,Waypoint1,Waypoint4"/>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="noMusic" type="bool" value="true"/>
     <property name="noflashlight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwithblaster.png"/>
     <property name="viewRange" value="SwatbotVisibility1,SwatbotVisibility2,SwatbotVisibility3"/>
@@ -763,7 +757,7 @@
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="747" name="FWaypoint6" type="BasicNPC" gid="8977" x="1888" y="2432" width="32" height="32">
+  <object id="747" name="FWaypoint6" type="BasicNPC" gid="8977" x="1856" y="2432" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -798,6 +792,20 @@
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/pillar.png"/>
+   </properties>
+  </object>
+  <object id="754" name="Grabbable" type="ExtPost" gid="9040" x="1568" y="1888" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
+   </properties>
+  </object>
+  <object id="755" name="Grabbable" type="ExtPost" gid="9040" x="1728" y="2432" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
    </properties>
   </object>
  </objectgroup>

@@ -335,6 +335,13 @@
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="left"/>
+    <property name="onLeave">return function(self)
+    if not GameState:isFlagSet(&quot;deathegg:sneak2_done&quot;) then
+        self.scene.cacheSceneData = false
+        self.scene.sceneMgr.cachedScenes[tostring(self.scene.map)] = nil
+        self.scene.isRestarting = true
+    end
+end</property>
     <property name="orientation" value="right"/>
     <property name="scene" type="file" value="deatheggf2_1.lua"/>
     <property name="spawn_point" value="RightEntrance"/>
@@ -386,6 +393,7 @@
    <properties>
     <property name="defaultAnim" value="idledown"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="noMusic" type="bool" value="true"/>
     <property name="noflashlight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwithblaster.png"/>
     <property name="viewRange" value="SwatbotVisibility1"/>
@@ -395,6 +403,7 @@
    <properties>
     <property name="defaultAnim" value="idledown"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="noMusic" type="bool" value="true"/>
     <property name="noflashlight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwithblaster.png"/>
     <property name="viewRange" value="SwatbotVisibility2"/>
@@ -421,7 +430,7 @@
     <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
    </properties>
   </object>
-  <object id="728" name="Grabbable" type="ExtPost" gid="9040" x="992" y="1408" width="32" height="32">
+  <object id="728" name="Grabbable" type="ExtPost" gid="9040" x="1024" y="1376" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
@@ -435,7 +444,7 @@
     <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
    </properties>
   </object>
-  <object id="730" name="Grabbable" type="ExtPost" gid="9040" x="1760" y="1408" width="32" height="32">
+  <object id="730" name="Grabbable" type="ExtPost" gid="9040" x="1728" y="1376" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
@@ -528,7 +537,7 @@
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="748" name="FWaypoint6" type="BasicNPC" gid="8977" x="2304" y="1088" width="32" height="32">
+  <object id="748" name="FWaypoint6" type="BasicNPC" gid="8977" x="2272" y="1088" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>

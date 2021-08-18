@@ -8,7 +8,7 @@ return {
   height = 83,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 754,
+  nextobjectid = 756,
   properties = {
     ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
     ["onload"] = "actions/deatheggf2_sneak3.lua"
@@ -886,6 +886,7 @@ return {
           properties = {
             ["ghost"] = true,
             ["key"] = "left",
+            ["onLeave"] = "return function(self)\n    if not GameState:isFlagSet(\"deathegg:sneak3_done\") then\n        self.scene.cacheSceneData = false\n        self.scene.sceneMgr.cachedScenes[tostring(self.scene.map)] = nil\n        self.scene.isRestarting = true\n    end\nend",
             ["orientation"] = "right",
             ["scene"] = "deatheggf2_2.lua",
             ["spawn_point"] = "RightEntrance"
@@ -909,42 +910,6 @@ return {
             ["orientation"] = "left",
             ["scene"] = "deathegg_elevator4.lua",
             ["spawn_point"] = "LeftEntrance"
-          }
-        },
-        {
-          id = 724,
-          name = "Grabbable",
-          type = "ExtPost",
-          shape = "rectangle",
-          x = 1568,
-          y = 1888,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 9040,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/extpost2.png"
-          }
-        },
-        {
-          id = 725,
-          name = "Grabbable",
-          type = "ExtPost",
-          shape = "rectangle",
-          x = 1760,
-          y = 2464,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 9040,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/extpost2.png"
           }
         },
         {
@@ -981,6 +946,7 @@ return {
             ["follow"] = "Waypoint1,Waypoint2,Waypoint3,Waypoint2,Waypoint1,Waypoint4",
             ["followRepeat"] = true,
             ["ghost"] = true,
+            ["noMusic"] = true,
             ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/swatbotwithblaster.png",
             ["viewRange"] = "SwatbotVisibility1,SwatbotVisibility2,SwatbotVisibility3"
@@ -1271,7 +1237,7 @@ return {
           name = "FWaypoint6",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1888,
+          x = 1856,
           y = 2432,
           width = 32,
           height = 32,
@@ -1378,6 +1344,42 @@ return {
             ["align"] = "bottom_left",
             ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/pillar.png"
+          }
+        },
+        {
+          id = 754,
+          name = "Grabbable",
+          type = "ExtPost",
+          shape = "rectangle",
+          x = 1568,
+          y = 1888,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/extpost2.png"
+          }
+        },
+        {
+          id = 755,
+          name = "Grabbable",
+          type = "ExtPost",
+          shape = "rectangle",
+          x = 1728,
+          y = 2432,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/extpost2.png"
           }
         }
       }

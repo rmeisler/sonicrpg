@@ -335,6 +335,13 @@
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="left"/>
+    <property name="onLeave">return function(self)
+    if not GameState:isFlagSet(&quot;deathegg:sneak1_done&quot;) then
+        self.scene.cacheSceneData = false
+        self.scene.sceneMgr.cachedScenes[tostring(self.scene.map)] = nil
+        self.scene.isRestarting = true
+    end
+end</property>
     <property name="orientation" value="right"/>
     <property name="scene" type="file" value="deathegg_elevator3.lua"/>
     <property name="spawn_point" value="RightEntrance"/>

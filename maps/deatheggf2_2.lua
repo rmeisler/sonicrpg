@@ -723,7 +723,8 @@ return {
             ["key"] = "left",
             ["orientation"] = "right",
             ["scene"] = "deatheggf2_sneak2.lua",
-            ["spawn_point"] = "RightEntrance"
+            ["spawn_point"] = "RightEntrance",
+            ["whileCollliding"] = "return function(self)\n    if not GameState:isFlagSet(\"deathegg:sneak2_done\") then\n        GameState:setFlag(\"deathegg:sneak2_done\")\n    end\nend"
           }
         },
         {

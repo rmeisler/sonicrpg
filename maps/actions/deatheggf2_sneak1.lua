@@ -1,4 +1,4 @@
-return function(scene)
+return function(scene, hint)
 	local Transform = require "util/Transform"
 	local Rect = unpack(require "util/Shapes")
 	local Layout = require "util/Layout"
@@ -29,8 +29,15 @@ return function(scene)
 		left_bot = {x = 0, y = 0},
 	}
 	
+	if GameState:isFlagSet("deathegg:sneak1_done") then
+		return Action()
+	end
+
 	scene.player.sprite.visible = false
+	scene.player.dropShadow.hidden = true
 	scene.cinematicPause = true
+
+	scene.player.handlers.caught = nil
 	
 	local caughtHandler
 	caughtHandler = function(bot)
@@ -43,8 +50,7 @@ return function(scene)
 			BlockPlayer {
 				Wait(1),
 				Do(function()
-					scene:restart()
-					scene.objectLookup.FBot:remove()
+					scene:restart{hint="caught", fadeOutMusic=false}
 				end),
 				Do(function() end)
 			}
@@ -55,13 +61,22 @@ return function(scene)
 	return BlockPlayer {
 		Do(function()
 			scene.player.sprite.visible = false
-			scene.player.dropShadow.sprite.visible = false
+			scene.player.dropShadow.hidden = true
 			scene.cinematicPause = true
+			
+			scene.player.doingSpecialMove = false
+			scene.player.basicUpdate = scene.player.origUpdate or scene.player.basicUpdate
+
+			if hint == "caught" then
+				scene.player.x = scene.player.x + 20
+				scene.player.y = scene.player.y + 50
+			end
 		end),
 		
 		Wait(1),
 		
 		Do(function()
+			print("factory bot created")
 			local fbot = FactoryBot(
 				scene,
 				{name="objects"},
@@ -78,7 +93,8 @@ return function(scene)
 						follow = "FWaypoint1,FWaypoint2,FWaypoint3,FWaypoint4,FWaypoint5",
 						removeAfterFollow = true,
 						viewRange = "FVisibility1,FVisibility2,FVisibility3,FVisibility4",
-						ignorePlayer = true
+						ignorePlayer = true,
+						noMusic = true
 					}
 				}
 			)
@@ -91,7 +107,7 @@ return function(scene)
 		
 		Do(function()
 			scene.player.sprite.visible = true
-			scene.player.dropShadow.sprite.visible = true
+			scene.player.dropShadow.hidden = false
 			scene.cinematicPause = false
 			scene.objectLookup.FBot.ignorePlayer = false
 		end)

@@ -687,6 +687,11 @@
     <property name="orientation" value="right"/>
     <property name="scene" type="file" value="deatheggf2_sneak3.lua"/>
     <property name="spawn_point" value="RightEntrance"/>
+    <property name="whileColliding">return function(self)
+    if not GameState:isFlagSet(&quot;deathegg:sneak3_done&quot;) then
+        GameState:setFlag(&quot;deathegg:sneak3_done&quot;)
+    end
+end</property>
    </properties>
   </object>
   <object id="12" name="ElevatorControl" type="BasicNPC" gid="9040" x="576" y="2496" width="64" height="32">

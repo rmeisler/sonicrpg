@@ -29,9 +29,15 @@ return function(scene)
 		left_bot = {x = 0, y = 0},
 	}
 	
+	if GameState:isFlagSet("deathegg:sneak3_done") then
+		return Action()
+	end
+	
 	scene.player.sprite.visible = false
 	scene.cinematicPause = true
-	
+
+	scene.player.handlers.caught = nil
+
 	local caughtHandler
 	caughtHandler = function(bot)
 		scene.player.noIdle = true
@@ -43,8 +49,7 @@ return function(scene)
 			BlockPlayer {
 				Wait(1),
 				Do(function()
-					scene:restart()
-					scene.objectLookup.FBot:remove()
+					scene:restart{hint="caught", fadeOutMusic=false}
 				end),
 				Do(function() end)
 			}
@@ -55,43 +60,54 @@ return function(scene)
 	return BlockPlayer {
 		Do(function()
 			scene.player.sprite.visible = false
-			scene.player.dropShadow.sprite.visible = false
+			scene.player.dropShadow.hidden = true
 			scene.cinematicPause = true
+			
+			scene.player.doingSpecialMove = false
+			scene.player.basicUpdate = scene.player.origUpdate or scene.player.basicUpdate
+
+			if hint == "caught" then
+				scene.player.x = scene.player.x + 20
+				scene.player.y = scene.player.y + 50
+			end
 		end),
 		
 		Wait(1),
 		
 		Do(function()
-			local fbot = FactoryBot(
-				scene,
-				{name="objects"},
-				{
-					name = "FactoryBot",
-					x = scene.objectLookup.FStart.x,
-					y = scene.objectLookup.FStart.y,
-					width = 64,
-					height = 32,
-					properties = {
-						defaultAnim = "idleright",
-						ghost = true,
-						sprite = "art/sprites/factorybot.png",
-						follow = "FWaypoint1,FWaypoint2,FWaypoint3,FWaypoint4,FWaypoint5,Waypoint2,FWaypoint6",
-						removeAfterFollow = true,
-						viewRange = "FVisibility1,FVisibility2,FVisibility3,FVisibility4,SwatbotVisibility1,SwatbotVisibility2,SwatbotVisibility3",
-						ignorePlayer = true
+			if not scene.objectLookup.FBot or scene.objectLookup.FBot:isRemoved() then
+				local fbot = FactoryBot(
+					scene,
+					{name="objects"},
+					{
+						name = "FactoryBot",
+						x = scene.objectLookup.FStart.x,
+						y = scene.objectLookup.FStart.y,
+						width = 64,
+						height = 32,
+						properties = {
+							defaultAnim = "idleright",
+							ghost = true,
+							sprite = "art/sprites/factorybot.png",
+							follow = "FWaypoint1,FWaypoint2,FWaypoint3,FWaypoint4,FWaypoint5,Waypoint2,FWaypoint6",
+							removeAfterFollow = true,
+							viewRange = "FVisibility1,FVisibility2,FVisibility3,FVisibility4,SwatbotVisibility1,SwatbotVisibility2,SwatbotVisibility3",
+							ignorePlayer = true,
+							noMusic = true
+						}
 					}
-				}
-			)
-			scene:addObject(fbot)
-			fbot:postInit()
-			scene.objectLookup.FBot = fbot
+				)
+				scene:addObject(fbot)
+				fbot:postInit()
+				scene.objectLookup.FBot = fbot
+			end
 		end),
 		
 		Wait(2),
 		
 		Do(function()
 			scene.player.sprite.visible = true
-			scene.player.dropShadow.sprite.visible = true
+			scene.player.dropShadow.hidden = false
 			scene.cinematicPause = false
 			scene.objectLookup.FBot.ignorePlayer = false
 		end)
