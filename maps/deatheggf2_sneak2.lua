@@ -1153,7 +1153,7 @@ return {
           name = "FWaypoint6",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2272,
+          x = 2304,
           y = 1088,
           width = 32,
           height = 32,

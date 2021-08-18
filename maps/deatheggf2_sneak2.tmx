@@ -537,7 +537,7 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="748" name="FWaypoint6" type="BasicNPC" gid="8977" x="2272" y="1088" width="32" height="32">
+  <object id="748" name="FWaypoint6" type="BasicNPC" gid="8977" x="2304" y="1088" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>

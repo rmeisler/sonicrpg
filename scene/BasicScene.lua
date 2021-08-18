@@ -428,6 +428,8 @@ function BasicScene:changeScene(args)
 		hint = args.hint,
 		tutorial = args.tutorial,
 		fadeOutSpeed = args.fadeOutSpeed,
+		fadeInSpeed = args.fadeInSpeed,
+		fadeOutMusic = args.fadeOutMusic,
 		cache = args.cache
 	}
 end

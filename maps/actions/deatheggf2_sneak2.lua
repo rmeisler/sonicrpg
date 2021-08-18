@@ -90,6 +90,7 @@ return function(scene)
 							ghost = true,
 							sprite = "art/sprites/factorybot.png",
 							follow = "FWaypoint1,FWaypoint2,FWaypoint3,FWaypoint4,FWaypoint5,FWaypoint6",
+							removeAfterFollow = true,
 							viewRange = "FVisibility1,FVisibility2,FVisibility3,FVisibility4",
 							ignorePlayer = true,
 							noMusic = true

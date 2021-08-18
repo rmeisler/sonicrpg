@@ -115,8 +115,10 @@ return function(scene)
 		
 		Animate(fbot.sprite, "idleright"),
 		
+		PlayAudio("music", "robotnik", 1.0, true, true),
+		
 		Parallel {
-			Ease(scene.camPos, "x", -500, 0.3),
+			Ease(scene.camPos, "x", -600, 0.3),
 			Ease(scene.camPos, "y", 1500, 0.3)
 		},
 		
@@ -155,6 +157,7 @@ return function(scene)
 				Animate(scene.objectLookup.Robotnik.sprite, "grab_snively_devilish"),
 				MessageBox {message="Robotnik: My masterpiece is almost complete. {p20}He {p10}he {p10}he {p10}he...", textspeed=0.2},
 
+				AudioFade("music", 1.0, 0.0, 1),
 				stepAction(),
 
 				Animate(scene.objectLookup.Robotnik.sprite, "grab_snively_lookback1"),

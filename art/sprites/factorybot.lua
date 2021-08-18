@@ -14,6 +14,15 @@ return {
 		hurt = {
 			frames = {{2,0}}
 		},
+		hurtup = {
+			frames = {{2,0}}
+		},
+		hurtleft = {
+			frames = {{2,0}}
+		},
+		hurtright = {
+			frames = {{2,0}}
+		},
 		hurtdown = {
 			frames = {{2,0}}
 		},
