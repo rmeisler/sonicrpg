@@ -8,7 +8,7 @@ return {
   height = 30,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 14,
+  nextobjectid = 15,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/deathegg.lua"
@@ -559,6 +559,22 @@ return {
             ["align"] = "bottom_left",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/extpost2.png"
+          }
+        },
+        {
+          id = 14,
+          name = "Waypoint",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 576,
+          y = 960,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

@@ -13,6 +13,7 @@ return function(scene)
 	local Serial = require "actions/Serial"
 	local Wait = require "actions/Wait"
 	local Repeat = require "actions/Repeat"
+	local Move = require "actions/Move"
 	local Spawn = require "actions/Spawn"
 	local Do = require "actions/Do"
 	local BlockPlayer = require "actions/BlockPlayer"
@@ -60,21 +61,6 @@ return function(scene)
 
 	scene.player.state = "idledown"
 	return BlockPlayer {
-		Spawn(Serial {
-			PlayAudio("music", "mission2", 1.0, true, true),
-			subtext,
-			text,
-			Parallel {
-				Ease(text.color, 4, 255, 1),
-				Ease(subtext.color, 4, 255, 1),
-			},
-			Wait(2),
-			Parallel {
-				Ease(text.color, 4, 0, 1),
-				Ease(subtext.color, 4, 0, 1)
-			}
-		}),
-
 		Wait(2),
 		Parallel {
 			Ease(elevatorLayer, "offsety", 0, 0.2, "linear"),
@@ -103,19 +89,64 @@ return function(scene)
 				MessageBox{message="B: This is as far as I can take you. {p60}The rest is up to you."},
 				MessageBox{message="Sally: Thank you, B."},
 				MessageBox{message="B: Good luck, Freedom Fighters."},
-				Animate(sprites.b.sprite, "crouchdown"),
-				Wait(0.5),
-				Animate(sprites.b.sprite, "leapdown"),
-				Ease(sprites.b, "y", function() return sprites.b.y - 100 end, 4, "linear"),
-				Ease(sprites.b, "y", function() return sprites.b.y + 900 end, 4, "quad"),
+				Do(function()
+					sprites.b.sprite:setAnimation("walkdown")
+					sprites.b.object.properties.ignoreMapCollision = true
+					sprites.b.movespeed = 2
+				end),
+				
+				Parallel {
+					Serial {
+						Move(sprites.b, scene.objectLookup.Waypoint, "walk"),
+						Do(function()
+							sprites.b:remove()
+						end)
+					},
+					Serial {
+						Wait(1),
+						Do(function()
+							sprites.sonic.sprite:setAnimation("idledown")
+							sprites.sally.sprite:setAnimation("idledown")
+							sprites.bunny.sprite:setAnimation("idledown")
+						end),
+						Wait(2)
+					}
+				},
+				
+				Do(function()
+					sprites.sonic.sprite:setAnimation("idleleft")
+					sprites.sally.sprite:setAnimation("idleup")
+					sprites.bunny.sprite:setAnimation("idleright")
+				end),
+				
+				Wait(1),
+				
+				MessageBox{message="Sally: Alright guys...", textspeed=3},
+				MessageBox{message="Sally: Let's find ourselves a {h Factorybot}..."},
+				
 				walkin,
+				Wait(0.5),
+				Spawn(Serial {
+					PlayAudio("music", "mission2", 1.0, true, true),
+					subtext,
+					text,
+					Parallel {
+						Ease(text.color, 4, 255, 1),
+						Ease(subtext.color, 4, 255, 1),
+					},
+					Wait(2),
+					Parallel {
+						Ease(text.color, 4, 0, 1),
+						Ease(subtext.color, 4, 0, 1)
+					}
+				}),
 				Do(function()
 					GameState:removeFromParty("b")
 					GameState.leader = "sonic"
 					scene.camPos.x = 0
 					scene.player.x = scene.player.x + 90
 					scene.player.y = scene.player.y + 50
-				end)
+				end),
 			}
 		end)
 	}

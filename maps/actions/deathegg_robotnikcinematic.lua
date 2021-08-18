@@ -85,11 +85,13 @@ return function(scene)
 	scene:addObject(fbot)
 	
 	scene.player.sprite.visible = false
+	scene.player.dropShadow.hidden = true
 	scene.cinematicPause = true
 	
 	return BlockPlayer {
 		Do(function()
 			scene.player.sprite.visible = false
+			scene.player.dropShadow.hidden = true
 			scene.cinematicPause = true
 		end),
 		
@@ -188,6 +190,7 @@ return function(scene)
 							scene.player.x = 384
 							scene.player.y = 2496
 							scene.player.sprite.visible = true
+							scene.player.dropShadow.hidden = false
 							scene.player.state = "idleright"
 							scene.cinematicPause = false
 							
