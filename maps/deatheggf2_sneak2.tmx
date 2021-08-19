@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="74" height="58" tilewidth="32" tileheight="32" infinite="0" nextobjectid="749">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="74" height="58" tilewidth="32" tileheight="32" infinite="0" nextobjectid="754">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
   <property name="onload" type="file" value="actions/deatheggf2_sneak2.lua"/>
@@ -492,52 +492,37 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="738" name="FVisibility1" type="BasicNPC" gid="6703" x="256" y="1152" width="512" height="288">
+  <object id="744" name="FWaypoint1" type="BasicNPC" gid="8977" x="1024" y="1088" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="739" name="FVisibility2" type="BasicNPC" gid="6703" x="800" y="1152" width="352" height="288">
+  <object id="745" name="FWaypoint2" type="BasicNPC" gid="8977" x="928" y="1088" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="740" name="FVisibility3" type="BasicNPC" gid="6703" x="1184" y="1152" width="352" height="288">
+  <object id="748" name="FWaypoint3" type="BasicNPC" gid="8977" x="2016" y="1088" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="741" name="FVisibility4" type="BasicNPC" gid="6703" x="1568" y="1152" width="800" height="288">
+  <object id="749" name="PSwitch1" type="BasicNPC" gid="8977" x="800" y="1152" width="32" height="128">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="742" name="FWaypoint1" type="BasicNPC" gid="8977" x="672" y="1088" width="32" height="32">
+  <object id="751" name="PSwitch2" type="BasicNPC" gid="8977" x="1792" y="1152" width="32" height="128">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="744" name="FWaypoint2" type="BasicNPC" gid="8977" x="1024" y="1088" width="32" height="32">
+  <object id="752" name="FWaypoint4" type="BasicNPC" gid="8977" x="2304" y="1088" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="745" name="FWaypoint3" type="BasicNPC" gid="8977" x="928" y="1088" width="32" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="746" name="FWaypoint4" type="BasicNPC" gid="8977" x="1376" y="1088" width="32" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="747" name="FWaypoint5" type="BasicNPC" gid="8977" x="1312" y="1088" width="32" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="748" name="FWaypoint6" type="BasicNPC" gid="8977" x="2304" y="1088" width="32" height="32">
+  <object id="753" name="FBotVisibility" type="BasicNPC" gid="6703" x="1472" y="1152" width="576" height="224">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -605,7 +590,7 @@ end</property>
 7893,7893,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="pillar" width="74" height="58" visible="0">
+ <layer name="pillar" width="74" height="58">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

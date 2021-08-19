@@ -387,7 +387,7 @@ function Bot:update(dt)
 					self.scene.player.investigators[tostring(self.name)] = self
 					
 					self.investigateProxy.x = self.scene.player.x
-					self.investigateProxy.y = self.scene.player.y + self.scene.player.sprite.h*2
+					self.investigateProxy.y = self.scene.player.y + self.scene.player.sprite.h
 				end),
 				self:follow(
 					self.investigateProxy,

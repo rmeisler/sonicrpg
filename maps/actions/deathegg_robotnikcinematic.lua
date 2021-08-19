@@ -149,6 +149,11 @@ return function(scene)
 				end)
 			},
 			
+			Serial {
+				Wait(4.5),
+				PlayAudio("sfx", "elevatorend", 1.0, true)
+			},
+			
 			Ease(scene.player, "y", 2528 - scene.player.sprite.h*2, 0.1),
 			Ease(scene.objectLookup.Robotnik, "y", 2528 - scene.objectLookup.Robotnik.sprite.h*2, 0.1),
 

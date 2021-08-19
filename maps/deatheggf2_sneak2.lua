@@ -8,7 +8,7 @@ return {
   height = 58,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 749,
+  nextobjectid = 754,
   properties = {
     ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
     ["onload"] = "actions/deatheggf2_sneak2.lua"
@@ -1005,88 +1005,8 @@ return {
           }
         },
         {
-          id = 738,
-          name = "FVisibility1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 256,
-          y = 1152,
-          width = 512,
-          height = 288,
-          rotation = 0,
-          gid = 6703,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 739,
-          name = "FVisibility2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 800,
-          y = 1152,
-          width = 352,
-          height = 288,
-          rotation = 0,
-          gid = 6703,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 740,
-          name = "FVisibility3",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1184,
-          y = 1152,
-          width = 352,
-          height = 288,
-          rotation = 0,
-          gid = 6703,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 741,
-          name = "FVisibility4",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1568,
-          y = 1152,
-          width = 800,
-          height = 288,
-          rotation = 0,
-          gid = 6703,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 742,
-          name = "FWaypoint1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 672,
-          y = 1088,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 8977,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
           id = 744,
-          name = "FWaypoint2",
+          name = "FWaypoint1",
           type = "BasicNPC",
           shape = "rectangle",
           x = 1024,
@@ -1102,7 +1022,7 @@ return {
         },
         {
           id = 745,
-          name = "FWaypoint3",
+          name = "FWaypoint2",
           type = "BasicNPC",
           shape = "rectangle",
           x = 928,
@@ -1117,40 +1037,56 @@ return {
           }
         },
         {
-          id = 746,
-          name = "FWaypoint4",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1376,
-          y = 1088,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 8977,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 747,
-          name = "FWaypoint5",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1312,
-          y = 1088,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 8977,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
           id = 748,
-          name = "FWaypoint6",
+          name = "FWaypoint3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2016,
+          y = 1088,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8977,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 749,
+          name = "PSwitch1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 800,
+          y = 1152,
+          width = 32,
+          height = 128,
+          rotation = 0,
+          gid = 8977,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 751,
+          name = "PSwitch2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1792,
+          y = 1152,
+          width = 32,
+          height = 128,
+          rotation = 0,
+          gid = 8977,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 752,
+          name = "FWaypoint4",
           type = "BasicNPC",
           shape = "rectangle",
           x = 2304,
@@ -1159,6 +1095,22 @@ return {
           height = 32,
           rotation = 0,
           gid = 8977,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 753,
+          name = "FBotVisibility",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1472,
+          y = 1152,
+          width = 576,
+          height = 224,
+          rotation = 0,
+          gid = 6703,
           visible = true,
           properties = {
             ["ghost"] = true
@@ -1247,7 +1199,7 @@ return {
       y = 0,
       width = 74,
       height = 58,
-      visible = false,
+      visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,

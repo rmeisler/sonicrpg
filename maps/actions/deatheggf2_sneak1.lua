@@ -15,12 +15,14 @@ return function(scene, hint)
 	local Repeat = require "actions/Repeat"
 	local Spawn = require "actions/Spawn"
 	local BlockPlayer = require "actions/BlockPlayer"
+	local YieldUntil = require "actions/YieldUntil"
 	local Move = require "actions/Move"
 	local Do = require "actions/Do"
 	local Animate = require "actions/Animate"
 	local shine = require "lib/shine"
 	
-	local FactoryBot = require "object/FactoryBot"
+	local NPC = require "object/NPC"
+	local BasicNPC = require "object/BasicNPC"
 
 	scene.player.collisionHSOffsets = {
 		right_top = {x = 0, y = 0},
@@ -36,18 +38,31 @@ return function(scene, hint)
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.hidden = true
 	scene.cinematicPause = true
+	scene.player.noSpecialMove = true
+	scene.player.cinematicStack = scene.player.cinematicStack + 1
 
 	scene.player.handlers.caught = nil
 	
+	local hop = function(self, waitTime)
+		local waitAction = Action()
+		if waitTime then
+			waitAction = Wait(waitTime)
+		end
+		return Serial {
+			Ease(self, "y", self.y - 50, 8, "linear"),
+			Ease(self, "y", self.y, 8, "linear"),
+			waitAction
+		}
+	end
+	
 	local caughtHandler
 	caughtHandler = function(bot)
-		scene.player.noIdle = true
+		scene.player.doingSpecialMove = false
+		scene.player.basicUpdate = function(p, dt) end
 		scene.player.sprite:setAnimation("shock")
-		scene.player.state = "shock"
 		for k,v in pairs(scene.player.keyhints) do
 			scene.player.hidekeyhints[k] = v
 		end
-		scene.player:removeKeyHint()
 		scene.player:removeHandler("caught", caughtHandler)
 		scene:run(
 			BlockPlayer {
@@ -79,8 +94,7 @@ return function(scene, hint)
 		Wait(1),
 		
 		Do(function()
-			print("factory bot created")
-			local fbot = FactoryBot(
+			local fbot = BasicNPC(
 				scene,
 				{name="objects"},
 				{
@@ -90,21 +104,65 @@ return function(scene, hint)
 					width = 64,
 					height = 32,
 					properties = {
+						align = "bottom_left",
 						defaultAnim = "idleright",
 						ghost = true,
 						sprite = "art/sprites/factorybot.png",
-						follow = "FWaypoint1,FWaypoint2,FWaypoint3,FWaypoint4,FWaypoint5",
-						removeAfterFollow = true,
-						visibleDistance = 1000,
-						viewRange = "FVisibility1,FVisibility2,FVisibility3,FVisibility4",
-						ignorePlayer = true,
-						noMusic = true
+						ignoreMapCollision = true
 					}
 				}
 			)
+			fbot.movespeed = 3
 			scene:addObject(fbot)
-			fbot:postInit()
 			scene.objectLookup.FBot = fbot
+			
+			fbot:run {
+				Parallel {
+					Do(function()
+						if scene.player and scene.player.x > fbot.x then
+							scene.player:invoke("caught", fbot)
+						end
+					end),
+					Serial {
+						Move(fbot, scene.objectLookup.FWaypoint1, "walk"),
+						Do(function()
+							print("made it here")
+						end),
+						YieldUntil(function()
+							return scene.objectLookup.PSwitch1.state == NPC.STATE_TOUCHING
+						end),
+						hop(fbot),
+						Wait(1.5),
+						Animate(fbot.sprite, "idleleft"),
+						Parallel {
+							Do(function()
+								if not scene.player:isHiding("right") then
+									scene.player:invoke("caught", fbot)
+								end
+							end),
+							Wait(1)
+						},
+						Move(fbot, scene.objectLookup.FWaypoint2, "walk"),
+						YieldUntil(function()
+							return scene.objectLookup.PSwitch2.state == NPC.STATE_TOUCHING
+						end),
+						hop(fbot),
+						hop(fbot),
+						Wait(1.5),
+						Animate(fbot.sprite, "idleleft"),
+						Parallel {
+							Do(function()
+								if not scene.player:isHiding("right") then
+									scene.player:invoke("caught", fbot)
+								end
+							end),
+							Wait(2)
+						},
+						Move(fbot, scene.objectLookup.FWaypoint3, "walk"),
+						Do(function() fbot:remove() end)
+					}
+				}
+			}
 		end),
 		
 		Wait(2),
@@ -113,7 +171,8 @@ return function(scene, hint)
 			scene.player.sprite.visible = true
 			scene.player.dropShadow.hidden = false
 			scene.cinematicPause = false
-			scene.objectLookup.FBot.ignorePlayer = false
+			scene.player.noSpecialMove = false
+			scene.player.cinematicStack = scene.player.cinematicStack - 1
 		end)
 	}
 end

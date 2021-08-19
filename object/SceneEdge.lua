@@ -187,7 +187,7 @@ function SceneEdge:goToScene()
 		images = self.scene.images,
 		animations = self.scene.animations,
 		audio = self.scene.audio,
-		doingSpecialMove = self.scene.player.doingSpecialMove,
+		doingSpecialMove = not self.object.properties.no_run and self.scene.player.doingSpecialMove,
 		cache = true
 	}
 end

@@ -14,13 +14,15 @@ return function(scene)
 	local Wait = require "actions/Wait"
 	local Repeat = require "actions/Repeat"
 	local Spawn = require "actions/Spawn"
+	local YieldUntil = require "actions/YieldUntil"
 	local BlockPlayer = require "actions/BlockPlayer"
 	local Move = require "actions/Move"
 	local Do = require "actions/Do"
 	local Animate = require "actions/Animate"
 	local shine = require "lib/shine"
 	
-	local FactoryBot = require "object/FactoryBot"
+	local NPC = require "object/NPC"
+	local BasicNPC = require "object/BasicNPC"
 
 	scene.player.collisionHSOffsets = {
 		right_top = {x = 0, y = 0},
@@ -33,16 +35,30 @@ return function(scene)
 		return Action()
 	end
 	
+	local hop = function(self, waitTime)
+		local waitAction = Action()
+		if waitTime then
+			waitAction = Wait(waitTime)
+		end
+		return Serial {
+			Ease(self, "y", self.y - 50, 8, "linear"),
+			Ease(self, "y", self.y, 8, "linear"),
+			waitAction
+		}
+	end
+	
 	scene.player.sprite.visible = false
+	scene.player.dropShadow.hidden = true
 	scene.cinematicPause = true
+	scene.player.noSpecialMove = true
 	
 	scene.player.handlers.caught = nil
 
 	local caughtHandler
 	caughtHandler = function(bot)
-		scene.player.noIdle = true
+		scene.player.doingSpecialMove = false
+		scene.player.basicUpdate = function(p, dt) end
 		scene.player.sprite:setAnimation("shock")
-		scene.player.state = "shock"
 		for k,v in pairs(scene.player.keyhints) do
 			scene.player.hidekeyhints[k] = v
 		end
@@ -74,36 +90,78 @@ return function(scene)
 			end
 		end),
 		
-		Wait(1),
-		
 		Do(function()
-			if not scene.objectLookup.FBot or scene.objectLookup.FBot:isRemoved() then
-				local fbot = FactoryBot(
-					scene,
-					{name="objects"},
-					{
-						name = "FactoryBot",
-						x = scene.objectLookup.FStart.x,
-						y = scene.objectLookup.FStart.y,
-						width = 64,
-						height = 32,
-						properties = {
-							defaultAnim = "idleright",
-							ghost = true,
-							sprite = "art/sprites/factorybot.png",
-							follow = "FWaypoint1,FWaypoint2,FWaypoint3,FWaypoint4,FWaypoint5,FWaypoint6",
-							removeAfterFollow = true,
-							visibleDistance = 1000,
-							viewRange = "FVisibility1,FVisibility2,FVisibility3,FVisibility4",
-							ignorePlayer = true,
-							noMusic = true
-						}
+			local fbot = BasicNPC(
+				scene,
+				{name="objects"},
+				{
+					name = "FactoryBot",
+					x = scene.objectLookup.FStart.x,
+					y = scene.objectLookup.FStart.y,
+					width = 64,
+					height = 32,
+					properties = {
+						align = "bottom_left",
+						defaultAnim = "idleright",
+						ghost = true,
+						sprite = "art/sprites/factorybot.png",
+						ignoreMapCollision = true
 					}
-				)
-				scene:addObject(fbot)
-				fbot:postInit()
-				scene.objectLookup.FBot = fbot
-			end
+				}
+			)
+			fbot.movespeed = 3
+			scene:addObject(fbot)
+			scene.objectLookup.FBot = fbot
+			
+			fbot:run {
+				Parallel {
+					Do(function()
+						if scene.player and scene.player.x > fbot.x then
+							scene.player:invoke("caught", fbot)
+						end
+					end),
+					Serial {
+						Move(fbot, scene.objectLookup.FWaypoint1, "walk"),
+						YieldUntil(function()
+							return scene.objectLookup.PSwitch1.state == NPC.STATE_TOUCHING
+						end),
+						hop(fbot),
+						Wait(1.5),
+						Animate(fbot.sprite, "idleleft"),
+						Parallel {
+							Serial {
+								Move(fbot, scene.objectLookup.FWaypoint2, "walk"),
+								Wait(2)
+							},
+							Do(function()
+								if not scene.player:isHiding("right") then
+									scene.player:invoke("caught", fbot)
+								end
+							end)
+						},
+						Move(fbot, scene.objectLookup.FWaypoint3, "walk"),
+						YieldUntil(function()
+							return scene.objectLookup.PSwitch2.state == NPC.STATE_TOUCHING
+						end),
+						hop(fbot),
+						hop(fbot),
+						Wait(1.5),
+						Animate(fbot.sprite, "idleleft"),
+						Parallel {
+							Do(function()
+								if not scene.player:isHiding("right") and
+								   scene.objectLookup.FBotVisibility.state == NPC.STATE_TOUCHING
+								then
+									scene.player:invoke("caught", fbot)
+								end
+							end),
+							Wait(2)
+						},
+						Move(fbot, scene.objectLookup.FWaypoint4, "walk"),
+						Do(function() fbot:remove() end)
+					}
+				}
+			}
 		end),
 		
 		Wait(2),
@@ -112,7 +170,7 @@ return function(scene)
 			scene.player.sprite.visible = true
 			scene.player.dropShadow.hidden = false
 			scene.cinematicPause = false
-			scene.objectLookup.FBot.ignorePlayer = false
+			scene.player.noSpecialMove = false
 		end)
 	}
 end

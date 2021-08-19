@@ -33,16 +33,30 @@ return function(scene)
 		return Action()
 	end
 	
+	local hop = function(self, waitTime)
+		local waitAction = Action()
+		if waitTime then
+			waitAction = Wait(waitTime)
+		end
+		return Serial {
+			Ease(self, "y", self.y - 50, 8, "linear"),
+			Ease(self, "y", self.y, 8, "linear"),
+			waitAction
+		}
+	end
+	
 	scene.player.sprite.visible = false
+	scene.player.dropShadow.hidden = true
 	scene.cinematicPause = true
+	scene.player.noSpecialMove = true
 
 	scene.player.handlers.caught = nil
 
 	local caughtHandler
 	caughtHandler = function(bot)
-		scene.player.noIdle = true
+		scene.player.doingSpecialMove = false
+		scene.player.basicUpdate = function(p, dt) end
 		scene.player.sprite:setAnimation("shock")
-		scene.player.state = "shock"
 		for k,v in pairs(scene.player.keyhints) do
 			scene.player.hidekeyhints[k] = v
 		end
@@ -88,6 +102,7 @@ return function(scene)
 						width = 64,
 						height = 32,
 						properties = {
+							align = "bottom_left",
 							defaultAnim = "idleright",
 							ghost = true,
 							sprite = "art/sprites/factorybot.png",
@@ -113,6 +128,7 @@ return function(scene)
 			scene.player.dropShadow.hidden = false
 			scene.cinematicPause = false
 			scene.objectLookup.FBot.ignorePlayer = false
+			scene.player.noSpecialMove = false
 		end)
 	}
 end

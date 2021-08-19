@@ -641,12 +641,13 @@ end</property>
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
+    <property name="no_run" type="bool" value="true"/>
     <property name="orientation" value="left"/>
     <property name="scene" type="file" value="deathegg_elevator4.lua"/>
     <property name="spawn_point" value="LeftEntrance"/>
    </properties>
   </object>
-  <object id="726" name="Chest1" type="Chest" gid="8977" x="1344" y="544" width="64" height="64">
+  <object id="726" name="Chest2" type="Chest" gid="8977" x="1376" y="544" width="64" height="64">
    <properties>
     <property name="CrystalWater" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
@@ -767,7 +768,7 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="749" name="FVisibility1" type="BasicNPC" gid="6703" x="64" y="672" width="1088" height="192">
+  <object id="749" name="FVisibility1" type="BasicNPC" gid="6703" x="64" y="608" width="1088" height="128">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>

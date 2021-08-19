@@ -701,6 +701,7 @@ return {
           properties = {
             ["ghost"] = true,
             ["key"] = "right",
+            ["no_run"] = true,
             ["orientation"] = "left",
             ["scene"] = "deatheggf2_sneak3.lua",
             ["spawn_point"] = "LeftEntrance"
@@ -724,7 +725,7 @@ return {
             ["orientation"] = "right",
             ["scene"] = "deatheggf2_sneak2.lua",
             ["spawn_point"] = "RightEntrance",
-            ["whileCollliding"] = "return function(self)\n    if not GameState:isFlagSet(\"deathegg:sneak2_done\") then\n        GameState:setFlag(\"deathegg:sneak2_done\")\n    end\nend"
+            ["whileColliding"] = "return function(self)\n    if not GameState:isFlagSet(\"deathegg:sneak2_done\") then\n        GameState:setFlag(\"deathegg:sneak2_done\")\n    end\nend"
           }
         },
         {

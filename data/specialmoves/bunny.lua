@@ -93,7 +93,7 @@ return function(player)
 				self.extenderarm.transform.x,
 				self.extenderarm.transform.y
 			)
-			--[[if  (deltaX > 0 and
+			if  (deltaX > 0 and
 				not self.scene:canMove(
 					wx + self.extenderarm.w*2,
 					wy,
@@ -148,12 +148,12 @@ return function(player)
 			then
 				self.scene.audio:playSfx("clink")
 				retracting = true
-			else]]
+			else
 				self.extenderarm.transform.x = self.extenderarm.transform.x + deltaX
 				self.extenderarm.transform.y = self.extenderarm.transform.y + deltaY
 				
 				counter = counter + 1
-			--end
+			end
 			
 			if  not love.keyboard.isDown("lshift") or
 				self.extenderArmColliding or

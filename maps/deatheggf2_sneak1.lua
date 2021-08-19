@@ -8,7 +8,7 @@ return {
   height = 58,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 743,
+  nextobjectid = 746,
   properties = {
     ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
     ["onload"] = "actions/deatheggf2_sneak1.lua"
@@ -753,24 +753,8 @@ return {
           }
         },
         {
-          id = 734,
-          name = "FWaypoint1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 672,
-          y = 1088,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 8977,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
           id = 735,
-          name = "FWaypoint2",
+          name = "FWaypoint1",
           type = "BasicNPC",
           shape = "rectangle",
           x = 1024,
@@ -786,7 +770,7 @@ return {
         },
         {
           id = 736,
-          name = "FWaypoint3",
+          name = "FWaypoint2",
           type = "BasicNPC",
           shape = "rectangle",
           x = 1376,
@@ -801,24 +785,8 @@ return {
           }
         },
         {
-          id = 737,
-          name = "FWaypoint4",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1504,
-          y = 1088,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 8977,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
           id = 738,
-          name = "FWaypoint5",
+          name = "FWaypoint3",
           type = "BasicNPC",
           shape = "rectangle",
           x = 2304,
@@ -833,64 +801,49 @@ return {
           }
         },
         {
-          id = 739,
-          name = "FVisibility1",
+          id = 743,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 1376,
+          y = 960,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 8977,
+          visible = true,
+          properties = {
+            ["Mine"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 744,
+          name = "PSwitch1",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 256,
+          x = 736,
           y = 1152,
-          width = 512,
-          height = 288,
+          width = 32,
+          height = 128,
           rotation = 0,
-          gid = 6703,
+          gid = 8977,
           visible = true,
           properties = {
             ["ghost"] = true
           }
         },
         {
-          id = 740,
-          name = "FVisibility2",
+          id = 745,
+          name = "PSwitch2",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 800,
+          x = 1120,
           y = 1152,
-          width = 352,
-          height = 288,
+          width = 32,
+          height = 128,
           rotation = 0,
-          gid = 6703,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 741,
-          name = "FVisibility3",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1184,
-          y = 1152,
-          width = 352,
-          height = 288,
-          rotation = 0,
-          gid = 6703,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 742,
-          name = "FVisibility4",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1568,
-          y = 1152,
-          width = 800,
-          height = 256,
-          rotation = 0,
-          gid = 6703,
+          gid = 8977,
           visible = true,
           properties = {
             ["ghost"] = true

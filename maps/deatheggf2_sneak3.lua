@@ -907,6 +907,7 @@ return {
           properties = {
             ["ghost"] = true,
             ["key"] = "right",
+            ["no_run"] = true,
             ["orientation"] = "left",
             ["scene"] = "deathegg_elevator4.lua",
             ["spawn_point"] = "LeftEntrance"
@@ -914,10 +915,10 @@ return {
         },
         {
           id = 726,
-          name = "Chest1",
+          name = "Chest2",
           type = "Chest",
           shape = "rectangle",
-          x = 1344,
+          x = 1376,
           y = 544,
           width = 64,
           height = 64,
@@ -1270,9 +1271,9 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 64,
-          y = 672,
+          y = 608,
           width = 1088,
-          height = 192,
+          height = 128,
           rotation = 0,
           gid = 6703,
           visible = true,

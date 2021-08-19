@@ -474,6 +474,7 @@ return {
           properties = {
             ["ghost"] = true,
             ["key"] = "right",
+            ["no_run"] = true,
             ["orientation"] = "left",
             ["scene"] = "deatheggf2_sneak1.lua",
             ["spawn_point"] = "LeftEntrance"

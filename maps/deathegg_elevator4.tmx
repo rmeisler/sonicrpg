@@ -675,6 +675,7 @@
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
+    <property name="no_run" type="bool" value="true"/>
     <property name="orientation" value="left"/>
     <property name="scene" type="file" value="deatheggf2_4.lua"/>
     <property name="spawn_point" value="LeftEntrance"/>
@@ -801,7 +802,11 @@ return function(self)
                         },
                         Parallel {
                             Ease(elevatorLayer, &quot;offsety&quot;, 0, 0.3),
-                            Ease(self.scene.camPos, &quot;y&quot;, 0, 0.3)
+                            Ease(self.scene.camPos, &quot;y&quot;, 0, 0.3),
+                            Serial {
+                                Wait(2),
+                                PlayAudio(&quot;sfx&quot;, &quot;elevatorend&quot;, 1.0, true)
+                            }
                         },
                         Ease(self.scene.camPos, &quot;x&quot;, 0, 1),
                         Do(function() self.scene.objectLookup.Block:remove() end)
