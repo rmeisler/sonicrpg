@@ -91,7 +91,7 @@ return function(scene)
 			},
 			
 			Serial {
-				Wait(3.3),
+				Wait(3.4),
 				PlayAudio("sfx", "elevatorend", 1.0, true)
 			}
 		},

@@ -67,7 +67,7 @@ return function(scene)
 		{name="objects"},
 		{
 			name = "FactoryBot",
-			x = 384,
+			x = 544,
 			y = scene.objectLookup["Spawn 1"].y + 32,
 			width = 64,
 			height = 32,
@@ -187,7 +187,7 @@ return function(scene)
 						Wait(2),
 						Ease(scene.camPos, "x", 0, 1),
 						Do(function()
-							scene.player.x = 384
+							scene.player.x = 544
 							scene.player.y = 2496
 							scene.player.sprite.visible = true
 							scene.player.dropShadow.hidden = false
@@ -199,7 +199,7 @@ return function(scene)
 								{name="objects"},
 								{
 									name = "Block",
-									x = 640,
+									x = 800,
 									y = 2496,
 									width = 32,
 									height = 192,

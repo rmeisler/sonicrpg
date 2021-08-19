@@ -366,7 +366,7 @@ function Bot:update(dt)
 			self:removeSceneHandler("update")
 			self:addSceneHandler("update", Bot.updateAction)
 			self.sprite:setAnimation("idle"..self.facing)
-			self.visibleDist = 200
+			self.visibleDist = self.visibleDist or 200
 			
 			-- Slap down a proxy object to move toward
 			self.investigateProxy = BasicNPC(
@@ -387,7 +387,7 @@ function Bot:update(dt)
 					self.scene.player.investigators[tostring(self.name)] = self
 					
 					self.investigateProxy.x = self.scene.player.x
-					self.investigateProxy.y = self.scene.player.y
+					self.investigateProxy.y = self.scene.player.y + self.scene.player.sprite.h*2
 				end),
 				self:follow(
 					self.investigateProxy,
@@ -407,7 +407,6 @@ function Bot:update(dt)
 				Wait(1.6),
 				Do(function()
 					self.sprite:setAnimation("idle"..self.facing)
-					self.visibleDist = nil
 					
 					-- Go back to regular patrolling
 					self:removeSceneHandler("update", Bot.investigateUpdate)

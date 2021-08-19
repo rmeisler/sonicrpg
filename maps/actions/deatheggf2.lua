@@ -87,7 +87,11 @@ return function(scene, hint)
 				-- Update drop shadow position
                 scene.player.dropShadow.x = scene.player.x - 22
 				scene.player.dropShadow.y = scene.player.dropShadowOverrideY or scene.player.y + scene.player.sprite.h - 15
-			end)
+			end),
+			Serial {
+				Wait(0.7),
+				PlayAudio("sfx", "elevatorend", 1.0, true)
+			}
 		}
 	}
 	

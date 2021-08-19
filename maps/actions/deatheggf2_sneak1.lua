@@ -44,6 +44,9 @@ return function(scene, hint)
 		scene.player.noIdle = true
 		scene.player.sprite:setAnimation("shock")
 		scene.player.state = "shock"
+		for k,v in pairs(scene.player.keyhints) do
+			scene.player.hidekeyhints[k] = v
+		end
 		scene.player:removeKeyHint()
 		scene.player:removeHandler("caught", caughtHandler)
 		scene:run(
@@ -92,6 +95,7 @@ return function(scene, hint)
 						sprite = "art/sprites/factorybot.png",
 						follow = "FWaypoint1,FWaypoint2,FWaypoint3,FWaypoint4,FWaypoint5",
 						removeAfterFollow = true,
+						visibleDistance = 1000,
 						viewRange = "FVisibility1,FVisibility2,FVisibility3,FVisibility4",
 						ignorePlayer = true,
 						noMusic = true

@@ -63,5 +63,15 @@ return function(scene)
 		)
 	))
 	
-	return Action()
+	if not GameState:isFlagSet("deathegg:first_master_terminal") then
+		GameState:setFlag("deathegg:first_master_terminal")
+		return BlockPlayer {
+			Wait(0.5),
+			Ease(scene.camPos, "x", -600, 0.3),
+			MessageBox {message="Sally: Bingo!"},
+			Ease(scene.camPos, "x", 0, 0.3)
+		}
+	else
+		return Action()
+	end
 end

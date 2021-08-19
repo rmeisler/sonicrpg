@@ -646,7 +646,7 @@ end</property>
     <property name="spawn_point" value="LeftEntrance"/>
    </properties>
   </object>
-  <object id="726" name="Chest1" type="Chest" gid="8977" x="1440" y="544" width="64" height="64">
+  <object id="726" name="Chest1" type="Chest" gid="8977" x="1344" y="544" width="64" height="64">
    <properties>
     <property name="CrystalWater" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
