@@ -160,6 +160,9 @@ return function(scene)
 				MessageBox {message="Robotnik: My masterpiece is almost complete. {p20}He {p10}he {p10}he {p10}he...", textspeed=0.2},
 
 				AudioFade("music", 1.0, 0.0, 1),
+				Do(function()
+					scene.audio:stopMusic()
+				end),
 				stepAction(),
 
 				Animate(scene.objectLookup.Robotnik.sprite, "grab_snively_lookback1"),
