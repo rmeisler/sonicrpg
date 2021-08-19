@@ -8,7 +8,7 @@ return {
   height = 58,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 746,
+  nextobjectid = 747,
   properties = {
     ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
     ["onload"] = "actions/deatheggf2_sneak1.lua"
@@ -844,6 +844,22 @@ return {
           height = 128,
           rotation = 0,
           gid = 8977,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 746,
+          name = "FBotVisibility",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 64,
+          y = 1152,
+          width = 1280,
+          height = 128,
+          rotation = 0,
+          gid = 6703,
           visible = true,
           properties = {
             ["ghost"] = true

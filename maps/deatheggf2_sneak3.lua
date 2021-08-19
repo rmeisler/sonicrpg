@@ -8,7 +8,7 @@ return {
   height = 83,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 756,
+  nextobjectid = 760,
   properties = {
     ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
     ["onload"] = "actions/deatheggf2_sneak3.lua"
@@ -1158,7 +1158,7 @@ return {
           name = "FWaypoint1",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1024,
+          x = 992,
           y = 576,
           width = 32,
           height = 32,
@@ -1174,7 +1174,7 @@ return {
           name = "FWaypoint2",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 928,
+          x = 896,
           y = 1376,
           width = 32,
           height = 32,
@@ -1222,7 +1222,7 @@ return {
           name = "FWaypoint5",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1056,
+          x = 736,
           y = 1888,
           width = 32,
           height = 32,
@@ -1260,70 +1260,6 @@ return {
           height = 32,
           rotation = 0,
           gid = 8977,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 749,
-          name = "FVisibility1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 64,
-          y = 608,
-          width = 1088,
-          height = 128,
-          rotation = 0,
-          gid = 6703,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 750,
-          name = "FVisibility2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 896,
-          y = 1408,
-          width = 256,
-          height = 928,
-          rotation = 0,
-          gid = 6703,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 751,
-          name = "FVisibility4",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 288,
-          y = 1952,
-          width = 224,
-          height = 736,
-          rotation = 0,
-          gid = 6703,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 752,
-          name = "FVisibility3",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 256,
-          y = 1408,
-          width = 928,
-          height = 192,
-          rotation = 0,
-          gid = 6703,
           visible = true,
           properties = {
             ["ghost"] = true
@@ -1381,6 +1317,70 @@ return {
             ["align"] = "bottom_left",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/extpost2.png"
+          }
+        },
+        {
+          id = 756,
+          name = "PSwitch1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 640,
+          y = 1408,
+          width = 32,
+          height = 192,
+          rotation = 0,
+          gid = 8977,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 757,
+          name = "PSwitch2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 576,
+          y = 1952,
+          width = 32,
+          height = 192,
+          rotation = 0,
+          gid = 8977,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 758,
+          name = "FWaypoint3_2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 480,
+          y = 1376,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8977,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 759,
+          name = "FBotVisibility1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 288,
+          y = 1408,
+          width = 800,
+          height = 192,
+          rotation = 0,
+          gid = 6703,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

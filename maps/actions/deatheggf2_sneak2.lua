@@ -134,7 +134,9 @@ return function(scene)
 								Wait(2)
 							},
 							Do(function()
-								if not scene.player:isHiding("right") then
+								if not scene.player:isHiding("right") and
+								   scene.objectLookup.FBotVisibility1.state == NPC.STATE_TOUCHING
+								then
 									scene.player:invoke("caught", fbot)
 								end
 							end)
@@ -150,7 +152,7 @@ return function(scene)
 						Parallel {
 							Do(function()
 								if not scene.player:isHiding("right") and
-								   scene.objectLookup.FBotVisibility.state == NPC.STATE_TOUCHING
+								   scene.objectLookup.FBotVisibility2.state == NPC.STATE_TOUCHING
 								then
 									scene.player:invoke("caught", fbot)
 								end

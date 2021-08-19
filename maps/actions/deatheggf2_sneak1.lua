@@ -125,9 +125,6 @@ return function(scene, hint)
 					end),
 					Serial {
 						Move(fbot, scene.objectLookup.FWaypoint1, "walk"),
-						Do(function()
-							print("made it here")
-						end),
 						YieldUntil(function()
 							return scene.objectLookup.PSwitch1.state == NPC.STATE_TOUCHING
 						end),
@@ -136,7 +133,9 @@ return function(scene, hint)
 						Animate(fbot.sprite, "idleleft"),
 						Parallel {
 							Do(function()
-								if not scene.player:isHiding("right") then
+								if not scene.player:isHiding("right") and
+								   scene.objectLookup.FBotVisibility.state == NPC.STATE_TOUCHING
+								then
 									scene.player:invoke("caught", fbot)
 								end
 							end),
@@ -152,7 +151,9 @@ return function(scene, hint)
 						Animate(fbot.sprite, "idleleft"),
 						Parallel {
 							Do(function()
-								if not scene.player:isHiding("right") then
+								if not scene.player:isHiding("right") and
+								   scene.objectLookup.FBotVisibility.state == NPC.STATE_TOUCHING
+								then
 									scene.player:invoke("caught", fbot)
 								end
 							end),

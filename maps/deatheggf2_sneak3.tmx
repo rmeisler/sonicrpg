@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="61" height="83" tilewidth="32" tileheight="32" infinite="0" nextobjectid="756">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="61" height="83" tilewidth="32" tileheight="32" infinite="0" nextobjectid="760">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
   <property name="onload" type="file" value="actions/deatheggf2_sneak3.lua"/>
@@ -733,12 +733,12 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/wall2.png"/>
    </properties>
   </object>
-  <object id="741" name="FWaypoint1" type="BasicNPC" gid="8977" x="1024" y="576" width="32" height="32">
+  <object id="741" name="FWaypoint1" type="BasicNPC" gid="8977" x="992" y="576" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="742" name="FWaypoint2" type="BasicNPC" gid="8977" x="928" y="1376" width="32" height="32">
+  <object id="742" name="FWaypoint2" type="BasicNPC" gid="8977" x="896" y="1376" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -753,7 +753,7 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="745" name="FWaypoint5" type="BasicNPC" gid="8977" x="1056" y="1888" width="32" height="32">
+  <object id="745" name="FWaypoint5" type="BasicNPC" gid="8977" x="736" y="1888" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -764,26 +764,6 @@ end</property>
    </properties>
   </object>
   <object id="748" name="FStart" type="BasicNPC" gid="8977" x="32" y="576" width="32" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="749" name="FVisibility1" type="BasicNPC" gid="6703" x="64" y="608" width="1088" height="128">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="750" name="FVisibility2" type="BasicNPC" gid="6703" x="896" y="1408" width="256" height="928">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="751" name="FVisibility4" type="BasicNPC" gid="6703" x="288" y="1952" width="224" height="736">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="752" name="FVisibility3" type="BasicNPC" gid="6703" x="256" y="1408" width="928" height="192">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -807,6 +787,26 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
+   </properties>
+  </object>
+  <object id="756" name="PSwitch1" type="BasicNPC" gid="8977" x="640" y="1408" width="32" height="192">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="757" name="PSwitch2" type="BasicNPC" gid="8977" x="576" y="1952" width="32" height="192">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="758" name="FWaypoint3_2" type="BasicNPC" gid="8977" x="480" y="1376" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="759" name="FBotVisibility1" type="BasicNPC" gid="6703" x="288" y="1408" width="800" height="192">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
