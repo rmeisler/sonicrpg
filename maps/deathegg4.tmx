@@ -514,6 +514,7 @@
     <property name="defaultAnim" value="idledown"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreCollision" value="Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6"/>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
    </properties>
   </object>
@@ -524,6 +525,7 @@
     <property name="defaultAnim" value="idledown"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreCollision" value="Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6"/>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
    </properties>
   </object>
@@ -573,6 +575,7 @@
     <property name="follow" value="Waypoint2,Waypoint1,Waypoint2,Waypoint1,Waypoint3,Waypoint1"/>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreCollision" value="Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6"/>
     <property name="noflashlight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwithblaster.png"/>
    </properties>

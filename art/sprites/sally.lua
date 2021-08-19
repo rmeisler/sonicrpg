@@ -147,6 +147,13 @@ return {
 			frames = {{6,4}}
 		},
 		
+		climb_1 = {
+			frames = {{2,5}}
+		},
+		climb_2 = {
+			frames = {{3,5}}
+		},
+		
 		thinking = {
 			frames = {{10,4}}
 		},

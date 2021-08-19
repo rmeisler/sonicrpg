@@ -314,19 +314,9 @@ return function(self)
                     menu:close()
                     self.scene:run {
                         menu,
-                        PlayAudio(&quot;sfx&quot;, &quot;lockon&quot;, 1.0),
-                        Wait(0.2),
-                        PlayAudio(&quot;sfx&quot;, &quot;lockon&quot;, 1.0),
-                        Wait(0.2),
-                        PlayAudio(&quot;sfx&quot;, &quot;lockon&quot;, 1.0),
-                        Wait(0.2),
-                        PlayAudio(&quot;sfx&quot;, &quot;lockon&quot;, 1.0),
-                        Wait(0.5),
-                        PlayAudio(&quot;sfx&quot;, &quot;nicolebeep&quot;, 1.0),
-                        Wait(1),
                         Do(function()
                             self.scene.player.noIdle = true
-                            self.scene.player.sprite:setAnimation(&quot;walkright&quot;)
+                            self.scene.player.sprite:setAnimation(&quot;walkleft&quot;)
                         end),
                         Ease(self.scene.player, &quot;x&quot;, self.scene.objectLookup.Waypoint.x, 1, &quot;linear&quot;),
                         Do(function()

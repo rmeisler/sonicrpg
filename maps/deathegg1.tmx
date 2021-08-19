@@ -436,7 +436,7 @@ return function(self)
         }
     end
     self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
-    return Serial {
+    return BlockPlayer {
         Wait(0.8),
         NumScreen {prompt=&quot;Enter access code&quot;, expected=&quot;1683&quot;, success=onSuccess},
         Do(function() self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1 end)

@@ -729,6 +729,7 @@ return {
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
+            ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6",
             ["sprite"] = "../art/sprites/swatbot.png"
           }
         },
@@ -750,6 +751,7 @@ return {
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
+            ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6",
             ["sprite"] = "../art/sprites/swatbot.png"
           }
         },
@@ -865,6 +867,7 @@ return {
             ["follow"] = "Waypoint2,Waypoint1,Waypoint2,Waypoint1,Waypoint3,Waypoint1",
             ["followRepeat"] = true,
             ["ghost"] = true,
+            ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6",
             ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/swatbotwithblaster.png"
           }

@@ -138,7 +138,8 @@ function RaceSquare:onCollision(prevState)
 		local subjWidth = self.subject.sprite and self.subject.sprite.w*2 or self.subject.object.width
 		local subjHeight = self.subject.sprite and self.subject.sprite.h*2 or self.subject.object.height/2
 		self.scene.player:run {
-			PlayAudio("music", "puzzlesolve", 1.0),
+			PlayAudio("music", "puzzlesolve", 1.0, true),
+			Wait(5),
 			
 			Parallel {
 				Ease(self.scene.camPos, "x", function() return self.scene.player.x - (self.subject.x + subjWidth/2) end, 1, "inout"),

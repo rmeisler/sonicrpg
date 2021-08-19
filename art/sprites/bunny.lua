@@ -15,6 +15,13 @@ return {
 			frames = {{11,0}}
 		},
 		
+		climb_1 = {
+			frames = {{6,4}}
+		},
+		climb_2 = {
+			frames = {{7,4}}
+		},
+		
 		sitlookforward = {
 			frames = {{4,4}}
 		},

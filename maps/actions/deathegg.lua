@@ -69,8 +69,34 @@ return function(scene)
 				-- Update drop shadow position
                 scene.player.dropShadow.x = scene.player.x - 22
 				scene.player.dropShadow.y = scene.player.dropShadowOverrideY or scene.player.y + scene.player.sprite.h - 15
-			end)
+			end),
+			
+			Serial {
+				Wait(1),
+				PlayAudio("music", "deatheggtransition", 1.0, true),
+				Wait(2),
+				Spawn(Serial {
+					subtext,
+					text,
+					Parallel {
+						Ease(text.color, 4, 255, 1),
+						Ease(subtext.color, 4, 255, 1),
+					},
+					Wait(2),
+					Parallel {
+						Ease(text.color, 4, 0, 1),
+						Ease(subtext.color, 4, 0, 1)
+					}
+				})
+			},
+			
+			Serial {
+				Wait(3.3),
+				PlayAudio("sfx", "elevatorend", 1.0, true)
+			}
 		},
+		
+		Wait(1),
 		
 		Do(function()
 			GameState:addToParty("b", 1, true)
@@ -121,25 +147,11 @@ return function(scene)
 				
 				Wait(1),
 				
+				PlayAudio("music", "mission2", 1.0, true, true),
 				MessageBox{message="Sally: Alright guys...", textspeed=3},
-				MessageBox{message="Sally: Let's find ourselves a {h Factorybot}..."},
+				MessageBox{message="Sally: Let's find ourselves a {h Factory bot}..."},
 				
 				walkin,
-				Wait(0.5),
-				Spawn(Serial {
-					PlayAudio("music", "mission2", 1.0, true, true),
-					subtext,
-					text,
-					Parallel {
-						Ease(text.color, 4, 255, 1),
-						Ease(subtext.color, 4, 255, 1),
-					},
-					Wait(2),
-					Parallel {
-						Ease(text.color, 4, 0, 1),
-						Ease(subtext.color, 4, 0, 1)
-					}
-				}),
 				Do(function()
 					GameState:removeFromParty("b")
 					GameState.leader = "sonic"

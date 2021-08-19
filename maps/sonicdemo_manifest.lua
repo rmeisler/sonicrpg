@@ -639,6 +639,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/elevatorend.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/music/exciting.ogg",
 		category = "music"
 	},
