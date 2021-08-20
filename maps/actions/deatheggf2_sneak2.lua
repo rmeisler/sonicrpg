@@ -41,8 +41,8 @@ return function(scene)
 			waitAction = Wait(waitTime)
 		end
 		return Serial {
-			Ease(self, "y", self.y - 50, 8, "linear"),
-			Ease(self, "y", self.y, 8, "linear"),
+			Ease(self, "y", function() return self.y - 50 end, 8, "linear"),
+			Ease(self, "y", function() return self.y + 50 end, 8, "linear"),
 			waitAction
 		}
 	end
@@ -51,6 +51,7 @@ return function(scene)
 	scene.player.dropShadow.hidden = true
 	scene.cinematicPause = true
 	scene.player.noSpecialMove = true
+	scene.player.cinematicStack = scene.player.cinematicStack + 1
 	
 	scene.player.handlers.caught = nil
 
@@ -62,6 +63,7 @@ return function(scene)
 		for k,v in pairs(scene.player.keyhints) do
 			scene.player.hidekeyhints[k] = v
 		end
+		scene.player:removeKeyHint()
 		scene.player:removeHandler("caught", caughtHandler)
 		scene:run(
 			BlockPlayer {
@@ -116,14 +118,19 @@ return function(scene)
 			fbot:run {
 				Parallel {
 					Do(function()
-						if scene.player and scene.player.x > fbot.x then
+						if scene.player and scene.player.x > fbot.x and
+						  (scene.objectLookup.FBotVisibility1.state == NPC.STATE_TOUCHING or
+						   scene.objectLookup.FBotVisibility2.state == NPC.STATE_TOUCHING)
+						then
 							scene.player:invoke("caught", fbot)
 						end
 					end),
 					Serial {
 						Move(fbot, scene.objectLookup.FWaypoint1, "walk"),
 						YieldUntil(function()
-							return scene.objectLookup.PSwitch1.state == NPC.STATE_TOUCHING
+							return scene.objectLookup and
+								(scene.objectLookup.PSwitch1.state == NPC.STATE_TOUCHING or
+								 scene.objectLookup.PSwitch3.state == NPC.STATE_TOUCHING)
 						end),
 						hop(fbot),
 						Wait(1.5),
@@ -134,7 +141,7 @@ return function(scene)
 								Wait(2)
 							},
 							Do(function()
-								if not scene.player:isHiding("right") and
+								if scene.player and not scene.player:isHiding("right") and
 								   scene.objectLookup.FBotVisibility1.state == NPC.STATE_TOUCHING
 								then
 									scene.player:invoke("caught", fbot)
@@ -143,7 +150,8 @@ return function(scene)
 						},
 						Move(fbot, scene.objectLookup.FWaypoint3, "walk"),
 						YieldUntil(function()
-							return scene.objectLookup.PSwitch2.state == NPC.STATE_TOUCHING
+							return scene.objectLookup and
+								scene.objectLookup.PSwitch2.state == NPC.STATE_TOUCHING
 						end),
 						hop(fbot),
 						hop(fbot),
@@ -151,7 +159,7 @@ return function(scene)
 						Animate(fbot.sprite, "idleleft"),
 						Parallel {
 							Do(function()
-								if not scene.player:isHiding("right") and
+								if scene.player and not scene.player:isHiding("right") and
 								   scene.objectLookup.FBotVisibility2.state == NPC.STATE_TOUCHING
 								then
 									scene.player:invoke("caught", fbot)
@@ -173,6 +181,7 @@ return function(scene)
 			scene.player.dropShadow.hidden = false
 			scene.cinematicPause = false
 			scene.player.noSpecialMove = false
+			scene.player.cinematicStack = scene.player.cinematicStack - 1
 		end)
 	}
 end

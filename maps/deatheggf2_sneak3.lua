@@ -8,7 +8,7 @@ return {
   height = 83,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 760,
+  nextobjectid = 762,
   properties = {
     ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
     ["onload"] = "actions/deatheggf2_sneak3.lua"
@@ -1235,10 +1235,10 @@ return {
         },
         {
           id = 747,
-          name = "FWaypoint6",
+          name = "FWaypoint8",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1856,
+          x = 1888,
           y = 2432,
           width = 32,
           height = 32,
@@ -1340,9 +1340,9 @@ return {
           name = "PSwitch2",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 576,
+          x = 480,
           y = 1952,
-          width = 32,
+          width = 64,
           height = 192,
           rotation = 0,
           gid = 8977,
@@ -1378,6 +1378,38 @@ return {
           height = 192,
           rotation = 0,
           gid = 6703,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 760,
+          name = "FWaypoint6",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1056,
+          y = 1888,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8977,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 761,
+          name = "FWaypoint7",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1056,
+          y = 2432,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8977,
           visible = true,
           properties = {
             ["ghost"] = true

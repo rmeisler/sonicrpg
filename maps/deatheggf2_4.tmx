@@ -1048,10 +1048,10 @@ return function(self)
                                     Wait(0.5),
                                     Animate(ivan.sprite, &quot;ivanfall&quot;),
                                     Parallel {
-                                        Ease(ivan, &quot;x&quot;, function() return fleet.x end, 1),
+                                        Ease(ivan, &quot;x&quot;, function() return fleet.x end, 2),
                                         Serial {
-                                            Ease(ivan, &quot;y&quot;, function() return ivan.y - 200 end, 1),
-                                            Ease(ivan, &quot;y&quot;, function() return fleet.y end, 2)
+                                            Ease(ivan, &quot;y&quot;, function() return ivan.y - 200 end, 2, &quot;linear&quot;),
+                                            Ease(ivan, &quot;y&quot;, function() return fleet.y end, 2, &quot;quad&quot;)
                                         }
                                     },
                                     Do(function() ivan:remove() end)
@@ -1061,10 +1061,10 @@ return function(self)
                                     Wait(0.5),
                                     Animate(logan.sprite, &quot;loganfall&quot;),
                                     Parallel {
-                                        Ease(logan, &quot;x&quot;, function() return fleet.x end, 1),
+                                        Ease(logan, &quot;x&quot;, function() return fleet.x end, 2),
                                         Serial {
-                                            Ease(logan, &quot;y&quot;, function() return logan.y - 200 end, 1),
-                                            Ease(logan, &quot;y&quot;, function() return fleet.y end, 2)
+                                            Ease(logan, &quot;y&quot;, function() return logan.y - 200 end, 2, &quot;linear&quot;),
+                                            Ease(logan, &quot;y&quot;, function() return fleet.y end, 2, &quot;quad&quot;)
                                         }
                                     },
                                     Do(function() logan:remove() end)
@@ -1074,10 +1074,10 @@ return function(self)
                                     Wait(0.5),
                                     Animate(leon.sprite, &quot;leonfall&quot;),
                                     Parallel {
-                                        Ease(leon, &quot;x&quot;, function() return fleet.x end, 1),
+                                        Ease(leon, &quot;x&quot;, function() return fleet.x end, 2),
                                         Serial {
-                                            Ease(leon, &quot;y&quot;, function() return leon.y - 200 end, 1),
-                                            Ease(leon, &quot;y&quot;, function() return fleet.y end, 2)
+                                            Ease(leon, &quot;y&quot;, function() return leon.y - 200 end, 2, &quot;linear&quot;),
+                                            Ease(leon, &quot;y&quot;, function() return fleet.y end, 2, &quot;quad&quot;)
                                         }
                                     },
                                     Do(function() leon:remove() end)

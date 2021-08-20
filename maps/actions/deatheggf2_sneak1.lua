@@ -49,8 +49,8 @@ return function(scene, hint)
 			waitAction = Wait(waitTime)
 		end
 		return Serial {
-			Ease(self, "y", self.y - 50, 8, "linear"),
-			Ease(self, "y", self.y, 8, "linear"),
+			Ease(self, "y", function() return self.y - 50 end, 8, "linear"),
+			Ease(self, "y", function() return self.y + 50 end, 8, "linear"),
 			waitAction
 		}
 	end
@@ -63,6 +63,7 @@ return function(scene, hint)
 		for k,v in pairs(scene.player.keyhints) do
 			scene.player.hidekeyhints[k] = v
 		end
+		scene.player:removeKeyHint()
 		scene.player:removeHandler("caught", caughtHandler)
 		scene:run(
 			BlockPlayer {
@@ -151,7 +152,7 @@ return function(scene, hint)
 						Animate(fbot.sprite, "idleleft"),
 						Parallel {
 							Do(function()
-								if not scene.player:isHiding("right") and
+								if scene.player and not scene.player:isHiding("right") and
 								   scene.objectLookup.FBotVisibility.state == NPC.STATE_TOUCHING
 								then
 									scene.player:invoke("caught", fbot)

@@ -132,7 +132,7 @@ return function(scene)
 			MessageBox {message="Sally: When we started the Freedom Fighters-- {p50}I guess I just thought we'd be farther along by now."},
 			MessageBox {message="Sally: {p20}.{p20}.{p20}.{p40}I sometimes wonder if I'm really fit to be a leader...", textSpeed=4},
 			MessageBox {message="Sonic: Hold up, Sal!"},
-			MessageBox {message="Sonic: Sure{p20}, there have been some failed missions recently{p40}, but we've also kicked some serious Robuttnik tail!"},
+			MessageBox {message="Sonic: Sure{p20}, there have been some failed missions recently{p40}, but we've also kicked some serious Robuttnik\ntail!"},
 			Do(function()
 				scene.player.sprite:setAnimation("sit_encouraging")
 			end),

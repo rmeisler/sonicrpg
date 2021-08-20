@@ -123,7 +123,7 @@ return function(scene, hint)
 			MessageBox {message="Antoine: Once you are inside zee Egg of Death, how are you to know where zis terminal even is?"},
 			MessageBox {message="Sally: Good question, Antoine."},
 			MessageBox {message="Sally: Unfortunately, intel on the internal layout of the Death Egg is sparse. {p60}We won't know exactly where B will take us, nor where the closest master terminal will be."},
-			MessageBox {message="Sally: But-- {p40}according to Griff-- {p40}Factorybots need to refresh their security access codes with a master terminal every couple of hours..."},
+			MessageBox {message="Sally: But-- {p40}according to Griff-- {p40}{h Factory bots} need to refresh their security access codes with a master terminal every couple of hours..."},
 			MessageBox {message="Rotor: ...so all you need to do is find one of these bots and follow it around until it leads you to a master terminal?"},
 			MessageBox {message="Sally: Right!"},
 			MessageBox {message="Bunnie: My goodness, Sally-girl! How do you come up with this stuff?"},

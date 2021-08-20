@@ -415,12 +415,12 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="744" name="PSwitch1" type="BasicNPC" gid="8977" x="736" y="1152" width="32" height="128">
+  <object id="744" name="PSwitch1" type="BasicNPC" gid="8977" x="704" y="1152" width="64" height="128">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="745" name="PSwitch2" type="BasicNPC" gid="8977" x="1120" y="1152" width="32" height="128">
+  <object id="745" name="PSwitch2" type="BasicNPC" gid="8977" x="1088" y="1152" width="64" height="128">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>

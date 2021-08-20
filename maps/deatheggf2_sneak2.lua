@@ -8,7 +8,7 @@ return {
   height = 58,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 755,
+  nextobjectid = 756,
   properties = {
     ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
     ["onload"] = "actions/deatheggf2_sneak2.lua"
@@ -1057,9 +1057,9 @@ return {
           name = "PSwitch1",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 800,
+          x = 768,
           y = 1152,
-          width = 32,
+          width = 64,
           height = 128,
           rotation = 0,
           gid = 8977,
@@ -1073,9 +1073,9 @@ return {
           name = "PSwitch2",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1792,
+          x = 1696,
           y = 1152,
-          width = 32,
+          width = 160,
           height = 128,
           rotation = 0,
           gid = 8977,
@@ -1105,9 +1105,9 @@ return {
           name = "FBotVisibility2",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1472,
+          x = 896,
           y = 1152,
-          width = 576,
+          width = 1152,
           height = 224,
           rotation = 0,
           gid = 6703,
@@ -1127,6 +1127,22 @@ return {
           height = 128,
           rotation = 0,
           gid = 6703,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 755,
+          name = "PSwitch3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 640,
+          y = 736,
+          width = 128,
+          height = 128,
+          rotation = 0,
+          gid = 8977,
           visible = true,
           properties = {
             ["ghost"] = true
