@@ -89,7 +89,7 @@ return function(player)
 			lastXForm = Transform(lastXForm.x + deltaX, lastXForm.y + deltaY, 2, 2)
 			
 			-- If extender arm collides with BunnyExtCollision tile
-			wx,wy = self.scene:screenCoordToWorldCoord(
+			local wx,wy = self.scene:screenCoordToWorldCoord(
 				self.extenderarm.transform.x,
 				self.extenderarm.transform.y
 			)
@@ -157,7 +157,7 @@ return function(player)
 			
 			if  not love.keyboard.isDown("lshift") or
 				self.extenderArmColliding or
-				#extenderPieces == 50
+				#extenderPieces == 80
 			then
 				retracting = true
 			end
@@ -169,10 +169,17 @@ return function(player)
 				if not self.extenderPull then
 					self.x = self.x + deltaX
 					self.y = self.y + deltaY
-				else
+					self.dropShadow.x = self.dropShadow.x + deltaX
+					self.dropShadow.y = self.dropShadow.y + deltaY
+				elseif self.extenderPull.grabbed then
 					-- Pull object to us
 					self.extenderPull.x = self.extenderPull.x - deltaX
 					self.extenderPull.y = self.extenderPull.y - deltaY
+					
+					if self.extenderPull.state == NPC.STATE_TOUCHING then
+						self.extenderPull.grabbed = false
+						self.extenderPull.readyToFall = false
+					end
 				end
 				
 				for _,piece in pairs(extenderPieces) do
@@ -213,9 +220,17 @@ return function(player)
 				self.extenderarm.transform.y = self.extenderarm.transform.y - deltaY
 			end
 		else
+			if not self.extenderPull and self.extenderArmColliding and self.extenderArmColliding.snapToObject then
+				self.x = self.extenderArmColliding.x + self.extenderArmColliding.sprite.w
+				self.y = self.extenderArmColliding.y + self.extenderArmColliding.sprite.h*2 - self.height
+			end
+			if self.extenderPull and not self.extenderPull.falling then
+				self.extenderPull.grabbed = false
+				self.extenderPull.readyToFall = false
+			end
 			self.extenderarm:remove()
 			self.extenderarm = nil
-			self.extenderArmColliding = false
+			self.extenderArmColliding = nil
 			self.extenderPull = nil
 			self.basicUpdate = origUpdate
 		end

@@ -8,7 +8,7 @@ return {
   height = 21,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 171,
+  nextobjectid = 172,
   properties = {
     ["onload"] = "actions/knotholelookout.lua"
   },
@@ -1041,25 +1041,20 @@ return {
           }
         },
         {
-          id = 143,
-          name = "Sally",
+          id = 171,
+          name = "Lookout",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1408,
-          y = 448,
-          width = 64,
+          x = 1440,
+          y = 512,
+          width = 32,
           height = 96,
           rotation = 0,
           gid = 5323,
           visible = true,
           properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -16,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "binoculars_1",
-            ["ghost"] = false,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"sonic_staybehind\") then\n        return Serial {\n            MessageBox{message=\"Sally: Sorry Sonic, but I've made up my mind.\", blocking = true},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\n\n    return BlockPlayer {\n        Do(function()\n            self.scene.player.noIdle = true\n        end),\n        MessageBox {\n            message = \"Sonic: Whatcha doin' Sal?\",\n        },\n        Animate(self.sprite, \"binoculars_2\"),\n        MessageBox {\n            message = \"Sally: Trying to get a good look at Robotnik's coms tower...\",\n        },\n        Animate(self.sprite, \"binoculars_1\"),\n        Ease(self.scene.camPos, \"x\", -800, 0.3),\n        Wait(1),\n        MessageBox {\n            message = \"Sally: You see that skinny tower next to the Death Egg?\",\n        },\n        MessageBox {\n            message = \"Sally: That will be our next target.\",\n        },\n        Ease(self.scene.camPos, \"x\", 0, 0.3),\n        MessageBox {\n            message = \"Sonic: Awfully close to Buttnik's lair. {p50}What's the plan?\",\n        },\n        Animate(self.scene.player.sprite, \"thinking\"),\n        MessageBox {\n            message = \"Sonic: Slam and jam? {p40}Smash and dash? {p40}Dump and--\",\n            closeAction = Wait(0.5)\n        },\n        Animate(self.sprite, \"thinking\"),\n        MessageBox {\n            message = \"Sally: There will be no 'slamming', {p20}'jamming', {p20}'smashing', or {p20}'dashing'!\"\n        },\n        MessageBox {\n            message = \"Sally: This will be a stealth mission. {p50}And after what happened at the Power Grid mission, I think you should stay back.\",\n        },\n        Animate(self.scene.player.sprite, \"idleright\"),\n        MessageBox {\n            message = \"Sonic: What! {p50}Come on Sal, you guys could use some muscle in the party.\",\n        },\n        MessageBox {\n            message = \"Sally: That's why Bunnie will be joining Anotine and I.\",\n        },\n        Animate(self.scene.player.sprite, \"irritated\"),\n        MessageBox {\n            message = \"Sonic: Antoine's going, but I can't go?! {p50}Coooome oooon.\",\n        },\n        Animate(self.scene.player.sprite, \"irritated\"),\n        MessageBox {\n            message = \"Sally: You're staying here, Sonic Hedgehog! {p50}That's an order.\",\n        },\n        Do(function()\n            self:refreshKeyHint()\n            self.scene.player.noIdle = false\n            GameState:setFlag(\"sonic_staybehind\")\n        end)\n    }\nend",
-            ["sprite"] = "../art/sprites/sally.png"
+            ["ghost"] = true,
+            ["whileColliding"] = "local Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self, player, prevState)\n    if not self.panning and prevState == self.STATE_IDLE and love.keyboard.isDown(\"right\") then\n        self.panning = true\n        self.scene:run(BlockPlayer {\n            Ease(self.scene.camPos, \"x\", -800, 0.3),\n            Wait(2),\n            Ease(self.scene.camPos, \"x\", 0, 0.3),\n            Do(function() self.panning = false end)\n        })\n    end\nend"
           }
         }
       }

@@ -101,6 +101,12 @@ return {
 		hurtright = {
 			frames = {{0,0}}
 		},
+		hurtdown = {
+			frames = {{8,0}}
+		},
+		hurtup = {
+			frames = {{8,0}}
+		},
 
         side = {
             frames = {{1,0}}

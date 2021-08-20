@@ -6,7 +6,7 @@ return {
 	unusable = function(target)
 		return target.side == TargetType.Party
 	end,
-	cost = 3,
+	cost = 4,
 	desc = "Damages multiple enemies.",
 	action = require "data/battle/skills/actions/Boulder"
 }

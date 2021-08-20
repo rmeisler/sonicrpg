@@ -8,6 +8,7 @@ local Ease = require "actions/Ease"
 local Parallel = require "actions/Parallel"
 local Serial = require "actions/Serial"
 local Do = require "actions/Do"
+local Wait = require "actions/Wait"
 local PlayAudio = require "actions/PlayAudio"
 local AudioFade = require "actions/AudioFade"
 local Spawn = require "actions/Spawn"
@@ -15,6 +16,7 @@ local While = require "actions/While"
 local Repeat = require "actions/Repeat"
 local Executor = require "actions/Executor"
 local BlockPlayer = require "actions/BlockPlayer"
+local YieldUntil = require "actions/YieldUntil"
 
 local Subscreen = require "object/Subscreen"
 
@@ -50,6 +52,10 @@ function BasicScene:onEnter(args)
 	
 	self.cacheSceneData = args.cache
 	
+	-- NOTE: This is how we draw the lua map data
+	-- There is a draw function on the sti map object.
+	-- All our SceneNode drawing interface requires is a
+	-- draw function, so this works out fine.
 	self:addNode(self.map, "tiles")
 	
 	local placeholder
@@ -127,33 +133,46 @@ function BasicScene:onEnter(args)
 	
 	local onLoadAction = Action()
 	if self.map.properties.onload then
-		onLoadAction = love.filesystem.load("maps/"..self.map.properties.onload)()(self)
+		onLoadAction = love.filesystem.load("maps/"..self.map.properties.onload)()(self, args.hint)
 	end
 	
 	-- Pan to player
 	if self.player then
 		-- Place player at spawn point and orient them appropriately
 		if self.lastSpawnPoint then
-			local spawnOffset = args.spawn_point_offset or Transform()
 			local spawn = self.spawnPoints[self.lastSpawnPoint]
-			
+			local spawnOffset = args.spawn_point_offset or
+				Transform(spawn.width/2, spawn.height/2)
 			if not self.player.object.properties.strictLocation then
 				-- Place player
-				self.player.x = spawn.x + spawnOffset.x + self:getTileWidth()/2
-				self.player.y = spawn.y + spawnOffset.y - self.player.halfHeight + 5
+				self.player.x = spawn.x + spawnOffset.x
+				self.player.y = spawn.y + spawnOffset.y - self.player.height
 			end
 				
 			-- Reset player state
 			self.player.doingSpecialMove = false
 			self.player.ignoreSpecialMoveCollision = false
-			self.player.basicUpdate = self.player.origUpdate or self.player.basicUpdate
 			self.player.state = spawn.properties.orientation and "idle"..spawn.properties.orientation or "idledown"
 			
-			--[[ Restart special move, if necessary
-			if args.doingSpecialMove and not self.player.doingSpecialMove then
-				self.player.skipChargeSpecialMove = true
-				self.player:onSpecialMove()
-			end]]
+			-- Restart special move, if necessary
+			if args.doingSpecialMove then
+				self.player.basicUpdate = function(p, dt) end
+				self.player.sprite.visible = false
+				self.player:run(BlockPlayer {
+					Wait(0.5),
+					YieldUntil(function()
+						return not self.cinematicPause
+					end),
+					Do(function()
+						self.player.skipChargeSpecialMove = true
+						self.player.sprite.visible = true
+						self.player:onSpecialMove()
+					end)
+				})
+			else
+				self.player.basicUpdate = self.player.origUpdate or self.player.basicUpdate
+				self.player:updateSprite()
+			end
 			
 			-- Make sure we render the camera in the correct spot now before fade-in
 			self:update(0)
@@ -215,22 +234,35 @@ function BasicScene:onReEnter(args)
 	-- Place player at spawn point and orient them appropriately
 	if args.spawn_point then
 		local spawn = self.spawnPoints[args.spawn_point]
-		local spawnOffset = args.spawn_point_offset or Transform()
-		self.player.x = spawn.x + spawnOffset.x + self:getTileWidth()/2
-		self.player.y = spawn.y + spawnOffset.y - self.player.halfHeight + 5
+		local spawnOffset = args.spawn_point_offset or
+			Transform(spawn.width/2, spawn.height/2)
+		self.player.x = spawn.x + spawnOffset.x
+		self.player.y = spawn.y + spawnOffset.y - self.player.height
 		
 		-- Reset player state
 		self.player.doingSpecialMove = false
 		self.player.ignoreSpecialMoveCollision = false
-		self.player.basicUpdate = self.player.origUpdate
-		self.player:updateSprite()
 		self.player.state = spawn.properties.orientation and "idle"..spawn.properties.orientation or "idledown"
 		
-		--[[ Restart special move, if necessary
-		if args.doingSpecialMove and not self.player.doingSpecialMove then			
-			self.player.skipChargeSpecialMove = true
-			self.player:onSpecialMove()
-		end]]
+		-- Restart special move, if necessary
+		if args.doingSpecialMove then
+			self.player.basicUpdate = function(p, dt) end
+			self.player.sprite.visible = false
+			self.player:run(BlockPlayer {
+				Wait(0.5),
+				YieldUntil(function()
+					return not self.cinematicPause
+				end),
+				Do(function()
+					self.player.skipChargeSpecialMove = true
+					self.player.sprite.visible = true
+					self.player:onSpecialMove()
+				end)
+			})
+		else
+			self.player.basicUpdate = self.player.origUpdate
+			self.player:updateSprite()
+		end
 	end
 	
 	self.reenteringFromBattle = self.enteringBattle
@@ -248,7 +280,7 @@ function BasicScene:onReEnter(args)
 	
 	local onLoadAction = Action()
 	if self.map.properties.onload then
-		onLoadAction = love.filesystem.load("maps/"..self.map.properties.onload)()(self)
+		onLoadAction = love.filesystem.load("maps/"..self.map.properties.onload)()(self, args.hint)
 	end
 
 	local fadeInSpeed = args.fadeInSpeed or 1.0
@@ -318,6 +350,32 @@ function BasicScene:onExit(args)
 	}
 end
 
+function BasicScene:fadeIn(speed)
+	speed = speed or 1
+	return Parallel {
+		-- Fade from black
+		Ease(self.bgColor, 1, 255, 2 * speed, "linear"),
+		Ease(self.bgColor, 2, 255, 2 * speed, "linear"),
+		Ease(self.bgColor, 3, 255, 2 * speed, "linear"),
+		Do(function()
+			ScreenShader:sendColor("multColor", self.bgColor)
+		end)
+	}
+end
+
+function BasicScene:fadeOut(speed)
+	speed = speed or 1
+	return Parallel {
+		-- Fade to black
+		Ease(self.bgColor, 1, 0, 2 * speed, "linear"),
+		Ease(self.bgColor, 2, 0, 2 * speed, "linear"),
+		Ease(self.bgColor, 3, 0, 2 * speed, "linear"),
+		Do(function()
+			ScreenShader:sendColor("multColor", self.bgColor)
+		end)
+	}
+end
+
 function BasicScene:remove()
 	-- Delete all map objects
 	for _, obj in pairs(self.map.objects) do
@@ -331,7 +389,7 @@ function BasicScene:remove()
 	self.player = nil
 end
 
-function BasicScene:restart()
+function BasicScene:restart(args)
 	self.cacheSceneData = false
 	self.sceneMgr.cachedScenes[tostring(self.map)] = nil
 	self.isRestarting = true
@@ -346,11 +404,12 @@ function BasicScene:restart()
 		spawn_point_offset = Transform(),
 		fadeInSpeed = 2,
 		fadeOutSpeed = 2,
-		fadeOutMusic = true,
+		fadeOutMusic = args.fadeOutMusic,
 		images = self.images,
 		animations = self.animations,
 		audio = self.audio,
-		tutorial = self.tutorial
+		tutorial = self.tutorial,
+		hint = args.hint
 	}
 end
 
@@ -366,16 +425,20 @@ function BasicScene:changeScene(args)
 		animations = self.animations,
 		audio = self.audio,
 		spawn_point = args.spawnPoint,
+		hint = args.hint,
 		tutorial = args.tutorial,
+		fadeOutSpeed = args.fadeOutSpeed,
+		fadeInSpeed = args.fadeInSpeed,
+		fadeOutMusic = args.fadeOutMusic,
 		cache = args.cache
 	}
 end
 
 -- Vertical screen shake
-function BasicScene:screenShake(strength, speed, repeatTimes)
-	strength = strength or 50
-	speed = speed or 15
-	repeatTimes = repeatTimes or 1
+function BasicScene:screenShake(str, sp, rp)
+	local strength = str or 50
+	local speed = sp or 15
+	local repeatTimes = rp or 1
 	
 	return Serial {
 		Do(function()
@@ -384,19 +447,15 @@ function BasicScene:screenShake(strength, speed, repeatTimes)
 		
 		Repeat(Serial {
 			Ease(self.camPos, "y", function() return self.camPos.y - strength end, speed, "quad"),
-			Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad"),
-			Ease(self.camPos, "y", function() return self.camPos.y + strength end, speed, "quad"),
-			Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad")
+			Ease(self.camPos, "y", function() return self.camPos.y + strength end, speed, "quad")
 		}, repeatTimes),
 		
 		Ease(self.camPos, "y", function() return self.camPos.y - strength/2 end, speed, "quad"),
-		Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad"),
 		Ease(self.camPos, "y", function() return self.camPos.y + strength/2 end, speed, "quad"),
-		Ease(self.camPos, "y", function() return self.camPos.y end, speed, "quad"),
 		
 		Do(function()
 			self.isScreenShaking = false
-			self.camPos = Transform()
+			self.camPos.y = 0
 		end)
 	}
 end
@@ -454,7 +513,8 @@ function BasicScene:enterBattle(args)
 				bossBattle = args.bossBattle,
 				initiative = args.initiative,
 				color = args.color,
-				practice = args.practice
+				practice = args.practice,
+				onEnter = args.onEnter
 			}
 		end),
 		
@@ -580,8 +640,8 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 	
 	for _,layer in ipairs(self.map.layers) do
 		if not layer.image then
-			layer.x = worldOffsetX
-			layer.y = worldOffsetY
+			layer.x = layer.offsetx + worldOffsetX
+			layer.y = layer.offsety + worldOffsetY
 		else
 			layer.x = math.floor((layer.offsetx + worldOffsetX)*(layer.properties.movespeed or 1.05))
 			layer.y = math.floor((layer.offsety + worldOffsetY)*(layer.properties.movespeed or 1.05))

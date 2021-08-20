@@ -13,6 +13,7 @@ local HealText = require "data/items/actions/HealText"
 
 local SpriteNode = require "object/SpriteNode"
 
+local TargetType = require "util/TargetType"
 local Transform = require "util/Transform"
 
 return function(self, target)
@@ -25,7 +26,11 @@ return function(self, target)
 		nil,
 		"sprites"
 	)
-	shield.transform.x = shield.transform.x - target.sprite.w
+	if target.side == TargetType.Opponent then
+		shield.transform.x = shield.transform.x + target:getSprite().w * 1.3
+	else
+		shield.transform.x = shield.transform.x - target.sprite.w
+	end
 	shield.transform.ox = shield.w/2
 	shield.transform.oy = shield.h/2
 	shield.color = {512,512,512,0}

@@ -8,7 +8,7 @@ return {
   height = 42,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 245,
+  nextobjectid = 248,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/stealthtut1.lua",
@@ -139,8 +139,8 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1906, 2220, 1906, 1907, 1906, 1907, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1941, 2185, 1941, 1942, 1941, 1942, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1976, 2220, 1976, 1977, 1976, 1977, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1511, 1511, 1511, 1511, 1511, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 1709, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1708, 1708, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1708, 1708, 1546, 1546, 1546, 1546, 1546, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 1709, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1708, 1708, 1709, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1708, 1708, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 0, 0, 0, 1511, 1511, 1511, 1511, 1511, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 1744, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1708, 1708, 1744, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1708, 1708, 1708, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1708, 1708, 1708, 1546, 1546, 1546, 1546, 1546, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 1744, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1708, 1708, 1708, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1708, 1708, 1708, 1708, 1708, 1709, 1708, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 1709, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1744, 1743, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 1744, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1709, 1708, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1743, 1744, 1709, 1708, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -197,7 +197,7 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2472, 2473, 2408, 2474, 2475, 0, 0, 0, 0, 0, 0, 0, 0, 2472, 2473, 2408, 2474, 2475, 0, 0, 0, 0, 0, 0, 0, 2472, 2473, 2408, 2474, 2475, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2472, 2473, 2474, 2475, 0, 0, 0, 0, 0, 0, 0, 0, 2472, 2473, 2408, 2474, 2475, 0, 0, 0, 0, 0, 0, 0, 2472, 2473, 2474, 2475, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2473, 2474, 2475, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2473, 2407, 2474, 2475, 0, 0, 0, 0, 0, 0, 0, 0, 2473, 2407, 2474, 2475, 0, 2442, 2442, 2408, 2408, 2406, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2472, 2473, 2474, 2475, 0, 0, 0, 0, 0, 0, 0, 0, 2472, 2473, 2474, 2475, 0, 0, 0, 0, 0, 0, 0, 0, 2472, 2473, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -383,8 +383,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["hidingspot"] = true,
-            ["sprite"] = "../art/sprites/pillar.png",
-            ["whileColliding"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"tutorial:hide_pillar2\") or not GameState:isFlagSet(\"tutorial:hide_pillar6\")  then\n        return\n    end\n\n    if not self.hideTime then\n        self.hideTime = 0\n    end\n    if player.showPressDir == \"pressdown\" and love.keyboard.isDown(\"down\") then\n        self.hideTime = self.hideTime + love.timer.getDelta()\n    else\n        self.hideTime = 0\n    end\n\n    local pillar = self.scene.objectLookup.Pillar4\n    if self.hideTime > 3 then\n        GameState:setFlag(\"tutorial:hide_pillar2\")\n        self.scene:run(\n            BlockPlayer {\n                MessageBox {message=\"Computer: Good.\", sfx=\"choose\"},\n                Do(function()\n                    self.scene.objectLookup.Cursor.x = pillar.x - pillar.sprite.w\n                    self.scene.objectLookup.Cursor.y = pillar.y + pillar.sprite.h*2 -  player.height*2\n                end),\n                Parallel {\n                    Ease(self.scene.camPos, \"x\", player.x - pillar.x, 1),\n                    Ease(self.scene.camPos, \"y\", player.y - pillar.y - pillar.sprite.h*2, 1),\n                    MessageBox {message=\"Computer: Now hide behind this pillar, and look right.\"}\n                },\n                Parallel {\n                    Ease(self.scene.camPos, \"x\", 0, 1),\n                    Ease(self.scene.camPos, \"y\", 0, 1)\n                }\n            }\n        )\n    end\nend"
+            ["sprite"] = "../art/sprites/pillar.png"
           }
         },
         {
@@ -1056,6 +1055,51 @@ return {
           properties = {
             ["orientation"] = "left"
           }
+        },
+        {
+          id = 245,
+          name = "HidingSpot100",
+          type = "HidingSpot",
+          shape = "rectangle",
+          x = 1248,
+          y = 576,
+          width = 96,
+          height = 32,
+          rotation = 0,
+          gid = 2332,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 246,
+          name = "HidingSpot101",
+          type = "HidingSpot",
+          shape = "rectangle",
+          x = 832,
+          y = 576,
+          width = 96,
+          height = 32,
+          rotation = 0,
+          gid = 2332,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 247,
+          name = "Check",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1088,
+          y = 608,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"tutorial:hide_pillar2\") or not GameState:isFlagSet(\"tutorial:hide_pillar6\")  then\n        return\n    end\n\n    if not self.hideTime then\n        self.hideTime = 0\n    end\n    if love.keyboard.isDown(\"down\") then\n        self.hideTime = self.hideTime + love.timer.getDelta()\n    else\n        self.hideTime = 0\n    end\n\n    local pillar = self.scene.objectLookup.Pillar4\n    if self.hideTime > 3 then\n        GameState:setFlag(\"tutorial:hide_pillar2\")\n        self.scene:run(\n            BlockPlayer {\n                MessageBox {message=\"Computer: Good.\", sfx=\"choose\"},\n                Do(function()\n                    self.scene.objectLookup.Cursor.x = pillar.x - pillar.sprite.w\n                    self.scene.objectLookup.Cursor.y = pillar.y + pillar.sprite.h*2 -  player.height*2\n                end),\n                Parallel {\n                    Ease(self.scene.camPos, \"x\", player.x - pillar.x, 1),\n                    Ease(self.scene.camPos, \"y\", player.y - pillar.y - pillar.sprite.h*2, 1),\n                    MessageBox {message=\"Computer: Now hide behind this pillar, and look right.\"}\n                },\n                Parallel {\n                    Ease(self.scene.camPos, \"x\", 0, 1),\n                    Ease(self.scene.camPos, \"y\", 0, 1)\n                }\n            }\n        )\n    end\nend"
+          }
         }
       }
     },
@@ -1206,7 +1250,7 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 78, 78, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 78, 78, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 72, 72, 72, 72, 72, 72, 72, 72, 72, 78, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 78, 78, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 72, 72, 72, 0, 0, 0, 0, 0, 0, 78, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 78, 78, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 78, 0, 0, 0, 0, 0, 0, 0, 0,

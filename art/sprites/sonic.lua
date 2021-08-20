@@ -18,6 +18,10 @@ return {
 			frames = {{8,4}}
 		},
 		
+		worried = {
+			frames = {{13,8}}
+		},
+		
 		climb_1 = {
 			frames = {{8,7}}
 		},
@@ -213,6 +217,18 @@ return {
 		ouchup = {
 			frames = {{16,3}}
 		},
+		
+		stepback = {
+		    frames = {{0,3},{1,3},{0,3},{5,3}},
+			speed = 0.5
+		},
+		
+		sitlookforward = {
+			frames = {{4,8}}
+		},
+		sitlookleft = {
+			frames = {{12,4}}
+		},
 
 		layright = {
 			frames = {{13,5}}
@@ -239,6 +255,9 @@ return {
 		},
 		sadlefthand = {
 			frames = {{6,7}}
+		},
+		earnestleft = {
+			frames = {{7,7}}
 		},
 		smileright = {
 			frames = {{1,4}}

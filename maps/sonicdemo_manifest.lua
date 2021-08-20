@@ -7,60 +7,90 @@ return {
 	
 	{
         type = "map",
-		file = "maps/deathegg_elevator.lua",
+		file = "maps/deathegg_elevator1.lua",
+		primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/deathegg_elevator2.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deathegg_elevator3.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deathegg_elevator4.lua",
 		--primary = true
     },
 	
 	{
         type = "map",
-		file = "maps/greatforest1.lua"
+		file = "maps/deathegg1.lua"
     },
 	
 	{
         type = "map",
-		file = "maps/greatforest2.lua",
+		file = "maps/deathegg3.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deathegg4.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deathegg5.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deathegg6.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deatheggf2_sneak1.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deatheggf2_sneak2.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deatheggf2_sneak3.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deatheggf2_1.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deatheggf2_2.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deatheggf2_2.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deatheggf2_2.lua"
+    },
+	
+	{
+        type = "map",
+		file = "maps/deatheggf2_4.lua",
 		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/greatforest2_rightpath.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/greatforest2_rightpath_cave1.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/greatforest2_uppath.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/greatforest3.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/greatforest4.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/quicksand_cave1.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/quicksand_cave2.lua"
     },
 	
 	{
@@ -72,7 +102,7 @@ return {
 	{
         type = "map",
 		file = "maps/sonicshut.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -153,11 +183,15 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/worldmapdot.png"
+		file = "art/sprites/cursor.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/worldmapbigdot.png"
+		file = "art/sprites/computerloading.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/computerloadingcircle.png"
 	},
 	{
 		type = "image",
@@ -273,6 +307,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/leon.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/sonicchargebody.png"
 	},
 	{
@@ -326,6 +364,14 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/swatbot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/swatbotwithblaster.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/blaster2.png"
 	},
 	{
 		type = "image",
@@ -590,6 +636,37 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/hoverbot.png"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/elevatorend.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/exciting.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/sallymeetsleon.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/meettherebellion.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/fleetsmack.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/slice.ogg",
+		category = "sfx"
 	},
 	{
 		type = "sound",
@@ -863,7 +940,24 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/rotorsworkshop.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/areyouready.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
 		file = "audio/music/lookout.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/lookout2.ogg",
 		category = "music",
 		looping = true
 	},
@@ -1095,7 +1189,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/battle2.ogg",
+		file = "audio/music/robotropolis.ogg",
 		category = "music",
 		volume = 0.7,
 		looping = true,
@@ -1115,9 +1209,10 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/sonicring2.ogg",
+		file = "audio/music/talkingtosally.ogg",
 		category = "music",
 		volume = 1.0,
+		looping = true,
 	},
 	{
 		type = "sound",

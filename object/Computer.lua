@@ -54,6 +54,7 @@ function Computer:use()
 				},
 				Do(function()
 					self.interacting = false
+					self:refreshKeyHint()
 				end)
 			}
 		end
@@ -65,6 +66,7 @@ function Computer:use()
 			},
 			Do(function()
 				self.interacting = false
+				self:refreshKeyHint()
 			end)
 		}
 	elseif GameState.leader == "sonic" then
@@ -75,6 +77,7 @@ function Computer:use()
 			},
 			Do(function()
 				self.interacting = false
+				self:refreshKeyHint()
 			end)
 		}
 	elseif GameState.leader == "antoine" then
@@ -85,6 +88,7 @@ function Computer:use()
 			},
 			Do(function()
 				self.interacting = false
+				self:refreshKeyHint()
 			end)
 		}
 	end
@@ -100,7 +104,10 @@ function Computer:onScan()
 		if self.sprite then
 			spriteActions = Serial {
 				Animate(self.sprite, "auth"),
-				Do(function() self.sprite:setAnimation("auth_idle") end)
+				Do(function()
+					self.sprite:setAnimation("auth_idle")
+					self:refreshKeyHint()
+				end)
 			}
 		end
 		return Serial {
@@ -115,6 +122,10 @@ function Computer:onScan()
 			},
 			
 			assert(loadstring(self.object.properties.scanAction))()(self),
+			
+			Do(function()
+				self:refreshKeyHint()
+			end)
 		}
 	elseif self.object.properties.errorAction then
 		return Serial {
@@ -142,6 +153,7 @@ function Computer:onScan()
 			Do(function()
 				-- Set flag so this persists
 				GameState:setFlag(self)
+				self:refreshKeyHint()
 			end)
 		}
 	elseif self.object.properties.interface then
@@ -172,6 +184,7 @@ function Computer:onScan()
 			Do(function()
 				-- Set flag so this persists
 				GameState:setFlag(self)
+				self:refreshKeyHint()
 			end)
 		}
 	else
@@ -210,6 +223,7 @@ function Computer:onScan()
 			Do(function()
 				-- Set flag so this persists
 				GameState:setFlag(self)
+				self:refreshKeyHint()
 			end)
 		}
 	end

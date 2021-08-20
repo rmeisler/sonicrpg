@@ -11,6 +11,23 @@ return {
 		shock = {
 			frames = {{11,4}}
 		},
+		concernedright = {
+			frames = {{11,0}}
+		},
+		
+		climb_1 = {
+			frames = {{6,4}}
+		},
+		climb_2 = {
+			frames = {{7,4}}
+		},
+		
+		sitlookforward = {
+			frames = {{4,4}}
+		},
+		sitlookleft = {
+			frames = {{5,4}}
+		},
 		
 		kneeling = {
 			frames = {{10, 1}}
@@ -47,6 +64,37 @@ return {
 		walkup = {
 			frames = {{1,3}, {2,3}, {3,3}, {4,3},{5,3}, {6,3}, {7,3}, {8,3}},
 			speed = 0.08
+		},
+		
+		hideright = {
+			frames = {{12,0}}
+		},
+		hideleft = {
+			frames = {{12,1}}
+		},
+		hideup = {
+			frames = {{12,3}}
+		},
+		hidedown = {
+			frames = {{12,2}}
+		},
+		hidedownhand = {
+			frames = {{13,2}}
+		},
+		
+		peekright = {
+			frames = {{13,0}}
+		},
+		peekleft = {
+			frames = {{13,1}}
+		},
+		peekup = {
+			frames = {{13,3}}
+		},
+		
+		stepback = {
+		    frames = {{0,3},{1,3},{0,3},{5,3}},
+			speed = 0.5
 		},
 		
 		extendright = {

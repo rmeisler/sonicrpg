@@ -113,8 +113,8 @@ local PickedUp = function(target, iterations)
 		Do(function()
 			target.sprite:trySetAnimation("hurtdown")
 		end),
-		Spin(target, 7, 2),
-		Spin(target, 12, 6),
+		Spin(target, 12, 3),
+		Spin(target, 24, 14),
 		Parallel {
 			Ease(target.sprite.transform, "angle", math.pi, 2),
 			Ease(target.sprite.transform, "sx", 50, 2),
@@ -173,6 +173,7 @@ return function(self, targets)
 	else
 		GameState:useItem(GameState:getItem("Power Ring"))
 		local startingLocationX = self.sprite.transform.x
+		local startingLocationY = self.sprite.transform.y
 		
 		local powerring = SpriteNode(self.scene, Transform(0,0,2,2), {255,255,255,0}, "powerring", nil, nil, "sprites")
 		local tornadoSprites = {
@@ -195,10 +196,7 @@ return function(self, targets)
 		end
 		
 		action = Serial {
-			Spawn(Serial {
-				PlayAudio("music", "sonicring", 1.0),
-				PlayAudio("music", "sonicring2", 1.0)
-			}),
+			PlayAudio("music", "sonicring", 1.0, true),
 			Animate(self.sprite, "foundring_backpack"),
 			Do(function() self.sprite:setGlow({255,255,0,255},2) end),
 			PlayAudio("sfx", "usering", 1.0, true),
@@ -358,7 +356,10 @@ return function(self, targets)
 			Do(function()
 				self.sprite:setAnimation("ring_runright")
 			end),
-			Ease(self.sprite.transform, "x", startingLocationX, 3),
+			Parallel {
+				Ease(self.sprite.transform, "x", startingLocationX, 3),
+				Ease(self.sprite.transform, "y", startingLocationY, 3),
+			},
 			Do(function()
 				self.sprite:setAnimation("idle")
 				self.sprite.sortOrderY = nil

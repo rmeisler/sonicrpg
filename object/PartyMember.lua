@@ -77,7 +77,7 @@ function PartyMember:construct(scene, data)
 	self.defenseEvent = false
 
 	if data.equip.weapon and data.equip.weapon.event then
-		self.attackEvent = data.equip.weapon.event.action
+		self.defenseEvent = data.equip.weapon.event.action
 	end
 	if data.equip.armor and data.equip.armor.event then
 		self.defenseEvent = data.equip.armor.event.action
@@ -356,6 +356,7 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 			self.scene:unfocus("keytriggered")
 			
 			local targets
+			local onBeforeAttackActions = {}
 			local onAttackActions = {}
 			if self.targetType == TargetType.AllParty then
 				targets = table.clone(self.scene.party)
@@ -369,6 +370,7 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 				for index, target in pairs(targets) do
 					if not unusable or not unusable(target) then
 						table.insert(onAttackActions, (target.onAttack and target.state ~= BattleActor.STATE_IMMOBILIZED) and target:onAttack(self) or Action())
+						table.insert(onBeforeAttackActions, target.onBeforeAttack and target:onBeforeAttack(self) or Action())
 					else
 						targets[index] = nil
 					end
@@ -381,6 +383,7 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 				Parallel {
 					self.selectedMenu,
 					Serial {
+						Serial(onBeforeAttackActions),
 						self.callback(self, targets, unpack(self.callbackArgs)),
 						Serial(onAttackActions),
 						Do(function() self:endTurn() end)
@@ -446,6 +449,7 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 							self.dropShadow.transform.y = startingY + (startingY - target.sprite.transform.y + target.sprite.h) * m
 						end),
 						Serial {
+							target.onBeforeAttack and target:onBeforeAttack(self) or Action(),
 							self.callback(self, target, unpack(self.callbackArgs)),
 							(target.onAttack and target.state ~= BattleActor.STATE_IMMOBILIZED) and target:onAttack(self) or Action(),
 							Do(function() self:endTurn() end)

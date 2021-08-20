@@ -32,9 +32,9 @@ return {
 
 	stats = {
 		xp    = 100,
-		maxhp = 2000,
+		maxhp = 800,
 		attack = 20,
-		defense = 50,
+		defense = 100,
 		speed = 1,
 		focus = 1,
 		luck = 1,
@@ -57,39 +57,38 @@ return {
 	onPreInit = function(self)
 		self.scene.juggerbotbody = self
 		self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h
+		self.turnCount = 0
+		self.turnPhase = 1
+			
+		-- Setup plasma beam sprites
+		self.beamSpriteStart = SpriteNode(self.scene, Transform(), nil, "plasmabeam", nil, nil, "ui")
+		self.beamSpriteStart:setAnimation("left")
+		self.beamSpriteStart.transform.ox = 0
+		self.beamSpriteStart.transform.oy = self.beamSpriteStart.h/2
+		self.beamSpriteStart.transform.sx = 2
+		self.beamSpriteStart.transform.sy = 0
+		
+		self.beamSprite = SpriteNode(self.scene, Transform(), nil, "plasmabeam", nil, nil, "ui")
+		self.beamSprite:setAnimation("center")
+		self.beamSprite.transform.ox = 0
+		self.beamSprite.transform.oy = self.beamSprite.h/2
+		self.beamSprite.transform.sx = 20
+		self.beamSprite.transform.sy = 0
 
 		-- Spawn body parts
-		local parts = {"juggerbothead", "juggerbotrightarm", "juggerbotleftarm"}
+		local parts = {"juggerbotleftarm", "juggerbothead", "juggerbotrightarm"}
 		for k,v in pairs(parts) do
 			local oppo = self.scene:addMonster(v)
 			oppo:onPreInit()
+			oppo.mockSprite:swapLayer("behind")
 		end
+		
+		self.sprite:swapLayer("behind")
 		
 		self.sprite.h = self.sprite.h + 10
 	end,
 	
 	behavior = function (self, target)
-		-- Initialize battle data
-		if not self.turnPhase then
-			self.turnPhase = 1
-			self.turnCount = 0
-			
-			-- Setup plasma beam sprites
-			self.beamSpriteStart = SpriteNode(self.scene, Transform(), nil, "plasmabeam", nil, nil, "ui")
-			self.beamSpriteStart:setAnimation("left")
-			self.beamSpriteStart.transform.ox = 0
-			self.beamSpriteStart.transform.oy = self.beamSpriteStart.h/2
-			self.beamSpriteStart.transform.sx = 2
-			self.beamSpriteStart.transform.sy = 0
-			
-			self.beamSprite = SpriteNode(self.scene, Transform(), nil, "plasmabeam", nil, nil, "ui")
-			self.beamSprite:setAnimation("center")
-			self.beamSprite.transform.ox = 0
-			self.beamSprite.transform.oy = self.beamSprite.h/2
-			self.beamSprite.transform.sx = 20
-			self.beamSprite.transform.sy = 0
-		end
-		
 		if self.turnPhase == 1 then
 			action = Action()
 		-- Second phase of boss:

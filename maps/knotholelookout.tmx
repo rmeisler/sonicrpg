@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="85" height="21" tilewidth="32" tileheight="32" infinite="0" nextobjectid="171">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="85" height="21" tilewidth="32" tileheight="32" infinite="0" nextobjectid="172">
  <properties>
   <property name="onload" type="file" value="actions/knotholelookout.lua"/>
  </properties>
@@ -548,90 +548,25 @@ end</property>
     <property name="spawn_point" value="LookoutEntrance"/>
    </properties>
   </object>
-  <object id="143" name="Sally" type="BasicNPC" gid="5323" x="1408" y="448" width="64" height="96">
+  <object id="171" name="Lookout" type="BasicNPC" gid="5323" x="1440" y="512" width="32" height="96">
    <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-16"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="binoculars_1"/>
-    <property name="ghost" type="bool" value="false"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Animate = require &quot;actions/Animate&quot;
-local Wait = require &quot;actions/Wait&quot;
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">local Wait = require &quot;actions/Wait&quot;
 local Ease = require &quot;actions/Ease&quot;
+local Do = require &quot;actions/Do&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 
-return function(self)
-    if GameState:isFlagSet(&quot;sonic_staybehind&quot;) then
-        return Serial {
-            MessageBox{message=&quot;Sally: Sorry Sonic, but I've made up my mind.&quot;, blocking = true},
-            Do(function()
-                self:refreshKeyHint()
-            end)
-        }
+return function(self, player, prevState)
+    if not self.panning and prevState == self.STATE_IDLE and love.keyboard.isDown(&quot;right&quot;) then
+        self.panning = true
+        self.scene:run(BlockPlayer {
+            Ease(self.scene.camPos, &quot;x&quot;, -800, 0.3),
+            Wait(2),
+            Ease(self.scene.camPos, &quot;x&quot;, 0, 0.3),
+            Do(function() self.panning = false end)
+        })
     end
-
-    return BlockPlayer {
-        Do(function()
-            self.scene.player.noIdle = true
-        end),
-        MessageBox {
-            message = &quot;Sonic: Whatcha doin' Sal?&quot;,
-        },
-        Animate(self.sprite, &quot;binoculars_2&quot;),
-        MessageBox {
-            message = &quot;Sally: Trying to get a good look at Robotnik's coms tower...&quot;,
-        },
-        Animate(self.sprite, &quot;binoculars_1&quot;),
-        Ease(self.scene.camPos, &quot;x&quot;, -800, 0.3),
-        Wait(1),
-        MessageBox {
-            message = &quot;Sally: You see that skinny tower next to the Death Egg?&quot;,
-        },
-        MessageBox {
-            message = &quot;Sally: That will be our next target.&quot;,
-        },
-        Ease(self.scene.camPos, &quot;x&quot;, 0, 0.3),
-        MessageBox {
-            message = &quot;Sonic: Awfully close to Buttnik's lair. {p50}What's the plan?&quot;,
-        },
-        Animate(self.scene.player.sprite, &quot;thinking&quot;),
-        MessageBox {
-            message = &quot;Sonic: Slam and jam? {p40}Smash and dash? {p40}Dump and--&quot;,
-            closeAction = Wait(0.5)
-        },
-        Animate(self.sprite, &quot;thinking&quot;),
-        MessageBox {
-            message = &quot;Sally: There will be no 'slamming', {p20}'jamming', {p20}'smashing', or {p20}'dashing'!&quot;
-        },
-        MessageBox {
-            message = &quot;Sally: This will be a stealth mission. {p50}And after what happened at the Power Grid mission, I think you should stay back.&quot;,
-        },
-        Animate(self.scene.player.sprite, &quot;idleright&quot;),
-        MessageBox {
-            message = &quot;Sonic: What! {p50}Come on Sal, you guys could use some muscle in the party.&quot;,
-        },
-        MessageBox {
-            message = &quot;Sally: That's why Bunnie will be joining Anotine and I.&quot;,
-        },
-        Animate(self.scene.player.sprite, &quot;irritated&quot;),
-        MessageBox {
-            message = &quot;Sonic: Antoine's going, but I can't go?! {p50}Coooome oooon.&quot;,
-        },
-        Animate(self.scene.player.sprite, &quot;irritated&quot;),
-        MessageBox {
-            message = &quot;Sally: You're staying here, Sonic Hedgehog! {p50}That's an order.&quot;,
-        },
-        Do(function()
-            self:refreshKeyHint()
-            self.scene.player.noIdle = false
-            GameState:setFlag(&quot;sonic_staybehind&quot;)
-        end)
-    }
 end</property>
-    <property name="sprite" type="file" value="../art/sprites/sally.png"/>
    </properties>
   </object>
  </objectgroup>

@@ -346,7 +346,7 @@ function Player:removeKeyHint()
 	end
 end
 
-function Player:split()
+function Player:split(orderedParty)
 	-- Create sprites for all party members
 	local paths = {
 		{"walkright", "idleleft",  "walkleft",  Transform(self.movespeed, 0)},
@@ -358,7 +358,8 @@ function Player:split()
 	local walkInActions = {}
 	
 	self.partySprites = {}
-	for id, member in pairs(GameState.party) do
+	for _, member in pairs(orderedParty or GameState.party) do
+		local id = member.id
 		local xform = Transform.from(self.transform)
 		self.partySprites[id] = BasicNPC(
 			self.scene,
@@ -373,6 +374,7 @@ function Player:split()
 		self.partySprites[id].sprite.color = self:inShadow() and {150,150,150,255} or {255,255,255,255}
 		self.partySprites[id].hidden = true
 		self.scene:addObject(self.partySprites[id])
+		self.scene.partySprites = self.partySprites
 
 		local walkOutAnim, idleAnim, walkInAnim, dir = unpack(table.remove(paths, 1))
 		table.insert(
@@ -520,7 +522,6 @@ function Player:onChangeChar()
 			for k in pairs(self.keyhints) do
 				self.hidekeyhints[k] = nil
 			end
-			self.keyhints = {}
 		end)
 	}
 end
@@ -889,6 +890,7 @@ function Player:basicUpdate(dt)
 			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
 				self.state = Player.STATE_HIDEDOWN
 				self.x = spot.x + self.scene:getTileWidth() + (spot.object.properties.hideOffset or 0) - 7
+				self.y = spot.y + spot.sprite.h*2 - self.height - self.scene:getTileHeight()*1.5
 				self.cinematic = true
 				self.hidingDirection = "down"
 				self.hideHand = BasicNPC(

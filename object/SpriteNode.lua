@@ -68,7 +68,7 @@ end
 
 function SpriteNode:trySetAnimation(name)
 	if self.animations[name] then
-		self.selected = name
+		self:setAnimation(name)
 	end
 end
 

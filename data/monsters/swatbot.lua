@@ -26,10 +26,10 @@ return {
 	sprite = "sprites/swatbot",
 
 	stats = {
-		xp    = 5,
-		maxhp = 100,
+		xp    = 10,
+		maxhp = 300,
 		attack = 12,
-		defense = 15,
+		defense = 25,
 		speed = 5,
 		focus = 0,
 		luck = 1,
@@ -94,6 +94,10 @@ return {
 				},
 				Do(function() end)
 			)
+		else
+			dodgeAction = target.defenseEvent and
+				target.defenseEvent(self, target) or
+				dodgeAction
 		end
 	
 		return Serial {

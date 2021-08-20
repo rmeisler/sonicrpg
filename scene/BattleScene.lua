@@ -66,6 +66,8 @@ function BattleScene:onEnter(args)
 	self.color = args.color
 	self.practice = args.practice
 	self.camPos = Transform()
+	
+	local onEnterCallback = args.onEnter or function(scene) return Action() end
 
 	self.mboxGradient = self.images["mboxgradient"]
 
@@ -207,7 +209,9 @@ function BattleScene:onEnter(args)
 			Ease(self.bgColor, 1, 255, 1, "linear"),
 			Ease(self.bgColor, 2, 255, 1, "linear"),
 			Ease(self.bgColor, 3, 255, 1, "linear"),
-			Do(function() ScreenShader:sendColor("multColor", self.bgColor) end)
+			Do(function() ScreenShader:sendColor("multColor", self.bgColor) end),
+			
+			onEnterCallback(self)
 		},
 		initiativeAction
 	}
@@ -335,7 +339,7 @@ function BattleScene:update(dt)
 			
 			local victoryPoses = {}
 			for _, mem in pairs(self.party) do
-				if mem.state ~= BattleActor.STATE_DEAD then
+				if mem.state == BattleActor.STATE_IDLE then
 					table.insert(victoryPoses, Animate(mem.sprite, "victory"))
 				end
 			end
@@ -745,7 +749,6 @@ function BattleScene:screenShake(str, sp, rp)
 		
 		Do(function()
 			self.isScreenShaking = false
-			self.camPos.x = 0
 			self.camPos.y = 0
 		end)
 	}

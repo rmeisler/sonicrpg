@@ -82,6 +82,7 @@ return function(scene)
 		Do(function()
 			scene.player.noIdle = true
 			scene.player.sprite:setAnimation("sleeping")
+			scene.player.y = scene.player.y + 16
 			scene.player.state = "sleeping"
 			scene.player.dropShadow.hidden = true
 		end),

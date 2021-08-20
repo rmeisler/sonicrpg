@@ -12,6 +12,11 @@ return {
 			frames = {{11,4}}
 		},
 		
+		stepback = {
+		    frames = {{0,3},{1,3},{0,3},{5,3}},
+			speed = 0.5
+		},
+		
 		leapdown = {
 			frames = {{5,2}}
 		},
@@ -103,11 +108,6 @@ return {
 			}
 		},
 		
-		stepback = {
-		    frames = {{0,2},{1,2},{0,2},{5,2}},
-			speed = 0.5
-		},
-		
 		nicholeright = {
             frames = {{9,0}}
         },
@@ -147,8 +147,36 @@ return {
 			frames = {{6,4}}
 		},
 		
+		climb_1 = {
+			frames = {{2,5}}
+		},
+		climb_2 = {
+			frames = {{3,5}}
+		},
+		
 		thinking = {
 			frames = {{10,4}}
+		},
+		thinking2 = {
+			frames = {{9,4}}
+		},
+		thinking3 = {
+			frames = {{10,5}}
+		},
+		planning = {
+			frames = {{11,5}}
+		},
+		planning_lookdown = {
+			frames = {{12,5}}
+		},
+		planning_lookdown_point = {
+			frames = {{13,5}}
+		},
+		planning_smile = {
+			frames = {{14,5}}
+		},
+		planning_irritated = {
+			frames = {{15,5}}
 		},
 		swimup = {
 			frames = {{10,3}}
@@ -169,6 +197,9 @@ return {
 		},
 		sit_smile = {
 			frames = {{15,1}}
-		}
+		},
+		frustrateddown = {
+			frames = {{0,5}}
+		},
     }
 }

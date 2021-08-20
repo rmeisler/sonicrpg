@@ -88,7 +88,7 @@
    <properties>
     <property name="GreenLeaf" type="int" value="1"/>
     <property name="align" value="bottom_left"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Menu = require &quot;actions/Menu&quot;
 local Action = require &quot;actions/Action&quot;
@@ -99,19 +99,31 @@ local Layout = require &quot;util/Layout&quot;
 
 return function(self)
     if GameState.leader == &quot;sonic&quot; then
-        return Serial {
-            MessageBox {message=&quot;Sonic: Locked. {p50}I wonder what's in there...&quot;, blocking = true, textSpeed=4},
+        return BlockPlayer {
+            MessageBox {message=&quot;Sonic: Locked. {p50}I wonder what's in there...&quot;, textSpeed=4},
             Do(function()
                 self:refreshKeyHint()
             end)
         }
     elseif GameState.leader == &quot;sally&quot; then
-        return Serial {
-            MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.&quot;, blocking = true},
-            MessageBox {message=&quot;Sally: Maybe I could read it to Tails.&quot;, blocking = true}
+        return BlockPlayer {
+            MessageBox {message=&quot;Sally: ...&quot;, textspeed=2},
+            Do(function()
+                self:refreshKeyHint()
+            end)
         }
     end
     return Action()
+end</property>
+    <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return BlockPlayer {
+        MessageBox {message=&quot;Nicole: I detect several personal effects within this chest, {p40}Sally.&quot;},
+        MessageBox {message=&quot;Nicole: Family pictures, {p40}royal garb, {p40}family heirlooms...&quot;},
+        MessageBox {message=&quot;Sally: That's enough Nicole.&quot;}
+    }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/bigchest.png"/>
    </properties>
@@ -126,6 +138,8 @@ end</property>
     <property name="orientation" value="up"/>
     <property name="scene" type="file" value="knothole.lua"/>
     <property name="spawn_point" value="SallyHutDoor"/>
+    <property name="spawn_point_offset_x" type="float" value="16"/>
+    <property name="spawn_point_offset_y" type="float" value="40"/>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
@@ -133,6 +147,15 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="8"/>
+    <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return BlockPlayer {
+        MessageBox {message=&quot;Nicole: This is your bed, {p40}Sally.&quot;},
+        MessageBox {message=&quot;Nicole: ...{p40}are you tired, or something?&quot;}
+    }
+end</property>
     <property name="sprite" type="file" value="../art/sprites/sallybed.png"/>
    </properties>
   </object>
@@ -161,6 +184,27 @@ return function(self)
         }
     end
     return Action()
+end</property>
+    <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return BlockPlayer {
+        MessageBox {message=&quot;Nicole: I am detecting a great deal of dust, {p40}Sally.&quot;},
+        Do(function()
+            self.scene.player.noIdle = true
+            self.scene.player.state = &quot;thinking&quot;
+        end),
+        MessageBox {message=&quot;Sally: Ha, {p40}ha. {p60}Very funny, Nicole.&quot;},
+        Do(function()
+            self.scene.player.state = &quot;thinking2&quot;
+        end),
+        MessageBox {message=&quot;Sally: I guess I haven't had much time to read recently...&quot;, textspeed=2},
+        Do(function()
+            self.scene.player.noIdle = false
+        end)
+    }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/sallybookshelf.png"/>
    </properties>
@@ -294,11 +338,18 @@ return function(self)
                         {Layout.Text(&quot;Give me a hint&quot;), choose = function(menu)
                             menu:close()
                             self.menuClosing = true
+                            local msg = &quot;&quot;
+                            if not GameState:isFlagSet(&quot;rotorreveal_done&quot;) then
+                                msg = &quot;Rotor's locked himself in his workshop for quite awhile, hasn't he?&quot;
+                            else
+                                msg = &quot;You're still here?? {p60}Shouldn't you be at the Death Egg right now?&quot;
+                            end
+
                             self.scene:run {
                                 menu,
                                 descBox,
                                 MessageBox {
-                                    message = &quot;Computer: Chill Blue Streak, my man. {p50}This is just a micro-demo.&quot;,
+                                    message = &quot;Computer: &quot;..msg,
                                     blocking = true,
                                     textSpeed = 4
                                 }
@@ -322,14 +373,14 @@ end</property>
   <object id="8" name="DeskUpper" type="BasicNPC" gid="6839" x="512" y="288" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/sallycomputerdeskupper.png"/>
    </properties>
   </object>
   <object id="9" name="DeskLower" type="BasicNPC" gid="6839" x="544" y="384" width="32" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/sallycomputerdesklower.png"/>
    </properties>
   </object>

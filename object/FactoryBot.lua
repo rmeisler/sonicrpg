@@ -17,6 +17,7 @@ function FactoryBot:construct(scene, layer, object)
 	self.collision = {}
 	
 	self.stepSfx = nil
+	self.dropShadow:remove()
 end
 
 function FactoryBot:getFlashlightOffset()

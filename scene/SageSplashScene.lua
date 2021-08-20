@@ -31,7 +31,7 @@ function SageSplashScene:draw()
 	Scene.draw(self)
 	
 	love.graphics.setShader()
-	love.graphics.draw(self.video)
+	love.graphics.draw(self.video, -50,30,0,0.5)
 	love.graphics.setShader(ScreenShader)
 end
 

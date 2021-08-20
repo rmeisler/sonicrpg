@@ -42,7 +42,7 @@ return function(self, target, returnAction, knockbackActionFun, details)
 		--and (math.random() < 0.4 + (self.stats.luck/100))
 	then
 		local bonusStats = {
-			attack = 1.5 * self.stats.attack,
+			attack = 1.2 * self.stats.attack,
 			speed = self.stats.speed,
 			luck = self.stats.luck
 		}

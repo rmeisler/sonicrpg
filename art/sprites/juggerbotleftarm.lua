@@ -18,6 +18,14 @@ return {
 			frames = {{0,0},{1,0},{2,0},{1,0}},
 			speed = 0.25
 		},
+		walkright_step1 = {
+			frames = {{0,0},{1,0}},
+			speed = 0.2
+		},
+		walkright_step2 = {
+			frames = {{2,0},{1,0}},
+			speed = 0.2
+		},
 		cannonright = {
 			frames = {{3,0},{4,0},{5,0},{6,0},{7,0}},
 			speed = 0.12

@@ -45,16 +45,13 @@ return {
 	},
 
 	equip = {
-		weapon    = require "data/weapons/Gloves",
+		weapon    = require "data/weapons/ThickGloves",
 		armor     = nil,
 		accessory = require "data/accessories/Backpack",
 	},
 
 	items = {
-		{count = 1, item = require "data/items/Carrot"},
-		{count = 1, item = require "data/items/Mushroom"},
-		{count = 2, item = require "data/items/LaserShield"},
-		{count = 2, item = require "data/items/PowerRing"},
+		
 	},
 	
 	levelup = {

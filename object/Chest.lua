@@ -7,13 +7,19 @@ local Chest = class(require "object/ExtPost")
 
 function Chest:construct(scene, layer, object)
 	-- Remove properties that are not appropriate as items on Chest
-	object.properties.sprite = nil
 	object.properties.defaultAnim = nil
 	object.properties.appearAfter = nil
 	object.properties.alphaOverride = nil
 	
 	self.disappearOnGrabbed = object.properties.disappearOnGrabbed
 	object.properties.disappearOnGrabbed = nil
+	
+	self.items = {}
+	for k,v in pairs(object.properties) do
+		if k ~= "sprite" then
+			self.items[k] = v
+		end
+	end
 
 	if GameState:isFlagSet(self) and self.sprite then
 		self.sprite:setAnimation("open")
@@ -37,7 +43,7 @@ function Chest:requireLoot(name)
 end
 
 function Chest:open()
-	local items = self.object.properties
+	local items = self.items
 	local msg = "Empty!"
 
 	if not GameState:isFlagSet(self) then

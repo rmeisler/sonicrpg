@@ -47,7 +47,7 @@ return function(self, targets)
 			targetHits,
 			Spawn(
 				t:takeDamage(
-					{attack = self.stats.attack*0.6, speed = self.stats.speed, luck = self.stats.luck}
+					{attack = self.stats.attack * 0.9, speed = self.stats.speed, luck = self.stats.luck}
 				)
 			)
 		)
