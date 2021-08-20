@@ -6,7 +6,7 @@ return {
 	unusable = function(target)
 		return target.side == TargetType.Party
 	end,
-	cost = 3,
+	cost = 1,
 	desc = "Draw aggro from one bot for 3 turns.",
 	action = require "data/battle/skills/actions/Tease"
 }

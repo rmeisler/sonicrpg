@@ -270,13 +270,13 @@ return function(self, player, prevState)
                         {Layout.Text(&quot;Enter Knothole?&quot;), selectable = false},
                         {Layout.Text(&quot;Yes&quot;), choose = function(menu)
                             menu:close()
-                            self.scene.player:run {
+                            self.scene.player:run(BlockPlayer {
                                 menu,
                                 Do(function()
                                     self.scene:changeScene{map=&quot;knothole&quot;, hint=&quot;fromworldmap&quot;, fadeOutSpeed = 0.5}
                                     self.scene:removeHandler(&quot;keytriggered&quot;, player.knotholeCallback)
                                 end)
-                            }
+                            })
                          end},
                         {Layout.Text(&quot;No&quot;), choose = function(menu)
                             menu:close()
@@ -344,13 +344,13 @@ return function(self, player, prevState)
                         {Layout.Text(&quot;Enter the Death Egg?&quot;), selectable = false},
                         {Layout.Text(&quot;Yes&quot;), choose = function(menu)
                             menu:close()
-                            self.scene.player:run {
+                            self.scene.player:run(BlockPlayer {
                                 menu,
                                 Do(function()
                                     self.scene:changeScene{map=&quot;deathegg_elevator1&quot;, hint=&quot;fromworldmap&quot;, fadeInSpeed = 0.1, fadeOutSpeed = 0.2, fadeOutMusic = true}
                                     self.scene:removeHandler(&quot;keytriggered&quot;, player.deatheggCallback)
                                 end)
-                            }
+                            })
                          end},
                         {Layout.Text(&quot;No&quot;), choose = function(menu)
                             menu:close()

@@ -334,6 +334,13 @@ function NPC:messageBox()
 			action,
 			self.scene:enterBattle(battleArgs),
 			Do(function()
+				for _,piece in pairs(self.scene.player.extenderPieces or {}) do
+					piece:remove()
+				end
+				if self.scene.player.extenderarm then
+					self.scene.player.extenderarm:remove()
+				end
+				self.scene.player.extenderPieces = {}
 				self:onBattleComplete()
 			end)
 		}

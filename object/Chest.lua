@@ -89,17 +89,10 @@ function Chest:open()
 end
 
 function Chest:onScan()
-	return Serial {
-		MessageBox {
-			message="Nicole: {p50}.{p50}.{p50}.{p50}",
-			blocking=true,
-			closeAction=Action()
-		},
-		MessageBox {
-			message="Nicole: This is a chest{p50}, Sally.",
-			blocking=true,
-			textSpeed = 4
-		},
+	return MessageBox {
+		message="Nicole: This is a chest{p50}, Sally.",
+		blocking=true,
+		textSpeed = 4
 	}
 end
 

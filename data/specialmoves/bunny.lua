@@ -40,7 +40,7 @@ return function(player)
 	end
 	
 	local retracting = false
-	local extenderPieces = {}
+	player.extenderPieces = {}
 	
 	player.extenderarm = SpriteNode(
 		player.scene,
@@ -85,7 +85,7 @@ return function(player)
 					self.extenderarm.sortOrderY
 			end
 			
-			table.insert(extenderPieces, extObject)
+			table.insert(self.extenderPieces, extObject)
 			lastXForm = Transform(lastXForm.x + deltaX, lastXForm.y + deltaY, 2, 2)
 			
 			-- If extender arm collides with BunnyExtCollision tile
@@ -157,13 +157,13 @@ return function(player)
 			
 			if  not love.keyboard.isDown("lshift") or
 				self.extenderArmColliding or
-				#extenderPieces == 80
+				#self.extenderPieces == 80
 			then
 				retracting = true
 			end
-		elseif #extenderPieces > 0 then
+		elseif #self.extenderPieces > 0 then
 			if self.extenderArmColliding then
-				local piece = table.remove(extenderPieces, 1)
+				local piece = table.remove(self.extenderPieces, 1)
 				piece:remove()
 				
 				if not self.extenderPull then
@@ -182,7 +182,7 @@ return function(player)
 					end
 				end
 				
-				for _,piece in pairs(extenderPieces) do
+				for _,piece in pairs(self.extenderPieces) do
 					if  (self.x > love.graphics.getWidth()/2) and
 						(self.x < self.scene:getMapWidth() - love.graphics.getWidth()/2)
 					then
@@ -202,7 +202,7 @@ return function(player)
 					end
 				end
 			else
-				local piece = table.remove(extenderPieces)
+				local piece = table.remove(self.extenderPieces)
 				piece:remove()
 			end
 	

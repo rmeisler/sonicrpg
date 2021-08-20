@@ -3,6 +3,8 @@
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
   <property name="onload" type="file" value="actions/deatheggf2_4.lua"/>
+  <property name="regionName" value="Robotropolis"/>
+  <property name="sectorName" value="Death Egg"/>
  </properties>
  <tileset firstgid="1" source="datacenter.tsx"/>
  <tileset firstgid="3183" source="knothole.tsx"/>
@@ -1104,9 +1106,8 @@ return function(self)
                         self.scene.player:onSpecialMove()
                     end),
                     MessageBox{message=&quot;Sonic: Up! {p60}Over! {p60}And gone!&quot;, closeAction=Wait(1)},
-                    AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),
                     Do(function()
-                        self.scene.sceneMgr:pushScene {class = &quot;CreditsSplashScene&quot;, fadeOutSpeed = 0.5}
+                        self.scene.sceneMgr:pushScene {class = &quot;CreditsSplashScene&quot;, fadeOutSpeed = 0.5, fadeOutMusic = true}
                     end)
                 }
             })

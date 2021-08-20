@@ -345,16 +345,6 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 		self.targetType == TargetType.AllParty
 	then
 		if key == "x" then
-			self.scene.audio:playSfx("choose", nil, true)
-
-			-- Choosing target
-			for _, arrow in pairs(self.arrow) do
-				arrow:remove()
-			end
-			self.arrow = nil
-			self.scene:removeHandler("keytriggered", PartyMember.chooseTargetKey, self)
-			self.scene:unfocus("keytriggered")
-			
 			local targets
 			local onBeforeAttackActions = {}
 			local onAttackActions = {}
@@ -378,18 +368,32 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 			end
 			
 			-- Perform callback
-			self.selectedMenu:close()
-			self.scene:run {
-				Parallel {
-					self.selectedMenu,
-					Serial {
-						Serial(onBeforeAttackActions),
-						self.callback(self, targets, unpack(self.callbackArgs)),
-						Serial(onAttackActions),
-						Do(function() self:endTurn() end)
+			if next(targets) ~= nil then
+				self.scene.audio:playSfx("choose", nil, true)
+				
+				-- Choosing target
+				for _, arrow in pairs(self.arrow) do
+					arrow:remove()
+				end
+				self.arrow = nil
+				self.scene:removeHandler("keytriggered", PartyMember.chooseTargetKey, self)
+				self.scene:unfocus("keytriggered")
+				
+				self.selectedMenu:close()
+				self.scene:run {
+					Parallel {
+						self.selectedMenu,
+						Serial {
+							Serial(onBeforeAttackActions),
+							self.callback(self, targets, unpack(self.callbackArgs)),
+							Serial(onAttackActions),
+							Do(function() self:endTurn() end)
+						}
 					}
 				}
-			}
+			else
+				self.scene.audio:playSfx("error", nil, true)
+			end
 		elseif key == "z" then
 			-- Back out of attack option
 			self:cleanupChooseTarget()

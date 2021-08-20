@@ -46,7 +46,7 @@ function love.load()
 	
 	math.randomseed(os.time())
 	
-	sceneMgr:pushScene {class = "TitleSplashScene"}
+	sceneMgr:pushScene {class = "SageSplashScene"}
 end
 
 function love.update(dt)
@@ -121,6 +121,15 @@ function love.joystickaxis(joystick, axis, value)
 	if dpadMapping[tostring(axis)] then
 		local val = dpadMapping[tostring(axis)][tostring(value)]
 		sceneMgr:keypressed(val, val)
+	end
+	
+	-- Hack: Map axis of l/r triggers to flat buttons (c)
+	if (axis == 3 or axis == 6) then
+		if value == 1 then
+			love.joystickpressed(joystick, 5)
+		else
+			love.joystickreleased(joystick, 5)
+		end
 	end
 end
 

@@ -65,6 +65,13 @@ return function(scene, hint)
 		end
 		scene.player:removeKeyHint()
 		scene.player:removeHandler("caught", caughtHandler)
+		for _,piece in pairs(scene.player.extenderPieces or {}) do
+			piece:remove()
+		end
+		if scene.player.extenderarm then
+			scene.player.extenderarm:remove()
+		end
+		scene.player.extenderPieces = {}
 		scene:run(
 			BlockPlayer {
 				Wait(1),

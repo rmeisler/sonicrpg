@@ -44,6 +44,8 @@ return {
 	},
 	
 	run_chance = 0.2,
+	
+	boss_part = true,
 
 	coin = 0,
 

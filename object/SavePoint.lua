@@ -71,11 +71,6 @@ end
 function SavePoint:onScan()
 	return Serial {
 		MessageBox {
-			message="Nicole: {p50}.{p50}.{p50}.{p50}",
-			blocking=true,
-			closeAction=Action()
-		},
-		MessageBox {
 			message="Nicole: Interact with this surreal device to save your game{p50}, Sally.",
 			blocking=true,
 			textSpeed = 4
