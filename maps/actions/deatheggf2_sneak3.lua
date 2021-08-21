@@ -32,6 +32,10 @@ return function(scene)
 	}
 	
 	if GameState:isFlagSet("deathegg:sneak3_done") then
+		if scene.audio:getCurrentMusic() == nil then
+			scene.audio:playMusic("mission2", 1.0)
+		end
+	
 		return Action()
 	end
 	

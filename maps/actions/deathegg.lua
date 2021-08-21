@@ -54,7 +54,8 @@ return function(scene, hint)
 	end
 	
 	if GameState:isFlagSet("deathegg_first") then
-		if hint == "fromload" then
+		if hint == "fromload" or not scene.sawIntro then
+			scene.sawIntro = true
 			elevatorLayer.offsety = 0
 			return Serial {
 				PlayAudio("music", "mission2", 1.0, true, true),
@@ -178,6 +179,7 @@ return function(scene, hint)
 					scene.camPos.x = 0
 					scene.player.x = scene.player.x + 90
 					scene.player.y = scene.player.y + 50
+					scene.sawIntro = true
 				end),
 			}
 		end)

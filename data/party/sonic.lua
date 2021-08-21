@@ -50,7 +50,7 @@ return {
 	},
 
 	items = {
-		
+		{count = 10, item = require "data/items/YellowLeaf"},
 	},
 	
 	levelup = {

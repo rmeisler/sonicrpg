@@ -32,12 +32,6 @@ return function(scene)
 		left_bot = {x = 0, y = 0},
 	}
 	
-	if GameState:isFlagSet("deathegg_robotnikcinematic") then
-		return Action()
-	end
-	
-	GameState:setFlag("deathegg_robotnikcinematic")
-	
 	local elevatorLayer
 	local wallLayer
 	for _,layer in pairs(scene.map.layers) do
@@ -61,6 +55,35 @@ return function(scene)
 			scene:screenShake(20, 40)
 		}
 	end
+	
+	if GameState:isFlagSet("deathegg_robotnikcinematic") then
+		if not scene.steppingSfx then
+			-- Continuous stepping sounds from Juggerbot in bg
+			scene:run(Spawn(
+				Repeat(
+					Serial {
+						stepAction(),
+						Wait(5)
+					}
+				)
+			))
+			elevatorLayer.offsety = 0
+			
+			scene.objectLookup.RightEntrance.y = scene.objectLookup.RightEntranceBlock.y
+			scene.objectLookup.RightEntrance.object.y = scene.objectLookup.RightEntranceBlock.y
+			scene.objectLookup.RightEntrance:updateCollision()
+			scene.objectLookup.RightEntranceBlock:remove()
+			wallLayer.offsety = -32*3
+			
+			scene.steppingSfx = true
+		end
+		
+		scene.audio:stopMusic()
+		
+		return Action()
+	end
+	
+	GameState:setFlag("deathegg_robotnikcinematic")
 	
 	local fbot = FactoryBot(
 		scene,
@@ -228,6 +251,7 @@ return function(scene)
 									}
 								)
 							))
+							scene.steppingSfx = true
 						end)
 					}
 				}

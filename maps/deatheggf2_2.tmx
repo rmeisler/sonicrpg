@@ -2,7 +2,7 @@
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="93" height="71" tilewidth="32" tileheight="32" infinite="0" nextobjectid="723">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
-  <property name="onload" type="file" value="actions/deathegg_player.lua"/>
+  <property name="onload" type="file" value="actions/deatheggf2_2.lua"/>
  </properties>
  <tileset firstgid="1" source="datacenter.tsx"/>
  <tileset firstgid="3183" source="knothole.tsx"/>

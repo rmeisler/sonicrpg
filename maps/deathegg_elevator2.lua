@@ -8,7 +8,7 @@ return {
   height = 30,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 14,
+  nextobjectid = 15,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/deatheggf1.lua"
@@ -495,6 +495,23 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 14,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 576,
+          y = 308,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 9040,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["orientation"] = "down"
           }
         }
       }

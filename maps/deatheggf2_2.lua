@@ -11,7 +11,7 @@ return {
   nextobjectid = 723,
   properties = {
     ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
-    ["onload"] = "actions/deathegg_player.lua"
+    ["onload"] = "actions/deatheggf2_2.lua"
   },
   tilesets = {
     {

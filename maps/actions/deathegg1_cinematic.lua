@@ -35,6 +35,21 @@ return function(scene)
 		GameState:isFlagSet(scene.objectLookup.RightEntranceBlock) or
 		not GameState:isFlagSet("deathegg_checkleft1")
 	then
+		if not scene.objectLookup.RightEntranceBlock:isRemoved() then
+			local wallLayer
+			for _,layer in pairs(scene.map.layers) do
+				if layer.name == "RightWall" then
+					wallLayer = layer
+					break
+				end
+			end
+			scene.objectLookup.RightEntrance.y = scene.objectLookup.RightEntranceBlock.y
+			scene.objectLookup.RightEntrance.object.y = scene.objectLookup.RightEntranceBlock.y
+			scene.objectLookup.RightEntrance:updateCollision()
+			scene.objectLookup.RightEntranceBlock:remove()
+			wallLayer.offsety = -32*3
+		end
+		
 		return Action()
 	end
 	
