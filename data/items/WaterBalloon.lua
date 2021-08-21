@@ -6,7 +6,7 @@ return {
 	rotor = "These are surprisingly effective against Swatbutts!",
 	target = TargetType.Party,
 	icon = "icon_item",
-	cost = 3,
+	--cost = 3,
 	--subtype = "craft",
 	img = "blueballoon",
 	usableFromMenu = false,

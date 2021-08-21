@@ -25,7 +25,7 @@ local Rotor = class(NPC)
 
 function Rotor:construct(scene, layer, object)
 	self.craftItems = {
-		{id = "WaterBalloon", item = require("data/items/WaterBalloon")},
+		--{id = "WaterBalloon", item = require("data/items/WaterBalloon")},
 		{id = "Mine", item = require("data/items/Mine")},
 		{id = "FlashGrenade", item = require("data/items/FlashGrenade")},
 		{id = "LaserShield", item = require("data/items/LaserShield")},

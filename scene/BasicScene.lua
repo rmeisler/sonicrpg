@@ -763,7 +763,7 @@ function BasicScene:screenCoordToWorldCoord(x, y)
 	if self.player.x >= (self:getMapWidth() - love.graphics.getWidth()/2) then
 		xcoord = x + self.player.x - love.graphics.getWidth()/2 - (self.player.x - (self:getMapWidth() - love.graphics.getWidth()/2))
 	elseif self.player.x <= love.graphics.getWidth()/2 then
-		xcoord = x + self.player.x
+		xcoord = x
 	else
 		xcoord = x + self.player.x - love.graphics.getWidth()/2
 	end
@@ -771,7 +771,7 @@ function BasicScene:screenCoordToWorldCoord(x, y)
 	if self.player.y >= (self:getMapHeight() - love.graphics.getHeight()/2) then
 		ycoord = y + self.player.y - love.graphics.getHeight()/2 - (self.player.y - (self:getMapHeight() - love.graphics.getHeight()/2))
 	elseif self.player.y <= love.graphics.getHeight()/2 then
-		ycoord = y + self.player.y
+		ycoord = y
 	else
 		ycoord = y + self.player.y - love.graphics.getHeight()/2
 	end

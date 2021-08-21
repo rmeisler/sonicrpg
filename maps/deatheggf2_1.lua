@@ -143,6 +143,32 @@ return {
       terrains = {},
       tilecount = 1190,
       tiles = {}
+    },
+    {
+      name = "worldmap",
+      firstgid = 12707,
+      filename = "worldmap.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/worldmap.png",
+      imagewidth = 1664,
+      imageheight = 2144,
+      transparentcolor = "#00b100",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 3484,
+      tiles = {}
     }
   },
   layers = {
@@ -594,7 +620,7 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 416,
-          y = 896,
+          y = 928,
           width = 2432,
           height = 256,
           rotation = 0,
@@ -1058,7 +1084,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = true,
+            ["nocollision"] = true,
             ["sprite"] = "../art/sprites/wall2.png"
           }
         },

@@ -56,11 +56,11 @@ function love.update(dt)
         love.profiler.reset()
     end
 
-    if love.keyboard.isDown("f") then
+    --[[if love.keyboard.isDown("f") then
         dt = dt * 10
 	elseif love.keyboard.isDown("s") then
         dt = dt / 4
-    end
+    end]]
 
     sceneMgr:update(dt)
 end

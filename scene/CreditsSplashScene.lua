@@ -203,22 +203,12 @@ Jacob Berkley/Good Ol' Groovy Jake
 
 
 
-
-
-		 
-		 
-		 
-		 
-
            Thanks for playing!
     Join our discord for project updates!
 	
 	
 	
-	        www.satamrpg.com
-			
-			
-			
+	        www.satamrpg.com	
 ]]
 	local text = TextNode(
 		self,

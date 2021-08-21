@@ -2,7 +2,8 @@ local TargetType = require "util/TargetType"
 
 return {
 	name = "Laser Shield",
-	desc = "Blocks all laser damage from a single attack.",
+	desc = "Blocks all damage from a single attack.",
+	rotor = "If you put one of these babies in front of you, no bot can touch you!... {p40}At least for one attack...",
 	target = TargetType.Party,
 	cost = 3,
 	subtype = "craft",
