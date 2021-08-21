@@ -583,6 +583,7 @@ return {
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
+            ["ignoreCollision"] = "Chest3",
             ["sprite"] = "../art/sprites/swatbot.png",
             ["viewRange"] = "SwatbotVisibility"
           }
@@ -1222,6 +1223,7 @@ return {
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
+            ["ignoreCollision"] = "Chest3",
             ["sprite"] = "../art/sprites/swatbot.png",
             ["viewRange"] = "SwatbotVisibility"
           }

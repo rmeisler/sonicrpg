@@ -182,6 +182,7 @@ function InfestedPlant:checkEndCondition()
 			self.scene.player.cinematicStack = 0
 			self.scene:pauseEnemies(false)
 			self.scene.pausePlayer = false
+			self.scene.bunnieReset = true
 			bunnie:addInteract(function()
 				bunnie.scene.player.hidekeyhints[tostring(bunnie)] = bunnie
 				bunnie:facePlayer()

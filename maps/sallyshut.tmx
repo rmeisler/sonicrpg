@@ -112,6 +112,13 @@ return function(self)
                 self:refreshKeyHint()
             end)
         }
+    elseif GameState.leader == &quot;bunny&quot; then
+        return BlockPlayer {
+            MessageBox {message=&quot;Bunnie: My daddy taught me not to snoop.&quot;, textspeed=2},
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
     end
     return Action()
 end</property>
@@ -162,7 +169,7 @@ end</property>
   <object id="5" name="SallysBookshelf" type="BasicNPC" gid="6839" x="512" y="512" width="64" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Menu = require &quot;actions/Menu&quot;
 local Do = require &quot;actions/Do&quot;
@@ -173,14 +180,20 @@ local Layout = require &quot;util/Layout&quot;
 
 return function(self)
     if GameState.leader == &quot;sonic&quot; then
-        return Serial {
-            MessageBox {message=&quot;Sonic: Sal's science textbooks... {p50}Boooring.&quot;, blocking = true, textSpeed=4},
+        return BlockPlayer {
+            MessageBox {message=&quot;Sonic: Sal's science textbooks... {p50}Boooring.&quot;, textSpeed=4},
             Do(function() self:refreshKeyHint() end)
         }
     elseif GameState.leader == &quot;sally&quot; then
-        return Serial {
-            MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.&quot;, blocking = true},
-            MessageBox {message=&quot;Sally: Maybe I could read it to Tails.&quot;, blocking = true}
+        return BlockPlayer {
+            MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.&quot;},
+            MessageBox {message=&quot;Sally: Maybe I could read it to Tails.&quot;},
+            Do(function() self:refreshKeyHint() end)
+        }
+    elseif GameState.leader == &quot;bunny&quot; then
+        return BlockPlayer {
+            MessageBox {message=&quot;Bunnie: My goodness, {p40}that Sally-girl sure is a book worm!&quot;},
+            Do(function() self:refreshKeyHint() end)
         }
     end
     return Action()

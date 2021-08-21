@@ -712,13 +712,13 @@
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
    </properties>
   </object>
-  <object id="62" name="Fallable1" type="NPC" gid="9040" x="160" y="2144" width="448" height="128">
+  <object id="62" name="Fallable1" type="NPC" gid="9040" x="160" y="2144" width="384" height="128">
    <properties>
     <property name="fallable" type="bool" value="true"/>
     <property name="ghost" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="63" name="Fallable2" type="NPC" gid="9040" x="896" y="2144" width="448" height="128">
+  <object id="63" name="Fallable2" type="NPC" gid="9040" x="960" y="2144" width="384" height="128">
    <properties>
     <property name="fallable" type="bool" value="true"/>
     <property name="ghost" type="bool" value="false"/>

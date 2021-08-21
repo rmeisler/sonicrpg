@@ -105,11 +105,11 @@ end
 function CreditsSplashScene:getScrollingCredits()
 	local creditsText = [[
 [Story]
-Jacob Berkley/Adventure Master 18
+Jacob Berkley/Good Ol' Groovy Jake
 Reggie Meisler/RedG
 
 [Dialog]
-Jacob Berkley/Adventure Master 18
+Jacob Berkley/Good Ol' Groovy Jake
 Reggie Meisler/RedG
 
 [Music]
@@ -148,13 +148,24 @@ Nz17
 [Concept Art]
 JayFoxFire
 Anya Stocks/Frostdrop1
-Jacob Berkley/Adventure Master 18
+Jacob Berkley/Good Ol' Groovy Jake
 Reggie Meisler/RedG
 RobertCo11
 Joey "The Plokman" Tripp Nimmo
 
+[Testing]
+supermariobro58
+Sonic and freedom fighter
+Ricardo "Zero Neoz" Fukunaga
+CaptainJotaro
+Jacob Berkley/Good Ol' Groovy Jake
+sqrly jack
+Pavel "Limepaul" Haluška
+Nitrosaturn
+
 [3D Concept Art]
 Nitrosaturn
+Pavel "Limepaul" Haluška
 
 [Splash Screen]
 Riggo
@@ -187,7 +198,7 @@ Audacity
 [Special Thanks]
 Fans United for SatAM
 Sea3on
-Jacob Berkley/Adventure Master 18
+Jacob Berkley/Good Ol' Groovy Jake
 
 
 

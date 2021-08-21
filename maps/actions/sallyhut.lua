@@ -118,7 +118,7 @@ return function(scene)
 			end),
 			MessageBox {message="Sally: *sigh*{p40} It's nothing{p40}... it's just that...", textSpeed=4},
 			MessageBox {message="Sally: ...so many things went wrong on our last mission.", textSpeed=4},
-			MessageBox {message="Sally: We didn't end up taking out the Swatbot Factory{p40}, Antoine got captured{p40}, we were nearly killed by that Rover...", textSpeed=2},
+			MessageBox {message="Sally: We didn't end up taking out the Swatbot Factory{p40}, Antoine got captured{p40}, we were nearly killed by that Rover...", textSpeed=4},
 			Do(function()
 				scene.player.sprite:setAnimation("sit_smile")
 			end),

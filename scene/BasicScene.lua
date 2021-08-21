@@ -155,7 +155,7 @@ function BasicScene:onEnter(args)
 			self.player.state = spawn.properties.orientation and "idle"..spawn.properties.orientation or "idledown"
 			
 			-- Restart special move, if necessary
-			if args.doingSpecialMove then
+			if args.doingSpecialMove and GameState.leader == "sonic" then
 				self.player.basicUpdate = function(p, dt) end
 				self.player.sprite.visible = false
 				self.player:run(BlockPlayer {
@@ -199,6 +199,12 @@ function BasicScene:onEnter(args)
 	local fadeInSpeed = args.fadeInSpeed or 1.0
 	self.bgColor = {0,0,0,255}
 	ScreenShader:sendColor("multColor", self.bgColor)
+	
+	if GameState.leader == "bunny" then
+		print("no special move")
+		self.player.noSpecialMove = true
+	end
+	
 	return Serial {
 		Spawn(
 			Serial {
@@ -218,6 +224,11 @@ function BasicScene:onEnter(args)
 		
 		Do(function()
 			self:addHandler("keytriggered", BasicScene.mainInput, self)
+			
+			if GameState.leader == "bunny" then
+				print("yes special move")
+				self.player.noSpecialMove = false
+			end
 		end)
 	}
 end
@@ -245,7 +256,7 @@ function BasicScene:onReEnter(args)
 		self.player.state = spawn.properties.orientation and "idle"..spawn.properties.orientation or "idledown"
 		
 		-- Restart special move, if necessary
-		if args.doingSpecialMove then
+		if args.doingSpecialMove and GameState.leader == "sonic" then
 			self.player.basicUpdate = function(p, dt) end
 			self.player.sprite.visible = false
 			self.player:run(BlockPlayer {
@@ -286,6 +297,11 @@ function BasicScene:onReEnter(args)
 	local fadeInSpeed = args.fadeInSpeed or 1.0
 	self.bgColor = {0,0,0,255}
 	ScreenShader:sendColor("multColor", self.bgColor)
+	
+	if GameState.leader == "bunny" then
+		print("no special move")
+		self.player.noSpecialMove = true
+	end
 	return Serial {
 		Do(function()
 			self.player.cinematicStack = 1
@@ -311,6 +327,11 @@ function BasicScene:onReEnter(args)
 			self.player.cinematicStack = 0
 			self.reentering = false
 			self.reenteringFromBattle = false
+			
+			if GameState.leader == "bunny" then
+				print("yes special move")
+				self.player.noSpecialMove = false
+			end
 		end)
 	}
 end
@@ -404,12 +425,12 @@ function BasicScene:restart(args)
 		spawn_point_offset = Transform(),
 		fadeInSpeed = 2,
 		fadeOutSpeed = 2,
-		fadeOutMusic = args.fadeOutMusic,
+		fadeOutMusic = args and args.fadeOutMusic,
 		images = self.images,
 		animations = self.animations,
 		audio = self.audio,
 		tutorial = self.tutorial,
-		hint = args.hint
+		hint = args and args.hint
 	}
 end
 
@@ -736,8 +757,26 @@ function BasicScene:worldCoordToCollisionCoord(x, y)
 end
 
 function BasicScene:screenCoordToWorldCoord(x, y)
-	return  (x + self.player.x - love.graphics.getWidth()/2),
-			(y + self.player.y - love.graphics.getHeight()/2)
+	local xcoord
+	local ycoord
+
+	if self.player.x >= (self:getMapWidth() - love.graphics.getWidth()/2) then
+		xcoord = x + self.player.x - love.graphics.getWidth()/2 - (self.player.x - (self:getMapWidth() - love.graphics.getWidth()/2))
+	elseif self.player.x <= love.graphics.getWidth()/2 then
+		xcoord = x + self.player.x
+	else
+		xcoord = x + self.player.x - love.graphics.getWidth()/2
+	end
+	
+	if self.player.y >= (self:getMapHeight() - love.graphics.getHeight()/2) then
+		ycoord = y + self.player.y - love.graphics.getHeight()/2 - (self.player.y - (self:getMapHeight() - love.graphics.getHeight()/2))
+	elseif self.player.y <= love.graphics.getHeight()/2 then
+		ycoord = y + self.player.y
+	else
+		ycoord = y + self.player.y - love.graphics.getHeight()/2
+	end
+
+	return xcoord, ycoord
 end
 
 function BasicScene:collisionCoordToWorldCoord(x, y)

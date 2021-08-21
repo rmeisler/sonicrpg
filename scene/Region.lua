@@ -242,6 +242,7 @@ function Region:goToNext()
 			fadeInSpeed = 0.2,
 			region = self.args.manifest,
 			spawn_point = self.args.spawn_point,
+			hint = self.args.hint,
 			cache = true
 		}
 	end

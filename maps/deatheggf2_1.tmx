@@ -316,6 +316,7 @@ end</property>
     <property name="defaultAnim" value="idledown"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreCollision" value="Chest3"/>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
     <property name="viewRange" value="SwatbotVisibility"/>
    </properties>
@@ -600,6 +601,7 @@ end</property>
     <property name="defaultAnim" value="idledown"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreCollision" value="Chest3"/>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
     <property name="viewRange" value="SwatbotVisibility"/>
    </properties>

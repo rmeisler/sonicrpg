@@ -175,6 +175,10 @@ local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
 
 return function(self)
+    if GameState.leader ~= &quot;sonic&quot; then
+        return Action()
+    end
+
     if GameState:isFlagSet(&quot;got_chilidog&quot;) then
         return Serial {
             MessageBox{message=&quot;Sonic: It's no use. {p40}Ant's outta Chili!&quot;, blocking = true},

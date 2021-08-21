@@ -58,6 +58,44 @@ return function(scene, hint)
 	end
 	
 	scene.player.dustColor = Player.FOREST_DUST_COLOR
+	
+	if GameState:hasItem("Antoine's Key") then
+		if scene.objectLookup.Antoine then
+			scene.objectLookup.Antoine:remove()
+		end
+		if scene.objectLookup.AntoinesKeys then
+			scene.objectLookup.AntoinesKeys:remove()
+		end
+	end
+	
+	if GameState:isFlagSet("ffmeeting") then
+		if scene.objectLookup.Bunnie then
+			scene.objectLookup.Bunnie:remove()
+		end
+		if scene.objectLookup.PestExample then
+			scene.objectLookup.PestExample:remove()
+		end
+	elseif GameState:isFlagSet("bunnie_game_over") then
+		if not scene.bunnieReset then
+			scene.bunnieReset = true
+			
+			scene.objectLookup.PestExample:remove()
+			
+			local bunnie = scene.objectLookup.Bunnie
+			bunnie.sprite:setAnimation("idleright")
+			bunnie.handlers.interact = nil
+			bunnie:addInteract(function()
+				bunnie.scene.player.hidekeyhints[tostring(bunnie)] = bunnie
+				bunnie:facePlayer()
+				bunnie.scene:run {
+					MessageBox {message = "Bunnie: My goodness, {p40}I sure am glad those pests are gone.", blocking = true},
+					Do(function()
+						bunnie:refreshKeyHint()
+					end)
+				}
+			end)
+		end
+	end
 
 	if hint == "fromworldmap" then
 		knotholeIntro()

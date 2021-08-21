@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="36" height="30" tilewidth="32" tileheight="32" infinite="0" nextobjectid="15">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="36" height="30" tilewidth="32" tileheight="32" infinite="0" nextobjectid="17">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/deathegg.lua"/>
+  <property name="regionName" value="Robotropolis"/>
+  <property name="sectorName" value="Death Egg (1F)"/>
  </properties>
  <tileset firstgid="1" source="datacenter.tsx"/>
  <tileset firstgid="3183" source="knothole.tsx"/>
@@ -242,23 +244,14 @@
     <property name="spawn_point" value="RightEntrance"/>
    </properties>
   </object>
-  <object id="12" name="Grabbable" type="ExtPost" gid="9040" x="224" y="608" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
-   </properties>
-  </object>
-  <object id="13" name="Grabbable" type="ExtPost" gid="9040" x="928" y="608" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/extpost2.png"/>
-   </properties>
-  </object>
   <object id="14" name="Waypoint" type="BasicNPC" gid="9040" x="576" y="960" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="16" name="Save" type="SavePoint" gid="8380" x="960" y="608" width="32" height="32">
+   <properties>
+    <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
  </objectgroup>

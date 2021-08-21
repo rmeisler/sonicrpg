@@ -117,9 +117,11 @@ return function(scene)
 		
 		Animate(fbot.sprite, "idleright"),
 		
-		PlayAudio("music", "robotnik", 1.0, true, true),
-		
 		Parallel {
+			Serial {
+				Wait(1),
+				PlayAudio("music", "robotnik", 1.0, true, true)
+			},
 			Ease(scene.camPos, "x", -600, 0.3),
 			Ease(scene.camPos, "y", 1500, 0.3)
 		},
@@ -150,7 +152,7 @@ return function(scene)
 			},
 			
 			Serial {
-				Wait(6),
+				Wait(8),
 				PlayAudio("sfx", "elevatorend", 1.0, true)
 			},
 			

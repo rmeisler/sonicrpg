@@ -45,9 +45,7 @@ return {
 	},
 
 	equip = {
-		weapon    = nil,
-		armor     = nil,
-		accessory = require "data/accessories/Boots",
+		legs = require "data/legs/Boots",
 	},
 
 	items = {

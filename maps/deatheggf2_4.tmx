@@ -4,7 +4,7 @@
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
   <property name="onload" type="file" value="actions/deatheggf2_4.lua"/>
   <property name="regionName" value="Robotropolis"/>
-  <property name="sectorName" value="Death Egg"/>
+  <property name="sectorName" value="Death Egg (2F)"/>
  </properties>
  <tileset firstgid="1" source="datacenter.tsx"/>
  <tileset firstgid="3183" source="knothole.tsx"/>
@@ -938,6 +938,9 @@ return function(self)
                         sprites.sonic.sprite:setAnimation(&quot;idleup&quot;)
                         sprites.sally.sprite:setAnimation(&quot;idleup&quot;)
                         sprites.bunny.sprite:setAnimation(&quot;idleup&quot;)
+                        sprites.sonic.sprite:swapLayer(&quot;upper&quot;)
+                        sprites.sally.sprite:swapLayer(&quot;upper&quot;)
+                        sprites.bunny.sprite:swapLayer(&quot;upper&quot;)
                     end),
 
                     MessageBox{message=&quot;Sonic: What!?{p60}... Who are--?{p60} How did--?&quot;, textspeed=4},
@@ -1107,7 +1110,7 @@ return function(self)
                     end),
                     MessageBox{message=&quot;Sonic: Up! {p60}Over! {p60}And gone!&quot;, closeAction=Wait(1)},
                     Do(function()
-                        self.scene.sceneMgr:pushScene {class = &quot;CreditsSplashScene&quot;, fadeOutSpeed = 0.5, fadeOutMusic = true}
+                        self.scene.sceneMgr:pushScene {class = &quot;CreditsSplashScene&quot;, fadeOutSpeed = 0.2, fadeOutMusic = true}
                     end)
                 }
             })

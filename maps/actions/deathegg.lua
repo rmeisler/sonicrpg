@@ -1,4 +1,4 @@
-return function(scene)
+return function(scene, hint)
 	local Transform = require "util/Transform"
 	local Rect = unpack(require "util/Shapes")
 	local Layout = require "util/Layout"
@@ -28,12 +28,6 @@ return function(scene)
 		left_bot = {x = 0, y = 0},
 	}
 	
-	if GameState:isFlagSet("deathegg_first") then
-		return Action()
-	end
-	
-	GameState:setFlag("deathegg_first")
-	
 	local subtext = TypeText(
 		Transform(50, 470),
 		{255, 255, 255, 0},
@@ -58,6 +52,32 @@ return function(scene)
 			break
 		end
 	end
+	
+	if GameState:isFlagSet("deathegg_first") then
+		if hint == "fromload" then
+			elevatorLayer.offsety = 0
+			return Serial {
+				PlayAudio("music", "mission2", 1.0, true, true),
+				Spawn(Serial {
+					subtext,
+					text,
+					Parallel {
+						Ease(text.color, 4, 255, 1),
+						Ease(subtext.color, 4, 255, 1),
+					},
+					Wait(2),
+					Parallel {
+						Ease(text.color, 4, 0, 1),
+						Ease(subtext.color, 4, 0, 1)
+					}
+				})
+			}
+		else
+			return Action()
+		end
+	end
+	
+	GameState:setFlag("deathegg_first")
 
 	scene.player.state = "idledown"
 	return BlockPlayer {

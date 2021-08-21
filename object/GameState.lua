@@ -402,7 +402,8 @@ function GameState:load(scene, slot)
 		manifest = data.region,
 		map = data.map,
 		spawn_point = data.spawnPoint,
-		nextMusic = data.music
+		nextMusic = data.music,
+		hint = "fromload"
 	}
 end
 

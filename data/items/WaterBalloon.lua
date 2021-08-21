@@ -7,7 +7,7 @@ return {
 	target = TargetType.Party,
 	icon = "icon_item",
 	cost = 3,
-	subtype = "craft",
+	--subtype = "craft",
 	img = "blueballoon",
 	usableFromMenu = false,
 	usableFromBattle = true,
