@@ -35,7 +35,9 @@ return function(scene)
 		GameState:isFlagSet(scene.objectLookup.RightEntranceBlock) or
 		not GameState:isFlagSet("deathegg_checkleft1")
 	then
-		if not scene.objectLookup.RightEntranceBlock:isRemoved() then
+		if GameState:isFlagSet(scene.objectLookup.RightEntranceBlock) and
+		   not scene.objectLookup.RightEntranceBlock:isRemoved()
+		then
 			local wallLayer
 			for _,layer in pairs(scene.map.layers) do
 				if layer.name == "RightWall" then
