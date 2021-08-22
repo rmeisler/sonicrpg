@@ -762,7 +762,7 @@ local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
 
 return function(self)
-    if self.scene.steppingSfx then
+    if (not self.scene.objectLookup.Block or self.scene.objectLookup.Block:isRemoved()) and self.scene.steppingSfx then
         return Action()
     end
 
