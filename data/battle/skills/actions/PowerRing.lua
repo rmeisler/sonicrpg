@@ -312,7 +312,7 @@ return function(self, targets)
 						"flametrail",
 						nil,
 						nil,
-						"sprites"
+						"behind"
 					)
 					dust.transform.sx = 2
 					dust.transform.sy = 2

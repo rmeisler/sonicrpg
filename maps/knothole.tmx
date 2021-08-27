@@ -2868,15 +2868,20 @@ return function(self)
     if GameState:isFlagSet(&quot;missing_puc&quot;) then
         return Serial {
             Animate(self.sprite, &quot;sad&quot;..dir),
-            MessageBox{message = &quot;Tails: If only I could find that puc...&quot;, textSpeed = 3, blocking = true}
+            MessageBox{message = &quot;Tails: If only I could find that puck...&quot;, textSpeed = 3, blocking = true}
         }
     end
 
+    local nameMap = {
+        sonic = &quot;Sonic&quot;,
+        sally = &quot;Sally&quot;,
+        bunny = &quot;Bunnie&quot;
+    }
     self.origY = self.y
     return BlockPlayer {
         Animate(self.sprite, &quot;idle&quot;..dir),
         MessageBox {
-            message = &quot;Tails: Hey Sonic! {p40}Ya wanna play some dirt hockey?&quot;,
+            message = &quot;Tails: Hey &quot;..nameMap[GameState.leader]..&quot;! {p40}Ya wanna play some dirt hockey?&quot;,
         },
         Menu {
             layout = Layout {
@@ -2891,7 +2896,7 @@ return function(self)
                         MessageBox {message = &quot;Tails: Alright! {p40}Let's do it to it!&quot;},
                         MessageBox {message = &quot;Tails: Oh wait...&quot;},
                         Animate(self.sprite, &quot;sad&quot;..dir),
-                        MessageBox {message = &quot;Tails: Where's my puc?! {p50}I guess we can't play right now...&quot;},
+                        MessageBox {message = &quot;Tails: Where's my puck?! {p50}I guess we can't play right now...&quot;},
                         Do(function() GameState:setFlag(&quot;missing_puc&quot;) end)
                     }
                 end},
