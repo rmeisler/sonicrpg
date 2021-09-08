@@ -822,6 +822,7 @@ return function(self)
         }
     }
 end</property>
+    <property name="specialHint" value="sally"/>
     <property name="sprite" type="file" value="../art/sprites/terminal.png"/>
    </properties>
   </object>

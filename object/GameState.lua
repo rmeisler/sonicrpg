@@ -263,7 +263,7 @@ function GameState:levelup(member)
 		member.stats[stat] = self:calcNextStat(member, member.level-1, stat)
 	end
 
-	member.stats.maxxp = self:calcNextXp(member.id, member.level) - member.stats.startxp
+	member.stats.maxxp = self:calcNextXp(member.id, member.level) - self:calcNextXp(member.id, member.level-1)
 
 	-- Add stat bonuses from equipment
 	for _, equip in pairs(member.equip) do

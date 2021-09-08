@@ -163,6 +163,7 @@ sqrly jack
 Pavel "Limepaul" Haluška
 Nitrosaturn
 Jasmeen "The Wiff" Miah
+H0lySquirr3l
 
 [3D Concept Art]
 Nitrosaturn
@@ -188,7 +189,7 @@ Love2D
 
 [Programming]
 Reggie Meisler/RedG
-Tailsluver
+tailsluver29
 
 [Tools]
 Tiled

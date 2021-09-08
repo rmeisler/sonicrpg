@@ -90,6 +90,9 @@ function SceneNode:remove()
 	for _,type in pairs(self.focusedOn) do
 		self.scene:unfocus(type)
 	end
+	if self.scene.removeObject then
+		self.scene:removeObject(self)
+	end
 	self.focusedOn = {}
 end
 

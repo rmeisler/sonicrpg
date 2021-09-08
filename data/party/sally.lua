@@ -13,7 +13,7 @@ return {
 		startxp = 0,
 		maxhp   = 500,
 		maxsp   = 15,
-		attack  = 5,
+		attack  = 7,
 		defense = 9,
 		speed   = 8,
 		focus   = 8,

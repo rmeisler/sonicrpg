@@ -592,6 +592,7 @@ return function(self)
         NumScreen {prompt=&quot;Enter Access Code&quot;, expected=&quot;3224&quot;, success=onSuccess}
     }
 end</property>
+    <property name="specialHint" value="sally"/>
     <property name="sprite" type="file" value="../art/sprites/computer.png"/>
    </properties>
   </object>

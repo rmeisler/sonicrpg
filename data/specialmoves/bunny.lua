@@ -58,6 +58,8 @@ return function(player)
 	
 	local counter = 0
 	player.basicUpdate = function(self, dt)
+		self:updateCollisionObj()
+
 		-- Bunny arm extends in the direction specified for N pixels
 		-- If arm collides with a special object, either retrieve it (item) or pull player toward object
 		if retracting == false then
@@ -169,8 +171,8 @@ return function(player)
 				if not self.extenderPull then
 					self.x = self.x + deltaX
 					self.y = self.y + deltaY
-					self.dropShadow.x = self.dropShadow.x + deltaX
-					self.dropShadow.y = self.dropShadow.y + deltaY
+					self.dropShadow.x = self.x - 22 + deltaX
+					self.dropShadow.y = (self.dropShadowOverrideY or self.y + self.sprite.h - 15) + deltaY
 				elseif self.extenderPull.grabbed then
 					-- Pull object to us
 					self.extenderPull.x = self.extenderPull.x - deltaX

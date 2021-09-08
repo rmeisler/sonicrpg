@@ -557,6 +557,7 @@ end
 
 function NPC:keytriggered(key, uni)
     if  tostring(self.scene.player.curKeyHint) == tostring(self) and
+		self.isInteractable and
 		key == "x"
 	then
 		self.scene.player.hidekeyhints[tostring(self)] = self

@@ -677,7 +677,7 @@ return function(self)
 
                 MessageBox {message=&quot;Sonic: Uh oh!&quot;, textspeed=3, closeAction=Wait(1)},
                 Parallel {
-                    Wait(2),
+                    Wait(3),
 
                     -- Roar
                     Animate(function() return self.scene.objectLookup.JBot.head end, &quot;roar&quot;),
@@ -1110,7 +1110,7 @@ return function(self)
                     end),
                     MessageBox{message=&quot;Sonic: Up! {p60}Over! {p60}And gone!&quot;, closeAction=Wait(1)},
                     Do(function()
-                        self.scene.sceneMgr:pushScene {class = &quot;CreditsSplashScene&quot;, fadeOutSpeed = 0.2, fadeOutMusic = true}
+                        self.scene.sceneMgr:pushScene {class = &quot;CreditsSplashScene&quot;, fadeOutSpeed = 0.1, fadeOutMusic = true}
                     end)
                 }
             })
@@ -1126,15 +1126,18 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
-  <object id="30" name="FactoryBot1" type="FactoryBot" gid="6703" x="960" y="1600" width="32" height="32">
+  <object id="30" name="FactoryBot1" type="FactoryBot" gid="6703" x="960" y="1632" width="32" height="32">
    <properties>
+    <property name="audibleDistance" type="float" value="300"/>
     <property name="battle" type="file" value="../data/monsters/factorybot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleup"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="noInvestigate" type="bool" value="true"/>
     <property name="noMusic" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/factorybot.png"/>
+    <property name="visibleDistance" type="float" value="300"/>
    </properties>
   </object>
  </objectgroup>

@@ -559,6 +559,8 @@ local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 return function(self, player, prevState)
     if not self.panning and prevState == self.STATE_IDLE and love.keyboard.isDown(&quot;right&quot;) then
         self.panning = true
+        player.basicUpdate = player.updateFun
+        player.state = &quot;idleright&quot;
         self.scene:run(BlockPlayer {
             Ease(self.scene.camPos, &quot;x&quot;, -800, 0.3),
             Wait(2),

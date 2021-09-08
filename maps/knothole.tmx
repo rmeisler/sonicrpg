@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="305">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="306">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="onload" type="file" value="actions/knothole.lua"/>
@@ -1925,12 +1925,15 @@ local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
 
 return function(self)
-    return BlockPlayer { Menu {
+    return BlockPlayer {
+    Do(function() self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1 end),
+    Menu {
         layout = Layout {
             {Layout.Text(&quot;Leave Knothole?&quot;), selectable = false},
             {Layout.Text(&quot;Yes&quot;), choose = function(menu)
                 menu:close()
                 self.scene.player.hidekeyhints[tostring(self)] = self
+                self.scene.player:removeKeyHint()
                 self.scene:run {
                     menu,
                     Parallel {
@@ -1951,6 +1954,7 @@ return function(self)
             end},
             {Layout.Text(&quot;No&quot;), choose = function(menu)
                 menu:close()
+                self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1
             end}
         },
         cancellable = true,
@@ -2488,19 +2492,24 @@ return function(self)
                     Wait(2),
                     Do(function()
                         battleScene.partyByName.sally.sprite:setAnimation(&quot;sad&quot;)
-                        battleScene.audio:playMusic(&quot;sonicsad&quot;, 0.8)
                     end),
-                    MessageBox {message=&quot;Sally: *sigh* {p40}Well{p10}.{p10}.{p10}. {p40}so much for that plan...&quot;, textSpeed=4},
+                    MessageBox {message=&quot;Sally: *sigh* {p40}Breaking into the Robotnik's headquarters? {p40}This isn't going to work...&quot;, textSpeed=4},
+                    Wait(1),
                     Do(function()
                         rotor:setAnimation(&quot;sad&quot;)
                     end),
-                    Wait(1),
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;criticizing_sad&quot;)
-                    end),
-                    MessageBox {message=&quot;Sonic: ...&quot;, textSpeed=2},
-                    AudioFade(&quot;music&quot;, 0.8, 0, 1),
-                    Wait(1),
+                    Parallel {
+                        PlayAudio(&quot;music&quot;, &quot;sallyupset&quot;, 1.0),
+                        Serial {
+                            MessageBox {message=&quot;Rotor: Yeah... {p40}it's probably not worth the risk...&quot;, textSpeed=4},
+                            Wait(1),
+                            Do(function()
+                                battleScene.partyByName.sonic.sprite:setAnimation(&quot;criticizing_sad&quot;)
+                            end),
+                            MessageBox {message=&quot;Sonic: ...&quot;, textSpeed=2},
+                            Wait(1)
+                        }
+                    },
                     Do(function()
                         battleScene.partyByName.sonic.sprite:setAnimation(&quot;thinking&quot;)
                     end),
@@ -2508,7 +2517,7 @@ return function(self)
                     Do(function()
                         battleScene.partyByName.sonic.sprite:setAnimation(&quot;victory&quot;)
                     end),
-                    MessageBox {message=&quot;Sonic: B could get us into Robotnik's headquarters!&quot;},
+                    MessageBox {message=&quot;Sonic: B could get us in!&quot;},
                     Do(function()
                         battleScene.audio:playMusic(&quot;doittoit2&quot;, 1.0)
                         battleScene.partyByName.sally.sprite:setAnimation(&quot;idleup&quot;)
@@ -2942,6 +2951,12 @@ end</property>
   <object id="282" name="CartWaypoint2" type="BasicNPC" gid="5323" x="8032" y="704" width="96" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="305" name="Hint" type="BasicNPC" gid="5323" x="5920" y="512" width="32" height="96">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="specialHint" value="bunny"/>
    </properties>
   </object>
  </objectgroup>

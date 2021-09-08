@@ -507,6 +507,7 @@ function Player:onChangeChar()
 				GameState.leader = next(GameState.party)
 			end
 			self:updateSprite()
+			self:removeKeyHint()
 		end),
 		
 		self:spin(1, 0.02),

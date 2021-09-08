@@ -15,6 +15,7 @@ local RaceSquare = class(NPC)
 
 function RaceSquare:construct(scene, layer, object)
 	self.ghost = true
+	self.specialHintPlayer = "sonic"
 	
 	self.hotspotOffsets = {
 		left_top = {x = 10, y = 10},

@@ -228,9 +228,9 @@
   </object>
  </objectgroup>
  <objectgroup name="objects">
-  <object id="1" name="Spawn 1" type="TinyPlayer" gid="3521" x="1024" y="1152" width="32" height="32">
+  <object id="1" name="Spawn 1" type="TinyPlayer" gid="3521" x="1040" y="1175" width="32" height="32">
    <properties>
-    <property name="orientation" value="up"/>
+    <property name="orientation" value="down"/>
    </properties>
   </object>
   <object id="2" name="Knothole" type="BasicNPC" gid="3521" x="992" y="1152" width="96" height="96">
@@ -241,6 +241,7 @@
     if player.onSubLocation == self then
         player.onSubLocation = nil
         self.scene:removeHandler(&quot;keytriggered&quot;, player.knotholeCallback)
+        self.scene.pressX.color = {100,100,100,255}
     end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/knotholemap.png"/>
@@ -261,6 +262,7 @@ return function(self, player, prevState)
         return
     end
     player.onSubLocation = self
+    self.scene.pressX.color = {255,255,255,255}
 
     player.knotholeCallback = function(key)
         if player.onSubLocation == self and not self.scene.sceneMgr.transitioning and key == &quot;x&quot; then
@@ -315,6 +317,7 @@ end</property>
     if player.onSubLocation == self then
         player.onSubLocation = nil
         self.scene:removeHandler(&quot;keytriggered&quot;, player.deatheggCallback)
+        self.scene.pressX.color = {100,100,100,255}
     end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/deathegg.png"/>
@@ -335,6 +338,7 @@ return function(self, player, prevState)
         return
     end
     player.onSubLocation = self
+    self.scene.pressX.color = {255,255,255,255}
 
     player.deatheggCallback = function(key)
         if player.onSubLocation == self and not self.scene.sceneMgr.transitioning and key == &quot;x&quot; then

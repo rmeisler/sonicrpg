@@ -654,6 +654,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/sallyupset.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/meettherebellion.ogg",
 		category = "music",
 		looping = true

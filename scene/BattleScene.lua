@@ -624,7 +624,8 @@ function BattleScene:cleanMonsters()
 	-- Check if all monsters dead (This can happen due to counter attack or reflection)
 	local toremove = {}
 	for index,oppo in pairs(self.opponents) do
-		if oppo.state == BattleActor.STATE_DEAD then
+		if oppo.state == BattleActor.STATE_DEAD or oppo.hp == 0 then
+			oppo.state = BattleActor.STATE_DEAD
 			self.xpGain = self.xpGain + oppo.stats.xp				
 			for _,drop in pairs(oppo.drops) do
 				if math.random() < drop.chance then

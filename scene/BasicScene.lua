@@ -71,7 +71,7 @@ function BasicScene:onEnter(args)
 				self:sortedDraw(layer.name)
 			end
 			
-			for index,object in ipairs(layer.objects) do
+			for _,object in pairs(layer.objects) do
 				if not classCache[object.type] then
 					-- Dynamically load classes at most once
 					classCache[object.type] = require ("object/"..object.type)
@@ -482,12 +482,13 @@ function BasicScene:screenShake(str, sp, rp)
 end
 
 function BasicScene:addObject(object)
-	table.insert(self.map.objects, object)
-	object.objectIndex = #(self.map.objects)
+	self.map.objects[tostring(object)] = object
 end
 
 function BasicScene:removeObject(object)
-	table.remove(self.map.objects, object.objectIndex)
+	if self.map.objects then
+		self.map.objects[tostring(object)] = nil
+	end
 end
 
 function BasicScene:enterBattle(args)
@@ -647,8 +648,8 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 		worldOffsetY = -(self:getMapHeight() - love.graphics.getHeight())-- + self.camPos.y
 	end
 
-	for _,obj in ipairs(self.map.objects) do
-		if obj.sprite and obj.sprite.transform and obj.x then
+	for _,obj in pairs(self.map.objects) do
+		if obj.sprite and not obj.hidden and obj.sprite.transform and obj.x then
 			if obj.layer and obj.layer.properties and obj.layer.properties.movespeed then
 				obj.sprite.transform.x = math.floor((obj.x + worldOffsetX)*obj.layer.properties.movespeed)
 				obj.sprite.transform.y = math.floor((obj.y + worldOffsetY)*obj.layer.properties.movespeed)

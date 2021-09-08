@@ -443,6 +443,7 @@ return function(self)
         Do(function() self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1 end)
     }
 end</property>
+    <property name="specialHint" value="sally"/>
     <property name="sprite" type="file" value="../art/sprites/computer2.png"/>
    </properties>
   </object>
