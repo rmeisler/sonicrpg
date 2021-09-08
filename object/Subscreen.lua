@@ -191,7 +191,7 @@ function Subscreen:openItemMenu()
 	self:runBackground {
 		layout = Layout(optionPages),
 		cancellable = true,
-		transform = Transform(510, 80 + (#optionPages * 20)/2),
+		transform = Transform(510, 80 + (#optionPages * 28)/2),
 		colSpacing = 230
 		--pages = optionPages
 	}
