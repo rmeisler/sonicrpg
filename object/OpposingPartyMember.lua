@@ -275,7 +275,7 @@ function OpposingPartyMember:beginTurn()
 	-- If poisoned, take some damage
 	if self.poisoned then
 		table.insert(
-			additionalActions
+			additionalActions,
 			Serial {
 				MessageBox {message=self.name.." is poisoned!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(0.6)},
 				self:takeDamage(self.poisoned, true, BattleActor.poisonKnockback)

@@ -218,7 +218,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 			self.hp = endHp
 		end)
 	}
-	if self.hp - damage <= 0 then
+	if endHp <= 0 then
 		action:add(self.scene, self:die())
 	end
 	return action

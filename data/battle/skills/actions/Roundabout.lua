@@ -21,17 +21,25 @@ local Transform = require "util/Transform"
 
 return function(self, target)
 	self.sprite:setAnimation("juiceleft")
+	
+	local targetSp = target:getSprite()
+	if target.mockSprite then
+		targetSp.transform.ox = targetSp.w/2
+		targetSp.transform.oy = targetSp.h/2
+		targetSp.transform.x = targetSp.transform.x + targetSp.w
+		targetSp.transform.y = targetSp.transform.y + targetSp.h
+	end
 
 	local RunCircle = function(speed, animLag)
 		return Serial {
 			PlayAudio("sfx", "sonicrunturn", 1.0, true),
 			Do(function()
 				self.sprite.prevSortOrderY = self.sprite.sortOrderY
-				self.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h*2 - self.sprite.h*2 - 100
-				target.sprite:setAnimation(target:getIdleAnim())
+				self.sprite.sortOrderY = targetSp.transform.y + targetSp.h*2 - self.sprite.h*2 - 100
+				targetSp:setAnimation(target:getIdleAnim())
 			end),
 			Parallel {
-				Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h*2, 20, "inout"),
+				Ease(self.sprite.transform, "y", targetSp.transform.y + targetSp.h - self.sprite.h*2, 20, "inout"),
 				Serial {
 					Do(function() self.sprite:setAnimation("juiceupleft") end),
 					Wait(animLag),
@@ -40,20 +48,20 @@ return function(self, target)
 					Do(function() self.sprite:setAnimation("juiceright") end)
 				},
 				Serial {
-					Ease(self.sprite.transform, "x", target.sprite.transform.x - 110, 20, "inout"),
-					Ease(self.sprite.transform, "x", target.sprite.transform.x + 100, speed, "inout"),
+					Ease(self.sprite.transform, "x", targetSp.transform.x - 110, 20, "inout"),
+					Ease(self.sprite.transform, "x", targetSp.transform.x + 100, speed, "inout"),
 				}
 			},
 			
 			PlayAudio("sfx", "sonicrunturn", 1.0, true),
 			
 			Do(function()
-				target.sprite:setAnimation(target:getBackwardAnim())
+				targetSp:setAnimation(target:getBackwardAnim())
 			end),
 			
 			Parallel {
 				Serial {
-					Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 20, "inout"),
+					Ease(self.sprite.transform, "y", targetSp.transform.y + targetSp.h - self.sprite.h, 20, "inout"),
 					Do(function()
 						self.sprite.sortOrderY = self.sprite.prevSortOrderY
 					end)
@@ -66,8 +74,8 @@ return function(self, target)
 					Do(function() self.sprite:setAnimation("juiceleft") end)
 				},
 				Serial {
-					Ease(self.sprite.transform, "x", target.sprite.transform.x + 110, 20, "inout"),
-					Ease(self.sprite.transform, "x", target.sprite.transform.x - 100, speed, "inout"),
+					Ease(self.sprite.transform, "x", targetSp.transform.x + 110, 20, "inout"),
+					Ease(self.sprite.transform, "x", targetSp.transform.x - 100, speed, "inout"),
 				}
 			}
 		}
@@ -139,8 +147,8 @@ return function(self, target)
 		),
 	
 		Parallel {
-			Ease(self.sprite.transform, "x", target.sprite.transform.x - 100, 3, "inout"),
-			Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 3, "inout"),
+			Ease(self.sprite.transform, "x", targetSp.transform.x - 100, 3, "inout"),
+			Ease(self.sprite.transform, "y", targetSp.transform.y + targetSp.h - self.sprite.h, 3, "inout"),
 		},
 		
 		-- Round 1
@@ -163,6 +171,13 @@ return function(self, target)
 			self.sprite:setAnimation("idle")
 			
 			target.confused = true
+			
+			if target.mockSprite then
+				targetSp.transform.ox = 0
+				targetSp.transform.oy = 0
+				targetSp.transform.x = targetSp.transform.x - targetSp.w
+				targetSp.transform.y = targetSp.transform.y - targetSp.h
+			end
 		end),
 		
 		-- Bot is confused
