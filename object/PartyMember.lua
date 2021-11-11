@@ -66,6 +66,8 @@ function PartyMember:construct(scene, data)
 		table.insert(self.options, {Layout.Text(option), choose = fun})
 	end
 	
+	self.origOptions = table.clone(self.options)
+	
 	self.textOffset = data.textOffset or Transform()
 
 	self.canTargetFlying = false
@@ -194,6 +196,15 @@ function PartyMember:beginTurn()
 			}
 		end
 	else
+		-- If poisoned, take some damage
+		local preAction = Action()
+		if self.poisoned then
+			preAction = Serial {
+				MessageBox {message=self.name.." is poisoned!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(0.6)},
+				self:takeDamage(self.poisoned, true, BattleActor.poisonKnockback)
+			}
+		end
+	
 		BattleActor.beginTurn(self)
 		
 		self.turnover = false
@@ -203,7 +214,10 @@ function PartyMember:beginTurn()
 			layout = Layout(self.options),	
 		}
 		self.mainMenu:addHandler("cancel", PartyMember.skipTurn, self, self.mainMenu)
-		self.scene:run(self.mainMenu)
+		self.scene:run {
+			preAction,
+			self.mainMenu
+		}
 	end
 end
 

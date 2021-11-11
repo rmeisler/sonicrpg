@@ -7,6 +7,12 @@ return {
 	
 	{
         type = "map",
+		file = "maps/darkswamp1.lua",
+		primary = true
+    },
+	
+	{
+        type = "map",
 		file = "maps/deathegg_elevator1.lua",
 		--primary = true
     },
@@ -102,7 +108,7 @@ return {
 	{
         type = "map",
 		file = "maps/sonicshut.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -360,6 +366,14 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/mechaarmbattle.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/phantom.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/phantomstandin.png"
 	},
 	{
 		type = "image",
@@ -640,6 +654,16 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/elevatorend.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/poison.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/slash.ogg",
 		category = "sfx"
 	},
 	{
@@ -1088,6 +1112,16 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/credits.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/darkswamp.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/airship.ogg",
 		category = "music"
 	},
 	{

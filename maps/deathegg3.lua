@@ -8,7 +8,7 @@ return {
   height = 110,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 42,
+  nextobjectid = 44,
   properties = {
     ["battlebg"] = "../art/backgrounds/deatheggbattle.png"
   },

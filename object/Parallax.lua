@@ -29,8 +29,10 @@ function Parallax:construct(scene, layer)
 			Transform(),
 			Transform(self.w, 0),
 			Transform(-self.w, 0),
-			--Transform(-self.w, -self.h),
-			--Transform(0, -self.h)
+			Transform(-self.w, -self.h),
+			Transform(0, self.h),
+			Transform(0, -self.h),
+			Transform(self.w, self.h),
 		}
 		local orig = Transform(self.layer.x, self.layer.y)
 		for _,o in pairs(offsets) do

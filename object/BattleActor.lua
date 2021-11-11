@@ -96,6 +96,14 @@ function BattleActor:shockKnockback(impact, direction)
 	}
 end
 
+function BattleActor:poisonKnockback(impact, direction)
+	local sprite = self:getSprite()
+	return Serial {
+		PlayAudio("sfx", "poison", 1.0, true),
+		Ease(sprite.transform, "x", sprite.transform.x, 20, "linear")
+	}
+end
+
 function BattleActor:getSprite()
 	return self.sprite
 end
@@ -124,7 +132,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 	local damageTextColor = {255, 0, 20, 255}
 
 	-- Random chance of miss
-	if stats.miss or damage == 0 or math.random() > (0.95 - (selfStats.speed/100) + math.random(stats.speed/100)) then
+	if stats.miss or damage == 0 or ((math.random(10)/100) + (selfStats.speed/100)) > ((math.random(30)/100) + (stats.speed/100)) then
 		if damage > 0 or stats.miss then
 			damageText = "miss"
 			damage = 0
@@ -165,7 +173,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 	end
 	
 	local bouncyTextOffsetX = (direction > 0) and 10 or -50
-	local endHp = math.max(0, self.hp - damage)
+	local endHp = math.max(stats.nonlethal and 1 or 0, self.hp - damage)
 	local action = Serial {
 		isPassive = isPassive,
 		

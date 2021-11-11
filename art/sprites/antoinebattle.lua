@@ -37,6 +37,9 @@ return {
         dead = {
             frames = {{5,2}}
         },
+		shock = {
+			frames = {{13,2}}
+		},
 		
 		scaredhop1 = {
 			frames = {{9,2}}
