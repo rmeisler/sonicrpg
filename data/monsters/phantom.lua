@@ -56,7 +56,7 @@ return {
 		local stateOdds = math.random(100)
 		if stateOdds < 5 then
 			state = "disappear"
-		elseif stateOdds < 50 then
+		elseif stateOdds < 30 then
 			state = "scare"
 		elseif stateOdds < 80 then
 			state = "claw"
