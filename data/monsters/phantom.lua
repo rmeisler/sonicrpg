@@ -58,7 +58,7 @@ return {
 			state = "disappear"
 		elseif stateOdds < 30 then
 			state = "scare"
-		elseif stateOdds < 80 then
+		elseif stateOdds < 70 then
 			state = "claw"
 		elseif stateOdds <= 100 then
 			state = "poisonclaw"
