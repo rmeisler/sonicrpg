@@ -73,6 +73,22 @@ return function(scene)
 		)
 	end
 	
+	if GameState:isFlagSet("ep3_intro") and not GameState:isFlagSet("ep3_introdone") then
+		GameState:setFlag("ep3_introdone")
+		
+		return Serial {
+			MessageBox {message="Sally: Nicole, {p30}open file 'Bean'."},
+			MessageBox {message="Nicole: File opened, {p30}Sally.", sfx="nicolebeep"},
+			MessageBox {message="Daddy, {p60}I know I haven't sent one of these in a long while... {p60}I don't even know if you receive them..."},
+			MessageBox {message="But I have big news that I just had to tell you--"},
+			MessageBox {message="I can hardly believe I'm writing this, {p60}but it seems like we may on the verge of defeating Robotnik."},
+			MessageBox {message="I wish I could take all the credit daddy, but Rotor was the one who found the software glitch that we'll use to disable Robotnik's army."},
+			MessageBox {message="Once we take back the city, I won't rest until I find you and bring you home."},
+			MessageBox {message="Just hold on a little longer daddy."},
+			MessageBox {message="Love, Sally", textspeed=1}
+		}
+	end
+	
 	if GameState:isFlagSet("sallysad_over") then
 		scene.audio:playMusic("knotholehut", 0.8)
 		scene.objectLookup.SallySad:remove()
