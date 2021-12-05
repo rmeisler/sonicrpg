@@ -678,6 +678,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/ep3intro.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/sallyupset.ogg",
 		category = "music"
 	},

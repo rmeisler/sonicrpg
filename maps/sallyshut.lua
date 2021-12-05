@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 14,
+  nextobjectid = 17,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/sallyhut.lua",
@@ -446,6 +446,55 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 14,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 416,
+          y = 352,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 15,
+          name = "SallyPensive",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 384,
+          y = 544,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idleup",
+            ["ignoreMapCollision"] = true,
+            ["sprite"] = "../art/sprites/sally.png"
+          }
+        },
+        {
+          id = 16,
+          name = "Waypoint2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 512,
+          y = 224,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
             ["ghost"] = true
           }
         }

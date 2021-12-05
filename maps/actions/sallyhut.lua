@@ -19,6 +19,8 @@ return function(scene)
 	local Animate = require "actions/Animate"
 	local Move = require "actions/Move"
 	local BlockInput = require "actions/BlockInput"
+	local Spawn = require "actions/Spawn"
+	local BlockPlayer = require "actions/BlockPlayer"
 
 	local text = TypeText(
 		Transform(50, 500),
@@ -75,19 +77,57 @@ return function(scene)
 	
 	if GameState:isFlagSet("ep3_intro") and not GameState:isFlagSet("ep3_introdone") then
 		GameState:setFlag("ep3_introdone")
+		scene.objectLookup.SallySad:remove()
+		scene.objectLookup.Door.sprite:setAnimation("open")
+		scene.objectLookup.SallyPensive.movespeed = 2
+		scene.bgColor2 = {255,255,255,255}
 		
-		return Serial {
-			MessageBox {message="Sally: Nicole, {p30}open file 'Bean'."},
-			MessageBox {message="Nicole: File opened, {p30}Sally.", sfx="nicolebeep"},
-			MessageBox {message="Daddy, {p60}I know I haven't sent one of these in a long while... {p60}I don't even know if you receive them..."},
-			MessageBox {message="But I have big news that I just had to tell you--"},
-			MessageBox {message="I can hardly believe I'm writing this, {p60}but it seems like we may on the verge of defeating Robotnik."},
-			MessageBox {message="I wish I could take all the credit daddy, but Rotor was the one who found the software glitch that we'll use to disable Robotnik's army."},
-			MessageBox {message="Once we take back the city, I won't rest until I find you and bring you home."},
-			MessageBox {message="Just hold on a little longer daddy."},
-			MessageBox {message="Love, Sally", textspeed=1}
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+				scene.player.cinematic = true
+			end),
+			Wait(2),
+
+			Animate(scene.objectLookup.Door.sprite, "closing"),
+			Animate(scene.objectLookup.Door.sprite, "closed"),
+			PlayAudio("sfx", "door", 1.0),
+			
+			Wait(1),
+			Move(scene.objectLookup.SallyPensive, scene.objectLookup.Waypoint2, "walk"),
+			Animate(scene.objectLookup.SallyPensive.sprite, "idleright"),
+			Wait(1),
+
+			MessageBox {message="Sally: Nicole, {p30}open file 'Bean'.", textspeed=2},
+			MessageBox {message="Nicole: File open, {p30}Sally.", sfx="nicolebeep"},
+			PlayAudio("music", "ep3intro", 1.0, true),
+			MessageBox {message="> I know I haven't sent one of these in a long while... {p60}I don't even know if you receive them...", textspeed=1, closeAction=Wait(2.5)},
+			MessageBox {message="> ...but I have big news that I just had to tell you...", textspeed=1, closeAction=Wait(2)},
+			MessageBox {message="> I can hardly believe I'm writing this, {p60}but it seems like we may on the verge of defeating Robotnik.", textspeed=1, closeAction=Wait(2.5)},
+			MessageBox {message="> I wish I could take all of the credit, but Rotor was the one who found the software glitch that we'll use to disable Robotnik's army.", textspeed=1, closeAction=Wait(3)},
+			MessageBox {message="> I haven't felt this hopeful about the future in a long time-- {p100}but I'm trying to stay level-headed, like you taught me.", textspeed=1, closeAction=Wait(3)},
+			MessageBox {message="> ...once we take back the city, {p60}I won't rest until I find you and bring you home.", textspeed=1, closeAction=Wait(3)},
+			MessageBox {message="> Just hold on a little longer, daddy.", textspeed=1, closeAction=Wait(3)},
+			MessageBox {message="> Love, Sally", textspeed=1, closeAction=Wait(2.5)},
+			Animate(scene.objectLookup.SallyPensive.sprite, "sadleft"),
+			MessageBox {message="Sally: *sniff* Close file, Nicole.", textspeed=2, closeAction=Wait(2.5)},
+			MessageBox {message="Sally: Encrypt message. {p100}Passcode 'Bean'. {p100}Send on all available frequencies.", textspeed=3, closeAction=Wait(2.5)},
+			MessageBox {message="Nicole: Sending, {p40}Sally.", textspeed=3, closeAction=Wait(1)},
+			Wait(1),
+			Parallel {
+				Ease(scene.bgColor2, 1, 0, 0.1, "linear"),
+				Ease(scene.bgColor2, 2, 0, 0.1, "linear"),
+				Ease(scene.bgColor2, 3, 0, 0.1, "linear"),
+				
+				Do(function()
+					ScreenShader:sendColor("multColor", scene.bgColor2)
+				end)
+			}
 		}
 	end
+	
+	scene.objectLookup.SallyPensive:remove()
 	
 	if GameState:isFlagSet("sallysad_over") then
 		scene.audio:playMusic("knotholehut", 0.8)

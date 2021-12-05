@@ -175,6 +175,7 @@ end
 function TitleSplashScene:newGame()
 	GameState:addToParty("sally", 6, true)
 	GameState.leader = "sally"
+	GameState:setFlag("ep3_intro")
 	
 	self.exiting = true
 	self.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/sonicdemo_manifest.lua"}

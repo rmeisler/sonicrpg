@@ -201,5 +201,8 @@ return {
 		frustrateddown = {
 			frames = {{0,5}}
 		},
+		sadleft = {
+			frames = {{1,5}}
+		},
     }
 }
