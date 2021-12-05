@@ -442,7 +442,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/sally.png"/>
    </properties>
   </object>
-  <object id="16" name="Waypoint2" type="BasicNPC" gid="6839" x="512" y="224" width="32" height="32">
+  <object id="16" name="Waypoint2" type="BasicNPC" gid="6839" x="544" y="208" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>

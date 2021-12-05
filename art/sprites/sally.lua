@@ -198,6 +198,12 @@ return {
 		sit_smile = {
 			frames = {{15,1}}
 		},
+		sit_lookright = {
+			frames = {{14,0}}
+		},
+		sit_computer = {
+			frames = {{15,0}}
+		},
 		frustrateddown = {
 			frames = {{0,5}}
 		},

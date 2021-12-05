@@ -96,7 +96,10 @@ return function(scene)
 			
 			Wait(1),
 			Move(scene.objectLookup.SallyPensive, scene.objectLookup.Waypoint2, "walk"),
-			Animate(scene.objectLookup.SallyPensive.sprite, "idleright"),
+			Do(function()
+				scene.objectLookup.SallyPensive.sprite.sortOrderY = 99999
+			end),
+			Animate(scene.objectLookup.SallyPensive.sprite, "sit_computer"),
 			Wait(1),
 
 			MessageBox {message="Sally: Nicole, {p30}open file 'Bean'.", textspeed=2},
@@ -107,12 +110,12 @@ return function(scene)
 			MessageBox {message="> I can hardly believe I'm writing this, {p60}but it seems like we may on the verge of defeating Robotnik.", textspeed=1, closeAction=Wait(2.5)},
 			MessageBox {message="> I wish I could take all of the credit, but Rotor was the one who found the software glitch that we'll use to disable Robotnik's army.", textspeed=1, closeAction=Wait(3)},
 			MessageBox {message="> I haven't felt this hopeful about the future in a long time-- {p100}but I'm trying to stay level-headed, like you taught me.", textspeed=1, closeAction=Wait(3)},
-			MessageBox {message="> ...once we take back the city, {p60}I won't rest until I find you and bring you home.", textspeed=1, closeAction=Wait(3)},
+			MessageBox {message="> Once we take back the city, {p60}I won't rest until I find you and bring you home.", textspeed=1, closeAction=Wait(3)},
 			MessageBox {message="> Just hold on a little longer, daddy.", textspeed=1, closeAction=Wait(3)},
 			MessageBox {message="> Love, Sally", textspeed=1, closeAction=Wait(2.5)},
-			Animate(scene.objectLookup.SallyPensive.sprite, "sadleft"),
+			Animate(scene.objectLookup.SallyPensive.sprite, "sit_sad"),
 			MessageBox {message="Sally: *sniff* Close file, Nicole.", textspeed=2, closeAction=Wait(2.5)},
-			MessageBox {message="Sally: Encrypt message. {p100}Passcode 'Bean'. {p100}Send on all available frequencies.", textspeed=3, closeAction=Wait(2.5)},
+			MessageBox {message="Sally: Encrypt message. {p60}Passcode 'Bean'. {p80}Send on all available frequencies.", textspeed=3, closeAction=Wait(2.5)},
 			MessageBox {message="Nicole: Sending, {p40}Sally.", textspeed=3, closeAction=Wait(1)},
 			Wait(1),
 			Parallel {
