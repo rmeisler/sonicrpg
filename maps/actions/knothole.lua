@@ -110,6 +110,31 @@ return function(scene, hint)
 				Move(scene.objectLookup.Cart, scene.objectLookup.CartWaypoint2)
 			}
 		}
+	elseif GameState:isFlagSet("ep3_intro") and
+		not GameState:isFlagSet("ep3_introknothole")
+	then
+		GameState:setFlag("ep3_introknothole")
+		scene.audio:stopMusic()
+		return BlockPlayer {
+			PlayAudio("music", "natbeauty", 1.0),
+			MessageBox {message="Sally: Ahhh...", textspeed=1},
+			MessageBox {message="Sally: Nothing like a breath of that fresh, morning Great Forest air to clear your head...", textspeed=1},
+			Wait(2),
+			MessageBox {message="Sonic: Gettin' scared, feather weight?"},
+			PlayAudio("music", "rotorsworkshop", 1.0),
+			MessageBox {message="Sally: ?"},
+			Wait(1),
+			-- Sonic/Fleet blast past Sally
+			scene.player:spin(3, 0.01),
+			Do(function()
+				scene.player.sprite:setAnimation("shock")
+			end),
+			Wait(1),
+			Do(function()
+				scene.player.sprite:setAnimation("frustrateddown")
+			end),
+			MessageBox {message="Sally: Sonic!!"}
+		}
 	elseif GameState:isFlagSet("rotorreveal_done") and
 		not GameState:isFlagSet("ffmeeting")
 	then

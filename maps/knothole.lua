@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 306,
+  nextobjectid = 309,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["onload"] = "actions/knothole.lua",
@@ -1992,7 +1992,7 @@ return {
           type = "Player",
           shape = "rectangle",
           x = 1600,
-          y = 1184,
+          y = 1088,
           width = 32,
           height = 32,
           rotation = 0,
