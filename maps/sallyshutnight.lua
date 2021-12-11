@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 17,
+  nextobjectid = 19,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/sallyhut.lua",
@@ -361,6 +361,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = 8,
+            ["ghost"] = true,
             ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: This is your bed, {p40}Sally.\"},\n        MessageBox {message=\"Nicole: ...{p40}are you tired, or something?\"}\n    }\nend",
             ["sprite"] = "../art/sprites/sallybed.png"
           }
@@ -444,8 +445,8 @@ return {
           name = "Spawn 1",
           type = "Player",
           shape = "rectangle",
-          x = 416,
-          y = 352,
+          x = 384,
+          y = 384,
           width = 32,
           height = 32,
           rotation = 0,
@@ -477,8 +478,43 @@ return {
           name = "Waypoint2",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 544,
-          y = 208,
+          x = 576,
+          y = 246,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 17,
+          name = "SallySad",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 256,
+          y = 416,
+          width = 32,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "sit_sad",
+            ["sprite"] = "../art/sprites/sally.png"
+          }
+        },
+        {
+          id = 18,
+          name = "Waypoint1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 384,
+          y = 224,
           width = 32,
           height = 32,
           rotation = 0,

@@ -94,7 +94,20 @@ return function(scene)
 			Animate(scene.objectLookup.Door.sprite, "closed"),
 			PlayAudio("sfx", "door", 1.0),
 			
-			Wait(1),
+			Wait(2),
+			PlayAudio("music", "ep3transition", 1.0, true),
+			Move(scene.objectLookup.SallyPensive, scene.objectLookup.Waypoint1, "walk"),
+			Animate(scene.objectLookup.SallyPensive.sprite, "idledown"),
+			Wait(2),
+			Animate(scene.objectLookup.SallyPensive.sprite, "thinking2"),
+			MessageBox {message="Sally: What a day...", textSpeed=2, closeAction=Wait(2.5)},
+			Wait(3),
+			Animate(scene.objectLookup.SallyPensive.sprite, "idleright"),
+			Wait(2),
+			MessageBox {message="Sally: ...", textSpeed=1, closeAction=Wait(2.5)},
+			Wait(2),
+			Animate(scene.objectLookup.SallyPensive.sprite, "thinking"),
+			Wait(3),
 			Move(scene.objectLookup.SallyPensive, scene.objectLookup.Waypoint2, "walk"),
 			Do(function()
 				scene.objectLookup.SallyPensive.sprite.sortOrderY = 99999
@@ -102,7 +115,7 @@ return function(scene)
 			Animate(scene.objectLookup.SallyPensive.sprite, "sit_computer"),
 			Wait(1),
 
-			MessageBox {message="Sally: Nicole, {p30}open file 'Bean'.", textspeed=2},
+			MessageBox {message="Sally: Nicole, {p30}open a new file.", textspeed=2},
 			MessageBox {message="Nicole: File open, {p30}Sally.", sfx="nicolebeep"},
 			PlayAudio("music", "ep3intro", 1.0, true),
 			MessageBox {message="> I know I haven't sent one of these in a long while... {p60}I don't even know if you receive them...", textspeed=1, closeAction=Wait(2.5)},

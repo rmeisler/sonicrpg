@@ -118,7 +118,7 @@ return function(scene, hint)
 		return BlockPlayer {
 			PlayAudio("music", "natbeauty", 1.0),
 			MessageBox {message="Sally: Ahhh...", textspeed=1},
-			MessageBox {message="Sally: Nothing like a breath of that fresh, morning Great Forest air to clear your head...", textspeed=1},
+			MessageBox {message="Sally: Nothing like a breath of that fresh, morning air to clear your head...", textspeed=1},
 			Wait(2),
 			MessageBox {message="Sonic: Gettin' scared, feather weight?"},
 			PlayAudio("music", "rotorsworkshop", 1.0),

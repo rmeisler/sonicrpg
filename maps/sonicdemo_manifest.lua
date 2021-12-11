@@ -113,8 +113,13 @@ return {
 	
 	{
         type = "map",
-		file = "maps/sallyshut.lua",
+		file = "maps/sallyshutnight.lua",
 		primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/sallyshut.lua"
     },
 	
 	{
@@ -674,6 +679,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/sallymeetsleon.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/ep3transition.ogg",
 		category = "music"
 	},
 	{
