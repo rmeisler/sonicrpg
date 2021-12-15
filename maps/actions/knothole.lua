@@ -115,13 +115,14 @@ return function(scene, hint)
 	then
 		GameState:setFlag("ep3_introknothole")
 		scene.audio:stopMusic()
+		scene.player.state = "idledown"
 		return BlockPlayer {
-			PlayAudio("music", "natbeauty", 1.0),
+			PlayAudio("music", "natbeauty", 1.0, true),
 			MessageBox {message="Sally: Ahhh...", textspeed=1},
 			MessageBox {message="Sally: Nothing like a breath of that fresh, morning air to clear your head...", textspeed=1},
-			Wait(2),
+			Wait(1),
+			PlayAudio("music", "rotorsworkshop", 1.0, true),
 			MessageBox {message="Sonic: Gettin' scared, feather weight?"},
-			PlayAudio("music", "rotorsworkshop", 1.0),
 			MessageBox {message="Sally: ?"},
 			Wait(1),
 			-- Sonic/Fleet blast past Sally

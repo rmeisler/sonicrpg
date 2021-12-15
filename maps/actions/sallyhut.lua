@@ -139,7 +139,10 @@ return function(scene)
 				Do(function()
 					ScreenShader:sendColor("multColor", scene.bgColor2)
 				end)
-			}
+			},
+			Do(function()
+				scene:changeScene{map="knothole"}
+			end)
 		}
 	end
 	
