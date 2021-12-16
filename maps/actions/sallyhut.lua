@@ -95,7 +95,7 @@ return function(scene)
 			PlayAudio("sfx", "door", 1.0),
 			
 			Wait(2),
-			PlayAudio("music", "ep3transition", 1.0, true),
+			PlayAudio("music", "ep3transition", 0.8, true),
 			Move(scene.objectLookup.SallyPensive, scene.objectLookup.Waypoint1, "walk"),
 			Animate(scene.objectLookup.SallyPensive.sprite, "idledown"),
 			Wait(2),
@@ -117,7 +117,7 @@ return function(scene)
 
 			MessageBox {message="Sally: Nicole, {p30}open a new file.", textspeed=2},
 			MessageBox {message="Nicole: File open, {p30}Sally.", sfx="nicolebeep"},
-			PlayAudio("music", "ep3intro", 1.0, true),
+			PlayAudio("music", "ep3intro", 0.9, true),
 			MessageBox {message="> I know I haven't sent one of these in a long while... {p60}I don't even know if you receive them...", textspeed=1, closeAction=Wait(2.5)},
 			MessageBox {message="> ...but I have big news that I just had to tell you...", textspeed=1, closeAction=Wait(2)},
 			MessageBox {message="> I can hardly believe I'm writing this, {p60}but it seems like we may on the verge of defeating Robotnik.", textspeed=1, closeAction=Wait(2.5)},
@@ -127,7 +127,7 @@ return function(scene)
 			MessageBox {message="> Just hold on a little longer, daddy.", textspeed=1, closeAction=Wait(3)},
 			MessageBox {message="> Love, Sally", textspeed=1, closeAction=Wait(2.5)},
 			Animate(scene.objectLookup.SallyPensive.sprite, "sit_sad"),
-			MessageBox {message="Sally: *sniff* Close file, Nicole.", textspeed=2, closeAction=Wait(2.5)},
+			MessageBox {message="Sally: *sniff* Close file, Nicole.", textspeed=2, closeAction=Wait(2)},
 			MessageBox {message="Sally: Encrypt message. {p60}Passcode 'Bean'. {p80}Send on all available frequencies.", textspeed=3, closeAction=Wait(2.5)},
 			MessageBox {message="Nicole: Sending, {p40}Sally.", textspeed=3, closeAction=Wait(1)},
 			Wait(1),

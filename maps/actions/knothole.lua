@@ -115,26 +115,56 @@ return function(scene, hint)
 	then
 		GameState:setFlag("ep3_introknothole")
 		scene.audio:stopMusic()
-		scene.player.state = "idledown"
 		return BlockPlayer {
 			PlayAudio("music", "natbeauty", 1.0, true),
 			MessageBox {message="Sally: Ahhh...", textspeed=1},
+			Do(function()
+				scene.player.noIdle = true
+				scene.player.sprite:setAnimation("pose")
+			end),
 			MessageBox {message="Sally: Nothing like a breath of that fresh, morning air to clear your head...", textspeed=1},
 			Wait(1),
-			PlayAudio("music", "rotorsworkshop", 1.0, true),
-			MessageBox {message="Sonic: Gettin' scared, feather weight?"},
-			MessageBox {message="Sally: ?"},
+			PlayAudio("music", "awkward", 1.0, true),
+			MessageBox {message="Fleet: Awww, {p20}getting tired?", closeAction=Wait(1)},
+			MessageBox {message="Sally: ?", closeAction=Wait(1)},
+			MessageBox {message="Sonic: Dream on, featherweight!", closeAction=Wait(1)},
 			Wait(1),
 			-- Sonic/Fleet blast past Sally
-			scene.player:spin(3, 0.01),
 			Do(function()
+				scene.objectLookup.FleetEp3Run.hidden = false
+				scene.objectLookup.SonicEp3Run.hidden = false
+				scene.objectLookup.FleetEp3Run.movespeed = 30
+				scene.objectLookup.SonicEp3Run.movespeed = 30
+			end),
+			Parallel {
+				Move(scene.objectLookup.FleetEp3Run, scene.objectLookup.Ep3Waypoint, "fly"),
+				Serial {
+					Wait(0.2),
+					Do(function()
+						scene.player.sprite:setAnimation("idleleft")
+					end)
+				}
+			},
+			Parallel {
+				Move(scene.objectLookup.SonicEp3Run, scene.objectLookup.Ep3Waypoint, "juice"),
+				Serial {
+					Wait(0.2),
+					scene.player:spin(3, 0.01)
+				}
+			},
+			Do(function()
+				scene.objectLookup.FleetEp3Run:remove()
+				scene.objectLookup.SonicEp3Run:remove()
 				scene.player.sprite:setAnimation("shock")
 			end),
 			Wait(1),
 			Do(function()
 				scene.player.sprite:setAnimation("frustrateddown")
 			end),
-			MessageBox {message="Sally: Sonic!!"}
+			MessageBox {message="Sally: Sonic!!"},
+			Do(function()
+				scene.player.noIdle = false
+			end)
 		}
 	elseif GameState:isFlagSet("rotorreveal_done") and
 		not GameState:isFlagSet("ffmeeting")

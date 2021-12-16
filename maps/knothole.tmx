@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="309">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="312">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="onload" type="file" value="actions/knothole.lua"/>
@@ -1337,7 +1337,7 @@ end</property>
  <objectgroup name="objects">
   <object id="1" name="Spawn 1" type="Player" gid="5323" x="1600" y="1088" width="32" height="32">
    <properties>
-    <property name="orientation" value="up"/>
+    <property name="orientation" value="down"/>
    </properties>
   </object>
   <object id="2" name="SallyHut" type="BasicNPC" gid="5323" x="1088" y="800" width="416" height="192">
@@ -3004,6 +3004,31 @@ end</property>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
+   </properties>
+  </object>
+  <object id="309" name="FleetEp3Run" type="BasicNPC" gid="7597" x="1952" y="1056" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="sitlookforward"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
+   </properties>
+  </object>
+  <object id="310" name="SonicEp3Run" type="BasicNPC" gid="7597" x="2080" y="1088" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="juiceleft"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
+   </properties>
+  </object>
+  <object id="311" name="Ep3Waypoint" type="BasicNPC" gid="7597" x="960" y="1056" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

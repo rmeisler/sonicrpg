@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 309,
+  nextobjectid = 312,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["onload"] = "actions/knothole.lua",
@@ -1999,7 +1999,7 @@ return {
           gid = 5323,
           visible = true,
           properties = {
-            ["orientation"] = "up"
+            ["orientation"] = "down"
           }
         },
         {
@@ -4521,6 +4521,64 @@ return {
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/rotor.png"
+          }
+        },
+        {
+          id = 309,
+          name = "FleetEp3Run",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1952,
+          y = 1056,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "sitlookforward",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["ignoreMapCollision"] = true,
+            ["sprite"] = "../art/sprites/antoine.png"
+          }
+        },
+        {
+          id = 310,
+          name = "SonicEp3Run",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2080,
+          y = 1088,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "juiceleft",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["ignoreMapCollision"] = true,
+            ["sprite"] = "../art/sprites/sonic.png"
+          }
+        },
+        {
+          id = 311,
+          name = "Ep3Waypoint",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 960,
+          y = 1056,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

@@ -114,7 +114,7 @@ return {
 	{
         type = "map",
 		file = "maps/sallyshutnight.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
@@ -166,7 +166,7 @@ return {
 	{
         type = "map",
         file = "maps/knothole.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -1215,6 +1215,12 @@ return {
 		file = "audio/music/patrol.ogg",
 		category = "music",
 		looping = true,
+	},
+	{
+		type = "sound",
+		file = "audio/music/awkward.ogg",
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",
