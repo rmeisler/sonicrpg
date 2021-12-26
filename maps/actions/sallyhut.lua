@@ -95,7 +95,7 @@ return function(scene)
 			PlayAudio("sfx", "door", 1.0),
 			
 			Wait(2),
-			PlayAudio("music", "ep3transition", 0.8, true),
+			PlayAudio("music", "ep3transition", 0.6, true),
 			Move(scene.objectLookup.SallyPensive, scene.objectLookup.Waypoint1, "walk"),
 			Animate(scene.objectLookup.SallyPensive.sprite, "idledown"),
 			Wait(2),
@@ -141,7 +141,11 @@ return function(scene)
 				end)
 			},
 			Do(function()
-				scene:changeScene{map="knothole"}
+				scene.bgColor[0] = 0
+				scene.bgColor[1] = 0
+				scene.bgColor[2] = 0
+				scene.bgColor[3] = 0
+				scene:changeScene{map="knothole", fadeInSpeed=0.2}
 			end)
 		}
 	end

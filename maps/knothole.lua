@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 312,
+  nextobjectid = 317,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["onload"] = "actions/knothole.lua",
@@ -1462,78 +1462,6 @@ return {
           }
         },
         {
-          id = 113,
-          name = "Square1",
-          type = "RaceSquare",
-          shape = "rectangle",
-          x = 352,
-          y = 1312,
-          width = 96,
-          height = 96,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["sprite"] = "../art/sprites/racesquare.png",
-            ["subject"] = "YellowLeaf"
-          }
-        },
-        {
-          id = 114,
-          name = "Square2",
-          type = "RaceSquare",
-          shape = "rectangle",
-          x = 352,
-          y = 2624,
-          width = 96,
-          height = 96,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["sprite"] = "../art/sprites/racesquare.png",
-            ["subject"] = "YellowLeaf"
-          }
-        },
-        {
-          id = 115,
-          name = "Square3",
-          type = "RaceSquare",
-          shape = "rectangle",
-          x = 2432,
-          y = 2624,
-          width = 96,
-          height = 96,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["sprite"] = "../art/sprites/racesquare.png",
-            ["subject"] = "YellowLeaf"
-          }
-        },
-        {
-          id = 116,
-          name = "Square4",
-          type = "RaceSquare",
-          shape = "rectangle",
-          x = 2432,
-          y = 960,
-          width = 96,
-          height = 96,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["sprite"] = "../art/sprites/racesquare.png",
-            ["subject"] = "YellowLeaf"
-          }
-        },
-        {
           id = 125,
           name = "WarRoom3_inner",
           type = "BasicNPC",
@@ -1639,339 +1567,6 @@ return {
           visible = true,
           properties = {
             ["direction"] = "up_right"
-          }
-        },
-        {
-          id = 206,
-          name = "Food1",
-          type = "InfestedPlant",
-          shape = "rectangle",
-          x = 480,
-          y = 1984,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["flag"] = "bunnie_game_start",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png",
-            ["startSeconds"] = 1
-          }
-        },
-        {
-          id = 207,
-          name = "Food2",
-          type = "InfestedPlant",
-          shape = "rectangle",
-          x = 608,
-          y = 1856,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["flag"] = "bunnie_game_start",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png",
-            ["startSeconds"] = 4
-          }
-        },
-        {
-          id = 208,
-          name = "Food3",
-          type = "InfestedPlant",
-          shape = "rectangle",
-          x = 736,
-          y = 1856,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["flag"] = "bunnie_game_start",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png",
-            ["startSeconds"] = 5
-          }
-        },
-        {
-          id = 209,
-          name = "Food4",
-          type = "InfestedPlant",
-          shape = "rectangle",
-          x = 1088,
-          y = 1888,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["flag"] = "bunnie_game_start",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png",
-            ["startSeconds"] = 7
-          }
-        },
-        {
-          id = 210,
-          name = "Food5",
-          type = "InfestedPlant",
-          shape = "rectangle",
-          x = 736,
-          y = 2240,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["flag"] = "bunnie_game_start",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png",
-            ["startSeconds"] = 10
-          }
-        },
-        {
-          id = 211,
-          name = "Food6",
-          type = "InfestedPlant",
-          shape = "rectangle",
-          x = 992,
-          y = 2240,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["flag"] = "bunnie_game_start",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png",
-            ["startSeconds"] = 10
-          }
-        },
-        {
-          id = 212,
-          name = "Food7",
-          type = "InfestedPlant",
-          shape = "rectangle",
-          x = 1248,
-          y = 1856,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["flag"] = "bunnie_game_start",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png",
-            ["startSeconds"] = 25
-          }
-        },
-        {
-          id = 213,
-          name = "Food8",
-          type = "InfestedPlant",
-          shape = "rectangle",
-          x = 704,
-          y = 2080,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["flag"] = "bunnie_game_start",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png",
-            ["startSeconds"] = 28
-          }
-        },
-        {
-          id = 214,
-          name = "Food9",
-          type = "InfestedPlant",
-          shape = "rectangle",
-          x = 1120,
-          y = 2432,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["flag"] = "bunnie_game_start",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png",
-            ["startSeconds"] = 18
-          }
-        },
-        {
-          id = 215,
-          name = "Food10",
-          type = "InfestedPlant",
-          shape = "rectangle",
-          x = 1088,
-          y = 2080,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["flag"] = "bunnie_game_start",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png",
-            ["startSeconds"] = 22
-          }
-        },
-        {
-          id = 216,
-          name = "Food11",
-          type = "InfestedPlant",
-          shape = "rectangle",
-          x = 608,
-          y = 2240,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["flag"] = "bunnie_game_start",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png",
-            ["startSeconds"] = 15
-          }
-        },
-        {
-          id = 217,
-          name = "Food12",
-          type = "InfestedPlant",
-          shape = "rectangle",
-          x = 608,
-          y = 2432,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["flag"] = "bunnie_game_start",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png",
-            ["startSeconds"] = 17
-          }
-        },
-        {
-          id = 218,
-          name = "Food13",
-          type = "InfestedPlant",
-          shape = "rectangle",
-          x = 1248,
-          y = 2240,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["flag"] = "bunnie_game_start",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png",
-            ["startSeconds"] = 21
-          }
-        },
-        {
-          id = 219,
-          name = "Food14",
-          type = "InfestedPlant",
-          shape = "rectangle",
-          x = 992,
-          y = 1984,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["flag"] = "bunnie_game_start",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png",
-            ["startSeconds"] = 29
-          }
-        },
-        {
-          id = 220,
-          name = "FoodExample",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 608,
-          y = 2048,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "dying1",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/plant.png"
-          }
-        },
-        {
-          id = 303,
-          name = "MinigameBounds1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 0,
-          y = 1664,
-          width = 1504,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["whileColliding"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"bunnie_game_over\") then\n        return\n    end\n    if not GameState:isFlagSet(\"bunnie_game_start\") then\n       return\n    end\n    if self.doingAnim then\n        return\n    end\n    self.doingAnim = true\n\n    player:run(BlockPlayer {\n        Parallel {\n            MessageBox{message=\"Bunnie: Hey! {p60}I thought you were helpin' me!\"},\n            Serial {\n                Do(function()\n                    player.noIdle = true\n                    player.sprite:setAnimation(\"shock\")\n                end),\n                Ease(player, \"y\", function() return player.y + 32 end, 3, \"linear\")\n            }\n        },\n        Do(function()\n            player.noIdle = false\n            player.state = \"idledown\"\n            self.doingAnim = false\n        end)\n     })\nend"
-          }
-        },
-        {
-          id = 304,
-          name = "MinigameBounds2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1472,
-          y = 2848,
-          width = 32,
-          height = 1184,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["whileColliding"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"bunnie_game_over\") then\n        return\n    end\n    if not GameState:isFlagSet(\"bunnie_game_start\") then\n       return\n    end\n    if self.doingAnim then\n        return\n    end\n    self.doingAnim = true\n\n    player:run(BlockPlayer {\n        Parallel {\n            MessageBox{message=\"Bunnie: Hey! {p60}I thought you were helpin' me!\"},\n            Serial {\n                Do(function()\n                    player.noIdle = true\n                    player.sprite:setAnimation(\"shock\")\n                end),\n                Ease(player, \"x\", function() return player.x - 32 end, 3, \"linear\")\n            }\n        },\n        Do(function()\n            player.noIdle = false\n            player.state = \"idleleft\"\n            self.doingAnim = false\n        end)\n    })\nend"
           }
         }
       }
@@ -3088,8 +2683,6 @@ return {
             ["alignOffsetX"] = -44,
             ["ghost"] = true,
             ["key"] = "up",
-            ["keyToDoor"] = "Antoine's Key",
-            ["locked"] = true,
             ["orientation"] = "down",
             ["scene"] = "antoineshut.lua",
             ["spawn_point"] = "Door",
@@ -3101,8 +2694,8 @@ return {
           name = "Bunnie",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 640,
-          y = 2048,
+          x = 1088,
+          y = 1408,
           width = 64,
           height = 96,
           rotation = 0,
@@ -3112,9 +2705,9 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -8,
             ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "kneeling",
+            ["defaultAnim"] = "idleright",
             ["ghost"] = false,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    local pestEx = self.scene.objectLookup.PestExample\n    return BlockPlayer {\n        MessageBox {\n            message = \"Bunnie: There are some nasty pests eatin' up our veggies! {p60}Can you help me spray 'em before they end up ruinin' our whole yield?\"\n        },\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Spray pests?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        PlayAudio(\"sfx\", \"oppdeath\", 1.0, true),\n                        Parallel {\n                            Ease(pestEx.sprite.color, 1, 800, 5),\n                            Ease(pestEx.sprite.color, 4, 0, 2)\n                        },\n                        Do(function()\n                            pestEx:remove()\n                        end),\n                        MessageBox {message = \"Bunnie: Thanks, sugah! {p40}Here's a spray bottle, {p20}anytime you see some bugs show up, press (x) to spray them!\"},\n                        Do(function()\n                            GameState:setFlag(\"bunnie_game_start\")\n                            self:removeInteract(NPC.onInteract)\n                        end),\n                        PlayAudio(\"music\", \"games\", 1.0, true, true)\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                    local playerName = (GameState.leader == \"sonic\" and \"Sonic\" or \"Sally-girl\")\n                    self.scene:run {\n                        menu,\n                        MessageBox {message = \"Bunnie: Well good heavens, \"..playerName..\"--{p40} what else you got goin' on right now?\"}\n                    }\n                end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        },\n        Do(function()\n            if not GameState:isFlagSet(\"bunnie_game_start\") then\n                self:refreshKeyHint()\n            end\n        end)\n    }\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message = \"Bunnie: That big gray dog-fella is just drivin' me crazy!\"}\n    }\nend",
             ["sprite"] = "../art/sprites/bunny.png"
           }
         },
@@ -3549,24 +3142,6 @@ return {
           }
         },
         {
-          id = 120,
-          name = "MusicRegion",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 7424,
-          y = 2144,
-          width = 192,
-          height = 128,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["notColliding"] = "local AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self, player)\n    if not player.enteredRingLake then\n        return\n    end\n    player.enteredRingLake = false\n\n    player:run {\n        AudioFade(\"music\", 1.0, 0.0, 0.5),\n        PlayAudio(\"music\", \"knothole\", 1.0, true, true),\n    }\nend",
-            ["whileColliding"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal While = require \"actions/While\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Repeat = require \"actions/Repeat\"\n\nreturn function(self, player)\n    if player.enteredRingLake then\n        return\n    end\n    player.enteredRingLake = true\n\n    player:run {\n        AudioFade(\"music\", 1.0, 0.0, 0.5),\n        PlayAudio(\"music\", \"ringlake\", 1.0, true, true)\n    }\nend"
-          }
-        },
-        {
           id = 121,
           name = "WarRoom3",
           type = "BasicNPC",
@@ -3659,7 +3234,7 @@ return {
             ["flagForDoor"] = "sallysad_over",
             ["ghost"] = true,
             ["key"] = "up",
-            ["onOpen"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Ease = require \"actions/Ease\"\nlocal Animate = require \"actions/Animate\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal SpriteNode = require \"object/SpriteNode\"\nlocal BasicNPC = require \"object/BasicNPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"rotorreveal_done\") then\n        return Action()\n    end\n\n    GameState:setFlag(\"rotorreveal_done\")\n    local scene = self.scene\n    local rotor = BasicNPC(\n        scene,\n        {name = \"objects\"},\n        {\n            name = \"Rotor\",\n            x = scene.player.x - 50,\n            y = scene.player.y - 10,\n            width = 65,\n            height = 55,\n            properties = {nocollision = true, sprite = \"art/sprites/rotor.png\", align = \"bottom_left\"}\n        }\n    )\n    return BlockPlayer {\n        AudioFade(\"music\", 1, 0, 1),\n        PlayAudio(\"music\", \"rotorsworkshop\", 1.0, true),\n        MessageBox {message=(GameState.leader == \"sonic\" and \"Sonic: Yo! {p40}You in there, Rote?\" or \"Sally: Rotor? {p40}Are you in there?...\")},\n        Wait(1),\n        MessageBox {message=(GameState.leader == \"sonic\" and \"Sonic: ?...\" or \"Sally: ?...\")},\n        Do(function()\n            rotor.sprite:setAnimation(\"pose\")\n            scene:addObject(rotor)\n            scene.player.noIdle = true\n            scene.player.sprite:setAnimation(\"shock\")\n        end),\n        Parallel {\n            MessageBox {message=\"Rotor: Hey guys!\"},\n            Ease(scene.player, \"y\", scene.player.y + 20, 3)\n        },\n        Do(function()\n            rotor.sprite:setAnimation(\"idledown\")\n            scene.player.sprite:setAnimation(\"idleup\")\n        end),\n        MessageBox {message=\"Rotor: Uh... {p70}you're gonna wanna see this!\"},\n        scene:enterBattle {\n            opponents = {\n                \"swatbot\"\n            },\n            music = \"doittoit\",\n            beforeBattle = Do(function() rotor:remove() end),\n            onEnter = function(battleScene)\n                local rotor = SpriteNode(battleScene, table.remove(battleScene.opponentSlots, 1), nil, \"rotor\", nil, nil, \"sprites\")\n                rotor:setAnimation(\"idleright\")\n            \n                battleScene.partyByName.sonic.id = \"notsonic\"\n                battleScene.opponents[1].stats.miss = true\n            \n                local Swatbot = require \"data/monsters/swatbot\"\n                return Serial {\n                    Wait(2),\n                    MessageBox {message=\"Sonic: What's the deal with the Swatbutt, Rote?\"},\n                    Do(function()\n                        rotor:setAnimation(\"explaining_right1\")\n                    end),\n                    MessageBox {message=\"Rotor: I found this guy wandering around Sector 2.\"},\n                    MessageBox {message=\"Rotor: But he's not exactly a regular Swatbot. {p70}Watch this.\"},\n                    Do(function()\n                        rotor:setAnimation(\"idleright\")\n                    end),\n                    MessageBox {message=\"Rotor: Swatbot. {p40}Target Sonic the Hedgehog.\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"shock\")\n                        battleScene.partyByName.sally.sprite:setAnimation(\"shock\")\n                    end),\n                    Parallel {\n                        MessageBox {message=\"Sonic: What!? {p40}Not cool, Rote!!\"},\n                        Swatbot.behavior(battleScene.opponents[1], battleScene.partyByName.sonic)\n                    },\n                \n                    -- Swatbot fires at Sonic, misses\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"idle\")\n                        battleScene.partyByName.sally.sprite:setAnimation(\"idle\")\n                    end),\n                    MessageBox {message=\"Sonic: Huh?...\"},\n                    MessageBox {message=\"Rotor: Swatbot. {p40}Target Princess Sally.\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"shock\")\n                        battleScene.partyByName.sally.sprite:setAnimation(\"shock\")\n                    end),\n                    Parallel {\n                        MessageBox {message=\"Sally: Rotor!!\"},\n                        Swatbot.behavior(battleScene.opponents[1], battleScene.partyByName.sally)\n                    },\n                \n                    -- Swatbot fires at Rotor, misses\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"idle\")\n                        battleScene.partyByName.sally.sprite:setAnimation(\"idle\")\n                        rotor:setAnimation(\"explaining_right2\")\n                    end),\n                    MessageBox {message=\"Rotor: See? {p40}He can't hit his target!\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"criticizing\")\n                    end),\n                    MessageBox {message=\"Sonic: Ya tryin' to give us a heart attack?!\"},\n                    MessageBox {message=\"Sonic: Why ya showing us this, Rote?\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"idle\")\n                        rotor:setAnimation(\"thinking\")\n                    end),\n                    AudioFade(\"music\", 1, 0, 1),\n                    MessageBox {message=\"Rotor: Well... {p40}based on what I'm seeing...{p40} this malfunction isn't caused by faulty {h hardware}...\"},\n                    Do(function()\n                        battleScene.partyByName.sally.sprite:setAnimation(\"thinking\")\n                    end),\n                    MessageBox {message=\"Sally: *gasp*! {p50}But that must mean...\", textSpeed=3, closeAction=Wait(1)},\n                    Do(function()\n                        battleScene.audio:playMusic(\"areyouready\", 0.4)\n                    end),\n                    MessageBox {message=\"Rotor: Yeah... {p40}I'm thinking it's exploitable.\", textSpeed=4},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"annoyed\")\n                    end),\n                    MessageBox {message=\"Sonic: Guys, {p30}guys, {p30}can someone speak english here?\"},\n                    MessageBox {message=\"Sally: Well... {p40}basically... {p40}the Swatbot is, uh{p10}.{p10}.{p10}.{p40} {h glitchin'}.\", textSpeed=4},\n                    MessageBox {message=\"Rotor: Right. {p40}And because this glitch showed up in a production model, {p40}my theory is, {p40}we could potentially mask this glitch as a {h software patch}.\", textSpeed=3},\n                    MessageBox {message=\"Sally: Meaning, {p40}we could spread this glitch to other bots!\", textSpeed=3},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"thinking\")\n                    end),\n                    MessageBox {message=\"Sonic: Whoah guys, {p40}are you really telling me what I think you're telling me?\", textSpeed=3},\n                    MessageBox {message=\"Sally: If we do this right, {p40}we could upload this glitch to Robotnik's entire army! {p50}They wouldn't be able to lay a finger on us!\", textSpeed=3},\n                    MessageBox {message=\"Sally: ...But how are we going to make the software patch look authentic?\"},\n                    MessageBox {message=\"Rotor: We'll need to use Buttnik's terminal to create a {h certificate of authenticity}.\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"criticizing\")\n                    end),\n                    MessageBox {message=\"Sonic: Sounds like somethin' ol' Buttnik would be heavily guarding...\"},\n                    MessageBox {message=\"Rotor: You're right. {p50}As far as I know, {p20}the only terminal which can produce a certificate of authenticity is in the {h Death Egg}.\", textSpeed=3},\n                    AudioFade(\"music\", 0.4, 0, 1),\n                    Wait(2),\n                    Do(function()\n                        battleScene.partyByName.sally.sprite:setAnimation(\"sad\")\n                    end),\n                    MessageBox {message=\"Sally: *sigh* {p40}Breaking into the Robotnik's headquarters? {p40}This isn't going to work...\", textSpeed=4},\n                    Wait(1),\n                    Do(function()\n                        rotor:setAnimation(\"sad\")\n                    end),\n                    Parallel {\n                        PlayAudio(\"music\", \"sallyupset\", 1.0),\n                        Serial {\n                            MessageBox {message=\"Rotor: Yeah... {p40}it's probably not worth the risk...\", textSpeed=4},\n                            Wait(1),\n                            Do(function()\n                                battleScene.partyByName.sonic.sprite:setAnimation(\"criticizing_sad\")\n                            end),\n                            MessageBox {message=\"Sonic: ...\", textSpeed=2},\n                            Wait(1)\n                        }\n                    },\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"thinking\")\n                    end),\n                    MessageBox {message=\"Sonic: Wait a sonic second!\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"victory\")\n                    end),\n                    MessageBox {message=\"Sonic: B could get us in!\"},\n                    Do(function()\n                        battleScene.audio:playMusic(\"doittoit2\", 1.0)\n                        battleScene.partyByName.sally.sprite:setAnimation(\"idleup\")\n                        rotor:setAnimation(\"idleright\")\n                    end),\n                    MessageBox {message=\"Sally: A-Are you sure?\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"victory\")\n                    end),\n                    MessageBox {message=\"Sonic: Hey, do I look like a guy who isn't sure?\"},\n                    MessageBox {message=\"Rotor: B? {p60}Who's B?\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"explain\")\n                    end),\n                    MessageBox {message=\"Sonic: We met him on our last mission. {p40}B helped us rescue Antoine. {p40}He knows all sorts of secret pathways throughout Robotropolis, some that even Griff doesn't\\nknow about!\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"idle\")\n                        battleScene.partyByName.sally.sprite:setAnimation(\"thinking3\")\n                    end),\n                    MessageBox {message=\"Sally: Ok, {p40}far be it from me to say this, {p40}but I think we've been playing it safe for long enough.\"},\n                    MessageBox {message=\"Sally: We need to do this. {p60}This could be our chance to take down Robotnik, {p20}once and for all!\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"victory\")\n                    end),\n                    MessageBox {message=\"Sonic: Whoah-- Sal! {p20}I'm liking this new attitude!\"},\n                    MessageBox {message=\"Rotor: This is a pretty crazy plan...\"},\n                    Do(function()\n                        rotor:setAnimation(\"pose\")\n                    end),\n                    MessageBox {message=\"Rotor: ...but if Sally believes we can do it, than I do too!\"},\n                    Do(function()\n                        battleScene.partyByName.sally.sprite:setAnimation(\"victory\")\n                    \n                        battleScene.partyByName.sonic.id = \"sonic\"\n                    end),\n                    MessageBox {message=\"Sally: Alright guys!\", closeAction=Wait(1)},\n                    MessageBox {message=\"All: Let's do it to it!\", textSpeed=4},\n                    AudioFade(\"music\", 1, 0),\n                    battleScene:earlyExit()\n                }\n            end\n        }\n    }\nend",
+            ["onOpen"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Ease = require \"actions/Ease\"\nlocal Animate = require \"actions/Animate\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal SpriteNode = require \"object/SpriteNode\"\nlocal BasicNPC = require \"object/BasicNPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"rotorreveal_done\") or GameState:isFlagSet(\"ep3_intro\") then\n        return Action()\n    end\n\n    GameState:setFlag(\"rotorreveal_done\")\n    local scene = self.scene\n    local rotor = BasicNPC(\n        scene,\n        {name = \"objects\"},\n        {\n            name = \"Rotor\",\n            x = scene.player.x - 50,\n            y = scene.player.y - 10,\n            width = 65,\n            height = 55,\n            properties = {nocollision = true, sprite = \"art/sprites/rotor.png\", align = \"bottom_left\"}\n        }\n    )\n    return BlockPlayer {\n        AudioFade(\"music\", 1, 0, 1),\n        PlayAudio(\"music\", \"rotorsworkshop\", 1.0, true),\n        MessageBox {message=(GameState.leader == \"sonic\" and \"Sonic: Yo! {p40}You in there, Rote?\" or \"Sally: Rotor? {p40}Are you in there?...\")},\n        Wait(1),\n        MessageBox {message=(GameState.leader == \"sonic\" and \"Sonic: ?...\" or \"Sally: ?...\")},\n        Do(function()\n            rotor.sprite:setAnimation(\"pose\")\n            scene:addObject(rotor)\n            scene.player.noIdle = true\n            scene.player.sprite:setAnimation(\"shock\")\n        end),\n        Parallel {\n            MessageBox {message=\"Rotor: Hey guys!\"},\n            Ease(scene.player, \"y\", scene.player.y + 20, 3)\n        },\n        Do(function()\n            rotor.sprite:setAnimation(\"idledown\")\n            scene.player.sprite:setAnimation(\"idleup\")\n        end),\n        MessageBox {message=\"Rotor: Uh... {p70}you're gonna wanna see this!\"},\n        scene:enterBattle {\n            opponents = {\n                \"swatbot\"\n            },\n            music = \"doittoit\",\n            beforeBattle = Do(function() rotor:remove() end),\n            onEnter = function(battleScene)\n                local rotor = SpriteNode(battleScene, table.remove(battleScene.opponentSlots, 1), nil, \"rotor\", nil, nil, \"sprites\")\n                rotor:setAnimation(\"idleright\")\n            \n                battleScene.partyByName.sonic.id = \"notsonic\"\n                battleScene.opponents[1].stats.miss = true\n            \n                local Swatbot = require \"data/monsters/swatbot\"\n                return Serial {\n                    Wait(2),\n                    MessageBox {message=\"Sonic: What's the deal with the Swatbutt, Rote?\"},\n                    Do(function()\n                        rotor:setAnimation(\"explaining_right1\")\n                    end),\n                    MessageBox {message=\"Rotor: I found this guy wandering around Sector 2.\"},\n                    MessageBox {message=\"Rotor: But he's not exactly a regular Swatbot. {p70}Watch this.\"},\n                    Do(function()\n                        rotor:setAnimation(\"idleright\")\n                    end),\n                    MessageBox {message=\"Rotor: Swatbot. {p40}Target Sonic the Hedgehog.\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"shock\")\n                        battleScene.partyByName.sally.sprite:setAnimation(\"shock\")\n                    end),\n                    Parallel {\n                        MessageBox {message=\"Sonic: What!? {p40}Not cool, Rote!!\"},\n                        Swatbot.behavior(battleScene.opponents[1], battleScene.partyByName.sonic)\n                    },\n                \n                    -- Swatbot fires at Sonic, misses\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"idle\")\n                        battleScene.partyByName.sally.sprite:setAnimation(\"idle\")\n                    end),\n                    MessageBox {message=\"Sonic: Huh?...\"},\n                    MessageBox {message=\"Rotor: Swatbot. {p40}Target Princess Sally.\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"shock\")\n                        battleScene.partyByName.sally.sprite:setAnimation(\"shock\")\n                    end),\n                    Parallel {\n                        MessageBox {message=\"Sally: Rotor!!\"},\n                        Swatbot.behavior(battleScene.opponents[1], battleScene.partyByName.sally)\n                    },\n                \n                    -- Swatbot fires at Rotor, misses\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"idle\")\n                        battleScene.partyByName.sally.sprite:setAnimation(\"idle\")\n                        rotor:setAnimation(\"explaining_right2\")\n                    end),\n                    MessageBox {message=\"Rotor: See? {p40}He can't hit his target!\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"criticizing\")\n                    end),\n                    MessageBox {message=\"Sonic: Ya tryin' to give us a heart attack?!\"},\n                    MessageBox {message=\"Sonic: Why ya showing us this, Rote?\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"idle\")\n                        rotor:setAnimation(\"thinking\")\n                    end),\n                    AudioFade(\"music\", 1, 0, 1),\n                    MessageBox {message=\"Rotor: Well... {p40}based on what I'm seeing...{p40} this malfunction isn't caused by faulty {h hardware}...\"},\n                    Do(function()\n                        battleScene.partyByName.sally.sprite:setAnimation(\"thinking\")\n                    end),\n                    MessageBox {message=\"Sally: *gasp*! {p50}But that must mean...\", textSpeed=3, closeAction=Wait(1)},\n                    Do(function()\n                        battleScene.audio:playMusic(\"areyouready\", 0.4)\n                    end),\n                    MessageBox {message=\"Rotor: Yeah... {p40}I'm thinking it's exploitable.\", textSpeed=4},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"annoyed\")\n                    end),\n                    MessageBox {message=\"Sonic: Guys, {p30}guys, {p30}can someone speak english here?\"},\n                    MessageBox {message=\"Sally: Well... {p40}basically... {p40}the Swatbot is, uh{p10}.{p10}.{p10}.{p40} {h glitchin'}.\", textSpeed=4},\n                    MessageBox {message=\"Rotor: Right. {p40}And because this glitch showed up in a production model, {p40}my theory is, {p40}we could potentially mask this glitch as a {h software patch}.\", textSpeed=3},\n                    MessageBox {message=\"Sally: Meaning, {p40}we could spread this glitch to other bots!\", textSpeed=3},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"thinking\")\n                    end),\n                    MessageBox {message=\"Sonic: Whoah guys, {p40}are you really telling me what I think you're telling me?\", textSpeed=3},\n                    MessageBox {message=\"Sally: If we do this right, {p40}we could upload this glitch to Robotnik's entire army! {p50}They wouldn't be able to lay a finger on us!\", textSpeed=3},\n                    MessageBox {message=\"Sally: ...But how are we going to make the software patch look authentic?\"},\n                    MessageBox {message=\"Rotor: We'll need to use Buttnik's terminal to create a {h certificate of authenticity}.\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"criticizing\")\n                    end),\n                    MessageBox {message=\"Sonic: Sounds like somethin' ol' Buttnik would be heavily guarding...\"},\n                    MessageBox {message=\"Rotor: You're right. {p50}As far as I know, {p20}the only terminal which can produce a certificate of authenticity is in the {h Death Egg}.\", textSpeed=3},\n                    AudioFade(\"music\", 0.4, 0, 1),\n                    Wait(2),\n                    Do(function()\n                        battleScene.partyByName.sally.sprite:setAnimation(\"sad\")\n                    end),\n                    MessageBox {message=\"Sally: *sigh* {p40}Breaking into the Robotnik's headquarters? {p40}This isn't going to work...\", textSpeed=4},\n                    Wait(1),\n                    Do(function()\n                        rotor:setAnimation(\"sad\")\n                    end),\n                    Parallel {\n                        PlayAudio(\"music\", \"sallyupset\", 1.0),\n                        Serial {\n                            MessageBox {message=\"Rotor: Yeah... {p40}it's probably not worth the risk...\", textSpeed=4},\n                            Wait(1),\n                            Do(function()\n                                battleScene.partyByName.sonic.sprite:setAnimation(\"criticizing_sad\")\n                            end),\n                            MessageBox {message=\"Sonic: ...\", textSpeed=2},\n                            Wait(1)\n                        }\n                    },\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"thinking\")\n                    end),\n                    MessageBox {message=\"Sonic: Wait a sonic second!\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"victory\")\n                    end),\n                    MessageBox {message=\"Sonic: B could get us in!\"},\n                    Do(function()\n                        battleScene.audio:playMusic(\"doittoit2\", 1.0)\n                        battleScene.partyByName.sally.sprite:setAnimation(\"idleup\")\n                        rotor:setAnimation(\"idleright\")\n                    end),\n                    MessageBox {message=\"Sally: A-Are you sure?\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"victory\")\n                    end),\n                    MessageBox {message=\"Sonic: Hey, do I look like a guy who isn't sure?\"},\n                    MessageBox {message=\"Rotor: B? {p60}Who's B?\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"explain\")\n                    end),\n                    MessageBox {message=\"Sonic: We met him on our last mission. {p40}B helped us rescue Antoine. {p40}He knows all sorts of secret pathways throughout Robotropolis, some that even Griff doesn't\\nknow about!\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"idle\")\n                        battleScene.partyByName.sally.sprite:setAnimation(\"thinking3\")\n                    end),\n                    MessageBox {message=\"Sally: Ok, {p40}far be it from me to say this, {p40}but I think we've been playing it safe for long enough.\"},\n                    MessageBox {message=\"Sally: We need to do this. {p60}This could be our chance to take down Robotnik, {p20}once and for all!\"},\n                    Do(function()\n                        battleScene.partyByName.sonic.sprite:setAnimation(\"victory\")\n                    end),\n                    MessageBox {message=\"Sonic: Whoah-- Sal! {p20}I'm liking this new attitude!\"},\n                    MessageBox {message=\"Rotor: This is a pretty crazy plan...\"},\n                    Do(function()\n                        rotor:setAnimation(\"pose\")\n                    end),\n                    MessageBox {message=\"Rotor: ...but if Sally believes we can do it, than I do too!\"},\n                    Do(function()\n                        battleScene.partyByName.sally.sprite:setAnimation(\"victory\")\n                    \n                        battleScene.partyByName.sonic.id = \"sonic\"\n                    end),\n                    MessageBox {message=\"Sally: Alright guys!\", closeAction=Wait(1)},\n                    MessageBox {message=\"All: Let's do it to it!\", textSpeed=4},\n                    AudioFade(\"music\", 1, 0),\n                    battleScene:earlyExit()\n                }\n            end\n        }\n    }\nend",
             ["orientation"] = "down",
             ["scene"] = "rotorsworkshop.lua",
             ["spawn_point"] = "Spawn 1",
@@ -4230,23 +3805,6 @@ return {
           }
         },
         {
-          id = 183,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 5024,
-          y = 1856,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["BlueLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 184,
           name = "Chest3",
           type = "Chest",
@@ -4261,48 +3819,6 @@ return {
           properties = {
             ["Mushroom"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 188,
-          name = "AntoinesKeys",
-          type = "Pickup",
-          shape = "rectangle",
-          x = 7200,
-          y = 2752,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["item"] = "AntoineKey",
-            ["sprite"] = "../art/sprites/sparkle.png"
-          }
-        },
-        {
-          id = 190,
-          name = "Antoine",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 7136,
-          y = 2400,
-          width = 64,
-          height = 96,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -16,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "scaredhop1",
-            ["ghost"] = false,
-            ["notColliding"] = "return function(self, player)\n    -- Shiver\n    if not self.shiverTime then\n        self.shiverTime = 0\n        self.shiverDir = \"right\"\n    end\n    self.shiverTime = self.shiverTime + love.timer.getDelta()\n\n    if self.shiverDir == \"left\" and self.shiverTime > 0.1 then\n        self.x = self.x - 2\n        self.shiverTime = 0\n        self.shiverDir = \"right\"\n    elseif self.shiverDir == \"right\" and self.shiverTime > 0.1 then\n        self.x = self.x + 2\n        self.shiverTime = 0\n        self.shiverDir = \"left\"\n    end\nend",
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    self.origY = self.y\n    return BlockPlayer {\n        MessageBox {\n            message = \"Antoine: Oh no, {p40}oh no, {p40}this is not being very good...\",\n        },\n        Animate(self.sprite, \"scaredhop2\"),\n        Ease(self, \"y\", function() return self.origY - 50 end, 7, \"linear\"),\n        Animate(self.sprite, \"scaredhop3\"),\n        Ease(self, \"y\", function() return self.origY end, 7, \"linear\"),\n        Animate(self.sprite, \"scaredhop4\"),\n        Wait(0.1),\n        Animate(self.sprite, \"scaredhop5\"),\n        Wait(1),\n        Do(function() self.sprite:setAnimation(\"nervousleft\") end),\n        MessageBox {\n            message = \"Antoine: Did I lose something?? {p40}Ha-ha! {p40}O-o-of course not! {p50}Why would you be having such a thought?\",\n        },\n        Do(function()\n            self.sprite:setAnimation(\"scaredhop1\")\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
-            ["sprite"] = "../art/sprites/antoine.png"
           }
         },
         {
@@ -4325,24 +3841,6 @@ return {
             ["ghost"] = false,
             ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Menu = require \"actions/Menu\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    local dir = self.x > self.scene.player.x and \"left\" or \"right\"\n    if GameState:isFlagSet(\"missing_puc\") then\n        return Serial {\n            Animate(self.sprite, \"sad\"..dir),\n            MessageBox{message = \"Tails: If only I could find that puck...\", textSpeed = 3, blocking = true}\n        }\n    end\n\n    local nameMap = {\n        sonic = \"Sonic\",\n        sally = \"Sally\",\n        bunny = \"Bunnie\"\n    }\n    self.origY = self.y\n    return BlockPlayer {\n        Animate(self.sprite, \"idle\"..dir),\n        MessageBox {\n            message = \"Tails: Hey \"..nameMap[GameState.leader]..\"! {p40}Ya wanna play some dirt hockey?\",\n        },\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Play dirt hockey?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        Animate(self.sprite, \"joy\"..dir),\n                        Ease(self, \"y\", function() return self.origY - 80 end, 7, \"linear\"),\n                        Ease(self, \"y\", function() return self.origY end, 7, \"linear\"),\n                        MessageBox {message = \"Tails: Alright! {p40}Let's do it to it!\"},\n                        MessageBox {message = \"Tails: Oh wait...\"},\n                        Animate(self.sprite, \"sad\"..dir),\n                        MessageBox {message = \"Tails: Where's my puck?! {p50}I guess we can't play right now...\"},\n                        Do(function() GameState:setFlag(\"missing_puc\") end)\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        Animate(self.sprite, \"sad\"..dir),\n                        MessageBox {message = \"Tails: Awww... ok. {p40}Maybe later.\"}\n                    }\n                end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        },\n        Do(function()\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/tails.png"
-          }
-        },
-        {
-          id = 193,
-          name = "PestExample",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 608,
-          y = 2048,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/pest.png"
           }
         },
         {
@@ -4410,6 +3908,28 @@ return {
             ["ghost"] = true,
             ["specialHint"] = "bunny"
           }
+        },
+        {
+          id = 312,
+          name = "Antoine",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1856,
+          y = 1952,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -16,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "idledown",
+            ["ghost"] = false,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    self.origY = self.y\n    return BlockPlayer {\n        MessageBox {\n            message = \"Antoine: You tell that blue-haired fewl that he's banned from using my kitchen!\"\n        }\n    }\nend",
+            ["sprite"] = "../art/sprites/antoine.png"
+          }
         }
       }
     },
@@ -4428,8 +3948,8 @@ return {
           name = "AntoineMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4885,
-          y = 1833,
+          x = 4884,
+          y = 1802,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4437,7 +3957,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "sitlookforward",
+            ["defaultAnim"] = "meeting_idledown",
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/antoine.png"
@@ -4448,8 +3968,8 @@ return {
           name = "BunnieMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4818,
-          y = 1837,
+          x = 4842,
+          y = 1802,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4457,7 +3977,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "sitlookforward",
+            ["defaultAnim"] = "meeting_idledown",
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/bunny.png"
@@ -4468,8 +3988,8 @@ return {
           name = "SonicMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4743,
-          y = 1830,
+          x = 4736,
+          y = 1802,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4477,7 +3997,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "sitlookforward",
+            ["defaultAnim"] = "meeting_idledown",
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/sonic.png"
@@ -4488,8 +4008,8 @@ return {
           name = "SallyMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4802,
-          y = 1792,
+          x = 4684,
+          y = 1824,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4497,7 +4017,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "planning",
+            ["defaultAnim"] = "sit_computer",
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/sally.png"
@@ -4508,8 +4028,8 @@ return {
           name = "RotorMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4668,
-          y = 1824,
+          x = 4778,
+          y = 1802,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4517,7 +4037,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "sitright",
+            ["defaultAnim"] = "meeting_idledown",
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/rotor.png"
@@ -4537,11 +4057,11 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "sitlookforward",
+            ["defaultAnim"] = "flyleft",
             ["ghost"] = true,
             ["hidden"] = true,
             ["ignoreMapCollision"] = true,
-            ["sprite"] = "../art/sprites/antoine.png"
+            ["sprite"] = "../art/sprites/fleet.png"
           }
         },
         {
@@ -4579,6 +4099,66 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 313,
+          name = "IvanMtg",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4928,
+          y = 1824,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idledown",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/bunny.png"
+          }
+        },
+        {
+          id = 315,
+          name = "FleetMtg",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4768,
+          y = 1824,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "planning",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/sally.png"
+          }
+        },
+        {
+          id = 316,
+          name = "LoganMtg",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4864,
+          y = 1824,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idledown",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/rotor.png"
           }
         }
       }

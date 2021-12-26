@@ -13,94 +13,6 @@ return {
 	
 	{
         type = "map",
-		file = "maps/deathegg_elevator1.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/deathegg_elevator2.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deathegg_elevator3.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deathegg_elevator4.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/deathegg1.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deathegg3.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deathegg4.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deathegg5.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deathegg6.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deatheggf2_sneak1.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deatheggf2_sneak2.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deatheggf2_sneak3.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deatheggf2_1.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deatheggf2_2.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deatheggf2_2.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deatheggf2_2.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deatheggf2_4.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
 		file = "maps/stealthtut1.lua",
 		--primary = true
     },
@@ -674,6 +586,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/exciting.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/tense2.ogg",
 		category = "music"
 	},
 	{

@@ -5,7 +5,7 @@ return function(scene, hint)
 
 	local Action = require "actions/Action"
 	local Animate = require "actions/Animate"
-	local TypeText = require "actions/TypeText"
+	--local TypeText = require "actions/TypeText"
 	local Menu = require "actions/Menu"
 	local MessageBox = require "actions/MessageBox"
 	local PlayAudio = require "actions/PlayAudio"
@@ -24,7 +24,7 @@ return function(scene, hint)
 	local Player = require "object/Player"
 	
 	local knotholeIntro = function()
-		local subtext = TypeText(
+		--[[local subtext = TypeText(
 			Transform(50, 470),
 			{255, 255, 255, 0},
 			FontCache.TechnoSmall,
@@ -54,48 +54,10 @@ return function(scene, hint)
 			}
 		})
 		
-		scene.audio:playMusic("knothole", 0.8)
+		scene.audio:playMusic("knothole", 0.8)]]
 	end
 	
 	scene.player.dustColor = Player.FOREST_DUST_COLOR
-	
-	if GameState:hasItem("Antoine's Key") then
-		if scene.objectLookup.Antoine then
-			scene.objectLookup.Antoine:remove()
-		end
-		if scene.objectLookup.AntoinesKeys then
-			scene.objectLookup.AntoinesKeys:remove()
-		end
-	end
-	
-	if GameState:isFlagSet("ffmeeting") then
-		if scene.objectLookup.Bunnie then
-			scene.objectLookup.Bunnie:remove()
-		end
-		if scene.objectLookup.PestExample then
-			scene.objectLookup.PestExample:remove()
-		end
-	elseif GameState:isFlagSet("bunnie_game_over") then
-		if not scene.bunnieReset then
-			scene.bunnieReset = true
-			
-			scene.objectLookup.PestExample:remove()
-			
-			local bunnie = scene.objectLookup.Bunnie
-			bunnie.sprite:setAnimation("idleright")
-			bunnie.handlers.interact = nil
-			bunnie:addInteract(function()
-				bunnie.scene.player.hidekeyhints[tostring(bunnie)] = bunnie
-				bunnie:facePlayer()
-				bunnie.scene:run {
-					MessageBox {message = "Bunnie: My goodness, {p40}I sure am glad those pests are gone.", blocking = true},
-					Do(function()
-						bunnie:refreshKeyHint()
-					end)
-				}
-			end)
-		end
-	end
 
 	if hint == "fromworldmap" then
 		knotholeIntro()
@@ -114,27 +76,40 @@ return function(scene, hint)
 		not GameState:isFlagSet("ep3_introknothole")
 	then
 		GameState:setFlag("ep3_introknothole")
+		GameState:setFlag("sallysad_over")
 		scene.audio:stopMusic()
 		return BlockPlayer {
-			PlayAudio("music", "natbeauty", 1.0, true),
+			PlayAudio("music", "knothole", 1.0, true, true),
+			Do(function()
+				scene.player.noIdle = true
+				scene.player.sprite:setAnimation("thinking2")
+			end),
+			Wait(3),
 			MessageBox {message="Sally: Ahhh...", textspeed=1},
 			Do(function()
 				scene.player.noIdle = true
 				scene.player.sprite:setAnimation("pose")
 			end),
 			MessageBox {message="Sally: Nothing like a breath of that fresh, morning air to clear your head...", textspeed=1},
+			AudioFade("music", 1.0, 0.0, 1),
 			Wait(1),
-			PlayAudio("music", "awkward", 1.0, true),
 			MessageBox {message="Fleet: Awww, {p20}getting tired?", closeAction=Wait(1)},
-			MessageBox {message="Sally: ?", closeAction=Wait(1)},
+			Do(function()
+				scene.player.sprite:setAnimation("idleright")
+			end),
+			MessageBox {message="Sally: ?", closeAction=Wait(0.5)},
 			MessageBox {message="Sonic: Dream on, featherweight!", closeAction=Wait(1)},
 			Wait(1),
+			PlayAudio("music", "awkward", 1.0, true, true),
 			-- Sonic/Fleet blast past Sally
 			Do(function()
 				scene.objectLookup.FleetEp3Run.hidden = false
 				scene.objectLookup.SonicEp3Run.hidden = false
 				scene.objectLookup.FleetEp3Run.movespeed = 30
 				scene.objectLookup.SonicEp3Run.movespeed = 30
+				scene.objectLookup.FleetEp3Run.sprite.transform.ox = scene.objectLookup.FleetEp3Run.sprite.w/2
+				scene.objectLookup.FleetEp3Run.sprite.transform.oy = scene.objectLookup.FleetEp3Run.sprite.h/2
+				scene.objectLookup.FleetEp3Run.sprite.transform.angle = -math.pi/6
 			end),
 			Parallel {
 				Move(scene.objectLookup.FleetEp3Run, scene.objectLookup.Ep3Waypoint, "fly"),
@@ -145,6 +120,7 @@ return function(scene, hint)
 					end)
 				}
 			},
+			Wait(1),
 			Parallel {
 				Move(scene.objectLookup.SonicEp3Run, scene.objectLookup.Ep3Waypoint, "juice"),
 				Serial {
@@ -163,17 +139,20 @@ return function(scene, hint)
 			end),
 			MessageBox {message="Sally: Sonic!!"},
 			Do(function()
+				scene.player.sprite:setAnimation("thinking")
+			end),
+			Wait(1),
+			Do(function()
 				scene.player.noIdle = false
 			end)
 		}
-	elseif GameState:isFlagSet("rotorreveal_done") and
-		not GameState:isFlagSet("ffmeeting")
+	elseif GameState:isFlagSet("ep3_intro") and
+		GameState:isFlagSet("ep3_ffmeeting") and
+		not GameState:isFlagSet("ep3_ffmeetingover")
 	then
-		GameState:setFlag("ffmeeting")
+		GameState:setFlag("ep3_ffmeetingover")
 		
 		scene.audio:stopMusic()
-		scene.player.x = scene.objectLookup.BunnieMtg.x
-		scene.player.y = scene.objectLookup.BunnieMtg.y
 
 		scene.objectLookup.SonicMtg.hidden = false
 		scene.objectLookup.RotorMtg.hidden = false
@@ -202,26 +181,47 @@ return function(scene, hint)
 		scene.player.dropShadow.hidden = true
 
 		return BlockPlayer {
-			PlayAudio("music", "meettherebellion", 1.0, true, true),
-			MessageBox {message="Sally: Alright everyone-- {p40}here's the plan."},
-			Animate(sally.sprite, "planning_lookdown"),
-			MessageBox {message="Sally: We will first enter Robotropolis from the western corridor."},
-			Animate(sally.sprite, "planning_lookdown_point"),
-			MessageBox {message="Sally: From there, we'll meet up with B, who has already agreed to escort us into the Death Egg..."},
-			Animate(sally.sprite, "planning_lookdown"),
-			MessageBox {message="Sally: Once inside, we'll need to find a master terminal. {p60}Only master terminals are capable of producing a certificate of authenticity--"},
-			hop(antoine),
-			MessageBox {message="Antoine: Ahem. {p60}I am having a question."},
-			Animate(sally.sprite, "planning"),
-			MessageBox {message="Sally: Go ahead, Antoine."},
-			MessageBox {message="Antoine: Once you are inside zee Egg of Death, how are you to know where zis terminal even is?"},
-			MessageBox {message="Sally: Good question, Antoine."},
-			MessageBox {message="Sally: Unfortunately, intel on the internal layout of the Death Egg is sparse. {p60}We won't know exactly where B will take us, nor where the closest master terminal will be."},
-			MessageBox {message="Sally: But-- {p40}according to Griff-- {p40}Factory bots need to refresh their security access codes with a master terminal every couple of hours..."},
-			MessageBox {message="Rotor: ...so all you need to do is find one of these bots and follow it around until it leads you to a master terminal?"},
-			MessageBox {message="Sally: Right!"},
-			MessageBox {message="Bunnie: My goodness, Sally-girl! How do you come up with this stuff?"},
-			MessageBox {message="Sally: Any other questions?"},
+			Do(function()
+				scene.player.x = scene.objectLookup.BunnieMtg.x
+				scene.player.y = scene.objectLookup.BunnieMtg.y + 64
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+				scene.player.cinematic = true
+			end),
+
+			Wait(4),
+			
+			--PlayAudio("music", "meettherebellion", 1.0, true, true),
+			MessageBox {message="Sally: To start off, I'd like to welcome the Rebellion to Knothole Village! I am sure many of you have already become acquainted--"},
+			--Animate(sally.sprite, "planning_lookdown"),
+			MessageBox {message="Sonic: Oh, we're acquainted alright."},
+			MessageBox {message="Fleet: Ha ha, amazing how so much attitude can come from such a small creature."},
+			MessageBox {message="Sonic: I'll show you, small!"},
+			--hop(antoine),
+			MessageBox {message="Sally: Sonic, {p20}stop!"},
+			MessageBox {message="Sonic: Hmph! Whatever."},
+			MessageBox {message="Sally: As I was saying..."},
+			MessageBox {message="Sally: I'm honored to welcome Commander Leon and his esteemed officers to our home! {p40}I believe if we unite our efforts to take down Robotnik, we can--"},
+			MessageBox {message="Fleet: Princess{p60}, with all due respect{p60}, the Rebellion is an elite military force{p20}, combining undoubtedly the smartest and strongest minds in all of Mobius! {p60}While the Freedom Fighters are...{p60} how do I put this?..."},
+			PlayAudio("music", "tense2", 1.0, true),
+			MessageBox {message="Ivan: Inexperienced?"},
+			MessageBox {message="Logan: Incompetent?"},
+			MessageBox {message="Fleet: Right{p60}, inexperienced incompetent teenagers! {p60}Point is, {p20}while I'm sure you \"Freedom Fighters\" have fun playing your little games{p20}, maybe you should just let the grown ups take it from here..."},
+			MessageBox {message="Sally: Excuse me?"},
+			MessageBox {message="Antoine: Well, I have never been so insulted in my life!!"},
+			MessageBox {message="Sonic: Hey! {p20}We've been doing this for a long time, bird brain!"},
+			MessageBox {message="Rotor: Yeah! We've been fighting Robotnik since we were kids!"},
+			MessageBox {message="Bunnie: How do y'all call that \"inexperienced\"! How rude can ya get!?"},
+			MessageBox {message="Fleet: Ok then."},
+			PlayAudio("music", "tense", 1.0, true),
+			MessageBox {message="Fleet: Tell me, Princess... {p60}have you ever really come close to defeating Robotnik?"},
+			MessageBox {message="Sally: Well no, but--"},
+			MessageBox {message="Fleet: Have you taken back control over \"any\" part of the city?"},
+			MessageBox {message="Sally: No--"},
+			MessageBox {message="Fleet: Surely, {p20}you've at least found the rightful ruler of Mobotropolis and safely brought him to Knothole Village-- {p60}your very own father?"},
+			MessageBox {message="Sally: ...I--"},
+			MessageBox {message="Fleet: Amazing, you've actually made my point for me! {p60}Go on Princess, {p20}just admit it..."},
+			MessageBox {message="Leon: *roars* That's enough!!"},
 			hop(sonic),
 			MessageBox {message="Sonic: Yeah! {p60}Are we having dinner after this? {p40}I'm starving!"},
 			Animate(sally.sprite, "planning_irritated"),

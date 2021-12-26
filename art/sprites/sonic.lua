@@ -319,6 +319,11 @@ return {
 		},
 		sit_smile = {
 			frames = {{12,7}}
-		}
+		},
+		
+		meeting_idledown = {
+			frames = {{0,2}},
+			clip = {0,0,47,40}
+		},
     }
 }

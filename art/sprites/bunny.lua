@@ -108,6 +108,11 @@ return {
 		},
 		extendup = {
 			frames = {{9,3}}
-		}
+		},
+		
+		meeting_idledown = {
+			frames = {{0,2}},
+			clip = {0,0,47,39}
+		},
     }
 }

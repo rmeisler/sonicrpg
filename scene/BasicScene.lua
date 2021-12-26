@@ -351,8 +351,9 @@ function BasicScene:onExit(args)
 		)
 	end
 	
-	return Serial {
-		Parallel {
+	local fadeAction = Action()
+	if not args.noFade then
+		fadeAction = Parallel {
 			fadeMusicOrNoop,
 		
 			-- Fade to black
@@ -362,7 +363,11 @@ function BasicScene:onExit(args)
 			Do(function()
 				ScreenShader:sendColor("multColor", self.bgColor)
 			end)
-		},
+		}
+	end
+	
+	return Serial {
+		fadeAction,
 		Do(function()
 			if not self.cacheSceneData then
 				self:remove()

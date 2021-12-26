@@ -144,5 +144,10 @@ return {
 			frames = {{15,1},{16,1}},
 			speed = 0.2
 		},
+		
+		meeting_idledown = {
+			frames = {{0,2}},
+			clip = {0,0,47,40}
+		},
     }
 }
