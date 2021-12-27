@@ -234,6 +234,18 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/fleet.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/logan.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/ivan.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/sonicchargebody.png"
 	},
 	{
