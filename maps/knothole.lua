@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 317,
+  nextobjectid = 318,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["onload"] = "actions/knothole.lua",
@@ -3948,8 +3948,8 @@ return {
           name = "AntoineMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4884,
-          y = 1802,
+          x = 4885,
+          y = 1833,
           width = 32,
           height = 32,
           rotation = 0,
@@ -3957,7 +3957,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "meeting_idledown",
+            ["defaultAnim"] = "sitlookforward",
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/antoine.png"
@@ -3968,8 +3968,8 @@ return {
           name = "BunnieMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4842,
-          y = 1802,
+          x = 4818,
+          y = 1837,
           width = 32,
           height = 32,
           rotation = 0,
@@ -3977,7 +3977,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "meeting_idledown",
+            ["defaultAnim"] = "sitlookforward",
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/bunny.png"
@@ -3988,8 +3988,8 @@ return {
           name = "SonicMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4736,
-          y = 1802,
+          x = 4743,
+          y = 1830,
           width = 32,
           height = 32,
           rotation = 0,
@@ -3997,7 +3997,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "meeting_idledown",
+            ["defaultAnim"] = "sitlookforward",
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/sonic.png"
@@ -4008,8 +4008,8 @@ return {
           name = "SallyMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4684,
-          y = 1824,
+          x = 4802,
+          y = 1792,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4017,7 +4017,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "sit_computer",
+            ["defaultAnim"] = "planning",
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/sally.png"
@@ -4028,8 +4028,8 @@ return {
           name = "RotorMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4778,
-          y = 1802,
+          x = 4668,
+          y = 1824,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4037,7 +4037,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "meeting_idledown",
+            ["defaultAnim"] = "sitright",
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/rotor.png"
@@ -4106,8 +4106,8 @@ return {
           name = "IvanMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4928,
-          y = 1824,
+          x = 4864,
+          y = 1792,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4115,10 +4115,10 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "idledown",
+            ["defaultAnim"] = "meeting_idledown",
             ["hidden"] = true,
             ["nocollision"] = true,
-            ["sprite"] = "../art/sprites/bunny.png"
+            ["sprite"] = "../art/sprites/ivan.png"
           }
         },
         {
@@ -4126,8 +4126,8 @@ return {
           name = "FleetMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4768,
-          y = 1824,
+          x = 4712,
+          y = 1792,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4135,10 +4135,10 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "planning",
+            ["defaultAnim"] = "meeting_idledown",
             ["hidden"] = true,
             ["nocollision"] = true,
-            ["sprite"] = "../art/sprites/sally.png"
+            ["sprite"] = "../art/sprites/fleet.png"
           }
         },
         {
@@ -4146,8 +4146,8 @@ return {
           name = "LoganMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4864,
-          y = 1824,
+          x = 4758,
+          y = 1792,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4155,10 +4155,10 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "idledown",
+            ["defaultAnim"] = "meeting_idledown",
             ["hidden"] = true,
             ["nocollision"] = true,
-            ["sprite"] = "../art/sprites/rotor.png"
+            ["sprite"] = "../art/sprites/logan.png"
           }
         }
       }

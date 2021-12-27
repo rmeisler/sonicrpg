@@ -210,5 +210,9 @@ return {
 		sadleft = {
 			frames = {{1,5}}
 		},
+		meeting_sadleft = {
+			frames = {{1,5}},
+			clip = {0,0,47,42}
+		},
     }
 }

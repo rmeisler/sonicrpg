@@ -159,12 +159,19 @@ return function(scene, hint)
 		scene.objectLookup.AntoineMtg.hidden = false
 		scene.objectLookup.SallyMtg.hidden = false
 		scene.objectLookup.BunnieMtg.hidden = false
+		scene.objectLookup.FleetMtg.hidden = false
+		scene.objectLookup.LoganMtg.hidden = false
+		scene.objectLookup.IvanMtg.hidden = false
 		
 		local sally = scene.objectLookup.SallyMtg
 		local antoine = scene.objectLookup.AntoineMtg
 		local sonic = scene.objectLookup.SonicMtg
 		local rotor = scene.objectLookup.RotorMtg
 		local bunnie = scene.objectLookup.BunnieMtg
+		
+		local fleet = scene.objectLookup.FleetMtg
+		local logan = scene.objectLookup.LoganMtg
+		local ivan = scene.objectLookup.IvanMtg
 		
 		local hop = function(obj)
 			return Serial {
@@ -191,9 +198,9 @@ return function(scene, hint)
 
 			Wait(4),
 			
-			--PlayAudio("music", "meettherebellion", 1.0, true, true),
+			--PlayAudio("music", "doittoit", 1.0, true, true),
 			MessageBox {message="Sally: To start off, I'd like to welcome the Rebellion to Knothole Village! I am sure many of you have already become acquainted--"},
-			--Animate(sally.sprite, "planning_lookdown"),
+			Animate(sonic.sprite, "irritated"),
 			MessageBox {message="Sonic: Oh, we're acquainted alright."},
 			MessageBox {message="Fleet: Ha ha, amazing how so much attitude can come from such a small creature."},
 			MessageBox {message="Sonic: I'll show you, small!"},
@@ -202,23 +209,43 @@ return function(scene, hint)
 			MessageBox {message="Sonic: Hmph! Whatever."},
 			MessageBox {message="Sally: As I was saying..."},
 			MessageBox {message="Sally: I'm honored to welcome Commander Leon and his esteemed officers to our home! {p40}I believe if we unite our efforts to take down Robotnik, we can--"},
+			AudioFade("music", 1, 0, 1),
+			Animate(fleet.sprite, "meeting_lookright"),
 			MessageBox {message="Fleet: Princess{p60}, with all due respect{p60}, the Rebellion is an elite military force{p20}, combining undoubtedly the smartest and strongest minds in all of Mobius! {p60}While the Freedom Fighters are...{p60} how do I put this?..."},
 			PlayAudio("music", "tense2", 1.0, true),
+			--Animate(ivan.sprite, "meeting_idleup_lookleft"),
 			MessageBox {message="Ivan: Inexperienced?"},
+			--Animate(logan.sprite, "meeting_idleup_lookleft"),
 			MessageBox {message="Logan: Incompetent?"},
+			Animate(fleet.sprite, "meeting_smirkright"),
 			MessageBox {message="Fleet: Right{p60}, inexperienced incompetent teenagers! {p60}Point is, {p20}while I'm sure you \"Freedom Fighters\" have fun playing your little games{p20}, maybe you should just let the grown ups take it from here..."},
+			Animate(sonic.sprite, "shock"),
+			Animate(bunnie.sprite, "shock"),
+			Animate(antoine.sprite, "shock"),
+			Animate(rotor.sprite, "shock"),
 			MessageBox {message="Sally: Excuse me?"},
+			Animate(fleet.sprite, "meeting_lookright"),
+			Animate(antoine.sprite, "sitlookforward"),
+			Animate(sonic.sprite, "sitlookforward"),
+			Animate(rotor.sprite, "sitright"),
+			Animate(bunnie.sprite, "sitlookforward"),
 			MessageBox {message="Antoine: Well, I have never been so insulted in my life!!"},
 			MessageBox {message="Sonic: Hey! {p20}We've been doing this for a long time, bird brain!"},
 			MessageBox {message="Rotor: Yeah! We've been fighting Robotnik since we were kids!"},
 			MessageBox {message="Bunnie: How do y'all call that \"inexperienced\"! How rude can ya get!?"},
 			MessageBox {message="Fleet: Ok then."},
 			PlayAudio("music", "tense", 1.0, true),
+			Animate(fleet.sprite, "meeting_smirkright"),
 			MessageBox {message="Fleet: Tell me, Princess... {p60}have you ever really come close to defeating Robotnik?"},
+			Animate(fleet.sprite, "meeting_lookright"),
 			MessageBox {message="Sally: Well no, but--"},
+			Animate(fleet.sprite, "meeting_smirkright"),
 			MessageBox {message="Fleet: Have you taken back control over \"any\" part of the city?"},
+			Animate(fleet.sprite, "meeting_lookright"),
 			MessageBox {message="Sally: No--"},
+			Animate(fleet.sprite, "meeting_smirkright"),
 			MessageBox {message="Fleet: Surely, {p20}you've at least found the rightful ruler of Mobotropolis and safely brought him to Knothole Village-- {p60}your very own father?"},
+			Animate(sally.sprite, "meeting_sadleft"),
 			MessageBox {message="Sally: ...I--"},
 			MessageBox {message="Fleet: Amazing, you've actually made my point for me! {p60}Go on Princess, {p20}just admit it..."},
 			MessageBox {message="Leon: *roars* That's enough!!"},
