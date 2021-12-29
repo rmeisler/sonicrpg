@@ -16,6 +16,10 @@ return {
 		meeting_idleup_lookleft = {
 			frames = {{0,5}},
 			clip = {0,0,47,46}
+		},
+		meeting_idledown_attitude = {
+			frames = {{1,5}},
+			clip = {0,0,47,46}
 		}
     }
 }

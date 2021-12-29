@@ -214,5 +214,21 @@ return {
 			frames = {{1,5}},
 			clip = {0,0,47,42}
 		},
+		planning_thinking = {
+			frames = {{10,4}},
+			clip = {0,0,47,42}
+		},
+		planning_thinking2 = {
+			frames = {{9,4}},
+			clip = {0,0,47,42}
+		},
+		planning_thinking3 = {
+			frames = {{10,5}},
+			clip = {0,0,47,42}
+		},
+		planning_shock = {
+			frames = {{11,4}},
+			clip = {0,0,47,42}
+		},
     }
 }

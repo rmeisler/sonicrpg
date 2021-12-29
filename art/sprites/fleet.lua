@@ -20,7 +20,7 @@ return {
 		},
 		meeting_lookright = {
 			frames = {{1,5}},
-			clip = {0,0,47,42}
+			clip = {0,0,47,44}
 		},
 		meeting_smirkright = {
 			frames = {{10,4}},
