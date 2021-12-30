@@ -230,5 +230,9 @@ return {
 			frames = {{11,4}},
 			clip = {0,0,47,42}
 		},
+		planning_idleleft = {
+			frames = {{0,1}},
+			clip = {0,0,47,42}
+		},
     }
 }

@@ -607,6 +607,16 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/royalwelcome.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/leonenters.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/sallymeetsleon.ogg",
 		category = "music"
 	},
@@ -839,6 +849,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/juggerbotroar.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/leonroar.ogg",
 		category = "sfx"
 	},
 	{

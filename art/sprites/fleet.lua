@@ -35,5 +35,9 @@ return {
 			speed = 0.2,
 			clip = {0,0,47,44}
 		},
+		meeting_shock = {
+			frames = {{11,4}},
+			clip = {0,0,47,44}
+		},
     }
 }
