@@ -612,6 +612,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/standup.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/leonenters.ogg",
 		category = "music"
 	},

@@ -208,7 +208,7 @@ return function(scene, hint)
 				scene.player.cinematic = true
 			end),
 
-			Wait(4),
+			Wait(3),
 			
 			PlayAudio("music", "royalwelcome", 1.0, true, true),
 			MessageBox {message="Sally: To start off, I'd like to welcome the Rebellion to Knothole Village! I am sure many of you have already become acquainted--"},
@@ -221,7 +221,6 @@ return function(scene, hint)
 			Do(function()
 				fleet.sprite:setAnimation("meeting_laugh")
 			end),
-			--hop(antoine),
 			Animate(sally.sprite, "planning_irritated"),
 			MessageBox {message="Sally: Sonic, {p20}stop!"},
 			MessageBox {message="Sonic: Hmph! Whatever."},
@@ -298,8 +297,10 @@ return function(scene, hint)
 			MessageBox {message="Leon: ...and yet, have somehow become a formidable enough foe to Robotnik that he knows them by name, that they deserve our utmost respect."},
 			MessageBox {message="Leon: I see no reason why they should cease operations."},
 			Wait(1),
+			PlayAudio("music", "standup", 1.0, true),
 			Animate(sally.sprite, "planning_thinking"),
-			MessageBox {message="Sally: Look{p40}, we may not be trained military officers{p40}, but we've been fighting Robotnik most of our lives. {p60}We have lived experience-- {p60}and we're not going to stop fighting."},
+			MessageBox {message="Sally: Look{p60}, we may not be trained military officers{p60}, but we've been fighting Robotnik most of our\nlives..."},
+			MessageBox {message="Sally: We have lived experience{p60}, and we're not going to stop fighting."},
 			MessageBox {message="Leon: ...you really are your father's daughter."},
 			MessageBox {message="Sally: Th-{p20}thank you Leon."},
 			AudioFade("music", 1.0, 0.0, 0.5),
