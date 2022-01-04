@@ -22,6 +22,7 @@ return function(scene, hint)
 	local SpriteNode = require "object/SpriteNode"
 	local NameScreen = require "actions/NameScreen"
 	local Player = require "object/Player"
+	local BasicNPC = require "object/BasicNPC"
 	
 	local knotholeIntro = function()
 		--[[local subtext = TypeText(
@@ -159,19 +160,24 @@ return function(scene, hint)
 		scene.objectLookup.AntoineMtg.hidden = false
 		scene.objectLookup.SallyMtg.hidden = false
 		scene.objectLookup.BunnieMtg.hidden = false
+		scene.objectLookup.GriffMtg.hidden = false
 		scene.objectLookup.FleetMtg.hidden = false
 		scene.objectLookup.LoganMtg.hidden = false
 		scene.objectLookup.IvanMtg.hidden = false
+		scene.objectLookup.LeonMtg.hidden = false
 		
 		local sally = scene.objectLookup.SallyMtg
 		local antoine = scene.objectLookup.AntoineMtg
 		local sonic = scene.objectLookup.SonicMtg
 		local rotor = scene.objectLookup.RotorMtg
 		local bunnie = scene.objectLookup.BunnieMtg
+		local griff = scene.objectLookup.GriffMtg
+		griff.sprite.sortOrderY = 0
 		
 		local fleet = scene.objectLookup.FleetMtg
 		local logan = scene.objectLookup.LoganMtg
 		local ivan = scene.objectLookup.IvanMtg
+		local leon = scene.objectLookup.LeonMtg
 		
 		local hop = function(obj)
 			return Serial {
@@ -210,8 +216,9 @@ return function(scene, hint)
 
 			Wait(3),
 			
-			PlayAudio("music", "royalwelcome", 1.0, true, true),
-			MessageBox {message="Sally: To start off, I'd like to welcome the Rebellion to Knothole Village! I am sure many of you have already become acquainted--"},
+			--[[PlayAudio("music", "royalwelcome", 0.6, true, true),
+			Animate(sally.sprite, "planning_smile"),
+			MessageBox {message="Sally: To start off, I'd like to welcome the Rebellion to Knothole Village! {p60}I am sure many of you have already become acquainted--"},
 			hop(sonic),
 			MessageBox {message="Sonic: Oh, we're acquainted alright."},
 			Animate(fleet.sprite, "meeting_smirk"),
@@ -227,41 +234,49 @@ return function(scene, hint)
 			Animate(fleet.sprite, "meeting_idledown"),
 			Animate(sally.sprite, "planning"),
 			MessageBox {message="Sally: As I was saying..."},
-			MessageBox {message="Sally: I'm honored to welcome Commander Leon and his esteemed officers to our home! {p40}I believe if we unite our efforts to take down Robotnik, we can--"},
-			AudioFade("music", 1, 0, 1),
+			Animate(sally.sprite, "planning_smile"),
+			MessageBox {message="Sally: I'm honored to welcome Commander Leon and his esteemed officers to our home!"},
+			Animate(sally.sprite, "planning"),
+			MessageBox {message="Sally: Oh, {p60}where is Leon?"},
+			Animate(ivan.sprite, "meeting_idledown_attitude"),
+			MessageBox {message="Ivan: He will be here shortly."},
+			Animate(sally.sprite, "planning_smile"),
+			Animate(ivan.sprite, "meeting_idledown"),
+			MessageBox {message="Sally: That's fine. {p60}As, I was saying--{p60}I'm certain that if we unite our efforts to take down Robotnik, we will be unstoppable!"},
+			AudioFade("music", 0.6, 0, 1),
 			Animate(fleet.sprite, "meeting_lookright"),
+			Animate(sally.sprite, "planning"),
 			MessageBox {message="Fleet: Princess{p60}, with all due respect{p60}, the Rebellion is an elite military force, combining undoubtedly the smartest and strongest minds in all of\nMobius..."},
 			MessageBox {message="Fleet: Meanwhile, the Freedom Fighters are...{p60} how do I put this?..."},
-			PlayAudio("music", "tense2", 1.0, true),
+			PlayAudio("music", "tense2", 1.0, true, true),
 			Animate(ivan.sprite, "meeting_idledown_attitude"),
-			MessageBox {message="Ivan: Inexperienced?"},
+			MessageBox {message="Ivan: Inexperienced?", closeAction=Wait(1)},
 			Animate(logan.sprite, "meeting_idledown_attitude"),
-			MessageBox {message="Logan: Incompetent?"},
+			MessageBox {message="Logan: Incompetent?", closeAction=Wait(1)},
 			Animate(fleet.sprite, "meeting_smirk"),
 			MessageBox {message="Fleet: Right{p60}, inexperienced incompetent teenagers!"},
 			Animate(sonic.sprite, "shock"),
 			Animate(bunnie.sprite, "shock"),
 			Animate(antoine.sprite, "shock"),
 			Animate(rotor.sprite, "shock"),
-			Animate(sally.sprite, "planning_shock"),
+			Animate(sally.sprite, "meeting_shock"),
 			Wait(1.5),
 			Animate(antoine.sprite, "sitlookforward"),
 			Animate(sonic.sprite, "sitlookforward"),
 			Animate(rotor.sprite, "sitright"),
 			Animate(bunnie.sprite, "sitlookforward"),
-			Animate(sally.sprite, "planning_thinking"),
+			Animate(sally.sprite, "meeting_thinking"),
 			MessageBox {message="Fleet: Point is, {p60}while I'm sure you \"Freedom Fighters\" have fun playing your little games..."},
 			MessageBox {message="Fleet: ...maybe you should just let the grown ups take it from here."},
 			Do(function()
 				fleet.sprite:setAnimation("meeting_laugh")
 			end),
-			Animate(sally.sprite, "planning_thinking3"),
+			Animate(sally.sprite, "meeting_thinking3"),
 			MessageBox {message="Sally: Excuse me?"},
 			hop(antoine),
 			MessageBox {message="Antoine: I have never been so insulted in all of my life!!"},
 			hop(sonic),
 			MessageBox {message="Sonic: Hey! {p60}We've been doing this for a long time, bird brain!"},
-			hop(rotor),
 			MessageBox {message="Rotor: Yeah! We've been fighting Robotnik since we were kids!"},
 			hop(bunnie),
 			MessageBox {message="Bunnie: How do y'all call that \"inexperienced\"! {p60}How rude can ya get!?"},
@@ -269,10 +284,10 @@ return function(scene, hint)
 			MessageBox {message="Fleet: Ok then."},
 			Animate(fleet.sprite, "meeting_smirkright"),
 			MessageBox {message="Fleet: Tell me, Princess... {p60}have you ever really come close to defeating Robotnik?"},
-			Animate(sally.sprite, "planning_thinking2"),
+			Animate(sally.sprite, "meeting_thinking2"),
 			MessageBox {message="Sally: Well no, but--"},
 			MessageBox {message="Fleet: Have you taken back control over \"any\" part of the city?"},
-			Animate(sally.sprite, "planning_thinking"),
+			Animate(sally.sprite, "meeting_thinking"),
 			MessageBox {message="Sally: No--"},
 			MessageBox {message="Fleet: Surely, {p20}you've at least found the rightful ruler of Mobotropolis and safely brought him to Knothole Village-- {p60}your very own father?"},
 			Animate(sally.sprite, "meeting_sadleft"),
@@ -288,38 +303,84 @@ return function(scene, hint)
 			Animate(fleet.sprite, "meeting_shock"),
 			MessageBox {message="That's enough!"},
 			PlayAudio("music", "leonenters", 1.0, true),
-			MessageBox {message="Fleet: B-but--", closeAction=Wait(1)},
-			Animate(sally.sprite, "planning_idleleft"),
-			MessageBox {message="Leon: It is precisely because the Freedom Fighters lack formal training..."},
-			Animate(fleet.sprite, "meeting_idledown"),
-			Animate(logan.sprite, "meeting_idledown"),
-			Animate(ivan.sprite, "meeting_idledown"),
-			MessageBox {message="Leon: ...and yet, have somehow become a formidable enough foe to Robotnik that he knows them by name, that they deserve our utmost respect."},
-			MessageBox {message="Leon: I see no reason why they should cease operations."},
+			Parallel {
+				Serial {
+					MessageBox {message="Fleet: B-but--", closeAction=Wait(1)},
+					Animate(sally.sprite, "meeting_idleleft"),
+					MessageBox {message="Leon: It is precisely because the Freedom Fighters lack formal training..."},
+					Animate(fleet.sprite, "meeting_idledown"),
+					Animate(logan.sprite, "meeting_idledown"),
+					Animate(ivan.sprite, "meeting_idledown"),
+					MessageBox {message="Leon: ...and yet, have somehow become a formidable enough foe to Robotnik that he knows them by name, that they deserve our utmost respect."},
+					MessageBox {message="Leon: I see no reason why they should cease operations."}
+				},
+				Serial {
+					Move(leon, scene.objectLookup.LeonWaypoint, "walk"),
+					Animate(leon.sprite, "idleright")
+				}
+			},
 			Wait(1),
 			PlayAudio("music", "standup", 1.0, true),
-			Animate(sally.sprite, "planning_thinking"),
+			Animate(sally.sprite, "meeting_thinking"),
 			MessageBox {message="Sally: Look{p60}, we may not be trained military officers{p60}, but we've been fighting Robotnik most of our\nlives..."},
 			MessageBox {message="Sally: We have lived experience{p60}, and we're not going to stop fighting."},
 			MessageBox {message="Leon: ...you really are your father's daughter."},
 			MessageBox {message="Sally: Th-{p20}thank you Leon."},
 			AudioFade("music", 1.0, 0.0, 0.5),
+			Wait(1),--]]
+			Ease(scene.camPos, "y", -180, 0.5),
+			Move(griff, scene.objectLookup.GriffWaypoint),
 			Wait(1),
-			Animate(sally.sprite, "planning_smile"),
-			PlayAudio("music", "royalwelcome", 1.0, true, true),
-			MessageBox {message="Sally: Alright guys. {p60}This is the opportunity we've all been waiting for..."},
-			MessageBox {message="Sally: Let's do it to it!"},
+			Animate(griff.sprite, "idleleft_lookup"),
+			MessageBox {message="Griff: Sally--", closeAction=Wait(1)},
+			MessageBox {message="Sally: --Griff?"},
+			Ease(scene.camPos, "y", 0, 0.5),
+			Animate(ivan.sprite, "meeting_idledown_attitude"),
+			MessageBox {message="Ivan: What is a Griff?"},
+			MessageBox {message="Sally: Uh- {p40}a fellow freedom fighter-"},
+			Animate(ivan.sprite, "meeting_idledown"),
+			Ease(scene.camPos, "y", -180, 0.5),
+			MessageBox {message="Griff: I found something... {p60}Something big."},
+			MessageBox {message="Griff: You guys need to see this."},
 			Do(function()
 				scene.player.cinematic = true
 				sally:run(BlockPlayer {
-					Parallel {
-						Serial {
-							scene:fadeOut(0.2),
-							Wait(1)
-						},
-						AudioFade("music", 1.0, 0.0, 0.2)
-					},
+					scene:fadeOut(0.2),
 					Do(function()
+						scene.camPos.y = 0
+						griff.sprite:setAnimation("emptyleft")
+						scene.objectLookup.GriffMtg2.hidden = false
+
+						local gx = scene.objectLookup.GriffMtg2.x
+
+						scene.objectLookup.GriffMtg2.x = sally.x - 3
+						
+						sally.sprite:setAnimation("meeting_idledown")
+						sally.x = gx + 8
+						ivan.x = ivan.x + 16
+					end),
+					Wait(1),
+					scene:fadeIn(0.5),
+					MessageBox {message="Sally: Nicole{p60}, play file."},
+					MessageBox {message="Nicole: Playing{p60}, Sally."},
+					--PlayAudio("music", "project", 1.0, true),
+					Do(function()
+						local proj = BasicNPC(
+							scene,
+							{name = "objects"},
+							{
+								name = "projection",
+								x = scene.objectLookup.GriffMtg2.x - 16,
+								y = scene.objectLookup.GriffMtg2.y + 40,
+								width = 64,
+								height = 64,
+								properties = {align = "bottom_left", nocollision = true, sprite = "art/sprites/nicholeprojection2.png"}
+							}
+						)
+						scene:addObject(proj)
+						proj.sprite.sortOrderY = scene.objectLookup.GriffMtg2.y + scene.objectLookup.GriffMtg2.sprite.h*2 + 1
+						scene.objectLookup.Projection = proj
+						--[[
 						scene.player.sprite.visible = true
 						scene.player.dropShadow.hidden = false
 						
@@ -364,6 +425,7 @@ return function(scene, hint)
 							MessageBox{message="Sally: When you're both ready to go, we can just ride this pulley cart out of Knothole."},
 							walkin
 						})
+						]]
 					end)
 				})
 			end)

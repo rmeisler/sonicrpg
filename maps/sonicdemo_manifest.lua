@@ -186,7 +186,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/nicholeprojection.png"
+		file = "art/sprites/nicholeprojection2.png"
 	},
 	{
 		type = "image",
@@ -613,6 +613,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/standup.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/project.ogg",
 		category = "music"
 	},
 	{

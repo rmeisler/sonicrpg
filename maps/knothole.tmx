@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="318">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="323">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="onload" type="file" value="actions/knothole.lua"/>
@@ -2668,6 +2668,46 @@ end</property>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/logan.png"/>
+   </properties>
+  </object>
+  <object id="318" name="LeonMtg" type="BasicNPC" gid="7597" x="4320" y="1920" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="movespeed" type="float" value="1"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/leon.png"/>
+   </properties>
+  </object>
+  <object id="319" name="LeonWaypoint" type="BasicNPC" gid="7597" x="4544" y="1920" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="320" name="GriffMtg" type="BasicNPC" gid="7597" x="5312" y="2016" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idleleft"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="movespeed" type="float" value="25"/>
+    <property name="sprite" type="file" value="../art/sprites/griffvehicle.png"/>
+   </properties>
+  </object>
+  <object id="321" name="GriffWaypoint" type="BasicNPC" gid="7597" x="4640" y="2016" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="322" name="GriffMtg2" type="BasicNPC" gid="7597" x="4832" y="1792" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="meeting_idledown"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/griff.png"/>
    </properties>
   </object>
  </objectgroup>

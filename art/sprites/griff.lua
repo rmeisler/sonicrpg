@@ -1,5 +1,5 @@
 return {
-    image = "sally.png",
+    image = "griff.png",
     starting = "idleleft",
     w = 47,
     h = 55,
@@ -163,8 +163,9 @@ return {
 		thinking3 = {
 			frames = {{10,5}}
 		},
-		planning = {
-			frames = {{11,5}}
+		meeting_idledown = {
+			frames = {{0,2}},
+			clip = {0,0,47,44}
 		},
 		planning_lookdown = {
 			frames = {{12,5}}
@@ -212,31 +213,27 @@ return {
 		},
 		meeting_sadleft = {
 			frames = {{1,5}},
-			clip = {0,0,47,44}
+			clip = {0,0,47,42}
 		},
-		meeting_thinking = {
+		planning_thinking = {
 			frames = {{10,4}},
-			clip = {0,0,47,44}
+			clip = {0,0,47,42}
 		},
-		meeting_thinking2 = {
+		planning_thinking2 = {
 			frames = {{9,4}},
-			clip = {0,0,47,44}
+			clip = {0,0,47,42}
 		},
-		meeting_thinking3 = {
+		planning_thinking3 = {
 			frames = {{10,5}},
-			clip = {0,0,47,44}
+			clip = {0,0,47,42}
 		},
-		meeting_shock = {
+		planning_shock = {
 			frames = {{11,4}},
-			clip = {0,0,47,44}
+			clip = {0,0,47,42}
 		},
-		meeting_idleleft = {
+		planning_idleleft = {
 			frames = {{0,1}},
-			clip = {0,0,47,44}
-		},
-		meeting_idledown = {
-			frames = {{0,2}},
-			clip = {0,0,47,44}
+			clip = {0,0,47,42}
 		},
     }
 }

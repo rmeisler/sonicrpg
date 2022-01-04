@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 318,
+  nextobjectid = 323,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["onload"] = "actions/knothole.lua",
@@ -4159,6 +4159,101 @@ return {
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/logan.png"
+          }
+        },
+        {
+          id = 318,
+          name = "LeonMtg",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4320,
+          y = 1920,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idleright",
+            ["hidden"] = true,
+            ["movespeed"] = 1,
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/leon.png"
+          }
+        },
+        {
+          id = 319,
+          name = "LeonWaypoint",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4544,
+          y = 1920,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 320,
+          name = "GriffMtg",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 5312,
+          y = 2016,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idleleft",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["ignoreMapCollision"] = true,
+            ["movespeed"] = 25,
+            ["sprite"] = "../art/sprites/griffvehicle.png"
+          }
+        },
+        {
+          id = 321,
+          name = "GriffWaypoint",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4640,
+          y = 2016,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 322,
+          name = "GriffMtg2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4832,
+          y = 1792,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "meeting_idledown",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/griff.png"
           }
         }
       }
