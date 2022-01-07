@@ -11,6 +11,7 @@ return function(scene, hint)
 	local PlayAudio = require "actions/PlayAudio"
 	local AudioFade = require "actions/AudioFade"
 	local Ease = require "actions/Ease"
+	local Repeat = require "actions/Repeat"
 	local Parallel = require "actions/Parallel"
 	local Serial = require "actions/Serial"
 	local Executor = require "actions/Executor"
@@ -327,7 +328,7 @@ return function(scene, hint)
 			MessageBox {message="Leon: ...you really are your father's daughter."},
 			MessageBox {message="Sally: Th-{p20}thank you Leon."},
 			AudioFade("music", 1.0, 0.0, 0.5),
-			Wait(1),--]]
+			Wait(1),
 			Ease(scene.camPos, "y", -180, 0.5),
 			Move(griff, scene.objectLookup.GriffWaypoint),
 			Wait(1),
@@ -341,7 +342,7 @@ return function(scene, hint)
 			Animate(ivan.sprite, "meeting_idledown"),
 			Ease(scene.camPos, "y", -180, 0.5),
 			MessageBox {message="Griff: I found something... {p60}Something big."},
-			MessageBox {message="Griff: You guys need to see this."},
+			MessageBox {message="Griff: You guys need to see this."},--]]
 			Do(function()
 				scene.player.cinematic = true
 				sally:run(BlockPlayer {
@@ -358,28 +359,102 @@ return function(scene, hint)
 						sally.sprite:setAnimation("meeting_idledown")
 						sally.x = gx + 8
 						ivan.x = ivan.x + 16
+						
+						leon.x = scene.objectLookup.RotorMtg.x - 40
+						leon.y = scene.objectLookup.RotorMtg.y
+						leon.sprite:setAnimation("idleright")
+						
+						scene.objectLookup.NicoleMtg.hidden = false
+						scene.objectLookup.NicoleMtg.sprite.sortOrderY = 99999
 					end),
 					Wait(1),
 					scene:fadeIn(0.5),
 					MessageBox {message="Sally: Nicole{p60}, play file."},
+					Animate(scene.objectLookup.NicoleMtg.sprite, "lit"),
 					MessageBox {message="Nicole: Playing{p60}, Sally."},
-					--PlayAudio("music", "project", 1.0, true),
 					Do(function()
-						local proj = BasicNPC(
-							scene,
-							{name = "objects"},
-							{
-								name = "projection",
-								x = scene.objectLookup.GriffMtg2.x - 16,
-								y = scene.objectLookup.GriffMtg2.y + 40,
-								width = 64,
-								height = 64,
-								properties = {align = "bottom_left", nocollision = true, sprite = "art/sprites/nicholeprojection2.png"}
-							}
-						)
-						scene:addObject(proj)
-						proj.sprite.sortOrderY = scene.objectLookup.GriffMtg2.y + scene.objectLookup.GriffMtg2.sprite.h*2 + 1
-						scene.objectLookup.Projection = proj
+						scene.objectLookup.NicoleMtg.sprite:setAnimation("project")
+						scene.objectLookup.ProjectionMtg.hidden = false
+						scene.objectLookup.ProjectionMtg.sprite.sortOrderY = 99999
+					end),
+					Wait(1),
+					PlayAudio("music", "project", 1.0, true, true),
+					Do(function()
+						scene.objectLookup.ProjectionMtg.sprite:setAnimation("face")
+					end),
+					Wait(1),
+					hop(antoine),
+					MessageBox {message="Antione: Eep! W-w-w-what is zat!?"},
+					MessageBox {message="Griff: Project Firebird."},
+					hop(bunnie),
+					MessageBox {message="Bunnie: Well ain't that just the stuff o' nightmares!"},
+					Animate(ivan.sprite, "meeting_idledown_attitude"),
+					MessageBox {message="Ivan: Elaboration is required."},
+					MessageBox {message="Griff: ...{p60}who is this guy?"},
+					hop(sonic),
+					MessageBox {message="Sonic: It's a long story{p60}, just tell us what the heck that is!"},
+					MessageBox {message="Griff: I must admit, I'm not entirely sure..."},
+					MessageBox {message="Griff: ...all I can tell you is{p60}, if Robotnik finishes it{p60}, he could wipe out every living thing on the planet in a matter of days..."},
+					Animate(sonic.sprite, "shock"),
+					Animate(bunnie.sprite, "shock"),
+					Animate(antoine.sprite, "shock"),
+					Animate(rotor.sprite, "shock"),
+					Animate(sally.sprite, "meeting_shock"),
+					Wait(2),
+					Animate(antoine.sprite, "sitlookforward"),
+					Animate(sonic.sprite, "sitlookforward"),
+					Animate(rotor.sprite, "sitright"),
+					Animate(bunnie.sprite, "sitlookforward"),
+					Animate(sally.sprite, "meeting_idledown"),
+					hop(bunnie),
+					MessageBox {message="Bunnie: Oh my stars!!"},
+					Parallel {
+						Repeat(hop(antoine), 4),
+						MessageBox {message="Antoine: *screams*", closeAction=Wait(1)}
+					},
+					MessageBox {message="Griff: There's a prototype being developed outside the city limits, in a top-secret location known as {h Iron Lock}."},
+					Animate(sally.sprite, "meeting_thinking2"),
+					MessageBox {message="Sally: Iron Lock?!"},
+					MessageBox {message="Leon: The old prison complex?"},
+					Animate(sally.sprite, "meeting_thinking"),
+					MessageBox {message="Sally: We've been there before...{p60} I found a message from my father there."},
+					MessageBox {message="Leon: The King?"},
+					MessageBox {message="Sally: Yes...{p60}there was so much more I wanted to \ninvestigate...{p60} but our visit was cut short."},
+					hop(sonic),
+					MessageBox {message="Sonic: Yeah, thanks to ol' Robuttnik's monster machine."},
+					MessageBox {message="Griff: Well don't expect this time to be much easier..."},
+					MessageBox {message="Griff: ...reports say Robotnik's got this place locked down. {p60}Maximum security."},
+					hop(sonic),
+					MessageBox {message="Sonic: Mondo problemo{p60}, but what about our current\noperation?"},
+					MessageBox {message="Sonic: Ya know{p60}, the {h computer virus} that could \nbring down Buttnik's whole army?"},
+					MessageBox {message="Sally: This has to take precedence.{p60} We need to find out what Robotnik's got up his sleeve."},
+					hop(sonic),
+					MessageBox {message="Sonic: Ok. {p60}Then we break into Iron Lock{p60}, trash this porker{p60}, and get back to business!"},
+					MessageBox {message="Sally: Agreed."},
+					AudioFade("music", 1.0, 0.0, 1),
+					Wait(1),
+					Animate(sally.sprite, "planning_smile"),
+					MessageBox {message="Sally: Well{p60}, I'd say that this is a great opportunity for our first joint mission!"},				
+					PlayAudio("music", "royalwelcome", 0.6, true, true),
+					hop(sonic),
+					MessageBox {message="Sonic: Say wha?"},
+					Animate(sally.sprite, "planning"),
+					MessageBox {message="Sally: If Iron Lock is as dangerous as Griff says{p60}, and this project Robotnik is working on is really a planetary threat{p60}, we are going to have to put aside our differences and work together!"},
+					MessageBox {message="Leon: That sounds like a wonderful idea."},
+					MessageBox {message="Leon: Fleet, Logan, and Ivan, you will accompany Sally's away team."},
+					hop(sonic),
+					MessageBox {message="Sonic: The bird's comin? {p60}Oh brother."},
+					-- annoyed
+					Animate(fleet.sprite, "meeting_lookright"),
+					MessageBox {message="Fleet: *mumbles* Great{p60}, countless years of training and I'm relegated to babysitting..."},
+					
+					MessageBox {message="Sally: Perfect!"},
+					Animate(sally.sprite, "planning_smile"),
+					MessageBox {message="Sally: Then it's settled...{p60} tomorrow Sonic, Antoine, and I will return to Iron Lock!"},
+					hop(antoine),
+					MessageBox {message="Antoine: Me!?"}
+					-- faint
+					
 						--[[
 						scene.player.sprite.visible = true
 						scene.player.dropShadow.hidden = false
@@ -425,8 +500,8 @@ return function(scene, hint)
 							MessageBox{message="Sally: When you're both ready to go, we can just ride this pulley cart out of Knothole."},
 							walkin
 						})
-						]]
-					end)
+						
+					end)]]
 				})
 			end)
 		}

@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 323,
+  nextobjectid = 325,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["onload"] = "actions/knothole.lua",
@@ -4254,6 +4254,44 @@ return {
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/griff.png"
+          }
+        },
+        {
+          id = 323,
+          name = "ProjectionMtg",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4780,
+          y = 1740,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/nicholeprojection2.png"
+          }
+        },
+        {
+          id = 324,
+          name = "NicoleMtg",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4805,
+          y = 1790,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/nicole.png"
           }
         }
       }
