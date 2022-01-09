@@ -217,7 +217,7 @@ return function(scene, hint)
 
 			Wait(3),
 			
-			--[[PlayAudio("music", "royalwelcome", 0.6, true, true),
+			PlayAudio("music", "royalwelcome", 0.6, true, true),
 			Animate(sally.sprite, "planning_smile"),
 			MessageBox {message="Sally: To start off, I'd like to welcome the Rebellion to Knothole Village! {p60}I am sure many of you have already become acquainted--"},
 			hop(sonic),
@@ -247,7 +247,7 @@ return function(scene, hint)
 			AudioFade("music", 0.6, 0, 1),
 			Animate(fleet.sprite, "meeting_lookright"),
 			Animate(sally.sprite, "planning"),
-			MessageBox {message="Fleet: Princess{p60}, with all due respect{p60}, the Rebellion is an elite military force, combining undoubtedly the smartest and strongest minds in all of\nMobius..."},
+			MessageBox {message="Fleet: Princess{p60}, with all due respect{p60}, the Rebellion is an elite military force, combining undoubtedly the smartest and strongest in all of\nMobius..."},
 			MessageBox {message="Fleet: Meanwhile, the Freedom Fighters are...{p60} how do I put this?..."},
 			PlayAudio("music", "tense2", 1.0, true, true),
 			Animate(ivan.sprite, "meeting_idledown_attitude"),
@@ -290,7 +290,7 @@ return function(scene, hint)
 			MessageBox {message="Fleet: Have you taken back control over \"any\" part of the city?"},
 			Animate(sally.sprite, "meeting_thinking"),
 			MessageBox {message="Sally: No--"},
-			MessageBox {message="Fleet: Surely, {p20}you've at least found the rightful ruler of Mobotropolis and safely brought him to Knothole Village-- {p60}your very own father?"},
+			MessageBox {message="Fleet: Surely, {p20}you've at least found the rightful ruler of Mobotropolis and safely brought him to Knothole Village-- {p60}your very own {h father}?"},
 			Animate(sally.sprite, "meeting_sadleft"),
 			MessageBox {message="Sally: ...I--"},
 			Do(function()
@@ -312,7 +312,8 @@ return function(scene, hint)
 					Animate(fleet.sprite, "meeting_idledown"),
 					Animate(logan.sprite, "meeting_idledown"),
 					Animate(ivan.sprite, "meeting_idledown"),
-					MessageBox {message="Leon: ...and yet, have somehow become a formidable enough foe to Robotnik that he knows them by name, that they deserve our utmost respect."},
+					MessageBox {message="Leon: ...and yet, have somehow become a formidable enough foe to Robotnik that he knows them by name..."},
+					MessageBox {message="Leon: ...that they deserve out utmost respect."},
 					MessageBox {message="Leon: I see no reason why they should cease operations."}
 				},
 				Serial {
@@ -321,19 +322,32 @@ return function(scene, hint)
 				}
 			},
 			Wait(1),
-			PlayAudio("music", "standup", 1.0, true),
+			PlayAudio("music", "standup", 0.9, true),
 			Animate(sally.sprite, "meeting_thinking"),
 			MessageBox {message="Sally: Look{p60}, we may not be trained military officers{p60}, but we've been fighting Robotnik most of our\nlives..."},
-			MessageBox {message="Sally: We have lived experience{p60}, and we're not going to stop fighting."},
+			MessageBox {message="Sally: We don't just have experience{p60}, it's defined who we are.{p60} And we're not going to stop fighting."},
 			MessageBox {message="Leon: ...you really are your father's daughter."},
 			MessageBox {message="Sally: Th-{p20}thank you Leon."},
 			AudioFade("music", 1.0, 0.0, 0.5),
 			Wait(1),
-			Ease(scene.camPos, "y", -180, 0.5),
-			Move(griff, scene.objectLookup.GriffWaypoint),
-			Wait(1),
+			Parallel {
+				Serial {
+					Ease(scene.camPos, "y", -180, 0.5),
+					Move(griff, scene.objectLookup.GriffWaypoint),
+					Ease(griff, "x", function() return griff.x + 5 end, 8),
+					Ease(griff, "x", function() return griff.x - 3 end, 8),
+					Ease(griff, "x", function() return griff.x - 2 end, 8),
+					Ease(griff, "x", function() return griff.x + 1 end, 8)
+				},
+				Serial {
+					Wait(1.2),
+					PlayAudio("sfx", "griffvehicle", 1.0, true)
+				}
+			},
+			Wait(1.2),
 			Animate(griff.sprite, "idleleft_lookup"),
 			MessageBox {message="Griff: Sally--", closeAction=Wait(1)},
+			Animate(sally.sprite, "planning"),
 			MessageBox {message="Sally: --Griff?"},
 			Ease(scene.camPos, "y", 0, 0.5),
 			Animate(ivan.sprite, "meeting_idledown_attitude"),
@@ -342,7 +356,7 @@ return function(scene, hint)
 			Animate(ivan.sprite, "meeting_idledown"),
 			Ease(scene.camPos, "y", -180, 0.5),
 			MessageBox {message="Griff: I found something... {p60}Something big."},
-			MessageBox {message="Griff: You guys need to see this."},--]]
+			MessageBox {message="Griff: You guys need to see this."},
 			Do(function()
 				scene.player.cinematic = true
 				sally:run(BlockPlayer {
@@ -385,7 +399,7 @@ return function(scene, hint)
 					Wait(1),
 					hop(antoine),
 					MessageBox {message="Antione: Eep! W-w-w-what is zat!?"},
-					MessageBox {message="Griff: Project Firebird."},
+					MessageBox {message="Griff: {h Project Firebird}."},
 					hop(bunnie),
 					MessageBox {message="Bunnie: Well ain't that just the stuff o' nightmares!"},
 					Animate(ivan.sprite, "meeting_idledown_attitude"),
@@ -434,12 +448,12 @@ return function(scene, hint)
 					AudioFade("music", 1.0, 0.0, 1),
 					Wait(1),
 					Animate(sally.sprite, "planning_smile"),
-					MessageBox {message="Sally: Well{p60}, I'd say that this is a great opportunity for our first joint mission!"},				
+					MessageBox {message="Sally: Well...{p80} I'd say that this is a great opportunity for our first joint mission!"},				
 					PlayAudio("music", "royalwelcome", 0.6, true, true),
 					hop(sonic),
 					MessageBox {message="Sonic: Say wha?"},
 					Animate(sally.sprite, "planning"),
-					MessageBox {message="Sally: If Iron Lock is as dangerous as Griff says{p60}, and this project Robotnik is working on is really a planetary threat{p60}, we are going to have to put aside our differences and work together!"},
+					MessageBox {message="Sally: If Iron Lock is as dangerous as Griff says{p80}, and this project Robotnik is working on is really a planetary threat{p80}, we are going to have to put aside our differences and work together!"},
 					MessageBox {message="Leon: That sounds like a wonderful idea."},
 					MessageBox {message="Leon: Fleet, Logan, and Ivan, you will accompany Sally's away team."},
 					hop(sonic),
@@ -451,8 +465,20 @@ return function(scene, hint)
 					MessageBox {message="Sally: Perfect!"},
 					Animate(sally.sprite, "planning_smile"),
 					MessageBox {message="Sally: Then it's settled...{p60} tomorrow Sonic, Antoine, and I will return to Iron Lock!"},
-					hop(antoine),
-					MessageBox {message="Antoine: Me!?"}
+					Animate(antoine.sprite, "shock"),
+					MessageBox {message="Antoine: Me!?"},
+					Animate(antoine.sprite, "nauseated"),
+					Do(function()
+						antoine.sprite.transform.ox = antoine.sprite.w/2
+						antoine.sprite.transform.oy = antoine.sprite.h
+						antoine.x = antoine.x + antoine.sprite.w
+						antoine.y = antoine.y + antoine.sprite.h*2
+					end),
+					Repeat(Serial {
+						Ease(antoine.sprite.transform, "angle", math.pi/48, 3),
+						Ease(antoine.sprite.transform, "angle", -math.pi/48, 3)
+					}, 2),
+					Animate(antoine.sprite, "dead")
 					-- faint
 					
 						--[[

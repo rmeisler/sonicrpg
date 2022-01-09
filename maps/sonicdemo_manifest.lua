@@ -587,6 +587,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/griffvehicle.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/poison.ogg",
 		category = "sfx"
 	},

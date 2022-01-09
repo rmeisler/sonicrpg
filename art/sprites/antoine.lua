@@ -153,5 +153,11 @@ return {
 			frames = {{11,4}},
 			clip = {0,0,47,40}
 		},
+		dead = {
+            frames = {{11,3}}
+        },
+		nauseated = {
+            frames = {{10,3}}
+        }
     }
 }
