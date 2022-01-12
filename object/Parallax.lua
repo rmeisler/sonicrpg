@@ -19,10 +19,8 @@ function Parallax:construct(scene, layer)
 	self.layer = layer
 	self.w = self.layer.image:getWidth()
 	self.h = self.layer.image:getHeight()
-	self.curLayerX = self.layer.x
 
-	-- Parallax images are drawn as a 4x4 tile, stitched together by drawing the
-	-- image four times, at (0,0), (-screenwidth,0), (-screenwidth,-screenheight), and (0,-screenheight)
+	-- Parallax images are drawn as a 3x3 tiles, stitched together by drawing the image nine times
 	local oneDraw = self.layer.draw
 	self.layer.draw = function()
 		local offsets = {
@@ -40,8 +38,8 @@ function Parallax:construct(scene, layer)
 			self.layer.y = orig.y + o.y
 			oneDraw()
 		end
-		self.layer.x = orig.x
-		self.layer.y = orig.y
+		self.layer.x = (orig.x + self.dx) % (self.w)
+		self.layer.y = (orig.y + self.dy) % (self.h)
 	end
 	
 	self.dx = self.layer.properties.speedx or 0
@@ -57,10 +55,12 @@ function Parallax:draw()
 end
 
 function Parallax:update(dt)
-	if math.ceil(self.scene.player.x + love.graphics.getWidth()/2) > math.ceil(self.curLayerX + self.w*2) then
+	--[[if math.ceil(self.scene.player.x + love.graphics.getWidth()/2) > math.ceil(self.curLayerX + self.w*2) then
 		self.curLayerX = self.curLayerX + self.w*2
 		self.layer.offsetx = self.curLayerX
 	end
+	self.layer.x = self.layer.x + self.dx
+	self.layer.y = self.layer.y + self.dy]]
 end
 
 

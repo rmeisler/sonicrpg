@@ -669,7 +669,7 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 		if not layer.image then
 			layer.x = layer.offsetx + worldOffsetX
 			layer.y = layer.offsety + worldOffsetY
-		else
+		elseif layer.properties.type ~= "Parallax" then
 			layer.x = math.floor((layer.offsetx + worldOffsetX)*(layer.properties.movespeed or 1.05))
 			layer.y = math.floor((layer.offsety + worldOffsetY)*(layer.properties.movespeed or 1.05))
 			

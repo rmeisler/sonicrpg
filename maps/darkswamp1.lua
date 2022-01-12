@@ -434,11 +434,12 @@ return {
       name = "fog",
       visible = true,
       opacity = 0.2,
-      offsetx = 768,
-      offsety = 96,
+      offsetx = 0,
+      offsety = 0,
       image = "../art/sprites/swampfog.png",
       properties = {
-        ["speedx"] = 0.01,
+        ["speedx"] = -1,
+        ["speedy"] = 0,
         ["type"] = "Parallax"
       }
     },

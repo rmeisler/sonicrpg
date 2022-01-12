@@ -242,8 +242,8 @@ return function(scene, hint)
 			Animate(ivan.sprite, "meeting_idledown_attitude"),
 			MessageBox {message="Ivan: He will be here shortly."},
 			Animate(sally.sprite, "planning_smile"),
-			Animate(ivan.sprite, "meeting_idledown"),
 			MessageBox {message="Sally: That's fine. {p60}As, I was saying--{p60}I'm certain that if we unite our efforts to take down Robotnik, we will be unstoppable!"},
+			Animate(ivan.sprite, "meeting_idledown"),
 			AudioFade("music", 0.6, 0, 1),
 			Animate(fleet.sprite, "meeting_lookright"),
 			Animate(sally.sprite, "planning"),
@@ -331,17 +331,14 @@ return function(scene, hint)
 			AudioFade("music", 1.0, 0.0, 0.5),
 			Wait(1),
 			Parallel {
+				Ease(scene.camPos, "y", -180, 2),
+				PlayAudio("sfx", "griffvehicle", 1.0, true),
 				Serial {
-					Ease(scene.camPos, "y", -180, 0.5),
 					Move(griff, scene.objectLookup.GriffWaypoint),
-					Ease(griff, "x", function() return griff.x + 5 end, 8),
-					Ease(griff, "x", function() return griff.x - 3 end, 8),
+					Ease(griff, "x", function() return griff.x - 5 end, 8),
+					Ease(griff, "x", function() return griff.x + 3 end, 8),
 					Ease(griff, "x", function() return griff.x - 2 end, 8),
 					Ease(griff, "x", function() return griff.x + 1 end, 8)
-				},
-				Serial {
-					Wait(1.2),
-					PlayAudio("sfx", "griffvehicle", 1.0, true)
 				}
 			},
 			Wait(1.2),
@@ -414,6 +411,7 @@ return function(scene, hint)
 					Animate(antoine.sprite, "shock"),
 					Animate(rotor.sprite, "shock"),
 					Animate(sally.sprite, "meeting_shock"),
+					MessageBox {message="Antoine: *screams*", closeAction=Wait(1)},
 					Wait(2),
 					Animate(antoine.sprite, "sitlookforward"),
 					Animate(sonic.sprite, "sitlookforward"),
@@ -422,10 +420,6 @@ return function(scene, hint)
 					Animate(sally.sprite, "meeting_idledown"),
 					hop(bunnie),
 					MessageBox {message="Bunnie: Oh my stars!!"},
-					Parallel {
-						Repeat(hop(antoine), 4),
-						MessageBox {message="Antoine: *screams*", closeAction=Wait(1)}
-					},
 					MessageBox {message="Griff: There's a prototype being developed outside the city limits, in a top-secret location known as {h Iron Lock}."},
 					Animate(sally.sprite, "meeting_thinking2"),
 					MessageBox {message="Sally: Iron Lock?!"},
@@ -464,7 +458,7 @@ return function(scene, hint)
 					
 					MessageBox {message="Sally: Perfect!"},
 					Animate(sally.sprite, "planning_smile"),
-					MessageBox {message="Sally: Then it's settled...{p60} tomorrow Sonic, Antoine, and I will return to Iron Lock!"},
+					MessageBox {message="Sally: Then it's settled...{p60} tomorrow{p60}, alongside the Rebellion{p60}, Sonic, Antoine, and I will return to Iron Lock!"},
 					Animate(antoine.sprite, "shock"),
 					MessageBox {message="Antoine: Me!?"},
 					Animate(antoine.sprite, "nauseated"),
@@ -474,10 +468,10 @@ return function(scene, hint)
 						antoine.x = antoine.x + antoine.sprite.w
 						antoine.y = antoine.y + antoine.sprite.h*2
 					end),
-					Repeat(Serial {
-						Ease(antoine.sprite.transform, "angle", math.pi/48, 3),
-						Ease(antoine.sprite.transform, "angle", -math.pi/48, 3)
-					}, 2),
+					Ease(antoine.sprite.transform, "angle", math.pi/48, 2),
+					Ease(antoine.sprite.transform, "angle", -math.pi/48, 2),
+					Ease(antoine.sprite.transform, "angle", math.pi/48, 3),
+					Ease(antoine.sprite.transform, "angle", -math.pi/48, 3),
 					Animate(antoine.sprite, "dead")
 					-- faint
 					
