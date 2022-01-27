@@ -49,6 +49,7 @@ function BasicScene:onEnter(args)
 	self.mboxGradient = args.images["mboxgradient"]
 	self.camPos = Transform()
 	self.tutorial = args.tutorial
+	self.nighttime = args.nighttime or self.map.properties.nighttime
 	
 	self.cacheSceneData = args.cache
 	
@@ -57,6 +58,17 @@ function BasicScene:onEnter(args)
 	-- All our SceneNode drawing interface requires is a
 	-- draw function, so this works out fine.
 	self:addNode(self.map, "tiles")
+
+	local mapDraw = self.map.drawTileLayer
+	
+	if self.nighttime then
+		self.map.drawTileLayer = function(map, layer)
+			if not self.night then
+				self.night = shine.nightcolor()
+			end
+			self.night:draw(function() mapDraw(map, layer) end)
+		end
+	end
 	
 	local placeholder
 	local classCache = {}

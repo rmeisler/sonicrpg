@@ -5,7 +5,7 @@ return function(scene, hint)
 
 	local Action = require "actions/Action"
 	local Animate = require "actions/Animate"
-	--local TypeText = require "actions/TypeText"
+	local TypeText = require "actions/TypeText"
 	local Menu = require "actions/Menu"
 	local MessageBox = require "actions/MessageBox"
 	local PlayAudio = require "actions/PlayAudio"
@@ -26,7 +26,7 @@ return function(scene, hint)
 	local BasicNPC = require "object/BasicNPC"
 	
 	local knotholeIntro = function()
-		--[[local subtext = TypeText(
+		local subtext = TypeText(
 			Transform(50, 470),
 			{255, 255, 255, 0},
 			FontCache.TechnoSmall,
@@ -56,7 +56,7 @@ return function(scene, hint)
 			}
 		})
 		
-		scene.audio:playMusic("knothole", 0.8)]]
+		scene.audio:playMusic("knotholeatnight", 0.8, true)
 	end
 	
 	scene.player.dustColor = Player.FOREST_DUST_COLOR

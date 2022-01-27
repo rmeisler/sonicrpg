@@ -8,9 +8,10 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 325,
+  nextobjectid = 340,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
+    ["nighttime"] = true,
     ["onload"] = "actions/knothole.lua",
     ["regionName"] = "Great Forest",
     ["sectorName"] = "Knothole"
@@ -1568,6 +1569,28 @@ return {
           properties = {
             ["direction"] = "up_right"
           }
+        },
+        {
+          id = 339,
+          name = "CampfireBottom",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1155,
+          y = 1370,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -32,
+            ["ghost"] = true,
+            ["nightbright"] = true,
+            ["nonight"] = true,
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 150, 1),\n            Ease(self.sprite.color, 4, 100, 1)\n        })\n    }\nend",
+            ["sprite"] = "../art/sprites/campfirebottom.png"
+          }
         }
       }
     },
@@ -2694,8 +2717,8 @@ return {
           name = "Bunnie",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1088,
-          y = 1408,
+          x = 1024,
+          y = 1280,
           width = 64,
           height = 96,
           rotation = 0,
@@ -2707,6 +2730,7 @@ return {
             ["alignOffsetY"] = -16,
             ["defaultAnim"] = "idleright",
             ["ghost"] = false,
+            ["nonight"] = true,
             ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message = \"Bunnie: That big gray dog-fella is just drivin' me crazy!\"}\n    }\nend",
             ["sprite"] = "../art/sprites/bunny.png"
           }
@@ -3254,6 +3278,7 @@ return {
           gid = 7000,
           visible = true,
           properties = {
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/save.png"
           }
         },
@@ -3927,8 +3952,250 @@ return {
             ["alignOffsetY"] = -16,
             ["defaultAnim"] = "idledown",
             ["ghost"] = false,
+            ["nonight"] = true,
             ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    self.origY = self.y\n    return BlockPlayer {\n        MessageBox {\n            message = \"Antoine: You tell that blue-haired fewl that he's banned from using my kitchen!\"\n        }\n    }\nend",
             ["sprite"] = "../art/sprites/antoine.png"
+          }
+        },
+        {
+          id = 325,
+          name = "BunnieWarmWindow1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1191,
+          y = 431,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "left",
+            ["ghost"] = true,
+            ["nightbright"] = true,
+            ["nonight"] = true,
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 150, 1),\n            Ease(self.sprite.color, 4, 100, 1)\n        })\n    }\nend",
+            ["sortOrderY"] = 544,
+            ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
+          }
+        },
+        {
+          id = 327,
+          name = "SallyWarmWindow1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1127,
+          y = 719,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "left",
+            ["ghost"] = true,
+            ["nightbright"] = true,
+            ["nonight"] = true,
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 150, 1),\n            Ease(self.sprite.color, 4, 100, 1)\n        })\n    }\nend",
+            ["sortOrderY"] = 810,
+            ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
+          }
+        },
+        {
+          id = 328,
+          name = "BunnieWarmWindow2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1498,
+          y = 431,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "right",
+            ["ghost"] = true,
+            ["nightbright"] = true,
+            ["nonight"] = true,
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 150, 1),\n            Ease(self.sprite.color, 4, 100, 1)\n        })\n    }\nend",
+            ["sortOrderY"] = 544,
+            ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
+          }
+        },
+        {
+          id = 329,
+          name = "SallyWarmWindow2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1434,
+          y = 719,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "right",
+            ["ghost"] = true,
+            ["nightbright"] = true,
+            ["nonight"] = true,
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 150, 1),\n            Ease(self.sprite.color, 4, 100, 1)\n        })\n    }\nend",
+            ["sortOrderY"] = 810,
+            ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
+          }
+        },
+        {
+          id = 330,
+          name = "RotorWarmWindow1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1703,
+          y = 431,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "left",
+            ["ghost"] = true,
+            ["nightbright"] = true,
+            ["nonight"] = true,
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 150, 1),\n            Ease(self.sprite.color, 4, 100, 1)\n        })\n    }\nend",
+            ["sortOrderY"] = 544,
+            ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
+          }
+        },
+        {
+          id = 331,
+          name = "RotorWarmWindow2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2010,
+          y = 431,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "right",
+            ["ghost"] = true,
+            ["nightbright"] = true,
+            ["nonight"] = true,
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 150, 1),\n            Ease(self.sprite.color, 4, 100, 1)\n        })\n    }\nend",
+            ["sortOrderY"] = 544,
+            ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
+          }
+        },
+        {
+          id = 332,
+          name = "SonicWarmWindow1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1799,
+          y = 719,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "left",
+            ["ghost"] = true,
+            ["nightbright"] = true,
+            ["nonight"] = true,
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 150, 1),\n            Ease(self.sprite.color, 4, 100, 1)\n        })\n    }\nend",
+            ["sortOrderY"] = 810,
+            ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
+          }
+        },
+        {
+          id = 333,
+          name = "SonicWarmWindow2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2106,
+          y = 719,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "right",
+            ["ghost"] = true,
+            ["nightbright"] = true,
+            ["nonight"] = true,
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 150, 1),\n            Ease(self.sprite.color, 4, 100, 1)\n        })\n    }\nend",
+            ["sortOrderY"] = 810,
+            ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
+          }
+        },
+        {
+          id = 334,
+          name = "AntoineWarmWindow1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1767,
+          y = 1647,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "left",
+            ["ghost"] = true,
+            ["nightbright"] = true,
+            ["nonight"] = true,
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 150, 1),\n            Ease(self.sprite.color, 4, 100, 1)\n        })\n    }\nend",
+            ["sortOrderY"] = 810,
+            ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
+          }
+        },
+        {
+          id = 335,
+          name = "AntoineWarmWindow2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2074,
+          y = 1647,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "right",
+            ["ghost"] = true,
+            ["nightbright"] = true,
+            ["nonight"] = true,
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 150, 1),\n            Ease(self.sprite.color, 4, 100, 1)\n        })\n    }\nend",
+            ["sortOrderY"] = 810,
+            ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
+          }
+        },
+        {
+          id = 336,
+          name = "Campfire",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1155,
+          y = 1355,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -32,
+            ["ghost"] = true,
+            ["nightbright"] = true,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/campfire.png"
           }
         }
       }
@@ -3960,6 +4227,7 @@ return {
             ["defaultAnim"] = "sitlookforward",
             ["hidden"] = true,
             ["nocollision"] = true,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/antoine.png"
           }
         },
@@ -3980,6 +4248,7 @@ return {
             ["defaultAnim"] = "sitlookforward",
             ["hidden"] = true,
             ["nocollision"] = true,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/bunny.png"
           }
         },
@@ -4000,6 +4269,7 @@ return {
             ["defaultAnim"] = "sitlookforward",
             ["hidden"] = true,
             ["nocollision"] = true,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/sonic.png"
           }
         },
@@ -4020,6 +4290,7 @@ return {
             ["defaultAnim"] = "planning",
             ["hidden"] = true,
             ["nocollision"] = true,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/sally.png"
           }
         },
@@ -4040,6 +4311,7 @@ return {
             ["defaultAnim"] = "sitright",
             ["hidden"] = true,
             ["nocollision"] = true,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/rotor.png"
           }
         },
@@ -4118,6 +4390,7 @@ return {
             ["defaultAnim"] = "meeting_idledown",
             ["hidden"] = true,
             ["nocollision"] = true,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/ivan.png"
           }
         },
@@ -4138,6 +4411,7 @@ return {
             ["defaultAnim"] = "meeting_idledown",
             ["hidden"] = true,
             ["nocollision"] = true,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/fleet.png"
           }
         },
@@ -4158,6 +4432,7 @@ return {
             ["defaultAnim"] = "meeting_idledown",
             ["hidden"] = true,
             ["nocollision"] = true,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/logan.png"
           }
         },
@@ -4179,6 +4454,7 @@ return {
             ["hidden"] = true,
             ["movespeed"] = 1,
             ["nocollision"] = true,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/leon.png"
           }
         },
@@ -4217,6 +4493,7 @@ return {
             ["hidden"] = true,
             ["ignoreMapCollision"] = true,
             ["movespeed"] = 25,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/griffvehicle.png"
           }
         },
@@ -4253,6 +4530,7 @@ return {
             ["defaultAnim"] = "meeting_idledown",
             ["hidden"] = true,
             ["nocollision"] = true,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/griff.png"
           }
         },
@@ -4272,6 +4550,7 @@ return {
             ["align"] = "bottom_left",
             ["hidden"] = true,
             ["nocollision"] = true,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/nicholeprojection2.png"
           }
         },
@@ -4291,6 +4570,7 @@ return {
             ["align"] = "bottom_left",
             ["hidden"] = true,
             ["nocollision"] = true,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/nicole.png"
           }
         }
@@ -4814,19 +5094,6 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-      }
-    },
-    {
-      type = "imagelayer",
-      name = "godrays",
-      visible = true,
-      opacity = 0.5,
-      offsetx = 468,
-      offsety = -384,
-      image = "../art/parallax/godrays.png",
-      properties = {
-        ["movespeed"] = 1,
-        ["shimmer"] = true
       }
     },
     {

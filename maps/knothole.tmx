@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="325">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="340">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
+  <property name="nighttime" type="bool" value="true"/>
   <property name="onload" type="file" value="actions/knothole.lua"/>
   <property name="regionName" value="Great Forest"/>
   <property name="sectorName" value="Knothole"/>
@@ -1085,6 +1086,28 @@
     <property name="direction" value="up_right"/>
    </properties>
   </object>
+  <object id="339" name="CampfireBottom" type="BasicNPC" gid="5323" x="1155" y="1370" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-32"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="nightbright" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInit">local Repeat = require &quot;actions/Repeat&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self)
+    self:run {
+        Repeat(Serial {
+            Ease(self.sprite.color, 4, 150, 1),
+            Ease(self.sprite.color, 4, 100, 1)
+        })
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/campfirebottom.png"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="objects">
   <object id="1" name="Spawn 1" type="Player" gid="5323" x="1600" y="1088" width="32" height="32">
@@ -1535,13 +1558,14 @@
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
-  <object id="81" name="Bunnie" type="BasicNPC" gid="5323" x="1088" y="1408" width="64" height="96">
+  <object id="81" name="Bunnie" type="BasicNPC" gid="5323" x="1024" y="1280" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
     <property name="alignOffsetY" type="float" value="-16"/>
     <property name="defaultAnim" value="idleright"/>
     <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
@@ -2237,6 +2261,7 @@ end</property>
   </object>
   <object id="132" name="Save" type="SavePoint" gid="7000" x="608" y="1280" width="32" height="32">
    <properties>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
@@ -2552,6 +2577,7 @@ end</property>
     <property name="alignOffsetY" type="float" value="-16"/>
     <property name="defaultAnim" value="idledown"/>
     <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
@@ -2571,6 +2597,236 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
    </properties>
   </object>
+  <object id="325" name="BunnieWarmWindow1" type="BasicNPC" gid="5323" x="1191" y="431" width="32" height="32">
+   <properties>
+    <property name="defaultAnim" value="left"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="nightbright" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInit">local Repeat = require &quot;actions/Repeat&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self)
+    self:run {
+        Repeat(Serial {
+            Ease(self.sprite.color, 4, 150, 1),
+            Ease(self.sprite.color, 4, 100, 1)
+        })
+    }
+end</property>
+    <property name="sortOrderY" type="float" value="544"/>
+    <property name="sprite" type="file" value="../art/sprites/knotholehutwarmwindows.png"/>
+   </properties>
+  </object>
+  <object id="327" name="SallyWarmWindow1" type="BasicNPC" gid="5323" x="1127" y="719" width="32" height="32">
+   <properties>
+    <property name="defaultAnim" value="left"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="nightbright" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInit">local Repeat = require &quot;actions/Repeat&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self)
+    self:run {
+        Repeat(Serial {
+            Ease(self.sprite.color, 4, 150, 1),
+            Ease(self.sprite.color, 4, 100, 1)
+        })
+    }
+end</property>
+    <property name="sortOrderY" type="float" value="810"/>
+    <property name="sprite" type="file" value="../art/sprites/knotholehutwarmwindows.png"/>
+   </properties>
+  </object>
+  <object id="328" name="BunnieWarmWindow2" type="BasicNPC" gid="5323" x="1498" y="431" width="32" height="32">
+   <properties>
+    <property name="defaultAnim" value="right"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="nightbright" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInit">local Repeat = require &quot;actions/Repeat&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self)
+    self:run {
+        Repeat(Serial {
+            Ease(self.sprite.color, 4, 150, 1),
+            Ease(self.sprite.color, 4, 100, 1)
+        })
+    }
+end</property>
+    <property name="sortOrderY" type="float" value="544"/>
+    <property name="sprite" type="file" value="../art/sprites/knotholehutwarmwindows.png"/>
+   </properties>
+  </object>
+  <object id="329" name="SallyWarmWindow2" type="BasicNPC" gid="5323" x="1434" y="719" width="32" height="32">
+   <properties>
+    <property name="defaultAnim" value="right"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="nightbright" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInit">local Repeat = require &quot;actions/Repeat&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self)
+    self:run {
+        Repeat(Serial {
+            Ease(self.sprite.color, 4, 150, 1),
+            Ease(self.sprite.color, 4, 100, 1)
+        })
+    }
+end</property>
+    <property name="sortOrderY" type="float" value="810"/>
+    <property name="sprite" type="file" value="../art/sprites/knotholehutwarmwindows.png"/>
+   </properties>
+  </object>
+  <object id="330" name="RotorWarmWindow1" type="BasicNPC" gid="5323" x="1703" y="431" width="32" height="32">
+   <properties>
+    <property name="defaultAnim" value="left"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="nightbright" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInit">local Repeat = require &quot;actions/Repeat&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self)
+    self:run {
+        Repeat(Serial {
+            Ease(self.sprite.color, 4, 150, 1),
+            Ease(self.sprite.color, 4, 100, 1)
+        })
+    }
+end</property>
+    <property name="sortOrderY" type="float" value="544"/>
+    <property name="sprite" type="file" value="../art/sprites/knotholehutwarmwindows.png"/>
+   </properties>
+  </object>
+  <object id="331" name="RotorWarmWindow2" type="BasicNPC" gid="5323" x="2010" y="431" width="32" height="32">
+   <properties>
+    <property name="defaultAnim" value="right"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="nightbright" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInit">local Repeat = require &quot;actions/Repeat&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self)
+    self:run {
+        Repeat(Serial {
+            Ease(self.sprite.color, 4, 150, 1),
+            Ease(self.sprite.color, 4, 100, 1)
+        })
+    }
+end</property>
+    <property name="sortOrderY" type="float" value="544"/>
+    <property name="sprite" type="file" value="../art/sprites/knotholehutwarmwindows.png"/>
+   </properties>
+  </object>
+  <object id="332" name="SonicWarmWindow1" type="BasicNPC" gid="5323" x="1799" y="719" width="32" height="32">
+   <properties>
+    <property name="defaultAnim" value="left"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="nightbright" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInit">local Repeat = require &quot;actions/Repeat&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self)
+    self:run {
+        Repeat(Serial {
+            Ease(self.sprite.color, 4, 150, 1),
+            Ease(self.sprite.color, 4, 100, 1)
+        })
+    }
+end</property>
+    <property name="sortOrderY" type="float" value="810"/>
+    <property name="sprite" type="file" value="../art/sprites/knotholehutwarmwindows.png"/>
+   </properties>
+  </object>
+  <object id="333" name="SonicWarmWindow2" type="BasicNPC" gid="5323" x="2106" y="719" width="32" height="32">
+   <properties>
+    <property name="defaultAnim" value="right"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="nightbright" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInit">local Repeat = require &quot;actions/Repeat&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self)
+    self:run {
+        Repeat(Serial {
+            Ease(self.sprite.color, 4, 150, 1),
+            Ease(self.sprite.color, 4, 100, 1)
+        })
+    }
+end</property>
+    <property name="sortOrderY" type="float" value="810"/>
+    <property name="sprite" type="file" value="../art/sprites/knotholehutwarmwindows.png"/>
+   </properties>
+  </object>
+  <object id="334" name="AntoineWarmWindow1" type="BasicNPC" gid="5323" x="1767" y="1647" width="32" height="32">
+   <properties>
+    <property name="defaultAnim" value="left"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="nightbright" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInit">local Repeat = require &quot;actions/Repeat&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self)
+    self:run {
+        Repeat(Serial {
+            Ease(self.sprite.color, 4, 150, 1),
+            Ease(self.sprite.color, 4, 100, 1)
+        })
+    }
+end</property>
+    <property name="sortOrderY" type="float" value="810"/>
+    <property name="sprite" type="file" value="../art/sprites/knotholehutwarmwindows.png"/>
+   </properties>
+  </object>
+  <object id="335" name="AntoineWarmWindow2" type="BasicNPC" gid="5323" x="2074" y="1647" width="32" height="32">
+   <properties>
+    <property name="defaultAnim" value="right"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="nightbright" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInit">local Repeat = require &quot;actions/Repeat&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self)
+    self:run {
+        Repeat(Serial {
+            Ease(self.sprite.color, 4, 150, 1),
+            Ease(self.sprite.color, 4, 100, 1)
+        })
+    }
+end</property>
+    <property name="sortOrderY" type="float" value="810"/>
+    <property name="sprite" type="file" value="../art/sprites/knotholehutwarmwindows.png"/>
+   </properties>
+  </object>
+  <object id="336" name="Campfire" type="BasicNPC" gid="5323" x="1155" y="1355" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-32"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="nightbright" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/campfire.png"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="above">
   <object id="298" name="AntoineMtg" type="BasicNPC" gid="7597" x="4885" y="1833" width="32" height="32">
@@ -2579,6 +2835,7 @@ end</property>
     <property name="defaultAnim" value="sitlookforward"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
    </properties>
   </object>
@@ -2588,6 +2845,7 @@ end</property>
     <property name="defaultAnim" value="sitlookforward"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
    </properties>
   </object>
@@ -2597,6 +2855,7 @@ end</property>
     <property name="defaultAnim" value="sitlookforward"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
    </properties>
   </object>
@@ -2606,6 +2865,7 @@ end</property>
     <property name="defaultAnim" value="planning"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/sally.png"/>
    </properties>
   </object>
@@ -2615,6 +2875,7 @@ end</property>
     <property name="defaultAnim" value="sitright"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
    </properties>
   </object>
@@ -2649,6 +2910,7 @@ end</property>
     <property name="defaultAnim" value="meeting_idledown"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
    </properties>
   </object>
@@ -2658,6 +2920,7 @@ end</property>
     <property name="defaultAnim" value="meeting_idledown"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
    </properties>
   </object>
@@ -2667,6 +2930,7 @@ end</property>
     <property name="defaultAnim" value="meeting_idledown"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/logan.png"/>
    </properties>
   </object>
@@ -2677,6 +2941,7 @@ end</property>
     <property name="hidden" type="bool" value="true"/>
     <property name="movespeed" type="float" value="1"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/leon.png"/>
    </properties>
   </object>
@@ -2693,6 +2958,7 @@ end</property>
     <property name="hidden" type="bool" value="true"/>
     <property name="ignoreMapCollision" type="bool" value="true"/>
     <property name="movespeed" type="float" value="25"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/griffvehicle.png"/>
    </properties>
   </object>
@@ -2707,6 +2973,7 @@ end</property>
     <property name="defaultAnim" value="meeting_idledown"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/griff.png"/>
    </properties>
   </object>
@@ -2715,6 +2982,7 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/nicholeprojection2.png"/>
    </properties>
   </object>
@@ -2723,6 +2991,7 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/nicole.png"/>
    </properties>
   </object>
@@ -3187,13 +3456,6 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <imagelayer name="godrays" opacity="0.5" offsetx="468" offsety="-384">
-  <image source="../art/parallax/godrays.png" width="145" height="1200"/>
-  <properties>
-   <property name="movespeed" type="float" value="1"/>
-   <property name="shimmer" type="bool" value="true"/>
-  </properties>
- </imagelayer>
  <layer name="Collision" width="275" height="88" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12721,0,0,0,0,0,0,0,0,0,0,0,12721,0,0,12721,0,0,0,0,0,0,12721,0,0,0,0,0,0,0,0,0,0,0,12721,0,0,0,0,0,0,0,0,0,12721,0,0,0,0,0,0,0,0,0,0,0,12721,0,0,0,0,3021,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3021,0,0,0,0,0,0,0,531,0,0,0,0,0,0,0,0,0,0,0,0,0,531,0,0,0,0,0,531,531,0,0,0,0,0,0,0,0,0,0,0,0,531,0,0,0,531,0,0,0,0,0,0,0,0,0,0,0,0,531,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

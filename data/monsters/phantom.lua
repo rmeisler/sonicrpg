@@ -131,7 +131,10 @@ return {
 				MessageBox {message="Party lost the ability to "..ability.."!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(0.6)},
 			}
 		elseif state == "claw" then
-			local dmgAction = target:takeDamage(self.stats, true)
+			local dmgAction = Serial {
+				Wait(0.8),
+				target:takeDamage(self.stats, true)
+			}
 			if target.id == "sonic" and target.state == target.STATE_IDLE then
 				dmgAction = PressX(
 					self,
@@ -201,6 +204,7 @@ return {
 			}
 		elseif state == "poisonclaw" then
 			local dmgAction = Serial {
+				Wait(0.8),
 				target:takeDamage(self.stats, true),
 				Do(function()
 					target.poisoned = table.clone(self.stats)

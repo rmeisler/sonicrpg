@@ -105,6 +105,13 @@ function NPC:construct(scene, layer, object)
 			self.y = self.y + self.sprite.h
 			self.sprite.transform.angle = self.angle
 		end
+		
+		if self.scene.nighttime and object.properties.nonight then
+			self.sprite.drawWithNight = false
+			if not object.properties.nightbright then
+				self.sprite.color = {150,150,150,255}
+			end
+		end
 	end
 end
 

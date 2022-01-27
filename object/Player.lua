@@ -277,6 +277,7 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 			nil,
 			"objects"
 		)
+		pressDir.drawWithNight = false
 		pressDir.sortOrderY = Player.MAX_SORT_ORDER_Y
 		self.curKeyHintSprite = pressDir
 		table.insert(keyHintActions, Ease(pressDir.color, 4, 255, 5))
@@ -295,6 +296,7 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 			nil,
 			"objects"
 		)
+		pressLsh.drawWithNight = false
 		pressLsh.sortOrderY = Player.MAX_SORT_ORDER_Y
 		self.curKeyHintSprite = pressLsh
 		table.insert(keyHintActions, Ease(pressLsh.color, 4, 255, 5))
@@ -313,6 +315,7 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 			nil,
 			"objects"
 		)
+		pressX.drawWithNight = false
 		pressX.sortOrderY = Player.MAX_SORT_ORDER_Y
 		self.curKeyHintSprite = pressX
 		table.insert(keyHintActions, Ease(pressX.color, 4, 255, 5))
@@ -603,6 +606,10 @@ function Player:updateSprite()
 		self.layer.name
 	)
 	
+	if self.scene.nighttime then
+		self.sprite.drawWithNight = false
+	end
+
 	-- Debug
 	if self.debugHotspots then
 		local drawFn = self.sprite.draw
@@ -692,7 +699,7 @@ function Player:isHiding(direction)
 end
 
 function Player:inShadow()
-	return next(self.shadows)
+	return self.scene.nighttime or next(self.shadows)
 end
 
 function Player:inLight()
@@ -758,6 +765,8 @@ function Player:basicUpdate(dt)
 	self.doingSpecialMove = false
 	
 	local moving = false
+	local movingX = false
+	local movingY = false
     if love.keyboard.isDown("right") then
 		if  self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, movespeed, 0) and
 			self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, movespeed, 0)
@@ -776,6 +785,7 @@ function Player:basicUpdate(dt)
 			end
 			
 			moving = true
+			movingX = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
 			if not isSwatbot and spot and not (love.keyboard.isDown("up") or love.keyboard.isDown("down")) then
@@ -836,6 +846,7 @@ function Player:basicUpdate(dt)
 			end
 			
 			moving = true
+			movingX = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
 			if not isSwatbot and spot and not (love.keyboard.isDown("up") or love.keyboard.isDown("down")) then
@@ -886,6 +897,7 @@ function Player:basicUpdate(dt)
 			self.y = self.y + movespeed
 			self.state = Player.STATE_WALKDOWN
 			moving = true
+			movingY = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
 			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
@@ -970,6 +982,7 @@ function Player:basicUpdate(dt)
 			self.y = self.y - movespeed
 			self.state = Player.STATE_WALKUP
 			moving = true
+			movingY = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
 			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
@@ -1019,6 +1032,10 @@ function Player:basicUpdate(dt)
 		self.scene.audio:playSfx("swatbotstep", 1.0)
 		self.lastSwatbotStepSfx = love.timer.getTime()
 	end
+	
+	self.moving = moving
+	self.movingX = movingX
+	self.movingY = movingY
 
 	if prevState ~= self.state then
 		self.sprite.animations[self.state]:reset()

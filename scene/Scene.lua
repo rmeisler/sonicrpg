@@ -159,7 +159,9 @@ function Scene:draw(layerName)
 			for _, node in pairs(sceneLayer.nodes) do
 				if node.draw then
 					node:draw()
-					love.graphics.setColor(255,255,255,255)
+					if sceneLayer.layerName ~= "tiles" then
+						love.graphics.setColor(255,255,255,255)
+					end
 				end
 			end
 		end

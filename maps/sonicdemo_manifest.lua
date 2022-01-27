@@ -1228,6 +1228,12 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/knotholeatnight.ogg",
+		category = "music",
+		looping = true,
+	},
+	{
+		type = "sound",
 		file = "audio/music/talkingtosally.ogg",
 		category = "music",
 		volume = 1.0,

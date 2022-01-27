@@ -36,6 +36,7 @@ function SpriteNode:construct(scene, transform, color, imgsrc, w, h, layer)
 	self.drawWithShine = false
 	self.drawWithParallax = false
 	self.drawWithGlow = false
+	self.drawWithNight = true
 	self.glowColor = {0,0,0,0}
 	self.layer = layer
 	self.visible = true
@@ -342,6 +343,8 @@ function SpriteNode:draw(override)
 		drawSprite()
 		
 		love.graphics.setShader(prevShader)
+	elseif self.scene.nighttime and self.drawWithNight then
+		self.scene.night:draw(drawSprite)
 	else
 		love.graphics.setColor(self.color)
 		drawSprite()

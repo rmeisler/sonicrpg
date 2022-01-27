@@ -1,5 +1,6 @@
 local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
+local Player = require "object/Player"
 
 local Parallax = class(require "object/SceneNode")
 
@@ -31,6 +32,8 @@ function Parallax:construct(scene, layer)
 			Transform(0, self.h),
 			Transform(0, -self.h),
 			Transform(self.w, self.h),
+			Transform(-self.w, self.h),
+			Transform(self.w, -self.h),
 		}
 		local orig = Transform(self.layer.x, self.layer.y)
 		for _,o in pairs(offsets) do
@@ -40,6 +43,30 @@ function Parallax:construct(scene, layer)
 		end
 		self.layer.x = (orig.x + self.dx) % (self.w)
 		self.layer.y = (orig.y + self.dy) % (self.h)
+		
+		-- Hacky way of compensating for world xform
+		local dt = love.timer.getDelta()
+		if  self.scene.player.x > love.graphics.getWidth()/2 and
+			self.scene.player.x < (self.scene:getMapWidth() - love.graphics.getWidth()/2) and
+			self.scene.player.movingX
+		then
+			if love.keyboard.isDown("right") then
+				self.layer.x = self.layer.x - self.scene.player.movespeed * (dt/0.016)
+			elseif love.keyboard.isDown("left") then
+				self.layer.x = self.layer.x + self.scene.player.movespeed * (dt/0.016)
+			end
+		end
+		
+		if  self.scene.player.y > love.graphics.getHeight()/2 and
+			self.scene.player.y < (self.scene:getMapHeight() - love.graphics.getHeight()/2) and
+			self.scene.player.movingY
+		then
+			if love.keyboard.isDown("down") then
+				self.layer.y = self.layer.y - self.scene.player.movespeed * (dt/0.016)
+			elseif love.keyboard.isDown("up") then
+				self.layer.y = self.layer.y + self.scene.player.movespeed * (dt/0.016)
+			end
+		end
 	end
 	
 	self.dx = self.layer.properties.speedx or 0
