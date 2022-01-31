@@ -4,11 +4,15 @@ return {
 		file = "maps/worldmap.lua",
 		--primary = true
     },
-	
 	{
         type = "map",
 		file = "maps/darkswamp1.lua",
-		primary = true
+		--primary = true
+    },
+	{
+        type = "map",
+		file = "maps/darkswamp2.lua",
+		--primary = true
     },
 	
 	{
@@ -26,7 +30,7 @@ return {
 	{
         type = "map",
 		file = "maps/sallyshutnight.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -78,6 +82,11 @@ return {
 	{
         type = "map",
         file = "maps/knothole.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/knotholeatnight.lua",
 		--primary = true
     },
 	

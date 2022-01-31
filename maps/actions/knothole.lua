@@ -56,7 +56,7 @@ return function(scene, hint)
 			}
 		})
 		
-		scene.audio:playMusic("knotholeatnight", 0.8, true)
+		scene.audio:playMusic("knothole", 0.8, true)
 	end
 	
 	scene.player.dustColor = Player.FOREST_DUST_COLOR

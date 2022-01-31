@@ -35,7 +35,7 @@ return {
 	stats = {
 		xp    = 20,
 		maxhp = 500,
-		attack = 14,
+		attack = 18,
 		defense = 15,
 		speed = 20,
 		focus = 1,
@@ -132,7 +132,7 @@ return {
 			}
 		elseif state == "claw" then
 			local dmgAction = Serial {
-				Wait(0.8),
+				Wait(0.4),
 				target:takeDamage(self.stats, true)
 			}
 			if target.id == "sonic" and target.state == target.STATE_IDLE then
@@ -204,7 +204,7 @@ return {
 			}
 		elseif state == "poisonclaw" then
 			local dmgAction = Serial {
-				Wait(0.8),
+				Wait(0.4),
 				target:takeDamage(self.stats, true),
 				Do(function()
 					target.poisoned = table.clone(self.stats)

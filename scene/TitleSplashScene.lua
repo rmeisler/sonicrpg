@@ -177,7 +177,7 @@ function TitleSplashScene:newGame()
 	GameState.leader = "sally"
 	GameState:setFlag("ep3_intro")
 	
-	GameState:setFlag("ep3_introknothole")
+	--GameState:setFlag("ep3_introknothole")
 	--GameState:setFlag("ep3_ffmeeting")
 	
 	self.exiting = true
