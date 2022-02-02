@@ -5,6 +5,25 @@ return {
     h = 55,
 
     animations = {
+	    idleright = {
+            frames = {{0,0}}
+        },
+		idleleft = {
+			frames = {{0,1}}
+		},
+		idledown = {
+			frames = {{0,2}}
+		},
+		idleup = {
+			frames = {{0,3}}
+		},
+		attitude = {
+			frames = {{1,5}}
+		},
+		irritated = {
+			frames = {{1,6}}
+		},
+		
 		meeting_idledown = {
 			frames = {{0,2}},
 			clip = {0,0,47,46}

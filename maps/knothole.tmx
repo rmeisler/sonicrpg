@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="340">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="350">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="onload" type="file" value="actions/knothole.lua"/>
@@ -1535,35 +1535,15 @@
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
-  <object id="81" name="Bunnie" type="BasicNPC" gid="5323" x="1024" y="1280" width="64" height="96">
+  <object id="81" name="FleetBicker" type="BasicNPC" gid="5323" x="480" y="1088" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
     <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="idleright"/>
+    <property name="defaultAnim" value="lookright"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Menu = require &quot;actions/Menu&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-
-local Transform = require &quot;util/Transform&quot;
-local Layout = require &quot;util/Layout&quot;
-
-local NPC = require &quot;object/NPC&quot;
-
-return function(self)
-    return BlockPlayer {
-        MessageBox {message = &quot;Bunnie: That big gray dog-fella is just drivin' me crazy!&quot;}
-    }
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
+    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
    </properties>
   </object>
   <object id="84" name="Sign" type="BasicNPC" gid="5323" x="2592" y="2048" width="64" height="64">
@@ -2382,12 +2362,156 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="191" name="Tails" type="BasicNPC" gid="5323" x="4736" y="2560" width="64" height="96">
+  <object id="222" name="Chest5" type="Chest" gid="7597" x="4672" y="1344" width="64" height="64">
+   <properties>
+    <property name="CrystalWater" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="278" name="CartWaypoint" type="BasicNPC" gid="5323" x="8032" y="-160" width="96" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="282" name="CartWaypoint2" type="BasicNPC" gid="5323" x="8032" y="704" width="96" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="305" name="Hint" type="BasicNPC" gid="5323" x="5920" y="512" width="32" height="96">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="specialHint" value="bunny"/>
+   </properties>
+  </object>
+  <object id="340" name="SonicBicker" type="BasicNPC" gid="5323" x="576" y="1088" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="worried"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            MessageBox {message = &quot;Sonic: *whipering* Ugh. {p40}She is the worst!&quot;},
+            Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;lookright&quot;),
+            MessageBox {message = &quot;Fleet: What was that?&quot;},
+            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;shock&quot;),
+            Wait(1),
+            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;earnestleft&quot;),
+            MessageBox {message = &quot;Sonic: Uh...{p40}I said 'she got here first'!&quot;},
+            Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;smirk&quot;),
+            MessageBox {message = &quot;Fleet: When you're right, you're right!&quot;},
+            Do(function() self.scene.objectLookup.FleetBicker.sprite:setAnimation(&quot;laugh&quot;) end),
+            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;irritated&quot;)
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;smirk&quot;),
+            MessageBox {message = &quot;Fleet: Now I think you can see why I'm known as the 'fastest living being on Mobius'.&quot;},
+            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;shock&quot;),
+            Wait(1),
+            Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;lookright&quot;),
+            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;worried&quot;),
+            MessageBox {message = &quot;Sonic: Hey, don't get too pumped, bird brain. {p40}I was goin' easy on ya. {p40}You're our guests after all.&quot;},
+            Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;smirk&quot;),
+            MessageBox {message = &quot;Fleet: Hehe, {p40}keep telling yourself that.&quot;},
+            Do(function() self.scene.objectLookup.FleetBicker.sprite:setAnimation(&quot;laugh&quot;) end),
+            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;irritated&quot;)
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
+   </properties>
+  </object>
+  <object id="341" name="IvanBicker" type="BasicNPC" gid="5323" x="1760" y="1984" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="idleup"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
+   </properties>
+  </object>
+  <object id="342" name="AntoineBicker" type="BasicNPC" gid="5323" x="1760" y="1920" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="pose"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            MessageBox {message = &quot;Antoine: He is having the luck of his life that I am so sick, yes?&quot;},
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            MessageBox {message = &quot;Antoine: Yes! That is what I am to be telling you!&quot;},
+            Do(function() self.scene.objectLookup.AntoineBicker.sprite:setAnimation(&quot;proud&quot;) end),
+            MessageBox {message = &quot;Antoine: I am zee strongest of zee Freedom Fighterz!&quot;},
+            Animate(self.scene.objectLookup.IvanBicker.sprite, &quot;attitude&quot;),
+            Wait(1),
+            MessageBox {message = &quot;Ivan: That seems implausible.&quot;},
+            Animate(self.scene.objectLookup.AntoineBicker.sprite, &quot;shock&quot;),
+            Wait(1),
+            Do(function() self.scene.objectLookup.AntoineBicker.sprite:setAnimation(&quot;proud&quot;) end),
+            MessageBox {message = &quot;Antoine: How do you dare?!&quot;},
+            MessageBox {message = &quot;Antoine: I would challenge you to zee arm wrestling competition!!&quot;},
+            MessageBox {message = &quot;Antoine: But alas...{p40}I am feeling, a wee bit{p40}, how do you say...&quot;},
+            Animate(self.scene.objectLookup.AntoineBicker.sprite, &quot;nauseated&quot;),
+            MessageBox {message = &quot;Antoine: *cough*{p40} *cough*{p40} ah yes, {p40}{h under zee weather}. {p60}How unfortunate.&quot;}
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
+   </properties>
+  </object>
+  <object id="346" name="Tails" type="BasicNPC" gid="5323" x="8544" y="832" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-16"/>
     <property name="alignOffsetY" type="float" value="-32"/>
-    <property name="defaultAnim" value="idleright"/>
+    <property name="defaultAnim" value="idledown"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
@@ -2459,53 +2583,153 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/tails.png"/>
    </properties>
   </object>
-  <object id="222" name="Chest5" type="Chest" gid="7597" x="4672" y="1344" width="64" height="64">
-   <properties>
-    <property name="CrystalWater" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="278" name="CartWaypoint" type="BasicNPC" gid="5323" x="8032" y="-160" width="96" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="282" name="CartWaypoint2" type="BasicNPC" gid="5323" x="8032" y="704" width="96" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="305" name="Hint" type="BasicNPC" gid="5323" x="5920" y="512" width="32" height="96">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="specialHint" value="bunny"/>
-   </properties>
-  </object>
-  <object id="312" name="Antoine" type="BasicNPC" gid="5323" x="1856" y="1952" width="64" height="96">
+  <object id="347" name="RotorBicker" type="BasicNPC" gid="5323" x="6592" y="2080" width="96" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-16"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="idledown"/>
+    <property name="alignOffsetX" type="float" value="-10"/>
+    <property name="alignOffsetY" type="float" value="-8"/>
+    <property name="defaultAnim" value="idleup"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
-local Animate = require &quot;actions/Animate&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Ease = require &quot;actions/Ease&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
 
 return function(self)
-    self.origY = self.y
-    return BlockPlayer {
-        MessageBox {
-            message = &quot;Antoine: You tell that blue-haired fewl that he's banned from using my kitchen!&quot;
+    local facingOpposite = {
+        idleleft = &quot;idleright&quot;,
+        idleright = &quot;idleleft&quot;,
+        idledown = &quot;idleup&quot;,
+        idleup = &quot;idledown&quot;,
+    }
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            MessageBox {message = &quot;Rotor: Hehe{p40}, I guess she had point.&quot;},
         }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            MessageBox {message = &quot;Rotor: I think it'll work!&quot;},
+            MessageBox {message = &quot;Logan: It won't.&quot;},
+            MessageBox {message = &quot;Rotor: It will!&quot;},
+            Animate(self.scene.objectLookup.LoganBicker.sprite, &quot;irritated&quot;),
+            MessageBox {message = &quot;Logan: Wrong.&quot;},
+            Animate(self.sprite, &quot;shock&quot;),
+            Wait(1),
+            Animate(self.sprite, &quot;thinking&quot;),
+            MessageBox {message = &quot;Sally: What is going on here?&quot;},
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Rotor: Eh...{p40}Logan thinks the plan won't work.&quot;},
+            MessageBox {message = &quot;Logan: I mean{p40} it won't.&quot;},
+            Do(function() self.scene.objectLookup.LoganBicker:facePlayer() end),
+            MessageBox {message = &quot;Logan: Princess--{p40} let me give you an alternative proposal.&quot;},
+            Do(function()
+                self.scene.player.noIdle = true
+                self.scene.player.sprite:setAnimation(&quot;thinking2&quot;)
+            end),
+            MessageBox {message = &quot;Sally: What do you think we should do, Logan?&quot;},
+            MessageBox {message = &quot;Logan: I think we need to modify the code in our counterfeit software patch to suppress the effects of the\nglitch.&quot;},
+            Animate(self.sprite, &quot;shock&quot;),
+            Wait(1),
+            Animate(self.sprite, &quot;idleup&quot;),
+            MessageBox {message = &quot;Rotor: You want to {h fix} the glitch?!&quot;},
+            Animate(self.scene.objectLookup.LoganBicker.sprite, &quot;idledown&quot;),
+            MessageBox {message = &quot;Logan: In a manner of speaking.&quot;},
+            Do(function()
+                self:facePlayer()
+                if self.sprite.selected == &quot;idleright&quot; then
+                    self.sprite:setAnimation(&quot;explaining_right1&quot;)
+                elseif self.sprite.selected == &quot;idleleft&quot; then
+                    self.sprite:setAnimation(&quot;explaining_left1&quot;)
+                end
+            end),
+            MessageBox {message = &quot;Rotor: You see what I have to deal with here?&quot;},
+            Animate(self.scene.objectLookup.LoganBicker.sprite, &quot;attitude&quot;),
+            Do(function() self.scene.player.sprite:setAnimation(&quot;thinking&quot;) end),
+            MessageBox {message = &quot;Sally: I don't understand, Logan.&quot;},
+            Do(function() self.scene.objectLookup.LoganBicker:facePlayer() end),
+            MessageBox {message = &quot;Logan: Princess, {p40}if we release the software patch in its current state{p40}, then the cause of the glitch will be immediately obvious!&quot;},
+            Do(function()
+                self.scene.player.sprite:setAnimation(facingOpposite[self.scene.objectLookup.LoganBicker.sprite.selected])
+            end),
+            MessageBox {message = &quot;Logan: All Robotnik has to do is rollback to the previous software version and we'll be toast!&quot;},
+            Do(function() self.scene.player.sprite:setAnimation(&quot;thinking&quot;) end),
+            MessageBox {message = &quot;Sally: Ah... {p40}so what you are saying is that we should modify the code around the glitch so that it only activates when{p80}, say{p80}, a certain signal is sent?&quot;},
+            Do(function() self.scene.player.sprite:setAnimation(&quot;thinking2&quot;) end),
+            MessageBox {message = &quot;Logan: Correct.&quot;},
+            Do(function()
+                self.scene.player.sprite:setAnimation(facingOpposite[self.scene.objectLookup.LoganBicker.sprite.selected])
+            end),
+            MessageBox {message = &quot;Logan: Rather than release the counterfeit software patch the moment we want to disable Robotnik's\narmy{p80}, we ought to instead release it earlier{p80}, with the glitch deactivated.&quot;},
+            MessageBox {message = &quot;Logan: Let Robotnik release his own software patches{p80}, as he normally would{p80}, so by the time that we turn on our glitch{p80}, Robotnik won't know where it's coming from!&quot;},
+            Animate(self.sprite, &quot;thinking&quot;),
+            MessageBox {message = &quot;Rotor: Hey{p40}, that's not bad!&quot;},
+            Animate(self.scene.objectLookup.LoganBicker.sprite, &quot;irritated&quot;),
+            MessageBox {message = &quot;Logan: Yep, and if you just listened to me earlier then we wouldn't have been arguing, would we?&quot;},
+            Animate(self.sprite, &quot;idleup&quot;),
+            MessageBox {message = &quot;Rotor: *sigh*&quot;},
+            Animate(self.scene.objectLookup.LoganBicker.sprite, &quot;attitude&quot;),
+            MessageBox {message = &quot;Logan: I'll take that as a {h yes}.&quot;},
+            MessageBox {message = &quot;Sally: Nice work, Logan!&quot;},
+            Do(function() self.scene.player.noIdle = false end)
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
+   </properties>
+  </object>
+  <object id="348" name="LoganBicker" type="BasicNPC" gid="5323" x="6592" y="1984" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="attitude"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/logan.png"/>
+   </properties>
+  </object>
+  <object id="349" name="Bunnie" type="BasicNPC" gid="5323" x="4896" y="1216" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="idleleft"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    return BlockPlayer {
+        MessageBox {message = &quot;Bunnie: That big gray dog-fella is just drivin' me crazy!&quot;}
     }
 end</property>
-    <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
+    <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
    </properties>
   </object>
  </objectgroup>
