@@ -14,6 +14,9 @@ end
 
 function Stairs:update(dt)
 	local player = self.scene.player
+	if not player then
+		return
+	end
 	if self.state == NPC.STATE_TOUCHING then
 		player.stairs[tostring(self)] = self
 	else

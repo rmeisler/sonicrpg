@@ -59,9 +59,8 @@ function BasicScene:onEnter(args)
 	-- draw function, so this works out fine.
 	self:addNode(self.map, "tiles")
 
-	local mapDraw = self.map.drawTileLayer
-	
 	if self.nighttime then
+		local mapDraw = self.map.drawTileLayer
 		self.map.drawTileLayer = function(map, layer)
 			if not self.night then
 				self.night = shine.nightcolor()
@@ -381,9 +380,7 @@ function BasicScene:onExit(args)
 	return Serial {
 		fadeAction,
 		Do(function()
-			if not self.cacheSceneData then
-				self:remove()
-			end
+			self:remove()
 		end)
 	}
 end
@@ -422,9 +419,12 @@ function BasicScene:remove()
 	self.map.objects = nil
 	self.objectLookup = nil
 	self.map.fallables = nil
+	self:removeNode(self.map)
 
 	self.player:remove()
 	self.player = nil
+	
+	self:cleanupLayers()
 end
 
 function BasicScene:restart(args)

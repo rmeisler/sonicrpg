@@ -12,7 +12,7 @@ return {
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = true,
-    ["onload"] = "actions/knothole.lua",
+    ["onload"] = "actions/knotholeatnight.lua",
     ["regionName"] = "Great Forest",
     ["sectorName"] = "Knothole"
   },

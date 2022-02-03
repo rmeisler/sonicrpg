@@ -3,7 +3,7 @@
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="nighttime" type="bool" value="true"/>
-  <property name="onload" type="file" value="actions/knothole.lua"/>
+  <property name="onload" type="file" value="actions/knotholeatnight.lua"/>
   <property name="regionName" value="Great Forest"/>
   <property name="sectorName" value="Knothole"/>
  </properties>

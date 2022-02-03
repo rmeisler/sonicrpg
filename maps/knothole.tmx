@@ -2587,7 +2587,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-10"/>
-    <property name="alignOffsetY" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-20"/>
     <property name="defaultAnim" value="idleup"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
@@ -2674,6 +2674,7 @@ return function(self)
             end),
             MessageBox {message = &quot;Logan: Rather than release the counterfeit software patch the moment we want to disable Robotnik's\narmy{p80}, we ought to instead release it earlier{p80}, with the glitch deactivated.&quot;},
             MessageBox {message = &quot;Logan: Let Robotnik release his own software patches{p80}, as he normally would{p80}, so by the time that we turn on our glitch{p80}, Robotnik won't know where it's coming from!&quot;},
+            MessageBox {message = &quot;Sally: Great idea, Logan!&quot;},
             Animate(self.sprite, &quot;thinking&quot;),
             MessageBox {message = &quot;Rotor: Hey{p40}, that's not bad!&quot;},
             Animate(self.scene.objectLookup.LoganBicker.sprite, &quot;irritated&quot;),
@@ -2682,8 +2683,14 @@ return function(self)
             MessageBox {message = &quot;Rotor: *sigh*&quot;},
             Animate(self.scene.objectLookup.LoganBicker.sprite, &quot;attitude&quot;),
             MessageBox {message = &quot;Logan: I'll take that as a {h yes}.&quot;},
-            MessageBox {message = &quot;Sally: Nice work, Logan!&quot;},
-            Do(function() self.scene.player.noIdle = false end)
+            Do(function() self.scene.player.sprite:setAnimation(&quot;thinking2&quot;) end),
+            MessageBox {message = &quot;Sally: I think it's time to call a team meeting...&quot;},
+            --self.scene:fadeOut(0.2),
+            Do(function()
+                self.scene.player.noIdle = false
+                GameState:setFlag(&quot;ep3_ffmeeting&quot;)
+                self.scene:changeScene{map=&quot;knothole&quot;}
+            end)
         }
     end
 end</property>

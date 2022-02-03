@@ -412,7 +412,6 @@ return function(scene, hint)
 					Animate(rotor.sprite, "shock"),
 					Animate(sally.sprite, "meeting_shock"),
 					MessageBox {message="Antoine: *screams*", closeAction=Wait(1)},
-					Wait(2),
 					Animate(antoine.sprite, "sitlookforward"),
 					Animate(sonic.sprite, "sitlookforward"),
 					Animate(rotor.sprite, "sitright"),
@@ -472,7 +471,12 @@ return function(scene, hint)
 					Ease(antoine.sprite.transform, "angle", -math.pi/48, 2),
 					Ease(antoine.sprite.transform, "angle", math.pi/48, 3),
 					Ease(antoine.sprite.transform, "angle", -math.pi/48, 3),
-					Animate(antoine.sprite, "dead")
+					Animate(antoine.sprite, "dead"),
+					
+					Do(function()
+						scene:changeScene{map="knotholeatnight"}
+					end)
+					
 					-- faint
 					
 						--[[

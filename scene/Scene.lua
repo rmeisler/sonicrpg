@@ -61,6 +61,12 @@ function Scene:popLayer()
     self.sceneLookup[layerName] = nil
 end
 
+function Scene:cleanupLayers()
+	self.sceneCount = 0
+	self.sceneLayers = {}
+	self.sceneLookup = {}
+end
+
 function Scene:addNode(node, layerName)
 	local flag = tostring(node)
 	if self.nodes[flag] and node.sceneLayer then
@@ -120,6 +126,10 @@ end
 
 function Scene:sortedDraw(layerName)
 	local sceneLayer = self.sceneLookup[layerName]
+	if not sceneLayer then
+		return
+	end
+	
 	local sortedY = {}
 	local nodeByY = {}
 	for _, node in pairs(sceneLayer.nodes) do
@@ -159,9 +169,10 @@ function Scene:draw(layerName)
 			for _, node in pairs(sceneLayer.nodes) do
 				if node.draw then
 					node:draw()
-					if sceneLayer.layerName ~= "tiles" then
+					--[[if sceneLayer.layerName ~= "tiles" then
 						love.graphics.setColor(255,255,255,255)
-					end
+					end]]
+					love.graphics.setColor(255,255,255,255)
 				end
 			end
 		end
