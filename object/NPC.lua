@@ -108,7 +108,9 @@ function NPC:construct(scene, layer, object)
 		
 		if self.scene.nighttime and object.properties.nonight then
 			self.sprite.drawWithNight = false
-			if not object.properties.nightbright then
+			if object.properties.bright then
+				self.sprite.color = {512, 512, 512, 255}
+			elseif not object.properties.nightbright then
 				self.sprite.color = {150,150,150,255}
 			end
 		end

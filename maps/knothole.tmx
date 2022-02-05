@@ -2411,17 +2411,19 @@ local NPC = require &quot;object/NPC&quot;
 return function(self)
     if GameState:isFlagSet(self:getFlag()) then
         return BlockPlayer {
+            Do(function() self:facePlayer() end)
             MessageBox {message = &quot;Sonic: *whipering* Ugh. {p40}She is the worst!&quot;},
             Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;lookright&quot;),
             MessageBox {message = &quot;Fleet: What was that?&quot;},
             Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;shock&quot;),
-            Wait(1),
+            Wait(0.8),
             Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;earnestleft&quot;),
             MessageBox {message = &quot;Sonic: Uh...{p40}I said 'she got here first'!&quot;},
             Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;smirk&quot;),
             MessageBox {message = &quot;Fleet: When you're right, you're right!&quot;},
             Do(function() self.scene.objectLookup.FleetBicker.sprite:setAnimation(&quot;laugh&quot;) end),
-            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;irritated&quot;)
+            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;irritated&quot;),
+            Do(function() self:refreshKeyHint() end)
         }
     else
         GameState:setFlag(self:getFlag())
@@ -2429,14 +2431,15 @@ return function(self)
             Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;smirk&quot;),
             MessageBox {message = &quot;Fleet: Now I think you can see why I'm known as the 'fastest living being on Mobius'.&quot;},
             Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;shock&quot;),
-            Wait(1),
+            Wait(0.8),
             Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;lookright&quot;),
             Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;worried&quot;),
             MessageBox {message = &quot;Sonic: Hey, don't get too pumped, bird brain. {p40}I was goin' easy on ya. {p40}You're our guests after all.&quot;},
             Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;smirk&quot;),
             MessageBox {message = &quot;Fleet: Hehe, {p40}keep telling yourself that.&quot;},
             Do(function() self.scene.objectLookup.FleetBicker.sprite:setAnimation(&quot;laugh&quot;) end),
-            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;irritated&quot;)
+            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;irritated&quot;),
+            Do(function() self:refreshKeyHint() end)
         }
     end
 end</property>
@@ -2481,7 +2484,10 @@ local NPC = require &quot;object/NPC&quot;
 return function(self)
     if GameState:isFlagSet(self:getFlag()) then
         return BlockPlayer {
+            Do(function() self.scene.objectLookup.AntoineBicker:facePlayer() end)
             MessageBox {message = &quot;Antoine: He is having the luck of his life that I am so sick, yes?&quot;},
+            Animate(self.scene.objectLookup.AntoineBicker.sprite, &quot;nauseated&quot;),
+            Do(function() self:refreshKeyHint() end)
         }
     else
         GameState:setFlag(self:getFlag())
@@ -2493,13 +2499,14 @@ return function(self)
             Wait(1),
             MessageBox {message = &quot;Ivan: That seems implausible.&quot;},
             Animate(self.scene.objectLookup.AntoineBicker.sprite, &quot;shock&quot;),
-            Wait(1),
+            Wait(0.8),
             Do(function() self.scene.objectLookup.AntoineBicker.sprite:setAnimation(&quot;proud&quot;) end),
             MessageBox {message = &quot;Antoine: How do you dare?!&quot;},
             MessageBox {message = &quot;Antoine: I would challenge you to zee arm wrestling competition!!&quot;},
             MessageBox {message = &quot;Antoine: But alas...{p40}I am feeling, a wee bit{p40}, how do you say...&quot;},
             Animate(self.scene.objectLookup.AntoineBicker.sprite, &quot;nauseated&quot;),
-            MessageBox {message = &quot;Antoine: *cough*{p40} *cough*{p40} ah yes, {p40}{h under zee weather}. {p60}How unfortunate.&quot;}
+            MessageBox {message = &quot;Antoine: *cough*{p40} *cough*{p40} ah yes, {p40}{h under zee weather}. {p60}How unfortunate.&quot;},
+            Do(function() self:refreshKeyHint() end)
         }
     end
 end</property>
@@ -2617,6 +2624,7 @@ return function(self)
     if GameState:isFlagSet(self:getFlag()) then
         return BlockPlayer {
             MessageBox {message = &quot;Rotor: Hehe{p40}, I guess she had point.&quot;},
+            Do(function() self:refreshKeyHint() end)
         }
     else
         GameState:setFlag(self:getFlag())
@@ -2627,7 +2635,7 @@ return function(self)
             Animate(self.scene.objectLookup.LoganBicker.sprite, &quot;irritated&quot;),
             MessageBox {message = &quot;Logan: Wrong.&quot;},
             Animate(self.sprite, &quot;shock&quot;),
-            Wait(1),
+            Wait(0.8),
             Animate(self.sprite, &quot;thinking&quot;),
             MessageBox {message = &quot;Sally: What is going on here?&quot;},
             Do(function() self:facePlayer() end),
@@ -2642,7 +2650,7 @@ return function(self)
             MessageBox {message = &quot;Sally: What do you think we should do, Logan?&quot;},
             MessageBox {message = &quot;Logan: I think we need to modify the code in our counterfeit software patch to suppress the effects of the\nglitch.&quot;},
             Animate(self.sprite, &quot;shock&quot;),
-            Wait(1),
+            Wait(0.8),
             Animate(self.sprite, &quot;idleup&quot;),
             MessageBox {message = &quot;Rotor: You want to {h fix} the glitch?!&quot;},
             Animate(self.scene.objectLookup.LoganBicker.sprite, &quot;idledown&quot;),
@@ -2685,7 +2693,6 @@ return function(self)
             MessageBox {message = &quot;Logan: I'll take that as a {h yes}.&quot;},
             Do(function() self.scene.player.sprite:setAnimation(&quot;thinking2&quot;) end),
             MessageBox {message = &quot;Sally: I think it's time to call a team meeting...&quot;},
-            --self.scene:fadeOut(0.2),
             Do(function()
                 self.scene.player.noIdle = false
                 GameState:setFlag(&quot;ep3_ffmeeting&quot;)

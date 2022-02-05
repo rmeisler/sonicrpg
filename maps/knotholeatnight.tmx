@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="340">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="344">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="nighttime" type="bool" value="true"/>
@@ -1124,7 +1124,9 @@ end</property>
   </object>
   <object id="5" name="Ripple" type="BasicNPC" gid="5323" x="7680" y="2112" width="96" height="64">
    <properties>
+    <property name="bright" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/lakeripple.png"/>
    </properties>
   </object>
@@ -1172,6 +1174,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-44"/>
+    <property name="flagForDoor" value="notthistime"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>
@@ -1337,12 +1340,6 @@ end</property>
     <property name="defaultAnim" value="horiz"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/fence.png"/>
-   </properties>
-  </object>
-  <object id="42" name="Chest1" type="Chest" gid="7597" x="1664" y="224" width="64" height="64">
-   <properties>
-    <property name="Microchip" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
   <object id="43" name="Post" type="BasicNPC" gid="5323" x="2720" y="2016" width="32" height="32">
@@ -1518,12 +1515,6 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/knotholebasebg.png"/>
    </properties>
   </object>
-  <object id="77" name="Chest2" type="Chest" gid="7597" x="5952" y="1888" width="64" height="32">
-   <properties>
-    <property name="Gear" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
   <object id="78" name="RotorHutDoor" type="Door" gid="7660" x="1856" y="522" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -1538,6 +1529,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-44"/>
+    <property name="flagForDoor" value="notthistime"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>
@@ -1550,6 +1542,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-44"/>
+    <property name="flagForDoor" value="notthistime"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>
@@ -1558,12 +1551,12 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
-  <object id="81" name="Bunnie" type="BasicNPC" gid="5323" x="1024" y="1280" width="64" height="96">
+  <object id="81" name="Bunnie" type="BasicNPC" gid="5323" x="1152" y="1280" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
     <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="idleright"/>
+    <property name="defaultAnim" value="idledown"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
@@ -1575,6 +1568,7 @@ local PlayAudio = require &quot;actions/PlayAudio&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
@@ -1582,9 +1576,47 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
-    return BlockPlayer {
-        MessageBox {message = &quot;Bunnie: That big gray dog-fella is just drivin' me crazy!&quot;}
-    }
+    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = self.scene.objectLookup.Antoine
+    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = self.scene.objectLookup.Sonic
+
+    local prevPlayerAnim = self.scene.player.sprite.selected
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Bunnie: I gotta get my little ol' self back to the garden where I belong.&quot;},
+            Animate(self.sprite, &quot;idledown&quot;),
+            Do(function()
+                self:refreshKeyHint()
+                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil
+                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = nil
+            end)
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Bunnie: Well that was just about the roughest team meeting I think we've ever had, Sally-girl!{p60} How are ya feelin' about all this?&quot;},
+            Do(function()
+                self.scene.player.noIdle = true
+                self.scene.player.sprite:setAnimation(&quot;thinking2&quot;)
+            end),
+            MessageBox {message = &quot;Sally: Yeah... it feels like we're in a bit of a power struggle...&quot;},
+            Do(function() self.scene.player.sprite:setAnimation(&quot;thinking&quot;) end),
+            MessageBox {message = &quot;Sally: This joint mission should be a perfect opportunity for team building.&quot;},
+            MessageBox {message = &quot;Sally: With Leon's help, I have hope that we'll be able to get things back on track.&quot;},
+            MessageBox {message = &quot;Bunnie: Well now{p40}, Leon seems like a nice fella and all{p60}, but if there's anyone who can bring us all together, it's you Sally-girl.&quot;},
+            Do(function() self.scene.player.sprite:setAnimation(prevPlayerAnim) end),
+            MessageBox {message = &quot;Sally: Thanks Bunnie.&quot;},
+            MessageBox {message = &quot;Bunnie: You got it, sugah.&quot;},
+            Animate(self.sprite, &quot;idledown&quot;),
+            Do(function()
+                self.scene.player.noIdle = false
+                self:refreshKeyHint()
+                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil
+                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = nil
+            end)
+        }
+    end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
    </properties>
@@ -1645,53 +1677,6 @@ end</property>
     <property name="defaultAnim" value="foreground"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreMapCollision" type="bool" value="true"/>
-    <property name="onInteract">local Menu = require &quot;actions/Menu&quot;
-local Move = require &quot;actions/Move&quot;
-local Do = require &quot;actions/Do&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-
-local Layout = require &quot;util/Layout&quot;
-local Transform = require &quot;util/Transform&quot;
-
-return function(self)
-    return BlockPlayer {
-    Do(function() self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1 end),
-    Menu {
-        layout = Layout {
-            {Layout.Text(&quot;Leave Knothole?&quot;), selectable = false},
-            {Layout.Text(&quot;Yes&quot;), choose = function(menu)
-                menu:close()
-                self.scene.player.hidekeyhints[tostring(self)] = self
-                self.scene.player:removeKeyHint()
-                self.scene:run {
-                    menu,
-                    Parallel {
-                        Do(function()
-                            local cart = self.scene.objectLookup.CartBG
-                            self.scene.player.x = cart.x + cart.sprite.w
-                            self.scene.player.y = cart.y + cart.sprite.h
-                        end),
-                        Move(self.scene.objectLookup.CartBG, self.scene.objectLookup.CartWaypoint),
-                        Move(self, self.scene.objectLookup.CartWaypoint)
-                    },
-                    Do(function()
-                        self.scene.audio:stopMusic()
-                        self.scene:changeScene{map=&quot;worldmap&quot;}
-                    end),
-                    Do(function() end)
-                }
-            end},
-            {Layout.Text(&quot;No&quot;), choose = function(menu)
-                menu:close()
-                self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1
-            end}
-        },
-        cancellable = true,
-        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
-        selectedRow = 2
-    }}
-end</property>
     <property name="sprite" type="file" value="../art/sprites/pulleycart.png"/>
    </properties>
   </object>
@@ -1867,72 +1852,6 @@ end</property>
   <object id="112" name="Log" type="BasicNPC" gid="5323" x="7264" y="2080" width="352" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="118" name="YellowLeaf" type="BasicNPC" gid="5323" x="512" y="768" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-
-return function(self)
-    GameState:grantItem(require(&quot;data/items/YellowLeaf&quot;), 1)
-    return Serial {
-        Do(function() self:remove() end),
-        MessageBox {
-            message = &quot;You received a Yellow Leaf!&quot;,
-            blocking = true,
-            sfx = &quot;levelup&quot;
-        }
-    }
-end</property>
-    <property name="onPuzzleSolve">local Do = require &quot;actions/Do&quot;
-local Serial = require &quot;actions/Serial&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Repeat = require &quot;actions/Repeat&quot;
-local Wait = require &quot;actions/Wait&quot;
-local While = require &quot;actions/While&quot;
-
-return function(self)
-    self.sprite.color = {512,512,512,0}
-    return Serial {
-        Do(function()        
-            self.hidden = false
-        end),
-        Parallel {
-            Ease(self.sprite.color, 1, 255, 2),
-            Ease(self.sprite.color, 2, 255, 2),
-            Ease(self.sprite.color, 3, 255, 2),
-            Ease(self.sprite.color, 4, 255, 2)
-        },
-        Do(function()
-            self:run(Repeat(
-                While(
-                    function()
-                        return not self:isRemoved()
-                    end,
-                    Serial {
-                        Do(function()
-                            self.sprite:setShine(3)
-                        end),
-                        Wait(1.0),
-                        Do(function()
-                            self.sprite:removeShine()
-                        end),
-                        Wait(5)
-                    },
-                    Do(function() end)
-                )
-            ))
-        end)
-    }
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/leaf.png"/>
    </properties>
   </object>
   <object id="119" name="GrabRing" type="BasicNPC" gid="5323" x="7584" y="2080" width="64" height="64">
@@ -2268,18 +2187,6 @@ end</property>
   <object id="134" name="Ladder1" type="Ladder" gid="5323" x="5440" y="1856" width="32" height="576"/>
   <object id="135" name="Ladder2" type="Ladder" gid="5323" x="5664" y="1088" width="32" height="576"/>
   <object id="136" name="Ladder3" type="Ladder" gid="5323" x="5376" y="320" width="32" height="352"/>
-  <object id="138" name="Chest3" type="Chest" gid="7597" x="5792" y="448" width="64" height="64">
-   <properties>
-    <property name="ScrapMetal" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="139" name="Chest2" type="Chest" gid="7597" x="6208" y="448" width="64" height="64">
-   <properties>
-    <property name="BlueLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
   <object id="140" name="MiddlePost" type="BasicNPC" gid="5323" x="6144" y="448" width="32" height="96">
    <properties>
     <property name="defaultAnim" value="vert"/>
@@ -2465,95 +2372,6 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/fence.png"/>
    </properties>
   </object>
-  <object id="184" name="Chest3" type="Chest" gid="7597" x="7008" y="896" width="64" height="64">
-   <properties>
-    <property name="Mushroom" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="191" name="Tails" type="BasicNPC" gid="5323" x="4736" y="2560" width="64" height="96">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-16"/>
-    <property name="alignOffsetY" type="float" value="-32"/>
-    <property name="defaultAnim" value="idleright"/>
-    <property name="ghost" type="bool" value="false"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Animate = require &quot;actions/Animate&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Ease = require &quot;actions/Ease&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local Menu = require &quot;actions/Menu&quot;
-
-local Layout = require &quot;util/Layout&quot;
-local Transform = require &quot;util/Transform&quot;
-
-return function(self)
-    local dir = self.x &gt; self.scene.player.x and &quot;left&quot; or &quot;right&quot;
-    if GameState:isFlagSet(&quot;missing_puc&quot;) then
-        return Serial {
-            Animate(self.sprite, &quot;sad&quot;..dir),
-            MessageBox{message = &quot;Tails: If only I could find that puck...&quot;, textSpeed = 3, blocking = true}
-        }
-    end
-
-    local nameMap = {
-        sonic = &quot;Sonic&quot;,
-        sally = &quot;Sally&quot;,
-        bunny = &quot;Bunnie&quot;
-    }
-    self.origY = self.y
-    return BlockPlayer {
-        Animate(self.sprite, &quot;idle&quot;..dir),
-        MessageBox {
-            message = &quot;Tails: Hey &quot;..nameMap[GameState.leader]..&quot;! {p40}Ya wanna play some dirt hockey?&quot;,
-        },
-        Menu {
-            layout = Layout {
-                {Layout.Text(&quot;Play dirt hockey?&quot;), selectable = false},
-                {Layout.Text(&quot;Yes&quot;), choose = function(menu)
-                    menu:close()
-                    self.scene:run {
-                        menu,
-                        Animate(self.sprite, &quot;joy&quot;..dir),
-                        Ease(self, &quot;y&quot;, function() return self.origY - 80 end, 7, &quot;linear&quot;),
-                        Ease(self, &quot;y&quot;, function() return self.origY end, 7, &quot;linear&quot;),
-                        MessageBox {message = &quot;Tails: Alright! {p40}Let's do it to it!&quot;},
-                        MessageBox {message = &quot;Tails: Oh wait...&quot;},
-                        Animate(self.sprite, &quot;sad&quot;..dir),
-                        MessageBox {message = &quot;Tails: Where's my puck?! {p50}I guess we can't play right now...&quot;},
-                        Do(function() GameState:setFlag(&quot;missing_puc&quot;) end)
-                    }
-                end},
-                {Layout.Text(&quot;No&quot;), choose = function(menu)
-                    menu:close()
-                    self.scene:run {
-                        menu,
-                        Animate(self.sprite, &quot;sad&quot;..dir),
-                        MessageBox {message = &quot;Tails: Awww... ok. {p40}Maybe later.&quot;}
-                    }
-                end},
-            },
-            cancellable = true,
-            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
-            selectedRow = 2
-        },
-        Do(function()
-            self.scene.player.hidekeyhints[tostring(self)] = nil
-        end)
-    }
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/tails.png"/>
-   </properties>
-  </object>
-  <object id="222" name="Chest5" type="Chest" gid="7597" x="4672" y="1344" width="64" height="64">
-   <properties>
-    <property name="CrystalWater" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
   <object id="278" name="CartWaypoint" type="BasicNPC" gid="5323" x="8032" y="-160" width="96" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
@@ -2564,18 +2382,12 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="305" name="Hint" type="BasicNPC" gid="5323" x="5920" y="512" width="32" height="96">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="specialHint" value="bunny"/>
-   </properties>
-  </object>
-  <object id="312" name="Antoine" type="BasicNPC" gid="5323" x="1856" y="1952" width="64" height="96">
+  <object id="312" name="Antoine" type="BasicNPC" gid="5323" x="1056" y="1376" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-16"/>
     <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="idledown"/>
+    <property name="defaultAnim" value="idleright"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
@@ -2587,12 +2399,40 @@ local Ease = require &quot;actions/Ease&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 
 return function(self)
-    self.origY = self.y
-    return BlockPlayer {
-        MessageBox {
-            message = &quot;Antoine: You tell that blue-haired fewl that he's banned from using my kitchen!&quot;
+    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = self.scene.objectLookup.Sonic
+    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = self.scene.objectLookup.Bunnie
+
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Antoine: I am having on last question{p40}, did Sonic use my kitchen recently?&quot;},
+            Animate(self.sprite, &quot;idleright&quot;),
+            Do(function()
+                self:refreshKeyHint()
+                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = nil
+                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil
+            end)
         }
-    }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Antoine: My princess. {p60}I am thinking these Rebels{p40}, how you say--{p60} they are not so good, I am thinking...&quot;},
+            MessageBox {message = &quot;Antoine: I fear they may be spies for Robotnik.&quot;},
+            MessageBox {message = &quot;Sally: I understand your apprehension, Antoine... {p60}but I've known Leon since I was a child.&quot;},
+            MessageBox {message = &quot;Sally: His team may lack some...{p40} uhh... {p40}social skills... {p80}but I know that they want to take down Robotnik just as much as we do!&quot;},
+            MessageBox {message = &quot;Sally: The way they so quickly defeated those two Juggerbots back in Robotropolis...&quot;},
+            MessageBox {message = &quot;Sally: We'll need their help if we want to destroy Robotnik's new Frankenstein's monster...&quot;},
+            MessageBox {message = &quot;Sally: Then we can deploy Rotor's computer virus{p40}, take back control of the city{p40}, and put Robotnik behind bars!&quot;},
+            MessageBox {message = &quot;Antoine: Yes, of course my Princess.{p40} You are right.&quot;},
+            Animate(self.sprite, &quot;idleright&quot;),
+            Do(function()
+                self:refreshKeyHint()
+                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = nil
+                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil
+            end)
+        }
+    end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
    </properties>
@@ -2827,175 +2667,129 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/campfire.png"/>
    </properties>
   </object>
- </objectgroup>
- <objectgroup name="above">
-  <object id="298" name="AntoineMtg" type="BasicNPC" gid="7597" x="4885" y="1833" width="32" height="32">
+  <object id="340" name="Sonic" type="BasicNPC" gid="5323" x="1248" y="1376" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="sitlookforward"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="nocollision" type="bool" value="true"/>
+    <property name="alignOffsetX" type="float" value="-16"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="idleup"/>
+    <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
-   </properties>
-  </object>
-  <object id="299" name="BunnieMtg" type="BasicNPC" gid="7597" x="4818" y="1837" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="sitlookforward"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
-   </properties>
-  </object>
-  <object id="300" name="SonicMtg" type="BasicNPC" gid="7597" x="4743" y="1830" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="sitlookforward"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+
+return function(self)
+    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = self.scene.objectLookup.Antoine
+    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = self.scene.objectLookup.Bunnie
+
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Sonic: Fleet is pretty fast, I'll give her that...&quot;},
+            Animate(self.sprite, &quot;idleup&quot;),
+            Do(function()
+                self:refreshKeyHint()
+                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil
+                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil
+            end)
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Sonic: Hey Sal{p40}, I know you're mondo happy Leon is here and all{p40}, but these Rebellion guys seem like bad news!&quot;},
+            Animate(self.sprite, &quot;irritated&quot;),
+            MessageBox {message = &quot;Sonic: They show up right at the last second of our mission and trash two Juggerbots like they're nothin'?&quot;},
+            MessageBox {message = &quot;Sonic: Then they make a big scene at our meeting, actin' like they run the place?&quot;},
+            MessageBox {message = &quot;Sonic: And we're supposed to believe they're on the level?{p60} I don't buy it!&quot;},
+            MessageBox {message = &quot;Sally: Sonic{p40}, Leon was the leader of my father's royal guard. {p60}He fought in the Great War.&quot;},
+            MessageBox {message = &quot;Sally: It's true that his team has had a lot of formal military training that we haven't had. {p60}It makes sense that they would question whether we can keep up with them.&quot;},
+            MessageBox {message = &quot;Sonic: \&quot;Keep up with them\&quot;?! {p60}I can run circles around these dorks! {p60}Feather head may have gotten lucky today, but a hedgehog never always wins in the end...&quot;},
+            MessageBox {message = &quot;Sally: Is that a bit of jealousy I'm hearing?&quot;},
+            Animate(self.sprite, &quot;shock&quot;),
+            Wait(0.8),
+            Animate(self.sprite, &quot;irritated&quot;),
+            MessageBox {message = &quot;Sonic: No way!&quot;},
+            MessageBox {message = &quot;Sally: Is it possible that maybe you're just suspicious of the Rebellion because of this little competition between you and Fleet?&quot;},
+            Animate(self.sprite, &quot;shock&quot;),
+            Wait(0.8),
+            Animate(self.sprite, &quot;irritated&quot;),
+            MessageBox {message = &quot;Sonic: Ok, ok, it's possible.&quot;},
+            MessageBox {message = &quot;Sonic: ...I just hope you know what you're doin with all this, Sal.&quot;},
+            MessageBox {message = &quot;Sally: ...&quot;},
+            MessageBox {message = &quot;Sally: Me too...&quot;},
+            Animate(self.sprite, &quot;idleup&quot;),
+            Do(function()
+                self:refreshKeyHint()
+                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil
+                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil
+            end)
+        }
+    end
+end</property>
     <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
    </properties>
   </object>
-  <object id="301" name="SallyMtg" type="BasicNPC" gid="7597" x="4802" y="1792" width="32" height="32">
+  <object id="342" name="Chest1" type="Chest" gid="7597" x="8544" y="832" width="64" height="64">
    <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="planning"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="nocollision" type="bool" value="true"/>
+    <property name="YellowLeaf" type="int" value="1"/>
     <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/sally.png"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="302" name="RotorMtg" type="BasicNPC" gid="7597" x="4668" y="1824" width="32" height="32">
+  <object id="343" name="Rotor" type="BasicNPC" gid="5323" x="7296" y="1984" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="sitright"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="nocollision" type="bool" value="true"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Rotor: Have you ever noticed how beautiful Knothole is at night?&quot;},
+            Animate(self.sprite, &quot;idleright&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Rotor: Oh!{p60} Hey, Sally.&quot;},
+            MessageBox {message = &quot;Rotor: ...Logan is kinda...{p60} {h interesting}...{p60} \ndon't ya think?&quot;},
+            Animate(self.sprite, &quot;idleright&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+end</property>
     <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
    </properties>
   </object>
-  <object id="309" name="FleetEp3Run" type="BasicNPC" gid="7597" x="1952" y="1056" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="flyleft"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="ignoreMapCollision" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
-   </properties>
-  </object>
-  <object id="310" name="SonicEp3Run" type="BasicNPC" gid="7597" x="2080" y="1088" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="juiceleft"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="ignoreMapCollision" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
-   </properties>
-  </object>
-  <object id="311" name="Ep3Waypoint" type="BasicNPC" gid="7597" x="960" y="1056" width="32" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="313" name="IvanMtg" type="BasicNPC" gid="7597" x="4864" y="1792" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="meeting_idledown"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
-   </properties>
-  </object>
-  <object id="315" name="FleetMtg" type="BasicNPC" gid="7597" x="4712" y="1792" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="meeting_idledown"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
-   </properties>
-  </object>
-  <object id="316" name="LoganMtg" type="BasicNPC" gid="7597" x="4758" y="1792" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="meeting_idledown"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/logan.png"/>
-   </properties>
-  </object>
-  <object id="318" name="LeonMtg" type="BasicNPC" gid="7597" x="4320" y="1920" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="idleright"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="movespeed" type="float" value="1"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/leon.png"/>
-   </properties>
-  </object>
-  <object id="319" name="LeonWaypoint" type="BasicNPC" gid="7597" x="4544" y="1920" width="32" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="320" name="GriffMtg" type="BasicNPC" gid="7597" x="5312" y="2016" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="idleleft"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="ignoreMapCollision" type="bool" value="true"/>
-    <property name="movespeed" type="float" value="25"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/griffvehicle.png"/>
-   </properties>
-  </object>
-  <object id="321" name="GriffWaypoint" type="BasicNPC" gid="7597" x="4640" y="2016" width="32" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="322" name="GriffMtg2" type="BasicNPC" gid="7597" x="4832" y="1792" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="meeting_idledown"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/griff.png"/>
-   </properties>
-  </object>
-  <object id="323" name="ProjectionMtg" type="BasicNPC" gid="7597" x="4780" y="1740" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/nicholeprojection2.png"/>
-   </properties>
-  </object>
-  <object id="324" name="NicoleMtg" type="BasicNPC" gid="7597" x="4805" y="1790" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/nicole.png"/>
-   </properties>
-  </object>
  </objectgroup>
+ <objectgroup name="above"/>
  <layer name="treeoverlay" width="275" height="88">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13188,13189,13190,13191,13192,13193,0,0,0,0,0,0,0,0,0,13119,13120,13121,13122,13123,13124,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13188,13189,13190,13191,13192,13193,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

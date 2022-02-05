@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 340,
+  nextobjectid = 344,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = true,
@@ -1651,7 +1651,9 @@ return {
           gid = 5323,
           visible = true,
           properties = {
+            ["bright"] = true,
             ["ghost"] = true,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/lakeripple.png"
           }
         },
@@ -1776,6 +1778,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -44,
+            ["flagForDoor"] = "notthistime",
             ["ghost"] = true,
             ["key"] = "up",
             ["orientation"] = "down",
@@ -2183,23 +2186,6 @@ return {
             ["defaultAnim"] = "horiz",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/fence.png"
-          }
-        },
-        {
-          id = 42,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 1664,
-          y = 224,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["Microchip"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
           }
         },
         {
@@ -2629,23 +2615,6 @@ return {
           }
         },
         {
-          id = 77,
-          name = "Chest2",
-          type = "Chest",
-          shape = "rectangle",
-          x = 5952,
-          y = 1888,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["Gear"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 78,
           name = "RotorHutDoor",
           type = "Door",
@@ -2681,6 +2650,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -44,
+            ["flagForDoor"] = "notthistime",
             ["ghost"] = true,
             ["key"] = "up",
             ["orientation"] = "down",
@@ -2704,6 +2674,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -44,
+            ["flagForDoor"] = "notthistime",
             ["ghost"] = true,
             ["key"] = "up",
             ["orientation"] = "down",
@@ -2717,10 +2688,10 @@ return {
           name = "Bunnie",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1024,
+          x = 1152,
           y = 1280,
           width = 64,
-          height = 96,
+          height = 64,
           rotation = 0,
           gid = 5323,
           visible = true,
@@ -2728,10 +2699,10 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -8,
             ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "idleright",
+            ["defaultAnim"] = "idledown",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message = \"Bunnie: That big gray dog-fella is just drivin' me crazy!\"}\n    }\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = self.scene.objectLookup.Antoine\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = self.scene.objectLookup.Sonic\n\n    local prevPlayerAnim = self.scene.player.sprite.selected\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Bunnie: I gotta get my little ol' self back to the garden where I belong.\"},\n            Animate(self.sprite, \"idledown\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = nil\n            end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Bunnie: Well that was just about the roughest team meeting I think we've ever had, Sally-girl!{p60} How are ya feelin' about all this?\"},\n            Do(function()\n                self.scene.player.noIdle = true\n                self.scene.player.sprite:setAnimation(\"thinking2\")\n            end),\n            MessageBox {message = \"Sally: Yeah... it feels like we're in a bit of a power struggle...\"},\n            Do(function() self.scene.player.sprite:setAnimation(\"thinking\") end),\n            MessageBox {message = \"Sally: This joint mission should be a perfect opportunity for team building.\"},\n            MessageBox {message = \"Sally: With Leon's help, I have hope that we'll be able to get things back on track.\"},\n            MessageBox {message = \"Bunnie: Well now{p40}, Leon seems like a nice fella and all{p60}, but if there's anyone who can bring us all together, it's you Sally-girl.\"},\n            Do(function() self.scene.player.sprite:setAnimation(prevPlayerAnim) end),\n            MessageBox {message = \"Sally: Thanks Bunnie.\"},\n            MessageBox {message = \"Bunnie: You got it, sugah.\"},\n            Animate(self.sprite, \"idledown\"),\n            Do(function()\n                self.scene.player.noIdle = false\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = nil\n            end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/bunny.png"
           }
         },
@@ -2843,7 +2814,6 @@ return {
             ["defaultAnim"] = "foreground",
             ["ghost"] = true,
             ["ignoreMapCollision"] = true,
-            ["onInteract"] = "local Menu = require \"actions/Menu\"\nlocal Move = require \"actions/Move\"\nlocal Do = require \"actions/Do\"\nlocal Parallel = require \"actions/Parallel\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    return BlockPlayer {\n    Do(function() self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1 end),\n    Menu {\n        layout = Layout {\n            {Layout.Text(\"Leave Knothole?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                menu:close()\n                self.scene.player.hidekeyhints[tostring(self)] = self\n                self.scene.player:removeKeyHint()\n                self.scene:run {\n                    menu,\n                    Parallel {\n                        Do(function()\n                            local cart = self.scene.objectLookup.CartBG\n                            self.scene.player.x = cart.x + cart.sprite.w\n                            self.scene.player.y = cart.y + cart.sprite.h\n                        end),\n                        Move(self.scene.objectLookup.CartBG, self.scene.objectLookup.CartWaypoint),\n                        Move(self, self.scene.objectLookup.CartWaypoint)\n                    },\n                    Do(function()\n                        self.scene.audio:stopMusic()\n                        self.scene:changeScene{map=\"worldmap\"}\n                    end),\n                    Do(function() end)\n                }\n            end},\n            {Layout.Text(\"No\"), choose = function(menu)\n                menu:close()\n                self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1\n            end}\n        },\n        cancellable = true,\n        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n        selectedRow = 2\n    }}\nend",
             ["sprite"] = "../art/sprites/pulleycart.png"
           }
         },
@@ -3128,27 +3098,6 @@ return {
           }
         },
         {
-          id = 118,
-          name = "YellowLeaf",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 512,
-          y = 768,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["hidden"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self)\n    GameState:grantItem(require(\"data/items/YellowLeaf\"), 1)\n    return Serial {\n        Do(function() self:remove() end),\n        MessageBox {\n            message = \"You received a Yellow Leaf!\",\n            blocking = true,\n            sfx = \"levelup\"\n        }\n    }\nend",
-            ["onPuzzleSolve"] = "local Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Repeat = require \"actions/Repeat\"\nlocal Wait = require \"actions/Wait\"\nlocal While = require \"actions/While\"\n\nreturn function(self)\n    self.sprite.color = {512,512,512,0}\n    return Serial {\n        Do(function()        \n            self.hidden = false\n        end),\n        Parallel {\n            Ease(self.sprite.color, 1, 255, 2),\n            Ease(self.sprite.color, 2, 255, 2),\n            Ease(self.sprite.color, 3, 255, 2),\n            Ease(self.sprite.color, 4, 255, 2)\n        },\n        Do(function()\n            self:run(Repeat(\n                While(\n                    function()\n                        return not self:isRemoved()\n                    end,\n                    Serial {\n                        Do(function()\n                            self.sprite:setShine(3)\n                        end),\n                        Wait(1.0),\n                        Do(function()\n                            self.sprite:removeShine()\n                        end),\n                        Wait(5)\n                    },\n                    Do(function() end)\n                )\n            ))\n        end)\n    }\nend",
-            ["sprite"] = "../art/sprites/leaf.png"
-          }
-        },
-        {
           id = 119,
           name = "GrabRing",
           type = "BasicNPC",
@@ -3323,40 +3272,6 @@ return {
           gid = 5323,
           visible = true,
           properties = {}
-        },
-        {
-          id = 138,
-          name = "Chest3",
-          type = "Chest",
-          shape = "rectangle",
-          x = 5792,
-          y = 448,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["ScrapMetal"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 139,
-          name = "Chest2",
-          type = "Chest",
-          shape = "rectangle",
-          x = 6208,
-          y = 448,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["BlueLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
         },
         {
           id = 140,
@@ -3830,62 +3745,6 @@ return {
           }
         },
         {
-          id = 184,
-          name = "Chest3",
-          type = "Chest",
-          shape = "rectangle",
-          x = 7008,
-          y = 896,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["Mushroom"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 191,
-          name = "Tails",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4736,
-          y = 2560,
-          width = 64,
-          height = 96,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -16,
-            ["alignOffsetY"] = -32,
-            ["defaultAnim"] = "idleright",
-            ["ghost"] = false,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Menu = require \"actions/Menu\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    local dir = self.x > self.scene.player.x and \"left\" or \"right\"\n    if GameState:isFlagSet(\"missing_puc\") then\n        return Serial {\n            Animate(self.sprite, \"sad\"..dir),\n            MessageBox{message = \"Tails: If only I could find that puck...\", textSpeed = 3, blocking = true}\n        }\n    end\n\n    local nameMap = {\n        sonic = \"Sonic\",\n        sally = \"Sally\",\n        bunny = \"Bunnie\"\n    }\n    self.origY = self.y\n    return BlockPlayer {\n        Animate(self.sprite, \"idle\"..dir),\n        MessageBox {\n            message = \"Tails: Hey \"..nameMap[GameState.leader]..\"! {p40}Ya wanna play some dirt hockey?\",\n        },\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Play dirt hockey?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        Animate(self.sprite, \"joy\"..dir),\n                        Ease(self, \"y\", function() return self.origY - 80 end, 7, \"linear\"),\n                        Ease(self, \"y\", function() return self.origY end, 7, \"linear\"),\n                        MessageBox {message = \"Tails: Alright! {p40}Let's do it to it!\"},\n                        MessageBox {message = \"Tails: Oh wait...\"},\n                        Animate(self.sprite, \"sad\"..dir),\n                        MessageBox {message = \"Tails: Where's my puck?! {p50}I guess we can't play right now...\"},\n                        Do(function() GameState:setFlag(\"missing_puc\") end)\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        Animate(self.sprite, \"sad\"..dir),\n                        MessageBox {message = \"Tails: Awww... ok. {p40}Maybe later.\"}\n                    }\n                end},\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        },\n        Do(function()\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
-            ["sprite"] = "../art/sprites/tails.png"
-          }
-        },
-        {
-          id = 222,
-          name = "Chest5",
-          type = "Chest",
-          shape = "rectangle",
-          x = 4672,
-          y = 1344,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["CrystalWater"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 278,
           name = "CartWaypoint",
           type = "BasicNPC",
@@ -3918,31 +3777,14 @@ return {
           }
         },
         {
-          id = 305,
-          name = "Hint",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 5920,
-          y = 512,
-          width = 32,
-          height = 96,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["specialHint"] = "bunny"
-          }
-        },
-        {
           id = 312,
           name = "Antoine",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1856,
-          y = 1952,
+          x = 1056,
+          y = 1376,
           width = 64,
-          height = 96,
+          height = 64,
           rotation = 0,
           gid = 5323,
           visible = true,
@@ -3950,10 +3792,10 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -16,
             ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "idledown",
+            ["defaultAnim"] = "idleright",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    self.origY = self.y\n    return BlockPlayer {\n        MessageBox {\n            message = \"Antoine: You tell that blue-haired fewl that he's banned from using my kitchen!\"\n        }\n    }\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = self.scene.objectLookup.Sonic\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = self.scene.objectLookup.Bunnie\n\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Antoine: I am having on last question{p40}, did Sonic use my kitchen recently?\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil\n            end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Antoine: My princess. {p60}I am thinking these Rebels{p40}, how you say--{p60} they are not so good, I am thinking...\"},\n            MessageBox {message = \"Antoine: I fear they may be spies for Robotnik.\"},\n            MessageBox {message = \"Sally: I understand your apprehension, Antoine... {p60}but I've known Leon since I was a child.\"},\n            MessageBox {message = \"Sally: His team may lack some...{p40} uhh... {p40}social skills... {p80}but I know that they want to take down Robotnik just as much as we do!\"},\n            MessageBox {message = \"Sally: The way they so quickly defeated those two Juggerbots back in Robotropolis...\"},\n            MessageBox {message = \"Sally: We'll need their help if we want to destroy Robotnik's new Frankenstein's monster...\"},\n            MessageBox {message = \"Sally: Then we can deploy Rotor's computer virus{p40}, take back control of the city{p40}, and put Robotnik behind bars!\"},\n            MessageBox {message = \"Antoine: Yes, of course my Princess.{p40} You are right.\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil\n            end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/antoine.png"
           }
         },
@@ -4197,6 +4039,70 @@ return {
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/campfire.png"
           }
+        },
+        {
+          id = 340,
+          name = "Sonic",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1248,
+          y = 1376,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -16,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = self.scene.objectLookup.Antoine\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = self.scene.objectLookup.Bunnie\n\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Sonic: Fleet is pretty fast, I'll give her that...\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil\n            end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Sonic: Hey Sal{p40}, I know you're mondo happy Leon is here and all{p40}, but these Rebellion guys seem like bad news!\"},\n            Animate(self.sprite, \"irritated\"),\n            MessageBox {message = \"Sonic: They show up right at the last second of our mission and trash two Juggerbots like they're nothin'?\"},\n            MessageBox {message = \"Sonic: Then they make a big scene at our meeting, actin' like they run the place?\"},\n            MessageBox {message = \"Sonic: And we're supposed to believe they're on the level?{p60} I don't buy it!\"},\n            MessageBox {message = \"Sally: Sonic{p40}, Leon was the leader of my father's royal guard. {p60}He fought in the Great War.\"},\n            MessageBox {message = \"Sally: It's true that his team has had a lot of formal military training that we haven't had. {p60}It makes sense that they would question whether we can keep up with them.\"},\n            MessageBox {message = \"Sonic: \\\"Keep up with them\\\"?! {p60}I can run circles around these dorks! {p60}Feather head may have gotten lucky today, but a hedgehog never always wins in the end...\"},\n            MessageBox {message = \"Sally: Is that a bit of jealousy I'm hearing?\"},\n            Animate(self.sprite, \"shock\"),\n            Wait(0.8),\n            Animate(self.sprite, \"irritated\"),\n            MessageBox {message = \"Sonic: No way!\"},\n            MessageBox {message = \"Sally: Is it possible that maybe you're just suspicious of the Rebellion because of this little competition between you and Fleet?\"},\n            Animate(self.sprite, \"shock\"),\n            Wait(0.8),\n            Animate(self.sprite, \"irritated\"),\n            MessageBox {message = \"Sonic: Ok, ok, it's possible.\"},\n            MessageBox {message = \"Sonic: ...I just hope you know what you're doin with all this, Sal.\"},\n            MessageBox {message = \"Sally: ...\"},\n            MessageBox {message = \"Sally: Me too...\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil\n            end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/sonic.png"
+          }
+        },
+        {
+          id = 342,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 8544,
+          y = 832,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["YellowLeaf"] = 1,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 343,
+          name = "Rotor",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7296,
+          y = 1984,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "idleright",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: Have you ever noticed how beautiful Knothole is at night?\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: Oh!{p60} Hey, Sally.\"},\n            MessageBox {message = \"Rotor: ...Logan is kinda...{p60} {h interesting}...{p60} \\ndon't ya think?\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/rotor.png"
+          }
         }
       }
     },
@@ -4209,372 +4115,7 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {
-        {
-          id = 298,
-          name = "AntoineMtg",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4885,
-          y = 1833,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "sitlookforward",
-            ["hidden"] = true,
-            ["nocollision"] = true,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/antoine.png"
-          }
-        },
-        {
-          id = 299,
-          name = "BunnieMtg",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4818,
-          y = 1837,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "sitlookforward",
-            ["hidden"] = true,
-            ["nocollision"] = true,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/bunny.png"
-          }
-        },
-        {
-          id = 300,
-          name = "SonicMtg",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4743,
-          y = 1830,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "sitlookforward",
-            ["hidden"] = true,
-            ["nocollision"] = true,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/sonic.png"
-          }
-        },
-        {
-          id = 301,
-          name = "SallyMtg",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4802,
-          y = 1792,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "planning",
-            ["hidden"] = true,
-            ["nocollision"] = true,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/sally.png"
-          }
-        },
-        {
-          id = 302,
-          name = "RotorMtg",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4668,
-          y = 1824,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "sitright",
-            ["hidden"] = true,
-            ["nocollision"] = true,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/rotor.png"
-          }
-        },
-        {
-          id = 309,
-          name = "FleetEp3Run",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1952,
-          y = 1056,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "flyleft",
-            ["ghost"] = true,
-            ["hidden"] = true,
-            ["ignoreMapCollision"] = true,
-            ["sprite"] = "../art/sprites/fleet.png"
-          }
-        },
-        {
-          id = 310,
-          name = "SonicEp3Run",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2080,
-          y = 1088,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "juiceleft",
-            ["ghost"] = true,
-            ["hidden"] = true,
-            ["ignoreMapCollision"] = true,
-            ["sprite"] = "../art/sprites/sonic.png"
-          }
-        },
-        {
-          id = 311,
-          name = "Ep3Waypoint",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 960,
-          y = 1056,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 313,
-          name = "IvanMtg",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4864,
-          y = 1792,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "meeting_idledown",
-            ["hidden"] = true,
-            ["nocollision"] = true,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/ivan.png"
-          }
-        },
-        {
-          id = 315,
-          name = "FleetMtg",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4712,
-          y = 1792,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "meeting_idledown",
-            ["hidden"] = true,
-            ["nocollision"] = true,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/fleet.png"
-          }
-        },
-        {
-          id = 316,
-          name = "LoganMtg",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4758,
-          y = 1792,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "meeting_idledown",
-            ["hidden"] = true,
-            ["nocollision"] = true,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/logan.png"
-          }
-        },
-        {
-          id = 318,
-          name = "LeonMtg",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4320,
-          y = 1920,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "idleright",
-            ["hidden"] = true,
-            ["movespeed"] = 1,
-            ["nocollision"] = true,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/leon.png"
-          }
-        },
-        {
-          id = 319,
-          name = "LeonWaypoint",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4544,
-          y = 1920,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 320,
-          name = "GriffMtg",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 5312,
-          y = 2016,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "idleleft",
-            ["ghost"] = true,
-            ["hidden"] = true,
-            ["ignoreMapCollision"] = true,
-            ["movespeed"] = 25,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/griffvehicle.png"
-          }
-        },
-        {
-          id = 321,
-          name = "GriffWaypoint",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4640,
-          y = 2016,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 322,
-          name = "GriffMtg2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4832,
-          y = 1792,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "meeting_idledown",
-            ["hidden"] = true,
-            ["nocollision"] = true,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/griff.png"
-          }
-        },
-        {
-          id = 323,
-          name = "ProjectionMtg",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4780,
-          y = 1740,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["hidden"] = true,
-            ["nocollision"] = true,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/nicholeprojection2.png"
-          }
-        },
-        {
-          id = 324,
-          name = "NicoleMtg",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4805,
-          y = 1790,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["hidden"] = true,
-            ["nocollision"] = true,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/nicole.png"
-          }
-        }
-      }
+      objects = {}
     },
     {
       type = "tilelayer",

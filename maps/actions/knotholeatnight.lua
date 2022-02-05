@@ -28,7 +28,7 @@ return function(scene, hint)
 	scene.player.dustColor = Player.FOREST_DUST_COLOR
 
 	local subtext = TypeText(
-		Transform(50, 470),
+		Transform(50, 500),
 		{255, 255, 255, 0},
 		FontCache.TechnoSmall,
 		"Later that night...",
