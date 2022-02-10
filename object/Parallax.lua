@@ -1,8 +1,9 @@
 local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
 local Player = require "object/Player"
+local SceneNode = require "object/SceneNode"
 
-local Parallax = class(require "object/SceneNode")
+local Parallax = class(SceneNode)
 
 function Parallax.ForBattle(scene, imgsrc, speedx, speedy)
 	local layer = {}
