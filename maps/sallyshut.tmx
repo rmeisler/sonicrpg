@@ -2,6 +2,7 @@
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="17">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
+  <property name="ignorenight" type="bool" value="true"/>
   <property name="onload" type="file" value="actions/sallyhut.lua"/>
   <property name="regionName" value="Sally's Hut"/>
  </properties>
@@ -71,6 +72,30 @@
 0,0,0,0,0,0,0,0,670,671,672,673,0,0,0,168,169,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,699,700,701,702,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,728,729,730,731,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="nighthide" width="25" height="20" opacity="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,844,845,0,0,0,0,0,817,818,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,873,874,121,122,0,0,0,846,847,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,148,149,150,151,0,0,0,875,876,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,177,178,179,180,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,206,207,208,209,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -404,7 +429,9 @@ end</property>
     player.lights[tostring(self)] = nil
 end</property>
     <property name="whileColliding">return function(self, player)
-    player.lights[tostring(self)] = true
+    if not self.scene.nighttime then
+        player.lights[tostring(self)] = true
+    end
 end</property>
    </properties>
   </object>
@@ -415,16 +442,10 @@ end</property>
     player.lights[tostring(self)] = nil
 end</property>
     <property name="whileColliding">return function(self, player)
-    player.lights[tostring(self)] = true
+    if not self.scene.nighttime then
+        player.lights[tostring(self)] = true
+    end
 end</property>
-   </properties>
-  </object>
-  <object id="12" name="SallySad" type="BasicNPC" gid="6839" x="256" y="416" width="32" height="64">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alignOffsetY" type="float" value="-32"/>
-    <property name="defaultAnim" value="sit_sad"/>
-    <property name="sprite" type="file" value="../art/sprites/sally.png"/>
    </properties>
   </object>
   <object id="13" name="Waypoint" type="BasicNPC" gid="6839" x="320" y="384" width="32" height="32">

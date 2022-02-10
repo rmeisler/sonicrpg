@@ -94,6 +94,10 @@ return {
         type = "map",
         file = "maps/knotholelookout.lua"
     },
+	{
+        type = "map",
+        file = "maps/knotholelookoutatnight.lua"
+    },
 	
 	{
 		type = "gradient",

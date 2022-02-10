@@ -32,13 +32,15 @@ return function(scene)
 		Ease(text.color, 4, 0, 1)
 	})
 
-	scene.audio:playMusic("knotholehut", 0.8)
-
 	if not scene.updateHookAdded then
 		scene.updateHookAdded = true
 		scene:addHandler(
 			"update",
 			function(dt)
+				if not scene.player then
+					return
+				end
+
 				-- This update function defines and enforces eliptical collision 
 				-- for the interior walls of knothole huts. This is implemented
 				-- as just two separate point-to-circle collision checks,
@@ -78,6 +80,18 @@ return function(scene)
 				break
 			end
 		end
+	end
+	
+	if scene.nighttime then
+		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
+		local prefix = "nighthide"
+		for _,layer in pairs(scene.map.layers) do
+			if string.sub(layer.name, 1, #prefix) == prefix then
+				layer.opacity = 1.0
+			end
+		end
+	else
+		scene.audio:playMusic("knotholehut", 0.8)
 	end
 
 	return Action()

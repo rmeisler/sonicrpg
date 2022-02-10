@@ -31,8 +31,6 @@ function BasicScene:onEnter(args)
 	
 	self.lastSpawnPoint = args.spawn_point or "Spawn 1"
 	
-	--print("spawn = "..self.lastSpawnPoint)
-	
 	self.spawnPoints = {}
 	
 	self.region = args.region
@@ -59,13 +57,24 @@ function BasicScene:onEnter(args)
 	-- draw function, so this works out fine.
 	self:addNode(self.map, "tiles")
 
-	if self.nighttime then
-		local mapDraw = self.map.drawTileLayer
+	if self.nighttime and not self.map.properties.ignorenight then
+		self.originalMapDraw = self.map.drawTileLayer
+		self.originalImgDraw = self.map.drawImageLayer
 		self.map.drawTileLayer = function(map, layer)
 			if not self.night then
 				self.night = shine.nightcolor()
 			end
-			self.night:draw(function() mapDraw(map, layer) end)
+			self.night:draw(function() self.originalMapDraw(map, layer) end)
+		end
+		self.map.drawImageLayer = function(map, layer)
+			if not self.night then
+				self.night = shine.nightcolor()
+			end
+			if layer.properties.nonight then
+				self.originalImgDraw(map, layer)
+			else
+				self.night:draw(function() self.originalImgDraw(map, layer) end)
+			end
 		end
 	end
 	
@@ -416,6 +425,8 @@ function BasicScene:remove()
 	for _, obj in pairs(self.map.objects) do
 		obj:remove()
 	end
+	self.map.drawTileLayer = self.originalMapDraw
+	self.map.drawImageLayer = self.originalImgDraw
 	self.map.objects = nil
 	self.objectLookup = nil
 	self.map.fallables = nil

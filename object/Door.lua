@@ -61,6 +61,7 @@ function Door:onCollision(prevState)
 			images = self.scene.images,
 			animations = self.scene.animations,
 			audio = self.scene.audio,
+			nighttime = self.scene.nighttime,
 			spawn_point = self.object.properties.spawn_point,
 			spawn_point_offset =
 				(self.object.properties.spawn_point_offset_x or

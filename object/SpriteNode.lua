@@ -343,7 +343,10 @@ function SpriteNode:draw(override)
 		drawSprite()
 		
 		love.graphics.setShader(prevShader)
-	elseif self.scene.nighttime and self.drawWithNight then
+	elseif self.scene.nighttime and
+		   not self.scene.map.properties.ignorenight and
+		   self.drawWithNight
+	then
 		self.scene.night:draw(drawSprite)
 	else
 		love.graphics.setColor(self.color)

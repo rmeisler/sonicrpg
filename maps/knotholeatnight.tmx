@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="344">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="345">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="nighttime" type="bool" value="true"/>
   <property name="onload" type="file" value="actions/knotholeatnight.lua"/>
   <property name="regionName" value="Great Forest"/>
-  <property name="sectorName" value="Knothole"/>
+  <property name="sectorName" value="Knothole (Night)"/>
  </properties>
  <tileset firstgid="1" source="knothole.tsx"/>
  <tileset firstgid="3485" source="knotholeindoors.tsx"/>
@@ -113,7 +113,15 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="rivereffect"/>
+ <imagelayer name="rivereffect" opacity="0.5" offsetx="2976" offsety="1248">
+  <image source="../art/parallax/river.png" width="800" height="600"/>
+  <properties>
+   <property name="nonight" type="bool" value="true"/>
+   <property name="speedx" type="float" value="0"/>
+   <property name="speedy" type="float" value="2"/>
+   <property name="type" value="Parallax"/>
+  </properties>
+ </imagelayer>
  <layer name="inbetween" width="275" height="88">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1124,6 +1132,7 @@ end</property>
   </object>
   <object id="5" name="Ripple" type="BasicNPC" gid="5323" x="7680" y="2112" width="96" height="64">
    <properties>
+    <property name="alphaOverride" type="int" value="125"/>
     <property name="bright" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="nonight" type="bool" value="true"/>
@@ -1174,7 +1183,6 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-44"/>
-    <property name="flagForDoor" value="notthistime"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>
@@ -1529,7 +1537,6 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-44"/>
-    <property name="flagForDoor" value="notthistime"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>
@@ -1542,7 +1549,6 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-44"/>
-    <property name="flagForDoor" value="notthistime"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>
@@ -2206,7 +2212,7 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>
-    <property name="scene" type="file" value="knotholelookout.lua"/>
+    <property name="scene" type="file" value="knotholelookoutatnight.lua"/>
     <property name="spawn_point" value="Entrance"/>
    </properties>
   </object>
@@ -2382,12 +2388,12 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="312" name="Antoine" type="BasicNPC" gid="5323" x="1056" y="1376" width="64" height="64">
+  <object id="312" name="Antoine" type="BasicNPC" gid="5323" x="1152" y="1408" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-16"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="idleright"/>
+    <property name="alignOffsetY" type="float" value="0"/>
+    <property name="defaultAnim" value="idleup"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
@@ -2406,7 +2412,7 @@ return function(self)
         return BlockPlayer {
             Do(function() self:facePlayer() end),
             MessageBox {message = &quot;Antoine: I am having on last question{p40}, did Sonic use my kitchen recently?&quot;},
-            Animate(self.sprite, &quot;idleright&quot;),
+            Animate(self.sprite, &quot;idleup&quot;),
             Do(function()
                 self:refreshKeyHint()
                 self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = nil
@@ -2418,14 +2424,14 @@ return function(self)
         return BlockPlayer {
             Do(function() self:facePlayer() end),
             MessageBox {message = &quot;Antoine: My princess. {p60}I am thinking these Rebels{p40}, how you say--{p60} they are not so good, I am thinking...&quot;},
-            MessageBox {message = &quot;Antoine: I fear they may be spies for Robotnik.&quot;},
+            MessageBox {message = &quot;Antoine: I fear they may be spies for... {p60}R-R-R-Robotnik.&quot;},
             MessageBox {message = &quot;Sally: I understand your apprehension, Antoine... {p60}but I've known Leon since I was a child.&quot;},
             MessageBox {message = &quot;Sally: His team may lack some...{p40} uhh... {p40}social skills... {p80}but I know that they want to take down Robotnik just as much as we do!&quot;},
             MessageBox {message = &quot;Sally: The way they so quickly defeated those two Juggerbots back in Robotropolis...&quot;},
             MessageBox {message = &quot;Sally: We'll need their help if we want to destroy Robotnik's new Frankenstein's monster...&quot;},
             MessageBox {message = &quot;Sally: Then we can deploy Rotor's computer virus{p40}, take back control of the city{p40}, and put Robotnik behind bars!&quot;},
             MessageBox {message = &quot;Antoine: Yes, of course my Princess.{p40} You are right.&quot;},
-            Animate(self.sprite, &quot;idleright&quot;),
+            Animate(self.sprite, &quot;idleup&quot;),
             Do(function()
                 self:refreshKeyHint()
                 self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = nil
@@ -2667,11 +2673,64 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/campfire.png"/>
    </properties>
   </object>
-  <object id="340" name="Sonic" type="BasicNPC" gid="5323" x="1248" y="1376" width="64" height="64">
+  <object id="342" name="Chest1" type="Chest" gid="7597" x="8544" y="832" width="64" height="64">
+   <properties>
+    <property name="YellowLeaf" type="int" value="1"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="343" name="Rotor" type="BasicNPC" gid="5323" x="7296" y="1984" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Rotor: ...Logan is kinda...{p60} {h interesting}...{p60} \ndon't ya think?&quot;},
+            Animate(self.sprite, &quot;idleright&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Rotor: Oh!{p40} Hey, Sally.&quot;},
+            MessageBox {message = &quot;Rotor: Have you ever noticed how beautiful Knothole is at night, under the stars?&quot;},
+            Animate(self.sprite, &quot;idleright&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
+   </properties>
+  </object>
+  <object id="344" name="Sonic" type="BasicNPC" gid="5323" x="3488" y="2080" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-16"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
     <property name="defaultAnim" value="idleup"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
@@ -2733,59 +2792,6 @@ return function(self)
     end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
-   </properties>
-  </object>
-  <object id="342" name="Chest1" type="Chest" gid="7597" x="8544" y="832" width="64" height="64">
-   <properties>
-    <property name="YellowLeaf" type="int" value="1"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="343" name="Rotor" type="BasicNPC" gid="5323" x="7296" y="1984" width="64" height="96">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-8"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="idleright"/>
-    <property name="ghost" type="bool" value="false"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Menu = require &quot;actions/Menu&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Animate = require &quot;actions/Animate&quot;
-
-local Transform = require &quot;util/Transform&quot;
-local Layout = require &quot;util/Layout&quot;
-
-local NPC = require &quot;object/NPC&quot;
-
-return function(self)
-    if GameState:isFlagSet(self:getFlag()) then
-        return BlockPlayer {
-            Do(function() self:facePlayer() end),
-            MessageBox {message = &quot;Rotor: Have you ever noticed how beautiful Knothole is at night?&quot;},
-            Animate(self.sprite, &quot;idleright&quot;),
-            Do(function() self:refreshKeyHint() end)
-        }
-    else
-        GameState:setFlag(self:getFlag())
-        return BlockPlayer {
-            Do(function() self:facePlayer() end),
-            MessageBox {message = &quot;Rotor: Oh!{p60} Hey, Sally.&quot;},
-            MessageBox {message = &quot;Rotor: ...Logan is kinda...{p60} {h interesting}...{p60} \ndon't ya think?&quot;},
-            Animate(self.sprite, &quot;idleright&quot;),
-            Do(function() self:refreshKeyHint() end)
-        }
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
    </properties>
   </object>
  </objectgroup>

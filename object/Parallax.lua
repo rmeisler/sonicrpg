@@ -22,7 +22,7 @@ function Parallax:construct(scene, layer)
 	self.h = self.layer.image:getHeight()
 
 	-- Parallax images are drawn as a 3x3 tiles, stitched together by drawing the image nine times
-	local oneDraw = self.layer.draw
+	self.oneDraw = self.layer.draw
 	self.layer.draw = function()
 		local offsets = {
 			Transform(),
@@ -39,10 +39,14 @@ function Parallax:construct(scene, layer)
 		for _,o in pairs(offsets) do
 			self.layer.x = orig.x + o.x
 			self.layer.y = orig.y + o.y
-			oneDraw()
+			self.oneDraw()
 		end
 		self.layer.x = (orig.x + self.dx) % (self.w)
 		self.layer.y = (orig.y + self.dy) % (self.h)
+		
+		if not self.scene.player then
+			return
+		end
 		
 		-- Hacky way of compensating for world xform
 		local dt = love.timer.getDelta()
@@ -74,6 +78,11 @@ function Parallax:construct(scene, layer)
 	self.sticky = true
 	
 	self:addSceneHandler("update", Parallax.update)
+end
+
+function Parallax:remove()
+	self.layer.draw = self.oneDraw
+	SceneNode.remove(self)
 end
 
 function Parallax:draw()

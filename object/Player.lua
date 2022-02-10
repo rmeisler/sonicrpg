@@ -699,7 +699,8 @@ function Player:isHiding(direction)
 end
 
 function Player:inShadow()
-	return self.scene.nighttime or next(self.shadows)
+	return (self.scene.nighttime and not self.scene.map.properties.ignorenight) or
+			next(self.shadows)
 end
 
 function Player:inLight()

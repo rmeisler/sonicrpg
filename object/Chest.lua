@@ -10,6 +10,8 @@ function Chest:construct(scene, layer, object)
 	object.properties.defaultAnim = nil
 	object.properties.appearAfter = nil
 	object.properties.alphaOverride = nil
+	
+	local nonight = object.properties.nonight
 	object.properties.nonight = nil
 	
 	self.disappearOnGrabbed = object.properties.disappearOnGrabbed
@@ -25,6 +27,8 @@ function Chest:construct(scene, layer, object)
 	if GameState:isFlagSet(self) and self.sprite then
 		self.sprite:setAnimation("open")
 	end
+	
+	object.properties.nonight = nonight
 
 	self:addInteract(Chest.open)
 end

@@ -27,20 +27,23 @@ return function(scene, hint)
 
 	scene.player.dustColor = Player.FOREST_DUST_COLOR
 
-	local subtext = TypeText(
-		Transform(50, 500),
-		{255, 255, 255, 0},
-		FontCache.TechnoSmall,
-		"Later that night...",
-		100
-	)
-	Executor(scene):act(Serial {
-		Wait(0.5),
-		subtext,
-		Ease(subtext.color, 4, 255, 1),
-		Wait(2),
-		Ease(subtext.color, 4, 0, 1)
-	})
+	if not GameState:isFlagSet("ep3_laterthatnight") then
+		GameState:setFlag("ep3_laterthatnight")
+		local subtext = TypeText(
+			Transform(50, 500),
+			{255, 255, 255, 0},
+			FontCache.TechnoMed,
+			"Later that night . . .",
+			100
+		)
+		Executor(scene):act(Serial {
+			Wait(0.5),
+			subtext,
+			Ease(subtext.color, 4, 255, 1),
+			Wait(2),
+			Ease(subtext.color, 4, 0, 1)
+		})
+	end
 	
 	scene.audio:playMusic("knotholeatnight", 0.8, true)
 	

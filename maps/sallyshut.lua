@@ -11,6 +11,7 @@ return {
   nextobjectid = 17,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["ignorenight"] = true,
     ["onload"] = "actions/sallyhut.lua",
     ["regionName"] = "Sally's Hut"
   },
@@ -229,6 +230,42 @@ return {
       }
     },
     {
+      type = "tilelayer",
+      name = "nighthide",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      visible = true,
+      opacity = 0,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 844, 845, 0, 0, 0, 0, 0, 817, 818, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 873, 874, 121, 122, 0, 0, 0, 846, 847, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 148, 149, 150, 151, 0, 0, 0, 875, 876, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 177, 178, 179, 180, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 206, 207, 208, 209, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
       type = "objectgroup",
       name = "objects",
       visible = true,
@@ -392,7 +429,7 @@ return {
           properties = {
             ["ghost"] = true,
             ["notColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = nil\nend",
-            ["whileColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = true\nend"
+            ["whileColliding"] = "return function(self, player)\n    if not self.scene.nighttime then\n        player.lights[tostring(self)] = true\n    end\nend"
           }
         },
         {
@@ -410,26 +447,7 @@ return {
           properties = {
             ["ghost"] = true,
             ["notColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = nil\nend",
-            ["whileColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = true\nend"
-          }
-        },
-        {
-          id = 12,
-          name = "SallySad",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 256,
-          y = 416,
-          width = 32,
-          height = 64,
-          rotation = 0,
-          gid = 6839,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetY"] = -32,
-            ["defaultAnim"] = "sit_sad",
-            ["sprite"] = "../art/sprites/sally.png"
+            ["whileColliding"] = "return function(self, player)\n    if not self.scene.nighttime then\n        player.lights[tostring(self)] = true\n    end\nend"
           }
         },
         {

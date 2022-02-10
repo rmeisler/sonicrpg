@@ -8,13 +8,13 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 344,
+  nextobjectid = 345,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = true,
     ["onload"] = "actions/knotholeatnight.lua",
     ["regionName"] = "Great Forest",
-    ["sectorName"] = "Knothole"
+    ["sectorName"] = "Knothole (Night)"
   },
   tilesets = {
     {
@@ -382,15 +382,19 @@ return {
       }
     },
     {
-      type = "objectgroup",
+      type = "imagelayer",
       name = "rivereffect",
       visible = true,
-      opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      draworder = "topdown",
-      properties = {},
-      objects = {}
+      opacity = 0.5,
+      offsetx = 2976,
+      offsety = 1248,
+      image = "../art/parallax/river.png",
+      properties = {
+        ["nonight"] = true,
+        ["speedx"] = 0,
+        ["speedy"] = 2,
+        ["type"] = "Parallax"
+      }
     },
     {
       type = "tilelayer",
@@ -1651,6 +1655,7 @@ return {
           gid = 5323,
           visible = true,
           properties = {
+            ["alphaOverride"] = 125,
             ["bright"] = true,
             ["ghost"] = true,
             ["nonight"] = true,
@@ -1778,7 +1783,6 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -44,
-            ["flagForDoor"] = "notthistime",
             ["ghost"] = true,
             ["key"] = "up",
             ["orientation"] = "down",
@@ -2650,7 +2654,6 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -44,
-            ["flagForDoor"] = "notthistime",
             ["ghost"] = true,
             ["key"] = "up",
             ["orientation"] = "down",
@@ -2674,7 +2677,6 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -44,
-            ["flagForDoor"] = "notthistime",
             ["ghost"] = true,
             ["key"] = "up",
             ["orientation"] = "down",
@@ -3325,7 +3327,7 @@ return {
             ["ghost"] = true,
             ["key"] = "up",
             ["orientation"] = "down",
-            ["scene"] = "knotholelookout.lua",
+            ["scene"] = "knotholelookoutatnight.lua",
             ["spawn_point"] = "Entrance"
           }
         },
@@ -3781,8 +3783,8 @@ return {
           name = "Antoine",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1056,
-          y = 1376,
+          x = 1152,
+          y = 1408,
           width = 64,
           height = 64,
           rotation = 0,
@@ -3791,11 +3793,11 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -16,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "idleright",
+            ["alignOffsetY"] = 0,
+            ["defaultAnim"] = "idleup",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = self.scene.objectLookup.Sonic\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = self.scene.objectLookup.Bunnie\n\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Antoine: I am having on last question{p40}, did Sonic use my kitchen recently?\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil\n            end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Antoine: My princess. {p60}I am thinking these Rebels{p40}, how you say--{p60} they are not so good, I am thinking...\"},\n            MessageBox {message = \"Antoine: I fear they may be spies for Robotnik.\"},\n            MessageBox {message = \"Sally: I understand your apprehension, Antoine... {p60}but I've known Leon since I was a child.\"},\n            MessageBox {message = \"Sally: His team may lack some...{p40} uhh... {p40}social skills... {p80}but I know that they want to take down Robotnik just as much as we do!\"},\n            MessageBox {message = \"Sally: The way they so quickly defeated those two Juggerbots back in Robotropolis...\"},\n            MessageBox {message = \"Sally: We'll need their help if we want to destroy Robotnik's new Frankenstein's monster...\"},\n            MessageBox {message = \"Sally: Then we can deploy Rotor's computer virus{p40}, take back control of the city{p40}, and put Robotnik behind bars!\"},\n            MessageBox {message = \"Antoine: Yes, of course my Princess.{p40} You are right.\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil\n            end)\n        }\n    end\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = self.scene.objectLookup.Sonic\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = self.scene.objectLookup.Bunnie\n\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Antoine: I am having on last question{p40}, did Sonic use my kitchen recently?\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil\n            end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Antoine: My princess. {p60}I am thinking these Rebels{p40}, how you say--{p60} they are not so good, I am thinking...\"},\n            MessageBox {message = \"Antoine: I fear they may be spies for... {p60}R-R-R-Robotnik.\"},\n            MessageBox {message = \"Sally: I understand your apprehension, Antoine... {p60}but I've known Leon since I was a child.\"},\n            MessageBox {message = \"Sally: His team may lack some...{p40} uhh... {p40}social skills... {p80}but I know that they want to take down Robotnik just as much as we do!\"},\n            MessageBox {message = \"Sally: The way they so quickly defeated those two Juggerbots back in Robotropolis...\"},\n            MessageBox {message = \"Sally: We'll need their help if we want to destroy Robotnik's new Frankenstein's monster...\"},\n            MessageBox {message = \"Sally: Then we can deploy Rotor's computer virus{p40}, take back control of the city{p40}, and put Robotnik behind bars!\"},\n            MessageBox {message = \"Antoine: Yes, of course my Princess.{p40} You are right.\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Sonic)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil\n            end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/antoine.png"
           }
         },
@@ -4041,29 +4043,6 @@ return {
           }
         },
         {
-          id = 340,
-          name = "Sonic",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1248,
-          y = 1376,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -16,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "idleup",
-            ["ghost"] = false,
-            ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = self.scene.objectLookup.Antoine\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = self.scene.objectLookup.Bunnie\n\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Sonic: Fleet is pretty fast, I'll give her that...\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil\n            end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Sonic: Hey Sal{p40}, I know you're mondo happy Leon is here and all{p40}, but these Rebellion guys seem like bad news!\"},\n            Animate(self.sprite, \"irritated\"),\n            MessageBox {message = \"Sonic: They show up right at the last second of our mission and trash two Juggerbots like they're nothin'?\"},\n            MessageBox {message = \"Sonic: Then they make a big scene at our meeting, actin' like they run the place?\"},\n            MessageBox {message = \"Sonic: And we're supposed to believe they're on the level?{p60} I don't buy it!\"},\n            MessageBox {message = \"Sally: Sonic{p40}, Leon was the leader of my father's royal guard. {p60}He fought in the Great War.\"},\n            MessageBox {message = \"Sally: It's true that his team has had a lot of formal military training that we haven't had. {p60}It makes sense that they would question whether we can keep up with them.\"},\n            MessageBox {message = \"Sonic: \\\"Keep up with them\\\"?! {p60}I can run circles around these dorks! {p60}Feather head may have gotten lucky today, but a hedgehog never always wins in the end...\"},\n            MessageBox {message = \"Sally: Is that a bit of jealousy I'm hearing?\"},\n            Animate(self.sprite, \"shock\"),\n            Wait(0.8),\n            Animate(self.sprite, \"irritated\"),\n            MessageBox {message = \"Sonic: No way!\"},\n            MessageBox {message = \"Sally: Is it possible that maybe you're just suspicious of the Rebellion because of this little competition between you and Fleet?\"},\n            Animate(self.sprite, \"shock\"),\n            Wait(0.8),\n            Animate(self.sprite, \"irritated\"),\n            MessageBox {message = \"Sonic: Ok, ok, it's possible.\"},\n            MessageBox {message = \"Sonic: ...I just hope you know what you're doin with all this, Sal.\"},\n            MessageBox {message = \"Sally: ...\"},\n            MessageBox {message = \"Sally: Me too...\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil\n            end)\n        }\n    end\nend",
-            ["sprite"] = "../art/sprites/sonic.png"
-          }
-        },
-        {
           id = 342,
           name = "Chest1",
           type = "Chest",
@@ -4100,8 +4079,31 @@ return {
             ["defaultAnim"] = "idleright",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: Have you ever noticed how beautiful Knothole is at night?\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: Oh!{p60} Hey, Sally.\"},\n            MessageBox {message = \"Rotor: ...Logan is kinda...{p60} {h interesting}...{p60} \\ndon't ya think?\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: ...Logan is kinda...{p60} {h interesting}...{p60} \\ndon't ya think?\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: Oh!{p40} Hey, Sally.\"},\n            MessageBox {message = \"Rotor: Have you ever noticed how beautiful Knothole is at night, under the stars?\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/rotor.png"
+          }
+        },
+        {
+          id = 344,
+          name = "Sonic",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 3488,
+          y = 2080,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -16,
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = self.scene.objectLookup.Antoine\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = self.scene.objectLookup.Bunnie\n\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Sonic: Fleet is pretty fast, I'll give her that...\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil\n            end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Sonic: Hey Sal{p40}, I know you're mondo happy Leon is here and all{p40}, but these Rebellion guys seem like bad news!\"},\n            Animate(self.sprite, \"irritated\"),\n            MessageBox {message = \"Sonic: They show up right at the last second of our mission and trash two Juggerbots like they're nothin'?\"},\n            MessageBox {message = \"Sonic: Then they make a big scene at our meeting, actin' like they run the place?\"},\n            MessageBox {message = \"Sonic: And we're supposed to believe they're on the level?{p60} I don't buy it!\"},\n            MessageBox {message = \"Sally: Sonic{p40}, Leon was the leader of my father's royal guard. {p60}He fought in the Great War.\"},\n            MessageBox {message = \"Sally: It's true that his team has had a lot of formal military training that we haven't had. {p60}It makes sense that they would question whether we can keep up with them.\"},\n            MessageBox {message = \"Sonic: \\\"Keep up with them\\\"?! {p60}I can run circles around these dorks! {p60}Feather head may have gotten lucky today, but a hedgehog never always wins in the end...\"},\n            MessageBox {message = \"Sally: Is that a bit of jealousy I'm hearing?\"},\n            Animate(self.sprite, \"shock\"),\n            Wait(0.8),\n            Animate(self.sprite, \"irritated\"),\n            MessageBox {message = \"Sonic: No way!\"},\n            MessageBox {message = \"Sally: Is it possible that maybe you're just suspicious of the Rebellion because of this little competition between you and Fleet?\"},\n            Animate(self.sprite, \"shock\"),\n            Wait(0.8),\n            Animate(self.sprite, \"irritated\"),\n            MessageBox {message = \"Sonic: Ok, ok, it's possible.\"},\n            MessageBox {message = \"Sonic: ...I just hope you know what you're doin with all this, Sal.\"},\n            MessageBox {message = \"Sally: ...\"},\n            MessageBox {message = \"Sally: Me too...\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil\n            end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/sonic.png"
           }
         }
       }
