@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 345,
+  nextobjectid = 346,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = true,
@@ -4104,6 +4104,29 @@ return {
             ["nonight"] = true,
             ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = self.scene.objectLookup.Antoine\n    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = self.scene.objectLookup.Bunnie\n\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Sonic: Fleet is pretty fast, I'll give her that...\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil\n            end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Sonic: Hey Sal{p40}, I know you're mondo happy Leon is here and all{p40}, but these Rebellion guys seem like bad news!\"},\n            Animate(self.sprite, \"irritated\"),\n            MessageBox {message = \"Sonic: They show up right at the last second of our mission and trash two Juggerbots like they're nothin'?\"},\n            MessageBox {message = \"Sonic: Then they make a big scene at our meeting, actin' like they run the place?\"},\n            MessageBox {message = \"Sonic: And we're supposed to believe they're on the level?{p60} I don't buy it!\"},\n            MessageBox {message = \"Sally: Sonic{p40}, Leon was the leader of my father's royal guard. {p60}He fought in the Great War.\"},\n            MessageBox {message = \"Sally: It's true that his team has had a lot of formal military training that we haven't had. {p60}It makes sense that they would question whether we can keep up with them.\"},\n            MessageBox {message = \"Sonic: \\\"Keep up with them\\\"?! {p60}I can run circles around these dorks! {p60}Feather head may have gotten lucky today, but a hedgehog never always wins in the end...\"},\n            MessageBox {message = \"Sally: Is that a bit of jealousy I'm hearing?\"},\n            Animate(self.sprite, \"shock\"),\n            Wait(0.8),\n            Animate(self.sprite, \"irritated\"),\n            MessageBox {message = \"Sonic: No way!\"},\n            MessageBox {message = \"Sally: Is it possible that maybe you're just suspicious of the Rebellion because of this little competition between you and Fleet?\"},\n            Animate(self.sprite, \"shock\"),\n            Wait(0.8),\n            Animate(self.sprite, \"irritated\"),\n            MessageBox {message = \"Sonic: Ok, ok, it's possible.\"},\n            MessageBox {message = \"Sonic: ...I just hope you know what you're doin with all this, Sal.\"},\n            MessageBox {message = \"Sally: ...\"},\n            MessageBox {message = \"Sally: Me too...\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil\n                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Bunnie)] = nil\n            end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/sonic.png"
+          }
+        },
+        {
+          id = 345,
+          name = "TailsHutWarmWindows",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1472,
+          y = 800,
+          width = 256,
+          height = 128,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = 25,
+            ["alignOffsetY"] = -15,
+            ["defaultAnim"] = "warmwindows",
+            ["nightbright"] = true,
+            ["nonight"] = true,
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 255, 1),\n            Ease(self.sprite.color, 4, 200, 1)\n        })\n    }\nend",
+            ["sprite"] = "../art/sprites/tailshut.png"
           }
         }
       }

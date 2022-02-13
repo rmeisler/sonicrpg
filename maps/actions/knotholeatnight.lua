@@ -47,5 +47,9 @@ return function(scene, hint)
 	
 	scene.audio:playMusic("knotholeatnight", 0.8, true)
 	
+	if GameState:isFlagSet("ep3_read") then
+		scene.objectLookup.TailsHutWarmWindows:remove()
+	end
+	
 	return Action()
 end

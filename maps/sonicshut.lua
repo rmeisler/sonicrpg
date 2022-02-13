@@ -575,26 +575,6 @@ return {
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/pot.png"
           }
-        },
-        {
-          id = 19,
-          name = "AlarmClock",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 320,
-          y = 256,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 6839,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetY"] = -32,
-            ["ghost"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            Do(function()\n                self.scene.player.noIdle = true\n            end),\n            MessageBox {\n                message = \"Sonic: Ugh. {p40}I can't believe Sal is making us use these alarm clocks...\"\n            },\n            Parallel {\n                Animate(self.scene.player.sprite, \"irritated\", true),\n                MessageBox {\n                    message = \"Sonic: Doesn't she know that a hedgehog needs his beauty sleep?!\"\n                }\n            },\n            Do(function()\n                self.scene.player.noIdle = false\n                self.scene.player.state = \"idledown\"\n                self:refreshKeyHint()\n            end)\n        }\n    elseif GameState.leader == \"sally\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sally: Sonic thinks we're all using alarm clocks now, but he's actually the only person I told that to. {p60}He's the only one who sleeps in!\"},\n            Do(function()\n                self.scene.player.noIdle = true\n                self.scene.player.state = \"thinking\"\n            end),\n            MessageBox {message=\"Sally: I wonder if he'll notice?\"},\n            Do(function()\n                self.scene.player.noIdle = false\n                self.scene.player.state = \"idledown\"\n                self:refreshKeyHint()\n            end)\n        }\n    elseif GameState.leader == \"bunny\" then\n        return BlockPlayer {\n            MessageBox {message=\"Bunnie: An alarm clock? {p40}I much prefer to wake up to the soothing sounds of nature!\"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
-            ["sprite"] = "../art/sprites/clock.png"
-          }
         }
       }
     },

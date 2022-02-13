@@ -349,62 +349,6 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/pot.png"/>
    </properties>
   </object>
-  <object id="19" name="AlarmClock" type="BasicNPC" gid="6839" x="320" y="256" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alignOffsetY" type="float" value="-32"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Do = require &quot;actions/Do&quot;
-local Animate = require &quot;actions/Animate&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-
-return function(self)
-    if GameState.leader == &quot;sonic&quot; then
-        return BlockPlayer {
-            Do(function()
-                self.scene.player.noIdle = true
-            end),
-            MessageBox {
-                message = &quot;Sonic: Ugh. {p40}I can't believe Sal is making us use these alarm clocks...&quot;
-            },
-            Parallel {
-                Animate(self.scene.player.sprite, &quot;irritated&quot;, true),
-                MessageBox {
-                    message = &quot;Sonic: Doesn't she know that a hedgehog needs his beauty sleep?!&quot;
-                }
-            },
-            Do(function()
-                self.scene.player.noIdle = false
-                self.scene.player.state = &quot;idledown&quot;
-                self:refreshKeyHint()
-            end)
-        }
-    elseif GameState.leader == &quot;sally&quot; then
-        return BlockPlayer {
-            MessageBox {message=&quot;Sally: Sonic thinks we're all using alarm clocks now, but he's actually the only person I told that to. {p60}He's the only one who sleeps in!&quot;},
-            Do(function()
-                self.scene.player.noIdle = true
-                self.scene.player.state = &quot;thinking&quot;
-            end),
-            MessageBox {message=&quot;Sally: I wonder if he'll notice?&quot;},
-            Do(function()
-                self.scene.player.noIdle = false
-                self.scene.player.state = &quot;idledown&quot;
-                self:refreshKeyHint()
-            end)
-        }
-    elseif GameState.leader == &quot;bunny&quot; then
-        return BlockPlayer {
-            MessageBox {message=&quot;Bunnie: An alarm clock? {p40}I much prefer to wake up to the soothing sounds of nature!&quot;},
-            Do(function() self:refreshKeyHint() end)
-        }
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/clock.png"/>
-   </properties>
-  </object>
  </objectgroup>
  <layer name="Collision" width="25" height="20" visible="0">
   <data encoding="csv">

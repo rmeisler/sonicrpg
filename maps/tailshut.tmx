@@ -164,7 +164,6 @@ end</property>
   <object id="20" name="TailsBed" type="BasicNPC" gid="6839" x="416" y="384" width="192" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Do = require &quot;actions/Do&quot;

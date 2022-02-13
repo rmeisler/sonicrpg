@@ -121,10 +121,13 @@ return function(scene)
 			scene.objectLookup.TailsBed.sprite:setAnimation("tailsawake")
 			if GameState:isFlagSet("ep3_book") then
 			    GameState:setFlag("ep3_read")
-				scene.player.object.properties.ignoreMapCollision = true
-				scene.player.hidekeyhints[tostring(scene.objectLookup.Door)] = scene.objectLookup.Door
-				scene.player.hidekeyhints[tostring(scene.objectLookup.TailsBed)] = scene.objectLookup.TailsBed
 				return BlockPlayer {
+					Do(function()
+						scene.player.object.properties.ignoreMapCollision = true
+						scene.player.hidekeyhints[tostring(scene.objectLookup.Door)] = scene.objectLookup.Door
+						scene.player.hidekeyhints[tostring(scene.objectLookup.TailsBed)] = scene.objectLookup.TailsBed
+						scene.player.hidekeyhints[tostring(scene.objectLookup.Drawer)] = scene.objectLookup.Drawer
+					end),
 					Wait(1),
 					MessageBox {message="Sally: Tails, it's story time..."},
 					MessageBox {message="Tails: Yay!"},
@@ -149,13 +152,16 @@ return function(scene)
 							Do(function()
 								scene.player.hidekeyhints[tostring(scene.objectLookup.Door)] = nil
 								scene.player.hidekeyhints[tostring(scene.objectLookup.TailsBed)] = nil
+								scene.player.hidekeyhints[tostring(scene.objectLookup.Drawer)] = nil
 							end)
 						}
 					end)
 				}
 			else
-				scene.player.hidekeyhints[tostring(scene.objectLookup.Door)] = scene.objectLookup.Door
 				return BlockPlayer {
+					Do(function()
+						scene.player.hidekeyhints[tostring(scene.objectLookup.Door)] = scene.objectLookup.Door
+					end),
 					Wait(1),
 					MessageBox {message="Tails: Hey Sally, will you read me a story?"},
 					Do(function()
@@ -165,7 +171,6 @@ return function(scene)
 			end
 		else
 			scene.objectLookup.TailsBed.sprite:setAnimation("tailssleep")
-			undonight()
 		end
 	end
 
