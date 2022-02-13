@@ -8,11 +8,11 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 25,
+  nextobjectid = 27,
   properties = {
     ["ignorenight"] = true,
     ["lowerCollisionCircleY"] = 300,
-    ["onload"] = "actions/knotholehut.lua",
+    ["onload"] = "actions/tailshut.lua",
     ["regionName"] = "Tails' Room"
   },
   tilesets = {
@@ -419,6 +419,8 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["nonight"] = true,
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    if self.scene.nighttime and not GameState:isFlagSet(\"ep3_read\") then\n        return BlockPlayer {\n            MessageBox {message = \"Tails: You got some books in your hut, doncha?\"},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    elseif self.scene.nighttime and GameState:isFlagSet(\"ep3_read\") then\n        return BlockPlayer {\n            MessageBox {message = \"Tails: zzz...\"},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\n    return Do(function()\n        self:refreshKeyHint()\n    end)\nend",
             ["sprite"] = "../art/sprites/tailsbed.png"
           }
         },
@@ -437,6 +439,22 @@ return {
           properties = {
             ["ghost"] = true,
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message = \"Inside the drawer is Tails' diary...\", blocking = true, textSpeed = 3},\n        Menu {\n        layout = Layout {\n            {Layout.Text(\"Read it?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        MessageBox{message=\"Diary: I wanted to play dirt hockey with Sonic today, {p30}but he said he was too busy. {p50}He always says that!\", blocking = true, textSpeed = 3}\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                end}\n            },\n            cancellable = true,\n            selectedRow = 2,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)\n        },\n        Do(function()\n            self:refreshKeyHint()\n        end)\n    }\nend"
+          }
+        },
+        {
+          id = 26,
+          name = "Waypoint",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 480,
+          y = 352,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

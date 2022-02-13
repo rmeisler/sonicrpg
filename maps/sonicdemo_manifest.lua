@@ -471,6 +471,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/icon_book.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/icon_carrot.png"
 	},
 	{

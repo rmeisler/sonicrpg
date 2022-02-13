@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 17,
+  nextobjectid = 18,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["ignorenight"] = true,
@@ -354,7 +354,6 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sonic: Sal's science textbooks... {p50}Boooring.\", textSpeed=4},\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sally\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.\"},\n            MessageBox {message=\"Sally: Maybe I could read it to Tails.\"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"bunny\" then\n        return BlockPlayer {\n            MessageBox {message=\"Bunnie: My goodness, {p40}that Sally-girl sure is a book worm!\"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\n    return Action()\nend",
             ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: I am detecting a great deal of dust, {p40}Sally.\"},\n        Do(function()\n            self.scene.player.noIdle = true\n            self.scene.player.state = \"thinking\"\n        end),\n        MessageBox {message=\"Sally: Ha, {p40}ha. {p60}Very funny, Nicole.\"},\n        Do(function()\n            self.scene.player.state = \"thinking2\"\n        end),\n        MessageBox {message=\"Sally: I guess I haven't had much time to read recently...\", textspeed=2},\n        Do(function()\n            self.scene.player.noIdle = false\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/sallybookshelf.png"
           }
@@ -514,6 +513,23 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 17,
+          name = "SallysBookshelfInteract",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 480,
+          y = 512,
+          width = 96,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sonic: Sal's science textbooks... {p50}Boooring.\", textSpeed=4},\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sally\" then\n        if GameState:isFlagSet(\"ep3_book\") then\n            return BlockPlayer {\n                MessageBox {message=\"Sally: I haven't read some of these in quite awhile... \"}, \n                Do(function() self:refreshKeyHint() end)\n            }\n        end\n        return BlockPlayer {\n            MessageBox {message=\"Sally: I haven't read some of these in quite awhile... \"},\n            MessageBox {message=\"Sally: ...'The Adventures of Windom'... {p60}I remember my father reading this to me when I was little.\"},\n            Menu {\n                layout = Layout {\n                    {Layout.Text(\"Take book?\"), selectable = false},\n                    {Layout.Text(\"Yes\"), choose = function(menu)\n                        menu:close()\n                        GameState:grantItem(require(\"data/items/Book\"), 1)\n                        GameState:setFlag(\"ep3_book\")\n                        self.scene:run {\n                            menu,\n                            MessageBox {message = \"You received {h 'The Adventures of Windom'}!\", sfx=\"levelup\", textspeed=8},\n                            Do(function() self:refreshKeyHint() end)\n                        }\n                    end},\n                    {Layout.Text(\"No\"), choose = function(menu)\n                        menu:close()\n                        self.scene:run {\n                            menu,\n                            Do(function() self:refreshKeyHint() end)\n                        }\n                    end}\n                },\n                cancellable = true,\n                selectedRow = 2,\n                transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)\n            },\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"bunny\" then\n        return BlockPlayer {\n            MessageBox {message=\"Bunnie: My goodness, {p40}that Sally-girl sure is a book worm!\"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\n    return Action()\nend"
           }
         }
       }

@@ -1,0 +1,173 @@
+return function(scene)
+	local Transform = require "util/Transform"
+	local Rect = unpack(require "util/Shapes")
+	local Layout = require "util/Layout"
+
+	local Action = require "actions/Action"
+	local TypeText = require "actions/TypeText"
+	local Menu = require "actions/Menu"
+	local MessageBox = require "actions/MessageBox"
+	local Move = require "actions/Move"
+	local PlayAudio = require "actions/PlayAudio"
+	local Ease = require "actions/Ease"
+	local Parallel = require "actions/Parallel"
+	local Serial = require "actions/Serial"
+	local Executor = require "actions/Executor"
+	local Wait = require "actions/Wait"
+	local Do = require "actions/Do"
+	local BlockPlayer = require "actions/BlockPlayer"
+	local Animate = require "actions/Animate"
+	local SpriteNode = require "object/SpriteNode"
+
+	local text = TypeText(
+		Transform(50, 500),
+		{255, 255, 255, 0},
+		FontCache.Techno,
+		scene.map.properties.regionName,
+		100
+	)
+
+	Executor(scene):act(Serial {
+		Wait(0.5),
+		text,
+		Ease(text.color, 4, 255, 1),
+		Wait(2),
+		Ease(text.color, 4, 0, 1)
+	})
+
+	if not scene.nighttime then
+		scene.audio:playMusic("knotholehut", 0.8)
+	else
+		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
+	end
+	
+	local undonight = function()
+		-- Undo ignore night
+		local shine = require "lib/shine"
+
+		scene.map.properties.ignorenight = false
+		scene.originalMapDraw = scene.map.drawTileLayer
+		scene.originalImgDraw = scene.map.drawImageLayer
+		scene.map.drawTileLayer = function(map, layer)
+			if not scene.night then
+				scene.night = shine.nightcolor()
+			end
+			scene.night:draw(function() scene.originalMapDraw(map, layer) end)
+		end
+		scene.map.drawImageLayer = function(map, layer)
+			if not scene.night then
+				scene.night = shine.nightcolor()
+			end
+			if layer.properties.nonight then
+				scene.originalImgDraw(map, layer)
+			else
+				scene.night:draw(function() scene.originalImgDraw(map, layer) end)
+			end
+		end
+	end
+
+	if not scene.updateHookAdded then
+		scene.updateHookAdded = true
+		scene:addHandler(
+			"update",
+			function(dt)
+				if not scene.player then
+					return
+				end
+			
+				-- This update function defines and enforces eliptical collision 
+				-- for the interior walls of knothole huts. This is implemented
+				-- as just two separate point-to-circle collision checks,
+				-- one for the top half of the room, one for the bottom half.
+				local px = scene.player.x
+				local py = scene.player.y + scene.player.height
+				local cx = 400
+				local cy = scene.map.properties.lowerCollisionCircleY or 370
+				local cr = 200
+
+				-- Player is above center of screen, use lower circle rather than higher circle
+				if py < love.graphics.getWidth()/2 then
+					cy = 435
+				end
+
+				local dx = px - cx
+				local dy = py - cy
+		
+				-- If player is outside the circle
+				if (dx*dx) + (dy*dy) > cr*cr then
+					-- Determine the angle between their position and the center of the circle
+					local radians = math.atan(dy / dx)
+					local inv = px > cx and 1 or -1
+
+					-- Use that angle to reposition them at the outer edge of the collision circle
+					scene.player.x = cx + inv * (math.cos(radians) * cr)
+					scene.player.y = cy - scene.player.height + inv * (math.sin(radians) * cr)
+				end
+			end
+		)
+	end
+	
+	if scene.nighttime then
+		scene.objectLookup.TailsBed.sprite:setAnimation("tailssleep")
+
+		local prefix = "nighthide"
+		for _,layer in pairs(scene.map.layers) do
+			if string.sub(layer.name, 1, #prefix) == prefix then
+				layer.opacity = 1.0
+			end
+		end
+
+		if not GameState:isFlagSet("ep3_read") then
+			scene.objectLookup.TailsBed.sprite:setAnimation("tailsawake")
+			if GameState:isFlagSet("ep3_book") then
+			    GameState:setFlag("ep3_read")
+				scene.player.object.properties.ignoreMapCollision = true
+				scene.player.hidekeyhints[tostring(scene.objectLookup.Door)] = scene.objectLookup.Door
+				scene.player.hidekeyhints[tostring(scene.objectLookup.TailsBed)] = scene.objectLookup.TailsBed
+				return BlockPlayer {
+					Wait(1),
+					MessageBox {message="Sally: Tails, it's story time..."},
+					MessageBox {message="Tails: Yay!"},
+					Move(scene.player, scene.objectLookup.Waypoint, "walk"),
+					MessageBox {message="Sally: 'Once upon a time...'", textspeed=1},
+					Do(function()
+						local tailsbed = scene.objectLookup.TailsBed
+						tailsbed:run {
+							scene:fadeOut(0.2),
+							Animate(scene.objectLookup.TailsBed.sprite, "tailstired"),
+							scene:fadeIn(),
+							MessageBox {message="Sally: '...as Ben came upon the clearing, he could see the vastness of the War Claw empire...'"},
+							MessageBox {message="Sally: '...it was then that he realized the immensity of the task before him.'"},
+							Animate(scene.objectLookup.TailsBed.sprite, "tailssleep"),
+							MessageBox {message="Sally: 'If the allied forces failed to work together, they would surely be defeated.'"},
+							MessageBox {message="Sally: ...{p40}Tails?"},
+							MessageBox {message="Tails: zzz..."},
+							MessageBox {message="Sally: Trouble working together, huh?"},
+							MessageBox {message="Sally: You and me both, Ben."},
+							MessageBox {message="Sally: *whipers* Goodnight Tails."},
+							Do(undonight),
+							Do(function()
+								scene.player.hidekeyhints[tostring(scene.objectLookup.Door)] = nil
+								scene.player.hidekeyhints[tostring(scene.objectLookup.TailsBed)] = nil
+							end)
+						}
+					end)
+				}
+			else
+				scene.player.hidekeyhints[tostring(scene.objectLookup.Door)] = scene.objectLookup.Door
+				return BlockPlayer {
+					Wait(1),
+					MessageBox {message="Tails: Hey Sally, will you read me a story?"},
+					Do(function()
+						scene.player.hidekeyhints[tostring(scene.objectLookup.Door)] = nil
+					end)
+				}
+			end
+		else
+			scene.objectLookup.TailsBed.sprite:setAnimation("tailssleep")
+			undonight()
+		end
+	end
+
+	return Action()
+end

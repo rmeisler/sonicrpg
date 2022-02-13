@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="25">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="27">
  <properties>
   <property name="ignorenight" type="bool" value="true"/>
   <property name="lowerCollisionCircleY" type="float" value="300"/>
-  <property name="onload" type="file" value="actions/knotholehut.lua"/>
+  <property name="onload" type="file" value="actions/tailshut.lua"/>
   <property name="regionName" value="Tails' Room"/>
  </properties>
  <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
@@ -164,6 +164,31 @@ end</property>
   <object id="20" name="TailsBed" type="BasicNPC" gid="6839" x="416" y="384" width="192" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Do = require &quot;actions/Do&quot;
+
+return function(self)
+    if self.scene.nighttime and not GameState:isFlagSet(&quot;ep3_read&quot;) then
+        return BlockPlayer {
+            MessageBox {message = &quot;Tails: You got some books in your hut, doncha?&quot;},
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif self.scene.nighttime and GameState:isFlagSet(&quot;ep3_read&quot;) then
+        return BlockPlayer {
+            MessageBox {message = &quot;Tails: zzz...&quot;},
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    end
+    return Do(function()
+        self:refreshKeyHint()
+    end)
+end</property>
     <property name="sprite" type="file" value="../art/sprites/tailsbed.png"/>
    </properties>
   </object>
@@ -203,6 +228,11 @@ return function(self)
         end)
     }
 end</property>
+   </properties>
+  </object>
+  <object id="26" name="Waypoint" type="BasicNPC" gid="6839" x="480" y="352" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
