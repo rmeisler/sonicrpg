@@ -324,10 +324,10 @@ return function(scene, hint)
 			Wait(1),
 			PlayAudio("music", "standup", 0.9, true),
 			Animate(sally.sprite, "meeting_thinking"),
-			MessageBox {message="Sally: Look{p60}, we may not be trained military officers{p60}, but we've been fighting Robotnik most of our\nlives..."},
-			MessageBox {message="Sally: We don't just have experience{p60}, it's defined who we are.{p60} And we're not going to stop fighting."},
-			MessageBox {message="Leon: ...you really are your father's daughter."},
-			MessageBox {message="Sally: Th-{p20}thank you Leon."},
+			MessageBox {message="Sally: Look{p60}, we may not be trained military officers{p60}, but we've been fighting Robotnik most of our\nlives...", textspeed=2},
+			MessageBox {message="Sally: We don't just have experience{p60}, it's defined who we are.{p60} And we're not going to stop fighting.", textspeed=2},
+			MessageBox {message="Leon: ...you really are your father's daughter.", textspeed=2},
+			MessageBox {message="Sally: Th-{p20}thank you Leon.", textspeed=2},
 			AudioFade("music", 1.0, 0.0, 0.5),
 			Wait(1),
 			Parallel {
@@ -382,7 +382,7 @@ return function(scene, hint)
 					scene:fadeIn(0.5),
 					MessageBox {message="Sally: Nicole{p60}, play file."},
 					Animate(scene.objectLookup.NicoleMtg.sprite, "lit"),
-					MessageBox {message="Nicole: Playing{p60}, Sally."},
+					MessageBox {message="Nicole: Playing{p60}, Sally.", sfx="nichole"},
 					Do(function()
 						scene.objectLookup.NicoleMtg.sprite:setAnimation("project")
 						scene.objectLookup.ProjectionMtg.hidden = false
@@ -473,8 +473,10 @@ return function(scene, hint)
 					Ease(antoine.sprite.transform, "angle", -math.pi/48, 3),
 					Animate(antoine.sprite, "dead"),
 					
+					Wait(2),
+					
 					Do(function()
-						scene:changeScene{map="knotholeatnight"}
+						scene:changeScene{map="knotholeatnight", fadeOutSpeed=0.2, fadeInSpeed=0.2}
 					end)
 					
 					-- faint

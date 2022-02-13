@@ -89,8 +89,6 @@ return function(scene)
 		)
 	end
 	
-	GameState:setFlag("ep3_introdone")
-	
 	if GameState:isFlagSet("ep3_intro") and not GameState:isFlagSet("ep3_introdone") then
 		GameState:setFlag("ep3_introdone")
 		scene.objectLookup.SallySad:remove()

@@ -112,7 +112,14 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="rivereffect"/>
+ <imagelayer name="rivereffect" opacity="0.5" offsetx="2976" offsety="1248">
+  <image source="../art/parallax/river.png" width="800" height="600"/>
+  <properties>
+   <property name="speedx" type="float" value="0"/>
+   <property name="speedy" type="float" value="2"/>
+   <property name="type" value="Parallax"/>
+  </properties>
+ </imagelayer>
  <layer name="inbetween" width="275" height="88">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2411,7 +2418,7 @@ local NPC = require &quot;object/NPC&quot;
 return function(self)
     if GameState:isFlagSet(self:getFlag()) then
         return BlockPlayer {
-            Do(function() self:facePlayer() end)
+            Do(function() self:facePlayer() end),
             MessageBox {message = &quot;Sonic: *whipering* Ugh. {p40}She is the worst!&quot;},
             Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;lookright&quot;),
             MessageBox {message = &quot;Fleet: What was that?&quot;},
@@ -2454,17 +2461,6 @@ end</property>
     <property name="defaultAnim" value="idleup"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
-   </properties>
-  </object>
-  <object id="342" name="AntoineBicker" type="BasicNPC" gid="5323" x="1760" y="1920" width="64" height="96">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-8"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="pose"/>
-    <property name="ghost" type="bool" value="false"/>
-    <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
@@ -2484,7 +2480,7 @@ local NPC = require &quot;object/NPC&quot;
 return function(self)
     if GameState:isFlagSet(self:getFlag()) then
         return BlockPlayer {
-            Do(function() self.scene.objectLookup.AntoineBicker:facePlayer() end)
+            Do(function() self.scene.objectLookup.AntoineBicker:facePlayer() end),
             MessageBox {message = &quot;Antoine: He is having the luck of his life that I am so sick, yes?&quot;},
             Animate(self.scene.objectLookup.AntoineBicker.sprite, &quot;nauseated&quot;),
             Do(function() self:refreshKeyHint() end)
@@ -2510,6 +2506,17 @@ return function(self)
         }
     end
 end</property>
+    <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
+   </properties>
+  </object>
+  <object id="342" name="AntoineBicker" type="BasicNPC" gid="5323" x="1760" y="1920" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="pose"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
    </properties>
   </object>
