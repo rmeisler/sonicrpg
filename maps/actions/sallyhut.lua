@@ -91,7 +91,6 @@ return function(scene)
 	
 	if GameState:isFlagSet("ep3_intro") and not GameState:isFlagSet("ep3_introdone") then
 		GameState:setFlag("ep3_introdone")
-		scene.objectLookup.SallySad:remove()
 		scene.objectLookup.Door.sprite:setAnimation("open")
 		scene.objectLookup.SallyPensive.movespeed = 2
 		scene.bgColor2 = {255,255,255,255}

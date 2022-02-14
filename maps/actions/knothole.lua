@@ -476,7 +476,7 @@ return function(scene, hint)
 					Wait(2),
 					
 					Do(function()
-						scene:changeScene{map="knotholeatnight", fadeOutSpeed=0.2, fadeInSpeed=0.2}
+						scene:changeScene{map="knotholeatnight", fadeOutSpeed=0.05, fadeInSpeed=0.1, fadeOutMusic=true}
 					end)
 					
 					-- faint
