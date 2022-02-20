@@ -604,6 +604,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/wolf.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/griffvehicle.ogg",
 		category = "sfx"
 	},
