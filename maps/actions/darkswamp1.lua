@@ -60,6 +60,10 @@ return function(scene, hint)
 					scene.camPos.x = -700
 				end),
 				Wait(2),
+				PlayAudio("music", "darkswamp", 1.0, true, true),
+				Wait(1),
+				Do(showTitle),
+				Wait(4),
 				Do(function()
 					scene.objectLookup.Eyes1.hidden = false
 				end),
@@ -76,11 +80,11 @@ return function(scene, hint)
 				Do(function()
 					scene.objectLookup.Eyes1.sprite:setAnimation("laugh")
 				end),
-				Ease(scene.camPos, "x", 0, 0.1, "inout"),
+				Ease(scene.camPos, "x", 0, 0.2, "inout"),
 				Do(function()
 					scene.objectLookup.Eyes1.hidden = true
 				end),
-				Wait(1),
+				AudioFade("music", 1, 0, 1),
 				PlayAudio("music", "sonicenters", 1.0, true),
 				Wait(1),
 				Do(function()
@@ -99,20 +103,50 @@ return function(scene, hint)
 				end),
 				Wait(2),
 				Do(function()
+					local nicole = SpriteNode(
+						scene,
+						Transform(),
+						{255,255,255,0},
+						"nicholeprojection",
+						nil,
+						nil,
+						"objects"
+					)
 					local walkout, walkin, sprites = scene.player:split()
 					scene:run(BlockPlayer {
+						Do(function()
+							for k in pairs(GameState.party) do
+								sprites[k].x = scene.player.x - 60
+								sprites[k].y = scene.player.y - 60
+							end
+						end),
 						walkout,
+						MessageBox{message="Sonic: Alright! {p60}Where to Sal?"},
+						PlayAudio("sfx", "nicolebeep", 1.0, true),
+						Animate(sprites.sally.sprite, "nichole_project_start"),
+						Do(function()
+							sprites.sally.sprite:setAnimation("nichole_project_idle")
+							nicole.transform = Transform(
+								sprites.sally.sprite.transform.x,
+								sprites.sally.sprite.transform.y + 70,
+								2,
+								2
+							)
+						end),
+						Ease(nicole.color, 4, 220, 5),
+						MessageBox{message="Sally: Let's see here..."},
+						PlayAudio("sfx", "sonicrunturn", 1.0, true),
 						MessageBox{message="Logan: Why are we stopping?"},
-						MessageBox{message="Sally: It's been quite awhile since we were last here..."},
-						MessageBox{message="Sally: I'll need Nicole's help to find our way to Iron Lock."},
-						MessageBox{message="Fleet: While we'd love to walk around a swamp with you kids--"},
-						MessageBox{message="Fleet: I think we're going to take the sky path!"},
+						MessageBox{message="Sonic: Sal's gotta pull out the ol' directions--"},
+						MessageBox{message="Fleet: Uhh...{p60}while we'd love to aimlessly wander around a swamp with you kids...{p60} we're not gonna do that."},
+						MessageBox{message="Fleet: We'll be taking the sky path."},
 						MessageBox{message="Ivan: Indeed."},
 						MessageBox{message="Logan: Later, nerds!"},
-						MessageBox{message="Sonic: Good riddance! {p60}You were crampin' our style anyhow!"},
+						Animate(sprites.sonic.sprite, "irritated"),
+						MessageBox{message="Sonic: Hmph! {p60}Good riddance! {p80}They were crampin' our style anyways!"},
+						Animate(sprites.sally.sprite, "thinking"),
 						MessageBox{message="Sally: *sigh* {p80}So much for learning to work together..."},
 						
-						Do(showTitle),
 						PlayAudio("music", "darkswamp", 1.0, true, true),
 						walkin
 					})

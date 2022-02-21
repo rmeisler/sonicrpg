@@ -199,6 +199,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/nicholeprojection.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/nicholeprojection2.png"
 	},
 	{
