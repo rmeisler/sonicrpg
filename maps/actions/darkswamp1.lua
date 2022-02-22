@@ -19,6 +19,8 @@ return function(scene, hint)
 	local Animate = require "actions/Animate"
 	local SpriteNode = require "object/SpriteNode"
 	local TextNode = require "object/TextNode"
+	local BasicNPC = require "object/BasicNPC"
+	
 	local Move = require "actions/Move"
 	local BlockPlayer = require "actions/BlockPlayer"
 	local Executor = require "actions/Executor"
@@ -50,20 +52,63 @@ return function(scene, hint)
 		else
 			GameState:setFlag("ep3_darkswampintro")
 			
+			local fleet = BasicNPC(
+				scene,
+				{name = "objects"},
+				{
+					name = "Fleet",
+					x = scene.player.x,
+					y = scene.player.y - 800,
+					width = 80,
+					height = 70,
+					properties = {nocollision = true, sprite = "art/sprites/leon2.png", defaultAnim = "fleetfloat"}
+				}
+			)
+			scene:addObject(fleet)
+			
+			local ivan = BasicNPC(
+				scene,
+				{name = "objects"},
+				{
+					name = "Ivan",
+					x = scene.player.x,
+					y = scene.player.y - 800,
+					width = 47,
+					height = 55,
+					properties = {nocollision = true, sprite = "art/sprites/ivan.png", defaultAnim = "idledown"}
+				}
+			)
+			scene:addObject(ivan)
+			
+			local logan = BasicNPC(
+				scene,
+				{name = "objects"},
+				{
+					name = "Logan",
+					x = scene.player.x,
+					y = scene.player.y - 800,
+					width = 47,
+					height = 55,
+					properties = {nocollision = true, sprite = "art/sprites/logan.png", defaultAnim = "idledown"}
+				}
+			)
+			scene:addObject(logan)
+
 			scene.player.x = -2000
+			scene.player.y = 342
 			scene.camPos.x = -700
 			scene.objectLookup.Eyes1.hidden = true
 			scene.objectLookup.Eyes2.hidden = true
 			return BlockPlayer {
 				Do(function()
 					scene.player.x = -2000
+					scene.player.y = 342
 					scene.camPos.x = -700
 				end),
-				Wait(2),
 				PlayAudio("music", "darkswamp", 1.0, true, true),
 				Wait(1),
 				Do(showTitle),
-				Wait(4),
+				Wait(3),
 				Do(function()
 					scene.objectLookup.Eyes1.hidden = false
 				end),
@@ -88,11 +133,13 @@ return function(scene, hint)
 				PlayAudio("music", "sonicenters", 1.0, true),
 				Wait(1),
 				Do(function()
+					GameState:addToParty("antoine", 6, true)
 					GameState:addToParty("sonic", 6, true)
 					GameState.leader = "sonic"
 					scene.player:updateSprite()
 					scene.player.cinematic = true
 					scene.player.ignoreSpecialMoveCollision = true
+					scene.player.noMoveSpecial = true
 					scene.player:onSpecialMove()
 				end),
 				Wait(2),
@@ -125,6 +172,9 @@ return function(scene, hint)
 						PlayAudio("sfx", "nicolebeep", 1.0, true),
 						Animate(sprites.sally.sprite, "nichole_project_start"),
 						Do(function()
+							fleet.x = scene.player.x - 60
+							fleet.y = scene.player.y - 800
+
 							sprites.sally.sprite:setAnimation("nichole_project_idle")
 							nicole.transform = Transform(
 								sprites.sally.sprite.transform.x,
@@ -134,21 +184,76 @@ return function(scene, hint)
 							)
 						end),
 						Ease(nicole.color, 4, 220, 5),
-						MessageBox{message="Sally: Let's see here..."},
-						PlayAudio("sfx", "sonicrunturn", 1.0, true),
-						MessageBox{message="Logan: Why are we stopping?"},
+						MessageBox{message="Sally: Let's see..."},
+						Wait(1),
+						PlayAudio("music", "rebellionfanfare", 1.0, true, true),
+						Parallel {
+							Serial {
+								Ease(fleet, "y", function() return scene.player.y - 180 end, 0.5),
+								Animate(fleet.sprite, "fleetland"),
+								Animate(fleet.sprite, "fleetidle"),
+								Do(function()
+									logan.x = fleet.x + 10
+									logan.y = fleet.y
+									logan.sprite:setAnimation("idledown")
+									ivan.x = fleet.x + 40
+									ivan.y = fleet.y
+									ivan.sprite:setAnimation("idledown")
+								end),
+								Parallel {
+									Ease(logan, "x", function() return logan.x - 40 end, 2),
+									Ease(ivan, "x", function() return ivan.x + 40 end, 2),
+								}
+							},
+							MessageBox{message="Why are we stopping?"}
+						},
+						Animate(sprites.sonic.sprite, "idleup"),
 						MessageBox{message="Sonic: Sal's gotta pull out the ol' directions--"},
 						MessageBox{message="Fleet: Uhh...{p60}while we'd love to aimlessly wander around a swamp with you kids...{p60} we're not gonna do that."},
+						Animate(fleet.sprite, "fleetsmile"),
 						MessageBox{message="Fleet: We'll be taking the sky path."},
+						Animate(ivan.sprite, "attitude"),
 						MessageBox{message="Ivan: Indeed."},
+						Ease(ivan, "x", function() return ivan.x - 40 end, 2),
+						Do(function()
+							ivan.hidden = true
+						end),
+						Animate(logan.sprite, "attitude"),
 						MessageBox{message="Logan: Later, nerds!"},
+						Ease(logan, "x", function() return logan.x + 40 end, 2),
+						Do(function()
+							logan.hidden = true
+						end),
+						Parallel {
+							Animate(fleet.sprite, "fleettakeoff"),
+							Serial {
+								Ease(fleet, "y", function() return fleet.y - 100 end, 1, "quad"),
+								Ease(fleet, "y", function() return fleet.y + 20 end, 1.6, "quad")
+							}
+						},
+						PlayAudio("sfx", "sonicrunturn", 1.0, true),
+						Ease(fleet, "y", function() return fleet.y - 800 end, 1, "quad"),
+						AudioFade("music", 1.0, 0.0, 1),
+						Ease(nicole.color, 4, 0, 5),
+						Animate(sprites.sally.sprite, "idleup"),
+						Animate(sprites.antoine.sprite, "idleup"),
 						Animate(sprites.sonic.sprite, "irritated"),
 						MessageBox{message="Sonic: Hmph! {p60}Good riddance! {p80}They were crampin' our style anyways!"},
+						Animate(sprites.antoine.sprite, "idleleft"),
 						Animate(sprites.sally.sprite, "thinking"),
 						MessageBox{message="Sally: *sigh* {p80}So much for learning to work together..."},
 						
-						PlayAudio("music", "darkswamp", 1.0, true, true),
-						walkin
+						Do(function()
+							scene.player.noMoveSpecial = false
+						end),
+						walkin,
+						Do(function()
+							scene.player.state = "idledown"
+						end),
+						Spawn(Serial {
+							Wait(1),
+							PlayAudio("music", "darkswamp", 1.0, true, true)
+						})
 					})
 				end)
 			}

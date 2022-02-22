@@ -29,7 +29,7 @@ return function(scene)
 		100
 	)
 	
-	local musicAction = PlayAudio("music", "airship", 1.0, true, true)
+	local musicAction = PlayAudio("music", "worldmap", 1.0, true, true)
 	
 	-- Add ui elements
 	scene.pressXText = TextNode(

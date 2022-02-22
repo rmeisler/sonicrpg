@@ -251,6 +251,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/leon2.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/fleet.png"
 	},
 	{
@@ -629,6 +633,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/exciting.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/rebellionfanfare.ogg",
 		category = "music"
 	},
 	{
