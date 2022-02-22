@@ -228,11 +228,11 @@ return function(scene, hint)
 							Animate(fleet.sprite, "fleettakeoff"),
 							Serial {
 								Ease(fleet, "y", function() return fleet.y - 100 end, 1, "quad"),
-								Ease(fleet, "y", function() return fleet.y + 20 end, 1.6, "quad")
+								Ease(fleet, "y", function() return fleet.y + 50 end, 1.6, "inout")
 							}
 						},
 						PlayAudio("sfx", "sonicrunturn", 1.0, true),
-						Ease(fleet, "y", function() return fleet.y - 800 end, 1, "quad"),
+						Ease(fleet, "y", function() return fleet.y - 800 end, 2, "quad"),
 						AudioFade("music", 1.0, 0.0, 1),
 						Ease(nicole.color, 4, 0, 5),
 						Animate(sprites.sally.sprite, "idleup"),
