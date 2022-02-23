@@ -2,12 +2,12 @@ return {
 	{
         type = "map",
 		file = "maps/worldmap.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
 		file = "maps/darkswamp1.lua",
-		--primary = true
+		primary = true
     },
 	{
         type = "map",

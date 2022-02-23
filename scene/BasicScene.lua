@@ -389,7 +389,9 @@ function BasicScene:onExit(args)
 	return Serial {
 		fadeAction,
 		Do(function()
-			self:remove()
+			if not self.enteringBattle then
+				self:remove()
+			end
 		end)
 	}
 end
