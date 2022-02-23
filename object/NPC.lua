@@ -49,6 +49,7 @@ function NPC:construct(scene, layer, object)
 	self.movespeed = object.properties.movespeed or 3
 	self.disappearOn = object.properties.disappearOn
 	self.angle = (object.properties.angle or 0) * (math.pi/180)
+	self.isBot = object.properties.isBot
 	
 	if object.properties.onInit then
 		self.onInit = assert(loadstring(object.properties.onInit))()
@@ -133,6 +134,19 @@ function NPC:onScan()
 		end
 	end
 	return Action()
+end
+
+function NPC:distanceFromPlayerSq()
+	if not self.scene.player then
+		return 0
+	end
+
+	if not self.distanceFromPlayer then
+		local dx = (self.scene.player.x - (self.x + self.sprite.w))
+		local dy = (self.scene.player.y - (self.y + self.sprite.h))
+		self.distanceFromPlayer = (dx*dx + dy*dy)
+	end
+	return self.distanceFromPlayer
 end
 
 function NPC:updateCollision()
