@@ -9,7 +9,7 @@
  <tileset firstgid="1" source="datacenter_interior.tsx"/>
  <tileset firstgid="1191" source="robotropolis.tsx"/>
  <tileset firstgid="4691" source="forest2.tsx"/>
- <tileset firstgid="9314" source="knotholeindoors.tsx"/>
+ <tileset firstgid="9866" source="knotholeindoors.tsx"/>
  <layer name="backwall" width="27" height="26">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1521,1522,1521,1522,1521,1522,1521,1522,1521,1522,
@@ -140,79 +140,9 @@
     <property name="spawn_point" value="UpperExit"/>
    </properties>
   </object>
-  <object id="215" name="T" type="BasicNPC" gid="1227" x="256" y="480" width="64" height="32">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="tleft"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
-
-return function(self)
-    return MessageBox {message = &quot;R: Who are you, exactly?&quot;, blocking = true}
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/p.png"/>
-   </properties>
-  </object>
-  <object id="216" name="R" type="BasicNPC" gid="1227" x="128" y="608" width="64" height="32">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="idleup"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
-
-return function(self)
-    return MessageBox {message = &quot;R: Who are you, exactly?&quot;, blocking = true}
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/r.png"/>
-   </properties>
-  </object>
-  <object id="217" name="P" type="BasicNPC" gid="1227" x="256" y="544" width="64" height="32">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="pleft"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
-
-return function(self)
-    return MessageBox {message = &quot;R: Who are you, exactly?&quot;, blocking = true}
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/p.png"/>
-   </properties>
-  </object>
   <object id="218" name="Spawn 1" type="Player" gid="1586" x="384" y="736" width="32" height="32">
    <properties>
     <property name="orientation" value="up"/>
-   </properties>
-  </object>
-  <object id="219" name="Waypoint" type="BasicNPC" gid="1227" x="160" y="384" width="64" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="220" name="Waypoint2" type="BasicNPC" gid="1227" x="416" y="768" width="64" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="221" name="Waypoint3" type="BasicNPC" gid="1227" x="352" y="576" width="64" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="222" name="B" type="BasicNPC" gid="1227" x="96" y="544" width="96" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="rest"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/bbed.png"/>
-   </properties>
-  </object>
-  <object id="223" name="J" type="BasicNPC" gid="1227" x="192" y="416" width="64" height="32">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="jdown"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/p.png"/>
    </properties>
   </object>
   <object id="224" name="Chest1" type="Chest" gid="3501" x="448" y="416" width="32" height="32">

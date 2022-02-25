@@ -367,8 +367,8 @@ return function(self, player, prevState)
             end),
             Wait(2),
             Parallel {
-                Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 2),
-                Ease(arm.sprite.color, 4, 0, 4)
+                Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 0.5),
+                Ease(arm.sprite.color, 4, 0, 1)
             },
             Do(function()
                 arm:updateCollision()
@@ -448,8 +448,8 @@ return function(self, player, prevState)
             end),
             Wait(2),
             Parallel {
-                Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 2),
-                Ease(arm.sprite.color, 4, 0, 4)
+                Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 0.5),
+                Ease(arm.sprite.color, 4, 0, 1)
             },
             Do(function()
                 arm:updateCollision()
@@ -524,8 +524,8 @@ return function(self, player, prevState)
             end),
             Wait(2),
             Parallel {
-                Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 2),
-                Ease(arm.sprite.color, 4, 0, 4)
+                Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 0.5),
+                Ease(arm.sprite.color, 4, 0, 1)
             },
             Do(function()
                 arm:updateCollision()
@@ -600,8 +600,8 @@ return function(self, player, prevState)
             end),
             Wait(2),
             Parallel {
-                Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 2),
-                Ease(arm.sprite.color, 4, 0, 4)
+                Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 0.5),
+                Ease(arm.sprite.color, 4, 0, 1)
             },
             Do(function()
                 arm:updateCollision()

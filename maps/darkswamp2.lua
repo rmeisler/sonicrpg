@@ -8,7 +8,7 @@ return {
   height = 83,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 151,
+  nextobjectid = 173,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/darkswamp1.lua",
@@ -473,9 +473,9 @@ return {
         0, 19645, 19646, 19647, 19648, 19649, 19650, 19651, 19652, 19808, 19809, 19810, 19811, 19812, 19813, 19727, 19728, 19729, 19730, 19731, 19732, 19733, 19973, 19726, 19727, 19728, 19729, 19730, 19731, 19732, 19733, 0, 0, 19807, 19808, 19809, 19810, 19811, 19812, 19813, 19814, 0, 0, 0, 19726, 19727, 19728, 19729, 19730, 19731, 19732, 19733, 19410, 0, 0, 0, 0, 0, 0, 19726, 19727, 19728, 19729, 19730, 19731, 19732, 19733, 0, 19889, 19890, 19891, 19892, 19893, 19894, 19895, 19566, 19567, 19568, 19569, 19570, 19571, 19248, 0,
         0, 19726, 19727, 19728, 19729, 19730, 19731, 19732, 19733, 19889, 19890, 19891, 19892, 19893, 19807, 19808, 19809, 19810, 19811, 19812, 19813, 19814, 19971, 19807, 19808, 19809, 19810, 19811, 19812, 19813, 19814, 0, 0, 19888, 19889, 19890, 19891, 19892, 19893, 19894, 19895, 0, 0, 0, 19807, 19808, 19809, 19810, 19811, 19812, 19813, 19814, 19491, 0, 0, 0, 0, 0, 0, 19807, 19808, 19809, 19810, 19811, 19812, 19813, 19814, 19491, 0, 0, 0, 0, 0, 19645, 19646, 19647, 19648, 19649, 19650, 19651, 19652, 19329, 0,
         0, 19807, 19808, 19809, 19810, 19811, 19812, 19813, 19814, 19970, 19971, 19972, 19973, 19974, 19888, 19889, 19890, 19891, 19892, 19893, 19894, 19895, 0, 19888, 19889, 19890, 19891, 19892, 19893, 19894, 19895, 0, 0, 19969, 19970, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19889, 19890, 19891, 19892, 19893, 19894, 19895, 19572, 0, 0, 0, 0, 0, 0, 0, 19889, 19890, 19891, 19892, 19893, 19894, 19895, 19572, 0, 0, 0, 0, 0, 19726, 19727, 19728, 19729, 19730, 19731, 19732, 19733, 19410, 0,
-        0, 19888, 19889, 19890, 19891, 19892, 19893, 19894, 19895, 0, 0, 0, 0, 0, 19969, 19970, 19971, 19972, 19973, 19974, 19975, 19976, 0, 19969, 19970, 19971, 19972, 19973, 19974, 19975, 19976, 0, 0, 15688, 15689, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19970, 19971, 19972, 19973, 19974, 19975, 19976, 19653, 0, 0, 0, 0, 0, 0, 0, 19970, 19971, 19972, 19973, 19974, 19975, 19976, 19653, 0, 0, 0, 0, 0, 19807, 19808, 19809, 19810, 19811, 19812, 19813, 19814, 19491, 0,
-        0, 19969, 19970, 19971, 19972, 19973, 19974, 19975, 19976, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15688, 15689, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19889, 19890, 19891, 19892, 19893, 19894, 19895, 19572, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15769, 15770, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19734, 0, 15769, 15770, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19970, 19971, 19972, 19973, 19974, 19975, 19976, 19653, 0,
+        0, 19888, 19889, 19890, 19891, 19892, 19893, 19894, 19895, 0, 0, 0, 0, 0, 19969, 19970, 19971, 19972, 19973, 19974, 19975, 19976, 0, 19969, 19970, 19971, 19972, 19973, 19974, 19975, 19976, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19970, 19971, 19972, 19973, 19974, 19975, 19976, 19653, 0, 0, 0, 0, 0, 0, 0, 19970, 19971, 19972, 19973, 19974, 19975, 19976, 19653, 0, 0, 0, 0, 0, 19807, 19808, 19809, 19810, 19811, 19812, 19813, 19814, 19491, 0,
+        0, 19969, 19970, 19971, 19972, 19973, 19974, 19975, 19976, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19889, 19890, 19891, 19892, 19893, 19894, 19895, 19572, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19734, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19970, 19971, 19972, 19973, 19974, 19975, 19976, 19653, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19815, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19896, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19977, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -690,7 +690,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player, prevState)\n    if prevState == self.STATE_IDLE then\n        local eyes = self.scene.objectLookup.Eyes1\n        local arm = self.scene.objectLookup.Arm1\n        eyes.hidden = false\n        eyes:run {\n            Animate(eyes.sprite, \"blink\"),\n            Animate(eyes.sprite, \"forward\"),\n            Wait(1),\n            Animate(eyes.sprite, \"smile\"),\n            Wait(1),\n            Do(function()\n                arm.hidden = false\n                arm.x = eyes.x - 60\n                arm.y = eyes.y\n            end),\n            Ease(arm, \"y\", function() return arm.y + 90 end, 4),\n            Do(function()\n                arm:updateCollision()\n            end),\n            Wait(2),\n            Ease(arm, \"y\", function() return arm.y - 90 end, 4),\n            Do(function()\n                arm:updateCollision()\n                arm.hidden = true\n                eyes.sprite:setAnimation(\"forwardblink\")\n            end)\n        }\n    end\nend"
+            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\n\nreturn function(self, player, prevState)\n    if prevState == self.STATE_IDLE then\n        local eyes = self.scene.objectLookup.Eyes1\n        local arm = self.scene.objectLookup.Arm1\n        eyes.hidden = false\n        eyes:run {\n            Animate(eyes.sprite, \"blink\"),\n            Animate(eyes.sprite, \"forward\"),\n            Wait(1),\n            Animate(eyes.sprite, \"smile\"),\n            Wait(1),\n            Do(function()\n                arm.hidden = false\n                arm.x = eyes.x - 60\n                arm.y = eyes.y\n            end),\n            Ease(arm, \"y\", function() return arm.y + 90 end, 4),\n            Do(function()\n                arm:updateCollision()\n            end),\n            Wait(2),\n            Parallel {\n                Ease(arm, \"y\", function() return arm.y - 90 end, 0.5),\n                Ease(arm.sprite.color, 4, 0, 1)\n            },\n            Do(function()\n                arm:updateCollision()\n                arm.sprite.color[4] = 255\n                arm.hidden = true\n                eyes.sprite:setAnimation(\"forwardblink\")\n            end)\n        }\n    end\nend"
           }
         },
         {
@@ -700,7 +700,7 @@ return {
           shape = "rectangle",
           x = 512,
           y = 256,
-          width = 96,
+          width = 64,
           height = 160,
           rotation = 0,
           gid = 7597,
@@ -780,7 +780,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player, prevState)\n    if prevState == self.STATE_IDLE then\n        local eyes = self.scene.objectLookup.Eyes2\n        local arm = self.scene.objectLookup.Arm2\n        eyes.hidden = false\n        eyes:run {\n            Animate(eyes.sprite, \"blink\"),\n            Animate(eyes.sprite, \"forward\"),\n            Wait(1),\n            Animate(eyes.sprite, \"smile\"),\n            Wait(1),\n            Do(function()\n                arm.hidden = false\n                arm.x = eyes.x - 60\n                arm.y = eyes.y\n            end),\n            Ease(arm, \"y\", function() return arm.y + 90 end, 4),\n            Do(function()\n                arm:updateCollision()\n            end),\n            Wait(2),\n            Ease(arm, \"y\", function() return arm.y - 90 end, 4),\n            Do(function()\n                arm:updateCollision()\n                arm.hidden = true\n                eyes.sprite:setAnimation(\"forwardblink\")\n            end)\n        }\n    end\nend"
+            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\n\nreturn function(self, player, prevState)\n    if prevState == self.STATE_IDLE then\n        local eyes = self.scene.objectLookup.Eyes2\n        local arm = self.scene.objectLookup.Arm2\n        eyes.hidden = false\n        eyes:run {\n            Animate(eyes.sprite, \"blink\"),\n            Animate(eyes.sprite, \"forward\"),\n            Wait(1),\n            Animate(eyes.sprite, \"smile\"),\n            Wait(1),\n            Do(function()\n                arm.hidden = false\n                arm.x = eyes.x - 60\n                arm.y = eyes.y\n            end),\n            Ease(arm, \"y\", function() return arm.y + 90 end, 4),\n            Do(function()\n                arm:updateCollision()\n            end),\n            Wait(2),\n            Parallel {\n                Ease(arm, \"y\", function() return arm.y - 90 end, 0.5),\n                Ease(arm.sprite.color, 4, 0, 1)\n            },\n            Do(function()\n                arm:updateCollision()\n                arm.sprite.color[4] = 255\n                arm.hidden = true\n                eyes.sprite:setAnimation(\"forwardblink\")\n            end)\n        }\n    end\nend"
           }
         },
         {
@@ -790,7 +790,7 @@ return {
           shape = "rectangle",
           x = 576,
           y = 1824,
-          width = 96,
+          width = 64,
           height = 160,
           rotation = 0,
           gid = 7597,
@@ -854,7 +854,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player, prevState)\n    if prevState == self.STATE_IDLE then\n        local eyes = self.scene.objectLookup.Eyes3\n        local arm = self.scene.objectLookup.Arm3\n        eyes.hidden = false\n        eyes:run {\n            Animate(eyes.sprite, \"blink\"),\n            Animate(eyes.sprite, \"forward\"),\n            Wait(1),\n            Animate(eyes.sprite, \"smile\"),\n            Wait(1),\n            Do(function()\n                arm.hidden = false\n                arm.x = eyes.x - 60\n                arm.y = eyes.y\n            end),\n            Ease(arm, \"y\", function() return arm.y + 90 end, 4),\n            Do(function()\n                arm:updateCollision()\n            end),\n            Wait(2),\n            Ease(arm, \"y\", function() return arm.y - 90 end, 4),\n            Do(function()\n                arm:updateCollision()\n                arm.hidden = true\n                eyes.sprite:setAnimation(\"forwardblink\")\n            end)\n        }\n    end\nend"
+            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\n\nreturn function(self, player, prevState)\n    if prevState == self.STATE_IDLE then\n        local eyes = self.scene.objectLookup.Eyes3\n        local arm = self.scene.objectLookup.Arm3\n        eyes.hidden = false\n        eyes:run {\n            Animate(eyes.sprite, \"blink\"),\n            Animate(eyes.sprite, \"forward\"),\n            Wait(1),\n            Animate(eyes.sprite, \"smile\"),\n            Wait(1),\n            Do(function()\n                arm.hidden = false\n                arm.x = eyes.x - 60\n                arm.y = eyes.y\n            end),\n            Ease(arm, \"y\", function() return arm.y + 90 end, 4),\n            Do(function()\n                arm:updateCollision()\n            end),\n            Wait(2),\n            Parallel {\n                Ease(arm, \"y\", function() return arm.y - 90 end, 0.5),\n                Ease(arm.sprite.color, 4, 0, 1)\n            },\n            Do(function()\n                arm:updateCollision()\n                arm.sprite.color[4] = 255\n                arm.hidden = true\n                eyes.sprite:setAnimation(\"forwardblink\")\n            end)\n        }\n    end\nend"
           }
         },
         {
@@ -864,7 +864,7 @@ return {
           shape = "rectangle",
           x = 2144,
           y = 2048,
-          width = 96,
+          width = 64,
           height = 160,
           rotation = 0,
           gid = 7597,
@@ -928,7 +928,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player, prevState)\n    if prevState == self.STATE_IDLE then\n        local eyes = self.scene.objectLookup.Eyes4\n        local arm = self.scene.objectLookup.Arm4\n        eyes.hidden = false\n        eyes:run {\n            Animate(eyes.sprite, \"blink\"),\n            Animate(eyes.sprite, \"forward\"),\n            Wait(1),\n            Animate(eyes.sprite, \"smile\"),\n            Wait(1),\n            Do(function()\n                arm.hidden = false\n                arm.x = eyes.x - 60\n                arm.y = eyes.y\n            end),\n            Ease(arm, \"y\", function() return arm.y + 90 end, 4),\n            Do(function()\n                arm:updateCollision()\n            end),\n            Wait(2),\n            Ease(arm, \"y\", function() return arm.y - 90 end, 4),\n            Do(function()\n                arm:updateCollision()\n                arm.hidden = true\n                eyes.sprite:setAnimation(\"forwardblink\")\n            end)\n        }\n    end\nend"
+            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\n\nreturn function(self, player, prevState)\n    if prevState == self.STATE_IDLE then\n        local eyes = self.scene.objectLookup.Eyes4\n        local arm = self.scene.objectLookup.Arm4\n        eyes.hidden = false\n        eyes:run {\n            Animate(eyes.sprite, \"blink\"),\n            Animate(eyes.sprite, \"forward\"),\n            Wait(1),\n            Animate(eyes.sprite, \"smile\"),\n            Wait(1),\n            Do(function()\n                arm.hidden = false\n                arm.x = eyes.x - 60\n                arm.y = eyes.y\n            end),\n            Ease(arm, \"y\", function() return arm.y + 90 end, 4),\n            Do(function()\n                arm:updateCollision()\n            end),\n            Wait(2),\n            Parallel {\n                Ease(arm, \"y\", function() return arm.y - 90 end, 0.5),\n                Ease(arm.sprite.color, 4, 0, 1)\n            },\n            Do(function()\n                arm:updateCollision()\n                arm.sprite.color[4] = 255\n                arm.hidden = true\n                eyes.sprite:setAnimation(\"forwardblink\")\n            end)\n        }\n    end\nend"
           }
         },
         {
@@ -938,7 +938,7 @@ return {
           shape = "rectangle",
           x = 1184,
           y = 32,
-          width = 96,
+          width = 64,
           height = 160,
           rotation = 0,
           gid = 7597,
@@ -950,6 +950,380 @@ return {
             ["ghost"] = true,
             ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self) then\n        self:remove()\n    end\nend",
             ["sprite"] = "../art/sprites/phantomgrab.png"
+          }
+        },
+        {
+          id = 151,
+          name = "Chest4",
+          type = "Chest",
+          shape = "rectangle",
+          x = 1152,
+          y = 288,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["GreenLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 152,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1888,
+          y = 1344,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 153,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2240,
+          y = 1152,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 154,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1376,
+          y = 1376,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 155,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1280,
+          y = 480,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 156,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1504,
+          y = 320,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 157,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2112,
+          y = 288,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 158,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1856,
+          y = 512,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 159,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1728,
+          y = 512,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 160,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1312,
+          y = 2112,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 161,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1440,
+          y = 2144,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 162,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1376,
+          y = 2240,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 163,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1888,
+          y = 2368,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 164,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2176,
+          y = 2400,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 165,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 992,
+          y = 2048,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 166,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1216,
+          y = 2432,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 167,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 864,
+          y = 1888,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 168,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1120,
+          y = 1824,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 169,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 896,
+          y = 1280,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 170,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2240,
+          y = 1344,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 171,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1696,
+          y = 1056,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
+          }
+        },
+        {
+          id = 172,
+          name = "Bush",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1664,
+          y = 1216,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swampbush.png"
           }
         }
       }
@@ -1304,28 +1678,28 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632,
-        0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 20632, 20632, 20632, 20632,
-        0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632,
-        20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 20632, 20632, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632,
-        20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632,
-        0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632,
-        0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632,
+        0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 20632, 20632, 20632, 20632,
+        0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 20632, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632,
+        20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 20632, 20632, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632,
+        20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632,
+        0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 20632, 20632, 20632, 20632,
+        0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20632, 20632, 20632, 20632, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
