@@ -8,7 +8,7 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 248,
+  nextobjectid = 258,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_hideout.lua",
@@ -1037,7 +1037,7 @@ return {
           x = 1696,
           y = 1600,
           width = 128,
-          height = 32,
+          height = 64,
           rotation = 0,
           gid = 1227,
           visible = true,
@@ -1279,57 +1279,6 @@ return {
           }
         },
         {
-          id = 224,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 2336,
-          y = 1280,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 3501,
-          visible = true,
-          properties = {
-            ["CrystalWater"] = 2,
-            ["sprite"] = "../art/sprites/chest.png"
-          }
-        },
-        {
-          id = 239,
-          name = "Chest2",
-          type = "Chest",
-          shape = "rectangle",
-          x = 3168,
-          y = 1984,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 3501,
-          visible = true,
-          properties = {
-            ["BlueLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest.png"
-          }
-        },
-        {
-          id = 240,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 416,
-          y = 1824,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 3501,
-          visible = true,
-          properties = {
-            ["GreenLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest.png"
-          }
-        },
-        {
           id = 241,
           name = "poster",
           type = "BasicNPC",
@@ -1346,28 +1295,6 @@ return {
             ["defaultAnim"] = "idleup",
             ["ghost"] = true,
             ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    local walkout, walkin, sprites = self.scene.player:split()\n    self.scene.player:removeKeyHint()\n    self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1\n    return Serial {\n        walkout,\n        Animate(sprites.sonic.sprite, \"idleup\"),\n        Animate(sprites.sally.sprite, \"idleup\"),\n        MessageBox {message = \"Sally: Definitely not under Robotnik's control...\", blocking = true},\n        Animate(sprites.sonic.sprite, \"pose\"),\n        MessageBox {message = \"Sonic: These are my kinda people!\", blocking = true},\n        walkin,\n        Do(function()\n            self.scene.player.x = self.scene.player.x + 60\n            self.scene.player.y = self.scene.player.y + 60\n            self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1\n        end)\n    }\nend"
-          }
-        },
-        {
-          id = 246,
-          name = "LowerExit",
-          type = "SceneEdge",
-          shape = "rectangle",
-          x = 1728,
-          y = 1568,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["fade_in_speed"] = 0.2,
-            ["fade_out_speed"] = 0.2,
-            ["ghost"] = true,
-            ["key"] = "up",
-            ["orientation"] = "down",
-            ["scene"] = "sewer1.lua",
-            ["spawn_point"] = "Spawn 1"
           }
         },
         {
@@ -1388,6 +1315,191 @@ return {
             ["orientation"] = "up",
             ["scene"] = "worldmap.lua",
             ["spawn_point"] = "BHideoutSpawn"
+          }
+        },
+        {
+          id = 248,
+          name = "T",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 3040,
+          y = 1920,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "tdowncross",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Animate(self.sprite, \"tleft\"),\n            MessageBox {message = \"T: I am working on a new invention you may be interested in...\"},\n            MessageBox {message = \"T: Bring me a {h Power Ring} and I'll show you.\"},\n            Animate(self.sprite, \"tdowncross\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Animate(self.sprite, \"tleft\"),\n            MessageBox {message = \"T: Oh{p60}, you're back.\"},\n            MessageBox {message = \"T: Though B is as stubborne as ever{p40}, I think he may be warming up to the idea of our relocation...\"},\n            Animate(self.sprite, \"tdowncross\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/p.png"
+          }
+        },
+        {
+          id = 249,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 2912,
+          y = 1824,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 3501,
+          visible = true,
+          properties = {
+            ["ScrapMetal"] = 2,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 250,
+          name = "Chest2",
+          type = "Chest",
+          shape = "rectangle",
+          x = 288,
+          y = 2144,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 3501,
+          visible = true,
+          properties = {
+            ["Microchip"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 251,
+          name = "Chest3",
+          type = "Chest",
+          shape = "rectangle",
+          x = 1728,
+          y = 1472,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 3501,
+          visible = true,
+          properties = {
+            ["YellowLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 252,
+          name = "J",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 1920,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "jdown",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"T: I am working on a new invention you may be interested in...\"},\n            MessageBox {message = \"T: Bring me a {h Power Ring} and I'll show you.\"},\n            Animate(self.sprite, \"tdowncross\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"T: Oh{p60}, you're back.\"},\n            MessageBox {message = \"T: Well, B is stubborne as ever, I think he may be warming up to the idea of our relocation.\"},\n            Animate(self.sprite, \"tdowncross\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/p.png"
+          }
+        },
+        {
+          id = 253,
+          name = "R",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2304,
+          y = 1344,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "idledown",
+            ["ghost"] = false,
+            ["ignoreMapCollision"] = true,
+            ["movespeed"] = 10,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Move = require \"actions/Move\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"T: I am working on a new invention you may be interested in...\"},\n            MessageBox {message = \"T: Bring me a {h Power Ring} and I'll show you.\"},\n            Animate(self.sprite, \"tdowncross\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"R: Hey!! {p60}So cool that you're back!\"},\n            MessageBox {message = \"R: Check out how fast I am! {p60}I've been practicing.\"},\n            Animate(self.sprite, \"pose\"),\n            Do(function() self:removeCollision() end),\n            Spawn(Serial {\n                Move(self, self.scene.objectLookup.Waypoint1, \"dash\"),\n                Move(self, self.scene.objectLookup.Waypoint2, \"dash\"),\n                Move(self, self.scene.objectLookup.Waypoint4, \"dash\"),\n                Do(function()\n                    self:facePlayer()\n                    self:updateCollision()\n                end)\n            })\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/r.png"
+          }
+        },
+        {
+          id = 254,
+          name = "Waypoint1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2304,
+          y = 2112,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 255,
+          name = "Waypoint2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1088,
+          y = 2080,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 256,
+          name = "Waypoint3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1120,
+          y = 1280,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 257,
+          name = "Waypoint4",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1856,
+          y = 1056,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

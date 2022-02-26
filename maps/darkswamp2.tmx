@@ -366,12 +366,14 @@ return function(self, player, prevState)
                 arm:updateCollision()
             end),
             Wait(2),
+            Do(function()
+                arm:removeCollision()
+            end),
             Parallel {
                 Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 2),
                 Ease(arm.sprite.color, 4, 0, 4)
             },
             Do(function()
-                arm:updateCollision()
                 arm.sprite.color[4] = 255
                 arm.hidden = true
                 eyes.sprite:setAnimation(&quot;forwardblink&quot;)
@@ -447,12 +449,14 @@ return function(self, player, prevState)
                 arm:updateCollision()
             end),
             Wait(2),
+            Do(function()
+                arm:removeCollision()
+            end),
             Parallel {
                 Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 2),
                 Ease(arm.sprite.color, 4, 0, 4)
             },
             Do(function()
-                arm:updateCollision()
                 arm.sprite.color[4] = 255
                 arm.hidden = true
                 eyes.sprite:setAnimation(&quot;forwardblink&quot;)
@@ -523,12 +527,14 @@ return function(self, player, prevState)
                 arm:updateCollision()
             end),
             Wait(2),
+            Do(function()
+                arm:removeCollision()
+            end),
             Parallel {
                 Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 2),
                 Ease(arm.sprite.color, 4, 0, 4)
             },
             Do(function()
-                arm:updateCollision()
                 arm.sprite.color[4] = 255
                 arm.hidden = true
                 eyes.sprite:setAnimation(&quot;forwardblink&quot;)
@@ -599,12 +605,14 @@ return function(self, player, prevState)
                 arm:updateCollision()
             end),
             Wait(2),
+            Do(function()
+                arm:removeCollision()
+            end),
             Parallel {
                 Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 2),
                 Ease(arm.sprite.color, 4, 0, 4)
             },
             Do(function()
-                arm:updateCollision()
                 arm.sprite.color[4] = 255
                 arm.hidden = true
                 eyes.sprite:setAnimation(&quot;forwardblink&quot;)

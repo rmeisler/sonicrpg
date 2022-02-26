@@ -8,7 +8,7 @@ return {
   height = 26,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 225,
+  nextobjectid = 227,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_broom.lua",
@@ -337,20 +337,49 @@ return {
           }
         },
         {
-          id = 224,
-          name = "Chest1",
-          type = "Chest",
+          id = 225,
+          name = "P",
+          type = "BasicNPC",
           shape = "rectangle",
-          x = 448,
-          y = 416,
-          width = 32,
-          height = 32,
+          x = 576,
+          y = 480,
+          width = 64,
+          height = 96,
           rotation = 0,
-          gid = 3501,
+          gid = 1227,
           visible = true,
           properties = {
-            ["ElbowPads"] = 1,
-            ["sprite"] = "../art/sprites/chest.png"
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "tdowncross",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"T: I am working on a new invention you may be interested in...\"},\n            MessageBox {message = \"T: Bring me a {h Power Ring} and I'll show you.\"},\n            Animate(self.sprite, \"tdowncross\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"T: Oh{p60}, you're back.\"},\n            MessageBox {message = \"T: Well, B is stubborne as ever, I think he may be warming up to the idea of our relocation.\"},\n            Animate(self.sprite, \"tdowncross\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/p.png"
+          }
+        },
+        {
+          id = 226,
+          name = "B",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 640,
+          y = 480,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "tdowncross",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"T: I am working on a new invention you may be interested in...\"},\n            MessageBox {message = \"T: Bring me a {h Power Ring} and I'll show you.\"},\n            Animate(self.sprite, \"tdowncross\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"T: Oh{p60}, you're back.\"},\n            MessageBox {message = \"T: Well, B is stubborne as ever, I think he may be warming up to the idea of our relocation.\"},\n            Animate(self.sprite, \"tdowncross\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/p.png"
           }
         }
       }

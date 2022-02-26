@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="110" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="248">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="110" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="258">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="onload" type="file" value="actions/forgotten_hideout.lua"/>
@@ -679,7 +679,7 @@
     <property name="direction" value="up_right"/>
    </properties>
   </object>
-  <object id="201" name="LowerDoor" type="BasicNPC" gid="1227" x="1696" y="1600" width="128" height="32">
+  <object id="201" name="LowerDoor" type="BasicNPC" gid="1227" x="1696" y="1600" width="128" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="closed"/>
@@ -780,24 +780,6 @@ end</property>
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="224" name="Chest1" type="Chest" gid="3501" x="2336" y="1280" width="32" height="32">
-   <properties>
-    <property name="CrystalWater" type="int" value="2"/>
-    <property name="sprite" type="file" value="../art/sprites/chest.png"/>
-   </properties>
-  </object>
-  <object id="239" name="Chest2" type="Chest" gid="3501" x="3168" y="1984" width="32" height="32">
-   <properties>
-    <property name="BlueLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest.png"/>
-   </properties>
-  </object>
-  <object id="240" name="Chest1" type="Chest" gid="3501" x="416" y="1824" width="32" height="32">
-   <properties>
-    <property name="GreenLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest.png"/>
-   </properties>
-  </object>
   <object id="241" name="poster" type="BasicNPC" gid="1227" x="672" y="1792" width="64" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
@@ -829,17 +811,6 @@ return function(self)
 end</property>
    </properties>
   </object>
-  <object id="246" name="LowerExit" type="SceneEdge" gid="1227" x="1728" y="1568" width="64" height="32">
-   <properties>
-    <property name="fade_in_speed" type="float" value="0.2"/>
-    <property name="fade_out_speed" type="float" value="0.2"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="key" value="up"/>
-    <property name="orientation" value="down"/>
-    <property name="scene" type="file" value="sewer1.lua"/>
-    <property name="spawn_point" value="Spawn 1"/>
-   </properties>
-  </object>
   <object id="247" name="LowerExit" type="SceneEdge" gid="1227" x="1664" y="2688" width="192" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
@@ -847,6 +818,197 @@ end</property>
     <property name="orientation" value="up"/>
     <property name="scene" type="file" value="worldmap.lua"/>
     <property name="spawn_point" value="BHideoutSpawn"/>
+   </properties>
+  </object>
+  <object id="248" name="T" type="BasicNPC" gid="1227" x="3040" y="1920" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="tdowncross"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            Animate(self.sprite, &quot;tleft&quot;),
+            MessageBox {message = &quot;T: I am working on a new invention you may be interested in...&quot;},
+            MessageBox {message = &quot;T: Bring me a {h Power Ring} and I'll show you.&quot;},
+            Animate(self.sprite, &quot;tdowncross&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            Animate(self.sprite, &quot;tleft&quot;),
+            MessageBox {message = &quot;T: Oh{p60}, you're back.&quot;},
+            MessageBox {message = &quot;T: Though B is as stubborne as ever{p40}, I think he may be warming up to the idea of our relocation...&quot;},
+            Animate(self.sprite, &quot;tdowncross&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
+   </properties>
+  </object>
+  <object id="249" name="Chest1" type="Chest" gid="3501" x="2912" y="1824" width="64" height="64">
+   <properties>
+    <property name="ScrapMetal" type="int" value="2"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="250" name="Chest2" type="Chest" gid="3501" x="288" y="2144" width="64" height="64">
+   <properties>
+    <property name="Microchip" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="251" name="Chest3" type="Chest" gid="3501" x="1728" y="1472" width="64" height="64">
+   <properties>
+    <property name="YellowLeaf" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="252" name="J" type="BasicNPC" gid="1227" x="352" y="1920" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="jdown"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;T: I am working on a new invention you may be interested in...&quot;},
+            MessageBox {message = &quot;T: Bring me a {h Power Ring} and I'll show you.&quot;},
+            Animate(self.sprite, &quot;tdowncross&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;T: Oh{p60}, you're back.&quot;},
+            MessageBox {message = &quot;T: Well, B is stubborne as ever, I think he may be warming up to the idea of our relocation.&quot;},
+            Animate(self.sprite, &quot;tdowncross&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
+   </properties>
+  </object>
+  <object id="253" name="R" type="BasicNPC" gid="1227" x="2304" y="1344" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="movespeed" type="float" value="10"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Spawn = require &quot;actions/Spawn&quot;
+local Move = require &quot;actions/Move&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;T: I am working on a new invention you may be interested in...&quot;},
+            MessageBox {message = &quot;T: Bring me a {h Power Ring} and I'll show you.&quot;},
+            Animate(self.sprite, &quot;tdowncross&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;R: Hey!! {p60}So cool that you're back!&quot;},
+            MessageBox {message = &quot;R: Check out how fast I am! {p60}I've been practicing.&quot;},
+            Animate(self.sprite, &quot;pose&quot;),
+            Do(function() self:removeCollision() end),
+            Spawn(Serial {
+                Move(self, self.scene.objectLookup.Waypoint1, &quot;dash&quot;),
+                Move(self, self.scene.objectLookup.Waypoint2, &quot;dash&quot;),
+                Move(self, self.scene.objectLookup.Waypoint4, &quot;dash&quot;),
+                Do(function()
+                    self:facePlayer()
+                    self:updateCollision()
+                end)
+            })
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/r.png"/>
+   </properties>
+  </object>
+  <object id="254" name="Waypoint1" type="BasicNPC" gid="1227" x="2304" y="2112" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="255" name="Waypoint2" type="BasicNPC" gid="1227" x="1088" y="2080" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="256" name="Waypoint3" type="BasicNPC" gid="1227" x="1120" y="1280" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="257" name="Waypoint4" type="BasicNPC" gid="1227" x="1856" y="1056" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
