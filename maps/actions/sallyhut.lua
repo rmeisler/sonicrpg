@@ -89,84 +89,10 @@ return function(scene)
 		)
 	end
 	
-	if GameState:isFlagSet("ep3_intro") and not GameState:isFlagSet("ep3_introdone") then
-		GameState:setFlag("ep3_introdone")
-		scene.objectLookup.Door.sprite:setAnimation("open")
-		scene.objectLookup.SallyPensive.movespeed = 2
-		scene.bgColor2 = {255,255,255,255}
-		
-		return BlockPlayer {
-			Do(function()
-				scene.player.sprite.visible = false
-				scene.player.dropShadow.hidden = true
-				scene.player.cinematic = true
-			end),
-			Wait(2),
-
-			Animate(scene.objectLookup.Door.sprite, "closing"),
-			Animate(scene.objectLookup.Door.sprite, "closed"),
-			PlayAudio("sfx", "door", 1.0),
-			
-			Wait(2),
-			PlayAudio("music", "ep3transition", 0.6, true),
-			Move(scene.objectLookup.SallyPensive, scene.objectLookup.Waypoint1, "walk"),
-			Animate(scene.objectLookup.SallyPensive.sprite, "idledown"),
-			Wait(2),
-			Animate(scene.objectLookup.SallyPensive.sprite, "thinking2"),
-			MessageBox {message="Sally: What a day...", textSpeed=2, closeAction=Wait(2.5)},
-			Wait(3),
-			Animate(scene.objectLookup.SallyPensive.sprite, "idleright"),
-			Wait(2),
-			MessageBox {message="Sally: ...", textSpeed=1, closeAction=Wait(2.5)},
-			Wait(2),
-			Animate(scene.objectLookup.SallyPensive.sprite, "thinking"),
-			Wait(3),
-			Move(scene.objectLookup.SallyPensive, scene.objectLookup.Waypoint2, "walk"),
-			Do(function()
-				scene.objectLookup.SallyPensive.sprite.sortOrderY = 99999
-			end),
-			Animate(scene.objectLookup.SallyPensive.sprite, "sit_computer"),
-			Wait(1),
-
-			MessageBox {message="Sally: Nicole, {p30}open a new file.", textspeed=2},
-			MessageBox {message="Nicole: File open, {p30}Sally.", sfx="nicolebeep"},
-			PlayAudio("music", "ep3intro", 0.9, true),
-			MessageBox {message="> I know I haven't sent one of these in a long while... {p60}I don't even know if you receive them...", textspeed=1, closeAction=Wait(2.5)},
-			MessageBox {message="> ...but I have big news that I just had to tell you...", textspeed=1, closeAction=Wait(2)},
-			MessageBox {message="> I can hardly believe I'm writing this, {p60}but it seems like we may on the verge of defeating Robotnik.", textspeed=1, closeAction=Wait(2.5)},
-			MessageBox {message="> I wish I could take all of the credit, but Rotor was the one who found the software glitch that we'll use to disable Robotnik's army.", textspeed=1, closeAction=Wait(3)},
-			MessageBox {message="> I haven't felt this hopeful about the future in a long time-- {p100}but I'm trying to stay level-headed, like you taught me.", textspeed=1, closeAction=Wait(3)},
-			MessageBox {message="> Once we take back the city, {p60}I won't rest until I find you and bring you home.", textspeed=1, closeAction=Wait(3)},
-			MessageBox {message="> Just hold on a little longer, daddy.", textspeed=1, closeAction=Wait(3)},
-			MessageBox {message="> Love, Sally", textspeed=1, closeAction=Wait(2.5)},
-			Animate(scene.objectLookup.SallyPensive.sprite, "sit_sad"),
-			MessageBox {message="Sally: *sniff* Close file, Nicole.", textspeed=2, closeAction=Wait(2)},
-			MessageBox {message="Sally: Encrypt message. {p60}Passcode 'Bean'. {p80}Send on all available frequencies.", textspeed=3, closeAction=Wait(2.5)},
-			MessageBox {message="Nicole: Sending, {p40}Sally.", textspeed=3, closeAction=Wait(1)},
-			Wait(1),
-			Parallel {
-				Ease(scene.bgColor2, 1, 0, 0.1, "linear"),
-				Ease(scene.bgColor2, 2, 0, 0.1, "linear"),
-				Ease(scene.bgColor2, 3, 0, 0.1, "linear"),
-				
-				Do(function()
-					ScreenShader:sendColor("multColor", scene.bgColor2)
-				end)
-			},
-			Do(function()
-				scene.bgColor[0] = 0
-				scene.bgColor[1] = 0
-				scene.bgColor[2] = 0
-				scene.bgColor[3] = 0
-				scene:changeScene{map="knothole", fadeInSpeed=0.2}
-			end)
-		}
-	end
-	
-	scene.objectLookup.SallyPensive:remove()
-	
-	if not scene.nighttime then
+	if not scene.nighttime and GameState:isFlagSet("ep3_ffmeeting") then
 		scene.audio:playMusic("knotholehut", 0.8)
+	elseif not scene.nighttime and not GameState:isFlagSet("ep3_ffmeeting") then
+		scene.audio:playMusic("awkward", 1.0)
 	end
 
 	return Action()

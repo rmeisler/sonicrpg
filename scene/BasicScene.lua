@@ -389,7 +389,7 @@ function BasicScene:onExit(args)
 	return Serial {
 		fadeAction,
 		Do(function()
-			if not self.enteringBattle then
+			if not self.enteringBattle and not args.tutorial then
 				self:remove()
 			end
 		end)
@@ -441,32 +441,16 @@ function BasicScene:remove()
 end
 
 function BasicScene:restart(args)
-	self.cacheSceneData = false
-	self.sceneMgr.cachedScenes[tostring(self.map)] = nil
 	self.isRestarting = true
-
-	self.sceneMgr:switchScene {
-		class = "BasicScene",
-		mapName = self.mapName,
-		map = self.map,
-		maps = self.maps,
-		region = self.region,
-		spawn_point = self.lastSpawnPoint,
-		spawn_point_offset = Transform(),
-		fadeInSpeed = 2,
-		fadeOutSpeed = 2,
-		fadeOutMusic = args and args.fadeOutMusic,
-		images = self.images,
-		animations = self.animations,
-		audio = self.audio,
-		tutorial = self.tutorial,
-		hint = args and args.hint
-	}
+	args = args or {}
+	args.mapName = self.mapName
+	self:changeScene(args)
 end
 
 function BasicScene:changeScene(args)
-	local mapName = "maps/"..args.map..".lua"
-	self.sceneMgr:pushScene {
+	local mapName = args.mapName or "maps/"..args.map..".lua"
+	local fun = args.fun or "switchScene"
+	self.sceneMgr[fun](self.sceneMgr, {
 		class = "BasicScene",
 		map = self.maps[mapName],
 		mapName = mapName,
@@ -482,7 +466,7 @@ function BasicScene:changeScene(args)
 		fadeInSpeed = args.fadeInSpeed,
 		fadeOutMusic = args.fadeOutMusic,
 		cache = args.cache
-	}
+	})
 end
 
 -- Vertical screen shake

@@ -322,7 +322,7 @@ return function(self)
                                                 descBox,
                                                 Do(function()
                                                     self.scene.audio:stopMusic()
-                                                    self.scene:changeScene{map=&quot;stealthtut1&quot;, tutorial=true}
+                                                    self.scene:changeScene{map=&quot;stealthtut1&quot;, fun=&quot;pushScene&quot;, tutorial=true}
                                                 end),
                                                 MessageBox {
                                                     message = &quot;Computer: Stealth simulation complete.&quot;,
@@ -426,14 +426,6 @@ end</property>
    </properties>
   </object>
   <object id="14" name="Spawn 1" type="Player" gid="4565" x="416" y="352" width="32" height="32"/>
-  <object id="15" name="SallyPensive" type="BasicNPC" gid="6839" x="384" y="544" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="idleup"/>
-    <property name="ignoreMapCollision" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/sally.png"/>
-   </properties>
-  </object>
   <object id="16" name="Waypoint2" type="BasicNPC" gid="6839" x="544" y="208" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>

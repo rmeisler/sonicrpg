@@ -36,7 +36,9 @@ return function(scene)
 	})
 
 	if not scene.nighttime then
-		scene.audio:playMusic("knotholehut", 0.8)
+		if GameState:isFlagSet("ep3_ffmeeting") then
+			scene.audio:playMusic("knotholehut", 0.8)
+		end
 	else
 		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
 	end

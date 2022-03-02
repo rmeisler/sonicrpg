@@ -39,6 +39,7 @@ return function(scene)
 	}
 	scene.player.dustColor = Player.ROBOTROPOLIS_DUST_COLOR
 	scene.player:addHandler("caught", function(_bot)
+		scene.player.handlers["caught"] = {}
 		scene.player.noIdle = true
 		GameState:unsetFlag("tutorial:hide_pillar6")
 		GameState:unsetFlag("tutorial:hide_pillar4")

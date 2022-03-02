@@ -36,18 +36,7 @@ function SceneManager:pushScene(args)
 			table.remove(self.sceneStack)
 			self.current = self.current - 1
 		end
-	
-		--[[local scene = self.cachedScenes[tostring(args.map)]
-		if scene then
-			scene:run {
-				scene:onReEnter(args) or Action(),
-				Do(function()
-					scene:invoke("enter")
-					self:invoke("enter", scene)
-					self.transitioning = false
-				end)
-			}
-		else]]
+
 		scene = require("scene/"..args.class)(self)
 		scene:run {
 			scene:onEnter(args) or Action(),
@@ -61,14 +50,9 @@ function SceneManager:pushScene(args)
 				end
 			end)
 		}
-		--end
 		
 		table.insert(self.sceneStack, scene)
 		self.current = self.current + 1
-		
-		--[[if args.cache then
-			self.cachedScenes[tostring(args.map)] = scene
-		end]]
 	end
 
 	local scene = self.sceneStack[self.current]

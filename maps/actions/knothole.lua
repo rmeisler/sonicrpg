@@ -56,7 +56,9 @@ return function(scene, hint)
 			}
 		})
 		
-		scene.audio:playMusic("knothole", 0.8, true)
+		if GameState:isFlagSet("ep3_ffmeeting") then
+			scene.audio:playMusic("knothole", 0.8, true)
+		end
 	end
 	
 	scene.player.dustColor = Player.FOREST_DUST_COLOR

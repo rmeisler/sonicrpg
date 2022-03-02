@@ -52,7 +52,7 @@ function Door:onCollision(prevState)
 	then
 		self.scene.player.cinematic = true
 		local mapName = "maps/"..tostring(self.object.properties.scene)
-		self.scene.sceneMgr:pushScene {
+		self.scene.sceneMgr:switchScene {
 			class = "BasicScene",
 			map = self.scene.maps[mapName],
 			mapName = mapName,
@@ -69,8 +69,7 @@ function Door:onCollision(prevState)
 				and Transform(
 				    self.object.properties.spawn_point_offset_x or 0,
 				    self.object.properties.spawn_point_offset_y or 0
-				) or nil,
-			cache = true
+				) or nil
 		}
 	end
 end

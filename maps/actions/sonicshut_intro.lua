@@ -64,108 +64,16 @@ return function(scene)
 		)
 	end
 	
-	if GameState:isFlagSet("sonichut_intro") then
+	if GameState:isFlagSet("ep3_ffmeeting") then
 		scene.audio:playMusic("knotholehut", 0.8)
-		Executor(scene):act(Serial {
-			Wait(0.5),
-			text,
-			Ease(text.color, 4, 255, 1),
-			Wait(2),
-			Ease(text.color, 4, 0, 1)
-		})
-		return Action()
 	end
 	
-	scene.camPos.y = 400
-
-	return BlockPlayer {
-		Do(function()
-			scene.player.noIdle = true
-			scene.player.sprite:setAnimation("sleeping")
-			scene.player.y = scene.player.y + 16
-			scene.player.state = "sleeping"
-			scene.player.dropShadow.hidden = true
-		end),
-		Parallel {
-			Ease(scene.camPos, "y", 0, 0.1),
-			Serial {
-				Wait(0.5),
-				PlayAudio("music", "transition", 1.0, true)
-			}
-		},
-		Wait(2.5),
-		Do(function()
-			Executor(scene):act(Serial {
-				Wait(0.5),
-				text,
-				Ease(text.color, 4, 255, 1),
-				Wait(2),
-				Ease(text.color, 4, 0, 1)
-			})
-		end),
-		Wait(4),
-		Parallel {
-			Serial {
-				PlayAudio("sfx", "alarm", 1.0),
-				Do(function()
-					scene.objectLookup.AlarmClock.sprite:setAnimation("idle")
-				end)
-			},
-			Serial {
-				Do(function()
-					scene.objectLookup.AlarmClock.sprite:setAnimation("ring")
-				end),
-				Wait(1),
-				Do(function()
-					scene.player.state = "sleepingangry"
-					scene.player.sprite:setAnimation("sleepingangry")
-				end),
-				Wait(3),
-				Do(function()
-					scene.player.state = "sleepingwat"
-					scene.player.sprite:setAnimation("sleepingwat")
-				end),
-				MessageBox{message="Sonic: Ugh. {p50}How does anyone wake up before noon?"},
-				Do(function()
-					scene.audio:stopSfx()
-					scene.objectLookup.AlarmClock.sprite:setAnimation("idle")
-				end)
-			}
-		},
-		
+	Executor(scene):act(Serial {
 		Wait(0.5),
-
-		Do(function()
-			scene.player.state = "saw"
-			scene.player.sprite:setAnimation("saw")
-			local alarm = scene.objectLookup.AlarmClock
-			scene.player.hidekeyhints[tostring(alarm)] = alarm
-		end),
-		
-		PlayAudio("sfx", "jump", 0.5, true),
-		Parallel {
-			Ease(scene.player, "x", scene.player.x - 64, 3),
-			Serial {
-				Ease(scene.player, "y", scene.player.y - 170, 4),
-				Ease(scene.player, "y", scene.player.y + 32, 6)
-			},
-		},
-		
-		Do(function()
-			scene.player.noIdle = false
-			scene.player.dropShadow.hidden = false
-			scene.player.state = "idledown"
-			scene.player.sprite:setAnimation("idledown")
-		end),
-		
-		Wait(0.5),
-		
-		-- Jump out of bed
-		Do(function()
-			scene.audio:playMusic("knotholehut", 0.8)
-
-			scene.objectLookup.AlarmClock:refreshKeyHint()
-			GameState:setFlag("sonichut_intro")
-		end)
-	}
+		text,
+		Ease(text.color, 4, 255, 1),
+		Wait(2),
+		Ease(text.color, 4, 0, 1)
+	})
+	return Action()
 end

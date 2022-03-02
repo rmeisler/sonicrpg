@@ -11,7 +11,7 @@ return {
   nextobjectid = 19,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
-    ["onload"] = "actions/sallyhut.lua",
+    ["onload"] = "actions/sallyhut_intro.lua",
     ["regionName"] = "Sally's Hut"
   },
   tilesets = {
@@ -487,25 +487,6 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true
-          }
-        },
-        {
-          id = 17,
-          name = "SallySad",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 256,
-          y = 416,
-          width = 32,
-          height = 64,
-          rotation = 0,
-          gid = 6839,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetY"] = -32,
-            ["defaultAnim"] = "sit_sad",
-            ["sprite"] = "../art/sprites/sally.png"
           }
         },
         {
