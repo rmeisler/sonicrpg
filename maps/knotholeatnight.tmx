@@ -2768,7 +2768,7 @@ return function(self)
             MessageBox {message = &quot;Sonic: And we're supposed to believe they're on the level?{p60} I don't buy it!&quot;},
             MessageBox {message = &quot;Sally: Sonic{p40}, Leon was the leader of my father's royal guard. {p60}He fought in the Great War.&quot;},
             MessageBox {message = &quot;Sally: It's true that his team has had a lot of formal military training that we haven't had. {p60}It makes sense that they would question whether we can keep up with them.&quot;},
-            MessageBox {message = &quot;Sonic: \&quot;Keep up with them\&quot;?! {p60}I can run circles around these dorks! {p60}Feather head may have gotten lucky today, but a hedgehog never always wins in the end...&quot;},
+            MessageBox {message = &quot;Sonic: \&quot;Keep up with them\&quot;?! {p60}I can run circles around these dorks! {p60}Feather head may have gotten lucky today, but a hedgehog always wins in the end...&quot;},
             MessageBox {message = &quot;Sally: Is that a bit of jealousy I'm hearing?&quot;},
             Animate(self.sprite, &quot;shock&quot;),
             Wait(0.8),

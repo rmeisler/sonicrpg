@@ -229,7 +229,7 @@ return function(self)
 end</property>
    </properties>
   </object>
-  <object id="26" name="Waypoint" type="BasicNPC" gid="6839" x="480" y="352" width="32" height="32">
+  <object id="26" name="Waypoint" type="BasicNPC" gid="6839" x="480" y="343" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>

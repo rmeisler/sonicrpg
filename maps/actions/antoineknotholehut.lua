@@ -90,7 +90,7 @@ return function(scene)
 				layer.opacity = 1.0
 			end
 		end
-	else
+	elseif GameState:isFlagSet("ep3_ffmeeting") then
 		scene.audio:playMusic("knotholehut", 0.8)
 	end
 

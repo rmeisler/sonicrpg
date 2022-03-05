@@ -421,7 +421,6 @@ end</property>
     <property name="ignoreCollision" value="Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6"/>
     <property name="noSetFlag" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
-    <property name="viewRange" value="SwatbotVisibility1,SwatbotVisibility2,SwatbotVisibility3,SwatbotVisibility4"/>
    </properties>
   </object>
   <object id="143" name="Waypoint1" type="BasicNPC" gid="37" x="672" y="768" width="32" height="32">
@@ -508,26 +507,6 @@ return function(self, player)
         )
     end
 end</property>
-   </properties>
-  </object>
-  <object id="248" name="SwatbotVisibility1" type="BasicNPC" gid="37" x="608" y="800" width="704" height="192">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="249" name="SwatbotVisibility2" type="BasicNPC" gid="37" x="608" y="1056" width="704" height="192">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="250" name="SwatbotVisibility3" type="BasicNPC" gid="37" x="608" y="1088" width="160" height="352">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="251" name="SwatbotVisibility4" type="BasicNPC" gid="37" x="1152" y="1088" width="160" height="352">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

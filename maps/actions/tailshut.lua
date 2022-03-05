@@ -126,9 +126,10 @@ return function(scene)
 				return BlockPlayer {
 					Do(function()
 						scene.player.object.properties.ignoreMapCollision = true
-						scene.player.hidekeyhints[tostring(scene.objectLookup.Door)] = scene.objectLookup.Door
-						scene.player.hidekeyhints[tostring(scene.objectLookup.TailsBed)] = scene.objectLookup.TailsBed
-						scene.player.hidekeyhints[tostring(scene.objectLookup.Drawer)] = scene.objectLookup.Drawer
+						scene.objectLookup.Door.isInteractable = false
+						scene.objectLookup.Drawer.isInteractable = false
+						scene.objectLookup.TailsBed.isInteractable = false
+						scene.player.movespeed = 2
 					end),
 					Wait(1),
 					MessageBox {message="Sally: Tails, it's story time..."},
@@ -140,21 +141,33 @@ return function(scene)
 						tailsbed:run {
 							scene:fadeOut(0.2),
 							Animate(scene.objectLookup.TailsBed.sprite, "tailstired"),
-							scene:fadeIn(),
+							scene:fadeIn(0.2),
 							MessageBox {message="Sally: '...as Ben came upon the clearing, he could see the vastness of the War Claw empire...'"},
 							MessageBox {message="Sally: '...it was then that he realized the immensity of the task before him.'"},
 							Animate(scene.objectLookup.TailsBed.sprite, "tailssleep"),
 							MessageBox {message="Sally: 'If the allied forces failed to work together, they would surely be defeated.'"},
+							Wait(1),
 							MessageBox {message="Sally: ...{p40}Tails?"},
+							Wait(1),
 							MessageBox {message="Tails: zzz..."},
+							Wait(1),
+							Do(function()
+								scene.player.noIdle = true
+								scene.player.sprite:setAnimation("thinking2")
+							end),
 							MessageBox {message="Sally: Trouble working together, huh?"},
 							MessageBox {message="Sally: You and me both, Ben."},
+							Do(function()
+								scene.player.noIdle = false
+								scene.player.sprite:setAnimation("idledown")
+							end),
 							MessageBox {message="Sally: *whipers* Goodnight Tails."},
 							Do(undonight),
 							Do(function()
-								scene.player.hidekeyhints[tostring(scene.objectLookup.Door)] = nil
-								scene.player.hidekeyhints[tostring(scene.objectLookup.TailsBed)] = nil
-								scene.player.hidekeyhints[tostring(scene.objectLookup.Drawer)] = nil
+								scene.objectLookup.Door.isInteractable = true
+								scene.objectLookup.Drawer.isInteractable = true
+								scene.objectLookup.TailsBed.isInteractable = true
+								scene.player.movespeed = 4
 							end)
 						}
 					end)

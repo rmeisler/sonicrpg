@@ -941,8 +941,7 @@ return {
             ["ghost"] = true,
             ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6",
             ["noSetFlag"] = true,
-            ["sprite"] = "../art/sprites/swatbot.png",
-            ["viewRange"] = "SwatbotVisibility1,SwatbotVisibility2,SwatbotVisibility3,SwatbotVisibility4"
+            ["sprite"] = "../art/sprites/swatbot.png"
           }
         },
         {
@@ -1100,70 +1099,6 @@ return {
           properties = {
             ["ghost"] = true,
             ["whileColliding"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"tutorial:hide_pillar2\") or not GameState:isFlagSet(\"tutorial:hide_pillar6\")  then\n        return\n    end\n\n    if not self.hideTime then\n        self.hideTime = 0\n    end\n    if love.keyboard.isDown(\"down\") then\n        self.hideTime = self.hideTime + love.timer.getDelta()\n    else\n        self.hideTime = 0\n    end\n\n    local pillar = self.scene.objectLookup.Pillar4\n    if self.hideTime > 3 then\n        GameState:setFlag(\"tutorial:hide_pillar2\")\n        self.scene:run(\n            BlockPlayer {\n                MessageBox {message=\"Computer: Good.\", sfx=\"choose\"},\n                Do(function()\n                    self.scene.objectLookup.Cursor.x = pillar.x - pillar.sprite.w\n                    self.scene.objectLookup.Cursor.y = pillar.y + pillar.sprite.h*2 -  player.height*2\n                end),\n                Parallel {\n                    Ease(self.scene.camPos, \"x\", player.x - pillar.x, 1),\n                    Ease(self.scene.camPos, \"y\", player.y - pillar.y - pillar.sprite.h*2, 1),\n                    MessageBox {message=\"Computer: Now hide behind this pillar, and look right.\"}\n                },\n                Parallel {\n                    Ease(self.scene.camPos, \"x\", 0, 1),\n                    Ease(self.scene.camPos, \"y\", 0, 1)\n                }\n            }\n        )\n    end\nend"
-          }
-        },
-        {
-          id = 248,
-          name = "SwatbotVisibility1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 608,
-          y = 800,
-          width = 704,
-          height = 192,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 249,
-          name = "SwatbotVisibility2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 608,
-          y = 1056,
-          width = 704,
-          height = 192,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 250,
-          name = "SwatbotVisibility3",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 608,
-          y = 1088,
-          width = 160,
-          height = 352,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 251,
-          name = "SwatbotVisibility4",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1152,
-          y = 1088,
-          width = 160,
-          height = 352,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["ghost"] = true
           }
         }
       }
