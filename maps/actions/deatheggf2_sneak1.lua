@@ -57,6 +57,7 @@ return function(scene, hint)
 	
 	local caughtHandler
 	caughtHandler = function(bot)
+		scene.player:removeHandler("caught", caughtHandler)
 		scene.player.doingSpecialMove = false
 		scene.player.basicUpdate = function(p, dt) end
 		scene.player.sprite:setAnimation("shock")
@@ -64,7 +65,6 @@ return function(scene, hint)
 			scene.player.hidekeyhints[k] = v
 		end
 		scene.player:removeKeyHint()
-		scene.player:removeHandler("caught", caughtHandler)
 		for _,piece in pairs(scene.player.extenderPieces or {}) do
 			piece:remove()
 		end
@@ -92,11 +92,6 @@ return function(scene, hint)
 			
 			scene.player.doingSpecialMove = false
 			scene.player.basicUpdate = scene.player.origUpdate or scene.player.basicUpdate
-
-			if hint == "caught" then
-				scene.player.x = scene.player.x + 20
-				scene.player.y = scene.player.y + 50
-			end
 		end),
 		
 		Wait(1),
@@ -107,7 +102,7 @@ return function(scene, hint)
 				{name="objects"},
 				{
 					name = "FactoryBot",
-					x = scene.objectLookup.FStart.x,
+					x = scene.objectLookup.FStart.x + 50,
 					y = scene.objectLookup.FStart.y,
 					width = 64,
 					height = 32,

@@ -433,6 +433,9 @@ function BasicScene:remove()
 	self.objectLookup = nil
 	self.map.fallables = nil
 	self:removeNode(self.map)
+	
+	self:cleanupLayers()
+	self.handlers = {}
 
 	self.player:remove()
 	self.player = nil
@@ -444,6 +447,7 @@ function BasicScene:restart(args)
 	self.isRestarting = true
 	args = args or {}
 	args.mapName = self.mapName
+	args.spawnPoint = self.lastSpawnPoint
 	self:changeScene(args)
 end
 

@@ -31,7 +31,7 @@ return {
 	stats = {
 		xp    = 20,
 		maxhp = 600,
-		attack = 25,
+		attack = 35,
 		defense = 25,
 		speed = 10,
 		focus = 10,
@@ -90,7 +90,7 @@ return {
 				
 				-- Drop attack power
 				self.stats = table.clone(self.stats)
-				self.stats.attack = 12
+				self.stats.attack = 20
 				
 				-- Setup gun sprite
 				local gunSprite = SpriteNode(
@@ -135,10 +135,47 @@ return {
 		-- If armed, this swatbot has a different set of attacks
 		-- Stun & Laser Rifle
 		if self.armed then
-			-- Stun turn
-			local stunAction
 			local targetSp = target:getSprite()
-			stunAction = Serial {
+			local dodgeAction = Action()
+			if target.id == "sonic" and not target.laserShield then
+				dodgeAction = PressX(
+					self,
+					target,
+					Serial {
+						Do(function()
+							target.dodged = true
+						end),
+						PlayAudio("sfx", "pressx", 1.0, true),
+						Parallel {
+							Serial {
+								Animate(target.sprite, "leap_dodge"),
+								Ease(target.sprite.transform, "y", target.sprite.transform.y - target.sprite.h*2, 6, "linear"),
+								Wait(0.1),
+								Ease(target.sprite.transform, "y", target.sprite.transform.y, 6, "quad"),
+								Animate(target.sprite, "crouch"),
+								Wait(0.1),
+								Animate(target.sprite, "victory"),
+								Wait(0.6),
+								Animate(target.sprite, "idle"),
+							},
+							BouncyText(
+								Transform(
+									target.sprite.transform.x + 10 + (target.textOffset.x),
+									target.sprite.transform.y + (target.textOffset.y)),
+								{255,255,255,255},
+								FontCache.ConsolasLarge,
+								"miss",
+								6,
+								false,
+								true -- outline
+							),
+						}
+					},
+					Do(function() end)
+				)
+			end
+			
+			return Serial {
 				Telegraph(self, "Stun", {255,255,255,50}),
 				Do(function() self.sprite:setAnimation("pistol_idle") end),
 				PlayAudio("sfx", "stun", 1.0, true),
@@ -215,69 +252,12 @@ return {
 						target.turnsImmobilized = 2
 						targetSp:setAnimation("dead")
 					end
-				end)
-			}
-			
-			-- Laser rifle turn
-			local rifleAction
-			local dodgeAction = Action()
-			
-			-- Find diff target
-			local stunTarget = target.id == "sonic"
-			local newTarget = target
-			for k, v in pairs(self.scene.party) do
-				if v ~= target and v.state ~= BattleActor.STATE_DEAD then
-					newTarget = v
-					break
-				end
-			end
-			if newTarget.id == "sonic" and
-			   newTarget.state ~= BattleActor.STATE_IMMOBILIZED and
-			   not stunTarget and
-			   not newTarget.laserShield
-			then
-				dodgeAction = PressX(
-					self,
-					newTarget,
-					Serial {
-						Do(function()
-							newTarget.dodged = true
-						end),
-						PlayAudio("sfx", "pressx", 1.0, true),
-						Parallel {
-							Serial {
-								Animate(newTarget.sprite, "leap_dodge"),
-								Ease(newTarget.sprite.transform, "y", newTarget.sprite.transform.y - newTarget.sprite.h*2, 6, "linear"),
-								Wait(0.1),
-								Ease(newTarget.sprite.transform, "y", newTarget.sprite.transform.y, 6, "quad"),
-								Animate(newTarget.sprite, "crouch"),
-								Wait(0.1),
-								Animate(newTarget.sprite, "victory"),
-								Wait(0.6),
-								Animate(newTarget.sprite, "idle"),
-							},
-							BouncyText(
-								Transform(
-									newTarget.sprite.transform.x + 10 + (newTarget.textOffset.x),
-									newTarget.sprite.transform.y + (newTarget.textOffset.y)),
-								{255,255,255,255},
-								FontCache.ConsolasLarge,
-								"miss",
-								6,
-								false,
-								true -- outline
-							),
-						}
-					},
-					Do(function() end)
-				)
-			end
-			
-			rifleAction = Serial {
+				end),
+				
 				Telegraph(self, "Laser Rifle", {255,255,255,50}),
 				Do(function()
-					self.targetSprite.transform.x = newTarget.sprite.transform.x - 40
-					self.targetSprite.transform.y = newTarget.sprite.transform.y + 10
+					self.targetSprite.transform.x = target.sprite.transform.x - 40
+					self.targetSprite.transform.y = target.sprite.transform.y + 10
 				end),
 				Parallel {
 					Do(function() self.sprite:setAnimation("pistol_idle") end),
@@ -286,12 +266,12 @@ return {
 						Parallel {
 							PlayAudio("sfx", "target", 1.0),
 							Serial {
-								Ease(self.targetSprite.transform, "x", newTarget.sprite.transform.x + 26, 8, "inout"),
-								Ease(self.targetSprite.transform, "x", newTarget.sprite.transform.x - 30, 8, "inout"),
-								Ease(self.targetSprite.transform, "x", newTarget.sprite.transform.x + 16, 8, "inout"),
-								Ease(self.targetSprite.transform, "x", newTarget.sprite.transform.x - 20, 8, "inout"),
-								Ease(self.targetSprite.transform, "x", newTarget.sprite.transform.x + 3, 8, "inout"),
-								Ease(self.targetSprite.transform, "x", newTarget.sprite.transform.x - 7, 8, "inout"),
+								Ease(self.targetSprite.transform, "x", target.sprite.transform.x + 26, 8, "inout"),
+								Ease(self.targetSprite.transform, "x", target.sprite.transform.x - 30, 8, "inout"),
+								Ease(self.targetSprite.transform, "x", target.sprite.transform.x + 16, 8, "inout"),
+								Ease(self.targetSprite.transform, "x", target.sprite.transform.x - 20, 8, "inout"),
+								Ease(self.targetSprite.transform, "x", target.sprite.transform.x + 3, 8, "inout"),
+								Ease(self.targetSprite.transform, "x", target.sprite.transform.x - 7, 8, "inout"),
 							}
 						},
 						
@@ -336,7 +316,7 @@ return {
 							self.beamSprite.transform.ox = 0
 							
 							local x1, y1 = self.beamSprite.transform.x, self.beamSprite.transform.y
-							local x2, y2 = newTarget.sprite.transform.x, newTarget.sprite.transform.y
+							local x2, y2 = target.sprite.transform.x, target.sprite.transform.y
 
 							local dx = (x2 - x1)
 							local dy = (y2 - y1)
@@ -346,7 +326,7 @@ return {
 							local m2 = dx
 							local angle = math.acos(dot / (m1 * m2))
 							
-							if self.beamSprite.transform.y > newTarget.sprite.transform.y then
+							if self.beamSprite.transform.y > target.sprite.transform.y then
 								self.beamSprite.transform.angle = -angle
 							else
 								self.beamSprite.transform.angle = angle
@@ -372,13 +352,13 @@ return {
 						Try(
 							YieldUntil(
 								function()
-									return newTarget.dodged
+									return target.dodged
 								end
 							),
 							Do(function()
-								newTarget.dodged = false
+								target.dodged = false
 							end),
-							newTarget:takeDamage(self.stats, true, BattleActor.shockKnockback)
+							target:takeDamage(self.stats, true, BattleActor.shockKnockback)
 						),
 						
 						Do(function()
@@ -386,11 +366,6 @@ return {
 						end)
 					}
 				}
-			}
-			
-			return Serial {
-				stunAction,
-				rifleAction
 			}
 		else
 			-- Becomes just a regular swatbot
