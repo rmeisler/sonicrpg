@@ -134,7 +134,17 @@ return function(scene)
 					Wait(1),
 					MessageBox {message="Sally: Tails, it's story time..."},
 					MessageBox {message="Tails: Yay!"},
-					Move(scene.player, scene.objectLookup.Waypoint, "walk"),
+					Do(function()
+						scene.player.noIdle = true
+						scene.player.sprite:setAnimation("walkdown")
+					end),
+					Parallel {
+						Ease(scene.player, "x", function() return scene.player.x + 70 end, 1, "linear"),
+						Ease(scene.player, "y", function() return scene.player.y + 70 end, 1, "linear")
+					},
+					Do(function()
+						scene.player.sprite:setAnimation("idledown")
+					end),
 					MessageBox {message="Sally: 'Once upon a time...'", textspeed=1},
 					Do(function()
 						local tailsbed = scene.objectLookup.TailsBed

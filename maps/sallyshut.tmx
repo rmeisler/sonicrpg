@@ -203,11 +203,11 @@ return function(self)
         MessageBox {message=&quot;Nicole: I am detecting a great deal of dust, {p40}Sally.&quot;},
         Do(function()
             self.scene.player.noIdle = true
-            self.scene.player.state = &quot;thinking&quot;
+            self.scene.player.sprite:setAnimation(&quot;thinking&quot;)
         end),
         MessageBox {message=&quot;Sally: Ha, {p40}ha. {p60}Very funny, Nicole.&quot;},
         Do(function()
-            self.scene.player.state = &quot;thinking2&quot;
+            self.scene.player.sprite:setAnimation(&quot;thinking2&quot;)
         end),
         MessageBox {message=&quot;Sally: I guess I haven't had much time to read recently...&quot;, textspeed=2},
         Do(function()
