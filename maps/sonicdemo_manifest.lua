@@ -2,7 +2,7 @@ return {
 	{
         type = "map",
 		file = "maps/worldmap.lua",
-		--primary = true
+		primary = true
     },
 	{
         type = "map",
@@ -87,7 +87,7 @@ return {
 	{
         type = "map",
         file = "maps/knotholeatnight.lua",
-		primary = true
+		--primary = true
     },
 	
 	{

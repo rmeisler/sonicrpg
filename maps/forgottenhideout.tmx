@@ -629,42 +629,42 @@
  </layer>
  <objectgroup name="lowerobjects"/>
  <objectgroup name="objects">
-  <object id="172" name="Spawn 1" type="Player" gid="1586" x="1728" y="2624" width="32" height="32">
+  <object id="172" name="Spawn 1" type="Player" gid="1586" x="1728" y="2688" width="32" height="32">
    <properties>
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="185" name="Stairs2" type="Stairs" gid="1227" x="1920" y="2400" width="32" height="288">
+  <object id="185" name="Stairs2" type="Stairs" gid="1227" x="1920" y="2304" width="32" height="96">
    <properties>
     <property name="direction" value="up_right"/>
    </properties>
   </object>
-  <object id="190" name="Stairs1" type="Stairs" gid="1227" x="1568" y="2400" width="32" height="288">
+  <object id="190" name="Stairs1" type="Stairs" gid="1227" x="1568" y="2304" width="32" height="96">
    <properties>
     <property name="direction" value="up_left"/>
    </properties>
   </object>
-  <object id="191" name="Stairs2" type="Stairs" gid="1227" x="1952" y="2336" width="192" height="320">
+  <object id="191" name="Stairs2" type="Stairs" gid="1227" x="1952" y="2272" width="192" height="224">
    <properties>
     <property name="direction" value="up_right"/>
    </properties>
   </object>
-  <object id="192" name="Stairs2" type="Stairs" gid="1227" x="2176" y="2176" width="32" height="224">
+  <object id="192" name="Stairs2" type="Stairs" gid="1227" x="2176" y="2144" width="32" height="128">
    <properties>
     <property name="direction" value="up_right"/>
    </properties>
   </object>
-  <object id="193" name="Stairs1" type="Stairs" gid="1227" x="1344" y="2304" width="192" height="288">
+  <object id="193" name="Stairs1" type="Stairs" gid="1227" x="1344" y="2272" width="192" height="224">
    <properties>
     <property name="direction" value="up_left"/>
    </properties>
   </object>
-  <object id="194" name="Stairs1" type="Stairs" gid="1227" x="1312" y="2176" width="32" height="224">
+  <object id="194" name="Stairs1" type="Stairs" gid="1227" x="1312" y="2144" width="32" height="128">
    <properties>
     <property name="direction" value="up_left"/>
    </properties>
   </object>
-  <object id="197" name="Stairs3" type="Stairs" gid="1227" x="1280" y="1440" width="32" height="224">
+  <object id="197" name="Stairs3" type="Stairs" gid="1227" x="1280" y="1376" width="32" height="96">
    <properties>
     <property name="direction" value="up_right"/>
    </properties>
@@ -674,7 +674,7 @@
     <property name="direction" value="up_right"/>
    </properties>
   </object>
-  <object id="199" name="Stairs3" type="Stairs" gid="1227" x="1536" y="1248" width="32" height="224">
+  <object id="199" name="Stairs3" type="Stairs" gid="1227" x="1536" y="1216" width="32" height="128">
    <properties>
     <property name="direction" value="up_right"/>
    </properties>
@@ -706,22 +706,22 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/door3.png"/>
    </properties>
   </object>
-  <object id="203" name="Stairs5" type="Stairs" gid="1227" x="2432" y="2112" width="32" height="224">
+  <object id="203" name="Stairs5" type="Stairs" gid="1227" x="2432" y="2048" width="32" height="96">
    <properties>
     <property name="direction" value="up_right"/>
    </properties>
   </object>
-  <object id="204" name="Stairs5" type="Stairs" gid="1227" x="2464" y="2048" width="96" height="160">
+  <object id="204" name="Stairs5" type="Stairs" gid="1227" x="2464" y="2048" width="64" height="160">
    <properties>
     <property name="direction" value="up_right"/>
    </properties>
   </object>
-  <object id="206" name="Stairs4" type="Stairs" gid="1227" x="1056" y="2112" width="32" height="224">
+  <object id="206" name="Stairs4" type="Stairs" gid="1227" x="1056" y="2048" width="32" height="96">
    <properties>
     <property name="direction" value="up_left"/>
    </properties>
   </object>
-  <object id="207" name="Stairs4" type="Stairs" gid="1227" x="1024" y="2048" width="32" height="160">
+  <object id="207" name="Stairs4" type="Stairs" gid="1227" x="1024" y="2016" width="32" height="96">
    <properties>
     <property name="direction" value="up_left"/>
    </properties>
@@ -737,7 +737,7 @@ end</property>
     <property name="direction" value="up_right"/>
    </properties>
   </object>
-  <object id="214" name="Stairs4" type="Stairs" gid="1227" x="960" y="2016" width="64" height="128">
+  <object id="214" name="Stairs4" type="Stairs" gid="1227" x="992" y="2016" width="32" height="128">
    <properties>
     <property name="direction" value="up_left"/>
    </properties>
