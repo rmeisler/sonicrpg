@@ -6,7 +6,7 @@ return {
 
     animations = {
 		pose = {
-			frames = {{0,4}}
+			frames = {{10,2}}
 		},
 		shock = {
 			frames = {{11,4}}
@@ -90,6 +90,30 @@ return {
 		},
 		flyleft = {
 			frames = {{11,1},{12,1}},
+			speed = 0.1
+		},
+
+		hockeypose = {
+			frames = {{11,2}}
+		},
+		hockeypose2 = {
+			frames = {{12,2}}
+		},
+		
+		hockeyflyright = {
+			frames = {{13,0},{14,0}},
+			speed = 0.1
+		},
+		hockeyflyleft = {
+			frames = {{13,1},{14,1}},
+			speed = 0.1
+		},
+		hockeyflyup = {
+			frames = {{13,0},{14,0}},
+			speed = 0.1
+		},
+		hockeyflydown = {
+			frames = {{13,1},{14,1}},
 			speed = 0.1
 		},
     }
