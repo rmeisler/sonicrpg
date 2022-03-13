@@ -238,5 +238,13 @@ return {
 			frames = {{0,2}},
 			clip = {0,0,47,44}
 		},
+		
+		hockey_pose = {
+			frames = {{11,6}}
+		},
+		hockey_hit = {
+			frames = {{10,6},{9,6},{8,6}},
+			speed = 0.2
+		}
     }
 }

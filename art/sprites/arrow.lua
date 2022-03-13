@@ -11,7 +11,7 @@ return {
         },
 		
 		point = {
-			frames = {{3,0}}
+			frames = {{5,0}}
 		}
     }
 }

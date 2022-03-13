@@ -2697,6 +2697,7 @@ local Spawn = require &quot;actions/Spawn&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Repeat = require &quot;actions/Repeat&quot;
 
+local BasicNPC = require &quot;object/BasicNPC&quot;
 local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
 
@@ -2720,34 +2721,74 @@ return function(self)
                 {Layout.Text(&quot;Play dirt hockey?&quot;), selectable = false},
                 {Layout.Text(&quot;Yes&quot;), choose = function(menu)
                     menu:close()
-                    self.scene:run {
+                    self.scene:run(BlockPlayer{
                         menu,
                         Animate(self.sprite, &quot;hockeypose&quot;),
                         MessageBox {message = &quot;Tails: Alright! {p40}Let's do it to it!&quot;},
+                        PlayAudio(&quot;music&quot;, &quot;games&quot;, 1.0, true, true),
                         Do(function()
                             self.scene.player.noIdle = true
                             self.scene.player.sprite:setAnimation(&quot;walkdown&quot;)
                         end),
                         Parallel {
-                            Ease(self.scene.camPos, &quot;y&quot;, 100, 1),
                             Ease(self.scene.player, &quot;x&quot;, self.scene.objectLookup.HockeyWaypoint.x + 32, 1, &quot;linear&quot;),
                             Ease(self.scene.player, &quot;y&quot;, self.scene.objectLookup.HockeyWaypoint.y, 1, &quot;linear&quot;)
                         },
                         Do(function()
-                            self.scene.player.noIdle = false
                             self.scene.player.sprite:setAnimation(&quot;idleup&quot;)
                         end),
+                        Ease(self.scene.camPos, &quot;y&quot;, 100, 1),
                         MessageBox {message = &quot;Tails: So here's how ya play...&quot;},
                         MessageBox {message = &quot;Tails: I'll be goalie. {p60}You gotta get the puck past me!&quot;},
-                        MessageBox {message = &quot;Tails: When you're ready to hit the puc, press (x)!&quot;},
-                        PlayAudio(&quot;music&quot;, &quot;game&quot;, 1.0),
+                        MessageBox {message = &quot;Tails: Use the left and right arrow keys! {p60}To hit the puck press (x)!&quot;},
+                        Do(function()
+                            self.scene.player.sprite:setAnimation(&quot;hockey_pose&quot;)
+                            self.scene.arrow = BasicNPC(
+                                self.scene,
+                                {name = &quot;lower&quot;},
+                                {name = &quot;arrow&quot;, x = self.scene.player.x, y = self.scene.player.y - 22, width = 64, height = 64, properties = {nocollision = true, sprite = &quot;art/sprites/arrow.png&quot;}}
+                            )
+                            self.scene.arrow.sprite.transform.ox = 16
+                            self.scene.arrow.sprite.transform.oy = 32
+                            self.scene.arrow.sprite.transform.sx = 4
+                            self.scene.arrow.sprite.transform.sy = 4
+                            self.scene.arrow.sprite.transform.angle = 0
+                            self.scene.arrow.sprite:setAnimation(&quot;point&quot;)
+                            self.scene:addObject(self.scene.arrow)
+                            local keytriggered
+                            keytriggered = function(key)
+                                if key == &quot;x&quot; then
+                                    self.scene:removeHandler(&quot;keytrigger&quot;, keytriggered)
+                                    self.scene.arrow.hidden = true
+                                    self.scene.player:run {
+                                        Animate(self.scene.player.sprite, &quot;hockey_hit&quot;),
+                                        Wait(1),
+                                        Animate(self.scene.player.sprite, &quot;hockey_pose&quot;),
+                                        Do(function()
+                                            self.scene.arrow.hidden = false
+                                            self.scene:addHandler(&quot;keytriggered&quot;, keytriggered)
+                                        end)
+                                    }
+                                end
+                            end
+                            self.scene:addHandler(&quot;keytriggered&quot;, keytriggered)
+                            self.scene.player.basicUpdate = function(self, dt)
+                                if love.keyboard.isDown(&quot;left&quot;) and self.scene.arrow.sprite.transform.angle &gt; -(math.pi/5) then
+                                    self.scene.arrow.sprite.transform.angle = self.scene.arrow.sprite.transform.angle - (math.pi/5) * 0.1 * (dt/0.016)
+                                elseif love.keyboard.isDown(&quot;right&quot;) and self.scene.arrow.sprite.transform.angle &lt; (math.pi/5) then
+                                    self.scene.arrow.sprite.transform.angle = self.scene.arrow.sprite.transform.angle + (math.pi/5) * 0.1 * (dt/0.016)
+                                end
+	end
+                        end),
+                        Do(function() self.sprite:setAnimation(&quot;hockeyflyright&quot;) end),
+                        Ease(self, &quot;x&quot;, self.scene.objectLookup.HockeyPost2.x - 64, 2, &quot;linear&quot;),
                         Spawn(Repeat(Serial {
                             Do(function() self.sprite:setAnimation(&quot;hockeyflyleft&quot;) end),
-                            Ease(self, &quot;x&quot;, self.scene.objectLookup.HockeyPost1.x + 32, 1, &quot;linear&quot;),
+                            Ease(self, &quot;x&quot;, self.scene.objectLookup.HockeyPost1.x, 1, &quot;linear&quot;),
                             Do(function() self.sprite:setAnimation(&quot;hockeyflyright&quot;) end),
                             Ease(self, &quot;x&quot;, self.scene.objectLookup.HockeyPost2.x - 64, 1, &quot;linear&quot;)
                         }))
-                    }
+                    })
                 end},
                 {Layout.Text(&quot;No&quot;), choose = function(menu)
                     menu:close()
