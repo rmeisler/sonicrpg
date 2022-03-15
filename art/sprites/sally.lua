@@ -243,8 +243,11 @@ return {
 			frames = {{11,6}}
 		},
 		hockey_hit = {
-			frames = {{10,6},{9,6},{8,6}},
+			frames = {{10,6},{9,6}},
 			speed = 0.2
+		},
+		hockey_hit_done = {
+			frames = {{8,6}}
 		}
     }
 }

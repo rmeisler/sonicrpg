@@ -119,7 +119,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/cursor.png"
+		file = "art/sprites/puck.png"
 	},
 	{
 		type = "image",

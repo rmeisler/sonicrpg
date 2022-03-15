@@ -2755,28 +2755,46 @@ return function(self)
                             self.scene.arrow.sprite.transform.angle = 0
                             self.scene.arrow.sprite:setAnimation(&quot;point&quot;)
                             self.scene:addObject(self.scene.arrow)
-                            local keytriggered
-                            keytriggered = function(key)
-                                if key == &quot;x&quot; then
-                                    self.scene:removeHandler(&quot;keytrigger&quot;, keytriggered)
+                            local keytriggered = function(key)
+                                if key == &quot;x&quot; and not self.scene.arrow.hidden then
                                     self.scene.arrow.hidden = true
                                     self.scene.player:run {
                                         Animate(self.scene.player.sprite, &quot;hockey_hit&quot;),
-                                        Wait(1),
+                                        Do(function()
+                                            local puck = BasicNPC(
+                                                self.scene,
+                                                {name = &quot;lower&quot;},
+                                                {name = &quot;puck&quot;, x = self.scene.player.x + 10, y = self.scene.player.y, width = 16, height = 16, properties = {sprite = &quot;art/sprites/puck.png&quot;}}
+                                            )
+                                            puck.sprite.transform.ox = 8
+                                            puck.sprite.transform.oy = 8
+                                            self.scene:addObject(puck)
+                                            puck.dist = 0
+                                            local radians = self.scene.arrow.sprite.transform.angle
+                                            local puckSpeed = 10
+                                            local puckUpdate = function(dt)
+                                                puck.dist = puck.dist + puckSpeed*(dt/0.016)
+                                                puck.x = self.scene.player.x + 10 + (math.cos(radians - math.pi/2) * puck.dist)
+                                                puck.y = self.scene.player.y + (math.sin(radians - math.pi/2) * puck.dist)
+                                                if puck.y &lt; 0 then puck:remove() end
+                                            end
+                                            self.scene:addHandler(&quot;update&quot;, puckUpdate)
+                                        end),
+                                        Animate(self.scene.player.sprite, &quot;hockey_hit_done&quot;),
+                                        Wait(0.6),
                                         Animate(self.scene.player.sprite, &quot;hockey_pose&quot;),
                                         Do(function()
                                             self.scene.arrow.hidden = false
-                                            self.scene:addHandler(&quot;keytriggered&quot;, keytriggered)
                                         end)
                                     }
                                 end
                             end
                             self.scene:addHandler(&quot;keytriggered&quot;, keytriggered)
                             self.scene.player.basicUpdate = function(self, dt)
-                                if love.keyboard.isDown(&quot;left&quot;) and self.scene.arrow.sprite.transform.angle &gt; -(math.pi/5) then
-                                    self.scene.arrow.sprite.transform.angle = self.scene.arrow.sprite.transform.angle - (math.pi/5) * 0.1 * (dt/0.016)
-                                elseif love.keyboard.isDown(&quot;right&quot;) and self.scene.arrow.sprite.transform.angle &lt; (math.pi/5) then
-                                    self.scene.arrow.sprite.transform.angle = self.scene.arrow.sprite.transform.angle + (math.pi/5) * 0.1 * (dt/0.016)
+                                if love.keyboard.isDown(&quot;left&quot;) and self.scene.arrow.sprite.transform.angle &gt; -(math.pi/4) then
+                                    self.scene.arrow.sprite.transform.angle = self.scene.arrow.sprite.transform.angle - (math.pi/4) * 0.1 * (dt/0.016)
+                                elseif love.keyboard.isDown(&quot;right&quot;) and self.scene.arrow.sprite.transform.angle &lt; (math.pi/4) then
+                                    self.scene.arrow.sprite.transform.angle = self.scene.arrow.sprite.transform.angle + (math.pi/4) * 0.1 * (dt/0.016)
                                 end
 	end
                         end),
