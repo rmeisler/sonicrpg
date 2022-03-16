@@ -2696,6 +2696,7 @@ local PlayAudio = require &quot;actions/PlayAudio&quot;
 local Spawn = require &quot;actions/Spawn&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Repeat = require &quot;actions/Repeat&quot;
+local While = require &quot;actions/While&quot;
 
 local BasicNPC = require &quot;object/BasicNPC&quot;
 local Layout = require &quot;util/Layout&quot;
@@ -2740,7 +2741,7 @@ return function(self)
                         Ease(self.scene.camPos, &quot;y&quot;, 100, 1),
                         MessageBox {message = &quot;Tails: So here's how ya play...&quot;},
                         MessageBox {message = &quot;Tails: I'll be goalie. {p60}You gotta get the puck past me!&quot;},
-                        MessageBox {message = &quot;Tails: Use the left and right arrow keys! {p60}To hit the puck press (x)!&quot;},
+                        MessageBox {message = &quot;Tails: Use the left and right arrow keys to aim!\n{p60}To hit the puck press (x)!&quot;},
                         Do(function()
                             self.scene.player.sprite:setAnimation(&quot;hockey_pose&quot;)
                             self.scene.arrow = BasicNPC(
@@ -2757,9 +2758,28 @@ return function(self)
                             self.scene.arrow.sprite:setAnimation(&quot;point&quot;)
                             self.scene:addObject(self.scene.arrow)
                             self.scene.arrow:run(Ease(self.scene.arrow.sprite.color, 4, 255, 1))
+                            self.scene.player.hits = 10
                             local keytriggered = function(key)
                                 if key == &quot;x&quot; and not self.scene.arrow.hidden then
                                     self.scene.arrow.hidden = true
+                                    self.scene.player.hits = self.scene.player.hits - 1
+                                    local gameoverAction = Serial {
+                                        Do(function()
+                                            self.scene.arrow.hidden = false
+                                            self.scene.arrow.sprite.color[4] = 0
+                                        end),
+                                        Ease(self.scene.arrow.sprite.color, 4, 255, 1)
+                                    }
+                                    if self.scene.player.hits &lt;= 0 then
+                                        gameoverAction = Serial {
+                                            Do(function()
+                                                self.scene.arrow:remove()
+                                                GameState:setFlag(&quot;ep3_hockey&quot;)
+                                            end),
+                                            PlayAudio(&quot;music&quot;, &quot;sallyrally&quot;, 1.0),
+                                            PlayAudio(&quot;music&quot;, &quot;awkward&quot;, 1.0)
+                                        }
+                                    end
                                     self.scene.player:run {
                                         Animate(self.scene.player.sprite, &quot;hockey_hit&quot;),
                                         Do(function()
@@ -2791,11 +2811,7 @@ return function(self)
                                         Animate(self.scene.player.sprite, &quot;hockey_hit_done&quot;),
                                         Wait(0.6),
                                         Animate(self.scene.player.sprite, &quot;hockey_pose&quot;),
-                                        Do(function()
-                                            self.scene.arrow.hidden = false
-                                            self.scene.arrow.sprite.color[4] = 0
-                                        end),
-                                        Ease(self.scene.arrow.sprite.color, 4, 255, 1)
+                                        gameoverAction
                                     }
                                 end
                             end
@@ -2810,12 +2826,43 @@ return function(self)
                         end),
                         Do(function() self.sprite:setAnimation(&quot;hockeyflyright&quot;) end),
                         Ease(self, &quot;x&quot;, self.scene.objectLookup.HockeyPost2.x - 64, 2, &quot;linear&quot;),
-                        Spawn(Repeat(Serial {
-                            Do(function() self.sprite:setAnimation(&quot;hockeyflyleft&quot;) end),
-                            Ease(self, &quot;x&quot;, self.scene.objectLookup.HockeyPost1.x, 1, &quot;linear&quot;),
-                            Do(function() self.sprite:setAnimation(&quot;hockeyflyright&quot;) end),
-                            Ease(self, &quot;x&quot;, self.scene.objectLookup.HockeyPost2.x - 64, 1, &quot;linear&quot;)
-                        }))
+                        Spawn(While(
+                            function() return not GameState:isFlagSet(&quot;ep3_hockey&quot;) end,
+                            Repeat(Serial {
+                                Do(function() self.sprite:setAnimation(&quot;hockeyflyleft&quot;) end),
+                                Ease(self, &quot;x&quot;, self.scene.objectLookup.HockeyPost1.x, 1, &quot;linear&quot;),
+                                Do(function() self.sprite:setAnimation(&quot;hockeyflyright&quot;) end),
+                                Ease(self, &quot;x&quot;, self.scene.objectLookup.HockeyPost2.x - 64, 1, &quot;linear&quot;)
+                            }),
+                            Serial {
+                                Parallel {
+                                    Ease(self, &quot;x&quot;, 864, 1, &quot;linear&quot;),
+                                    Ease(self, &quot;y&quot;, 1760, 1, &quot;linear&quot;),
+                                    Ease(self.scene.camPos, &quot;y&quot;, 0, 1, &quot;linear&quot;)
+                                },
+                                Animate(self.sprite, &quot;hockey_pose&quot;),
+                                Do(function()
+                                    self.scene.player.noIdle = false
+                                    local itemname = &quot;GreenLeaf&quot;
+                                    if self.scene.player.hockey_score &gt; 9 then
+                                        itemname = &quot;YellowLeaf&quot;
+                                    elseif self.scene.player.hockey_score &gt; 5 then
+                                        itemname = &quot;BlueLeaf&quot;
+                                    end
+                                    GameState:grantItem(require &quot;data/items/&quot;..itemname, 2)
+                                    self.scene:run(BlockPlayer {
+                                        MessageBox{message=&quot;Tails: That was so much fun!&quot;},
+                                        MessageBox{message=&quot;Tails: You got the puck past me a few times...\n{p60}so here's a prize...&quot;},
+                                        MessageBox {
+                                            message = string.format(&quot;You received a %s!&quot;, itemname),
+                                            blocking = true,
+                                            sfx = &quot;choose&quot;,
+                                            textSpeed = 7
+                                        }
+                                    })
+                                end)
+                            }
+                        ))
                     })
                 end},
                 {Layout.Text(&quot;No&quot;), choose = function(menu)
@@ -2835,6 +2882,23 @@ return function(self)
             self.scene.player.hidekeyhints[tostring(self)] = nil
         end)
     }
+end</property>
+    <property name="onUpdate">local Ease = require &quot;actions/Ease&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+
+return function(self, dt)
+    local puck = self.scene.objectLookup.Puck
+    if not puck or not puck.sprite then
+        return
+    end
+    if self:isTouching(puck.x, puck.y, puck.sprite.w, puck.sprite.h) and not puck.hitback then
+        puck.hitback = true
+        puck.dy = -puck.dy
+        puck.speed = 0.5
+        self:run {
+            PlayAudio(&quot;sfx&quot;, &quot;clink&quot;, 1.0, true)
+        }
+    end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/tails.png"/>
    </properties>
@@ -2923,6 +2987,8 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
     <property name="onUpdate">local Ease = require &quot;actions/Ease&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
+local BouncyText = require &quot;actions/BouncyText&quot;
+local Transform = require &quot;util/Transform&quot;
 
 return function(self, dt)
     local puck = self.scene.objectLookup.Puck
@@ -2932,7 +2998,16 @@ return function(self, dt)
     if self:isTouching(puck.x, puck.y, puck.sprite.w, puck.sprite.h) and not puck.hitgoal then
         puck.hitgoal = true
         self:run {
-            PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1.0, true)
+            PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1.0, true),
+            BouncyText(
+                Transform(puck.sprite.transform.x, puck.sprite.transform.y),
+                {0,255,0,255},
+                FontCache.ConsolasLarge,
+                &quot;+1&quot;,
+                6,
+                false,
+                true -- outline
+            )
         }
     end
 end</property>
