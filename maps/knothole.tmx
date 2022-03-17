@@ -1546,7 +1546,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
     <property name="defaultAnim" value="lookright"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
@@ -2395,7 +2395,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
     <property name="defaultAnim" value="worried"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
@@ -2703,6 +2703,14 @@ local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
 
 return function(self)
+    if GameState:isFlagSet(&quot;ep3_hockey&quot;) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox{message=&quot;Tails: You're pretty good at dirt hockey!&quot;},
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+
     local nameMap = {
         sonic = &quot;Sonic&quot;,
         sally = &quot;Sally&quot;,
@@ -2722,6 +2730,8 @@ return function(self)
                 {Layout.Text(&quot;Play dirt hockey?&quot;), selectable = false},
                 {Layout.Text(&quot;Yes&quot;), choose = function(menu)
                     menu:close()
+                    local tailsOrigX = self.x
+                    local tailsOrigY = self.y
                     self.scene:run(BlockPlayer{
                         menu,
                         Animate(self.sprite, &quot;hockeypose&quot;),
@@ -2759,7 +2769,7 @@ return function(self)
                             self.scene:addObject(self.scene.arrow)
                             self.scene.arrow:run(Ease(self.scene.arrow.sprite.color, 4, 255, 1))
                             self.scene.player.hits = 10
-                            local keytriggered = function(key)
+                            self.scene.player.puckhit = function(_, key)
                                 if key == &quot;x&quot; and not self.scene.arrow.hidden then
                                     self.scene.arrow.hidden = true
                                     self.scene.player.hits = self.scene.player.hits - 1
@@ -2773,6 +2783,8 @@ return function(self)
                                     if self.scene.player.hits &lt;= 0 then
                                         gameoverAction = Serial {
                                             Do(function()
+                                                self.scene.player.basicUpdate = self.scene.player.updateFun
+                                                self.scene.player:removeSceneHandler(&quot;keytriggered&quot;, self.scene.player.puckhit)
                                                 self.scene.arrow:remove()
                                                 GameState:setFlag(&quot;ep3_hockey&quot;)
                                             end),
@@ -2800,11 +2812,15 @@ return function(self)
                                             puck.y = self.scene.player.y
                                             puck.dx = math.cos(radians - math.pi/2)
                                             puck.dy = math.sin(radians - math.pi/2)
-                                            local puckUpdate = function(dt)
+                                            local puckUpdate
+                                            puckUpdate = function(dt)
                                                 puck.dist = puck.dist + puck.speed*(dt/0.016)
                                                 puck.x = puck.x + (puck.dx * puck.dist)
                                                 puck.y = puck.y + (puck.dy * puck.dist)
-                                                if puck.y &lt; 0 then puck:remove() end
+                                                if puck.y &lt; 0 then
+                                                    self.scene:removeHandler(&quot;update&quot;, puckUpdate)
+                                                    puck:remove()
+                                                end
                                             end
                                             self.scene:addHandler(&quot;update&quot;, puckUpdate)
                                         end),
@@ -2815,7 +2831,7 @@ return function(self)
                                     }
                                 end
                             end
-                            self.scene:addHandler(&quot;keytriggered&quot;, keytriggered)
+                            self.scene.player:addSceneHandler(&quot;keytriggered&quot;, self.scene.player.puckhit)
                             self.scene.player.basicUpdate = function(self, dt)
                                 if love.keyboard.isDown(&quot;left&quot;) and self.scene.arrow.sprite.transform.angle &gt; -(math.pi/4) then
                                     self.scene.arrow.sprite.transform.angle = self.scene.arrow.sprite.transform.angle - (math.pi/4) * 0.1 * (dt/0.016)
@@ -2834,27 +2850,29 @@ return function(self)
                                 Do(function() self.sprite:setAnimation(&quot;hockeyflyright&quot;) end),
                                 Ease(self, &quot;x&quot;, self.scene.objectLookup.HockeyPost2.x - 64, 1, &quot;linear&quot;)
                             }),
-                            Serial {
+                            BlockPlayer {
+                                Wait(0.5),
                                 Parallel {
-                                    Ease(self, &quot;x&quot;, 864, 1, &quot;linear&quot;),
-                                    Ease(self, &quot;y&quot;, 1760, 1, &quot;linear&quot;),
-                                    Ease(self.scene.camPos, &quot;y&quot;, 0, 1, &quot;linear&quot;)
+                                    Ease(self, &quot;x&quot;, tailsOrigX, 0.5, &quot;linear&quot;),
+                                    Ease(self, &quot;y&quot;, tailsOrigY, 0.5, &quot;linear&quot;),
+                                    Ease(self.scene.camPos, &quot;y&quot;, 0, 0.5, &quot;linear&quot;)
                                 },
-                                Animate(self.sprite, &quot;hockey_pose&quot;),
+                                Animate(self.sprite, &quot;hockeypose&quot;),
                                 Do(function()
                                     self.scene.player.noIdle = false
-                                    local itemname = &quot;GreenLeaf&quot;
+                                    self.scene.player.state = &quot;idleup&quot;
+                                    local itemname = &quot;Green Leaf&quot;
                                     if self.scene.player.hockey_score &gt; 9 then
-                                        itemname = &quot;YellowLeaf&quot;
+                                        itemname = &quot;Yellow Leaf&quot;
                                     elseif self.scene.player.hockey_score &gt; 5 then
-                                        itemname = &quot;BlueLeaf&quot;
+                                        itemname = &quot;Blue Leaf&quot;
                                     end
-                                    GameState:grantItem(require &quot;data/items/&quot;..itemname, 2)
+                                    GameState:grantItem(require(&quot;data/items/&quot;..itemname:gsub(&quot;%s+&quot;, &quot;&quot;)), 2)
                                     self.scene:run(BlockPlayer {
                                         MessageBox{message=&quot;Tails: That was so much fun!&quot;},
-                                        MessageBox{message=&quot;Tails: You got the puck past me a few times...\n{p60}so here's a prize...&quot;},
+                                        MessageBox{message=&quot;Tails: You got the puck past me a few times, so here's a prize...&quot;},
                                         MessageBox {
-                                            message = string.format(&quot;You received a %s!&quot;, itemname),
+                                            message = string.format(&quot;You received 2 %ss!&quot;, itemname),
                                             blocking = true,
                                             sfx = &quot;choose&quot;,
                                             textSpeed = 7
@@ -2896,7 +2914,11 @@ return function(self, dt)
         puck.dy = -puck.dy
         puck.speed = 0.5
         self:run {
-            PlayAudio(&quot;sfx&quot;, &quot;clink&quot;, 1.0, true)
+            PlayAudio(&quot;sfx&quot;, &quot;clink&quot;, 1.0, true),
+            Ease(self, &quot;y&quot;, function() return self.y - 2 end, 8),
+            Ease(self, &quot;y&quot;, function() return self.y + 2 end, 8),
+            Ease(self, &quot;y&quot;, function() return self.y - 1 end, 8),
+            Ease(self, &quot;y&quot;, function() return self.y + 1 end, 8)
         }
     end
 end</property>
@@ -2997,6 +3019,8 @@ return function(self, dt)
     end
     if self:isTouching(puck.x, puck.y, puck.sprite.w, puck.sprite.h) and not puck.hitgoal then
         puck.hitgoal = true
+        if not self.scene.player.hockey_score then self.scene.player.hockey_score = 0 end
+        self.scene.player.hockey_score = self.scene.player.hockey_score + 1
         self:run {
             PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1.0, true),
             BouncyText(
