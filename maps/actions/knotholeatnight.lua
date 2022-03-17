@@ -26,7 +26,13 @@ return function(scene, hint)
 	local BasicNPC = require "object/BasicNPC"
 
 	scene.player.dustColor = Player.FOREST_DUST_COLOR
-
+	
+	scene.audio:playMusic("knotholeatnight", 0.8, true)
+	
+	if GameState:isFlagSet("ep3_read") then
+		scene.objectLookup.TailsHutWarmWindows:remove()
+	end
+	
 	if not GameState:isFlagSet("ep3_laterthatnight") then
 		GameState:setFlag("ep3_laterthatnight")
 		local subtext = TypeText(
@@ -43,12 +49,12 @@ return function(scene, hint)
 			Wait(2),
 			Ease(subtext.color, 4, 0, 1)
 		})
-	end
-	
-	scene.audio:playMusic("knotholeatnight", 0.8, true)
-	
-	if GameState:isFlagSet("ep3_read") then
-		scene.objectLookup.TailsHutWarmWindows:remove()
+		scene.camPos.y = 400
+		return BlockPlayer {
+			Wait(5),
+			Ease(scene.camPos, "y", 0, 0.3),
+			Wait(0.5)
+		}
 	end
 	
 	return Action()

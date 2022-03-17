@@ -123,6 +123,7 @@ return function(scene)
 			scene.objectLookup.TailsBed.sprite:setAnimation("tailsawake")
 			if GameState:isFlagSet("ep3_book") then
 			    GameState:setFlag("ep3_read")
+				scene.player.noIdle = true
 				return BlockPlayer {
 					Do(function()
 						scene.player.object.properties.ignoreMapCollision = true
@@ -135,7 +136,6 @@ return function(scene)
 					MessageBox {message="Sally: Tails, it's story time..."},
 					MessageBox {message="Tails: Yay!"},
 					Do(function()
-						scene.player.noIdle = true
 						scene.player.sprite:setAnimation("walkdown")
 					end),
 					Parallel {
@@ -162,7 +162,6 @@ return function(scene)
 							MessageBox {message="Tails: zzz..."},
 							Wait(1),
 							Do(function()
-								scene.player.noIdle = true
 								scene.player.sprite:setAnimation("thinking2")
 							end),
 							MessageBox {message="Sally: Trouble working together, huh?"},

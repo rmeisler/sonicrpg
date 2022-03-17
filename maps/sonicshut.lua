@@ -359,7 +359,7 @@ return {
           gid = 6839,
           visible = true,
           properties = {
-            ["GreenLeaf"] = 1,
+            ["CrystalWater"] = 2,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -440,7 +440,7 @@ return {
           properties = {
             ["ghost"] = true,
             ["notColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = nil\nend",
-            ["whileColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = true\nend"
+            ["whileColliding"] = "return function(self, player)\n    if not self.scene.nighttime then\n        player.lights[tostring(self)] = true\n    end\nend"
           }
         },
         {

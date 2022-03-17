@@ -158,7 +158,7 @@
  <objectgroup name="objects">
   <object id="1" name="Chest1" type="Chest" gid="6839" x="544" y="448" width="64" height="64">
    <properties>
-    <property name="GreenLeaf" type="int" value="1"/>
+    <property name="CrystalWater" type="int" value="2"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -289,7 +289,9 @@ end</property>
     player.lights[tostring(self)] = nil
 end</property>
     <property name="whileColliding">return function(self, player)
-    player.lights[tostring(self)] = true
+    if not self.scene.nighttime then
+        player.lights[tostring(self)] = true
+    end
 end</property>
    </properties>
   </object>

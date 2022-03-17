@@ -82,12 +82,12 @@ return {
 	{
         type = "map",
         file = "maps/knothole.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
         file = "maps/knotholeatnight.lua",
-		--primary = true
+		primary = true
     },
 	
 	{

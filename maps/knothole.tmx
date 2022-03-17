@@ -2817,7 +2817,7 @@ return function(self)
                                                 puck.dist = puck.dist + puck.speed*(dt/0.016)
                                                 puck.x = puck.x + (puck.dx * puck.dist)
                                                 puck.y = puck.y + (puck.dy * puck.dist)
-                                                if puck.y &lt; 0 then
+                                                if puck.y &lt; 0 or puck.y &gt; 2000 then
                                                     self.scene:removeHandler(&quot;update&quot;, puckUpdate)
                                                     puck:remove()
                                                 end
