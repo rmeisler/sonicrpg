@@ -217,7 +217,7 @@ return function(scene, hint)
 				scene.player.cinematic = true
 			end),
 
-			Wait(3),
+			Wait(2),
 			
 			PlayAudio("music", "royalwelcome", 0.6, true, true),
 			Animate(sally.sprite, "planning_smile"),

@@ -1919,7 +1919,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-20"/>
-    <property name="flagForDoor" value="sallysad_over"/>
+    <property name="flagForDoor" value="ep3_ffmeeting"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="onOpen">local Serial = require &quot;actions/Serial&quot;
@@ -2789,7 +2789,7 @@ return function(self)
                                                 GameState:setFlag(&quot;ep3_hockey&quot;)
                                             end),
                                             PlayAudio(&quot;music&quot;, &quot;sallyrally&quot;, 1.0),
-                                            PlayAudio(&quot;music&quot;, &quot;awkward&quot;, 1.0)
+                                            PlayAudio(&quot;music&quot;, &quot;awkward&quot;, 1.0, true, true)
                                         }
                                     end
                                     self.scene.player:run {
