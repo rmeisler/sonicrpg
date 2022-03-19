@@ -76,8 +76,7 @@ return function(scene, hint)
 				Move(scene.objectLookup.Cart, scene.objectLookup.CartWaypoint2)
 			}
 		}
-	elseif not GameState:isFlagSet("ep3_introknothole") then
-		GameState:setFlag("ep3_introknothole")
+	elseif not GameState:isFlagSet("ep3_knotholerun") then
 		knotholeIntro()
 		scene.audio:playMusic("knothole", 0.8, true)
 		return Action()
@@ -408,24 +407,17 @@ return function(scene, hint)
 					
 					Wait(2),
 					
+					Parallel {
+						scene:fadeOut(0.2),
+						AudioFade("music", 0.6, 0.0, 0.2)
+					},
 					Do(function()
-						scene:changeScene{map="knotholeatnight", fadeOutSpeed=0.05, fadeInSpeed=0.1, fadeOutMusic=true}
-					end)
-					
-					-- faint
-					
-						--[[
 						scene.player.sprite.visible = true
 						scene.player.dropShadow.hidden = false
 						
-						sally.hidden = true
-						rotor.hidden = true
-						bunnie.hidden = true
-						sonic.hidden = true
-						antoine.hidden = true
-						
-						GameState:addToParty("bunny", 3, true)
-						GameState.leader = "sonic"
+						GameState:addToParty("sonic", 6, true)
+						GameState:addToParty("antoine", 6, true)
+						GameState.leader = "sally"
 						scene.player:updateSprite()
 						
 						local cart = scene.objectLookup.Cart
@@ -436,21 +428,18 @@ return function(scene, hint)
 						
 						local walkout, walkin, sprites = scene.player:split {
 							GameState.party.sonic,
-							GameState.party.bunny,
+							GameState.party.antoine,
 							GameState.party.sally
 						}
 						
 						scene.player.x = scene.objectLookup.CartWaypoint2.x + 94
 						scene.player.y = scene.objectLookup.CartWaypoint2.y + 50
 						
-						scene.player.cinematicStack = scene.player.cinematicStack + 1
+						--scene.player.cinematicStack = scene.player.cinematicStack + 1
 						scene.player.cinematic = false
-						
-						scene.objectLookup.Bunnie:remove()
-						scene.objectLookup.PestExample:remove()
 
-						sonic:run(BlockPlayer {
-							scene:fadeIn(0.5),
+						scene.player:run(BlockPlayer {
+							scene:fadeIn(0.1),
 							Wait(0.5),
 							walkout,
 							Do(function()
@@ -459,8 +448,7 @@ return function(scene, hint)
 							MessageBox{message="Sally: When you're both ready to go, we can just ride this pulley cart out of Knothole."},
 							walkin
 						})
-						
-					end)]]
+					end)
 				})
 			end)
 		}
