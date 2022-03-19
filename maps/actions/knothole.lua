@@ -436,7 +436,7 @@ return function(scene, hint)
 					hop(sonic),
 					MessageBox {message="Sonic: Mondo problemo{p60}, but what about our current\noperation?"},
 					MessageBox {message="Sonic: Ya know{p60}, the {h computer virus} that could \nbring down Buttnik's whole army?"},
-					MessageBox {message="Sally: This has to take precedence.{p60} We need to find out what Robotnik's got up his sleeve."},
+					MessageBox {message="Sally: This has to take priority.{p60} We need to find out what Robotnik's got up his sleeve."},
 					hop(sonic),
 					MessageBox {message="Sonic: Ok. {p60}Then we break into Iron Lock{p60}, trash this porker{p60}, and get back to business!"},
 					MessageBox {message="Sally: Agreed."},
@@ -459,7 +459,7 @@ return function(scene, hint)
 					
 					MessageBox {message="Sally: Perfect!"},
 					Animate(sally.sprite, "planning_smile"),
-					MessageBox {message="Sally: Then it's settled...{p60} tomorrow{p60}, alongside the Rebellion{p60}, Sonic, Antoine, and I will return to Iron Lock!"},
+					MessageBox {message="Sally: Then it's settled...{p60} tomorrow, alongside the Rebellion{p60}, Sonic, Antoine, and I will return to Iron Lock!"},
 					Animate(antoine.sprite, "shock"),
 					MessageBox {message="Antoine: Me!?"},
 					Animate(antoine.sprite, "nauseated"),
@@ -469,10 +469,10 @@ return function(scene, hint)
 						antoine.x = antoine.x + antoine.sprite.w
 						antoine.y = antoine.y + antoine.sprite.h*2
 					end),
-					Ease(antoine.sprite.transform, "angle", math.pi/48, 2),
-					Ease(antoine.sprite.transform, "angle", -math.pi/48, 2),
 					Ease(antoine.sprite.transform, "angle", math.pi/48, 3),
 					Ease(antoine.sprite.transform, "angle", -math.pi/48, 3),
+					Ease(antoine.sprite.transform, "angle", math.pi/48, 4),
+					Ease(antoine.sprite.transform, "angle", -math.pi/48, 4),
 					Animate(antoine.sprite, "dead"),
 					
 					Wait(2),
