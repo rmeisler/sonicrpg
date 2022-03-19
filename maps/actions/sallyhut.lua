@@ -112,7 +112,7 @@ return function(scene)
 			Animate(scene.objectLookup.SallysBed.sprite, "awake"),
 			Wait(2),
 			Animate(scene.objectLookup.SallysBed.sprite, "sit"),
-			Wait(0.5),
+			Wait(1),
 			Animate(scene.objectLookup.SallysBed.sprite, "empty"),
 			Do(function()
 				scene.player.sprite.visible = true

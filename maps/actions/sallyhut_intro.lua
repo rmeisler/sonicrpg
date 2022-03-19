@@ -135,7 +135,7 @@ return function(scene)
 			MessageBox {message="Nicole: Sending, {p40}Sally.", textspeed=3, closeAction=Wait(1)},
 			Wait(1),
 			Do(function()
-				scene:changeScene{map="sallyshut", fadeOutSpeed=0.1, fadeInSpeed=0.2}
+				scene:changeScene{map="sallyshut", fadeOutSpeed=0.05, fadeInSpeed=0.1, fadeOutMusic=true}
 			end)
 		}
 	end
