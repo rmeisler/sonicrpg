@@ -336,7 +336,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = 8,
-            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: This is your bed, {p40}Sally.\"},\n        MessageBox {message=\"Nicole: ...{p40}are you tired, or something?\"}\n    }\nend",
+            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: This is your bed, {p40}Sally.\"},\n        MessageBox {message=\"Nicole: ...{p40}are you tired or something?\"}\n    }\nend",
             ["sprite"] = "../art/sprites/sallybed.png"
           }
         },

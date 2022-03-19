@@ -386,7 +386,7 @@ function BasicScene:onExit(args)
 		}
 	end
 	
-	return Serial {
+	return BlockPlayer {
 		fadeAction,
 		Do(function()
 			if not self.enteringBattle and not args.tutorial then

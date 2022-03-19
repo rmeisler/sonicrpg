@@ -185,7 +185,7 @@ local MessageBox = require &quot;actions/MessageBox&quot;
 return function(self)
     return BlockPlayer {
         MessageBox {message=&quot;Nicole: This is your bed, {p40}Sally.&quot;},
-        MessageBox {message=&quot;Nicole: ...{p40}are you tired, or something?&quot;}
+        MessageBox {message=&quot;Nicole: ...{p40}are you tired or something?&quot;}
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/sallybed.png"/>

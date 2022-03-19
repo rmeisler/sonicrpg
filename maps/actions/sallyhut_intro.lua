@@ -134,21 +134,8 @@ return function(scene)
 			MessageBox {message="Sally: Encrypt message. {p60}Passcode 'Bean'. {p80}Send on all available frequencies.", textspeed=3, closeAction=Wait(2.5)},
 			MessageBox {message="Nicole: Sending, {p40}Sally.", textspeed=3, closeAction=Wait(1)},
 			Wait(1),
-			Parallel {
-				Ease(scene.bgColor2, 1, 0, 0.1, "linear"),
-				Ease(scene.bgColor2, 2, 0, 0.1, "linear"),
-				Ease(scene.bgColor2, 3, 0, 0.1, "linear"),
-				
-				Do(function()
-					ScreenShader:sendColor("multColor", scene.bgColor2)
-				end)
-			},
 			Do(function()
-				scene.bgColor[0] = 0
-				scene.bgColor[1] = 0
-				scene.bgColor[2] = 0
-				scene.bgColor[3] = 0
-				scene:changeScene{map="knothole", fadeInSpeed=0.2}
+				scene:changeScene{map="sallyshut", fadeOutSpeed=0.1, fadeInSpeed=0.2}
 			end)
 		}
 	end

@@ -76,80 +76,11 @@ return function(scene, hint)
 				Move(scene.objectLookup.Cart, scene.objectLookup.CartWaypoint2)
 			}
 		}
-	elseif GameState:isFlagSet("ep3_intro") and
-		not GameState:isFlagSet("ep3_introknothole")
-	then
+	elseif not GameState:isFlagSet("ep3_introknothole") then
 		GameState:setFlag("ep3_introknothole")
-		GameState:setFlag("sallysad_over")
-		scene.audio:stopMusic()
-		return BlockPlayer {
-			PlayAudio("music", "knothole", 1.0, true, true),
-			Do(function()
-				scene.player.noIdle = true
-				scene.player.sprite:setAnimation("thinking2")
-			end),
-			Wait(3),
-			MessageBox {message="Sally: Ahhh...", textspeed=1},
-			Do(function()
-				scene.player.noIdle = true
-				scene.player.sprite:setAnimation("pose")
-			end),
-			MessageBox {message="Sally: Nothing like a breath of that fresh, morning air to clear your head...", textspeed=1},
-			AudioFade("music", 1.0, 0.0, 1),
-			Wait(1),
-			MessageBox {message="Fleet: Awww, {p20}getting tired?", closeAction=Wait(1)},
-			Do(function()
-				scene.player.sprite:setAnimation("idleright")
-			end),
-			MessageBox {message="Sally: ?", closeAction=Wait(0.5)},
-			MessageBox {message="Sonic: Dream on, featherweight!", closeAction=Wait(1)},
-			Wait(1),
-			PlayAudio("music", "awkward", 1.0, true, true),
-			-- Sonic/Fleet blast past Sally
-			Do(function()
-				scene.objectLookup.FleetEp3Run.hidden = false
-				scene.objectLookup.SonicEp3Run.hidden = false
-				scene.objectLookup.FleetEp3Run.movespeed = 30
-				scene.objectLookup.SonicEp3Run.movespeed = 30
-				scene.objectLookup.FleetEp3Run.sprite.transform.ox = scene.objectLookup.FleetEp3Run.sprite.w/2
-				scene.objectLookup.FleetEp3Run.sprite.transform.oy = scene.objectLookup.FleetEp3Run.sprite.h/2
-				scene.objectLookup.FleetEp3Run.sprite.transform.angle = -math.pi/6
-			end),
-			Parallel {
-				Move(scene.objectLookup.FleetEp3Run, scene.objectLookup.Ep3Waypoint, "fly"),
-				Serial {
-					Wait(0.2),
-					Do(function()
-						scene.player.sprite:setAnimation("idleleft")
-					end)
-				}
-			},
-			Wait(1),
-			Parallel {
-				Move(scene.objectLookup.SonicEp3Run, scene.objectLookup.Ep3Waypoint, "juice"),
-				Serial {
-					Wait(0.2),
-					scene.player:spin(3, 0.01)
-				}
-			},
-			Do(function()
-				scene.objectLookup.FleetEp3Run:remove()
-				scene.objectLookup.SonicEp3Run:remove()
-				scene.player.sprite:setAnimation("shock")
-			end),
-			Wait(1),
-			Do(function()
-				scene.player.sprite:setAnimation("frustrateddown")
-			end),
-			MessageBox {message="Sally: Sonic!!"},
-			Do(function()
-				scene.player.sprite:setAnimation("thinking")
-			end),
-			Wait(1),
-			Do(function()
-				scene.player.noIdle = false
-			end)
-		}
+		knotholeIntro()
+		scene.audio:playMusic("knothole", 0.8, true)
+		return Action()
 	elseif GameState:isFlagSet("ep3_intro") and
 		GameState:isFlagSet("ep3_ffmeeting") and
 		not GameState:isFlagSet("ep3_ffmeetingover")

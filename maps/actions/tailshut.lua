@@ -148,7 +148,7 @@ return function(scene)
 					MessageBox {message="Sally: 'Once upon a time...'", textspeed=1},
 					Do(function()
 						local tailsbed = scene.objectLookup.TailsBed
-						tailsbed:run {
+						tailsbed:run(BlockPlayer{
 							scene:fadeOut(0.2),
 							Animate(scene.objectLookup.TailsBed.sprite, "tailstired"),
 							scene:fadeIn(0.2),
@@ -178,7 +178,7 @@ return function(scene)
 								scene.objectLookup.TailsBed.isInteractable = true
 								scene.player.movespeed = 4
 							end)
-						}
+						})
 					end)
 				}
 			else

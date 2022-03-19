@@ -89,10 +89,38 @@ return function(scene)
 		)
 	end
 	
-	if not scene.nighttime and GameState:isFlagSet("ep3_ffmeeting") then
+	if not scene.nighttime and
+	   (GameState:isFlagSet("ep3_ffmeeting") or not GameState:isFlagSet("ep3_wakeup"))
+	then
 		scene.audio:playMusic("knotholehut", 0.8)
 	elseif not scene.nighttime and not GameState:isFlagSet("ep3_ffmeeting") then
 		scene.audio:playMusic("awkward", 1.0)
+	end
+	
+	if not scene.nighttime and not GameState:isFlagSet("ep3_wakeup") then
+		return BlockPlayer {
+			Do(function()
+				GameState:setFlag("ep3_wakeup")
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+				scene.player.x = scene.objectLookup.SallysBed.x + 70
+				scene.player.y = scene.objectLookup.SallysBed.y + 90
+			end),
+			Animate(scene.objectLookup.SallysBed.sprite, "sleeping"),
+			Wait(4),
+			Animate(scene.objectLookup.SallysBed.sprite, "wake"),
+			Animate(scene.objectLookup.SallysBed.sprite, "awake"),
+			Wait(2),
+			Animate(scene.objectLookup.SallysBed.sprite, "sit"),
+			Wait(0.5),
+			Animate(scene.objectLookup.SallysBed.sprite, "empty"),
+			Do(function()
+				scene.player.sprite.visible = true
+				scene.player.dropShadow.hidden = false
+				scene.player.x = scene.objectLookup.SallysBed.x + 70
+				scene.player.y = scene.objectLookup.SallysBed.y + 95
+			end)
+		}
 	end
 
 	return Action()

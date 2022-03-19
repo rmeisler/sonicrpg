@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="355">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="356">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="onload" type="file" value="actions/knothole.lua"/>
@@ -3034,6 +3034,99 @@ return function(self, dt)
             )
         }
     end
+end</property>
+   </properties>
+  </object>
+  <object id="355" name="IntroTrigger" type="BasicNPC" gid="5323" x="1536" y="1024" width="160" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Move = require &quot;actions/Move&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self, player)
+    if GameState:isFlagSet(&quot;ep3_knotholerun&quot;) then
+        return
+    end
+
+    GameState:setFlag(&quot;ep3_knotholerun&quot;)
+
+    local scene = self.scene
+    player.noIdle = true
+    scene:run(BlockPlayer {
+        Parallel {
+            AudioFade(&quot;music&quot;, 1.0, 0.0, 1),
+            Serial {
+                Do(function()
+                    player.sprite:setAnimation(&quot;walkdown&quot;)
+                end),
+                Ease(player, &quot;y&quot;, function() return player.y + 90 end, 1, &quot;linear&quot;),
+                Do(function()
+                    player.sprite:setAnimation(&quot;idledown&quot;)
+                end),
+                Wait(1)
+            }
+        },
+        MessageBox {message=&quot;Fleet: Awww, {p20}getting tired?&quot;, closeAction=Wait(1)},
+        Do(function()
+            scene.player.sprite:setAnimation(&quot;idleright&quot;)
+        end),
+        MessageBox {message=&quot;Sally: ?&quot;, closeAction=Wait(0.5)},
+        MessageBox {message=&quot;Sonic: Dream on, featherweight!&quot;, closeAction=Wait(1)},
+        Wait(1),
+        PlayAudio(&quot;music&quot;, &quot;awkward&quot;, 1.0, true, true),
+        -- Sonic/Fleet blast past Sally
+        Do(function()
+            scene.objectLookup.FleetEp3Run.hidden = false
+            scene.objectLookup.SonicEp3Run.hidden = false
+            scene.objectLookup.FleetEp3Run.movespeed = 30
+            scene.objectLookup.SonicEp3Run.movespeed = 30
+            scene.objectLookup.FleetEp3Run.sprite.transform.ox = scene.objectLookup.FleetEp3Run.sprite.w/2
+            scene.objectLookup.FleetEp3Run.sprite.transform.oy = scene.objectLookup.FleetEp3Run.sprite.h/2
+            scene.objectLookup.FleetEp3Run.sprite.transform.angle = -math.pi/6
+        end),
+        Parallel {
+            Move(scene.objectLookup.FleetEp3Run, scene.objectLookup.Ep3Waypoint, &quot;fly&quot;),
+            Serial {
+                Wait(0.2),
+                Do(function()
+                    scene.player.sprite:setAnimation(&quot;idleleft&quot;)
+                end)
+            }
+        },
+        Wait(1),
+        Parallel {
+            Move(scene.objectLookup.SonicEp3Run, scene.objectLookup.Ep3Waypoint, &quot;juice&quot;),
+            Serial {
+                Wait(0.2),
+                scene.player:spin(3, 0.01)
+            }
+        },
+        Do(function()
+            scene.objectLookup.FleetEp3Run:remove()
+            scene.objectLookup.SonicEp3Run:remove()
+            scene.player.sprite:setAnimation(&quot;shock&quot;)
+        end),
+        Wait(1),
+        Do(function()
+            scene.player.sprite:setAnimation(&quot;frustrateddown&quot;)
+        end),
+        MessageBox {message=&quot;Sally: Sonic!!&quot;},
+        Do(function()
+            scene.player.sprite:setAnimation(&quot;thinking&quot;)
+        end),
+        Wait(1),
+        Do(function()
+            scene.player.noIdle = false
+        end)
+    })
 end</property>
    </properties>
   </object>

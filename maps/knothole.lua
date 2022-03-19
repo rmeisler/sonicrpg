@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 355,
+  nextobjectid = 356,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["onload"] = "actions/knothole.lua",
@@ -4104,6 +4104,23 @@ return {
             ["defaultAnim"] = "vert",
             ["ghost"] = true,
             ["onUpdate"] = "local Ease = require \"actions/Ease\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal BouncyText = require \"actions/BouncyText\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self, dt)\n    local puck = self.scene.objectLookup.Puck\n    if not puck or not puck.sprite then\n        return\n    end\n    if self:isTouching(puck.x, puck.y, puck.sprite.w, puck.sprite.h) and not puck.hitgoal then\n        puck.hitgoal = true\n        if not self.scene.player.hockey_score then self.scene.player.hockey_score = 0 end\n        self.scene.player.hockey_score = self.scene.player.hockey_score + 1\n        self:run {\n            PlayAudio(\"sfx\", \"levelup\", 1.0, true),\n            BouncyText(\n                Transform(puck.sprite.transform.x, puck.sprite.transform.y),\n                {0,255,0,255},\n                FontCache.ConsolasLarge,\n                \"+1\",\n                6,\n                false,\n                true -- outline\n            )\n        }\n    end\nend"
+          }
+        },
+        {
+          id = 355,
+          name = "IntroTrigger",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1536,
+          y = 1024,
+          width = 160,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Move = require \"actions/Move\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"ep3_knotholerun\") then\n        return\n    end\n\n    GameState:setFlag(\"ep3_knotholerun\")\n\n    local scene = self.scene\n    player.noIdle = true\n    scene:run(BlockPlayer {\n        Parallel {\n            AudioFade(\"music\", 1.0, 0.0, 1),\n            Serial {\n                Do(function()\n                    player.sprite:setAnimation(\"walkdown\")\n                end),\n                Ease(player, \"y\", function() return player.y + 90 end, 1, \"linear\"),\n                Do(function()\n                    player.sprite:setAnimation(\"idledown\")\n                end),\n                Wait(1)\n            }\n        },\n        MessageBox {message=\"Fleet: Awww, {p20}getting tired?\", closeAction=Wait(1)},\n        Do(function()\n            scene.player.sprite:setAnimation(\"idleright\")\n        end),\n        MessageBox {message=\"Sally: ?\", closeAction=Wait(0.5)},\n        MessageBox {message=\"Sonic: Dream on, featherweight!\", closeAction=Wait(1)},\n        Wait(1),\n        PlayAudio(\"music\", \"awkward\", 1.0, true, true),\n        -- Sonic/Fleet blast past Sally\n        Do(function()\n            scene.objectLookup.FleetEp3Run.hidden = false\n            scene.objectLookup.SonicEp3Run.hidden = false\n            scene.objectLookup.FleetEp3Run.movespeed = 30\n            scene.objectLookup.SonicEp3Run.movespeed = 30\n            scene.objectLookup.FleetEp3Run.sprite.transform.ox = scene.objectLookup.FleetEp3Run.sprite.w/2\n            scene.objectLookup.FleetEp3Run.sprite.transform.oy = scene.objectLookup.FleetEp3Run.sprite.h/2\n            scene.objectLookup.FleetEp3Run.sprite.transform.angle = -math.pi/6\n        end),\n        Parallel {\n            Move(scene.objectLookup.FleetEp3Run, scene.objectLookup.Ep3Waypoint, \"fly\"),\n            Serial {\n                Wait(0.2),\n                Do(function()\n                    scene.player.sprite:setAnimation(\"idleleft\")\n                end)\n            }\n        },\n        Wait(1),\n        Parallel {\n            Move(scene.objectLookup.SonicEp3Run, scene.objectLookup.Ep3Waypoint, \"juice\"),\n            Serial {\n                Wait(0.2),\n                scene.player:spin(3, 0.01)\n            }\n        },\n        Do(function()\n            scene.objectLookup.FleetEp3Run:remove()\n            scene.objectLookup.SonicEp3Run:remove()\n            scene.player.sprite:setAnimation(\"shock\")\n        end),\n        Wait(1),\n        Do(function()\n            scene.player.sprite:setAnimation(\"frustrateddown\")\n        end),\n        MessageBox {message=\"Sally: Sonic!!\"},\n        Do(function()\n            scene.player.sprite:setAnimation(\"thinking\")\n        end),\n        Wait(1),\n        Do(function()\n            scene.player.noIdle = false\n        end)\n    })\nend"
           }
         }
       }
