@@ -202,7 +202,7 @@
     <property name="sprite" type="file" value="../art/sprites/bunniebed.png"/>
    </properties>
   </object>
-  <object id="10" name="Brightness" type="BasicNPC" gid="6860" x="256" y="320" width="96" height="64">
+  <object id="10" name="Brightness" type="BasicNPC" gid="6860" x="256" y="288" width="96" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)

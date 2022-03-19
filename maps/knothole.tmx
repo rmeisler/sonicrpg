@@ -2598,20 +2598,20 @@ return function(self)
             Do(function() self.scene.player.sprite:setAnimation(&quot;thinking&quot;) end),
             MessageBox {message = &quot;Sally: I don't understand, Logan.&quot;},
             Do(function() self.scene.objectLookup.LoganBicker:facePlayer() end),
-            MessageBox {message = &quot;Logan: Princess, {p40}if we release the software patch in its current state{p40}, then the cause of the glitch will be immediately obvious!&quot;},
+            MessageBox {message = &quot;Logan: Princess, if we release the software patch in its current state, then the cause of the glitch will be immediately obvious!&quot;},
             Do(function()
                 self.scene.player.sprite:setAnimation(facingOpposite[self.scene.objectLookup.LoganBicker.sprite.selected])
             end),
             MessageBox {message = &quot;Logan: All Robotnik has to do is rollback to the previous software version and we'll be toast!&quot;},
             Do(function() self.scene.player.sprite:setAnimation(&quot;thinking&quot;) end),
-            MessageBox {message = &quot;Sally: Ah... {p40}so what you are saying is that we should modify the code around the glitch so that it only activates when{p80}, say{p80}, a certain signal is sent?&quot;},
+            MessageBox {message = &quot;Sally: Ah... {p40}so what you are saying is that we should modify the code around the glitch so that it only activates when a certain signal is sent?&quot;},
             Do(function() self.scene.player.sprite:setAnimation(&quot;thinking2&quot;) end),
             MessageBox {message = &quot;Logan: Correct.&quot;},
             Do(function()
                 self.scene.player.sprite:setAnimation(facingOpposite[self.scene.objectLookup.LoganBicker.sprite.selected])
             end),
-            MessageBox {message = &quot;Logan: Rather than release the counterfeit software patch the moment we want to disable Robotnik's\narmy{p80}, we ought to instead release it earlier{p80}, with the glitch deactivated.&quot;},
-            MessageBox {message = &quot;Logan: Let Robotnik release his own software patches{p80}, as he normally would{p80}, so by the time that we turn on our glitch{p80}, Robotnik won't know where it's coming from!&quot;},
+            MessageBox {message = &quot;Logan: Rather than release the counterfeit software patch the moment we want to disable Robotnik's\narmy, we ought to instead release it earlier, with the glitch deactivated.&quot;},
+            MessageBox {message = &quot;Logan: Let Robotnik release his own software patches, as he normally would, so by the time that we turn on our glitch, Robotnik won't know where it's coming from!&quot;},
             MessageBox {message = &quot;Sally: Great idea, Logan!&quot;},
             Animate(self.sprite, &quot;thinking&quot;),
             MessageBox {message = &quot;Rotor: Hey{p40}, that's not bad!&quot;},

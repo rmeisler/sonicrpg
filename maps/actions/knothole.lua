@@ -65,6 +65,18 @@ return function(scene, hint)
 
 	if hint == "fromworldmap" then
 		knotholeIntro()
+		if not GameState:isFlagSet("ep3_ffmeetingover") then
+			scene.audio:playMusic("awkward", 1.0, true)
+		else
+			scene.objectLookup.SonicBicker:remove()
+			scene.objectLookup.FleetBicker:remove()
+			scene.objectLookup.AntoineBicker:remove()
+			scene.objectLookup.IvanBicker:remove()
+			scene.objectLookup.LoganBicker:remove()
+			scene.objectLookup.RotorBicker:remove()
+			
+			scene.audio:playMusic("knothole", 0.8, true)
+		end
 		return BlockPlayer {
 			Parallel {
 				Do(function()
@@ -256,8 +268,8 @@ return function(scene, hint)
 			Wait(1),
 			PlayAudio("music", "standup", 0.9, true),
 			Animate(sally.sprite, "meeting_thinking"),
-			MessageBox {message="Sally: Look{p60}, we may not be trained military officers{p60}, but we've been fighting Robotnik most of our\nlives...", textspeed=2},
-			MessageBox {message="Sally: We don't just have experience{p60}, it's defined who we are.{p60} And we're not going to stop fighting.", textspeed=2},
+			MessageBox {message="Sally: Look, we may not be trained military officers, but we've been fighting Robotnik for most of our lives...", textspeed=2},
+			MessageBox {message="Sally: ...and we're not going to stop fighting now.", textspeed=2},
 			MessageBox {message="Leon: ...you really are your father's daughter.", textspeed=2},
 			MessageBox {message="Sally: Th-{p20}thank you Leon.", textspeed=2},
 			AudioFade("music", 1.0, 0.0, 0.5),
@@ -349,16 +361,13 @@ return function(scene, hint)
 					Animate(rotor.sprite, "sitright"),
 					Animate(bunnie.sprite, "sitlookforward"),
 					Animate(sally.sprite, "meeting_idledown"),
-					hop(bunnie),
-					MessageBox {message="Bunnie: Oh my stars!!"},
 					MessageBox {message="Griff: There's a prototype being developed outside the city limits, in a top-secret location known as {h Iron Lock}."},
 					Animate(sally.sprite, "meeting_thinking2"),
 					MessageBox {message="Sally: Iron Lock?!"},
 					MessageBox {message="Leon: The old prison complex?"},
 					Animate(sally.sprite, "meeting_thinking"),
-					MessageBox {message="Sally: We've been there before...{p60} I found a message from my father there."},
-					MessageBox {message="Leon: The King?"},
-					MessageBox {message="Sally: Yes...{p60}there was so much more I wanted to \ninvestigate...{p60} but our visit was cut short."},
+					MessageBox {message="Sally: We've been there before...{p60} I found a message from my father there..."},
+					MessageBox {message="Sally: ...there was so much more I wanted to \ninvestigate...{p60} but our visit was cut short."},
 					hop(sonic),
 					MessageBox {message="Sonic: Yeah, thanks to ol' Robuttnik's monster machine."},
 					MessageBox {message="Griff: Well don't expect this time to be much easier..."},
@@ -435,11 +444,10 @@ return function(scene, hint)
 						scene.player.x = scene.objectLookup.CartWaypoint2.x + 94
 						scene.player.y = scene.objectLookup.CartWaypoint2.y + 50
 						
-						--scene.player.cinematicStack = scene.player.cinematicStack + 1
 						scene.player.cinematic = false
 
 						scene.player:run(BlockPlayer {
-							scene:fadeIn(0.1),
+							scene:fadeIn(0.2),
 							Wait(0.5),
 							walkout,
 							Do(function()
