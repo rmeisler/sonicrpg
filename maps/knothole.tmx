@@ -2622,6 +2622,7 @@ return function(self)
             Animate(self.scene.objectLookup.LoganBicker.sprite, &quot;attitude&quot;),
             MessageBox {message = &quot;Logan: I'll take that as a {h yes}.&quot;},
             Do(function() self.scene.player.sprite:setAnimation(&quot;thinking2&quot;) end),
+            Wait(1),
             MessageBox {message = &quot;Sally: I think it's time to call a team meeting...&quot;},
             Do(function()
                 self.scene.player.noIdle = false

@@ -234,7 +234,7 @@ return function(scene, hint)
 			MessageBox {message="Fleet: Have you taken back control over \"any\" part of the city?"},
 			Animate(sally.sprite, "meeting_thinking"),
 			MessageBox {message="Sally: No--"},
-			MessageBox {message="Fleet: Surely, {p20}you've at least found the rightful ruler of Mobotropolis and safely brought him to Knothole Village-- {p60}your very own {h father}?"},
+			MessageBox {message="Fleet: Surely, you've at least found the rightful ruler of Mobotropolis and safely brought him to Knothole Village-- {p60}your very own {h father}?"},
 			Animate(sally.sprite, "meeting_sadleft"),
 			MessageBox {message="Sally: ...I--"},
 			Do(function()
@@ -268,9 +268,10 @@ return function(scene, hint)
 			Wait(1),
 			PlayAudio("music", "standup", 0.9, true),
 			Animate(sally.sprite, "meeting_thinking"),
-			MessageBox {message="Sally: Look, we may not be trained military officers, but we've been fighting Robotnik for most of our lives...", textspeed=2},
+			MessageBox {message="Sally: Look, we may not be trained military officers, but we've been fighting Robotnik for most of our\nlives...", textspeed=2},
 			MessageBox {message="Sally: ...and we're not going to stop fighting now.", textspeed=2},
-			MessageBox {message="Leon: ...you really are your father's daughter.", textspeed=2},
+			Wait(1),
+			MessageBox {message="Leon: You really are your father's daughter.", textspeed=2},
 			MessageBox {message="Sally: Th-{p20}thank you Leon.", textspeed=2},
 			AudioFade("music", 1.0, 0.0, 0.5),
 			Wait(1),
@@ -387,7 +388,7 @@ return function(scene, hint)
 					hop(sonic),
 					MessageBox {message="Sonic: Say wha?"},
 					Animate(sally.sprite, "planning"),
-					MessageBox {message="Sally: If Iron Lock is as dangerous as Griff says{p80}, and this project Robotnik is working on is really a planetary threat{p80}, we are going to have to put aside our differences and work together!"},
+					MessageBox {message="Sally: If Iron Lock is as dangerous as Griff says, and this project Robotnik is working on is really a planetary threat, we are going to have to put aside our differences and work together!"},
 					MessageBox {message="Leon: That sounds like a wonderful idea."},
 					MessageBox {message="Leon: Fleet, Logan, and Ivan, you will accompany Sally's away team."},
 					hop(sonic),
@@ -451,6 +452,27 @@ return function(scene, hint)
 							Wait(0.5),
 							walkout,
 							Do(function()
+								scene.objectLookup.SonicBicker:remove()
+								scene.objectLookup.FleetBicker:remove()
+								scene.objectLookup.AntoineBicker:remove()
+								scene.objectLookup.IvanBicker:remove()
+								scene.objectLookup.LoganBicker:remove()
+								scene.objectLookup.RotorBicker:remove()
+								
+								scene.objectLookup.SonicMtg.hidden = true
+								scene.objectLookup.RotorMtg.hidden = true
+								scene.objectLookup.AntoineMtg.hidden = true
+								scene.objectLookup.SallyMtg.hidden = true
+								scene.objectLookup.BunnieMtg.hidden = true
+								scene.objectLookup.GriffMtg.hidden = true
+								scene.objectLookup.GriffMtg2.hidden = true
+								scene.objectLookup.FleetMtg.hidden = true
+								scene.objectLookup.LoganMtg.hidden = true
+								scene.objectLookup.IvanMtg.hidden = true
+								scene.objectLookup.LeonMtg.hidden = true
+								scene.objectLookup.NicoleMtg.hidden = true
+								scene.objectLookup.ProjectionMtg.hidden = true
+
 								scene.audio:playMusic("knothole", 0.8)
 							end),
 							MessageBox{message="Sally: When you're both ready to go, we can just ride this pulley cart out of Knothole."},
@@ -462,6 +484,18 @@ return function(scene, hint)
 		}
 	else
 		knotholeIntro()
+		
+		if GameState:isFlagSet("ep3_ffmeetingover") then
+			scene.objectLookup.SonicBicker:remove()
+			scene.objectLookup.FleetBicker:remove()
+			scene.objectLookup.AntoineBicker:remove()
+			scene.objectLookup.IvanBicker:remove()
+			scene.objectLookup.LoganBicker:remove()
+			scene.objectLookup.RotorBicker:remove()
+			
+			scene.audio:playMusic("knothole", 1.0, true)
+		end
+
 		return Action()
 	end
 end
