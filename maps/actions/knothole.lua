@@ -74,6 +74,9 @@ return function(scene, hint)
 			scene.objectLookup.IvanBicker:remove()
 			scene.objectLookup.LoganBicker:remove()
 			scene.objectLookup.RotorBicker:remove()
+			scene.objectLookup.Tails:remove()
+			scene.objectLookup.HockeyPost1:remove()
+			scene.objectLookup.HockeyPost2:remove()
 			
 			scene.audio:playMusic("knothole", 0.8, true)
 		end
@@ -188,10 +191,10 @@ return function(scene, hint)
 			Animate(sally.sprite, "planning_smile"),
 			MessageBox {message="Sally: That's fine. {p60}As, I was saying--{p60}I'm certain that if we unite our efforts to take down Robotnik, we will be unstoppable!"},
 			Animate(ivan.sprite, "meeting_idledown"),
-			AudioFade("music", 0.6, 0, 1),
+			AudioFade("music", 0.6, 0, 0.5),
 			Animate(fleet.sprite, "meeting_lookright"),
 			Animate(sally.sprite, "planning"),
-			MessageBox {message="Fleet: Princess{p60}, with all due respect{p60}, the Rebellion is an elite military force, combining undoubtedly the smartest and strongest in all of\nMobius..."},
+			MessageBox {message="Fleet: Princess, with all due respect, the Rebellion is an elite military force, combining undoubtedly the smartest and strongest in all of\nMobius..."},
 			MessageBox {message="Fleet: Meanwhile, the Freedom Fighters are...{p60} how do I put this?..."},
 			PlayAudio("music", "tense2", 1.0, true, true),
 			Animate(ivan.sprite, "meeting_idledown_attitude"),
@@ -252,13 +255,11 @@ return function(scene, hint)
 				Serial {
 					MessageBox {message="Fleet: B-but--", closeAction=Wait(1)},
 					Animate(sally.sprite, "meeting_idleleft"),
-					MessageBox {message="Leon: It is precisely because the Freedom Fighters lack formal training..."},
+					MessageBox {message="Leon: It is precisely because the Freedom Fighters lack formal training, and yet, have somehow become a formidable enough foe to Robotnik that he knows them by name, that they deserve our utmost respect."},
 					Animate(fleet.sprite, "meeting_idledown"),
 					Animate(logan.sprite, "meeting_idledown"),
 					Animate(ivan.sprite, "meeting_idledown"),
-					MessageBox {message="Leon: ...and yet, have somehow become a formidable enough foe to Robotnik that he knows them by name..."},
-					MessageBox {message="Leon: ...that they deserve out utmost respect."},
-					MessageBox {message="Leon: I see no reason why they should cease operations."}
+					MessageBox {message="Leon: I see no reason why they should cease operations."},
 				},
 				Serial {
 					Move(leon, scene.objectLookup.LeonWaypoint, "walk"),
@@ -290,7 +291,7 @@ return function(scene, hint)
 			Animate(griff.sprite, "idleleft_lookup"),
 			MessageBox {message="Griff: Sally--", closeAction=Wait(1)},
 			Animate(sally.sprite, "planning"),
-			MessageBox {message="Sally: --Griff?"},
+			MessageBox {message="Sally: Griff?"},
 			Ease(scene.camPos, "y", 0, 0.5),
 			Animate(ivan.sprite, "meeting_idledown_attitude"),
 			MessageBox {message="Ivan: What is a Griff?"},
@@ -298,7 +299,6 @@ return function(scene, hint)
 			Animate(ivan.sprite, "meeting_idledown"),
 			Ease(scene.camPos, "y", -180, 0.5),
 			MessageBox {message="Griff: I found something... {p60}Something big."},
-			MessageBox {message="Griff: You guys need to see this."},
 			Do(function()
 				scene.player.cinematic = true
 				sally:run(BlockPlayer {
@@ -458,6 +458,9 @@ return function(scene, hint)
 								scene.objectLookup.IvanBicker:remove()
 								scene.objectLookup.LoganBicker:remove()
 								scene.objectLookup.RotorBicker:remove()
+								scene.objectLookup.Tails:remove()
+								scene.objectLookup.HockeyPost1:remove()
+								scene.objectLookup.HockeyPost2:remove()
 								
 								scene.objectLookup.SonicMtg.hidden = true
 								scene.objectLookup.RotorMtg.hidden = true
@@ -492,6 +495,9 @@ return function(scene, hint)
 			scene.objectLookup.IvanBicker:remove()
 			scene.objectLookup.LoganBicker:remove()
 			scene.objectLookup.RotorBicker:remove()
+			scene.objectLookup.Tails:remove()
+			scene.objectLookup.HockeyPost1:remove()
+			scene.objectLookup.HockeyPost2:remove()
 			
 			scene.audio:playMusic("knothole", 1.0, true)
 		end

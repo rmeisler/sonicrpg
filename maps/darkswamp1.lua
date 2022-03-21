@@ -355,9 +355,10 @@ return {
           properties = {
             ["ghost"] = true,
             ["key"] = "left",
+            ["no_run"] = true,
             ["orientation"] = "right",
             ["scene"] = "worldmap.lua",
-            ["spawn_point"] = "Spawn 1"
+            ["spawn_point"] = "DarkSwampSpawn"
           }
         },
         {

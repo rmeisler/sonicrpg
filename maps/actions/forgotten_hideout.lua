@@ -26,7 +26,7 @@ local Repeat = require "actions/Repeat"
 
 local BasicNPC = require "object/BasicNPC"
 
-return function(scene)
+return function(scene, hint)
 	if hint == "fromworldmap" then
 		local subtext = TypeText(
 			Transform(50, 470),

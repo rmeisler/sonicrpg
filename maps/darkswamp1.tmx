@@ -90,9 +90,10 @@
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="left"/>
+    <property name="no_run" type="bool" value="true"/>
     <property name="orientation" value="right"/>
     <property name="scene" type="file" value="worldmap.lua"/>
-    <property name="spawn_point" value="Spawn 1"/>
+    <property name="spawn_point" value="DarkSwampSpawn"/>
    </properties>
   </object>
   <object id="124" name="Spawn 1" type="Player" gid="5323" x="0" y="352" width="32" height="32">

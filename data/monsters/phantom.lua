@@ -35,7 +35,7 @@ return {
 	stats = {
 		xp    = 20,
 		maxhp = 500,
-		attack = 18,
+		attack = 28,
 		defense = 15,
 		speed = 20,
 		focus = 1,

@@ -8,7 +8,7 @@ return {
   height = 100,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 296,
+  nextobjectid = 297,
   properties = {
     ["onload"] = "actions/worldmap.lua"
   },
@@ -4475,7 +4475,7 @@ return {
             ["align"] = "bottom_left",
             ["ghost"] = true,
             ["notColliding"] = "return function(self, player)\n    if player.onSubLocation == self then\n        player.onSubLocation = nil\n        self.scene:removeHandler(\"keytriggered\", player.deatheggCallback)\n        self.scene.pressX.color = {100,100,100,255}\n    end\nend",
-            ["whileColliding"] = "local TypeText = require \"actions/TypeText\"\nlocal Serial = require \"actions/Serial\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal YieldUntil = require \"actions/YieldUntil\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Menu = require \"actions/Menu\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self, player, prevState)\n    if player.onSubLocation == self then\n        return\n    end\n    player.onSubLocation = self\n    self.scene.pressX.color = {255,255,255,255}\n\n    player.bhideoutCallback = function(key)\n        if player.onSubLocation == self and not self.scene.sceneMgr.transitioning and key == \"x\" then\n            self.scene:run(BlockPlayer {\n                Menu {\n                    layout = Layout {\n                        {Layout.Text(\"Enter B's Hideout?\"), selectable = false},\n                        {Layout.Text(\"Yes\"), choose = function(menu)\n                            menu:close()\n                            self.scene.player:run(BlockPlayer {\n                                menu,\n                                Do(function()\n                                    self.scene:changeScene{map=\"forgottenhideout\", hint=\"fromworldmap\", fadeInSpeed = 0.5, fadeOutSpeed = 0.5, fadeOutMusic = true}\n                                    self.scene:removeHandler(\"keytriggered\", player.bhideoutCallback)\n                                end)\n                            })\n                         end},\n                        {Layout.Text(\"No\"), choose = function(menu)\n                            menu:close()\n                         end}\n                    },\n                    cancellable = true,\n                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n                    selectedRow = 2\n                }\n            })\n        end\n    end\n    self.scene:addHandler(\"keytriggered\", player.bhideoutCallback)\n\n    self.typeText = TypeText(\n        Transform(50, 470),\n        {255, 255, 255, 0},\n        FontCache.TechnoSmall,\n        \"B's Hideout\",\n        100\n    )\n    self.scene:run(Spawn(Serial {\n        self.typeText,\n        Ease(self.typeText.color, 4, 255, 1),\n        YieldUntil(function() return self.state ~= self.STATE_TOUCHING end),\n        Ease(self.typeText.color, 4, 0, 1)\n    }))\nend"
+            ["whileColliding"] = "local TypeText = require \"actions/TypeText\"\nlocal Serial = require \"actions/Serial\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal YieldUntil = require \"actions/YieldUntil\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Menu = require \"actions/Menu\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self, player, prevState)\n    if player.onSubLocation == self then\n        return\n    end\n    player.onSubLocation = self\n    self.scene.pressX.color = {255,255,255,255}\n\n    player.bhideoutCallback = function(key)\n        if player.onSubLocation == self and not self.scene.sceneMgr.transitioning and key == \"x\" then\n            self.scene:run(BlockPlayer {\n                Menu {\n                    layout = Layout {\n                        {Layout.Text(\"Enter B's Hideout?\"), selectable = false},\n                        {Layout.Text(\"Yes\"), choose = function(menu)\n                            menu:close()\n                            self.scene.player:run(BlockPlayer {\n                                menu,\n                                Do(function()\n                                    self.scene:changeScene{map=\"forgottenhideout\", hint=\"fromworldmap\", fadeInSpeed = 0.5, fadeOutSpeed = 0.5, fadeOutMusic = true}\n                                    self.scene:removeHandler(\"keytriggered\", player.bhideoutCallback)\n                                end)\n                            })\n                         end},\n                        {Layout.Text(\"No\"), choose = function(menu)\n                            menu:close()\n                            self.scene.player:run(menu)\n                         end}\n                    },\n                    cancellable = true,\n                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n                    selectedRow = 2\n                }\n            })\n        end\n    end\n    self.scene:addHandler(\"keytriggered\", player.bhideoutCallback)\n\n    self.typeText = TypeText(\n        Transform(50, 470),\n        {255, 255, 255, 0},\n        FontCache.TechnoSmall,\n        \"B's Hideout\",\n        100\n    )\n    self.scene:run(Spawn(Serial {\n        self.typeText,\n        Ease(self.typeText.color, 4, 255, 1),\n        YieldUntil(function() return self.state ~= self.STATE_TOUCHING end),\n        Ease(self.typeText.color, 4, 0, 1)\n    }))\nend"
           }
         },
         {
@@ -4485,6 +4485,23 @@ return {
           shape = "rectangle",
           x = 1888,
           y = 1568,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 3521,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["orientation"] = "down"
+          }
+        },
+        {
+          id = 296,
+          name = "DarkSwampSpawn",
+          type = "SpawnPoint",
+          shape = "rectangle",
+          x = 2464,
+          y = 1472,
           width = 32,
           height = 32,
           rotation = 0,
