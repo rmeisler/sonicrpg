@@ -48,16 +48,29 @@ return {
 			speed = 0.05
 		},
 		dashleft = {
-			frames = {{8,3},{9,3}},
+			frames = {{6,1},{7,1},{8,1}},
 			speed = 0.05
 		},
 		dashright = {
-			frames = {{8,3},{9,3}},
+			frames = {{6,0},{7,0},{8,0}},
 			speed = 0.05
 		},
 		dashdown = {
 			frames = {{8,3},{9,3}},
 			speed = 0.05
+		},
+		
+		prepare_goggles = {
+			frames = {{12,0}}
+		},
+		dashright_goggles = {
+			frames = {{9,0},{10,0},{11,0}},
+			speed = 0.05
+		},
+		
+		hover = {
+			frames = {{5,2},{6,2},{7,2}},
+			speed = 0.15
 		},
     }
 }

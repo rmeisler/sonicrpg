@@ -34,5 +34,8 @@ return {
 		jdown = {
 		    frames = {{2,2}}
 		},
+		jright = {
+		    frames = {{3,2}}
+		},
     }
 }

@@ -11,6 +11,11 @@ return {
     },
 	{
         type = "map",
+		file = "maps/run1.lua",
+		primary = true
+    },
+	{
+        type = "map",
 		file = "maps/darkswamp2.lua",
 		--primary = true
     },
@@ -36,7 +41,7 @@ return {
 	{
         type = "map",
 		file = "maps/sallyshut.lua",
-		primary = true
+		--primary = true
     },
 	
 	{

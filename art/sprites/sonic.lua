@@ -311,6 +311,10 @@ return {
 			frames = {{14,8}}
 		},
 		
+		prepare_race = {
+			frames = {{14,9}}
+		},
+		
 		sit_sad = {
 			frames = {{10,7}}
 		},
@@ -319,6 +323,15 @@ return {
 		},
 		sit_smile = {
 			frames = {{12,7}}
+		},
+		
+		chargerun1 = {
+			frames = {{0,9},{1,9},{2,9},{3,9}},
+			speed = 0.07
+		},
+		chargerun2 = {
+			frames = {{4,9},{5,9},{6,9},{7,9}},
+			speed = 0.02
 		},
 		
 		meeting_idledown = {
