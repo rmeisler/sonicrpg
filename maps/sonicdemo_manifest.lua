@@ -651,6 +651,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/sonicrace.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/rebellionfanfare.ogg",
 		category = "music"
 	},

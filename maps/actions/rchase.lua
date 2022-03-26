@@ -58,9 +58,10 @@ return function(scene)
 			Wait(2),
 			
 			Parallel {
-				MessageBox {message="J: On your mark... {p60}get set... {p60}go!", closeAction=Wait(1.3)},
+				MessageBox {message="J: On your mark... {p60}get set... {p60}go!", closeAction=Wait(1.5)},
 				Serial {
-					Wait(1.7),
+					Wait(2),
+					PlayAudio("music", "sonicrace", 1.0, true, true),
 					Animate(scene.objectLookup.Sonic.sprite, "chargerun1"),
 					Do(function() scene.objectLookup.Sonic.sprite:setAnimation("chargerun2") end),
 					Wait(1.2),
