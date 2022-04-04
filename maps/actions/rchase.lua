@@ -74,8 +74,11 @@ return function(scene)
 						scene.player.y = scene.objectLookup.Sonic.y + scene.player.height
 						scene.player.sprite.visible = true
 						scene.player.dropShadow.hidden = false
+						scene.player.bx = 10
+
 						scene.objectLookup.R.stopMoving = false
 						scene.objectLookup.R.sprite:setAnimation("dashright_goggles")
+						scene.objectLookup.R.bx = -20
 						scene.objectLookup.Sonic:remove()
 					end)
 				}

@@ -39,7 +39,6 @@ function EscapePlayer:construct(scene, layer, object)
 	self.by = 0
 	self.extraBx = 0
 	self.state = "juiceright"
-	self.hoverbotOffset = 360
 
 	self:removeSceneHandler("update", Player.update)
 	self:removeSceneHandler("keytriggered", Player.keytriggered)
@@ -112,10 +111,12 @@ function EscapePlayer:update(dt)
 		self.bx = self.bx - SLOWDOWN_SPEED
 	end
 	
-	if self.extraBx < 0.1 then
-		self.extraBx = 0
-	else
+	if self.extraBx < -1 then
+		self.extraBx = self.extraBx + SLOWDOWN_SPEED
+	elseif self.extraBx > 1 then
 		self.extraBx = self.extraBx - SLOWDOWN_SPEED
+	else
+		self.extraBx = 0
 	end
 	
 	if math.abs(self.by) < 0.1 then
@@ -202,6 +203,7 @@ function EscapePlayer:update(dt)
 	self.dropShadow.y = (self.origY or self.y) + self.sprite.h - 15
 	
 	self:updateShadows()
+	self:updateKeyHint()
 	
 	-- Update collision position and hotspots for interactables
 	self.collisionX, self.collisionY = self.scene:worldCoordToCollisionCoord(self.x, self.y)
@@ -243,12 +245,9 @@ function EscapePlayer:dodgeLaser()
 			self.noGas = true
 		end),
 		Animate(self.sprite, "juicewallright", true),
-		Parallel {
-			Serial {
-				Ease(self, "y", function() return self.origY - self.sprite.h*3 end, 5, "linear"),
-				Ease(self, "y", function() return self.origY end, 5, "quad")
-			},
-			Ease(self, "fx", 3, 4, "quad")
+		Serial {
+			Ease(self, "y", function() return self.origY - self.sprite.h*3 end, 5, "linear"),
+			Ease(self, "y", function() return self.origY end, 5, "quad")
 		},
 		Do(function()
 			self.cinematic = false
@@ -264,7 +263,7 @@ function EscapePlayer:dodgeLaser()
 			end),
 			YieldUntil(
 				function()
-					return self.x > self.scene.objectLookup.hoverbot1.x + self.hoverbotOffset
+					return self.x > self.scene.objectLookup.R.x
 				end
 			)
 		},
@@ -309,7 +308,7 @@ function EscapePlayer:hitByLaser()
 				-- Hop
 				Serial {
 					Ease(self, "y", function() return self.origY - 100 end, 8, "quad"),
-					Wait(0.1),
+					Wait(0.3),
 					
 					Do(function()
 						self.noDust = false
@@ -356,7 +355,7 @@ function EscapePlayer:hitByLaser()
 			Parallel {
 				YieldUntil(
 					function()
-						return self.x > self.scene.objectLookup.hoverbot1.x + self.hoverbotOffset
+						return self.x > self.scene.objectLookup.R.x
 					end
 				),
 				Do(function()
