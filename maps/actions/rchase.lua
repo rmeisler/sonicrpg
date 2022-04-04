@@ -62,6 +62,9 @@ return function(scene)
 				Serial {
 					Wait(2),
 					PlayAudio("music", "sonicrace", 1.0, true, true),
+					Do(function()
+						scene.objectLookup.R.sprite:setAnimation("dashright_goggles")
+					end),
 					Animate(scene.objectLookup.Sonic.sprite, "chargerun1"),
 					Do(function() scene.objectLookup.Sonic.sprite:setAnimation("chargerun2") end),
 					Wait(1.2),
@@ -77,7 +80,6 @@ return function(scene)
 						scene.player.bx = 10
 
 						scene.objectLookup.R.stopMoving = false
-						scene.objectLookup.R.sprite:setAnimation("dashright_goggles")
 						scene.objectLookup.R.bx = -20
 						scene.objectLookup.Sonic:remove()
 					end)

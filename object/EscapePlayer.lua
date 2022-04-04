@@ -220,7 +220,7 @@ function EscapePlayer:moveForward(dt)
 	
 	if (self.fy + self.by) ~= 0 then
 		self.y = math.max(
-			self.scene:getMapHeight() - 440,
+			self.scene:getMapHeight() - 420,
 			math.min(
 				self.scene:getMapHeight() - self.sprite.h,
 				self.y + (self.fy + self.by) * (dt/0.016)

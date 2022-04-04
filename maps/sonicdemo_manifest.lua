@@ -329,7 +329,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/mechaarmbattle.png"
+		file = "art/sprites/mechaarmrace.png"
 	},
 	{
 		type = "image",

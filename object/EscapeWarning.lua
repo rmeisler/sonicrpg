@@ -21,11 +21,11 @@ function EscapeWarning:construct(scene, layer, object)
 	
 	self.spotMapY = {
 		["1"] = 165+32,
-		["2"] = 229+32,
-		["3"] = 293+32,
-		["4"] = 357+32,
-		["5"] = 421+32,
-		["6"] = 485+32
+		["2"] = 234+32,
+		["3"] = 303+32,
+		["4"] = 372+32,
+		["5"] = 441+32,
+		["6"] = 510+32
 	}
 	self.spots = pack(object.properties.spots:split(','))
 end
