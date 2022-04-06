@@ -6,6 +6,7 @@ local Stairs = class(NPC)
 function Stairs:construct(scene, layer, object)
     self.ghost = true
 	self.direction = object.properties.direction
+	self.snap = object.properties.snap
 	
 	NPC.init(self, true)
 
@@ -18,6 +19,12 @@ function Stairs:update(dt)
 		return
 	end
 	if self.state == NPC.STATE_TOUCHING then
+		-- On first touch, update position
+		if self.snap and not next(player.stairs) then
+			player.x = self.x + self.object.width/2
+			player.y = self.y + self.object.height/2 - player.sprite.h
+		end
+		
 		player.stairs[tostring(self)] = self
 	else
 		player.stairs[tostring(self)] = nil

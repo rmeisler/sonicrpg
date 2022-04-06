@@ -8,7 +8,7 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 258,
+  nextobjectid = 259,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_hideout.lua",
@@ -898,7 +898,8 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_right"
+            ["direction"] = "up_right",
+            ["snap"] = true
           }
         },
         {
@@ -914,7 +915,8 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_left"
+            ["direction"] = "up_left",
+            ["snap"] = true
           }
         },
         {
@@ -946,7 +948,8 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_right"
+            ["direction"] = "up_right",
+            ["snap"] = true
           }
         },
         {
@@ -978,7 +981,8 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_left"
+            ["direction"] = "up_left",
+            ["snap"] = true
           }
         },
         {
@@ -994,7 +998,8 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_right"
+            ["direction"] = "up_right",
+            ["snap"] = true
           }
         },
         {
@@ -1026,7 +1031,8 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_right"
+            ["direction"] = "up_right",
+            ["snap"] = true
           }
         },
         {
@@ -1061,7 +1067,8 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_right"
+            ["direction"] = "up_right",
+            ["snap"] = true
           }
         },
         {
@@ -1069,15 +1076,16 @@ return {
           name = "Stairs5",
           type = "Stairs",
           shape = "rectangle",
-          x = 2464,
-          y = 2048,
-          width = 64,
-          height = 160,
+          x = 2496,
+          y = 2016,
+          width = 32,
+          height = 128,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_right"
+            ["direction"] = "up_right",
+            ["snap"] = true
           }
         },
         {
@@ -1093,7 +1101,8 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_left"
+            ["direction"] = "up_left",
+            ["snap"] = true
           }
         },
         {
@@ -1102,9 +1111,9 @@ return {
           type = "Stairs",
           shape = "rectangle",
           x = 1024,
-          y = 2016,
+          y = 2048,
           width = 32,
-          height = 96,
+          height = 128,
           rotation = 0,
           gid = 1227,
           visible = true,
@@ -1171,7 +1180,8 @@ return {
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_left"
+            ["direction"] = "up_left",
+            ["snap"] = true
           }
         },
         {
@@ -1482,6 +1492,23 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 258,
+          name = "Stairs5",
+          type = "Stairs",
+          shape = "rectangle",
+          x = 2464,
+          y = 2048,
+          width = 32,
+          height = 128,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["direction"] = "up_right",
+            ["snap"] = true
           }
         }
       }

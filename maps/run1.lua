@@ -8,7 +8,7 @@ return {
   height = 19,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 121,
+  nextobjectid = 129,
   properties = {
     ["onload"] = "actions/rchase.lua",
     ["regionName"] = "Robotropolis",
@@ -271,7 +271,7 @@ return {
             ["ghost"] = true,
             ["ignoreMapCollision"] = false,
             ["movespeed"] = 10,
-            ["onUpdate"] = "local Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self, dt)\n    if not self.scene:playerMovable() or self.stopMoving then\n        return\n    end\n\n    local fx = self.scene.player.fx\n    if self.scene.player.noGas or self.nofollow then\n        fx = 25\n    end\n\n    if self.bx < -1 then\n        self.bx = self.bx + 1\n    elseif self.bx > 1 then\n        self.bx = self.bx - 1\n    else\n        self.bx = 0\n    end\n\n    local pbx = self.scene.player.bx\n    if pbx > 0 then pbx = pbx + 1 end\n    self.x = self.x + (fx + self.bx + pbx) * (dt/0.016)\nend",
+            ["onUpdate"] = "local Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self, dt)\n    if not self.scene:playerMovable() or self.stopMoving then\n        return\n    end\n\n    local fx = self.scene.player.fx\n    if self.scene.player.noGas or self.nofollow then\n        fx = 25\n    end\n\n    if self.bx < -1 then\n        self.bx = self.bx + 1\n    elseif self.bx > 1 then\n        self.bx = self.bx - 1\n    else\n        self.bx = 0\n    end\n\n    local pbx = self.scene.player.bx\n    if pbx > 0 then pbx = pbx + 1 end\n    self.x = self.x + (fx + self.bx + pbx) * (dt/0.016)\n    \n    if self.y + self.sprite.h > self.scene.player.y + 10 then\n        self.y = self.y - 2*(dt/0.016)\n    elseif self.y + self.sprite.h < self.scene.player.y - 10 then\n        self.y = self.y + 2*(dt/0.016)\n    end\nend",
             ["sprite"] = "../art/sprites/r.png"
           }
         },
@@ -671,7 +671,7 @@ return {
           shape = "rectangle",
           x = 42304,
           y = 576,
-          width = 7136,
+          width = 7104,
           height = 224,
           rotation = 0,
           gid = 37,
@@ -729,7 +729,7 @@ return {
           shape = "rectangle",
           x = 49152,
           y = 320,
-          width = 288,
+          width = 256,
           height = 96,
           rotation = 0,
           gid = 37,
@@ -831,7 +831,7 @@ return {
           name = "Warning15",
           type = "EscapeWarning",
           shape = "rectangle",
-          x = 58112,
+          x = 58016,
           y = 608,
           width = 96,
           height = 384,
@@ -844,7 +844,7 @@ return {
         },
         {
           id = 119,
-          name = "Warning15",
+          name = "Warning16",
           type = "EscapeWarning",
           shape = "rectangle",
           x = 61472,
@@ -871,8 +871,124 @@ return {
           gid = 37,
           visible = true,
           properties = {
-            ["whileColliding"] = "local BasicNPC = require \"object/BasicNPC\"\n\n\nreturn function(self, player)\n    if self.hit then\n        return\n    end\n    self.hit = true\n    local npc = BasicNPC(\n        player.scene,\n        {name = \"objects\"},\n        {name = \"mecharm\", x = player.x + 100, y = player.y - 100, width = 300, height = 92, properties = {nocollision = true, sprite = \"art/sprites/mecharmrace.png\"}}\n    )\n    --npc.sprite.transform.ox = 32\n    --npc.sprite.transform.oy = 32\n    --npc.sprite.sortOrderY = -100\n    player.scene:addObject(npc)\nend"
+            ["whileColliding"] = "local BasicNPC = require \"object/BasicNPC\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\n\nreturn function(self, player)\n    if self.hit then\n        return\n    end\n    self.hit = true\n    local npc = BasicNPC(\n        player.scene,\n        {name = \"objects\"},\n        {name = \"mecharm\", x = player.x + 200, y = 180, width = 300, height = 92, properties = {nocollision = true, sprite = \"art/sprites/mechaarmrace.png\"}}\n    )\n    player.scene:addObject(npc)\n    npc:run {\n        Animate(npc.sprite, \"down\"),\n        Do(function() print(\"got em!\") end)\n    }\nend"
           }
+        },
+        {
+          id = 121,
+          name = "MechaArm2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 58880,
+          y = 608,
+          width = 96,
+          height = 384,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["whileColliding"] = "local BasicNPC = require \"object/BasicNPC\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\n\nreturn function(self, player)\n    if self.hit then\n        return\n    end\n    self.hit = true\n    local npc = BasicNPC(\n        player.scene,\n        {name = \"objects\"},\n        {name = \"mecharm\", x = player.x + 200, y = 400, width = 300, height = 92, properties = {nocollision = true, sprite = \"art/sprites/mechaarmrace.png\"}}\n    )\n    player.scene:addObject(npc)\n    npc:run {\n        Animate(npc.sprite, \"up\"),\n        Do(function() print(\"got em!\") end)\n    }\nend"
+          }
+        },
+        {
+          id = 122,
+          name = "MechaArm3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 62432,
+          y = 608,
+          width = 96,
+          height = 384,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["whileColliding"] = "local BasicNPC = require \"object/BasicNPC\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\n\nreturn function(self, player)\n    if self.hit then\n        return\n    end\n    self.hit = true\n    local npc1 = BasicNPC(\n        player.scene,\n        {name = \"objects\"},\n        {name = \"mecharm\", x = player.x + 200, y = 400, width = 300, height = 92, properties = {nocollision = true, sprite = \"art/sprites/mechaarmrace.png\"}}\n    )\n    player.scene:addObject(npc1)\n    npc1:run {\n        Animate(npc1.sprite, \"up\"),\n        Do(function() print(\"got em!\") end)\n    }\n    local npc2 = BasicNPC(\n        player.scene,\n        {name = \"objects\"},\n        {name = \"mecharm\", x = player.x + 150, y = 180, width = 300, height = 92, properties = {nocollision = true, sprite = \"art/sprites/mechaarmrace.png\"}}\n    )\n    player.scene:addObject(npc2)\n    npc2:run {\n        Animate(npc2.sprite, \"down\"),\n        Do(function() print(\"got em!\") end)\n    }\nend"
+          }
+        },
+        {
+          id = 123,
+          name = "JumpTrigger6",
+          type = "EscapeJumpTrigger",
+          shape = "rectangle",
+          x = 55808,
+          y = 384,
+          width = 480,
+          height = 64,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 124,
+          name = "HurtSpot17",
+          type = "EscapeBad",
+          shape = "rectangle",
+          x = 56192,
+          y = 384,
+          width = 96,
+          height = 64,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 125,
+          name = "JumpTrigger7",
+          type = "EscapeJumpTrigger",
+          shape = "rectangle",
+          x = 58880,
+          y = 512,
+          width = 576,
+          height = 64,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 126,
+          name = "HurtSpot18",
+          type = "EscapeBad",
+          shape = "rectangle",
+          x = 59360,
+          y = 512,
+          width = 96,
+          height = 64,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 127,
+          name = "JumpTrigger8",
+          type = "EscapeJumpTrigger",
+          shape = "rectangle",
+          x = 62432,
+          y = 480,
+          width = 576,
+          height = 128,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 128,
+          name = "HurtSpot19",
+          type = "EscapeBad",
+          shape = "rectangle",
+          x = 62912,
+          y = 480,
+          width = 96,
+          height = 128,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {}
         }
       }
     },

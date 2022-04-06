@@ -12,7 +12,7 @@ return {
 	{
         type = "map",
 		file = "maps/run1.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
@@ -35,7 +35,7 @@ return {
 	{
         type = "map",
 		file = "maps/sallyshutnight.lua",
-		--primary = true
+		primary = true
     },
 	
 	{

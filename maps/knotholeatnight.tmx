@@ -2799,6 +2799,7 @@ end</property>
     <property name="alignOffsetY" type="float" value="-15"/>
     <property name="defaultAnim" value="warmwindows"/>
     <property name="nightbright" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="onInit">local Repeat = require &quot;actions/Repeat&quot;
 local Serial = require &quot;actions/Serial&quot;

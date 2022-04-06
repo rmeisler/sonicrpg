@@ -38,6 +38,8 @@ return function(scene)
 		Ease(text.color, 4, 0, 1)
 	})
 	
+	print("nighttime? "..tostring(scene.nighttime).." "..tostring(scene.args.nighttime))
+	
 	if scene.nighttime then
 		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
 		local prefix = "nighthide"

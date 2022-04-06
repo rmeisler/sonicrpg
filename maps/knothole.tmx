@@ -2627,7 +2627,7 @@ return function(self)
             Do(function()
                 self.scene.player.noIdle = false
                 GameState:setFlag(&quot;ep3_ffmeeting&quot;)
-                self.scene:changeScene{map=&quot;knothole&quot;, fadeOutSpeed = 0.5,, fadeInSpeed = 0.5, fadeOutMusic = true}
+                self.scene:changeScene{map=&quot;knothole&quot;, fadeOutSpeed = 0.5, fadeInSpeed = 0.5, fadeOutMusic = true}
             end)
         }
     end

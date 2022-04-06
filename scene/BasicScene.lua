@@ -49,6 +49,7 @@ function BasicScene:onEnter(args)
 	self.tutorial = args.tutorial
 	self.nighttime = args.nighttime or self.map.properties.nighttime
 	
+	self.args = args
 	self.cacheSceneData = args.cache
 	
 	-- NOTE: This is how we draw the lua map data
@@ -300,6 +301,7 @@ function BasicScene:onReEnter(args)
 	self.enteringBattle = false
 	self.player.cinematic = false
 	self.reentering = true
+	self.nighttime = args.nighttime
 	
 	self.blur = nil
 	
@@ -469,7 +471,8 @@ function BasicScene:changeScene(args)
 		fadeOutSpeed = args.fadeOutSpeed,
 		fadeInSpeed = args.fadeInSpeed,
 		fadeOutMusic = args.fadeOutMusic,
-		cache = args.cache
+		cache = args.cache,
+		nighttime = args.nighttime
 	})
 end
 
