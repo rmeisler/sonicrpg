@@ -38,8 +38,6 @@ return function(scene)
 		Ease(text.color, 4, 0, 1)
 	})
 	
-	print("nighttime? "..tostring(scene.nighttime).." "..tostring(scene.args.nighttime))
-	
 	if scene.nighttime then
 		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
 		local prefix = "nighthide"
@@ -100,7 +98,8 @@ return function(scene)
 	end
 	
 	if not scene.nighttime and not GameState:isFlagSet("ep3_sallywakeup") then
-		return BlockPlayer {
+		scene.audio:stopMusic()
+		return BlockPlayer {			
 			Do(function()
 				GameState:setFlag("ep3_sallywakeup")
 				scene.player.sprite.visible = false
@@ -109,12 +108,18 @@ return function(scene)
 				scene.player.y = scene.objectLookup.SallysBed.y + 90
 			end),
 			Animate(scene.objectLookup.SallysBed.sprite, "sleeping"),
-			Wait(4),
+			Wait(3),
+			Spawn(Serial {
+				PlayAudio("music", "flutter", 1.0),
+				Wait(2),
+				PlayAudio("music", "knotholehut", 0.8, true, true)
+			}),
+			Wait(5),
 			Animate(scene.objectLookup.SallysBed.sprite, "wake"),
 			Animate(scene.objectLookup.SallysBed.sprite, "awake"),
 			Wait(2),
 			Animate(scene.objectLookup.SallysBed.sprite, "sit"),
-			Wait(1),
+			Wait(3),
 			Animate(scene.objectLookup.SallysBed.sprite, "empty"),
 			Do(function()
 				scene.player.sprite.visible = true

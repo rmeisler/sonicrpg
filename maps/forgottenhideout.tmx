@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="110" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="259">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="110" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="260">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="onload" type="file" value="actions/forgotten_hideout.lua"/>
@@ -865,7 +865,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="252" name="J" type="BasicNPC" gid="1227" x="352" y="1920" width="64" height="96">
+  <object id="252" name="J" type="BasicNPC" gid="1227" x="512" y="1888" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
@@ -912,7 +912,33 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/p.png"/>
    </properties>
   </object>
-  <object id="253" name="R" type="BasicNPC" gid="1227" x="2304" y="1344" width="64" height="96">
+  <object id="254" name="Waypoint1" type="BasicNPC" gid="1227" x="2304" y="2112" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="255" name="Waypoint2" type="BasicNPC" gid="1227" x="1088" y="2080" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="256" name="Waypoint3" type="BasicNPC" gid="1227" x="1120" y="1280" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="257" name="Waypoint4" type="BasicNPC" gid="1227" x="1856" y="1056" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="258" name="Stairs5" type="Stairs" gid="1227" x="2464" y="2048" width="32" height="128">
+   <properties>
+    <property name="direction" value="up_right"/>
+    <property name="snap" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="259" name="R" type="BasicNPC" gid="1227" x="576" y="1888" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
@@ -969,32 +995,6 @@ return function(self)
     end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/r.png"/>
-   </properties>
-  </object>
-  <object id="254" name="Waypoint1" type="BasicNPC" gid="1227" x="2304" y="2112" width="64" height="64">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="255" name="Waypoint2" type="BasicNPC" gid="1227" x="1088" y="2080" width="64" height="64">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="256" name="Waypoint3" type="BasicNPC" gid="1227" x="1120" y="1280" width="64" height="64">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="257" name="Waypoint4" type="BasicNPC" gid="1227" x="1856" y="1056" width="64" height="64">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="258" name="Stairs5" type="Stairs" gid="1227" x="2464" y="2048" width="32" height="128">
-   <properties>
-    <property name="direction" value="up_right"/>
-    <property name="snap" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

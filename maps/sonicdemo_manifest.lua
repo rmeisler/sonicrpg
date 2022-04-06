@@ -646,6 +646,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/flutter.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/exciting.ogg",
 		category = "music"
 	},
