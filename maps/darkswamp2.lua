@@ -8,7 +8,7 @@ return {
   height = 83,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 176,
+  nextobjectid = 177,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/darkswamp1.lua",
@@ -1298,8 +1298,25 @@ return {
           properties = {
             ["OnInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sally: Hmmm...{p60}this writing looks like ancient Mobian...\"}\n        }\n    elseif GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sonic: This hedgehog flunked all his ancient Mobian script classes, so...\"}\n        }\n    elseif GameState.leader == \"antoine\" then\n        return BlockPlayer {\n            MessageBox {message=\"Antoine: Ah yez! {p60}Eet iz elementary to me! {p60}What does it say, you ask? Well it says what it says, yez. What more can be said, eh?\"}\n        }\nend",
             ["align"] = "bottom_left",
-            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message=\"I belong to you, but I am more often used by others...\", textSpeed = 1}\n    }\nend",
+            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal NameScreen = require \"actions/NameScreen\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Wait = require \"actions/Wait\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    local riddle = NameScreen {\n        prompt = \"What am I?\",\n        expected = \"name\",\n        success = PlayAudio(\"sfx\", \"levelup\", 1.0),\n        failure = PlayAudio(\"sfx\", \"error\", 1.0)\n    }\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: Scanning{p40}, Sally.\", textSpeed = 3, sfx = \"nicolebeep\"},\n        MessageBox {message=\"Nicole: I belong to you, but I am more often used by others...\", textSpeed = 3},\n        Parallel {\n            riddle,\n            MessageBox {message=\"Nicole: I belong to you, but I am more often used by others...\", textSpeed = 3, closeAction=riddle}\n        }\n    }\nend",
             ["sprite"] = "../art/sprites/tablet.png"
+          }
+        },
+        {
+          id = 176,
+          name = "Save",
+          type = "SavePoint",
+          shape = "rectangle",
+          x = 1184,
+          y = 2208,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7000,
+          visible = true,
+          properties = {
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/save.png"
           }
         }
       }

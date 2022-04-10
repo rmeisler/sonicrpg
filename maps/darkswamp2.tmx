@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="83" height="83" tilewidth="32" tileheight="32" infinite="0" nextobjectid="176">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="83" height="83" tilewidth="32" tileheight="32" infinite="0" nextobjectid="177">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/darkswamp1.lua"/>
@@ -722,13 +722,35 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
+local NameScreen = require &quot;actions/NameScreen&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Serial = require &quot;actions/Serial&quot;
 
 return function(self)
+    local riddle = NameScreen {
+        prompt = &quot;What am I?&quot;,
+        expected = &quot;name&quot;,
+        success = PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1.0),
+        failure = PlayAudio(&quot;sfx&quot;, &quot;error&quot;, 1.0)
+    }
     return BlockPlayer {
-        MessageBox {message=&quot;I belong to you, but I am more often used by others...&quot;, textSpeed = 1}
+        MessageBox {message=&quot;Nicole: Scanning{p40}, Sally.&quot;, textSpeed = 3, sfx = &quot;nicolebeep&quot;},
+        MessageBox {message=&quot;Nicole: I belong to you, but I am more often used by others...&quot;, textSpeed = 3},
+        Parallel {
+            riddle,
+            MessageBox {message=&quot;Nicole: I belong to you, but I am more often used by others...&quot;, textSpeed = 3, closeAction=riddle}
+        }
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/tablet.png"/>
+   </properties>
+  </object>
+  <object id="176" name="Save" type="SavePoint" gid="7000" x="1184" y="2208" width="32" height="32">
+   <properties>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
  </objectgroup>
