@@ -651,6 +651,16 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/tomb.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/trialcomplete.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/exciting.ogg",
 		category = "music"
 	},

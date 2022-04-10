@@ -702,13 +702,14 @@ end</property>
   </object>
   <object id="175" name="Tablet" type="BasicNPC" gid="7597" x="1344" y="2464" width="64" height="64">
    <properties>
-    <property name="OnInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+    <property name="align" value="bottom_left"/>
+    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 
 return function(self)
     if GameState.leader == &quot;sally&quot; then
         return BlockPlayer {
-            MessageBox {message=&quot;Sally: Hmmm...{p60}this writing looks like ancient Mobian...&quot;}
+            MessageBox {message=&quot;Sally: Hmmm...{p60}these look like ancient Mobian hieroglyphs...&quot;}
         }
     elseif GameState.leader == &quot;sonic&quot; then
         return BlockPlayer {
@@ -718,12 +719,14 @@ return function(self)
         return BlockPlayer {
             MessageBox {message=&quot;Antoine: Ah yez! {p60}Eet iz elementary to me! {p60}What does it say, you ask? Well it says what it says, yez. What more can be said, eh?&quot;}
         }
+    end
 end</property>
-    <property name="align" value="bottom_left"/>
     <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local NameScreen = require &quot;actions/NameScreen&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
+local Spawn = require &quot;actions/Spawn&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Serial = require &quot;actions/Serial&quot;
@@ -731,17 +734,22 @@ local Serial = require &quot;actions/Serial&quot;
 return function(self)
     local riddle = NameScreen {
         prompt = &quot;What am I?&quot;,
-        expected = &quot;name&quot;,
-        success = PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1.0),
-        failure = PlayAudio(&quot;sfx&quot;, &quot;error&quot;, 1.0)
+        expected = &quot;name&quot;
     }
+    local prevMusic = self.scene.audio:getCurrentMusic()
     return BlockPlayer {
-        MessageBox {message=&quot;Nicole: Scanning{p40}, Sally.&quot;, textSpeed = 3, sfx = &quot;nicolebeep&quot;},
-        MessageBox {message=&quot;Nicole: I belong to you, but I am more often used by others...&quot;, textSpeed = 3},
+        MessageBox {message=&quot;Nicole: Translating hieroglyphs{p40}, Sally.&quot;, textSpeed = 3, sfx = &quot;nicolebeep&quot;},
+        AudioFade(&quot;music&quot;, 1.0, 0.0, 1),
+        MessageBox {message=&quot;Nicole: The tomb reads{p40}, 'I belong to you, but I am more often used by others'...&quot;, textSpeed = 3},
+        PlayAudio(&quot;music&quot;, &quot;tomb&quot;, 1.0, true, true),
         Parallel {
             riddle,
-            MessageBox {message=&quot;Nicole: I belong to you, but I am more often used by others...&quot;, textSpeed = 3, closeAction=riddle}
-        }
+            MessageBox {message=&quot;Nicole: The tomb reads{p40}, 'I belong to you, but I am more often used by others'...&quot;, textSpeed = 3, closeAction=riddle}
+        },
+        Spawn(Serial {
+            AudioFade(&quot;music&quot;, 1.0, 0.0, 1),
+            PlayAudio(&quot;music&quot;, prevMusic, 1.0, true, true)
+        })
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/tablet.png"/>

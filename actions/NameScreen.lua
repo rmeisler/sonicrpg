@@ -186,13 +186,13 @@ function NameScreen:keytriggered(key)
 			self.action:add(self.scene, self.success)
 			self.action:inject(
 				self.scene,
-				MessageBox {message="Access granted.", sfx="levelup", blocking=true}
+				PlayAudio("sfx", "levelup", 1.0, true)
 			)
 		elseif fullyEntered then
 			self.action:add(self.scene, self.failure)
 			self.action:inject(
 				self.scene,
-				MessageBox {message="Access denied.", sfx="error", blocking=true}
+				PlayAudio("sfx", "error", 1.0, true)
 			)
 		end
 		self.prompt:close()
