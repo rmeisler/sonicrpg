@@ -194,7 +194,7 @@ return function(scene, hint)
 			AudioFade("music", 0.6, 0, 0.5),
 			Animate(fleet.sprite, "meeting_lookright"),
 			Animate(sally.sprite, "planning"),
-			MessageBox {message="Fleet: Princess, with all due respect, the Rebellion is an elite military force, combining undoubtedly the smartest and strongest in all of\nMobius..."},
+			MessageBox {message="Fleet: Princess, with all due respect{p40}, the Rebellion is an elite military force, combining undoubtedly the smartest and strongest in all of\nMobius..."},
 			MessageBox {message="Fleet: Meanwhile, the Freedom Fighters are...{p60} how do I put this?..."},
 			PlayAudio("music", "tense2", 1.0, true, true),
 			Animate(ivan.sprite, "meeting_idledown_attitude"),
@@ -225,7 +225,6 @@ return function(scene, hint)
 			MessageBox {message="Antoine: I have never been so insulted in all of my life!!"},
 			hop(sonic),
 			MessageBox {message="Sonic: Hey! {p60}We've been doing this for a long time, bird brain!"},
-			MessageBox {message="Rotor: Yeah! We've been fighting Robotnik since we were kids!"},
 			hop(bunnie),
 			MessageBox {message="Bunnie: How do y'all call that \"inexperienced\"! {p60}How rude can ya get!?"},
 			Animate(fleet.sprite, "meeting_smirk"),
@@ -255,7 +254,7 @@ return function(scene, hint)
 				Serial {
 					MessageBox {message="Fleet: B-but--", closeAction=Wait(1)},
 					Animate(sally.sprite, "meeting_idleleft"),
-					MessageBox {message="Leon: It is precisely because the Freedom Fighters lack formal training, and yet, have somehow become a formidable enough foe to Robotnik that he knows them by name, that they deserve our utmost respect."},
+					MessageBox {message="Leon: It is precisely because the Freedom Fighters lack formal training{p40}, and yet{p40}, have somehow become a formidable enough foe to Robotnik that he knows them by\nname{p40}, that they deserve our utmost respect."},
 					Animate(fleet.sprite, "meeting_idledown"),
 					Animate(logan.sprite, "meeting_idledown"),
 					Animate(ivan.sprite, "meeting_idledown"),
@@ -290,14 +289,6 @@ return function(scene, hint)
 			Wait(1.2),
 			Animate(griff.sprite, "idleleft_lookup"),
 			MessageBox {message="Griff: Sally--", closeAction=Wait(1)},
-			Animate(sally.sprite, "planning"),
-			MessageBox {message="Sally: Griff?"},
-			Ease(scene.camPos, "y", 0, 0.5),
-			Animate(ivan.sprite, "meeting_idledown_attitude"),
-			MessageBox {message="Ivan: What is a Griff?"},
-			MessageBox {message="Sally: Uh- {p40}a fellow freedom fighter-"},
-			Animate(ivan.sprite, "meeting_idledown"),
-			Ease(scene.camPos, "y", -180, 0.5),
 			MessageBox {message="Griff: I found something... {p60}Something big."},
 			Do(function()
 				scene.player.cinematic = true
@@ -478,7 +469,7 @@ return function(scene, hint)
 
 								scene.audio:playMusic("knothole", 0.8)
 							end),
-							MessageBox{message="Sally: When you're both ready to go, we can just ride this pulley cart out of Knothole."},
+							MessageBox{message="Sally: When you're ready to go we'll ride this pulley cart out of Knothole and head east to the {h Dark Swamp}."},
 							walkin
 						})
 					end)
