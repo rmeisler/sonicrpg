@@ -111,6 +111,23 @@ return {
     },
 	
 	{
+        type = "map",
+        file = "maps/greatforest1.lua"
+    },
+	{
+        type = "map",
+        file = "maps/greatforest2.lua"
+    },
+	{
+        type = "map",
+        file = "maps/greatforest3.lua"
+    },
+	{
+        type = "map",
+        file = "maps/greatforest4.lua"
+    },
+	
+	{
 		type = "gradient",
 		name = "mboxgradient",
 		args = string.dump(function()
