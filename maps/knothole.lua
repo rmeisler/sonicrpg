@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 356,
+  nextobjectid = 357,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["onload"] = "actions/knothole.lua",
@@ -3984,29 +3984,6 @@ return {
           }
         },
         {
-          id = 349,
-          name = "Bunnie",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4896,
-          y = 1216,
-          width = 64,
-          height = 96,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "idleleft",
-            ["ghost"] = false,
-            ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message = \"Bunnie: That big gray dog-fella is just drivin' me crazy!\"}\n    }\nend",
-            ["sprite"] = "../art/sprites/bunny.png"
-          }
-        },
-        {
           id = 350,
           name = "Tails",
           type = "BasicNPC",
@@ -4121,6 +4098,25 @@ return {
           properties = {
             ["ghost"] = true,
             ["whileColliding"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Move = require \"actions/Move\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"ep3_knotholerun\") then\n        return\n    end\n\n    GameState:setFlag(\"ep3_knotholerun\")\n\n    local scene = self.scene\n    player.noIdle = true\n    scene:run(BlockPlayer {\n        Parallel {\n            AudioFade(\"music\", 1.0, 0.0, 1),\n            Serial {\n                Do(function()\n                    player.sprite:setAnimation(\"walkdown\")\n                end),\n                Ease(player, \"y\", function() return player.y + 90 end, 1, \"linear\"),\n                Do(function()\n                    player.sprite:setAnimation(\"idledown\")\n                end),\n                Wait(1)\n            }\n        },\n        MessageBox {message=\"Fleet: Awww, {p20}getting tired?\", closeAction=Wait(1)},\n        Do(function()\n            scene.player.sprite:setAnimation(\"idleright\")\n        end),\n        MessageBox {message=\"Sally: ?\", closeAction=Wait(0.5)},\n        MessageBox {message=\"Sonic: Dream on, featherweight!\", closeAction=Wait(1)},\n        Wait(1),\n        PlayAudio(\"music\", \"awkward\", 1.0, true, true),\n        -- Sonic/Fleet blast past Sally\n        Do(function()\n            scene.objectLookup.FleetEp3Run.hidden = false\n            scene.objectLookup.SonicEp3Run.hidden = false\n            scene.objectLookup.FleetEp3Run.movespeed = 30\n            scene.objectLookup.SonicEp3Run.movespeed = 30\n            scene.objectLookup.FleetEp3Run.sprite.transform.ox = scene.objectLookup.FleetEp3Run.sprite.w/2\n            scene.objectLookup.FleetEp3Run.sprite.transform.oy = scene.objectLookup.FleetEp3Run.sprite.h/2\n            scene.objectLookup.FleetEp3Run.sprite.transform.angle = -math.pi/6\n        end),\n        Parallel {\n            Move(scene.objectLookup.FleetEp3Run, scene.objectLookup.Ep3Waypoint, \"fly\"),\n            Serial {\n                Wait(0.2),\n                Do(function()\n                    scene.player.sprite:setAnimation(\"idleleft\")\n                end)\n            }\n        },\n        Wait(1),\n        Parallel {\n            Move(scene.objectLookup.SonicEp3Run, scene.objectLookup.Ep3Waypoint, \"juice\"),\n            Serial {\n                Wait(0.2),\n                scene.player:spin(3, 0.01)\n            }\n        },\n        Do(function()\n            scene.objectLookup.FleetEp3Run:remove()\n            scene.objectLookup.SonicEp3Run:remove()\n            scene.player.sprite:setAnimation(\"shock\")\n        end),\n        Wait(1),\n        Do(function()\n            scene.player.sprite:setAnimation(\"frustrateddown\")\n        end),\n        MessageBox {message=\"Sally: Sonic!!\"},\n        Do(function()\n            scene.player.sprite:setAnimation(\"thinking\")\n        end),\n        Wait(1),\n        Do(function()\n            scene.player.noIdle = false\n        end)\n    })\nend"
+          }
+        },
+        {
+          id = 356,
+          name = "Tablet",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 8544,
+          y = 832,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sally: Hmmm...{p60}these look like ancient Mobian hieroglyphs...\"}\n        }\n    elseif GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sonic: This hedgehog flunked all his ancient Mobian script classes, so...\"}\n        }\n    elseif GameState.leader == \"antoine\" then\n        return BlockPlayer {\n            MessageBox {message=\"Antoine: Ah yez! {p60}Eet iz elementary to me! {p60}What does it say, you ask? Well it says what it says, yez. What more can be said, eh?\"}\n        }\n    end\nend",
+            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal NameScreen = require \"actions/NameScreen\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Wait = require \"actions/Wait\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    local riddle = NameScreen {\n        prompt = \"What am I?\",\n        expected = \"map\"\n    }\n    local prevMusic = self.scene.audio:getCurrentMusic()\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: Translating hieroglyphs{p40}, Sally.\", textSpeed = 3, sfx = \"nicolebeep\"},\n        AudioFade(\"music\", 1.0, 0.0, 2),\n        PlayAudio(\"music\", \"ringlake\", 1.0, true, true),\n        MessageBox {message=\"Nicole: The tomb reads{p40}, 'I have rivers, but no water. I have forests, but no trees. I have cities, but no buildings'...\", textSpeed = 3},\n        Parallel {\n            riddle,\n            MessageBox {message=\"Nicole: The tomb reads{p40}, 'I have rivers, but no water. I have forests, but no trees. I have cities, but no buildings'...\", textSpeed = 3, closeAction=riddle}\n        },\n        Spawn(Serial {\n            AudioFade(\"music\", 1.0, 0.0, 2),\n            PlayAudio(\"music\", prevMusic, 1.0, true, true)\n        })\n    }\nend",
+            ["sprite"] = "../art/sprites/tablet.png"
           }
         }
       }
@@ -5019,6 +5015,19 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "imagelayer",
+      name = "godrays",
+      visible = true,
+      opacity = 0.5,
+      offsetx = 8505,
+      offsety = -352,
+      image = "../art/parallax/godrays.png",
+      properties = {
+        ["movespeed"] = 1,
+        ["shimmer"] = true
       }
     },
     {

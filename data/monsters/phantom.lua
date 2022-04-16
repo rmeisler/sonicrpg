@@ -34,8 +34,8 @@ return {
 
 	stats = {
 		xp    = 20,
-		maxhp = 500,
-		attack = 28,
+		maxhp = 1200,
+		attack = 50,
 		defense = 15,
 		speed = 20,
 		focus = 1,
@@ -54,7 +54,7 @@ return {
 	behavior = function (self, target)
 		local state
 		local stateOdds = math.random(100)
-		if stateOdds < 5 then
+		if stateOdds < 3 then
 			state = "disappear"
 		elseif stateOdds < 30 then
 			state = "scare"

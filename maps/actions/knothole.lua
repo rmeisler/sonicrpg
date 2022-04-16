@@ -289,6 +289,9 @@ return function(scene, hint)
 			Wait(1.2),
 			Animate(griff.sprite, "idleleft_lookup"),
 			MessageBox {message="Griff: Sally--", closeAction=Wait(1)},
+			Animate(sally.sprite, "meeting_shock"),
+			MessageBox {message="Sally: Griff!?", closeAction=Wait(1)},
+			Animate(sally.sprite, "meeting_idledown"),
 			MessageBox {message="Griff: I found something... {p60}Something big."},
 			Do(function()
 				scene.player.cinematic = true
@@ -337,9 +340,11 @@ return function(scene, hint)
 					MessageBox {message="Bunnie: Well ain't that just the stuff o' nightmares!"},
 					Animate(ivan.sprite, "meeting_idledown_attitude"),
 					MessageBox {message="Ivan: Elaboration is required."},
+					Animate(scene.objectLookup.GriffMtg2.sprite, "meeting_idledown_lookright"),
 					MessageBox {message="Griff: ...{p60}who is this guy?"},
 					hop(sonic),
 					MessageBox {message="Sonic: It's a long story{p60}, just tell us what the heck that is!"},
+					Animate(scene.objectLookup.GriffMtg2.sprite, "meeting_idledown"),
 					MessageBox {message="Griff: I must admit, I'm not entirely sure..."},
 					MessageBox {message="Griff: ...all I can tell you is{p60}, if Robotnik finishes it{p60}, he could wipe out every living thing on the planet in a matter of days..."},
 					Animate(sonic.sprite, "shock"),

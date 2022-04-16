@@ -8,7 +8,6 @@ return function(scene)
 	local Menu = require "actions/Menu"
 	local MessageBox = require "actions/MessageBox"
 	local PlayAudio = require "actions/PlayAudio"
-	local AudioFade = require "actions/AudioFade"
 	local Ease = require "actions/Ease"
 	local Parallel = require "actions/Parallel"
 	local Serial = require "actions/Serial"
@@ -16,11 +15,6 @@ return function(scene)
 	local Wait = require "actions/Wait"
 	local Do = require "actions/Do"
 	local SpriteNode = require "object/SpriteNode"
-	local Animate = require "actions/Animate"
-	local Move = require "actions/Move"
-	local BlockInput = require "actions/BlockInput"
-	local Spawn = require "actions/Spawn"
-	local BlockPlayer = require "actions/BlockPlayer"
 
 	local text = TypeText(
 		Transform(50, 500),
@@ -29,15 +23,19 @@ return function(scene)
 		scene.map.properties.regionName,
 		100
 	)
-	
-	if scene.nighttime then
+
+	Executor(scene):act(Serial {
+		Wait(0.5),
+		text,
+		Ease(text.color, 4, 255, 1),
+		Wait(2),
+		Ease(text.color, 4, 0, 1)
+	})
+
+	if not scene.nighttime then
+		scene.audio:playMusic("bunniesveggies", 1.0)
+	else
 		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
-		local prefix = "nighthide"
-		for _,layer in pairs(scene.map.layers) do
-			if string.sub(layer.name, 1, #prefix) == prefix then
-				layer.opacity = 1.0
-			end
-		end
 	end
 
 	if not scene.updateHookAdded then
@@ -48,7 +46,7 @@ return function(scene)
 				if not scene.player then
 					return
 				end
-				
+			
 				-- This update function defines and enforces eliptical collision 
 				-- for the interior walls of knothole huts. This is implemented
 				-- as just two separate point-to-circle collision checks,
@@ -81,53 +79,13 @@ return function(scene)
 		)
 	end
 	
-	if not scene.nighttime and
-	   (GameState:isFlagSet("ep3_ffmeeting") or not GameState:isFlagSet("ep3_knotholerun"))
-	then
-		scene.audio:playMusic("knotholehut", 0.8)
-	elseif not scene.nighttime and not GameState:isFlagSet("ep3_ffmeeting") then
-		scene.audio:playMusic("awkward", 1.0)
-	end
-	
-	if not scene.nighttime and not GameState:isFlagSet("ep3_sallywakeup") then
-		scene.audio:stopMusic()
-		return BlockPlayer {			
-			Do(function()
-				GameState:setFlag("ep3_sallywakeup")
-				scene.player.sprite.visible = false
-				scene.player.dropShadow.hidden = true
-				scene.player.x = scene.objectLookup.SallysBed.x + 70
-				scene.player.y = scene.objectLookup.SallysBed.y + 90
-			end),
-			Animate(scene.objectLookup.SallysBed.sprite, "sleeping"),
-			Wait(3),
-			Spawn(Serial {
-				PlayAudio("music", "flutter", 1.0),
-				Wait(2),
-				PlayAudio("music", "knotholehut", 0.8, true, true)
-			}),
-			Wait(5),
-			Animate(scene.objectLookup.SallysBed.sprite, "wake"),
-			Animate(scene.objectLookup.SallysBed.sprite, "awake"),
-			Wait(2),
-			Animate(scene.objectLookup.SallysBed.sprite, "sit"),
-			Wait(3),
-			Animate(scene.objectLookup.SallysBed.sprite, "empty"),
-			Do(function()
-				scene.player.sprite.visible = true
-				scene.player.dropShadow.hidden = false
-				scene.player.x = scene.objectLookup.SallysBed.x + 70
-				scene.player.y = scene.objectLookup.SallysBed.y + 95
-			end)
-		}
-	else
-		Executor(scene):act(Serial {
-			Wait(0.5),
-			text,
-			Ease(text.color, 4, 255, 1),
-			Wait(2),
-			Ease(text.color, 4, 0, 1)
-		})
+	if scene.nighttime then
+		local prefix = "nighthide"
+		for _,layer in pairs(scene.map.layers) do
+			if string.sub(layer.name, 1, #prefix) == prefix then
+				layer.opacity = 1.0
+			end
+		end
 	end
 
 	return Action()

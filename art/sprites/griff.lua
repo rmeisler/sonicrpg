@@ -167,8 +167,9 @@ return {
 			frames = {{0,2}},
 			clip = {0,0,47,44}
 		},
-		planning_lookdown = {
-			frames = {{12,5}}
+		meeting_idledown_lookright = {
+			frames = {{1,2}},
+			clip = {0,0,47,44}
 		},
 		planning_lookdown_point = {
 			frames = {{13,5}}

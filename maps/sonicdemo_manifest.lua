@@ -1046,6 +1046,12 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/bunniesveggies.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
 		file = "audio/music/greatforest.ogg",
 		category = "music",
 		looping = true,

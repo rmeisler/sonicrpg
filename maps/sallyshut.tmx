@@ -254,7 +254,7 @@ return function(self)
                     layout = Layout {
                         {Layout.Text(&quot;Practice fighting&quot;), choose = function(menu)
                             local fightMenuOpts = {{Layout.Text(&quot;Which boss?&quot;), selectable = false}}
-                            local bots = {&quot;rover&quot;}
+                            local bots = {&quot;rover&quot;, &quot;juggerbot&quot;}
                             for _, name in pairs(bots) do
                                 local bot = require (&quot;data/monsters/&quot;..name)
                                 table.insert(fightMenuOpts, {Layout.Text(bot.name), choose = function(menu2)
@@ -348,10 +348,12 @@ return function(self)
                             menu:close()
                             self.menuClosing = true
                             local msg = &quot;&quot;
-                            if not GameState:isFlagSet(&quot;rotorreveal_done&quot;) then
-                                msg = &quot;Rotor's locked himself in his workshop for quite awhile, hasn't he?&quot;
-                            else
-                                msg = &quot;You're still here?? {p60}Shouldn't you be at the Death Egg right now?&quot;
+                            if not GameState:isFlagSet(&quot;ep3_knotholerun&quot;) then
+                                msg = &quot;It's a beautiful day outside! {p60}Why are you spending it inside on the computer?&quot;
+                            elseif not GameState:isFlagSet(&quot;ep3_ffmeetingover&quot;) then
+                                msg = &quot;It sounds like there's quite a bit of arguing between the Freedom Fighters and the Rebellion, doesn't it?&quot;
+                            elseif not GameState:isFlagSet(&quot;ep3_ffmeetingover&quot;) then
+                                msg = &quot;Ride the pulley out of Knothole and head East to the Dark Swamp!{p60}... But before you do that{p60}... maybe take a rest, huh?&quot;
                             end
 
                             self.scene:run {

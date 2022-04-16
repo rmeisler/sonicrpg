@@ -8,10 +8,10 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 20,
+  nextobjectid = 21,
   properties = {
     ["ignorenight"] = true,
-    ["onload"] = "actions/knotholehut.lua",
+    ["onload"] = "actions/bunniehut.lua",
     ["regionName"] = "Bunnie's Hut"
   },
   tilesets = {
@@ -484,6 +484,29 @@ return {
           properties = {
             ["Carrot"] = 2,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 20,
+          name = "Bunnie",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 384,
+          y = 288,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message = \"Bunnie: That big gray dog-fella is just drivin' me crazy!\"}\n    }\nend",
+            ["sprite"] = "../art/sprites/bunny.png"
           }
         }
       }

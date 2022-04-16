@@ -211,7 +211,7 @@ return function(self)
                     menu:close()
                     self.scene:run {
                         menu,
-                        MessageBox{message=&quot;Diary: I wanted to play dirt hockey with Sonic today, {p30}but he said he was too busy. {p50}He always says that!&quot;, blocking = true, textSpeed = 3}
+                        MessageBox{message=&quot;Diary: That Fleet person seems pretty cool. {p50}Sonic doesn't seem to like her though... {p50}why's that?&quot;, blocking = true, textSpeed = 3}
                     }
                 end},
                 {Layout.Text(&quot;No&quot;), choose = function(menu)
