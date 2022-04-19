@@ -128,6 +128,16 @@ return {
     },
 	
 	{
+        type = "map",
+        file = "maps/greatforest2_uppath.lua"
+    },
+	
+	{
+        type = "map",
+        file = "maps/greatforest2_rightpath.lua"
+    },
+	
+	{
 		type = "gradient",
 		name = "mboxgradient",
 		args = string.dump(function()

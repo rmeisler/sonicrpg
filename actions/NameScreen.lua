@@ -33,6 +33,7 @@ function NameScreen:construct(args)
 	self.success = args.success or Action()
 	self.failure = args.failure or Action()
 	self.expected = args.expected
+	self.expectedLen = string.len(self.expected)
 	
 	self.letters = {
 		'a','b','c','d',
@@ -180,7 +181,7 @@ function NameScreen:keytriggered(key)
 		self.currentSequence = self.currentSequence .. self.letters[self.selectedNumber]
 	end
 
-	local fullyEntered = string.len(self.currentSequence) == 4
+	local fullyEntered = string.len(self.currentSequence) == self.expectedLen
 	if key == "z" or fullyEntered then
 		if self.currentSequence == self.expected then
 			self.action:add(self.scene, self.success)
@@ -226,12 +227,16 @@ function NameScreen:draw()
 
 	love.graphics.setColor(255, 255, 255, self.color[4])
 	
-	-- Selected numbers
+	-- Selected letters
 	love.graphics.setFont(FontCache.ConsolasLarge)
 	local numUnderscores = string.len(self.expected) - string.len(self.currentSequence)
-	love.graphics.print(self:spacedout(self.currentSequence .. self:underscores(numUnderscores)), 250, 100)
+	love.graphics.print(
+		self:spacedout(self.currentSequence .. self:underscores(numUnderscores)),
+		300 - 52 * math.max(0, self.expectedLen - 3),
+		100
+	)
 	
-	-- Selectable number pad
+	-- Selectable letter pad
 	love.graphics.setFont(FontCache.Consolas)
 	local number = 1
 	for y=160,440,40 do
