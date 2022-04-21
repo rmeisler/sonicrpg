@@ -253,7 +253,6 @@ return function(scene, hint)
 			Parallel {
 				Serial {
 					MessageBox {message="Fleet: B-but--", closeAction=Wait(1)},
-					Animate(sally.sprite, "meeting_idleleft"),
 					MessageBox {message="Leon: It is precisely because the Freedom Fighters lack formal training{p40}, and yet{p40}, have somehow become a formidable enough foe to Robotnik that he knows them by\nname{p40}, that they deserve our utmost respect."},
 					Animate(fleet.sprite, "meeting_idledown"),
 					Animate(logan.sprite, "meeting_idledown"),
@@ -288,7 +287,6 @@ return function(scene, hint)
 			},
 			Wait(1.2),
 			Animate(griff.sprite, "idleleft_lookup"),
-			MessageBox {message="Griff: Sally--", closeAction=Wait(1)},
 			Animate(sally.sprite, "meeting_shock"),
 			MessageBox {message="Sally: Griff!?", closeAction=Wait(1)},
 			Animate(sally.sprite, "meeting_idledown"),
@@ -474,7 +472,7 @@ return function(scene, hint)
 
 								scene.audio:playMusic("knothole", 0.8)
 							end),
-							MessageBox{message="Sally: When you're ready to go we'll ride this pulley cart out of Knothole and head east to the {h Dark Swamp}."},
+							MessageBox{message="Sally: When you're ready to go we'll ride this pulley cart out of Knothole and head east to\nthe {h Dark Swamp}."},
 							walkin
 						})
 					end)

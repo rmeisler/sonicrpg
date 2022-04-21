@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 22,
+  nextobjectid = 24,
   properties = {
     ["ignorenight"] = true,
     ["onload"] = "actions/knotholehut.lua",
@@ -574,6 +574,39 @@ return {
             ["defaultAnim"] = "plant",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/pot.png"
+          }
+        },
+        {
+          id = 22,
+          name = "SonicBed",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 320,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 6860,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Menu = require \"actions/Menu\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Action = require \"actions/Action\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            MessageBox{message=\"Sonic: This hedgehog is feelin' a little sleepy!{p60} Maybe I can sneak in a mondo fast nap before we head out on this mission...\"},\n            Menu {\n                layout = Layout {\n                    {Layout.Text(\"Take a rest?\"), selectable = false},\n                    {Layout.Text(\"Yes\"), choose = function(menu)\n                        menu:close()\n                        self:run {\n                            menu,\n                            Do(function()\n                                self.scene:changeScene {\n                                    map=\"sonicshut\",\n                                    fadeOutSpeed=0.2,\n                                    fadeInSpeed=0.2,\n                                    fadeOutMusic = true,\n                                    nighttime = true\n                                }\n                            end),\n                            Do(function() end)\n                        }\n                    end},\n                    {Layout.Text(\"No\"), choose = function(menu)\n                        menu:close()\n                        self:run {\n                            menu\n                        }\n                    end},\n                    colWidth = 200\n                },\n                transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n                selectedRow = 2,\n                cancellable = true\n            }\n        }\n    else\n        return Action()\n    end\nend"
+          }
+        },
+        {
+          id = 23,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 384,
+          y = 352,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["orientation"] = "down"
           }
         }
       }

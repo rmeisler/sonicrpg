@@ -33,28 +33,5 @@ return function(scene, hint)
 		scene.objectLookup.TailsHutWarmWindows:remove()
 	end
 	
-	if not GameState:isFlagSet("ep3_laterthatnight") then
-		GameState:setFlag("ep3_laterthatnight")
-		local subtext = TypeText(
-			Transform(50, 460),
-			{255, 255, 255, 255},
-			FontCache.TechnoSmall,
-			"Night fell as the Freedom Fighters\nand their new found friends{p10}, The Rebellion{p10},\nmade their way back to Knothole . . .",
-			12
-		)
-		Executor(scene):act(Serial {
-			Wait(2),
-			subtext,
-			Wait(3),
-			Ease(subtext.color, 4, 0, 1)
-		})
-		scene.camPos.y = 400
-		return BlockPlayer {
-			Wait(10),
-			Ease(scene.camPos, "y", 0, 0.3),
-			Wait(0.5)
-		}
-	end
-	
 	return Action()
 end

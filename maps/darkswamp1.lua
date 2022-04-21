@@ -11,9 +11,10 @@ return {
   nextobjectid = 131,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["noBattleMusic"] = true,
     ["onload"] = "actions/darkswamp1.lua",
-    ["regionName"] = "",
-    ["sectorName"] = "Dark Swamp"
+    ["regionName"] = "Dark Swamp",
+    ["sectorName"] = "???"
   },
   tilesets = {
     {

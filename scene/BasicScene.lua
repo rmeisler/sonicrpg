@@ -48,6 +48,7 @@ function BasicScene:onEnter(args)
 	self.camPos = Transform()
 	self.tutorial = args.tutorial
 	self.nighttime = args.nighttime or self.map.properties.nighttime
+	self.noBattleMusic = self.map.properties.noBattleMusic
 	
 	self.args = args
 	self.cacheSceneData = args.cache
@@ -531,7 +532,9 @@ function BasicScene:enterBattle(args)
 		end),
 	
 		-- Fade out current music
-		AudioFade("music", self.audio:getMusicVolume(), 0, 1),
+		self.noBattleMusic and
+			Action() or
+			AudioFade("music", self.audio:getMusicVolume(), 0, 1),
 
 		-- Play enter battle sfx
 		PlayAudio("sfx", "battlestart", 1.0, true),
@@ -549,7 +552,7 @@ function BasicScene:enterBattle(args)
 				images = self.images,
 				animations = self.animations,
 				background = self.map.properties.battlebg,
-				nextMusic = args.music,
+				nextMusic = self.noBattleMusic and self.audio:getCurrentMusic() or args.music,
 				prevMusic = args.prevMusic or self.audio:getCurrentMusic(),
 				blur = self.blur,
 				opponents = args.opponents,

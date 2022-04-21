@@ -119,6 +119,12 @@ function NPC:construct(scene, layer, object)
 			end
 		end
 	end
+	
+	if GameState:isFlagSet(self:getFlag()) then
+		self:removeSceneHandler("update", NPC.update)
+		self:remove()
+		return
+	end
 end
 
 function NPC:onInteract()
@@ -379,6 +385,7 @@ function NPC:getMonsterData()
 end
 
 function NPC:getBattleArgs()
+	self.flagForDeletion = true
 	return {
 		opponents = {
 			self:getMonsterData()
@@ -625,6 +632,10 @@ function NPC:remove()
 				self.scene.map.collisionMap[pair[2]][pair[1]] = nil
 			end
 		end
+	end
+	
+	if not self.scene.isRestarting and not self.noSetFlag then
+		GameState:setFlag(self:getFlag())
 	end
 	
 	if self.scene.player then

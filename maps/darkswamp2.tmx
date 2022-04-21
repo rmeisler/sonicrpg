@@ -2,6 +2,7 @@
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="83" height="83" tilewidth="32" tileheight="32" infinite="0" nextobjectid="182">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/dswamp.png"/>
+  <property name="noBattleMusic" type="bool" value="true"/>
   <property name="onload" type="file" value="actions/darkswamp1.lua"/>
   <property name="regionName" value="Dark Swamp"/>
   <property name="sectorName" value="???"/>
@@ -334,47 +335,56 @@ end</property>
 local Wait = require &quot;actions/Wait&quot;
 local Do = require &quot;actions/Do&quot;
 local Ease = require &quot;actions/Ease&quot;
+local While = require &quot;actions/While&quot;
+local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 
 return function(self, player, prevState)
     local arm = self.scene.objectLookup.Arm1
     local eyes = self.scene.objectLookup.Eyes1
-    if arm:isRemoved() then
+    if GameState:isFlagSet(arm) then
+        arm:remove()
         eyes:remove()
         self:remove()
         return
     end
     if prevState == self.STATE_IDLE and arm.hidden then
         eyes.hidden = false
-        eyes:run {
-            Animate(eyes.sprite, &quot;blink&quot;),
-            Animate(eyes.sprite, &quot;forward&quot;),
-            Wait(1),
-            Animate(eyes.sprite, &quot;smile&quot;),
-            Wait(1),
-            Do(function()
-                arm.hidden = false
-                arm.x = eyes.x - 60
-                arm.y = eyes.y
-            end),
-            Ease(arm, &quot;y&quot;, function() return arm.y + 90 end, 4),
-            Do(function()
-                arm:updateCollision()
-            end),
-            Wait(2),
-            Do(function()
-                arm:removeCollision()
-            end),
-            Parallel {
-                Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 2),
-                Ease(arm.sprite.color, 4, 0, 4)
+        eyes:run(While(
+            function()
+                return not arm:isRemoved()
+            end,
+            Serial {
+                Animate(eyes.sprite, &quot;blink&quot;),
+                Animate(eyes.sprite, &quot;forward&quot;),
+                Wait(1),
+                Animate(eyes.sprite, &quot;smile&quot;),
+                Wait(1),
+                Do(function()
+                    arm.hidden = false
+                    arm.x = eyes.x - 60
+                    arm.y = eyes.y
+                end),
+                Ease(arm, &quot;y&quot;, function() return arm.y + 90 end, 4),
+                Do(function()
+                    arm:updateCollision()
+                end),
+                Wait(2),
+                Do(function()
+                    arm:removeCollision()
+                end),
+                Parallel {
+                    Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 2),
+                    Ease(arm.sprite.color, 4, 0, 4)
+                },
+                Do(function()
+                    arm.sprite.color[4] = 255
+                    arm.hidden = true
+                    eyes.sprite:setAnimation(&quot;forwardblink&quot;)
+                end)
             },
-            Do(function()
-                arm.sprite.color[4] = 255
-                arm.hidden = true
-                eyes.sprite:setAnimation(&quot;forwardblink&quot;)
-            end)
-        }
+            Do(function() end)
+        ))
     end
 end</property>
    </properties>
@@ -385,6 +395,7 @@ end</property>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="isBot" type="bool" value="true"/>
     <property name="onInit">return function(self)
     self.hidden = true
     if GameState:isFlagSet(self) then
@@ -434,47 +445,56 @@ end</property>
 local Wait = require &quot;actions/Wait&quot;
 local Do = require &quot;actions/Do&quot;
 local Ease = require &quot;actions/Ease&quot;
+local While = require &quot;actions/While&quot;
+local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 
 return function(self, player, prevState)
     local arm = self.scene.objectLookup.Arm4
     local eyes = self.scene.objectLookup.Eyes4
-    if arm:isRemoved() then
+    if GameState:isFlagSet(arm) then
+        arm:remove()
         eyes:remove()
         self:remove()
         return
     end
     if prevState == self.STATE_IDLE and arm.hidden then
         eyes.hidden = false
-        eyes:run {
-            Animate(eyes.sprite, &quot;blink&quot;),
-            Animate(eyes.sprite, &quot;forward&quot;),
-            Wait(1),
-            Animate(eyes.sprite, &quot;smile&quot;),
-            Wait(1),
-            Do(function()
-                arm.hidden = false
-                arm.x = eyes.x - 60
-                arm.y = eyes.y
-            end),
-            Ease(arm, &quot;y&quot;, function() return arm.y + 90 end, 4),
-            Do(function()
-                arm:updateCollision()
-            end),
-            Wait(2),
-            Do(function()
-                arm:removeCollision()
-            end),
-            Parallel {
-                Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 2),
-                Ease(arm.sprite.color, 4, 0, 4)
+        eyes:run(While(
+            function()
+                return not arm:isRemoved()
+            end,
+            Serial {
+                Animate(eyes.sprite, &quot;blink&quot;),
+                Animate(eyes.sprite, &quot;forward&quot;),
+                Wait(1),
+                Animate(eyes.sprite, &quot;smile&quot;),
+                Wait(1),
+                Do(function()
+                    arm.hidden = false
+                    arm.x = eyes.x - 60
+                    arm.y = eyes.y
+                end),
+                Ease(arm, &quot;y&quot;, function() return arm.y + 90 end, 4),
+                Do(function()
+                    arm:updateCollision()
+                end),
+                Wait(2),
+                Do(function()
+                    arm:removeCollision()
+                end),
+                Parallel {
+                    Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 2),
+                    Ease(arm.sprite.color, 4, 0, 4)
+                },
+                Do(function()
+                    arm.sprite.color[4] = 255
+                    arm.hidden = true
+                    eyes.sprite:setAnimation(&quot;forwardblink&quot;)
+                end)
             },
-            Do(function()
-                arm.sprite.color[4] = 255
-                arm.hidden = true
-                eyes.sprite:setAnimation(&quot;forwardblink&quot;)
-            end)
-        }
+            Do(function() end)
+        ))
     end
 end</property>
    </properties>
@@ -485,6 +505,7 @@ end</property>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="isBot" type="bool" value="true"/>
     <property name="onInit">return function(self)
     self.hidden = true
     if GameState:isFlagSet(self) then

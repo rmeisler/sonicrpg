@@ -11,6 +11,7 @@ return {
   nextobjectid = 191,
   properties = {
     ["battlebg"] = "../art/backgrounds/dswamp.png",
+    ["noBattleMusic"] = true,
     ["onload"] = "actions/darkswamp1.lua",
     ["regionName"] = "Dark Swamp",
     ["sectorName"] = "???"

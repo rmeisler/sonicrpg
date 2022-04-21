@@ -2,9 +2,10 @@
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="83" height="19" tilewidth="32" tileheight="32" infinite="0" nextobjectid="131">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
+  <property name="noBattleMusic" type="bool" value="true"/>
   <property name="onload" type="file" value="actions/darkswamp1.lua"/>
-  <property name="regionName" value=""/>
-  <property name="sectorName" value="Dark Swamp"/>
+  <property name="regionName" value="Dark Swamp"/>
+  <property name="sectorName" value="???"/>
  </properties>
  <tileset firstgid="1" source="knothole.tsx"/>
  <tileset firstgid="3485" source="knotholeindoors.tsx"/>
