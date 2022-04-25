@@ -2,7 +2,7 @@
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="24">
  <properties>
   <property name="ignorenight" type="bool" value="true"/>
-  <property name="onload" type="file" value="actions/knotholehut.lua"/>
+  <property name="onload" type="file" value="actions/sonicshut_intro.lua"/>
   <property name="regionName" value="Sonic's Hut"/>
  </properties>
  <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
@@ -351,61 +351,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/pot.png"/>
    </properties>
   </object>
-  <object id="22" name="SonicBed" type="BasicNPC" gid="6860" x="352" y="320" width="96" height="96">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local Menu = require &quot;actions/Menu&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Action = require &quot;actions/Action&quot;
-
-local Layout = require &quot;util/Layout&quot;
-local Transform = require &quot;util/Transform&quot;
-
-return function(self)
-    if GameState.leader == &quot;sonic&quot; then
-        return BlockPlayer {
-            MessageBox{message=&quot;Sonic: This hedgehog is feelin' a little sleepy!{p60} Maybe I can sneak in a mondo fast nap before we head out on this mission...&quot;},
-            Menu {
-                layout = Layout {
-                    {Layout.Text(&quot;Take a rest?&quot;), selectable = false},
-                    {Layout.Text(&quot;Yes&quot;), choose = function(menu)
-                        menu:close()
-                        self:run {
-                            menu,
-                            Do(function()
-                                self.scene:changeScene {
-                                    map=&quot;sonicshut&quot;,
-                                    fadeOutSpeed=0.2,
-                                    fadeInSpeed=0.2,
-                                    fadeOutMusic = true,
-                                    nighttime = true
-                                }
-                            end),
-                            Do(function() end)
-                        }
-                    end},
-                    {Layout.Text(&quot;No&quot;), choose = function(menu)
-                        menu:close()
-                        self:run {
-                            menu
-                        }
-                    end},
-                    colWidth = 200
-                },
-                transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
-                selectedRow = 2,
-                cancellable = true
-            }
-        }
-    else
-        return Action()
-    end
-end</property>
-   </properties>
-  </object>
-  <object id="23" name="Spawn 1" type="Player" gid="4565" x="384" y="352" width="32" height="32">
+  <object id="23" name="Spawn 1" type="Player" gid="4565" x="384" y="448" width="32" height="32">
    <properties>
     <property name="orientation" value="down"/>
    </properties>

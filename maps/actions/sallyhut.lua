@@ -1,4 +1,4 @@
-return function(scene)
+return function(scene, hint)
 	local Transform = require "util/Transform"
 	local Rect = unpack(require "util/Shapes")
 	local Layout = require "util/Layout"
@@ -128,6 +128,75 @@ return function(scene)
 			Wait(2),
 			Ease(text.color, 4, 0, 1)
 		})
+		
+		if hint == "sleep" then
+			return BlockPlayer {			
+				Do(function()
+					scene.player.sprite.visible = false
+					scene.player.dropShadow.hidden = true
+					scene.player.x = scene.objectLookup.SallysBed.x + 70
+					scene.player.y = scene.objectLookup.SallysBed.y + 90
+					GameState:removeFromParty("sonic")
+					GameState:removeFromParty("antoine")
+					scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
+				end),
+				Animate(scene.objectLookup.SallysBed.sprite, "sleeping"),
+				Wait(5),
+				Spawn(Serial {
+					PlayAudio("music", "rotorsworkshop", 1.0),
+					Wait(1),
+					PlayAudio("music", "knotholeatnight", 0.8, true, true),
+				}),
+				Animate(scene.objectLookup.SallysBed.sprite, "wake"),
+				Animate(scene.objectLookup.SallysBed.sprite, "awake"),
+				Wait(1),
+				MessageBox{message="Sally: Oh dear..."},
+				Animate(scene.objectLookup.SallysBed.sprite, "empty"),
+				Do(function()
+					scene.player.sprite.visible = true
+					scene.player.x = scene.objectLookup.SallysBed.x + 70
+					scene.player.y = scene.objectLookup.SallysBed.y
+					scene.player.object.properties.ignoreMapCollision = true
+					scene.player.state = "shock"
+					scene.player.sprite:setAnimation("shock")
+					scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
+				end),
+
+				Ease(scene.player, "y", function() return scene.player.y - 80 end, 4, "linear"),
+				Do(function()
+					scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
+				end),
+				Ease(scene.player, "y", function() return scene.player.y + 190 end, 4, "linear"),
+				Do(function()
+					scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
+				end),
+				Ease(scene.player, "y", function() return scene.player.y - 3 end, 20, "quad"),
+				Ease(scene.player, "y", function() return scene.player.y + 3 end, 20, "quad"),
+				Ease(scene.player, "y", function() return scene.player.y - 2 end, 20, "quad"),
+				Ease(scene.player, "y", function() return scene.player.y + 2 end, 20, "quad"),
+				Ease(scene.player, "y", function() return scene.player.y - 1 end, 20, "quad"),
+				Ease(scene.player, "y", function() return scene.player.y + 1 end, 20, "quad"),
+
+				Do(function()
+					scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
+				end),
+				
+				MessageBox{message="Sally: I slept the whole day!"},
+				
+				Do(function()
+					scene.player.state = "thinking"
+					scene.player.sprite:setAnimation("thinking")
+					scene.player.dropShadow.hidden = false
+					scene.player.object.properties.ignoreMapCollision = false
+				end),
+				MessageBox{message="Sally: I guess I needed the rest. {p60}We've been just working non-stop since Rotor found that virus..."},
+				Do(function()
+					scene.player.state = "idledown"
+					scene.player.sprite:setAnimation("idledown")
+				end),
+				MessageBox{message="Sally: Alright, time to face the music, Sally girl...{p60} how embarassing."}
+			}
+		end
 	end
 
 	return Action()

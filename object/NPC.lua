@@ -262,10 +262,6 @@ function NPC:init(useBaseUpdate)
 	end
 	self.followRepeat = self.object.properties.followRepeat
 	
-	if self.onInit then
-		self.onInit(self)
-	end
-	
     self:addSceneHandler("keytriggered")
 	self:addSceneHandler("update", useBaseUpdate and NPC.update)
 end
@@ -297,6 +293,10 @@ function NPC:postInit()
 			self.scene:addObject(new)
 			removeFn(obj)
 		end
+	end
+	
+	if self.onInit then
+		self.onInit(self)
 	end
 end
 
@@ -398,7 +398,7 @@ function NPC:onBattleComplete()
 end
 
 function NPC:getInitiative()
-	return nil
+	return self.object.properties.battleInitiative
 end
 
 function NPC:getFlag()

@@ -392,6 +392,7 @@ end</property>
   <object id="136" name="Arm1" type="BasicNPC" gid="7597" x="512" y="256" width="64" height="160">
    <properties>
     <property name="battle" type="file" value="../data/monsters/phantom.lua"/>
+    <property name="battleInitiative" value="opponent"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -502,6 +503,7 @@ end</property>
   <object id="150" name="Arm4" type="BasicNPC" gid="7597" x="1184" y="32" width="64" height="160">
    <properties>
     <property name="battle" type="file" value="../data/monsters/phantom.lua"/>
+    <property name="battleInitiative" value="opponent"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>

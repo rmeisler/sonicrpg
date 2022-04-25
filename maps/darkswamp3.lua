@@ -637,6 +637,7 @@ return {
           visible = true,
           properties = {
             ["battle"] = "../data/monsters/phantom.lua",
+            ["battleInitiative"] = "opponent",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
@@ -709,6 +710,7 @@ return {
           visible = true,
           properties = {
             ["battle"] = "../data/monsters/phantom.lua",
+            ["battleInitiative"] = "opponent",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,

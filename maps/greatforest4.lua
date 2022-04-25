@@ -993,6 +993,45 @@ return {
       }
     },
     {
+      type = "imagelayer",
+      name = "godrays",
+      visible = true,
+      opacity = 0.5,
+      offsetx = 1120,
+      offsety = 1248,
+      image = "../art/parallax/godrays.png",
+      properties = {
+        ["movespeed"] = 1,
+        ["shimmer"] = true
+      }
+    },
+    {
+      type = "imagelayer",
+      name = "Copy of godrays",
+      visible = true,
+      opacity = 0.5,
+      offsetx = 1504,
+      offsety = 1472,
+      image = "../art/parallax/godrays.png",
+      properties = {
+        ["movespeed"] = 1,
+        ["shimmer"] = true
+      }
+    },
+    {
+      type = "imagelayer",
+      name = "Copy of godrays",
+      visible = true,
+      opacity = 0.5,
+      offsetx = 288,
+      offsety = 544,
+      image = "../art/parallax/godrays.png",
+      properties = {
+        ["movespeed"] = 1,
+        ["shimmer"] = true
+      }
+    },
+    {
       type = "tilelayer",
       name = "mountain2",
       x = 0,
@@ -1118,6 +1157,19 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "imagelayer",
+      name = "Copy of Copy of godrays",
+      visible = true,
+      opacity = 0.5,
+      offsetx = 480,
+      offsety = 1824,
+      image = "../art/parallax/godrays.png",
+      properties = {
+        ["movespeed"] = 1,
+        ["shimmer"] = true
       }
     },
     {
@@ -1758,6 +1810,32 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "imagelayer",
+      name = "Copy of Copy of godrays",
+      visible = true,
+      opacity = 0.5,
+      offsetx = 928,
+      offsety = -512,
+      image = "../art/parallax/godrays.png",
+      properties = {
+        ["movespeed"] = 1,
+        ["shimmer"] = true
+      }
+    },
+    {
+      type = "imagelayer",
+      name = "Copy of Copy of Copy of godrays",
+      visible = true,
+      opacity = 0.5,
+      offsetx = 1472,
+      offsety = -256,
+      image = "../art/parallax/godrays.png",
+      properties = {
+        ["movespeed"] = 1,
+        ["shimmer"] = true
       }
     },
     {

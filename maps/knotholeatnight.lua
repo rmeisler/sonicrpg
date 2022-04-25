@@ -1592,7 +1592,7 @@ return {
             ["ghost"] = true,
             ["nightbright"] = true,
             ["nonight"] = true,
-            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 150, 1),\n            Ease(self.sprite.color, 4, 100, 1)\n        })\n    }\nend",
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    self:run {\n        Wait(2),\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 150, 1),\n            Ease(self.sprite.color, 4, 100, 1)\n        })\n    }\nend",
             ["sprite"] = "../art/sprites/campfirebottom.png"
           }
         }
@@ -3818,7 +3818,7 @@ return {
             ["ghost"] = true,
             ["nightbright"] = true,
             ["nonight"] = true,
-            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    self:run {\n        Wait(1),\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
             ["sortOrderY"] = 544,
             ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
           }
@@ -3840,7 +3840,7 @@ return {
             ["ghost"] = true,
             ["nightbright"] = true,
             ["nonight"] = true,
-            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    self:run {\n        Wait(1),\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
             ["sortOrderY"] = 810,
             ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
           }
@@ -3862,7 +3862,7 @@ return {
             ["ghost"] = true,
             ["nightbright"] = true,
             ["nonight"] = true,
-            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    self:run {\n        Wait(1),\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
             ["sortOrderY"] = 544,
             ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
           }
@@ -3884,7 +3884,7 @@ return {
             ["ghost"] = true,
             ["nightbright"] = true,
             ["nonight"] = true,
-            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    self:run {\n        Wait(1),\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
             ["sortOrderY"] = 810,
             ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
           }
@@ -3906,7 +3906,7 @@ return {
             ["ghost"] = true,
             ["nightbright"] = true,
             ["nonight"] = true,
-            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    self:run {\n        Wait(1),\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
             ["sortOrderY"] = 544,
             ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
           }
@@ -3928,7 +3928,7 @@ return {
             ["ghost"] = true,
             ["nightbright"] = true,
             ["nonight"] = true,
-            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    self:run {\n        Wait(1),\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
             ["sortOrderY"] = 544,
             ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
           }
@@ -3950,7 +3950,7 @@ return {
             ["ghost"] = true,
             ["nightbright"] = true,
             ["nonight"] = true,
-            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    self:run {\n        Wait(1),\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
             ["sortOrderY"] = 810,
             ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
           }
@@ -3972,7 +3972,7 @@ return {
             ["ghost"] = true,
             ["nightbright"] = true,
             ["nonight"] = true,
-            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    self:run {\n        Wait(1),\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
             ["sortOrderY"] = 810,
             ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
           }
@@ -3994,7 +3994,7 @@ return {
             ["ghost"] = true,
             ["nightbright"] = true,
             ["nonight"] = true,
-            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    self:run {\n        Wait(1),\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
             ["sortOrderY"] = 810,
             ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
           }
@@ -4016,7 +4016,7 @@ return {
             ["ghost"] = true,
             ["nightbright"] = true,
             ["nonight"] = true,
-            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    self:run {\n        Wait(1),\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 100, 1),\n            Ease(self.sprite.color, 4, 50, 1)\n        })\n    }\nend",
             ["sortOrderY"] = 810,
             ["sprite"] = "../art/sprites/knotholehutwarmwindows.png"
           }
@@ -4126,7 +4126,7 @@ return {
             ["nightbright"] = true,
             ["nocollision"] = true,
             ["nonight"] = true,
-            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self)\n    self:run {\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 255, 1),\n            Ease(self.sprite.color, 4, 200, 1)\n        })\n    }\nend",
+            ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    self:run {\n        Wait(1),\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 255, 1),\n            Ease(self.sprite.color, 4, 200, 1)\n        })\n    }\nend",
             ["sprite"] = "../art/sprites/tailshut.png"
           }
         }

@@ -52,6 +52,30 @@ return {
 	},
 
 	behavior = function (self, target)
+		if not GameState:isFlagSet("ep3_phantom") then
+			GameState:setFlag("ep3_phantom")
+			return Serial {
+				Wait(2),
+				PlayAudio("sfx", "antoinescared", 1.0, true),
+				Do(function()
+					-- Shock and surprise
+					for _,mem in pairs(target.scene.party) do
+						mem.sprite:setAnimation("shock")
+					end
+				end),
+				MessageBox{message="All: AHHH!!"},
+				MessageBox{message="Antoine: W-W-W-What iz it!?"},
+				Do(function()
+					target.scene.partyByName.sally.sprite:setAnimation("idle")
+				end),
+				MessageBox{message="Sally: I-I don't know!{p60} It doesn't look robotic?..."},
+				Do(function()
+					target.scene.partyByName.sonic.sprite:setAnimation("idle")
+				end),
+				MessageBox{message="Sonic: Whatever it is, it sure is ugly..."}
+			}
+		end
+	
 		local state
 		local stateOdds = math.random(100)
 		if stateOdds < 3 then

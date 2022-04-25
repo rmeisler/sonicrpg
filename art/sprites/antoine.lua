@@ -158,6 +158,12 @@ return {
         },
 		nauseated = {
             frames = {{10,3}}
+        },
+		sleeping = {
+            frames = {{15,0}}
+        },
+		sleeping_tired = {
+            frames = {{14,0}}
         }
     }
 }

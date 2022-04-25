@@ -1,4 +1,4 @@
-return function(scene)
+return function(scene, hint)
 	local Transform = require "util/Transform"
 	local Rect = unpack(require "util/Shapes")
 	local Layout = require "util/Layout"
@@ -14,6 +14,7 @@ return function(scene)
 	local Executor = require "actions/Executor"
 	local Wait = require "actions/Wait"
 	local Do = require "actions/Do"
+	local BlockPlayer = require "actions/BlockPlayer"
 	local SpriteNode = require "object/SpriteNode"
 
 	local text = TypeText(
@@ -92,6 +93,55 @@ return function(scene)
 		end
 	elseif GameState:isFlagSet("ep3_ffmeeting") then
 		scene.audio:playMusic("knotholehut", 0.8)
+	end
+	
+	if hint == "sleep" then
+		return BlockPlayer {
+			Do(function()
+				scene.player.x = 400
+				scene.player.y = 208
+				scene.player.noIdle = true
+				scene.player.dropShadow.hidden = true
+				scene.player.state = "sleeping"
+				scene.player.sprite:setAnimation("sleeping")
+				scene.player.hidekeyhints[tostring(scene.objectLookup.AntoinesBed)] = scene.objectLookup.AntoinesBed
+				GameState:removeFromParty("sonic")
+				GameState:removeFromParty("sally")
+			end),
+			Wait(5),
+			Do(function()
+				scene.player.sprite:setAnimation("sleeping_tired")
+			end),
+			MessageBox{message="Antoine: *yawn* Oh my..."},
+			Do(function()
+				scene.player.sprite:setAnimation("shock")
+				scene.player.object.properties.ignoreMapCollision = true
+			end),
+			Parallel {
+				Serial {
+					Ease(scene.player, "y", function() return scene.player.y - 180 end, 4, "linear"),
+					Ease(scene.player, "y", function() return scene.player.y + 190 end, 4, "linear"),
+					Ease(scene.player, "y", function() return scene.player.y - 3 end, 20, "quad"),
+					Ease(scene.player, "y", function() return scene.player.y + 3 end, 20, "quad"),
+					Ease(scene.player, "y", function() return scene.player.y - 2 end, 20, "quad"),
+					Ease(scene.player, "y", function() return scene.player.y + 2 end, 20, "quad"),
+					Ease(scene.player, "y", function() return scene.player.y - 1 end, 20, "quad"),
+					Ease(scene.player, "y", function() return scene.player.y + 1 end, 20, "quad")
+				},
+				Ease(scene.player, "x", function() return scene.player.x - 90 end, 2.5, "linear")
+			},
+			MessageBox{message="Antoine: It is night!!?"},
+			Do(function()
+				scene.player.sprite:setAnimation("hideright")
+			end),
+			MessageBox{message="Antoine: I am in for a roasting..."},
+			Do(function()
+				scene.player.noIdle = false
+				scene.player.state = "idledown"
+				scene.player.object.properties.ignoreMapCollision = false
+				scene.player.dropShadow.hidden = false
+			end)
+		}
 	end
 
 	return Action()

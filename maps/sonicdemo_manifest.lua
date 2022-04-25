@@ -683,6 +683,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/nap.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/tomb.ogg",
 		category = "music"
 	},

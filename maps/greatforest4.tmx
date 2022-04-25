@@ -696,6 +696,27 @@ end
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <imagelayer name="godrays" opacity="0.5" offsetx="1120" offsety="1248">
+  <image source="../art/parallax/godrays.png" width="145" height="1200"/>
+  <properties>
+   <property name="movespeed" type="float" value="1"/>
+   <property name="shimmer" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Copy of godrays" opacity="0.5" offsetx="1504" offsety="1472">
+  <image source="../art/parallax/godrays.png" width="145" height="1200"/>
+  <properties>
+   <property name="movespeed" type="float" value="1"/>
+   <property name="shimmer" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Copy of godrays" opacity="0.5" offsetx="288" offsety="544">
+  <image source="../art/parallax/godrays.png" width="145" height="1200"/>
+  <properties>
+   <property name="movespeed" type="float" value="1"/>
+   <property name="shimmer" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
  <layer name="mountain2" width="56" height="112">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,13152,13153,13154,13155,13156,13157,13158,13159,13160,13161,13162,13163,13164,13165,13166,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -812,6 +833,13 @@ end
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <imagelayer name="Copy of Copy of godrays" opacity="0.5" offsetx="480" offsety="1824">
+  <image source="../art/parallax/godrays.png" width="145" height="1200"/>
+  <properties>
+   <property name="movespeed" type="float" value="1"/>
+   <property name="shimmer" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
  <layer name="treeoverlay" width="56" height="112">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1392,6 +1420,20 @@ end
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <imagelayer name="Copy of Copy of godrays" opacity="0.5" offsetx="928" offsety="-512">
+  <image source="../art/parallax/godrays.png" width="145" height="1200"/>
+  <properties>
+   <property name="movespeed" type="float" value="1"/>
+   <property name="shimmer" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Copy of Copy of Copy of godrays" opacity="0.5" offsetx="1472" offsety="-256">
+  <image source="../art/parallax/godrays.png" width="145" height="1200"/>
+  <properties>
+   <property name="movespeed" type="float" value="1"/>
+   <property name="shimmer" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
  <layer name="shadow" width="56" height="112" opacity="0.5">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

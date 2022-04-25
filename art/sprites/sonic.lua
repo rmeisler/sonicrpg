@@ -334,6 +334,10 @@ return {
 			speed = 0.02
 		},
 		
+		worried2 = {
+			frames = {{8,9}}
+		},
+		
 		meeting_idledown = {
 			frames = {{0,2}},
 			clip = {0,0,47,40}
