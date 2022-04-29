@@ -196,59 +196,74 @@ local Transform = require &quot;util/Transform&quot;
 
 return function(self)
     if GameState.leader == &quot;sally&quot; then
-        return BlockPlayer {
-            MessageBox{message=&quot;Sally: Hmmm...{p60} this bed looks so inviting.&quot;},
-            Do(function()
-                self.scene.player.noIdle = true
-                self.scene.player.sprite:setAnimation(&quot;thinking&quot;)
-            end),
-            MessageBox{message=&quot;Sally: Maybe I could lay down for just a second...{p60} to rest my eyes...&quot;},
-            Menu {
-                layout = Layout {
-                    {Layout.Text(&quot;Take a rest?&quot;), selectable = false},
-                    {Layout.Text(&quot;Yes&quot;), choose = function(menu)
-                        menu:close()
-                        self:run {
-                            menu,
-                            Do(function()
-                                self.scene.player.sprite.visible = false
-                                self.scene.player.dropShadow.hidden = true
-                                self.scene.player.x = self.scene.objectLookup.SallysBed.x + 70
-                                self.scene.player.y = self.scene.objectLookup.SallysBed.y + 90
-                                self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.SallysBed)] = self.scene.objectLookup.SallysBed
-                            end),
-                            Animate(self.scene.objectLookup.SallysBed.sprite, &quot;sleeping&quot;),
-                            AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),
-                            PlayAudio(&quot;music&quot;, &quot;nap&quot;, 1.0, true),
-                            Do(function()
-                                self.scene:changeScene {
-                                    map=&quot;sallyshut&quot;,
-                                    fadeOutSpeed=0.15,
-                                    fadeInSpeed=0.15,
-                                    hint = &quot;sleep&quot;,
-                                    nighttime = true
-                                }
-                            end),
-                            Do(function() end)
-                        }
-                    end},
-                    {Layout.Text(&quot;No&quot;), choose = function(menu)
-                        menu:close()
-                        self:run {
-                            menu
-                        }
-                    end},
-                    colWidth = 200
+        if GameState:isFlagSet(&quot;ep3_ffmeetingover&quot;) then
+            return BlockPlayer {
+                MessageBox{message=&quot;Sally: Hmmm...{p60} this bed looks so inviting.&quot;},
+                Do(function()
+                    self.scene.player.noIdle = true
+                    self.scene.player.sprite:setAnimation(&quot;thinking&quot;)
+                end),
+                MessageBox{message=&quot;Sally: Maybe I could lay down for just a second...{p60} to rest my eyes...&quot;},
+                Menu {
+                    layout = Layout {
+                        {Layout.Text(&quot;Take a rest?&quot;), selectable = false},
+                        {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                            menu:close()
+                            self:run {
+                                menu,
+                                Do(function()
+                                    self.scene.player.sprite.visible = false
+                                    self.scene.player.dropShadow.hidden = true
+                                    self.scene.player.x = self.scene.objectLookup.SallysBed.x + 70
+                                    self.scene.player.y = self.scene.objectLookup.SallysBed.y + 90
+                                    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.SallysBed)] = self.scene.objectLookup.SallysBed
+                                end),
+                                Animate(self.scene.objectLookup.SallysBed.sprite, &quot;sleeping&quot;),
+                                AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),
+                                PlayAudio(&quot;music&quot;, &quot;nap&quot;, 1.0, true),
+                                Do(function()
+                                    self.scene:changeScene {
+                                        map=&quot;sallyshut&quot;,
+                                        fadeOutSpeed=0.15,
+                                        fadeInSpeed=0.15,
+                                        hint = &quot;sleep&quot;,
+                                        nighttime = true
+                                    }
+                                end),
+                                Do(function() end)
+                            }
+                        end},
+                        {Layout.Text(&quot;No&quot;), choose = function(menu)
+                            menu:close()
+                            self:run {
+                                menu
+                            }
+                        end},
+                        colWidth = 200
+                    },
+                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+                    selectedRow = 2,
+                    cancellable = true
                 },
-                transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
-                selectedRow = 2,
-                cancellable = true
-            },
-            Do(function()
-                self.scene.player.noIdle = false
-                self:refreshKeyHint()
-            end)
-        }
+                Do(function()
+                    self.scene.player.noIdle = false
+                    self:refreshKeyHint()
+                end)
+            }
+        else
+            return BlockPlayer {
+                MessageBox{message=&quot;Sally: I definitely did not get enough sleep last night...{p60} and this bed looks so inviting...&quot;},
+                Do(function()
+                    self.scene.player.noIdle = true
+                    self.scene.player.sprite:setAnimation(&quot;thinking&quot;)
+                end),
+                MessageBox{message=&quot;Sally: No, no, Sally-girl.{p60} Stay strong!&quot;},
+                Do(function()
+                    self.scene.player.noIdle = false
+                    self.scene.player.sprite:setAnimation(&quot;idledown&quot;)
+                end)
+            }
+        end
     else
         return Action()
     end

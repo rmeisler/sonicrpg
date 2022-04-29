@@ -279,18 +279,23 @@ return function(scene, hint)
 				PlayAudio("sfx", "griffvehicle", 1.0, true),
 				Serial {
 					Move(griff, scene.objectLookup.GriffWaypoint),
-					Ease(griff, "x", function() return griff.x - 5 end, 8),
-					Ease(griff, "x", function() return griff.x + 3 end, 8),
-					Ease(griff, "x", function() return griff.x - 2 end, 8),
-					Ease(griff, "x", function() return griff.x + 1 end, 8)
+					Ease(griff, "x", function() return griff.x - 3 end, 20, "quad"),
+					Ease(griff, "x", function() return griff.x + 3 end, 20, "quad"),
+					Ease(griff, "x", function() return griff.x - 2 end, 20, "quad"),
+					Ease(griff, "x", function() return griff.x + 2 end, 20, "quad"),
+					Ease(griff, "x", function() return griff.x - 1 end, 20, "quad"),
+					Ease(griff, "x", function() return griff.x + 1 end, 20, "quad")
 				}
 			},
 			Wait(1.2),
 			Animate(griff.sprite, "idleleft_lookup"),
+			Ease(scene.camPos, "y", 0, 2),
 			Animate(sally.sprite, "meeting_shock"),
-			MessageBox {message="Sally: Griff!?", closeAction=Wait(1)},
+			MessageBox {message="Sally: Griff?! {p60}What are you doing here?", closeAction=Wait(1)},
+			Ease(scene.camPos, "y", -180, 2),
 			Animate(sally.sprite, "meeting_idledown"),
 			MessageBox {message="Griff: I found something... {p60}Something big."},
+			MessageBox {message="Griff: You guys need to see this."},
 			Do(function()
 				scene.player.cinematic = true
 				sally:run(BlockPlayer {
@@ -382,9 +387,9 @@ return function(scene, hint)
 					hop(sonic),
 					MessageBox {message="Sonic: Say wha?"},
 					Animate(sally.sprite, "planning"),
-					MessageBox {message="Sally: If Iron Lock is as dangerous as Griff says, and this project Robotnik is working on is really a planetary threat, we are going to have to put aside our differences and work together!"},
+					MessageBox {message="Sally: If Iron Lock is as dangerous as Griff says{p80}, and this project Robotnik is working on is really a planetary threat{p80}, we are going to have to put aside our differences and work together!"},
 					MessageBox {message="Leon: That sounds like a wonderful idea."},
-					MessageBox {message="Leon: Fleet, Logan, and Ivan, you will accompany Sally's away team."},
+					MessageBox {message="Leon: Fleet, Logan, and Ivan{p60}, you will accompany Sally's away team."},
 					hop(sonic),
 					MessageBox {message="Sonic: The bird's comin? {p60}Oh brother."},
 					-- annoyed

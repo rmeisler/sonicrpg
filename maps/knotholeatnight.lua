@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 346,
+  nextobjectid = 355,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = true,
@@ -4128,6 +4128,168 @@ return {
             ["nonight"] = true,
             ["onInit"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    self:run {\n        Wait(1),\n        Repeat(Serial {\n            Ease(self.sprite.color, 4, 255, 1),\n            Ease(self.sprite.color, 4, 200, 1)\n        })\n    }\nend",
             ["sprite"] = "../art/sprites/tailshut.png"
+          }
+        },
+        {
+          id = 346,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 992,
+          y = 1344,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["Gear"] = 1,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 347,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 864,
+          y = 2144,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["Microchip"] = 1,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 348,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 2449,
+          y = 943,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["Oscillator"] = 1,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 349,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 4896,
+          y = 1248,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["Mushroom"] = 1,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 350,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 2080,
+          y = 576,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["Carrot"] = 1,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 351,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 512,
+          y = 768,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["BlueLeaf"] = 1,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 352,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 7168,
+          y = 2592,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["Carrot"] = 1,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 353,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 7264,
+          y = 2208,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["CrystalWater"] = 1,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 354,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 5312,
+          y = 2400,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["GreenLeaf"] = 1,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }

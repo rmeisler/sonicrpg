@@ -56,5 +56,8 @@ return {
 		scaredhop5 = {
 			frames = {{13,2}}
 		},
+		nervous = {
+			frames = {{8,2}}
+		}
     }
 }

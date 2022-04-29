@@ -140,6 +140,9 @@ return {
 		},
 		idleup = {
 			frames = {{4,6}}
-		}
+		},
+		takenback = {
+			frames = {{0,10}}
+		},
     }
 }

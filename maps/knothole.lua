@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 357,
+  nextobjectid = 359,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["onload"] = "actions/knothole.lua",
@@ -2170,8 +2170,8 @@ return {
           name = "Chest1",
           type = "Chest",
           shape = "rectangle",
-          x = 1664,
-          y = 224,
+          x = 1888,
+          y = 1440,
           width = 64,
           height = 64,
           rotation = 0,
@@ -2609,23 +2609,6 @@ return {
           }
         },
         {
-          id = 77,
-          name = "Chest2",
-          type = "Chest",
-          shape = "rectangle",
-          x = 5952,
-          y = 1888,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["Gear"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 78,
           name = "RotorHutDoor",
           type = "Door",
@@ -2822,7 +2805,7 @@ return {
             ["defaultAnim"] = "foreground",
             ["ghost"] = true,
             ["ignoreMapCollision"] = true,
-            ["onInteract"] = "local Menu = require \"actions/Menu\"\nlocal Move = require \"actions/Move\"\nlocal Do = require \"actions/Do\"\nlocal Parallel = require \"actions/Parallel\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    return BlockPlayer {\n    Do(function() self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1 end),\n    Menu {\n        layout = Layout {\n            {Layout.Text(\"Leave Knothole?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                menu:close()\n                self.scene.player.hidekeyhints[tostring(self)] = self\n                self.scene.player:removeKeyHint()\n                self.scene:run {\n                    menu,\n                    Parallel {\n                        Do(function()\n                            local cart = self.scene.objectLookup.CartBG\n                            self.scene.player.x = cart.x + cart.sprite.w\n                            self.scene.player.y = cart.y + cart.sprite.h\n                        end),\n                        Move(self.scene.objectLookup.CartBG, self.scene.objectLookup.CartWaypoint),\n                        Move(self, self.scene.objectLookup.CartWaypoint)\n                    },\n                    Do(function()\n                        self.scene.audio:stopMusic()\n                        self.scene:changeScene{map=\"worldmap\"}\n                    end),\n                    Do(function() end)\n                }\n            end},\n            {Layout.Text(\"No\"), choose = function(menu)\n                menu:close()\n                self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1\n            end}\n        },\n        cancellable = true,\n        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n        selectedRow = 2\n    }}\nend",
+            ["onInteract"] = "local Menu = require \"actions/Menu\"\nlocal Move = require \"actions/Move\"\nlocal Do = require \"actions/Do\"\nlocal Parallel = require \"actions/Parallel\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    return BlockPlayer {\n    Do(function() self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1 end),\n    Menu {\n        layout = Layout {\n            {Layout.Text(\"Leave Knothole?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                menu:close()\n                self.scene.player.hidekeyhints[tostring(self)] = self\n                self.scene.player:removeKeyHint()\n                self.scene:run {\n                    menu,\n                    Parallel {\n                        Do(function()\n                            local cart = self.scene.objectLookup.CartBG\n                            self.scene.player.x = cart.x + cart.sprite.w\n                            self.scene.player.y = cart.y + cart.sprite.h\n                        end),\n                        Move(self.scene.objectLookup.CartBG, self.scene.objectLookup.CartWaypoint),\n                        Move(self, self.scene.objectLookup.CartWaypoint)\n                    },\n                    Do(function()\n                        self.scene.audio:stopMusic()\n                        self.scene:changeScene{map=\"worldmap\"}\n                    end),\n                    Do(function() end)\n                }\n            end},\n            {Layout.Text(\"No\"), choose = function(menu)\n                menu:close()\n                self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1\n            end}\n        },\n        cancellable = true,\n        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n        selectedRow = 2\n    },\n        Do(function() self.scene.player.cinematicStack = 0 end),\n    }\nend",
             ["sprite"] = "../art/sprites/pulleycart.png"
           }
         },
@@ -3281,40 +3264,6 @@ return {
           gid = 5323,
           visible = true,
           properties = {}
-        },
-        {
-          id = 138,
-          name = "Chest3",
-          type = "Chest",
-          shape = "rectangle",
-          x = 5792,
-          y = 448,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["ScrapMetal"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 139,
-          name = "Chest2",
-          type = "Chest",
-          shape = "rectangle",
-          x = 6208,
-          y = 448,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["BlueLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
         },
         {
           id = 140,
@@ -3789,18 +3738,18 @@ return {
         },
         {
           id = 184,
-          name = "Chest3",
+          name = "Chest4",
           type = "Chest",
           shape = "rectangle",
-          x = 7008,
-          y = 896,
+          x = 7328,
+          y = 672,
           width = 64,
           height = 64,
           rotation = 0,
           gid = 7597,
           visible = true,
           properties = {
-            ["Mushroom"] = 1,
+            ["BlueLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -3809,15 +3758,15 @@ return {
           name = "Chest5",
           type = "Chest",
           shape = "rectangle",
-          x = 4672,
-          y = 1344,
+          x = 4736,
+          y = 1664,
           width = 64,
           height = 64,
           rotation = 0,
           gid = 7597,
           visible = true,
           properties = {
-            ["CrystalWater"] = 1,
+            ["ElbowPads"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -3851,23 +3800,6 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true
-          }
-        },
-        {
-          id = 305,
-          name = "Hint",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 5920,
-          y = 512,
-          width = 32,
-          height = 96,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["specialHint"] = "bunny"
           }
         },
         {
@@ -3957,7 +3889,7 @@ return {
             ["defaultAnim"] = "idleup",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    local facingOpposite = {\n        idleleft = \"idleright\",\n        idleright = \"idleleft\",\n        idledown = \"idleup\",\n        idleup = \"idledown\",\n    }\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            MessageBox {message = \"Rotor: Hehe{p40}, I guess she had point.\"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            MessageBox {message = \"Rotor: I think it'll work!\"},\n            MessageBox {message = \"Logan: It won't.\"},\n            MessageBox {message = \"Rotor: It will!\"},\n            Animate(self.scene.objectLookup.LoganBicker.sprite, \"irritated\"),\n            MessageBox {message = \"Logan: Wrong.\"},\n            Animate(self.sprite, \"shock\"),\n            Wait(0.8),\n            Animate(self.sprite, \"thinking\"),\n            MessageBox {message = \"Sally: What is going on here?\"},\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: Eh...{p40}Logan thinks the plan won't work.\"},\n            MessageBox {message = \"Logan: I mean{p40} it won't.\"},\n            Do(function() self.scene.objectLookup.LoganBicker:facePlayer() end),\n            MessageBox {message = \"Logan: Princess--{p40} let me give you an alternative proposal.\"},\n            Do(function()\n                self.scene.player.noIdle = true\n                self.scene.player.sprite:setAnimation(\"thinking2\")\n            end),\n            MessageBox {message = \"Sally: What do you think we should do, Logan?\"},\n            MessageBox {message = \"Logan: I think we need to modify the code in our counterfeit software patch to suppress the effects of the\\nglitch.\"},\n            Animate(self.sprite, \"shock\"),\n            Wait(0.8),\n            Animate(self.sprite, \"idleup\"),\n            MessageBox {message = \"Rotor: You want to {h fix} the glitch?!\"},\n            Animate(self.scene.objectLookup.LoganBicker.sprite, \"idledown\"),\n            MessageBox {message = \"Logan: In a manner of speaking.\"},\n            Do(function()\n                self:facePlayer()\n                if self.sprite.selected == \"idleright\" then\n                    self.sprite:setAnimation(\"explaining_right1\")\n                elseif self.sprite.selected == \"idleleft\" then\n                    self.sprite:setAnimation(\"explaining_left1\")\n                end\n            end),\n            MessageBox {message = \"Rotor: You see what I have to deal with here?\"},\n            Animate(self.scene.objectLookup.LoganBicker.sprite, \"attitude\"),\n            Do(function() self.scene.player.sprite:setAnimation(\"thinking\") end),\n            MessageBox {message = \"Sally: I don't understand, Logan.\"},\n            Do(function() self.scene.objectLookup.LoganBicker:facePlayer() end),\n            MessageBox {message = \"Logan: Princess, if we release the software patch in its current state, then the cause of the glitch will be immediately obvious!\"},\n            Do(function()\n                self.scene.player.sprite:setAnimation(facingOpposite[self.scene.objectLookup.LoganBicker.sprite.selected])\n            end),\n            MessageBox {message = \"Logan: All Robotnik has to do is rollback to the previous software version and we'll be toast!\"},\n            Do(function() self.scene.player.sprite:setAnimation(\"thinking\") end),\n            MessageBox {message = \"Sally: Ah... {p40}so what you are saying is that we should modify the code around the glitch so that it only activates when a certain signal is sent?\"},\n            Do(function() self.scene.player.sprite:setAnimation(\"thinking2\") end),\n            MessageBox {message = \"Logan: Correct.\"},\n            Do(function()\n                self.scene.player.sprite:setAnimation(facingOpposite[self.scene.objectLookup.LoganBicker.sprite.selected])\n            end),\n            MessageBox {message = \"Logan: Rather than release the counterfeit software patch the moment we want to disable Robotnik's\\narmy, we ought to instead release it earlier, with the glitch deactivated.\"},\n            MessageBox {message = \"Logan: Let Robotnik release his own software patches, as he normally would, so by the time that we turn on our glitch, Robotnik won't know where it's coming from!\"},\n            MessageBox {message = \"Sally: Great idea, Logan!\"},\n            Animate(self.sprite, \"thinking\"),\n            MessageBox {message = \"Rotor: Hey{p40}, that's not bad!\"},\n            Animate(self.scene.objectLookup.LoganBicker.sprite, \"irritated\"),\n            MessageBox {message = \"Logan: Yep, and if you just listened to me earlier then we wouldn't have been arguing, would we?\"},\n            Animate(self.sprite, \"idleup\"),\n            MessageBox {message = \"Rotor: *sigh*\"},\n            Animate(self.scene.objectLookup.LoganBicker.sprite, \"attitude\"),\n            MessageBox {message = \"Logan: I'll take that as a {h yes}.\"},\n            Do(function() self.scene.player.sprite:setAnimation(\"thinking2\") end),\n            Wait(1),\n            MessageBox {message = \"Sally: I think it's time to call a team meeting...\"},\n            Do(function()\n                self.scene.player.noIdle = false\n                GameState:setFlag(\"ep3_ffmeeting\")\n                self.scene:changeScene{map=\"knothole\", fadeOutSpeed = 0.5, fadeInSpeed = 0.5, fadeOutMusic = true}\n            end)\n        }\n    end\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    local facingOpposite = {\n        idleleft = \"idleright\",\n        idleright = \"idleleft\",\n        idledown = \"idleup\",\n        idleup = \"idledown\",\n    }\n    return BlockPlayer {\n            MessageBox {message = \"Rotor: I think it'll work!\"},\n            MessageBox {message = \"Logan: It won't.\"},\n            MessageBox {message = \"Rotor: It will!\"},\n            Animate(self.scene.objectLookup.LoganBicker.sprite, \"irritated\"),\n            MessageBox {message = \"Logan: Wrong.\"},\n            Animate(self.sprite, \"shock\"),\n            Wait(0.8),\n            Animate(self.sprite, \"thinking\"),\n            MessageBox {message = \"Sally: What is going on here?\"},\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: Eh...{p40}Logan thinks the plan won't work.\"},\n            MessageBox {message = \"Logan: I mean{p40} it won't.\"},\n            Do(function() self.scene.objectLookup.LoganBicker:facePlayer() end),\n            MessageBox {message = \"Logan: Princess--{p40} let me give you an alternative proposal.\"},\n            Do(function()\n                self.scene.player.noIdle = true\n                self.scene.player.sprite:setAnimation(\"thinking2\")\n            end),\n            MessageBox {message = \"Sally: What do you think we should do, Logan?\"},\n            MessageBox {message = \"Logan: I think we need to modify the code in our counterfeit software patch to suppress the effects of the\\nglitch.\"},\n            Animate(self.sprite, \"shock\"),\n            Wait(0.8),\n            Animate(self.sprite, \"idleup\"),\n            MessageBox {message = \"Rotor: You want to {h fix} the glitch?!\"},\n            Animate(self.scene.objectLookup.LoganBicker.sprite, \"idledown\"),\n            MessageBox {message = \"Logan: In a manner of speaking.\"},\n            Do(function()\n                self:facePlayer()\n                if self.sprite.selected == \"idleright\" then\n                    self.sprite:setAnimation(\"explaining_right1\")\n                elseif self.sprite.selected == \"idleleft\" then\n                    self.sprite:setAnimation(\"explaining_left1\")\n                end\n            end),\n            MessageBox {message = \"Rotor: You see what I have to deal with here?\"},\n            Animate(self.scene.objectLookup.LoganBicker.sprite, \"attitude\"),\n            Do(function() self.scene.player.sprite:setAnimation(\"thinking\") end),\n            MessageBox {message = \"Sally: I don't understand, Logan.\"},\n            Do(function() self.scene.objectLookup.LoganBicker:facePlayer() end),\n            MessageBox {message = \"Logan: Princess, if we release the software patch in its current state, then the cause of the glitch will be immediately obvious!\"},\n            Do(function()\n                self.scene.player.sprite:setAnimation(facingOpposite[self.scene.objectLookup.LoganBicker.sprite.selected])\n            end),\n            MessageBox {message = \"Logan: All Robotnik has to do is rollback to the previous software version and we'll be toast!\"},\n            Do(function() self.scene.player.sprite:setAnimation(\"thinking\") end),\n            MessageBox {message = \"Sally: Ah... {p40}so what you are saying is that we should modify the code around the glitch so that it only activates when a certain signal is sent?\"},\n            Do(function() self.scene.player.sprite:setAnimation(\"thinking2\") end),\n            MessageBox {message = \"Logan: Correct.\"},\n            Do(function()\n                self.scene.player.sprite:setAnimation(facingOpposite[self.scene.objectLookup.LoganBicker.sprite.selected])\n            end),\n            MessageBox {message = \"Logan: Rather than release the counterfeit software patch the moment we want to disable Robotnik's\\narmy, we ought to instead release it earlier, with the glitch deactivated.\"},\n            MessageBox {message = \"Logan: Let Robotnik release his own software patches, as he normally would, so by the time that we turn on our glitch, Robotnik won't know where it's coming from!\"},\n            MessageBox {message = \"Sally: Great idea, Logan!\"},\n            Animate(self.sprite, \"thinking\"),\n            MessageBox {message = \"Rotor: Hey{p40}, that's not bad!\"},\n            Animate(self.scene.objectLookup.LoganBicker.sprite, \"irritated\"),\n            MessageBox {message = \"Logan: Yep, and if you just listened to me earlier then we wouldn't have been arguing, would we?\"},\n            Animate(self.sprite, \"idleup\"),\n            MessageBox {message = \"Rotor: *sigh*\"},\n            Animate(self.scene.objectLookup.LoganBicker.sprite, \"attitude\"),\n            MessageBox {message = \"Logan: I'll take that as a {h yes}.\"},\n            Do(function() self.scene.player.sprite:setAnimation(\"thinking2\") end),\n            Wait(1),\n            MessageBox {message = \"Sally: I think it's time to call a team meeting...\"},\n            Do(function()\n                self.scene.player.noIdle = false\n                GameState:setFlag(\"ep3_ffmeeting\")\n                self.scene:changeScene{map=\"knothole\", fadeOutSpeed = 0.5, fadeInSpeed = 0.5, fadeOutMusic = true}\n            end)\n    }\nend",
             ["sprite"] = "../art/sprites/rotor.png"
           }
         },
@@ -4117,6 +4049,40 @@ return {
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sally: Hmmm...{p60}these look like ancient Mobian hieroglyphs...\"}\n        }\n    elseif GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sonic: This hedgehog flunked all his ancient Mobian script classes, so...\"}\n        }\n    elseif GameState.leader == \"antoine\" then\n        return BlockPlayer {\n            MessageBox {message=\"Antoine: Ah yez! {p60}Eet iz elementary to me! {p60}What does it say, you ask? Well it says what it says, yez. What more can be said, eh?\"}\n        }\n    end\nend",
             ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal NameScreen = require \"actions/NameScreen\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Wait = require \"actions/Wait\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    local riddle = NameScreen {\n        prompt = \"What am I?\",\n        expected = \"map\"\n    }\n    local prevMusic = self.scene.audio:getCurrentMusic()\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: Translating hieroglyphs{p40}, Sally.\", textSpeed = 3, sfx = \"nicolebeep\"},\n        AudioFade(\"music\", 1.0, 0.0, 2),\n        PlayAudio(\"music\", \"ringlake\", 1.0, true, true),\n        MessageBox {message=\"Nicole: The tomb reads{p40}, 'I have rivers, but no water. I have forests, but no trees. I have cities, but no buildings'...\", textSpeed = 3},\n        Parallel {\n            riddle,\n            MessageBox {message=\"Nicole: The tomb reads{p40}, 'I have rivers, but no water. I have forests, but no trees. I have cities, but no buildings'...\", textSpeed = 3, closeAction=riddle}\n        },\n        Spawn(Serial {\n            AudioFade(\"music\", 1.0, 0.0, 2),\n            PlayAudio(\"music\", prevMusic, 1.0, true, true)\n        })\n    }\nend",
             ["sprite"] = "../art/sprites/tablet.png"
+          }
+        },
+        {
+          id = 357,
+          name = "Chest2",
+          type = "Chest",
+          shape = "rectangle",
+          x = 3424,
+          y = 2272,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["Mushroom"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 358,
+          name = "Chest3",
+          type = "Chest",
+          shape = "rectangle",
+          x = 5760,
+          y = 2496,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ScrapMetal"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }

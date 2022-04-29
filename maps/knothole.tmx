@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="357">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="359">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="onload" type="file" value="actions/knothole.lua"/>
@@ -1323,7 +1323,7 @@
     <property name="sprite" type="file" value="../art/sprites/fence.png"/>
    </properties>
   </object>
-  <object id="42" name="Chest1" type="Chest" gid="7597" x="1664" y="224" width="64" height="64">
+  <object id="42" name="Chest1" type="Chest" gid="7597" x="1888" y="1440" width="64" height="64">
    <properties>
     <property name="Microchip" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
@@ -1502,12 +1502,6 @@
     <property name="sprite" type="file" value="../art/sprites/knotholebasebg.png"/>
    </properties>
   </object>
-  <object id="77" name="Chest2" type="Chest" gid="7597" x="5952" y="1888" width="64" height="32">
-   <properties>
-    <property name="Gear" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
   <object id="78" name="RotorHutDoor" type="Door" gid="7660" x="1856" y="522" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -1654,7 +1648,9 @@ return function(self)
         cancellable = true,
         transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
         selectedRow = 2
-    }}
+    },
+        Do(function() self.scene.player.cinematicStack = 0 end),
+    }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/pulleycart.png"/>
    </properties>
@@ -2166,18 +2162,6 @@ end</property>
   <object id="134" name="Ladder1" type="Ladder" gid="5323" x="5440" y="1856" width="32" height="576"/>
   <object id="135" name="Ladder2" type="Ladder" gid="5323" x="5664" y="1088" width="32" height="576"/>
   <object id="136" name="Ladder3" type="Ladder" gid="5323" x="5376" y="320" width="32" height="352"/>
-  <object id="138" name="Chest3" type="Chest" gid="7597" x="5792" y="448" width="64" height="64">
-   <properties>
-    <property name="ScrapMetal" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="139" name="Chest2" type="Chest" gid="7597" x="6208" y="448" width="64" height="64">
-   <properties>
-    <property name="BlueLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
   <object id="140" name="MiddlePost" type="BasicNPC" gid="5323" x="6144" y="448" width="32" height="96">
    <properties>
     <property name="defaultAnim" value="vert"/>
@@ -2363,15 +2347,15 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/fence.png"/>
    </properties>
   </object>
-  <object id="184" name="Chest3" type="Chest" gid="7597" x="7008" y="896" width="64" height="64">
+  <object id="184" name="Chest4" type="Chest" gid="7597" x="7328" y="672" width="64" height="64">
    <properties>
-    <property name="Mushroom" type="int" value="1"/>
+    <property name="BlueLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="222" name="Chest5" type="Chest" gid="7597" x="4672" y="1344" width="64" height="64">
+  <object id="222" name="Chest5" type="Chest" gid="7597" x="4736" y="1664" width="64" height="64">
    <properties>
-    <property name="CrystalWater" type="int" value="1"/>
+    <property name="ElbowPads" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -2383,12 +2367,6 @@ end</property>
   <object id="282" name="CartWaypoint2" type="BasicNPC" gid="5323" x="8032" y="704" width="96" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="305" name="Hint" type="BasicNPC" gid="5323" x="5920" y="512" width="32" height="96">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="specialHint" value="bunny"/>
    </properties>
   </object>
   <object id="340" name="SonicBicker" type="BasicNPC" gid="5323" x="576" y="1088" width="64" height="96">
@@ -2551,14 +2529,7 @@ return function(self)
         idledown = &quot;idleup&quot;,
         idleup = &quot;idledown&quot;,
     }
-    if GameState:isFlagSet(self:getFlag()) then
-        return BlockPlayer {
-            MessageBox {message = &quot;Rotor: Hehe{p40}, I guess she had point.&quot;},
-            Do(function() self:refreshKeyHint() end)
-        }
-    else
-        GameState:setFlag(self:getFlag())
-        return BlockPlayer {
+    return BlockPlayer {
             MessageBox {message = &quot;Rotor: I think it'll work!&quot;},
             MessageBox {message = &quot;Logan: It won't.&quot;},
             MessageBox {message = &quot;Rotor: It will!&quot;},
@@ -2629,8 +2600,7 @@ return function(self)
                 GameState:setFlag(&quot;ep3_ffmeeting&quot;)
                 self.scene:changeScene{map=&quot;knothole&quot;, fadeOutSpeed = 0.5, fadeInSpeed = 0.5, fadeOutMusic = true}
             end)
-        }
-    end
+    }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
    </properties>
@@ -3153,6 +3123,18 @@ return function(self)
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/tablet.png"/>
+   </properties>
+  </object>
+  <object id="357" name="Chest2" type="Chest" gid="7597" x="3424" y="2272" width="64" height="64">
+   <properties>
+    <property name="Mushroom" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="358" name="Chest3" type="Chest" gid="7597" x="5760" y="2496" width="64" height="64">
+   <properties>
+    <property name="ScrapMetal" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
  </objectgroup>

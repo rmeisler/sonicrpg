@@ -256,6 +256,10 @@ function NPC:init(useBaseUpdate)
 		)
 	end
 	
+	if self.onInit then
+		self.onInit(self)
+	end
+	
 	self.followStack = {}
 	if self.object.properties.follow then
 		self.followStack = pack((self.object.properties.follow):split(','))
@@ -293,10 +297,6 @@ function NPC:postInit()
 			self.scene:addObject(new)
 			removeFn(obj)
 		end
-	end
-	
-	if self.onInit then
-		self.onInit(self)
 	end
 end
 

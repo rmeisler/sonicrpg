@@ -55,7 +55,6 @@ return {
 		if not GameState:isFlagSet("ep3_phantom") then
 			GameState:setFlag("ep3_phantom")
 			return Serial {
-				Wait(2),
 				PlayAudio("sfx", "antoinescared", 1.0, true),
 				Do(function()
 					-- Shock and surprise
@@ -63,16 +62,24 @@ return {
 						mem.sprite:setAnimation("shock")
 					end
 				end),
-				MessageBox{message="All: AHHH!!"},
-				MessageBox{message="Antoine: W-W-W-What iz it!?"},
+				Wait(2),
 				Do(function()
-					target.scene.partyByName.sally.sprite:setAnimation("idle")
+					target.scene.partyByName.antoine.sprite:setAnimation("nervous")
+				end),
+				MessageBox{message="Antoine: W-W-W-What is that!?"},
+				Do(function()
+					target.scene.partyByName.sally.sprite:setAnimation("thinking")
 				end),
 				MessageBox{message="Sally: I-I don't know!{p60} It doesn't look robotic?..."},
 				Do(function()
-					target.scene.partyByName.sonic.sprite:setAnimation("idle")
+					target.scene.partyByName.sonic.sprite:setAnimation("takenback")
 				end),
-				MessageBox{message="Sonic: Whatever it is, it sure is ugly..."}
+				MessageBox{message="Sonic: Whatever it is, it sure is ugly..."},
+				Do(function()
+					target.scene.partyByName.antoine.sprite:setAnimation("idle")
+					target.scene.partyByName.sally.sprite:setAnimation("idle")
+					target.scene.partyByName.sonic.sprite:setAnimation("idle")
+				end)
 			}
 		end
 	

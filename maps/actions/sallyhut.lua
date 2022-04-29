@@ -91,6 +91,7 @@ return function(scene, hint)
 	
 	if not scene.nighttime and not GameState:isFlagSet("ep3_sallywakeup") then
 		scene.audio:stopMusic()
+		scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
 		return BlockPlayer {			
 			Do(function()
 				GameState:setFlag("ep3_sallywakeup")
@@ -98,6 +99,7 @@ return function(scene, hint)
 				scene.player.dropShadow.hidden = true
 				scene.player.x = scene.objectLookup.SallysBed.x + 70
 				scene.player.y = scene.objectLookup.SallysBed.y + 90
+				scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
 			end),
 			Animate(scene.objectLookup.SallysBed.sprite, "sleeping"),
 			Wait(3),
@@ -130,6 +132,7 @@ return function(scene, hint)
 		})
 		
 		if hint == "sleep" then
+			scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
 			return BlockPlayer {			
 				Do(function()
 					scene.player.sprite.visible = false

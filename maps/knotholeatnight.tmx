@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="346">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="355">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="nighttime" type="bool" value="true"/>
@@ -2838,6 +2838,69 @@ return function(self)
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/tailshut.png"/>
+   </properties>
+  </object>
+  <object id="346" name="Chest1" type="Chest" gid="7597" x="992" y="1344" width="64" height="64">
+   <properties>
+    <property name="Gear" type="int" value="1"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="347" name="Chest1" type="Chest" gid="7597" x="864" y="2144" width="64" height="64">
+   <properties>
+    <property name="Microchip" type="int" value="1"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="348" name="Chest1" type="Chest" gid="7597" x="2449" y="943" width="64" height="64">
+   <properties>
+    <property name="Oscillator" type="int" value="1"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="349" name="Chest1" type="Chest" gid="7597" x="4896" y="1248" width="64" height="64">
+   <properties>
+    <property name="Mushroom" type="int" value="1"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="350" name="Chest1" type="Chest" gid="7597" x="2080" y="576" width="64" height="64">
+   <properties>
+    <property name="Carrot" type="int" value="1"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="351" name="Chest1" type="Chest" gid="7597" x="512" y="768" width="64" height="64">
+   <properties>
+    <property name="BlueLeaf" type="int" value="1"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="352" name="Chest1" type="Chest" gid="7597" x="7168" y="2592" width="64" height="64">
+   <properties>
+    <property name="Carrot" type="int" value="1"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="353" name="Chest1" type="Chest" gid="7597" x="7264" y="2208" width="64" height="64">
+   <properties>
+    <property name="CrystalWater" type="int" value="1"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="354" name="Chest1" type="Chest" gid="7597" x="5312" y="2400" width="64" height="64">
+   <properties>
+    <property name="GreenLeaf" type="int" value="1"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
  </objectgroup>
