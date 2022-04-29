@@ -865,7 +865,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="252" name="J" type="BasicNPC" gid="1227" x="512" y="1888" width="64" height="96">
+  <object id="252" name="J" type="BasicNPC" gid="1227" x="544" y="1920" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
@@ -938,7 +938,7 @@ end</property>
     <property name="snap" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="259" name="R" type="BasicNPC" gid="1227" x="576" y="1888" width="64" height="96">
+  <object id="259" name="R" type="BasicNPC" gid="1227" x="640" y="1920" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
@@ -953,6 +953,7 @@ local MessageBox = require &quot;actions/MessageBox&quot;
 local Menu = require &quot;actions/Menu&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Parallel = require &quot;actions/Parallel&quot;
@@ -978,19 +979,12 @@ return function(self)
         GameState:setFlag(self:getFlag())
         return BlockPlayer {
             Do(function() self:facePlayer() end),
-            MessageBox {message = &quot;R: Hey!! {p60}So cool that you're back!&quot;},
-            MessageBox {message = &quot;R: Check out how fast I am! {p60}I've been practicing.&quot;},
+            MessageBox {message = &quot;R: Let's race!!&quot;},
+            AudioFade(&quot;music&quot;, 1.0, 0.0, 1),
             Animate(self.sprite, &quot;pose&quot;),
-            Do(function() self:removeCollision() end),
-            Spawn(Serial {
-                Move(self, self.scene.objectLookup.Waypoint1, &quot;dash&quot;),
-                Move(self, self.scene.objectLookup.Waypoint2, &quot;dash&quot;),
-                Move(self, self.scene.objectLookup.Waypoint4, &quot;dash&quot;),
-                Do(function()
-                    self:facePlayer()
-                    self:updateCollision()
-                end)
-            })
+            Do(function()
+                self.scene:changeScene{map=&quot;run1&quot;, fadeOutSpeed = 0.2, fadeInSpeed = 0.2}
+            end)
         }
     end
 end</property>

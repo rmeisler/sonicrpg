@@ -142,12 +142,12 @@ function NPC:onScan()
 	return Action()
 end
 
-function NPC:distanceFromPlayerSq()
+function NPC:distanceFromPlayerSq(ignoreCache)
 	if not self.scene.player then
 		return 0
 	end
 
-	if not self.distanceFromPlayer then
+	if ignoreCache or not self.distanceFromPlayer then
 		local dx = (self.scene.player.x - (self.x + self.sprite.w))
 		local dy = (self.scene.player.y - (self.y + self.sprite.h))
 		self.distanceFromPlayer = (dx*dx + dy*dy)
@@ -634,7 +634,7 @@ function NPC:remove()
 		end
 	end
 	
-	if not self.scene.isRestarting and not self.noSetFlag then
+	if not self.scene.isRestarting and not self.noSetFlag and self.isBot then
 		GameState:setFlag(self:getFlag())
 	end
 	

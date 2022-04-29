@@ -314,6 +314,9 @@ return {
 		prepare_race = {
 			frames = {{14,9}}
 		},
+		prepare_race2 = {
+			frames = {{13,9}}
+		},
 		
 		sit_sad = {
 			frames = {{10,7}}

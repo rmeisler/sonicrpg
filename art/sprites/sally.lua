@@ -163,6 +163,9 @@ return {
 		thinking3 = {
 			frames = {{10,5}}
 		},
+		thinking_laugh = {
+			frames = {{9,5}}
+		},
 		planning = {
 			frames = {{11,5}}
 		},

@@ -1388,8 +1388,8 @@ return {
           name = "J",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 512,
-          y = 1888,
+          x = 544,
+          y = 1920,
           width = 64,
           height = 96,
           rotation = 0,
@@ -1492,8 +1492,8 @@ return {
           name = "R",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 576,
-          y = 1888,
+          x = 640,
+          y = 1920,
           width = 64,
           height = 96,
           rotation = 0,
@@ -1507,7 +1507,7 @@ return {
             ["ghost"] = false,
             ["ignoreMapCollision"] = true,
             ["movespeed"] = 10,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Move = require \"actions/Move\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"T: I am working on a new invention you may be interested in...\"},\n            MessageBox {message = \"T: Bring me a {h Power Ring} and I'll show you.\"},\n            Animate(self.sprite, \"tdowncross\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"R: Hey!! {p60}So cool that you're back!\"},\n            MessageBox {message = \"R: Check out how fast I am! {p60}I've been practicing.\"},\n            Animate(self.sprite, \"pose\"),\n            Do(function() self:removeCollision() end),\n            Spawn(Serial {\n                Move(self, self.scene.objectLookup.Waypoint1, \"dash\"),\n                Move(self, self.scene.objectLookup.Waypoint2, \"dash\"),\n                Move(self, self.scene.objectLookup.Waypoint4, \"dash\"),\n                Do(function()\n                    self:facePlayer()\n                    self:updateCollision()\n                end)\n            })\n        }\n    end\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Move = require \"actions/Move\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"T: I am working on a new invention you may be interested in...\"},\n            MessageBox {message = \"T: Bring me a {h Power Ring} and I'll show you.\"},\n            Animate(self.sprite, \"tdowncross\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"R: Let's race!!\"},\n            AudioFade(\"music\", 1.0, 0.0, 1),\n            Animate(self.sprite, \"pose\"),\n            Do(function()\n                self.scene:changeScene{map=\"run1\", fadeOutSpeed = 0.2, fadeInSpeed = 0.2}\n            end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/r.png"
           }
         }

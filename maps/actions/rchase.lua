@@ -54,23 +54,29 @@ return function(scene)
 				scene.player.sprite.visible = false
 				scene.player.dropShadow.hidden = true
 			end),
+			Animate(scene.objectLookup.Sally.sprite, "thinking"),
 
 			Wait(2),
 			
+			MessageBox {message="Sally: This is so ridiculous. {p60}I can't believe this is happening right now.", closeAction=Wait(1)},
+			Animate(scene.objectLookup.Sonic.sprite, "prepare_race2"),
+			MessageBox {message="Sonic: Come on Sal{p60}, live a little!", closeAction=Wait(1)},
+			Animate(scene.objectLookup.Sally.sprite, "thinking_laugh"),
+			MessageBox {message="Sally: *sigh*", closeAction=Wait(0.5)},
+			Animate(scene.objectLookup.Sonic.sprite, "prepare_race"),
+			MessageBox {message="Sonic: Wish me luck!", closeAction=Wait(0.5)},
 			Parallel {
-				MessageBox {message="J: On your mark... {p60}get set... {p60}go!", closeAction=Wait(1.5)},
+				MessageBox {message="J: On your mark... {p80}get set... {p80}{h GO}!", closeAction=Wait(1)},
 				Serial {
-					Wait(2),
+					Wait(1),
+					Do(function() scene.objectLookup.R.sprite:setAnimation("dashright_goggles") end),
+					Wait(1),
+					PlayAudio("sfx", "sonicrun", 1.0, true, false, true),
 					PlayAudio("music", "sonicrace", 1.0, true, true),
-					Do(function()
-						scene.objectLookup.R.sprite:setAnimation("dashright_goggles")
-					end),
 					Animate(scene.objectLookup.Sonic.sprite, "chargerun1"),
 					Do(function() scene.objectLookup.Sonic.sprite:setAnimation("chargerun2") end),
-					Wait(1.2),
-					
-					--PlayAudio("music", "escapelevel", 1.0, true),
-					
+					Wait(0.8),
+			
 					Do(function()
 						scene.player:addSceneHandler("update", EscapePlayer.update)
 						scene.player.x = scene.objectLookup.Sonic.x + scene.player.width

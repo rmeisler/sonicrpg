@@ -27,7 +27,7 @@ return function(player)
 		if  object.isBot and
 			not object:isRemoved() and
 			not object.object.properties.notAntoineTargetable and
-			object:distanceFromPlayerSq() < maxDistance
+			object:distanceFromPlayerSq(true) < maxDistance
 		then
 			table.insert(bots, object)
 		end

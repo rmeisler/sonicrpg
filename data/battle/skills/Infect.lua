@@ -4,7 +4,7 @@ return {
 	name = "Infect",
 	target = TargetType.Opponent,
 	unusable = function(target)
-		return target.side == TargetType.Party
+		return target.side == TargetType.Party or target.name == "Phantom"
 	end,
 	cost = 7,
 	desc = "Sally injects bugs into a bot's software.",

@@ -33,7 +33,7 @@ return {
 	mockSpriteOffset = Transform(-120, -84),
 
 	stats = {
-		xp    = 20,
+		xp    = 40,
 		maxhp = 1200,
 		attack = 50,
 		defense = 15,

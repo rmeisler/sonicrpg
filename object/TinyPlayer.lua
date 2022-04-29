@@ -30,6 +30,8 @@ function TinyPlayer:construct(scene, layer, object)
 	self.noSpecialMove = true
 	--self.noChangeChar = true
 	self.movespeed = 2
+	
+	print("remove dropshadow")
 	self.dropShadow:remove()
 	
 	self:updateHotspots()
