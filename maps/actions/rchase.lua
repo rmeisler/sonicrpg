@@ -75,7 +75,7 @@ return function(scene)
 					PlayAudio("music", "sonicrace", 1.0, true, true),
 					Animate(scene.objectLookup.Sonic.sprite, "chargerun1"),
 					Do(function() scene.objectLookup.Sonic.sprite:setAnimation("chargerun2") end),
-					Wait(0.8),
+					Wait(1.2),
 			
 					Do(function()
 						scene.player:addSceneHandler("update", EscapePlayer.update)

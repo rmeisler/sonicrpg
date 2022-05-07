@@ -45,7 +45,9 @@ return {
 	},
 
 	equip = {
+		armor = require "data/armor/ElbowPads",
 		legs = require "data/legs/Boots",
+		accessory = require "data/accessories/LeatherSash",
 	},
 
 	items = {

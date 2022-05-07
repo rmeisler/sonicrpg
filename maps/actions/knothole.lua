@@ -275,7 +275,7 @@ return function(scene, hint)
 			AudioFade("music", 1.0, 0.0, 0.5),
 			Wait(1),
 			Parallel {
-				Ease(scene.camPos, "y", -180, 2),
+				Ease(scene.camPos, "y", -180, 0.5),
 				PlayAudio("sfx", "griffvehicle", 1.0, true),
 				Serial {
 					Move(griff, scene.objectLookup.GriffWaypoint),
@@ -289,10 +289,10 @@ return function(scene, hint)
 			},
 			Wait(1.2),
 			Animate(griff.sprite, "idleleft_lookup"),
-			Ease(scene.camPos, "y", 0, 2),
+			Ease(scene.camPos, "y", 0, 0.5),
 			Animate(sally.sprite, "meeting_shock"),
 			MessageBox {message="Sally: Griff?! {p60}What are you doing here?", closeAction=Wait(1)},
-			Ease(scene.camPos, "y", -180, 2),
+			Ease(scene.camPos, "y", -180, 0.5),
 			Animate(sally.sprite, "meeting_idledown"),
 			MessageBox {message="Griff: I found something... {p60}Something big."},
 			MessageBox {message="Griff: You guys need to see this."},

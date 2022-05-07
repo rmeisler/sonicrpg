@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 359,
+  nextobjectid = 363,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["onload"] = "actions/knothole.lua",
@@ -2166,23 +2166,6 @@ return {
           }
         },
         {
-          id = 42,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 1888,
-          y = 1440,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["Microchip"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 43,
           name = "Post",
           type = "BasicNPC",
@@ -3830,8 +3813,8 @@ return {
           name = "IvanBicker",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1760,
-          y = 1984,
+          x = 3360,
+          y = 2112,
           width = 64,
           height = 96,
           rotation = 0,
@@ -3853,8 +3836,8 @@ return {
           name = "AntoineBicker",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1760,
-          y = 1920,
+          x = 3360,
+          y = 2048,
           width = 64,
           height = 96,
           rotation = 0,
@@ -4007,7 +3990,7 @@ return {
           height = 64,
           rotation = 0,
           gid = 5323,
-          visible = true,
+          visible = false,
           properties = {
             ["align"] = "bottom_center",
             ["defaultAnim"] = "vert",
@@ -4047,7 +4030,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sally: Hmmm...{p60}these look like ancient Mobian hieroglyphs...\"}\n        }\n    elseif GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sonic: This hedgehog flunked all his ancient Mobian script classes, so...\"}\n        }\n    elseif GameState.leader == \"antoine\" then\n        return BlockPlayer {\n            MessageBox {message=\"Antoine: Ah yez! {p60}Eet iz elementary to me! {p60}What does it say, you ask? Well it says what it says, yez. What more can be said, eh?\"}\n        }\n    end\nend",
-            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal NameScreen = require \"actions/NameScreen\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Wait = require \"actions/Wait\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    local riddle = NameScreen {\n        prompt = \"What am I?\",\n        expected = \"map\"\n    }\n    local prevMusic = self.scene.audio:getCurrentMusic()\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: Translating hieroglyphs{p40}, Sally.\", textSpeed = 3, sfx = \"nicolebeep\"},\n        AudioFade(\"music\", 1.0, 0.0, 2),\n        PlayAudio(\"music\", \"ringlake\", 1.0, true, true),\n        MessageBox {message=\"Nicole: The tomb reads{p40}, 'I have rivers, but no water. I have forests, but no trees. I have cities, but no buildings'...\", textSpeed = 3},\n        Parallel {\n            riddle,\n            MessageBox {message=\"Nicole: The tomb reads{p40}, 'I have rivers, but no water. I have forests, but no trees. I have cities, but no buildings'...\", textSpeed = 3, closeAction=riddle}\n        },\n        Spawn(Serial {\n            AudioFade(\"music\", 1.0, 0.0, 2),\n            PlayAudio(\"music\", prevMusic, 1.0, true, true)\n        })\n    }\nend",
+            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal NameScreen = require \"actions/NameScreen\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Wait = require \"actions/Wait\"\nlocal Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nreturn function(self)\n    local prevMusic = self.scene.audio:getCurrentMusic()\n    self.trialcomplete = false\n    local riddle = NameScreen {\n        prompt = \"What am I?\",\n        expected = \"map\",\n        success = Serial {\n            Do(function() self.trialcomplete = true end),\n            AudioFade(\"music\", 1.0, 0.0, 2),\n            Wait(1),\n            MessageBox{message=\"Nicole: The tomb appears to be uploading an ancient software subroutine into my databanks...\", textspeed=1},\n            Spawn(Serial {\n                PlayAudio(\"music\", \"trialcomplete\", 1.0),\n                Wait(1),\n                PlayAudio(\"music\", prevMusic, 1.0, true, true)\n            }),\n            Parallel {\n                Ease(self.sprite.color, 1, 800, 0.2),\n                Ease(self.sprite.color, 2, 800, 0.2),\n                Ease(self.sprite.color, 3, 800, 0.2)\n            },\n            Wait(3),\n            Ease(self.sprite.color, 4, 0, 0.1),\n            Do(function() self.scene.player.state = \"pose\" end),\n            MessageBox{message=\"All of Sally's Skills now cost 50% less!\", sfx = \"levelup\"},\n            Do(function()\n                self.scene.player.state = \"idledown\"\n                self:removeCollision()\n            end)\n        },\n        failure = Serial {\n            Spawn(Serial {\n                AudioFade(\"music\", 1.0, 0.0, 2),\n                PlayAudio(\"music\", prevMusic, 1.0, true, true)\n            }),\n            Do(function() self.trialcomplete = true end)\n        }\n    }\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: Translating hieroglyphs{p40}, Sally.\", textSpeed = 3, sfx = \"nicolebeep\"},\n        AudioFade(\"music\", 1.0, 0.0, 2),\n        PlayAudio(\"music\", \"ringlake\", 1.0, true, true),\n        MessageBox {message=\"Nicole: The tomb reads{p40}, 'I have rivers, but no water. I have forests, but no trees. I have cities, but no buildings'...\", textSpeed = 3},\n        Parallel {\n            riddle,\n            MessageBox {message=\"Nicole: The tomb reads{p40}, 'I have rivers, but no water. I have forests, but no trees. I have cities, but no buildings'...\", textSpeed = 3, closeAction=YieldUntil(function() return self.trialcomplete end) }\n        }\n    }\nend",
             ["sprite"] = "../art/sprites/tablet.png"
           }
         },
@@ -4056,8 +4039,8 @@ return {
           name = "Chest2",
           type = "Chest",
           shape = "rectangle",
-          x = 3424,
-          y = 2272,
+          x = 3552,
+          y = 2080,
           width = 64,
           height = 64,
           rotation = 0,
@@ -4073,8 +4056,8 @@ return {
           name = "Chest3",
           type = "Chest",
           shape = "rectangle",
-          x = 5760,
-          y = 2496,
+          x = 5664,
+          y = 2528,
           width = 64,
           height = 64,
           rotation = 0,
@@ -4082,6 +4065,74 @@ return {
           visible = true,
           properties = {
             ["ScrapMetal"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 359,
+          name = "Chest6",
+          type = "Chest",
+          shape = "rectangle",
+          x = 1792,
+          y = 1792,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["Gear"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 360,
+          name = "Chest8",
+          type = "Chest",
+          shape = "rectangle",
+          x = 416,
+          y = 1280,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["Microchip"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 361,
+          name = "Chest7",
+          type = "Chest",
+          shape = "rectangle",
+          x = 864,
+          y = 2464,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["Mine"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 362,
+          name = "Chest9",
+          type = "Chest",
+          shape = "rectangle",
+          x = 7136,
+          y = 2592,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["GreenLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         }

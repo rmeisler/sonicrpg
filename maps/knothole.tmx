@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="359">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="363">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="onload" type="file" value="actions/knothole.lua"/>
@@ -1323,12 +1323,6 @@
     <property name="sprite" type="file" value="../art/sprites/fence.png"/>
    </properties>
   </object>
-  <object id="42" name="Chest1" type="Chest" gid="7597" x="1888" y="1440" width="64" height="64">
-   <properties>
-    <property name="Microchip" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
   <object id="43" name="Post" type="BasicNPC" gid="5323" x="2720" y="2016" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -2431,7 +2425,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
    </properties>
   </object>
-  <object id="341" name="IvanBicker" type="BasicNPC" gid="5323" x="1760" y="1984" width="64" height="96">
+  <object id="341" name="IvanBicker" type="BasicNPC" gid="5323" x="3360" y="2112" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
@@ -2487,7 +2481,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
    </properties>
   </object>
-  <object id="342" name="AntoineBicker" type="BasicNPC" gid="5323" x="1760" y="1920" width="64" height="96">
+  <object id="342" name="AntoineBicker" type="BasicNPC" gid="5323" x="3360" y="2048" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
@@ -2942,7 +2936,7 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="354" name="HockeyScoreZone" type="BasicNPC" gid="5323" x="640" y="1600" width="512" height="64">
+  <object id="354" name="HockeyScoreZone" type="BasicNPC" gid="5323" x="640" y="1600" width="512" height="64" visible="0">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="vert"/>
@@ -3100,13 +3094,48 @@ local Spawn = require &quot;actions/Spawn&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local Ease = require &quot;actions/Ease&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
 
 return function(self)
+    local prevMusic = self.scene.audio:getCurrentMusic()
+    self.trialcomplete = false
     local riddle = NameScreen {
         prompt = &quot;What am I?&quot;,
-        expected = &quot;map&quot;
+        expected = &quot;map&quot;,
+        success = Serial {
+            Do(function() self.trialcomplete = true end),
+            AudioFade(&quot;music&quot;, 1.0, 0.0, 2),
+            Wait(1),
+            MessageBox{message=&quot;Nicole: The tomb appears to be uploading an ancient software subroutine into my databanks...&quot;, textspeed=1},
+            Spawn(Serial {
+                PlayAudio(&quot;music&quot;, &quot;trialcomplete&quot;, 1.0),
+                Wait(1),
+                PlayAudio(&quot;music&quot;, prevMusic, 1.0, true, true)
+            }),
+            Parallel {
+                Ease(self.sprite.color, 1, 800, 0.2),
+                Ease(self.sprite.color, 2, 800, 0.2),
+                Ease(self.sprite.color, 3, 800, 0.2)
+            },
+            Wait(3),
+            Ease(self.sprite.color, 4, 0, 0.1),
+            Do(function() self.scene.player.state = &quot;pose&quot; end),
+            MessageBox{message=&quot;All of Sally's Skills now cost 50% less!&quot;, sfx = &quot;levelup&quot;},
+            Do(function()
+                self.scene.player.state = &quot;idledown&quot;
+                self:removeCollision()
+            end)
+        },
+        failure = Serial {
+            Spawn(Serial {
+                AudioFade(&quot;music&quot;, 1.0, 0.0, 2),
+                PlayAudio(&quot;music&quot;, prevMusic, 1.0, true, true)
+            }),
+            Do(function() self.trialcomplete = true end)
+        }
     }
-    local prevMusic = self.scene.audio:getCurrentMusic()
     return BlockPlayer {
         MessageBox {message=&quot;Nicole: Translating hieroglyphs{p40}, Sally.&quot;, textSpeed = 3, sfx = &quot;nicolebeep&quot;},
         AudioFade(&quot;music&quot;, 1.0, 0.0, 2),
@@ -3114,26 +3143,46 @@ return function(self)
         MessageBox {message=&quot;Nicole: The tomb reads{p40}, 'I have rivers, but no water. I have forests, but no trees. I have cities, but no buildings'...&quot;, textSpeed = 3},
         Parallel {
             riddle,
-            MessageBox {message=&quot;Nicole: The tomb reads{p40}, 'I have rivers, but no water. I have forests, but no trees. I have cities, but no buildings'...&quot;, textSpeed = 3, closeAction=riddle}
-        },
-        Spawn(Serial {
-            AudioFade(&quot;music&quot;, 1.0, 0.0, 2),
-            PlayAudio(&quot;music&quot;, prevMusic, 1.0, true, true)
-        })
+            MessageBox {message=&quot;Nicole: The tomb reads{p40}, 'I have rivers, but no water. I have forests, but no trees. I have cities, but no buildings'...&quot;, textSpeed = 3, closeAction=YieldUntil(function() return self.trialcomplete end) }
+        }
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/tablet.png"/>
    </properties>
   </object>
-  <object id="357" name="Chest2" type="Chest" gid="7597" x="3424" y="2272" width="64" height="64">
+  <object id="357" name="Chest2" type="Chest" gid="7597" x="3552" y="2080" width="64" height="64">
    <properties>
     <property name="Mushroom" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="358" name="Chest3" type="Chest" gid="7597" x="5760" y="2496" width="64" height="64">
+  <object id="358" name="Chest3" type="Chest" gid="7597" x="5664" y="2528" width="64" height="64">
    <properties>
     <property name="ScrapMetal" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="359" name="Chest6" type="Chest" gid="7597" x="1792" y="1792" width="64" height="64">
+   <properties>
+    <property name="Gear" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="360" name="Chest8" type="Chest" gid="7597" x="416" y="1280" width="64" height="64">
+   <properties>
+    <property name="Microchip" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="361" name="Chest7" type="Chest" gid="7597" x="864" y="2464" width="64" height="64">
+   <properties>
+    <property name="Mine" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="362" name="Chest9" type="Chest" gid="7597" x="7136" y="2592" width="64" height="64">
+   <properties>
+    <property name="GreenLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
