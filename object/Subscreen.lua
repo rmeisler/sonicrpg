@@ -349,9 +349,10 @@ function Subscreen:getEquipEntry(itemType, item)
 		table.insert(row, Layout.Text{text={color, data.value}})
 	end
 	if itemEvent then
-		if item.event.type == EventType.X then
+		if item.event.type == EventType.X or item.showX then
 			table.insert(row, Layout.Image("xevent"))
-		elseif item.event.type == EventType.Z then
+		end
+		if item.event.type == EventType.Z or item.showZ then
 			table.insert(row, Layout.Image("zevent"))
 		end
 	end
