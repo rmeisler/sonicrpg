@@ -146,7 +146,7 @@
     <property name="sprite" type="file" value="../art/sprites/knotholebush.png"/>
    </properties>
   </object>
-  <object id="109" name="RightPath" type="SceneEdge" gid="7597" x="4032" y="352" width="64" height="160">
+  <object id="109" name="RightPath" type="SceneEdge" gid="7597" x="4032" y="352" width="32" height="160">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
@@ -257,7 +257,7 @@
    <property name="shimmer" type="bool" value="true"/>
   </properties>
  </imagelayer>
- <imagelayer name="godrays" opacity="0.3" offsetx="3328" offsety="160">
+ <imagelayer name="godrays" opacity="0.3" offsetx="3456" offsety="160">
   <image source="../art/parallax/godrays2.png" width="375" height="354"/>
   <properties>
    <property name="movespeed" type="float" value="1"/>

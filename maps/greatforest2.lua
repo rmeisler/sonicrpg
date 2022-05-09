@@ -410,7 +410,7 @@ return {
           shape = "rectangle",
           x = 4032,
           y = 352,
-          width = 64,
+          width = 32,
           height = 160,
           rotation = 0,
           gid = 7597,
@@ -675,7 +675,7 @@ return {
       name = "godrays",
       visible = true,
       opacity = 0.3,
-      offsetx = 3328,
+      offsetx = 3456,
       offsety = 160,
       image = "../art/parallax/godrays2.png",
       properties = {

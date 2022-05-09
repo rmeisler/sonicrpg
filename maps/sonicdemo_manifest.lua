@@ -21,6 +21,11 @@ return {
     },
 	{
         type = "map",
+		file = "maps/darkswamp4.lua",
+		--primary = true
+    },
+	{
+        type = "map",
 		file = "maps/run1.lua",
 		--primary = true
     },

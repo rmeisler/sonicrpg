@@ -294,7 +294,7 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2882, 2883, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2271, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2375, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -338,7 +338,7 @@ return {
         {
           id = 99,
           name = "Tablet",
-          type = "BasicNPC",
+          type = "Tomb",
           shape = "rectangle",
           x = 480,
           y = 480,
@@ -349,8 +349,10 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sally: Hmmm...{p60}these look like ancient Mobian hieroglyphs...\"}\n        }\n    elseif GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sonic: This hedgehog flunked all his ancient Mobian script classes, so...\"}\n        }\n    elseif GameState.leader == \"antoine\" then\n        return BlockPlayer {\n            MessageBox {message=\"Antoine: Ah yez! {p60}Eet iz elementary to me! {p60}What does it say, you ask? Well it says what it says, yez. What more can be said, eh?\"}\n        }\n    end\nend",
-            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal NameScreen = require \"actions/NameScreen\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Wait = require \"actions/Wait\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self)\n    local riddle = NameScreen {\n        prompt = \"What am I?\",\n        expected = \"mushroom\"\n    }\n    local prevMusic = self.scene.audio:getCurrentMusic()\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: Translating hieroglyphs{p40}, Sally.\", textSpeed = 3, sfx = \"nicolebeep\"},\n        AudioFade(\"music\", 1.0, 0.0, 2),\n        PlayAudio(\"music\", \"ringlake\", 1.0, true, true),\n        MessageBox {message=\"Nicole: The tomb reads{p40}, 'I am a room with no doors or windows'...\", textSpeed = 3},\n        Parallel {\n            riddle,\n            MessageBox {message=\"Nicole: The tomb reads{p40}, 'I am a room with no doors or windows'...\", textSpeed = 3, closeAction=riddle}\n        },\n        Spawn(Serial {\n            AudioFade(\"music\", 1.0, 0.0, 2),\n            PlayAudio(\"music\", prevMusic, 1.0, true, true)\n        })\n    }\nend",
+            ["benefit"] = "Nicole learned 'Interrupt+'!",
+            ["expected"] = "mushroom",
+            ["onBenefit"] = "return function(self)\n    GameState:setFlag(\"nicole_upgrade_interrupt\")\nend",
+            ["riddle"] = "I am a room with no doors or windows",
             ["sprite"] = "../art/sprites/tablet.png"
           }
         }

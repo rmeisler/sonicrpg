@@ -4029,9 +4029,9 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["benefit"] = "Nicole learned 'Mini-map'!",
+            ["benefit"] = "Nicole learned 'Infect+'!",
             ["expected"] = "map",
-            ["onBenefit"] = "return function(self)\n    GameState:setFlag(\"got_nicole_map\")\nend",
+            ["onBenefit"] = "return function(self)\n    GameState:setFlag(\"nicole_upgrade_infect\")\nend",
             ["riddle"] = "I have rivers, but no water. {p60}I have forests, but no trees. {p60}I have cities, but no buildings",
             ["sprite"] = "../art/sprites/tablet.png"
           }
@@ -4042,7 +4042,7 @@ return {
           type = "Chest",
           shape = "rectangle",
           x = 3552,
-          y = 2080,
+          y = 2048,
           width = 64,
           height = 64,
           rotation = 0,

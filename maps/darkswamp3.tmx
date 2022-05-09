@@ -299,7 +299,7 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
     <property name="orientation" value="left"/>
-    <property name="scene" type="file" value="darkswamp2.lua"/>
+    <property name="scene" type="file" value="darkswamp4.lua"/>
     <property name="spawn_point" value="LeftPath"/>
    </properties>
   </object>

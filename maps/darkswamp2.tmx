@@ -712,58 +712,15 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/swampbush.png"/>
    </properties>
   </object>
-  <object id="175" name="Tablet" type="BasicNPC" gid="7597" x="1344" y="3008" width="64" height="64">
+  <object id="175" name="Tablet" type="Tomb" gid="7597" x="1408" y="2944" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-
-return function(self)
-    if GameState.leader == &quot;sally&quot; then
-        return BlockPlayer {
-            MessageBox {message=&quot;Sally: Hmmm...{p60}these look like ancient Mobian hieroglyphs...&quot;}
-        }
-    elseif GameState.leader == &quot;sonic&quot; then
-        return BlockPlayer {
-            MessageBox {message=&quot;Sonic: This hedgehog flunked all his ancient Mobian script classes, so...&quot;}
-        }
-    elseif GameState.leader == &quot;antoine&quot; then
-        return BlockPlayer {
-            MessageBox {message=&quot;Antoine: Ah yez! {p60}Eet iz elementary to me! {p60}What does it say, you ask? Well it says what it says, yez. What more can be said, eh?&quot;}
-        }
-    end
+    <property name="benefit" value="Nicole learned 'Scan+'!"/>
+    <property name="expected" value="name"/>
+    <property name="onBenefit">return function(self)
+    GameState:setFlag(&quot;nicole_upgrade_scan&quot;)
 end</property>
-    <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local NameScreen = require &quot;actions/NameScreen&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-local AudioFade = require &quot;actions/AudioFade&quot;
-local Spawn = require &quot;actions/Spawn&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Serial = require &quot;actions/Serial&quot;
-
-return function(self)
-    local riddle = NameScreen {
-        prompt = &quot;What am I?&quot;,
-        expected = &quot;name&quot;
-    }
-    local prevMusic = self.scene.audio:getCurrentMusic()
-    return BlockPlayer {
-        MessageBox {message=&quot;Nicole: Translating hieroglyphs{p40}, Sally.&quot;, textSpeed = 3, sfx = &quot;nicolebeep&quot;},
-        AudioFade(&quot;music&quot;, 1.0, 0.0, 2),
-        PlayAudio(&quot;music&quot;, &quot;ringlake&quot;, 1.0, true, true),
-        MessageBox {message=&quot;Nicole: The tomb reads{p40}, 'I belong to you, but I am more often used by others'...&quot;, textSpeed = 3},
-        Parallel {
-            riddle,
-            MessageBox {message=&quot;Nicole: The tomb reads{p40}, 'I belong to you, but I am more often used by others'...&quot;, textSpeed = 3, closeAction=riddle}
-        },
-        Spawn(Serial {
-            AudioFade(&quot;music&quot;, 1.0, 0.0, 2),
-            PlayAudio(&quot;music&quot;, prevMusic, 1.0, true, true)
-        })
-    }
-end</property>
+    <property name="riddle" value="I belong to you, but I am more often used by others"/>
     <property name="sprite" type="file" value="../art/sprites/tablet.png"/>
    </properties>
   </object>

@@ -3067,16 +3067,16 @@ end</property>
   <object id="356" name="Tablet" type="Tomb" gid="7597" x="8544" y="832" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="benefit" value="Nicole learned 'Mini-map'!"/>
+    <property name="benefit" value="Nicole learned 'Infect+'!"/>
     <property name="expected" value="map"/>
     <property name="onBenefit">return function(self)
-    GameState:setFlag(&quot;got_nicole_map&quot;)
+    GameState:setFlag(&quot;nicole_upgrade_infect&quot;)
 end</property>
     <property name="riddle" value="I have rivers, but no water. {p60}I have forests, but no trees. {p60}I have cities, but no buildings"/>
     <property name="sprite" type="file" value="../art/sprites/tablet.png"/>
    </properties>
   </object>
-  <object id="357" name="Chest2" type="Chest" gid="7597" x="3552" y="2080" width="64" height="64">
+  <object id="357" name="Chest2" type="Chest" gid="7597" x="3552" y="2048" width="64" height="64">
    <properties>
     <property name="Mushroom" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
