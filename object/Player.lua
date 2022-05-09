@@ -621,6 +621,10 @@ function Player:updateSprite()
 end
 
 function Player:updateShadows()
+	if self.ignoreLightingEffects then
+		return
+	end
+
 	-- If we are hiding, display our sprite more darkly
 	if self:inShadow() then
 		self.sprite.color[1] = 150

@@ -24,6 +24,16 @@ function TypeText:construct(transform, color, font, text, speed, noFastForward, 
     self.hlText = " "
     self.hlcolor = {0,255,255,self.color[4]}
     self.outlineCLR = {0,0,0,self.color[4]}
+	
+	-- If TypeText is too fast, just have it autocompleted
+	if speed >= 100 then
+		local updateFn = self.update
+		self.update = function(_, _)
+		    while not self:isDone() do
+				updateFn(self, 1)
+			end
+		end
+	end
 end
 
 function TypeText:setScene(scene)

@@ -1793,9 +1793,9 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 1728,
-          y = 928,
+          y = 960,
           width = 32,
-          height = 96,
+          height = 128,
           rotation = 0,
           gid = 5323,
           visible = true,
@@ -4018,7 +4018,7 @@ return {
         {
           id = 356,
           name = "Tablet",
-          type = "BasicNPC",
+          type = "Tomb",
           shape = "rectangle",
           x = 8544,
           y = 832,
@@ -4029,8 +4029,10 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sally: Hmmm...{p60}these look like ancient Mobian hieroglyphs...\"}\n        }\n    elseif GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sonic: This hedgehog flunked all his ancient Mobian script classes, so...\"}\n        }\n    elseif GameState.leader == \"antoine\" then\n        return BlockPlayer {\n            MessageBox {message=\"Antoine: Ah yez! {p60}Eet iz elementary to me! {p60}What does it say, you ask? Well it says what it says, yez. What more can be said, eh?\"}\n        }\n    end\nend",
-            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal NameScreen = require \"actions/NameScreen\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Wait = require \"actions/Wait\"\nlocal Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nreturn function(self)\n    local prevMusic = self.scene.audio:getCurrentMusic()\n    self.trialcomplete = false\n    local riddle = NameScreen {\n        prompt = \"What am I?\",\n        expected = \"map\",\n        success = Serial {\n            Do(function() self.trialcomplete = true end),\n            AudioFade(\"music\", 1.0, 0.0, 2),\n            Wait(1),\n            MessageBox{message=\"Nicole: The tomb appears to be uploading an ancient software subroutine into my databanks...\", textspeed=1},\n            Spawn(Serial {\n                PlayAudio(\"music\", \"trialcomplete\", 1.0),\n                Wait(1),\n                PlayAudio(\"music\", prevMusic, 1.0, true, true)\n            }),\n            Parallel {\n                Ease(self.sprite.color, 1, 800, 0.2),\n                Ease(self.sprite.color, 2, 800, 0.2),\n                Ease(self.sprite.color, 3, 800, 0.2)\n            },\n            Wait(3),\n            Ease(self.sprite.color, 4, 0, 0.1),\n            Do(function() self.scene.player.state = \"pose\" end),\n            MessageBox{message=\"All of Sally's Skills now cost 50% less!\", sfx = \"levelup\"},\n            Do(function()\n                self.scene.player.state = \"idledown\"\n                self:removeCollision()\n            end)\n        },\n        failure = Serial {\n            Spawn(Serial {\n                AudioFade(\"music\", 1.0, 0.0, 2),\n                PlayAudio(\"music\", prevMusic, 1.0, true, true)\n            }),\n            Do(function() self.trialcomplete = true end)\n        }\n    }\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: Translating hieroglyphs{p40}, Sally.\", textSpeed = 3, sfx = \"nicolebeep\"},\n        AudioFade(\"music\", 1.0, 0.0, 2),\n        PlayAudio(\"music\", \"ringlake\", 1.0, true, true),\n        MessageBox {message=\"Nicole: The tomb reads{p40}, 'I have rivers, but no water. I have forests, but no trees. I have cities, but no buildings'...\", textSpeed = 3},\n        Parallel {\n            riddle,\n            MessageBox {message=\"Nicole: The tomb reads{p40}, 'I have rivers, but no water. I have forests, but no trees. I have cities, but no buildings'...\", textSpeed = 3, closeAction=YieldUntil(function() return self.trialcomplete end) }\n        }\n    }\nend",
+            ["benefit"] = "Nicole learned 'Mini-map'!",
+            ["expected"] = "map",
+            ["onBenefit"] = "return function(self)\n    GameState:setFlag(\"got_nicole_map\")\nend",
+            ["riddle"] = "I have rivers, but no water. {p60}I have forests, but no trees. {p60}I have cities, but no buildings",
             ["sprite"] = "../art/sprites/tablet.png"
           }
         },

@@ -29,7 +29,7 @@ function NameScreen:construct(args)
 	self.currentSequence = ""
 	self.closing = false
 	self.done = false
-	self.prompt = DescBox(args.prompt)
+	self.prompt = DescBox(args.prompt, 100)
 	self.success = args.success or Action()
 	self.failure = args.failure or Action()
 	self.expected = args.expected
