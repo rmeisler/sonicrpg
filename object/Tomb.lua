@@ -60,25 +60,23 @@ end
 function Tomb:onScan()
     local prevMusic = self.scene.audio:getCurrentMusic()
 	self.gogogo = false
-    self.trialcomplete = false
     local riddle = NameScreen {
         prompt = "What am I?",
         expected = self.expected,
         success = Serial {
-            Do(function() self.trialcomplete = true end),
             AudioFade("music", 1.0, 0.0, 2),
             Wait(1),
+			MessageBox{message="Nicole: The tomb appears to be reacting to your answer, Sally...", textSpeed=3},
             Spawn(Serial {
                 PlayAudio("music", "trialcomplete", 1.0, true),
-				Wait(27),
+				Wait(30),
 				AudioFade("music", 1.0, 0.0, 1),
                 PlayAudio("music", prevMusic, 1.0, true, true)
             }),
-			MessageBox{message="Nicole: The tomb appears to be uploading something into my databank...", textSpeed=2, closeAction=Wait(3)},
             Parallel {
                 Serial {
                     Wait(4),
-                    MessageBox{message="Nicole: Processing data packets, Sally...", textSpeed=2, closeAction=Wait(3)}
+                    MessageBox{message="Nicole: The tomb is attempting to upload software into my databank...", textSpeed=2, closeAction=Wait(2)}
                 },
                 Ease(self.sprite.color, 1, 800, 0.2),
                 Ease(self.sprite.color, 2, 800, 0.2),
@@ -91,7 +89,7 @@ function Tomb:onScan()
                 Ease(self.scene.player.sprite.color, 3, 800, 0.4)
             },
 			Wait(1),
-			MessageBox{message="Nicole: I am... {p60}learning...", textSpeed=2, closeAction=Wait(3)},
+			MessageBox{message="Nicole: I am... {p60}learning...", textSpeed=2, closeAction=Wait(1.5)},
             Wait(4),
             Do(function()
                 self:run{
@@ -106,14 +104,13 @@ function Tomb:onScan()
             end),
             YieldUntil(function() return self.gogogo end),
             Do(function() self.scene.player.sprite:setAnimation("pose") end),
-            MessageBox{message=self.benefit, sfx = "levelup", closeAction=Wait(4)},
+            MessageBox{message=self.benefit, sfx = "levelup"},
             Do(function()
 				self.onBenefit(self)
                 self.scene.player.sprite:setAnimation("idledown")
                 self:removeCollision()
             end)
-        },
-		failure = Do(function() self.gogogo = true end)
+        }
     }
     return BlockPlayer {
         MessageBox {message="Nicole: Translating hieroglyphs{p40}, Sally.", textSpeed = 3, sfx = "nicolebeep"},
@@ -122,7 +119,9 @@ function Tomb:onScan()
         MessageBox {message="Nicole: The tomb reads{p40}, '" .. self.riddle .. "'...", textSpeed = 3},
         Parallel {
             riddle,
-            MessageBox {message="Nicole: The tomb reads, '" .. self.riddle .. "'...", textSpeed = 100, closeAction=riddle }
+            MessageBox {message="Nicole: The tomb reads, '" .. self.riddle .. "'...",
+						textSpeed = 100,
+						closeAction=YieldUntil(function() return self.gogogo or riddle.closing end) }
         },
 		IfElse(
 			function() return self.gogogo end,
