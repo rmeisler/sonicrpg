@@ -2,7 +2,7 @@ local Action = require "actions/Action"
 local MessageBox = require "actions/MessageBox"
 local Trigger = require "actions/Trigger"
 
-local DescBox = function(desc, textspeed)
+local DescBox = function(desc, textSpeed)
 	if desc == "" then
 		return Action()
 	end
@@ -10,7 +10,7 @@ local DescBox = function(desc, textspeed)
 		message = desc,
 		rect = MessageBox.HEADLINER_RECT,
 		noPressX = true,
-		textspeed = textspeed
+		textSpeed = textSpeed
 	}
 end
 

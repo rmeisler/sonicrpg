@@ -70,15 +70,15 @@ function Tomb:onScan()
             Wait(1),
             Spawn(Serial {
                 PlayAudio("music", "trialcomplete", 1.0, true),
-				Wait(30),
-				AudioFade("music", 1.0, 0.0, 0.25),
+				Wait(27),
+				AudioFade("music", 1.0, 0.0, 1),
                 PlayAudio("music", prevMusic, 1.0, true, true)
             }),
-			MessageBox{message="Nicole: The tomb appears to be uploading something into my databank...", textspeed=1},
+			MessageBox{message="Nicole: The tomb appears to be uploading something into my databank...", textSpeed=2, closeAction=Wait(3)},
             Parallel {
                 Serial {
-                    Wait(3),
-                    MessageBox{message="Nicole: Processing data packets, Sally...", textspeed=1, closeAction=Wait(1.5)}
+                    Wait(4),
+                    MessageBox{message="Nicole: Processing data packets, Sally...", textSpeed=2, closeAction=Wait(3)}
                 },
                 Ease(self.sprite.color, 1, 800, 0.2),
                 Ease(self.sprite.color, 2, 800, 0.2),
@@ -86,11 +86,12 @@ function Tomb:onScan()
             },
             Do(function() self.scene.player.ignoreLightingEffects = true end),
             Parallel {
-				MessageBox{message="Nicole: I am... {p80}learning...", textspeed=1, closeAction=Wait(1.5)},
                 Ease(self.scene.player.sprite.color, 1, 800, 0.4),
                 Ease(self.scene.player.sprite.color, 2, 800, 0.4),
                 Ease(self.scene.player.sprite.color, 3, 800, 0.4)
             },
+			Wait(1),
+			MessageBox{message="Nicole: I am... {p60}learning...", textSpeed=2, closeAction=Wait(3)},
             Wait(4),
             Do(function()
                 self:run{
@@ -105,7 +106,7 @@ function Tomb:onScan()
             end),
             YieldUntil(function() return self.gogogo end),
             Do(function() self.scene.player.sprite:setAnimation("pose") end),
-            MessageBox{message=self.benefit, sfx = "levelup", closeAction=Wait(2)},
+            MessageBox{message=self.benefit, sfx = "levelup", closeAction=Wait(4)},
             Do(function()
 				self.onBenefit(self)
                 self.scene.player.sprite:setAnimation("idledown")
