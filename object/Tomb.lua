@@ -76,7 +76,7 @@ function Tomb:onScan()
             Parallel {
                 Serial {
                     Wait(4),
-                    MessageBox{message="Nicole: The tomb is attempting to upload software into my databank...", textSpeed=2, closeAction=Wait(2)}
+                    MessageBox{message="Nicole: The tomb is attempting to upload software into my databank...", textSpeed=3, closeAction=Wait(2)}
                 },
                 Ease(self.sprite.color, 1, 800, 0.2),
                 Ease(self.sprite.color, 2, 800, 0.2),
@@ -89,7 +89,7 @@ function Tomb:onScan()
                 Ease(self.scene.player.sprite.color, 3, 800, 0.4)
             },
 			Wait(1),
-			MessageBox{message="Nicole: I am... {p60}learning...", textSpeed=2, closeAction=Wait(1.5)},
+			MessageBox{message="Nicole: I am... {p60}learning...", textSpeed=3, closeAction=Wait(1.5)},
             Wait(4),
             Do(function()
                 self:run{

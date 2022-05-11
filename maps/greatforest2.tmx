@@ -238,7 +238,7 @@
   </object>
   <object id="123" name="Chest1" type="Chest" gid="7597" x="1824" y="128" width="64" height="64">
    <properties>
-    <property name="BlueLeaf" type="int" value="1"/>
+    <property name="SignalBooster" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>

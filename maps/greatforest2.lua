@@ -638,7 +638,7 @@ return {
           gid = 7597,
           visible = true,
           properties = {
-            ["BlueLeaf"] = 1,
+            ["SignalBooster"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         }

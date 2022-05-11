@@ -316,27 +316,33 @@ local Wait = require &quot;actions/Wait&quot;
 local Do = require &quot;actions/Do&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Parallel = require &quot;actions/Parallel&quot;
+local While = require &quot;actions/While&quot;
+local Serial = require &quot;actions/Serial&quot;
 
 return function(self, player, prevState)
     local arm = self.scene.objectLookup.Arm2
-    if prevState == self.STATE_IDLE and arm.hidden then
+    if prevState == self.STATE_IDLE and arm.hidden and not GameState:isFlagSet(arm) then
         arm.hidden = false
-        self:run {
-            Ease(arm, &quot;y&quot;, function() return arm.y + 90 end, 4),
-            Do(function()
-                arm:updateCollision()
-            end),
-            Wait(2),
-            Parallel {
-                Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 0.5),
-                Ease(arm.sprite.color, 4, 0, 1)
+        self:run(While(
+            function() return not GameState:isFlagSet(arm) end,
+            Serial {
+                Ease(arm, &quot;y&quot;, function() return arm.y + 90 end, 4),
+                Do(function()
+                    arm:updateCollision()
+                end),
+                Wait(2),
+                Parallel {
+                    Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 0.5),
+                    Ease(arm.sprite.color, 4, 0, 1)
+                },
+                Do(function()
+                    arm:updateCollision()
+                    arm.sprite.color[4] = 255
+                    arm.hidden = true
+                end)
             },
-            Do(function()
-                arm:updateCollision()
-                arm.sprite.color[4] = 255
-                arm.hidden = true
-            end)
-        }
+            Do(function() end)
+        ))
     end
 end</property>
    </properties>
@@ -351,9 +357,6 @@ end</property>
     <property name="isBot" type="bool" value="true"/>
     <property name="onInit">return function(self)
     self.hidden = true
-    if GameState:isFlagSet(self) then
-        self:remove()
-    end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>
@@ -378,27 +381,33 @@ local Wait = require &quot;actions/Wait&quot;
 local Do = require &quot;actions/Do&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Parallel = require &quot;actions/Parallel&quot;
+local While = require &quot;actions/While&quot;
+local Serial = require &quot;actions/Serial&quot;
 
 return function(self, player, prevState)
     local arm = self.scene.objectLookup.Arm1
-    if prevState == self.STATE_IDLE and arm.hidden then
+    if prevState == self.STATE_IDLE and arm.hidden and not GameState:isFlagSet(arm) then
         arm.hidden = false
-        self:run {
-            Ease(arm, &quot;y&quot;, function() return arm.y + 90 end, 4),
-            Do(function()
-                arm:updateCollision()
-            end),
-            Wait(2),
-            Parallel {
-                Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 0.5),
-                Ease(arm.sprite.color, 4, 0, 1)
+        self:run(While(
+            function() return not GameState:isFlagSet(arm) end,
+            Serial {
+                Ease(arm, &quot;y&quot;, function() return arm.y + 90 end, 4),
+                Do(function()
+                    arm:updateCollision()
+                end),
+                Wait(2),
+                Parallel {
+                    Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 0.5),
+                    Ease(arm.sprite.color, 4, 0, 1)
+                },
+                Do(function()
+                    arm:updateCollision()
+                    arm.sprite.color[4] = 255
+                    arm.hidden = true
+                end)
             },
-            Do(function()
-                arm:updateCollision()
-                arm.sprite.color[4] = 255
-                arm.hidden = true
-            end)
-        }
+            Do(function() end)
+        ))
     end
 end</property>
    </properties>
@@ -413,9 +422,6 @@ end</property>
     <property name="isBot" type="bool" value="true"/>
     <property name="onInit">return function(self)
     self.hidden = true
-    if GameState:isFlagSet(self) then
-        self:remove()
-    end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>

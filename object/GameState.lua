@@ -101,12 +101,17 @@ function GameState:addToParty(member, level, new)
 	end
 
 	if self.inactiveMembers[member] then
-		self.party[member] = self.inactiveMembers[member]
+		self:addBackToParty(member)
 	else
 		self.party[member] = self.profiles[member][level]
 	end
 	
 	self.leader = member
+end
+
+function GameState:addBackToParty(member)
+	self.party[member] = self.inactiveMembers[member]
+	self.inactiveMembers[member] = nil
 end
 
 function GameState:removeFromParty(member)

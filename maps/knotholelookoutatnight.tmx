@@ -600,7 +600,9 @@ return function(self)
             MessageBox {message = &quot;Leon: They need more than a commanding officer--{p60} they need a true leader and mentor. {p60}Someone who can help them heal.&quot;},
             MessageBox {message = &quot;Leon: I hope you can succeed where I have failed them, Princess.&quot;},
             Do(function()
-                self.scene:changeScene{map=&quot;sallyshutnight&quot;, fadeOutSpeed=0.2,fadeInSpeed=0.2,fadeOutMusic=true}
+                GameState:addBackToParty(&quot;sonic&quot;)
+                GameState:addBackToParty(&quot;antoine&quot;)
+                self.scene:changeScene{map=&quot;sallyshut&quot;, fadeOutSpeed=0.2,fadeInSpeed=0.2,fadeOutMusic=true}
             end)
         }
     end

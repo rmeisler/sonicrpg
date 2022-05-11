@@ -29,23 +29,24 @@ return function(scene, hint)
 	scene.player.sprite.color[2] = 150
 	scene.player.sprite.color[3] = 150
 	
+	local text = TypeText(
+		Transform(50, 500),
+		{255, 255, 255, 0},
+		FontCache.Techno,
+		"Dark Swamp",
+		100
+	)
+	local showTitle = function()
+		Executor(scene):act(Serial {
+			Wait(0.5),
+			text,
+			Ease(text.color, 4, 255, 1),
+			Wait(2),
+			Ease(text.color, 4, 0, 1)
+		})
+	end
+	
 	if hint == "fromworldmap" then
-		local text = TypeText(
-			Transform(50, 500),
-			{255, 255, 255, 0},
-			FontCache.Techno,
-			"Dark Swamp",
-			100
-		)
-		local showTitle = function()
-			Executor(scene):act(Serial {
-				Wait(0.5),
-				text,
-				Ease(text.color, 4, 255, 1),
-				Wait(2),
-				Ease(text.color, 4, 0, 1)
-			})
-		end
 		if GameState:isFlagSet("ep3_darkswampintro") then
 			showTitle()
 			return PlayAudio("music", "darkswamp", 1.0, true, true)
@@ -258,6 +259,11 @@ return function(scene, hint)
 				end)
 			}
 		end
+	end
+	
+	if hint == "fromload" then
+		showTitle()
+		return PlayAudio("music", "darkswamp", 1.0, true, true)
 	end
 	
 	return Action()

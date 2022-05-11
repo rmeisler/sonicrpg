@@ -6,9 +6,15 @@ local Ease = require "actions/Ease"
 local Executor = require "actions/Executor"
 
 local Transform = require "util/Transform"
+local ItemType = require "util/ItemType"
 
 return function(attribute, amount, color)
 	return function (target, transform)
+		-- Double healing amount if chef's hat equipped
+		if GameState:isEquipped(target.id, ItemType.Accessory, "Chef's Hat") then
+			amount = amount * 2
+		end
+		
 		return Do(function()
 			local maxVal
 			if attribute == "xp" then

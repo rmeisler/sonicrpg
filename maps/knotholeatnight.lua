@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 355,
+  nextobjectid = 356,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = true,
@@ -4055,7 +4055,7 @@ return {
           gid = 7597,
           visible = true,
           properties = {
-            ["YellowLeaf"] = 1,
+            ["TuningFork"] = 1,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
@@ -4234,24 +4234,8 @@ return {
           visible = true,
           properties = {
             ["BlueLeaf"] = 1,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 352,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 7168,
-          y = 2592,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["Carrot"] = 1,
+            ["GreenLeaf"] = 1,
+            ["YellowLeaf"] = 1,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
@@ -4288,6 +4272,24 @@ return {
           visible = true,
           properties = {
             ["GreenLeaf"] = 1,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 355,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 4896,
+          y = 480,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["Carrot"] = 1,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }

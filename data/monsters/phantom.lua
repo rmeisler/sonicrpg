@@ -59,7 +59,9 @@ return {
 				Do(function()
 					-- Shock and surprise
 					for _,mem in pairs(target.scene.party) do
-						mem.sprite:setAnimation("shock")
+						if mem.state ~= BattleActor.STATE_DEAD then
+							mem.sprite:setAnimation("shock")
+						end
 					end
 				end),
 				Wait(2),
@@ -116,42 +118,48 @@ return {
 			local scareActions = {Animate(self:getSprite(), "scare")}
 			if ability == "attack" then
 				for _,mem in pairs(target.scene.party) do
-					mem.options = table.clone(mem.origOptions)
-					table.remove(mem.options, 1)
-					table.insert(
-						scareActions,
-						Serial {
-							Do(function() mem.sprite:setAnimation("shock") end),
-							Wait(2),
-							Do(function() mem.sprite:setAnimation("idle") end)
-						}
-					)
+					if mem.state ~= BattleActor.STATE_DEAD then
+						mem.options = table.clone(mem.origOptions)
+						table.remove(mem.options, 1)
+						table.insert(
+							scareActions,
+							Serial {
+								Do(function() mem.sprite:setAnimation("shock") end),
+								Wait(2),
+								Do(function() mem.sprite:setAnimation("idle") end)
+							}
+						)
+					end
 				end
 			elseif ability == "use skills" then
 				for _,mem in pairs(target.scene.party) do
-					mem.options = table.clone(mem.origOptions)
-					table.remove(mem.options, 2)
-					table.insert(
-						scareActions,
-						Serial {
-							Do(function() mem.sprite:setAnimation("shock") end),
-							Wait(2),
-							Do(function() mem.sprite:setAnimation("idle") end)
-						}
-					)
+					if mem.state ~= BattleActor.STATE_DEAD then
+						mem.options = table.clone(mem.origOptions)
+						table.remove(mem.options, 2)
+						table.insert(
+							scareActions,
+							Serial {
+								Do(function() mem.sprite:setAnimation("shock") end),
+								Wait(2),
+								Do(function() mem.sprite:setAnimation("idle") end)
+							}
+						)
+					end
 				end
 			elseif ability == "use items" then
 				for _,mem in pairs(target.scene.party) do
-					mem.options = table.clone(mem.origOptions)
-					table.remove(mem.options, 3)
-					table.insert(
-						scareActions,
-						Serial {
-							Do(function() mem.sprite:setAnimation("shock") end),
-							Wait(2),
-							Do(function() mem.sprite:setAnimation("idle") end)
-						}
-					)
+					if mem.state ~= BattleActor.STATE_DEAD then
+						mem.options = table.clone(mem.origOptions)
+						table.remove(mem.options, 3)
+						table.insert(
+							scareActions,
+							Serial {
+								Do(function() mem.sprite:setAnimation("shock") end),
+								Wait(2),
+								Do(function() mem.sprite:setAnimation("idle") end)
+							}
+						)
+					end
 				end
 			end
 			return Serial {

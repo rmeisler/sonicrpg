@@ -4100,7 +4100,7 @@ return {
           gid = 7597,
           visible = true,
           properties = {
-            ["Microchip"] = 1,
+            ["ChefsHat"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
