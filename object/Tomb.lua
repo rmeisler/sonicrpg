@@ -48,7 +48,7 @@ function Tomb:investigate()
         self.scene:run(BlockPlayer {
             MessageBox {message="Antoine: Ah yes! {p60}It is elementary to me! {p60}What does it say...?"},
 			Do(function() self.scene.player.state = "pose" end),
-			MessageBox {message="Antoine: Well it says what is says{p60}, what more can be said, eh?"},
+			MessageBox {message="Antoine: Well it says what it says{p60}, what more can be said, eh?"},
 			Do(function()
 				self.scene.player.state = "idleup"
 				self:refreshKeyHint()

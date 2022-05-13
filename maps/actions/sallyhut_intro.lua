@@ -106,11 +106,7 @@ return function(scene)
 			MessageBox {message="Sally: What a day...", textSpeed=2, closeAction=Wait(2.5)},
 			Wait(3),
 			Animate(scene.objectLookup.SallyPensive.sprite, "idleright"),
-			Wait(2),
-			MessageBox {message="Sally: ...", textSpeed=1, closeAction=Wait(2.5)},
-			Wait(2),
-			Animate(scene.objectLookup.SallyPensive.sprite, "thinking"),
-			Wait(3),
+			MessageBox {message="Sally: Hmm...", textSpeed=2, closeAction=Wait(2.5)},
 			Move(scene.objectLookup.SallyPensive, scene.objectLookup.Waypoint2, "walk"),
 			Do(function()
 				scene.objectLookup.SallyPensive.sprite.sortOrderY = 99999
@@ -132,7 +128,7 @@ return function(scene)
 			Animate(scene.objectLookup.SallyPensive.sprite, "sit_sad"),
 			MessageBox {message="Sally: *sniff* Close file, Nicole.", textspeed=2, closeAction=Wait(2)},
 			MessageBox {message="Sally: Encrypt message. {p60}Passcode 'Bean'. {p80}Send on all available frequencies.", textspeed=3, closeAction=Wait(2.5)},
-			MessageBox {message="Nicole: Sending, {p40}Sally.", textspeed=3, closeAction=Wait(1)},
+			MessageBox {message="Nicole: Sending, {p60}Sally.", textspeed=3, closeAction=Wait(1)},
 			Wait(1),
 			Do(function()
 				scene:changeScene{map="sallyshut", fadeOutSpeed=0.05, fadeInSpeed=0.1, fadeOutMusic=true, nighttime=false}

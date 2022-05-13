@@ -20,6 +20,9 @@
  </tileset>
  <tileset firstgid="19551" source="datacenter_interior.tsx"/>
  <tileset firstgid="20741" source="worldmap.tsx"/>
+ <tileset firstgid="24225" name="darkswamp" tilewidth="32" tileheight="32" tilecount="5589" columns="81">
+  <image source="../art/tiles/darkswamp.png" trans="0000f8" width="2592" height="2208"/>
+ </tileset>
  <layer name="river" width="275" height="88">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2590,7 +2593,6 @@ return function(self)
             Wait(1),
             MessageBox {message = &quot;Sally: I think it's time to call a team meeting...&quot;},
             Do(function()
-                self.scene.player.noIdle = false
                 GameState:setFlag(&quot;ep3_ffmeeting&quot;)
                 self.scene:changeScene{map=&quot;knothole&quot;, fadeOutSpeed = 0.5, fadeInSpeed = 0.5, fadeOutMusic = true}
             end)
