@@ -6,6 +6,11 @@ return {
     },
 	{
         type = "map",
+		file = "maps/robotropolis_1.lua",
+		--primary = true
+    },
+	{
+        type = "map",
 		file = "maps/darkswamp1.lua",
 		--primary = true
     },
@@ -683,6 +688,16 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/robovisit1.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/robovisit2.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/flutter.ogg",
 		category = "music"
 	},
@@ -1289,8 +1304,7 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/patrol.ogg",
-		category = "music",
-		looping = true,
+		category = "music"
 	},
 	{
 		type = "sound",

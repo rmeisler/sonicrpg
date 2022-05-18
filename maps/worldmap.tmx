@@ -1531,6 +1531,7 @@ end</property>
     if player.onLocation == self then
         self.scene:removeHandler(&quot;keytriggered&quot;, player.robotropCallback)
         player.onLocation = nil
+        self.scene.pressX.color = {100,100,100,255}
     end
 end</property>
     <property name="whileColliding">local TypeText = require &quot;actions/TypeText&quot;
@@ -1539,14 +1540,18 @@ local Spawn = require &quot;actions/Spawn&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Do = require &quot;actions/Do&quot;
 local YieldUntil = require &quot;actions/YieldUntil&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Menu = require &quot;actions/Menu&quot;
 
 local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
 
 return function(self, player, prevState)
     if player.onLocation == self then
         return
     end
     player.onLocation = self
+    self.scene.pressX.color = {255,255,255,255}
 
     player.robotropCallback = function(key)
         if player.onLocation == self and
@@ -1554,11 +1559,32 @@ return function(self, player, prevState)
            not self.scene.sceneMgr.transitioning and
            key == &quot;x&quot;
         then
-            self.scene:changeScene{map=&quot;stealthtut1&quot;}
-            self.scene:removeHandler(&quot;keytriggered&quot;, player.robotropCallback)
+            self.scene:run(BlockPlayer {
+                Menu {
+                    layout = Layout {
+                        {Layout.Text(&quot;Enter Robotropolis?&quot;), selectable = false},
+                        {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                            menu:close()
+                            self.scene.player:run(BlockPlayer {
+                                menu,
+                                Do(function()
+                                    self.scene:changeScene{map=&quot;robotropolis_1&quot;, hint=&quot;fromworldmap&quot;, fadeOutSpeed = 0.5, fadeInSpeed = 0.5, fadeOutMusic = true}
+                                    self.scene:removeHandler(&quot;keytriggered&quot;, player.robotropCallback)
+                                end)
+                            })
+                         end},
+                        {Layout.Text(&quot;No&quot;), choose = function(menu)
+                            menu:close()
+                         end}
+                    },
+                    cancellable = true,
+                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+                    selectedRow = 2
+                }
+            })
         end
     end
-    --self.scene:addHandler(&quot;keytriggered&quot;, player.robotropCallback)
+    self.scene:addHandler(&quot;keytriggered&quot;, player.robotropCallback)
 
     self.typeText = TypeText(
         Transform(50, 500),

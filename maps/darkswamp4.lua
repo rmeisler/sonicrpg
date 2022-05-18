@@ -8,7 +8,7 @@ return {
   height = 83,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 181,
+  nextobjectid = 184,
   properties = {
     ["battlebg"] = "../art/backgrounds/dswamp.png",
     ["onload"] = "actions/darkswamp1.lua",
@@ -819,6 +819,65 @@ return {
           properties = {
             ["GreenLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 181,
+          name = "Eyes1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2894,
+          y = 1184,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["isBot"] = true,
+            ["nocollision"] = true,
+            ["onInit"] = "return function(self)\n    self.hidden = true\nend",
+            ["sprite"] = "../art/sprites/phantomface.png"
+          }
+        },
+        {
+          id = 182,
+          name = "EyesTrap1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2880,
+          y = 1248,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal While = require \"actions/While\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\n\nreturn function(self, player, prevState)\n    local arm = self.scene.objectLookup.Arm1\n    local eyes = self.scene.objectLookup.Eyes1\n    if GameState:isFlagSet(arm) then\n        arm:remove()\n        eyes:remove()\n        self:remove()\n        return\n    end\n    if prevState == self.STATE_IDLE and arm.hidden then\n        eyes.hidden = false\n        eyes:run(While(\n            function()\n                return not arm:isRemoved()\n            end,\n            Serial {\n                Animate(eyes.sprite, \"forward\"),\n                Wait(0.5),\n                Animate(eyes.sprite, \"smile\"),\n                Wait(0.5),\n                Do(function()\n                    arm.hidden = false\n                    arm.x = eyes.x - 60\n                    arm.y = eyes.y\n                end),\n                Ease(arm, \"y\", function() return arm.y + 40 end, 4),\n                Do(function()\n                    arm:updateCollision()\n                end),\n                Wait(2),\n                Do(function()\n                    arm:removeCollision()\n                end),\n                Parallel {\n                    Ease(arm, \"y\", function() return arm.y - 40 end, 2),\n                    Ease(arm.sprite.color, 4, 0, 4)\n                },\n                Do(function()\n                    arm.sprite.color[4] = 255\n                    arm.hidden = true\n                    eyes.sprite:setAnimation(\"forwardblink\")\n                end)\n            },\n            Do(function() end)\n        ))\n    end\nend"
+          }
+        },
+        {
+          id = 183,
+          name = "Arm1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2880,
+          y = 1056,
+          width = 64,
+          height = 160,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/phantom.lua",
+            ["battleInitiative"] = "opponent",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["isBot"] = true,
+            ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self) then\n        self:remove()\n    end\nend",
+            ["sprite"] = "../art/sprites/phantomgrab.png"
           }
         }
       }

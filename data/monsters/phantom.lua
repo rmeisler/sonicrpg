@@ -21,6 +21,7 @@ local Telegraph = require "data/monsters/actions/Telegraph"
 local Smack = require "data/monsters/actions/Smack"
 
 local Transform = require "util/Transform"
+local ItemType = require "util/ItemType"
 
 local BattleActor = require "object/BattleActor"
 
@@ -246,6 +247,11 @@ return {
 				Wait(0.4),
 				target:takeDamage(self.stats, true),
 				Do(function()
+					-- Can't poison someone wearing Copper Amulet
+					if GameState:isEquipped(target.id, ItemType.Accessory, "Copper Amulet") then
+						return
+					end
+
 					target.poisoned = table.clone(self.stats)
 					target.poisoned.attack = target.poisoned.attack / 2
 					target.poisoned.nonlethal = true
