@@ -2298,7 +2298,6 @@ end</property>
     if player.onSubLocation == self then
         player.onSubLocation = nil
         self.scene:removeHandler(&quot;keytriggered&quot;, player.deatheggCallback)
-        self.scene.pressX.color = {100,100,100,255}
     end
 end</property>
     <property name="whileColliding">local TypeText = require &quot;actions/TypeText&quot;
@@ -2318,7 +2317,6 @@ return function(self, player, prevState)
         return
     end
     player.onSubLocation = self
-    self.scene.pressX.color = {255,255,255,255}
 
     player.bhideoutCallback = function(key)
         if player.onSubLocation == self and not self.scene.sceneMgr.transitioning and key == &quot;x&quot; then
