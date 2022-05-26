@@ -6,6 +6,11 @@ return {
     },
 	{
         type = "map",
+		file = "maps/ironlock_1.lua",
+		primary = true
+    },
+	{
+        type = "map",
 		file = "maps/robotropolis_1.lua",
 		--primary = true
     },
@@ -50,7 +55,8 @@ return {
 	{
         type = "map",
 		file = "maps/sallyshutnight.lua",
-		primary = true
+		-- REAL PRIMARY
+		--primary = true
     },
 	
 	{
@@ -1304,6 +1310,16 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/patrol.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/mission3.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/ironlock.ogg",
 		category = "music"
 	},
 	{
