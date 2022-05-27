@@ -8,7 +8,7 @@ return {
   height = 192,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 254,
+  nextobjectid = 258,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/ironlock1.lua",
@@ -1305,7 +1305,7 @@ return {
           gid = 37,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/swatbot.lua",
+            ["battle"] = "../data/monsters/legacycambot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint1,Waypoint2,Waypoint1,Waypoint3,Waypoint4,Waypoint3",
@@ -1371,6 +1371,62 @@ return {
           shape = "rectangle",
           x = 2304,
           y = 3936,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 2332,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 255,
+          name = "Cambot2",
+          type = "Cambot",
+          shape = "rectangle",
+          x = 1536,
+          y = 2656,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacycambot.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["follow"] = "Waypoint6,Waypoint5",
+            ["followRepeat"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = true,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/cambot2.png"
+          }
+        },
+        {
+          id = 256,
+          name = "Waypoint5",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1248,
+          y = 2656,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 2332,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 257,
+          name = "Waypoint6",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4192,
+          y = 2656,
           width = 32,
           height = 32,
           rotation = 0,

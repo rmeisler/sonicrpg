@@ -421,6 +421,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/swatbotwhite.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/factorybot.png"
 	},
 	{
@@ -626,6 +630,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/beamfire.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/shockball.png"
 	},
 	{
 		type = "image",

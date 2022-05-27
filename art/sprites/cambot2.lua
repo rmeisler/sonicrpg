@@ -92,14 +92,14 @@ return {
 		},
 		
 		hurt = {
-			frames = {{0,0}}
+			frames = {{16,0}}
 		},
 		
 		hurtleft = {
 			frames = {{4,0}}
 		},
 		hurtright = {
-			frames = {{0,0}}
+			frames = {{16,0}}
 		},
 		hurtdown = {
 			frames = {{8,0}}
