@@ -60,6 +60,21 @@ return {
 				require "data/battle/skills/Bore",
 			}
 		},
+		[5] = {
+			messages = {"Antoine learned \"Run\"!"},
+			skills = {
+				require "data/battle/skills/Bore",
+				require "data/battle/skills/Run",
+			}
+		},
+		[6] = {
+			messages = {"Antoine learned \"Cook\"!"},
+			skills = {
+				require "data/battle/skills/Bore",
+				require "data/battle/skills/Run",
+				require "data/battle/skills/Cook",
+			}
+		},
 	},
 	
 	specialmove = require "data/specialmoves/antoine",

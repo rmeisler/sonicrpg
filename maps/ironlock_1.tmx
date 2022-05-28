@@ -1008,8 +1008,8 @@
     <property name="follow" value="Waypoint1,Waypoint2,Waypoint1,Waypoint3,Waypoint4,Waypoint3"/>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="ignorePlayer" type="bool" value="true"/>
-    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
    </properties>
   </object>
@@ -1041,8 +1041,8 @@
     <property name="follow" value="Waypoint6,Waypoint5"/>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="ignorePlayer" type="bool" value="true"/>
-    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
    </properties>
   </object>

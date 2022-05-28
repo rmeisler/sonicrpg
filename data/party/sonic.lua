@@ -50,6 +50,7 @@ return {
 	},
 
 	items = {
+		{count = 1, item = require "data/items/PowerRing"}
 	},
 	
 	levelup = {

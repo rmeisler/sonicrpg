@@ -41,7 +41,7 @@ return {
 		{item = require "data/items/Microchip", count = 1, chance = 0.2},
 	},
 	
-	onInit = function(self)		
+	onInit = function(self)
 		-- Setup beam sprite
 		self.shockSprite = SpriteNode(self.scene, Transform(), nil, "shockball", nil, nil, "ui")
 		self.shockSprite.transform.sx = 2
@@ -62,7 +62,7 @@ return {
 	end,
 
 	behavior = function (self, target)
-		if not self.firstMove then
+		if not self.firstMove and #self.scene.opponents < 3 then
 			self.firstMove = true
 			return Serial {
 				Parallel {
@@ -79,8 +79,10 @@ return {
 					Telegraph(self, "Intruder alert!", {255,255,255,50})
 				},
 				Do(function()
-					self.scene:addMonster("legacyswatbot")
-					self.scene:addMonster("legacyswatbot")
+					local opp1 = self.scene:addMonster("legacyswatbot")
+					opp1:onInit()
+					local opp2 = self.scene:addMonster("legacyswatbot")
+					opp2:onInit()
 				end)
 			}
 		end
@@ -146,7 +148,6 @@ return {
 				IfElse(
 					function()
 						return  not target.laserShield and
-								math.random() < 0.7 and
 								target.hp > 0
 					end,
 					Serial {

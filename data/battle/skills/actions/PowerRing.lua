@@ -71,10 +71,12 @@ end
 
 local Spin = function(target, speed, iterations)
 	local targetSprite = target:getSprite()
-	targetSprite.transform.ox = targetSprite.w/2
-	targetSprite.transform.oy = targetSprite.h/2
-	targetSprite.transform.x = targetSprite.transform.x + targetSprite.w/2
-	targetSprite.transform.y = targetSprite.transform.y + targetSprite.h/2
+	if targetSprite.transform.ox == 0 then
+		targetSprite.transform.ox = targetSprite.w/2
+		targetSprite.transform.oy = targetSprite.h/2
+		targetSprite.transform.x = targetSprite.transform.x + targetSprite.w/2
+		targetSprite.transform.y = targetSprite.transform.y + targetSprite.h/2
+	end
 	return Repeat(Serial {
 		Parallel {
 			Serial {

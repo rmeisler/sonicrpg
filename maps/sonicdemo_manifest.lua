@@ -637,6 +637,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/gas.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/botbeam.png"
 	},
 	{

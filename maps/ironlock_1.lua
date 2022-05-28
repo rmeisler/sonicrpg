@@ -1311,8 +1311,8 @@ return {
             ["follow"] = "Waypoint1,Waypoint2,Waypoint1,Waypoint3,Waypoint4,Waypoint3",
             ["followRepeat"] = true,
             ["ghost"] = true,
-            ["ignorePlayer"] = true,
-            ["noInvestigate"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false,
             ["sprite"] = "../art/sprites/cambot2.png"
           }
         },
@@ -1399,8 +1399,8 @@ return {
             ["follow"] = "Waypoint6,Waypoint5",
             ["followRepeat"] = true,
             ["ghost"] = true,
-            ["ignorePlayer"] = true,
-            ["noInvestigate"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false,
             ["sprite"] = "../art/sprites/cambot2.png"
           }
         },
