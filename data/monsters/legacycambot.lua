@@ -8,6 +8,7 @@ local Parallel = require "actions/Parallel"
 local Repeat = require "actions/Repeat"
 local Ease = require "actions/Ease"
 local Animate = require "actions/Animate"
+local IfElse = require "actions/IfElse"
 
 local SpriteNode = require "object/SpriteNode"
 local BattleActor = require "object/BattleActor"
@@ -53,6 +54,11 @@ return {
 		self.targetSprite.transform.ox = self.targetSprite.w/2
 		self.targetSprite.transform.oy = self.targetSprite.h/2
 		self.targetSprite.color[4] = 0
+		
+		-- Cambot gets initiative unless you sneak up
+		if self.scene.initiative ~= "player" then
+			self.scene.initiative = "opponent"
+		end
 	end,
 
 	behavior = function (self, target)
@@ -79,7 +85,7 @@ return {
 			}
 		end
 	
-		if math.random() < 0.5 then
+		if math.random() < 0.2 then
 			if #self.scene.opponents >= 3 then
 				return Serial {
 					Parallel {
@@ -137,9 +143,23 @@ return {
 					Ease(self.sprite.color, 2, 255, 1),
 					Ease(self.sprite.color, 3, 255, 1)
 				},
-				Do(function()
-					self.sprite:setAnimation("idle")
-				end)
+				IfElse(
+					function()
+						return  not target.laserShield and
+								math.random() < 0.7 and
+								target.hp > 0
+					end,
+					Serial {
+						Telegraph(target, target.name.." is stunned!", {255,255,255,50}),
+						Do(function()
+							target.state = BattleActor.STATE_IMMOBILIZED
+							target.turnsImmobilized = 2
+							target.sprite:setAnimation("dead")
+						end)
+					},
+					Do(function() end)
+				),
+				Do(function() self.sprite:setAnimation("idle") end)
 			}
 		end
 	end
