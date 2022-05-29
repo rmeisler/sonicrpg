@@ -260,7 +260,7 @@ function OpposingPartyMember:beginTurn()
 						PlayAudio("sfx", "shocked", 0.5, true),
 					}
 				},
-				self:takeDamage({attack = 10, speed = 0, luck = 0})
+				self:takeDamage({attack = 10, speed = 100, luck = 0})
 			}
 		)
 		self.malfunctioningTurns = self.malfunctioningTurns - 1

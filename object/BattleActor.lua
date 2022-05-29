@@ -168,12 +168,16 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 		end
 	end
 	
+	if stats.nonlethal then
+		damage = math.min(damage, self.hp - 1)
+	end
+	
 	if not damageText then
 		damageText = tostring(damage)
 	end
 	
 	local bouncyTextOffsetX = (direction > 0) and 10 or -50
-	local endHp = math.max(stats.nonlethal and 1 or 0, self.hp - damage)
+	local endHp = math.max(0, self.hp - damage)
 	local action = Serial {
 		isPassive = isPassive,
 		
