@@ -70,6 +70,22 @@ return {
 		},
 		nervous = {
 			frames = {{8,2}}
+		},
+		chefpose = {
+			frames = {{1,4}}
+		},
+		
+		idleright = {
+            frames = {{0,0}}
+        },
+		idleleft = {
+			frames = {{0,1}}
+		},
+		idledown = {
+			frames = {{2,4}}
+		},
+		idleup = {
+			frames = {{3,4}}
 		}
     }
 }

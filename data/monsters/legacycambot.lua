@@ -111,7 +111,8 @@ return {
 						Telegraph(self, "Intruder alert!", {255,255,255,50})
 					},
 					Do(function()
-						self.scene:addMonster("legacyswatbot")
+						local oppo = self.scene:addMonster("legacyswatbot")
+						opp:onInit()
 					end)
 				}
 			end

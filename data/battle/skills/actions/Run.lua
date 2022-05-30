@@ -63,6 +63,10 @@ return function(self, target)
 		Do(function()
 			for index, mem in pairs(self.scene.party) do
 				if mem.id == "antoine" then
+					-- Solidify Antoine's hp/sp outside battle before you leave battle
+					local partyMember = GameState.party.antoine
+					partyMember.hp = mem.hp
+					partyMember.sp = mem.sp
 					table.remove(self.scene.party, index)
 					break
 				end
