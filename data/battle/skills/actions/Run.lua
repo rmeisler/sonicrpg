@@ -58,15 +58,20 @@ return function(self, target)
 		MessageBox {
 			message="Antoine and "..target.name.." have left the battle!",
 			rect=MessageBox.HEADLINER_RECT,
-			closeAction=Wait(0.6)
+			closeAction=Wait(1)
 		},
 		Do(function()
 			for index, mem in pairs(self.scene.party) do
 				if mem.id == "antoine" then
 					table.remove(self.scene.party, index)
-					return
+					break
 				end
 			end
+			
+			target.hp = 0
+			target.state = target.STATE_DEAD
+			target.sprite:remove()
+			target:invoke("dead")
 		end)
 	}
 end
