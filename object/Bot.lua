@@ -674,6 +674,8 @@ function Bot:updateFacing()
 	elseif self:isFacing("right") and self.facing ~= "right" then
 		self.facing = "right"
 		self.facingTime = 0
+	else
+		self.facing = "down"
 	end
 end
 

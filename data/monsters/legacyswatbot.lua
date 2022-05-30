@@ -32,9 +32,9 @@ return {
 
 	stats = {
 		xp    = 30,
-		maxhp = 1000,
-		attack = 35,
-		defense = 15,
+		maxhp = 450,
+		attack = 20,
+		defense = 10,
 		speed = 3,
 		focus = 5,
 		luck = 5,
@@ -65,9 +65,9 @@ return {
 
 	behavior = function (self, target)
 		-- Either do laser attack or poison gas
-		if math.random() < 0.8 then
+		if math.random() < 0.8 or self.scene.usedPoisonGas then
 			-- Either do Arm Laser or Laser Sweep
-			if math.random() < 0.5 then
+			if math.random() < 0.5 or next(self.targetOverrideStack) ~= nil then
 				local laserShot = function(t)
 					local dodgeAction = Action()
 					if t.id == "sonic" and not t.laserShield then
@@ -301,6 +301,7 @@ return {
 		else
 			local targetActionList = {}
 			local backToIdleList = {}
+			self.scene.usedPoisonGas = true
 			for i, c in pairs(self.confused and self.scene.opponents or self.scene.party) do
 				if c.state ~= BattleActor.STATE_DEAD then
 					table.insert(
@@ -315,7 +316,7 @@ return {
 								end
 
 								c.poisoned = table.clone(self.stats)
-								c.poisoned.attack = c.poisoned.attack / 2
+								c.poisoned.attack = c.poisoned.attack * 0.75
 								c.poisoned.speed = 100
 								c.poisoned.nonlethal = true
 								c.sprite:setAnimation("hurt")

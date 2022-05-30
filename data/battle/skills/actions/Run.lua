@@ -12,74 +12,61 @@ local Parallel = require "actions/Parallel"
 local Transform = require "util/Transform"
 local SpriteNode = require "object/SpriteNode"
 
-return function(self, targets)
-	local actions = {PlayAudio("music", "boring", 1.0)}
-	for _, target in pairs(targets) do
-		target.sweatdrop = SpriteNode(
-			target.scene,
-			Transform(target.sprite.transform.x, target.sprite.transform.y - target.sprite.h/2, 2, 2),
-			{255, 255, 255, 0},
-			"sweatdrop",
-			nil,
-			nil,
-			"ui"
-		)
-		table.insert(
-			actions,
-			Serial {
-				Wait(1.5),
-				Parallel {
-					Ease(target.sweatdrop.transform, "y", target.sweatdrop.transform.y + 20, 0.5, "inout"),
-					Ease(target.sweatdrop.color, 4, 255, 0.5, "inout")
-				},
-				Wait(1),
-				Ease(target.sweatdrop.color, 4, 0, 1, "inout"),
-				Do(function()
-					target.sweatdrop:remove()
-					target.lostTurns = target.lostTurns + 1
-					
-					target.sprite:setAnimation(target:getBackwardAnim())
-				end)
-			}
-		)
-	end
-	
+return function(self, target)
 	local prevMusic = self.scene.audio:getCurrentMusic()
 
 	return Serial {
-		MessageBox {
-			rect=MessageBox.HEADLINER_RECT,
-			message="Antoine: Ah-- the Great Maurice D'epardieu...",
-			textSpeed=8,
-			closeAction=Wait(1)
-		},
+		-- Antoine nervous
+		Animate(self.sprite, "nervous"),
+		Wait(1),
 		
-		Animate(self.sprite, "victory"),
+		-- Enemy hops
+		Ease(target.sprite.transform, "y", target.sprite.transform.y - 50, 8, "linear"),
+		Ease(target.sprite.transform, "y", target.sprite.transform.y, 8, "linear"),
+
+		-- Antoine scared hop
+		PlayAudio("sfx", "antoinescared", 1.0, true),
+		Animate(self.sprite, "scaredhop1"),
+		Wait(0.1),
+		Animate(self.sprite, "tremble"),
+		Animate(self.sprite, "scaredhop2"),
+		Ease(self.sprite.transform, "y", self.sprite.transform.y - 50, 7, "linear"),
+		Animate(self.sprite, "scaredhop3"),
+		Ease(self.sprite.transform, "y", self.sprite.transform.y, 7, "linear"),
+		Animate(self.sprite, "scaredhop4"),
+		Wait(0.1),
+		Animate(self.sprite, "scaredhop5"),
+		
+		Wait(1),
+		
+		-- Starts running toward him
+		Do(function()
+			target.sprite:setAnimation("runright")
+		end),
 		Parallel {
+			Ease(target.sprite.transform, "x", self.sprite.transform.x + 400, 0.5),
+			Ease(target.sprite.transform, "y", self.sprite.transform.y, 0.5),
 			Serial {
-				MessageBox {
-					message="Antoine: He was my grandfather! Brave and true!",
-					rect=MessageBox.HEADLINER_RECT,
-					closeAction=Wait(0.6)
-				},
-				MessageBox {
-					message="Antoine: ...and he made a very fine duck confit...",
-					rect=MessageBox.HEADLINER_RECT,
-					closeAction=Wait(1)
-				},
-				MessageBox {
-					message="All bots are bored!",
-					rect=MessageBox.HEADLINER_RECT,
-					closeAction=Wait(0.6)
-				},
-			},
-			Serial {
-				AudioFade("music", 1.0, 0.0, 2),
-				Parallel(actions)
+				-- Antoine runs away with enemy
+				Do(function()
+					self.sprite:setAnimation("runscared")
+				end),
+				Wait(0.5),
+				Ease(self.sprite.transform, "x", self.sprite.transform.x + 400, 1)
 			}
 		},
-		
-		Animate(self.sprite, "idle"),
-		PlayAudio("music", prevMusic, 1.0, true, true),
+		MessageBox {
+			message="Antoine and "..target.name.." have left the battle!",
+			rect=MessageBox.HEADLINER_RECT,
+			closeAction=Wait(0.6)
+		},
+		Do(function()
+			for index, mem in pairs(self.scene.party) do
+				if mem.id == "antoine" then
+					table.remove(self.scene.party, index)
+					return
+				end
+			end
+		end)
 	}
 end
