@@ -3,7 +3,7 @@ local TargetType = require "util/TargetType"
 return {
 	name = "Mushroom Soup",
 	desc = "A rich french dish by Antoine, recovers sp.",
-	target = TargetType.AllParty,
+	target = TargetType.Party,
 	usableFromMenu = true,
 	unusable = function(target)
 		return target.hp == 0

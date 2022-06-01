@@ -127,11 +127,30 @@ function GameState:partySize()
 	return count
 end
 
+function GameState:getEarnedSkill(flag, skillName)
+	return function()
+		local skillPath = "data/battle/skills/"..skillName
+		if self:isFlagSet(flag) then
+			skillPath = skillPath.."2"
+		end
+		return require(skillPath)
+	end
+end
+
 function GameState:getSkills(member)
 	local member = self.party[member]
 	for curLevel = member.level, 1, -1 do 
 		if member.levelup[curLevel] then
-			return member.levelup[curLevel].skills
+			local skillDefs = member.levelup[curLevel].skills
+			local skills = {}
+			for _, skill in pairs(skillDefs) do
+				if type(skill) == "function" then
+					table.insert(skills, skill())
+				else
+					table.insert(skills, skill)
+				end
+			end
+			return skills
 		end
 	end
 	return {}

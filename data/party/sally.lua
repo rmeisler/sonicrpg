@@ -80,10 +80,10 @@ return {
 		[5] = {
 			messages = {"Sally learned \"Interrupt\"!"},
 			skills = {
-				require "data/battle/skills/Scan",
-				require "data/battle/skills/Infect",
+				GameState:getEarnedSkill("nicole_upgrade_scan", "Scan"),
+				GameState:getEarnedSkill("nicole_upgrade_infect", "Infect"),
 				require "data/battle/skills/Rally",
-				require "data/battle/skills/Interrupt"
+				GameState:getEarnedSkill("nicole_upgrade_interrupt", "Interrupt"),
 			}
 		},
 	},
