@@ -868,6 +868,7 @@ function Bot:getBattleArgs()
 			npc.flagForDeletion = true
 			npc.collided = true
 			table.insert(args.opponents, npc:getMonsterData())
+			table.insert(args.flags, self:getFlag())
 		end
 	end
 	
@@ -912,10 +913,6 @@ function Bot:remove()
 		then
 			self.scene.audio:playMusic(self.prevSceneMusic)
 		end
-	end
-
-	if not self.scene.isRestarting and not self.noSetFlag then
-		GameState:setFlag(self:getFlag())
 	end
 
 	self:removeAllUpdates()

@@ -120,7 +120,7 @@ function NPC:construct(scene, layer, object)
 		end
 	end
 	
-	if GameState:isFlagSet(self:getFlag()) then
+	if self.isBot and GameState:isFlagSet(self:getFlag()) then
 		self:removeSceneHandler("update", NPC.update)
 		self:remove()
 		return
@@ -354,6 +354,7 @@ function NPC:messageBox()
 		end
 		
 		battleArgs.initiative = self:getInitiative()
+		battleArgs.flags = {}
 		
 		local npcArgs = self:getBattleArgs()
 		if next(npcArgs) then
@@ -373,7 +374,7 @@ function NPC:messageBox()
 					self.scene.player.extenderarm:remove()
 				end
 				self.scene.player.extenderPieces = {}
-				self:onBattleComplete()
+				self:onBattleComplete(battleArgs)
 			end)
 		}
 	end
@@ -389,12 +390,17 @@ function NPC:getBattleArgs()
 	return {
 		opponents = {
 			self:getMonsterData()
+		},
+		flags = {
+			self:getFlag()
 		}
 	}
 end
 
-function NPC:onBattleComplete()
-	-- noop
+function NPC:onBattleComplete(args)
+	for _, flag in pairs(args.flags) do
+		GameState:setFlag(flag)
+	end
 end
 
 function NPC:getInitiative()
@@ -632,10 +638,6 @@ function NPC:remove()
 				self.scene.map.collisionMap[pair[2]][pair[1]] = nil
 			end
 		end
-	end
-	
-	if not self.scene.isRestarting and not self.noSetFlag and self.isBot then
-		GameState:setFlag(self:getFlag())
 	end
 	
 	if self.scene.player then

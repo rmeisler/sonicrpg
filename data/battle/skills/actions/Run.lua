@@ -16,6 +16,8 @@ return function(self, target)
 	local prevMusic = self.scene.audio:getCurrentMusic()
 
 	return Serial {
+		Do(function() self.sprite.sortOrderY = nil end),
+
 		-- Antoine nervous
 		Animate(self.sprite, "nervous"),
 		Wait(1),
