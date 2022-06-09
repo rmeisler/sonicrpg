@@ -27,6 +27,5 @@ return {
 			HealText("hp", 1000, {0, 255, 0, 255}),
 			HealText("sp", 20, {0, 255, 255, 255})
 		}
-		return 
 	end
 }

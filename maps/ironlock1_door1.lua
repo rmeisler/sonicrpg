@@ -280,7 +280,7 @@ return {
           name = "Chest1",
           type = "Chest",
           shape = "rectangle",
-          x = 352,
+          x = 368,
           y = 352,
           width = 64,
           height = 64,
