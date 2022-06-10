@@ -281,7 +281,7 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 352,
-          y = 352,
+          y = 288,
           width = 64,
           height = 64,
           rotation = 0,

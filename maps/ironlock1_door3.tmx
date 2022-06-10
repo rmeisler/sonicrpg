@@ -71,7 +71,7 @@
     <property name="sprite" type="file" value="../art/sprites/door6.png"/>
    </properties>
   </object>
-  <object id="21" name="Ghost" type="BasicNPC" gid="6242" x="352" y="352" width="64" height="64">
+  <object id="21" name="Ghost" type="BasicNPC" gid="6242" x="352" y="288" width="64" height="64">
    <properties>
     <property name="alphaOverride" type="int" value="150"/>
     <property name="defaultAnim" value="idledown"/>

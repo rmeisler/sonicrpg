@@ -1063,6 +1063,21 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/stare.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/cyclopsstep.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/cyclopsroar.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/boomerang.ogg",
 		category = "sfx"
 	},

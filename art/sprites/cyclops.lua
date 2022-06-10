@@ -16,6 +16,16 @@ return {
 		hurt = {
 			frames = {{2,0}}
 		},
+		roar = {
+			frames = {{3,0},{4,0}},
+			speed = 0.2
+		},
+		stomp1 = {
+			frames = {{10,0}}
+		},
+		stomp2 = {
+			frames = {{11,0}}
+		},
 		walkright = {
 			frames = {{0,0},{1,0},{2,0},{3,0},{4,0},{5,0},{6,0},{7,0}},
 			speed = 0.13

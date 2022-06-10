@@ -914,7 +914,8 @@
     <property name="alignOffsetX" type="float" value="-32"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
-    <property name="keyToDoor" value="RustedOldKey"/>
+    <property name="keyToDoor" value="Rusty Old Key"/>
+    <property name="locked" type="bool" value="true"/>
     <property name="orientation" value="down"/>
     <property name="scene" type="file" value="ironlock1_door4.lua"/>
     <property name="spawn_point" value="Door"/>

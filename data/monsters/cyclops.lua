@@ -9,6 +9,8 @@ local PlayAudio = require "actions/PlayAudio"
 local YieldUntil = require "actions/YieldUntil"
 local Try = require "actions/Try"
 local BouncyText = require "actions/BouncyText"
+local Repeat = require "actions/Repeat"
+local MessageBox = require "actions/MessageBox"
 
 local SpriteNode = require "object/SpriteNode"
 local BattleActor = require "object/BattleActor"
@@ -59,7 +61,60 @@ return {
 	end,
 	
 	behavior = function (self, target)
-		return Do(function() end)
+		if math.random() < 0.5 then
+			local sapActions = {}
+			local spLoss = 5
+			for _, mem in pairs(self.scene.party) do
+				if mem.state ~= BattleActor.STATE_DEAD then
+					mem.sp = mem.sp - spLoss
+					table.insert(sapActions, Serial {
+						Animate(mem.sprite, "hurt"),
+						Wait(1),
+						Animate(mem.sprite, "idle")
+					})
+				end
+			end
+
+			return Serial {
+				Telegraph(self, "Roar", {255,255,255,50}),
+				PlayAudio("sfx", "cyclopsroar", 1.0, true),
+				Do(function() self.sprite:setAnimation("roar") end),
+				Parallel {
+					Serial {
+						self.scene:screenShake(20, 30, 14),
+						Do(function() self.sprite:setAnimation("idle") end)
+					},
+					Parallel(sapActions)
+				},
+				MessageBox {
+					message="Party lost sp!",
+					rect=MessageBox.HEADLINER_RECT,
+					closeAction=Wait(1)
+				}
+			}
+		else
+			return Serial {
+				Telegraph(self, "Stomp", {255,255,255,50}),
+				
+				Repeat(Serial {
+					PlayAudio("sfx", "cyclopsstep", 1.0, true),
+					Do(function() self.sprite:setAnimation("stomp1") end),
+					self.scene:screenShake(20, 30, 1),
+					Wait(0.6),
+					PlayAudio("sfx", "cyclopsstep", 1.0, true),
+					Do(function() self.sprite:setAnimation("stomp2") end),
+					self.scene:screenShake(20, 30, 1),
+					Wait(0.6)
+				}, 2),
+				
+				Do(function() self.sprite:setAnimation("idle") end),
+				MessageBox {
+					message="Party is paralyzed!",
+					rect=MessageBox.HEADLINER_RECT,
+					closeAction=Wait(1)
+				}
+			}
+		end
 	end,
 	
 	getIdleAnim = function(self)
