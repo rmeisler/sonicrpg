@@ -57,7 +57,10 @@ return {
 	end,
 	
 	onInit = function(self)
-		
+		-- Party members need to look up at cyclops
+		for _,mem in pairs(self.scene.party) do
+			mem.sprite:pushOverride("idle", "idle_lookup")
+		end
 	end,
 	
 	behavior = function (self, target)
@@ -66,7 +69,7 @@ return {
 			local spLoss = 5
 			for _, mem in pairs(self.scene.party) do
 				if mem.state ~= BattleActor.STATE_DEAD then
-					mem.sp = mem.sp - spLoss
+					mem.sp = max(0, mem.sp - spLoss)
 					table.insert(sapActions, Serial {
 						Animate(mem.sprite, "hurt"),
 						Wait(1),
@@ -87,7 +90,7 @@ return {
 					Parallel(sapActions)
 				},
 				MessageBox {
-					message="Party lost sp!",
+					message="Party members lost "..tostring(spLoss).." sp!",
 					rect=MessageBox.HEADLINER_RECT,
 					closeAction=Wait(1)
 				}

@@ -8,6 +8,9 @@ return {
         idle = {
             frames = {{0,1}}
         },
+		idle_lookup = {
+            frames = {{5,5}}
+        },
 		backward = {
 			frames = {{0,0}}
 		},

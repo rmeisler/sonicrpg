@@ -94,9 +94,6 @@ function BattleScene:onEnter(args)
 		local oppo = self:addMonster(v)
 		oppo:onPreInit()
 	end
-	for _,oppo in pairs(self.opponents) do
-		oppo:onInit()
-	end
 	table.sort(self.opponents, function(a, b) return a.sprite.transform.y < b.sprite.transform.y end)
 	
 	self.partyByName = {}
@@ -141,6 +138,10 @@ function BattleScene:onEnter(args)
 		self.party,
 		self.opponents
 	)
+	
+	for _,oppo in pairs(self.opponents) do
+		oppo:onInit()
+	end
 
 	self.initialized = false
 	self.state = BattleScene.STATE_PLAYERTURN
