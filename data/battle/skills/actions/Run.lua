@@ -14,6 +14,7 @@ local SpriteNode = require "object/SpriteNode"
 
 return function(self, target)
 	local prevMusic = self.scene.audio:getCurrentMusic()
+	local targetSp = target:getSprite()
 
 	return Serial {
 		Do(function() self.sprite.sortOrderY = nil end),
@@ -23,8 +24,8 @@ return function(self, target)
 		Wait(1),
 		
 		-- Enemy hops
-		Ease(target.sprite.transform, "y", target.sprite.transform.y - 50, 8, "linear"),
-		Ease(target.sprite.transform, "y", target.sprite.transform.y, 8, "linear"),
+		Ease(targetSp.transform, "y", targetSp.transform.y - 50, 8, "linear"),
+		Ease(targetSp.transform, "y", targetSp.transform.y, 8, "linear"),
 
 		-- Antoine scared hop
 		PlayAudio("sfx", "antoinescared", 1.0, true),
@@ -43,11 +44,11 @@ return function(self, target)
 		
 		-- Starts running toward him
 		Do(function()
-			target.sprite:setAnimation("runright")
+			targetSp:setAnimation("runright")
 		end),
 		Parallel {
-			Ease(target.sprite.transform, "x", self.sprite.transform.x + 400, 0.5),
-			Ease(target.sprite.transform, "y", self.sprite.transform.y, 0.5),
+			Ease(targetSp.transform, "x", self.sprite.transform.x + 400, 0.5),
+			Ease(targetSp.transform, "y", self.sprite.transform.y, 0.5),
 			Serial {
 				-- Antoine runs away with enemy
 				Do(function()
@@ -76,7 +77,7 @@ return function(self, target)
 			
 			target.hp = 0
 			target.state = target.STATE_DEAD
-			target.sprite:remove()
+			targetSp:remove()
 			target:invoke("dead")
 		end)
 	}

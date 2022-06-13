@@ -22,6 +22,7 @@ local Smack = require "data/monsters/actions/Smack"
 
 local Transform = require "util/Transform"
 local ItemType = require "util/ItemType"
+local TargetType = require "util/TargetType"
 
 local BattleActor = require "object/BattleActor"
 
@@ -248,7 +249,9 @@ return {
 				target:takeDamage(self.stats, true),
 				Do(function()
 					-- Can't poison someone wearing Copper Amulet
-					if GameState:isEquipped(target.id, ItemType.Accessory, "Copper Amulet") then
+					if target.side == TargetType.Party and
+					   GameState:isEquipped(target.id, ItemType.Accessory, "Copper Amulet")
+					then
 						return
 					end
 

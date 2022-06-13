@@ -22,6 +22,15 @@ return {
             frames = {{2,0},{3,0}},
 			speed = 0.4
         },
+		
+		runright = {
+            frames = {{0,0},{1,0}},
+			speed = 0.4
+        },
+		runleft = {
+            frames = {{2,0},{3,0}},
+			speed = 0.4
+        },
 
 		hurt = {
 			frames = {{11,0}}
