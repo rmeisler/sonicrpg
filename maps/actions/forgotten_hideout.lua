@@ -58,5 +58,5 @@ return function(scene, hint)
 		})
 	end
 	
-	return PlayAudio("music", "forgottendiscovery", 1.0, true, true)
+	return PlayAudio("music", "forgottenhideout2", 1.0, true, true)
 end
