@@ -31,7 +31,7 @@ return {
 	sprite = "sprites/swatbotwhite",
 
 	stats = {
-		xp    = 30,
+		xp    = 15,
 		maxhp = 450,
 		attack = 20,
 		defense = 10,

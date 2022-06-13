@@ -108,7 +108,7 @@ return {
 					local spLoss = 5
 					for _, mem in pairs(self.scene.party) do
 						if mem.state ~= BattleActor.STATE_DEAD then
-							mem.sp = max(0, mem.sp - spLoss)
+							mem.sp = math.max(0, mem.sp - spLoss)
 							table.insert(sapActions, Serial {
 								Animate(mem.sprite, "hurt"),
 								Wait(1),
