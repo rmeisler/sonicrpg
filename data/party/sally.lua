@@ -86,6 +86,16 @@ return {
 				GameState:getEarnedSkill("nicole_upgrade_interrupt", "Interrupt"),
 			}
 		},
+		[6] = {
+			messages = {"Sally learned \"Inspire\"!"},
+			skills = {
+				GameState:getEarnedSkill("nicole_upgrade_scan", "Scan"),
+				GameState:getEarnedSkill("nicole_upgrade_infect", "Infect"),
+				require "data/battle/skills/Rally",
+				GameState:getEarnedSkill("nicole_upgrade_interrupt", "Interrupt"),
+				require "data/battle/skills/Inspire",
+			}
+		},
 	},
 	
 	specialmove = require "data/specialmoves/sally",

@@ -29,6 +29,7 @@ function BattleActor:construct(scene, data)
 	self.hp = data.hp or 0
 	self.sp = data.sp or 0
 	self.color = scene.color or {255,255,255,255}
+	self.extraLives = 0
 	
 	self.raw = data
 	
@@ -266,6 +267,8 @@ function BattleActor:die()
 		Do(function()
 			self.hp = 0
 			self.state = BattleActor.STATE_DEAD
+			self.turnsImmobilized = false
+			self.poisoned = nil
 			
 			self:getSprite():setAnimation("dead")
 			self:invoke("dead")

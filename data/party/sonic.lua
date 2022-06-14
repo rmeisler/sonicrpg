@@ -78,6 +78,16 @@ return {
 				require "data/battle/skills/Tease"
 			}
 		},
+		[6] = {
+			messages = {"Sonic learned \"Pummel\"!"},
+			skills = {
+				require "data/battle/skills/PowerRing",
+				require "data/battle/skills/Spindash",
+				require "data/battle/skills/Roundabout",
+				require "data/battle/skills/Tease",
+				require "data/battle/skills/Pummel"
+			}
+		},
 	},
 	
 	specialmove = require "data/specialmoves/sonic",

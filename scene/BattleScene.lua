@@ -325,6 +325,10 @@ function BattleScene:update(dt)
 				for _, mem in pairs(self.party) do
 					if mem.state ~= BattleActor.STATE_DEAD then
 						table.insert(self.partyTurns, mem)
+					elseif mem.extraLives > 0 then
+						mem.extraLives = mem.extraLives - 1
+						mem.state = BattleActor.STATE_IDLE
+						table.insert(self.partyTurns, mem)
 					end
 				end
 

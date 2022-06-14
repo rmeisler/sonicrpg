@@ -71,6 +71,9 @@ return {
 			frames = {{14,3},{15,3}},
 			speed = 0.04
 		},
+		rise = {
+			frames = {{7,2}}
+		},
 		nervous = {
 			frames = {{8,2}}
 		},

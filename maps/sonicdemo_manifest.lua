@@ -1227,6 +1227,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/resiliency.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/forgottenhideout2.ogg",
 		category = "music",
 		looping = true,

@@ -80,7 +80,7 @@ return function()
 					{255, 0, 255, 255},
 					FontCache.ConsolasLarge,
 					"cured",
-					6,
+					10,
 					false,
 					true
 				),

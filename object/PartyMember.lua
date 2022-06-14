@@ -35,6 +35,7 @@ function PartyMember:construct(scene, data)
 	self.hp = data.hp or 0
 	self.sp = data.sp or 0
 	self.charge = 100
+	self.extraLives = 0
 	
 	self.sprite.color = table.clone(scene.color or {255,255,255,255})
 	
@@ -203,6 +204,15 @@ function PartyMember:beginTurn()
 				MessageBox {message=self.name.." is poisoned!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(0.6)},
 				self:takeDamage(self.poisoned, true, BattleActor.poisonKnockback)
 			}
+		end
+		
+		if self.onNextTurn then
+			print("next turn here")
+			preAction = Serial {
+				self.onNextTurn,
+				preAction
+			}
+			self.onNextTurn = nil
 		end
 	
 		BattleActor.beginTurn(self)

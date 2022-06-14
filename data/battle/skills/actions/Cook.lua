@@ -10,6 +10,8 @@ local PlayAudio = require "actions/PlayAudio"
 local Parallel = require "actions/Parallel"
 local Repeat = require "actions/Repeat"
 
+local Stars = require "data/battle/actions/Stars"
+
 local Transform = require "util/Transform"
 local SpriteNode = require "object/SpriteNode"
 
@@ -38,12 +40,17 @@ return function(self, target)
 			},
 			2
 		),
-		Animate(self.sprite, "chefpose"),
-		MessageBox {
-			rect=MessageBox.HEADLINER_RECT,
-			message="Antoine: Bon Appetit!",
-			textSpeed=8,
-			closeAction=Wait(1)
+		Parallel {
+			Stars(self, self),
+			Serial {
+				Animate(self.sprite, "chefpose"),
+				MessageBox {
+					rect=MessageBox.HEADLINER_RECT,
+					message="Antoine: Bon Appetit!",
+					textSpeed=8,
+					closeAction=Wait(1)
+				}
+			}
 		},
 		
 		MessageBox {
