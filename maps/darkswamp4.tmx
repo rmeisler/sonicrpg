@@ -491,6 +491,7 @@
   </object>
   <object id="181" name="Eyes1" type="BasicNPC" gid="7597" x="2894" y="1184" width="64" height="64">
    <properties>
+    <property name="ghost" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
     <property name="onInit">return function(self)
     self.hidden = true
@@ -502,7 +503,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomface.png"/>
    </properties>
   </object>
-  <object id="182" name="EyesTrap1" type="BasicNPC" gid="7597" x="2880" y="1248" width="96" height="96">
+  <object id="182" name="EyesTrap1" type="BasicNPC" gid="7597" x="2880" y="1248" width="96" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="whileColliding">local Animate = require &quot;actions/Animate&quot;
@@ -582,7 +583,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>
   </object>
-  <object id="184" name="Chest4" type="Chest" gid="7597" x="2898" y="1152" width="64" height="64">
+  <object id="184" name="Chest4" type="Chest" gid="7597" x="2898" y="1197" width="64" height="64">
    <properties>
     <property name="LuckyCoin" type="int" value="1"/>
     <property name="hidden" type="bool" value="true"/>

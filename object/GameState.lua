@@ -147,7 +147,12 @@ function GameState:getSkills(member)
 				if type(skill) == "function" then
 					table.insert(skills, skill())
 				else
-					table.insert(skills, skill)
+					table.insert(skills, table.clone(skill))
+				end
+				if member.id == "sally" and
+				   self:isEquipped(member.id, ItemType.Accessory, "Signal Booster")
+				then
+					skills[#skills].cost = math.max(1, math.floor(skills[#skills].cost * (1.0 - 0.25)))
 				end
 			end
 			return skills

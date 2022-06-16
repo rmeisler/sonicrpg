@@ -34,7 +34,7 @@ return function(scene)
 		Ease(text.color, 4, 0, 1)
 	})
 	
-	scene.audio:playMusic("greatforest", 0.5)
+	scene.audio:playMusic("greatforest", 1.0)
 	
 	scene.player.dustColor = Player.FOREST_DUST_COLOR
 
