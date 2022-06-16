@@ -46,21 +46,24 @@ function love.load()
 	
 	math.randomseed(os.time())
 	
-	sceneMgr:pushScene {class = "SageSplashScene"}
+	sceneMgr:pushScene {class = "CreatorSplashScene"}
 end
 
 function love.update(dt)
-	love.frame = 1--(love.frame or 0) + 1
-    if love.frame % 100 == 0 then
-        print(tostring(love.profiler.report('time', 20)))
-        love.profiler.reset()
+	-- Stay on top of your garbage lua!!
+	love.frame = (love.frame or 0) + 1
+    if love.frame % 10000 == 0 then
+        --print(tostring(love.profiler.report('time', 20)))
+        --love.profiler.reset()
+		print(collectgarbage("count"))
+		collectgarbage("collect")
     end
 
-    --[[if love.keyboard.isDown("f") then
+    if love.keyboard.isDown("f") then
         dt = dt * 10
 	elseif love.keyboard.isDown("s") then
         dt = dt / 4
-    end]]
+    end
 
     sceneMgr:update(dt)
 end

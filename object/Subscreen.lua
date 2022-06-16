@@ -206,11 +206,11 @@ function Subscreen:openSkillsMenu(player)
 	local layout = {
 		Layout.Columns{ columnTemplate, columnTemplate },
 		Layout.Columns{ columnTemplate, columnTemplate },
-		Layout.Columns{ columnTemplate, columnTemplate },
+		Layout.Columns{ columnTemplate, columnTemplate }
 	}
-	local index = 1
+	local index = 0
 	for _, skill in pairs(GameState:getSkills(player.id)) do
-		layout[math.floor(index/3) + 1].__columns[((index + 1) % 2) + 1] = {
+		layout[math.floor(index / 2) + 1].__columns[(index % 2) + 1] = {
 			Layout.Text(string.format("%s%"..tostring(10 - skill.name:len()).."s", skill.name, "")),
 			Layout.Text{text={{255,255,0}, string.format("%s%"..tostring(skill.cost >= 10 and 0 or 1).."s", skill.cost, "")}},
 			choose = function(menu)

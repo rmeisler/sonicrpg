@@ -78,7 +78,7 @@ return function()
 						target.sprite.transform.y + target.textOffset.y
 					),
 					{255, 0, 255, 255},
-					FontCache.ConsolasLarge,
+					FontCache.Consolas,
 					"cured",
 					10,
 					false,

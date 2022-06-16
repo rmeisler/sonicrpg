@@ -18,7 +18,7 @@ function Parallax.ForBattle(scene, imgsrc, speedx, speedy)
 end
 
 function Parallax:construct(scene, layer)
-	--[[self.layer = layer
+	self.layer = layer
 	self.w = self.layer.image:getWidth()
 	self.h = self.layer.image:getHeight()
 
@@ -78,17 +78,17 @@ function Parallax:construct(scene, layer)
 	self.dy = self.layer.properties.speedy or 0
 	self.sticky = true
 	
-	self:addSceneHandler("update", Parallax.update)]]
+	self:addSceneHandler("update", Parallax.update)
 end
 
 function Parallax:remove()
-	--self.layer.draw = self.oneDraw
-	--SceneNode.remove(self)
+	self.layer.draw = self.oneDraw
+	SceneNode.remove(self)
 end
 
 function Parallax:draw()
 	-- Hack: only called from SpriteNode:draw during drawWithParallax
-	--self.layer.draw()
+	self.layer.draw()
 end
 
 function Parallax:update(dt)
