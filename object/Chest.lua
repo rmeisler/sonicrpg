@@ -10,6 +10,7 @@ function Chest:construct(scene, layer, object)
 	object.properties.defaultAnim = nil
 	object.properties.appearAfter = nil
 	object.properties.alphaOverride = nil
+	object.properties.hidden = nil
 	
 	local nonight = object.properties.nonight
 	object.properties.nonight = nil

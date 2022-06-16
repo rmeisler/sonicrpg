@@ -67,6 +67,10 @@ function NPC:construct(scene, layer, object)
 		self.onUpdate = assert(loadstring(object.properties.onUpdate))()
 	end
 	
+	if object.properties.onRemove then
+		self.onRemove = assert(loadstring(object.properties.onRemove))()
+	end
+	
 	if object.properties.onInteract then
 		self:addInteract(NPC.onInteract)
 	end
@@ -651,6 +655,10 @@ function NPC:remove()
 	if self.sprite then
 		self.sprite:remove()
 		self.sprite = nil
+	end
+	
+	if self.onRemove then
+		self.onRemove(self)
 	end
 	
 	SceneNode.remove(self)
