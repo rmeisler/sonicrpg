@@ -6,7 +6,7 @@ return {
 	unusable = function(target)
 		return target.side == TargetType.Party or target.name == "Phantom"
 	end,
-	cost = 5,
+	cost = 7,
 	desc = "Sally injects bugs into a bot's software.",
 	action = require "data/battle/skills/actions/Infect2"
 }

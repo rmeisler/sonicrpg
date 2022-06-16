@@ -28,7 +28,7 @@ return function(self, target)
 		PlayAudio("sfx", "nicholescan", 1.0, true),
 		-- Parallax over enemy
 		Do(function()
-			target:getSprite():setParallax(2)
+			target:getSprite():setParallax(2, "blue")
 		end),
 		Wait(1.6),
 		Do(function()
@@ -51,7 +51,7 @@ return function(self, target)
 				PlayAudio("sfx", "shocked", 0.5, true),
 			}
 		},
-		target:takeDamage({attack = 10, speed = 100, luck = 0}),
+		target:takeDamage({attack = 20, speed = 100, luck = 0}),
 		
 		MessageBox {
 			message=target.name.." is malfunctioning!",

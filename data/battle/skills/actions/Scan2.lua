@@ -30,7 +30,7 @@ return function(self, target)
 		PlayAudio("sfx", "nicholescan", 1.0, true),
 		-- Parallax over enemy
 		Do(function()
-			target:getSprite():setParallax(2)
+			target:getSprite():setParallax(2, "blue")
 		end),
 		Wait(1.6),
 		Do(function()
