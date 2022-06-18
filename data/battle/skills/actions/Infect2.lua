@@ -14,6 +14,7 @@ local Transform = require "util/Transform"
 
 return function(self, target)
 	target.malfunctioningTurns = 3
+	target.infectedStats = {attack = 20, speed = 0, luck = 0}
 	return Serial {
 		Animate(self.sprite, "nichole_start"),
 		Animate(self.sprite, "nichole_idle"),
@@ -51,7 +52,7 @@ return function(self, target)
 				PlayAudio("sfx", "shocked", 0.5, true),
 			}
 		},
-		target:takeDamage({attack = 20, speed = 100, luck = 0}),
+		target:takeDamage(target.infectedStats),
 		
 		MessageBox {
 			message=target.name.." is malfunctioning!",

@@ -260,7 +260,7 @@ function OpposingPartyMember:beginTurn()
 						PlayAudio("sfx", "shocked", 0.5, true),
 					}
 				},
-				self:takeDamage({attack = 10, speed = 100, luck = 0})
+				self:takeDamage(self.infectedStats or {attack = 10, speed = 100, luck = 0})
 			}
 		)
 		self.malfunctioningTurns = self.malfunctioningTurns - 1
@@ -269,6 +269,7 @@ function OpposingPartyMember:beginTurn()
 			additionalActions,
 			Telegraph(self, self.name.." is no longer malfunctioning.", {self.color[1],self.color[2],self.color[3],50})
 		)
+		self.infectedStats = nil
 		self.malfunctioningTurns = self.malfunctioningTurns - 1
 	end
 	

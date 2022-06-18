@@ -38,6 +38,39 @@ function BattleMenu:draw()
 		love.graphics.print(opponent.name, self.transform.x + 15, self.transform.y + 15 + ((index-1) * 28))
 	end
 	
+	-- Opponent stats (if applicable)
+	for _,oppo in pairs(self.opponents) do
+		if oppo.showHp then
+			local hpPosX = oppo:getSprite().transform.x - oppo:getSprite().w
+			local hpPosY = oppo:getSprite().transform.y + oppo:getSprite().h
+
+			-- Draw back of progress bar
+			love.graphics.setColor(0, 0, 0, math.min(oppo.showHpAlpha, 100))
+			love.graphics.rectangle("fill", hpPosX, hpPosY, 200, 10, 2, 2)
+
+			-- Draw progress bar
+			if oppo.hp > 0 then
+				love.graphics.setColor(80, 255, 80, oppo.showHpAlpha)
+				love.graphics.rectangle("fill", hpPosX, hpPosY, 200 * (oppo.hp / oppo.maxhp), 10, 2, 2)
+			end
+			
+			-- Align hp text
+			local hpText = string.format('%5s / %s', tostring(oppo.hp), tostring(oppo.maxhp))
+			
+			-- Draw stat text with outline
+			love.graphics.setColor(0, 0, 0, math.min(oppo.showHpAlpha))
+			for x=-2,2,2 do
+				for y=-2,2,2 do
+					love.graphics.print(hpText, hpPosX + x + 15, hpPosY + y - 10)
+				end
+			end
+			
+			-- Align hp / maxhp
+			love.graphics.setColor(255, 255, 255, oppo.showHpAlpha)
+			love.graphics.print(hpText, hpPosX + 15, hpPosY - 10)
+		end
+	end
+	
 	-- Player names/stats
 	for index,player in pairs(self.party) do
 		index = index - 1

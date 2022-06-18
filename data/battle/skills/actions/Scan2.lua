@@ -4,6 +4,7 @@ local Serial = require "actions/Serial"
 local Wait = require "actions/Wait"
 local Animate = require "actions/Animate"
 local Do = require "actions/Do"
+local Ease = require "actions/Ease"
 local PlayAudio = require "actions/PlayAudio"
 
 local Parallax = require "object/Parallax"
@@ -38,10 +39,18 @@ return function(self, target)
 		end),
 		weaknessMessage,
 		MessageBox {
-			message=string.format("%s %d / %d", "Nicole: Remaining HP ", target.hp, target.maxhp),
+			message=string.format("Nicole: Loading heads-up display of hp..."),
 			rect=MessageBox.HEADLINER_RECT,
 			closeAction=Wait(1.2)
 		},
+		
+		Do(function()
+			target.showHp = true
+			target.showHpAlpha = 0
+		end),
+		
+		Ease(target, "showHpAlpha", 255, 1),
+		
 		Animate(self.sprite, "nichole_retract"),
 		Animate(self.sprite, "idle"),
 	}
