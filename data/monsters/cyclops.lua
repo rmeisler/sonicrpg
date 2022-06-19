@@ -72,7 +72,7 @@ return {
 					mem.sp = math.max(0, mem.sp - spLoss)
 					table.insert(sapActions, Serial {
 						Animate(mem.sprite, "hurt"),
-						Wait(1),
+						Wait(2),
 						Animate(mem.sprite, "idle")
 					})
 				end
@@ -80,11 +80,12 @@ return {
 
 			return Serial {
 				Telegraph(self, "Roar", {255,255,255,50}),
-				PlayAudio("sfx", "cyclopsroar", 1.0, true),
+				Wait(0.5),
 				Do(function() self.sprite:setAnimation("roar") end),
+				PlayAudio("sfx", "cyclopsroar", 1.0, true),
 				Parallel {
 					Serial {
-						self.scene:screenShake(20, 30, 14),
+						self.scene:screenShake(20, 30, 15),
 						Do(function() self.sprite:setAnimation("idle") end)
 					},
 					Parallel(sapActions)
@@ -96,19 +97,38 @@ return {
 				}
 			}
 		else
+			local paralyzedActions = {}
+			for _, mem in pairs(self.scene.party) do
+				if mem.state ~= BattleActor.STATE_DEAD then
+					mem.state = BattleActor.STATE_IMMOBILIZED
+					table.insert(paralyzedActions, Serial {
+						Animate(mem.sprite, "hurt"),
+						Wait(5),
+						Animate(mem.sprite, "stun")
+					})
+				end
+			end
+			
 			return Serial {
 				Telegraph(self, "Stomp", {255,255,255,50}),
 				
-				Repeat(Serial {
-					PlayAudio("sfx", "cyclopsstep", 1.0, true),
-					Do(function() self.sprite:setAnimation("stomp1") end),
-					self.scene:screenShake(20, 30, 1),
-					Wait(0.6),
-					PlayAudio("sfx", "cyclopsstep", 1.0, true),
-					Do(function() self.sprite:setAnimation("stomp2") end),
-					self.scene:screenShake(20, 30, 1),
-					Wait(0.6)
-				}, 2),
+				Parallel {
+					Repeat(Serial {
+						PlayAudio("sfx", "cyclopsstep", 1.0, true),
+						Do(function() self.sprite:setAnimation("stomp1") end),
+						self.scene:screenShake(20, 30, 1),
+						Wait(0.6),
+						PlayAudio("sfx", "cyclopsstep", 1.0, true),
+						Do(function() self.sprite:setAnimation("stomp2") end),
+						self.scene:screenShake(20, 30, 1),
+						Wait(0.6)
+					}, 2),
+					
+					Serial {
+						Wait(0.6),
+						Parallel(paralyzedActions)
+					}
+				},
 				
 				Do(function() self.sprite:setAnimation("idle") end),
 				MessageBox {

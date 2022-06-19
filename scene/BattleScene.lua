@@ -14,6 +14,7 @@ local Transform  = require "util/Transform"
 local Gradient   = require "util/Gradient"
 local Layout     = require "util/Layout"
 local Audio      = require "util/Audio"
+local ItemType   = require "util/ItemType"
 
 local Action    = require "actions/Action"
 local Executor  = require "actions/Executor"
@@ -147,6 +148,13 @@ function BattleScene:onEnter(args)
 	self.state = BattleScene.STATE_PLAYERTURN
 	
 	local initiativeAction = Action()
+	
+	-- Initiative modified by Tuning Fork
+	if self.initiative == "opponent" and
+	   GameState:isEquipped(GameState.leader, ItemType.Accessory, "Tuning Fork")
+	then
+		self.initiative = nil
+	end
 
 	-- Player has initiative by encountering enemy from behind
 	if self.initiative == "player" then

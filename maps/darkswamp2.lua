@@ -8,7 +8,7 @@ return {
   height = 100,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 182,
+  nextobjectid = 183,
   properties = {
     ["battlebg"] = "../art/backgrounds/dswamp.png",
     ["noBattleMusic"] = true,

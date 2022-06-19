@@ -23,6 +23,9 @@ return {
 		irritated = {
 			frames = {{1,6}}
 		},
+		shock = {
+			frames = {{11,4}}
+		},
 		
 		meeting_idledown = {
 			frames = {{0,2}},

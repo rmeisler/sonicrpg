@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 357,
+  nextobjectid = 358,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = true,
@@ -4315,6 +4315,29 @@ return {
             ["nonight"] = true,
             ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    local prevPlayerAnim = self.scene.player.sprite.selected\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Animate(self.sprite, \"attitude\"),\n            MessageBox {message = \"Ivan: Burning a candle at both ends seems not advisable. {p60}The wax would get everywhere.\"},\n            MessageBox {message = \"Sally: Uh... {p60}good point.\"},\n            Animate(self.sprite, \"idledown\"),\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            MessageBox {message = \"Ivan: Have you fallen ill, Princess?\"},\n            MessageBox {message = \"Sally: No, I've just been burning the candle at both ends recently.\"},\n            Animate(self.sprite, \"attitude\"),\n            MessageBox {message = \"Ivan: How can one burn a candle at the bottom end without exposing the wick?\"},\n            MessageBox {message = \"Sally: It's just an expression.\"},\n            MessageBox {message = \"Ivan: Hmm... {p60}this expression disturbs me.\"},\n            Animate(self.sprite, \"idledown\"),\n            Do(function()\n                self.scene.player.noIdle = false\n                self:refreshKeyHint()\n            end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/ivan.png"
+          }
+        },
+        {
+          id = 357,
+          name = "Logan",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4800,
+          y = 1856,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    GameState:setFlag(self:getFlag())\n    return BlockPlayer {\n        Animate(self.sprite, \"shock\"),\n        MessageBox {message = \"Logan: Wowee!! {p60}You scared me!\"},\n        Animate(self.sprite, \"idledown\"),\n        MessageBox {message = \"Logan: What am I doing?... {p60}Uh-- nothing.\"},\n        MessageBox {message = \"Logan: I should get to bed. {p60}Goodnight!\"},\n        Do(function()\n            self.scene.player.noIdle = false\n            self:refreshKeyHint()\n        end)\n    }\nend",
+            ["sprite"] = "../art/sprites/logan.png"
           }
         }
       }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="83" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="182">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="83" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="183">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/dswamp.png"/>
   <property name="noBattleMusic" type="bool" value="true"/>

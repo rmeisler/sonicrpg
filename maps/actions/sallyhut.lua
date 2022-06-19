@@ -158,7 +158,7 @@ return function(scene, hint)
 				Do(function()
 					scene.player.sprite.visible = true
 					scene.player.x = scene.objectLookup.SallysBed.x + 70
-					scene.player.y = scene.objectLookup.SallysBed.y
+					scene.player.y = scene.objectLookup.SallysBed.y + scene.objectLookup.SallysBed.sprite.h
 					scene.player.object.properties.ignoreMapCollision = true
 					scene.player.state = "shock"
 					scene.player.sprite:setAnimation("shock")

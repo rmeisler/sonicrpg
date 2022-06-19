@@ -20,6 +20,9 @@ return {
         crouch = {
             frames = {{3,0}}
         },
+		stun = {
+            frames = {{3,5}}
+        },
         leap = {
             frames = {{4,0}}
         },
