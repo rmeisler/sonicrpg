@@ -2,7 +2,7 @@ local TargetType = require "util/TargetType"
 
 return {
 	name = "Maple Syrup",
-	desc = "Revives a fallen ally. (+1000 hp)",
+	desc = "Revives a fallen ally. +1000 hp.",
 	target = TargetType.Party,
 	usableFromMenu = true,
 	icon = "icon_item",

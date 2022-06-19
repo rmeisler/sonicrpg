@@ -4,7 +4,7 @@ local EventType = require "util/EventType"
 
 return {
 	name = "Boxing Gloves",
-	desc = "Grants 'Pummel' skill",
+	desc = "Grants 'Pummel' skill.",
 	type = ItemType.Weapon,
 	subtype = WeaponType.Sword,
 	usableBy = {"sonic"},

@@ -165,21 +165,6 @@ return function(scene, hint)
 					scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
 				end),
 
-				Ease(scene.player, "y", function() return scene.player.y - 80 end, 4, "linear"),
-				Do(function()
-					scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
-				end),
-				Ease(scene.player, "y", function() return scene.player.y + 190 end, 4, "linear"),
-				Do(function()
-					scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
-				end),
-				Ease(scene.player, "y", function() return scene.player.y - 3 end, 20, "quad"),
-				Ease(scene.player, "y", function() return scene.player.y + 3 end, 20, "quad"),
-				Ease(scene.player, "y", function() return scene.player.y - 2 end, 20, "quad"),
-				Ease(scene.player, "y", function() return scene.player.y + 2 end, 20, "quad"),
-				Ease(scene.player, "y", function() return scene.player.y - 1 end, 20, "quad"),
-				Ease(scene.player, "y", function() return scene.player.y + 1 end, 20, "quad"),
-
 				Do(function()
 					scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
 				end),
