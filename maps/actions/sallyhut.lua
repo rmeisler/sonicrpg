@@ -158,6 +158,7 @@ return function(scene, hint)
 		
 		if hint == "sleep" then
 			scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
+			scene.player:removeKeyHint()
 			return BlockPlayer {			
 				Do(function()
 					scene.player.sprite.visible = false

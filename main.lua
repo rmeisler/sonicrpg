@@ -41,6 +41,7 @@ local fullScreen = false
 function love.load()
     love.profiler = require "lib/profile"
     love.profiler.hookall("Lua")
+	collectgarbage("stop")
 
 	love.graphics.setShader(ScreenShader)
 	
@@ -52,12 +53,11 @@ end
 function love.update(dt)
 	-- Stay on top of your garbage lua!!
 	love.frame = (love.frame or 0) + 1
-    if love.frame % 10000 == 0 then
+    --if love.frame % 10000 == 0 then
         --print(tostring(love.profiler.report('time', 20)))
         --love.profiler.reset()
-		print(collectgarbage("count"))
-		collectgarbage("collect")
-    end
+		collectgarbage("step")
+    --end
 
     if love.keyboard.isDown("f") then
         dt = dt * 10
