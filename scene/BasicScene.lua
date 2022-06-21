@@ -66,7 +66,11 @@ function BasicScene:onEnter(args)
 			if not self.night then
 				self.night = shine.nightcolor()
 			end
-			self.night:draw(function() self.originalMapDraw(map, layer) end)
+			self.night:draw(function()
+				self.night.shader:send("opacity", layer.opacity or 1)
+				self.night.shader:send("lightness", 1 - (layer.properties.darkness or 0))
+				self.originalMapDraw(map, layer)
+			end)
 		end
 		self.map.drawImageLayer = function(map, layer)
 			if not self.night then
@@ -75,7 +79,11 @@ function BasicScene:onEnter(args)
 			if layer.properties.nonight then
 				self.originalImgDraw(map, layer)
 			else
-				self.night:draw(function() self.originalImgDraw(map, layer) end)
+				self.night:draw(function()
+					self.night.shader:send("opacity", layer.opacity or 1)
+					self.night.shader:send("lightness", 1 - (layer.properties.darkness or 0))
+					self.originalImgDraw(map, layer)
+				end)
 			end
 		end
 	end

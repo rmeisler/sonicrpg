@@ -1606,19 +1606,26 @@ return function(self)
                 self.scene.player.noIdle = true
                 self.scene.player.sprite:setAnimation(&quot;thinking_laugh&quot;)
             end),
-            MessageBox {message = &quot;Sally: I suppose so.&quot;},
-            MessageBox {message = &quot;Bunnie: Well a lot has been goin' on! {p60}Rotor found his lil' ol' software glitch yesterday mornin', and now all of the sudden we're ready to takedown Robotnik's big ol' army?!&quot;},
+            MessageBox {message = &quot;Sally: Ha ha{p20}, I suppose so.&quot;},
+            MessageBox {message = &quot;Bunnie: Well a lot has been goin' on!&quot;},
+            MessageBox {message = &quot;Bunnie: Rotor found his lil' ol' software glitch yesterday and now all of the sudden we're ready to take down Robotnik's whole army?!&quot;},
             Do(function()
-                self.scene.player.noIdle = true
+                self.scene.player.sprite:setAnimation(prevPlayerAnim)
+            end),
+            MessageBox {message = &quot;Sally: I know!&quot;},
+            Wait(0.5),
+            MessageBox {message = &quot;Bunnie: Then there was that team meeting earlier today...&quot;},
+            MessageBox {message = &quot;Bunnie: I gotta tell ya Sally-girl{p60}, it may be mighty difficult to work alongside these Rebellion folks.&quot;},
+            Do(function()
                 self.scene.player.sprite:setAnimation(&quot;thinking2&quot;)
             end),
-            MessageBox {message = &quot;Sally: I know.&quot;},
-            MessageBox {message = &quot;Bunnie: And that team meeting? {p60}Workin' alongside those Rebellion folks might be awfully tough.&quot;},
-            MessageBox {message = &quot;Sally: It will be challenging{p60}, but Leon was always such an incredible leader when I was little...&quot;}, 
-            MessageBox {message = &quot;Sally: With his help, I'm sure we'll be able to take down Robotnik, once and for all!&quot;},
+            MessageBox {message = &quot;Sally: It will be challenging{p60}, but I remember Leon being such an incredible leader when I was little...&quot;},
+            Do(function()
+                self.scene.player.sprite:setAnimation(prevPlayerAnim)
+            end),
+            MessageBox {message = &quot;Sally: With his help{p20}, I'm sure we'll be able to take down Robotnik once and for all!&quot;},
             MessageBox {message = &quot;Bunnie: Well now{p40}, Leon seems like an impressive fella and all{p60}, but you're the one who's gotten us this far.&quot;},
-            MessageBox {message = &quot;Bunnie: If we do beat that nasty ol' Robotnik, it'll be thanks to you Sally-girl.&quot;},
-            Do(function() self.scene.player.sprite:setAnimation(prevPlayerAnim) end),
+            MessageBox {message = &quot;Bunnie: If we do beat that nasty ol' Robotnik, it'll be thanks to you Sally.&quot;},
             MessageBox {message = &quot;Sally: Thanks Bunnie.&quot;},
             MessageBox {message = &quot;Bunnie: You got it, sugah.&quot;},
             Animate(self.sprite, &quot;idledown&quot;),
@@ -2432,13 +2439,14 @@ return function(self)
             MessageBox {message = &quot;Sally: I understand your apprehension, Antoine... {p60}but I've known Leon since I was a child.&quot;},
             MessageBox {message = &quot;Sally: His team may lack some...{p40} uhh... {p40}social skills... {p80}but I know that they want to take down Robotnik just as much as we do!&quot;},
             MessageBox {message = &quot;Antoine: Yes, of course my Princess.{p40} You are right.&quot;},
+            Animate(self.sprite, &quot;idleup&quot;),
+            Wait(0.5),
             Do(function()
                 self.scene.player.noIdle = true
                 self.scene.player.sprite:setAnimation(&quot;thinking2&quot;)
             end),
             MessageBox {message = &quot;Sally: *thinking* The way they so quickly defeated those two Juggerbots back in Robotropolis...&quot;},
             MessageBox {message = &quot;Sally: *thinking* I can see why Antoine might not trust them...&quot;},
-            Animate(self.sprite, &quot;idleup&quot;),
             Do(function()
                 self.scene.player.noIdle = false
                 self:refreshKeyHint()

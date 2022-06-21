@@ -3096,7 +3096,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="360" name="Chest8" type="Chest" gid="7597" x="416" y="1280" width="64" height="64">
+  <object id="360" name="Chest8" type="Chest" gid="7597" x="388" y="1280" width="64" height="64">
    <properties>
     <property name="ChefsHat" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>

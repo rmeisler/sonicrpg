@@ -87,10 +87,11 @@ function NPC:construct(scene, layer, object)
 	-- TODO: Change this to be a metadata file in some cases, that contains info about image and animations
 	local sprite = object.properties.sprite
 	if sprite then
+		local alpha = object.properties.alphaOverride or (255 * (self.layer.opacity or 1))
 		self.sprite = SpriteNode(
 		    scene,
 			Transform(object.x, object.y, object.properties.scalex or 2, object.properties.scaley or 2),
-			{255,255,255, object.properties.alphaOverride or (255 * (self.layer.opacity or 1))},
+			{255,255,255, alpha},
 			sprite:match("art/sprites/(.*)%."),
 			nil,
 			nil,
@@ -117,9 +118,9 @@ function NPC:construct(scene, layer, object)
 		then
 			self.sprite.drawWithNight = false
 			if object.properties.bright then
-				self.sprite.color = {512, 512, 512, 255}
+				self.sprite.color = {512, 512, 512, alpha}
 			elseif not object.properties.nightbright then
-				self.sprite.color = {150,150,150,255}
+				self.sprite.color = {150, 150, 150, alpha}
 			end
 		end
 	end

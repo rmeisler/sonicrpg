@@ -357,7 +357,10 @@ function SpriteNode:draw(override)
 		   not self.scene.map.properties.ignorenight and
 		   self.drawWithNight
 	then
-		self.scene.night:draw(drawSprite)
+		self.scene.night:draw(function()
+			self.scene.night.shader:send("opacity", self.color[4]/255)
+			drawSprite()
+		end)
 	else
 		love.graphics.setColor(self.color)
 		drawSprite()

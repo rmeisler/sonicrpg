@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="85" height="21" tilewidth="32" tileheight="32" infinite="0" nextobjectid="175">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="85" height="21" tilewidth="32" tileheight="32" infinite="0" nextobjectid="181">
  <properties>
   <property name="nighttime" type="bool" value="true"/>
   <property name="onload" type="file" value="actions/knotholelookoutatnight.lua"/>
@@ -37,229 +37,62 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <imagelayer name="Image Layer 7" visible="0" offsetx="1088" offsety="32">
-  <image source="../art/parallax/overlooklayer5.png" width="1600" height="362"/>
+ <layer name="black" width="85" height="21">
+  <data encoding="csv">
+5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,
+5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,
+5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,
+5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,
+5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,
+5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,
+5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,
+5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,
+5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,
+5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,
+5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,
+5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,
+5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,
+0,0,0,0,0,0,0,0,0,0,0,0,0,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,5358,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <imagelayer name="Image Layer 7" offsetx="1088" offsety="0">
+  <image source="../art/parallax/moon.png" width="1600" height="500"/>
   <properties>
-   <property name="movespeed" type="float" value="1.03"/>
+   <property name="darkness" type="float" value="-0.5"/>
   </properties>
  </imagelayer>
- <imagelayer name="Copy of Image Layer 7" visible="0" offsetx="-384" offsety="32">
-  <image source="../art/parallax/overlooklayer5.png" width="1600" height="362"/>
-  <properties>
-   <property name="movespeed" type="float" value="1.03"/>
-  </properties>
- </imagelayer>
- <objectgroup name="bgclouds">
-  <properties>
-   <property name="movespeed" type="float" value="1.03"/>
-  </properties>
-  <object id="152" name="smallcloud" type="BasicNPC" gid="5323" x="1696" y="249" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="cloud1"/>
-    <property name="movespeed" type="float" value="3"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="onUpdate">return function(self, dt)
-    self.x = self.x + self.object.properties.movespeed * dt
-    if self.x &gt; self.scene:getMapWidth() - 200 then
-        self.x = -self.sprite.w*2
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/overlooksmallcloud.png"/>
-   </properties>
-  </object>
-  <object id="155" name="tinycloud" type="BasicNPC" gid="5323" x="1568" y="345" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="cloud1"/>
-    <property name="movespeed" type="float" value="1.8"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="onUpdate">return function(self, dt)
-    self.x = self.x + self.object.properties.movespeed * dt
-    if self.x &gt; self.scene:getMapWidth() - 200 then
-        self.x = -self.sprite.w*2
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/overlooktinycloud.png"/>
-   </properties>
-  </object>
-  <object id="159" name="smallcloud" type="BasicNPC" gid="5323" x="2016" y="249" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="cloud2"/>
-    <property name="movespeed" type="float" value="2.8"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="onUpdate">return function(self, dt)
-    self.x = self.x + self.object.properties.movespeed * dt
-    if self.x &gt; self.scene:getMapWidth() - 200 then
-        self.x = -self.sprite.w*2
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/overlooksmallcloud.png"/>
-   </properties>
-  </object>
-  <object id="160" name="smallcloud" type="BasicNPC" gid="5323" x="2432" y="249" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="cloud3"/>
-    <property name="movespeed" type="float" value="3"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="onUpdate">return function(self, dt)
-    self.x = self.x + self.object.properties.movespeed * dt
-    if self.x &gt; self.scene:getMapWidth() - 200 then
-        self.x = -self.sprite.w*2
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/overlooksmallcloud.png"/>
-   </properties>
-  </object>
-  <object id="162" name="tinycloud" type="BasicNPC" gid="5323" x="1952" y="345" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="cloud2"/>
-    <property name="movespeed" type="float" value="2"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="onUpdate">return function(self, dt)
-    self.x = self.x + self.object.properties.movespeed * dt
-    if self.x &gt; self.scene:getMapWidth() - 200 then
-        self.x = -self.sprite.w*2
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/overlooktinycloud.png"/>
-   </properties>
-  </object>
-  <object id="163" name="tinycloud" type="BasicNPC" gid="5323" x="2304" y="345" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="cloud3"/>
-    <property name="movespeed" type="float" value="2"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="onUpdate">return function(self, dt)
-    self.x = self.x + self.object.properties.movespeed * dt
-    if self.x &gt; self.scene:getMapWidth() - 200 then
-        self.x = -self.sprite.w*2
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/overlooktinycloud.png"/>
-   </properties>
-  </object>
-  <object id="164" name="tinycloud" type="BasicNPC" gid="5323" x="2528" y="345" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="cloud1"/>
-    <property name="movespeed" type="float" value="1.8"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="onUpdate">return function(self, dt)
-    self.x = self.x + self.object.properties.movespeed * dt
-    if self.x &gt; self.scene:getMapWidth() - 200 then
-        self.x = -self.sprite.w*2
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/overlooktinycloud.png"/>
-   </properties>
-  </object>
-  <object id="168" name="smallcloud" type="BasicNPC" gid="5323" x="128" y="224" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="cloud1"/>
-    <property name="movespeed" type="float" value="3"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="onUpdate">return function(self, dt)
-    self.x = self.x + self.object.properties.movespeed * dt
-    if self.x &gt; self.scene:getMapWidth() - 200 then
-        self.x = -self.sprite.w*2
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/overlooksmallcloud.png"/>
-   </properties>
-  </object>
-  <object id="169" name="tinycloud" type="BasicNPC" gid="5323" x="0" y="320" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="cloud1"/>
-    <property name="movespeed" type="float" value="1.8"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="onUpdate">return function(self, dt)
-    self.x = self.x + self.object.properties.movespeed * dt
-    if self.x &gt; self.scene:getMapWidth() - 200 then
-        self.x = -self.sprite.w*2
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/overlooktinycloud.png"/>
-   </properties>
-  </object>
-  <object id="170" name="bigcloud" type="BasicNPC" gid="5323" x="-32" y="160" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="cloud1"/>
-    <property name="movespeed" type="float" value="5"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="onUpdate">return function(self, dt)
-    self.x = self.x + self.object.properties.movespeed * dt
-    if self.x &gt; self.scene:getMapWidth() - 200 then
-        self.x = -self.sprite.w*2
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/overlookbigcloud.png"/>
-   </properties>
-  </object>
- </objectgroup>
- <imagelayer name="Image Layer 1" opacity="0.2" offsetx="1088" offsety="160">
+ <imagelayer name="Image Layer 1" offsetx="1088" offsety="160">
   <image source="../art/parallax/overlooklayer4.png" width="1600" height="265"/>
   <properties>
+   <property name="darkness" type="float" value="0.5"/>
    <property name="movespeed" type="float" value="1.03"/>
   </properties>
  </imagelayer>
- <imagelayer name="Copy of Image Layer 1" opacity="0.2" offsetx="-384" offsety="160">
+ <imagelayer name="Copy of Image Layer 1" offsetx="-384" offsety="160">
   <image source="../art/parallax/overlooklayer4.png" width="1600" height="265"/>
   <properties>
+   <property name="darkness" type="float" value="0.5"/>
    <property name="movespeed" type="float" value="1.03"/>
   </properties>
  </imagelayer>
- <objectgroup name="mountainclouds">
-  <properties>
-   <property name="movespeed" type="float" value="1.04"/>
-  </properties>
-  <object id="150" name="bigcloud" type="BasicNPC" gid="5323" x="1536" y="185" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="cloud1"/>
-    <property name="movespeed" type="float" value="5"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="onUpdate">return function(self, dt)
-    self.x = self.x + self.object.properties.movespeed * dt
-    if self.x &gt; self.scene:getMapWidth() - 200 then
-        self.x = -self.sprite.w*2
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/overlookbigcloud.png"/>
-   </properties>
-  </object>
-  <object id="161" name="bigcloud" type="BasicNPC" gid="5323" x="2176" y="185" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="cloud2"/>
-    <property name="movespeed" type="float" value="5"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="onUpdate">return function(self, dt)
-    self.x = self.x + self.object.properties.movespeed * dt
-    if self.x &gt; self.scene:getMapWidth() - 200 then
-        self.x = -self.sprite.w*2
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/overlookbigcloud.png"/>
-   </properties>
-  </object>
- </objectgroup>
- <imagelayer name="Image Layer 2" opacity="0.2" offsetx="1088" offsety="384">
+ <imagelayer name="Image Layer 2" offsetx="1088" offsety="384">
   <image source="../art/parallax/overlooklayer2.png" width="1600" height="220"/>
   <properties>
+   <property name="darkness" type="float" value="0.3"/>
    <property name="movespeed" type="float" value="1.04"/>
   </properties>
  </imagelayer>
- <imagelayer name="Copy of Image Layer 2" opacity="0.2" offsetx="-384" offsety="384">
+ <imagelayer name="Copy of Image Layer 2" offsetx="-384" offsety="384">
   <image source="../art/parallax/overlooklayer2.png" width="1600" height="220"/>
   <properties>
+   <property name="darkness" type="float" value="0.3"/>
    <property name="movespeed" type="float" value="1.04"/>
   </properties>
  </imagelayer>
@@ -275,13 +108,13 @@ end</property>
    </properties>
   </object>
  </objectgroup>
- <imagelayer name="Image Layer 3" opacity="0.2" offsetx="1088" offsety="416">
+ <imagelayer name="Image Layer 3" offsetx="1088" offsety="416">
   <image source="../art/parallax/overlooklayer1.png" width="1600" height="342"/>
   <properties>
    <property name="movespeed" type="float" value="1.05"/>
   </properties>
  </imagelayer>
- <imagelayer name="Copy of Image Layer 3" locked="1" opacity="0.2" offsetx="-384" offsety="416">
+ <imagelayer name="Copy of Image Layer 3" locked="1" offsetx="-384" offsety="416">
   <image source="../art/parallax/overlooklayer1.png" width="1600" height="342"/>
   <properties>
    <property name="movespeed" type="float" value="1.05"/>
@@ -583,31 +416,75 @@ return function(self)
             MessageBox {message = &quot;Leon: These young Mobians have been through a lot...&quot;},
             MessageBox {message = &quot;Sally: More than the rest of us?&quot;},
             MessageBox {message = &quot;Leon: Oh yes...&quot;},
-            Ease(self.scene.camPos, &quot;x&quot;, 0, 0.3),
+            Ease(self.scene.objectLookup.FleetGhost.sprite.color, 4, 150, 1),
             MessageBox {message = &quot;Leon: Fleet was a foster child at the time of Robotnik's coup.&quot;},
             MessageBox {message = &quot;Leon: By the time I found her, she had been running from Robotnik's aircrafts and hiding in mountain caves for weeks.&quot;},
             MessageBox {message = &quot;Leon: She was all alone. {p60}Sleep deprived{p40}, starving{p40}, mentally and physically exhausted.&quot;},
-            Wait(1),
+            Ease(self.scene.objectLookup.FleetGhost.sprite.color, 4, 0, 1),
+            Ease(self.scene.objectLookup.LoganGhost.sprite.color, 4, 150, 1),
             MessageBox {message = &quot;Leon: As for Logan{p60}, she was left to rot in a prison cell for months, following Robotnik's coup.&quot;},
             MessageBox {message = &quot;Leon: She was so young at the time, she was low priority for roboticization.&quot;},
             MessageBox {message = &quot;Leon: Before I was able to rescue her, she had already seen every member of her family get roboticized...&quot;},
-            Wait(1),
+            Ease(self.scene.objectLookup.LoganGhost.sprite.color, 4, 0, 1),
+            Ease(self.scene.objectLookup.IvanGhost.sprite.color, 4, 150, 1),
             MessageBox {message = &quot;Leon: And then there's Ivan.&quot;},
             MessageBox {message = &quot;Leon: I came upon Ivan shortly after Robotnik began leveling people's homes in Mobotropolis to make way for his new robotic empire.&quot;},
             MessageBox {message = &quot;Leon: Ivan was buried under the rubble of his family home. {p60}He only survived because his father had pushed him out of the way as their roof collapsed, sacrificing himself to save his son...&quot;},
-            Wait(1),
+            Ease(self.scene.objectLookup.IvanGhost.sprite.color, 4, 0, 1),
+            Ease(self.scene.camPos, &quot;x&quot;, 0, 0.3),
             MessageBox {message = &quot;Leon: So you see...{p80} though I've tried my best, and though these young officers are very competent in matters of war...{p80} they still carry the scars of their past.&quot;},
             MessageBox {message = &quot;Leon: They need more than a commanding officer--{p60} they need a true leader and mentor. {p60}Someone who can help them heal.&quot;},
             MessageBox {message = &quot;Leon: I hope you can succeed where I have failed them, Princess.&quot;},
             Do(function()
                 GameState:addBackToParty(&quot;sonic&quot;)
                 GameState:addBackToParty(&quot;antoine&quot;)
-                self.scene:changeScene{map=&quot;sallyshut&quot;, fadeOutSpeed=0.2,fadeInSpeed=0.2,fadeOutMusic=true}
+                self.scene:changeScene{map=&quot;sallyshut&quot;, fadeOutSpeed=0.1,fadeInSpeed=0.1,fadeOutMusic=true, nighttime=false}
             end)
         }
     end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/leon.png"/>
+   </properties>
+  </object>
+  <object id="177" name="Spawn 1" type="Player" gid="5323" x="1152" y="480" width="32" height="32">
+   <properties>
+    <property name="orientation" value="down"/>
+   </properties>
+  </object>
+  <object id="178" name="FleetGhost" type="BasicNPC" gid="5323" x="1632" y="384" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-16"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="alphaOverride" type="int" value="0"/>
+    <property name="defaultAnim" value="smirk"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
+   </properties>
+  </object>
+  <object id="179" name="IvanGhost" type="BasicNPC" gid="5323" x="1632" y="384" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-16"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="alphaOverride" type="int" value="0"/>
+    <property name="defaultAnim" value="attitude"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
+   </properties>
+  </object>
+  <object id="180" name="LoganGhost" type="BasicNPC" gid="5323" x="1632" y="384" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-16"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="alphaOverride" type="int" value="0"/>
+    <property name="defaultAnim" value="attitude"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/logan.png"/>
    </properties>
   </object>
  </objectgroup>
@@ -637,31 +514,6 @@ end</property>
 </data>
  </layer>
  <layer name="bridgeoverlay" width="85" height="21">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</data>
- </layer>
- <layer name="shadowoverlay" width="85" height="21" opacity="0.5">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

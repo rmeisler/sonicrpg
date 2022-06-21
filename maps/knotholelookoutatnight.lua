@@ -8,7 +8,7 @@ return {
   height = 21,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 175,
+  nextobjectid = 181,
   properties = {
     ["nighttime"] = true,
     ["onload"] = "actions/knotholelookoutatnight.lua"
@@ -209,262 +209,64 @@ return {
       }
     },
     {
-      type = "imagelayer",
-      name = "Image Layer 7",
-      visible = false,
-      opacity = 1,
-      offsetx = 1088,
-      offsety = 32,
-      image = "../art/parallax/overlooklayer5.png",
-      properties = {
-        ["movespeed"] = 1.03
-      }
-    },
-    {
-      type = "imagelayer",
-      name = "Copy of Image Layer 7",
-      visible = false,
-      opacity = 1,
-      offsetx = -384,
-      offsety = 32,
-      image = "../art/parallax/overlooklayer5.png",
-      properties = {
-        ["movespeed"] = 1.03
-      }
-    },
-    {
-      type = "objectgroup",
-      name = "bgclouds",
+      type = "tilelayer",
+      name = "black",
+      x = 0,
+      y = 0,
+      width = 85,
+      height = 21,
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
-      draworder = "topdown",
+      properties = {},
+      encoding = "lua",
+      data = {
+        5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358,
+        5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358,
+        5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358,
+        5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358,
+        5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358,
+        5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358,
+        5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358,
+        5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358,
+        5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358,
+        5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358,
+        5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358,
+        5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358,
+        5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 5358, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "imagelayer",
+      name = "Image Layer 7",
+      visible = true,
+      opacity = 1,
+      offsetx = 1088,
+      offsety = 0,
+      image = "../art/parallax/moon.png",
       properties = {
-        ["movespeed"] = 1.03
-      },
-      objects = {
-        {
-          id = 152,
-          name = "smallcloud",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1696,
-          y = 249,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "cloud1",
-            ["movespeed"] = 3,
-            ["nocollision"] = true,
-            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
-            ["sprite"] = "../art/sprites/overlooksmallcloud.png"
-          }
-        },
-        {
-          id = 155,
-          name = "tinycloud",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1568,
-          y = 345,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "cloud1",
-            ["movespeed"] = 1.8,
-            ["nocollision"] = true,
-            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
-            ["sprite"] = "../art/sprites/overlooktinycloud.png"
-          }
-        },
-        {
-          id = 159,
-          name = "smallcloud",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2016,
-          y = 249,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "cloud2",
-            ["movespeed"] = 2.8,
-            ["nocollision"] = true,
-            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
-            ["sprite"] = "../art/sprites/overlooksmallcloud.png"
-          }
-        },
-        {
-          id = 160,
-          name = "smallcloud",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2432,
-          y = 249,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "cloud3",
-            ["movespeed"] = 3,
-            ["nocollision"] = true,
-            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
-            ["sprite"] = "../art/sprites/overlooksmallcloud.png"
-          }
-        },
-        {
-          id = 162,
-          name = "tinycloud",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1952,
-          y = 345,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "cloud2",
-            ["movespeed"] = 2,
-            ["nocollision"] = true,
-            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
-            ["sprite"] = "../art/sprites/overlooktinycloud.png"
-          }
-        },
-        {
-          id = 163,
-          name = "tinycloud",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2304,
-          y = 345,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "cloud3",
-            ["movespeed"] = 2,
-            ["nocollision"] = true,
-            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
-            ["sprite"] = "../art/sprites/overlooktinycloud.png"
-          }
-        },
-        {
-          id = 164,
-          name = "tinycloud",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2528,
-          y = 345,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "cloud1",
-            ["movespeed"] = 1.8,
-            ["nocollision"] = true,
-            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
-            ["sprite"] = "../art/sprites/overlooktinycloud.png"
-          }
-        },
-        {
-          id = 168,
-          name = "smallcloud",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 128,
-          y = 224,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "cloud1",
-            ["movespeed"] = 3,
-            ["nocollision"] = true,
-            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
-            ["sprite"] = "../art/sprites/overlooksmallcloud.png"
-          }
-        },
-        {
-          id = 169,
-          name = "tinycloud",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 0,
-          y = 320,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "cloud1",
-            ["movespeed"] = 1.8,
-            ["nocollision"] = true,
-            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
-            ["sprite"] = "../art/sprites/overlooktinycloud.png"
-          }
-        },
-        {
-          id = 170,
-          name = "bigcloud",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = -32,
-          y = 160,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "cloud1",
-            ["movespeed"] = 5,
-            ["nocollision"] = true,
-            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
-            ["sprite"] = "../art/sprites/overlookbigcloud.png"
-          }
-        }
+        ["darkness"] = -0.5
       }
     },
     {
       type = "imagelayer",
       name = "Image Layer 1",
       visible = true,
-      opacity = 0.2,
+      opacity = 1,
       offsetx = 1088,
       offsety = 160,
       image = "../art/parallax/overlooklayer4.png",
       properties = {
+        ["darkness"] = 0.5,
         ["movespeed"] = 1.03
       }
     },
@@ -472,79 +274,25 @@ return {
       type = "imagelayer",
       name = "Copy of Image Layer 1",
       visible = true,
-      opacity = 0.2,
+      opacity = 1,
       offsetx = -384,
       offsety = 160,
       image = "../art/parallax/overlooklayer4.png",
       properties = {
+        ["darkness"] = 0.5,
         ["movespeed"] = 1.03
-      }
-    },
-    {
-      type = "objectgroup",
-      name = "mountainclouds",
-      visible = true,
-      opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      draworder = "topdown",
-      properties = {
-        ["movespeed"] = 1.04
-      },
-      objects = {
-        {
-          id = 150,
-          name = "bigcloud",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1536,
-          y = 185,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "cloud1",
-            ["movespeed"] = 5,
-            ["nocollision"] = true,
-            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
-            ["sprite"] = "../art/sprites/overlookbigcloud.png"
-          }
-        },
-        {
-          id = 161,
-          name = "bigcloud",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2176,
-          y = 185,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "cloud2",
-            ["movespeed"] = 5,
-            ["nocollision"] = true,
-            ["onUpdate"] = "return function(self, dt)\n    self.x = self.x + self.object.properties.movespeed * dt\n    if self.x > self.scene:getMapWidth() - 200 then\n        self.x = -self.sprite.w*2\n    end\nend",
-            ["sprite"] = "../art/sprites/overlookbigcloud.png"
-          }
-        }
       }
     },
     {
       type = "imagelayer",
       name = "Image Layer 2",
       visible = true,
-      opacity = 0.2,
+      opacity = 1,
       offsetx = 1088,
       offsety = 384,
       image = "../art/parallax/overlooklayer2.png",
       properties = {
+        ["darkness"] = 0.3,
         ["movespeed"] = 1.04
       }
     },
@@ -552,11 +300,12 @@ return {
       type = "imagelayer",
       name = "Copy of Image Layer 2",
       visible = true,
-      opacity = 0.2,
+      opacity = 1,
       offsetx = -384,
       offsety = 384,
       image = "../art/parallax/overlooklayer2.png",
       properties = {
+        ["darkness"] = 0.3,
         ["movespeed"] = 1.04
       }
     },
@@ -596,7 +345,7 @@ return {
       type = "imagelayer",
       name = "Image Layer 3",
       visible = true,
-      opacity = 0.2,
+      opacity = 1,
       offsetx = 1088,
       offsety = 416,
       image = "../art/parallax/overlooklayer1.png",
@@ -608,7 +357,7 @@ return {
       type = "imagelayer",
       name = "Copy of Image Layer 3",
       visible = true,
-      opacity = 0.2,
+      opacity = 1,
       offsetx = -384,
       offsety = 416,
       image = "../art/parallax/overlooklayer1.png",
@@ -1060,8 +809,93 @@ return {
             ["defaultAnim"] = "idleright",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return Do(function() end)\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            MessageBox {message = \"Sally: Leon?\"},\n            Ease(self.scene.camPos, \"x\", -300, 0.3),\n            PlayAudio(\"music\", \"sonicsad\", 1.0, true, true),\n            MessageBox {message = \"Leon: It's been so long since I've been back here...\"},\n            MessageBox {message = \"Leon: The beauty of nature... {p80}Robotnik hasn't taken it from us yet, has he?\"},\n            MessageBox {message = \"Sally: Not if we have anything to say about it.\"},\n            Wait(1),\n            MessageBox {message = \"Leon: Please excuse the rudeness of my subordinates, Princess.\"},\n            MessageBox {message = \"Leon: These young Mobians have been through a lot...\"},\n            MessageBox {message = \"Sally: More than the rest of us?\"},\n            MessageBox {message = \"Leon: Oh yes...\"},\n            Ease(self.scene.camPos, \"x\", 0, 0.3),\n            MessageBox {message = \"Leon: Fleet was a foster child at the time of Robotnik's coup.\"},\n            MessageBox {message = \"Leon: By the time I found her, she had been running from Robotnik's aircrafts and hiding in mountain caves for weeks.\"},\n            MessageBox {message = \"Leon: She was all alone. {p60}Sleep deprived{p40}, starving{p40}, mentally and physically exhausted.\"},\n            Wait(1),\n            MessageBox {message = \"Leon: As for Logan{p60}, she was left to rot in a prison cell for months, following Robotnik's coup.\"},\n            MessageBox {message = \"Leon: She was so young at the time, she was low priority for roboticization.\"},\n            MessageBox {message = \"Leon: Before I was able to rescue her, she had already seen every member of her family get roboticized...\"},\n            Wait(1),\n            MessageBox {message = \"Leon: And then there's Ivan.\"},\n            MessageBox {message = \"Leon: I came upon Ivan shortly after Robotnik began leveling people's homes in Mobotropolis to make way for his new robotic empire.\"},\n            MessageBox {message = \"Leon: Ivan was buried under the rubble of his family home. {p60}He only survived because his father had pushed him out of the way as their roof collapsed, sacrificing himself to save his son...\"},\n            Wait(1),\n            MessageBox {message = \"Leon: So you see...{p80} though I've tried my best, and though these young officers are very competent in matters of war...{p80} they still carry the scars of their past.\"},\n            MessageBox {message = \"Leon: They need more than a commanding officer--{p60} they need a true leader and mentor. {p60}Someone who can help them heal.\"},\n            MessageBox {message = \"Leon: I hope you can succeed where I have failed them, Princess.\"},\n            Do(function()\n                GameState:addBackToParty(\"sonic\")\n                GameState:addBackToParty(\"antoine\")\n                self.scene:changeScene{map=\"sallyshut\", fadeOutSpeed=0.2,fadeInSpeed=0.2,fadeOutMusic=true}\n            end)\n        }\n    end\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return Do(function() end)\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            MessageBox {message = \"Sally: Leon?\"},\n            Ease(self.scene.camPos, \"x\", -300, 0.3),\n            PlayAudio(\"music\", \"sonicsad\", 1.0, true, true),\n            MessageBox {message = \"Leon: It's been so long since I've been back here...\"},\n            MessageBox {message = \"Leon: The beauty of nature... {p80}Robotnik hasn't taken it from us yet, has he?\"},\n            MessageBox {message = \"Sally: Not if we have anything to say about it.\"},\n            Wait(1),\n            MessageBox {message = \"Leon: Please excuse the rudeness of my subordinates, Princess.\"},\n            MessageBox {message = \"Leon: These young Mobians have been through a lot...\"},\n            MessageBox {message = \"Sally: More than the rest of us?\"},\n            MessageBox {message = \"Leon: Oh yes...\"},\n            Ease(self.scene.objectLookup.FleetGhost.sprite.color, 4, 150, 1),\n            MessageBox {message = \"Leon: Fleet was a foster child at the time of Robotnik's coup.\"},\n            MessageBox {message = \"Leon: By the time I found her, she had been running from Robotnik's aircrafts and hiding in mountain caves for weeks.\"},\n            MessageBox {message = \"Leon: She was all alone. {p60}Sleep deprived{p40}, starving{p40}, mentally and physically exhausted.\"},\n            Ease(self.scene.objectLookup.FleetGhost.sprite.color, 4, 0, 1),\n            Ease(self.scene.objectLookup.LoganGhost.sprite.color, 4, 150, 1),\n            MessageBox {message = \"Leon: As for Logan{p60}, she was left to rot in a prison cell for months, following Robotnik's coup.\"},\n            MessageBox {message = \"Leon: She was so young at the time, she was low priority for roboticization.\"},\n            MessageBox {message = \"Leon: Before I was able to rescue her, she had already seen every member of her family get roboticized...\"},\n            Ease(self.scene.objectLookup.LoganGhost.sprite.color, 4, 0, 1),\n            Ease(self.scene.objectLookup.IvanGhost.sprite.color, 4, 150, 1),\n            MessageBox {message = \"Leon: And then there's Ivan.\"},\n            MessageBox {message = \"Leon: I came upon Ivan shortly after Robotnik began leveling people's homes in Mobotropolis to make way for his new robotic empire.\"},\n            MessageBox {message = \"Leon: Ivan was buried under the rubble of his family home. {p60}He only survived because his father had pushed him out of the way as their roof collapsed, sacrificing himself to save his son...\"},\n            Ease(self.scene.objectLookup.IvanGhost.sprite.color, 4, 0, 1),\n            Ease(self.scene.camPos, \"x\", 0, 0.3),\n            MessageBox {message = \"Leon: So you see...{p80} though I've tried my best, and though these young officers are very competent in matters of war...{p80} they still carry the scars of their past.\"},\n            MessageBox {message = \"Leon: They need more than a commanding officer--{p60} they need a true leader and mentor. {p60}Someone who can help them heal.\"},\n            MessageBox {message = \"Leon: I hope you can succeed where I have failed them, Princess.\"},\n            Do(function()\n                GameState:addBackToParty(\"sonic\")\n                GameState:addBackToParty(\"antoine\")\n                self.scene:changeScene{map=\"sallyshut\", fadeOutSpeed=0.1,fadeInSpeed=0.1,fadeOutMusic=true, nighttime=false}\n            end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/leon.png"
+          }
+        },
+        {
+          id = 177,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 1152,
+          y = 480,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["orientation"] = "down"
+          }
+        },
+        {
+          id = 178,
+          name = "FleetGhost",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1632,
+          y = 384,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -16,
+            ["alignOffsetY"] = -16,
+            ["alphaOverride"] = 0,
+            ["defaultAnim"] = "smirk",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/fleet.png"
+          }
+        },
+        {
+          id = 179,
+          name = "IvanGhost",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1632,
+          y = 384,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -16,
+            ["alignOffsetY"] = -16,
+            ["alphaOverride"] = 0,
+            ["defaultAnim"] = "attitude",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/ivan.png"
+          }
+        },
+        {
+          id = 180,
+          name = "LoganGhost",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1632,
+          y = 384,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -16,
+            ["alignOffsetY"] = -16,
+            ["alphaOverride"] = 0,
+            ["defaultAnim"] = "attitude",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/logan.png"
           }
         }
       }
@@ -1112,43 +946,6 @@ return {
       height = 21,
       visible = true,
       opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      properties = {},
-      encoding = "lua",
-      data = {
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-      }
-    },
-    {
-      type = "tilelayer",
-      name = "shadowoverlay",
-      x = 0,
-      y = 0,
-      width = 85,
-      height = 21,
-      visible = true,
-      opacity = 0.5,
       offsetx = 0,
       offsety = 0,
       properties = {},

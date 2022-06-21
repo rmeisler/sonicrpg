@@ -140,6 +140,7 @@ return {
 	{
         type = "map",
         file = "maps/knotholelookoutatnight.lua"
+		--primary = true
     },
 	
 	{

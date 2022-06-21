@@ -2,12 +2,13 @@
 -- unroll convolution loop
 local function build_nightcolor_shader()
 	return love.graphics.newShader [[
-		extern number time;
+		extern float opacity;
+		extern float lightness;
 		vec4 effect(vec4 colour, Image tex, vec2 tc, vec2 sc)
 		{
 			vec4 spr = Texel(tex, tc);
 			float maxc = max(spr.r, max(spr.g, spr.b));
-  		    return vec4(spr.r * 0.2, spr.g * 0.2, maxc + 0.05, spr.a);
+  		    return vec4(spr.r * 0.2 * lightness, spr.g * 0.2 * lightness, (maxc + 0.05) * lightness, spr.a * colour.a * opacity);
 		}
 	]]
 end

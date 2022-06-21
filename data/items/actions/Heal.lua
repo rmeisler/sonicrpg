@@ -19,12 +19,6 @@ return function(attribute, amount)
 	return function(self, target)
 		local direction = (target.sprite.transform.x > love.graphics.getWidth()/2) and 1 or -1
 		local bouncyTextOffset = (direction > 0) and 10 or -50
-		
-		-- Double healing amount if chef's hat equipped
-		if GameState:isEquipped(self.id, ItemType.Accessory, "Chef's Hat") then
-			amount = amount * 2
-		end
-	
 		local targetXform = target.sprite.transform
 		local sparkleCount = 0
 		return Serial {

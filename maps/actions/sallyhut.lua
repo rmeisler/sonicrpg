@@ -158,7 +158,7 @@ return function(scene, hint)
 				Do(function()
 					scene.player.sprite.visible = true
 					scene.player.x = scene.objectLookup.SallysBed.x + 70
-					scene.player.y = scene.objectLookup.SallysBed.y + scene.objectLookup.SallysBed.sprite.h
+					scene.player.y = scene.objectLookup.SallysBed.y + scene.objectLookup.SallysBed.sprite.h*2
 					scene.player.object.properties.ignoreMapCollision = true
 					scene.player.state = "shock"
 					scene.player.sprite:setAnimation("shock")
@@ -182,7 +182,7 @@ return function(scene, hint)
 					scene.player.state = "idledown"
 					scene.player.sprite:setAnimation("idledown")
 				end),
-				MessageBox{message="Sally: Alright, time to face the music, Sally girl...{p60} how embarassing."}
+				MessageBox{message="Sally: Alright, time to face the music, Sally girl...\n{p60}how embarassing."}
 			}
 		end
 	end
