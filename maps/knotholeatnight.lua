@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 358,
+  nextobjectid = 362,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = true,
@@ -4185,24 +4185,6 @@ return {
           }
         },
         {
-          id = 349,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 4896,
-          y = 1248,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["Mushroom"] = 1,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 350,
           name = "Chest1",
           type = "Chest",
@@ -4234,8 +4216,6 @@ return {
           visible = true,
           properties = {
             ["BlueLeaf"] = 1,
-            ["GreenLeaf"] = 1,
-            ["YellowLeaf"] = 1,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
@@ -4245,8 +4225,8 @@ return {
           name = "Chest1",
           type = "Chest",
           shape = "rectangle",
-          x = 7264,
-          y = 2208,
+          x = 6592,
+          y = 2784,
           width = 64,
           height = 64,
           rotation = 0,
@@ -4254,24 +4234,6 @@ return {
           visible = true,
           properties = {
             ["CrystalWater"] = 1,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 354,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 5312,
-          y = 2400,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["GreenLeaf"] = 1,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
@@ -4338,6 +4300,42 @@ return {
             ["nonight"] = true,
             ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    GameState:setFlag(self:getFlag())\n    return BlockPlayer {\n        Animate(self.sprite, \"shock\"),\n        MessageBox {message = \"Logan: Wowee!! {p60}You scared me!\"},\n        Animate(self.sprite, \"idledown\"),\n        MessageBox {message = \"Logan: What am I doing?... {p60}Uh-- nothing.\"},\n        MessageBox {message = \"Logan: I should get to bed. {p60}Goodnight!\"},\n        Do(function()\n            self.scene.player.noIdle = false\n            self:refreshKeyHint()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/logan.png"
+          }
+        },
+        {
+          id = 359,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 5824,
+          y = 480,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["Mushroom"] = 1,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 361,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 160,
+          y = 2528,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["GreenLeaf"] = 1,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }
