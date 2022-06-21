@@ -38,6 +38,14 @@ return function(scene, hint)
 				layer.opacity = 1.0
 			end
 		end
+	else
+		scene.objectLookup.Door.object.properties.scene = "knothole.lua"
+		local prefix = "nighthide"
+		for _,layer in pairs(scene.map.layers) do
+			if string.sub(layer.name, 1, #prefix) == prefix then
+				layer.opacity = 0.0
+			end
+		end
 	end
 
 	if not scene.updateHookAdded then
@@ -84,7 +92,16 @@ return function(scene, hint)
 	if not scene.nighttime and
 	   (GameState:isFlagSet("ep3_ffmeeting") or not GameState:isFlagSet("ep3_knotholerun"))
 	then
-		scene.audio:playMusic("knotholehut", 0.8)
+		if hint == "night" then
+			return Serial {
+				Wait(3),
+				Do(function()
+					scene.audio:playMusic("knotholehut", 0.8)
+				end)
+			}
+		else
+			scene.audio:playMusic("knotholehut", 0.8)
+		end
 	elseif not scene.nighttime and not GameState:isFlagSet("ep3_ffmeeting") then
 		scene.audio:playMusic("awkward", 1.0)
 	end
@@ -92,13 +109,14 @@ return function(scene, hint)
 	if not scene.nighttime and not GameState:isFlagSet("ep3_sallywakeup") then
 		scene.audio:stopMusic()
 		scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
-		return BlockPlayer {			
+		return BlockPlayer {
 			Do(function()
 				GameState:setFlag("ep3_sallywakeup")
 				scene.player.sprite.visible = false
 				scene.player.dropShadow.hidden = true
 				scene.player.x = scene.objectLookup.SallysBed.x + 70
 				scene.player.y = scene.objectLookup.SallysBed.y + 90
+				scene.player:removeKeyHint()
 				scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
 			end),
 			Animate(scene.objectLookup.SallysBed.sprite, "sleeping"),

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="85" height="21" tilewidth="32" tileheight="32" infinite="0" nextobjectid="181">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="85" height="21" tilewidth="32" tileheight="32" infinite="0" nextobjectid="182">
  <properties>
   <property name="nighttime" type="bool" value="true"/>
   <property name="onload" type="file" value="actions/knotholelookoutatnight.lua"/>
@@ -63,9 +63,11 @@
 </data>
  </layer>
  <imagelayer name="Image Layer 7" offsetx="1088" offsety="0">
-  <image source="../art/parallax/moon.png" width="1600" height="500"/>
+  <image source="../art/parallax/moonbg.png" width="1600" height="500"/>
   <properties>
    <property name="darkness" type="float" value="-0.5"/>
+   <property name="movespeed" type="float" value="0"/>
+   <property name="nonight" type="bool" value="true"/>
   </properties>
  </imagelayer>
  <imagelayer name="Image Layer 1" offsetx="1088" offsety="160">
@@ -416,17 +418,17 @@ return function(self)
             MessageBox {message = &quot;Leon: These young Mobians have been through a lot...&quot;},
             MessageBox {message = &quot;Sally: More than the rest of us?&quot;},
             MessageBox {message = &quot;Leon: Oh yes...&quot;},
-            Ease(self.scene.objectLookup.FleetGhost.sprite.color, 4, 150, 1),
+            Ease(self.scene.objectLookup.FleetGhost.sprite.color, 4, 100, 1),
             MessageBox {message = &quot;Leon: Fleet was a foster child at the time of Robotnik's coup.&quot;},
             MessageBox {message = &quot;Leon: By the time I found her, she had been running from Robotnik's aircrafts and hiding in mountain caves for weeks.&quot;},
             MessageBox {message = &quot;Leon: She was all alone. {p60}Sleep deprived{p40}, starving{p40}, mentally and physically exhausted.&quot;},
             Ease(self.scene.objectLookup.FleetGhost.sprite.color, 4, 0, 1),
-            Ease(self.scene.objectLookup.LoganGhost.sprite.color, 4, 150, 1),
+            Ease(self.scene.objectLookup.LoganGhost.sprite.color, 4, 100, 1),
             MessageBox {message = &quot;Leon: As for Logan{p60}, she was left to rot in a prison cell for months, following Robotnik's coup.&quot;},
             MessageBox {message = &quot;Leon: She was so young at the time, she was low priority for roboticization.&quot;},
             MessageBox {message = &quot;Leon: Before I was able to rescue her, she had already seen every member of her family get roboticized...&quot;},
             Ease(self.scene.objectLookup.LoganGhost.sprite.color, 4, 0, 1),
-            Ease(self.scene.objectLookup.IvanGhost.sprite.color, 4, 150, 1),
+            Ease(self.scene.objectLookup.IvanGhost.sprite.color, 4, 100, 1),
             MessageBox {message = &quot;Leon: And then there's Ivan.&quot;},
             MessageBox {message = &quot;Leon: I came upon Ivan shortly after Robotnik began leveling people's homes in Mobotropolis to make way for his new robotic empire.&quot;},
             MessageBox {message = &quot;Leon: Ivan was buried under the rubble of his family home. {p60}He only survived because his father had pushed him out of the way as their roof collapsed, sacrificing himself to save his son...&quot;},
@@ -438,7 +440,7 @@ return function(self)
             Do(function()
                 GameState:addBackToParty(&quot;sonic&quot;)
                 GameState:addBackToParty(&quot;antoine&quot;)
-                self.scene:changeScene{map=&quot;sallyshut&quot;, fadeOutSpeed=0.1,fadeInSpeed=0.1,fadeOutMusic=true, nighttime=false}
+                self.scene:changeScene{map=&quot;sallyshut&quot;, fadeOutSpeed=0.1,fadeInSpeed=0.1,fadeOutMusic=true, nighttime=false, hint=&quot;night&quot;}
             end)
         }
     end
@@ -451,7 +453,7 @@ end</property>
     <property name="orientation" value="down"/>
    </properties>
   </object>
-  <object id="178" name="FleetGhost" type="BasicNPC" gid="5323" x="1632" y="384" width="64" height="96">
+  <object id="178" name="FleetGhost" type="BasicNPC" gid="5323" x="1632" y="480" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-16"/>
@@ -463,7 +465,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
    </properties>
   </object>
-  <object id="179" name="IvanGhost" type="BasicNPC" gid="5323" x="1632" y="384" width="64" height="96">
+  <object id="179" name="IvanGhost" type="BasicNPC" gid="5323" x="1632" y="480" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-16"/>
@@ -475,7 +477,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
    </properties>
   </object>
-  <object id="180" name="LoganGhost" type="BasicNPC" gid="5323" x="1632" y="384" width="64" height="96">
+  <object id="180" name="LoganGhost" type="BasicNPC" gid="5323" x="1632" y="480" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-16"/>
@@ -485,6 +487,14 @@ end</property>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/logan.png"/>
+   </properties>
+  </object>
+  <object id="181" name="Moon" type="BasicNPC" gid="5323" x="1894" y="292" width="82" height="86">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/moon.png"/>
    </properties>
   </object>
  </objectgroup>

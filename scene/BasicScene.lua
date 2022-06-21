@@ -264,6 +264,8 @@ function BasicScene:onEnter(args)
 end
 
 function BasicScene:onReEnter(args)
+	print("re-enter")
+
 	-- Recreate player
 	self.player:remove()
 	local prevPlayer = self.player
@@ -465,6 +467,7 @@ end
 function BasicScene:changeScene(args)
 	local mapName = args.mapName or "maps/"..args.map..".lua"
 	local fun = args.fun or "switchScene"
+	print("nighttime = "..tostring(args.nighttime))
 	self.sceneMgr[fun](self.sceneMgr, {
 		class = "BasicScene",
 		map = self.maps[mapName],
