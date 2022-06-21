@@ -167,6 +167,7 @@ return function(scene, hint)
 					GameState:removeFromParty("sonic")
 					GameState:removeFromParty("antoine")
 					scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
+					scene.player:removeKeyHint()
 				end),
 				Animate(scene.objectLookup.SallysBed.sprite, "sleeping"),
 				Wait(5),

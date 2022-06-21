@@ -134,6 +134,7 @@ return function(scene)
 						scene.objectLookup.Door.isInteractable = false
 						scene.objectLookup.Drawer.isInteractable = false
 						scene.objectLookup.TailsBed.isInteractable = false
+						scene.player:removeKeyHint()
 						scene.player.movespeed = 2
 					end),
 					Wait(1),
@@ -189,6 +190,7 @@ return function(scene)
 				return BlockPlayer {
 					Do(function()
 						scene.player.hidekeyhints[tostring(scene.objectLookup.Door)] = scene.objectLookup.Door
+						scene.player:removeKeyHint()
 					end),
 					Wait(1),
 					MessageBox {message="Tails: Hey Sally, will you read me a story?"},
