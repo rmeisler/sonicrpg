@@ -93,6 +93,13 @@ return function(scene, hint)
 	   (GameState:isFlagSet("ep3_ffmeeting") or not GameState:isFlagSet("ep3_knotholerun"))
 	then
 		if hint == "night" then
+			Executor(scene):act(Serial {
+				Wait(0.5),
+				text,
+				Ease(text.color, 4, 255, 1),
+				Wait(2),
+				Ease(text.color, 4, 0, 1)
+			})
 			return Serial {
 				Wait(3),
 				Do(function()
