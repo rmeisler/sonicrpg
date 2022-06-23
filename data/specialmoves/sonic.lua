@@ -708,6 +708,7 @@ local ChargeLeftRight = function(player, direction)
 	if player.skipChargeSpecialMove then
 		player.basicUpdate = RunUpdate
 		player.skipChargeSpecialMove = false
+		player.sprite:setAnimation(player.state)
 		return
 	end
 
@@ -882,6 +883,7 @@ local ChargeUpDown = function(player, direction)
 	if player.skipChargeSpecialMove then
 		player.basicUpdate = RunUpdate
 		player.skipChargeSpecialMove = false
+		player.sprite:setAnimation(player.state)
 		return
 	end
 

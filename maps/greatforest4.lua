@@ -8,7 +8,7 @@ return {
   height = 112,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 113,
+  nextobjectid = 116,
   properties = {
     ["onload"] = "actions/greatforest.lua",
     ["regionName"] = "",
@@ -763,8 +763,8 @@ return {
           name = "Chest1",
           type = "Chest",
           shape = "rectangle",
-          x = 64,
-          y = 2880,
+          x = 896,
+          y = 1696,
           width = 64,
           height = 64,
           rotation = 0,
@@ -776,11 +776,28 @@ return {
           }
         },
         {
-          id = 111,
-          name = "Chest2",
+          id = 114,
+          name = "Chest1",
           type = "Chest",
           shape = "rectangle",
-          x = 992,
+          x = 64,
+          y = 2880,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["KneePads"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 115,
+          name = "Chest3",
+          type = "Chest",
+          shape = "rectangle",
+          x = 384,
           y = 192,
           width = 64,
           height = 64,
@@ -788,24 +805,7 @@ return {
           gid = 7597,
           visible = true,
           properties = {
-            ["GreenLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 112,
-          name = "Chest3",
-          type = "Chest",
-          shape = "rectangle",
-          x = 896,
-          y = 1568,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["OnionSoup"] = 1,
+            ["ElbowPads"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         }

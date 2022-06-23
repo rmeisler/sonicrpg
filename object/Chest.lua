@@ -35,7 +35,7 @@ function Chest:construct(scene, layer, object)
 end
 
 function Chest:requireLoot(name)
-	for _, itemType in pairs {"items", "weapons", "armor", "accessories"} do
+	for _, itemType in pairs {"items", "weapons", "armor", "legs", "accessories"} do
 		local itemName = string.format("data/%s/%s", itemType, name)
 		local status = pcall(require, itemName)
 		if status then
