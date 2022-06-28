@@ -21,6 +21,7 @@ function LaserTrap:construct(scene, layer, object)
 	self.alwaysOn = object.properties.alwaysOn
 	self.deactivated = object.properties.deactivated
 	self.respawnName = object.properties.respawn
+	self.bounceY = object.properties.bounceY or 1.0
 
 	NPC.init(self)
 
@@ -230,7 +231,7 @@ function LaserTrap:shockPlayer()
 		},
 		Serial {
 			Parallel {
-				Ease(player, "y", player.y - 100, 8, "linear"),
+				Ease(player, "y", player.y - 100 * self.bounceY, 8, "linear"),
 				respawnAction
 			},
 			Do(function()

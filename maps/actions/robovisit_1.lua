@@ -27,6 +27,13 @@ local Repeat = require "actions/Repeat"
 local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
+	scene.player.collisionHSOffsets = {
+		right_top = {x = 0, y = 0},
+		right_bot = {x = 0, y = 0},
+		left_top = {x = 0, y = 0},
+		left_bot = {x = 0, y = 0},
+	}
+
 	local subtext = TypeText(
 		Transform(50, 470),
 		{255, 255, 255, 0},
@@ -38,7 +45,7 @@ return function(scene)
 		Transform(50, 500),
 		{255, 255, 255, 0},
 		FontCache.Techno,
-		"Sector 7-A",
+		"Mission 1",
 		100
 	)
 	Executor(scene):act(Serial {
