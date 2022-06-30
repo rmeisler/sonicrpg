@@ -1038,6 +1038,29 @@ function Player:basicUpdate(dt)
 		self.lastSwatbotStepSfx = love.timer.getTime()
 	end
 	
+	-- Fan sounds?
+	local closestFan = nil
+	local closestFanDist = nil
+	for _, fan in pairs(self.scene.fans or {}) do
+		if not closestFan or
+		   (not fan.nosound and
+		    fan:distanceFromPlayerSq() < closestFanDist)
+		then
+		    closestFan = fan
+			closestFanDist = closestFan:distanceFromPlayerSq()
+		end
+	end
+	
+	if closestFan then
+		local minAudibleDist = 800
+		local maxAudibleDist = 200
+		local num = closestFan:distanceFromPlayerSq() - maxAudibleDist*maxAudibleDist
+		local denom = (minAudibleDist - maxAudibleDist)*(minAudibleDist - maxAudibleDist)
+		local volume = 1.0 - math.min(1.0, math.max(0.0, num) / denom)
+
+		self.scene.audio:setVolumeFor("sfx", "fan", volume)
+	end
+	
 	self.moving = moving
 	self.movingX = movingX
 	self.movingY = movingY
