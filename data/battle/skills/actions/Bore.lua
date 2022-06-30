@@ -68,7 +68,7 @@ return function(self, targets)
 					closeAction=Wait(1)
 				},
 				MessageBox {
-					message="All bots are bored!",
+					message="All opponents are bored!",
 					rect=MessageBox.HEADLINER_RECT,
 					closeAction=Wait(0.6)
 				},

@@ -521,7 +521,7 @@ return function(self, player, prevState)
         eyes.hidden = false
         eyes:run(While(
             function()
-                return not arm:isRemoved()
+                return not arm:isRemoved() and not eyes:isRemoved()
             end,
             Serial {
                 Animate(eyes.sprite, &quot;forward&quot;),
@@ -546,9 +546,11 @@ return function(self, player, prevState)
                     Ease(arm.sprite.color, 4, 0, 4)
                 },
                 Do(function()
-                    arm.sprite.color[4] = 255
-                    arm.hidden = true
-                    eyes.sprite:setAnimation(&quot;forwardblink&quot;)
+                    if not arm:isRemoved() and not eyes:isRemoved() then
+                        arm.sprite.color[4] = 255
+                        arm.hidden = true
+                        eyes.sprite:setAnimation(&quot;forwardblink&quot;)
+                    end
                 end)
             },
             Do(function() end)

@@ -36,7 +36,7 @@ return {
 
 	stats = {
 		xp    = 40,
-		maxhp = 1200,
+		maxhp = 900,
 		attack = 40,
 		defense = 15,
 		speed = 20,
@@ -54,9 +54,12 @@ return {
 	},
 
 	behavior = function (self, target)
+		local stateOverride = nil
+		local introAction = Action()
 		if not GameState:isFlagSet("ep3_phantom") then
+			stateOverride = "scare"
 			GameState:setFlag("ep3_phantom")
-			return Serial {
+			introAction = Serial {
 				PlayAudio("sfx", "antoinescared", 1.0, true),
 				Do(function()
 					-- Shock and surprise
@@ -88,15 +91,20 @@ return {
 		end
 	
 		local state
-		local stateOdds = math.random(100)
-		if stateOdds < 3 then
-			state = "disappear"
-		elseif stateOdds < 30 then
-			state = "scare"
-		elseif stateOdds < 70 then
-			state = "claw"
-		elseif stateOdds <= 100 then
-			state = "poisonclaw"
+		
+		if stateOverride then
+			state = stateOverride
+		else
+			local stateOdds = math.random(100)
+			if stateOdds < 3 then
+				state = "disappear"
+			elseif stateOdds < 30 then
+				state = "scare"
+			elseif stateOdds < 70 then
+				state = "claw"
+			elseif stateOdds <= 100 then
+				state = "poisonclaw"
+			end
 		end
 
 		local selfSp = self:getSprite()
@@ -116,8 +124,17 @@ return {
 			}
 		elseif state == "scare" then
 			local abilities = {"attack", "use skills", "use items"}
+			if self.scene.removedOption then
+				for _, opt in pairs(abilities) do
+					if opt == self.scene.removedOption then
+						table.remove(abilities, opt)
+						break
+					end
+				end
+			end
 			local ability = abilities[math.random(3)]
 			local scareActions = {Animate(self:getSprite(), "scare")}
+			self.scene.removedOption = ability
 			if ability == "attack" then
 				for _,mem in pairs(target.scene.party) do
 					if mem.state ~= BattleActor.STATE_DEAD then
@@ -165,6 +182,7 @@ return {
 				end
 			end
 			return Serial {
+				introAction,
 				Telegraph(self, "Scare", {255,255,255,50}),
 				PlayAudio("sfx", "antoinescared", 1.0, true),
 				Parallel(scareActions),
