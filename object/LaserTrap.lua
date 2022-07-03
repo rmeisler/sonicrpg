@@ -39,7 +39,7 @@ function LaserTrap:postInit()
 	
 	self.laser1 = BasicNPC(
 		self.scene,
-		{name = "objects"},
+		{name = self.layer and self.layer.name or "objects"},
 		{
 			name = "beamsprite",
 			x = self.spawnPointLeft.x + self.spawnPointLeft.object.width/2,
@@ -58,7 +58,7 @@ function LaserTrap:postInit()
 
 	self.laser2 = BasicNPC(
 		self.scene,
-		{name = "objects"},
+		{name = self.layer and self.layer.name or "objects"},
 		{
 			name = "beamsprite",
 			x = self.spawnPointRight.x + self.spawnPointLeft.object.width/2,

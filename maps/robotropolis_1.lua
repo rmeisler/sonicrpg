@@ -8,7 +8,7 @@ return {
   height = 306,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 510,
+  nextobjectid = 520,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/robovisit_1.lua",
@@ -1784,6 +1784,38 @@ return {
     },
     {
       type = "objectgroup",
+      name = "below",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 511,
+          name = "LaserTrap7",
+          type = "LaserTrap",
+          shape = "rectangle",
+          x = 1568,
+          y = 6998,
+          width = 128,
+          height = 32,
+          rotation = 0,
+          gid = 2374,
+          visible = true,
+          properties = {
+            ["alignOffsetY"] = 10,
+            ["alwaysOn"] = true,
+            ["bounceY"] = -1,
+            ["spawnPointLeft"] = "LaserTrapShooter9",
+            ["spawnPointRight"] = "LaserTrapShooter10"
+          }
+        }
+      }
+    },
+    {
+      type = "objectgroup",
       name = "objects",
       visible = true,
       opacity = 1,
@@ -2500,7 +2532,7 @@ return {
           type = "Chest",
           shape = "rectangle",
           x = 1600,
-          y = 6976,
+          y = 6944,
           width = 64,
           height = 64,
           rotation = 0,
@@ -2632,27 +2664,6 @@ return {
           }
         },
         {
-          id = 319,
-          name = "LaserTrap7",
-          type = "LaserTrap",
-          shape = "rectangle",
-          x = 1568,
-          y = 6998,
-          width = 128,
-          height = 32,
-          rotation = 0,
-          gid = 2374,
-          visible = true,
-          properties = {
-            ["alignOffsetY"] = 10,
-            ["alwaysOn"] = true,
-            ["bounceY"] = -1,
-            ["sortOrderY"] = "-100000",
-            ["spawnPointLeft"] = "LaserTrapShooter9",
-            ["spawnPointRight"] = "LaserTrapShooter10"
-          }
-        },
-        {
           id = 322,
           name = "LaserTrapShooter9",
           type = "LaserTrapArm",
@@ -2752,7 +2763,8 @@ return {
           gid = 1922,
           visible = true,
           properties = {
-            ["align"] = "bottom_left"
+            ["align"] = "bottom_left",
+            ["respawn"] = "Fan2Respawn"
           }
         },
         {
@@ -2768,7 +2780,8 @@ return {
           gid = 1922,
           visible = true,
           properties = {
-            ["align"] = "bottom_left"
+            ["align"] = "bottom_left",
+            ["respawn"] = "Fan3Respawn"
           }
         },
         {
@@ -3875,82 +3888,6 @@ return {
           }
         },
         {
-          id = 407,
-          name = "Wall",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1280,
-          y = 7328,
-          width = 32,
-          height = 64,
-          rotation = 0,
-          gid = 2374,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alphaOverride"] = 0,
-            ["hidingspot"] = true,
-            ["sprite"] = "../art/sprites/wall.png"
-          }
-        },
-        {
-          id = 408,
-          name = "Wall",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1504,
-          y = 7328,
-          width = 32,
-          height = 64,
-          rotation = 0,
-          gid = 2374,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alphaOverride"] = 0,
-            ["hidingspot"] = true,
-            ["sprite"] = "../art/sprites/wall.png"
-          }
-        },
-        {
-          id = 409,
-          name = "Wall",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1184,
-          y = 7328,
-          width = 32,
-          height = 64,
-          rotation = 0,
-          gid = 2374,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alphaOverride"] = 0,
-            ["hidingspot"] = true,
-            ["sprite"] = "../art/sprites/wall.png"
-          }
-        },
-        {
-          id = 410,
-          name = "Wall",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 960,
-          y = 7328,
-          width = 32,
-          height = 64,
-          rotation = 0,
-          gid = 2374,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alphaOverride"] = 0,
-            ["hidingspot"] = true,
-            ["sprite"] = "../art/sprites/wall.png"
-          }
-        },
-        {
           id = 411,
           name = "Wall",
           type = "BasicNPC",
@@ -4644,7 +4581,8 @@ return {
             ["followRepeat"] = true,
             ["ghost"] = true,
             ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Pillar8",
-            ["sprite"] = "../art/sprites/cambot.png"
+            ["sprite"] = "../art/sprites/cambot.png",
+            ["viewRange"] = "CambotLOS1,CambotLOS2,CambotLOS3,CambotLOS4,CambotLOS5"
           }
         },
         {
@@ -4764,7 +4702,8 @@ return {
             ["followRepeat"] = true,
             ["ghost"] = true,
             ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Pillar8",
-            ["sprite"] = "../art/sprites/cambot.png"
+            ["sprite"] = "../art/sprites/cambot.png",
+            ["viewRange"] = "CambotLOS1,CambotLOS2,CambotLOS3,CambotLOS4,CambotLOS5"
           }
         },
         {
@@ -4802,25 +4741,26 @@ return {
         },
         {
           id = 469,
-          name = "Cambot3",
-          type = "Cambot",
+          name = "Swatbot1",
+          type = "Swatbot",
           shape = "rectangle",
           x = 2400,
           y = 7104,
-          width = 32,
-          height = 32,
+          width = 64,
+          height = 64,
           rotation = 0,
           gid = 37,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["battle"] = "../data/monsters/cambot.lua",
+            ["battle"] = "../data/monsters/swatbot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "Cambot3_WP1,Cambot3_WP2,Cambot3_WP3,Cambot3_WP2,Cambot3_WP1,Cambot3_WP4",
             ["followRepeat"] = true,
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/cambot.png"
+            ["sprite"] = "../art/sprites/swatbot.png",
+            ["viewRange"] = "Swatbot1LOS"
           }
         },
         {
@@ -5448,7 +5388,135 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["whileColliding"] = "local Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self, player, prevState)\n    if not self.panning then\n        self.panning = true\n        player.basicUpdate = player.updateFun\n        player.state = \"idleup\"\n        self.scene:run(BlockPlayer {\n            Ease(self.scene.camPos, \"y\", 250, 0.4),\n            Wait(30),\n            Ease(self.scene.camPos, \"y\", 0, 0.4),\n            Do(function() self.panning = false end)\n        })\n    end\nend"
+            ["whileColliding"] = "local Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self, player, prevState)\n    if not self.panning then\n        self.panning = true\n        player.basicUpdate = player.updateFun\n        player.state = \"idleup\"\n        self.scene:run(BlockPlayer {\n            Ease(self.scene.camPos, \"y\", 250, 0.4),\n            Wait(2),\n            self.scene:fadeOut(),\n            Ease(self.scene.camPos, \"y\", 800, 0.4),\n            self.scene:fadeIn(3),\n            MessageBox{message=\"Sally: That's it!{p60} The explosives are in place!\"},\n            MessageBox{message=\"Sally: Let's get outta here!\"},\n            self.scene:fadeOut(3),\n            Ease(self.scene.camPos, \"y\", 0, 0.4),\n            self.scene:fadeIn()\n            --Do(function() self.panning = false end)\n        })\n    end\nend"
+          }
+        },
+        {
+          id = 512,
+          name = "Fan2Respawn",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1824,
+          y = 7104,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 2332,
+          visible = true,
+          properties = {
+            ["nocollision"] = true
+          }
+        },
+        {
+          id = 513,
+          name = "Fan3Respawn",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2464,
+          y = 7104,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 2332,
+          visible = true,
+          properties = {
+            ["nocollision"] = true
+          }
+        },
+        {
+          id = 514,
+          name = "Swatbot1LOS",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 448,
+          y = 7168,
+          width = 2624,
+          height = 128,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 515,
+          name = "CambotLOS2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 832,
+          y = 9632,
+          width = 1728,
+          height = 128,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 516,
+          name = "CambotLOS1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 832,
+          y = 9344,
+          width = 1728,
+          height = 128,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 517,
+          name = "CambotLOS3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1984,
+          y = 9632,
+          width = 512,
+          height = 352,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 518,
+          name = "CambotLOS5",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 896,
+          y = 9632,
+          width = 448,
+          height = 352,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 519,
+          name = "CambotLOS4",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1408,
+          y = 9632,
+          width = 512,
+          height = 352,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

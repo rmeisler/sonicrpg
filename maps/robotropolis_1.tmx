@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="120" height="306" tilewidth="32" tileheight="32" infinite="0" nextobjectid="510">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="120" height="306" tilewidth="32" tileheight="32" infinite="0" nextobjectid="520">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/robovisit_1.lua"/>
@@ -1573,6 +1573,17 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="below">
+  <object id="511" name="LaserTrap7" type="LaserTrap" gid="2374" x="1568" y="6998" width="128" height="32">
+   <properties>
+    <property name="alignOffsetY" type="float" value="10"/>
+    <property name="alwaysOn" type="bool" value="true"/>
+    <property name="bounceY" type="float" value="-1"/>
+    <property name="spawnPointLeft" value="LaserTrapShooter9"/>
+    <property name="spawnPointRight" value="LaserTrapShooter10"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="objects">
   <object id="84" name="Spawn 1" type="Player" gid="37" x="32" y="9376" width="32" height="32">
    <properties>
@@ -1784,7 +1795,7 @@
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="304" name="Chest1" type="Chest" gid="2311" x="1600" y="6976" width="64" height="64">
+  <object id="304" name="Chest1" type="Chest" gid="2311" x="1600" y="6944" width="64" height="64">
    <properties>
     <property name="ScrapMetal" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
@@ -1831,16 +1842,6 @@
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
    </properties>
   </object>
-  <object id="319" name="LaserTrap7" type="LaserTrap" gid="2374" x="1568" y="6998" width="128" height="32">
-   <properties>
-    <property name="alignOffsetY" type="float" value="10"/>
-    <property name="alwaysOn" type="bool" value="true"/>
-    <property name="bounceY" type="float" value="-1"/>
-    <property name="sortOrderY" value="-100000"/>
-    <property name="spawnPointLeft" value="LaserTrapShooter9"/>
-    <property name="spawnPointRight" value="LaserTrapShooter10"/>
-   </properties>
-  </object>
   <object id="322" name="LaserTrapShooter9" type="LaserTrapArm" gid="2374" x="1536" y="7008" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="left_on"/>
@@ -1876,11 +1877,13 @@
   <object id="328" name="Fan2" type="Fan" gid="1922" x="1888" y="6912" width="128" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="respawn" value="Fan2Respawn"/>
    </properties>
   </object>
   <object id="329" name="Fan3" type="Fan" gid="1922" x="2528" y="6912" width="128" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="respawn" value="Fan3Respawn"/>
    </properties>
   </object>
   <object id="330" name="Fan4" type="Fan" gid="1922" x="1760" y="4000" width="128" height="32">
@@ -2058,38 +2061,6 @@
     <property name="sprite" type="file" value="../art/sprites/wall.png"/>
    </properties>
   </object>
-  <object id="407" name="Wall" type="BasicNPC" gid="2374" x="1280" y="7328" width="32" height="64">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alphaOverride" type="int" value="0"/>
-    <property name="hidingspot" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/wall.png"/>
-   </properties>
-  </object>
-  <object id="408" name="Wall" type="BasicNPC" gid="2374" x="1504" y="7328" width="32" height="64">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alphaOverride" type="int" value="0"/>
-    <property name="hidingspot" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/wall.png"/>
-   </properties>
-  </object>
-  <object id="409" name="Wall" type="BasicNPC" gid="2374" x="1184" y="7328" width="32" height="64">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alphaOverride" type="int" value="0"/>
-    <property name="hidingspot" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/wall.png"/>
-   </properties>
-  </object>
-  <object id="410" name="Wall" type="BasicNPC" gid="2374" x="960" y="7328" width="32" height="64">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alphaOverride" type="int" value="0"/>
-    <property name="hidingspot" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/wall.png"/>
-   </properties>
-  </object>
   <object id="411" name="Wall" type="BasicNPC" gid="2374" x="544" y="7328" width="32" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -2169,6 +2140,7 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreCollision" value="Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Pillar8"/>
     <property name="sprite" type="file" value="../art/sprites/cambot.png"/>
+    <property name="viewRange" value="CambotLOS1,CambotLOS2,CambotLOS3,CambotLOS4,CambotLOS5"/>
    </properties>
   </object>
   <object id="460" name="Cambot1_WP1" type="BasicNPC" gid="37" x="1088" y="9344" width="32" height="32">
@@ -2212,6 +2184,7 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreCollision" value="Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Pillar8"/>
     <property name="sprite" type="file" value="../art/sprites/cambot.png"/>
+    <property name="viewRange" value="CambotLOS1,CambotLOS2,CambotLOS3,CambotLOS4,CambotLOS5"/>
    </properties>
   </object>
   <object id="467" name="Fan4Respawn" type="BasicNPC" gid="2332" x="1664" y="4032" width="32" height="32">
@@ -2225,16 +2198,17 @@
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="469" name="Cambot3" type="Cambot" gid="37" x="2400" y="7104" width="32" height="32">
+  <object id="469" name="Swatbot1" type="Swatbot" gid="37" x="2400" y="7104" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="battle" type="file" value="../data/monsters/cambot.lua"/>
+    <property name="battle" type="file" value="../data/monsters/swatbot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Cambot3_WP1,Cambot3_WP2,Cambot3_WP3,Cambot3_WP2,Cambot3_WP1,Cambot3_WP4"/>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/cambot.png"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
+    <property name="viewRange" value="Swatbot1LOS"/>
    </properties>
   </object>
   <object id="470" name="Cambot3_WP4" type="BasicNPC" gid="37" x="2592" y="7104" width="32" height="32">
@@ -2405,6 +2379,7 @@
 local Ease = require &quot;actions/Ease&quot;
 local Do = require &quot;actions/Do&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
 
 return function(self, player, prevState)
     if not self.panning then
@@ -2413,12 +2388,59 @@ return function(self, player, prevState)
         player.state = &quot;idleup&quot;
         self.scene:run(BlockPlayer {
             Ease(self.scene.camPos, &quot;y&quot;, 250, 0.4),
-            Wait(30),
+            Wait(2),
+            self.scene:fadeOut(),
+            Ease(self.scene.camPos, &quot;y&quot;, 800, 0.4),
+            self.scene:fadeIn(3),
+            MessageBox{message=&quot;Sally: That's it!{p60} The explosives are in place!&quot;},
+            MessageBox{message=&quot;Sally: Let's get outta here!&quot;},
+            self.scene:fadeOut(3),
             Ease(self.scene.camPos, &quot;y&quot;, 0, 0.4),
-            Do(function() self.panning = false end)
+            self.scene:fadeIn()
+            --Do(function() self.panning = false end)
         })
     end
 end</property>
+   </properties>
+  </object>
+  <object id="512" name="Fan2Respawn" type="BasicNPC" gid="2332" x="1824" y="7104" width="32" height="32">
+   <properties>
+    <property name="nocollision" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="513" name="Fan3Respawn" type="BasicNPC" gid="2332" x="2464" y="7104" width="32" height="32">
+   <properties>
+    <property name="nocollision" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="514" name="Swatbot1LOS" type="BasicNPC" gid="37" x="448" y="7168" width="2624" height="128">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="515" name="CambotLOS2" type="BasicNPC" gid="37" x="832" y="9632" width="1728" height="128">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="516" name="CambotLOS1" type="BasicNPC" gid="37" x="832" y="9344" width="1728" height="128">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="517" name="CambotLOS3" type="BasicNPC" gid="37" x="1984" y="9632" width="512" height="352">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="518" name="CambotLOS5" type="BasicNPC" gid="37" x="896" y="9632" width="448" height="352">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="519" name="CambotLOS4" type="BasicNPC" gid="37" x="1408" y="9632" width="512" height="352">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

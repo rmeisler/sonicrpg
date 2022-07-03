@@ -1626,6 +1626,8 @@ return function(self)
                             local cart = self.scene.objectLookup.CartBG
                             self.scene.player.x = cart.x + cart.sprite.w
                             self.scene.player.y = cart.y + cart.sprite.h
+                            self.scene.player:removeKeyHint()
+                            self.scene.player.state = &quot;idledown&quot;
                         end),
                         Move(self.scene.objectLookup.CartBG, self.scene.objectLookup.CartWaypoint),
                         Move(self, self.scene.objectLookup.CartWaypoint)
@@ -3069,6 +3071,7 @@ end</property>
   <object id="356" name="Tablet" type="Tomb" gid="7597" x="8544" y="832" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-6"/>
     <property name="benefit" value="Nicole learned 'Infect+'!"/>
     <property name="expected" value="map"/>
     <property name="onBenefit">return function(self)

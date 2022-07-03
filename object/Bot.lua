@@ -372,7 +372,7 @@ function Bot:update(dt)
 			self.investigateProxy = BasicNPC(
 				self.scene,
 				{name = "objects"},
-				{name = "investigateproxy", x = self.scene.player.x, y = self.scene.player.y, width = 32, height = 32,
+				{name = "investigateproxy", x = self.scene.player.x, y = self.scene.player.y, width = 64, height = 64,
 					properties = {ghost = true, align = NPC.ALIGN_BOTLEFT}
 				}
 			)
