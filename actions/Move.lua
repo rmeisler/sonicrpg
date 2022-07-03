@@ -28,7 +28,8 @@ function Move:update(dt)
 	end
 
 	if self.animCooldown == 0 then
-		self.obj.sprite:trySetAnimation(self.switchAnim)
+		self.obj.sprite:trySetAnimation(self.anim..self.switchAnim)
+		self.obj.manualFacing = self.switchAnim
 		self.animCooldown = 0.1
 	else
 		self.animCooldown = math.max(0, self.animCooldown - dt)
@@ -63,7 +64,7 @@ function Move:stepToward(target, speed)
 			 self.obj.scene:canMoveWhitelist(objHS.left_bot.x, objHS.left_bot.y, -speed, 0, self.obj.ignoreCollision))
 		then
 			self.obj.x = self.obj.x - speed
-			self.switchAnim = self.anim.."left"
+			--self.switchAnim = self.anim.."left"
 		end
 	elseif targetHS.right_bot.x - objHS.right_bot.x > speed then
 		if  self.obj.object.properties.ignoreMapCollision or
@@ -71,7 +72,7 @@ function Move:stepToward(target, speed)
 		 	 self.obj.scene:canMoveWhitelist(objHS.right_bot.x, objHS.right_bot.y, speed, 0, self.obj.ignoreCollision))
 		then
 			self.obj.x = self.obj.x + speed
-			self.switchAnim = self.anim.."right"
+			--self.switchAnim = self.anim.."right"
 		end 
 	end
 
@@ -81,7 +82,7 @@ function Move:stepToward(target, speed)
 			 self.obj.scene:canMoveWhitelist(objHS.right_top.x, objHS.right_top.y, 0, -speed, self.obj.ignoreCollision))
 		then
 			self.obj.y = self.obj.y - speed
-			self.switchAnim = self.anim.."up"
+			--self.switchAnim = self.anim.."up"
 		end
 	elseif targetHS.left_bot.y - objHS.left_bot.y > speed then
 		if  self.obj.object.properties.ignoreMapCollision or
@@ -89,9 +90,24 @@ function Move:stepToward(target, speed)
 			 self.obj.scene:canMoveWhitelist(objHS.right_bot.x, objHS.right_bot.y, 0, speed, self.obj.ignoreCollision))
 		then
 			self.obj.y = self.obj.y + speed
-			self.switchAnim = self.anim.."down"
+			--self.switchAnim = self.anim.."down"
 		end
 	end 
+	
+	if math.abs(targetHS.left_bot.y - objHS.left_bot.y) >
+	   math.abs(targetHS.right_bot.x - objHS.right_bot.x) then
+		if targetHS.left_bot.y > objHS.left_bot.y then
+			self.switchAnim = "down"
+		else
+			self.switchAnim = "up"
+		end
+	else
+		if targetHS.right_bot.x > objHS.right_bot.x then
+			self.switchAnim = "right"
+		else
+			self.switchAnim = "left"
+		end
+	end
 end
 
 function Move:reset()

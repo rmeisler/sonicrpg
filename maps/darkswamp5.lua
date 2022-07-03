@@ -792,7 +792,7 @@ return {
             ["ghost"] = true,
             ["key"] = "right",
             ["orientation"] = "left",
-            ["scene"] = "darkswamp5.lua",
+            ["scene"] = "darkswamp2.lua",
             ["spawn_point"] = "LeftPath"
           }
         },

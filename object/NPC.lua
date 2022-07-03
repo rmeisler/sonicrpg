@@ -310,6 +310,9 @@ function NPC:clone()
 end
 
 function NPC:isFacing(direction)
+	if self.manualFacing then
+		return self.manualFacing == direction
+	end
 	if not self.sprite or not direction then
 		return false
 	end
