@@ -47,8 +47,11 @@ return {
     },
 	{
         type = "map",
-		file = "maps/darkswamp4.lua",
-		--primary = true
+		file = "maps/darkswamp4.lua"
+    },
+	{
+        type = "map",
+		file = "maps/darkswamp5.lua"
     },
 	{
         type = "map",
