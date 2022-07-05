@@ -55,6 +55,22 @@ return {
     },
 	{
         type = "map",
+		file = "maps/darkswamp6.lua"
+    },
+	{
+        type = "map",
+		file = "maps/darkswamp7.lua"
+    },
+	{
+        type = "map",
+		file = "maps/darkswamp8.lua"
+    },
+	{
+        type = "map",
+		file = "maps/darkswamp9.lua"
+    },
+	{
+        type = "map",
 		file = "maps/run1.lua",
 		--primary = true
     },
