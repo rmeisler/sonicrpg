@@ -574,12 +574,12 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="187" name="Owl" type="BasicNPC" gid="5323" x="960" y="1408" width="64" height="96">
+  <object id="187" name="Owl" type="BasicNPC" gid="5323" x="928" y="1440" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
     <property name="alignOffsetY" type="float" value="-32"/>
-    <property name="defaultAnim" value="idledown"/>
+    <property name="defaultAnim" value="idle"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
@@ -599,17 +599,66 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
+    local walkout, walkin, sprites = self.scene.player:split()
+    self.scene.player.x = self.scene.player.x - 60
     return BlockPlayer {
-        MessageBox {message = &quot;???: Here lies the original village of Knothole...&quot;},
-        MessageBox {message = &quot;???: It was three hundred years ago... the Kingdom of Mobotropolis was expanding.&quot;},
-        MessageBox {message = &quot;???: The young King Cornelius Acorn lusted for power and legacy... {p60}breaking past treaties, he began asserting control over all of Mobotropolis'\nneighboring countries.&quot;},
-        MessageBox {message = &quot;???: All that was left was the land of Wizards. {p60}No one dared declare war against them, all too aware of their terrible power. {p60}Cornelius saw this as his greatest challenge.&quot;},
-        MessageBox {message = &quot;???: Despite his advisors many protests, the young King ordered his entire military force to enter the land of the Wizards in hopes of intimidating them into a speedy surrender...&quot;},
-        MessageBox {message = &quot;???: The war that followed was swift and brutal. {p60}The wizards never surrendered. Their once beautiful land was wiped off the face of Mobius, replaced with a desert under scorched sky.&quot;},
-        MessageBox {message = &quot;???: In return, the Great Forest of the East was cursed-- {p60}drowned in rot, transforming it into the Dark Swamp.&quot;},
-        MessageBox {message = &quot;???: Legends suggest that the Dark Swamp is haunted by the former inhabitants of Old Knothole...&quot;},
-        Ease(self.sprite.color, 4, 0, 0.5),
-        Do(function() self:refreshKeyHint() end)
+        walkout,
+        Animate(sprites.sonic.sprite, &quot;idleup&quot;),
+        Animate(sprites.sally.sprite, &quot;idleup&quot;),
+        Animate(sprites.antoine.sprite, &quot;idleup&quot;),
+        MessageBox {message = &quot;???: Welcome dear Mobians...&quot;},
+        Menu {
+            layout = Layout {
+                {Layout.Text(&quot;???: Do you want to know about the Dark Swamp?&quot;), selectable = false},
+                {Layout.Text(&quot;Yes&quot;),
+                    choose = function(menu)
+                        menu:close()
+                        self.scene:run(BlockPlayer{
+                            menu,
+                            MessageBox {message = &quot;???: Here lies the village of {h Old Knothole}...&quot;},
+                            Animate(self.sprite, &quot;mouthopen_idle&quot;),
+                            MessageBox {message = &quot;???: Three hundred years ago, the Kingdom of Mobotropolis was expanding as the the young King {h Cornelius Acorn} lusted for power and legacy... &quot;},
+                            MessageBox {message = &quot;???: Breaking past treaties, he began occupying all of its neighboring countries, forcing them to join his empire.&quot;},
+                            Animate(self.sprite, &quot;idle&quot;),
+                            MessageBox {message = &quot;???: All that remained was the Land of Wizards. No one ever dare declare war against them as all were too aware of their terrible power.&quot;},
+                            MessageBox {message = &quot;???: Alas... Cornelius' eyes were filled with ambition. He could not be stopped.&quot;},
+                            MessageBox {message = &quot;???: Despite his advisors many protests, the young King ordered his entire military force to enter the Land of the Wizards in hopes of intimidating them into a speedy surrender...&quot;},
+                            Animate(self.sprite, &quot;mouthopen_idle&quot;),
+                            MessageBox {message = &quot;???: The war that followed was swift and brutal. Though the wizards never surrendered, their once beautiful land was wiped off the face of Mobius. {p60}Today it is nothing but a vast desert under scorched sky.&quot;},
+                            MessageBox {message = &quot;???: And in return for the King's malice, the wizard's cursed the Great Forest of the East-- \ndrowned it in darkness and rot, transforming it into the {h Dark Swamp}.&quot;},
+                            Animate(sprites.sally.sprite, &quot;thinking&quot;),
+                            MessageBox {message = &quot;Sally: Fascinating! {p60}I've never heard this before!&quot;},
+                            Animate(self.sprite, &quot;idle&quot;),
+                            MessageBox {message = &quot;???: Legend says that the Dark Swamp is haunted by the former inhabitants of Old Knothole...&quot;},
+                            MessageBox {message = &quot;???: ...desperately trying to protect what their King could not...&quot;},
+                            Ease(self.sprite.color, 4, 0, 0.5),
+                            Animate(sprites.sonic.sprite, &quot;shock&quot;),
+                            Animate(sprites.sally.sprite, &quot;shock&quot;),
+                            Animate(sprites.antoine.sprite, &quot;shock&quot;),
+                            MessageBox{message=&quot;Antoine: Zey are z-z-ze ghost!!&quot;},
+                            MessageBox{message=&quot;Sally: Ok-Ok-Ok{p60}, there has to be a logical explanation for this!&quot;},
+                            MessageBox{message=&quot;Sonic: Maybe{p60}, but I don't wanna stick around to find out!&quot;},
+                            walkin,
+                            Do(function()
+                                self.scene.player.x = self.scene.player.x + 60
+                                self:remove()
+                            end)
+                        })
+                    end},
+                {Layout.Text(&quot;No&quot;),
+                    choose = function(menu)
+                        menu:close()
+                        self:refreshKeyHint()
+                        self.scene:run {
+                            walkin,
+                            Do(function() self.scene.player.x = self.scene.player.x + 60 end)
+                        }
+                    end},
+                colWidth = 200
+            },
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+            selectedRow = 2
+        }
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/mysteryowl.png"/>
