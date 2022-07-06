@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="71" height="71" tilewidth="32" tileheight="32" infinite="0" nextobjectid="192">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="71" height="71" tilewidth="32" tileheight="32" infinite="0" nextobjectid="194">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/dswamp.png"/>
   <property name="onload" type="file" value="actions/darkswamp_maze.lua"/>
@@ -402,15 +402,6 @@
     <property name="spawn_point" value="RightPath"/>
    </properties>
   </object>
-  <object id="188" name="RightPath" type="SceneEdge" gid="7597" x="2240" y="1280" width="32" height="160">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="key" value="right"/>
-    <property name="orientation" value="left"/>
-    <property name="scene" type="file" value="darkswamp5.lua"/>
-    <property name="spawn_point" value="LeftPath"/>
-   </properties>
-  </object>
   <object id="191" name="Owl" type="BasicNPC" gid="5323" x="1040" y="1152" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -446,6 +437,51 @@ return function(self)
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/mysteryowl.png"/>
+   </properties>
+  </object>
+  <object id="192" name="Save" type="SavePoint" gid="7000" x="1152" y="1152" width="32" height="32">
+   <properties>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/save.png"/>
+   </properties>
+  </object>
+  <object id="193" name="ToIronLock" type="BasicNPC" gid="5323" x="2240" y="1280" width="32" height="160">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Do = require &quot;actions/Do&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+
+return function(self, player, prevState)
+    if not self.showIronLock and prevState == self.STATE_IDLE then
+        self.showIronLock = true
+        player.basicUpdate = player.updateFun
+        player.state = &quot;idleright&quot;
+
+        local ironlockLayer = nil
+        for _, layer in pairs(self.scene.map.layers) do
+            if layer.name == &quot;ironlock&quot; then
+                ironlockLayer = layer
+                break
+            end
+        end
+        self.scene:run(BlockPlayer {
+            self.scene:fadeOut(0.3),
+            Do(function()
+                ironlockLayer.opacity = 1.0
+            end),
+            Wait(2),
+            Parallel {
+                self.scene:fadeIn(0.3),
+                Ease(ironlockLayer, &quot;offsety&quot;, ironlockLayer.offsety - 64, 0.2)
+            },
+            PlayAudio(&quot;music&quot;, &quot;ironlock&quot;, 1.0, true)
+        })
+    end
+end</property>
    </properties>
   </object>
  </objectgroup>
@@ -756,6 +792,12 @@ end</property>
    <property name="speedx" type="float" value="-1"/>
    <property name="speedy" type="float" value="0"/>
    <property name="type" value="Parallax"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="ironlock" opacity="0" offsetx="1280" offsety="879">
+  <image source="../art/parallax/ironlockcastle.png" width="993" height="719"/>
+  <properties>
+   <property name="movespeed" type="float" value="1"/>
   </properties>
  </imagelayer>
  <layer name="Collision" width="71" height="71" visible="0">

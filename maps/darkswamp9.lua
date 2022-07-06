@@ -8,7 +8,7 @@ return {
   height = 71,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 192,
+  nextobjectid = 194,
   properties = {
     ["battlebg"] = "../art/backgrounds/dswamp.png",
     ["onload"] = "actions/darkswamp_maze.lua",
@@ -717,26 +717,6 @@ return {
           }
         },
         {
-          id = 188,
-          name = "RightPath",
-          type = "SceneEdge",
-          shape = "rectangle",
-          x = 2240,
-          y = 1280,
-          width = 32,
-          height = 160,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["key"] = "right",
-            ["orientation"] = "left",
-            ["scene"] = "darkswamp5.lua",
-            ["spawn_point"] = "LeftPath"
-          }
-        },
-        {
           id = 191,
           name = "Owl",
           type = "BasicNPC",
@@ -757,6 +737,40 @@ return {
             ["nonight"] = true,
             ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    return BlockPlayer {\n        Animate(self.sprite, \"mouthopen_idle\"),\n        MessageBox {message = \"???: I can feel the weight of the wizards' magic on this place nearing its limits...\"},\n        Animate(self.sprite, \"idle\"),\n        MessageBox {message = \"???: Save yourselves, while you still can...\"},\n        Ease(self.sprite.color, 4, 0, 0.3),\n        Do(function() self:remove() end)\n    }\nend",
             ["sprite"] = "../art/sprites/mysteryowl.png"
+          }
+        },
+        {
+          id = 192,
+          name = "Save",
+          type = "SavePoint",
+          shape = "rectangle",
+          x = 1152,
+          y = 1152,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7000,
+          visible = true,
+          properties = {
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/save.png"
+          }
+        },
+        {
+          id = 193,
+          name = "ToIronLock",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2240,
+          y = 1280,
+          width = 32,
+          height = 160,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "local Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\n\nreturn function(self, player, prevState)\n    if not self.showIronLock and prevState == self.STATE_IDLE then\n        self.showIronLock = true\n        player.basicUpdate = player.updateFun\n        player.state = \"idleright\"\n\n        local ironlockLayer = nil\n        for _, layer in pairs(self.scene.map.layers) do\n            if layer.name == \"ironlock\" then\n                ironlockLayer = layer\n                break\n            end\n        end\n        self.scene:run(BlockPlayer {\n            self.scene:fadeOut(0.3),\n            Do(function()\n                ironlockLayer.opacity = 1.0\n            end),\n            Wait(2),\n            Parallel {\n                self.scene:fadeIn(0.3),\n                Ease(ironlockLayer, \"offsety\", ironlockLayer.offsety - 64, 0.2)\n            },\n            PlayAudio(\"music\", \"ironlock\", 1.0, true)\n        })\n    end\nend"
           }
         }
       }
@@ -1132,6 +1146,18 @@ return {
         ["speedx"] = -1,
         ["speedy"] = 0,
         ["type"] = "Parallax"
+      }
+    },
+    {
+      type = "imagelayer",
+      name = "ironlock",
+      visible = true,
+      opacity = 0,
+      offsetx = 1280,
+      offsety = 879,
+      image = "../art/parallax/ironlockcastle.png",
+      properties = {
+        ["movespeed"] = 1
       }
     },
     {
