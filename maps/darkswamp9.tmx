@@ -482,13 +482,13 @@ return function(self, player, prevState)
             end),
             Wait(2),
             Parallel {
-                self.scene:fadeIn(0.3),
+                self.scene:fadeIn(0.5),
                 Serial {
-                    MessageBox{message=&quot;Sally: There it is..., closeAction=Wait(2)&quot;},
+                    MessageBox{message=&quot;Sally: There it is...&quot;, closeAction=Wait(2)},
                     PlayAudio(&quot;music&quot;, &quot;ironlockintro&quot;, 1.0, true),
                     MessageBox{message=&quot;Sally: {h Iron Lock}.&quot;}
                 },
-                Ease(ironlockLayer, &quot;offsety&quot;, ironlockLayer.offsety - 64, 0.1)
+                Ease(ironlockLayer, &quot;offsety&quot;, ironlockLayer.offsety + 64, 0.1)
             }
         })
     end
@@ -805,7 +805,7 @@ end</property>
    <property name="type" value="Parallax"/>
   </properties>
  </imagelayer>
- <imagelayer name="ironlock" opacity="0" offsetx="1280" offsety="879">
+ <imagelayer name="ironlock" opacity="0" offsetx="1280" offsety="780">
   <image source="../art/parallax/ironlockcastle.png" width="993" height="719"/>
   <properties>
    <property name="movespeed" type="float" value="1"/>
