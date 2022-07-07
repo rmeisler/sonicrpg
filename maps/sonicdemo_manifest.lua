@@ -1398,6 +1398,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/ironlockintro.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/awkward.ogg",
 		category = "music",
 		looping = true

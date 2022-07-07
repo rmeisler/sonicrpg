@@ -427,6 +427,7 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
+    self.scene.player.state = &quot;idleup&quot;
     return BlockPlayer {
         Animate(self.sprite, &quot;mouthopen_idle&quot;),
         MessageBox {message = &quot;???: I can feel the weight of the wizards' magic on this place nearing its limits...&quot;},
@@ -453,7 +454,10 @@ local Ease = require &quot;actions/Ease&quot;
 local Do = require &quot;actions/Do&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
 
 return function(self, player, prevState)
     if not self.showIronLock and prevState == self.STATE_IDLE then
@@ -469,16 +473,23 @@ return function(self, player, prevState)
             end
         end
         self.scene:run(BlockPlayer {
-            self.scene:fadeOut(0.3),
+            Parallel {
+                self.scene:fadeOut(0.3),
+                AudioFade(&quot;music&quot;, 1.0, 0.0, 0.3)
+            },
             Do(function()
                 ironlockLayer.opacity = 1.0
             end),
             Wait(2),
             Parallel {
                 self.scene:fadeIn(0.3),
-                Ease(ironlockLayer, &quot;offsety&quot;, ironlockLayer.offsety - 64, 0.2)
-            },
-            PlayAudio(&quot;music&quot;, &quot;ironlock&quot;, 1.0, true)
+                Serial {
+                    MessageBox{message=&quot;Sally: There it is..., closeAction=Wait(2)&quot;},
+                    PlayAudio(&quot;music&quot;, &quot;ironlockintro&quot;, 1.0, true),
+                    MessageBox{message=&quot;Sally: {h Iron Lock}.&quot;}
+                },
+                Ease(ironlockLayer, &quot;offsety&quot;, ironlockLayer.offsety - 64, 0.1)
+            }
         })
     end
 end</property>

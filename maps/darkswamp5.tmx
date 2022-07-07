@@ -428,7 +428,6 @@ local NPC = require &quot;object/NPC&quot;
 
 return function(self)
     local walkout, walkin, sprites = self.scene.player:split()
-    self.scene.player.x = self.scene.player.x - 60
     return BlockPlayer {
         walkout,
         Animate(sprites.sonic.sprite, &quot;idleup&quot;),
@@ -452,8 +451,8 @@ return function(self)
                             MessageBox {message = &quot;???: Alas... Cornelius' eyes were filled with ambition. He could not be stopped.&quot;},
                             MessageBox {message = &quot;???: Despite his advisors many protests, the young King ordered his entire military force to enter the Land of the Wizards in hopes of intimidating them into a speedy surrender...&quot;},
                             Animate(self.sprite, &quot;mouthopen_idle&quot;),
-                            MessageBox {message = &quot;???: The war that followed was swift and brutal. Though the wizards never surrendered, their once beautiful land was wiped off the face of Mobius. {p60}Today it is nothing but a vast desert under scorched sky.&quot;},
-                            MessageBox {message = &quot;???: And in return for the King's malice, the wizard's cursed the Great Forest of the East-- {p60}\ndrowning it in darkness and rot{p60}, transforming it into the {h Dark Swamp}.&quot;},
+                            MessageBox {message = &quot;???: The war that followed was swift and brutal. Though the wizards never surrendered, their once beautiful land was wiped off the face of Mobius. Today it is nothing but a vast desert under scorched sky.&quot;},
+                            MessageBox {message = &quot;???: And in return for the King's malice, the wizard's cursed the Great Forest of the East. Drowning it in darkness and rot, transforming it into the {h Dark Swamp}.&quot;},
                             Animate(sprites.sally.sprite, &quot;thinking&quot;),
                             MessageBox {message = &quot;Sally: Fascinating! {p60}I've never heard this before!&quot;},
                             Animate(self.sprite, &quot;idle&quot;),
@@ -478,8 +477,10 @@ return function(self)
                         menu:close()
                         self:refreshKeyHint()
                         self.scene:run {
-                            walkin,
-                            Do(function() self.scene.player.x = self.scene.player.x + 60 end)
+                            Parallel {
+                                walkin,
+                                Ease(self.scene.player, &quot;x&quot;, self.scene.player.x - 60, 1)
+                            }
                         }
                     end},
                 colWidth = 200
@@ -857,9 +858,9 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22614,22614,22614,22614,22614,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22614,0,0,0,22614,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,0,0,0,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,22614,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

@@ -415,35 +415,37 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="false"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 
 return function(self)
+    self.scene.player.state = &quot;idleup&quot;
     if GameState.leader == &quot;antoine&quot; then
         return Serial {
-            MessageBox {message = &quot;It iz written in Olde Mobotropolan... {p60}I am not having any idea what zis says!&quot;},
+            MessageBox {message = &quot;Antoine: It iz written in Olde Mobotropolan... {p60}I am not having any idea what zis says!&quot;},
             Do(function()
                 self:refreshKeyHint()
             end)
         }
     elseif GameState.leader == &quot;sally&quot; then
-        return Serial {
-            MessageBox {message = &quot;Hmmm...{p40}this looks like it's written in Olde Mobotropolan...&quot;},
-            MessageBox {message = &quot;It says something like \&quot;starboard\&quot;...&quot;},
+        return BlockPlayer {
+            MessageBox {message = &quot;Sally: Hmmm...&quot;},
+            MessageBox {message = &quot;Sally: This looks like it's written in Olde Mobotropolan...&quot;},
+            MessageBox {message = &quot;Sally: It says something like \&quot;starboard\&quot;...&quot;},
             MessageBox {message = &quot;Sally: I think it's some kind of puzzle, telling us which way we should go.&quot;},
             Do(function()
                 self:refreshKeyHint()
             end)
         }
     elseif GameState.leader == &quot;sonic&quot; then
-        return Serial {
-            MessageBox {message = &quot;Olde Mobotropolan...&quot;},
+        return BlockPlayer {
+            MessageBox {message = &quot;Sonic: Olde Mobotropolan...&quot;},
             Do(function()
                 self.scene.player.noIdle = true
                 self.scene.player.state = &quot;irritated&quot;
             end),
-            MessageBox {message = &quot;Ain't no way ya expect me to read that junk!&quot;},
+            MessageBox {message = &quot;Sonic: Ain't no way ya expect me to read that junk!&quot;},
             Do(function()
                 self.scene.player.noIdle = false
                 self.scene.player.state = &quot;idledown&quot;
