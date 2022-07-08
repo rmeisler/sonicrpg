@@ -125,9 +125,9 @@ return {
 		elseif state == "scare" then
 			local abilities = {"attack", "use skills", "use items"}
 			if self.scene.removedOption then
-				for _, opt in pairs(abilities) do
+				for idx, opt in pairs(abilities) do
 					if opt == self.scene.removedOption then
-						table.remove(abilities, opt)
+						table.remove(abilities, idx)
 						break
 					end
 				end
