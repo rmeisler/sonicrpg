@@ -8,7 +8,7 @@ return {
   height = 192,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 265,
+  nextobjectid = 274,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/ironlock1.lua",
@@ -1069,24 +1069,8 @@ return {
       properties = {},
       objects = {
         {
-          id = 248,
-          name = "Spawn 1",
-          type = "Player",
-          shape = "rectangle",
-          x = 2688,
-          y = 6080,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["orientation"] = "up"
-          }
-        },
-        {
           id = 249,
-          name = "Cambot1",
+          name = "Cambot3",
           type = "Cambot",
           shape = "rectangle",
           x = 2336,
@@ -1100,132 +1084,10 @@ return {
             ["battle"] = "../data/monsters/legacycambot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
-            ["follow"] = "Waypoint1,Waypoint2,Waypoint1,Waypoint3,Waypoint4,Waypoint3",
-            ["followRepeat"] = true,
             ["ghost"] = true,
-            ["ignorePlayer"] = false,
+            ["ignorePlayer"] = true,
             ["noInvestigate"] = false,
             ["sprite"] = "../art/sprites/cambot2.png"
-          }
-        },
-        {
-          id = 250,
-          name = "Waypoint1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 3104,
-          y = 4672,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 2332,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 251,
-          name = "Waypoint2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 3104,
-          y = 3936,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 2332,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 252,
-          name = "Waypoint3",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2272,
-          y = 4672,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 2332,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 253,
-          name = "Waypoint4",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2304,
-          y = 3936,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 2332,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 255,
-          name = "Cambot2",
-          type = "Cambot",
-          shape = "rectangle",
-          x = 1536,
-          y = 2656,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/legacycambot.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
-            ["follow"] = "Waypoint6,Waypoint5",
-            ["followRepeat"] = true,
-            ["ghost"] = true,
-            ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/cambot2.png"
-          }
-        },
-        {
-          id = 256,
-          name = "Waypoint5",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1248,
-          y = 2656,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 2332,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 257,
-          name = "Waypoint6",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4192,
-          y = 2656,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 2332,
-          visible = true,
-          properties = {
-            ["ghost"] = true
           }
         },
         {
@@ -1360,6 +1222,150 @@ return {
           properties = {
             ["RustedOldKey"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 265,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 1984,
+          y = 2688,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["orientation"] = "up"
+          }
+        },
+        {
+          id = 267,
+          name = "Snively",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1600,
+          y = 2624,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "idleright",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/snively.png"
+          }
+        },
+        {
+          id = 268,
+          name = "Swatbot1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1408,
+          y = 2592,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "idleright",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swatbotwhite.png"
+          }
+        },
+        {
+          id = 269,
+          name = "Swatbot2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1504,
+          y = 2656,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "idleright",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swatbotwhite.png"
+          }
+        },
+        {
+          id = 270,
+          name = "Waypoint1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1344,
+          y = 2592,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 2332,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 271,
+          name = "Swatbot3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1504,
+          y = 2528,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "idleright",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swatbotwhite.png"
+          }
+        },
+        {
+          id = 272,
+          name = "Cambot2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2816,
+          y = 2560,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idleleft",
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = true,
+            ["sprite"] = "../art/sprites/cambot2.png"
+          }
+        },
+        {
+          id = 273,
+          name = "Swatbot4",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 3168,
+          y = 2720,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "idleleft",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/swatbotwhite.png"
           }
         }
       }

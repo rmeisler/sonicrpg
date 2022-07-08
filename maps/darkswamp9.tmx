@@ -489,7 +489,10 @@ return function(self, player, prevState)
                     MessageBox{message=&quot;Sally: {h Iron Lock}.&quot;}
                 },
                 Ease(ironlockLayer, &quot;offsety&quot;, ironlockLayer.offsety + 64, 0.1)
-            }
+            },
+            Do(function()
+                self.scene:changeScene{map=&quot;ironlock1&quot;, fadeOutSpeed=0.3, fadeInSpeed=0.3}
+            end)
         })
     end
 end</property>

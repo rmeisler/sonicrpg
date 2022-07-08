@@ -118,6 +118,18 @@ return {
 			frames = {{8,4}}
 		},
 		
+		idleright_lookright = {
+            frames = {{9,0}}
+        },
+		
+		angryright = {
+            frames = {{10,0}}
+        },
+		
+		idleright_lookleft = {
+            frames = {{11,0}}
+        },
+		
 		peekright = {
 			frames = {{2,4}}
 		},

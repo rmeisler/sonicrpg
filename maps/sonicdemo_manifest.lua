@@ -1303,7 +1303,8 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/darkswamp.ogg",
-		category = "music"
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",
@@ -1393,7 +1394,17 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/darkintro.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/ironlock.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/ironlockintro.ogg",
 		category = "music"
 	},
 	{

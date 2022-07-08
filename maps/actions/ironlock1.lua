@@ -46,221 +46,98 @@ return function(scene, hint)
 		})
 	end
 	
-	if hint == "fromworldmap" then
-		if GameState:isFlagSet("ep3_darkswampintro") then
-			showTitle()
-			return PlayAudio("music", "ironlock", 1.0, true, true)
-		else
-			GameState:setFlag("ep3_darkswampintro")
-			
-			local fleet = BasicNPC(
-				scene,
-				{name = "objects"},
-				{
-					name = "Fleet",
-					x = scene.player.x,
-					y = scene.player.y - 800,
-					width = 80,
-					height = 70,
-					properties = {nocollision = true, sprite = "art/sprites/leon2.png", defaultAnim = "fleetfloat"}
-				}
-			)
-			scene:addObject(fleet)
-			
-			local ivan = BasicNPC(
-				scene,
-				{name = "objects"},
-				{
-					name = "Ivan",
-					x = scene.player.x,
-					y = scene.player.y - 800,
-					width = 47,
-					height = 55,
-					properties = {nocollision = true, sprite = "art/sprites/ivan.png", defaultAnim = "idledown"}
-				}
-			)
-			scene:addObject(ivan)
-			
-			local logan = BasicNPC(
-				scene,
-				{name = "objects"},
-				{
-					name = "Logan",
-					x = scene.player.x,
-					y = scene.player.y - 800,
-					width = 47,
-					height = 55,
-					properties = {nocollision = true, sprite = "art/sprites/logan.png", defaultAnim = "idledown"}
-				}
-			)
-			scene:addObject(logan)
-
-			scene.player.x = -2000
-			scene.player.y = 342
-			scene.camPos.x = -700
-			scene.objectLookup.Eyes1.hidden = true
-			scene.objectLookup.Eyes2.hidden = true
-			return BlockPlayer {
-				Do(function()
-					scene.player.x = -2000
-					scene.player.y = 342
-					scene.camPos.x = -700
-				end),
-				PlayAudio("music", "darkswamp", 1.0, true, true),
-				Wait(1),
-				Do(showTitle),
-				Wait(3),
-				Do(function()
-					scene.objectLookup.Eyes1.hidden = false
-				end),
-				Animate(scene.objectLookup.Eyes1.sprite, "blink"),
-				Animate(scene.objectLookup.Eyes1.sprite, "forward"),
-				Wait(1),
-				Animate(scene.objectLookup.Eyes1.sprite, "left"),
-				Wait(1),
-				Animate(scene.objectLookup.Eyes1.sprite, "right"),
-				Wait(1),
-				PlayAudio("sfx", "wolf", 0.5, true),
-				Animate(scene.objectLookup.Eyes1.sprite, "smile"),
-				Wait(1),
-				Do(function()
-					scene.objectLookup.Eyes1.sprite:setAnimation("laugh")
-				end),
-				Ease(scene.camPos, "x", 0, 0.2, "inout"),
-				Do(function()
-					scene.objectLookup.Eyes1.hidden = true
-				end),
-				AudioFade("music", 1, 0, 1),
-				PlayAudio("music", "sonicenters", 1.0, true),
-				Wait(1),
-				Do(function()
-					GameState:addToParty("antoine", 6, true)
-					GameState:addToParty("sonic", 6, true)
-					GameState.leader = "sonic"
-					scene.player:updateSprite()
-					scene.player.cinematic = true
-					scene.player.ignoreSpecialMoveCollision = true
-					scene.player.noMoveSpecial = true
-					scene.player:onSpecialMove()
-				end),
-				Wait(2),
-				Do(function()
-					scene.player.cinematic = false
-					scene.player.skipChargeSpecialMove = false
-					scene.player.ignoreSpecialMoveCollision = false
-				end),
-				Wait(2),
-				Do(function()
-					local nicole = SpriteNode(
-						scene,
-						Transform(),
-						{255,255,255,0},
-						"nicholeprojection",
-						nil,
-						nil,
-						"objects"
-					)
-					local walkout, walkin, sprites = scene.player:split()
-					scene:run(BlockPlayer {
-						Do(function()
-							for k in pairs(GameState.party) do
-								sprites[k].x = scene.player.x - 60
-								sprites[k].y = scene.player.y - 60
-							end
-						end),
-						walkout,
-						MessageBox{message="Sonic: Alright! {p60}Where to Sal?"},
-						PlayAudio("sfx", "nicolebeep", 1.0, true),
-						Animate(sprites.sally.sprite, "nichole_project_start"),
-						Do(function()
-							fleet.x = scene.player.x - 60
-							fleet.y = scene.player.y - 800
-
-							sprites.sally.sprite:setAnimation("nichole_project_idle")
-							nicole.transform = Transform(
-								sprites.sally.sprite.transform.x,
-								sprites.sally.sprite.transform.y + 70,
-								2,
-								2
-							)
-						end),
-						Ease(nicole.color, 4, 220, 5),
-						MessageBox{message="Sally: Let's see..."},
-						Wait(1),
-						PlayAudio("music", "rebellionfanfare", 1.0, true, true),
-						Parallel {
-							Serial {
-								Ease(fleet, "y", function() return scene.player.y - 180 end, 0.5),
-								Animate(fleet.sprite, "fleetland"),
-								Animate(fleet.sprite, "fleetidle"),
-								Do(function()
-									logan.x = fleet.x + 10
-									logan.y = fleet.y
-									logan.sprite:setAnimation("idledown")
-									ivan.x = fleet.x + 40
-									ivan.y = fleet.y
-									ivan.sprite:setAnimation("idledown")
-								end),
-								Parallel {
-									Ease(logan, "x", function() return logan.x - 40 end, 2),
-									Ease(ivan, "x", function() return ivan.x + 40 end, 2),
-								}
-							},
-							MessageBox{message="Why are we stopping?"}
-						},
-						Animate(sprites.sonic.sprite, "idleup"),
-						MessageBox{message="Sonic: Sal's gotta pull out the ol' directions--"},
-						MessageBox{message="Fleet: Uhh...{p60}while we'd love to aimlessly wander around a swamp with you kids...{p60} we're not gonna do that."},
-						Animate(fleet.sprite, "fleetsmile"),
-						MessageBox{message="Fleet: We'll be taking the sky path."},
-						Animate(ivan.sprite, "attitude"),
-						MessageBox{message="Ivan: Indeed."},
-						Ease(ivan, "x", function() return ivan.x - 40 end, 2),
-						Do(function()
-							ivan.hidden = true
-						end),
-						Animate(logan.sprite, "attitude"),
-						MessageBox{message="Logan: Later, nerds!"},
-						Ease(logan, "x", function() return logan.x + 40 end, 2),
-						Do(function()
-							logan.hidden = true
-						end),
-						Parallel {
-							Animate(fleet.sprite, "fleettakeoff"),
-							Serial {
-								Ease(fleet, "y", function() return fleet.y - 100 end, 1, "quad"),
-								Ease(fleet, "y", function() return fleet.y + 50 end, 1.6, "inout")
-							}
-						},
-						PlayAudio("sfx", "sonicrunturn", 1.0, true),
-						Ease(fleet, "y", function() return fleet.y - 800 end, 2, "quad"),
-						AudioFade("music", 1.0, 0.0, 1),
-						Ease(nicole.color, 4, 0, 5),
-						Animate(sprites.sally.sprite, "idleup"),
-						Animate(sprites.antoine.sprite, "idleup"),
-						Animate(sprites.sonic.sprite, "irritated"),
-						MessageBox{message="Sonic: Hmph! {p60}Good riddance! {p80}They were crampin' our style anyways!"},
-						Animate(sprites.antoine.sprite, "idleleft"),
-						Animate(sprites.sally.sprite, "thinking"),
-						MessageBox{message="Sally: *sigh* {p80}So much for learning to work together..."},
-						
-						Do(function()
-							scene.player.noMoveSpecial = false
-						end),
-						walkin,
-						Do(function()
-							scene.player.state = "idledown"
-						end),
-						Spawn(Serial {
-							Wait(1),
-							PlayAudio("music", "darkswamp", 1.0, true, true)
-						})
-					})
-				end)
+	scene.player.sprite.visible = false
+	scene.player.dropShadow.hidden = true
+	return BlockPlayer {
+		PlayAudio("music", "darkintro", 1.0, true, true),
+		Do(function()
+			scene.player.sprite.visible = false
+			scene.player.dropShadow.hidden = true
+			scene.objectLookup.Snively.sprite:setAnimation("walkright")
+			scene.objectLookup.Swatbot1.sprite:setAnimation("walkright")
+			scene.objectLookup.Swatbot2.sprite:setAnimation("walkright")
+			scene.objectLookup.Swatbot3.sprite:setAnimation("walkright")
+		end),
+		Parallel {
+			Do(function()
+				scene.player.x = scene.objectLookup.Snively.x
+			end),
+			Ease(scene.objectLookup.Snively, "x", scene.objectLookup.Snively.x + 1500, 0.15, "linear"),
+			Ease(scene.objectLookup.Swatbot1, "x", scene.objectLookup.Swatbot1.x + 1500, 0.15, "linear"),
+			Ease(scene.objectLookup.Swatbot2, "x", scene.objectLookup.Swatbot2.x + 1500, 0.15, "linear"),
+			Ease(scene.objectLookup.Swatbot3, "x", scene.objectLookup.Swatbot3.x + 1500, 0.15, "linear"),
+			Repeat(Serial {
+				Wait(0.3),
+				PlayAudio("sfx", "swatbotstep", 1.0, true)
+			}, 20),
+			Ease(scene.objectLookup.Cambot2, "x", scene.objectLookup.Cambot2.x - 1500, 0.15, "linear")
+		},
+		Do(function()
+			scene.objectLookup.Snively.sprite:setAnimation("idleright")
+			scene.objectLookup.Swatbot1.sprite:setAnimation("idleright")
+			scene.objectLookup.Swatbot2.sprite:setAnimation("idleright")
+			scene.objectLookup.Swatbot3.sprite:setAnimation("idleright")
+			scene.objectLookup.Cambot2:remove()
+		end),
+		Wait(0.5),
+		Animate(scene.objectLookup.Snively.sprite, "idleright_lookright"),
+		MessageBox{message="Snively: Security report."},
+		MessageBox{message="Swatbot: zzz. {p60}All clear."},
+		Animate(scene.objectLookup.Snively.sprite, "angryright"),
+		Ease(scene.objectLookup.Snively, "y", function() return scene.objectLookup.Snively.y - 50 end, 8, "linear"),
+		Ease(scene.objectLookup.Snively, "y", function() return scene.objectLookup.Snively.y + 50 end, 8, "linear"),
+		MessageBox{message="Snively: Check again!!{p60} This project is at a sensitive stage of development!"},
+		Wait(0.5),
+		Animate(scene.objectLookup.Snively.sprite, "idleright_lookleft"),
+		MessageBox{message="Snively: We can't have any of those filthy Freedom Fighters interfering..."},
+		MessageBox{message="Swatbot: Yes sir."},
+		Do(function()
+			scene.objectLookup.Swatbot4.sprite:setAnimation("walkright")
+		end),
+		Parallel {
+			Ease(scene.objectLookup.Swatbot4, "x", scene.objectLookup.Swatbot4.x + 500, 0.2, "linear"),
+			Repeat(Serial {
+				Wait(0.3),
+				PlayAudio("sfx", "swatbotstep", 1.0, true)
+			}, 9),
+			Serial {
+			    Wait(1.2),
+			    MessageBox{message="Snively: {p20}.{p20}.{p20}."}
 			}
-		end
-	end
-	
-	showTitle()
-	return PlayAudio("music", "ironlock", 1.0, true, true)
+		},
+		Do(function()
+			scene.objectLookup.Swatbot4:remove()
+		end),
+		Do(function()
+			scene.objectLookup.Snively.sprite:setAnimation("walkright")
+			scene.objectLookup.Swatbot1.sprite:setAnimation("walkright")
+			scene.objectLookup.Swatbot2.sprite:setAnimation("walkright")
+			scene.objectLookup.Swatbot3.sprite:setAnimation("walkright")
+		end),
+		Parallel {
+			Ease(scene.objectLookup.Snively, "x", function() return scene.objectLookup.Snively.x + 750 end, 0.3, "linear"),
+			Ease(scene.objectLookup.Swatbot1, "x", function() return scene.objectLookup.Swatbot1.x + 750 end, 0.3, "linear"),
+			Ease(scene.objectLookup.Swatbot2, "x", function() return scene.objectLookup.Swatbot2.x + 750 end, 0.3, "linear"),
+			Ease(scene.objectLookup.Swatbot3, "x", function() return scene.objectLookup.Swatbot3.x + 750 end, 0.3, "linear"),
+			Repeat(Serial {
+				Wait(0.3),
+				PlayAudio("sfx", "swatbotstep", 1.0, true)
+			}, 10),
+			AudioFade("music", 1.0, 0.0, 0.3)
+		},
+		-- FFs lift up trap door and look left/right
+		-- All leap out of door
+		Do(function()
+			scene.player.sprite.visible = true
+			scene.player.dropShadow.hidden = false
+			scene.player.state = "idledown"
+			showTitle()
+			
+			scene.objectLookup.Snively:remove()
+			scene.objectLookup.Swatbot1:remove()
+			scene.objectLookup.Swatbot2:remove()
+			scene.objectLookup.Swatbot3:remove()
+		end),
+		PlayAudio("music", "ironlock", 1.0, true, true)
+	}
 end
