@@ -132,7 +132,7 @@ return {
 					end
 				end
 			end
-			local ability = abilities[math.random(3)]
+			local ability = abilities[math.random(#abilities)]
 			local scareActions = {Animate(self:getSprite(), "scare")}
 			self.scene.removedOption = ability
 			if ability == "attack" then

@@ -29,6 +29,13 @@ return function(scene, hint)
 	scene.player.sprite.color[2] = 150
 	scene.player.sprite.color[3] = 150
 	
+	scene.player.collisionHSOffsets = {
+		right_top = {x = 0, y = 0},
+		right_bot = {x = 0, y = 0},
+		left_top = {x = 0, y = 0},
+		left_bot = {x = 0, y = 0},
+	}
+	
 	local text = TypeText(
 		Transform(50, 500),
 		{255, 255, 255, 0},
@@ -45,7 +52,8 @@ return function(scene, hint)
 			Ease(text.color, 4, 0, 1)
 		})
 	end
-	
+
+	GameState:setFlag("ironlock_intro")
 	if not GameState:isFlagSet("ironlock_intro") then
 		GameState:setFlag("ironlock_intro")
 		scene.player.sprite.visible = false
@@ -103,7 +111,9 @@ return function(scene, hint)
 				}, 9),
 				Serial {
 					Wait(1.2),
-					MessageBox{message="Snively: {p20}.{p20}.{p20}."}
+					MessageBox{message="Snively: *My pompous fool of an uncle...*"},
+					MessageBox{message="Snively: *Sending me to this mound of rubble with a fleet of substandard legacy bots to guard his precious {h Project Firebird}!*"},
+					MessageBox{message="Snively: *We'll see who has the last laugh, Julian...*"}
 				}
 			},
 			Do(function()

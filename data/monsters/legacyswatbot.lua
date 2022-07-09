@@ -33,7 +33,7 @@ return {
 	stats = {
 		xp    = 15,
 		maxhp = 450,
-		attack = 20,
+		attack = 25,
 		defense = 10,
 		speed = 3,
 		focus = 5,
@@ -53,6 +53,7 @@ return {
 		self.beamSprite.transform.sy = 1
 		self.beamSprite.transform.ox = 0
 		self.beamSprite.color = {512,255,512,255}
+		self.beamSprite:setAnimation("purple")
 		
 		self.gasSprite = SpriteNode(self.scene, Transform(), nil, "gas", nil, nil, "ui")
 		self.gasSprite.color[4] = 0
@@ -67,7 +68,7 @@ return {
 		-- Either do laser attack or poison gas
 		if math.random() < 0.8 or self.scene.usedPoisonGas then
 			-- Either do Arm Laser or Laser Sweep
-			if math.random() < 0.5 or next(self.targetOverrideStack) ~= nil then
+			if math.random() < 0.9 or next(self.targetOverrideStack) ~= nil then
 				local laserShot = function(t)
 					local dodgeAction = Action()
 					if t.id == "sonic" and not t.laserShield then
@@ -161,13 +162,6 @@ return {
 							},
 							
 							Serial {
-								Animate(function()
-									local xform = Transform.from(self.sprite.transform)
-									xform.x = xform.x - 25
-									xform.y = xform.y - 50
-									return SpriteNode(self.scene, xform, nil, "beamfire", nil, nil, "ui"), true
-								end, "idle"),
-
 								PlayAudio("sfx", "swatbotlaser", 1.0, true),
 								
 								Do(function()
@@ -248,6 +242,7 @@ return {
 					Telegraph(self, "Arm Laser", {255,255,255,50}),
 					Animate(self.sprite, "shoot"),
 					Animate(self.sprite, "shoot_idle"),
+					Wait(0.5),
 					laserShot(target),
 					Animate(self.sprite, "shoot_retract"),
 					Animate(self.sprite, "idle")
@@ -268,12 +263,7 @@ return {
 					Animate(self.sprite, "shoot"),
 					Animate(self.sprite, "shoot_idle"),
 					
-					Animate(function()
-						local xform = Transform.from(self.sprite.transform)
-						xform.x = xform.x - 25
-						xform.y = xform.y - 50
-						return SpriteNode(self.scene, xform, nil, "beamfire", nil, nil, "ui"), true
-					end, "idle"),
+					Wait(0.5),
 					
 					PlayAudio("sfx", "lasersweep", 1.0, true),
 					
