@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="175" height="192" tilewidth="32" tileheight="32" infinite="0" nextobjectid="314">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="175" height="192" tilewidth="32" tileheight="32" infinite="0" nextobjectid="317">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/ironlock1.lua"/>
@@ -1023,7 +1023,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/pillar.png"/>
    </properties>
   </object>
-  <object id="281" name="Cambot3" type="Cambot" gid="37" x="5056" y="2688" width="32" height="32">
+  <object id="281" name="Cambot3" type="LegacyCambot" gid="37" x="5056" y="2688" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
@@ -1201,6 +1201,18 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
+   </properties>
+  </object>
+  <object id="314" name="Chest1" type="Chest" gid="2311" x="5120" y="2848" width="64" height="64">
+   <properties>
+    <property name="GreenLeaf" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="316" name="Chest1" type="Chest" gid="2311" x="5184" y="2240" width="64" height="64">
+   <properties>
+    <property name="BlueLeaf" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
  </objectgroup>

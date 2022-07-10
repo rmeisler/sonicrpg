@@ -340,7 +340,7 @@ function Bot:update(dt)
 		end
 
 		local lineOfSight = self:noticePlayer(false)
-		if lineOfSight == Bot.NOTICE_SEE or (lineOfSight == Bot.NOTICE_HEAR and self.noInvestigate) then
+		if self.noInvestigate then
 			self:removeSceneHandler("update")
 			self:addSceneHandler("update", Bot.updateAction)
 			self.sprite:setAnimation("idle"..self.manualFacing)
@@ -362,7 +362,7 @@ function Bot:update(dt)
 				Wait(1),
 				self:follow(self.scene.player, "run", self.runspeed, nil, true, function() return self.grabbed end)
 			}
-		elseif lineOfSight == Bot.NOTICE_HEAR then
+		elseif lineOfSight == Bot.NOTICE_HEAR or lineOfSight == Bot.NOTICE_SEE then
 			self:removeSceneHandler("update")
 			self:addSceneHandler("update", Bot.updateAction)
 			self.sprite:setAnimation("idle"..self.manualFacing)
@@ -432,30 +432,7 @@ function Bot:investigateUpdate(dt)
 
 	-- Bot sees you if he's facing you
 	if self:noticePlayer(true) == Bot.NOTICE_SEE then
-		self:removeSceneHandler("update", Bot.investigateUpdate)
-		self:addSceneHandler("update", Bot.updateAction)
-		self.action:stop()
-		self.sprite:setAnimation("idle"..self.manualFacing)
-		self:run {
-			self:hop(),
-			Do(function()
-				self:removeSceneHandler("update", Bot.updateAction)
-				self:addSceneHandler("update", Bot.chaseUpdate)
-				self.behavior = Bot.BEHAVIOR_CHASING
-				self.scene.player.investigators[tostring(self.name)] = nil
-				self.scene.player.chasers[tostring(self.name)] = self
-				self.investigateProxy:remove()
-				if self.scene.audio:getCurrentMusic() ~= "trouble" then
-					self.prevSceneMusic = self.scene.audio:getCurrentMusic()
-				end
-				if not self.scene.enteringBattle and not self.noMusic then
-					self.scene.audio:playMusic("trouble", 1.0, true)
-				end
-				self.scene.player:invoke("caught", self)
-			end),
-			Wait(1),
-			self:follow(self.scene.player, "run", self.runspeed, nil, true, function() return self.grabbed end)
-		}
+		self:onCaughtPlayer()
 		return
 	end
 
@@ -463,6 +440,33 @@ function Bot:investigateUpdate(dt)
 	self.flashlight[facing].transform = self:getFlashlightOffset()
 	self.flashlight[facing].visible = true
 	self.flashlight[facing]:setAnimation(facing)
+end
+
+function Bot:onCaughtPlayer()
+	self:removeSceneHandler("update", Bot.investigateUpdate)
+	self:addSceneHandler("update", Bot.updateAction)
+	self.action:stop()
+	self.sprite:setAnimation("idle"..self.manualFacing)
+	self:run {
+		self:hop(),
+		Do(function()
+			self:removeSceneHandler("update", Bot.updateAction)
+			self:addSceneHandler("update", Bot.chaseUpdate)
+			self.behavior = Bot.BEHAVIOR_CHASING
+			self.scene.player.investigators[tostring(self.name)] = nil
+			self.scene.player.chasers[tostring(self.name)] = self
+			self.investigateProxy:remove()
+			if self.scene.audio:getCurrentMusic() ~= "trouble" then
+				self.prevSceneMusic = self.scene.audio:getCurrentMusic()
+			end
+			if not self.scene.enteringBattle and not self.noMusic then
+				self.scene.audio:playMusic("trouble", 1.0, true)
+			end
+			self.scene.player:invoke("caught", self)
+		end),
+		Wait(1),
+		self:follow(self.scene.player, "run", self.runspeed, nil, true, function() return self.grabbed end)
+	}
 end
 
 function Bot:chaseUpdate(dt)

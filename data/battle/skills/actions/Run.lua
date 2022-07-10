@@ -48,7 +48,13 @@ return function(self, target)
 		end),
 		Parallel {
 			Ease(targetSp.transform, "x", self.sprite.transform.x + 400, 0.5),
-			Ease(targetSp.transform, "y", self.sprite.transform.y, 0.5),
+			Ease(
+			    targetSp.transform,
+			    "y",
+				self.sprite.transform.y +
+				    self.sprite.h - (target.mockSprite and targetSp.h*2 or targetSp.h),
+				1
+			),
 			Serial {
 				-- Antoine runs away with enemy
 				Do(function()

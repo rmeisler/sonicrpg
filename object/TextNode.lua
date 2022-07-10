@@ -16,6 +16,12 @@ function TextNode:add(text, wraplimit, alignment, x, y)
 	self.text:addf(text, wraplimit, alignment, x, y)
 end
 
+function TextNode:set(text, wraplimit, alignment)
+	wraplimit = wraplimit or 100
+	alignment = alignment or "left"
+	self.text:setf(text, wraplimit, alignment)
+end
+
 function TextNode:draw(override)
 	if self.outline then
 		-- Draw black outline

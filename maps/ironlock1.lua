@@ -8,7 +8,7 @@ return {
   height = 192,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 314,
+  nextobjectid = 317,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/ironlock1.lua",
@@ -1428,7 +1428,7 @@ return {
         {
           id = 281,
           name = "Cambot3",
-          type = "Cambot",
+          type = "LegacyCambot",
           shape = "rectangle",
           x = 5056,
           y = 2688,
@@ -1900,6 +1900,40 @@ return {
             ["align"] = "bottom_left",
             ["hidingspot"] = false,
             ["sprite"] = "../art/sprites/crate.png"
+          }
+        },
+        {
+          id = 314,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 5120,
+          y = 2848,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["GreenLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 316,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 5184,
+          y = 2240,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["BlueLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }

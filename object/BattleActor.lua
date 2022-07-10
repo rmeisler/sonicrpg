@@ -270,6 +270,10 @@ function BattleActor:die()
 			self.turnsImmobilized = false
 			self.poisoned = nil
 			
+			if self.origOptions then
+				self.options = table.clone(self.origOptions)
+			end
+			
 			self:getSprite():setAnimation("dead")
 			self:invoke("dead")
 		end)
