@@ -10,7 +10,7 @@ function Move:construct(obj, target, anim, ttl, earlyExitFun, overlap)
 	self.earlyExitFun = earlyExitFun or (function() return false end)
 	self.done = false
 	self.animCooldown = 0
-	self.switchAnim = nil
+	self.switchAnim = "down"
 	self.overlap = overlap
 end
 
@@ -37,26 +37,8 @@ function Move:update(dt)
 end
 
 function Move:stepToward(target, speed)
-	--print("self x = "..tostring(self.obj.hotspots.left_bot.x).." self y = "..tostring(self.obj.hotspots.left_bot.y)..
-	--      " target x = "..tostring(target.hotspots.left_bot.x).." target y = "..tostring(target.hotspots.left_bot.y))
-
 	local objHS = self.obj.hotspots
 	local targetHS = target.hotspots
-	
-	--[[if self.obj.hotspotOffsets then
-		for orientation, coords in pairs(self.obj.hotspots) do
-			objHS[orientation] = {}
-			for coord, value in pairs(coords) do
-				objHS[orientation][coord] = value + self.obj.hotspotOffsets[orientation][coord]
-			end
-		end
-		for orientation, coords in pairs(target.hotspots) do
-			targetHS[orientation] = {}
-			for coord, value in pairs(coords) do
-				targetHS[orientation][coord] = value + target.hotspotOffsets[orientation][coord]
-			end
-		end
-	end]]
 	
 	if objHS.left_bot.x - targetHS.left_bot.x > speed then
 		if  self.obj.object.properties.ignoreMapCollision or
@@ -64,7 +46,6 @@ function Move:stepToward(target, speed)
 			 self.obj.scene:canMoveWhitelist(objHS.left_bot.x, objHS.left_bot.y, -speed, 0, self.obj.ignoreCollision))
 		then
 			self.obj.x = self.obj.x - speed
-			--self.switchAnim = self.anim.."left"
 		end
 	elseif targetHS.right_bot.x - objHS.right_bot.x > speed then
 		if  self.obj.object.properties.ignoreMapCollision or
@@ -72,17 +53,15 @@ function Move:stepToward(target, speed)
 		 	 self.obj.scene:canMoveWhitelist(objHS.right_bot.x, objHS.right_bot.y, speed, 0, self.obj.ignoreCollision))
 		then
 			self.obj.x = self.obj.x + speed
-			--self.switchAnim = self.anim.."right"
 		end 
 	end
 
-	if objHS.left_top.y - targetHS.left_top.y > speed then --or (self.overlap and objHS.left_top.y - self.target.y > speed) then
+	if objHS.left_top.y - targetHS.left_top.y > speed then
 		if  self.obj.object.properties.ignoreMapCollision or
 			(self.obj.scene:canMoveWhitelist(objHS.left_top.x, objHS.left_top.y, 0, -speed, self.obj.ignoreCollision) and
 			 self.obj.scene:canMoveWhitelist(objHS.right_top.x, objHS.right_top.y, 0, -speed, self.obj.ignoreCollision))
 		then
 			self.obj.y = self.obj.y - speed
-			--self.switchAnim = self.anim.."up"
 		end
 	elseif targetHS.left_bot.y - objHS.left_bot.y > speed then
 		if  self.obj.object.properties.ignoreMapCollision or
@@ -90,7 +69,6 @@ function Move:stepToward(target, speed)
 			 self.obj.scene:canMoveWhitelist(objHS.right_bot.x, objHS.right_bot.y, 0, speed, self.obj.ignoreCollision))
 		then
 			self.obj.y = self.obj.y + speed
-			--self.switchAnim = self.anim.."down"
 		end
 	end 
 	

@@ -51,21 +51,22 @@ function LegacyCambot:onCaughtPlayer()
 				countdownText.color[4] = 255
 				countdownText:set("3")
 			end),
-			Wait(1),
+			Wait(0.5),
 			-- 2
 			PlayAudio("sfx", "lockon", 1.0, true),
 			Do(function()
 				countdownText:set("2")
 			end),
-			Wait(1),
+			Wait(0.5),
 			-- 1
 			PlayAudio("sfx", "lockon", 1.0, true),
 			Do(function()
 				countdownText:set("1")
 			end),
-			Wait(1),
+			Wait(0.5),
 			Do(function()
 				countdownText:remove()
+				self:removeAllSceneHandlers()
 			end),
 			BlockPlayer {
 				-- Alarm sfx + blinking red screen
@@ -85,14 +86,13 @@ function LegacyCambot:onCaughtPlayer()
 						Wait(0.5),
 						Do(function()
 							self.scene.player.noIdle = true
-							self.scene.player.state = "shock"
+							self.scene.player.sprite:setAnimation("shock")
 						end)
 					}
 				},
 				Do(function()
 					self.scene:restart()
-				end),
-				Wait(5)
+				end)
 			}
 		},
 		Do(function()
@@ -108,7 +108,7 @@ function LegacyCambot:getFlashlightOffset()
 	elseif facing == "down" then
 		return Transform(self.sprite.transform.x - self.sprite.w + 6, self.sprite.transform.y + self.sprite.h - 10, 2, 2)
 	elseif facing == "right" then
-		return Transform(self.sprite.transform.x + self.sprite.w - 20, self.sprite.transform.y + self.sprite.h/2 - 18, 2, 2)
+		return Transform(self.sprite.transform.x + self.sprite.w - 26, self.sprite.transform.y + self.sprite.h/2 - 14, 2, 2)
 	elseif facing == "left" then
 		return Transform(self.sprite.transform.x + self.sprite.w/2 - self.flashlightSprite.w*2 + 55, self.sprite.transform.y + self.sprite.h/2 - 16, 2, 2)
 	end

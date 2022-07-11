@@ -319,6 +319,10 @@ function Bot:getFlag()
 end
 
 function Bot:update(dt)
+	if self:isRemoved() then
+		self:removeSceneHandler("update")
+	end
+
 	if not self:baseUpdate(dt) then
 		return
 	end

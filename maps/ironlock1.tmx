@@ -985,6 +985,7 @@ end</property>
 end</property>
     <property name="onRemove">return function(self)
     self.scene.objectLookup.Eyes1:remove()
+    self.scene.objectLookup.EyesTrap1:remove()
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>
@@ -1037,7 +1038,7 @@ end</property>
     <property name="viewRange" value="View1,View2,View3,View4"/>
    </properties>
   </object>
-  <object id="282" name="Waypoint1" type="BasicNPC" gid="1922" x="4896" y="2688" width="32" height="32">
+  <object id="282" name="Waypoint1" type="BasicNPC" gid="1922" x="4864" y="2688" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -1047,12 +1048,12 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="284" name="Waypoint3" type="BasicNPC" gid="1922" x="5248" y="2336" width="32" height="32">
+  <object id="284" name="Waypoint3" type="BasicNPC" gid="1922" x="5312" y="2336" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="285" name="Waypoint4" type="BasicNPC" gid="1922" x="5248" y="2688" width="32" height="32">
+  <object id="285" name="Waypoint4" type="BasicNPC" gid="1922" x="5280" y="2688" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>

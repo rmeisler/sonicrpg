@@ -204,7 +204,10 @@ function OpposingPartyMember:beginTurn()
 		self.lostTurns = self.lostTurns - 1
 	elseif self.lostTurns > 0 then
 		local lostTurnMsg = self.name.."'s "..(self.lostTurnType or "boredom").." has subsided."
-		self.action = Telegraph(self, lostTurnMsg, {self.color[1],self.color[2],self.color[3],50})
+		self.action = Serial {
+			Do(function() self.sprite:setAnimation("idle") end),
+			Telegraph(self, lostTurnMsg, {self.color[1],self.color[2],self.color[3],50})
+		}
 		self.lostTurns = self.lostTurns - 1
 	else
 		local targetOverride = table.remove(self.targetOverrideStack, 1)

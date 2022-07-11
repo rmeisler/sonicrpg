@@ -175,14 +175,28 @@ function BattleScene:onEnter(args)
 		end
 
 		if #self.opponents == 1 then
-			initiativeAction = MessageBox {
-				message=self.opponents[1].name.." was caught off guard!",
-				rect=MessageBox.HEADLINER_RECT
+			initiativeAction = Serial {
+				MessageBox {
+					message=self.opponents[1].name.." was caught off guard!",
+					rect=MessageBox.HEADLINER_RECT
+				},
+				Do(function()
+					for _, opponent in pairs(self.opponents) do
+						opponent.sprite:setAnimation("backward")
+					end
+				end)
 			}
 		else
-			initiativeAction = MessageBox {
-				message="Bots were caught off guard!",
-				rect=MessageBox.HEADLINER_RECT
+			initiativeAction = Serial {
+				MessageBox {
+					message="Bots were caught off guard!",
+					rect=MessageBox.HEADLINER_RECT
+				},
+				Do(function()
+					for _, opponent in pairs(self.opponents) do
+						opponent.sprite:setAnimation("backward")
+					end
+				end)
 			}
 		end
 	-- Opponent has initiative by running toward player
@@ -197,10 +211,19 @@ function BattleScene:onEnter(args)
 		end
 		self.state = BattleScene.STATE_MONSTERTURN
 
-		initiativeAction = MessageBox {
-			message="You were caught off guard!",
-			rect=MessageBox.HEADLINER_RECT
-		}	
+		initiativeAction = Serial {
+			MessageBox {
+				message="You were caught off guard!",
+				rect=MessageBox.HEADLINER_RECT
+			},
+			Do(function()
+				for _, player in pairs(self.party) do
+					if player.state ~= BattleActor.STATE_DEAD then
+						player.sprite:setAnimation("idle")
+					end
+				end
+			end)
+		}
 	else
 		for _, mem in pairs(self.party) do
 			if mem.state ~= BattleActor.STATE_DEAD then
