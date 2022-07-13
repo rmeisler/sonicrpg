@@ -48,6 +48,7 @@ function LegacyCambot:onCaughtPlayer()
 			-- 3
 			PlayAudio("sfx", "lockon", 1.0, true),
 			Do(function()
+				self.behavior = Bot.BEHAVIOR_CHASING
 				countdownText.color[4] = 255
 				countdownText:set("3")
 			end),
@@ -101,6 +102,22 @@ function LegacyCambot:onCaughtPlayer()
 	))
 end
 
+function LegacyCambot:getWaitAfterInvestigate()
+	return Wait(0.5)
+end
+
+function LegacyCambot:getInitiative()
+	local initiative = nil
+	if ((self.manualFacing == "left"  and self.x < self.scene.player.x) or
+		(self.manualFacing == "right" and self.x > self.scene.player.x) or
+		(self.manualFacing == "up"    and self.y < (self.scene.player.y - self.scene.player.sprite.h)) or
+		(self.manualFacing == "down"  and (self.y - self.sprite.h*2) > (self.scene.player.y + self.scene.player.sprite.h)))
+	then
+		initiative = "player"
+	end
+	return self.behavior <= Bot.BEHAVIOR_INVESTIGATING and initiative or "opponent"
+end
+
 function LegacyCambot:getFlashlightOffset()
 	local facing = self.manualFacing
 	if facing == "up" then
@@ -110,7 +127,7 @@ function LegacyCambot:getFlashlightOffset()
 	elseif facing == "right" then
 		return Transform(self.sprite.transform.x + self.sprite.w - 26, self.sprite.transform.y + self.sprite.h/2 - 14, 2, 2)
 	elseif facing == "left" then
-		return Transform(self.sprite.transform.x + self.sprite.w/2 - self.flashlightSprite.w*2 + 55, self.sprite.transform.y + self.sprite.h/2 - 16, 2, 2)
+		return Transform(self.sprite.transform.x + self.sprite.w/2 - self.flashlightSprite.w*2 + 58, self.sprite.transform.y + self.sprite.h/2 - 16, 2, 2)
 	end
 end
 

@@ -41,7 +41,6 @@ return function(self, target)
 			2
 		),
 		Parallel {
-			Stars(self, self),
 			Serial {
 				Animate(self.sprite, "chefpose"),
 				MessageBox {
@@ -52,6 +51,9 @@ return function(self, target)
 				}
 			}
 		},
+		
+		PlayAudio("sfx", "poptop", 1.0, true),
+		Stars(self, self),
 		
 		MessageBox {
 			rect=MessageBox.HEADLINER_RECT,

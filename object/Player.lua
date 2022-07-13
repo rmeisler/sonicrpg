@@ -5,6 +5,7 @@ local SceneNode = require "object/SceneNode"
 local NPC = require "object/NPC"
 local BasicNPC = require "object/BasicNPC"
 
+local BlockPlayer = require "actions/BlockPlayer"
 local Repeat = require "actions/Repeat"
 local Wait = require "actions/Wait"
 local WaitForFrame = require "actions/WaitForFrame"
@@ -908,22 +909,9 @@ function Player:basicUpdate(dt)
 			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
 				self.state = Player.STATE_HIDEDOWN
 				self.x = spot.x + self.scene:getTileWidth() + (spot.object.properties.hideOffset or 0) - 7
-				self.y = spot.y + spot.sprite.h*2 - self.height - self.scene:getTileHeight()*1.5
+				self.y = spot.y + spot.sprite.h*2 - self.height - self.scene:getTileHeight()*2
 				self.cinematic = true
 				self.hidingDirection = "down"
-				self.hideHand = BasicNPC(
-					self.scene,
-					{name = "objects"},
-					{name = "playerHideHand", x = self.x - 20, y = self.y + self.height, width = self.width, height = self.height,
-						properties = {
-							nocollision = true,
-							hidden = true,
-							defaultAnim = "hidedownhand",
-							sprite = "art/sprites/"..GameState.party[GameState.leader].sprite..".png"
-						}
-					}
-				)
-				self.scene:addObject(self.hideHand)
 				self.scene:run(
 					While(
 						function()
@@ -934,39 +922,27 @@ function Player:basicUpdate(dt)
 								Ease(self, "x", self.x - 20, 4, "inout"),
 								Wait(1)
 							},
-							Do(function()
-								self.hideHand.sprite:setAnimation("hidedownhand")
-								self.hideHand.sprite.transform.ox = 0
-								self.hideHand.sprite.transform.oy = self.hideHand.sprite.h
-								self.hideHand.sprite.transform.sx = 0
-								self.hideHand.sprite.transform.sy = 2
-								self.hideHand.hidden = false
-								self.hideHand.sprite.sortOrderY = self.hideHand.sprite.transform.y + self.hideHand.sprite.h*2 + 10
-							end),
 							Parallel {
 								Ease(self, "x", self.x - 25, 1, "inout"),
-								Ease(self.scene.camPos, "y", -self:peakDistance("down"), 1, "inout"),
-								Ease(self.hideHand.sprite.transform, "sx", 2, 2, "inout"),
-								Ease(self.hideHand, "x", self.hideHand.x - self.width, 2, "inout")
+								Ease(self.scene.camPos, "y", -self:peakDistance("down"), 1, "inout")
 							},
 							Repeat(Action())
 						},
 						Serial {
-							Parallel {
-								Ease(self, "x", self.x, 5, "inout"),
-								Ease(self.scene.camPos, "y", 0, 5, "inout"),
-
-								Ease(self.hideHand.sprite.transform, "sx", 0, 5, "inout"),
-								Ease(self.hideHand, "x", self.x - 20, 5, "inout")
+							BlockPlayer {
+								Parallel {
+									Ease(self, "x", self.x, 5, "inout"),
+									Ease(self.scene.camPos, "y", 0, 5, "inout")
+								},
+								Do(function()
+									self.cinematic = false
+									self.y = self.y - 20
+									self.dropShadowOverrideY = nil
+									if not next(self.investigators) then
+										self.state = Player.STATE_IDLEUP
+									end
+								end)
 							},
-							Do(function()
-								self.cinematic = false
-								self.hideHand:remove()
-								self.dropShadowOverrideY = nil
-								if not next(self.investigators) then
-									self.state = Player.STATE_IDLEUP
-								end
-							end),
 							Wait(1),
 							Do(function()
 								-- Hold hiding direction power for a little

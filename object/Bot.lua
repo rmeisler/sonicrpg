@@ -287,8 +287,8 @@ function Bot:getInitiative()
 			return "opponent"
 		elseif ((self.manualFacing == "left"  and (self.x + self.sprite.w*2) < (self.scene.player.x - self.scene.player.sprite.w)) or
 				(self.manualFacing == "right" and self.x > (self.scene.player.x + self.scene.player.sprite.w)) or
-				(self.manualFacing == "up"    and (self.y + self.sprite.h*2) < (self.scene.player.y - self.scene.player.sprite.h)) or
-				(self.manualFacing == "down"  and self.y > (self.scene.player.y + self.scene.player.sprite.h)))
+				(self.manualFacing == "up"    and (self.y + self.sprite.h*2) > (self.scene.player.y - self.scene.player.sprite.h)) or
+				(self.manualFacing == "down"  and self.y < (self.scene.player.y + self.scene.player.sprite.h)))
 		then
 			return "player"
 		end
@@ -408,7 +408,7 @@ function Bot:update(dt)
 				Do(function()
 					self.sprite:setAnimation("light"..self.manualFacing)
 				end),
-				Wait(1.6),
+				self:getWaitAfterInvestigate(),
 				Do(function()
 					self.sprite:setAnimation("idle"..self.manualFacing)
 					
@@ -423,6 +423,10 @@ function Bot:update(dt)
 			}
 		end
 	end
+end
+
+function Bot:getWaitAfterInvestigate()
+	return Wait(1.6)
 end
 
 function Bot:investigateUpdate(dt)

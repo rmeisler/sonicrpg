@@ -18,7 +18,8 @@ return function(self, target)
 			local targetXform = target.sprite.transform
 			local star = SpriteNode(
 				target.scene,
-				Transform(targetXform.x, targetXform.y, 0.5, 0.5),
+				Transform(targetXform.x + (starCount % 2 == 0 and -16 or 16),
+				          targetXform.y, 0.5, 0.5),
 				{0,0,0,0},
 				"star",
 				nil,
@@ -43,7 +44,7 @@ return function(self, target)
 				Ease(star.transform, "sx", randomsize, 2, "inout"),
 				Ease(star.transform, "sy", randomsize, 2, "inout"),
 				Ease(star.transform, "angle", (starCount % 2 == 0 and -math.pi/3 or math.pi/3), 2),
-				Ease(star.transform, "x", targetXform.x + (starCount % 2 == 0 and -70 or 70), 2, "inout"),
+				Ease(star.transform, "x", targetXform.x + (starCount % 2 == 0 and -90 or 90), 2, "inout"),
 				Serial {
 					Ease(star.transform, "y", targetXform.y - target.sprite.h*0.8, 3, "inout"),
 					Parallel {

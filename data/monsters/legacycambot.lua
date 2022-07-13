@@ -146,7 +146,7 @@ return {
 						Parallel(sapActions),
 						Do(function() self.sprite:setAnimation("idle") end),
 						MessageBox {
-							message="Party members lost "..tostring(spLoss).." sp!",
+							message="All party members lost "..tostring(spLoss).." sp!",
 							rect=MessageBox.HEADLINER_RECT,
 							closeAction=Wait(1)
 						}
