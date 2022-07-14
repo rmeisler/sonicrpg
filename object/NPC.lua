@@ -486,7 +486,6 @@ function NPC:update(dt)
 	
 	if self.hidingSpot then
 		self.scene.player.inHidingSpot[tostring(self)] = nil
-		self.scene.player.keyhints[tostring(self)] = self
 	end
 	
 	if 	self.disappearOn and

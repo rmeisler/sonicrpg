@@ -55,6 +55,7 @@ function Bot:construct(scene, layer, object)
 	}
 
 	--self:updateFacing()
+	self.manualFacing = "down"
 	self.originalFacing = self.manualFacing
 	
 	self:createDropShadow()

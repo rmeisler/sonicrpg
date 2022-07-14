@@ -27,7 +27,6 @@ return function(self, targets)
 					target.turnsImmobilized = false
 					target.poisoned = nil
 				end),
-				PlayAudio("sfx", "heal", 1.0, true),
 				Parallel {
 					Ease(target.sprite.glowColor, 4, 50, 3),
 					Ease(target.sprite, "glowSize", 6, 3),

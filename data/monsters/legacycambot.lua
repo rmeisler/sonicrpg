@@ -25,7 +25,7 @@ return {
 	sprite = "sprites/cambot2",
 
 	stats = {
-		xp    = 30,
+		xp    = 20,
 		maxhp = 650,
 		attack = 45,
 		defense = 10,
