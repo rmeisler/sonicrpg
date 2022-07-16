@@ -14,6 +14,9 @@ return {
 		pdown = {
 			frames = {{0,2}}
 		},
+		preal = {
+			frames = {{3,1}}
+		},
 		
 		tleft = {
 		    frames = {{1,1}}

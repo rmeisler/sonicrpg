@@ -281,13 +281,14 @@ return {
           type = "SavePoint",
           shape = "rectangle",
           x = 369,
-          y = 352,
+          y = 324,
           width = 32,
           height = 32,
           rotation = 0,
           gid = 6242,
           visible = true,
           properties = {
+            ["align"] = "bottom_left",
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/save.png"
           }

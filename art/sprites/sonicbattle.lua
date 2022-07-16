@@ -150,5 +150,8 @@ return {
 		takenback = {
 			frames = {{0,10}}
 		},
+		block = {
+			frames = {{2,0}}
+		}
     }
 }

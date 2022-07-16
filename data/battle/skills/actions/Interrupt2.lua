@@ -52,7 +52,7 @@ return function(self, target)
 				PlayAudio("sfx", "shocked", 0.5, true),
 			}
 		},
-		target:takeDamage({attack = 20, speed = 0, luck = 0}),
+		target:takeDamage({attack = 20, speed = 100, luck = 0}),
 		
 		MessageBox {
 			message=target.name.." can't move!",

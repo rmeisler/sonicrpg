@@ -79,5 +79,8 @@ return {
 		idleup = {
 			frames = {{1,5}}
 		},
+		block = {
+			frames = {{4,1}}
+		}
     }
 }

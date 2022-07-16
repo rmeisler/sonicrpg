@@ -9,7 +9,9 @@ return {
   tilewidth = 32,
   tileheight = 32,
   nextobjectid = 22,
-  properties = {},
+  properties = {
+    ["onload"] = "actions/ironlock_room1.lua"
+  },
   tilesets = {
     {
       name = "knotholehut",
@@ -226,8 +228,8 @@ return {
         0, 0, 0, 0, 0, 0, 16852, 16853, 16859, 16856, 16857, 16856, 16856, 16857, 16856, 16857, 16854, 16855, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 16922, 16923, 16929, 16926, 16927, 16926, 16926, 16927, 16926, 16927, 16924, 16925, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 17164, 17165, 17166, 17166, 17165, 17166, 17166, 17166, 17165, 17166, 17165, 17167, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 18812, 18813, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 18882, 18883, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -281,16 +283,19 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 352,
-          y = 288,
+          y = 320,
           width = 64,
           height = 64,
           rotation = 0,
           gid = 6242,
           visible = true,
           properties = {
-            ["alphaOverride"] = 150,
-            ["defaultAnim"] = "idledown",
-            ["sprite"] = "../art/sprites/antoine.png"
+            ["align"] = "bottom_left",
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "preal",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    GameState:setFlag(self:getFlag())\n    self.scene.player.x = self.scene.player.x - 60\n    local walkout, walkin, sprites = self.scene.player:split()\n    return BlockPlayer {\n        walkout,\n        Animate(sprites.antoine.sprite, \"idleup\"),\n        Animate(sprites.sonic.sprite, \"idleup\"),\n        Animate(sprites.sally.sprite, \"idleup\"),\n        MessageBox {message = \"Sally: Oh my gosh, are you ok?! {p60}Have you been trapped here long?\"},\n        MessageBox {message = \"???: An acrostic? {p60}Just for me?\", textSpeed=3},\n        MessageBox {message = \"Sally: ?\"},\n        MessageBox {message = \"???: Patient...{p60} Empathetic... {p60}Trusting... {p60}Easygoing... {p60}Reader!\", textSpeed=3},\n        Parallel {\n            Serial {\n                MessageBox {message = \"???: I love it!\", closeAction=Wait(1), textSpeed=3},\n                MessageBox {message = \"???: Thank you, Emily...\", closeAction=Wait(1), textSpeed=3}\n            },\n            Serial {\n                Ease(self.sprite.color, 4, 0, 0.3),\n                Animate(sprites.antoine.sprite, \"shock\"),\n                Animate(sprites.sonic.sprite, \"shock\"),\n                Animate(sprites.sally.sprite, \"shock\")\n            }\n        },\n        Animate(sprites.antoine.sprite, \"idleleft\"),\n        Animate(sprites.sonic.sprite, \"idleright\"),\n        Animate(sprites.sally.sprite, \"idledown\"),\n        MessageBox{message=\"Sonic: Ok, this is getting mondo creepy Sal!\"},\n        Animate(sprites.sally.sprite, \"thinking\"),\n        MessageBox{message=\"Sally: What is going on?...\"},\n        MessageBox{message=\"Antoine: He iz zee ghost too??\"},\n        MessageBox{message=\"Sally: Something's seriously off about this place...\"},\n        walkin,\n        Do(function()\n            self.scene.player.x = self.scene.player.x + 60\n            self:remove()\n        end)\n    }\nend",
+            ["onScan"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox{message=\"Nicole: I'm detecting evidence of a temporal anamoly, Sally.\"},\n        MessageBox{message=\"Sally: {h Temporal anamoly}?!\"},\n    }\nend",
+            ["sprite"] = "../art/sprites/p.png"
           }
         }
       }

@@ -71,7 +71,7 @@
     <property name="sprite" type="file" value="../art/sprites/door6.png"/>
    </properties>
   </object>
-  <object id="19" name="Chest1" type="Chest" gid="6839" x="368" y="352" width="64" height="64">
+  <object id="19" name="Chest1" type="Chest" gid="6839" x="352" y="320" width="64" height="64">
    <properties>
     <property name="Mine" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>

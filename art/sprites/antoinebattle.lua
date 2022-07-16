@@ -95,6 +95,9 @@ return {
 		},
 		idleup = {
 			frames = {{3,4}}
+		},
+		block = {
+			frames = {{0,3}}
 		}
     }
 }

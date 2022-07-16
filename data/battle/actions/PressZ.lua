@@ -18,7 +18,9 @@ return function(self, target, success, fail)
 	end
 	
 	local ttl = 0.2
-	if GameState:isEquipped(self.id, ItemType.Accessory, "Lucky Coin") then
+	if self.side == TargetType.Party and
+	   GameState:isEquipped(self.id, ItemType.Accessory, "Lucky Coin")
+	then
 		ttl = ttl * 1.5
 	end
 	

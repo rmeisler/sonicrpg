@@ -71,8 +71,9 @@
     <property name="sprite" type="file" value="../art/sprites/door6.png"/>
    </properties>
   </object>
-  <object id="21" name="Save" type="SavePoint" gid="6242" x="369" y="352" width="32" height="32">
+  <object id="21" name="Save" type="SavePoint" gid="6242" x="369" y="324" width="32" height="32">
    <properties>
+    <property name="align" value="bottom_left"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
