@@ -8,8 +8,10 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 22,
-  properties = {},
+  nextobjectid = 26,
+  properties = {
+    ["battlebg"] = "../art/backgrounds/robotropolis1.png"
+  },
   tilesets = {
     {
       name = "knotholehut",
@@ -186,9 +188,9 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16885, 16885, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16885, 16885, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16885, 16885, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 17234, 17235, 17236, 17237, 17234, 17235, 17236, 17237, 17234, 17235, 17236, 17237, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 17304, 17305, 17306, 17307, 17304, 17305, 17306, 17307, 17304, 17305, 17306, 17307, 0, 0, 0, 0, 0, 0, 0,
@@ -222,9 +224,9 @@ return {
         0, 0, 0, 0, 0, 0, 16712, 16713, 16790, 16791, 16790, 16790, 16791, 16721, 16791, 16721, 16714, 16715, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 16782, 16783, 16791, 16720, 16721, 16717, 16718, 16719, 16790, 16791, 16784, 16785, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 16712, 16713, 16719, 16790, 16791, 16787, 16788, 16789, 16721, 16719, 16714, 16715, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 16782, 16783, 16789, 16789, 16787, 16786, 16787, 16790, 16791, 16789, 16784, 16785, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 16852, 16853, 16859, 16856, 16857, 16856, 16856, 16857, 16856, 16857, 16854, 16855, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 16922, 16923, 16929, 16926, 16927, 16926, 16926, 16927, 16926, 16927, 16924, 16925, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 18007, 18007, 18007, 18007, 18007, 18286, 18287, 18007, 18007, 18007, 18007, 18007, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 18147, 18147, 18077, 18147, 18147, 18356, 18357, 18147, 18147, 18147, 18147, 18147, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 18217, 18217, 18217, 18217, 18217, 18426, 18427, 18217, 18217, 18217, 18217, 18217, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 17164, 17165, 17166, 17166, 17165, 17166, 17166, 17166, 17165, 17166, 17165, 17167, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -291,6 +293,67 @@ return {
             ["align"] = "bottom_left",
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/save.png"
+          }
+        },
+        {
+          id = 22,
+          name = "EyesTrap1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 320,
+          y = 288,
+          width = 128,
+          height = 32,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal While = require \"actions/While\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\n\nreturn function(self, player, prevState)\n    local arm = self.scene.objectLookup.Arm1\n    local eyes = self.scene.objectLookup.Eyes1\n    if GameState:isFlagSet(arm) then\n        arm:remove()\n        eyes:remove()\n        self:remove()\n        return\n    end\n    if prevState == self.STATE_IDLE and arm.hidden then\n        eyes.hidden = false\n        eyes:run(While(\n            function()\n                return not arm:isRemoved() and not eyes:isRemoved()\n            end,\n            Serial {\n                Animate(eyes.sprite, \"forward\"),\n                Wait(0.5),\n                Animate(eyes.sprite, \"smile\"),\n                Wait(0.5),\n                Do(function()\n                    arm.hidden = false\n                    arm.x = eyes.x - 60\n                    arm.y = eyes.y\n                end),\n                Ease(arm, \"y\", function() return arm.y + 40 end, 4),\n                Do(function()\n                    arm:updateCollision()\n                end),\n                Wait(2),\n                Do(function()\n                    arm:removeCollision()\n                end),\n                Parallel {\n                    Ease(arm, \"y\", function() return arm.y - 40 end, 2),\n                    Ease(arm.sprite.color, 4, 0, 4)\n                },\n                Do(function()\n                    if not arm:isRemoved() and not eyes:isRemoved() then\n                        arm.sprite.color[4] = 255\n                        arm.hidden = true\n                        eyes.sprite:setAnimation(\"forwardblink\")\n                    end\n                end)\n            },\n            Do(function() end)\n        ))\n    end\nend"
+          }
+        },
+        {
+          id = 23,
+          name = "Arm1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 96,
+          width = 64,
+          height = 160,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/phantom.lua",
+            ["battleInitiative"] = "opponent",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["isBot"] = true,
+            ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self) then\n        self:remove()\n    end\nend",
+            ["onRemove"] = "return function(self)\n    self.scene.objectLookup.Eyes1:remove()\nend",
+            ["sprite"] = "../art/sprites/phantomgrab.png"
+          }
+        },
+        {
+          id = 25,
+          name = "Eyes1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 224,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["isBot"] = true,
+            ["onInit"] = "return function(self)\n    self.hidden = true\nend",
+            ["onRemove"] = "return function(self)\n    self.scene.objectLookup.EyesTrap1:remove()\nend",
+            ["sprite"] = "../art/sprites/phantomface.png"
           }
         }
       }

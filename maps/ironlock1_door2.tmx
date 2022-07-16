@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="22">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="26">
+ <properties>
+  <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
+ </properties>
  <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
   <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
  </tileset>
@@ -14,9 +17,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,16885,16885,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,16885,16885,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,16885,16885,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,17234,17235,17236,17237,17234,17235,17236,17237,17234,17235,17236,17237,0,0,0,0,0,0,0,
 0,0,0,0,0,0,17304,17305,17306,17307,17304,17305,17306,17307,17304,17305,17306,17307,0,0,0,0,0,0,0,
@@ -38,9 +41,9 @@
 0,0,0,0,0,0,16712,16713,16790,16791,16790,16790,16791,16721,16791,16721,16714,16715,0,0,0,0,0,0,0,
 0,0,0,0,0,0,16782,16783,16791,16720,16721,16717,16718,16719,16790,16791,16784,16785,0,0,0,0,0,0,0,
 0,0,0,0,0,0,16712,16713,16719,16790,16791,16787,16788,16789,16721,16719,16714,16715,0,0,0,0,0,0,0,
-0,0,0,0,0,0,16782,16783,16789,16789,16787,16786,16787,16790,16791,16789,16784,16785,0,0,0,0,0,0,0,
-0,0,0,0,0,0,16852,16853,16859,16856,16857,16856,16856,16857,16856,16857,16854,16855,0,0,0,0,0,0,0,
-0,0,0,0,0,0,16922,16923,16929,16926,16927,16926,16926,16927,16926,16927,16924,16925,0,0,0,0,0,0,0,
+0,0,0,0,0,0,18007,18007,18007,18007,18007,18286,18287,18007,18007,18007,18007,18007,0,0,0,0,0,0,0,
+0,0,0,0,0,0,18147,18147,18077,18147,18147,18356,18357,18147,18147,18147,18147,18147,0,0,0,0,0,0,0,
+0,0,0,0,0,0,18217,18217,18217,18217,18217,18426,18427,18217,18217,18217,18217,18217,0,0,0,0,0,0,0,
 0,0,0,0,0,0,17164,17165,17166,17166,17165,17166,17166,17166,17165,17166,17165,17167,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -76,6 +79,101 @@
     <property name="align" value="bottom_left"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
+   </properties>
+  </object>
+  <object id="22" name="EyesTrap1" type="BasicNPC" gid="6839" x="320" y="288" width="128" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">local Animate = require &quot;actions/Animate&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Do = require &quot;actions/Do&quot;
+local Ease = require &quot;actions/Ease&quot;
+local While = require &quot;actions/While&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+
+return function(self, player, prevState)
+    local arm = self.scene.objectLookup.Arm1
+    local eyes = self.scene.objectLookup.Eyes1
+    if GameState:isFlagSet(arm) then
+        arm:remove()
+        eyes:remove()
+        self:remove()
+        return
+    end
+    if prevState == self.STATE_IDLE and arm.hidden then
+        eyes.hidden = false
+        eyes:run(While(
+            function()
+                return not arm:isRemoved() and not eyes:isRemoved()
+            end,
+            Serial {
+                Animate(eyes.sprite, &quot;forward&quot;),
+                Wait(0.5),
+                Animate(eyes.sprite, &quot;smile&quot;),
+                Wait(0.5),
+                Do(function()
+                    arm.hidden = false
+                    arm.x = eyes.x - 60
+                    arm.y = eyes.y
+                end),
+                Ease(arm, &quot;y&quot;, function() return arm.y + 40 end, 4),
+                Do(function()
+                    arm:updateCollision()
+                end),
+                Wait(2),
+                Do(function()
+                    arm:removeCollision()
+                end),
+                Parallel {
+                    Ease(arm, &quot;y&quot;, function() return arm.y - 40 end, 2),
+                    Ease(arm.sprite.color, 4, 0, 4)
+                },
+                Do(function()
+                    if not arm:isRemoved() and not eyes:isRemoved() then
+                        arm.sprite.color[4] = 255
+                        arm.hidden = true
+                        eyes.sprite:setAnimation(&quot;forwardblink&quot;)
+                    end
+                end)
+            },
+            Do(function() end)
+        ))
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="23" name="Arm1" type="BasicNPC" gid="6839" x="352" y="96" width="64" height="160">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/phantom.lua"/>
+    <property name="battleInitiative" value="opponent"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="isBot" type="bool" value="true"/>
+    <property name="onInit">return function(self)
+    self.hidden = true
+    if GameState:isFlagSet(self) then
+        self:remove()
+    end
+end</property>
+    <property name="onRemove">return function(self)
+    self.scene.objectLookup.Eyes1:remove()
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
+   </properties>
+  </object>
+  <object id="25" name="Eyes1" type="BasicNPC" gid="6839" x="352" y="224" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="isBot" type="bool" value="true"/>
+    <property name="onInit">return function(self)
+    self.hidden = true
+end</property>
+    <property name="onRemove">return function(self)
+    self.scene.objectLookup.EyesTrap1:remove()
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/phantomface.png"/>
    </properties>
   </object>
  </objectgroup>

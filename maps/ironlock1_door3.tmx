@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="22">
- <properties>
-  <property name="onload" type="file" value="actions/ironlock_room1.lua"/>
- </properties>
  <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
   <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
  </tileset>
@@ -41,9 +38,9 @@
 0,0,0,0,0,0,16712,16713,16790,16791,16790,16790,16791,16721,16791,16721,16714,16715,0,0,0,0,0,0,0,
 0,0,0,0,0,0,16782,16783,16791,16720,16721,16717,16718,16719,16790,16791,16784,16785,0,0,0,0,0,0,0,
 0,0,0,0,0,0,16712,16713,16719,16790,16791,16787,16788,16789,16721,16719,16714,16715,0,0,0,0,0,0,0,
-0,0,0,0,0,0,16782,16783,16789,16789,16787,16786,16787,16790,16791,16789,16784,16785,0,0,0,0,0,0,0,
-0,0,0,0,0,0,16852,16853,16859,16856,16857,16856,16856,16857,16856,16857,16854,16855,0,0,0,0,0,0,0,
-0,0,0,0,0,0,16922,16923,16929,16926,16927,16926,16926,16927,16926,16927,16924,16925,0,0,0,0,0,0,0,
+0,0,0,0,0,0,18007,18007,18007,18007,18007,18007,18007,18007,18007,18007,18007,18007,0,0,0,0,0,0,0,
+0,0,0,0,0,0,18147,18147,18077,18147,18147,18147,18147,18147,18147,18147,18147,18147,0,0,0,0,0,0,0,
+0,0,0,0,0,0,18217,18217,18217,18217,18217,18217,18217,18217,18217,18217,18217,18217,0,0,0,0,0,0,0,
 0,0,0,0,0,0,17164,17165,17166,17166,17165,17166,17166,17166,17165,17166,17165,17167,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,18812,18813,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,18882,18883,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -77,14 +74,21 @@
   <object id="21" name="Ghost" type="BasicNPC" gid="6242" x="352" y="320" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="preal"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="prealsmile"/>
+    <property name="onInit">return function(self)
+    if GameState:isFlagSet(self) then
+        self.handlers = {}
+        self:remove()
+    end
+end</property>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Menu = require &quot;actions/Menu&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Parallel = require &quot;actions/Parallel&quot;
@@ -98,19 +102,29 @@ local NPC = require &quot;object/NPC&quot;
 return function(self)
     GameState:setFlag(self:getFlag())
     self.scene.player.x = self.scene.player.x - 60
-    local walkout, walkin, sprites = self.scene.player:split()
+    local walkout, walkin, sprites = self.scene.player:split{GameState.party.antoine, GameState.party.sonic, GameState.party.sally}
     return BlockPlayer {
-        walkout,
-        Animate(sprites.antoine.sprite, &quot;idleup&quot;),
-        Animate(sprites.sonic.sprite, &quot;idleup&quot;),
-        Animate(sprites.sally.sprite, &quot;idleup&quot;),
-        MessageBox {message = &quot;Sally: Oh my gosh, are you ok?! {p60}Have you been trapped here long?&quot;},
+        Parallel {
+            AudioFade(&quot;music&quot;, 1.0, 0.0, 1),
+            Serial {
+                walkout,
+                Animate(sprites.antoine.sprite, &quot;idleup&quot;),
+                Animate(sprites.sonic.sprite, &quot;idleup&quot;),
+                Animate(sprites.sally.sprite, &quot;idleup&quot;),
+                MessageBox {message = &quot;Sally: Oh my gosh, are you ok?! {p60}Have you been trapped here long?&quot;}
+            }
+        },
+        PlayAudio(&quot;music&quot;, &quot;mysterious&quot;, 1.0, true, true),
+        Animate(self.sprite, &quot;prealhappy2&quot;),
         MessageBox {message = &quot;???: An acrostic? {p60}Just for me?&quot;, textSpeed=3},
         MessageBox {message = &quot;Sally: ?&quot;},
+        Animate(self.sprite, &quot;prealhappy1&quot;),
         MessageBox {message = &quot;???: Patient...{p60} Empathetic... {p60}Trusting... {p60}Easygoing... {p60}Reader!&quot;, textSpeed=3},
         Parallel {
             Serial {
+                Animate(self.sprite, &quot;prealhappy2&quot;),
                 MessageBox {message = &quot;???: I love it!&quot;, closeAction=Wait(1), textSpeed=3},
+                Animate(self.sprite, &quot;prealsmile&quot;),
                 MessageBox {message = &quot;???: Thank you, Emily...&quot;, closeAction=Wait(1), textSpeed=3}
             },
             Serial {
@@ -130,7 +144,8 @@ return function(self)
         MessageBox{message=&quot;Sally: Something's seriously off about this place...&quot;},
         walkin,
         Do(function()
-            self.scene.player.x = self.scene.player.x + 60
+            self.scene.player.x = self.scene.player.x + 100
+            self.scene.player.y = self.scene.player.y + 80
             self:remove()
         end)
     }

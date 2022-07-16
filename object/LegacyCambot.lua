@@ -123,7 +123,7 @@ function LegacyCambot:getFlashlightOffset()
 	if facing == "up" then
 		return Transform(self.sprite.transform.x - self.sprite.w, self.sprite.transform.y - self.sprite.h - 10, 2, 2)
 	elseif facing == "down" then
-		return Transform(self.sprite.transform.x - self.sprite.w + 6, self.sprite.transform.y + self.sprite.h - 10, 2, 2)
+		return Transform(self.sprite.transform.x - self.sprite.w + 3, self.sprite.transform.y + self.sprite.h - 10, 2, 2)
 	elseif facing == "right" then
 		return Transform(self.sprite.transform.x + self.sprite.w - 26, self.sprite.transform.y + self.sprite.h/2 - 14, 2, 2)
 	elseif facing == "left" then

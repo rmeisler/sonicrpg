@@ -14,8 +14,14 @@ return {
 		pdown = {
 			frames = {{0,2}}
 		},
-		preal = {
+		prealhappy1 = {
+			frames = {{2,1}}
+		},
+		prealhappy2 = {
 			frames = {{3,1}}
+		},
+		prealsmile = {
+			frames = {{4,1}}
 		},
 		
 		tleft = {
