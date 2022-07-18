@@ -20,9 +20,16 @@ function LaserTrap:construct(scene, layer, object)
 	self.ghost = true
 	self.alwaysOn = object.properties.alwaysOn
 	self.deactivated = object.properties.deactivated
+	self.blink = object.properties.blink
 	self.respawnName = object.properties.respawn
 	self.bounceY = object.properties.bounceY or 1.0
 
+	if self.blink then
+		self.blinkTime = -1 * (object.properties.blinkOffset or 0)
+		self.blinkOnTime = object.properties.blinkOnTime or 1
+		self.blinkOffTime = object.properties.blinkOffTime or 1
+	end
+	
 	NPC.init(self)
 
 	self:addHandler("collision", LaserTrap.touch, self)
@@ -99,6 +106,56 @@ function LaserTrap:update(dt)
 	if self.alwaysOn then
 		self:shockBots()
 	end
+	
+	if self.blink then
+		self.blinkTime = self.blinkTime + dt
+		if self.alwaysOn and self.blinkTime > self.blinkOnTime then
+			self.blinkTime = 0
+			self:deactivate()
+			print("deactivate laser "..self.object.name)
+		elseif self.deactivated and self.blinkTime > self.blinkOffTime then
+			self.blinkTime = 0
+			self:activate()
+			print("activate laser "..self.object.name)
+		end
+	end
+end
+
+function LaserTrap:activate()
+	self:lasersOn()
+	self.alwaysOn = true
+	self.deactivated = false
+end
+
+function LaserTrap:activateWhenClose()
+	self:disappearLasers()
+	self.alwaysOn = false
+	self.deactivated = false
+end
+
+function LaserTrap:deactivate()
+	self:disappearLasers()
+	self.alwaysOn = false
+	self.deactivated = true
+end
+
+function LaserTrap:disappearLasers()
+    if self.alwaysOn then
+        self.laser1:run {
+            Do(function()
+                self.laser1.sprite.transform.ox = self.laser1.sprite.w
+                self.laser1.x = self.laser1.x + self.laserScale * self.scene:getTileWidth()
+            end),
+            Ease(self.laser1.sprite.transform, "sx", 0, 5)
+        }
+        self.laser2:run {
+            Do(function()
+                self.laser2.sprite.transform.ox = 0
+                self.laser2.x = self.laser2.x - self.laserScale * self.scene:getTileWidth()
+            end),
+            Ease(self.laser2.sprite.transform, "sx", 0, 5)
+        }
+    end
 end
 
 function LaserTrap:touch(prevState)

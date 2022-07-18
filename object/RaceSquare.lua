@@ -97,9 +97,9 @@ function RaceSquare:onCollision(prevState)
 			Serial {
 				Repeat(
 					Serial {
-						PlayAudio("sfx", "tick", 1.0),
+						PlayAudio("sfx", "tick", 1.0, true),
 						Wait(0.5),
-						PlayAudio("sfx", "tick", 1.0),
+						PlayAudio("sfx", "tick", 1.0, true),
 						Wait(0.5)
 					},
 					self.scene.totalSquares

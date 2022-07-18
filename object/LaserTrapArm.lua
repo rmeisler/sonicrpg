@@ -81,21 +81,15 @@ function LaserTrapArm:onScan()
                 {Layout.Text{text="Reconfigure Laser Turret", color={255,255,0,255}}, selectable = false},
                 {Layout.Text("Always-On"), choose = function(menu)
                     menu:close()
-                    self.parentTrap.alwaysOn = true
-                    self.parentTrap.deactivated = false
-                    self.parentTrap:lasersOn()
+					self.parentTrap:activate()
                 end},
                 {Layout.Text("Fire-When-Close"), choose = function(menu)
                     menu:close()
-                    self:disappearLasers()
-                    self.parentTrap.alwaysOn = false
-                    self.parentTrap.deactivated = false
+					self.parentTrap:activateFireWhenClose()
                 end},
                 {Layout.Text("Deactivate"), choose = function(menu)
                     menu:close()
-                    self:disappearLasers()
-                    self.parentTrap.alwaysOn = false
-                    self.parentTrap.deactivated = true
+					self.parentTrap:deactivate()
                 end},
                 {Layout.Text("Keep current settings"), choose = function(menu)
                     menu:close()
@@ -106,25 +100,6 @@ function LaserTrapArm:onScan()
             transform = Transform(love.graphics.getWidth()/2 + 150, love.graphics.getHeight()/2 + 30)
         }
     }
-end
-
-function LaserTrapArm:disappearLasers()
-    if self.parentTrap.alwaysOn then
-        self.parentTrap.laser1:run {
-            Do(function()
-                self.parentTrap.laser1.sprite.transform.ox = self.parentTrap.laser1.sprite.w
-                self.parentTrap.laser1.x = self.parentTrap.laser1.x + self.parentTrap.laserScale * self.scene:getTileWidth()
-            end),
-            Ease(self.parentTrap.laser1.sprite.transform, "sx", 0, 5)
-        }
-        self.parentTrap.laser2:run {
-            Do(function()
-                self.parentTrap.laser2.sprite.transform.ox = 0
-                self.parentTrap.laser2.x = self.parentTrap.laser2.x - self.parentTrap.laserScale * self.scene:getTileWidth()
-            end),
-            Ease(self.parentTrap.laser2.sprite.transform, "sx", 0, 5)
-        }
-    end
 end
 
 

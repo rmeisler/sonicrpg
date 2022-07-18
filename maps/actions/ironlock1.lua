@@ -29,13 +29,6 @@ return function(scene, hint)
 	scene.player.sprite.color[2] = 150
 	scene.player.sprite.color[3] = 150
 	
-	scene.player.collisionHSOffsets = {
-		right_top = {x = 0, y = 0},
-		right_bot = {x = 0, y = 0},
-		left_top = {x = 0, y = 0},
-		left_bot = {x = 0, y = 0},
-	}
-	
 	local text = TypeText(
 		Transform(50, 500),
 		{255, 255, 255, 0},
