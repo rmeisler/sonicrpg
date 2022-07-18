@@ -154,6 +154,10 @@ return {
 			frames = {{3,5}}
 		},
 		
+		dead = {
+			frames = {{14,2}}
+		},
+		
 		thinking = {
 			frames = {{10,4}}
 		},

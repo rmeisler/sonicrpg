@@ -311,6 +311,10 @@ return {
 			frames = {{14,8}}
 		},
 		
+		dead = {
+			frames = {{12,9}}
+		},
+		
 		prepare_race = {
 			frames = {{14,9}}
 		},

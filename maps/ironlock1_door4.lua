@@ -8,8 +8,10 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 23,
-  properties = {},
+  nextobjectid = 27,
+  properties = {
+    ["onload"] = "actions/ironlock_room4.lua"
+  },
   tilesets = {
     {
       name = "knotholehut",
@@ -277,18 +279,20 @@ return {
         },
         {
           id = 21,
-          name = "Ghost",
+          name = "Tails",
           type = "BasicNPC",
           shape = "rectangle",
           x = 352,
-          y = 288,
+          y = 272,
           width = 64,
           height = 64,
           rotation = 0,
           gid = 6242,
           visible = true,
           properties = {
+            ["alphaOverride"] = 0,
             ["defaultAnim"] = "epochtails",
+            ["nocollision"] = true,
             ["sprite"] = "../art/sprites/p.png"
           }
         },
@@ -307,6 +311,77 @@ return {
           properties = {
             ["ghost"] = true,
             ["orientation"] = "up"
+          }
+        },
+        {
+          id = 23,
+          name = "Sonic",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 288,
+          y = -160,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6242,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "shock",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/sonic.png"
+          }
+        },
+        {
+          id = 24,
+          name = "Sally",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = -96,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6242,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "shock",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/sally.png"
+          }
+        },
+        {
+          id = 25,
+          name = "Antoine",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 416,
+          y = -160,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6242,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "shock",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/antoine.png"
+          }
+        },
+        {
+          id = 26,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 256,
+          y = 288,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["YellowLeaf"] = 3,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }
