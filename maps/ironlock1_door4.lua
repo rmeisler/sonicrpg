@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 22,
+  nextobjectid = 23,
   properties = {},
   tilesets = {
     {
@@ -288,9 +288,25 @@ return {
           gid = 6242,
           visible = true,
           properties = {
-            ["alphaOverride"] = 150,
-            ["defaultAnim"] = "idledown",
-            ["sprite"] = "../art/sprites/antoine.png"
+            ["defaultAnim"] = "epochtails",
+            ["sprite"] = "../art/sprites/p.png"
+          }
+        },
+        {
+          id = 22,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 366,
+          y = 384,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6242,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["orientation"] = "up"
           }
         }
       }

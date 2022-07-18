@@ -159,6 +159,10 @@ function LaserTrap:disappearLasers()
 end
 
 function LaserTrap:touch(prevState)
+    if not self.spawnPointLeft then
+		self:postInit()
+	end
+
 	if self.deactivated then
 		return
 	elseif self.alwaysOn then
