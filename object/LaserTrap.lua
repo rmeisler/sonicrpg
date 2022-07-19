@@ -112,13 +112,18 @@ function LaserTrap:update(dt)
 		if self.alwaysOn and self.blinkTime > self.blinkOnTime then
 			self.blinkTime = 0
 			self:deactivate()
-			print("deactivate laser "..self.object.name)
 		elseif self.deactivated and self.blinkTime > self.blinkOffTime then
 			self.blinkTime = 0
 			self:activate()
-			print("activate laser "..self.object.name)
 		end
 	end
+end
+
+function LaserTrap:use()
+	self.blink = true
+	self.blinkTime = 0
+	self.blinkOnTime = 3
+	self.blinkOffTime = 3
 end
 
 function LaserTrap:activate()
