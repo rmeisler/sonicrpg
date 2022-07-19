@@ -29,20 +29,36 @@ return function(scene, hint)
 	scene.player.sprite.color[2] = 150
 	scene.player.sprite.color[3] = 150
 	
+	local subtext = TypeText(
+		Transform(50, 470),
+		{255, 255, 255, 0},
+		FontCache.TechnoSmall,
+		"Iron Lock",
+		100
+	)
+	
 	local text = TypeText(
 		Transform(50, 500),
 		{255, 255, 255, 0},
 		FontCache.Techno,
-		"Iron Lock",
+		scene.map.properties.sectorName,
 		100
 	)
+	
 	local showTitle = function()
 		Executor(scene):act(Serial {
 			Wait(0.5),
+			subtext,
 			text,
-			Ease(text.color, 4, 255, 1),
+			Parallel {
+				Ease(subtext.color, 4, 255, 1),
+			    Ease(text.color, 4, 255, 1)
+			},
 			Wait(2),
-			Ease(text.color, 4, 0, 1)
+			Parallel {
+				Ease(subtext.color, 4, 0, 1),
+			    Ease(text.color, 4, 0, 1)
+			}
 		})
 	end
 

@@ -15,6 +15,10 @@ return {
     },
 	{
         type = "map",
+		file = "maps/ironlock3.lua"
+    },
+	{
+        type = "map",
 		file = "maps/ironlock1_door1.lua"
     },
 	{

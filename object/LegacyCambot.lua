@@ -23,13 +23,17 @@ function LegacyCambot:construct(scene, layer, object)
 	
 end
 
+function LegacyCambot:onRemove()
+	self.countdownText:remove()
+end
+
 function LegacyCambot:onCaughtPlayer()
 	self:removeSceneHandler("update", Bot.investigateUpdate)
 	self:addSceneHandler("update", Bot.updateAction)
 	self.action:stop()
 	self.sprite:setAnimation("idle"..self.manualFacing)
 
-	countdownText = TextNode(
+	self.countdownText = TextNode(
 		self.scene,
 		Transform.relative(self.sprite.transform, Transform(48, 0)),
 		{255, 0, 0, 0},
@@ -49,24 +53,24 @@ function LegacyCambot:onCaughtPlayer()
 			PlayAudio("sfx", "lockon", 1.0, true),
 			Do(function()
 				self.behavior = Bot.BEHAVIOR_CHASING
-				countdownText.color[4] = 255
-				countdownText:set("3")
+				self.countdownText.color[4] = 255
+				self.countdownText:set("3")
 			end),
 			Wait(0.5),
 			-- 2
 			PlayAudio("sfx", "lockon", 1.0, true),
 			Do(function()
-				countdownText:set("2")
+				self.countdownText:set("2")
 			end),
 			Wait(0.5),
 			-- 1
 			PlayAudio("sfx", "lockon", 1.0, true),
 			Do(function()
-				countdownText:set("1")
+				self.countdownText:set("1")
 			end),
 			Wait(0.5),
 			Do(function()
-				countdownText:remove()
+				self.countdownText:remove()
 				self:removeAllSceneHandlers()
 			end),
 			BlockPlayer {
@@ -97,7 +101,7 @@ function LegacyCambot:onCaughtPlayer()
 			}
 		},
 		Do(function()
-			countdownText:remove()
+			self.countdownText:remove()
 		end)
 	))
 end

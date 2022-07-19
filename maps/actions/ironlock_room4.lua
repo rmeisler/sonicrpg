@@ -44,15 +44,16 @@ return function(scene, hint)
 			scene.player.sprite.visible = false
 			scene.player.dropShadow.hidden = true
 		end),
+		Wait(2),
 		Parallel {
-			Ease(scene.objectLookup.Sonic, "y", 352 - 98, 1, "linear"),
-			Ease(scene.objectLookup.Sally, "y", 416 - 98, 1, "linear"),
-			Ease(scene.objectLookup.Antoine, "y", 352 - 98, 1, "linear")
+			Ease(scene.objectLookup.Sonic, "y", 352 - 98, 3, "linear"),
+			Ease(scene.objectLookup.Sally, "y", 416 - 98, 3, "linear"),
+			Ease(scene.objectLookup.Antoine, "y", 352 - 98, 3, "linear")
 		},
 		Animate(scene.objectLookup.Sonic.sprite, "dead"),
 		Animate(scene.objectLookup.Sally.sprite, "dead"),
 		Animate(scene.objectLookup.Antoine.sprite, "dead"),
-		Wait(1.5),
+		Wait(3),
 		Ease(scene.objectLookup.Tails.sprite.color, 4, 255, 0.3),
 		Animate(scene.objectLookup.Sonic.sprite, "idleup"),
 		Animate(scene.objectLookup.Sally.sprite, "idleup"),
