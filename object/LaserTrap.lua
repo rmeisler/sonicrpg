@@ -92,6 +92,20 @@ function LaserTrap:postInit()
 end
 
 function LaserTrap:lasersOn()
+	self.laser1.x = self.spawnPointLeft.x + self.spawnPointLeft.object.width/2
+	self.laser1.y = self.spawnPointLeft.y + self.spawnPointLeft.object.height/2
+	self.laser1.sprite.transform.ox = 0
+	self.laser1.sprite.transform.oy = self.laser1.sprite.h/2
+	self.laser1.sprite.transform.sx = 0.0
+	self.laser1.sprite.transform.sy = 1.0
+
+	self.laser2.x = self.spawnPointRight.x + self.spawnPointLeft.object.width/2
+	self.laser2.y = self.spawnPointRight.y + self.spawnPointLeft.object.height/2
+	self.laser2.sprite.transform.ox = self.laser1.sprite.w
+	self.laser2.sprite.transform.oy = self.laser1.sprite.h/2
+	self.laser2.sprite.transform.sx = 0.0
+	self.laser2.sprite.transform.sy = 1.0
+
 	self.laser1:run {
 		Ease(self.laser1.sprite.transform, "sx", self.laserScale, 5)
 	}
@@ -120,10 +134,25 @@ function LaserTrap:update(dt)
 end
 
 function LaserTrap:use()
-	self.blink = true
-	self.blinkTime = 0
-	self.blinkOnTime = 3
-	self.blinkOffTime = 3
+	self.scene:run(BlockPlayer {
+		Parallel {
+			Ease(self.scene.camPos, "x", function() return self.scene.player.x - (self.x + self.object.width/2) end, 1, "inout"),
+			Ease(self.scene.camPos, "y", function() return self.scene.player.y - (self.y + self.object.height) end, 1, "inout"),
+		},
+		Do(function()
+			self.scene.audio:playSfx("shocked", 0.5, true)
+			self:activate()
+			self.blink = true
+			self.blinkTime = 0
+			self.blinkOnTime = 2
+			self.blinkOffTime = 2
+		end),
+		Wait(2),
+		Parallel {
+			Ease(self.scene.camPos, "x", 0, 1, "inout"),
+			Ease(self.scene.camPos, "y", 0, 1, "inout"),
+		}
+	})
 end
 
 function LaserTrap:activate()
@@ -173,7 +202,6 @@ function LaserTrap:touch(prevState)
 	elseif self.alwaysOn then
 		self:shockPlayer()
 	elseif prevState == NPC.STATE_IDLE then
-	    local player = self.scene.player
         local laser1 = self.laser1
 		local laser2 = self.laser2
 		

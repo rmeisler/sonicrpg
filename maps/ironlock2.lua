@@ -11,6 +11,7 @@ return {
   nextobjectid = 610,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["onload"] = "actions/ironlockfloor.lua",
     ["regionName"] = "Iron Lock",
     ["sectorName"] = "2F"
   },

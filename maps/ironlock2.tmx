@@ -2,6 +2,7 @@
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="197" height="160" tilewidth="32" tileheight="32" infinite="0" nextobjectid="610">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
+  <property name="onload" type="file" value="actions/ironlockfloor.lua"/>
   <property name="regionName" value="Iron Lock"/>
   <property name="sectorName" value="2F"/>
  </properties>

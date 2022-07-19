@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="150" height="160" tilewidth="32" tileheight="32" infinite="0" nextobjectid="491">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="150" height="160" tilewidth="32" tileheight="32" infinite="0" nextobjectid="496">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/ironlock1.lua"/>
@@ -1978,12 +1978,12 @@
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="469" name="Cambot10" type="LegacyCambot" gid="37" x="1184" y="3040" width="32" height="32">
+  <object id="469" name="Cambot10" type="LegacyCambot" gid="37" x="1152" y="3040" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="follow" value="CB10_Waypoint1,CB10_Waypoint2,CB10_Waypoint3,CB10_Waypoint2"/>
+    <property name="follow" value="CB10_Waypoint1,CB10_Waypoint2"/>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignorePlayer" type="bool" value="false"/>
@@ -1991,17 +1991,12 @@
     <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
    </properties>
   </object>
-  <object id="470" name="CB10_Waypoint1" type="BasicNPC" gid="1922" x="1184" y="3008" width="32" height="32">
+  <object id="470" name="CB10_Waypoint1" type="BasicNPC" gid="1922" x="1152" y="3008" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="471" name="CB10_Waypoint2" type="BasicNPC" gid="1922" x="1184" y="3712" width="32" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="472" name="CB10_Waypoint3" type="BasicNPC" gid="1922" x="1984" y="3712" width="32" height="32">
+  <object id="471" name="CB10_Waypoint2" type="BasicNPC" gid="1922" x="1152" y="3616" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -2152,6 +2147,17 @@ end</property>
         self:remove()
     end
 end</property>
+    <property name="onRemove">local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+return function(self)
+    local door = self.scene.objectLookup.Door5
+    door:run {
+        PlayAudio(&quot;sfx&quot;, &quot;door&quot;, 1.0, true),
+        Animate(door.sprite, &quot;closing&quot;),
+        Animate(door.sprite, &quot;closed&quot;)
+    }
+end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>
   </object>
@@ -2185,25 +2191,40 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/sally.png"/>
    </properties>
   </object>
-  <object id="488" name="BlinkLaserTrap1" type="LaserTrap" gid="2374" x="1088" y="3456" width="256" height="32">
+  <object id="488" name="BlinkLaserTrap1" type="LaserTrap" gid="2374" x="1088" y="3328" width="256" height="32">
    <properties>
     <property name="alignOffsetY" type="float" value="10"/>
     <property name="bounceY" type="float" value="1"/>
     <property name="deactivated" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
     <property name="spawnPointLeft" value="BlinkLaserTrapShooter1"/>
     <property name="spawnPointRight" value="BlinkLaserTrapShooter2"/>
    </properties>
   </object>
-  <object id="489" name="BlinkLaserTrapShooter1" type="LaserTrapArm" gid="2374" x="1056" y="3456" width="32" height="32">
+  <object id="489" name="BlinkLaserTrapShooter1" type="LaserTrapArm" gid="2374" x="1056" y="3328" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="left_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
    </properties>
   </object>
-  <object id="490" name="BlinkLaserTrapShooter2" type="LaserTrapArm" gid="2374" x="1344" y="3456" width="32" height="32">
+  <object id="490" name="BlinkLaserTrapShooter2" type="LaserTrapArm" gid="2374" x="1344" y="3328" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="right_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+   </properties>
+  </object>
+  <object id="493" name="Crate" type="BasicNPC" gid="1922" x="1536" y="3648" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="hidingspot" type="bool" value="false"/>
+    <property name="sprite" type="file" value="../art/sprites/crate.png"/>
+   </properties>
+  </object>
+  <object id="494" name="Crate" type="BasicNPC" gid="1922" x="1600" y="3648" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="hidingspot" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
  </objectgroup>

@@ -8,7 +8,7 @@ return {
   height = 160,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 491,
+  nextobjectid = 496,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/ironlock1.lua",
@@ -4067,7 +4067,7 @@ return {
           name = "Cambot10",
           type = "LegacyCambot",
           shape = "rectangle",
-          x = 1184,
+          x = 1152,
           y = 3040,
           width = 32,
           height = 32,
@@ -4078,7 +4078,7 @@ return {
             ["battle"] = "../data/monsters/legacycambot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
-            ["follow"] = "CB10_Waypoint1,CB10_Waypoint2,CB10_Waypoint3,CB10_Waypoint2",
+            ["follow"] = "CB10_Waypoint1,CB10_Waypoint2",
             ["followRepeat"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = false,
@@ -4091,7 +4091,7 @@ return {
           name = "CB10_Waypoint1",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1184,
+          x = 1152,
           y = 3008,
           width = 32,
           height = 32,
@@ -4107,24 +4107,8 @@ return {
           name = "CB10_Waypoint2",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1184,
-          y = 3712,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1922,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 472,
-          name = "CB10_Waypoint3",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1984,
-          y = 3712,
+          x = 1152,
+          y = 3616,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4321,6 +4305,7 @@ return {
             ["ghost"] = true,
             ["isBot"] = true,
             ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self) then\n        self:remove()\n    end\nend",
+            ["onRemove"] = "local PlayAudio = require \"actions/PlayAudio\"\nlocal Animate = require \"actions/Animate\"\n\nreturn function(self)\n    local door = self.scene.objectLookup.Door5\n    door:run {\n        PlayAudio(\"sfx\", \"door\", 1.0, true),\n        Animate(door.sprite, \"closing\"),\n        Animate(door.sprite, \"closed\")\n    }\nend",
             ["sprite"] = "../art/sprites/phantomgrab.png"
           }
         },
@@ -4393,7 +4378,7 @@ return {
           type = "LaserTrap",
           shape = "rectangle",
           x = 1088,
-          y = 3456,
+          y = 3328,
           width = 256,
           height = 32,
           rotation = 0,
@@ -4403,6 +4388,7 @@ return {
             ["alignOffsetY"] = 10,
             ["bounceY"] = 1,
             ["deactivated"] = true,
+            ["ghost"] = true,
             ["spawnPointLeft"] = "BlinkLaserTrapShooter1",
             ["spawnPointRight"] = "BlinkLaserTrapShooter2"
           }
@@ -4413,7 +4399,7 @@ return {
           type = "LaserTrapArm",
           shape = "rectangle",
           x = 1056,
-          y = 3456,
+          y = 3328,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4430,7 +4416,7 @@ return {
           type = "LaserTrapArm",
           shape = "rectangle",
           x = 1344,
-          y = 3456,
+          y = 3328,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4439,6 +4425,42 @@ return {
           properties = {
             ["defaultAnim"] = "right_on",
             ["sprite"] = "../art/sprites/lasertrap.png"
+          }
+        },
+        {
+          id = 493,
+          name = "Crate",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1536,
+          y = 3648,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["hidingspot"] = false,
+            ["sprite"] = "../art/sprites/crate.png"
+          }
+        },
+        {
+          id = 494,
+          name = "Crate",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1600,
+          y = 3648,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["hidingspot"] = true,
+            ["sprite"] = "../art/sprites/crate.png"
           }
         }
       }
