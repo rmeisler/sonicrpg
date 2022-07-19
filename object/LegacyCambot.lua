@@ -24,7 +24,9 @@ function LegacyCambot:construct(scene, layer, object)
 end
 
 function LegacyCambot:onRemove()
-	self.countdownText:remove()
+	if self.countdownText then
+		self.countdownText:remove()
+	end
 end
 
 function LegacyCambot:onCaughtPlayer()

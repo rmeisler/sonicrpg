@@ -1508,7 +1508,7 @@ end
     <property name="sprite" type="file" value="../art/sprites/leaf.png"/>
    </properties>
   </object>
-  <object id="601" name="Sparkle" type="BasicNPC" gid="2311" x="672" y="3552" width="64" height="64">
+  <object id="601" name="Sparkle" type="BasicNPC" gid="2311" x="648" y="3552" width="64" height="64">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
@@ -1522,22 +1522,23 @@ local AudioFade = require &quot;actions/AudioFade&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
 
 return function(self)
-    self.scene.player.x = self.x + 32
+    self.scene.player.x = self.x + 16
     self.scene.player.y = self.y - 64
     self.scene.player.x = self.scene.player.x - 60
     local walkout, walkin, sprites = self.scene.player:split{GameState.party.antoine, GameState.party.sonic, GameState.party.sally}
     return BlockPlayer {
         walkout,
         AudioFade(&quot;music&quot;, 1.0, 0.0, 1),
+        Animate(sprites.antoine.sprite, &quot;crouch&quot;),
         MessageBox{message=&quot;Antoine: Wait for a minute...{p60} what iz zis that I am seeing, eh?&quot;},
         PlayAudio(&quot;music&quot;, &quot;mysterious&quot;, 1.0, true, true),
         Animate(sprites.sally.sprite, &quot;thinking3&quot;),
         MessageBox{message=&quot;Sally: ?&quot;},
         Animate(sprites.sally.sprite, &quot;shock&quot;),
         MessageBox{message=&quot;Sally: Wait! {p60}Don't touch that!&quot;},
-        Animate(sprites.antoine.sprite, &quot;idleup&quot;),
         MessageBox{message=&quot;Antoine: Why?&quot;},
         -- Trap door revealed
+        PlayAudio(&quot;sfx&quot;, &quot;openchasm&quot;, 1.0, true),
         Animate(self.scene.objectLookup.TrapDoor.sprite, &quot;opening&quot;),
         Animate(self.scene.objectLookup.TrapDoor.sprite, &quot;open&quot;),
         Animate(sprites.antoine.sprite, &quot;shock&quot;),

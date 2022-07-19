@@ -62,7 +62,7 @@ return function(scene, hint)
 		})
 	end
 
-	GameState:setFlag("ironlock_intro")
+	--GameState:setFlag("ironlock_intro")
 	if not GameState:isFlagSet("ironlock_intro") then
 		GameState:setFlag("ironlock_intro")
 		scene.player.sprite.visible = false
@@ -146,9 +146,83 @@ return function(scene, hint)
 				}, 10),
 				AudioFade("music", 1.0, 0.0, 0.3)
 			},
-			-- FFs lift up trap door and look left/right
-			-- All leap out of door
+			Wait(2),
+			PlayAudio("sfx", "openchasm", 1.0, true),
+			Animate(scene.objectLookup.TrapDoor.sprite, "opening"),
+			Animate(scene.objectLookup.TrapDoor.sprite, "open"),
+			Wait(2),
 			Do(function()
+				for _,layer in pairs(scene.map.layers) do
+					if layer.name == "hidden" then
+						layer.opacity = 1.0
+						break
+					end
+				end
+				scene.objectLookup.Sonic.sprite.color[4] = 255
+				scene.objectLookup.Sally.sprite.color[4] = 255
+				scene.objectLookup.Antoine.sprite.color[4] = 255
+			end),
+			Ease(scene.objectLookup.Sonic, "y", function() return scene.objectLookup.Sonic.y - 15 end, 1),
+			Animate(scene.objectLookup.Sonic.sprite, "headleft"),
+			Wait(1.5),
+			Animate(scene.objectLookup.Sonic.sprite, "headright"),
+			Wait(1.5),
+			Animate(scene.objectLookup.Sonic.sprite, "headsmile"),
+			MessageBox{message="Sonic: It's cool, guys."},
+			Animate(scene.objectLookup.Sally.sprite, "leapright"),
+			Animate(scene.objectLookup.Sonic.sprite, "leapright"),
+			Animate(scene.objectLookup.Antoine.sprite, "leapright"),
+			Parallel {
+				Ease(scene.objectLookup.Sally, "x", 2048, 4, "linear"),
+				Serial {
+					Ease(scene.objectLookup.Sally, "y", function() return scene.objectLookup.Sally.y - 140 end, 8),
+					Ease(scene.objectLookup.Sally, "y", function() return scene.objectLookup.Sally.y + 42 end, 8)
+				},
+				Ease(scene.objectLookup.Sonic, "x", 2048 - 64, 4, "linear"),
+				Serial {
+					Ease(scene.objectLookup.Sonic, "y", function() return scene.objectLookup.Sonic.y - 140 end, 8),
+					Ease(scene.objectLookup.Sonic, "y", function() return scene.objectLookup.Sonic.y + 42 end, 8)
+				},
+				Ease(scene.objectLookup.Antoine, "x", 2048 - 128, 4, "linear"),
+				Serial {
+					Ease(scene.objectLookup.Antoine, "y", function() return scene.objectLookup.Antoine.y - 140 end, 8),
+					Ease(scene.objectLookup.Antoine, "y", function() return scene.objectLookup.Antoine.y + 42 end, 8)
+				}
+			},
+			
+			Animate(scene.objectLookup.Sally.sprite, "idleleft"),
+			Animate(scene.objectLookup.Sonic.sprite, "idleright"),
+			Animate(scene.objectLookup.Antoine.sprite, "idleright"),
+			PlayAudio("sfx", "openchasm", 1.0, true),
+			Animate(scene.objectLookup.TrapDoor.sprite, "closing"),
+			Animate(scene.objectLookup.TrapDoor.sprite, "closed"),
+			Wait(1),
+			Animate(scene.objectLookup.Antoine.sprite, "hideleft"),
+			Animate(scene.objectLookup.Sally.sprite, "pose"),
+			MessageBox{message="Sally: We made it!"},
+			MessageBox{message="Sally: Now let's trash this science experiment!"},
+			Do(function()
+				scene.objectLookup.Sally.sprite:setAnimation("walkleft")
+				scene.objectLookup.Antoine.sprite:setAnimation("walkright")
+			end),
+			Parallel {
+				Ease(scene.objectLookup.Sally, "x", function() return scene.objectLookup.Sally.x - 64 end, 3, "linear"),
+				Ease(scene.objectLookup.Antoine, "x", function() return scene.objectLookup.Antoine.x + 64 end, 3, "linear")
+			},
+			Do(function()
+				scene.objectLookup.Antoine:remove()
+				scene.objectLookup.Sonic:remove()
+				scene.objectLookup.Sally:remove()
+				scene.player.x = scene.player.x + 42
+				scene.player.y = scene.player.y + 42
+
+				for _,layer in pairs(scene.map.layers) do
+					if layer.name == "hidden" then
+						layer.opacity = 0.0
+						break
+					end
+				end
+
 				scene.player.sprite.visible = true
 				scene.player.dropShadow.hidden = false
 				scene.player.state = "idledown"

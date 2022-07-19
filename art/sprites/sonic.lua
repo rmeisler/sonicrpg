@@ -36,14 +36,27 @@ return {
 		headidle = {
 			frames = {{13,2}}
 		},
+		headsmile = {
+			frames = {{15,2}}
+		},
 		headleft = {
 			frames = {{15,3}}
 		},
 		headright = {
 			frames = {{15,4}}
 		},
+		
+		leapleft = {
+			frames = {{6,1}}
+		},
+		leapright = {
+			frames = {{6,0}}
+		},
 		leapdown = {
-			frames = {{5,2}}
+			frames = {{6,2}}
+		},
+		leapup = {
+			frames = {{6,3}}
 		},
 		
 		lookleft = {

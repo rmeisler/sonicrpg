@@ -5,7 +5,11 @@ return {
     h = 96,
 
     animations = {
-        closed = {
+        closing = {
+            frames = {{3,0},{2,0},{1,0}},
+			speed = 0.1
+        },
+		closed = {
             frames = {{0,0}}
         },
 		opening = {

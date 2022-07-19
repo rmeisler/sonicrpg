@@ -66,8 +66,17 @@ return {
 			frames = {{13,2}}
 		},
 		
+		leapleft = {
+			frames = {{6,1}}
+		},
+		leapright = {
+			frames = {{6,0}}
+		},
 		leapdown = {
-			frames = {{5,2}}
+			frames = {{6,2}}
+		},
+		leapup = {
+			frames = {{6,3}}
 		},
 		
 		idleright = {
@@ -164,6 +173,9 @@ return {
         },
 		sleeping_tired = {
             frames = {{14,0}}
-        }
+        },
+		crouch = {
+			frames = {{14,2}}
+		}
     }
 }

@@ -17,10 +17,6 @@ return {
 			speed = 0.5
 		},
 		
-		leapdown = {
-			frames = {{5,2}}
-		},
-		
 		crouchdown = {
 		    frames = {{13,7}}
 		},
@@ -156,6 +152,19 @@ return {
 		
 		dead = {
 			frames = {{14,2}}
+		},
+		
+		leapleft = {
+			frames = {{6,1}}
+		},
+		leapright = {
+			frames = {{6,0}}
+		},
+		leapdown = {
+			frames = {{6,2}}
+		},
+		leapup = {
+			frames = {{6,3}}
 		},
 		
 		thinking = {

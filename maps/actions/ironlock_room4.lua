@@ -28,11 +28,47 @@ return function(scene, hint)
 	scene.player.sprite.color[1] = 150
 	scene.player.sprite.color[2] = 150
 	scene.player.sprite.color[3] = 150
-
-	--return PlayAudio("music", "mysterious", 1.0, true, true)
 	
 	if GameState:isFlagSet("ep3_epochtails") then
-		return Action()
+		scene.player.sprite.visible = false
+		scene.player.dropShadow.hidden = true
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+			end),
+			Wait(2),
+			Parallel {
+				Ease(scene.objectLookup.Sonic, "y", 352 - 98, 3, "linear"),
+				Ease(scene.objectLookup.Sally, "y", 416 - 98, 3, "linear"),
+				Ease(scene.objectLookup.Antoine, "y", 352 - 98, 3, "linear")
+			},
+			Animate(scene.objectLookup.Sonic.sprite, "dead"),
+			Animate(scene.objectLookup.Sally.sprite, "dead"),
+			Animate(scene.objectLookup.Antoine.sprite, "dead"),
+			Wait(2.5),
+			Animate(scene.objectLookup.Sonic.sprite, "idleright"),
+			Animate(scene.objectLookup.Sally.sprite, "idleup"),
+			Animate(scene.objectLookup.Antoine.sprite, "idleleft"),
+			Wait(0.5),
+			Do(function()
+				scene.objectLookup.Sonic.sprite:setAnimation("walkright")
+				scene.objectLookup.Sally.sprite:setAnimation("walkup")
+				scene.objectLookup.Antoine.sprite:setAnimation("walkleft")
+			end),
+			Parallel {
+				Ease(scene.objectLookup.Sonic, "x", scene.player.x, 3, "linear"),
+				Ease(scene.objectLookup.Antoine, "x", scene.player.x, 3, "linear"),
+				Ease(scene.objectLookup.Sally, "y", function() return scene.objectLookup.Sally.y - 80 end, 3, "linear"),
+			},
+			Do(function()
+				scene.objectLookup.Sonic:remove()
+				scene.objectLookup.Sally:remove()
+				scene.objectLookup.Antoine:remove()
+				scene.player.sprite.visible = true
+				scene.player.dropShadow.hidden = false
+			end)
+		}
 	end
 	
 	GameState:setFlag("ep3_epochtails")
@@ -53,7 +89,7 @@ return function(scene, hint)
 		Animate(scene.objectLookup.Sonic.sprite, "dead"),
 		Animate(scene.objectLookup.Sally.sprite, "dead"),
 		Animate(scene.objectLookup.Antoine.sprite, "dead"),
-		Wait(3),
+		Wait(2.5),
 		Ease(scene.objectLookup.Tails.sprite.color, 4, 255, 0.3),
 		Animate(scene.objectLookup.Sonic.sprite, "idleup"),
 		Animate(scene.objectLookup.Sally.sprite, "idleup"),
