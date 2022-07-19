@@ -14,6 +14,10 @@ return {
 		opening = {
             frames = {{0,0},{1,0},{2,0},{3,0}},
 			speed = 0.1
+        },
+		closing = {
+            frames = {{3,0},{2,0},{1,0},{0,0}},
+			speed = 0.1
         }
     }
 }
