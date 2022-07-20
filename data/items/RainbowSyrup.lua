@@ -1,7 +1,7 @@
 local TargetType = require "util/TargetType"
 
 local Revive = require "data/items/actions/Revive"
-local ReviveText = require "data/items/actions/ReviveText"
+local HealText = require "data/items/actions/HealText"
 
 return {
 	name = "Rainbow Syrup",
@@ -9,6 +9,6 @@ return {
 	target = TargetType.Party,
 	usableFromMenu = true,
 	icon = "icon_item",
-	battleAction = function() return Revive(10000) end,
-	menuAction = function() return ReviveText(10000) end
+	battleAction = function() return Revive(9999) end,
+	menuAction = function() return HealText("hp", 9999, {0,255,0,255}) end
 }

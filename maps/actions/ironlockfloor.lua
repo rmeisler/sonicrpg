@@ -62,6 +62,49 @@ return function(scene, hint)
 		})
 	end
 	
+	if hint == "thirdfloor" then
+		showTitle()
+		scene.player.sprite.visible = false
+		scene.player.dropShadow.hidden = true
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+			end),
+			Wait(2),
+			Parallel {
+				Ease(scene.objectLookup.Sonic, "y", scene.player.y - 98, 3, "linear"),
+				Ease(scene.objectLookup.Sally, "y", scene.player.y + 60 - 98, 3, "linear"),
+				Ease(scene.objectLookup.Antoine, "y", scene.player.y - 98, 3, "linear")
+			},
+			Animate(scene.objectLookup.Sonic.sprite, "dead"),
+			Animate(scene.objectLookup.Sally.sprite, "dead"),
+			Animate(scene.objectLookup.Antoine.sprite, "dead"),
+			Wait(2.5),
+			Animate(scene.objectLookup.Sonic.sprite, "idleright"),
+			Animate(scene.objectLookup.Sally.sprite, "idleup"),
+			Animate(scene.objectLookup.Antoine.sprite, "idleleft"),
+			Wait(0.5),
+			Do(function()
+				scene.objectLookup.Sonic.sprite:setAnimation("walkright")
+				scene.objectLookup.Sally.sprite:setAnimation("walkup")
+				scene.objectLookup.Antoine.sprite:setAnimation("walkleft")
+			end),
+			Parallel {
+				Ease(scene.objectLookup.Sonic, "x", scene.player.x, 3, "linear"),
+				Ease(scene.objectLookup.Antoine, "x", scene.player.x, 3, "linear"),
+				Ease(scene.objectLookup.Sally, "y", function() return scene.objectLookup.Sally.y - 80 end, 3, "linear"),
+			},
+			Do(function()
+				scene.objectLookup.Sonic:remove()
+				scene.objectLookup.Sally:remove()
+				scene.objectLookup.Antoine:remove()
+				scene.player.sprite.visible = true
+				scene.player.dropShadow.hidden = false
+			end)
+		}
+	end
+	
 	showTitle()
 	return PlayAudio("music", "ironlock", 1.0, true, true)
 end

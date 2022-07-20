@@ -8,7 +8,7 @@ return {
   height = 160,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 610,
+  nextobjectid = 618,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/ironlockfloor.lua",
@@ -2223,7 +2223,7 @@ return {
           properties = {
             ["alignOffsetY"] = 10,
             ["alwaysOn"] = true,
-            ["bounceY"] = -1,
+            ["bounceY"] = 1,
             ["spawnPointLeft"] = "LaserTrapShooter5",
             ["spawnPointRight"] = "LaserTrapShooter6"
           }
@@ -2874,6 +2874,155 @@ return {
             ["align"] = "bottom_left",
             ["hidingspot"] = false,
             ["sprite"] = "../art/sprites/crate.png"
+          }
+        },
+        {
+          id = 610,
+          name = "EyesTrap1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4288,
+          y = 3904,
+          width = 128,
+          height = 96,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal While = require \"actions/While\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\n\nreturn function(self, player, prevState)\n    local arm = self.scene.objectLookup.Arm1\n    local eyes = self.scene.objectLookup.Eyes1\n    if GameState:isFlagSet(arm) then\n        arm:remove()\n        eyes:remove()\n        self:remove()\n        return\n    end\n    if prevState == self.STATE_IDLE and arm.hidden then\n        eyes.hidden = false\n        eyes:run(While(\n            function()\n                return not arm:isRemoved() and not eyes:isRemoved()\n            end,\n            Serial {\n                Animate(eyes.sprite, \"forward\"),\n                Wait(0.5),\n                Animate(eyes.sprite, \"smile\"),\n                Wait(0.5),\n                Do(function()\n                    arm.hidden = false\n                    arm.x = eyes.x - 60\n                    arm.y = eyes.y\n                end),\n                Ease(arm, \"y\", function() return arm.y + 40 end, 4),\n                Do(function()\n                    arm:updateCollision()\n                end),\n                Wait(2),\n                Do(function()\n                    arm:removeCollision()\n                end),\n                Parallel {\n                    Ease(arm, \"y\", function() return arm.y - 40 end, 2),\n                    Ease(arm.sprite.color, 4, 0, 4)\n                },\n                Do(function()\n                    if not arm:isRemoved() and not eyes:isRemoved() then\n                        arm.sprite.color[4] = 255\n                        arm.hidden = true\n                        eyes.sprite:setAnimation(\"forwardblink\")\n                    end\n                end)\n            },\n            Do(function() end)\n        ))\n    end\nend"
+          }
+        },
+        {
+          id = 611,
+          name = "Arm1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4320,
+          y = 3680,
+          width = 64,
+          height = 160,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/phantom.lua",
+            ["battleInitiative"] = "opponent",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["isBot"] = true,
+            ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self) then\n        self:remove()\n    end\nend",
+            ["onRemove"] = "return function(self)\n    self.scene.objectLookup.Eyes1:remove()\nend",
+            ["sprite"] = "../art/sprites/phantomgrab.png"
+          }
+        },
+        {
+          id = 612,
+          name = "Chest4",
+          type = "Chest",
+          shape = "rectangle",
+          x = 4320,
+          y = 3776,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["RainbowSyrup"] = 1,
+            ["hidden"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 613,
+          name = "Eyes1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4320,
+          y = 3776,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["isBot"] = true,
+            ["onInit"] = "return function(self)\n    self.hidden = true\nend",
+            ["onRemove"] = "return function(self)\n    self.scene.objectLookup.Chest4.hidden = false\n    self.scene.objectLookup.Chest4:updateCollision()\nend",
+            ["sprite"] = "../art/sprites/phantomface.png"
+          }
+        },
+        {
+          id = 614,
+          name = "SpawnPoint",
+          type = "Player",
+          shape = "rectangle",
+          x = 3200,
+          y = 2560,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 615,
+          name = "Sonic",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 3136,
+          y = 2080,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "shock",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/sonic.png"
+          }
+        },
+        {
+          id = 616,
+          name = "Sally",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 3200,
+          y = 2144,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "shock",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/sally.png"
+          }
+        },
+        {
+          id = 617,
+          name = "Antoine",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 3264,
+          y = 2080,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "shock",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/antoine.png"
           }
         }
       }

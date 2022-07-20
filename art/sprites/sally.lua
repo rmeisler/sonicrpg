@@ -264,6 +264,10 @@ return {
 		},
 		hockey_hit_done = {
 			frames = {{8,6}}
+		},
+		
+		youngdown = {
+			frames = {{5,5}}
 		}
     }
 }

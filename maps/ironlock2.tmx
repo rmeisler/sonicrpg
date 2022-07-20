@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="197" height="160" tilewidth="32" tileheight="32" infinite="0" nextobjectid="610">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="197" height="160" tilewidth="32" tileheight="32" infinite="0" nextobjectid="618">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/ironlockfloor.lua"/>
@@ -1261,7 +1261,7 @@
    <properties>
     <property name="alignOffsetY" type="float" value="10"/>
     <property name="alwaysOn" type="bool" value="true"/>
-    <property name="bounceY" type="float" value="-1"/>
+    <property name="bounceY" type="float" value="1"/>
     <property name="spawnPointLeft" value="LaserTrapShooter5"/>
     <property name="spawnPointRight" value="LaserTrapShooter6"/>
    </properties>
@@ -1594,6 +1594,135 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
+   </properties>
+  </object>
+  <object id="610" name="EyesTrap1" type="BasicNPC" gid="2311" x="4288" y="3904" width="128" height="96">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">local Animate = require &quot;actions/Animate&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Do = require &quot;actions/Do&quot;
+local Ease = require &quot;actions/Ease&quot;
+local While = require &quot;actions/While&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+
+return function(self, player, prevState)
+    local arm = self.scene.objectLookup.Arm1
+    local eyes = self.scene.objectLookup.Eyes1
+    if GameState:isFlagSet(arm) then
+        arm:remove()
+        eyes:remove()
+        self:remove()
+        return
+    end
+    if prevState == self.STATE_IDLE and arm.hidden then
+        eyes.hidden = false
+        eyes:run(While(
+            function()
+                return not arm:isRemoved() and not eyes:isRemoved()
+            end,
+            Serial {
+                Animate(eyes.sprite, &quot;forward&quot;),
+                Wait(0.5),
+                Animate(eyes.sprite, &quot;smile&quot;),
+                Wait(0.5),
+                Do(function()
+                    arm.hidden = false
+                    arm.x = eyes.x - 60
+                    arm.y = eyes.y
+                end),
+                Ease(arm, &quot;y&quot;, function() return arm.y + 40 end, 4),
+                Do(function()
+                    arm:updateCollision()
+                end),
+                Wait(2),
+                Do(function()
+                    arm:removeCollision()
+                end),
+                Parallel {
+                    Ease(arm, &quot;y&quot;, function() return arm.y - 40 end, 2),
+                    Ease(arm.sprite.color, 4, 0, 4)
+                },
+                Do(function()
+                    if not arm:isRemoved() and not eyes:isRemoved() then
+                        arm.sprite.color[4] = 255
+                        arm.hidden = true
+                        eyes.sprite:setAnimation(&quot;forwardblink&quot;)
+                    end
+                end)
+            },
+            Do(function() end)
+        ))
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="611" name="Arm1" type="BasicNPC" gid="2311" x="4320" y="3680" width="64" height="160">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/phantom.lua"/>
+    <property name="battleInitiative" value="opponent"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="isBot" type="bool" value="true"/>
+    <property name="onInit">return function(self)
+    self.hidden = true
+    if GameState:isFlagSet(self) then
+        self:remove()
+    end
+end</property>
+    <property name="onRemove">return function(self)
+    self.scene.objectLookup.Eyes1:remove()
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
+   </properties>
+  </object>
+  <object id="612" name="Chest4" type="Chest" gid="2311" x="4320" y="3776" width="64" height="64">
+   <properties>
+    <property name="RainbowSyrup" type="int" value="1"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="613" name="Eyes1" type="BasicNPC" gid="2311" x="4320" y="3776" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="isBot" type="bool" value="true"/>
+    <property name="onInit">return function(self)
+    self.hidden = true
+end</property>
+    <property name="onRemove">return function(self)
+    self.scene.objectLookup.Chest4.hidden = false
+    self.scene.objectLookup.Chest4:updateCollision()
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/phantomface.png"/>
+   </properties>
+  </object>
+  <object id="614" name="SpawnPoint" type="Player" gid="1922" x="3200" y="2560" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="615" name="Sonic" type="BasicNPC" gid="1714" x="3136" y="2080" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="shock"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
+   </properties>
+  </object>
+  <object id="616" name="Sally" type="BasicNPC" gid="1714" x="3200" y="2144" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="shock"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/sally.png"/>
+   </properties>
+  </object>
+  <object id="617" name="Antoine" type="BasicNPC" gid="1714" x="3264" y="2080" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="shock"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
    </properties>
   </object>
  </objectgroup>

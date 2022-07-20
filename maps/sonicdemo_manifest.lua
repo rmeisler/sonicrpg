@@ -35,6 +35,18 @@ return {
     },
 	{
         type = "map",
+		file = "maps/ironlock3_door1.lua"
+    },
+	{
+        type = "map",
+		file = "maps/ironlock3_door2.lua"
+    },
+	{
+        type = "map",
+		file = "maps/ironlock3_door3.lua"
+    },
+	{
+        type = "map",
 		file = "maps/robotropolis_1.lua",
 		--primary = true
     },
@@ -1372,6 +1384,11 @@ return {
 		file = "audio/music/trouble.ogg",
 		category = "music",
 		looping = true,
+	},
+	{
+		type = "sound",
+		file = "audio/music/troublefanfare.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",

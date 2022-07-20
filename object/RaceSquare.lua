@@ -123,6 +123,10 @@ function RaceSquare:onCollision(prevState)
 		))
 	end
 	
+	if not self.squares then
+		self:postInit()
+	end
+	
 	self.scene.squareNumber = self.scene.squareNumber - 1
 	for _, sq in pairs(self.squares) do
 		sq.sprite:setAnimation(tostring(self.scene.squareNumber))

@@ -218,6 +218,13 @@ return {
 			frames = {{14,3}}
 		},
 		
+		laughright = {
+			frames = {{13,4}}
+		},
+		laughleft = {
+			frames = {{14,4}}
+		},
+		
 		ouchright = {
 			frames = {{16,0}}
 		},

@@ -68,7 +68,7 @@ return function(scene, hint)
 		scene.player.sprite.visible = false
 		scene.player.dropShadow.hidden = true
 		return BlockPlayer {
-			PlayAudio("music", "darkintro", 1.0, true, true),
+			PlayAudio("music", "darkintro", 0.8, true, true),
 			Do(function()
 				scene.player.sprite.visible = false
 				scene.player.dropShadow.hidden = true
@@ -146,7 +146,7 @@ return function(scene, hint)
 				}, 10),
 				AudioFade("music", 1.0, 0.0, 0.3)
 			},
-			Wait(2),
+			Wait(2.5),
 			PlayAudio("sfx", "openchasm", 1.0, true),
 			Animate(scene.objectLookup.TrapDoor.sprite, "opening"),
 			Animate(scene.objectLookup.TrapDoor.sprite, "open"),
@@ -191,7 +191,7 @@ return function(scene, hint)
 			},
 			
 			Animate(scene.objectLookup.Sally.sprite, "idleleft"),
-			Animate(scene.objectLookup.Sonic.sprite, "idleright"),
+			Animate(scene.objectLookup.Sonic.sprite, "idledown"),
 			Animate(scene.objectLookup.Antoine.sprite, "idleright"),
 			PlayAudio("sfx", "openchasm", 1.0, true),
 			Animate(scene.objectLookup.TrapDoor.sprite, "closing"),
