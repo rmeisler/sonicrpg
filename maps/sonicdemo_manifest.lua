@@ -7,11 +7,12 @@ return {
 	{
         type = "map",
 		file = "maps/ironlock1.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
-		file = "maps/ironlock2.lua"
+		file = "maps/ironlock2.lua",
+		primary = true
     },
 	{
         type = "map",

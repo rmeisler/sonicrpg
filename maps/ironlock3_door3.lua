@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 25,
+  nextobjectid = 26,
   properties = {},
   tilesets = {
     {
@@ -281,31 +281,6 @@ return {
       properties = {},
       objects = {
         {
-          id = 2,
-          name = "Door",
-          type = "Door",
-          shape = "rectangle",
-          x = 352,
-          y = 512,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 6839,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -20,
-            ["ghost"] = true,
-            ["key"] = "down",
-            ["orientation"] = "up",
-            ["scene"] = "ironlock3.lua",
-            ["spawn_point"] = "Door3",
-            ["spawn_point_offset_x"] = 16,
-            ["spawn_point_offset_y"] = 40,
-            ["sprite"] = "../art/sprites/door6.png"
-          }
-        },
-        {
           id = 24,
           name = "Sparkle",
           type = "BasicNPC",
@@ -361,6 +336,43 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "above",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 25,
+          name = "Door",
+          type = "Door",
+          shape = "rectangle",
+          x = 352,
+          y = 512,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -20,
+            ["ghost"] = true,
+            ["key"] = "down",
+            ["orientation"] = "up",
+            ["scene"] = "ironlock3.lua",
+            ["spawn_point"] = "Door3",
+            ["spawn_point_offset_x"] = 16,
+            ["spawn_point_offset_y"] = 40,
+            ["sprite"] = "../art/sprites/door6.png"
+          }
+        }
       }
     },
     {

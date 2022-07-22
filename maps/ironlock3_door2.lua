@@ -8,10 +8,8 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 22,
-  properties = {
-    ["onload"] = "actions/ironlock_room3_1.lua"
-  },
+  nextobjectid = 23,
+  properties = {},
   tilesets = {
     {
       name = "knotholehut",
@@ -271,29 +269,27 @@ return {
             ["key"] = "down",
             ["orientation"] = "up",
             ["scene"] = "ironlock3.lua",
-            ["spawn_point"] = "Door1",
+            ["spawn_point"] = "Door2",
             ["spawn_point_offset_x"] = 16,
             ["spawn_point_offset_y"] = 40,
             ["sprite"] = "../art/sprites/door6.png"
           }
         },
         {
-          id = 21,
-          name = "Ghost",
-          type = "BasicNPC",
+          id = 22,
+          name = "Chest1",
+          type = "Chest",
           shape = "rectangle",
           x = 352,
           y = 320,
           width = 64,
           height = 64,
           rotation = 0,
-          gid = 6242,
+          gid = 6839,
           visible = true,
           properties = {
-            ["align"] = "bottom_left",
-            ["alphaOverride"] = 0,
-            ["defaultAnim"] = "youngdown",
-            ["sprite"] = "../art/sprites/sally.png"
+            ["LaserShield"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }

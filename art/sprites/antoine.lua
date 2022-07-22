@@ -11,6 +11,10 @@ return {
 		shock = {
 			frames = {{11,4}}
 		},
+		runscared = {
+			frames = {{9,4},{10,4}},
+			speed = 0.04
+		},
 		
 		stepup = {
 		    frames = {{0,3},{1,3},{0,3},{5,3}},

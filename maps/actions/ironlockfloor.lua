@@ -62,6 +62,7 @@ return function(scene, hint)
 		})
 	end
 	
+	hint = "thirdfloor"
 	if hint == "thirdfloor" then
 		showTitle()
 		scene.player.sprite.visible = false
@@ -84,24 +85,197 @@ return function(scene, hint)
 			Animate(scene.objectLookup.Sonic.sprite, "idleright"),
 			Animate(scene.objectLookup.Sally.sprite, "idleup"),
 			Animate(scene.objectLookup.Antoine.sprite, "idleleft"),
-			Wait(0.5),
+			Wait(1.5),
 			Do(function()
-				scene.objectLookup.Sonic.sprite:setAnimation("walkright")
+				scene.objectLookup.Sonic.sprite:setAnimation("walkup")
 				scene.objectLookup.Sally.sprite:setAnimation("walkup")
-				scene.objectLookup.Antoine.sprite:setAnimation("walkleft")
+				scene.objectLookup.Antoine.sprite:setAnimation("walkup")
 			end),
 			Parallel {
-				Ease(scene.objectLookup.Sonic, "x", scene.player.x, 3, "linear"),
-				Ease(scene.objectLookup.Antoine, "x", scene.player.x, 3, "linear"),
-				Ease(scene.objectLookup.Sally, "y", function() return scene.objectLookup.Sally.y - 80 end, 3, "linear"),
+				Ease(scene.player, "y", function() return scene.player.y - 700 end, 0.3),
+				Serial {
+					Parallel {
+						Ease(scene.objectLookup.Sonic, "y", function() return scene.objectLookup.Sonic.y - 700 end, 0.5, "linear"),
+						Ease(scene.objectLookup.Antoine, "y", function() return scene.objectLookup.Antoine.y - 600 end, 0.5, "linear"),
+						Ease(scene.objectLookup.Sally, "y", function() return scene.objectLookup.Sally.y - 700 end, 0.5, "linear")
+					},
+					Do(function()
+						scene.objectLookup.Sonic.sprite:setAnimation("idleup")
+						scene.objectLookup.Sally.sprite:setAnimation("idleup")
+						scene.objectLookup.Antoine.sprite:setAnimation("idleup")
+					end)
+				}
 			},
+			MessageBox{message="Antoine: Is zat--"},
+			MessageBox{message="Sally: Yes. {p60}That looks like where they're keeping {h Project Firebird}..."},
+			Animate(scene.objectLookup.Antoine.sprite, "scaredhop1"),
+			MessageBox{message="Antoine: S-S-Should we be waiting for ze Rebels?"},
+			Animate(scene.objectLookup.Sally.sprite, "thinking2"),
+			MessageBox{message="Sally: You're right Antoine. {p60}Ugh! Where could they be?"},
+			Animate(scene.objectLookup.Sonic.sprite, "irritated"),
+			MessageBox{message="Sonic: Come on, Sal! Lemme at it! {p60}We don't need them! {p60}I can smash this bucket of bolts and blast us outta here before ya even know I'm gone!"},
+			Animate(scene.objectLookup.Sally.sprite, "thinking"),
+			MessageBox{message="Sally: ..."},
+			Animate(scene.objectLookup.Sally.sprite, "thinking2"),
+			MessageBox{message="Sally: Ok. {p60}Let's do it to it."},
+			Animate(scene.objectLookup.Sonic.sprite, "pose"),
+			MessageBox{message="Sonic: Alright, Sal!"},
+			Parallel {
+				MessageBox{message="Sally: I'll get the door. {p60}You keep watch, Antoine."},
+				Serial {
+					Do(function()
+						scene.objectLookup.Sally.sprite:setAnimation("walkup")
+					end),
+					Parallel {
+						Ease(scene.objectLookup.Sally, "x", function() return scene.objectLookup.Sally.x - 200 end, 1, "linear"),
+						Ease(scene.objectLookup.Sally, "y", function() return scene.objectLookup.Sally.y - 150 end, 1, "linear")
+					},
+					Do(function()
+						scene.objectLookup.Sally.sprite:setAnimation("idleup")
+					end)
+				},
+				Serial {
+					Do(function()
+						scene.objectLookup.Sonic.sprite:setAnimation("walkup")
+					end),
+					Parallel {
+						Ease(scene.objectLookup.Sonic, "x", function() return scene.objectLookup.Sonic.x + 50 end, 1, "linear"),
+						Ease(scene.objectLookup.Sonic, "y", function() return scene.objectLookup.Sonic.y - 100 end, 1, "linear")
+					},
+					Do(function()
+						scene.objectLookup.Sonic.sprite:setAnimation("idleup")
+					end)
+				}
+			},
+			Animate(scene.objectLookup.Antoine.sprite, "hideleft"),
+			Wait(1),
+			Animate(scene.objectLookup.Antoine.sprite, "peekleft"),
+			Wait(1),
+			Animate(scene.objectLookup.Antoine.sprite, "hideright"),
+			Wait(0.5),
+			
+			Animate(scene.objectLookup.Antoine.sprite, "shock"),
+			MessageBox{message="Antoine: !"},
+			
 			Do(function()
-				scene.objectLookup.Sonic:remove()
-				scene.objectLookup.Sally:remove()
-				scene.objectLookup.Antoine:remove()
-				scene.player.sprite.visible = true
-				scene.player.dropShadow.hidden = false
-			end)
+				scene.objectLookup.Swatbot8.hidden = false
+				scene.objectLookup.Swatbot8.sprite:setAnimation("walkup")
+			end),
+			
+			Ease(scene.objectLookup.Swatbot8, "y", scene.objectLookup.Swatbot8.y - 400, 0.5, "linear"),
+
+			Do(function()
+				scene.objectLookup.Swatbot8.hidden = false
+				scene.objectLookup.Swatbot8.sprite:setAnimation("idleup")
+			end),
+			
+			MessageBox{message="Sonic: How's it looking back there, Ant?"},
+			MessageBox{message="Antoine: Not so good, I am thinking!"},
+			Animate(scene.objectLookup.Sonic.sprite, "idledown"),
+			Wait(1),
+			Animate(scene.objectLookup.Sonic.sprite, "pose"),
+			MessageBox{message="Sonic: One swatbutt? {p60}You think that's enough to stop me!?"},
+			Wait(0.5),
+			Animate(scene.objectLookup.Sally.sprite, "idledown"),
+			MessageBox{message="???: No. {p60}But a dozen or so? {p60}Perhaps."},
+			Do(function()
+				scene.objectLookup.Swatbot5.hidden = false
+				scene.objectLookup.Swatbot6.hidden = false
+				scene.objectLookup.Swatbot7.hidden = false
+			end),
+			Parallel {
+				Serial {
+					Wait(1),
+					Do(function()
+						scene.objectLookup.Swatbot4.sprite:setAnimation("walkleft")
+						scene.objectLookup.Swatbot11.sprite:setAnimation("walkleft")
+						scene.objectLookup.Swatbot9.sprite:setAnimation("walkleft")
+						scene.objectLookup.Swatbot10.sprite:setAnimation("walkleft")
+					end),
+					Parallel {
+						Ease(scene.objectLookup.Swatbot4, "x", scene.objectLookup.Swatbot4.x - 200, 1, "linear"),
+						Ease(scene.objectLookup.Swatbot11, "x", scene.objectLookup.Swatbot11.x - 200, 1, "linear"),
+						Ease(scene.objectLookup.Swatbot9, "x", scene.objectLookup.Swatbot9.x - 200, 1, "linear"),
+						Ease(scene.objectLookup.Swatbot10, "x", scene.objectLookup.Swatbot10.x - 200, 1, "linear"),
+					},
+					Do(function()
+						scene.objectLookup.Swatbot4.sprite:setAnimation("idleleft")
+						scene.objectLookup.Swatbot11.sprite:setAnimation("idleleft")
+						scene.objectLookup.Swatbot9.sprite:setAnimation("idleleft")
+						scene.objectLookup.Swatbot10.sprite:setAnimation("idleleft")
+					end),
+				},
+				Serial {
+					Wait(2),
+					Do(function()
+						scene.objectLookup.Swatbot5.sprite:setAnimation("walkup")
+						scene.objectLookup.Swatbot6.sprite:setAnimation("walkup")
+						scene.objectLookup.Swatbot7.sprite:setAnimation("walkup")
+					end),
+					Parallel {
+						Ease(scene.objectLookup.Swatbot5, "y", scene.objectLookup.Swatbot5.y - 400, 0.3, "linear"),
+						Ease(scene.objectLookup.Swatbot6, "y", scene.objectLookup.Swatbot6.y - 400, 0.3, "linear"),
+						Ease(scene.objectLookup.Swatbot7, "y", scene.objectLookup.Swatbot7.y - 400, 0.3, "linear")
+					},
+					Do(function()
+						scene.objectLookup.Swatbot5.sprite:setAnimation("idleup")
+						scene.objectLookup.Swatbot6.sprite:setAnimation("idleup")
+						scene.objectLookup.Swatbot7.sprite:setAnimation("idleup")
+					end)
+				},
+				Serial {
+					Do(function()
+						scene.objectLookup.Swatbot1.sprite:setAnimation("walkright")
+						scene.objectLookup.Swatbot2.sprite:setAnimation("walkright")
+						scene.objectLookup.Swatbot3.sprite:setAnimation("walkright")
+						scene.objectLookup.Snively.sprite:setAnimation("walkright")
+					end),
+					Parallel {
+						Ease(scene.objectLookup.Swatbot1, "x", scene.objectLookup.Swatbot1.x + 250, 1, "linear"),
+						Ease(scene.objectLookup.Swatbot2, "x", scene.objectLookup.Swatbot2.x + 250, 1, "linear"),
+						Ease(scene.objectLookup.Swatbot3, "x", scene.objectLookup.Swatbot3.x + 250, 1, "linear"),
+						Ease(scene.objectLookup.Snively, "x", scene.objectLookup.Snively.x + 250, 1, "linear")
+					},
+					Do(function()
+						scene.objectLookup.Swatbot1.sprite:setAnimation("idleright")
+						scene.objectLookup.Swatbot2.sprite:setAnimation("idleright")
+						scene.objectLookup.Swatbot3.sprite:setAnimation("idleright")
+						scene.objectLookup.Snively.sprite:setAnimation("idleright_smile")
+					end)
+				},
+			},
+
+			Animate(scene.objectLookup.Sonic.sprite, "shock"),
+			Animate(scene.objectLookup.Sally.sprite, "shock"),
+			
+			-- Scared hop
+			Animate(scene.objectLookup.Antoine.sprite, "scaredhop1"),
+			Wait(0.1),
+			Animate(scene.objectLookup.Antoine.sprite, "tremble"),
+			Animate(scene.objectLookup.Antoine.sprite, "scaredhop2"),
+			Ease(scene.objectLookup.Antoine, "y", function() return scene.objectLookup.Antoine.y - 50 end, 7, "linear"),
+			Animate(scene.objectLookup.Antoine.sprite, "scaredhop3"),
+			Ease(scene.objectLookup.Antoine, "y", function() return scene.objectLookup.Antoine.y + 50 end, 7, "linear"),
+			Animate(scene.objectLookup.Antoine.sprite, "scaredhop4"),
+			Wait(0.1),
+			Animate(scene.objectLookup.Antoine.sprite, "scaredhop5"),
+			
+			PlayAudio("music", "troublefanfare", 1.0, true),
+			Wait(1),
+			-- Run away
+			Do(function() scene.objectLookup.Antoine.sprite:setAnimation("runscared") end),
+			Wait(0.5),
+			
+			Parallel {
+				Ease(scene.objectLookup.Antoine, "x", function() return scene.objectLookup.Antoine.x + 400 end, 1),
+				Serial {
+					Wait(0.5),
+					Do(function()
+						scene.objectLookup.Snively.sprite:setAnimation("idleright_laugh")
+					end),
+					MessageBox{message="Snively: Let him go! {p60}He's no threat without the Princess or Hedgehog.", closeAction=Wait(2)}
+				}
+			},
 		}
 	end
 	

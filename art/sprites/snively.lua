@@ -130,6 +130,15 @@ return {
             frames = {{11,0}}
         },
 		
+		idleright_smile = {
+            frames = {{12,0}}
+        },
+		
+		idleright_laugh = {
+            frames = {{13,0},{14,0}},
+			speed=0.2
+        },
+		
 		peekright = {
 			frames = {{2,4}}
 		},
