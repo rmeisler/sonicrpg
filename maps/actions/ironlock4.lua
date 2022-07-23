@@ -58,7 +58,7 @@ return function(scene, hint)
 					scene.objectLookup.Antoine.sprite:setAnimation("paceright")
 				end),
 				Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x + 200, 0.6, "linear")
-			}, 14),
+			}, 13),
 			
 			Serial {
 				MessageBox{message="Antoine: Alright Antoine, this is fine.", closeAction=Wait(1.5)},
@@ -67,13 +67,16 @@ return function(scene, hint)
 				
 				MessageBox{message="Antoine: I shall simply use my mastery of kungfu to defeat them! {p40}Except for ze fact that I do not actually know any kungfu... {p60}zis is just something I say to protect my own skin...", closeAction=Wait(2)},
 				
-				MessageBox{message="Antoine: So what skills do you have then,\nAntoine Depardieu?", closeAction=Wait(1)},
+				MessageBox{message="Antoine: So what skills do you have then, Antoine\nDepardieu?", closeAction=Wait(1)},
 				MessageBox{message="Antoine: Ah! {p40}I am a very fine chef! {p40}Yes, that is right!", closeAction=Wait(1)},
-				MessageBox{message="Antoine: So I will serve them food on ze platter and so I serve ze Swatbots a knuckle sandwhich!!", closeAction=Wait(1)},
-				MessageBox{message="Antoine: ...no, this does not make sense. {p40}Bots are made of metal. {p40}I will simply hurt my hand...", closeAction=Wait(1)},
-				MessageBox{message="Antoine: So what I'm getting at here is zat I am unskilled, untrained, and completely helpless. {p60}I am ze worst Freedom Fighter and I can not help in any capacity, all I do is get captured and let people down, as I am always doing!!", closeAction=Wait(2), textSpeed=3},
+				MessageBox{message="Antoine: So I will serve them food on ze platter and so I serve ze Swatbots a knuckle sandwhich!! {p40}No, this does not make sense. {p40}Bots are made of metal. {p40}I will simply hurt my hand...", closeAction=Wait(2)},
+				MessageBox{message="Antoine: So what I'm getting at here is zat I am unskilled, untrained, and completely helpless. I am ze worst Freedom Fighter and I can not help in any capacity, all I do is get captured and let people down, as I am always doing!!", closeAction=Wait(3), textSpeed=3},
 			}
 		},
+		Do(function()
+			scene.objectLookup.Antoine.sprite:setAnimation("paceleft")
+		end),
+		Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x, 1, "linear"),
 		Animate(scene.objectLookup.Antoine.sprite, "scream"),
 		MessageBox{message="Antoine: POURQUOI JE SUIS LE PIRE COMBATTANT DE LA LIBERTE QUI NE PEUT RIEN FAIRE DE BIEN!?"},
 		
