@@ -43,9 +43,6 @@ return function(scene, hint)
 			scene.player.dropShadow.hidden = true
 		end),
 		--PlayAudio("music", "dead", 1.0, true),
-		Wait(2),
-		MessageBox{message="Antoine: ...Sonic{p60} ...my princess..."},
-		Wait(1),
 		PlayAudio("music", "introspection", 1.0, true),
 		Do(function()
 			scene.objectLookup.Antoine.sprite:setAnimation("paceright")
@@ -61,21 +58,19 @@ return function(scene, hint)
 					scene.objectLookup.Antoine.sprite:setAnimation("paceright")
 				end),
 				Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x + 200, 0.6, "linear")
-			}, 25),
+			}, 14),
 			
 			Serial {
-				MessageBox{message="Antoine: Alright Antoine, this is fine.", closeAction=Wait(1)},
-				MessageBox{message="Antoine: Sonic and Sally are captured{p60}, that is that.", closeAction=Wait(1)},
-				MessageBox{message="Antoine: Leaving them be is no option{p60}, so you must save them.", closeAction=Wait(1)},
-				MessageBox{message="Antoine: Save them from over ze dozens of ze Swatbots.", closeAction=Wait(1)},
+				MessageBox{message="Antoine: Alright Antoine, this is fine.", closeAction=Wait(1.5)},
+				MessageBox{message="Antoine: Sonic and Sally are captured{p40}, that is that.", closeAction=Wait(1.5)},
+				MessageBox{message="Antoine: Leaving them be is no option{p40}, so you must save them. {p40}Save them from over ze dozens of ze Swatbots.", closeAction=Wait(1.5)},
 				
-				MessageBox{message="Antoine: I shall simply use my mastery of kungfu to defeat them! {p60}Except for ze fact that I do not actually know any kungfu... {p60}zis is just something I say to protect my own skin...", closeAction=Wait(2)},
+				MessageBox{message="Antoine: I shall simply use my mastery of kungfu to defeat them! {p40}Except for ze fact that I do not actually know any kungfu... {p60}zis is just something I say to protect my own skin...", closeAction=Wait(2)},
 				
 				MessageBox{message="Antoine: So what skills do you have then,\nAntoine Depardieu?", closeAction=Wait(1)},
-				MessageBox{message="Antoine: Ah! {p60}I am a very fine chef! {p60}Yes, that is right!", closeAction=Wait(1)},
-				MessageBox{message="Antoine: ...but how does this apply to my current\nprediciument?...", closeAction=Wait(1)},
-				MessageBox{message="Antoine: Well let's see...{p60} I serve them food on ze platter and so I serve ze Swatbots a knuckle sandwhich!!", closeAction=Wait(1)},
-				MessageBox{message="Antoine: ...no, this does not make sense. {p60}Bots are made of metal. {p60}I will simply hurt my hand...", closeAction=Wait(1)},
+				MessageBox{message="Antoine: Ah! {p40}I am a very fine chef! {p40}Yes, that is right!", closeAction=Wait(1)},
+				MessageBox{message="Antoine: So I will serve them food on ze platter and so I serve ze Swatbots a knuckle sandwhich!!", closeAction=Wait(1)},
+				MessageBox{message="Antoine: ...no, this does not make sense. {p40}Bots are made of metal. {p40}I will simply hurt my hand...", closeAction=Wait(1)},
 				MessageBox{message="Antoine: So what I'm getting at here is zat I am unskilled, untrained, and completely helpless. {p60}I am ze worst Freedom Fighter and I can not help in any capacity, all I do is get captured and let people down, as I am always doing!!", closeAction=Wait(2), textSpeed=3},
 			}
 		},
