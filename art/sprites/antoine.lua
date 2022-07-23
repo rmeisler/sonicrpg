@@ -141,6 +141,18 @@ return {
 			frames = {{10,1}}
 		},
 		
+		paceleft = {
+			frames = {{14,4},{15,4},{16,4},{15,4}},
+			speed = 0.15
+		},
+		paceright = {
+			frames = {{14,3},{15,3},{16,3},{15,3}},
+			speed = 0.15
+		},
+		scream = {
+			frames = {{16,2}}
+		},
+		
 		proud = {
 			frames = {{11,1},{12,1},{13,1},{14,1}},
 			speed = 0.2

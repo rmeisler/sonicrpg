@@ -115,6 +115,7 @@ return function(scene, hint)
 		Animate(sprites.sonic.sprite, "idleright"),
 		Animate(sprites.antoine.sprite, "idleleft"),
 		MessageBox{message="Sally: I'm guessing this is what the {h curse} of the\nDark Swamp is really about!"},
+		Wait(0.5),
 		walkin,
 		Do(function()
 			scene.player.x = scene.player.x + 50

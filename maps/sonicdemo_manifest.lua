@@ -12,11 +12,15 @@ return {
 	{
         type = "map",
 		file = "maps/ironlock2.lua",
-		primary = true
     },
 	{
         type = "map",
 		file = "maps/ironlock3.lua"
+    },
+	{
+        type = "map",
+		file = "maps/ironlock4.lua",
+		primary = true
     },
 	{
         type = "map",
@@ -760,6 +764,11 @@ return {
 		type = "sound",
 		file = "audio/sfx/slash.ogg",
 		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/introspection.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",

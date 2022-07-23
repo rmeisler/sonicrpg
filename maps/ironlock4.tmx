@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="135" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="610">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="135" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="612">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
-  <property name="onload" type="file" value="actions/ironlockfloor.lua"/>
+  <property name="onload" type="file" value="actions/ironlock4.lua"/>
   <property name="regionName" value="Iron Lock"/>
   <property name="sectorName" value="3F"/>
  </properties>
@@ -469,6 +469,18 @@ end</property>
    <properties>
     <property name="BlueLeaf" type="int" value="2"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="610" name="Antoine" type="BasicNPC" gid="1714" x="2144" y="1184" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idleleft"/>
+    <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
+   </properties>
+  </object>
+  <object id="611" name="Spawn 1" type="Player" gid="1922" x="2400" y="1152" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
