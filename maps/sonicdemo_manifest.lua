@@ -767,6 +767,16 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/antoine.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/memories.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/introspection.ogg",
 		category = "music"
 	},
