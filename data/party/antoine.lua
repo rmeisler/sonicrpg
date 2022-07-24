@@ -74,16 +74,7 @@ return {
 				require "data/battle/skills/Run",
 				require "data/battle/skills/Cook",
 			}
-		},
-		[6] = {
-			messages = {"Antoine learned \"Resiliency\"!"},
-			skills = {
-				require "data/battle/skills/Bore",
-				require "data/battle/skills/Run",
-				require "data/battle/skills/Cook",
-				require "data/battle/skills/Resiliency",
-			}
-		},
+		}
 	},
 	
 	specialmove = require "data/specialmoves/antoine",

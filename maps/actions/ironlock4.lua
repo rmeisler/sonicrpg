@@ -42,8 +42,7 @@ return function(scene, hint)
 			scene.player.sprite.visible = false
 			scene.player.dropShadow.hidden = true
 		end),
-		--[[
-		--PlayAudio("music", "dead", 1.0, true),
+		
 		PlayAudio("music", "introspection", 1.0, true),
 		Do(function()
 			scene.objectLookup.Antoine.sprite:setAnimation("paceright")
@@ -71,7 +70,7 @@ return function(scene, hint)
 				MessageBox{message="Antoine: So what skills do you have then, Antoine\nDepardieu?", closeAction=Wait(1)},
 				MessageBox{message="Antoine: Ah! {p40}I am a very fine chef! {p40}Yes, that is right!", closeAction=Wait(1)},
 				MessageBox{message="Antoine: So I will serve them food on ze platter and so I serve ze Swatbots a knuckle sandwhich!! {p40}No, this does not make sense. {p40}Bots are made of metal. {p40}I will simply hurt my hand...", closeAction=Wait(2)},
-				MessageBox{message="Antoine: So what I'm getting at here is zat I am unskilled, untrained, and completely helpless. I am ze worst Freedom Fighter and I can not help in any capacity, all I do is get captured and let people down, as I am always doing!!", closeAction=Wait(3), textSpeed=3},
+				MessageBox{message="Antoine: So what I'm getting at here is zat I am unskilled, untrained, and completely helpless. I am ze worst Freedom Fighter and I can not help in any capacity, all I do is get captured and let people down, as I am always doing!!", closeAction=Wait(3.5), textSpeed=3},
 			}
 		},
 		Do(function()
@@ -144,38 +143,48 @@ return function(scene, hint)
 		MessageBox{message="Evangeline: Our little Ant certainly fits the bill. {p60}Remember how scared he was to talk to Max's daughter? {p60}He eventually worked up his courage, and now they are good friends!"},
 		MessageBox{message="Belpois: Exactly, mon amour! {p60}Our son may get scared a bit too easily at times, but he is no coward! {p60}He is the bravest person I know!"},
 		
-		AudioFade("music", 1.0, 0.0, 0.5),]]
+		AudioFade("music", 1.0, 0.0, 0.5),
+		Wait(2),
+		MessageBox{message="Antoine: ...Yes... {p60}I can do this."},
 		Wait(1),
 		Parallel {
 			PlayAudio("music", "antoine", 1.0),
 			Serial {
-				Animate(scene.objectLookup.Antoine.sprite, "scream"), -- determined
+				Animate(scene.objectLookup.Antoine.sprite, "scream"),
 				MessageBox{message="Antoine: Listen{p40}, whoever is listening!!"},
 				Wait(1),
-				Do(function() scene.objectLookup.Antoine.sprite:setAnimation("proud") end), -- determined
-				MessageBox{message="Antoine: I am Antoine Depardieu!!"},
+				Do(function() scene.objectLookup.Antoine.sprite:setAnimation("proud") end),
+				MessageBox{message="Antoine: I am Antoine Depardieu! {p60}I am a Freedom Fighter!"},
 				Wait(1),
 				Animate(scene.objectLookup.Antoine.sprite, "scaredhop1"),
 				MessageBox{message="Antoine: ...and though I am scared beyond belief..."},
 				Wait(1),
-				Animate(scene.objectLookup.Antoine.sprite, "idledown"),
-				MessageBox{message="Antoine: I will not give up until my friends are saved!!"},
+				Animate(scene.objectLookup.Antoine.sprite, "determined"),
+				MessageBox{message="Antoine: I will not be giving up until I have saved my friends!!"},
 				Wait(1),
 				Animate(scene.objectLookup.Antoine.sprite, "scream"),
-				MessageBox{message="Antoine: You hear that Sonic and my princess?! {p60}I'm coming for you!!"},
+				MessageBox{message="Antoine: You hear that Sonic and Sally?! {p60}I'm coming for you!!"},
 				
-				Animate(scene.objectLookup.Antoine.sprite, "idledown"),
-				MessageBox{message="Antoine: ..."},
 				Wait(1),
-				MessageBox{message="Antoine: ...I'm coming for you...", textSpeed=2}
+				Animate(scene.objectLookup.Antoine.sprite, "determined"),
+				MessageBox{message="Antoine: ...I'm coming for you...", textSpeed=3},
+				MessageBox{message="Antoine learned Resiliency!", sfx="levelup", rect=MessageBox.HEADLINER_RECT}
 			}
 		},
 		
 		PlayAudio("music", "missionready", 1.0, true, true),
 		
 		Do(function()
-			--scene.player.sprite.visible = true
-			--scene.player.dropShadow.hidden = false
+			GameState:removeFromParty("sonic")
+			GameState:removeFromParty("sally")
+			
+			-- Give Resiliency skill
+			table.insert(require "data/battle/skills/Resiliency", GameState.party.antoine.levelup[6].skills)
+			
+			scene.objectLookup.Antoine:remove()
+			scene.player:updateSprite()
+			scene.player.sprite.visible = true
+			scene.player.dropShadow.hidden = false
 		end)
 	}
 end
