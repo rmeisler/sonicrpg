@@ -772,6 +772,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/missionready.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/memories.ogg",
 		category = "music"
 	},

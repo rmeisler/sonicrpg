@@ -146,21 +146,32 @@ return function(scene, hint)
 		
 		AudioFade("music", 1.0, 0.0, 0.5),]]
 		Wait(1),
-		PlayAudio("music", "antoine", 1.0, true),
-		Animate(scene.objectLookup.Antoine.sprite, "scream"), -- determined
-		MessageBox{message="Antoine: Listen{p40}, whoever is listening!!"},
-		Wait(1),
-		Animate(scene.objectLookup.Antoine.sprite, "proud"), -- determined
-		MessageBox{message="Antoine: I am Antoine Depardieu!!"},
-		Wait(1),
-		Animate(scene.objectLookup.Antoine.sprite, "scaredhop1"),
-		MessageBox{message="Antoine: ...and though I am scared beyond belief..."},
-		Wait(1),
-		Animate(scene.objectLookup.Antoine.sprite, "idledown"),
-		MessageBox{message="Antoine: I will not give up until my friends are saved!!"},
-		Wait(1),
-		Animate(scene.objectLookup.Antoine.sprite, "scream"),
-		MessageBox{message="Antoine: You hear that Sonic and my princess?! {p60}I'm coming for you!!"},
+		Parallel {
+			PlayAudio("music", "antoine", 1.0),
+			Serial {
+				Animate(scene.objectLookup.Antoine.sprite, "scream"), -- determined
+				MessageBox{message="Antoine: Listen{p40}, whoever is listening!!"},
+				Wait(1),
+				Do(function() scene.objectLookup.Antoine.sprite:setAnimation("proud") end), -- determined
+				MessageBox{message="Antoine: I am Antoine Depardieu!!"},
+				Wait(1),
+				Animate(scene.objectLookup.Antoine.sprite, "scaredhop1"),
+				MessageBox{message="Antoine: ...and though I am scared beyond belief..."},
+				Wait(1),
+				Animate(scene.objectLookup.Antoine.sprite, "idledown"),
+				MessageBox{message="Antoine: I will not give up until my friends are saved!!"},
+				Wait(1),
+				Animate(scene.objectLookup.Antoine.sprite, "scream"),
+				MessageBox{message="Antoine: You hear that Sonic and my princess?! {p60}I'm coming for you!!"},
+				
+				Animate(scene.objectLookup.Antoine.sprite, "idledown"),
+				MessageBox{message="Antoine: ..."},
+				Wait(1),
+				MessageBox{message="Antoine: ...I'm coming for you...", textSpeed=2}
+			}
+		},
+		
+		PlayAudio("music", "missionready", 1.0, true, true),
 		
 		Do(function()
 			--scene.player.sprite.visible = true
