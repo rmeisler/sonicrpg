@@ -365,6 +365,11 @@ return {
 			frames = {{8,9}}
 		},
 		
+		foottap = {
+			frames = {{9,9},{10,9},{11,9},{10,9}},
+			speed = 0.05
+		},
+		
 		meeting_idledown = {
 			frames = {{0,2}},
 			clip = {0,0,47,40}
