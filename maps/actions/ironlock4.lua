@@ -42,6 +42,7 @@ return function(scene, hint)
 			scene.player.sprite.visible = false
 			scene.player.dropShadow.hidden = true
 		end),
+		--[[
 		--PlayAudio("music", "dead", 1.0, true),
 		PlayAudio("music", "introspection", 1.0, true),
 		Do(function()
@@ -122,7 +123,7 @@ return function(scene, hint)
 		
 		Wait(1),
 		MessageBox{message="Belpois: Did the little one run off?"},
-		Animate(scene.objectLookup.Antoine.sprite, "shock"),
+		Animate(scene.objectLookup.Antoine.sprite, "idledown"),
 		MessageBox{message="Antoine: Papa!"},
 		Animate(scene.objectLookup.Antoine.sprite, "idleup"),
 		MessageBox{message="Evangeline: Yes{p60}, I'm so glad he's made friends."},
@@ -133,26 +134,33 @@ return function(scene, hint)
 		
 		Wait(1),
 		MessageBox{message="Belpois: There is no reason to worry, mon amour."},
-		Animate(scene.objectLookup.Antoine.sprite, "shock"), -- confused
-		Wait(1),
 		
 		Animate(scene.objectLookup.Antoine.sprite, "idleup"),
 		MessageBox{message="Belpois: It is not as though we were ourselves not scared in our younger days, eh?"},
-		MessageBox{message="Evangeline: Heh{60}, ain't it ze truth."},
+		MessageBox{message="Evangeline: Heh{p60}, ain't it ze truth."},
 		MessageBox{message="Belpois: --and we pulled through did we not?"},
 		MessageBox{message="Evangeline: *chuckles* Yes we did."},
 		MessageBox{message="Belpois: What I have learned in my days is that bravery is not to be lacking fear{p60}, it is to be moving forward in the face of it!"},
 		MessageBox{message="Evangeline: Our little Ant certainly fits the bill. {p60}Remember how scared he was to talk to Max's daughter? {p60}He eventually worked up his courage, and now they are good friends!"},
 		MessageBox{message="Belpois: Exactly, mon amour! {p60}Our son may get scared a bit too easily at times, but he is no coward! {p60}He is the bravest person I know!"},
 		
-		Wait(2),
-		PlayAudio("music", "antoinebrave", 1.0, true),
-		Animate(scene.objectLookup.Antoine.sprite, "idledown"), -- determined
-		MessageBox{message="Antoine: Listen whoever is listening!", closeAction=Wait(2)},
-		MessageBox{message="Antoine: I am Antoine Depardieu!", closeAction=Wait(2)},
-		MessageBox{message="Antoine: ...and though I am scared beyond belief...{p40} I will not give up until my friends are saved!!", closeAction=Wait(2)},
-		MessageBox{message="Antoine: You hear that Sonic and my princess?!", closeAction=Wait(2)},
-		MessageBox{message="Antoine: I'm coming for you!!", closeAction=Wait(2)},
+		AudioFade("music", 1.0, 0.0, 0.5),]]
+		Wait(1),
+		PlayAudio("music", "antoine", 1.0, true),
+		Animate(scene.objectLookup.Antoine.sprite, "scream"), -- determined
+		MessageBox{message="Antoine: Listen{p40}, whoever is listening!!"},
+		Wait(1),
+		Animate(scene.objectLookup.Antoine.sprite, "proud"), -- determined
+		MessageBox{message="Antoine: I am Antoine Depardieu!!"},
+		Wait(1),
+		Animate(scene.objectLookup.Antoine.sprite, "scaredhop1"),
+		MessageBox{message="Antoine: ...and though I am scared beyond belief..."},
+		Wait(1),
+		Animate(scene.objectLookup.Antoine.sprite, "idledown"),
+		MessageBox{message="Antoine: I will not give up until my friends are saved!!"},
+		Wait(1),
+		Animate(scene.objectLookup.Antoine.sprite, "scream"),
+		MessageBox{message="Antoine: You hear that Sonic and my princess?! {p60}I'm coming for you!!"},
 		
 		Do(function()
 			--scene.player.sprite.visible = true
