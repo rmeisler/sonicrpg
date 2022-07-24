@@ -152,6 +152,9 @@ return {
 		scream = {
 			frames = {{16,2}}
 		},
+		determined = {
+			frames = {{15,2}}
+		},
 		
 		proud = {
 			frames = {{11,1},{12,1},{13,1},{14,1}},
