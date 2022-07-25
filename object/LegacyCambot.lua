@@ -121,6 +121,9 @@ function LegacyCambot:getInitiative()
 	then
 		initiative = "player"
 	end
+	if not self.behavior then
+		return nil
+	end
 	return self.behavior <= Bot.BEHAVIOR_INVESTIGATING and initiative or "opponent"
 end
 

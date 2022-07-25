@@ -43,7 +43,7 @@ return function(scene, hint)
 			scene.player.dropShadow.hidden = true
 		end),
 		
-		PlayAudio("music", "introspection", 1.0, true),
+		--[[PlayAudio("music", "introspection", 1.0, true),
 		Do(function()
 			scene.objectLookup.Antoine.sprite:setAnimation("paceright")
 		end),
@@ -69,7 +69,7 @@ return function(scene, hint)
 				
 				MessageBox{message="Antoine: So what skills do you have then, Antoine\nDepardieu?", closeAction=Wait(1)},
 				MessageBox{message="Antoine: Ah! {p40}I am a very fine chef! {p40}Yes, that is right!", closeAction=Wait(1)},
-				MessageBox{message="Antoine: So I will serve them food on ze platter and so I serve ze Swatbots a knuckle sandwhich!! {p40}No, this does not make sense. {p40}Bots are made of metal. {p40}I will simply hurt my hand...", closeAction=Wait(2)},
+				MessageBox{message="Antoine: So I will serve them food on ze platter and serve ze Swatbots a knuckle sandwhich!! {p40}No, this does not make sense. {p40}Bots are made of metal. {p40}I will simply hurt my hand...", closeAction=Wait(2)},
 				MessageBox{message="Antoine: So what I'm getting at here is zat I am unskilled, untrained, and completely helpless. I am ze worst Freedom Fighter and I can not help in any capacity, all I do is get captured and let people down, as I am always doing!!", closeAction=Wait(3.5), textSpeed=3},
 			}
 		},
@@ -112,7 +112,7 @@ return function(scene, hint)
 		MessageBox{message="Antoine: ...M{p60}...mama?..."},
 		MessageBox{message="Evangeline: But I just want to eat you up!"},
 		MessageBox{message="Young Antoine: Mama, stop it!"},
-		MessageBox{message="Evangeline: Now you be careful now, you hear me?"},
+		MessageBox{message="Evangeline: You be careful now, you hear me?"},
 		MessageBox{message="Young Antoine: Yes. {p60}Can I go see my friends now?"},
 		MessageBox{message="Evangeline: Of course sweetie, have fun!"},
 		MessageBox{message="Young Antoine: Bye mama!"},
@@ -133,15 +133,18 @@ return function(scene, hint)
 		
 		Wait(1),
 		MessageBox{message="Belpois: There is no reason to worry, mon amour."},
+		Animate(scene.objectLookup.Antoine.sprite, "idledown"),
 		
+		Wait(1),
 		Animate(scene.objectLookup.Antoine.sprite, "idleup"),
 		MessageBox{message="Belpois: It is not as though we were ourselves not scared in our younger days, eh?"},
 		MessageBox{message="Evangeline: Heh{p60}, ain't it ze truth."},
 		MessageBox{message="Belpois: --and we pulled through did we not?"},
 		MessageBox{message="Evangeline: *chuckles* Yes we did."},
 		MessageBox{message="Belpois: What I have learned in my days is that bravery is not to be lacking fear{p60}, it is to be moving forward in the face of it!"},
-		MessageBox{message="Evangeline: Our little Ant certainly fits the bill. {p60}Remember how scared he was to talk to Max's daughter? {p60}He eventually worked up his courage, and now they are good friends!"},
-		MessageBox{message="Belpois: Exactly, mon amour! {p60}Our son may get scared a bit too easily at times, but he is no coward! {p60}He is the bravest person I know!"},
+		MessageBox{message="Evangeline: Our little Ant is certainly fitting the bill. {p60}Remember how scared he was to talk to Max's daughter?"},
+		MessageBox{message="Evangeline: He eventually found his courage, and now they are good friends!"},
+		MessageBox{message="Belpois: Exactly, mon amour! {p60}Our son may get scared a bit too easily at times, but he is no coward! {p80}He is the bravest person I know!"},
 		
 		AudioFade("music", 1.0, 0.0, 0.5),
 		Wait(2),
@@ -154,7 +157,7 @@ return function(scene, hint)
 				MessageBox{message="Antoine: Listen{p40}, whoever is listening!!"},
 				Wait(1),
 				Do(function() scene.objectLookup.Antoine.sprite:setAnimation("proud") end),
-				MessageBox{message="Antoine: I am Antoine Depardieu! {p60}I am a Freedom Fighter!"},
+				MessageBox{message="Antoine: I am Antoine Depardieu!!"},
 				Wait(1),
 				Animate(scene.objectLookup.Antoine.sprite, "scaredhop1"),
 				MessageBox{message="Antoine: ...and though I am scared beyond belief..."},
@@ -167,10 +170,10 @@ return function(scene, hint)
 				
 				Wait(1),
 				Animate(scene.objectLookup.Antoine.sprite, "determined"),
-				MessageBox{message="Antoine: ...I'm coming for you...", textSpeed=3},
+				MessageBox{message="Antoine: ...I'm coming for you...", textSpeed=2},
 				MessageBox{message="Antoine learned Resiliency!", sfx="levelup", rect=MessageBox.HEADLINER_RECT}
 			}
-		},
+		},]]
 		
 		PlayAudio("music", "missionready", 1.0, true, true),
 		
@@ -179,10 +182,12 @@ return function(scene, hint)
 			GameState:removeFromParty("sally")
 			
 			-- Give Resiliency skill
-			table.insert(require "data/battle/skills/Resiliency", GameState.party.antoine.levelup[6].skills)
+			table.insert(GameState.party.antoine.levelup[6].skills, require "data/battle/skills/Resiliency")
 			
 			scene.objectLookup.Antoine:remove()
+			GameState.leader = "antoine"
 			scene.player:updateSprite()
+			scene.player.y = scene.player.y + 32
 			scene.player.sprite.visible = true
 			scene.player.dropShadow.hidden = false
 		end)

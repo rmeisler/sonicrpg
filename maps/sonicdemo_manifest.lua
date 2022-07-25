@@ -19,11 +19,11 @@ return {
     },
 	{
         type = "map",
-		file = "maps/ironlock4.lua"
+		file = "maps/ironlock3.lua"
     },
 	{
         type = "map",
-		file = "maps/ironlock_snively.lua",
+		file = "maps/ironlock4.lua",
 		primary = true
     },
 	{
