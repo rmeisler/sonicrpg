@@ -98,6 +98,10 @@ return {
 		},
 		block = {
 			frames = {{0,3}}
+		},
+		throw = {
+			frames = {{10,1},{11,1},{12,1},{13,1}},
+			speed = 0.1
 		}
     }
 }
