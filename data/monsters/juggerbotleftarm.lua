@@ -219,7 +219,7 @@ return {
 								target:takeDamage(
 									math.random() > misschance
 										and self.stats
-										or {attack = 0, speed = 0, miss = true},
+										or {attack = 0, speed = 100, miss = true},
 									true,
 									BattleActor.shockKnockback
 								)
