@@ -1064,6 +1064,9 @@
   </object>
   <object id="722" name="RightPath" type="SceneEdge" gid="2311" x="8192" y="1344" width="128" height="320">
    <properties>
+    <property name="fade_in_speed" type="float" value="0.5"/>
+    <property name="fade_out_music" type="bool" value="true"/>
+    <property name="fade_out_speed" type="float" value="0.1"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
     <property name="orientation" value="left"/>

@@ -78,6 +78,7 @@ return function(scene, hint)
 				Ease(scene.objectLookup.Sally, "y", scene.player.y + 60 - 98, 3, "linear"),
 				Ease(scene.objectLookup.Antoine, "y", scene.player.y - 98, 3, "linear")
 			},
+			PlayAudio("sfx", "bang", 1.0, true),
 			Animate(scene.objectLookup.Sonic.sprite, "dead"),
 			Animate(scene.objectLookup.Sally.sprite, "dead"),
 			Animate(scene.objectLookup.Antoine.sprite, "dead"),

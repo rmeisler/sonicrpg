@@ -2521,6 +2521,9 @@ return {
           gid = 2311,
           visible = true,
           properties = {
+            ["fade_in_speed"] = 0.5,
+            ["fade_out_music"] = true,
+            ["fade_out_speed"] = 0.1,
             ["ghost"] = true,
             ["key"] = "right",
             ["orientation"] = "left",

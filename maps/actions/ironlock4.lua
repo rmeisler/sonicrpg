@@ -30,6 +30,7 @@ return function(scene, hint)
 	scene.player.sprite.color[3] = 150
 	
 	if GameState:isFlagSet("ep3_antoine") then
+		scene.objectLookup.Antoine:remove()
 		return Do(function() end)
 	end
 	

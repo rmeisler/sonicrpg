@@ -28,6 +28,10 @@ return {
     },
 	{
         type = "map",
+		file = "maps/ironlock_snively.lua"
+    },
+	{
+        type = "map",
 		file = "maps/ironlock1_door1.lua"
     },
 	{
@@ -768,6 +772,11 @@ return {
 		type = "sound",
 		file = "audio/sfx/slash.ogg",
 		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/antoinerescue.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",
