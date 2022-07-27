@@ -703,7 +703,7 @@ return {
           name = "Antoine",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 896,
+          x = 1152,
           y = 1184,
           width = 64,
           height = 64,

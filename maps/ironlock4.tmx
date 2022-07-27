@@ -363,7 +363,7 @@
     <property name="sprite" type="file" value="../art/sprites/door6.png"/>
    </properties>
   </object>
-  <object id="610" name="Antoine" type="BasicNPC" gid="1714" x="896" y="1184" width="64" height="64">
+  <object id="610" name="Antoine" type="BasicNPC" gid="1714" x="1152" y="1184" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleleft"/>

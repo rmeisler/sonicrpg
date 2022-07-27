@@ -44,7 +44,7 @@ return function(scene, hint)
 			scene.player.dropShadow.hidden = true
 		end),
 		
-		--[[PlayAudio("music", "introspection", 1.0, true),
+		PlayAudio("music", "introspection", 1.0, true),
 		Do(function()
 			scene.objectLookup.Antoine.sprite:setAnimation("paceright")
 		end),
@@ -174,7 +174,7 @@ return function(scene, hint)
 				MessageBox{message="Antoine: ...I'm coming for you...", textSpeed=2},
 				MessageBox{message="Antoine learned Resiliency!", sfx="levelup", rect=MessageBox.HEADLINER_RECT}
 			}
-		},]]
+		},
 		
 		PlayAudio("music", "missionready", 1.0, true, true),
 		

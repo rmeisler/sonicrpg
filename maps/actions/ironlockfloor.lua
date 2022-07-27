@@ -62,7 +62,6 @@ return function(scene, hint)
 		})
 	end
 	
-	hint = "thirdfloor"
 	if hint == "thirdfloor" then
 		showTitle()
 		scene.player.sprite.visible = false
@@ -127,7 +126,7 @@ return function(scene, hint)
 						scene.objectLookup.Sally.sprite:setAnimation("walkup")
 					end),
 					Parallel {
-						Ease(scene.objectLookup.Sally, "x", function() return scene.objectLookup.Sally.x - 200 end, 1, "linear"),
+						Ease(scene.objectLookup.Sally, "x", function() return scene.objectLookup.Sally.x - 255 end, 1, "linear"),
 						Ease(scene.objectLookup.Sally, "y", function() return scene.objectLookup.Sally.y - 150 end, 1, "linear")
 					},
 					Do(function()

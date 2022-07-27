@@ -50,6 +50,9 @@ return function(scene, hint)
 		MessageBox{message="Sonic: What a surprise! {p60}Needle nose is afraid of something!"},
 
 		Animate(scene.objectLookup.Snively.sprite, "angryright"),
+		Do(function()
+			scene.objectLookup.Snively.sprite.sortOrderY = 1000
+		end),
 		Ease(scene.objectLookup.Snively, "y", function() return scene.objectLookup.Snively.y - 50 end, 8, "linear"),
 		Ease(scene.objectLookup.Snively, "y", function() return scene.objectLookup.Snively.y + 50 end, 8, "linear"),
 		MessageBox{message="Snively: SHUT YOUR MOUTH HEDGEHOG!!"},
