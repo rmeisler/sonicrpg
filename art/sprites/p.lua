@@ -50,5 +50,47 @@ return {
 		epochtails = {
 		    frames = {{10,1}}
 		},
+		
+		youngant_idle = {
+			frames = {{12,1}}
+		},
+		youngant_lookaway = {
+			frames = {{13,1}}
+		},
+		
+		belpois_idle = {
+			frames = {{11,1}}
+		},
+		belpois_smile = {
+			frames = {{12,0}}
+		},
+		belpois_convince = {
+			frames = {{11,0}}
+		},
+		
+		evangeline_worried = {
+			frames = {{16,1}}
+		},
+		evangeline_idle = {
+			frames = {{15,1}}
+		},
+		evangeline_laugh = {
+			frames = {{14,1}}
+		},
+		evangeline_crouchleft_smile = {
+			frames = {{14,0}}
+		},
+		evangeline_crouchleft_laugh = {
+			frames = {{13,0}}
+		},
+		evangeline_crouchleft_kiss = {
+			frames = {{16,0},{15,0}},
+			speed = 0.1
+		},
+		
+		king_idle = {
+			frames = {{16,0},{15,0}},
+			speed = 0.1
+		},
     }
 }

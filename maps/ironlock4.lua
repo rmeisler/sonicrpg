@@ -8,7 +8,7 @@ return {
   height = 56,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 723,
+  nextobjectid = 727,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/ironlock4.lua",
@@ -2529,6 +2529,79 @@ return {
             ["orientation"] = "left",
             ["scene"] = "ironlock_snively.lua",
             ["spawn_point"] = "Spawn 1"
+          }
+        },
+        {
+          id = 723,
+          name = "Evangeline",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1152,
+          y = 1088,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "evangeline_crouchleft_smile",
+            ["sprite"] = "../art/sprites/p.png"
+          }
+        },
+        {
+          id = 724,
+          name = "YoungAnt",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1120,
+          y = 1090,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetY"] = 3,
+            ["defaultAnim"] = "youngant_lookaway",
+            ["sprite"] = "../art/sprites/p.png"
+          }
+        },
+        {
+          id = 725,
+          name = "Evangeline",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1312,
+          y = 1088,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "evangeline_worried",
+            ["sprite"] = "../art/sprites/p.png"
+          }
+        },
+        {
+          id = 726,
+          name = "Belpois",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1248,
+          y = 1088,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "belpois_smile",
+            ["sprite"] = "../art/sprites/p.png"
           }
         }
       }

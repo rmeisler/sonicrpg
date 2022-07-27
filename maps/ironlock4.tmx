@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="260" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="723">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="260" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="727">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/ironlock4.lua"/>
@@ -1072,6 +1072,35 @@
     <property name="orientation" value="left"/>
     <property name="scene" type="file" value="ironlock_snively.lua"/>
     <property name="spawn_point" value="Spawn 1"/>
+   </properties>
+  </object>
+  <object id="723" name="Evangeline" type="BasicNPC" gid="1714" x="1152" y="1088" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="evangeline_crouchleft_smile"/>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
+   </properties>
+  </object>
+  <object id="724" name="YoungAnt" type="BasicNPC" gid="1714" x="1120" y="1090" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetY" type="float" value="3"/>
+    <property name="defaultAnim" value="youngant_lookaway"/>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
+   </properties>
+  </object>
+  <object id="725" name="Evangeline" type="BasicNPC" gid="1714" x="1312" y="1088" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="evangeline_worried"/>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
+   </properties>
+  </object>
+  <object id="726" name="Belpois" type="BasicNPC" gid="1714" x="1248" y="1088" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="belpois_smile"/>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
    </properties>
   </object>
  </objectgroup>
