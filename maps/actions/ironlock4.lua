@@ -59,7 +59,7 @@ return function(scene, hint)
 					scene.objectLookup.Antoine.sprite:setAnimation("paceright")
 				end),
 				Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x + 200, 0.6, "linear")
-			}, 13),
+			}, 14),
 			
 			Serial {
 				MessageBox{message="Antoine: Alright Antoine, this is fine.", closeAction=Wait(1.5)},
@@ -77,7 +77,7 @@ return function(scene, hint)
 		Do(function()
 			scene.objectLookup.Antoine.sprite:setAnimation("paceleft")
 		end),
-		Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x, 1, "linear"),
+		Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x - 16, 1, "linear"),
 		Animate(scene.objectLookup.Antoine.sprite, "scream"),
 		MessageBox{message="Antoine: POURQUOI JE SUIS LE PIRE COMBATTANT DE LA LIBERTE QUI NE PEUT RIEN FAIRE DE BIEN!?"},
 		
@@ -107,16 +107,45 @@ return function(scene, hint)
 		Animate(scene.objectLookup.Antoine.sprite, "idleup"),
 		MessageBox{message="Antoine: I am warning to you!"},
 		
+		Do(function()
+			scene.objectLookup.Belpois.hidden = false
+			scene.objectLookup.Belpois.sprite.color[4] = 0
+			scene.objectLookup.Evangeline.hidden = false
+			scene.objectLookup.Evangeline.sprite.color[4] = 0
+			scene.objectLookup.YoungAnt.hidden = false
+			scene.objectLookup.YoungAnt.sprite.color[4] = 0
+		end),
+		
 		PlayAudio("music", "memories", 1.0, true, true),
-		MessageBox{message="Evangeline: Antoine... aren't you forgetting something?"},
+		Parallel {
+			Ease(scene.objectLookup.YoungAnt.sprite.color, 4, 255, 0.3),
+			Ease(scene.objectLookup.Evangeline.sprite.color, 4, 255, 0.3),
+			MessageBox{message="Evangeline: Antoine... aren't you forgetting something?"}
+		},
+		
+		Animate(scene.objectLookup.YoungAnt.sprite, "youngant_lookaway"),
 		MessageBox{message="Young Antoine: But mama--{p60} it's embarrasing!"},
 		MessageBox{message="Antoine: ...M{p60}...mama?..."},
 		MessageBox{message="Evangeline: But I just want to eat you up!"},
+		Do(function()
+			scene.objectLookup.Evangeline.sprite:setAnimation("evangeline_crouchleft_kiss")
+		end),
 		MessageBox{message="Young Antoine: Mama, stop it!"},
+		Animate(scene.objectLookup.Evangeline.sprite, "evangeline_crouchleft_laugh"),
 		MessageBox{message="Evangeline: You be careful now, you hear me?"},
+		Animate(scene.objectLookup.YoungAnt.sprite, "youngant_idle"),
 		MessageBox{message="Young Antoine: Yes. {p60}Can I go see my friends now?"},
+		Animate(scene.objectLookup.Evangeline.sprite, "evangeline_crouchleft_smile"),
 		MessageBox{message="Evangeline: Of course sweetie, have fun!"},
-		MessageBox{message="Young Antoine: Bye mama!"},
+		
+		Ease(scene.objectLookup.YoungAnt, "y", function() return scene.objectLookup.YoungAnt.y - 50 end, 8),
+		Ease(scene.objectLookup.YoungAnt, "y", function() return scene.objectLookup.YoungAnt.y + 50 end, 8),
+		
+		Parallel {
+			Ease(scene.objectLookup.YoungAnt.sprite.color, 4, 0, 0.3),
+			Ease(scene.objectLookup.Evangeline.sprite.color, 4, 0, 0.3),
+			MessageBox{message="Young Antoine: Bye mama!"}
+		},
 		
 		Animate(scene.objectLookup.Antoine.sprite, "saddown"),
 		MessageBox{message="Antoine: I remember your kisses, mama... {p60}I wish I could've made you proud..."},
@@ -126,49 +155,64 @@ return function(scene, hint)
 		Animate(scene.objectLookup.Antoine.sprite, "idledown"),
 		MessageBox{message="Antoine: Papa!"},
 		Animate(scene.objectLookup.Antoine.sprite, "idleup"),
+		
+		Animate(scene.objectLookup.Evangeline.sprite, "evangeline_idle"),
+		Parallel {
+			Ease(scene.objectLookup.Belpois.sprite.color, 4, 255, 0.3),
+			Ease(scene.objectLookup.Evangeline.sprite.color, 4, 255, 0.3)
+		},
 		MessageBox{message="Evangeline: Yes{p60}, I'm so glad he's made friends."},
+		Animate(scene.objectLookup.Evangeline.sprite, "evangeline_worried"),
 		MessageBox{message="Evangeline: I just worry about him sometimes...{p60} he always seems so afraid of everything..."},
 		Wait(1),
 		Animate(scene.objectLookup.Antoine.sprite, "saddown"),
 		MessageBox{message="Antoine: Ah, you knew me all too well, mama."},
 		
 		Wait(1),
+		Animate(scene.objectLookup.Belpois.sprite, "belpois_convince"),
 		MessageBox{message="Belpois: There is no reason to worry, mon amour."},
 		Animate(scene.objectLookup.Antoine.sprite, "idledown"),
 		
 		Wait(1),
 		Animate(scene.objectLookup.Antoine.sprite, "idleup"),
 		MessageBox{message="Belpois: It is not as though we were ourselves not scared in our younger days, eh?"},
+		Animate(scene.objectLookup.Evangeline.sprite, "evangeline_idle"),
 		MessageBox{message="Evangeline: Heh{p60}, ain't it ze truth."},
 		MessageBox{message="Belpois: --and we pulled through did we not?"},
+		Animate(scene.objectLookup.Evangeline.sprite, "evangeline_laugh"),
 		MessageBox{message="Evangeline: *chuckles* Yes we did."},
-		MessageBox{message="Belpois: What I have learned in my days is that bravery is not to be lacking fear{p60}, it is to be moving forward in the face of it!"},
+		Animate(scene.objectLookup.Belpois.sprite, "belpois_idle"),
+		MessageBox{message="Belpois: What I have learned in my days is that bravery is not to be lacking ze fear, it is to be moving forward in the face of it!"},
+		Animate(scene.objectLookup.Evangeline.sprite, "evangeline_idle"),
 		MessageBox{message="Evangeline: Our little Ant is certainly fitting the bill. {p60}Remember how scared he was to talk to Max's daughter?"},
-		MessageBox{message="Evangeline: He eventually found his courage, and now they are good friends!"},
+		MessageBox{message="Evangeline: He eventually found his courage, and now zey are good friends!"},
+		Animate(scene.objectLookup.Belpois.sprite, "belpois_convince"),
 		MessageBox{message="Belpois: Exactly, mon amour! {p60}Our son may get scared a bit too easily at times, but he is no coward! {p80}He is the bravest person I know!"},
 		
-		AudioFade("music", 1.0, 0.0, 0.5),
-		Wait(2),
+		Parallel {
+			Serial {
+				AudioFade("music", 1.0, 0.0, 0.3),
+				Wait(2)
+			},
+			Ease(scene.objectLookup.Belpois.sprite.color, 4, 0, 0.3),
+			Ease(scene.objectLookup.Evangeline.sprite.color, 4, 0, 0.3)
+		},
 		MessageBox{message="Antoine: ...Yes... {p60}I can do this."},
+		Animate(scene.objectLookup.Antoine.sprite, "idledown"),
 		Wait(1),
 		Parallel {
 			PlayAudio("music", "antoine", 1.0),
 			Serial {
-				Animate(scene.objectLookup.Antoine.sprite, "scream"),
-				MessageBox{message="Antoine: Listen{p40}, whoever is listening!!"},
-				Wait(1),
+				Animate(scene.objectLookup.Antoine.sprite, "pose"),
+				MessageBox{message="Antoine: Listen{p40}, whoever is listening!!", closeAction=Wait(2)},
 				Do(function() scene.objectLookup.Antoine.sprite:setAnimation("proud") end),
-				MessageBox{message="Antoine: I am Antoine Depardieu!!"},
-				Wait(1),
+				MessageBox{message="Antoine: I am Antoine Depardieu!!", closeAction=Wait(2)},
 				Animate(scene.objectLookup.Antoine.sprite, "scaredhop1"),
-				MessageBox{message="Antoine: ...and though I am scared beyond belief..."},
-				Wait(1),
+				MessageBox{message="Antoine: ...and though I am scared beyond belief...", closeAction=Wait(2)},
 				Animate(scene.objectLookup.Antoine.sprite, "determined"),
-				MessageBox{message="Antoine: I will not be giving up until I have saved my friends!!"},
-				Wait(1),
-				Animate(scene.objectLookup.Antoine.sprite, "scream"),
-				MessageBox{message="Antoine: You hear that Sonic and Sally?! {p60}I'm coming for you!!"},
-				
+				MessageBox{message="Antoine: I will not be giving up until I have saved my friends!!", closeAction=Wait(3)},
+				Animate(scene.objectLookup.Antoine.sprite, "pose"),
+				MessageBox{message="Antoine: You hear that Sonic and Sally?! {p60}I'm coming for you!!", closeAction=Wait(2)},
 				Wait(1),
 				Animate(scene.objectLookup.Antoine.sprite, "determined"),
 				MessageBox{message="Antoine: ...I'm coming for you...", textSpeed=2},

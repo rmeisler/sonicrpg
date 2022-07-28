@@ -103,7 +103,7 @@
 </data>
  </layer>
  <objectgroup name="below2">
-  <object id="510" name="TrapDoor" type="BasicNPC" gid="2311" x="1728" y="1024" width="256" height="192">
+  <object id="510" name="TrapDoor" type="BasicNPC" gid="2311" x="1824" y="1024" width="256" height="192">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/trapdoor.png"/>

@@ -353,7 +353,7 @@ return {
           name = "TrapDoor",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1728,
+          x = 1824,
           y = 1024,
           width = 256,
           height = 192,

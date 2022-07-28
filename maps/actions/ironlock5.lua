@@ -139,9 +139,7 @@ return function(scene, hint)
 		scene:screenShake(30, 20),
 		
 		PlayAudio("sfx", "explosion2", 1.0, true),
-		scene:screenShake(30, 10),
-		PlayAudio("sfx", "explosion2", 1.0, true),
-		scene:screenShake(30, 20),
+		scene:screenShake(30, 20, 10),
 		
 		Wait(2),
 		
@@ -152,12 +150,10 @@ return function(scene, hint)
 		
 		PlayAudio("music", "antoinerescue", 1.0, true),
 		Wait(0.5),
-		Ease(scene.camPos, "x", 400, 0.2),
+		Ease(scene.camPos, "x", 400, 0.3),
 		
-		MessageBox{message="Sonic & Sally: Antoine!", closeAction=Wait(1.2)},
-		MessageBox{message="Antoine: But of course!", closeAction=Wait(1.2)},
-		
-		Wait(0.5),
+		MessageBox{message="Sonic & Sally: Antoine!", closeAction=Wait(2)},
+		MessageBox{message="Antoine: But of course!", closeAction=Wait(2)},
 		
 		Animate(scene.objectLookup.Sonic.sprite, "idledown"),
 		Animate(scene.objectLookup.Sally.sprite, "idledown"),
@@ -204,10 +200,7 @@ return function(scene, hint)
 		Animate(scene.objectLookup.Bars3.sprite, "open"),
 		Animate(scene.objectLookup.Bars4.sprite, "open"),
 		
-		Do(function()
-			scene.objectLookup.Antoine.sprite:setAnimation("idledown")
-		end),
-		
+		Animate(scene.objectLookup.Antoine.sprite, "idleleft"),
 		Animate(scene.objectLookup.Sonic.sprite, "pose"),
 		MessageBox{message="Sonic: Way past cool, Ant!", closeAction=Wait(1)},
 		Do(function()
@@ -229,6 +222,7 @@ return function(scene, hint)
 			scene.objectLookup.Sally.sprite:setAnimation("idleright")
 		end),
 
+		Animate(scene.objectLookup.Antoine.sprite, "idleright"),
 		Animate(scene.objectLookup.Logan.sprite, "attitude"),
 		MessageBox{message="Logan: Thanks... {p40} I mean, I would've eventually found a way to hack the computer system and get us out--", closeAction=Wait(1)},
 
@@ -260,43 +254,108 @@ return function(scene, hint)
 		Do(function()
 			scene.objectLookup.Fleet.sprite:setAnimation("idleleft")
 		end),
-		Wait(4),
+		
+		Do(function()
+			scene.objectLookup.Antoine.sprite:setAnimation("walkdown")
+		end),
+		Ease(scene.objectLookup.Antoine, "y", scene.objectLookup.Antoine.y - 5, 1, "linear"),
+		Do(function()
+			scene.objectLookup.Antoine.sprite:setAnimation("idleleft")
+		end),
+		Wait(3),
 
 		PlayAudio("sfx", "explosion2", 1.0, true),
 		Animate(scene.objectLookup.Sonic.sprite, "shock"),
 		Animate(scene.objectLookup.Sally.sprite, "shock"),
+		Animate(scene.objectLookup.Antoine.sprite, "shock"),
 		--Animate(scene.objectLookup.Ivan.sprite, "idledown"),
 		--Animate(scene.objectLookup.Logan.sprite, "idledown"),
 		--Animate(scene.objectLookup.Fleet.sprite, "idledown"),
 		scene:screenShake(30, 20, 15),
+		Wait(0.5),
 		Animate(scene.objectLookup.Sally.sprite, "idleright"),
 		Animate(scene.objectLookup.Sonic.sprite, "idleright"),
+		Animate(scene.objectLookup.Antoine.sprite, "idleleft"),
 		PlayAudio("music", "robotropolis", 1.0, true),
-		MessageBox{message="Sally: Time to go!"},
+		MessageBox{message="Sally: Ok, time to go!"},
 		MessageBox{message="Sally: Fleet, you take Logan and Ivan{p30}, Antoine and I will go with Sonic."},
+		Animate(scene.objectLookup.Fleet.sprite, "smirk"),
 		MessageBox{message="Fleet: Sounds good to me!"},
-		-- Rebellion merge together, Fleet flies upwards
+		Animate(scene.objectLookup.Logan.sprite, "attitude"),
+		Animate(scene.objectLookup.Ivan.sprite, "attitude"),
+		
+		Parallel {
+			Ease(scene.objectLookup.Ivan, "x", scene.objectLookup.Fleet.x, 1),
+			Ease(scene.objectLookup.Logan, "x", scene.objectLookup.Fleet.x, 1)
+		},
+		Do(function()
+			scene.objectLookup.Ivan:remove()
+			scene.objectLookup.Logan:remove()
+			scene.objectLookup.Fleet.sprite:remove()
+			scene.objectLookup.Fleet.x = scene.objectLookup.Fleet.x - 33
+			scene.objectLookup.Fleet.y = scene.objectLookup.Fleet.y - 15
+			scene.objectLookup.Fleet.sprite = SpriteNode(scene, scene.objectLookup.Fleet.sprite.transform, nil, "leon2", nil, nil, "objects")
+			scene.objectLookup.Fleet.sprite:setAnimation("fleetidle")
+		end),
+		Parallel {
+			Serial {
+				Animate(function() return scene.objectLookup.Fleet.sprite end, "fleettakeoff"),
+				Animate(function() return scene.objectLookup.Fleet.sprite end, "fleetfloat")
+			},
+			Serial {
+				Ease(scene.objectLookup.Fleet, "y", function() return scene.objectLookup.Fleet.y - 100 end, 1),
+				Ease(scene.objectLookup.Fleet, "y", function() return scene.objectLookup.Fleet.y + 50 end, 1),
+				Ease(scene.objectLookup.Fleet, "y", function() return scene.objectLookup.Fleet.y - 800 end, 1),
+			}
+		},
 		
 		Ease(scene.camPos, "x", -200, 1),
+		Animate(scene.objectLookup.Sonic.sprite, "pose"),
 		MessageBox{message="Sonic: Alright guys, grab on!"},
-		
-		-- FFs merge together, Sonic starts run cycle
-		MessageBox{message="Sonic: Juice and jam time!", closeAction=Wait(1)},
-		
-		Animate(scene.objectLookup.Sonic.sprite, "shock"),
-		Animate(scene.objectLookup.TrapDoor.sprite, "opening"),
-		Animate(scene.objectLookup.TrapDoor.sprite, "open"),
+		Animate(scene.objectLookup.Sally.sprite, "pose"),
+		Animate(scene.objectLookup.Antoine.sprite, "pose"),
+		Parallel {
+			Ease(scene.objectLookup.Sonic, "x", scene.objectLookup.Sally.x, 1),
+			Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Sally.x, 1),
+			Ease(scene.camPos, "x", -400, 1)
+		},
 		Do(function()
-			for _,layer in pairs(scene.map.layers) do
-				if layer.name == "hidden" then
-					layer.opacity = 1.0
-					break
-				end
-			end
+			GameState:addBackToParty("sally")
+			GameState:addBackToParty("sonic")
+			GameState.leader = "sonic"
+			
+			scene.objectLookup.Sally:remove()
+			scene.objectLookup.Antoine:remove()
 		end),
 		
-		Wait(0.5),
-		Ease(scene.objectLookup.Sonic, "y", 1000, 4)
+		Parallel {
+			Serial {
+				Animate(scene.objectLookup.Sonic.sprite, "chargerun1"),
+				Do(function() scene.objectLookup.Sonic.sprite:setAnimation("chargerun2") end),
+				Wait(1),
+				PlayAudio("sfx", "openchasm", 1.0, true),
+				Animate(scene.objectLookup.TrapDoor.sprite, "opening"),
+				Animate(scene.objectLookup.TrapDoor.sprite, "open"),
+				Animate(scene.objectLookup.Sonic.sprite, "shock"),
+				Do(function()
+					scene.audio:stopMusic()
+					for _,layer in pairs(scene.map.layers) do
+						if layer.name == "hidden" then
+							layer.opacity = 1.0
+							break
+						end
+					end
+				end),
+				Wait(0.5),
+				Ease(scene.objectLookup.Sonic, "y", 1000, 4),
+				Do(function()
+					scene:changeScene{map="ironlock_boss", fadeOutSpeed=0.3, fadeInSpeed=1}
+				end)
+			},
+		
+			-- FFs merge together, Sonic starts run cycle
+			MessageBox{message="Sonic: Juice and jam ti--", closeAction=Wait(2)}
+		}
 		-- Fall, scene change to boss fight room
 	}
 end
