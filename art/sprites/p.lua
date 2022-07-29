@@ -89,8 +89,10 @@ return {
 		},
 		
 		king_idle = {
-			frames = {{16,0},{15,0}},
-			speed = 0.1
+			frames = {{14,2}}
+		},
+		king_lookback = {
+			frames = {{14,3}}
 		},
     }
 }

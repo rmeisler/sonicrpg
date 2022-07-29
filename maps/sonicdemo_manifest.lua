@@ -27,12 +27,12 @@ return {
     },
 	{
         type = "map",
-		file = "maps/ironlock_snively.lua",
-		primary = true
+		file = "maps/ironlock_snively.lua"
     },
 	{
         type = "map",
-		file = "maps/ironlock_boss.lua"
+		file = "maps/ironlock_boss.lua",
+		primary = true
     },
 	{
         type = "map",
@@ -776,6 +776,11 @@ return {
 		type = "sound",
 		file = "audio/sfx/slash.ogg",
 		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/sallysad.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",

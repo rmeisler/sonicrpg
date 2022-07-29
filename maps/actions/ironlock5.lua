@@ -258,7 +258,7 @@ return function(scene, hint)
 		Do(function()
 			scene.objectLookup.Antoine.sprite:setAnimation("walkdown")
 		end),
-		Ease(scene.objectLookup.Antoine, "y", scene.objectLookup.Antoine.y - 5, 1, "linear"),
+		Ease(scene.objectLookup.Antoine, "y", scene.objectLookup.Antoine.y - 10, 1, "linear"),
 		Do(function()
 			scene.objectLookup.Antoine.sprite:setAnimation("idleleft")
 		end),
@@ -272,7 +272,7 @@ return function(scene, hint)
 		--Animate(scene.objectLookup.Logan.sprite, "idledown"),
 		--Animate(scene.objectLookup.Fleet.sprite, "idledown"),
 		scene:screenShake(30, 20, 15),
-		Wait(0.5),
+		Wait(1),
 		Animate(scene.objectLookup.Sally.sprite, "idleright"),
 		Animate(scene.objectLookup.Sonic.sprite, "idleright"),
 		Animate(scene.objectLookup.Antoine.sprite, "idleleft"),
@@ -303,9 +303,9 @@ return function(scene, hint)
 				Animate(function() return scene.objectLookup.Fleet.sprite end, "fleetfloat")
 			},
 			Serial {
-				Ease(scene.objectLookup.Fleet, "y", function() return scene.objectLookup.Fleet.y - 100 end, 1),
-				Ease(scene.objectLookup.Fleet, "y", function() return scene.objectLookup.Fleet.y + 50 end, 1),
-				Ease(scene.objectLookup.Fleet, "y", function() return scene.objectLookup.Fleet.y - 800 end, 1),
+				Ease(scene.objectLookup.Fleet, "y", function() return scene.objectLookup.Fleet.y - 100 end, 1.5),
+				Ease(scene.objectLookup.Fleet, "y", function() return scene.objectLookup.Fleet.y + 50 end, 1.5),
+				Ease(scene.objectLookup.Fleet, "y", function() return scene.objectLookup.Fleet.y - 800 end, 1.5),
 			}
 		},
 		
@@ -315,47 +315,49 @@ return function(scene, hint)
 		Animate(scene.objectLookup.Sally.sprite, "pose"),
 		Animate(scene.objectLookup.Antoine.sprite, "pose"),
 		Parallel {
-			Ease(scene.objectLookup.Sonic, "x", scene.objectLookup.Sally.x, 1),
-			Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Sally.x, 1),
-			Ease(scene.camPos, "x", -400, 1)
-		},
-		Do(function()
-			GameState:addBackToParty("sally")
-			GameState:addBackToParty("sonic")
-			GameState.leader = "sonic"
-			
-			scene.objectLookup.Sally:remove()
-			scene.objectLookup.Antoine:remove()
-		end),
-		
-		Parallel {
 			Serial {
-				Animate(scene.objectLookup.Sonic.sprite, "chargerun1"),
-				Do(function() scene.objectLookup.Sonic.sprite:setAnimation("chargerun2") end),
-				Wait(1),
-				PlayAudio("sfx", "openchasm", 1.0, true),
-				Animate(scene.objectLookup.TrapDoor.sprite, "opening"),
-				Animate(scene.objectLookup.TrapDoor.sprite, "open"),
-				Animate(scene.objectLookup.Sonic.sprite, "shock"),
+				Parallel {
+					Ease(scene.objectLookup.Sonic, "x", scene.objectLookup.Sally.x, 1),
+					Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Sally.x, 1)
+				},
 				Do(function()
-					scene.audio:stopMusic()
-					for _,layer in pairs(scene.map.layers) do
-						if layer.name == "hidden" then
-							layer.opacity = 1.0
-							break
-						end
-					end
+					GameState:addBackToParty("sally")
+					GameState:addBackToParty("sonic")
+					GameState.leader = "sonic"
+					
+					scene.objectLookup.Sally:remove()
+					scene.objectLookup.Antoine:remove()
 				end),
-				Wait(0.5),
-				Ease(scene.objectLookup.Sonic, "y", 1000, 4),
-				Do(function()
-					scene:changeScene{map="ironlock_boss", fadeOutSpeed=0.3, fadeInSpeed=1}
-				end)
+				Parallel {
+					Serial {
+						Animate(scene.objectLookup.Sonic.sprite, "chargerun1"),
+						Do(function() scene.objectLookup.Sonic.sprite:setAnimation("chargerun2") end),
+						Wait(1),
+						PlayAudio("sfx", "openchasm", 1.0, true),
+						Animate(scene.objectLookup.TrapDoor.sprite, "opening"),
+						Animate(scene.objectLookup.TrapDoor.sprite, "open"),
+						Animate(scene.objectLookup.Sonic.sprite, "shock"),
+						Do(function()
+							scene.audio:stopMusic()
+							for _,layer in pairs(scene.map.layers) do
+								if layer.name == "hidden" then
+									layer.opacity = 1.0
+									break
+								end
+							end
+						end),
+						Wait(0.5),
+						Ease(scene.objectLookup.Sonic, "y", 1000, 4),
+						Do(function()
+							scene:changeScene{map="ironlock_boss", fadeOutSpeed=0.3, fadeInSpeed=1}
+						end)
+					},
+				
+					-- FFs merge together, Sonic starts run cycle
+					MessageBox{message="Sonic: Juice and jam ti--", closeAction=Wait(2)}
+				}
 			},
-		
-			-- FFs merge together, Sonic starts run cycle
-			MessageBox{message="Sonic: Juice and jam ti--", closeAction=Wait(2)}
+			Ease(scene.camPos, "x", -250, 0.5)
 		}
-		-- Fall, scene change to boss fight room
 	}
 end

@@ -8,8 +8,11 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 24,
-  properties = {},
+  nextobjectid = 29,
+  properties = {
+    ["battlebg"] = "../art/backgrounds/prisonbg.png",
+    ["onload"] = "actions/ironlock_boss.lua"
+  },
   tilesets = {
     {
       name = "knotholehut",
@@ -255,8 +258,8 @@ return {
           name = "Boss",
           type = "BasicNPC",
           shape = "rectangle",
-          x = -32,
-          y = 256,
+          x = -224,
+          y = 448,
           width = 96,
           height = 96,
           rotation = 0,
@@ -264,9 +267,100 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["alphaOverride"] = 0,
             ["defaultAnim"] = "idle",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/cyclops.png"
+          }
+        },
+        {
+          id = 24,
+          name = "Sonic",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 288,
+          y = -160,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6242,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "shock",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/sonic.png"
+          }
+        },
+        {
+          id = 25,
+          name = "Sally",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = -96,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6242,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "shock",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/sally.png"
+          }
+        },
+        {
+          id = 26,
+          name = "Antoine",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 416,
+          y = -160,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6242,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "shock",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/antoine.png"
+          }
+        },
+        {
+          id = 27,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 352,
+          y = 384,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6242,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["orientation"] = "up"
+          }
+        },
+        {
+          id = 28,
+          name = "King",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 544,
+          y = 352,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6242,
+          visible = true,
+          properties = {
+            ["alphaOverride"] = 255,
+            ["defaultAnim"] = "king_idle",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/p.png"
           }
         }
       }

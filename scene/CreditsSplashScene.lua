@@ -35,8 +35,8 @@ function CreditsSplashScene:onEnter()
 	
 	-- Setup music
 	self.audio:registerAs("music", "sonicrpglogo", love.audio.newSource("audio/music/credits.ogg", "static"))
-	self.audio:registerAs("music", "sallymeetsleon", love.audio.newSource("audio/music/sallymeetsleon.ogg", "static"))
-	self.audio:registerAs("music", "meettherebellion", love.audio.newSource("audio/music/meettherebellion.ogg", "static"))
+	self.audio:registerAs("music", "ironlock", love.audio.newSource("audio/music/ironlock.ogg", "static"))
+	self.audio:registerAs("sfx", "wolf", love.audio.newSource("audio/sfx/wolf.ogg", "static"))
 	
 	self.bgColor = {0,0,0,255}
 	self.logoColor = {255,255,255,0}
@@ -53,10 +53,8 @@ function CreditsSplashScene:onEnter()
 			AudioFade("music", 0.7, 1.0, 0.3),
 			Serial {
 				Spawn(Serial {
-					PlayAudio("music", "sonicrpglogo", 0.7),
-					Wait(2),
-					PlayAudio("music", "sallymeetsleon", 1.0),
-					PlayAudio("music", "meettherebellion", 1.0)
+					Wait(1),
+					PlayAudio("music", "ironlock", 1.0, true)
 				}),
 				Wait(3),
 				Parallel {
@@ -82,6 +80,7 @@ function CreditsSplashScene:onEnter()
 			
 			self:getScrollingCredits()
 		},
+		Spawn(AudioFade("music", 1.0, 0.0, 1)),
 		Do(function()
 			self.sceneMgr:backToTitle()
 		end)
@@ -113,7 +112,10 @@ Jacob Berkley/Good Ol' Groovy Jake
 Reggie Meisler/RedG
 
 [Music]
+Billy Adams
+Jesse Rose/GreenCauldron08
 Reggie Meisler/RedG
+F0XShadow
 Michael Tavera
 
 [Sound]
@@ -181,6 +183,9 @@ SEGAMew (@segamew)
 [2021 Box Art]
 sqrly jack
 
+[2022 Box Art]
+Jonathon Dobbs/InkPants
+
 [Framework]
 Reggie Meisler/RedG
 
@@ -205,8 +210,18 @@ Jacob Berkley/Good Ol' Groovy Jake
 
 
 
+
+ This episode is dedicated to my wife Jazz, who
+    has been so supportive of this project.
+
+
+	
+
+
            Thanks for playing!
     Join our discord for project updates!
+	
+	
 	
 	
 	
@@ -222,7 +237,7 @@ Jacob Berkley/Good Ol' Groovy Jake
 		false
 	)
 	return Serial {
-		Ease(text.transform, "y", -3000, 0.01, "linear"),
+		Ease(text.transform, "y", -3600, 0.008, "linear"),
 		Do(function()
 			print("done")
 		end)
