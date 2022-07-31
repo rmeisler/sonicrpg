@@ -113,8 +113,8 @@ Reggie Meisler/RedG
 
 [Music]
 Billy Adams
-Jesse Rose/GreenCauldron08
 Reggie Meisler/RedG
+Jesse Rose/GreenCauldron08
 F0XShadow
 Michael Tavera
 
@@ -211,15 +211,27 @@ Jacob Berkley/Good Ol' Groovy Jake
 
 
 
+
+
+
+
  This episode is dedicated to my wife Jazz, who
     has been so supportive of this project.
 
 
 	
+	
+	
+	
+	
 
 
            Thanks for playing!
     Join our discord for project updates!
+	
+	
+	
+	
 	
 	
 	
@@ -237,7 +249,7 @@ Jacob Berkley/Good Ol' Groovy Jake
 		false
 	)
 	return Serial {
-		Ease(text.transform, "y", -3600, 0.008, "linear"),
+		Ease(text.transform, "y", -3800, 0.008, "linear"),
 		Do(function()
 			print("done")
 		end)

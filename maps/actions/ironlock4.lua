@@ -44,21 +44,21 @@ return function(scene, hint)
 			scene.player.dropShadow.hidden = true
 		end),
 		
-		PlayAudio("music", "introspection", 1.0, true),
 		Do(function()
 			scene.objectLookup.Antoine.sprite:setAnimation("paceright")
 		end),
-		Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x + 200, 1, "linear"),
+		Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x + 170, 1, "linear"),
+		PlayAudio("music", "introspection", 1.0, true),
 		Parallel {
 			Repeat(Serial {
 				Do(function()
 					scene.objectLookup.Antoine.sprite:setAnimation("paceleft")
 				end),
-				Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x - 200, 0.6, "linear"),
+				Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x - 250, 0.6, "linear"),
 				Do(function()
 					scene.objectLookup.Antoine.sprite:setAnimation("paceright")
 				end),
-				Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x + 200, 0.6, "linear")
+				Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x + 170, 0.6, "linear")
 			}, 14),
 			
 			Serial {
@@ -71,7 +71,7 @@ return function(scene, hint)
 				MessageBox{message="Antoine: So what skills do you have then, Antoine\nDepardieu?", closeAction=Wait(1)},
 				MessageBox{message="Antoine: Ah! {p40}I am a very fine chef! {p40}Yes, that is right!", closeAction=Wait(1)},
 				MessageBox{message="Antoine: So I will serve them food on ze platter and serve ze Swatbots a knuckle sandwhich!! {p40}No, this does not make sense. {p40}Bots are made of metal. {p40}I will simply hurt my hand...", closeAction=Wait(2)},
-				MessageBox{message="Antoine: So what I'm getting at here is zat I am unskilled, untrained, and completely helpless. I am ze worst Freedom Fighter and I can not help in any capacity, all I do is get captured and let people down, as I am always doing!!", closeAction=Wait(3.5), textSpeed=3},
+				MessageBox{message="Antoine: So {p40}what I'm getting at here is zat I am unskilled{p40}, untrained{p40}, and completely helpless. {p60}I am ze worst Freedom Fighter and I can not help in any capacity, all I do is get captured and let people down, as I am always doing!!", closeAction=Wait(4), textSpeed=3},
 			}
 		},
 		Do(function()
@@ -89,7 +89,8 @@ return function(scene, hint)
 		
 		Animate(scene.objectLookup.Antoine.sprite, "scaredhop1"),
 		MessageBox{message="Antoine: Who said that?"},
-		
+			
+		Wait(1),
 		MessageBox{message="???: Antoine..."},
 
 		Wait(0.1),
@@ -120,7 +121,7 @@ return function(scene, hint)
 		Parallel {
 			Ease(scene.objectLookup.YoungAnt.sprite.color, 4, 255, 0.3),
 			Ease(scene.objectLookup.Evangeline.sprite.color, 4, 255, 0.3),
-			MessageBox{message="Evangeline: Antoine... aren't you forgetting something?"}
+			MessageBox{message="Evangeline: Antoine... {p60}aren't you forgetting something?"}
 		},
 		
 		Animate(scene.objectLookup.YoungAnt.sprite, "youngant_lookaway"),
@@ -166,7 +167,7 @@ return function(scene, hint)
 		MessageBox{message="Evangeline: I just worry about him sometimes...{p60} he always seems so afraid of everything..."},
 		Wait(1),
 		Animate(scene.objectLookup.Antoine.sprite, "saddown"),
-		MessageBox{message="Antoine: Ah, you knew me all too well, mama."},
+		MessageBox{message="Antoine: Ah--{p60} you were right to worry, mama."},
 		
 		Wait(1),
 		Animate(scene.objectLookup.Belpois.sprite, "belpois_convince"),
@@ -190,10 +191,7 @@ return function(scene, hint)
 		MessageBox{message="Belpois: Exactly, mon amour! {p60}Our son may get scared a bit too easily at times, but he is no coward! {p80}He is the bravest person I know!"},
 		
 		Parallel {
-			Serial {
-				AudioFade("music", 1.0, 0.0, 0.3),
-				Wait(2)
-			},
+			AudioFade("music", 1.0, 0.0, 0.2),
 			Ease(scene.objectLookup.Belpois.sprite.color, 4, 0, 0.3),
 			Ease(scene.objectLookup.Evangeline.sprite.color, 4, 0, 0.3)
 		},
@@ -201,26 +199,27 @@ return function(scene, hint)
 		Animate(scene.objectLookup.Antoine.sprite, "idledown"),
 		Wait(1),
 		Parallel {
-			PlayAudio("music", "antoine", 1.0),
+			Spawn(Serial {
+				PlayAudio("music", "antoine", 1.0),
+				PlayAudio("music", "missionready", 1.0, true, true)
+			}),
 			Serial {
 				Animate(scene.objectLookup.Antoine.sprite, "pose"),
 				MessageBox{message="Antoine: Listen{p40}, whoever is listening!!", closeAction=Wait(2)},
+				Wait(0.5),
 				Do(function() scene.objectLookup.Antoine.sprite:setAnimation("proud") end),
 				MessageBox{message="Antoine: I am Antoine Depardieu!!", closeAction=Wait(2)},
+				Wait(0.5),
 				Animate(scene.objectLookup.Antoine.sprite, "scaredhop1"),
 				MessageBox{message="Antoine: ...and though I am scared beyond belief...", closeAction=Wait(2)},
+				Wait(0.5),
 				Animate(scene.objectLookup.Antoine.sprite, "determined"),
 				MessageBox{message="Antoine: I will not be giving up until I have saved my friends!!", closeAction=Wait(3)},
-				Animate(scene.objectLookup.Antoine.sprite, "pose"),
-				MessageBox{message="Antoine: You hear that Sonic and Sally?! {p60}I'm coming for you!!", closeAction=Wait(2)},
-				Wait(1),
-				Animate(scene.objectLookup.Antoine.sprite, "determined"),
-				MessageBox{message="Antoine: ...I'm coming for you...", textSpeed=2},
+				Wait(0.5),
+				MessageBox{message="Antoine: You hear that Sonic and Sally?! {p60}I am coming for you!!", closeAction=Wait(2)},
 				MessageBox{message="Antoine learned Resiliency!", sfx="levelup", rect=MessageBox.HEADLINER_RECT}
 			}
 		},
-		
-		PlayAudio("music", "missionready", 1.0, true, true),
 		
 		Do(function()
 			GameState:removeFromParty("sonic")
@@ -232,7 +231,7 @@ return function(scene, hint)
 			scene.objectLookup.Antoine:remove()
 			GameState.leader = "antoine"
 			scene.player:updateSprite()
-			scene.player.y = scene.player.y + 32
+			scene.player.y = scene.player.y + 40
 			scene.player.sprite.visible = true
 			scene.player.dropShadow.hidden = false
 		end)

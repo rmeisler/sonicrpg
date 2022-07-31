@@ -106,16 +106,17 @@ return function(scene, hint)
 					end)
 				}
 			},
+			PlayAudio("music", "patrol", 0.8, true, true),
 			MessageBox{message="Antoine: Is zat--"},
 			MessageBox{message="Sally: Yes. {p60}That looks like where they're keeping {h Project Firebird}..."},
 			Animate(scene.objectLookup.Antoine.sprite, "scaredhop1"),
 			MessageBox{message="Antoine: S-S-Should we be waiting for ze Rebels?"},
 			Animate(scene.objectLookup.Sally.sprite, "thinking"),
-			MessageBox{message="Sally: You're right Antoine. {p60}Ugh! Where could they be?"},
+			MessageBox{message="Sally: You're right, Antoine. {p60}Ugh! Where could they be?"},
 			Animate(scene.objectLookup.Sonic.sprite, "irritated"),
 			MessageBox{message="Sonic: Come on, Sal! Lemme at it! {p60}We don't need them! {p60}I can smash this bucket of bolts and blast us outta here before ya even know I'm gone!"},
 			MessageBox{message="Sally: ..."},
-			Animate(scene.objectLookup.Sally.sprite, "thinking2"),
+			Animate(scene.objectLookup.Sally.sprite, "idleup"),
 			MessageBox{message="Sally: Ok. {p60}Let's do it to it."},
 			Animate(scene.objectLookup.Sonic.sprite, "pose"),
 			MessageBox{message="Sonic: Alright, Sal!"},
@@ -173,6 +174,7 @@ return function(scene, hint)
 				}
 			},
 			
+			AudioFade("music", 0.8, 0.0, 1),
 			MessageBox{message="Sonic: How's it looking back there, Ant?"},
 			MessageBox{message="Antoine: Not so good, I am thinking!"},
 			Animate(scene.objectLookup.Sonic.sprite, "idledown"),
@@ -186,7 +188,6 @@ return function(scene, hint)
 			Animate(scene.objectLookup.Sonic.sprite, "shock"),
 			Animate(scene.objectLookup.Sally.sprite, "shock"),
 			
-			PlayAudio("music", "troublefanfare", 1.0, true),
 			Parallel {
 				Serial {
 					Do(function()
@@ -197,6 +198,7 @@ return function(scene, hint)
 					Parallel {
 						Serial {
 							Wait(1),
+							PlayAudio("music", "troublefanfare", 1.0, true),
 							Do(function()
 								scene.objectLookup.Swatbot4.sprite:setAnimation("walkleft")
 								scene.objectLookup.Swatbot11.sprite:setAnimation("walkleft")
@@ -253,15 +255,18 @@ return function(scene, hint)
 								scene.objectLookup.Swatbot3.sprite:setAnimation("idleright")
 								scene.objectLookup.Snively.sprite:setAnimation("idleright_smile")
 							end),
-							Wait(1),
+							Wait(4),
 							Do(function()
 								scene.objectLookup.Snively.sprite:setAnimation("idleright_laugh")
-							end)
+							end),
+							Wait(1),
+							MessageBox{message="Snively: Let him go. He's no threat without the Princess or Hedgehog."}
 						}
 					}
 				},
 			
 				Serial {
+					Wait(2),
 					-- Scared hop
 					Animate(scene.objectLookup.Antoine.sprite, "scaredhop1"),
 					Wait(0.1),
@@ -283,7 +288,7 @@ return function(scene, hint)
 			},
 			Wait(1),
 			Do(function()
-				scene:changeScene{map="ironlock4", fadeOutSpeed=1, fadeInSpeed=0.1}
+				scene:changeScene{map="ironlock4", fadeOutSpeed=0.5, fadeInSpeed=0.5}
 			end)
 		}
 	end

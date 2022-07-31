@@ -357,7 +357,7 @@ return {
           gid = 6242,
           visible = true,
           properties = {
-            ["alphaOverride"] = 255,
+            ["alphaOverride"] = 0,
             ["defaultAnim"] = "king_idle",
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/p.png"

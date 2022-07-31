@@ -99,7 +99,7 @@
   </object>
   <object id="28" name="King" type="BasicNPC" gid="6242" x="544" y="352" width="64" height="64">
    <properties>
-    <property name="alphaOverride" type="float" value="255"/>
+    <property name="alphaOverride" type="float" value="0"/>
     <property name="defaultAnim" value="king_idle"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/p.png"/>

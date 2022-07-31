@@ -53,7 +53,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.getBackwardAnim = data.getBackwardAnim or function(_self) return "backward" end
 	self.onAttack = data.onAttack
 	self.onBeforeAttack = data.onBeforeAttack
-	self.textOffset = data.textOffset or Transform(0, self.sprite.h/2 - 15)
+	self.textOffset = data.textOffset or Transform(0, self:getSprite().h/2 - 15)
 	self.color = data.color or {255,255,255,255}
 	self.boss = data.boss
 	self.bossPart = data.boss_part
@@ -205,7 +205,7 @@ function OpposingPartyMember:beginTurn()
 	elseif self.lostTurns > 0 then
 		local lostTurnMsg = self.name.."'s "..(self.lostTurnType or "boredom").." has subsided."
 		self.action = Serial {
-			Do(function() self.sprite:setAnimation("idle") end),
+			Do(function() self:getSprite():setAnimation("idle") end),
 			Telegraph(self, lostTurnMsg, {self.color[1],self.color[2],self.color[3],50})
 		}
 		self.lostTurns = self.lostTurns - 1

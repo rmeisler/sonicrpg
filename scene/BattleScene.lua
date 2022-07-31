@@ -139,10 +139,6 @@ function BattleScene:onEnter(args)
 		self.party,
 		self.opponents
 	)
-	
-	for _,oppo in pairs(self.opponents) do
-		oppo:onInit()
-	end
 
 	self.initialized = false
 	self.state = BattleScene.STATE_PLAYERTURN
@@ -617,13 +613,15 @@ function BattleScene:addMonster(monster)
 					oppo.sprite.visible = false
 					oppo.mockSprite = SpriteNode(
 						self,
-						Transform.from(mem.sprite.transform),
+						Transform(mem.sprite.transform.x,mem.sprite.transform.y,2,2),
 						{255,255,255,255},
 						mem.mockSprite
 					)
 					oppo.mockSprite.transform.x = oppo.mockSprite.transform.x + mem.mockSpriteOffset.x
-					oppo.mockSprite.transform.y = oppo.mockSprite.transform.y + mem.mockSpriteOffset.y
+					oppo.mockSprite.transform.y = oppo.mockSprite.transform.y + mem.mockSpriteOffset.y					
 				end
+				
+				oppo:onInit()
 			end)
 		})
 	else
@@ -641,6 +639,8 @@ function BattleScene:addMonster(monster)
 			oppo.mockSprite.transform.x = oppo.mockSprite.transform.x + mem.mockSpriteOffset.x
 			oppo.mockSprite.transform.y = oppo.mockSprite.transform.y + mem.mockSpriteOffset.y
 		end
+		
+		oppo:onInit()
 	end
 	
 	table.insert(self.opponents, oppo)

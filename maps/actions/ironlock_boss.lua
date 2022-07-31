@@ -28,13 +28,15 @@ return function(scene, hint)
 	scene.player.sprite.color[1] = 150
 	scene.player.sprite.color[2] = 150
 	scene.player.sprite.color[3] = 150
-	
-	GameState:setFlag("ep3_boss")
+
 	if GameState:isFlagSet("ep3_boss") then
+		scene.audio:stopMusic()
+		scene.objectLookup.Boss:remove()
 		scene.player.sprite.visible = false
 		scene.player.dropShadow.hidden = true
 		return BlockPlayer {
 			Do(function()
+				scene.audio:stopMusic()
 				scene.player.sprite.visible = false
 				scene.player.dropShadow.hidden = true
 				scene.objectLookup.King.sprite.color[1] = 0
@@ -125,6 +127,7 @@ return function(scene, hint)
 		}
 	end
 
+	GameState:setFlag("ep3_boss")
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.hidden = true
 	return BlockPlayer {

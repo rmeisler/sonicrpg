@@ -174,8 +174,6 @@ end
 
 function TitleSplashScene:newGame()
 	GameState:addToParty("sally", 6, true)
-	GameState:addToParty("sonic", 6, true)
-	GameState:addToParty("antoine", 6, true)
 	GameState.leader = "sally"
 	GameState:setFlag("ep3_intro")
 	

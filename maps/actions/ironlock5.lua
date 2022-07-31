@@ -98,8 +98,8 @@ return function(scene, hint)
 		Animate(scene.objectLookup.Fleet.sprite, "lookright"),
 		MessageBox{message="Fleet: I wouldn't count on that rescue, Princess..."},
 		
-		MessageBox{message="Sally: Oh dear..."},
-		Wait(2),
+		MessageBox{message="Sally: ..."},
+		Wait(1),
 		
 		PlayAudio("music", "introspection", 1.0, true),
 		Animate(scene.objectLookup.Sally.sprite, "pose"),
@@ -114,8 +114,8 @@ return function(scene, hint)
 		MessageBox{message="Ivan: Yes. {p60}The cowardly coyote breaking us out of here seems highly improbable.", closeAction=Wait(2)},
 		MessageBox{message="Sonic: See! {p60}Even the dingo gets it!", closeAction=Wait(1)},
 		Animate(scene.objectLookup.Sally.sprite, "thinking"),
-		MessageBox{message="Sally: Guys{p60}, Antoine may not be the most heroic person, but he is still a Freedom Fighter!", closeAction=Wait(2)},
-		MessageBox{message="Sally: *whisper* Plus...{p40} who would you rather be saved by--{p20} Antoine{p20} or Fleet?", closeAction=Wait(2)},
+		MessageBox{message="Sally: Come on guys{p60}, Antoine may not be the most heroic person, but he is still a Freedom Fighter!", closeAction=Wait(2)},
+		MessageBox{message="Sally: *whisper* Plus...{p60} who would you rather be saved by--{p40} Antoine{p40} or Fleet?", closeAction=Wait(2)},
 		Animate(scene.objectLookup.Sonic.sprite, "shock"),
 		Wait(1),
 		Animate(scene.objectLookup.Sonic.sprite, "pose"),
@@ -150,7 +150,7 @@ return function(scene, hint)
 		
 		PlayAudio("music", "antoinerescue", 1.0, true),
 		Wait(0.5),
-		Ease(scene.camPos, "x", 400, 0.3),
+		Ease(scene.camPos, "x", 400, 0.3, "linear"),
 		
 		MessageBox{message="Sonic & Sally: Antoine!", closeAction=Wait(2)},
 		MessageBox{message="Antoine: But of course!", closeAction=Wait(2)},
@@ -305,6 +305,7 @@ return function(scene, hint)
 			Serial {
 				Ease(scene.objectLookup.Fleet, "y", function() return scene.objectLookup.Fleet.y - 100 end, 1.5),
 				Ease(scene.objectLookup.Fleet, "y", function() return scene.objectLookup.Fleet.y + 50 end, 1.5),
+				PlayAudio("sfx", "sonicrunturn", 1.0, true),
 				Ease(scene.objectLookup.Fleet, "y", function() return scene.objectLookup.Fleet.y - 800 end, 1.5),
 			}
 		},
@@ -330,6 +331,7 @@ return function(scene, hint)
 				end),
 				Parallel {
 					Serial {
+						PlayAudio("sfx", "sonicrun", 1.0, true),
 						Animate(scene.objectLookup.Sonic.sprite, "chargerun1"),
 						Do(function() scene.objectLookup.Sonic.sprite:setAnimation("chargerun2") end),
 						Wait(1),
@@ -338,6 +340,7 @@ return function(scene, hint)
 						Animate(scene.objectLookup.TrapDoor.sprite, "open"),
 						Animate(scene.objectLookup.Sonic.sprite, "shock"),
 						Do(function()
+							scene.audio:stopSfx()
 							scene.audio:stopMusic()
 							for _,layer in pairs(scene.map.layers) do
 								if layer.name == "hidden" then
