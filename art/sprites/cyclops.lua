@@ -13,6 +13,10 @@ return {
 			frames = {{0,0},{1,0}},
 			speed = 0.6
 		},
+		backward = {
+			frames = {{11,0},{12,0}},
+			speed = 0.6
+		},
 		hurt = {
 			frames = {{2,0}}
 		},
@@ -37,6 +41,29 @@ return {
 		walkright_step2 = {
 			frames = {{8,0},{9,0},{10,0},{0,0}},
 			speed = 0.12
-		}
+		},
+		
+		dazed = {
+			frames = {{2,0},{13,0}},
+			speed = 0.3
+		},
+		
+		fall = {
+			frames = {{14,0},{15,0}},
+			speed = 0.2
+		},
+		
+		prone = {
+			frames = {{16,0},{17,0}},
+			speed = 0.8
+		},
+		prone_hurt = {
+			frames = {{18,0}}
+		},
+		
+		unprone = {
+			frames = {{15,0},{15,0},{15,0},{15,0},{15,0},{15,0},{15,0},{15,0},{14,0},{1,0}},
+			speed = 0.1
+		},
     }
 }

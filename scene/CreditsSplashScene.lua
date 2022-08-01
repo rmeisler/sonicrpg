@@ -249,7 +249,7 @@ Jacob Berkley/Good Ol' Groovy Jake
 		false
 	)
 	return Serial {
-		Ease(text.transform, "y", -3800, 0.008, "linear"),
+		Ease(text.transform, "y", -3900, 0.007, "linear"),
 		Do(function()
 			print("done")
 		end)

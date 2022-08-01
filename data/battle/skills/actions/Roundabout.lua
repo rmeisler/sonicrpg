@@ -35,7 +35,11 @@ return function(self, target)
 			PlayAudio("sfx", "sonicrunturn", 1.0, true),
 			Do(function()
 				self.sprite.prevSortOrderY = self.sprite.sortOrderY
-				self.sprite.sortOrderY = targetSp.transform.y + targetSp.h*2 - self.sprite.h*2 - 100
+				if target:getSprite().sortOrderY then
+					self.sprite.sortOrderY = target:getSprite().sortOrderY - 100
+				else
+					self.sprite.sortOrderY = targetSp.transform.y + targetSp.h*2 - self.sprite.h*2 - 100
+				end
 				targetSp:setAnimation(target:getIdleAnim())
 			end),
 			Parallel {
@@ -179,6 +183,8 @@ return function(self, target)
 				targetSp.transform.y = targetSp.transform.y - targetSp.h
 			end
 		end),
+		
+		target.onConfused and target:onConfused() or Action(),
 		
 		-- Bot is confused
 		MessageBox {message=target.name.." is confused!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)},

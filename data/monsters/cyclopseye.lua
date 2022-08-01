@@ -30,7 +30,7 @@ return {
 
 	stats = {
 		xp    = 30,
-		maxhp = 1, --1000,
+		maxhp = 1,
 		attack = 24,
 		defense = 20,
 		speed = 2,
@@ -38,7 +38,7 @@ return {
 		luck = 1,
 	},
 
-	boss = true,
+	boss_part = true,
 	
 	aerial = true,
 	
@@ -60,9 +60,12 @@ return {
 		self.sprite.transform.x = 340
 		self.sprite.transform.y = 130
 		self.sprite.sortOrderY = -100
+		self.takeDamage = function (_, stats, isPassive, knockbackActionFun)
+			return self.body:takeDamage(stats, isPassive, knockbackActionFun)
+		end
 	end,
-	
+
 	behavior = function (self, target)
-		
+		return Action()
 	end,
 }

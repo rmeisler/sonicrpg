@@ -34,7 +34,7 @@ return {
 
 	stats = {
 		xp    = 30,
-		maxhp = 1, --000,
+		maxhp = 1000,
 		attack = 24,
 		defense = 100,
 		speed = 2,
@@ -42,7 +42,7 @@ return {
 		luck = 1,
 	},
 
-	boss_part = true,
+	boss = true,
 	
 	run_chance = 0.2,
 
@@ -64,10 +64,57 @@ return {
 		self.mockSprite.sortOrderY = -100
 		
 		local oppo = self.scene:addMonster("cyclopseye")
+		oppo.body = self
 		oppo:onPreInit()
+		self.eye = oppo
+	end,
+	
+	onConfused = function(self)
+		self.proneTurns = 2
+		self.stats.defense = 20
+		self:getSprite():pushOverride("hurt", "prone_hurt")
+
+		self.eye.aerial = false
+		self.eye.sprite.transform.x = 340
+		self.eye.sprite.transform.y = 300
+
+		return Serial {
+			Do(function() self:getSprite():setAnimation("dazed") end),
+			Wait(2),
+			Animate(self:getSprite(), "fall"),
+			Do(function() self:getSprite():setAnimation("prone") end),
+			PlayAudio("sfx", "cyclopsstep", 1.0, true),
+			self.scene:screenShake(20, 30, 1)
+		}
 	end,
 	
 	behavior = function (self, target)
+		if self.proneTurns > 1 then
+			self.proneTurns = self.proneTurns - 1
+			return Action()
+		elseif self.proneTurns == 1 then
+			self.proneTurns = self.proneTurns - 1
+			self.stats.defense = 100
+			self:getSprite():popOverride("hurt")
+
+			self.eye.aerial = true
+			self.eye.sprite.transform.y = 130
+			
+			local sp = self:getSprite()
+			return Serial {
+				Parallel {
+					Animate(sp, "unprone"),
+					Serial {
+						Ease(sp.transform, "y", function() return sp.transform.y - 150 end, 2),
+						Ease(sp.transform, "y", function() return sp.transform.y + 150 end, 2)
+					},
+				},
+				Do(function() self:getSprite():setAnimation("idle") end),
+				PlayAudio("sfx", "cyclopsstep", 1.0, true),
+				self.scene:screenShake(20, 30, 1)
+			}
+		end
+	
 		local sprite = self:getSprite()
 		if math.random() < 0.2 then
 			local sapActions = {}
@@ -151,22 +198,6 @@ return {
 					closeAction=Wait(1)
 				}
 			}
-		end
-	end,
-	
-	getIdleAnim = function(self)
-		if self.state == "upright" or self.state == "transition_to_upright" then
-			return "upright"
-		else
-			return "idle"
-		end
-	end,
-	
-	getBackwardAnim = function(self)
-		if self.state == "upright" or self.state == "transition_to_upright" then
-			return "uprightbackward"
-		else
-			return "backward"
 		end
 	end
 }
