@@ -322,10 +322,6 @@ return function(scene, hint)
 					Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Sally.x, 1)
 				},
 				Do(function()
-					GameState:addBackToParty("sally")
-					GameState:addBackToParty("sonic")
-					GameState.leader = "sonic"
-					
 					scene.objectLookup.Sally:remove()
 					scene.objectLookup.Antoine:remove()
 				end),

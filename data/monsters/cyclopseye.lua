@@ -30,7 +30,7 @@ return {
 
 	stats = {
 		xp    = 30,
-		maxhp = 1000,
+		maxhp = 1, --1000,
 		attack = 24,
 		defense = 20,
 		speed = 2,
@@ -39,6 +39,8 @@ return {
 	},
 
 	boss = true,
+	
+	aerial = true,
 	
 	run_chance = 0.2,
 
@@ -50,8 +52,11 @@ return {
 	
 	scan = "Try knocking the Cyclops off balance to better expose it's weak spot.",
 	
-	onInit = function(self)
+	onPreInit = function(self)
 		self.sprite.visible = false
+	end,
+	
+	onInit = function(self)
 		self.sprite.transform.x = 340
 		self.sprite.transform.y = 130
 		self.sprite.sortOrderY = -100

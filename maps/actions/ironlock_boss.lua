@@ -34,6 +34,9 @@ return function(scene, hint)
 		scene.objectLookup.Boss:remove()
 		scene.player.sprite.visible = false
 		scene.player.dropShadow.hidden = true
+		scene.objectLookup.Sonic.sprite:setAnimation("idleright")
+		scene.objectLookup.Sally.sprite:setAnimation("idleup")
+		scene.objectLookup.Antoine.sprite:setAnimation("idleleft")
 		return BlockPlayer {
 			Do(function()
 				scene.audio:stopMusic()
@@ -48,14 +51,14 @@ return function(scene, hint)
 				scene.objectLookup.Sally.y = 416 - 98
 				scene.objectLookup.Antoine.y = 352 - 98
 			end),
-			Animate(scene.objectLookup.Sonic.sprite, "idleright"),
-			Animate(scene.objectLookup.Sally.sprite, "idleup"),
-			Animate(scene.objectLookup.Antoine.sprite, "idleleft"),
-			Wait(2),
-			Ease(scene.objectLookup.King.sprite.color, 4, 255, 0.3),
+			Parallel {
+				MessageBox{message="Sally: That was a close one!"},
+				Ease(scene.objectLookup.King.sprite.color, 4, 255, 0.3)
+			},
 			Animate(scene.objectLookup.Sonic.sprite, "idleright"),
 			Animate(scene.objectLookup.Sally.sprite, "idleright"),
 			Animate(scene.objectLookup.Antoine.sprite, "idleright"),
+			MessageBox{message="Sally: !"},
 			MessageBox{message="???: Computer, {p60}open file {p60}**zzzzz** {p60} passcode 'Bean' **zzzzz**"},
 			MessageBox{message="Sally: ...{p20}D-{p60}Daddy?"},
 			Parallel {
@@ -69,7 +72,7 @@ return function(scene, hint)
 			MessageBox{message="Sally: Daddy, it's me! {p60}I'm here!", closeAction=Wait(2)},
 			Animate(scene.objectLookup.Sonic.sprite, "idleright"), --worried right
 			MessageBox{message="Sonic: I don't think he can hear you Sal-- {p60}we gotta juice before--", closeAction=Wait(1.5)},
-			MessageBox{message="Antoine: Ah Sonic{p20}, let her listen Sonic. {p60}We will make it out in time, yes.", closeAction=Wait(1.5)},
+			MessageBox{message="Antoine: Ah Sonic{p20}, let her listen Sonic. {p60}We will make it out in time.", closeAction=Wait(1.5)},
 			Animate(scene.objectLookup.Sonic.sprite, "shock"),
 			MessageBox{message="Sonic: Wow, what's gotten into you?", closeAction=Wait(1.5)},
 			Animate(scene.objectLookup.Sonic.sprite, "idleright"), -- calm smile
@@ -126,6 +129,10 @@ return function(scene, hint)
 			end)
 		}
 	end
+	
+	GameState:addBackToParty("sally")
+	GameState:addBackToParty("sonic")
+	GameState.leader = "sonic"
 
 	GameState:setFlag("ep3_boss")
 	scene.player.sprite.visible = false

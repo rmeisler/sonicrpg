@@ -69,7 +69,7 @@ return {
 	
 	behavior = function (self, target)
 		local sprite = self:getSprite()
-		if math.random() < 0.5 then
+		if math.random() < 0.2 then
 			local sapActions = {}
 			local spLoss = 5
 			for _, mem in pairs(self.scene.party) do
@@ -109,7 +109,7 @@ return {
 							Do(function()
 								self.doneWithDamage = false
 							end),
-							mem:takeDamage{attack = 8, speed = 30, luck = 0},
+							mem:takeDamage{attack = 16, speed = 30, luck = 0},
 							Do(function()
 								self.doneWithDamage = true
 							end)
@@ -123,16 +123,20 @@ return {
 				Repeat(Serial {
 					PlayAudio("sfx", "cyclopsstep", 1.0, true),
 					Do(function() sprite:setAnimation("stomp1") end),
+					takeDamageAction,
 					self.scene:screenShake(20, 30, 1),
 					Wait(0.6),
 					PlayAudio("sfx", "cyclopsstep", 1.0, true),
 					Do(function() sprite:setAnimation("stomp2") end),
-					takeDamageAction,
 					self.scene:screenShake(20, 30, 1),
 					Wait(0.6)
 				}, 2),
 				
-				Wait(2),
+				Do(function()
+					sprite:setAnimation("idle")
+				end),
+				
+				Wait(1),
 				Do(function()
 					for _, mem in pairs(self.scene.party) do
 						if mem.state ~= BattleActor.STATE_DEAD then
@@ -140,7 +144,6 @@ return {
 							mem.sprite:setAnimation("stun")
 						end
 					end
-					sprite:setAnimation("idle")
 				end),
 				MessageBox {
 					message="Party is paralyzed!",

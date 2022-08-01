@@ -57,6 +57,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.color = data.color or {255,255,255,255}
 	self.boss = data.boss
 	self.bossPart = data.boss_part
+	self.aerial = data.aerial
 	self.targetOverrideStack = {}
 	
 	self.sprite.color = self.color
