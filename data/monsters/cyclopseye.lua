@@ -30,15 +30,15 @@ return {
 
 	stats = {
 		xp    = 30,
-		maxhp = 1,
+		maxhp = 1400,
 		attack = 24,
-		defense = 20,
+		defense = 15,
 		speed = 2,
 		focus = 1,
 		luck = 1,
 	},
 
-	boss_part = true,
+	boss = true,
 	
 	aerial = true,
 	
@@ -50,7 +50,7 @@ return {
 	
 	},
 	
-	scan = "Try knocking the Cyclops off balance to better expose it's weak spot.",
+	scan = "The eye appears to be its weak spot.",
 	
 	onPreInit = function(self)
 		self.sprite.visible = false
@@ -60,8 +60,8 @@ return {
 		self.sprite.transform.x = 340
 		self.sprite.transform.y = 130
 		self.sprite.sortOrderY = -100
-		self.takeDamage = function (_, stats, isPassive, knockbackActionFun)
-			return self.body:takeDamage(stats, isPassive, knockbackActionFun)
+		self.getSprite = function(_)
+			return self.body:getSprite()
 		end
 	end,
 

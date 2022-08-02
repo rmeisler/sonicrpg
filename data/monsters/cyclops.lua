@@ -34,7 +34,7 @@ return {
 
 	stats = {
 		xp    = 30,
-		maxhp = 1000,
+		maxhp = 1300,
 		attack = 24,
 		defense = 100,
 		speed = 2,
@@ -42,7 +42,7 @@ return {
 		luck = 1,
 	},
 
-	boss = true,
+	boss_part = true,
 	
 	run_chance = 0.2,
 
@@ -52,7 +52,7 @@ return {
 		{item = require "data/items/CrystalWater", count = 1, chance = 0.8},
 	},
 	
-	scan = "It's body is too powerful to damage.",
+	scan = "Cyclops can lose balance when made dizzy.",
 	
 	onInit = function(self)
 		self.sprite.transform.x = 230
@@ -71,7 +71,6 @@ return {
 	
 	onConfused = function(self)
 		self.proneTurns = 2
-		self.stats.defense = 20
 		self:getSprite():pushOverride("hurt", "prone_hurt")
 
 		self.eye.aerial = false
@@ -79,8 +78,16 @@ return {
 		self.eye.sprite.transform.y = 300
 
 		return Serial {
-			Do(function() self:getSprite():setAnimation("dazed") end),
-			Wait(2),
+			Do(function()
+				self.confused = false
+				self:getSprite():setAnimation("dazed")
+			end),
+			Wait(0.5),
+			MessageBox {
+				message="Cyclops is feeling dizzy!",
+				rect=MessageBox.HEADLINER_RECT,
+				closeAction=Wait(1)
+			},
 			Animate(self:getSprite(), "fall"),
 			Do(function() self:getSprite():setAnimation("prone") end),
 			PlayAudio("sfx", "cyclopsstep", 1.0, true),
@@ -94,7 +101,6 @@ return {
 			return Action()
 		elseif self.proneTurns == 1 then
 			self.proneTurns = self.proneTurns - 1
-			self.stats.defense = 100
 			self:getSprite():popOverride("hurt")
 
 			self.eye.aerial = true
@@ -106,7 +112,7 @@ return {
 					Animate(sp, "unprone"),
 					Serial {
 						Ease(sp.transform, "y", function() return sp.transform.y - 150 end, 2),
-						Ease(sp.transform, "y", function() return sp.transform.y + 150 end, 2)
+						Ease(sp.transform, "y", function() return sp.transform.y + 150 end, 3)
 					},
 				},
 				Do(function() self:getSprite():setAnimation("idle") end),
@@ -156,7 +162,7 @@ return {
 							Do(function()
 								self.doneWithDamage = false
 							end),
-							mem:takeDamage{attack = 16, speed = 30, luck = 0},
+							mem:takeDamage{attack = 10, speed = 30, luck = 0},
 							Do(function()
 								self.doneWithDamage = true
 							end)

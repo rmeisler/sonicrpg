@@ -19,7 +19,7 @@ local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
 
 local LeapBackward = function(self, target)
-	local targetSp = target:getSprite()
+	local targetSp = target.sprite
 	return Serial {
 		-- Bounce off target
 		Parallel {
@@ -127,8 +127,8 @@ return function(self, target)
 
 		Animate(self.sprite, "spin", true),
 		Parallel {
-			Ease(self.sprite.transform, "x", targetSp.transform.x + targetSp.w, 4, "linear"),
-			Ease(self.sprite.transform, "y", targetSp.transform.y, 6, "linear"),
+			Ease(self.sprite.transform, "x", target.sprite.transform.x + target.sprite.w, 4, "linear"),
+			Ease(self.sprite.transform, "y", target.sprite.transform.y, 6, "linear"),
 		},
 		
 		Parallel {
@@ -147,8 +147,8 @@ return function(self, target)
 			}, 4),
 			
 			Repeat(Serial {
-				Ease(target:getSprite().transform, "x", target:getSprite().transform.x + 5, 30, "quad"),
-				Ease(target:getSprite().transform, "x", target:getSprite().transform.x - 5, 30, "quad"),
+				Ease(targetSp.transform, "x", targetSp.transform.x + 5, 30, "quad"),
+				Ease(targetSp.transform, "x", targetSp.transform.x - 5, 30, "quad"),
 			}, 25),
 			
 			Serial {
@@ -171,7 +171,7 @@ return function(self, target)
 			self.sprite.transform.angle = 0
 		end),
 		
-		Ease(target:getSprite().transform, "x", target:getSprite().transform.x, 30),
+		Ease(targetSp.transform, "x", targetSp.transform.x, 30),
 
 		LeapBackward(self, target),
 	}

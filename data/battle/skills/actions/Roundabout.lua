@@ -184,9 +184,8 @@ return function(self, target)
 			end
 		end),
 		
-		target.onConfused and target:onConfused() or Action(),
-		
-		-- Bot is confused
-		MessageBox {message=target.name.." is confused!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)},
+		target.onConfused and
+			target:onConfused() or
+			MessageBox {message=target.name.." is confused!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)}
 	}
 end
