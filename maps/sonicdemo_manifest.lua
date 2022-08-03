@@ -32,7 +32,7 @@ return {
 	{
         type = "map",
 		file = "maps/ironlock_boss.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
@@ -128,7 +128,7 @@ return {
         type = "map",
 		file = "maps/sallyshutnight.lua",
 		-- REAL PRIMARY
-		--primary = true
+		primary = true
     },
 	
 	{

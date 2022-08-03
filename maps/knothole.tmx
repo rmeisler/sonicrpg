@@ -2539,7 +2539,7 @@ return function(self)
             Animate(self.sprite, &quot;thinking&quot;),
             MessageBox {message = &quot;Sally: What is going on here?&quot;},
             Do(function() self:facePlayer() end),
-            MessageBox {message = &quot;Rotor: Eh...{p40}Logan thinks our plan to infect Robotnik's army with the targeting glitch we found won't work.&quot;},
+            MessageBox {message = &quot;Rotor: Eh...{p40}Logan thinks our plan to infect Robotnik's army won't work.&quot;},
             MessageBox {message = &quot;Logan: I mean{p40} it won't.&quot;},
             Do(function() self.scene.objectLookup.LoganBicker:facePlayer() end),
             MessageBox {message = &quot;Logan: Princess--{p40} let me give you an alternative proposal.&quot;},

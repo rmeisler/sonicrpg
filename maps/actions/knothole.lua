@@ -164,7 +164,7 @@ return function(scene, hint)
 
 			Wait(2),
 			
-			PlayAudio("music", "royalwelcome", 0.6, true, true),
+			PlayAudio("music", "royalwelcome", 1.0, true, true),
 			Animate(sally.sprite, "planning_smile"),
 			MessageBox {message="Sally: To start off, I'd like to welcome the Rebellion to Knothole Village! {p60}I am sure many of you have already become acquainted--"},
 			hop(sonic),
@@ -186,7 +186,7 @@ return function(scene, hint)
 			MessageBox {message="Sally: I'm honored to welcome Commander Leon and his esteemed officers to our home!"},
 			MessageBox {message="Sally: I'm certain that if we unite our efforts to take down Robotnik, we will be unstoppable!"},
 			Animate(ivan.sprite, "meeting_idledown"),
-			AudioFade("music", 0.6, 0, 0.5),
+			AudioFade("music", 1.0, 0, 0.5),
 			Animate(fleet.sprite, "meeting_lookright"),
 			Animate(sally.sprite, "planning"),
 			MessageBox {message="Fleet: Princess, with all due respect{p40}, the Rebellion is an elite military force, combining undoubtedly the smartest and strongest in all of\nMobius..."},
@@ -209,7 +209,7 @@ return function(scene, hint)
 			Animate(rotor.sprite, "sitright"),
 			Animate(bunnie.sprite, "sitlookforward"),
 			Animate(sally.sprite, "meeting_thinking"),
-			MessageBox {message="Fleet: Point is, {p60}while I'm sure you \"Freedom Fighters\" have fun playing your little games..."},
+			MessageBox {message="Fleet: Point is, {p60}while I'm sure you \"Freedom Fighters\" have had fun playing your little games..."},
 			MessageBox {message="Fleet: ...maybe you should just let the grown ups take it from here."},
 			Do(function()
 				fleet.sprite:setAnimation("meeting_laugh")
@@ -367,7 +367,7 @@ return function(scene, hint)
 					Wait(1),
 					Animate(sally.sprite, "planning_smile"),
 					MessageBox {message="Sally: Well...{p80} I'd say that this is a great opportunity for our first joint mission!"},				
-					PlayAudio("music", "royalwelcome", 0.6, true, true),
+					PlayAudio("music", "royalwelcome", 1.0, true, true),
 					hop(sonic),
 					MessageBox {message="Sonic: Say wha?"},
 					Animate(sally.sprite, "planning"),
