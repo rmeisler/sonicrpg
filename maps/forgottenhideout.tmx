@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="110" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="260">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="110" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="262">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="onload" type="file" value="actions/forgotten_hideout.lua"/>
@@ -828,48 +828,53 @@ local NPC = require &quot;object/NPC&quot;
 
 return function(self)
     if GameState:isFlagSet(&quot;ep3_spoke_b1&quot;) then
+        if GameState:isFlagSet(&quot;ep3_spoke_t&quot;) then
+            return BlockPlayer {
+                MessageBox {message = &quot;T: I'd better pack up all my research equipment! {p60}I have a lot to move!&quot;},
+                Animate(self.sprite, &quot;tdowncross&quot;),
+                Do(function() self:refreshKeyHint() end)
+            }
+        end
+
+        GameState:isFlagSet(&quot;ep3_spoke_t&quot;)
         return Serial {
-            Animate(self.sprite, &quot;tleft&quot;),
-            DialogueChoice {
-                [&quot;What are you working on?&quot;] = Serial {
-                    MessageBox {message = &quot;T: This? {p60}Ha! {p60}Only my greatest invention yet!&quot;},
-                    MessageBox {message = &quot;T: I call it the {h Menacer}! {p60}This oughta make a dent in even the toughest bot armor!&quot;},
-                    MessageBox {message = &quot;T: Alas...{p60}this is just a prototype. {p60}I will finish it someday...&quot;}
-                },
-                [&quot;We've been talking with B about moving you to Knothole&quot;] = Serial {
-                    Do(function()
-                        local walkout, walkin, sprites = self.scene.player:split()
-                        self.scene.player:run {
-                            walkout,
-                            Animate(sprites.Sonic.sprite, &quot;idleright&quot;),
-                            Animate(sprites.Sally.sprite, &quot;idleright&quot;),
-                            Animate(sprites.Antoine.sprite, &quot;idleright&quot;),
-                            YieldUntil(function() return GameState:isFlagSet(&quot;ep3_spoke_t&quot;) end),
-                            walkin
-                        }
-                    end),
-                    MessageBox {message = &quot;T: Good luck with that! {p60}He's a stubborne old fool!&quot;},
-                    MessageBox {message = &quot;Sally: I think we're close to convincing him! {p60}We just need to make sure everyone else is on board!&quot;},
-                    MessageBox {message = &quot;T: What!?&quot;},
-                    MessageBox {message = &quot;T: Well count me in!&quot;},
-                    MessageBox {message = &quot;T: You have a workshop in Knothole, correct?&quot;},
-                    MessageBox {message = &quot;Sonic: Yeah! {p60}Rotor's workshop is way past cool! {p60}He's got gadgets and gizmos for days!&quot;},
-                    MessageBox {message = &quot;T: Then count me double in!&quot;},
-                    Do(function()
-                        GameState:setFlag(&quot;ep3_spoke_t&quot;)
-                    end),
-                    Wait(1)
+            Do(function()
+                local walkout, walkin, sprites = self.scene.player:split()
+                self.scene.player:run {
+                    walkout,
+                    Animate(sprites.Sonic.sprite, &quot;idleright&quot;),
+                    Animate(sprites.Sally.sprite, &quot;idleright&quot;),
+                    Animate(sprites.Antoine.sprite, &quot;idleright&quot;),
+                    YieldUntil(function() return GameState:isFlagSet(&quot;ep3_spoke_t&quot;) end),
+                    walkin
                 }
-            },
+            end),
+            MessageBox {message = &quot;T: Good luck with that! {p60}He's a stubborne old fool!&quot;},
+            MessageBox {message = &quot;Sally: I think we're close to convincing him! {p60}We just need to make sure everyone else is on board!&quot;},
+            Ease(self, &quot;y&quot;, function() return self.y - 50 end, 8),
+            Ease(self, &quot;y&quot;, function() return self.y + 50 end, 8),
+            MessageBox {message = &quot;T: What!?&quot;},
+            MessageBox {message = &quot;T: Well count me in!&quot;},
+            MessageBox {message = &quot;T: You have a workshop in Knothole, correct?&quot;},
+            MessageBox {message = &quot;Sonic: Yeah! {p60}Rotor's workshop is way past cool! {p60}He's got gadgets and gizmos for days!&quot;},
+            Ease(self, &quot;y&quot;, function() return self.y - 50 end, 8),
+            Ease(self, &quot;y&quot;, function() return self.y + 50 end, 8),
+            MessageBox {message = &quot;T: Then count me double in!&quot;},
+            PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1.0, true),
+            Do(function()
+                GameState:setFlag(&quot;ep3_spoke_t&quot;)
+            end),
+            Wait(1),
             Animate(self.sprite, &quot;tdowncross&quot;),
             Do(function() self:refreshKeyHint() end)
         }
     end
 
+    GameState:setFlag(&quot;ep3_spoke_t_intro&quot;)
     return BlockPlayer {
-        Animate(self.sprite, &quot;tleft&quot;),
+        MessageBox {message = &quot;T: Oh, you're back. {p60}Perhaps you can help.&quot;},
         MessageBox {message = &quot;T: I've been seeing less Ratbots during my scrap searches. {p40}I worry that Robotnik's cleanup crew may be getting close to discovering us...&quot;},
-        MessageBox {message = &quot;T: If only B would listen to reason...&quot;},
+        MessageBox {message = &quot;T: Maybe you can get through to B. {p60}It is no longer a luxury, but imperative that we relocate to your village of Knothole.&quot;},
         Animate(self.sprite, &quot;tdowncross&quot;),
         Do(function() self:refreshKeyHint() end)
     }
@@ -920,21 +925,59 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
+    if GameState:isFlagSet(&quot;ep3_spoke_b1&quot;) then
+        if GameState:isFlagSet(&quot;ep3_spoke_j&quot;) then
+            return BlockPlayer {
+                MessageBox {message = &quot;J: I can see it now... {p60}R and I trekking the Great Plains{p60}, the Great Forest{p60}, the Great Jungle{p60}-- it all sounds so {h GREAT}!&quot;},
+                MessageBox {message = &quot;J: What to wear, what to wear?! {p60}Hmmm... it might be cold out there...&quot;},
+                Do(function() self:refreshKeyHint() end)
+            }
+        end
+
+        GameState:setFlag(&quot;ep3_spoke_j&quot;)
+        return BlockPlayer {
+            MessageBox {message = &quot;J: Go to Knothole!? {p60}See the Great Forest!?&quot;},
+            MessageBox {message = &quot;Sally: So we should put you down as a {h yes}?&quot;},
+            MessageBox {message = &quot;J: Are you kidding?! {p60}I'm an adventurer at heart, mate! I'd do anything to get out there and explore the world-- {p60}with R taggin' along of course!&quot;},
+            Animate(self.scene.objectLookup.R.sprite, &quot;idleleft&quot;),
+            MessageBox {message = &quot;R: *blush*&quot;},
+            Animate(self.scene.objectLookup.R.sprite, &quot;idledown&quot;),
+            MessageBox {message = &quot;J: You tell B that I'm in!&quot;},
+            PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1.0, true),
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+
+
     if GameState:isFlagSet(self:getFlag()) then
         return BlockPlayer {
-            Do(function() self:facePlayer() end),
-            MessageBox {message = &quot;T: I am working on a new invention you may be interested in...&quot;},
-            MessageBox {message = &quot;T: Bring me a {h Power Ring} and I'll show you.&quot;},
-            Animate(self.sprite, &quot;tdowncross&quot;),
+            MessageBox {message = &quot;J: I wonder how many steps there are in the Great Forest...&quot;},
             Do(function() self:refreshKeyHint() end)
         }
     else
         GameState:setFlag(self:getFlag())
+        local walkout, walkin, sprites = self.scene.player:split()
         return BlockPlayer {
-            Do(function() self:facePlayer() end),
-            MessageBox {message = &quot;T: Oh{p60}, you're back.&quot;},
-            MessageBox {message = &quot;T: Well, B is stubborne as ever, I think he may be warming up to the idea of our relocation.&quot;},
-            Animate(self.sprite, &quot;tdowncross&quot;),
+            walkout,
+            Animate(sprites.sonic.sprite, &quot;idleup&quot;),
+            Animate(sprites.sally.sprite, &quot;idleup&quot;),
+            Animate(sprites.antoine.sprite, &quot;idleup&quot;),
+            MessageBox {message = &quot;J: Welcome back, mates!&quot;},
+            MessageBox {message = &quot;J: Been tryin' to get me exercise in by running up and down these steps!&quot;},
+            MessageBox {message = &quot;J: Just buildin' up me muscle for the day when R &amp; I can finally get outta here and go adventurin'!&quot;},
+            Animate(sprites.sonic.sprite, &quot;thinking&quot;),
+            MessageBox {message = &quot;Sonic: Do robots have muscl--?&quot;, closeAction=Wait(0.5)},
+            Ease(sprites.sally, &quot;y&quot;, function() return sprites.sally.y - 50 end, 8),
+            Ease(sprites.sally, &quot;y&quot;, function() return sprites.sally.y + 50 end, 8),
+            MessageBox {message = &quot;Sally: *whisper* Sonic!&quot;},
+            MessageBox {message = &quot;Sally: *ahem* What Sonic means to say is that you're doing great, J!&quot;},
+            Animate(sprites.sonic.sprite, &quot;idleup&quot;),
+            MessageBox {message = &quot;J: Thanks!&quot;},
+            MessageBox {message = &quot;J: Even with all me trainin' though, I'll never be as fast as my number one mate, R! {p60}With his lil' rocket boots, I don't stand a chance!&quot;},
+            Animate(self.scene.objectLookup.R.sprite, &quot;idleleft&quot;),
+            MessageBox {message = &quot;R: *blush*&quot;},
+            Animate(self.scene.objectLookup.R.sprite, &quot;idledown&quot;),
+            walkin,
             Do(function() self:refreshKeyHint() end)
         }
     end
@@ -997,28 +1040,145 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
-    if GameState:isFlagSet(self:getFlag()) then
+    if GameState:isFlagSet(&quot;ep3_spoke_b1&quot;) then
+        if GameState:isFlagSet(&quot;ep3_spoke_r&quot;) then
+            return BlockPlayer {
+                Do(function() self:facePlayer() end),
+                MessageBox {message = &quot;R: I've never been anywhere different before... {p60}do you have books in Knothole?&quot;},
+                Do(function() self:refreshKeyHint() end)
+            }
+        end
+
+        GameState:setFlag(&quot;ep3_spoke_r&quot;)
+        local walkout, walkin, sprites = self.scene.player:split()
         return BlockPlayer {
             Do(function() self:facePlayer() end),
-            MessageBox {message = &quot;T: I am working on a new invention you may be interested in...&quot;},
-            MessageBox {message = &quot;T: Bring me a {h Power Ring} and I'll show you.&quot;},
-            Animate(self.sprite, &quot;tdowncross&quot;),
+            MessageBox {message = &quot;R: L-L-Leave Robotropolis?...&quot;},
+            Animate(self.scene.objectLookup.J.sprite, &quot;jright&quot;),
+            MessageBox {message = &quot;J: Yeah R, come on! {p60}We can finally go on all those adventures we've been talkin' about!!&quot;},
+            Animate(self.scene.objectLookup.R.sprite, &quot;idleleft&quot;),
+            MessageBox {message = &quot;R: I-I dunno... {p60}what if we forget how to get home?... {p60}what if a bunch of Ratbots get us as we're leaving Robotropolis?&quot;},
+            MessageBox {message = &quot;R: I don't think I can do it...&quot;},
+            Animate(self.scene.objectLookup.J.sprite, &quot;jleft&quot;),
+            MessageBox {message = &quot;J: *sigh* Alright, buddy.&quot;},
+            MessageBox {message = &quot;R: *tears up*&quot;},
+            MessageBox {message = &quot;Sally: It's ok, R.&quot;},
+            MessageBox {message = &quot;R: No... {p60}I screwed up! {p60}Can you keep a secret?&quot;},
+            MessageBox {message = &quot;R: *whisper* I kinda like J...&quot;},
+            MessageBox {message = &quot;R: *whisper* She's so cool! {p60}I wanna be more like her... {p60}but now she probably just thinks I'm a baby for being so scared to leave here...&quot;},
+            MessageBox {message = &quot;Sonic: Hey little buddy{p60}, there's nothin' cooler than a Hedgehog!&quot;},
+            MessageBox {message = &quot;Sally: Sonic!&quot;},
+            MessageBox {message = &quot;Sonic: --And ya know why I'm so cool?&quot;},
+            MessageBox {message = &quot;R: Why?&quot;},
+            MessageBox {message = &quot;Sonic: Cause bein' {h fast} is way past cool! Thanks to those rockets shoes you got, I'll bet you're pretty fast too!&quot;},
+            Animate(self.scene.objectLookup.J.sprite, &quot;jright&quot;),
+            MessageBox {message = &quot;R: T-Thanks! {p60}I 'am' fast!&quot;},
+            MessageBox {message = &quot;J: That's right! {p60}R here is the fastest dude in Mobius!&quot;},
+            MessageBox {message = &quot;Sonic: The fastest, huh?&quot;},
+            Animate(self.scene.objectLookup.R.sprite, &quot;idleleft&quot;),
+            MessageBox {message = &quot;J: That's right! {p60}I'd bet he's even faster than you, mate!&quot;},
+            MessageBox {message = &quot;R: *blush* Uhh... I dunno about that...&quot;},
+            MessageBox {message = &quot;Sonic: Is that a challenge?&quot;},
+            Animate(self.sprite, &quot;pose&quot;),
+            MessageBox {message = &quot;R: ...{p60}Y-Yeah! {p60}I'm way faster than you are! {p60}And I uh... {p40}challenge you to a race, Sonic the Hedgehog!&quot;},
+            MessageBox {message = &quot;Sally: *whisper* Sonic, he's just a kid!&quot;},
+            MessageBox {message = &quot;Sonic: *whisper* Trust me on this, Sal.&quot;},
+            Animate(sprites.sonic.sprite, &quot;pose&quot;),
+            MessageBox {message = &quot;Sonic: Alright! {p60}Let's kick it!&quot;},
+            AudioFade(&quot;music&quot;, 1.0, 0.0, 1),
+            Do(function()
+                self.scene:changeScene{map=&quot;run1&quot;, fadeOutSpeed = 0.2, fadeInSpeed = 0.2}
+            end)
+        }
+    else
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;R: Hi!&quot;},
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/r.png"/>
+   </properties>
+  </object>
+  <object id="261" name="P" type="BasicNPC" gid="1227" x="3136" y="1920" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="pdown"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    if GameState:isFlagSet(&quot;ep3_spoke_b1&quot;) then
+        if GameState:isFlagSet(&quot;ep3_spoke_p&quot;) then
+            return BlockPlayer {
+                MessageBox {message = &quot;P: I'll be the best librarian in Mobius!&quot;},
+                Animate(self.sprite, &quot;pdown&quot;),
+                Do(function() self:refreshKeyHint() end)
+            }
+        end
+
+        GameState:setFlag(&quot;ep3_spoke_p&quot;)
+        local walkout, walkin, sprites = self.scene.player:split()
+        return BlockPlayer {
+            walkout,
+            Animate(sprites.sonic.sprite, &quot;idleup&quot;),
+            Animate(sprites.sally.sprite, &quot;idleup&quot;),
+            Animate(sprites.antoine.sprite, &quot;idleup&quot;),
+            MessageBox {message = &quot;P: I love reading, but at this point I've read all the books we have{p60}, multiple times even!&quot;},
+            MessageBox {message = &quot;Antoine: Where do you get all zese books from?&quot;},
+            MessageBox {message = &quot;P: They have been here as long as I can remember... {p60}I think.&quot;},
+            MessageBox {message = &quot;Sally: We are trying to convice B to relocate the Forgotten to Knothole. {p60}Would you be interested in that?&quot;},
+            MessageBox {message = &quot;P: Hmmm...&quot;},
+            MessageBox {message = &quot;Sonic: Yeah, and Knothole has a whole mess of books for you to read!&quot;},
+            MessageBox {message = &quot;P: Really!?&quot;},
+            MessageBox {message = &quot;Sally: That's right. {p60}And we could really use a librarian...&quot;},
+            Ease(self, &quot;y&quot;, function() return self.y - 50 end, 8),
+            Ease(self, &quot;y&quot;, function() return self.y + 50 end, 8),
+            MessageBox {message = &quot;P: Count me in! {p60}Future Knothole librarian reporting for duty!&quot;},
+            PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1.0, true),
+            Animate(self.sprite, &quot;pdown&quot;),
+            walkin,
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            MessageBox {message = &quot;P: Was I yellow? {p60}I don't actually remember now.&quot;},
+            Animate(self.sprite, &quot;pdown&quot;),
             Do(function() self:refreshKeyHint() end)
         }
     else
         GameState:setFlag(self:getFlag())
         return BlockPlayer {
-            Do(function() self:facePlayer() end),
-            MessageBox {message = &quot;R: Let's race!!&quot;},
-            AudioFade(&quot;music&quot;, 1.0, 0.0, 1),
-            Animate(self.sprite, &quot;pose&quot;),
-            Do(function()
-                self.scene:changeScene{map=&quot;run1&quot;, fadeOutSpeed = 0.2, fadeInSpeed = 0.2}
-            end)
+            MessageBox {message = &quot;P: Hello again!&quot;},
+            MessageBox {message = &quot;P: We are a colorful bunch, aren't we?&quot;},
+            MessageBox {message = &quot;P: It wasn't Robotnik's doing of course, we did it to ourselves. {p60}By using reclaimed paint found in Robotropolis we were able to bring back some of the colors found on our original bodies!&quot;},
+            MessageBox {message = &quot;P: ...{p60}well, as much as we can remember of them...&quot;},
+            Animate(self.sprite, &quot;pdown&quot;),
+            Do(function() self:refreshKeyHint() end)
         }
     end
 end</property>
-    <property name="sprite" type="file" value="../art/sprites/r.png"/>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
    </properties>
   </object>
  </objectgroup>

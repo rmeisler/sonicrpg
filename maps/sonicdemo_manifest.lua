@@ -1297,7 +1297,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/btheme.ogg",
+		file = "audio/music/bsad.ogg",
 		category = "music"
 	},
 	{
@@ -1305,12 +1305,6 @@ return {
 		file = "audio/music/bhero.ogg",
 		category = "music",
 		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/music/forgottendiscovery.ogg",
-		category = "music",
-		looping = true,
 	},
 	{
 		type = "sound",
@@ -1328,22 +1322,6 @@ return {
 		file = "audio/music/follow.ogg",
 		category = "music",
 		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/factory.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/sallyenters.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/sonictheme.ogg",
-		category = "music"
 	},
 	{
 		type = "sound",
@@ -1372,11 +1350,6 @@ return {
 		file = "audio/music/darkswamp.ogg",
 		category = "music",
 		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/music/airship.ogg",
-		category = "music"
 	},
 	{
 		type = "sound",

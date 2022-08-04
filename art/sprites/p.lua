@@ -46,6 +46,9 @@ return {
 		jright = {
 		    frames = {{3,2}}
 		},
+		jleft = {
+		    frames = {{4,2}}
+		},
 		
 		epochtails = {
 		    frames = {{10,1}}
