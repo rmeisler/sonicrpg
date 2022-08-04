@@ -103,7 +103,7 @@ return function(scene, hint)
 		
 		PlayAudio("music", "introspection", 1.0, true),
 		Animate(scene.objectLookup.Sally.sprite, "pose"),
-		MessageBox{message="Sally: Wait{p60}, Antoine!{p60} Antoine is still out there!", closeAction=Wait(1)},
+		MessageBox{message="Sally: Wait{p60}, Antoine!{p60} Antoine is still out there!", closeAction=Wait(1.5)},
 		
 		Do(function() scene.objectLookup.Sonic.sprite:setAnimation("foottap") end),
 		MessageBox{message="Sonic: Well that's just great. {p60}We're hedgehog and squirrel stew!", closeAction=Wait(2)},
@@ -112,7 +112,7 @@ return function(scene, hint)
 		MessageBox{message="Sonic: Not to be rude, Sal-- but let's face it-- {p60}when was the last time, Ant saved any of our butts?", closeAction=Wait(2)},
 		
 		MessageBox{message="Ivan: Yes. {p60}The cowardly coyote breaking us out of here seems highly improbable.", closeAction=Wait(2)},
-		MessageBox{message="Sonic: See! {p60}Even the dingo gets it!", closeAction=Wait(1)},
+		MessageBox{message="Sonic: See! {p60}Even the dingo gets it!", closeAction=Wait(1.5)},
 		Animate(scene.objectLookup.Sally.sprite, "thinking"),
 		MessageBox{message="Sally: Come on guys{p60}, Antoine may not be the most heroic person, but he is still a Freedom Fighter!", closeAction=Wait(2)},
 		MessageBox{message="Sally: *whisper* Plus...{p60} who would you rather be saved by--{p40} Antoine{p40} or Fleet?", closeAction=Wait(2)},
@@ -166,7 +166,7 @@ return function(scene, hint)
 		end),
 		Parallel {
 			Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x + 800, 0.3, "linear"),
-			Ease(scene.camPos, "x", -425, 0.3, "linear")
+			Ease(scene.camPos, "x", -425, 0.3)
 		},
 		Do(function()
 			scene.objectLookup.Antoine.sprite:setAnimation("idleup")

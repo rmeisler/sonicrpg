@@ -59,7 +59,7 @@ return function(scene, hint)
 					scene.objectLookup.Antoine.sprite:setAnimation("paceright")
 				end),
 				Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x + 170, 0.6, "linear")
-			}, 14),
+			}, 15),
 			
 			Serial {
 				MessageBox{message="Antoine: Alright Antoine, this is fine.", closeAction=Wait(1.5)},
@@ -215,8 +215,8 @@ return function(scene, hint)
 				Wait(0.5),
 				Animate(scene.objectLookup.Antoine.sprite, "determined"),
 				MessageBox{message="Antoine: I will not be giving up until I have saved my friends!!", closeAction=Wait(3)},
-				Wait(0.5),
-				MessageBox{message="Antoine: You hear that Sonic and Sally?! {p60}I am coming for you!!", closeAction=Wait(2)},
+				Wait(1),
+				MessageBox{message="Antoine: You hear that Sonic and Sally?! {p80}I am coming for you!!", closeAction=Wait(2)},
 				MessageBox{message="Antoine learned Resiliency!", sfx="levelup", rect=MessageBox.HEADLINER_RECT}
 			}
 		},

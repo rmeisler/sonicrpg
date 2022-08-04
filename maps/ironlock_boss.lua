@@ -10,7 +10,7 @@ return {
   tileheight = 32,
   nextobjectid = 29,
   properties = {
-    ["battlebg"] = "../art/backgrounds/prisonbg.png",
+    ["battlebg"] = "../art/backgrounds/ironlockbg2.png",
     ["onload"] = "actions/ironlock_boss.lua"
   },
   tilesets = {

@@ -10,7 +10,7 @@ return {
   tileheight = 32,
   nextobjectid = 635,
   properties = {
-    ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["battlebg"] = "../art/backgrounds/ironlockbg.png",
     ["onload"] = "actions/ironlockfloor.lua",
     ["regionName"] = "Iron Lock",
     ["sectorName"] = "2F"
