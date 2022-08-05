@@ -54,15 +54,10 @@ return function(scene)
 				scene.player.sprite.visible = false
 				scene.player.dropShadow.hidden = true
 			end),
-			Animate(scene.objectLookup.Sally.sprite, "thinking"),
+			Animate(scene.objectLookup.Sally.sprite, "thinking_laugh"),
 
 			Wait(2),
 			
-			MessageBox {message="Sally: This is so ridiculous. {p60}I can't believe this is happening right now.", closeAction=Wait(1)},
-			Animate(scene.objectLookup.Sonic.sprite, "prepare_race2"),
-			MessageBox {message="Sonic: Come on Sal{p60}, live a little!", closeAction=Wait(1)},
-			Animate(scene.objectLookup.Sally.sprite, "thinking_laugh"),
-			MessageBox {message="Sally: *sigh*", closeAction=Wait(0.5)},
 			Animate(scene.objectLookup.Sonic.sprite, "prepare_race"),
 			MessageBox {message="Sonic: Wish me luck!", closeAction=Wait(0.5)},
 			Parallel {

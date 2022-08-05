@@ -32,6 +32,7 @@ return function(self, target)
 			table.insert(target.targetOverrideStack, selfIdx)
 			table.insert(target.targetOverrideStack, selfIdx)
 		end),
+		target.onTease and target:onTease() or Action(),
 		MessageBox {
 			message="Sonic: Hey! {p30}Over here, "..(name[target.name] or "bot-brain").."!",
 			rect=MessageBox.HEADLINER_RECT,

@@ -95,6 +95,10 @@ return {
 		}
 	end,
 	
+	onTease = function(self)
+		self.doLaser = 3
+	end,
+	
 	behavior = function (self, target)
 		if self.proneTurns > 1 then
 			self.proneTurns = self.proneTurns - 1
@@ -118,6 +122,15 @@ return {
 				Do(function() self:getSprite():setAnimation("idle") end),
 				PlayAudio("sfx", "cyclopsstep", 1.0, true),
 				self.scene:screenShake(20, 30, 1)
+			}
+		end
+		
+		if self.doLaser > 0 then
+			self.doLaser = self.doLaser - 1
+			
+			return Serial {
+				Telegraph(self, "Eye Laser", {255,255,255,50}),
+				
 			}
 		end
 	

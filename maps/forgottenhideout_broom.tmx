@@ -163,6 +163,7 @@ local Wait = require &quot;actions/Wait&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Animate = require &quot;actions/Animate&quot;
+local Spawn = require &quot;actions/Spawn&quot;
 local AudioFade = require &quot;actions/AudioFade&quot;
 
 local Transform = require &quot;util/Transform&quot;
@@ -229,32 +230,33 @@ return function(self)
             PlayAudio(&quot;music&quot;, &quot;bsad&quot;, 0.0, true, true),
             Animate(self.sprite, &quot;pose&quot;),
             Parallel {
-                AudioFade(&quot;music&quot;, 0.0, 1.0, 0.3),
-                MessageBox {message = &quot;B: 60 years... {p60}60 years and I can't recall any of it...&quot;}
+                AudioFade(&quot;music&quot;, 0.0, 1.0, 0.5),
+                MessageBox {message = &quot;B: It's not just the loss of those memories...&quot;}
             },
-            MessageBox {message = &quot;B: But it's not just the loss of those memories... {p60}it's the flashes.&quot;},
-            MessageBox {message = &quot;B: I've had this condition much longer than the others{p60}, and as it's progressed it's mutated from a form of basic amnesia to an incredibly painful disorder.&quot;},
-            MessageBox {message = &quot;B: I see these flashes-- {p60}half-remembered memories of my past life{p60}, and as soon as they disappear I am left writhing in pain...&quot;},
+            MessageBox {message = &quot;B: I've had this condition much longer than the others...{p60} as it's progressed it has mutated from simple amnesia to a debilitating disorder...&quot;},
+            MessageBox {message = &quot;B: I see these flashes-- {p60}half-remembered memories of my past life{p60}, and as soon as they disappear I am left with immeasurable pain...&quot;},
             Animate(sprites.sally.sprite, &quot;sadleft&quot;),
             MessageBox {message = &quot;Sally: Oh B...&quot;},
             Animate(self.sprite, &quot;idledown&quot;),
-            MessageBox {message = &quot;B: The only reason I haven't gone mad from it all is these people, Ms. Acorn. {p60}They're the reason I keep going.&quot;},
+            MessageBox {message = &quot;B: The only reason I haven't gone mad from it all is these people, Ms. Acorn. {p80}They are family to me{p60}, the reason I keep on going.&quot;},
             MessageBox {message = &quot;B: The thought of losing one of them during our transport?... {p60}I just can't let that happen.&quot;},
-            MessageBox {message = &quot;B: ...I can barely keep track of myself these days...&quot;},
             Animate(sprites.sally.sprite, &quot;idleup&quot;),
             MessageBox {message = &quot;B: At least here I can know they are safe!&quot;},
-            AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),
             MessageBox {message = &quot;Sally: What if I told that this place isn't safe anymore, B?&quot;},
+            Spawn(AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5)),
             Ease(self, &quot;y&quot;, function() return self.y - 50 end, 8),
             Ease(self, &quot;y&quot;, function() return self.y + 50 end, 8),
             MessageBox {message = &quot;B: What!?&quot;},
             Ease(sprites.sonic, &quot;y&quot;, function() return sprites.sonic.y - 50 end, 8),
             Ease(sprites.sonic, &quot;y&quot;, function() return sprites.sonic.y + 50 end, 8),
             MessageBox {message = &quot;Sonic: T's sayin' Buttnik's cleanup crew may be close to finding you guys! {p60}That's why we gotta get you all outta here!&quot;},
+            Animate(self.sprite, &quot;seriousdown&quot;),
             MessageBox {message = &quot;B: ... {p60}if that's true...&quot;},
             MessageBox {message = &quot;Sally: Please B... {p60}you'll all be much safer in Knothole.&quot;},
-            Animate(self.sprite, &quot;pose&quot;),
+            Wait(1),
+            Animate(self.sprite, &quot;idledown&quot;),
             MessageBox {message = &quot;B: Alright, I'll consider it. {p60}But I want you to make sure that the rest of my family agrees with you.&quot;},
+            Wait(1),
             PlayAudio(&quot;music&quot;, &quot;doittoit2&quot;, 1.0, true, true),
             Animate(sprites.sonic.sprite, &quot;idledown&quot;),
             Animate(sprites.antoine.sprite, &quot;idleleft&quot;),
