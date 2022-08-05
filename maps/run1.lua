@@ -8,7 +8,7 @@ return {
   height = 19,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 129,
+  nextobjectid = 130,
   properties = {
     ["onload"] = "actions/rchase.lua",
     ["regionName"] = "Robotropolis",
@@ -989,6 +989,22 @@ return {
           gid = 37,
           visible = true,
           properties = {}
+        },
+        {
+          id = 129,
+          name = "Exit",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 71936,
+          y = 608,
+          width = 5920,
+          height = 384,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["whileColliding"] = "local BasicNPC = require \"object/BasicNPC\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\n\nreturn function(self, player)\n    if self.hit then\n        player.extraBx = -1\n        return\n    end\n    self.hit = true\n    player.extraBx = -1\n    self.scene:changeScene{map=\"forgottenhideout\", fadeOutMusic=true, fadeOutSpeed=0.1,fadeInSpeed=0.5, spawnPoint=\"Spawn 2\", hint=\"fromrace\"}\nend"
+          }
         }
       }
     },

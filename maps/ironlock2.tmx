@@ -1107,7 +1107,7 @@
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
-  <object id="488" name="Cambot1" type="LegacyCambot" gid="37" x="3776" y="3200" width="32" height="32">
+  <object id="488" name="Cambot1" type="LegacyCambot" gid="37" x="3776" y="3392" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
@@ -1121,12 +1121,12 @@
     <property name="viewRange" value="View1"/>
    </properties>
   </object>
-  <object id="489" name="Waypoint1" type="BasicNPC" gid="1922" x="3776" y="3616" width="32" height="32">
+  <object id="489" name="Waypoint1" type="BasicNPC" gid="1922" x="3776" y="3680" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="490" name="Waypoint2" type="BasicNPC" gid="1922" x="3776" y="3264" width="32" height="32">
+  <object id="490" name="Waypoint2" type="BasicNPC" gid="1922" x="3776" y="3328" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -1442,7 +1442,7 @@
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
    </properties>
   </object>
-  <object id="563" name="BlinkLaserTrap1" type="LaserTrap" gid="2374" x="1632" y="3392" width="192" height="32">
+  <object id="563" name="BlinkLaserTrap1" type="LaserTrap" gid="2374" x="1632" y="3296" width="192" height="32">
    <properties>
     <property name="alignOffsetY" type="float" value="10"/>
     <property name="bounceY" type="float" value="1"/>
@@ -1450,19 +1450,19 @@
     <property name="spawnPointRight" value="BlinkLaserTrapShooter2"/>
    </properties>
   </object>
-  <object id="564" name="BlinkLaserTrapShooter1" type="LaserTrapArm" gid="2374" x="1600" y="3392" width="32" height="32">
+  <object id="564" name="BlinkLaserTrapShooter1" type="LaserTrapArm" gid="2374" x="1600" y="3296" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="left_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
    </properties>
   </object>
-  <object id="565" name="BlinkLaserTrapShooter2" type="LaserTrapArm" gid="2374" x="1824" y="3392" width="32" height="32">
+  <object id="565" name="BlinkLaserTrapShooter2" type="LaserTrapArm" gid="2374" x="1824" y="3296" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="right_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
    </properties>
   </object>
-  <object id="566" name="BlinkLaserTrap2" type="LaserTrap" gid="2374" x="1824" y="3744" width="128" height="32">
+  <object id="566" name="BlinkLaserTrap2" type="LaserTrap" gid="2374" x="1824" y="3712" width="128" height="32">
    <properties>
     <property name="alignOffsetY" type="float" value="10"/>
     <property name="bounceY" type="float" value="-1"/>
@@ -1471,13 +1471,13 @@
     <property name="spawnPointRight" value="BlinkLaserTrapShooter4"/>
    </properties>
   </object>
-  <object id="567" name="BlinkLaserTrapShooter3" type="LaserTrapArm" gid="2374" x="1792" y="3744" width="32" height="32">
+  <object id="567" name="BlinkLaserTrapShooter3" type="LaserTrapArm" gid="2374" x="1792" y="3712" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="left_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
    </properties>
   </object>
-  <object id="568" name="BlinkLaserTrapShooter4" type="LaserTrapArm" gid="2374" x="1952" y="3744" width="32" height="32">
+  <object id="568" name="BlinkLaserTrapShooter4" type="LaserTrapArm" gid="2374" x="1952" y="3712" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="right_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
@@ -1523,63 +1523,63 @@
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
    </properties>
   </object>
-  <object id="578" name="Crate" type="BasicNPC" gid="1922" x="1504" y="3424" width="64" height="96">
+  <object id="578" name="Crate" type="BasicNPC" gid="1922" x="1504" y="3328" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
-  <object id="579" name="Crate" type="BasicNPC" gid="1922" x="1888" y="3424" width="64" height="96">
+  <object id="579" name="Crate" type="BasicNPC" gid="1922" x="1888" y="3328" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
-  <object id="580" name="Crate" type="BasicNPC" gid="1922" x="1568" y="3424" width="64" height="96">
+  <object id="580" name="Crate" type="BasicNPC" gid="1922" x="1568" y="3328" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
-  <object id="581" name="Crate" type="BasicNPC" gid="1922" x="1824" y="3424" width="64" height="96">
+  <object id="581" name="Crate" type="BasicNPC" gid="1922" x="1824" y="3328" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
-  <object id="584" name="Crate" type="BasicNPC" gid="1922" x="1504" y="3776" width="64" height="96">
+  <object id="584" name="Crate" type="BasicNPC" gid="1922" x="1504" y="3744" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
-  <object id="585" name="Crate" type="BasicNPC" gid="1922" x="1568" y="3776" width="64" height="96">
+  <object id="585" name="Crate" type="BasicNPC" gid="1922" x="1568" y="3744" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
-  <object id="586" name="Crate" type="BasicNPC" gid="1922" x="1632" y="3776" width="64" height="96">
+  <object id="586" name="Crate" type="BasicNPC" gid="1922" x="1632" y="3744" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
-  <object id="587" name="Crate" type="BasicNPC" gid="1922" x="1696" y="3776" width="64" height="96">
+  <object id="587" name="Crate" type="BasicNPC" gid="1922" x="1696" y="3744" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
-  <object id="588" name="Crate" type="BasicNPC" gid="1922" x="1760" y="3776" width="64" height="96">
+  <object id="588" name="Crate" type="BasicNPC" gid="1922" x="1760" y="3744" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="false"/>
@@ -1780,7 +1780,7 @@ return function(self, player, prevState)
         self:remove()
         return
     end
-    if prevState == self.STATE_IDLE and arm.hidden then
+    if prevState == self.STATE_IDLE and arm.hidden and not eyes:isRemoved() then
         eyes.hidden = false
         eyes:run(While(
             function()

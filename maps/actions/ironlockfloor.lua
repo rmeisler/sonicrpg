@@ -174,7 +174,7 @@ return function(scene, hint)
 				}
 			},
 			
-			AudioFade("music", 0.8, 0.0, 1),
+			PlayAudio("music", "trouble", 1.0, true, true),
 			MessageBox{message="Sonic: How's it looking back there, Ant?"},
 			MessageBox{message="Antoine: Not so good, I am thinking!"},
 			Animate(scene.objectLookup.Sonic.sprite, "idledown"),

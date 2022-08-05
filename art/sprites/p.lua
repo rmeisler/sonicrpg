@@ -14,6 +14,15 @@ return {
 		pdown = {
 			frames = {{0,2}}
 		},
+		preaddown = {
+			frames = {{4,3}}
+		},
+		preadleft = {
+			frames = {{3,3}}
+		},
+		preadright = {
+			frames = {{2,3}}
+		},
 		prealhappy1 = {
 			frames = {{2,1}}
 		},

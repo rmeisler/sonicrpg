@@ -445,7 +445,7 @@ return function(self)
                             MessageBox {message = &quot;???: Here lies the village of {h Old Knothole}...&quot;},
                             Animate(self.sprite, &quot;mouthopen_idle&quot;),
                             MessageBox {message = &quot;???: Three hundred years ago, the Kingdom of Mobotropolis was expanding as the the young King {h Cornelius Acorn} lusted for power and legacy... &quot;},
-                            MessageBox {message = &quot;???: Breaking past treaties, he began occupying all of its neighboring countries, forcing them to join his empire.&quot;},
+                            MessageBox {message = &quot;???: Breaking past treaties, he began occupying all of his neighboring countries, forcing them to join his empire.&quot;},
                             Animate(self.sprite, &quot;idle&quot;),
                             MessageBox {message = &quot;???: All that remained was the Land of Wizards. No one ever dare declare war against them as all were too aware of their terrible power.&quot;},
                             MessageBox {message = &quot;???: Alas... Cornelius' eyes were filled with ambition. He could not be stopped.&quot;},

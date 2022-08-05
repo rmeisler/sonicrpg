@@ -15,21 +15,21 @@ local SpriteNode = require "object/SpriteNode"
 local TextNode = require "object/TextNode"
 
 local Bot = require "object/Bot"
-local Cambot = require "object/Cambot"
+local Swatbot = require "object/Swatbot"
 
-local LegacyCambot = class(Cambot)
+local LegacySwatbot = class(Swatbot)
 
-function LegacyCambot:construct(scene, layer, object)
+function LegacySwatbot:construct(scene, layer, object)
 	
 end
 
-function LegacyCambot:onRemove()
+function LegacySwatbot:onRemove()
 	if self.countdownText then
 		self.countdownText:remove()
 	end
 end
 
-function LegacyCambot:onCaughtPlayer()
+function LegacySwatbot:onCaughtPlayer()
 	self:removeSceneHandler("update", Bot.investigateUpdate)
 	self:addSceneHandler("update", Bot.updateAction)
 	self.action:stop()
@@ -37,7 +37,7 @@ function LegacyCambot:onCaughtPlayer()
 
 	self.countdownText = TextNode(
 		self.scene,
-		Transform.relative(self.sprite.transform, Transform(48, 0)),
+		Transform.relative(self.sprite.transform, Transform(48, -32)),
 		{255, 0, 0, 0},
 		"0",
 		nil,
@@ -88,7 +88,7 @@ function LegacyCambot:onCaughtPlayer()
 							ScreenShader:sendColor("multColor", self.scene.bgColor)
 						end)
 					}, 5),
-					MessageBox{message="Eyebot: Intruder alert!", closeAction=Wait(1)},
+					MessageBox{message="Swatbot: Intruder alert!", closeAction=Wait(1)},
 					Serial {
 						Wait(0.5),
 						Do(function()
@@ -108,16 +108,16 @@ function LegacyCambot:onCaughtPlayer()
 	))
 end
 
-function LegacyCambot:getWaitAfterInvestigate()
+function LegacySwatbot:getWaitAfterInvestigate()
 	return Wait(0.5)
 end
 
-function LegacyCambot:getInitiative()
+function LegacySwatbot:getInitiative()
 	local initiative = nil
 	if ((self.manualFacing == "left"  and self.x < self.scene.player.x) or
 		(self.manualFacing == "right" and self.x > self.scene.player.x) or
 		(self.manualFacing == "up"    and self.y < (self.scene.player.y - self.scene.player.sprite.h)) or
-		(self.manualFacing == "down"  and (self.y - self.sprite.h*2) > (self.scene.player.y + self.scene.player.sprite.h)))
+		(self.manualFacing == "down"  and self.y > (self.scene.player.y + self.scene.player.sprite.h)))
 	then
 		initiative = "player"
 	end
@@ -127,17 +127,4 @@ function LegacyCambot:getInitiative()
 	return self.behavior <= Bot.BEHAVIOR_INVESTIGATING and initiative or "opponent"
 end
 
-function LegacyCambot:getFlashlightOffset()
-	local facing = self.manualFacing
-	if facing == "up" then
-		return Transform(self.sprite.transform.x - self.sprite.w, self.sprite.transform.y - self.sprite.h - 10, 2, 2)
-	elseif facing == "down" then
-		return Transform(self.sprite.transform.x - self.sprite.w + 5, self.sprite.transform.y + self.sprite.h - 10, 2, 2)
-	elseif facing == "right" then
-		return Transform(self.sprite.transform.x + self.sprite.w - 26, self.sprite.transform.y + self.sprite.h/2 - 14, 2, 2)
-	elseif facing == "left" then
-		return Transform(self.sprite.transform.x + self.sprite.w/2 - self.flashlightSprite.w*2 + 58, self.sprite.transform.y + self.sprite.h/2 - 16, 2, 2)
-	end
-end
-
-return LegacyCambot
+return LegacySwatbot

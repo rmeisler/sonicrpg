@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="4000" height="19" tilewidth="32" tileheight="32" infinite="0" nextobjectid="129">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="4000" height="19" tilewidth="32" tileheight="32" infinite="0" nextobjectid="130">
  <properties>
   <property name="onload" type="file" value="actions/rchase.lua"/>
   <property name="regionName" value="Robotropolis"/>
@@ -338,6 +338,23 @@ end</property>
   <object id="126" name="HurtSpot18" type="EscapeBad" gid="37" x="59360" y="512" width="96" height="64"/>
   <object id="127" name="JumpTrigger8" type="EscapeJumpTrigger" gid="37" x="62432" y="480" width="576" height="128"/>
   <object id="128" name="HurtSpot19" type="EscapeBad" gid="37" x="62912" y="480" width="96" height="128"/>
+  <object id="129" name="Exit" type="BasicNPC" gid="37" x="71936" y="608" width="5920" height="384">
+   <properties>
+    <property name="whileColliding">local BasicNPC = require &quot;object/BasicNPC&quot;
+local Do = require &quot;actions/Do&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+return function(self, player)
+    if self.hit then
+        player.extraBx = -1
+        return
+    end
+    self.hit = true
+    player.extraBx = -1
+    self.scene:changeScene{map=&quot;forgottenhideout&quot;, fadeOutMusic=true, fadeOutSpeed=0.1,fadeInSpeed=0.5, spawnPoint=&quot;Spawn 2&quot;, hint=&quot;fromrace&quot;}
+end</property>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="Collision" width="4000" height="19" visible="0">
   <data encoding="csv">

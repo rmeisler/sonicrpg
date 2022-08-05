@@ -13,7 +13,7 @@ local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
 
 return function(self, target)
-	target.lostTurns = 1
+	target.lostTurns = 2
 	target.lostTurnType = "interrupt"
 	return Serial {
 		Animate(self.sprite, "nichole_start"),

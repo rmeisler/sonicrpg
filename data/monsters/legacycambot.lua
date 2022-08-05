@@ -26,7 +26,7 @@ return {
 
 	stats = {
 		xp    = 20,
-		maxhp = 650,
+		maxhp = 1500,
 		attack = 35,
 		defense = 10,
 		speed = 10,
@@ -173,6 +173,15 @@ return {
 					end)
 				}
 			end
+		elseif math.random() < 0.4 then
+			target = self.scene.opponents[math.random(#self.scene.opponents)]
+			return Serial {
+				Telegraph(self, "Repair", {255,255,255,50}),
+				Parallel {
+					Ease(self.sprite.color, 2, 512, 1)
+				},
+				Heal("hp", 500)(self, target)
+			}
 		else
 			return Serial {
 				Telegraph(self, "Spark", {255,255,255,50}),

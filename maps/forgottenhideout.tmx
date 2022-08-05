@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="110" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="262">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="110" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="263">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="onload" type="file" value="actions/forgotten_hideout.lua"/>
@@ -784,12 +784,6 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
-  <object id="222" name="Spawn 2" type="SpawnPoint" gid="1586" x="1728" y="2336" width="32" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="orientation" value="up"/>
-   </properties>
-  </object>
   <object id="247" name="LowerExit" type="SceneEdge" gid="1227" x="1664" y="2688" width="192" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
@@ -855,7 +849,6 @@ return function(self)
             Ease(self, &quot;y&quot;, function() return self.y + 50 end, 8),
             MessageBox {message = &quot;T: Then count me double in!&quot;},
             walkin,
-            PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1.0),
             PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1.0, true),
             Do(function()
                 GameState:setFlag(&quot;ep3_spoke_t&quot;)
@@ -925,8 +918,8 @@ return function(self)
     if GameState:isFlagSet(&quot;ep3_spoke_b1&quot;) then
         if GameState:isFlagSet(&quot;ep3_spoke_r&quot;) then
             return BlockPlayer {
-                MessageBox {message = &quot;J: I can see it now... {p60}R and I trekking the Great Plains{p60}, the Great Forest{p60}, the Great Jungle{p60}-- it all sounds so {h GREAT}!&quot;},
-                MessageBox {message = &quot;J: What to wear, what to wear?! {p60}Hmmm... it might be cold out there...&quot;},
+                MessageBox {message = &quot;J: I can see it now... {p60}R and I trekkin' the Great Plains{p60}, the Great Forest{p60}, the Great Jungle{p60}-- it all sounds so {h GREAT}!&quot;},
+                MessageBox {message = &quot;J: What do I wear?! {p60}It might get a bit nippy in the Great Forest.&quot;},
                 Do(function() self:refreshKeyHint() end)
             }
         end
@@ -1047,12 +1040,13 @@ return function(self)
         if GameState:isFlagSet(&quot;ep3_spoke_r&quot;) then
             return BlockPlayer {
                 Do(function() self:facePlayer() end),
-                MessageBox {message = &quot;R: I've never been anywhere different before... {p60}do you have books in Knothole?&quot;},
+                MessageBox {message = &quot;R: I've never been anywhere different before... {p60}I hope it's nice in Knothole.&quot;},
                 Do(function() self:refreshKeyHint() end)
             }
         end
 
         if GameState:isFlagSet(&quot;ep3_spoke_r_almost&quot;) then
+            GameState:setFlag(&quot;ep3_spoke_r&quot;)
             local walkout, walkin, sprites = self.scene.player:split()
             return BlockPlayer {
                 walkout,
@@ -1172,7 +1166,7 @@ return function(self)
             return BlockPlayer {
                 Ease(self, &quot;y&quot;, function() return self.y - 50 end, 8),
                 Ease(self, &quot;y&quot;, function() return self.y + 50 end, 8),
-                MessageBox {message = &quot;P: What happens to next? {p60}Will Ben make it over the Great Hills? {p60}I gotta know!&quot;},
+                MessageBox {message = &quot;P: What happens next? {p60}Will Ben make it over the Great Hills? {p60}I gotta know!&quot;},
                 Animate(self.sprite, &quot;pdown&quot;),
                 Do(function() self:refreshKeyHint() end)
             }
@@ -1182,13 +1176,27 @@ return function(self)
            GameState:setFlag(&quot;ep3_spoke_p&quot;)
            return BlockPlayer {
                MessageBox {message = &quot;P: Got a book for me?&quot;},
-               MessageBox {message = &quot;P: {h Adventures of Windom} eh?... Lemme take a look at it.&quot;},
-               MessageBox {message = &quot;P: ... {p60}... {p60}...&quot;},
+               MessageBox {message = &quot;P: {h Adventures of Windom} eh?...&quot;},
+               Parallel {
+                   Serial {
+                       Animate(self.sprite, &quot;preaddown&quot;),
+                       Wait(0.5),
+                       Animate(self.sprite, &quot;preadleft&quot;),
+                       Wait(0.5),
+                       Animate(self.sprite, &quot;preaddown&quot;),
+                       Wait(0.5),
+                       Animate(self.sprite, &quot;preadright&quot;),
+                       Wait(0.5)
+                   },
+                   MessageBox {message = &quot;P: ... {p80}... {p80}...&quot;, textSpeed=2}
+               },
+               Animate(self.sprite, &quot;preaddown&quot;),
                Ease(self, &quot;y&quot;, function() return self.y - 50 end, 8),
                Ease(self, &quot;y&quot;, function() return self.y + 50 end, 8),
                MessageBox {message = &quot;P: !!!&quot;},
                MessageBox {message = &quot;P: This book is incredible!! {p60}I've never read anything like it!!&quot;},
-               MessageBox {message = &quot;P: The world building! {p60}The character! {p60}The drama! {p60}And you say this is actually based on a true story?!&quot;},
+               MessageBox {message = &quot;P: The world building! {p60}The characters! {p60}The drama! {p60}And you say this is actually based on a true story?!&quot;},
+               Animate(self.sprite, &quot;pdown&quot;),
                MessageBox {message = &quot;P: You can tell B that I am absolutely on board to move to Knothole!&quot;},
                PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1.0, true),
                Do(function() self:refreshKeyHint() end)
@@ -1243,6 +1251,12 @@ return function(self)
     end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/p.png"/>
+   </properties>
+  </object>
+  <object id="262" name="Spawn 2" type="Player" gid="1586" x="768" y="1856" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="orientation" value="up"/>
    </properties>
   </object>
  </objectgroup>

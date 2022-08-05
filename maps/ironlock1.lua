@@ -8,7 +8,7 @@ return {
   height = 160,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 499,
+  nextobjectid = 506,
   properties = {
     ["battlebg"] = "../art/backgrounds/ironlockbg.png",
     ["onload"] = "actions/ironlock1.lua",
@@ -1319,8 +1319,8 @@ return {
         },
         {
           id = 281,
-          name = "Cambot3",
-          type = "LegacyCambot",
+          name = "Swatbot5",
+          type = "LegacySwatbot",
           shape = "rectangle",
           x = 3936,
           y = 1664,
@@ -1330,7 +1330,7 @@ return {
           gid = 37,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/legacycambot.lua",
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint1,Waypoint2,Waypoint3,Waypoint4",
@@ -1338,7 +1338,7 @@ return {
             ["ghost"] = true,
             ["ignorePlayer"] = false,
             ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/cambot2.png",
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
             ["viewRange"] = "View1,View2,View3,View4"
           }
         },
@@ -2177,8 +2177,8 @@ return {
         },
         {
           id = 338,
-          name = "Cambot4",
-          type = "LegacyCambot",
+          name = "Swatbot6",
+          type = "LegacySwatbot",
           shape = "rectangle",
           x = 3072,
           y = 3200,
@@ -2188,7 +2188,7 @@ return {
           gid = 37,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/legacycambot.lua",
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "CB4_Waypoint1,CB4_Waypoint2",
@@ -2196,14 +2196,14 @@ return {
             ["ghost"] = true,
             ["ignorePlayer"] = false,
             ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/cambot2.png",
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
             ["viewRange"] = "CB4_View1,CB4_View2"
           }
         },
         {
           id = 339,
-          name = "Cambot5",
-          type = "LegacyCambot",
+          name = "Swatbot7",
+          type = "LegacySwatbot",
           shape = "rectangle",
           x = 3680,
           y = 3680,
@@ -2213,7 +2213,7 @@ return {
           gid = 37,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/legacycambot.lua",
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "CB5_Waypoint1,CB5_Waypoint2",
@@ -2221,7 +2221,7 @@ return {
             ["ghost"] = true,
             ["ignorePlayer"] = false,
             ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/cambot2.png",
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
             ["viewRange"] = "CB5_View,CB5_View2"
           }
         },
@@ -4357,6 +4357,142 @@ return {
             ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self) then\n        self:remove()\n    end\nend",
             ["onRemove"] = "local MessageBox = require \"actions/MessageBox\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    if GameState:isFlagSet(self) then\n        GameState:setFlag(self.scene.objectLookup.Chest7)\n        self.scene.objectLookup.Chest7.sprite:setAnimation(\"open\")\n        self.scene.objectLookup.Chest7:run(BlockPlayer{\n            Do(function()\n                self.scene.objectLookup.Chest7.sprite:setAnimation(\"open\")\n            end),\n            PlayAudio(\"sfx\", \"choose\", 1.0, true),\n            MessageBox{message=\"You received a Mirror!\"}\n        })\n    end\nend",
             ["sprite"] = "../art/sprites/phantomgrab.png"
+          }
+        },
+        {
+          id = 499,
+          name = "Swatbot8",
+          type = "LegacySwatbot",
+          shape = "rectangle",
+          x = 2496,
+          y = 4640,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false,
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "SB8_View"
+          }
+        },
+        {
+          id = 500,
+          name = "Swatbot9",
+          type = "LegacySwatbot",
+          shape = "rectangle",
+          x = 3648,
+          y = 4640,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false,
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "SB9_View"
+          }
+        },
+        {
+          id = 501,
+          name = "Swatbot10",
+          type = "LegacySwatbot",
+          shape = "rectangle",
+          x = 640,
+          y = 4832,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["follow"] = "SB10_Waypoint1,SB10_Waypoint2",
+            ["followRepeat"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false,
+            ["sprite"] = "../art/sprites/swatbotwhite.png"
+          }
+        },
+        {
+          id = 502,
+          name = "SB10_Waypoint1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 576,
+          y = 4832,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 503,
+          name = "SB10_Waypoint2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1312,
+          y = 4832,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 504,
+          name = "SB9_View",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 3520,
+          y = 4896,
+          width = 288,
+          height = 288,
+          rotation = 0,
+          gid = 1922,
+          visible = false,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 505,
+          name = "SB8_View",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2368,
+          y = 4896,
+          width = 288,
+          height = 288,
+          rotation = 0,
+          gid = 1922,
+          visible = false,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

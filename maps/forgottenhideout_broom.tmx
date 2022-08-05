@@ -172,12 +172,20 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
+    if GameState:isFlagSet(&quot;ep3_spoke_b2&quot;) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;B: I await your return Freedom Fighters.&quot;},
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+
     if not GameState:isFlagSet(&quot;ep3_spoke_t_intro&quot;) then
         return BlockPlayer {
-                Do(function() self:facePlayer() end),
-                MessageBox {message = &quot;B: Welcome back, Freedom Fighters. {p60}You're always welcome here.&quot;},
-                Do(function() self:refreshKeyHint() end)
-            }
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;B: Welcome back, Freedom Fighters. {p60}You're always welcome here.&quot;},
+            Do(function() self:refreshKeyHint() end)
+        }
     end
 
     if GameState:isFlagSet(&quot;ep3_spoke_b1&quot;) then
@@ -187,12 +195,24 @@ return function(self)
            GameState:isFlagSet(&quot;ep3_spoke_p&quot;)
         then
             GameState:setFlag(&quot;ep3_spoke_b2&quot;)
+            local walkout, walkin, sprites = self.scene.player:split()
             return BlockPlayer {
                 Do(function() self:facePlayer() end),
+                walkout,
+                Animate(sprites.sonic.sprite, &quot;idleup&quot;),
+                Animate(sprites.antoine.sprite, &quot;idleup&quot;),
+                Animate(sprites.sally.sprite, &quot;idleup&quot;),
                 MessageBox {message = &quot;B: It seems as though we are all in agreement.&quot;},
                 MessageBox {message = &quot;B: I have only one condition...&quot;},
                 MessageBox {message = &quot;B: Take me with you first. {p60}I need to see how safe your home base is for myself.&quot;},
-                Do(function() self:refreshKeyHint() end)
+                MessageBox {message = &quot;Sally: That's great B!&quot;},
+                MessageBox {message = &quot;Sally: We have an important mission to finish first.{p60} After that, we can bring you to Knothole.&quot;},
+                walkin,
+                Do(function()
+                    self:refreshKeyHint()
+                    self.scene.player.x = self.scene.player.x + 60
+                    self.scene.player.y = self.scene.player.y + 60
+                end)
             }
         else
             return BlockPlayer {
@@ -234,7 +254,8 @@ return function(self)
                 MessageBox {message = &quot;B: It's not just the loss of those memories...&quot;}
             },
             MessageBox {message = &quot;B: I've had this condition much longer than the others...{p60} as it's progressed it has mutated from simple amnesia to a debilitating disorder...&quot;},
-            MessageBox {message = &quot;B: I see these flashes-- {p60}half-remembered memories of my past life{p60}, and as soon as they disappear I am left with immeasurable pain...&quot;},
+            MessageBox {message = &quot;B: I see these flashes-- {p60}half-remembered memories of my past life...&quot;},
+            MessageBox {message = &quot;B: As soon as they disappear I am left with pain... {p60}worse than any physical torture you could imagine...&quot;},
             Animate(sprites.sally.sprite, &quot;sadleft&quot;),
             MessageBox {message = &quot;Sally: Oh B...&quot;},
             Animate(self.sprite, &quot;idledown&quot;),
@@ -243,7 +264,6 @@ return function(self)
             Animate(sprites.sally.sprite, &quot;idleup&quot;),
             MessageBox {message = &quot;B: At least here I can know they are safe!&quot;},
             MessageBox {message = &quot;Sally: What if I told that this place isn't safe anymore, B?&quot;},
-            Spawn(AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5)),
             Ease(self, &quot;y&quot;, function() return self.y - 50 end, 8),
             Ease(self, &quot;y&quot;, function() return self.y + 50 end, 8),
             MessageBox {message = &quot;B: What!?&quot;},
@@ -253,6 +273,7 @@ return function(self)
             Animate(self.sprite, &quot;seriousdown&quot;),
             MessageBox {message = &quot;B: ... {p60}if that's true...&quot;},
             MessageBox {message = &quot;Sally: Please B... {p60}you'll all be much safer in Knothole.&quot;},
+            Spawn(AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5)),
             Wait(1),
             Animate(self.sprite, &quot;idledown&quot;),
             MessageBox {message = &quot;B: Alright, I'll consider it. {p60}But I want you to make sure that the rest of my family agrees with you.&quot;},

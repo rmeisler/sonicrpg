@@ -6,7 +6,7 @@ return {
 	unusable = function(target)
 		return target.side == TargetType.Party or target.name == "Phantom"
 	end,
-	cost = 3,
-	desc = "Trigger a hardware interrupt. Bot loses 3 turns.",
+	cost = 12,
+	desc = "Trigger a hardware interrupt. Bot loses 2 turns.",
 	action = require "data/battle/skills/actions/Interrupt2"
 }
