@@ -62,7 +62,7 @@ return function(scene, hint)
 			}, 15),
 			
 			Serial {
-				MessageBox{message="Antoine: Alright Antoine, this is fine.", closeAction=Wait(1.5)},
+				MessageBox{message="Antoine: Alright Antoine, this is fine.", closeAction=Wait(2)},
 				MessageBox{message="Antoine: Sonic and Sally are captured{p40}, that is that.", closeAction=Wait(1.5)},
 				MessageBox{message="Antoine: Leaving them be is no option{p40}, so you must save them. {p40}Save them from over ze dozens of ze Swatbots.", closeAction=Wait(1.5)},
 				
@@ -117,6 +117,7 @@ return function(scene, hint)
 			scene.objectLookup.YoungAnt.sprite.color[4] = 0
 		end),
 		
+		Wait(1),
 		PlayAudio("music", "memories", 1.0, true, true),
 		Parallel {
 			Ease(scene.objectLookup.YoungAnt.sprite.color, 4, 255, 0.3),

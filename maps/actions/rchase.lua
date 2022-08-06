@@ -58,8 +58,12 @@ return function(scene)
 
 			Wait(2),
 			
+			Animate(scene.objectLookup.Sonic.sprite, "prepare_race2"),
+			MessageBox {message="Sonic: Wish me luck!", closeAction=Wait(1.5)},
 			Animate(scene.objectLookup.Sonic.sprite, "prepare_race"),
-			MessageBox {message="Sonic: Wish me luck!", closeAction=Wait(0.5)},
+			Ease(scene.objectLookup.J, "y", function() return scene.objectLookup.J.y - 50 end, 8),
+			Ease(scene.objectLookup.J, "y", function() return scene.objectLookup.J.y + 50 end, 8),
+			MessageBox {message="J: Let's get this race started mates!"},
 			Parallel {
 				MessageBox {message="J: On your mark... {p80}get set... {p80}{h GO}!", closeAction=Wait(1)},
 				Serial {

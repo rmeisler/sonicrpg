@@ -59,9 +59,10 @@ return function(scene, hint)
 		
 		Animate(scene.objectLookup.Snively.sprite, "idleright_lookleft"),
 		MessageBox{message="Snively: Ahem. {p60}What am I so angry about?"},
+		MessageBox{message="Snively: Project Firebird has been safely relocated..."},
 		
 		Animate(scene.objectLookup.Snively.sprite, "idleright_smile"),
-		MessageBox{message="Snively: You won't be a pain my side much longer anyway..."},
+		MessageBox{message="Snively: And you won't be a pain my side much longer anyway..."},
 		MessageBox{message="Sonic: What's that supposed to mean?!"},
 		MessageBox{message="Snively: I doubt your tiny rodent brain could understand--"},
 		MessageBox{message="Snively: --this place appears to lie on an interdimensional fault line and Project Firebird's presence\nhas caused it to become unstable..."},
@@ -150,7 +151,7 @@ return function(scene, hint)
 		
 		PlayAudio("music", "antoinerescue", 1.0, true),
 		Wait(0.5),
-		Ease(scene.camPos, "x", 400, 0.3, "linear"),
+		Ease(scene.camPos, "x", 400, 0.3, "inout"),
 		
 		MessageBox{message="Sonic & Sally: Antoine!", closeAction=Wait(2)},
 		MessageBox{message="Antoine: But of course!", closeAction=Wait(2)},
@@ -166,7 +167,7 @@ return function(scene, hint)
 		end),
 		Parallel {
 			Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Antoine.x + 800, 0.3, "linear"),
-			Ease(scene.camPos, "x", -425, 0.3)
+			Ease(scene.camPos, "x", -425, 0.3, "inout")
 		},
 		Do(function()
 			scene.objectLookup.Antoine.sprite:setAnimation("idleup")
@@ -264,14 +265,13 @@ return function(scene, hint)
 		end),
 		Wait(3),
 
-		PlayAudio("sfx", "explosion2", 1.0, true),
 		Animate(scene.objectLookup.Sonic.sprite, "shock"),
 		Animate(scene.objectLookup.Sally.sprite, "shock"),
 		Animate(scene.objectLookup.Antoine.sprite, "shock"),
 		--Animate(scene.objectLookup.Ivan.sprite, "idledown"),
 		--Animate(scene.objectLookup.Logan.sprite, "idledown"),
 		--Animate(scene.objectLookup.Fleet.sprite, "idledown"),
-		scene:screenShake(30, 20, 15),
+		Spawn(scene:screenShake(10, 30, 50)),
 		Wait(1),
 		Animate(scene.objectLookup.Sally.sprite, "idleright"),
 		Animate(scene.objectLookup.Sonic.sprite, "idleright"),

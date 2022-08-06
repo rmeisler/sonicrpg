@@ -38,6 +38,7 @@ return function(scene, hint)
 				layer.opacity = 1.0
 			end
 		end
+		scene.objectLookup.SallysBed.handlers = {}
 	else
 		scene.objectLookup.Door.object.properties.scene = "knothole.lua"
 		local prefix = "nighthide"
@@ -115,7 +116,8 @@ return function(scene, hint)
 	
 	if not scene.nighttime and not GameState:isFlagSet("ep3_sallywakeup") then
 		scene.audio:stopMusic()
-		scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
+		scene.objectLookup.SallysBed.isInteractable = false
+		scene.player:removeKeyHint()
 		return BlockPlayer {
 			Do(function()
 				GameState:setFlag("ep3_sallywakeup")
@@ -124,7 +126,6 @@ return function(scene, hint)
 				scene.player.x = scene.objectLookup.SallysBed.x + 70
 				scene.player.y = scene.objectLookup.SallysBed.y + 90
 				scene.player:removeKeyHint()
-				scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
 			end),
 			Animate(scene.objectLookup.SallysBed.sprite, "sleeping"),
 			Wait(3),
@@ -136,15 +137,27 @@ return function(scene, hint)
 			Wait(5),
 			Animate(scene.objectLookup.SallysBed.sprite, "wake"),
 			Animate(scene.objectLookup.SallysBed.sprite, "awake"),
-			Wait(2),
+			Wait(1),
 			Animate(scene.objectLookup.SallysBed.sprite, "sit"),
-			Wait(3),
+			Wait(2),
+			MessageBox{message="Sally: Ahhh... {p80}a new day! {p80}And so much promise for the future!"},
 			Animate(scene.objectLookup.SallysBed.sprite, "empty"),
 			Do(function()
 				scene.player.sprite.visible = true
 				scene.player.dropShadow.hidden = false
 				scene.player.x = scene.objectLookup.SallysBed.x + 70
 				scene.player.y = scene.objectLookup.SallysBed.y + 95
+			end),
+			Wait(1),
+			Do(function()
+				scene.player.sprite:setAnimation("pose")
+				scene.player.state = "pose"
+				scene.player.noIdle = true
+			end),
+			MessageBox{message="Sally: With the Rebellion on our side{p60}, and a certificate of authenticity in-hand{p60}, Robotnik doesn't stand a chance!"},
+			Do(function()
+				scene.player.state = "idledown"
+				scene.player.noIdle = false
 			end)
 		}
 	else
@@ -158,6 +171,7 @@ return function(scene, hint)
 		
 		if hint == "sleep" then
 			scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
+			scene.objectLookup.SallysBed.handlers = {}
 			scene.player:removeKeyHint()
 			return BlockPlayer {			
 				Do(function()
@@ -204,7 +218,7 @@ return function(scene, hint)
 					scene.player.dropShadow.hidden = false
 					scene.player.object.properties.ignoreMapCollision = false
 				end),
-				MessageBox{message="Sally: I guess I needed the rest. {p60}We've been just working non-stop since Rotor found that virus..."},
+				MessageBox{message="Sally: I guess I needed the rest. {p60}We've been just working non-stop since Rotor found that glitch..."},
 				Do(function()
 					scene.player.state = "idledown"
 					scene.player.sprite:setAnimation("idledown")

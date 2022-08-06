@@ -174,16 +174,19 @@ return function(scene, hint)
 				}
 			},
 			
-			PlayAudio("music", "trouble", 1.0, true, true),
 			MessageBox{message="Sonic: How's it looking back there, Ant?"},
 			MessageBox{message="Antoine: Not so good, I am thinking!"},
+			PlayAudio("music", "trouble", 1.0, true, true),
 			Animate(scene.objectLookup.Sonic.sprite, "idledown"),
-			Wait(1),
+			Wait(0.5),
 			Animate(scene.objectLookup.Sonic.sprite, "pose"),
 			MessageBox{message="Sonic: One swatbutt? {p60}You think that's enough to stop me!?"},
-			Wait(0.5),
+			Wait(1),
 			Animate(scene.objectLookup.Sally.sprite, "idledown"),
-			MessageBox{message="Snively: How about a dozen?"},
+			Parallel {
+				AudioFade("music", 1.0, 0.0, 0.5),
+				MessageBox{message="Snively: How about a dozen?"}
+			},
 			
 			Animate(scene.objectLookup.Sonic.sprite, "shock"),
 			Animate(scene.objectLookup.Sally.sprite, "shock"),
@@ -288,7 +291,7 @@ return function(scene, hint)
 			},
 			Wait(1),
 			Do(function()
-				scene:changeScene{map="ironlock4", fadeOutSpeed=0.5, fadeInSpeed=0.5}
+				scene:changeScene{map="ironlock4", fadeOutSpeed=0.5, enterDelay=2, fadeInSpeed=0.5}
 			end)
 		}
 	end

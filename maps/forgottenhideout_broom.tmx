@@ -251,7 +251,7 @@ return function(self)
             Animate(self.sprite, &quot;pose&quot;),
             Parallel {
                 AudioFade(&quot;music&quot;, 0.0, 1.0, 0.5),
-                MessageBox {message = &quot;B: It's not just the loss of those memories...&quot;}
+                MessageBox {message = &quot;B: It's much worse than just that, unfortunately...&quot;}
             },
             MessageBox {message = &quot;B: I've had this condition much longer than the others...{p60} as it's progressed it has mutated from simple amnesia to a debilitating disorder...&quot;},
             MessageBox {message = &quot;B: I see these flashes-- {p60}half-remembered memories of my past life...&quot;},
@@ -259,7 +259,7 @@ return function(self)
             Animate(sprites.sally.sprite, &quot;sadleft&quot;),
             MessageBox {message = &quot;Sally: Oh B...&quot;},
             Animate(self.sprite, &quot;idledown&quot;),
-            MessageBox {message = &quot;B: The only reason I haven't gone mad from it all is these people, Ms. Acorn. {p80}They are family to me{p60}, the reason I keep on going.&quot;},
+            MessageBox {message = &quot;B: The only reason I haven't gone mad from it all is these people, Ms. Acorn. {p80}They are family to me{p60}, the reason I keep going.&quot;},
             MessageBox {message = &quot;B: The thought of losing one of them during our transport?... {p60}I just can't let that happen.&quot;},
             Animate(sprites.sally.sprite, &quot;idleup&quot;),
             MessageBox {message = &quot;B: At least here I can know they are safe!&quot;},

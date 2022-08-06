@@ -1,0 +1,532 @@
+return {
+  version = "1.1",
+  luaversion = "5.1",
+  tiledversion = "1.1.5",
+  orientation = "orthogonal",
+  renderorder = "right-down",
+  width = 25,
+  height = 20,
+  tilewidth = 32,
+  tileheight = 32,
+  nextobjectid = 20,
+  properties = {
+    ["ignorenight"] = true,
+    ["onload"] = "actions/antoineknotholehut.lua",
+    ["regionName"] = "Antoine's Hut"
+  },
+  tilesets = {
+    {
+      name = "knotholehut",
+      firstgid = 1,
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/knotholehutinterior.png",
+      imagewidth = 950,
+      imageheight = 1170,
+      transparentcolor = "#000000",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 1296,
+      tiles = {}
+    },
+    {
+      name = "forest",
+      firstgid = 1297,
+      filename = "knothole.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/knotholeexterior.png",
+      imagewidth = 1664,
+      imageheight = 2144,
+      transparentcolor = "#b326c3",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 3484,
+      tiles = {}
+    },
+    {
+      name = "robotropolis",
+      firstgid = 4781,
+      filename = "robotropolis.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/robotropolis2.png",
+      imagewidth = 1120,
+      imageheight = 3200,
+      transparentcolor = "#000000",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 3500,
+      tiles = {}
+    },
+    {
+      name = "knotholeindoors",
+      firstgid = 8281,
+      filename = "knotholeindoors.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/knotholeinterior.png",
+      imagewidth = 1696,
+      imageheight = 1088,
+      transparentcolor = "#b326bd",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 1802,
+      tiles = {}
+    },
+    {
+      name = "forest2",
+      firstgid = 10083,
+      filename = "forest2.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/greatforesttileset.png",
+      imagewidth = 2208,
+      imageheight = 2400,
+      transparentcolor = "#b326c3",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 5175,
+      tiles = {}
+    },
+    {
+      name = "knotholehut2",
+      firstgid = 15258,
+      filename = "knotholehut2.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/knotholehutinterior2.png",
+      imagewidth = 1100,
+      imageheight = 1100,
+      transparentcolor = "#b326bd",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 1156,
+      tiles = {}
+    },
+    {
+      name = "knotholehut",
+      firstgid = 16414,
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/knotholehutinterior.png",
+      imagewidth = 950,
+      imageheight = 1170,
+      transparentcolor = "#000000",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 1296,
+      tiles = {}
+    },
+    {
+      name = "worldmap",
+      firstgid = 17710,
+      filename = "worldmap.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/worldmap.png",
+      imagewidth = 1664,
+      imageheight = 2144,
+      transparentcolor = "#00b100",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 3484,
+      tiles = {}
+    },
+    {
+      name = "darkswamp",
+      firstgid = 21194,
+      filename = "darkswamp.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/darkswamp.png",
+      imagewidth = 2592,
+      imageheight = 2208,
+      transparentcolor = "#0000f8",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 5589,
+      tiles = {}
+    },
+    {
+      name = "knotholehut",
+      firstgid = 26783,
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/knotholehutinterior.png",
+      imagewidth = 950,
+      imageheight = 1170,
+      transparentcolor = "#000000",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 1044,
+      tiles = {}
+    }
+  },
+  layers = {
+    {
+      type = "tilelayer",
+      name = "floor",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "tilelayer",
+      name = "floor2",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27383, 27384, 27385, 27385, 27386, 27387, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27412, 27413, 27414, 27414, 27415, 27416, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27441, 27442, 27443, 27443, 27444, 27445, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "tilelayer",
+      name = "nighttime",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      visible = true,
+      opacity = 0,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 17257, 17258, 0, 0, 0, 0, 0, 17315, 17316, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 17286, 17287, 0, 0, 0, 0, 0, 17344, 17345, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17373, 17374, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "objects",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 2,
+          name = "Door",
+          type = "Door",
+          shape = "rectangle",
+          x = 352,
+          y = 608,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7091,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -20,
+            ["alignOffsetY"] = -32,
+            ["ghost"] = true,
+            ["key"] = "down",
+            ["orientation"] = "up",
+            ["scene"] = "knothole.lua",
+            ["spawn_point"] = "RebellionHutDoor",
+            ["spawn_point_offset_x"] = 16,
+            ["spawn_point_offset_y"] = 40,
+            ["sprite"] = "../art/sprites/hutdoor.png"
+          }
+        },
+        {
+          id = 18,
+          name = "BunkBed1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 192,
+          y = 384,
+          width = 128,
+          height = 224,
+          rotation = 0,
+          gid = 7091,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "left",
+            ["sprite"] = "../art/sprites/bunkbed.png"
+          }
+        },
+        {
+          id = 19,
+          name = "BunkBed2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 480,
+          y = 384,
+          width = 128,
+          height = 224,
+          rotation = 0,
+          gid = 7091,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "right",
+            ["sprite"] = "../art/sprites/bunkbed.png"
+          }
+        }
+      }
+    },
+    {
+      type = "tilelayer",
+      name = "Collision",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      visible = false,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "tilelayer",
+      name = "BunnyExtCollision",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      visible = false,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    }
+  }
+}

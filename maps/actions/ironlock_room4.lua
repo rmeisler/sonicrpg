@@ -116,7 +116,7 @@ return function(scene, hint)
 		Animate(scene.objectLookup.Sonic.sprite, "idleright"),
 		Animate(scene.objectLookup.Sally.sprite, "idleup"),
 		Animate(scene.objectLookup.Antoine.sprite, "idleleft"),
-		MessageBox{message="Sally: Oh my gosh, {p60}I hope that's not what Tails is going to grow up to be like..."},
+		MessageBox{message="Sally: Oh my gosh, {p60}I hope Tails doesn't grow up to be like that..."},
 		MessageBox{message="Sonic: Mondo uncool..."},
 		Do(function()
 			scene.objectLookup.Sonic.sprite:setAnimation("walkright")

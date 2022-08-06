@@ -117,7 +117,7 @@ return function(scene)
 			MessageBox {message="Sally: Nicole, {p30}open a new file.", textspeed=2},
 			MessageBox {message="Nicole: File open, {p30}Sally.", sfx="nicolebeep"},
 			PlayAudio("music", "ep3intro", 0.9, true),
-			MessageBox {message="> I know I haven't sent one of these in a long while... {p60}I don't even know if you receive them...", textspeed=1, closeAction=Wait(2.5)},
+			MessageBox {message="> I know I haven't sent one of these in a long while... {p80}I don't even know if you receive them...", textspeed=1, closeAction=Wait(2.5)},
 			MessageBox {message="> ...but I have big news that I just had to tell you...", textspeed=1, closeAction=Wait(2)},
 			MessageBox {message="> I can hardly believe I'm writing this, {p60}but it seems like we may be on the verge of defeating Robotnik.", textspeed=1, closeAction=Wait(2.5)},
 			MessageBox {message="> I wish I could take all of the credit, but Rotor was the one who found the software glitch that we'll use to disable Robotnik's army.", textspeed=1, closeAction=Wait(3)},

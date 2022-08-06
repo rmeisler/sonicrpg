@@ -120,6 +120,12 @@ return {
 	
 	{
         type = "map",
+		file = "maps/rebellionhut.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
 		file = "maps/sonicshut.lua",
 		--primary = true
     },

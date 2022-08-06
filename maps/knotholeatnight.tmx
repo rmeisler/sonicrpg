@@ -2789,11 +2789,22 @@ return function(self)
         }
     else
         GameState:setFlag(self:getFlag())
+        local origAnim = self.scene.player.sprite.selected
         return BlockPlayer {
             Do(function() self:facePlayer() end),
             MessageBox {message = &quot;Sonic: Yo Sal, what's with the 8 hour nap? {p60}You leading some kinda double life I don't know about?&quot;},
-            MessageBox {message = &quot;Sally: Ha{p60}, ha{60}. Yes, get it out of your system now, Sonic Hedgehog.&quot;},
+            Do(function()
+                self.scene.player.noIdle = true
+                self.scene.player.sprite:setAnimation(&quot;thinking_laugh&quot;)
+                self.scene.player.state = &quot;thinking_laugh&quot;
+            end),
+            MessageBox {message = &quot;Sally: Ha{p20}, ha{p60}. Yes, get it out of your system now, Sonic Hedgehog.&quot;},
             MessageBox {message = &quot;Sonic: But seriously... {p60}you doin' ok?&quot;},
+            Do(function()
+                self.scene.player.noIdle = false
+                self.scene.player.sprite:setAnimation(origAnim)
+                self.scene.player.state = origAnim
+            end),
             MessageBox {message = &quot;Sally: ...Yeah. {p60}There's just been a lot going on, you know.&quot;},
             MessageBox {message = &quot;Sonic: Yeah... {p60}and some of these new faces aren't the most friendly either.&quot;},
             MessageBox {message = &quot;Sally: I know...&quot;},

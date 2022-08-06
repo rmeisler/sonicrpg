@@ -236,6 +236,7 @@ function BasicScene:onEnter(args)
 	end
 	
 	return Serial {
+		args.enterDelay and Wait(args.enterDelay) or Action(),
 		Spawn(
 			Serial {
 				Parallel {
@@ -484,7 +485,8 @@ function BasicScene:changeScene(args)
 		fadeInSpeed = args.fadeInSpeed,
 		fadeOutMusic = args.fadeOutMusic,
 		cache = args.cache,
-		nighttime = args.nighttime
+		nighttime = args.nighttime,
+		enterDelay = args.enterDelay
 	})
 end
 

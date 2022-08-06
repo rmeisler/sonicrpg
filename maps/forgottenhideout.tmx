@@ -862,8 +862,8 @@ return function(self)
 
     GameState:setFlag(&quot;ep3_spoke_t_intro&quot;)
     return BlockPlayer {
-        MessageBox {message = &quot;T: Oh, you're back... {p60}Perhaps you can help us.&quot;},
-        MessageBox {message = &quot;T: I've been seeing less Ratbots during my scrap searches. {p60}I worry that this means Robotnik's cleanup crew is getting close to discovering us...&quot;},
+        MessageBox {message = &quot;T: Oh, you're back... {p60}Perhaps you can be of help.&quot;},
+        MessageBox {message = &quot;T: I've been seeing less Ratbots during my scrap searches. {p60}I worry that this means Robotnik's cleanup crew is getting close to discovering us!&quot;},
         MessageBox {message = &quot;T: Maybe you can get through to B? {p60}It is no longer a luxury, but imperative that we relocate to your village of Knothole.&quot;},
         Animate(self.sprite, &quot;tdowncross&quot;),
         Do(function() self:refreshKeyHint() end)
@@ -1056,12 +1056,16 @@ return function(self)
                 MessageBox {message = &quot;R: *tears up*&quot;},
                 MessageBox {message = &quot;Sally: It's ok, R.&quot;},
                 Do(function() self:facePlayer() end),
-                MessageBox {message = &quot;R: No... {p60}I screwed up! {p60}Can you keep a secret?&quot;},
-                MessageBox {message = &quot;R: *whisper* I kinda like J...&quot;},
+                MessageBox {message = &quot;R: *sniff* No! {p60}I screwed up!&quot;},
+                Ease(self, &quot;y&quot;, function() return self.y - 50 end, 8),
+                Ease(self, &quot;y&quot;, function() return self.y + 50 end, 8),
+                MessageBox {message = &quot;R: Can you keep a secret?&quot;},
+                MessageBox {message = &quot;Antoine: But of course!&quot;},
+                MessageBox {message = &quot;R: Ok well... {p60}*whisper* I kinda like J...&quot;},
                 MessageBox {message = &quot;Sally: Oh yeah?&quot;},
                 Ease(self, &quot;y&quot;, function() return self.y - 50 end, 8),
                 Ease(self, &quot;y&quot;, function() return self.y + 50 end, 8),
-                MessageBox {message = &quot;R: *whisper* She's just so cool! {p60}I wanna be more like her... {p60}but now she probably just thinks I'm a baby for being so scared to leave here...&quot;},
+                MessageBox {message = &quot;R: She's just so cool! {p60}I wanna be more like her... {p60}but now she probably just thinks I'm a baby for being so scared to leave here...&quot;},
                 MessageBox {message = &quot;Sonic: Hey little buddy, don't sell yourself short! {p60}You're way past cool!&quot;},
                 MessageBox {message = &quot;R: *sniff* Really?&quot;},
                 MessageBox {message = &quot;Sonic: Sure are! {p60}Nothin's cooler than bein' fast{p60}, and I bet you're as fast as lightning!&quot;},
@@ -1109,9 +1113,11 @@ return function(self)
         return BlockPlayer {
             Do(function() self:facePlayer() end),
             MessageBox {message = &quot;R: L-L-Leave Robotropolis?...&quot;},
+            AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),
             Animate(self.scene.objectLookup.J.sprite, &quot;jright&quot;),
             MessageBox {message = &quot;J: Yeah R, come on! {p60}We can finally go on all those adventures we've been talkin' about!!&quot;},
             Animate(self.scene.objectLookup.R.sprite, &quot;idleleft&quot;),
+            PlayAudio(&quot;music&quot;, &quot;sonicsad&quot;, 1.0, true, true),
             MessageBox {message = &quot;R: I-I dunno... {p60}what if we forget where we're going?... {p60}what if B gets sick?... {p60}what if a bunch of Ratbots get us as we're leaving Robotropolis?&quot;},
             Wait(1),
             MessageBox {message = &quot;R: ...&quot;},
@@ -1121,6 +1127,8 @@ return function(self)
             Wait(1),
             Animate(self.scene.objectLookup.J.sprite, &quot;jleft&quot;),
             MessageBox {message = &quot;J: *sigh* Alright, buddy.&quot;},
+            AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),
+            PlayAudio(&quot;music&quot;, &quot;forgottenhideout2&quot;, 1.0, true, true),
             Do(function() self:refreshKeyHint() end)
         }
     else

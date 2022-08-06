@@ -185,7 +185,7 @@ return function(scene, hint)
 			Animate(sally.sprite, "planning_smile"),
 			MessageBox {message="Sally: I'm honored to welcome Commander Leon and his esteemed officers to our home!"},
 			MessageBox {message="Sally: I'm certain that if we unite our efforts to take down Robotnik, we will be unstoppable!"},
-			Animate(ivan.sprite, "meeting_idledown"),
+			Animate(ivan.sprite, "meeting_idleleft"),
 			AudioFade("music", 1.0, 0, 0.5),
 			Animate(fleet.sprite, "meeting_lookright"),
 			Animate(sally.sprite, "planning"),
@@ -249,9 +249,9 @@ return function(scene, hint)
 				Serial {
 					MessageBox {message="Fleet: B-but--", closeAction=Wait(1)},
 					MessageBox {message="Leon: It is precisely because the Freedom Fighters lack formal training{p40}, and yet{p40}, have somehow become a formidable enough foe to Robotnik that he knows them by\nname{p40}, that they deserve our utmost respect."},
-					Animate(fleet.sprite, "meeting_idledown"),
-					Animate(logan.sprite, "meeting_idledown"),
-					Animate(ivan.sprite, "meeting_idledown"),
+					Animate(fleet.sprite, "meeting_idleleft"),
+					Animate(logan.sprite, "meeting_idleleft"),
+					Animate(ivan.sprite, "meeting_idleleft"),
 					MessageBox {message="Leon: I see no reason why they should cease operations."},
 				},
 				Serial {
@@ -262,6 +262,9 @@ return function(scene, hint)
 			Wait(1),
 			PlayAudio("music", "standup", 0.9, true),
 			Animate(sally.sprite, "meeting_thinking"),
+			Animate(fleet.sprite, "meeting_lookright"),
+			Animate(ivan.sprite, "meeting_idleleft"),
+			Animate(logan.sprite, "meeting_idleright"),
 			MessageBox {message="Sally: Look, we may not be trained military officers, but we've been fighting Robotnik for most of our\nlives...", textspeed=2},
 			MessageBox {message="Sally: ...and we're not going to stop fighting now.", textspeed=2},
 			Wait(1),
@@ -272,7 +275,44 @@ return function(scene, hint)
 				AudioFade("music", 1.0, 0.0, 0.5),
 				Ease(scene.camPos, "y", -180, 0.3),
 				PlayAudio("sfx", "griffvehicle", 1.0, true),
-				Move(griff, scene.objectLookup.GriffWaypoint)
+				Move(griff, scene.objectLookup.GriffWaypoint),
+				Do(function()
+					if not griff.dustTime or griff.dustTime > 0.005 then
+						griff.dustTime = 0
+					elseif griff.dustTime < 0.005 then
+						griff.dustTime = griff.dustTime + love.timer.getDelta()
+						return
+					end
+					
+					local dust = SpriteNode(
+						scene,
+						Transform(griff.sprite.transform.x, griff.sprite.transform.y),
+						nil,
+						"dust",
+						nil,
+						nil,
+						"sprites"
+					)
+					dust.color[1] = 130
+					dust.color[2] = 130
+					dust.color[3] = 200
+					dust.color[4] = 255
+					dust.sortOrderY = griff.sprite.sortOrderY - 100 --self.sprite.transform.y + self.sprite.h*2 - 20
+					
+					dust.transform.sx = 4
+					dust.transform.sy = 4
+					dust.transform.x = dust.transform.x + griff.sprite.w
+					dust:setAnimation("left")
+					
+					dust.transform.y = dust.transform.y - 10
+					
+					dust.animations[dust.selected].callback = function()
+						local ref = dust
+						ref:remove()
+					end
+					
+					griff.dustTime = griff.dustTime + love.timer.getDelta()
+				end)
 			},
 			Animate(griff.sprite, "idleleft_lookup"),
 			Animate(sally.sprite, "meeting_shock"),
@@ -317,7 +357,7 @@ return function(scene, hint)
 					Wait(1),
 					PlayAudio("music", "project", 1.0, true, true),
 					Do(function()
-						scene.objectLookup.ProjectionMtg.sprite:setAnimation("face")
+						scene.objectLookup.ProjectionMtg.sprite:setAnimation("body")
 					end),
 					Wait(1),
 					hop(antoine),
@@ -332,8 +372,8 @@ return function(scene, hint)
 					hop(sonic),
 					MessageBox {message="Sonic: It's a long story{p60}, just tell us what the heck that is!"},
 					Animate(scene.objectLookup.GriffMtg2.sprite, "meeting_idledown"),
-					MessageBox {message="Griff: I must admit, I'm not entirely sure..."},
-					MessageBox {message="Griff: ...all I can tell you is{p60}, if Robotnik finishes it{p60}, he could wipe out every living thing on the planet in a matter of days..."},
+					MessageBox {message="Griff: Some kind of new bot... {p60}the only intel I have on it is from Robotnik's field testing{p60}, and the results are not pretty..."},
+					MessageBox {message="Griff: ...according to the data... {p60}if Robotnik finishes this thing{p60}, he could destroy the entire ecosystem in a matter of days..."},
 					Animate(sonic.sprite, "shock"),
 					Animate(bunnie.sprite, "shock"),
 					Animate(antoine.sprite, "shock"),
@@ -350,8 +390,7 @@ return function(scene, hint)
 					MessageBox {message="Sally: Iron Lock?!"},
 					MessageBox {message="Leon: The old prison complex?"},
 					Animate(sally.sprite, "meeting_thinking"),
-					MessageBox {message="Sally: We've been there before...{p60} I found a message from my father there..."},
-					MessageBox {message="Sally: ...there was so much more I wanted to \ninvestigate...{p60} but our visit was cut short."},
+					MessageBox {message="Sally: We've been there before...{p60} I found a message from my father there... {p60}there was so much more I wanted to investigate...{p60} but our visit was cut short."},
 					hop(sonic),
 					MessageBox {message="Sonic: Yeah, thanks to ol' Robuttnik's monster machine."},
 					MessageBox {message="Griff: Well don't expect this time to be much easier..."},
@@ -371,7 +410,7 @@ return function(scene, hint)
 					hop(sonic),
 					MessageBox {message="Sonic: Say wha?"},
 					Animate(sally.sprite, "planning"),
-					MessageBox {message="Sally: If Iron Lock is as dangerous as Griff says{p80}, and this project Robotnik is working on is really a planetary threat{p80}, we are going to have to put aside our differences and work together!"},
+					MessageBox {message="Sally: If {h Project Firebird} is as dangerous as Griff says it is, then we are going to have to put aside our differences and work together!"},
 					MessageBox {message="Leon: That sounds like a wonderful idea."},
 					MessageBox {message="Leon: Fleet, Logan, and Ivan{p60}, you will accompany Sally's away team."},
 					hop(sonic),
