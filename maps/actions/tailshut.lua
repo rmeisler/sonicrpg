@@ -53,22 +53,15 @@ return function(scene)
 
 		scene.map.properties.ignorenight = false
 		scene.originalMapDraw = scene.map.drawTileLayer
-		scene.originalImgDraw = scene.map.drawImageLayer
 		scene.map.drawTileLayer = function(map, layer)
 			if not scene.night then
 				scene.night = shine.nightcolor()
 			end
-			scene.night:draw(function() scene.originalMapDraw(map, layer) end)
-		end
-		scene.map.drawImageLayer = function(map, layer)
-			if not scene.night then
-				scene.night = shine.nightcolor()
-			end
-			if layer.properties.nonight then
-				scene.originalImgDraw(map, layer)
-			else
-				scene.night:draw(function() scene.originalImgDraw(map, layer) end)
-			end
+			scene.night:draw(function()
+				scene.night.shader:send("opacity", layer.opacity or 1)
+				scene.night.shader:send("lightness", 1 - (layer.properties.darkness or 0))
+				scene.originalMapDraw(map, layer)
+			end)
 		end
 	end
 
@@ -128,6 +121,8 @@ return function(scene)
 			if GameState:isFlagSet("ep3_book") then
 			    GameState:setFlag("ep3_read")
 				scene.player.noIdle = true
+				scene.objectLookup.Door.isInteractable = false
+				scene.player:removeKeyHint()
 				return BlockPlayer {
 					Do(function()
 						scene.player.object.properties.ignoreMapCollision = true
@@ -148,7 +143,7 @@ return function(scene)
 						Ease(scene.player, "y", function() return scene.player.y + 70 end, 1, "linear")
 					},
 					Do(function()
-						scene.player.sprite:setAnimation("idledown")
+						scene.player.sprite:setAnimation("readdown")
 					end),
 					MessageBox {message="Sally: 'Once upon a time...'", textspeed=1},
 					Do(function()
@@ -158,7 +153,7 @@ return function(scene)
 							Animate(scene.objectLookup.TailsBed.sprite, "tailstired"),
 							scene:fadeIn(0.2),
 							MessageBox {message="Sally: '...as Ben came upon the clearing, he could see the vastness of the War Claw empire...'"},
-							MessageBox {message="Sally: '...it was then that he realized the immensity of the task before him.'"},
+							MessageBox {message="Sally: '...it was then that he realized the immensity of the task before them.'"},
 							Animate(scene.objectLookup.TailsBed.sprite, "tailssleep"),
 							MessageBox {message="Sally: 'If the allied forces failed to work together, they would surely be defeated.'"},
 							Wait(1),

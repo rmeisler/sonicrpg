@@ -179,7 +179,7 @@ return function(scene, hint)
 			Animate(sally.sprite, "planning_irritated"),
 			MessageBox {message="Sally: Sonic, {p20}stop!"},
 			MessageBox {message="Sonic: Hmph! Whatever."},
-			Animate(fleet.sprite, "meeting_idledown"),
+			Animate(fleet.sprite, "meeting_idleright"),
 			Animate(sally.sprite, "planning"),
 			MessageBox {message="Sally: As I was saying..."},
 			Animate(sally.sprite, "planning_smile"),
@@ -259,13 +259,13 @@ return function(scene, hint)
 					Animate(leon.sprite, "idleright")
 				}
 			},
+			Animate(sally.sprite, "meeting_thinking"),
 			Wait(1),
 			PlayAudio("music", "standup", 0.9, true),
-			Animate(sally.sprite, "meeting_thinking"),
+			MessageBox {message="Sally: Look, we may not be trained military officers, but we've been fighting Robotnik for most of our\nlives...", textspeed=2},
 			Animate(fleet.sprite, "meeting_lookright"),
 			Animate(ivan.sprite, "meeting_idleleft"),
 			Animate(logan.sprite, "meeting_idleright"),
-			MessageBox {message="Sally: Look, we may not be trained military officers, but we've been fighting Robotnik for most of our\nlives...", textspeed=2},
 			MessageBox {message="Sally: ...and we're not going to stop fighting now.", textspeed=2},
 			Wait(1),
 			MessageBox {message="Leon: You really are your father's daughter.", textspeed=2},
@@ -275,44 +275,50 @@ return function(scene, hint)
 				AudioFade("music", 1.0, 0.0, 0.5),
 				Ease(scene.camPos, "y", -180, 0.3),
 				PlayAudio("sfx", "griffvehicle", 1.0, true),
-				Move(griff, scene.objectLookup.GriffWaypoint),
-				Do(function()
-					if not griff.dustTime or griff.dustTime > 0.005 then
-						griff.dustTime = 0
-					elseif griff.dustTime < 0.005 then
+				Parallel {
+					Move(griff, scene.objectLookup.GriffWaypoint),
+					Do(function()
+						if not griff.dustTime or griff.dustTime > 0.005 then
+							griff.dustTime = 0
+						elseif griff.dustTime < 0.005 then
+							griff.dustTime = griff.dustTime + love.timer.getDelta()
+							return
+						end
+						
+						local dust = BasicNPC(
+							scene,
+							{name = "objects"},
+							{
+								name = "griffdust",
+								x = griff.x,
+								y = griff.y,
+								width = 40,
+								height = 36,
+								properties = {nocollision = true, sprite = "art/sprites/dust.png"}
+							}
+						)
+						scene:addObject(dust)
+						dust.sprite.color[1] = 255
+						dust.sprite.color[2] = 255
+						dust.sprite.color[3] = 200
+						dust.sprite.color[4] = 255
+						dust.sprite.sortOrderY = 10000
+						
+						dust.sprite.transform.sx = 4
+						dust.sprite.transform.sy = 4
+						dust.x = dust.x + griff.sprite.w*2
+						dust.sprite:setAnimation("left")
+						
+						dust.y = dust.sprite.transform.y - 10
+						
+						dust.sprite.animations[dust.sprite.selected].callback = function()
+							local ref = dust
+							ref:remove()
+						end
+						
 						griff.dustTime = griff.dustTime + love.timer.getDelta()
-						return
-					end
-					
-					local dust = SpriteNode(
-						scene,
-						Transform(griff.sprite.transform.x, griff.sprite.transform.y),
-						nil,
-						"dust",
-						nil,
-						nil,
-						"sprites"
-					)
-					dust.color[1] = 130
-					dust.color[2] = 130
-					dust.color[3] = 200
-					dust.color[4] = 255
-					dust.sortOrderY = griff.sprite.sortOrderY - 100 --self.sprite.transform.y + self.sprite.h*2 - 20
-					
-					dust.transform.sx = 4
-					dust.transform.sy = 4
-					dust.transform.x = dust.transform.x + griff.sprite.w
-					dust:setAnimation("left")
-					
-					dust.transform.y = dust.transform.y - 10
-					
-					dust.animations[dust.selected].callback = function()
-						local ref = dust
-						ref:remove()
-					end
-					
-					griff.dustTime = griff.dustTime + love.timer.getDelta()
-				end)
+					end)
+				}
 			},
 			Animate(griff.sprite, "idleleft_lookup"),
 			Animate(sally.sprite, "meeting_shock"),
@@ -372,7 +378,7 @@ return function(scene, hint)
 					hop(sonic),
 					MessageBox {message="Sonic: It's a long story{p60}, just tell us what the heck that is!"},
 					Animate(scene.objectLookup.GriffMtg2.sprite, "meeting_idledown"),
-					MessageBox {message="Griff: Some kind of new bot... {p60}the only intel I have on it is from Robotnik's field testing{p60}, and the results are not pretty..."},
+					MessageBox {message="Griff: Some kind of new bot... {p60}the only intell I have on it is from Robotnik's field testing{p60}, and the results are not pretty..."},
 					MessageBox {message="Griff: ...according to the data... {p60}if Robotnik finishes this thing{p60}, he could destroy the entire ecosystem in a matter of days..."},
 					Animate(sonic.sprite, "shock"),
 					Animate(bunnie.sprite, "shock"),
@@ -410,7 +416,7 @@ return function(scene, hint)
 					hop(sonic),
 					MessageBox {message="Sonic: Say wha?"},
 					Animate(sally.sprite, "planning"),
-					MessageBox {message="Sally: If {h Project Firebird} is as dangerous as Griff says it is, then we are going to have to put aside our differences and work together!"},
+					MessageBox {message="Sally: If {h Project Firebird} is as dangerous as\nGriff says it is, then we are going to have to put\naside our differences and work together!"},
 					MessageBox {message="Leon: That sounds like a wonderful idea."},
 					MessageBox {message="Leon: Fleet, Logan, and Ivan{p60}, you will accompany Sally's away team."},
 					hop(sonic),

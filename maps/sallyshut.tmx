@@ -209,6 +209,9 @@ return function(self)
                         {Layout.Text(&quot;Take a rest?&quot;), selectable = false},
                         {Layout.Text(&quot;Yes&quot;), choose = function(menu)
                             menu:close()
+                            GameState:setFlag(&quot;ep3_sallynap&quot;)
+                            self.isInteractable = false
+                            self.scene.player:removeKeyHint()
                             self:run {
                                 menu,
                                 Do(function()
@@ -216,7 +219,7 @@ return function(self)
                                     self.scene.player.dropShadow.hidden = true
                                     self.scene.player.x = self.scene.objectLookup.SallysBed.x + 70
                                     self.scene.player.y = self.scene.objectLookup.SallysBed.y + 90
-                                    self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.SallysBed)] = self.scene.objectLookup.SallysBed
+                                    self.scene.player:removeKeyHint()
                                 end),
                                 Animate(self.scene.objectLookup.SallysBed.sprite, &quot;sleeping&quot;),
                                 AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),

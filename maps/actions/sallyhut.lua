@@ -30,6 +30,10 @@ return function(scene, hint)
 		100
 	)
 	
+	if GameState:isFlagSet("ep3_sallynap") then
+		scene.objectLookup.SallysBed.isInteractable = false
+	end
+	
 	if scene.nighttime then
 		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
 		local prefix = "nighthide"
@@ -38,7 +42,6 @@ return function(scene, hint)
 				layer.opacity = 1.0
 			end
 		end
-		scene.objectLookup.SallysBed.handlers = {}
 	else
 		scene.objectLookup.Door.object.properties.scene = "knothole.lua"
 		local prefix = "nighthide"
@@ -148,7 +151,7 @@ return function(scene, hint)
 				scene.player.x = scene.objectLookup.SallysBed.x + 70
 				scene.player.y = scene.objectLookup.SallysBed.y + 95
 			end),
-			Wait(1),
+			Wait(0.5),
 			Do(function()
 				scene.player.sprite:setAnimation("pose")
 				scene.player.state = "pose"
@@ -170,8 +173,7 @@ return function(scene, hint)
 		})
 		
 		if hint == "sleep" then
-			scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
-			scene.objectLookup.SallysBed.handlers = {}
+			scene.objectLookup.SallysBed.isInteractable = false
 			scene.player:removeKeyHint()
 			return BlockPlayer {			
 				Do(function()
@@ -181,8 +183,6 @@ return function(scene, hint)
 					scene.player.y = scene.objectLookup.SallysBed.y + 90
 					GameState:removeFromParty("sonic")
 					GameState:removeFromParty("antoine")
-					scene.player.hidekeyhints[tostring(scene.objectLookup.SallysBed)] = scene.objectLookup.SallysBed
-					scene.player:removeKeyHint()
 				end),
 				Animate(scene.objectLookup.SallysBed.sprite, "sleeping"),
 				Wait(5),

@@ -14,6 +14,12 @@ return {
 		concernedright = {
 			frames = {{11,0}}
 		},
+		upsetdown = {
+			frames = {{10,2}}
+		},
+		upsetright = {
+			frames = {{11,2}}
+		},
 		
 		climb_1 = {
 			frames = {{6,4}}

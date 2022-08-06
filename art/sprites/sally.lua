@@ -167,6 +167,10 @@ return {
 			frames = {{6,3}}
 		},
 		
+		readdown = {
+			frames = {{2,6}}
+		},
+		
 		thinking = {
 			frames = {{10,4}}
 		},

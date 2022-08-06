@@ -447,6 +447,29 @@ function NPC:drop()
 	}
 end
 
+function NPC:walk(to, speed, walkAnim, stopAnim)
+	return Serial {
+		Do(function()
+			self.sprite:setAnimation(walkAnim)
+		end),
+		Parallel {
+			Ease(self, "x", to.x, speed, "linear"),
+			Ease(self, "y", to.y, speed, "linear")
+		},
+		Do(function()
+			self.sprite:setAnimation(stopAnim)
+			self:updateCollision()
+		end)
+	}
+end
+
+function NPC:hop()
+	return Serial {
+		Ease(self, "y", function() return self.y - 50 end, 8),
+		Ease(self, "y", function() return self.y + 50 end, 8)
+	}
+end
+
 function NPC:update(dt)
 	local prevState = self.state
 	self.state = NPC.STATE_IDLE

@@ -5,8 +5,6 @@ function TypeText:construct(transform, color, font, text, speed, noFastForward, 
     self.color = color
     self.font = font
     self.text = text or ""
-    self.curtext = self.text
-    self.textlen = string.len(self.text)
     self.charidx = 1
     self.spacing = 2
     self.elapsed = 0
@@ -19,11 +17,18 @@ function TypeText:construct(transform, color, font, text, speed, noFastForward, 
     self.noFastForward = noFastForward
     self.type = "TypeText"
     self.textFont = font
-    self.textTable = {}
-    self.textTable = self:UpdateText(text or " ")
     self.hlText = " "
     self.hlcolor = {0,255,255,self.color[4]}
     self.outlineCLR = {0,0,0,self.color[4]}
+	
+	local text = ""
+	if type(self.text) == "string" then
+		text = self.text
+		self.curtext = text
+		self.textlen = string.len(text)
+		self.textTable = {}
+		self.textTable = self:UpdateText(text or " ")
+	end
 	
 	-- If TypeText is too fast, just have it autocompleted
 	if speed >= 100 then
@@ -49,6 +54,15 @@ function TypeText:setScene(scene)
 
     scene:addHandler("update", TypeText.update, self)
     scene:addNode(self, "ui")
+	
+	if type(self.text) == "function" then
+		local text = ""
+		text = self.text()
+		self.curtext = text
+		self.textlen = string.len(text)
+		self.textTable = {}
+		self.textTable = self:UpdateText(text or " ")
+	end
 
     self:update(0)
 end

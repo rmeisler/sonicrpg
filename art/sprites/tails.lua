@@ -9,7 +9,7 @@ return {
 			frames = {{10,2}}
 		},
 		shock = {
-			frames = {{11,4}}
+			frames = {{13,2}}
 		},
 		
 		leapdown = {
