@@ -416,6 +416,7 @@ function GameState:load(scene, slot)
 	if self:isFlagSet("sonichut_intro") then
 		self:addToParty("sally", 6, true)
 		self.leader = "sally"
+		self:setFlag("ep3_intro")
 		scene.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/sonicdemo_manifest.lua"}
 	-- ep3 save file
 	else
