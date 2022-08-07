@@ -231,6 +231,9 @@ function Region:goToNext()
 		local mapName = self.args.map or self.primaryMap
 		local map = self.maps[mapName]
 		map.music = self.args.nextMusic
+		
+		collectgarbage("collect")
+		
 		-- Transition to primary scene
 		self.sceneMgr:switchScene {
 			class = "BasicScene",

@@ -734,16 +734,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/robovisit1.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/robovisit2.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
 		file = "audio/music/flutter.ogg",
 		category = "music"
 	},
@@ -760,11 +750,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/trialcomplete.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/exciting.ogg",
 		category = "music"
 	},
 	{
@@ -814,22 +799,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/sallyupset.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/meettherebellion.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/fleetsmack.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
 		file = "audio/sfx/slice.ogg",
 		category = "sfx"
 	},
@@ -846,11 +815,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/craft.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/cooking.ogg",
 		category = "sfx"
 	},
 	{
@@ -876,11 +840,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/splash2.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/fan.ogg",
 		category = "sfx"
 	},
 	{
@@ -950,22 +909,17 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/juggerbotroar.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/laser.ogg",
 		category = "sfx"
 	},
 	{
 		type = "sound",
 		file = "audio/sfx/lasersweep.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/factoryfloor.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/factoryspit.ogg",
 		category = "sfx"
 	},
 	{
@@ -1000,11 +954,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/path.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
 		file = "audio/sfx/poptop.ogg",
 		category = "sfx"
 	},
@@ -1020,16 +969,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/juggerbotstep.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/juggerbotroar.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
 		file = "audio/sfx/leonroar.ogg",
 		category = "sfx"
 	},
@@ -1041,11 +980,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/swatbotlaser.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/swing.ogg",
 		category = "sfx"
 	},
 	{
@@ -1125,31 +1059,13 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/areyouready.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
 		file = "audio/music/lookout.ogg",
 		category = "music",
 		looping = true
 	},
 	{
 		type = "sound",
-		file = "audio/music/lookout2.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
 		file = "audio/music/games.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/music/bunniesveggies.ogg",
 		category = "music",
 		looping = true
 	},
@@ -1187,11 +1103,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/bremembers.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
 		file = "audio/music/ringlake.ogg",
 		category = "music",
 	},
@@ -1199,17 +1110,6 @@ return {
 		type = "sound",
 		file = "audio/music/sonicsad.ogg",
 		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/bsad.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/bhero.ogg",
-		category = "music",
-		looping = true
 	},
 	{
 		type = "sound",
@@ -1241,11 +1141,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/credits.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
 		file = "audio/music/darkswamp.ogg",
 		category = "music",
 		looping = true
@@ -1257,40 +1152,9 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/mission2.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
 		file = "audio/music/openingmission2.ogg",
 		category = "music",
 		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/escapefanfare.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/dead.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/deatheggtransition.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/transition.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/escapelevel.ogg",
-		category = "music",
 	},
 	{
 		type = "sound",
@@ -1307,12 +1171,6 @@ return {
 		type = "sound",
 		file = "audio/music/robotrouble.ogg",
 		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/robobuilding.ogg",
-		category = "music",
-		looping = true,
 	},
 	{
 		type = "sound",
@@ -1337,11 +1195,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/ironlocklouder.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/ironlockintro.ogg",
 		category = "music"
 	},
 	{

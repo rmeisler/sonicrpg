@@ -221,37 +221,6 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="20" name="Bunnie" type="BasicNPC" gid="4565" x="384" y="288" width="64" height="96">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-8"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="idleup"/>
-    <property name="ghost" type="bool" value="false"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Menu = require &quot;actions/Menu&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-
-local Transform = require &quot;util/Transform&quot;
-local Layout = require &quot;util/Layout&quot;
-
-local NPC = require &quot;object/NPC&quot;
-
-return function(self)
-    return BlockPlayer {
-        MessageBox {message = &quot;Bunnie: That big gray dog-fella is just drivin' me crazy!&quot;}
-    }
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
-   </properties>
-  </object>
  </objectgroup>
  <layer name="top" width="25" height="20">
   <data encoding="csv">

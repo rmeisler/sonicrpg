@@ -323,7 +323,7 @@ return function(scene, hint)
 			Animate(logan.sprite, "meeting_idledown"),
 			Animate(ivan.sprite, "meeting_idledown"),
 			Animate(fleet.sprite, "meeting_idledown"),
-			Animate(leon.sprite, "meeting_idledown"),
+			Animate(leon.sprite, "idledown"),
 			Animate(griff.sprite, "idleleft_lookup"),
 			Animate(sally.sprite, "meeting_shock"),
 			MessageBox {message="Sally: Griff?! {p60}What are you doing here?"},

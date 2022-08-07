@@ -33,7 +33,7 @@ return function(scene)
 	})
 
 	if not scene.nighttime then
-		scene.audio:playMusic("bunniesveggies", 1.0)
+		--scene.audio:playMusic("bunniesveggies", 1.0)
 	else
 		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
 	end
