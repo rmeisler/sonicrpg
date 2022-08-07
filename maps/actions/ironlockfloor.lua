@@ -262,6 +262,8 @@ return function(scene, hint)
 							Do(function()
 								scene.objectLookup.Snively.sprite:setAnimation("idleright_laugh")
 							end),
+							Animate(scene.objectLookup.Sally.sprite, "thinking"),
+							Animate(scene.objectLookup.Sonic.sprite, "idleright"),
 							Wait(1),
 							MessageBox{message="Snively: Let him go. He's no threat without the Princess or Hedgehog."}
 						}

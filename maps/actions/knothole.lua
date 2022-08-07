@@ -505,6 +505,7 @@ return function(scene, hint)
 								scene.objectLookup.ProjectionMtg.hidden = true
 
 								scene.audio:playMusic("knothole", 0.8)
+								scene.objectLookup.Cart.isInteractable = true
 							end),
 							MessageBox{message="Sally: When you're ready to go we'll ride this pulley cart out of Knothole and head east to\nthe {h Dark Swamp}."},
 							walkin

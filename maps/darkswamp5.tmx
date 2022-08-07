@@ -444,7 +444,7 @@ return function(self)
                             menu,
                             MessageBox {message = &quot;???: Here lies the village of {h Old Knothole}...&quot;},
                             Animate(self.sprite, &quot;mouthopen_idle&quot;),
-                            MessageBox {message = &quot;???: Three hundred years ago, the Kingdom of Mobotropolis was expanding as the the young King {h Cornelius Acorn} lusted for power and legacy... &quot;},
+                            MessageBox {message = &quot;???: Three hundred years ago, the Kingdom of Mobotropolis was expanding as the the young King\n{h Cornelius Acorn} lusted for power and legacy... &quot;},
                             MessageBox {message = &quot;???: Breaking past treaties, he began occupying all of his neighboring countries, forcing them to join his empire.&quot;},
                             Animate(self.sprite, &quot;idle&quot;),
                             MessageBox {message = &quot;???: All that remained was the Land of Wizards. No one ever dare declare war against them as all were too aware of their terrible power.&quot;},
@@ -479,7 +479,10 @@ return function(self)
                         self.scene:run {
                             Parallel {
                                 walkin,
-                                Ease(self.scene.player, &quot;x&quot;, self.scene.player.x - 60, 1)
+                                Do(function()
+                                    self.scene.player.x = self.scene.player.x + 60
+                                    self.scene.player.y = self.scene.player.y + 60
+                                end)
                             }
                         }
                     end},

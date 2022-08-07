@@ -44,7 +44,12 @@ return function(scene, hint)
 		end),
 		
 		PlayAudio("music", "darkintro", 1.0, true, true),
+		
+		Wait(1),
 		MessageBox{message="Snively: Hmmm...{p60}I was afraid of this."},
+		
+		PlayAudio("sfx", "quake", 1.0, true),
+		scene:screenShake(10, 30, 20),
 		
 		Animate(scene.objectLookup.Sonic.sprite, "irritated"),
 		MessageBox{message="Sonic: What a surprise! {p60}Needle nose is afraid of something!"},
@@ -66,6 +71,12 @@ return function(scene, hint)
 		MessageBox{message="Sonic: What's that supposed to mean?!"},
 		MessageBox{message="Snively: I doubt your tiny rodent brain could understand--"},
 		MessageBox{message="Snively: --this place appears to lie on an interdimensional fault line and Project Firebird's presence\nhas caused it to become unstable..."},
+		
+		Spawn(Serial {
+			PlayAudio("sfx", "quake", 1.0, true),
+			scene:screenShake(10, 30, 20)
+		}),
+		
 		Animate(scene.objectLookup.Sally.sprite, "thinking"),
 		MessageBox{message="Sally: Unstable?"},
 		Do(function() scene.objectLookup.Snively.sprite:setAnimation("idleright_laugh") end),
@@ -84,6 +95,11 @@ return function(scene, hint)
 		Do(function()
 			scene.objectLookup.Snively:remove()
 		end),
+		
+		Spawn(Serial {
+			PlayAudio("sfx", "quake", 1.0, true),
+			scene:screenShake(10, 30, 20)
+		}),
 		
 		MessageBox{message="Sonic: No, no, no!! {p60}Come on! There has to be a way out of here!"},
 		
@@ -104,16 +120,22 @@ return function(scene, hint)
 		
 		PlayAudio("music", "introspection", 1.0, true),
 		Animate(scene.objectLookup.Sally.sprite, "pose"),
-		MessageBox{message="Sally: Wait{p60}, Antoine!{p60} Antoine is still out there!", closeAction=Wait(1.5)},
+		MessageBox{message="Sally: Well... {p60}at least Antoine is still out there!", closeAction=Wait(1.5)},
 		
 		Do(function() scene.objectLookup.Sonic.sprite:setAnimation("foottap") end),
 		MessageBox{message="Sonic: Well that's just great. {p60}We're hedgehog and squirrel stew!", closeAction=Wait(2)},
 		Animate(scene.objectLookup.Sally.sprite, "idleleft"),
 		MessageBox{message="Sally: Sonic!", closeAction=Wait(1)},
-		MessageBox{message="Sonic: Not to be rude, Sal-- but let's face it-- {p60}when was the last time, Ant saved any of our butts?", closeAction=Wait(2)},
+		MessageBox{message="Sonic: Not to be rude Sal, but let's face it-- {p60}when was the last time, Ant saved any of our butts?", closeAction=Wait(2)},
 		
-		MessageBox{message="Ivan: Yes. {p60}The cowardly coyote breaking us out of here seems highly improbable.", closeAction=Wait(2)},
+		MessageBox{message="Ivan: Yes. {p60}The cowardly coyote rescuing us seems highly improbable.", closeAction=Wait(3)},
 		MessageBox{message="Sonic: See! {p60}Even the dingo gets it!", closeAction=Wait(1.5)},
+		
+		Spawn(Serial {
+			PlayAudio("sfx", "quake", 1.0, true),
+			scene:screenShake(10, 30, 20)
+		}),
+		
 		Animate(scene.objectLookup.Sally.sprite, "thinking"),
 		MessageBox{message="Sally: Come on guys{p60}, Antoine may not be the most heroic person, but he is still a Freedom Fighter!", closeAction=Wait(2)},
 		MessageBox{message="Sally: *whisper* Plus...{p60} who would you rather be saved by--{p40} Antoine{p40} or Fleet?", closeAction=Wait(2)},
@@ -125,7 +147,7 @@ return function(scene, hint)
 		MessageBox{message="Fleet: Hey, I heard that!!", closeAction=Wait(1)},
 		
 		Wait(1),
-		PlayAudio("sfx", "explosion", 1.0, true),
+		PlayAudio("sfx", "explosion2", 1.0, true),
 		scene:screenShake(30, 20),
 		
 		Animate(scene.objectLookup.Sonic.sprite, "shock"),
@@ -133,14 +155,14 @@ return function(scene, hint)
 		--Animate(scene.objectLookup.Ivan.sprite, "shock"),
 		--Animate(scene.objectLookup.Logan.sprite, "shock"),
 		--Animate(scene.objectLookup.Fleet.sprite, "shock"),
+		Animate(scene.objectLookup.Fleet.sprite, "idleleft"),
+		Animate(scene.objectLookup.Ivan.sprite, "idleleft"),
+		Animate(scene.objectLookup.Logan.sprite, "idleleft"),
 		
 		MessageBox{message="Sonic: Uh oh!"},
 		
 		PlayAudio("sfx", "explosion2", 1.0, true),
 		scene:screenShake(30, 20),
-		
-		PlayAudio("sfx", "explosion2", 1.0, true),
-		scene:screenShake(30, 20, 10),
 		
 		Wait(2),
 		
@@ -151,7 +173,7 @@ return function(scene, hint)
 		
 		PlayAudio("music", "antoinerescue", 1.0, true),
 		Wait(0.5),
-		Ease(scene.camPos, "x", 400, 0.3, "inout"),
+		Ease(scene.camPos, "x", 400, 0.2, "inout"),
 		
 		MessageBox{message="Sonic & Sally: Antoine!", closeAction=Wait(2)},
 		MessageBox{message="Antoine: But of course!", closeAction=Wait(2)},
@@ -173,9 +195,9 @@ return function(scene, hint)
 			scene.objectLookup.Antoine.sprite:setAnimation("idleup")
 		end),
 		
-		MessageBox{message="Antoine: A-A-Are you alright, my princess?", closeAction=Wait(1)},
-		MessageBox{message="Sally: We're ok Antoine, but we have to get out of here! {p60}This place is about to implode!", closeAction=Wait(1)},
-		MessageBox{message="Antoine: Yes ok, zis is not good I am thinking.", closeAction=Wait(1.2)},
+		MessageBox{message="Antoine: A-A-Are you alright, my princess?", closeAction=Wait(1.5)},
+		MessageBox{message="Sally: We're ok Antoine, but we have to get out of here! {p60}This place is about to implode!", closeAction=Wait(1.2)},
+		MessageBox{message="Antoine: Yes ok, zis is not good I am thinking.", closeAction=Wait(1.5)},
 		
 		Do(function()
 			scene.objectLookup.Antoine.sprite:setAnimation("walkup")
@@ -184,6 +206,7 @@ return function(scene, hint)
 			Ease(scene.objectLookup.Antoine, "x", scene.objectLookup.Switch.x - 32, 1, "linear"),
 			Ease(scene.objectLookup.Antoine, "y", scene.objectLookup.Switch.y - 16, 1, "linear")
 		},
+		PlayAudio("sfx", "openchasm", 1.0, true),
 		Do(function()
 			scene.objectLookup.Antoine.sprite:setAnimation("idleup")
 			scene.objectLookup.Switch.sprite:setAnimation("on")
@@ -225,7 +248,7 @@ return function(scene, hint)
 
 		Animate(scene.objectLookup.Antoine.sprite, "idleright"),
 		Animate(scene.objectLookup.Logan.sprite, "attitude"),
-		MessageBox{message="Logan: Thanks... {p40} I mean, I would've eventually found a way to hack the computer system and get us out--", closeAction=Wait(1)},
+		MessageBox{message="Logan: Thanks... {p40} I mean, I would've eventually found a way to hack the computer system and get us out--", closeAction=Wait(2)},
 
 		Animate(scene.objectLookup.Ivan.sprite, "attitude"),
 		MessageBox{message="Ivan: Thank you.", closeAction=Wait(1)},
@@ -271,7 +294,10 @@ return function(scene, hint)
 		--Animate(scene.objectLookup.Ivan.sprite, "idledown"),
 		--Animate(scene.objectLookup.Logan.sprite, "idledown"),
 		--Animate(scene.objectLookup.Fleet.sprite, "idledown"),
-		Spawn(scene:screenShake(10, 30, 50)),
+		Spawn(Serial {
+			PlayAudio("sfx", "quake", 1.0, true),
+			scene:screenShake(10, 30, 20)
+		}),
 		Wait(1),
 		Animate(scene.objectLookup.Sally.sprite, "idleright"),
 		Animate(scene.objectLookup.Sonic.sprite, "idleright"),

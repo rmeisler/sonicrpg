@@ -430,14 +430,20 @@ function GameState:load(scene, slot)
 	
 	self.flags = data.flags
 	
-	scene.sceneMgr:pushScene {
-		class = "Region",
-		manifest = data.region,
-		map = data.map,
-		spawn_point = data.spawnPoint,
-		nextMusic = data.music,
-		hint = "fromload"
-	}
+	-- ep2 save file
+	if GameState:isFlagSet("sonichut_intro") then
+		self.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/sonicdemo_manifest.lua"}
+	-- ep3 save file
+	else
+		scene.sceneMgr:pushScene {
+			class = "Region",
+			manifest = data.region,
+			map = data.map,
+			spawn_point = data.spawnPoint,
+			nextMusic = data.music,
+			hint = "fromload"
+		}
+	end
 end
 
 

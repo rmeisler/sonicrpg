@@ -25,6 +25,11 @@ function Tomb:construct(scene, layer, object)
 	end
 	
 	NPC.init(self)
+	
+	if GameState:isFlagSet(self:getFlag()) then
+		self:remove()
+		return
+	end
 
 	self:addInteract(Tomb.investigate)
 end
@@ -109,6 +114,7 @@ function Tomb:onScan()
 				self.onBenefit(self)
                 self.scene.player.sprite:setAnimation("idledown")
                 self:removeCollision()
+				GameState:setFlag(self:getFlag())
             end)
         }
     }

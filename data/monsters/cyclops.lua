@@ -67,6 +67,8 @@ return {
 		oppo.body = self
 		oppo:onPreInit()
 		self.eye = oppo
+		
+		self.proneTurns = 0
 	end,
 	
 	onConfused = function(self)

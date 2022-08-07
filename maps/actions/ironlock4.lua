@@ -70,7 +70,7 @@ return function(scene, hint)
 				
 				MessageBox{message="Antoine: So what skills do you have then, Antoine\nDepardieu?", closeAction=Wait(1)},
 				MessageBox{message="Antoine: Ah! {p40}I am a very fine chef! {p40}Yes, that is right!", closeAction=Wait(1)},
-				MessageBox{message="Antoine: So I will serve them food on ze platter and serve ze Swatbots a knuckle sandwhich!! {p40}No, this does not make sense. {p40}Bots are made of metal. {p40}I will simply hurt my hand...", closeAction=Wait(2)},
+				MessageBox{message="Antoine: So I will serve them food on ze platter and serve ze Swatbots a knuckle sandwhich!! {p40}No, this does not make sense. {p40}Bots are made of metal. {p40}I will simply hurt my hand...", closeAction=Wait(3)},
 				MessageBox{message="Antoine: So {p40}what I'm getting at here is zat I am unskilled{p40}, untrained{p40}, and completely helpless. {p60}I am ze worst Freedom Fighter and I can not help in any capacity, all I do is get captured and let people down, as I am always doing!!", closeAction=Wait(4), textSpeed=3},
 			}
 		},

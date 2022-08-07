@@ -760,7 +760,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/elevatorend.ogg",
+		file = "audio/sfx/quake.ogg",
 		category = "sfx"
 	},
 	{
@@ -1451,6 +1451,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/ironlock.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/ironlocklouder.ogg",
 		category = "music"
 	},
 	{

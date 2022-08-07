@@ -1505,6 +1505,8 @@
     <property name="alignOffsetX" type="float" value="-44"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
+    <property name="keyToDoor" value="nope"/>
+    <property name="locked" type="bool" value="true"/>
     <property name="orientation" value="down"/>
     <property name="scene" type="file" value="rebellionhut.lua"/>
     <property name="spawn_point" value="Door"/>
@@ -1602,6 +1604,11 @@ end</property>
     <property name="defaultAnim" value="foreground"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="onInit">return function(self)
+    if not GameState:isFlagSet(&quot;ep3_ffmeetingover&quot;) then
+        self.isInteractable = false
+    end
+end</property>
     <property name="onInteract">local Menu = require &quot;actions/Menu&quot;
 local Move = require &quot;actions/Move&quot;
 local Do = require &quot;actions/Do&quot;
@@ -2795,10 +2802,8 @@ return function(self)
                                 },
                                 Do(function() self.scene.objectLookup.Bunnie.hidden = false end),
                                 Animate(self.sprite, &quot;shock&quot;),
-                                Parallel {
-                                    MessageBox{message=&quot;Bunnie: Tails!&quot;},
-                                    self:hop()
-                                },
+                                MessageBox{message=&quot;Bunnie: Tails!&quot;},
+                                self:hop(),
                                 Parallel {
                                     self.scene.objectLookup.Bunnie:walk(Transform(650, 1660), 1, &quot;walkright&quot;, &quot;upsetright&quot;),
                                     MessageBox{message=&quot;Bunnie: Now what did I tell y'all 'bout playin' dirt hockey in the garden!?&quot;}

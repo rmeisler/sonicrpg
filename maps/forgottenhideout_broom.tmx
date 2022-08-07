@@ -250,10 +250,10 @@ return function(self)
             PlayAudio(&quot;music&quot;, &quot;bsad&quot;, 0.0, true, true),
             Animate(self.sprite, &quot;pose&quot;),
             Parallel {
-                AudioFade(&quot;music&quot;, 0.0, 1.0, 0.5),
+                AudioFade(&quot;music&quot;, 0.0, 0.8, 0.5),
                 MessageBox {message = &quot;B: It's much worse than just that, unfortunately...&quot;}
             },
-            MessageBox {message = &quot;B: I've had this condition much longer than the others...{p60} as it's progressed it has mutated from simple amnesia to a debilitating disorder...&quot;},
+            MessageBox {message = &quot;B: I've had this condition much longer than the others{p60}, as it has progressed it has mutated from simple amnesia to a much more debilitating disorder...&quot;},
             MessageBox {message = &quot;B: I see these flashes-- {p60}half-remembered memories of my past life...&quot;},
             MessageBox {message = &quot;B: As soon as they disappear I am left with pain... {p60}worse than any physical torture you could imagine...&quot;},
             Animate(sprites.sally.sprite, &quot;sadleft&quot;),
@@ -273,7 +273,7 @@ return function(self)
             Animate(self.sprite, &quot;seriousdown&quot;),
             MessageBox {message = &quot;B: ... {p60}if that's true...&quot;},
             MessageBox {message = &quot;Sally: Please B... {p60}you'll all be much safer in Knothole.&quot;},
-            Spawn(AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5)),
+            Spawn(AudioFade(&quot;music&quot;, 0.8, 0.0, 0.5)),
             Wait(1),
             Animate(self.sprite, &quot;idledown&quot;),
             MessageBox {message = &quot;B: Alright, I'll consider it. {p60}But I want you to make sure that the rest of my family agrees with you.&quot;},

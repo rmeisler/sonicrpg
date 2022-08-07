@@ -1551,7 +1551,7 @@ return function(self, player, prevState)
         return
     end
     player.onLocation = self
-    self.scene.pressX.color = {255,255,255,255}
+    --self.scene.pressX.color = {255,255,255,255}
 
     player.robotropCallback = function(key)
         if player.onLocation == self and
@@ -1584,7 +1584,7 @@ return function(self, player, prevState)
             })
         end
     end
-    self.scene:addHandler(&quot;keytriggered&quot;, player.robotropCallback)
+    --self.scene:addHandler(&quot;keytriggered&quot;, player.robotropCallback)
 
     self.typeText = TypeText(
         Transform(50, 500),
@@ -2290,7 +2290,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/worldmaptrees.png"/>
    </properties>
   </object>
-  <object id="294" name="BHideout" type="BasicNPC" gid="3521" x="1888" y="1536" width="64" height="64">
+  <object id="294" name="BHideout" type="BasicNPC" gid="3521" x="1856" y="1536" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
@@ -2298,6 +2298,7 @@ end</property>
     if player.onSubLocation == self then
         player.onSubLocation = nil
         self.scene:removeHandler(&quot;keytriggered&quot;, player.deatheggCallback)
+        self.scene.pressX.color = {100,100,100,255}
     end
 end</property>
     <property name="whileColliding">local TypeText = require &quot;actions/TypeText&quot;
@@ -2317,6 +2318,7 @@ return function(self, player, prevState)
         return
     end
     player.onSubLocation = self
+    self.scene.pressX.color = {255,255,255,255}
 
     player.bhideoutCallback = function(key)
         if player.onSubLocation == self and not self.scene.sceneMgr.transitioning and key == &quot;x&quot; then

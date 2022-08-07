@@ -51,6 +51,10 @@ return function(scene, hint)
 				scene.objectLookup.Sally.y = 416 - 98
 				scene.objectLookup.Antoine.y = 352 - 98
 			end),
+			Spawn(Serial {
+				PlayAudio("sfx", "quake", 1.0, true),
+				scene:screenShake(10, 30, 20)
+			}),
 			Parallel {
 				MessageBox{message="Sally: That was a close one!"},
 				Ease(scene.objectLookup.King.sprite.color, 4, 255, 0.3)
@@ -67,11 +71,19 @@ return function(scene, hint)
 				Ease(scene.objectLookup.King.sprite.color, 3, 255, 0.3)
 			},
 			PlayAudio("music", "sallysad", 1.0, true),
+			Spawn(Serial {
+				PlayAudio("sfx", "quake", 1.0, true),
+				scene:screenShake(10, 30, 20)
+			}),
 			MessageBox{message="King: Sally... {p60}I pray this message finds its way to you as so many before it have not...", closeAction=Wait(2)},
 			Animate(scene.objectLookup.Sally.sprite, "idleright"),
 			MessageBox{message="Sally: Daddy, it's me! {p60}I'm here!", closeAction=Wait(2)},
 			Animate(scene.objectLookup.Sonic.sprite, "idleright"), --worried right
 			MessageBox{message="Sonic: I don't think he can hear you Sal-- {p60}we gotta juice before--", closeAction=Wait(1.5)},
+			Spawn(Serial {
+				PlayAudio("sfx", "quake", 1.0, true),
+				scene:screenShake(10, 30, 20)
+			}),
 			MessageBox{message="Antoine: Ah Sonic{p20}, let her listen Sonic. {p60}We will make it out in time.", closeAction=Wait(1.5)},
 			Animate(scene.objectLookup.Sonic.sprite, "shock"),
 			MessageBox{message="Sonic: Wow, what's gotten into you?", closeAction=Wait(1.5)},
@@ -85,6 +97,10 @@ return function(scene, hint)
 			
 			Wait(1),
 			MessageBox{message="Sonic: Come on, Sal--", closeAction=Wait(1)},
+			Spawn(Serial {
+				PlayAudio("sfx", "quake", 1.0, true),
+				scene:screenShake(10, 30, 20)
+			}),
 			MessageBox{message="King: S-{p20}Sally?", closeAction=Wait(1.5)},
 			
 			Animate(scene.objectLookup.Sally.sprite, "shock"),
@@ -101,7 +117,10 @@ return function(scene, hint)
 			
 			Ease(scene.objectLookup.King.sprite.color, 4, 0, 0.3),
 			Animate(scene.objectLookup.Sally.sprite, "idleright"), -- angershockright
-			Spawn(scene:screenShake(10, 30, 300)),
+			Spawn(Parallel {
+				Repeat(PlayAudio("sfx", "quake", 1.0)),
+				scene:screenShake(10, 30, 300)
+			}),
 			MessageBox{message="Sally: No!", closeAction=Wait(2)},
 			Parallel {
 				Ease(scene.objectLookup.Sonic, "x", scene.objectLookup.Sally.x, 2, "linear"),
