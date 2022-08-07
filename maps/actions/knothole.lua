@@ -320,6 +320,10 @@ return function(scene, hint)
 					end)
 				}
 			},
+			Animate(logan.sprite, "meeting_idledown"),
+			Animate(ivan.sprite, "meeting_idledown"),
+			Animate(fleet.sprite, "meeting_idledown"),
+			Animate(leon.sprite, "meeting_idledown"),
 			Animate(griff.sprite, "idleleft_lookup"),
 			Animate(sally.sprite, "meeting_shock"),
 			MessageBox {message="Sally: Griff?! {p60}What are you doing here?"},
@@ -351,6 +355,10 @@ return function(scene, hint)
 						scene.objectLookup.NicoleMtg.sprite.sortOrderY = 99999
 					end),
 					Wait(1),
+					Animate(logan.sprite, "meeting_idledown"),
+					Animate(ivan.sprite, "meeting_idleleft"),
+					Animate(fleet.sprite, "meeting_idleright"),
+					Animate(leon.sprite, "idleright"),
 					scene:fadeIn(0.5),
 					MessageBox {message="Sally: Nicole{p60}, play file."},
 					Animate(scene.objectLookup.NicoleMtg.sprite, "lit"),

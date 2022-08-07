@@ -491,7 +491,7 @@ return function(self, player, prevState)
                 Ease(ironlockLayer, &quot;offsety&quot;, ironlockLayer.offsety + 64, 0.1)
             },
             Do(function()
-                self.scene:changeScene{map=&quot;ironlock1&quot;, fadeOutSpeed=0.3, fadeInSpeed=0.3}
+                self.scene:changeScene{map=&quot;ironlock1&quot;, manifest=&quot;ironlock_manifest&quot;, fadeOutSpeed=0.3, fadeInSpeed=0.3}
             end)
         })
     end

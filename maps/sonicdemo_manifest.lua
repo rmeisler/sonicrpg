@@ -6,69 +6,6 @@ return {
     },
 	{
         type = "map",
-		file = "maps/ironlock1.lua",
-		--primary = true
-    },
-	{
-        type = "map",
-		file = "maps/ironlock2.lua",
-    },
-	{
-        type = "map",
-		file = "maps/ironlock3.lua"
-    },
-	{
-        type = "map",
-		file = "maps/ironlock3.lua"
-    },
-	{
-        type = "map",
-		file = "maps/ironlock4.lua"
-    },
-	{
-        type = "map",
-		file = "maps/ironlock_snively.lua"
-    },
-	{
-        type = "map",
-		file = "maps/ironlock_boss.lua",
-		--primary = true
-    },
-	{
-        type = "map",
-		file = "maps/ironlock1_door1.lua"
-    },
-	{
-        type = "map",
-		file = "maps/ironlock1_door2.lua"
-    },
-	{
-        type = "map",
-		file = "maps/ironlock1_door3.lua"
-    },
-	{
-        type = "map",
-		file = "maps/ironlock1_door4.lua"
-    },
-	{
-        type = "map",
-		file = "maps/ironlock3_door1.lua"
-    },
-	{
-        type = "map",
-		file = "maps/ironlock3_door2.lua"
-    },
-	{
-        type = "map",
-		file = "maps/ironlock3_door3.lua"
-    },
-	{
-        type = "map",
-		file = "maps/robotropolis_1.lua",
-		--primary = true
-    },
-	{
-        type = "map",
 		file = "maps/darkswamp1.lua",
 		--primary = true
     },
@@ -164,12 +101,6 @@ return {
 	{
         type = "map",
 		file = "maps/rotorsworkshop.lua"
-    },
-	
-	{
-        type = "map",
-        file = "maps/robotnikwarroom.lua",
-		--primary = true
     },
 	
 	{
@@ -747,18 +678,6 @@ return {
 		file = "art/sprites/boulder.png"
 	},
 	{
-		type = "image",
-		file = "art/parallax/robotropolis.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/hoverbotopening.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/hoverbot.png"
-	},
-	{
 		type = "sound",
 		file = "audio/sfx/quake.ogg",
 		category = "sfx"
@@ -881,11 +800,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/leonenters.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/sallymeetsleon.ogg",
 		category = "music"
 	},
 	{
@@ -1111,11 +1025,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/ratstep.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
 		file = "audio/sfx/juggerbotroar.ogg",
 		category = "sfx"
 	},
@@ -1283,16 +1192,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/prisonintro.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/bheart.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
 		file = "audio/music/ringlake.ogg",
 		category = "music",
 	},
@@ -1320,12 +1219,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/forgottenhideout2.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/follow.ogg",
 		category = "music",
 		looping = true,
 	},
@@ -1391,12 +1284,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/robotnik.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
 		file = "audio/music/transition.ogg",
 		category = "music",
 	},
@@ -1424,12 +1311,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/robobuilding.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/underground.ogg",
 		category = "music",
 		looping = true,
 	},
@@ -1477,12 +1358,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/knothole.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/music/knothole2.ogg",
 		category = "music",
 		looping = true
 	},

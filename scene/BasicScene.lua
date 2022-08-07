@@ -468,26 +468,42 @@ end
 function BasicScene:changeScene(args)
 	local mapName = args.mapName or "maps/"..args.map..".lua"
 	local fun = args.fun or "switchScene"
-	print("nighttime = "..tostring(args.nighttime))
-	self.sceneMgr[fun](self.sceneMgr, {
-		class = "BasicScene",
-		map = self.maps[mapName],
-		mapName = mapName,
-		maps = self.maps,
-		images = self.images,
-		region = self.region,
-		animations = self.animations,
-		audio = self.audio,
-		spawn_point = args.spawnPoint,
-		hint = args.hint,
-		tutorial = args.tutorial,
-		fadeOutSpeed = args.fadeOutSpeed,
-		fadeInSpeed = args.fadeInSpeed,
-		fadeOutMusic = args.fadeOutMusic,
-		cache = args.cache,
-		nighttime = args.nighttime,
-		enterDelay = args.enterDelay
-	})
+	
+	if args.manifest then
+		for k,_ in pairs(self.maps) do
+			if k ~= mapName then
+				self.maps[k] = nil
+			end
+		end
+
+		self.sceneMgr:switchScene {
+			class = "Region",
+			manifest = string.format("maps/%s.lua", args.manifest),
+			images = self.images,
+			audio = self.audio,
+			animations = self.animations
+		}
+	else
+		self.sceneMgr[fun](self.sceneMgr, {
+			class = "BasicScene",
+			map = self.maps[mapName],
+			mapName = mapName,
+			maps = self.maps,
+			images = self.images,
+			region = self.region,
+			animations = self.animations,
+			audio = self.audio,
+			spawn_point = args.spawnPoint,
+			hint = args.hint,
+			tutorial = args.tutorial,
+			fadeOutSpeed = args.fadeOutSpeed,
+			fadeInSpeed = args.fadeInSpeed,
+			fadeOutMusic = args.fadeOutMusic,
+			cache = args.cache,
+			nighttime = args.nighttime,
+			enterDelay = args.enterDelay
+		})
+	end
 end
 
 -- Vertical screen shake

@@ -2801,8 +2801,8 @@ return function(self)
                                     textSpeed = 7
                                 },
                                 Do(function() self.scene.objectLookup.Bunnie.hidden = false end),
-                                Animate(self.sprite, &quot;shock&quot;),
                                 MessageBox{message=&quot;Bunnie: Tails!&quot;},
+                                Animate(self.sprite, &quot;shock&quot;),
                                 self:hop(),
                                 Parallel {
                                     self.scene.objectLookup.Bunnie:walk(Transform(650, 1660), 1, &quot;walkright&quot;, &quot;upsetright&quot;),
@@ -3234,7 +3234,7 @@ end</property>
   <object id="316" name="LoganMtg" type="BasicNPC" gid="7597" x="4758" y="1792" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="meeting_idleright"/>
+    <property name="defaultAnim" value="meeting_idledown"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="true"/>

@@ -22,8 +22,9 @@ function Region:onEnter(args)
 	self.args = args
 
 	self.maps = {}
-	self.images = {}
-	self.animations = {}
+	self.images = args.images or {}
+	self.audio = args.audio or self.audio
+	self.animations = args.animations or {}
 	
 	local manifest = love.filesystem.load(args.manifest)()
 	

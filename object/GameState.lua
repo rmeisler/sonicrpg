@@ -398,24 +398,6 @@ function GameState:load(scene, slot)
 
 	local data = love.filesystem.load("sage2020_game"..tostring(slot)..".sav")()
 	
-	-- Add party members, grant items, set flags
-	for k, v in pairs(data.party) do
-		self:addToParty(k, v.level, false)
-		self.party[k].hp = v.hp
-		self.party[k].sp = v.sp
-		self.party[k].xp = v.xp
-		self.party[k].equip = v.equip
-		
-		-- Add stat bonuses from equipment
-		for _, equip in pairs(self.party[k].equip) do
-			for stat, bonus in pairs(equip.stats) do
-				self.party[k].stats[stat] = self.party[k].stats[stat] + bonus
-			end
-		end
-	end
-	
-	self.leader = data.leader
-	
 	-- Load inventory and flags
 	local types = {
 		ItemType.Weapon,
@@ -431,10 +413,28 @@ function GameState:load(scene, slot)
 	self.flags = data.flags
 	
 	-- ep2 save file
-	if GameState:isFlagSet("sonichut_intro") then
-		self.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/sonicdemo_manifest.lua"}
+	if self:isFlagSet("sonichut_intro") then
+		self:addToParty("sally", 6, true)
+		self.leader = "sally"
+		scene.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/sonicdemo_manifest.lua"}
 	-- ep3 save file
 	else
+		-- Add party members, grant items, set flags
+		for k, v in pairs(data.party) do
+			self:addToParty(k, v.level, false)
+			self.party[k].hp = v.hp
+			self.party[k].sp = v.sp
+			self.party[k].xp = v.xp
+			self.party[k].equip = v.equip
+			
+			-- Add stat bonuses from equipment
+			for _, equip in pairs(self.party[k].equip) do
+				for stat, bonus in pairs(equip.stats) do
+					self.party[k].stats[stat] = self.party[k].stats[stat] + bonus
+				end
+			end
+		end
+		self.leader = data.leader
 		scene.sceneMgr:pushScene {
 			class = "Region",
 			manifest = data.region,
