@@ -358,6 +358,9 @@ end</property>
     <property name="onInit">return function(self)
     self.hidden = true
 end</property>
+    <property name="onRemove">return function(self)
+     self.scene.objectLookup.EyesTrap2:remove()
+end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>
   </object>
@@ -383,7 +386,7 @@ return function(self, player, prevState)
     if prevState == self.STATE_IDLE and arm.hidden and not GameState:isFlagSet(arm) then
         arm.hidden = false
         self:run(While(
-            function() return not GameState:isFlagSet(arm) end,
+            function() return not GameState:isFlagSet(arm) and not arm:isRemoved() end,
             Serial {
                 Ease(arm, &quot;y&quot;, function() return arm.y + 90 end, 4),
                 Do(function()
@@ -416,6 +419,9 @@ end</property>
     <property name="isBot" type="bool" value="true"/>
     <property name="onInit">return function(self)
     self.hidden = true
+end</property>
+    <property name="onRemove">return function(self)
+     self.scene.objectLookup.EyesTrap1:remove()
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>

@@ -35,7 +35,7 @@ function CreditsSplashScene:onEnter()
 	
 	-- Setup music
 	self.audio:registerAs("music", "sonicrpglogo", love.audio.newSource("audio/music/credits.ogg", "static"))
-	self.audio:registerAs("music", "ironlock", love.audio.newSource("audio/music/ironlock.ogg", "static"))
+	self.audio:registerAs("music", "ironlock", love.audio.newSource("audio/music/credits.ogg", "static"))
 	self.audio:registerAs("sfx", "wolf", love.audio.newSource("audio/sfx/wolf.ogg", "static"))
 	
 	self.bgColor = {0,0,0,255}

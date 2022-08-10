@@ -1,166 +1,61 @@
 return {
 	{
         type = "map",
-		file = "maps/worldmap.lua",
-		--primary = true
-    },
-	{
-        type = "map",
-		file = "maps/darkswamp1.lua",
-		--primary = true
-    },
-	{
-        type = "map",
-		file = "maps/darkswamp2.lua",
-		--primary = true
-    },
-	{
-        type = "map",
-		file = "maps/darkswamp3.lua",
-		--primary = true
-    },
-	{
-        type = "map",
-		file = "maps/darkswamp4.lua"
-    },
-	{
-        type = "map",
-		file = "maps/darkswamp5.lua"
-    },
-	{
-        type = "map",
-		file = "maps/darkswamp6.lua"
-    },
-	{
-        type = "map",
-		file = "maps/darkswamp7.lua"
-    },
-	{
-        type = "map",
-		file = "maps/darkswamp8.lua"
-    },
-	{
-        type = "map",
-		file = "maps/darkswamp9.lua"
-    },
-	{
-        type = "map",
-		file = "maps/run1.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/stealthtut1.lua",
-		--primary = true
-    },
-	
-	--{
-    --    type = "map",
-	--	file = "maps/rebellionhut.lua",
-		--primary = true
- --   },
-	
-	{
-        type = "map",
-		file = "maps/sonicshut.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/sallyshutnight.lua",
-		-- REAL PRIMARY
+		file = "maps/ironlock1.lua",
 		primary = true
     },
-	
 	{
         type = "map",
-		file = "maps/sallyshut.lua",
-		--primary = true
+		file = "maps/ironlock2.lua",
     },
-	
 	{
         type = "map",
-		file = "maps/tailshut.lua",
-		--primary = true
+		file = "maps/ironlock3.lua"
     },
-	
 	{
         type = "map",
-		file = "maps/bunnieshut.lua",
-		--primary = true
+		file = "maps/ironlock3.lua"
     },
-	
 	{
         type = "map",
-		file = "maps/antoineshut.lua",
-		--primary = true
+		file = "maps/ironlock4.lua"
     },
-	
 	{
         type = "map",
-		file = "maps/rotorsworkshop.lua"
+		file = "maps/ironlock_snively.lua"
     },
-	
 	{
         type = "map",
-        file = "maps/forgottenhideout.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgottenhideout_broom.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-        file = "maps/knothole.lua",
+		file = "maps/ironlock_boss.lua",
 		--primary = true
     },
 	{
         type = "map",
-        file = "maps/knotholeatnight.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-        file = "maps/knotholelookout.lua"
+		file = "maps/ironlock1_door1.lua"
     },
 	{
         type = "map",
-        file = "maps/knotholelookoutatnight.lua"
-		--primary = true
-    },
-	
-	{
-        type = "map",
-        file = "maps/greatforest1.lua"
+		file = "maps/ironlock1_door2.lua"
     },
 	{
         type = "map",
-        file = "maps/greatforest2.lua"
+		file = "maps/ironlock1_door3.lua"
     },
 	{
         type = "map",
-        file = "maps/greatforest3.lua"
+		file = "maps/ironlock1_door4.lua"
     },
 	{
         type = "map",
-        file = "maps/greatforest4.lua"
+		file = "maps/ironlock3_door1.lua"
     },
-	
 	{
         type = "map",
-        file = "maps/greatforest2_uppath.lua"
+		file = "maps/ironlock3_door2.lua"
     },
-	
 	{
         type = "map",
-        file = "maps/greatforest2_rightpath.lua"
+		file = "maps/ironlock3_door3.lua"
     },
 	
 	{
@@ -705,11 +600,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/sallysad.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/bsad.ogg",
 		category = "music"
 	},
 	{

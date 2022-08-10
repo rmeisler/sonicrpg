@@ -1188,13 +1188,13 @@ return function(self)
                Parallel {
                    Serial {
                        Animate(self.sprite, &quot;preaddown&quot;),
-                       Wait(0.5),
+                       Wait(2),
                        Animate(self.sprite, &quot;preadleft&quot;),
-                       Wait(0.5),
+                       Wait(2),
                        Animate(self.sprite, &quot;preaddown&quot;),
-                       Wait(0.5),
+                       Wait(2),
                        Animate(self.sprite, &quot;preadright&quot;),
-                       Wait(0.5)
+                       Wait(1)
                    },
                    MessageBox {message = &quot;P: ... {p80}... {p80}...&quot;, textSpeed=2}
                },

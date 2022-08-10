@@ -15,17 +15,21 @@ return {
 	battleAction = function()
 		local Heal = require "data/items/actions/Heal"
 		local Serial = require "actions/Serial"
-		return Serial {
-			Heal("hp", 1000),
-			Heal("sp", 20)
-		}
+		return function(self, target)
+			return Serial {
+				Heal("hp", 1000)(self, target),
+				Heal("sp", 20)(self, target)
+			}
+		end
 	end,
 	menuAction = function()
 		local HealText = require "data/items/actions/HealText"
 		local Serial = require "actions/Serial"
-		return Serial {
-			HealText("hp", 1000, {0, 255, 0, 255}),
-			HealText("sp", 20, {0, 255, 255, 255})
-		}
+		return function(self, target)
+			return Serial {
+				HealText("hp", 1000, {0, 255, 0, 255}),
+				HealText("sp", 20, {0, 255, 255, 255})
+			}
+		end
 	end
 }

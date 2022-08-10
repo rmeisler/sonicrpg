@@ -643,6 +643,7 @@ return {
             ["ghost"] = true,
             ["isBot"] = true,
             ["onInit"] = "return function(self)\n    self.hidden = true\nend",
+            ["onRemove"] = "return function(self)\n     self.scene.objectLookup.EyesTrap2:remove()\nend",
             ["sprite"] = "../art/sprites/phantomgrab.png"
           }
         },
@@ -677,7 +678,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal While = require \"actions/While\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self, player, prevState)\n    local arm = self.scene.objectLookup.Arm1\n    if prevState == self.STATE_IDLE and arm.hidden and not GameState:isFlagSet(arm) then\n        arm.hidden = false\n        self:run(While(\n            function() return not GameState:isFlagSet(arm) end,\n            Serial {\n                Ease(arm, \"y\", function() return arm.y + 90 end, 4),\n                Do(function()\n                    arm:updateCollision()\n                end),\n                Wait(2),\n                Parallel {\n                    Ease(arm, \"y\", function() return arm.y - 90 end, 0.5),\n                    Ease(arm.sprite.color, 4, 0, 1)\n                },\n                Do(function()\n                    arm:updateCollision()\n                    arm.sprite.color[4] = 255\n                    arm.hidden = true\n                end)\n            },\n            Do(function() end)\n        ))\n    end\nend"
+            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal While = require \"actions/While\"\nlocal Serial = require \"actions/Serial\"\n\nreturn function(self, player, prevState)\n    local arm = self.scene.objectLookup.Arm1\n    if prevState == self.STATE_IDLE and arm.hidden and not GameState:isFlagSet(arm) then\n        arm.hidden = false\n        self:run(While(\n            function() return not GameState:isFlagSet(arm) and not arm:isRemoved() end,\n            Serial {\n                Ease(arm, \"y\", function() return arm.y + 90 end, 4),\n                Do(function()\n                    arm:updateCollision()\n                end),\n                Wait(2),\n                Parallel {\n                    Ease(arm, \"y\", function() return arm.y - 90 end, 0.5),\n                    Ease(arm.sprite.color, 4, 0, 1)\n                },\n                Do(function()\n                    arm:updateCollision()\n                    arm.sprite.color[4] = 255\n                    arm.hidden = true\n                end)\n            },\n            Do(function() end)\n        ))\n    end\nend"
           }
         },
         {
@@ -700,6 +701,7 @@ return {
             ["ghost"] = true,
             ["isBot"] = true,
             ["onInit"] = "return function(self)\n    self.hidden = true\nend",
+            ["onRemove"] = "return function(self)\n     self.scene.objectLookup.EyesTrap1:remove()\nend",
             ["sprite"] = "../art/sprites/phantomgrab.png"
           }
         },

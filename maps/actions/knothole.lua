@@ -386,7 +386,7 @@ return function(scene, hint)
 					hop(sonic),
 					MessageBox {message="Sonic: It's a long story{p60}, just tell us what the heck that is!"},
 					Animate(scene.objectLookup.GriffMtg2.sprite, "meeting_idledown"),
-					MessageBox {message="Griff: Some kind of new bot... {p60}the only intell I have on it is from Robotnik's field testing{p60}, and the results are not pretty..."},
+					MessageBox {message="Griff: Some kind of new bot... {p60}the only intel I have on it is from Robotnik's field testing{p60}, and the results are not pretty..."},
 					MessageBox {message="Griff: ...according to the data... {p60}if Robotnik finishes this thing{p60}, he could destroy the entire ecosystem in a matter of days..."},
 					Animate(sonic.sprite, "shock"),
 					Animate(bunnie.sprite, "shock"),

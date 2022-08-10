@@ -73,7 +73,6 @@ function LegacySwatbot:onCaughtPlayer()
 			Wait(0.5),
 			Do(function()
 				self.countdownText:remove()
-				self:removeAllSceneHandlers()
 			end),
 			BlockPlayer {
 				-- Alarm sfx + blinking red screen

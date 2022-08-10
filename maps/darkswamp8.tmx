@@ -422,7 +422,7 @@ local MessageBox = require &quot;actions/MessageBox&quot;
 return function(self)
     self.scene.player.state = &quot;idleup&quot;
     if GameState.leader == &quot;antoine&quot; then
-        return Serial {
+        return BlockPlayer {
             MessageBox {message = &quot;Antoine: It iz written in Olde Mobotropolan... {p60}I am not having any idea what zis says!&quot;},
             Do(function()
                 self:refreshKeyHint()
@@ -459,7 +459,7 @@ local Serial = require &quot;actions/Serial&quot;
 return function(self)
     return Serial {
         MessageBox{message=&quot;Nicole: It appears to be a sign written in Olde Mobotropolan, Sally&quot;},
-        MessageBox{message=&quot;Nicole: It says \&quot;as the screw tightens\&quot;.&quot;}
+        MessageBox{message=&quot;Nicole: It says \&quot;starboard\&quot;.&quot;}
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/signpost.png"/>

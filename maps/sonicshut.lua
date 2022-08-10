@@ -11,7 +11,7 @@ return {
   nextobjectid = 24,
   properties = {
     ["ignorenight"] = true,
-    ["onload"] = "actions/sonicshut_intro.lua",
+    ["onload"] = "actions/knotholehut.lua",
     ["regionName"] = "Sonic's Hut"
   },
   tilesets = {

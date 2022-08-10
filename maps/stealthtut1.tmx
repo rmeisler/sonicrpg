@@ -211,6 +211,52 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="true"/>
+    <property name="onUpdate">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Do = require &quot;actions/Do&quot;
+local Wait = require &quot;actions/Wait&quot;
+
+return function(self, dt)
+    local player = self.scene.player
+    local _, hidingspot = next(player.inHidingSpot)
+    if GameState:isFlagSet(&quot;tutorial:hide_pillar2&quot;) or not GameState:isFlagSet(&quot;tutorial:hide_pillar6&quot;) or hidingspot ~= self then
+        return
+    end
+
+    if not self.hideTime then
+        self.hideTime = 0
+    end
+    if love.keyboard.isDown(&quot;down&quot;) then
+        self.hideTime = self.hideTime + love.timer.getDelta()
+    else
+        self.hideTime = 0
+    end
+
+    local pillar = self.scene.objectLookup.Pillar4
+    if self.hideTime &gt; 3 then
+        GameState:setFlag(&quot;tutorial:hide_pillar2&quot;)
+        self.scene:run(
+            BlockPlayer {
+                MessageBox {message=&quot;Computer: Good.&quot;, sfx=&quot;choose&quot;},
+                Do(function()
+                    self.scene.objectLookup.Cursor.x = pillar.x - pillar.sprite.w
+                    self.scene.objectLookup.Cursor.y = pillar.y + pillar.sprite.h*2 -  player.height*2
+                end),
+                Parallel {
+                    Ease(self.scene.camPos, &quot;x&quot;, player.x - pillar.x, 1),
+                    Ease(self.scene.camPos, &quot;y&quot;, player.y - pillar.y - pillar.sprite.h*2, 1),
+                    MessageBox {message=&quot;Computer: Now hide behind this pillar, and look right.&quot;}
+                },
+                Parallel {
+                    Ease(self.scene.camPos, &quot;x&quot;, 0, 1),
+                    Ease(self.scene.camPos, &quot;y&quot;, 0, 1)
+                }
+            }
+        )
+    end
+end</property>
     <property name="sprite" type="file" value="../art/sprites/pillar.png"/>
    </properties>
   </object>
@@ -225,23 +271,24 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/pillar.png"/>
-    <property name="whileColliding">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+    <property name="onUpdate">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Do = require &quot;actions/Do&quot;
 local Wait = require &quot;actions/Wait&quot;
 
-return function(self, player)
-    if GameState:isFlagSet(&quot;tutorial:hide_pillar6&quot;) then
+return function(self, dt)
+    local player = self.scene.player
+    local _, hidingspot = next(player.inHidingSpot)
+    if GameState:isFlagSet(&quot;tutorial:hide_pillar6&quot;) or hidingspot ~= self then
         return
     end
 
     if not self.hideTime then
         self.hideTime = 0
     end
-    if player.showPressDir == &quot;pressleft&quot; and love.keyboard.isDown(&quot;left&quot;) then
+    if love.keyboard.isDown(&quot;left&quot;) then
         self.hideTime = self.hideTime + love.timer.getDelta()
     else
         self.hideTime = 0
@@ -270,29 +317,31 @@ return function(self, player)
         )
     end
 end</property>
+    <property name="sprite" type="file" value="../art/sprites/pillar.png"/>
    </properties>
   </object>
   <object id="92" name="Pillar5" type="BasicNPC" gid="1922" x="928" y="928" width="64" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/pillar.png"/>
-    <property name="whileColliding">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+    <property name="onUpdate">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Do = require &quot;actions/Do&quot;
 local Wait = require &quot;actions/Wait&quot;
 
-return function(self, player)
-    if GameState:isFlagSet(&quot;tutorial:hide_pillar5&quot;) or not GameState:isFlagSet(&quot;tutorial:hide_pillar4&quot;) then
+return function(self, dt)
+    local player = self.scene.player
+    local _, hidingspot = next(player.inHidingSpot)
+    if GameState:isFlagSet(&quot;tutorial:hide_pillar5&quot;) or not GameState:isFlagSet(&quot;tutorial:hide_pillar4&quot;) or hidingspot ~= self then
         return
     end
 
     if not self.hideTime then
         self.hideTime = 0
     end
-    if player.showPressDir == &quot;pressup&quot; and love.keyboard.isDown(&quot;up&quot;) then
+    if love.keyboard.isDown(&quot;up&quot;) then
         self.hideTime = self.hideTime + love.timer.getDelta()
     else
         self.hideTime = 0
@@ -327,29 +376,31 @@ return function(self, player)
         )
     end
 end</property>
+    <property name="sprite" type="file" value="../art/sprites/pillar.png"/>
    </properties>
   </object>
   <object id="93" name="Pillar4" type="BasicNPC" gid="1922" x="544" y="928" width="64" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/pillar.png"/>
-    <property name="whileColliding">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+    <property name="onUpdate">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Do = require &quot;actions/Do&quot;
 local Wait = require &quot;actions/Wait&quot;
 
-return function(self, player)
-    if GameState:isFlagSet(&quot;tutorial:hide_pillar4&quot;) or not GameState:isFlagSet(&quot;tutorial:hide_pillar2&quot;) then
+return function(self, dt)
+    local player = self.scene.player
+    local _, hidingspot = next(player.inHidingSpot)
+    if GameState:isFlagSet(&quot;tutorial:hide_pillar4&quot;) or not GameState:isFlagSet(&quot;tutorial:hide_pillar2&quot;) or hidingspot ~= self then
         return
     end
 
     if not self.hideTime then
         self.hideTime = 0
     end
-    if player.showPressDir == &quot;pressright&quot; and love.keyboard.isDown(&quot;right&quot;) then
+    if love.keyboard.isDown(&quot;right&quot;) then
         self.hideTime = self.hideTime + love.timer.getDelta()
     else
         self.hideTime = 0
@@ -378,6 +429,7 @@ return function(self, player)
         )
     end
 end</property>
+    <property name="sprite" type="file" value="../art/sprites/pillar.png"/>
    </properties>
   </object>
   <object id="95" name="HidingSpot1" type="HidingSpot" gid="2332" x="608" y="928" width="32" height="32"/>
@@ -460,55 +512,6 @@ end</property>
   </object>
   <object id="245" name="HidingSpot100" type="HidingSpot" gid="2332" x="1248" y="576" width="96" height="32"/>
   <object id="246" name="HidingSpot101" type="HidingSpot" gid="2332" x="832" y="576" width="96" height="32"/>
-  <object id="247" name="Check" type="BasicNPC" gid="1922" x="1088" y="608" width="64" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="whileColliding">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Do = require &quot;actions/Do&quot;
-local Wait = require &quot;actions/Wait&quot;
-
-return function(self, player)
-    if GameState:isFlagSet(&quot;tutorial:hide_pillar2&quot;) or not GameState:isFlagSet(&quot;tutorial:hide_pillar6&quot;)  then
-        return
-    end
-
-    if not self.hideTime then
-        self.hideTime = 0
-    end
-    if love.keyboard.isDown(&quot;down&quot;) then
-        self.hideTime = self.hideTime + love.timer.getDelta()
-    else
-        self.hideTime = 0
-    end
-
-    local pillar = self.scene.objectLookup.Pillar4
-    if self.hideTime &gt; 3 then
-        GameState:setFlag(&quot;tutorial:hide_pillar2&quot;)
-        self.scene:run(
-            BlockPlayer {
-                MessageBox {message=&quot;Computer: Good.&quot;, sfx=&quot;choose&quot;},
-                Do(function()
-                    self.scene.objectLookup.Cursor.x = pillar.x - pillar.sprite.w
-                    self.scene.objectLookup.Cursor.y = pillar.y + pillar.sprite.h*2 -  player.height*2
-                end),
-                Parallel {
-                    Ease(self.scene.camPos, &quot;x&quot;, player.x - pillar.x, 1),
-                    Ease(self.scene.camPos, &quot;y&quot;, player.y - pillar.y - pillar.sprite.h*2, 1),
-                    MessageBox {message=&quot;Computer: Now hide behind this pillar, and look right.&quot;}
-                },
-                Parallel {
-                    Ease(self.scene.camPos, &quot;x&quot;, 0, 1),
-                    Ease(self.scene.camPos, &quot;y&quot;, 0, 1)
-                }
-            }
-        )
-    end
-end</property>
-   </properties>
-  </object>
  </objectgroup>
  <layer name="AboveObjects" width="68" height="42">
   <data encoding="csv">

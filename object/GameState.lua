@@ -412,14 +412,8 @@ function GameState:load(scene, slot)
 	
 	self.flags = data.flags
 	
-	-- ep2 save file
-	if self:isFlagSet("sonichut_intro") then
-		self:addToParty("sally", 6, true)
-		self.leader = "sally"
-		self:setFlag("ep3_intro")
-		scene.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/sonicdemo_manifest.lua"}
 	-- ep3 save file
-	else
+	if self:isFlagSet("ep3_introdone") then
 		-- Add party members, grant items, set flags
 		for k, v in pairs(data.party) do
 			self:addToParty(k, v.level, false)
@@ -436,14 +430,35 @@ function GameState:load(scene, slot)
 			end
 		end
 		self.leader = data.leader
-		scene.sceneMgr:pushScene {
-			class = "Region",
-			manifest = data.region,
-			map = data.map,
-			spawn_point = data.spawnPoint,
-			nextMusic = data.music,
-			hint = "fromload"
-		}
+		
+		-- What manifest to use?...
+		if self:isFlagSet("ironlock_intro") then
+			-- Use ironlock manifest file
+			scene.sceneMgr:pushScene {
+				class = "Region",
+				manifest = "maps/ironlock_manifest_full.lua",
+				map = data.map,
+				spawn_point = data.spawnPoint,
+				nextMusic = data.music,
+				hint = "fromload"
+			}
+		else
+			-- Use default manifest file
+			scene.sceneMgr:pushScene {
+				class = "Region",
+				manifest = data.region,
+				map = data.map,
+				spawn_point = data.spawnPoint,
+				nextMusic = data.music,
+				hint = "fromload"
+			}
+		end
+	-- ep1 or ep2 save, treat as new game+
+	else
+		self:addToParty("sally", 6, true)
+		self.leader = "sally"
+		self:setFlag("ep3_intro")
+		scene.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/sonicdemo_manifest.lua"}
 	end
 end
 
