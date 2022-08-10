@@ -36,7 +36,7 @@ return {
 
 	insult = "creepo",
 	
-	hpBarOffset = Transform(100, 0),
+	hpBarOffset = Transform(140, 84),
 
 	stats = {
 		xp    = 20,

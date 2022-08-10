@@ -148,10 +148,6 @@ return function(scene, hint)
 			end)
 		}
 	end
-	
-	GameState:addBackToParty("sally")
-	GameState:addBackToParty("sonic")
-	GameState.leader = "sonic"
 
 	GameState:setFlag("ep3_boss")
 	scene.player.sprite.visible = false
@@ -160,6 +156,9 @@ return function(scene, hint)
 		Do(function()
 			scene.player.sprite.visible = false
 			scene.player.dropShadow.hidden = true
+			GameState:addBackToParty("sally")
+			GameState:addBackToParty("sonic")
+			GameState.leader = "sonic"
 		end),
 		Wait(2),
 		Parallel {

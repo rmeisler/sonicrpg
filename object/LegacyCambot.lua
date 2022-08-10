@@ -73,33 +73,34 @@ function LegacyCambot:onCaughtPlayer()
 			Wait(0.5),
 			Do(function()
 				self.countdownText:remove()
-			end),
-			BlockPlayer {
-				-- Alarm sfx + blinking red screen
-				Parallel {
-					PlayAudio("sfx", "alert", 1.0),
-					Repeat(Parallel {
+				self.scene:run(BlockPlayer {
+					-- Alarm sfx + blinking red screen
+					Parallel {
+						PlayAudio("sfx", "alert", 1.0),
+						Repeat(Parallel {
+							Serial {
+								Ease(self.scene.bgColor, 1, 510, 5, "quad"),
+								Ease(self.scene.bgColor, 1, 255, 5, "quad"),
+							},
+							Do(function() 
+								ScreenShader:sendColor("multColor", self.scene.bgColor)
+							end)
+						}, 5),
+						MessageBox{message="Eyebot: Intruder alert!", closeAction=Wait(1)},
 						Serial {
-							Ease(self.scene.bgColor, 1, 510, 5, "quad"),
-							Ease(self.scene.bgColor, 1, 255, 5, "quad"),
-						},
-						Do(function() 
-							ScreenShader:sendColor("multColor", self.scene.bgColor)
-						end)
-					}, 5),
-					MessageBox{message="Eyebot: Intruder alert!", closeAction=Wait(1)},
-					Serial {
-						Wait(0.5),
-						Do(function()
-							self.scene.player.noIdle = true
-							self.scene.player.sprite:setAnimation("shock")
-						end)
-					}
-				},
-				Do(function()
-					self.scene:restart{spawnPoint="Spawn 1"}
-				end)
-			}
+							Wait(0.5),
+							Do(function()
+								self.scene.player.noIdle = true
+								self.scene.player.sprite:setAnimation("shock")
+							end)
+						}
+					},
+					Do(function()
+						self.scene:restart{spawnPoint="Spawn 1"}
+					end)
+				})
+			end),
+			
 		},
 		Do(function()
 			self.countdownText:remove()

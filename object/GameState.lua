@@ -129,6 +129,16 @@ function GameState:partySize()
 	return count
 end
 
+function GameState:getGatedSkill(flag, skillName)
+	return function()
+		if self:isFlagSet(flag) then
+			return require("data/battle/skills/"..skillName)
+		else
+			return nil
+		end
+	end
+end
+
 function GameState:getEarnedSkill(flag, skillName)
 	return function()
 		local skillPath = "data/battle/skills/"..skillName
@@ -146,17 +156,19 @@ function GameState:getSkills(member)
 			local skillDefs = member.levelup[curLevel].skills
 			local skills = {}
 			for _, skill in pairs(skillDefs) do
-				if type(skill) == "function" then
-					table.insert(skills, skill())
-				else
-					table.insert(skills, skill)
-				end
-				if member.id == "sally" and
-				   self:isEquipped(member.id, ItemType.Accessory, "Signal Booster")
-				then
-					local skillCopy = table.clone(skills[#skills])
-					skillCopy.cost = math.max(1, math.floor(skillCopy.cost * (1.0 - 0.25)))
-					skills[#skills] = skillCopy
+				if skill ~= nil then
+					if type(skill) == "function" then
+						table.insert(skills, skill())
+					else
+						table.insert(skills, skill)
+					end
+					if member.id == "sally" and
+					   self:isEquipped(member.id, ItemType.Accessory, "Signal Booster")
+					then
+						local skillCopy = table.clone(skills[#skills])
+						skillCopy.cost = math.max(1, math.floor(skillCopy.cost * (1.0 - 0.25)))
+						skills[#skills] = skillCopy
+					end
 				end
 			end
 			return skills
@@ -429,7 +441,23 @@ function GameState:load(scene, slot)
 				end
 			end
 		end
+		for k, v in pairs(data.inactive) do
+			self.inactiveMembers[k] = self:loadPartyMember(k, v.level, false)
+			self.inactiveMembers[k].hp = v.hp
+			self.inactiveMembers[k].sp = v.sp
+			self.inactiveMembers[k].xp = v.xp
+			self.inactiveMembers[k].equip = v.equip
+			
+			-- Add stat bonuses from equipment
+			for _, equip in pairs(self.inactiveMembers[k].equip) do
+				for stat, bonus in pairs(equip.stats) do
+					self.inactiveMembers[k].stats[stat] = self.inactiveMembers[k].stats[stat] + bonus
+				end
+			end
+		end
 		self.leader = data.leader
+		
+		print("leader loaded = "..self.leader)
 		
 		-- What manifest to use?...
 		if self:isFlagSet("ironlock_intro") then

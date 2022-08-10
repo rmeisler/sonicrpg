@@ -8,12 +8,13 @@ return {
   height = 56,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 740,
+  nextobjectid = 742,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["noBattleMusic"] = true,
     ["onload"] = "actions/ironlock4.lua",
     ["regionName"] = "Iron Lock",
-    ["sectorName"] = "3F"
+    ["sectorName"] = "2F"
   },
   tilesets = {
     {
@@ -809,7 +810,8 @@ return {
             ["ghost"] = true,
             ["ignorePlayer"] = false,
             ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/swatbotwhite.png"
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "View0"
           }
         },
         {
@@ -1257,7 +1259,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = true,
+            ["hidingspot"] = false,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -2470,13 +2472,7 @@ return {
           gid = 2311,
           visible = true,
           properties = {
-            ["fade_in_speed"] = 0.5,
-            ["fade_out_music"] = true,
-            ["fade_out_speed"] = 0.1,
-            ["ghost"] = true,
-            ["key"] = "right",
-            ["orientation"] = "left",
-            ["whileColliding"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    if self.hit then\n        return\n    end\n\n    player.basicUpdate = function() end\n    self:run(BlockPlayer {\n        Do(function()\n            player.sprite:setAnimation(\"walkright\")\n            self.scene:changeScene{map=\"ironlock_snively\", fadeInSpeed = 0.5, fadeOutSpeed = 0.1, fadeOutMusic = true}\n        end),\n        Ease(player, \"x\", 8600, 1, \"linear\")\n    })\nend"
+            ["whileColliding"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\n\nreturn function(self, player)\n    if self.hit then\n        return\n    end\n    self.hit = true\n    player.basicUpdate = function() end\n    player.sprite:setAnimation(\"walkright\")\n    self.scene:changeScene{map=\"ironlock_snively\", fadeInSpeed = 0.5, fadeOutSpeed = 0.1, fadeOutMusic = true}\n    self:run(BlockPlayer {\n        Parallel {\n            Ease(player, \"x\", 8400, 1, \"linear\"),\n            Ease(player.dropShadow, \"x\", 8400, 1, \"linear\")\n        }\n    })\nend"
           }
         },
         {
@@ -2544,7 +2540,7 @@ return {
           name = "Chest2",
           type = "Chest",
           shape = "rectangle",
-          x = 4928,
+          x = 4896,
           y = 1088,
           width = 64,
           height = 64,
@@ -2773,6 +2769,39 @@ return {
           visible = false,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 740,
+          name = "View0",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2656,
+          y = 1344,
+          width = 576,
+          height = 160,
+          rotation = 0,
+          gid = 1922,
+          visible = false,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 741,
+          name = "Chest2",
+          type = "Chest",
+          shape = "rectangle",
+          x = 4960,
+          y = 1344,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["GreenLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }

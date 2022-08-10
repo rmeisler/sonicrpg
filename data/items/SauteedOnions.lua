@@ -14,11 +14,12 @@ return {
 	},
 	battleAction = function()
 		local Heal = require "data/items/actions/Heal"
+		local SpHeal = require "data/items/actions/SpHeal"
 		local Serial = require "actions/Serial"
 		return function(self, target)
 			return Serial {
 				Heal("hp", 1000)(self, target),
-				Heal("sp", 20)(self, target)
+				SpHeal("sp", 20)(self, target)
 			}
 		end
 	end,

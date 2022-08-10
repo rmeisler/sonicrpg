@@ -200,7 +200,10 @@ function BasicScene:onEnter(args)
 					end)
 				})
 			else
+				print("on load...")
 				self.player.basicUpdate = self.player.origUpdate or self.player.basicUpdate
+				print("party... "..GameState.leader)
+				print("mem... "..tostring(GameState.party[GameState.leader]))
 				self.player:updateSprite()
 			end
 			
@@ -583,6 +586,7 @@ function BasicScene:enterBattle(args)
 				background = self.map.properties.battlebg,
 				nextMusic = self.noBattleMusic and self.audio:getCurrentMusic() or args.music,
 				prevMusic = args.prevMusic or self.audio:getCurrentMusic(),
+				noBattleMusic = self.noBattleMusic,
 				blur = self.blur,
 				opponents = args.opponents,
 				bossBattle = args.bossBattle,

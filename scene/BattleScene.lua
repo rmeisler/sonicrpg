@@ -67,6 +67,7 @@ function BattleScene:onEnter(args)
 	self.color = args.color
 	self.practice = args.practice
 	self.camPos = Transform()
+	self.noBattleMusic = args.noBattleMusic
 	
 	local onEnterCallback = args.onEnter or function(scene) return Action() end
 
@@ -377,8 +378,10 @@ function BattleScene:update(dt)
 			end
 			self:run {
 				-- Fade out current music
-				AudioFade("music", self.audio:getMusicVolume(), 0, 2),
-				PlayAudio("music", "victory", 1.0, true, true),
+				self.noBattleMusic and Action() or Serial {
+					AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+					PlayAudio("music", "victory", 1.0, true, true)
+				},
 				
 				Parallel(victoryPoses),
 				
@@ -460,8 +463,10 @@ function BattleScene:update(dt)
 		self.bgColor = {255,255,255,255}
 		self:run {
 			-- Fade out current music
-			AudioFade("music", self.audio:getMusicVolume(), 0, 2),
-			PlayAudio("music", "victory", 1.0, true, true),
+			self.noBattleMusic and Action() or Serial {
+				AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+				PlayAudio("music", "victory", 1.0, true, true)
+			},
 			
 			-- Play victory
 			Parallel {
@@ -511,7 +516,8 @@ end
 function BattleScene:earlyExit()
 	return Serial {
 		-- Fade out current music
-		AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+		self.noBattleMusic and Action() or
+			AudioFade("music", self.audio:getMusicVolume(), 0, 2),
 		Do(function()
 			-- Make sure party hp is reflected back into GameState if you run away...
 			for _,mem in ipairs(self.party) do
@@ -565,10 +571,12 @@ function BattleScene:onExit(args)
 					ScreenShader:sendColor("multColor", self.bgColor)
 				end),
 				
-				AudioFade("music", self.audio:getMusicVolume(), 0, 1)
+				self.noBattleMusic and Action() or
+					AudioFade("music", self.audio:getMusicVolume(), 0, 1)
 			},
 			
-			PlayAudio("music", self.prevMusic, 1, true, true)
+			self.noBattleMusic and Action() or
+				PlayAudio("music", self.prevMusic, 1, true, true)
 		}
 	end
 end

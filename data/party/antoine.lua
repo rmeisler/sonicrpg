@@ -73,6 +73,7 @@ return {
 				require "data/battle/skills/Bore",
 				require "data/battle/skills/Run",
 				require "data/battle/skills/Cook",
+				GameState:getGatedSkill("ep3_antoine", "Resiliency"),
 			}
 		}
 	},

@@ -615,7 +615,8 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/missionready.ogg",
-		category = "music"
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",

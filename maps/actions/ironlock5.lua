@@ -286,18 +286,9 @@ return function(scene, hint)
 		Do(function()
 			scene.objectLookup.Antoine.sprite:setAnimation("idleleft")
 		end),
-		Wait(3),
+		Wait(2),
 
-		Animate(scene.objectLookup.Sonic.sprite, "shock"),
-		Animate(scene.objectLookup.Sally.sprite, "shock"),
-		Animate(scene.objectLookup.Antoine.sprite, "shock"),
-		--Animate(scene.objectLookup.Ivan.sprite, "idledown"),
-		--Animate(scene.objectLookup.Logan.sprite, "idledown"),
-		--Animate(scene.objectLookup.Fleet.sprite, "idledown"),
-		Spawn(Serial {
-			PlayAudio("sfx", "quake", 1.0, true),
-			scene:screenShake(10, 30, 20)
-		}),
+		Spawn(scene:screenShake(10, 30, 20)),
 		Wait(1),
 		Animate(scene.objectLookup.Sally.sprite, "idleright"),
 		Animate(scene.objectLookup.Sonic.sprite, "idleright"),
