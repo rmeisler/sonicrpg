@@ -35,7 +35,8 @@ function CreditsSplashScene:onEnter()
 	
 	-- Setup music
 	self.audio:registerAs("music", "sonicrpglogo", love.audio.newSource("audio/music/credits.ogg", "static"))
-	self.audio:registerAs("music", "ironlock", love.audio.newSource("audio/music/credits.ogg", "static"))
+	self.audio:registerAs("music", "credits", love.audio.newSource("audio/music/credits.ogg", "static"))
+	self.audio:registerAs("music", "ironlocklouder", love.audio.newSource("audio/music/ironlocklouder.ogg", "static"))
 	self.audio:registerAs("sfx", "wolf", love.audio.newSource("audio/sfx/wolf.ogg", "static"))
 	
 	self.bgColor = {0,0,0,255}
@@ -53,8 +54,9 @@ function CreditsSplashScene:onEnter()
 			AudioFade("music", 0.7, 1.0, 0.3),
 			Serial {
 				Spawn(Serial {
+					PlayAudio("music", "credits", 1.0),
 					Wait(1),
-					PlayAudio("music", "ironlock", 1.0, true)
+					PlayAudio("music", "ironlocklouder", 1.0, true),
 				}),
 				Wait(3),
 				Parallel {
@@ -128,7 +130,7 @@ Anonymous
 Deebs
 Racoon Ninja
 Joey "The Plokman" Tripp Nimmo
-Ibeh Dubem/Flame-The-Hedgehog
+Ibeh Dubem/Flame the Teen
 Reggie Meisler/RedG
 Unstoppable Thombo
 Damien
@@ -156,11 +158,13 @@ RobertCo11
 Joey "The Plokman" Tripp Nimmo
 
 [Testing]
-supermariobro58
-Sonic and freedom fighter
-Ricardo "Zero Neoz" Fukunaga
+Fieryfurnace
 CaptainJotaro
 Jacob Berkley/Good Ol' Groovy Jake
+supermariobro58
+King Sonic
+Ibeh Dubem/Flame the Teen
+Ricardo "Zero Neoz" Fukunaga
 sqrly jack
 Pavel "Limepaul" Haluška
 Nitrosaturn

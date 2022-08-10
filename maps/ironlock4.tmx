@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="260" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="727">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="260" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="740">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/ironlock4.lua"/>
@@ -316,11 +316,6 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="491" name="View1" type="BasicNPC" gid="1922" x="1984" y="992" width="352" height="768" visible="0">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
   <object id="605" name="Door1" type="Door" gid="2374" x="800" y="1024" width="64" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -403,9 +398,9 @@
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
-  <object id="616" name="Cambot1" type="LegacyCambot" gid="37" x="2944" y="1312" width="32" height="32">
+  <object id="616" name="Swatbot0" type="LegacySwatbot" gid="37" x="2944" y="1312" width="32" height="32">
    <properties>
-    <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
+    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint1,Waypoint2"/>
@@ -413,8 +408,7 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
-    <property name="viewRange" value="View1"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
    </properties>
   </object>
   <object id="617" name="Waypoint2" type="BasicNPC" gid="1922" x="3200" y="1312" width="32" height="32">
@@ -531,9 +525,9 @@
     <property name="sprite" type="file" value="../art/sprites/pillar.png"/>
    </properties>
   </object>
-  <object id="638" name="Cambot2" type="LegacyCambot" gid="37" x="3904" y="1088" width="32" height="32">
+  <object id="638" name="Swatbot1" type="LegacySwatbot" gid="37" x="3904" y="1088" width="32" height="32">
    <properties>
-    <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
+    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint2_1,Waypoint2_4,Waypoint2_3,Waypoint2_2"/>
@@ -541,7 +535,7 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
     <property name="viewRange" value="View2"/>
    </properties>
   </object>
@@ -555,9 +549,9 @@
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="641" name="Cambot3" type="LegacyCambot" gid="37" x="3904" y="1312" width="32" height="32">
+  <object id="641" name="Swatbot2" type="LegacySwatbot" gid="37" x="3904" y="1312" width="32" height="32">
    <properties>
-    <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
+    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint2_3,Waypoint2_2,Waypoint2_1,Waypoint2_4"/>
@@ -565,7 +559,7 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
     <property name="viewRange" value="View2"/>
    </properties>
   </object>
@@ -883,9 +877,9 @@
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
-  <object id="692" name="Cambot4" type="LegacyCambot" gid="37" x="4768" y="1088" width="32" height="32">
+  <object id="692" name="Swatbot3" type="LegacyCambot" gid="37" x="4768" y="1088" width="32" height="32">
    <properties>
-    <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
+    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint3_1,Waypoint3_2"/>
@@ -893,11 +887,11 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
     <property name="viewRange" value="View3"/>
    </properties>
   </object>
-  <object id="693" name="Waypoint3_2" type="BasicNPC" gid="1922" x="4960" y="1088" width="32" height="32">
+  <object id="693" name="Waypoint3_2" type="BasicNPC" gid="1922" x="4896" y="1088" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -1044,25 +1038,13 @@
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="719" name="Chest2" type="Chest" gid="2311" x="4256" y="1088" width="64" height="64">
-   <properties>
-    <property name="Mine" type="int" value="3"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
   <object id="720" name="Chest3" type="Chest" gid="2311" x="5920" y="1248" width="64" height="64">
    <properties>
-    <property name="Mine" type="int" value="3"/>
+    <property name="MapleSyrup" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="721" name="Chest4" type="Chest" gid="2311" x="2432" y="1344" width="64" height="64">
-   <properties>
-    <property name="LaserShield" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="722" name="RightPath" type="SceneEdge" gid="2311" x="8000" y="1344" width="320" height="320">
+  <object id="722" name="RightPath" type="BasicNPC" gid="2311" x="8224" y="1344" width="96" height="320">
    <properties>
     <property name="fade_in_speed" type="float" value="0.5"/>
     <property name="fade_out_music" type="bool" value="true"/>
@@ -1070,8 +1052,24 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
     <property name="orientation" value="left"/>
-    <property name="scene" type="file" value="ironlock_snively.lua"/>
-    <property name="spawn_point" value="Spawn 1"/>
+    <property name="whileColliding">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Do = require &quot;actions/Do&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self, player)
+    if self.hit then
+        return
+    end
+
+    player.basicUpdate = function() end
+    self:run(BlockPlayer {
+        Do(function()
+            player.sprite:setAnimation(&quot;walkright&quot;)
+            self.scene:changeScene{map=&quot;ironlock_snively&quot;, fadeInSpeed = 0.5, fadeOutSpeed = 0.1, fadeOutMusic = true}
+        end),
+        Ease(player, &quot;x&quot;, 8600, 1, &quot;linear&quot;)
+    })
+end</property>
    </properties>
   </object>
   <object id="723" name="Evangeline" type="BasicNPC" gid="1714" x="1152" y="1088" width="64" height="64">
@@ -1099,6 +1097,99 @@
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/p.png"/>
+   </properties>
+  </object>
+  <object id="727" name="Chest2" type="Chest" gid="2311" x="4928" y="1088" width="64" height="64">
+   <properties>
+    <property name="Mine" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="728" name="Swatbot4" type="LegacySwatbot" gid="37" x="7040" y="1152" width="32" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="follow" value="Waypoint6_1,Waypoint6_2"/>
+    <property name="followRepeat" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="false"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
+    <property name="viewRange" value="View13"/>
+   </properties>
+  </object>
+  <object id="729" name="Swatbot5" type="LegacySwatbot" gid="37" x="7328" y="1280" width="32" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="follow" value="Waypoint7_2,Waypoint7_1"/>
+    <property name="followRepeat" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="false"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
+    <property name="viewRange" value="View14"/>
+   </properties>
+  </object>
+  <object id="730" name="Swatbot6" type="LegacySwatbot" gid="37" x="7520" y="1152" width="32" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="follow" value="Waypoint8_1,Waypoint8_2"/>
+    <property name="followRepeat" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="false"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
+    <property name="viewRange" value="View15"/>
+   </properties>
+  </object>
+  <object id="731" name="Waypoint6_1" type="BasicNPC" gid="1922" x="6880" y="1152" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="732" name="Waypoint6_2" type="BasicNPC" gid="1922" x="7232" y="1152" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="733" name="Waypoint7_1" type="BasicNPC" gid="1922" x="7104" y="1280" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="734" name="Waypoint7_2" type="BasicNPC" gid="1922" x="7456" y="1280" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="735" name="Waypoint8_1" type="BasicNPC" gid="1922" x="7328" y="1152" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="736" name="Waypoint8_2" type="BasicNPC" gid="1922" x="7680" y="1152" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="737" name="View15" type="BasicNPC" gid="1922" x="7328" y="1216" width="416" height="192" visible="0">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="738" name="View14" type="BasicNPC" gid="1922" x="7104" y="1344" width="416" height="192" visible="0">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="739" name="View13" type="BasicNPC" gid="1922" x="6880" y="1216" width="416" height="192" visible="0">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

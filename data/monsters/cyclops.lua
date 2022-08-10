@@ -31,6 +31,8 @@ return {
 	
 	mockSprite = "sprites/cyclops",
 	mockSpriteOffset = Transform(-60, 50),
+	
+	hpBarOffset = Transform(200, 0),
 
 	stats = {
 		xp    = 30,

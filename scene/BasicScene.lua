@@ -461,7 +461,7 @@ function BasicScene:restart(args)
 	self.isRestarting = true
 	args = args or {}
 	args.mapName = self.mapName
-	args.spawnPoint = self.lastSpawnPoint
+	args.spawnPoint = args.spawnPoint or self.lastSpawnPoint or "Spawn 1"
 	self:changeScene(args)
 end
 

@@ -41,8 +41,8 @@ function BattleMenu:draw()
 	-- Opponent stats (if applicable)
 	for _,oppo in pairs(self.opponents) do
 		if oppo.showHp then
-			local hpPosX = oppo:getSprite().transform.x - oppo:getSprite().w
-			local hpPosY = oppo:getSprite().transform.y + oppo:getSprite().h
+			local hpPosX = oppo:getSprite().transform.x - oppo:getSprite().w + oppo.hpBarOffset.x
+			local hpPosY = oppo:getSprite().transform.y + oppo:getSprite().h + oppo.hpBarOffset.h
 
 			-- Draw back of progress bar
 			love.graphics.setColor(0, 0, 0, math.min(oppo.showHpAlpha, 100))

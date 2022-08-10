@@ -27,6 +27,8 @@ return {
 	name = "Eye",
 	altName = "Eye",
 	sprite = "sprites/phantomstandin",
+	
+	hpBarOffset = Transform(200, 0),
 
 	stats = {
 		xp    = 30,

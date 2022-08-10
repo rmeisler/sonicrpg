@@ -8,7 +8,7 @@ return {
   height = 160,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 635,
+  nextobjectid = 636,
   properties = {
     ["battlebg"] = "../art/backgrounds/ironlockbg.png",
     ["onload"] = "actions/ironlockfloor.lua",
@@ -3238,22 +3238,6 @@ return {
           }
         },
         {
-          id = 621,
-          name = "Spawn 1",
-          type = "Player",
-          shape = "rectangle",
-          x = 3200,
-          y = 2560,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1922,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
           id = 622,
           name = "Swatbot4",
           type = "BasicNPC",
@@ -3471,6 +3455,22 @@ return {
             ["defaultAnim"] = "idleleft",
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png"
+          }
+        },
+        {
+          id = 635,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 4320,
+          y = 4736,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["orientation"] = "up"
           }
         }
       }

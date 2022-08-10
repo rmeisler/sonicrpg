@@ -29,6 +29,8 @@ return {
 	name = "Legacy Swatbot",
 	altName = "Legacy Swatbot",
 	sprite = "sprites/swatbotwhite",
+	
+	insult = "Swatbutt",
 
 	stats = {
 		xp    = 10,

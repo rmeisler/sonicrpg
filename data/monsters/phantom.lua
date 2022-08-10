@@ -34,6 +34,10 @@ return {
 	mockSprite = "sprites/phantom",
 	mockSpriteOffset = Transform(-120, -84),
 
+	insult = "creepo",
+	
+	hpBarOffset = Transform(100, 0),
+
 	stats = {
 		xp    = 20,
 		maxhp = 600,

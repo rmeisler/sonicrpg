@@ -97,7 +97,7 @@ function LegacySwatbot:onCaughtPlayer()
 					}
 				},
 				Do(function()
-					self.scene:restart()
+					self.scene:restart{spawnPoint="Spawn 1"}
 				end)
 			}
 		},

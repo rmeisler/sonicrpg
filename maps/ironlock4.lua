@@ -8,7 +8,7 @@ return {
   height = 56,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 727,
+  nextobjectid = 740,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/ironlock4.lua",
@@ -608,22 +608,6 @@ return {
       properties = {},
       objects = {
         {
-          id = 491,
-          name = "View1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1984,
-          y = 992,
-          width = 352,
-          height = 768,
-          rotation = 0,
-          gid = 1922,
-          visible = false,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
           id = 605,
           name = "Door1",
           type = "Door",
@@ -806,8 +790,8 @@ return {
         },
         {
           id = 616,
-          name = "Cambot1",
-          type = "LegacyCambot",
+          name = "Swatbot0",
+          type = "LegacySwatbot",
           shape = "rectangle",
           x = 2944,
           y = 1312,
@@ -817,7 +801,7 @@ return {
           gid = 37,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/legacycambot.lua",
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint1,Waypoint2",
@@ -825,8 +809,7 @@ return {
             ["ghost"] = true,
             ["ignorePlayer"] = false,
             ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/cambot2.png",
-            ["viewRange"] = "View1"
+            ["sprite"] = "../art/sprites/swatbotwhite.png"
           }
         },
         {
@@ -1132,8 +1115,8 @@ return {
         },
         {
           id = 638,
-          name = "Cambot2",
-          type = "LegacyCambot",
+          name = "Swatbot1",
+          type = "LegacySwatbot",
           shape = "rectangle",
           x = 3904,
           y = 1088,
@@ -1143,7 +1126,7 @@ return {
           gid = 37,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/legacycambot.lua",
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint2_1,Waypoint2_4,Waypoint2_3,Waypoint2_2",
@@ -1151,7 +1134,7 @@ return {
             ["ghost"] = true,
             ["ignorePlayer"] = false,
             ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/cambot2.png",
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
             ["viewRange"] = "View2"
           }
         },
@@ -1189,8 +1172,8 @@ return {
         },
         {
           id = 641,
-          name = "Cambot3",
-          type = "LegacyCambot",
+          name = "Swatbot2",
+          type = "LegacySwatbot",
           shape = "rectangle",
           x = 3904,
           y = 1312,
@@ -1200,7 +1183,7 @@ return {
           gid = 37,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/legacycambot.lua",
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint2_3,Waypoint2_2,Waypoint2_1,Waypoint2_4",
@@ -1208,7 +1191,7 @@ return {
             ["ghost"] = true,
             ["ignorePlayer"] = false,
             ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/cambot2.png",
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
             ["viewRange"] = "View2"
           }
         },
@@ -2023,7 +2006,7 @@ return {
         },
         {
           id = 692,
-          name = "Cambot4",
+          name = "Swatbot3",
           type = "LegacyCambot",
           shape = "rectangle",
           x = 4768,
@@ -2034,7 +2017,7 @@ return {
           gid = 37,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/legacycambot.lua",
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint3_1,Waypoint3_2",
@@ -2042,7 +2025,7 @@ return {
             ["ghost"] = true,
             ["ignorePlayer"] = false,
             ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/cambot2.png",
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
             ["viewRange"] = "View3"
           }
         },
@@ -2051,7 +2034,7 @@ return {
           name = "Waypoint3_2",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4960,
+          x = 4896,
           y = 1088,
           width = 32,
           height = 32,
@@ -2458,23 +2441,6 @@ return {
           }
         },
         {
-          id = 719,
-          name = "Chest2",
-          type = "Chest",
-          shape = "rectangle",
-          x = 4256,
-          y = 1088,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 2311,
-          visible = true,
-          properties = {
-            ["Mine"] = 3,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 720,
           name = "Chest3",
           type = "Chest",
@@ -2487,35 +2453,18 @@ return {
           gid = 2311,
           visible = true,
           properties = {
-            ["Mine"] = 3,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 721,
-          name = "Chest4",
-          type = "Chest",
-          shape = "rectangle",
-          x = 2432,
-          y = 1344,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 2311,
-          visible = true,
-          properties = {
-            ["LaserShield"] = 1,
+            ["MapleSyrup"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
         {
           id = 722,
           name = "RightPath",
-          type = "SceneEdge",
+          type = "BasicNPC",
           shape = "rectangle",
-          x = 8000,
+          x = 8224,
           y = 1344,
-          width = 320,
+          width = 96,
           height = 320,
           rotation = 0,
           gid = 2311,
@@ -2527,8 +2476,7 @@ return {
             ["ghost"] = true,
             ["key"] = "right",
             ["orientation"] = "left",
-            ["scene"] = "ironlock_snively.lua",
-            ["spawn_point"] = "Spawn 1"
+            ["whileColliding"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    if self.hit then\n        return\n    end\n\n    player.basicUpdate = function() end\n    self:run(BlockPlayer {\n        Do(function()\n            player.sprite:setAnimation(\"walkright\")\n            self.scene:changeScene{map=\"ironlock_snively\", fadeInSpeed = 0.5, fadeOutSpeed = 0.1, fadeOutMusic = true}\n        end),\n        Ease(player, \"x\", 8600, 1, \"linear\")\n    })\nend"
           }
         },
         {
@@ -2589,6 +2537,242 @@ return {
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/p.png"
+          }
+        },
+        {
+          id = 727,
+          name = "Chest2",
+          type = "Chest",
+          shape = "rectangle",
+          x = 4928,
+          y = 1088,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["Mine"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 728,
+          name = "Swatbot4",
+          type = "LegacySwatbot",
+          shape = "rectangle",
+          x = 7040,
+          y = 1152,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["follow"] = "Waypoint6_1,Waypoint6_2",
+            ["followRepeat"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false,
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "View13"
+          }
+        },
+        {
+          id = 729,
+          name = "Swatbot5",
+          type = "LegacySwatbot",
+          shape = "rectangle",
+          x = 7328,
+          y = 1280,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["follow"] = "Waypoint7_2,Waypoint7_1",
+            ["followRepeat"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false,
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "View14"
+          }
+        },
+        {
+          id = 730,
+          name = "Swatbot6",
+          type = "LegacySwatbot",
+          shape = "rectangle",
+          x = 7520,
+          y = 1152,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["follow"] = "Waypoint8_1,Waypoint8_2",
+            ["followRepeat"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false,
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "View15"
+          }
+        },
+        {
+          id = 731,
+          name = "Waypoint6_1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 6880,
+          y = 1152,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 732,
+          name = "Waypoint6_2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7232,
+          y = 1152,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 733,
+          name = "Waypoint7_1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7104,
+          y = 1280,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 734,
+          name = "Waypoint7_2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7456,
+          y = 1280,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 735,
+          name = "Waypoint8_1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7328,
+          y = 1152,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 736,
+          name = "Waypoint8_2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7680,
+          y = 1152,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 737,
+          name = "View15",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7328,
+          y = 1216,
+          width = 416,
+          height = 192,
+          rotation = 0,
+          gid = 1922,
+          visible = false,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 738,
+          name = "View14",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7104,
+          y = 1344,
+          width = 416,
+          height = 192,
+          rotation = 0,
+          gid = 1922,
+          visible = false,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 739,
+          name = "View13",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 6880,
+          y = 1216,
+          width = 416,
+          height = 192,
+          rotation = 0,
+          gid = 1922,
+          visible = false,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

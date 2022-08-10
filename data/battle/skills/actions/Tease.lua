@@ -11,10 +11,6 @@ local Parallel = require "actions/Parallel"
 local Telegraph = require "data/monsters/actions/Telegraph"
 
 return function(self, target)
-	local name = {
-		Swatbot = "Swatbutt",
-		Ratbot = "Ratbutt"
-	}
 	return Serial {
 		Do(function()
 			self.sprite:setAnimation("tease")
@@ -34,7 +30,7 @@ return function(self, target)
 		end),
 		target.onTease and target:onTease() or Action(),
 		MessageBox {
-			message="Sonic: Hey! {p30}Over here, "..(name[target.name] or "bot-brain").."!",
+			message="Sonic: Hey! {p30}Over here, "..(target.insult or "bot-brain").."!",
 			rect=MessageBox.HEADLINER_RECT,
 			textSpeed=8,
 			closeAction=Wait(0.8)
