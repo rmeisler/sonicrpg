@@ -57,6 +57,10 @@ return {
 	
 	scan = "Cyclops can lose balance when made dizzy.",
 	
+	getHpStats = function(self)
+		return self.eye.hp, self.eye.maxhp
+	end,
+	
 	onInit = function(self)
 		self.sprite.transform.x = 230
 		self.sprite.transform.y = 310

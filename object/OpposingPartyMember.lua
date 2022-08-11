@@ -53,6 +53,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.onInit = data.onInit or function() end
 	self.onConfused = data.onConfused or nil
 	self.onTease = data.onTease or nil
+	self.getHpStats = data.getHpStats or function(self) return self.hp, self.maxhp end
 	self.getIdleAnim = data.getIdleAnim or function(_self) return "idle" end
 	self.getBackwardAnim = data.getBackwardAnim or function(_self) return "backward" end
 	self.onAttack = data.onAttack

@@ -272,6 +272,10 @@ return {
 		
 		youngdown = {
 			frames = {{5,5}}
-		}
+		},
+		
+		sadright = {
+			frames = {{12,0}}
+		},
     }
 }

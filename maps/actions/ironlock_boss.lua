@@ -64,6 +64,7 @@ return function(scene, hint)
 			Animate(scene.objectLookup.Antoine.sprite, "idleright"),
 			MessageBox{message="Sally: !"},
 			MessageBox{message="???: Computer, {p60}open file {p60}**zzzzz** {p60} passcode 'Bean' **zzzzz**"},
+			Animate(scene.objectLookup.Sally.sprite, "sadright"),
 			MessageBox{message="Sally: ...{p20}D-{p60}Daddy?"},
 			Parallel {
 				Ease(scene.objectLookup.King.sprite.color, 1, 255, 0.3),
@@ -76,7 +77,6 @@ return function(scene, hint)
 				scene:screenShake(10, 30, 20)
 			}),
 			MessageBox{message="King: Sally... {p60}I pray this message finds its way to you as so many before it have not...", closeAction=Wait(2)},
-			Animate(scene.objectLookup.Sally.sprite, "idleright"),
 			MessageBox{message="Sally: Daddy, it's me! {p60}I'm here!", closeAction=Wait(2)},
 			Animate(scene.objectLookup.Sonic.sprite, "idleright"), --worried right
 			MessageBox{message="Sonic: I don't think he can hear you Sal-- {p60}we gotta juice before--", closeAction=Wait(1.5)},

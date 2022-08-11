@@ -8,7 +8,7 @@ return {
   height = 56,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 743,
+  nextobjectid = 746,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["noBattleMusic"] = true,
@@ -1073,7 +1073,7 @@ return {
           gid = 2311,
           visible = true,
           properties = {
-            ["Mine"] = 3,
+            ["Mine"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -2792,8 +2792,8 @@ return {
           name = "Chest2",
           type = "Chest",
           shape = "rectangle",
-          x = 4960,
-          y = 1344,
+          x = 5024,
+          y = 1152,
           width = 64,
           height = 64,
           rotation = 0,
@@ -2805,12 +2805,29 @@ return {
           }
         },
         {
-          id = 742,
+          id = 744,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 6720,
+          y = 1344,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["Mine"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 745,
           name = "Cyclops1",
           type = "LegacySwatbot",
           shape = "rectangle",
-          x = 2304,
-          y = 1248,
+          x = 2336,
+          y = 1312,
           width = 32,
           height = 32,
           rotation = 0,

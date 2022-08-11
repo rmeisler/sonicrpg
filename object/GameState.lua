@@ -457,8 +457,6 @@ function GameState:load(scene, slot)
 		end
 		self.leader = data.leader
 		
-		print("leader loaded = "..self.leader)
-		
 		-- What manifest to use?...
 		if self:isFlagSet("ironlock_intro") then
 			-- Use ironlock manifest file

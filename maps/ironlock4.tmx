@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="260" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="743">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="260" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="746">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="noBattleMusic" type="bool" value="true"/>
@@ -507,7 +507,7 @@
   </object>
   <object id="635" name="Chest1" type="Chest" gid="2311" x="2912" y="1248" width="64" height="64">
    <properties>
-    <property name="Mine" type="int" value="3"/>
+    <property name="Mine" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -1195,24 +1195,16 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="741" name="Chest2" type="Chest" gid="2311" x="4960" y="1344" width="64" height="64">
+  <object id="741" name="Chest2" type="Chest" gid="2311" x="5024" y="1152" width="64" height="64">
    <properties>
     <property name="GreenLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="742" name="Cyclops1" type="LegacySwatbot" gid="37" x="2304" y="1248" width="32" height="32">
+  <object id="744" name="Chest1" type="Chest" gid="2311" x="6720" y="1344" width="64" height="64">
    <properties>
-    <property name="battle" type="file" value="../data/monsters/cyclops.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="follow" value="Waypoint1,Waypoint2"/>
-    <property name="followRepeat" type="bool" value="true"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="ignorePlayer" type="bool" value="false"/>
-    <property name="noInvestigate" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
-    <property name="viewRange" value="View0"/>
+    <property name="Mine" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
  </objectgroup>
