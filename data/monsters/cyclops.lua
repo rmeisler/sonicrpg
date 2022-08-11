@@ -10,6 +10,7 @@ local YieldUntil = require "actions/YieldUntil"
 local Try = require "actions/Try"
 local BouncyText = require "actions/BouncyText"
 local Repeat = require "actions/Repeat"
+local Spawn = require "actions/Spawn"
 local MessageBox = require "actions/MessageBox"
 local Executor = require "actions/Executor"
 
@@ -69,6 +70,23 @@ return {
 		oppo.body = self
 		oppo:onPreInit()
 		self.eye = oppo
+		
+		local hitHandler
+		hitHandler = function(damage)
+			self.eye.hp = self.eye.hp - damage
+		end
+		self:addHandler("hit", hitHandler)
+		
+		-- Screen shake every x seconds
+		self.scene:run(Spawn(
+			Repeat(
+				Serial {
+					PlayAudio("sfx", "quake", 1.0, true),
+					self.scene:screenShake(10, 30, 20),
+					Wait(5)
+				}
+			)
+		))
 		
 		self.proneTurns = 0
 	end,

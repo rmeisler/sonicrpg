@@ -18,7 +18,7 @@ return function(self, target)
 			closeAction=Wait(1.2)
 		}
 	end
-	
+
 	return Serial {
 		Animate(self.sprite, "nichole_start"),
 		Animate(self.sprite, "nichole_idle"),

@@ -8,7 +8,7 @@ return {
   height = 56,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 742,
+  nextobjectid = 743,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["noBattleMusic"] = true,
@@ -2802,6 +2802,31 @@ return {
           properties = {
             ["GreenLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 742,
+          name = "Cyclops1",
+          type = "LegacySwatbot",
+          shape = "rectangle",
+          x = 2304,
+          y = 1248,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/cyclops.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["follow"] = "Waypoint1,Waypoint2",
+            ["followRepeat"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false,
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "View0"
           }
         }
       }

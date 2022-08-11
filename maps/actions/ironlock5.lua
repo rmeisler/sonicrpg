@@ -286,10 +286,9 @@ return function(scene, hint)
 		Do(function()
 			scene.objectLookup.Antoine.sprite:setAnimation("idleleft")
 		end),
-		Wait(2),
+		Wait(1),
 
 		Spawn(scene:screenShake(10, 30, 20)),
-		Wait(1),
 		Animate(scene.objectLookup.Sally.sprite, "idleright"),
 		Animate(scene.objectLookup.Sonic.sprite, "idleright"),
 		Animate(scene.objectLookup.Antoine.sprite, "idleleft"),

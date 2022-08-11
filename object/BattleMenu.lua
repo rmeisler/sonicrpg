@@ -49,13 +49,14 @@ function BattleMenu:draw()
 			love.graphics.rectangle("fill", hpPosX, hpPosY, 200, 10, 2, 2)
 
 			-- Draw progress bar
-			if oppo.hp > 0 then
+			local oppohp, oppomaxhp = oppo:getHpStats()
+			if oppohp > 0 then
 				love.graphics.setColor(80, 255, 80, oppo.showHpAlpha)
-				love.graphics.rectangle("fill", hpPosX, hpPosY, 200 * (oppo.hp / oppo.maxhp), 10, 2, 2)
+				love.graphics.rectangle("fill", hpPosX, hpPosY, 200 * (oppohp / oppomaxhp), 10, 2, 2)
 			end
 			
 			-- Align hp text
-			local hpText = string.format('%5s / %s', tostring(oppo.hp), tostring(oppo.maxhp))
+			local hpText = string.format('%5s / %s', tostring(oppohp), tostring(oppomaxhp))
 			
 			-- Draw stat text with outline
 			love.graphics.setColor(0, 0, 0, math.min(oppo.showHpAlpha))
