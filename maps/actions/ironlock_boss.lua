@@ -90,7 +90,7 @@ return function(scene, hint)
 			Animate(scene.objectLookup.Sonic.sprite, "idleright"), -- calm smile
 			MessageBox{message="King: I've been living in-- {p20} **zzzzz** {p60}and while it has not been easy, I can assure you I am safe-- {p20}**zzzz**", closeAction=Wait(3)},
 			MessageBox{message="King: From reading your letters I can tell that-- {p20}**zzzz** no longer a child, but a brilliant young woman.", closeAction=Wait(3)},
-			MessageBox{message="King: Stay strong and keep fighting my dear daughter--{p20} **zzzz** {p60}I have faith that we will some day be reunited...", closeAction=Wait(3)},
+			MessageBox{message="King: Stay strong and keep fighting my dear daughter--{p20} **zzzz** {p60}I have faith that we will some day be\nreunited...", closeAction=Wait(3)},
 			
 			Animate(scene.objectLookup.Sally.sprite, "sadleft"),
 			MessageBox{message="Sally: ...*sniff*... {p60}I love you daddy...", closeAction=Wait(2)},
@@ -112,16 +112,21 @@ return function(scene, hint)
 				},
 				MessageBox{message="King: Is that you, Sally?", closeAction=Wait(1.5)}
 			},
-			Animate(scene.objectLookup.Sally.sprite, "idleright"),
+			Animate(scene.objectLookup.Sally.sprite, "sadright"),
 			MessageBox{message="Sally: Y-Yes! {p60}It's me, daddy!", closeAction=Wait(1.5)},
-			
-			Ease(scene.objectLookup.King.sprite.color, 4, 0, 0.3),
-			Animate(scene.objectLookup.Sally.sprite, "idleright"), -- angershockright
+
+			Parallel {
+				Serial {
+					Wait(1.3),
+					Animate(scene.objectLookup.Sally.sprite, "noright"),
+					MessageBox{message="Sally: No!", closeAction=Wait(2)}
+				},
+				Ease(scene.objectLookup.King.sprite.color, 4, 0, 0.3)
+			},
 			Spawn(Parallel {
 				Repeat(PlayAudio("sfx", "quake", 1.0)),
-				scene:screenShake(10, 30, 300)
+				scene:screenShake(10, 30, 50)
 			}),
-			MessageBox{message="Sally: No!", closeAction=Wait(2)},
 			Parallel {
 				Ease(scene.objectLookup.Sonic, "x", scene.objectLookup.Sally.x, 2, "linear"),
 				Ease(scene.objectLookup.Sally, "y", 352 - 98, 2, "linear"),
@@ -144,7 +149,7 @@ return function(scene, hint)
 			end),
 			Wait(2),
 			Do(function()
-				scene.sceneMgr:pushScene {class = "CreditsSplashScene", fadeOutSpeed=0.1,fadeInSpeed=0.3, enterDelay=2}
+				scene.sceneMgr:pushScene {class = "CreditsSplashScene", fadeOutSpeed=0.1,fadeInSpeed=0.3, enterDelay=4}
 			end)
 		}
 	end

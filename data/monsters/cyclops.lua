@@ -115,7 +115,11 @@ return {
 				closeAction=Wait(1)
 			},
 			Animate(self:getSprite(), "fall"),
-			Do(function() self:getSprite():setAnimation("prone") end),
+			Do(function()
+				self:getSprite():setAnimation("prone")
+				self:getSprite():pushOverride("idle", "prone")
+				self:getSprite():pushOverride("backward", "prone")
+			end),
 			PlayAudio("sfx", "cyclopsstep", 1.0, true),
 			self.scene:screenShake(20, 30, 1)
 		}
@@ -145,7 +149,11 @@ return {
 						Ease(sp.transform, "y", function() return sp.transform.y + 150 end, 3)
 					},
 				},
-				Do(function() self:getSprite():setAnimation("idle") end),
+				Do(function()
+					self:getSprite():setAnimation("idle")
+					self:getSprite():popOverride("idle")
+					self:getSprite():popOverride("backward")
+				end),
 				PlayAudio("sfx", "cyclopsstep", 1.0, true),
 				self.scene:screenShake(20, 30, 1)
 			}

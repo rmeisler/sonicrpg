@@ -277,5 +277,8 @@ return {
 		sadright = {
 			frames = {{12,0}}
 		},
+		noright = {
+			frames = {{13,0}}
+		},
     }
 }
