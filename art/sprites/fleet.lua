@@ -18,7 +18,7 @@ return {
 			frames = {{0,2}}
 		},
 		idleup = {
-			frames = {{0,6}}
+			frames = {{0,3}}
 		},
 		walkright = {
 			frames = {{1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}},
@@ -41,6 +41,9 @@ return {
 		},
 		lookright = {
 			frames = {{1,5}}
+		},
+		frustrated = {
+			frames = {{1,7}}
 		},
 		smirkright = {
 			frames = {{10,4}}

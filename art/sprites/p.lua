@@ -106,5 +106,10 @@ return {
 		king_lookback = {
 			frames = {{14,3}}
 		},
+		
+		computer_idle = {
+			frames = {{15,2},{16,2}},
+			speed = 0.2
+		},
     }
 }
