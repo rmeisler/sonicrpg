@@ -165,11 +165,8 @@ supermariobro58
 King Sonic
 Ibeh Dubem/Flame the Teen
 Ricardo "Zero Neoz" Fukunaga
-sqrly jack
 Pavel "Limepaul" Haluška
-Nitrosaturn
-Jasmeen "The Wiff" Miah
-H0lySquirr3l
+GreenCauldron08
 
 [3D Concept Art]
 Nitrosaturn

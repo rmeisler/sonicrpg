@@ -466,6 +466,8 @@ function NPC:walk(to, speed, walkAnim, stopAnim)
 		},
 		Do(function()
 			self.sprite:setAnimation(stopAnim)
+			self.object.x = self.x
+			self.object.y = self.y
 			self:updateCollision()
 		end)
 	}

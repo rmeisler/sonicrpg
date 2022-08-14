@@ -2004,6 +2004,7 @@ return function(self)
         end),
         Ease(arm, &quot;y&quot;, function() return arm.y + 30 end, 4),
         Do(function()
+            arm.object.y = arm.y
             arm:updateCollision()
         end),
         Wait(2),
@@ -2101,6 +2102,7 @@ return function(self)
             end),
             Ease(arm, &quot;y&quot;, function() return arm.y + 30 end, 4),
             Do(function()
+                arm.object.y = arm.y
                 arm:updateCollision()
             end),
             Wait(2),

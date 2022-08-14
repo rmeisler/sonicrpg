@@ -1812,6 +1812,7 @@ return function(self, player, prevState)
                 end),
                 Ease(arm, &quot;y&quot;, function() return arm.y + 40 end, 4),
                 Do(function()
+                    arm.object.y = arm.y
                     arm:updateCollision()
                 end),
                 Wait(2),
