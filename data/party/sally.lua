@@ -87,7 +87,7 @@ return {
 				GameState:getEarnedSkill("nicole_upgrade_interrupt", "Interrupt"),
 			}
 		},
-		[6] = {
+		[7] = {
 			messages = {"Sally learned \"Inspire\"!"},
 			skills = {
 				GameState:getEarnedSkill("nicole_upgrade_scan", "Scan"),

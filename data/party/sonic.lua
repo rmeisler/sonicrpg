@@ -78,7 +78,7 @@ return {
 				require "data/battle/skills/Tease"
 			}
 		},
-		[6] = {
+		[7] = {
 			messages = {"Sonic learned \"Pummel\"!"},
 			skills = {
 				require "data/battle/skills/PowerRing",

@@ -2820,31 +2820,6 @@ return {
             ["Mine"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
-        },
-        {
-          id = 745,
-          name = "Cyclops1",
-          type = "LegacySwatbot",
-          shape = "rectangle",
-          x = 2336,
-          y = 1312,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/cyclops.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
-            ["follow"] = "Waypoint1,Waypoint2",
-            ["followRepeat"] = true,
-            ["ghost"] = true,
-            ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/swatbotwhite.png",
-            ["viewRange"] = "View0"
-          }
         }
       }
     },
