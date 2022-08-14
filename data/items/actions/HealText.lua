@@ -12,8 +12,8 @@ local TargetType = require "util/TargetType"
 return function(attribute, amount, color)
 	return function (target, transform)
 		-- Double healing amount if chef's hat equipped
-		if  target.side == TargetType.Party and 
-			GameState:isEquipped(target.id, ItemType.Accessory, "Chef's Hat")
+		if  self.side == TargetType.Party and 
+			GameState:isEquipped(self.id, ItemType.Accessory, "Chef's Hat")
 		then
 			amount = amount * 2
 		end

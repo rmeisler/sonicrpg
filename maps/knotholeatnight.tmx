@@ -1525,13 +1525,15 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/knotholebasebg.png"/>
    </properties>
   </object>
-  <object id="78" name="RotorHutDoor" type="Door" gid="7660" x="1856" y="522" width="32" height="32">
+  <object id="78" name="RebellionHutDoor" type="Door" gid="7660" x="1856" y="522" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-44"/>
-    <property name="flagForDoor" value="notthistime"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="locked" type="bool" value="true"/>
+    <property name="key" value="up"/>
+    <property name="orientation" value="down"/>
+    <property name="scene" type="file" value="rebellionhut.lua"/>
+    <property name="spawn_point" value="Door"/>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
@@ -1611,6 +1613,7 @@ return function(self)
             MessageBox {message = &quot;Bunnie: Rotor found his lil' ol' software glitch yesterday and now all of the sudden we're ready to take down Robotnik's whole army?!&quot;},
             Do(function()
                 self.scene.player.sprite:setAnimation(prevPlayerAnim)
+                self.scene.player.noIdle = false
             end),
             MessageBox {message = &quot;Sally: I know!&quot;},
             Wait(0.5),
@@ -1618,10 +1621,12 @@ return function(self)
             MessageBox {message = &quot;Bunnie: I gotta tell ya Sally-girl{p60}, it may be mighty difficult to work alongside these Rebellion folks.&quot;},
             Do(function()
                 self.scene.player.sprite:setAnimation(&quot;thinking2&quot;)
+                self.scene.player.noIdle = true
             end),
             MessageBox {message = &quot;Sally: It will be challenging{p60}, but I remember Leon being such an incredible leader when I was little...&quot;},
             Do(function()
                 self.scene.player.sprite:setAnimation(prevPlayerAnim)
+                self.scene.player.noIdle = false
             end),
             MessageBox {message = &quot;Sally: With his help{p20}, I'm sure we'll be able to take down Robotnik once and for all!&quot;},
             MessageBox {message = &quot;Bunnie: Well now{p40}, Leon seems like an impressive fella and all{p60}, but you're the one who's gotten us this far.&quot;},
@@ -1630,7 +1635,6 @@ return function(self)
             MessageBox {message = &quot;Bunnie: You got it, sugah.&quot;},
             Animate(self.sprite, &quot;idledown&quot;),
             Do(function()
-                self.scene.player.noIdle = false
                 self:refreshKeyHint()
                 self.scene.player.hidekeyhints[tostring(self.scene.objectLookup.Antoine)] = nil
             end)
@@ -1959,238 +1963,8 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-20"/>
-    <property name="flagForDoor" value="sallysad_over"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
-    <property name="onOpen">local Serial = require &quot;actions/Serial&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Menu = require &quot;actions/Menu&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-local Wait = require &quot;actions/Wait&quot;
-local AudioFade = require &quot;actions/AudioFade&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Animate = require &quot;actions/Animate&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Action = require &quot;actions/Action&quot;
-
-local Transform = require &quot;util/Transform&quot;
-local Layout = require &quot;util/Layout&quot;
-
-local SpriteNode = require &quot;object/SpriteNode&quot;
-local BasicNPC = require &quot;object/BasicNPC&quot;
-
-return function(self)
-    if GameState:isFlagSet(&quot;rotorreveal_done&quot;) or GameState:isFlagSet(&quot;ep3_intro&quot;) then
-        return Action()
-    end
-
-    GameState:setFlag(&quot;rotorreveal_done&quot;)
-    local scene = self.scene
-    local rotor = BasicNPC(
-        scene,
-        {name = &quot;objects&quot;},
-        {
-            name = &quot;Rotor&quot;,
-            x = scene.player.x - 50,
-            y = scene.player.y - 10,
-            width = 65,
-            height = 55,
-            properties = {nocollision = true, sprite = &quot;art/sprites/rotor.png&quot;, align = &quot;bottom_left&quot;}
-        }
-    )
-    return BlockPlayer {
-        AudioFade(&quot;music&quot;, 1, 0, 1),
-        PlayAudio(&quot;music&quot;, &quot;rotorsworkshop&quot;, 1.0, true),
-        MessageBox {message=(GameState.leader == &quot;sonic&quot; and &quot;Sonic: Yo! {p40}You in there, Rote?&quot; or &quot;Sally: Rotor? {p40}Are you in there?...&quot;)},
-        Wait(1),
-        MessageBox {message=(GameState.leader == &quot;sonic&quot; and &quot;Sonic: ?...&quot; or &quot;Sally: ?...&quot;)},
-        Do(function()
-            rotor.sprite:setAnimation(&quot;pose&quot;)
-            scene:addObject(rotor)
-            scene.player.noIdle = true
-            scene.player.sprite:setAnimation(&quot;shock&quot;)
-        end),
-        Parallel {
-            MessageBox {message=&quot;Rotor: Hey guys!&quot;},
-            Ease(scene.player, &quot;y&quot;, scene.player.y + 20, 3)
-        },
-        Do(function()
-            rotor.sprite:setAnimation(&quot;idledown&quot;)
-            scene.player.sprite:setAnimation(&quot;idleup&quot;)
-        end),
-        MessageBox {message=&quot;Rotor: Uh... {p70}you're gonna wanna see this!&quot;},
-        scene:enterBattle {
-            opponents = {
-                &quot;swatbot&quot;
-            },
-            music = &quot;doittoit&quot;,
-            beforeBattle = Do(function() rotor:remove() end),
-            onEnter = function(battleScene)
-                local rotor = SpriteNode(battleScene, table.remove(battleScene.opponentSlots, 1), nil, &quot;rotor&quot;, nil, nil, &quot;sprites&quot;)
-                rotor:setAnimation(&quot;idleright&quot;)
-            
-                battleScene.partyByName.sonic.id = &quot;notsonic&quot;
-                battleScene.opponents[1].stats.miss = true
-            
-                local Swatbot = require &quot;data/monsters/swatbot&quot;
-                return Serial {
-                    Wait(2),
-                    MessageBox {message=&quot;Sonic: What's the deal with the Swatbutt, Rote?&quot;},
-                    Do(function()
-                        rotor:setAnimation(&quot;explaining_right1&quot;)
-                    end),
-                    MessageBox {message=&quot;Rotor: I found this guy wandering around Sector 2.&quot;},
-                    MessageBox {message=&quot;Rotor: But he's not exactly a regular Swatbot. {p70}Watch this.&quot;},
-                    Do(function()
-                        rotor:setAnimation(&quot;idleright&quot;)
-                    end),
-                    MessageBox {message=&quot;Rotor: Swatbot. {p40}Target Sonic the Hedgehog.&quot;},
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;shock&quot;)
-                        battleScene.partyByName.sally.sprite:setAnimation(&quot;shock&quot;)
-                    end),
-                    Parallel {
-                        MessageBox {message=&quot;Sonic: What!? {p40}Not cool, Rote!!&quot;},
-                        Swatbot.behavior(battleScene.opponents[1], battleScene.partyByName.sonic)
-                    },
-                
-                    -- Swatbot fires at Sonic, misses
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;idle&quot;)
-                        battleScene.partyByName.sally.sprite:setAnimation(&quot;idle&quot;)
-                    end),
-                    MessageBox {message=&quot;Sonic: Huh?...&quot;},
-                    MessageBox {message=&quot;Rotor: Swatbot. {p40}Target Princess Sally.&quot;},
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;shock&quot;)
-                        battleScene.partyByName.sally.sprite:setAnimation(&quot;shock&quot;)
-                    end),
-                    Parallel {
-                        MessageBox {message=&quot;Sally: Rotor!!&quot;},
-                        Swatbot.behavior(battleScene.opponents[1], battleScene.partyByName.sally)
-                    },
-                
-                    -- Swatbot fires at Rotor, misses
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;idle&quot;)
-                        battleScene.partyByName.sally.sprite:setAnimation(&quot;idle&quot;)
-                        rotor:setAnimation(&quot;explaining_right2&quot;)
-                    end),
-                    MessageBox {message=&quot;Rotor: See? {p40}He can't hit his target!&quot;},
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;criticizing&quot;)
-                    end),
-                    MessageBox {message=&quot;Sonic: Ya tryin' to give us a heart attack?!&quot;},
-                    MessageBox {message=&quot;Sonic: Why ya showing us this, Rote?&quot;},
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;idle&quot;)
-                        rotor:setAnimation(&quot;thinking&quot;)
-                    end),
-                    AudioFade(&quot;music&quot;, 1, 0, 1),
-                    MessageBox {message=&quot;Rotor: Well... {p40}based on what I'm seeing...{p40} this malfunction isn't caused by faulty {h hardware}...&quot;},
-                    Do(function()
-                        battleScene.partyByName.sally.sprite:setAnimation(&quot;thinking&quot;)
-                    end),
-                    MessageBox {message=&quot;Sally: *gasp*! {p50}But that must mean...&quot;, textSpeed=3, closeAction=Wait(1)},
-                    Do(function()
-                        battleScene.audio:playMusic(&quot;areyouready&quot;, 0.4)
-                    end),
-                    MessageBox {message=&quot;Rotor: Yeah... {p40}I'm thinking it's exploitable.&quot;, textSpeed=4},
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;annoyed&quot;)
-                    end),
-                    MessageBox {message=&quot;Sonic: Guys, {p30}guys, {p30}can someone speak english here?&quot;},
-                    MessageBox {message=&quot;Sally: Well... {p40}basically... {p40}the Swatbot is, uh{p10}.{p10}.{p10}.{p40} {h glitchin'}.&quot;, textSpeed=4},
-                    MessageBox {message=&quot;Rotor: Right. {p40}And because this glitch showed up in a production model, {p40}my theory is, {p40}we could potentially mask this glitch as a {h software patch}.&quot;, textSpeed=3},
-                    MessageBox {message=&quot;Sally: Meaning, {p40}we could spread this glitch to other bots!&quot;, textSpeed=3},
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;thinking&quot;)
-                    end),
-                    MessageBox {message=&quot;Sonic: Whoah guys, {p40}are you really telling me what I think you're telling me?&quot;, textSpeed=3},
-                    MessageBox {message=&quot;Sally: If we do this right, {p40}we could upload this glitch to Robotnik's entire army! {p50}They wouldn't be able to lay a finger on us!&quot;, textSpeed=3},
-                    MessageBox {message=&quot;Sally: ...But how are we going to make the software patch look authentic?&quot;},
-                    MessageBox {message=&quot;Rotor: We'll need to use Buttnik's terminal to create a {h certificate of authenticity}.&quot;},
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;criticizing&quot;)
-                    end),
-                    MessageBox {message=&quot;Sonic: Sounds like somethin' ol' Buttnik would be heavily guarding...&quot;},
-                    MessageBox {message=&quot;Rotor: You're right. {p50}As far as I know, {p20}the only terminal which can produce a certificate of authenticity is in the {h Death Egg}.&quot;, textSpeed=3},
-                    AudioFade(&quot;music&quot;, 0.4, 0, 1),
-                    Wait(2),
-                    Do(function()
-                        battleScene.partyByName.sally.sprite:setAnimation(&quot;sad&quot;)
-                    end),
-                    MessageBox {message=&quot;Sally: *sigh* {p40}Breaking into the Robotnik's headquarters? {p40}This isn't going to work...&quot;, textSpeed=4},
-                    Wait(1),
-                    Do(function()
-                        rotor:setAnimation(&quot;sad&quot;)
-                    end),
-                    Parallel {
-                        PlayAudio(&quot;music&quot;, &quot;sallyupset&quot;, 1.0),
-                        Serial {
-                            MessageBox {message=&quot;Rotor: Yeah... {p40}it's probably not worth the risk...&quot;, textSpeed=4},
-                            Wait(1),
-                            Do(function()
-                                battleScene.partyByName.sonic.sprite:setAnimation(&quot;criticizing_sad&quot;)
-                            end),
-                            MessageBox {message=&quot;Sonic: ...&quot;, textSpeed=2},
-                            Wait(1)
-                        }
-                    },
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;thinking&quot;)
-                    end),
-                    MessageBox {message=&quot;Sonic: Wait a sonic second!&quot;},
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;victory&quot;)
-                    end),
-                    MessageBox {message=&quot;Sonic: B could get us in!&quot;},
-                    Do(function()
-                        battleScene.audio:playMusic(&quot;doittoit2&quot;, 1.0)
-                        battleScene.partyByName.sally.sprite:setAnimation(&quot;idleup&quot;)
-                        rotor:setAnimation(&quot;idleright&quot;)
-                    end),
-                    MessageBox {message=&quot;Sally: A-Are you sure?&quot;},
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;victory&quot;)
-                    end),
-                    MessageBox {message=&quot;Sonic: Hey, do I look like a guy who isn't sure?&quot;},
-                    MessageBox {message=&quot;Rotor: B? {p60}Who's B?&quot;},
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;explain&quot;)
-                    end),
-                    MessageBox {message=&quot;Sonic: We met him on our last mission. {p40}B helped us rescue Antoine. {p40}He knows all sorts of secret pathways throughout Robotropolis, some that even Griff doesn't\nknow about!&quot;},
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;idle&quot;)
-                        battleScene.partyByName.sally.sprite:setAnimation(&quot;thinking3&quot;)
-                    end),
-                    MessageBox {message=&quot;Sally: Ok, {p40}far be it from me to say this, {p40}but I think we've been playing it safe for long enough.&quot;},
-                    MessageBox {message=&quot;Sally: We need to do this. {p60}This could be our chance to take down Robotnik, {p20}once and for all!&quot;},
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;victory&quot;)
-                    end),
-                    MessageBox {message=&quot;Sonic: Whoah-- Sal! {p20}I'm liking this new attitude!&quot;},
-                    MessageBox {message=&quot;Rotor: This is a pretty crazy plan...&quot;},
-                    Do(function()
-                        rotor:setAnimation(&quot;pose&quot;)
-                    end),
-                    MessageBox {message=&quot;Rotor: ...but if Sally believes we can do it, than I do too!&quot;},
-                    Do(function()
-                        battleScene.partyByName.sally.sprite:setAnimation(&quot;victory&quot;)
-                    
-                        battleScene.partyByName.sonic.id = &quot;sonic&quot;
-                    end),
-                    MessageBox {message=&quot;Sally: Alright guys!&quot;, closeAction=Wait(1)},
-                    MessageBox {message=&quot;All: Let's do it to it!&quot;, textSpeed=4},
-                    AudioFade(&quot;music&quot;, 1, 0),
-                    battleScene:earlyExit()
-                }
-            end
-        }
-    }
-end</property>
     <property name="orientation" value="down"/>
     <property name="scene" type="file" value="rotorsworkshop.lua"/>
     <property name="spawn_point" value="Spawn 1"/>
@@ -2912,103 +2686,6 @@ end</property>
     <property name="Carrot" type="int" value="1"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="356" name="Ivan" type="BasicNPC" gid="5323" x="2048" y="2048" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-8"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="idledown"/>
-    <property name="ghost" type="bool" value="false"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Menu = require &quot;actions/Menu&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Animate = require &quot;actions/Animate&quot;
-
-local Transform = require &quot;util/Transform&quot;
-local Layout = require &quot;util/Layout&quot;
-
-local NPC = require &quot;object/NPC&quot;
-
-return function(self)
-    local prevPlayerAnim = self.scene.player.sprite.selected
-    if GameState:isFlagSet(self:getFlag()) then
-        return BlockPlayer {
-            Animate(self.sprite, &quot;attitude&quot;),
-            MessageBox {message = &quot;Ivan: Burning a candle at both ends seems not advisable. {p60}The wax would get everywhere.&quot;},
-            MessageBox {message = &quot;Sally: Uh... {p60}good point.&quot;},
-            Animate(self.sprite, &quot;idledown&quot;),
-            Do(function()
-                self:refreshKeyHint()
-            end)
-        }
-    else
-        GameState:setFlag(self:getFlag())
-        return BlockPlayer {
-            MessageBox {message = &quot;Ivan: Have you fallen ill, Princess?&quot;},
-            MessageBox {message = &quot;Sally: No, I've just been burning the candle at both ends recently.&quot;},
-            Animate(self.sprite, &quot;attitude&quot;),
-            MessageBox {message = &quot;Ivan: How can one burn a candle at the bottom end without exposing the wick?&quot;},
-            MessageBox {message = &quot;Sally: It's just an expression.&quot;},
-            MessageBox {message = &quot;Ivan: Hmm... {p60}this expression disturbs me.&quot;},
-            Animate(self.sprite, &quot;idledown&quot;),
-            Do(function()
-                self.scene.player.noIdle = false
-                self:refreshKeyHint()
-            end)
-        }
-    end
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
-   </properties>
-  </object>
-  <object id="357" name="Logan" type="BasicNPC" gid="5323" x="4800" y="1856" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-8"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="idleup"/>
-    <property name="ghost" type="bool" value="false"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Menu = require &quot;actions/Menu&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Animate = require &quot;actions/Animate&quot;
-
-local Transform = require &quot;util/Transform&quot;
-local Layout = require &quot;util/Layout&quot;
-
-local NPC = require &quot;object/NPC&quot;
-
-return function(self)
-    GameState:setFlag(self:getFlag())
-    return BlockPlayer {
-        Animate(self.sprite, &quot;shock&quot;),
-        MessageBox {message = &quot;Logan: Wowee!! {p60}You scared me!&quot;},
-        Animate(self.sprite, &quot;idledown&quot;),
-        MessageBox {message = &quot;Logan: What am I doing?... {p60}Uh-- nothing.&quot;},
-        MessageBox {message = &quot;Logan: I should get to bed. {p60}Goodnight!&quot;},
-        Do(function()
-            self.scene.player.noIdle = false
-            self:refreshKeyHint()
-        end)
-    }
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/logan.png"/>
    </properties>
   </object>
   <object id="359" name="Chest1" type="Chest" gid="7597" x="5824" y="480" width="64" height="64">

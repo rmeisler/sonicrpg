@@ -452,7 +452,7 @@ return function(self)
                             MessageBox {message = &quot;???: Despite his advisors many protests, the young King ordered his entire military force to enter the Land of the Wizards in hopes of intimidating them into a speedy surrender...&quot;},
                             Animate(self.sprite, &quot;mouthopen_idle&quot;),
                             MessageBox {message = &quot;???: The war that followed was swift and brutal. Though the wizards never surrendered, their once beautiful land was wiped off the face of Mobius. Today it is nothing but a vast desert under scorched sky.&quot;},
-                            MessageBox {message = &quot;???: And in return for the King's malice, the wizard's cursed the Great Forest of the East. Drowning it in darkness and rot, transforming it into the {h Dark Swamp}.&quot;},
+                            MessageBox {message = &quot;???: And in return for the King's malice, the wizards cursed the Great Forest of the East. Drowning it in darkness and rot, transforming it into the {h Dark Swamp}.&quot;},
                             Animate(sprites.sally.sprite, &quot;thinking&quot;),
                             MessageBox {message = &quot;Sally: Fascinating! {p60}I've never heard this before!&quot;},
                             Animate(self.sprite, &quot;idle&quot;),

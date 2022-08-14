@@ -218,6 +218,7 @@ return function(self)
         Do(function() pic:remove() end)
     }
 end</property>
+    <property name="usableBy" value="sonic"/>
    </properties>
   </object>
   <object id="7" name="Guitar" type="BasicNPC" gid="6839" x="224" y="320" width="32" height="32">
@@ -280,6 +281,7 @@ return function(self)
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/guitar.png"/>
+    <property name="usableBy" value="sonic"/>
    </properties>
   </object>
   <object id="11" name="Brightness" type="BasicNPC" gid="6860" x="320" y="288" width="64" height="64">

@@ -158,6 +158,7 @@ return function(self)
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/bigchest.png"/>
+    <property name="usableBy" value="sonic,sally"/>
    </properties>
   </object>
   <object id="2" name="Door" type="Door" gid="6839" x="352" y="608" width="64" height="64">
@@ -211,6 +212,7 @@ return function(self)
                             menu:close()
                             GameState:setFlag(&quot;ep3_sallynap&quot;)
                             self.isInteractable = false
+                            self.usableBy = {}
                             self.scene.player:removeKeyHint()
                             self:run {
                                 menu,
@@ -219,6 +221,7 @@ return function(self)
                                     self.scene.player.dropShadow.hidden = true
                                     self.scene.player.x = self.scene.objectLookup.SallysBed.x + 70
                                     self.scene.player.y = self.scene.objectLookup.SallysBed.y + 90
+                                    self.scene.player:removeKeyHint()
                                 end),
                                 Do(function() self.scene.player:removeKeyHint() end),
                                 Animate(self.scene.objectLookup.SallysBed.sprite, &quot;sleeping&quot;),
@@ -239,7 +242,8 @@ return function(self)
                         {Layout.Text(&quot;No&quot;), choose = function(menu)
                             menu:close()
                             self:run {
-                                menu
+                                menu,
+                                Do(function() self:refreshKeyHint() end)
                             }
                         end},
                         colWidth = 200
@@ -250,7 +254,6 @@ return function(self)
                 },
                 Do(function()
                     self.scene.player.noIdle = false
-                    self:refreshKeyHint()
                 end)
             }
         else
@@ -281,6 +284,7 @@ return function(self)
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/sallybed.png"/>
+    <property name="usableBy" value="sally"/>
    </properties>
   </object>
   <object id="5" name="SallysBookshelf" type="BasicNPC" gid="6839" x="512" y="512" width="64" height="32">
@@ -588,6 +592,7 @@ return function(self)
     end
     return Action()
 end</property>
+    <property name="usableBy" value="sonic,sally"/>
    </properties>
   </object>
  </objectgroup>

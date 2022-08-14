@@ -2201,12 +2201,14 @@ end</property>
    <properties>
     <property name="defaultAnim" value="left_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="490" name="BlinkLaserTrapShooter2" type="LaserTrapArm" gid="2374" x="1344" y="3328" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="right_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="493" name="Crate" type="BasicNPC" gid="1922" x="1536" y="3648" width="64" height="96">

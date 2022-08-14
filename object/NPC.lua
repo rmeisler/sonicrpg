@@ -71,6 +71,14 @@ function NPC:construct(scene, layer, object)
 		self.onRemove = assert(loadstring(object.properties.onRemove))()
 	end
 	
+	if object.properties.usableBy then
+		local usableBy = pack((object.properties.usableBy):split(','))
+		self.usableBy = {}
+		for _, v in pairs(usableBy) do
+			self.usableBy[v] = v
+		end
+	end
+
 	if object.properties.onInteract then
 		self:addInteract(NPC.onInteract)
 	end
@@ -164,8 +172,8 @@ function NPC:updateCollision()
 	self.collision = {}
 	
 	if not self.object.properties.nocollision then
-		local sx,sy = self.scene:worldCoordToCollisionCoord(self.x, self.y)
-		local dx,dy = self.scene:worldCoordToCollisionCoord(self.x + self.object.width, self.y + self.object.height)
+		local sx,sy = self.scene:worldCoordToCollisionCoord(self.object.x, self.object.y)
+		local dx,dy = self.scene:worldCoordToCollisionCoord(self.object.x + self.object.width, self.object.y + self.object.height)
 		for y=sy, dy-1 do
 			for x=sx, dx-1 do
 				if not self.ghost then
@@ -545,7 +553,9 @@ function NPC:update(dt)
 					self.scene.player:isFacingObj(self)
 				then
 					if self.isInteractable or self.specialHintPlayer then
-						self.scene.player.keyhints[tostring(self)] = self
+						if not self.usableBy or self.usableBy[GameState.leader] then
+							self.scene.player.keyhints[tostring(self)] = self
+						end
 					end
 
 					if not self.scene.player.touching then

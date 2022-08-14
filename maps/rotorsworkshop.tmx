@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="23" tilewidth="32" tileheight="32" infinite="0" nextobjectid="26">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="23" tilewidth="32" tileheight="32" infinite="0" nextobjectid="28">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/prisonbg.png"/>
   <property name="onload" type="file" value="actions/rotorsworkshop.lua"/>
@@ -16,18 +16,17 @@ Workshop</property>
  <tileset firstgid="15006" source="worldmap.tsx"/>
  <tileset firstgid="18490" source="ironlock.tsx"/>
  <tileset firstgid="25490" source="castle1.tsx"/>
- <tileset firstgid="26540" source="castle1.tsx"/>
  <layer name="floor" width="25" height="23">
   <data encoding="csv">
 0,0,0,13722,13723,13669,13723,13669,13670,13679,13680,13679,13680,13679,13680,13671,13672,13671,13672,13671,13672,0,0,0,0,
 0,0,0,13722,13723,13722,13723,13722,13723,13679,13680,13679,13680,13679,13680,13671,13672,0,0,13671,13672,0,0,0,0,
 0,0,0,13775,13776,13775,13776,13775,13776,13679,13680,13679,13680,13679,13680,13671,13672,13671,13672,13671,13672,0,0,0,0,
 0,0,0,13775,13723,13669,13723,13669,13723,13679,13680,13679,13680,13679,13680,13671,13672,13671,13672,13671,13672,0,0,0,0,
-0,0,0,13669,13723,13722,13723,13722,13776,13732,13733,13732,13733,13732,13733,13724,13672,13724,13672,13671,13672,0,0,0,0,
-0,0,0,13669,13723,13669,13723,13669,13776,13785,13786,13785,13786,13785,13786,13777,13778,13724,13725,13724,13672,0,0,0,0,
-0,0,0,13722,13723,13722,13723,13722,14036,5619,5619,5619,5619,5619,5619,13830,13831,13777,13778,13724,13725,0,0,0,0,
-0,0,0,14084,14085,14086,14087,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,13830,13831,13724,13778,0,0,0,0,
-0,0,0,14137,14138,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,13830,13831,0,0,0,0,
+0,0,0,13669,13723,13722,13723,13669,13723,13732,13733,13732,13733,13732,13733,13724,13672,13724,13672,13671,13672,0,0,0,0,
+0,0,0,13669,13723,13669,5619,13722,13776,13785,13786,13785,13786,13785,13786,13777,13778,13724,13725,13724,13672,0,0,0,0,
+0,0,0,13722,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,13830,13831,13777,13778,13724,13725,0,0,0,0,
+0,0,0,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,13830,13831,13724,13778,0,0,0,0,
+0,0,0,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,13830,13831,0,0,0,0,
 0,0,0,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,0,0,0,0,
 0,0,0,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,0,0,0,0,
 0,0,0,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,5619,0,0,0,0,
@@ -52,12 +51,12 @@ Workshop</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,26263,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,13828,13829,0,0,0,26263,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,26262,26262,26262,26262,26263,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,26261,26262,26262,26262,26262,26263,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,26296,26297,26297,26297,26297,26298,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,26331,26332,26331,26332,26331,26332,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,7907,7908,7909,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,7942,7943,7944,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,7977,7978,7979,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,8012,8013,8014,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -128,13 +127,13 @@ Workshop</property>
  <layer name="above2" width="25" height="23">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,25854,25855,25856,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,25889,25890,25891,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,25924,25925,25926,0,0,0,0,14098,14099,14100,14101,14102,14103,14104,0,0,0,0,0,0,
-0,0,0,0,0,25959,25960,25961,0,0,0,0,14151,14152,14153,14154,14155,14156,14157,0,0,0,0,0,0,
-0,0,0,0,0,25994,25995,25996,0,0,0,0,14204,14205,14206,14207,14208,14209,14210,0,0,0,0,0,0,
-0,0,0,0,0,26029,26030,26031,0,0,0,0,14257,14258,14259,14260,14261,14262,14263,0,0,0,0,0,0,
-0,0,0,0,0,26064,26065,26066,0,0,0,0,14310,14311,14312,14313,14314,14315,14316,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,14098,14099,14100,14101,14102,14103,14104,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,14151,14152,14153,14154,14155,14156,14157,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,14204,14205,14206,14207,14208,14209,14210,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,14257,14258,14259,14260,14261,14262,14263,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,14310,14311,14312,14313,14314,14315,14316,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -179,6 +178,101 @@ Workshop</property>
   <object id="22" name="Spawn 1" type="Player" gid="4565" x="352" y="672" width="64" height="32">
    <properties>
     <property name="orientation" value="up"/>
+   </properties>
+  </object>
+  <object id="26" name="Logan" type="BasicNPC" gid="4565" x="192" y="352" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="idleleft"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Do = require &quot;actions/Do&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+
+return function(self)
+    if GameState:isFlagSet(self) then
+        return BlockPlayer {
+            MessageBox{message=&quot;Logan: Bye bye.&quot;}
+        }
+    end
+
+    GameState:setFlag(self)
+    local prevAnim = self.scene.player.sprite.selected
+    return BlockPlayer {
+        MessageBox{message=&quot;Logan: Excuse me Princess, but I'm a little busy over here.&quot;},
+        MessageBox{message=&quot;Sally: What are you working on?&quot;},
+        MessageBox{message=&quot;Logan: The virus{p60}, duh.&quot;},
+        MessageBox{message=&quot;Sally: Right{p60}-- and um{p60}, where is Rotor? {p60}Shouldn't he be working on this with you?&quot;},
+        MessageBox{message=&quot;Logan: Please{p60}, Rotor couldn't program his way out of a cardboard box! {p60}Besides{p60}, he's outside taking a break.&quot;},
+        Do(function()
+            self.scene.player.noIdle = true
+            self.scene.player.sprite:setAnimation(&quot;thinking2&quot;)
+        end),
+        MessageBox{message=&quot;Sally: Yeah, about that...{p60} I notice you haven't really taken a break yourself since coming here--&quot;},
+        MessageBox{message=&quot;Logan: Well yeah{p60}, there's a war going on Princess{p60}, any minute not spent working is a minute wasted.&quot;},
+        Do(function()
+            self.scene.player.sprite:setAnimation(&quot;thinking&quot;)
+        end),
+        MessageBox{message=&quot;Sally: Logan, I understand what it means to fight Robotnik. {p60}We've been doing it for years.&quot;},
+        MessageBox{message=&quot;Sally: We still need to find time to relax. {p60}We can't work 100% of the time.&quot;},
+        MessageBox{message=&quot;Logan: And a mindset like that is exactly why you haven't defeated Robotnik yet.&quot;},
+        Do(function()
+            self.scene.player.sprite:setAnimation(&quot;idleup&quot;)
+        end),
+        MessageBox{message=&quot;Sally: Oh come on. {p60}It's a beautiful night tonight. {p60}Couldn't you just come out for a little while and talk with some people--&quot;},
+        Animate(self.sprite, &quot;shock&quot;),
+        Parallel {
+            MessageBox{message=&quot;Logan: NO!&quot;},
+            self:hop()
+        },
+        Animate(self.sprite, &quot;angrydown&quot;),
+        MessageBox{message=&quot;Logan: I-I mean 'no'{p60}, because I'm so busy!&quot;},
+        Animate(self.sprite, &quot;idledown&quot;),
+        MessageBox{message=&quot;Logan: I've decided to sleep here for a reason after all! {p60}Close to my work so I can stay busy!&quot;},
+        MessageBox{message=&quot;Sally: Are you sure--&quot;, closeAction=Wait(1)},
+        Animate(self.sprite, &quot;idleleft&quot;),
+        MessageBox{message=&quot;Logan: Sorry, I need to concentrate on this, end of conversation. Bye bye&quot;},
+        Do(function()
+            self.scene.player.noIdle = false
+            self:refreshKeyHint()
+        end)
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/logan.png"/>
+   </properties>
+  </object>
+  <object id="27" name="Computer" type="BasicNPC" gid="4565" x="128" y="352" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="computer_idle"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return BlockPlayer {
+        MessageBox{message=&quot;Sally: Logan could use a new computer... {p60}this one's older than I am!&quot;}
+    }
+end</property>
+    <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return BlockPlayer {
+        MessageBox{message=&quot;Nicole: The computer terminal appears to be locked{p40}, Sally.&quot;}
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
+    <property name="usableBy" value="sally"/>
    </properties>
   </object>
  </objectgroup>

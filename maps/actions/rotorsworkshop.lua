@@ -128,5 +128,15 @@ return function(scene)
 	end
 	
 	scene.audio:playMusic("doittoit", 0.5)
+	
+	if scene.nighttime then
+		scene.objectLookup.Logan.hidden = false
+		scene.objectLookup.Logan.ghost = false
+		scene.objectLookup.Logan.isInteractable = true
+		scene.objectLookup.Logan:updateCollision()
+
+		scene.objectLookup.Rotor:remove()
+	end
+	
 	return Action()
 end

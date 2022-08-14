@@ -1392,12 +1392,14 @@
    <properties>
     <property name="defaultAnim" value="left_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="553" name="LaserTrapShooter2" type="LaserTrapArm" gid="2374" x="3392" y="2880" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="right_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="554" name="LaserTrap2" type="LaserTrap" gid="2374" x="3072" y="2816" width="320" height="32">
@@ -1413,12 +1415,14 @@
    <properties>
     <property name="defaultAnim" value="left_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="556" name="LaserTrapShooter4" type="LaserTrapArm" gid="2374" x="3392" y="2816" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="right_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="557" name="LaserTrap3" type="LaserTrap" gid="2374" x="3072" y="2752" width="320" height="32">
@@ -1434,12 +1438,14 @@
    <properties>
     <property name="defaultAnim" value="left_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="559" name="LaserTrapShooter6" type="LaserTrapArm" gid="2374" x="3392" y="2752" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="right_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="563" name="BlinkLaserTrap1" type="LaserTrap" gid="2374" x="1632" y="3296" width="192" height="32">
@@ -1454,12 +1460,14 @@
    <properties>
     <property name="defaultAnim" value="left_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="565" name="BlinkLaserTrapShooter2" type="LaserTrapArm" gid="2374" x="1824" y="3296" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="right_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="566" name="BlinkLaserTrap2" type="LaserTrap" gid="2374" x="1824" y="3712" width="128" height="32">
@@ -1475,12 +1483,14 @@
    <properties>
     <property name="defaultAnim" value="left_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="568" name="BlinkLaserTrapShooter4" type="LaserTrapArm" gid="2374" x="1952" y="3712" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="right_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="569" name="BlinkLaserTrap3" type="LaserTrap" gid="2374" x="2464" y="3680" width="160" height="32">
@@ -1495,12 +1505,14 @@
    <properties>
     <property name="defaultAnim" value="left_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="571" name="BlinkLaserTrapShooter6" type="LaserTrapArm" gid="2374" x="2624" y="3680" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="right_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="572" name="BlinkLaserTrap4" type="LaserTrap" gid="2374" x="2720" y="3392" width="160" height="32">
@@ -1515,12 +1527,14 @@
    <properties>
     <property name="defaultAnim" value="left_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="574" name="BlinkLaserTrapShooter8" type="LaserTrapArm" gid="2374" x="2880" y="3392" width="32" height="32">
    <properties>
     <property name="defaultAnim" value="right_on"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+    <property name="usableBy" value=""/>
    </properties>
   </object>
   <object id="578" name="Crate" type="BasicNPC" gid="1922" x="1504" y="3328" width="64" height="96">

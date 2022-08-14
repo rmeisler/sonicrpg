@@ -2633,8 +2633,6 @@ return {
             ["alignOffsetX"] = -44,
             ["ghost"] = true,
             ["key"] = "up",
-            ["keyToDoor"] = "nope",
-            ["locked"] = true,
             ["orientation"] = "down",
             ["scene"] = "rebellionhut.lua",
             ["spawn_point"] = "Door",

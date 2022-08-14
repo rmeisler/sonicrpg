@@ -2310,7 +2310,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "left_on",
-            ["sprite"] = "../art/sprites/lasertrap.png"
+            ["sprite"] = "../art/sprites/lasertrap.png",
+            ["usableBy"] = ""
           }
         },
         {
@@ -2327,7 +2328,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "right_on",
-            ["sprite"] = "../art/sprites/lasertrap.png"
+            ["sprite"] = "../art/sprites/lasertrap.png",
+            ["usableBy"] = ""
           }
         },
         {
@@ -2364,7 +2366,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "left_on",
-            ["sprite"] = "../art/sprites/lasertrap.png"
+            ["sprite"] = "../art/sprites/lasertrap.png",
+            ["usableBy"] = ""
           }
         },
         {
@@ -2381,7 +2384,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "right_on",
-            ["sprite"] = "../art/sprites/lasertrap.png"
+            ["sprite"] = "../art/sprites/lasertrap.png",
+            ["usableBy"] = ""
           }
         },
         {
@@ -2418,7 +2422,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "left_on",
-            ["sprite"] = "../art/sprites/lasertrap.png"
+            ["sprite"] = "../art/sprites/lasertrap.png",
+            ["usableBy"] = ""
           }
         },
         {
@@ -2435,7 +2440,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "right_on",
-            ["sprite"] = "../art/sprites/lasertrap.png"
+            ["sprite"] = "../art/sprites/lasertrap.png",
+            ["usableBy"] = ""
           }
         },
         {
@@ -2471,7 +2477,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "left_on",
-            ["sprite"] = "../art/sprites/lasertrap.png"
+            ["sprite"] = "../art/sprites/lasertrap.png",
+            ["usableBy"] = ""
           }
         },
         {
@@ -2488,7 +2495,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "right_on",
-            ["sprite"] = "../art/sprites/lasertrap.png"
+            ["sprite"] = "../art/sprites/lasertrap.png",
+            ["usableBy"] = ""
           }
         },
         {
@@ -2525,7 +2533,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "left_on",
-            ["sprite"] = "../art/sprites/lasertrap.png"
+            ["sprite"] = "../art/sprites/lasertrap.png",
+            ["usableBy"] = ""
           }
         },
         {
@@ -2542,7 +2551,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "right_on",
-            ["sprite"] = "../art/sprites/lasertrap.png"
+            ["sprite"] = "../art/sprites/lasertrap.png",
+            ["usableBy"] = ""
           }
         },
         {
@@ -2578,7 +2588,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "left_on",
-            ["sprite"] = "../art/sprites/lasertrap.png"
+            ["sprite"] = "../art/sprites/lasertrap.png",
+            ["usableBy"] = ""
           }
         },
         {
@@ -2595,7 +2606,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "right_on",
-            ["sprite"] = "../art/sprites/lasertrap.png"
+            ["sprite"] = "../art/sprites/lasertrap.png",
+            ["usableBy"] = ""
           }
         },
         {
@@ -2631,7 +2643,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "left_on",
-            ["sprite"] = "../art/sprites/lasertrap.png"
+            ["sprite"] = "../art/sprites/lasertrap.png",
+            ["usableBy"] = ""
           }
         },
         {
@@ -2648,7 +2661,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "right_on",
-            ["sprite"] = "../art/sprites/lasertrap.png"
+            ["sprite"] = "../art/sprites/lasertrap.png",
+            ["usableBy"] = ""
           }
         },
         {

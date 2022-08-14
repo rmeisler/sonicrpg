@@ -8,11 +8,11 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 20,
+  nextobjectid = 24,
   properties = {
     ["ignorenight"] = true,
-    ["onload"] = "actions/antoineknotholehut.lua",
-    ["regionName"] = "Antoine's Hut"
+    ["onload"] = "actions/rebellionhut.lua",
+    ["regionName"] = "The Rebellion's Hut"
   },
   tilesets = {
     {
@@ -37,12 +37,12 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 1296,
+      tilecount = 1044,
       tiles = {}
     },
     {
       name = "forest",
-      firstgid = 1297,
+      firstgid = 1045,
       filename = "knothole.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -68,7 +68,7 @@ return {
     },
     {
       name = "robotropolis",
-      firstgid = 4781,
+      firstgid = 4529,
       filename = "robotropolis.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -94,7 +94,7 @@ return {
     },
     {
       name = "knotholeindoors",
-      firstgid = 8281,
+      firstgid = 8029,
       filename = "knotholeindoors.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -120,7 +120,7 @@ return {
     },
     {
       name = "forest2",
-      firstgid = 10083,
+      firstgid = 9831,
       filename = "forest2.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -146,7 +146,7 @@ return {
     },
     {
       name = "knotholehut2",
-      firstgid = 15258,
+      firstgid = 15006,
       filename = "knotholehut2.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -172,7 +172,7 @@ return {
     },
     {
       name = "knotholehut",
-      firstgid = 16414,
+      firstgid = 16162,
       tilewidth = 32,
       tileheight = 32,
       spacing = 0,
@@ -192,12 +192,12 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 1296,
+      tilecount = 1044,
       tiles = {}
     },
     {
       name = "worldmap",
-      firstgid = 17710,
+      firstgid = 17206,
       filename = "worldmap.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -223,7 +223,7 @@ return {
     },
     {
       name = "darkswamp",
-      firstgid = 21194,
+      firstgid = 20690,
       filename = "darkswamp.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -245,31 +245,6 @@ return {
       properties = {},
       terrains = {},
       tilecount = 5589,
-      tiles = {}
-    },
-    {
-      name = "knotholehut",
-      firstgid = 26783,
-      tilewidth = 32,
-      tileheight = 32,
-      spacing = 0,
-      margin = 0,
-      image = "../art/tiles/knotholehutinterior.png",
-      imagewidth = 950,
-      imageheight = 1170,
-      transparentcolor = "#000000",
-      tileoffset = {
-        x = 0,
-        y = 0
-      },
-      grid = {
-        orientation = "orthogonal",
-        width = 32,
-        height = 32
-      },
-      properties = {},
-      terrains = {},
-      tilecount = 1044,
       tiles = {}
     }
   },
@@ -338,9 +313,9 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27383, 27384, 27385, 27385, 27386, 27387, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27412, 27413, 27414, 27414, 27415, 27416, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27441, 27442, 27443, 27443, 27444, 27445, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -348,13 +323,13 @@ return {
     },
     {
       type = "tilelayer",
-      name = "nighttime",
+      name = "above",
       x = 0,
       y = 0,
       width = 25,
       height = 20,
       visible = true,
-      opacity = 0,
+      opacity = 1,
       offsetx = 0,
       offsety = 0,
       properties = {},
@@ -365,9 +340,9 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 17257, 17258, 0, 0, 0, 0, 0, 17315, 17316, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 17286, 17287, 0, 0, 0, 0, 0, 17344, 17345, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17373, 17374, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -402,7 +377,7 @@ return {
           width = 64,
           height = 64,
           rotation = 0,
-          gid = 7091,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
@@ -419,41 +394,184 @@ return {
           }
         },
         {
-          id = 18,
+          id = 15,
           name = "BunkBed1",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 192,
-          y = 384,
+          x = 224,
+          y = 416,
           width = 128,
-          height = 224,
+          height = 192,
           rotation = 0,
-          gid = 7091,
+          gid = 6839,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "left",
+            ["ghost"] = false,
+            ["sprite"] = "../art/sprites/bunkbed.png"
+          }
+        },
+        {
+          id = 18,
+          name = "BunkBed2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 448,
+          y = 416,
+          width = 128,
+          height = 192,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "right",
+            ["ghost"] = false,
             ["sprite"] = "../art/sprites/bunkbed.png"
           }
         },
         {
           id = 19,
-          name = "BunkBed2",
+          name = "Leon",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 480,
+          x = 368,
           y = 384,
-          width = 128,
-          height = 224,
+          width = 64,
+          height = 96,
           rotation = 0,
-          gid = 7091,
+          gid = 4565,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "right",
-            ["sprite"] = "../art/sprites/bunkbed.png"
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "idledown",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["nonight"] = true,
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox{message=\"Leon: Good morning.\"}\n    }\nend",
+            ["sprite"] = "../art/sprites/leon.png"
+          }
+        },
+        {
+          id = 20,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 224,
+          y = 480,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["Carrot"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 21,
+          name = "Chest2",
+          type = "Chest",
+          shape = "rectangle",
+          x = 512,
+          y = 480,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["Mushroom"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 22,
+          name = "Fleet",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 416,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["nonight"] = true,
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    if GameState:isFlagSet(self) then\n        return BlockPlayer {\n            Animate(self.sprite, \"frustrated\"),\n            MessageBox{message=\"Fleet: ...\"}\n        }\n    end\n\n    GameState:setFlag(self)\n    local prevAnim = self.scene.player.sprite.selected\n    return BlockPlayer {\n        MessageBox{message=\"Fleet: I told you! {p60}I called {h top bunk}!\"},\n        Animate(self.scene.objectLookup.Ivan.sprite, \"attitude\"),\n        MessageBox{message=\"Ivan: Incorrect. {p60}I laid claim on the upper bunk when we entered.\"},\n        self:hop(),\n        MessageBox{message=\"Fleet: No you didn't!\"},\n        Animate(self.scene.objectLookup.Ivan.sprite, \"idledown\"),\n        MessageBox{message=\"Fleet: ... {p60}*sigh* yes you did.\"},\n        Animate(self.sprite, \"smirk\"),\n        MessageBox{message=\"Fleet: Oh, uh, um, hello Princess! {p60}Ivan and I were just discussing some important matters...\"},\n        Animate(self.scene.objectLookup.Ivan.sprite, \"attitude\"),\n        MessageBox{message=\"Ivan: You consider our sleeping arrangements {h important}?\"},\n        Animate(self.sprite, \"shock\"),\n        self:hop(),\n        Wait(1),\n        Animate(self.sprite, \"frustrated\"),\n        MessageBox{message=\"Fleet: What do you want, {p20}oh {h royal one}?\"},\n        Animate(self.scene.objectLookup.Ivan.sprite, \"idledown\"),\n        MessageBox{message=\"Sally: I just wanted to see how you were settling in.\"},\n        MessageBox{message=\"Fleet: These quarters are... {p60}acceptable.\"},\n        MessageBox{message=\"Fleet: Not exactly fit for us, of course, but they will work for now.\"},\n        MessageBox{message=\"Sally: You're welcome{p60}-- I think.\"},\n        Do(function()\n            self.scene.player.noIdle = true\n            self.scene.player.sprite:setAnimation(\"thinking\")\n        end),\n        MessageBox{message=\"Sally: I was also a little concerned about Logan--\", closeAction=Wait(1)},\n        Animate(self.sprite, \"shock\"),\n        self:hop(),\n        MessageBox{message=\"Fleet: Logan!?\"},\n        MessageBox{message=\"Fleet: What's wrong!? {p60}Did something happen to her?!\"},\n        MessageBox{message=\"Sally: She's fine. {p60}It's just that she doesn't seem to spend much time outside the workshop really...\"},\n        Animate(self.sprite, \"frustrated\"),\n        MessageBox{message=\"Fleet: O-Oh. {p60}*ahem*{p60} Of course.\"},\n        Animate(self.sprite, \"smirk\"),\n        Do(function()\n            self.scene.player.sprite:setAnimation(\"idleup\")\n        end),\n        MessageBox{message=\"Fleet: Logan is not the most social person. {p60}She often gets caught up in her work and likes to stay close to it. {p60}Maybe you Freedom Fighters could learn a thing or two from her!\"},\n        Animate(self.sprite, \"lookright\"),\n        MessageBox{message=\"Fleet: She really only talks to Leon, Ivan, and I...\"},\n        Animate(self.scene.objectLookup.Ivan.sprite, \"attitude\"),\n        MessageBox{message=\"Ivan: Understandable given that she lost her family...\"},\n        MessageBox{message=\"Fleet: Yeah well... {p60}she may be a pain{p60}, but she's our little pain...\"},\n        Animate(self.scene.objectLookup.Ivan.sprite, \"idledown\"),\n        MessageBox{message=\"Sally: That's so sweet.\"},\n        Animate(self.sprite, \"shock\"),\n        self:hop(),\n        MessageBox{message=\"Fleet: Sweet?!\"},\n        Animate(self.sprite, \"smirk\"),\n        MessageBox{message=\"Fleet: Get outta here! It's just common decency is all!\"},\n        MessageBox{message=\"Fleet: Now if you'll excuse us, we'd like to get situated so I suggest you buzz off Acorn!\"},\n        Animate(self.sprite, \"idleleft\"),\n        MessageBox{message=\"Fleet: Time to grab my top bunk!\"},\n        Animate(self.scene.objectLookup.Ivan.sprite, \"attitude\"),\n        MessageBox{message=\"Ivan: Incorrect.\"},\n        Animate(self.sprite, \"shock\"),\n        self:hop(),\n        Wait(1),\n        Animate(self.sprite, \"frustrated\"),\n        MessageBox{message=\"Fleet: Just let us be...\"},\n        Do(function() self.scene.player.noIdle = true end)\n    }\nend",
+            ["sprite"] = "../art/sprites/fleet.png"
+          }
+        },
+        {
+          id = 23,
+          name = "Ivan",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 352,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "idledown",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/ivan.png"
           }
         }
+      }
+    },
+    {
+      type = "tilelayer",
+      name = "top",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
       }
     },
     {

@@ -1505,8 +1505,6 @@
     <property name="alignOffsetX" type="float" value="-44"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
-    <property name="keyToDoor" value="nope"/>
-    <property name="locked" type="bool" value="true"/>
     <property name="orientation" value="down"/>
     <property name="scene" type="file" value="rebellionhut.lua"/>
     <property name="spawn_point" value="Door"/>

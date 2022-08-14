@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="20">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="24">
  <properties>
   <property name="ignorenight" type="bool" value="true"/>
-  <property name="onload" type="file" value="actions/antoineknotholehut.lua"/>
-  <property name="regionName" value="Antoine's Hut"/>
+  <property name="onload" type="file" value="actions/rebellionhut.lua"/>
+  <property name="regionName" value="The Rebellion's Hut"/>
  </properties>
- <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1296" columns="29">
+ <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
   <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
  </tileset>
- <tileset firstgid="1297" source="knothole.tsx"/>
- <tileset firstgid="4781" source="robotropolis.tsx"/>
- <tileset firstgid="8281" source="knotholeindoors.tsx"/>
- <tileset firstgid="10083" source="forest2.tsx"/>
- <tileset firstgid="15258" source="knotholehut2.tsx"/>
- <tileset firstgid="16414" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1296" columns="29">
+ <tileset firstgid="1045" source="knothole.tsx"/>
+ <tileset firstgid="4529" source="robotropolis.tsx"/>
+ <tileset firstgid="8029" source="knotholeindoors.tsx"/>
+ <tileset firstgid="9831" source="forest2.tsx"/>
+ <tileset firstgid="15006" source="knotholehut2.tsx"/>
+ <tileset firstgid="16162" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
   <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
  </tileset>
- <tileset firstgid="17710" source="worldmap.tsx"/>
- <tileset firstgid="21194" source="darkswamp.tsx"/>
- <tileset firstgid="26783" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
-  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
- </tileset>
+ <tileset firstgid="17206" source="worldmap.tsx"/>
+ <tileset firstgid="20690" source="darkswamp.tsx"/>
  <layer name="floor" width="25" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -61,24 +58,24 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,27383,27384,27385,27385,27386,27387,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,27412,27413,27414,27414,27415,27416,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,27441,27442,27443,27443,27444,27445,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="nighttime" width="25" height="20" opacity="0">
+ <layer name="above" width="25" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,17257,17258,0,0,0,0,0,17315,17316,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,17286,17287,0,0,0,0,0,17344,17345,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17373,17374,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -94,7 +91,7 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="2" name="Door" type="Door" gid="7091" x="352" y="608" width="64" height="64">
+  <object id="2" name="Door" type="Door" gid="6839" x="352" y="608" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-20"/>
@@ -109,21 +106,183 @@
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
-  <object id="18" name="BunkBed1" type="BasicNPC" gid="7091" x="192" y="384" width="128" height="224">
+  <object id="15" name="BunkBed1" type="BasicNPC" gid="6839" x="224" y="416" width="128" height="192">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="left"/>
+    <property name="ghost" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/bunkbed.png"/>
    </properties>
   </object>
-  <object id="19" name="BunkBed2" type="BasicNPC" gid="7091" x="480" y="384" width="128" height="224">
+  <object id="18" name="BunkBed2" type="BasicNPC" gid="6839" x="448" y="416" width="128" height="192">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="right"/>
+    <property name="ghost" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/bunkbed.png"/>
    </properties>
   </object>
+  <object id="19" name="Leon" type="BasicNPC" gid="4565" x="368" y="384" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return BlockPlayer {
+        MessageBox{message=&quot;Leon: Good morning.&quot;}
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/leon.png"/>
+   </properties>
+  </object>
+  <object id="20" name="Chest1" type="Chest" gid="6839" x="224" y="480" width="64" height="64">
+   <properties>
+    <property name="Carrot" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="21" name="Chest2" type="Chest" gid="6839" x="512" y="480" width="64" height="64">
+   <properties>
+    <property name="Mushroom" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="22" name="Fleet" type="BasicNPC" gid="4565" x="352" y="416" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="idleup"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Do = require &quot;actions/Do&quot;
+
+return function(self)
+    if GameState:isFlagSet(self) then
+        return BlockPlayer {
+            Animate(self.sprite, &quot;frustrated&quot;),
+            MessageBox{message=&quot;Fleet: ...&quot;}
+        }
+    end
+
+    GameState:setFlag(self)
+    local prevAnim = self.scene.player.sprite.selected
+    return BlockPlayer {
+        MessageBox{message=&quot;Fleet: I told you! {p60}I called {h top bunk}!&quot;},
+        Animate(self.scene.objectLookup.Ivan.sprite, &quot;attitude&quot;),
+        MessageBox{message=&quot;Ivan: Incorrect. {p60}I laid claim on the upper bunk when we entered.&quot;},
+        self:hop(),
+        MessageBox{message=&quot;Fleet: No you didn't!&quot;},
+        Animate(self.scene.objectLookup.Ivan.sprite, &quot;idledown&quot;),
+        MessageBox{message=&quot;Fleet: ... {p60}*sigh* yes you did.&quot;},
+        Animate(self.sprite, &quot;smirk&quot;),
+        MessageBox{message=&quot;Fleet: Oh, uh, um, hello Princess! {p60}Ivan and I were just discussing some important matters...&quot;},
+        Animate(self.scene.objectLookup.Ivan.sprite, &quot;attitude&quot;),
+        MessageBox{message=&quot;Ivan: You consider our sleeping arrangements {h important}?&quot;},
+        Animate(self.sprite, &quot;shock&quot;),
+        self:hop(),
+        Wait(1),
+        Animate(self.sprite, &quot;frustrated&quot;),
+        MessageBox{message=&quot;Fleet: What do you want, {p20}oh {h royal one}?&quot;},
+        Animate(self.scene.objectLookup.Ivan.sprite, &quot;idledown&quot;),
+        MessageBox{message=&quot;Sally: I just wanted to see how you were settling in.&quot;},
+        MessageBox{message=&quot;Fleet: These quarters are... {p60}acceptable.&quot;},
+        MessageBox{message=&quot;Fleet: Not exactly fit for us, of course, but they will work for now.&quot;},
+        MessageBox{message=&quot;Sally: You're welcome{p60}-- I think.&quot;},
+        Do(function()
+            self.scene.player.noIdle = true
+            self.scene.player.sprite:setAnimation(&quot;thinking&quot;)
+        end),
+        MessageBox{message=&quot;Sally: I was also a little concerned about Logan--&quot;, closeAction=Wait(1)},
+        Animate(self.sprite, &quot;shock&quot;),
+        self:hop(),
+        MessageBox{message=&quot;Fleet: Logan!?&quot;},
+        MessageBox{message=&quot;Fleet: What's wrong!? {p60}Did something happen to her?!&quot;},
+        MessageBox{message=&quot;Sally: She's fine. {p60}It's just that she doesn't seem to spend much time outside the workshop really...&quot;},
+        Animate(self.sprite, &quot;frustrated&quot;),
+        MessageBox{message=&quot;Fleet: O-Oh. {p60}*ahem*{p60} Of course.&quot;},
+        Animate(self.sprite, &quot;smirk&quot;),
+        Do(function()
+            self.scene.player.sprite:setAnimation(&quot;idleup&quot;)
+        end),
+        MessageBox{message=&quot;Fleet: Logan is not the most social person. {p60}She often gets caught up in her work and likes to stay close to it. {p60}Maybe you Freedom Fighters could learn a thing or two from her!&quot;},
+        Animate(self.sprite, &quot;lookright&quot;),
+        MessageBox{message=&quot;Fleet: She really only talks to Leon, Ivan, and I...&quot;},
+        Animate(self.scene.objectLookup.Ivan.sprite, &quot;attitude&quot;),
+        MessageBox{message=&quot;Ivan: Understandable given that she lost her family...&quot;},
+        MessageBox{message=&quot;Fleet: Yeah well... {p60}she may be a pain{p60}, but she's our little pain...&quot;},
+        Animate(self.scene.objectLookup.Ivan.sprite, &quot;idledown&quot;),
+        MessageBox{message=&quot;Sally: That's so sweet.&quot;},
+        Animate(self.sprite, &quot;shock&quot;),
+        self:hop(),
+        MessageBox{message=&quot;Fleet: Sweet?!&quot;},
+        Animate(self.sprite, &quot;smirk&quot;),
+        MessageBox{message=&quot;Fleet: Get outta here! It's just common decency is all!&quot;},
+        MessageBox{message=&quot;Fleet: Now if you'll excuse us, we'd like to get situated so I suggest you buzz off Acorn!&quot;},
+        Animate(self.sprite, &quot;idleleft&quot;),
+        MessageBox{message=&quot;Fleet: Time to grab my top bunk!&quot;},
+        Animate(self.scene.objectLookup.Ivan.sprite, &quot;attitude&quot;),
+        MessageBox{message=&quot;Ivan: Incorrect.&quot;},
+        Animate(self.sprite, &quot;shock&quot;),
+        self:hop(),
+        Wait(1),
+        Animate(self.sprite, &quot;frustrated&quot;),
+        MessageBox{message=&quot;Fleet: Just let us be...&quot;},
+        Do(function() self.scene.player.noIdle = true end)
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
+   </properties>
+  </object>
+  <object id="23" name="Ivan" type="BasicNPC" gid="4565" x="352" y="352" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
+   </properties>
+  </object>
  </objectgroup>
+ <layer name="top" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
  <layer name="Collision" width="25" height="20" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

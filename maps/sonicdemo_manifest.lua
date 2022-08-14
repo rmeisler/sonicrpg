@@ -55,11 +55,10 @@ return {
 		--primary = true
     },
 	
-	--{
-    --    type = "map",
-	--	file = "maps/rebellionhut.lua",
-		--primary = true
- --   },
+	{
+        type = "map",
+		file = "maps/rebellionhut.lua"
+    },
 	
 	{
         type = "map",

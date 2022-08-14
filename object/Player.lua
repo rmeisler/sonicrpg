@@ -475,9 +475,9 @@ function Player:onChangeChar()
 			self.doingChangeChar = false
 			
 			-- Update keyhint
-			for k in pairs(self.keyhints) do
-				self.hidekeyhints[k] = nil
-			end
+			self.hidekeyhints = {}
+			self.keyhints = {}
+			self:removeKeyHint()
 		end)
 	}
 end
