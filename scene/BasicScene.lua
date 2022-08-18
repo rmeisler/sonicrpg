@@ -413,6 +413,15 @@ function BasicScene:onExit(args)
 	}
 end
 
+function BasicScene:hasUpperLayer()
+	for _, layer in pairs(self.map.layers) do
+		if layer.name == "upper" and layer.type == "objectgroup" then
+			return true
+		end
+	end
+	return false
+end
+
 function BasicScene:fadeIn(speed)
 	speed = speed or 1
 	return Parallel {

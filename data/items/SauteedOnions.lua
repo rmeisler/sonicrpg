@@ -26,10 +26,13 @@ return {
 	menuAction = function()
 		local HealText = require "data/items/actions/HealText"
 		local Serial = require "actions/Serial"
-		return function(self, target)
+		local Wait = require "actions/Wait"
+		local Transform = require "util/Transform"
+		return function(target, xform)
 			return Serial {
-				HealText("hp", 1000, {0, 255, 0, 255}),
-				HealText("sp", 20, {0, 255, 255, 255})
+				HealText("hp", 1000, {0, 255, 0, 255})(target, Transform.from(xform)),
+				Wait(0.2),
+				HealText("sp", 20, {0, 255, 255, 255})(target, Transform.fromoffset(xform, Transform(0, -30)))
 			}
 		end
 	end

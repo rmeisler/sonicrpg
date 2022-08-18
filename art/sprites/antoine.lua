@@ -16,6 +16,13 @@ return {
 			speed = 0.04
 		},
 		
+		climb_1 = {
+			frames = {{1,3}}
+		},
+		climb_2 = {
+			frames = {{5,3}}
+		},
+		
 		stepup = {
 		    frames = {{0,3},{1,3},{0,3},{5,3}},
 			speed = 0.5

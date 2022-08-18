@@ -370,7 +370,7 @@ function NPC:messageBox()
 		end
 		
 		battleArgs.initiative = self:getInitiative()
-		battleArgs.flags = {}
+		battleArgs.flags = {self:getFlag()}
 		
 		local npcArgs = self:getBattleArgs()
 		if next(npcArgs) then
@@ -381,6 +381,9 @@ function NPC:messageBox()
 	
 		action = BlockInput {
 			action,
+			Do(function()
+				self:onBattleComplete(battleArgs)
+			end),
 			self.scene:enterBattle(battleArgs),
 			Do(function()
 				for _,piece in pairs(self.scene.player.extenderPieces or {}) do
@@ -390,7 +393,6 @@ function NPC:messageBox()
 					self.scene.player.extenderarm:remove()
 				end
 				self.scene.player.extenderPieces = {}
-				self:onBattleComplete(battleArgs)
 			end)
 		}
 	end

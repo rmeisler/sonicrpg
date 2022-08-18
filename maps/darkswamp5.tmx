@@ -477,13 +477,11 @@ return function(self)
                         menu:close()
                         self:refreshKeyHint()
                         self.scene:run {
-                            Parallel {
-                                walkin,
-                                Do(function()
-                                    self.scene.player.x = self.scene.player.x + 60
-                                    self.scene.player.y = self.scene.player.y + 60
-                                end)
-                            }
+                            walkin,
+                            Do(function()
+                                self.scene.player.x = self.scene.player.x + 60
+                                self.scene.player.y = self.scene.player.y + 60
+                            end)
                         }
                     end},
                 colWidth = 200

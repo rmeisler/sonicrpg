@@ -279,6 +279,8 @@ return {
 
 					target.poisoned = table.clone(self.stats)
 					target.poisoned.attack = target.poisoned.attack / 2
+					target.poisoned.speed = 100
+					target.poisoned.nomiss = true
 					target.poisoned.nonlethal = true
 
 					-- Always fade in and out green

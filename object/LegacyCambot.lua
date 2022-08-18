@@ -37,7 +37,7 @@ function LegacyCambot:onCaughtPlayer()
 
 	self.countdownText = TextNode(
 		self.scene,
-		Transform.relative(self.sprite.transform, Transform(48, 0)),
+		Transform.relative(self.sprite.transform, Transform(48, -32)),
 		{255, 0, 0, 0},
 		"0",
 		nil,
@@ -45,7 +45,7 @@ function LegacyCambot:onCaughtPlayer()
 		true
 	)
 
-	self:run(While(
+	self.scene:run(While(
 		function()
 			return not self:isRemoved()
 		end,
@@ -54,7 +54,6 @@ function LegacyCambot:onCaughtPlayer()
 			-- 3
 			PlayAudio("sfx", "lockon", 1.0, true),
 			Do(function()
-				self.behavior = Bot.BEHAVIOR_CHASING
 				self.countdownText.color[4] = 255
 				self.countdownText:set("3")
 			end),
@@ -73,38 +72,41 @@ function LegacyCambot:onCaughtPlayer()
 			Wait(0.5),
 			Do(function()
 				self.countdownText:remove()
-				self.scene:run(BlockPlayer {
-					-- Alarm sfx + blinking red screen
-					Parallel {
-						PlayAudio("sfx", "alert", 1.0),
-						Repeat(Parallel {
-							Serial {
-								Ease(self.scene.bgColor, 1, 510, 5, "quad"),
-								Ease(self.scene.bgColor, 1, 255, 5, "quad"),
-							},
-							Do(function() 
-								ScreenShader:sendColor("multColor", self.scene.bgColor)
-							end)
-						}, 5),
-						MessageBox{message="Eyebot: Intruder alert!", closeAction=Wait(1)},
-						Serial {
-							Wait(0.5),
-							Do(function()
-								self.scene.player.noIdle = true
-								self.scene.player.sprite:setAnimation("shock")
-							end)
-						}
-					},
-					Do(function()
-						self.scene:restart{spawnPoint="Spawn 1"}
-					end)
-				})
 			end),
-			
+			-- Alarm sfx + blinking red screen
+			BlockPlayer {
+				Parallel {
+					PlayAudio("sfx", "alert", 1.0),
+					Repeat(Parallel {
+						Serial {
+							Ease(self.scene.bgColor, 1, 510, 5, "quad"),
+							Ease(self.scene.bgColor, 1, 255, 5, "quad"),
+						},
+						Do(function() 
+							ScreenShader:sendColor("multColor", self.scene.bgColor)
+						end)
+					}, 5),
+					MessageBox{message="Legacy Cambot: Intruder alert!", closeAction=Wait(1)},
+					Serial {
+						Wait(0.5),
+						Do(function()
+							self.scene.player.noIdle = true
+							self.scene.player.sprite:setAnimation("shock")
+						end)
+					}
+				},
+				Do(function()
+					self.scene:restart{spawnPoint="Spawn 1"}
+				end),
+				Wait(10)
+			}
 		},
-		Do(function()
-			self.countdownText:remove()
-		end)
+		Serial {
+			Do(function()
+				self.countdownText:remove()
+			end),
+			Wait(10)
+		}
 	))
 end
 

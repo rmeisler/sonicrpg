@@ -39,7 +39,6 @@ return function(scene)
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.hidden = true
 	
-	GameState:addToParty("sonic", 99, true)
 	GameState.leader = "sonic"
 	
 	scene.objectLookup.R.stopMoving = true

@@ -1524,7 +1524,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/worldmaptrees2.png"/>
    </properties>
   </object>
-  <object id="198" name="RegionRobotropolis" type="BasicNPC" gid="3521" x="1632" y="1568" width="288" height="224">
+  <object id="198" name="RegionRobotropolis" type="BasicNPC" gid="3521" x="1632" y="1568" width="288" height="224" visible="0">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)
@@ -2290,7 +2290,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/worldmaptrees.png"/>
    </properties>
   </object>
-  <object id="294" name="BHideout" type="BasicNPC" gid="3521" x="1856" y="1536" width="64" height="64">
+  <object id="294" name="BHideout" type="BasicNPC" gid="3521" x="1824" y="1568" width="128" height="128">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>

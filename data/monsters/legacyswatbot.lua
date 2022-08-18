@@ -310,6 +310,7 @@ return {
 								c.poisoned = table.clone(self.stats)
 								c.poisoned.attack = c.poisoned.attack * 0.75
 								c.poisoned.speed = 100
+								c.poisoned.nomiss = true
 								c.poisoned.nonlethal = true
 								c.sprite:setAnimation("hurt")
 

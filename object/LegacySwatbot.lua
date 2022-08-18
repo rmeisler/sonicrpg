@@ -45,7 +45,7 @@ function LegacySwatbot:onCaughtPlayer()
 		true
 	)
 
-	self:run(While(
+	self.scene:run(While(
 		function()
 			return not self:isRemoved()
 		end,
@@ -54,7 +54,6 @@ function LegacySwatbot:onCaughtPlayer()
 			-- 3
 			PlayAudio("sfx", "lockon", 1.0, true),
 			Do(function()
-				self.behavior = Bot.BEHAVIOR_CHASING
 				self.countdownText.color[4] = 255
 				self.countdownText:set("3")
 			end),
@@ -73,37 +72,41 @@ function LegacySwatbot:onCaughtPlayer()
 			Wait(0.5),
 			Do(function()
 				self.countdownText:remove()
-				self.scene:run(BlockPlayer {
-					-- Alarm sfx + blinking red screen
-					Parallel {
-						PlayAudio("sfx", "alert", 1.0),
-						Repeat(Parallel {
-							Serial {
-								Ease(self.scene.bgColor, 1, 510, 5, "quad"),
-								Ease(self.scene.bgColor, 1, 255, 5, "quad"),
-							},
-							Do(function() 
-								ScreenShader:sendColor("multColor", self.scene.bgColor)
-							end)
-						}, 5),
-						MessageBox{message="Swatbot: Intruder alert!", closeAction=Wait(1)},
+			end),
+			-- Alarm sfx + blinking red screen
+			BlockPlayer {
+				Parallel {
+					PlayAudio("sfx", "alert", 1.0),
+					Repeat(Parallel {
 						Serial {
-							Wait(0.5),
-							Do(function()
-								self.scene.player.noIdle = true
-								self.scene.player.sprite:setAnimation("shock")
-							end)
-						}
-					},
-					Do(function()
-						self.scene:restart{spawnPoint="Spawn 1"}
-					end)
-				})
-			end)
+							Ease(self.scene.bgColor, 1, 510, 5, "quad"),
+							Ease(self.scene.bgColor, 1, 255, 5, "quad"),
+						},
+						Do(function() 
+							ScreenShader:sendColor("multColor", self.scene.bgColor)
+						end)
+					}, 5),
+					MessageBox{message="Legacy Swatbot: Intruder alert!", closeAction=Wait(1)},
+					Serial {
+						Wait(0.5),
+						Do(function()
+							self.scene.player.noIdle = true
+							self.scene.player.sprite:setAnimation("shock")
+						end)
+					}
+				},
+				Do(function()
+					self.scene:restart{spawnPoint="Spawn 1"}
+				end),
+				Wait(10)
+			}
 		},
-		Do(function()
-			self.countdownText:remove()
-		end)
+		Serial {
+			Do(function()
+				self.countdownText:remove()
+			end),
+			Wait(10)
+		}
 	))
 end
 

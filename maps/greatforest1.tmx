@@ -1144,6 +1144,7 @@
    <property name="shimmer" type="bool" value="true"/>
   </properties>
  </imagelayer>
+ <objectgroup name="upper"/>
  <layer name="Collision" width="25" height="80" visible="0">
   <data encoding="csv">
 2558,2558,2558,2558,2558,2558,2558,2558,2558,2558,2558,0,0,0,0,0,0,0,2558,2558,2558,2558,2558,2558,2558,

@@ -24,6 +24,10 @@ function Transform.from(xform)
 	return Transform(xform.x, xform.y, xform.sx, xform.sy, xform.angle)
 end
 
+function Transform.fromoffset(xform, offset)
+	return Transform(xform.x + offset.x, xform.y + offset.y, xform.sx, xform.sy, xform.angle)
+end
+
 function Transform.relative(transform, offset)
     return setmetatable({},
 		{

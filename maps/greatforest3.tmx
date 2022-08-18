@@ -321,6 +321,7 @@ end</property>
    <property name="shimmer" type="bool" value="true"/>
   </properties>
  </imagelayer>
+ <objectgroup name="upper"/>
  <layer name="Collision" width="31" height="24" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

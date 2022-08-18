@@ -11,6 +11,7 @@ return {
   nextobjectid = 187,
   properties = {
     ["battlebg"] = "../art/backgrounds/dswamp.png",
+    ["noBattleMusic"] = true,
     ["onload"] = "actions/darkswamp1.lua",
     ["regionName"] = "Dark Swamp",
     ["sectorName"] = "???"
@@ -846,7 +847,6 @@ return {
             ["ghost"] = true,
             ["isBot"] = true,
             ["onInit"] = "return function(self)\n    self.hidden = true\nend",
-            ["onRemove"] = "return function(self)\n    self.scene.objectLookup.Chest4.hidden = false\n    self.scene.objectLookup.Chest4:updateCollision()\nend",
             ["sprite"] = "../art/sprites/phantomface.png"
           }
         },
@@ -887,7 +887,7 @@ return {
             ["ghost"] = true,
             ["isBot"] = true,
             ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self) then\n        self:remove()\n    end\nend",
-            ["onRemove"] = "return function(self)\n    self.scene.objectLookup.Eyes1:remove()\nend",
+            ["onRemove"] = "return function(self)\n    self.scene.objectLookup.Eyes1:remove()\n    self.scene.objectLookup.Chest4.hidden = false\nend",
             ["sprite"] = "../art/sprites/phantomgrab.png"
           }
         },

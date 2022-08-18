@@ -203,8 +203,12 @@ return function(self, targets)
 			)
 		end
 		
+		local prevMusic = self.scene.audio:getCurrentMusic()
 		action = Serial {
-			PlayAudio("music", "sonicring", 1.0, true),
+			Spawn(Serial {
+				PlayAudio("music", "sonicring", 1.0),
+				PlayAudio("music", prevMusic, 1.0, true, true)
+			}),
 			Animate(self.sprite, "foundring_backpack"),
 			Do(function() self.sprite:setGlow({255,255,0,255},2) end),
 			PlayAudio("sfx", "usering", 1.0, true),

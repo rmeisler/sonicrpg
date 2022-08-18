@@ -933,6 +933,7 @@ return function(self)
 
         GameState:setFlag(&quot;ep3_spoke_j&quot;)
         return BlockPlayer {
+            self:hop(),
             MessageBox {message = &quot;J: Go to Knothole!? {p60}See the Great Forest!?&quot;},
             MessageBox {message = &quot;J: Of course I am on board! {p60}I'd do anything to get out there and explore the world-- {p60}with R taggin' along of course!&quot;},
             Animate(self.scene.objectLookup.R.sprite, &quot;idleleft&quot;),
@@ -1217,6 +1218,7 @@ return function(self)
        end
 
         GameState:setFlag(&quot;ep3_spoke_p_almost&quot;)
+        self.scene.player.x = self.x - 60
         local walkout, walkin, sprites = self.scene.player:split()
         return BlockPlayer {
             walkout,
@@ -1268,7 +1270,7 @@ end</property>
    </properties>
   </object>
  </objectgroup>
- <layer name="upper" width="110" height="84">
+ <layer name="uppertiles" width="110" height="84">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1522,1521,1522,1521,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1522,1521,1522,1521,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1356,6 +1358,7 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="upper"/>
  <layer name="Collision" width="110" height="84" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

@@ -2,6 +2,7 @@
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="164" height="83" tilewidth="32" tileheight="32" infinite="0" nextobjectid="187">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/dswamp.png"/>
+  <property name="noBattleMusic" type="bool" value="true"/>
   <property name="onload" type="file" value="actions/darkswamp1.lua"/>
   <property name="regionName" value="Dark Swamp"/>
   <property name="sectorName" value="???"/>
@@ -490,10 +491,6 @@
     <property name="onInit">return function(self)
     self.hidden = true
 end</property>
-    <property name="onRemove">return function(self)
-    self.scene.objectLookup.Chest4.hidden = false
-    self.scene.objectLookup.Chest4:updateCollision()
-end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomface.png"/>
    </properties>
   </object>
@@ -576,6 +573,7 @@ end</property>
 end</property>
     <property name="onRemove">return function(self)
     self.scene.objectLookup.Eyes1:remove()
+    self.scene.objectLookup.Chest4.hidden = false
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>

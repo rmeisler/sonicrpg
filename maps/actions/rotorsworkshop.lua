@@ -127,8 +127,6 @@ return function(scene)
 		)
 	end
 	
-	scene.audio:playMusic("doittoit", 0.5)
-	
 	if scene.nighttime then
 		scene.objectLookup.Logan.hidden = false
 		scene.objectLookup.Logan.ghost = false
@@ -136,6 +134,17 @@ return function(scene)
 		scene.objectLookup.Logan:updateCollision()
 
 		scene.objectLookup.Rotor:remove()
+		scene.objectLookup.Computer.isInteractable = false
+		
+		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
+		local prefix = "nighthide"
+		for _,layer in pairs(scene.map.layers) do
+			if string.sub(layer.name, 1, #prefix) == prefix then
+				layer.opacity = 1.0
+			end
+		end
+	else
+		scene.audio:playMusic("doittoit", 0.5)
 	end
 	
 	return Action()

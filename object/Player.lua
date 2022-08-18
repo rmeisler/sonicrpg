@@ -234,7 +234,7 @@ function Player:showKeyHint(showPressX, specialHint)
 	end
 
 	-- Highest precedence goes to lshift press
-	if specialHint ~= nil and not self.showPressLsh then		
+	if specialHint ~= nil and not self.showPressLsh then
 		local pressLshXForm = Transform.relative(
 			self.transform,
 			Transform(self.sprite.w - 12, 0)
@@ -246,7 +246,7 @@ function Player:showKeyHint(showPressX, specialHint)
 			specialHint == GameState.leader and "presslsh" or "pressc",
 			nil,
 			nil,
-			"objects"
+			self.scene:hasUpperLayer() and "upper" or "objects"
 		)
 		pressLsh.drawWithNight = false
 		pressLsh.sortOrderY = Player.MAX_SORT_ORDER_Y
@@ -265,7 +265,7 @@ function Player:showKeyHint(showPressX, specialHint)
 			"pressx",
 			nil,
 			nil,
-			"objects"
+			self.scene:hasUpperLayer() and "upper" or "objects"
 		)
 		pressX.drawWithNight = false
 		pressX.sortOrderY = Player.MAX_SORT_ORDER_Y

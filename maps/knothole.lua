@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 364,
+  nextobjectid = 365,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["onload"] = "actions/knothole.lua",
@@ -4104,7 +4104,7 @@ return {
           name = "Chest6",
           type = "Chest",
           shape = "rectangle",
-          x = 1792,
+          x = 1760,
           y = 1792,
           width = 64,
           height = 64,
@@ -5099,6 +5099,17 @@ return {
         ["movespeed"] = 1,
         ["shimmer"] = true
       }
+    },
+    {
+      type = "objectgroup",
+      name = "upper",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {}
     },
     {
       type = "tilelayer",

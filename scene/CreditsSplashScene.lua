@@ -159,6 +159,7 @@ Joey "The Plokman" Tripp Nimmo
 
 [Testing]
 Fieryfurnace
+GreenCauldron08
 CaptainJotaro
 Jacob Berkley/Good Ol' Groovy Jake
 supermariobro58
@@ -166,7 +167,6 @@ King Sonic
 Ibeh Dubem/Flame the Teen
 Ricardo "Zero Neoz" Fukunaga
 Pavel "Limepaul" Haluška
-GreenCauldron08
 
 [3D Concept Art]
 Nitrosaturn

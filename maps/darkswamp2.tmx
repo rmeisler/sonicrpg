@@ -363,6 +363,9 @@
     <property name="nocollision" type="bool" value="true"/>
     <property name="onInit">return function(self)
     self.hidden = true
+    if GameState:isFlagSet(self.scene.objectLookup.Arm1) and not self:isRemoved() then
+        self:remove()
+    end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomface.png"/>
    </properties>
@@ -382,6 +385,13 @@ end</property>
   <object id="135" name="EyesTrap1" type="BasicNPC" gid="7597" x="480" y="1120" width="192" height="160">
    <properties>
     <property name="ghost" type="bool" value="true"/>
+    <property name="onInit">
+
+return function(self)
+    if GameState:isFlagSet(self.scene.objectLookup.Arm1) and not self:isRemoved() then
+        self:remove()
+    end
+end</property>
     <property name="whileColliding">local Animate = require &quot;actions/Animate&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Do = require &quot;actions/Do&quot;
@@ -455,6 +465,10 @@ end</property>
         self:remove()
     end
 end</property>
+    <property name="onRemove">return function(self)
+    self.scene.objectLookup.Eyes1:remove()
+    self.scene.objectLookup.EyesTrap1:remove()
+end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>
   </object>
@@ -494,6 +508,13 @@ end</property>
   <object id="149" name="EyesTrap4" type="BasicNPC" gid="7597" x="1152" y="896" width="192" height="160">
    <properties>
     <property name="ghost" type="bool" value="true"/>
+    <property name="onInit">
+
+return function(self)
+    if GameState:isFlagSet(self.scene.objectLookup.Arm4) and not self:isRemoved() then
+        self:remove()
+    end
+end</property>
     <property name="whileColliding">local Animate = require &quot;actions/Animate&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Do = require &quot;actions/Do&quot;
