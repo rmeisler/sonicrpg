@@ -251,7 +251,7 @@ return function(self)
             PlayAudio(&quot;music&quot;, &quot;bsad&quot;, 0.8, true, true),
             Animate(self.sprite, &quot;pose&quot;),
             MessageBox {message = &quot;B: It's much worse than just that, unfortunately...&quot;},
-            MessageBox {message = &quot;B: I've had this condition much longer than the others{p60}, as it has progressed it has mutated from simple amnesia to a much more debilitating disorder...&quot;},
+            MessageBox {message = &quot;B: I've had this condition much longer than the others.{p60} As it has progressed it has mutated from simple amnesia to a much more debilitating disorder...&quot;},
             MessageBox {message = &quot;B: I see these flashes-- {p60}half-remembered memories of my past life...&quot;},
             MessageBox {message = &quot;B: As soon as they disappear I am left with pain... {p60}worse than any physical torture you could imagine...&quot;},
             Animate(sprites.sally.sprite, &quot;sadleft&quot;),

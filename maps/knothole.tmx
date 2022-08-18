@@ -2403,7 +2403,7 @@ return function(self)
     if GameState:isFlagSet(self:getFlag()) then
         return BlockPlayer {
             Do(function() self:facePlayer() end),
-            MessageBox {message = &quot;Sonic: *whipering* Ugh. {p40}She is the worst!&quot;},
+            MessageBox {message = &quot;Sonic: *whispering* Ugh. {p40}She is the worst!&quot;},
             Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;lookright&quot;),
             MessageBox {message = &quot;Fleet: What was that?&quot;},
             Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;shock&quot;),
@@ -2558,7 +2558,7 @@ return function(self)
             end),
             MessageBox {message = &quot;Sally: I see...&quot;},
             MessageBox {message = &quot;Logan: The plan can work{p60}, obviously...{p60} but we can't just have the glitch execute the minute these bots upload our software patch!&quot;},
-            MessageBox {message = &quot;Logan: If this is gonna work, we are gonna need to suppress the effects of the glitch until we fire off some kinda signal...&quot;},
+            MessageBox {message = &quot;Logan: If this is gonna work, we're gonna need to suppress the effects of the glitch until we fire off some kinda signal...&quot;},
             MessageBox {message = &quot;Sally: Ah... {p60}so then Robotnik will be forced to actually read through the code and repair the problem\nmanually{p60}, buying us more time.&quot;},
             MessageBox {message = &quot;Logan: Correct.&quot;},
             Animate(self.sprite, &quot;idleup&quot;),

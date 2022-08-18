@@ -745,7 +745,11 @@ function Player:basicUpdate(dt)
 			movingX = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
-			if not isSwatbot and spot and not (love.keyboard.isDown("up") or love.keyboard.isDown("down")) then
+			if  not isSwatbot and
+			    spot and
+				self:spacialRelation(hotspots, spot) == "left" and
+			    not (love.keyboard.isDown("up") or love.keyboard.isDown("down"))
+			then
 				self.y = spot.y + spot.sprite.h*2 - self.sprite.h + 1
 				--self.sprite.sortOrderY = spot.y + spot.sprite.h*2 + 1
 				self.state = Player.STATE_HIDERIGHT
@@ -806,7 +810,11 @@ function Player:basicUpdate(dt)
 			movingX = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
-			if not isSwatbot and spot and not (love.keyboard.isDown("up") or love.keyboard.isDown("down")) then
+			if  not isSwatbot and
+				spot and
+				self:spacialRelation(hotspots, spot) == "right" and
+				not (love.keyboard.isDown("up") or love.keyboard.isDown("down"))
+			then
 				self.y = spot.y + spot.sprite.h*2 - self.sprite.h + 1
 				--self.sprite.sortOrderY = spot.y + spot.sprite.h*2 + 1
 				self.state = Player.STATE_HIDELEFT
@@ -857,10 +865,14 @@ function Player:basicUpdate(dt)
 			movingY = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
-			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
+			if not isSwatbot and
+			   spot and
+			   self:spacialRelation(hotspots, spot) == "above" and
+			   not (love.keyboard.isDown("left") or love.keyboard.isDown("right"))
+			then
 				self.state = Player.STATE_HIDEDOWN
 				self.x = spot.x + self.scene:getTileWidth() + (spot.object.properties.hideOffset or 0) - 7
-				self.y = spot.y + spot.sprite.h*2 - self.height - self.scene:getTileHeight()
+				self.y = spot.y + spot.sprite.h*2 - self.height - self.scene:getTileHeight()*2.5
 				self.cinematic = true
 				self.hidingDirection = "down"
 				self.scene:run(
@@ -917,7 +929,11 @@ function Player:basicUpdate(dt)
 			movingY = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
-			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
+			if  not isSwatbot and
+			    spot and
+				self:spacialRelation(hotspots, spot) == "below" and
+				not (love.keyboard.isDown("left") or love.keyboard.isDown("right"))
+			then
 				self.state = Player.STATE_HIDEUP
 				self.x = spot.x + self.scene:getTileWidth() + (spot.object.properties.hideOffset or 0) - 7
 				self.cinematic = true
@@ -1100,6 +1116,24 @@ function Player:remove()
 				sprite:remove()
 			end
 		end
+	end
+end
+
+function Player:spacialRelation(hotspots, obj)
+	local leftdiff = math.abs(obj.x - hotspots.right_top.x)
+	local rightdiff = math.abs(hotspots.left_top.x - (obj.x + obj.sprite.w*2))
+	local belowdiff = math.abs((obj.y + obj.sprite.h*2) - hotspots.left_top.y)
+	local abovediff = math.abs(hotspots.right_bot.y - obj.y)
+	
+	local result = math.min(leftdiff, rightdiff, belowdiff, abovediff)
+	if result == leftdiff then
+		return "left"
+	elseif result == rightdiff then
+		return "right"
+	elseif result == belowdiff then
+		return "below"
+	elseif result == abovediff then
+		return "above"
 	end
 end
 

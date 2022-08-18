@@ -419,6 +419,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["onInit"] = "return function(self)\n    if not self.scene.nighttime then\n        self.isInteractable = false\n    end\nend",
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    if self.scene.nighttime and not GameState:isFlagSet(\"ep3_read\") then\n        return BlockPlayer {\n            MessageBox {message = \"Tails: You got some books in your hut, doncha?\"},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    elseif self.scene.nighttime and GameState:isFlagSet(\"ep3_read\") then\n        return BlockPlayer {\n            MessageBox {message = \"Tails: zzz...\"},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\n    return Do(function()\n        self:refreshKeyHint()\n    end)\nend",
             ["sprite"] = "../art/sprites/tailsbed.png"
           }

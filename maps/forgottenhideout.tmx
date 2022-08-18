@@ -1071,7 +1071,7 @@ return function(self)
                 MessageBox {message = &quot;R: *sniff* Really?&quot;},
                 MessageBox {message = &quot;Sonic: Sure are! {p60}Nothin's cooler than bein' fast{p60}, and I bet you're as fast as lightning!&quot;},
                 Animate(self.scene.objectLookup.J.sprite, &quot;jright&quot;),
-                MessageBox {message = &quot;R: T-Thanks! {p60}I 'am' fast!&quot;},
+                MessageBox {message = &quot;R: T-Thanks! {p60}I \&quot;am\&quot; fast!&quot;},
                 MessageBox {message = &quot;J: That's right! {p60}R here is the fastest dude in Mobius!&quot;},
                 MessageBox {message = &quot;Sonic: The fastest, huh?&quot;},
                 Animate(self.scene.objectLookup.R.sprite, &quot;idleleft&quot;),

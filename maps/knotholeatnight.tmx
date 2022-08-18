@@ -2197,7 +2197,7 @@ return function(self)
     if GameState:isFlagSet(self:getFlag()) then
         return BlockPlayer {
             Do(function() self:facePlayer() end),
-            MessageBox {message = &quot;Antoine: I am having on last question{p40}, did Sonic use my kitchen recently?&quot;},
+            MessageBox {message = &quot;Antoine: I am having one last question{p40}, did Sonic use my kitchen recently?&quot;},
             Animate(self.sprite, &quot;idleup&quot;),
             Do(function()
                 self:refreshKeyHint()

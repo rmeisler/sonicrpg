@@ -405,7 +405,7 @@ return function(self)
         return Do(function() end)
     else
         GameState:setFlag(self:getFlag())
-        local prevAnim = self.scene.player.sprite.selected
+        local prevAnim = scene.player.ToIdle[self.scene.player.sprite.selected]
         return BlockPlayer {
             MessageBox {message = &quot;Sally: Leon?&quot;},
             Ease(self.scene.camPos, &quot;x&quot;, -300, 0.3),
