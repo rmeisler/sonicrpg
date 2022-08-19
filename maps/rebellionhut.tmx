@@ -218,6 +218,7 @@ return function(self)
             self.scene.player.sprite:setAnimation(&quot;idleup&quot;)
         end),
         MessageBox{message=&quot;Fleet: Logan is not the most social person. {p60}She often gets caught up in her work and likes to stay close to it. {p60}Maybe you Freedom Fighters could learn a thing or two from her!&quot;},
+        Wait(1),
         Animate(self.sprite, &quot;lookright&quot;),
         MessageBox{message=&quot;Fleet: She really only talks to Leon, Ivan, and I...&quot;},
         Animate(self.scene.objectLookup.Ivan.sprite, &quot;attitude&quot;),

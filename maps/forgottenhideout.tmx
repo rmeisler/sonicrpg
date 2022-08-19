@@ -831,6 +831,7 @@ return function(self)
         end
 
         GameState:isFlagSet(&quot;ep3_spoke_t&quot;)
+        self.scene.player.y = self.scene.player.y + 60
         local walkout, walkin, sprites = self.scene.player:split()
         return Serial {
             walkout,
@@ -1218,7 +1219,7 @@ return function(self)
        end
 
         GameState:setFlag(&quot;ep3_spoke_p_almost&quot;)
-        self.scene.player.x = self.x - 60
+        self.scene.player.x = self.x
         local walkout, walkin, sprites = self.scene.player:split()
         return BlockPlayer {
             walkout,
