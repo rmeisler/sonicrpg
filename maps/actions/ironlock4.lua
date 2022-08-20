@@ -161,9 +161,9 @@ return function(scene, hint)
 		Animate(scene.objectLookup.Evangeline.sprite, "evangeline_idle"),
 		Parallel {
 			Ease(scene.objectLookup.Belpois.sprite.color, 4, 255, 0.3),
-			Ease(scene.objectLookup.Evangeline.sprite.color, 4, 255, 0.3)
+			Ease(scene.objectLookup.Evangeline.sprite.color, 4, 255, 0.3),
+			MessageBox{message="Evangeline: Yes{p60}, I'm so glad he's made friends."}
 		},
-		MessageBox{message="Evangeline: Yes{p60}, I'm so glad he's made friends."},
 		Animate(scene.objectLookup.Evangeline.sprite, "evangeline_worried"),
 		MessageBox{message="Evangeline: I just worry about him sometimes...{p60} he always seems so afraid of everything..."},
 		Wait(1),
@@ -186,7 +186,7 @@ return function(scene, hint)
 		Animate(scene.objectLookup.Belpois.sprite, "belpois_idle"),
 		MessageBox{message="Belpois: What I have learned in my days is that bravery is not to be lacking ze fear, it is to be moving forward in the face of it!"},
 		Animate(scene.objectLookup.Evangeline.sprite, "evangeline_idle"),
-		MessageBox{message="Evangeline: Our little Ant is certainly fitting the bill. {p60}Remember how scared he was to talk to Max's daughter?"},
+		MessageBox{message="Evangeline: Our little Ant is certainly fitting the bill. {p60}Remember how scared he was to talk to the King's daughter?"},
 		MessageBox{message="Evangeline: He eventually found his courage, and now zey are good friends!"},
 		Animate(scene.objectLookup.Belpois.sprite, "belpois_convince"),
 		MessageBox{message="Belpois: Exactly, mon amour! {p60}Our son may get scared a bit too easily at times, but he is no coward! {p80}He is the bravest person I know!"},
@@ -201,7 +201,7 @@ return function(scene, hint)
 		Wait(1),
 		Parallel {
 			Spawn(Serial {
-				PlayAudio("music", "antoine", 1.0),
+				PlayAudio("music", "antoine", 0.9),
 				PlayAudio("music", "missionready", 1.0, true, true)
 			}),
 			Serial {
@@ -225,9 +225,6 @@ return function(scene, hint)
 		Do(function()
 			GameState:removeFromParty("sonic")
 			GameState:removeFromParty("sally")
-			
-			-- Give Resiliency skill
-			table.insert(GameState.party.antoine.levelup[6].skills, require "data/battle/skills/Resiliency")
 			
 			scene.objectLookup.Antoine:remove()
 			GameState.leader = "antoine"

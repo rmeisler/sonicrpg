@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="362">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="377">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="nighttime" type="bool" value="true"/>
@@ -2653,9 +2653,10 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="348" name="Chest1" type="Chest" gid="7597" x="2464" y="960" width="64" height="64">
+  <object id="348" name="Chest1" type="Chest" gid="7597" x="2448" y="944" width="64" height="64">
    <properties>
     <property name="Oscillator" type="int" value="1"/>
+    <property name="align" value="bottom_left"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
@@ -2688,18 +2689,189 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="359" name="Chest1" type="Chest" gid="7597" x="5824" y="480" width="64" height="64">
+  <object id="361" name="Chest1" type="Chest" gid="7597" x="160" y="2528" width="64" height="64">
+   <properties>
+    <property name="GreenLeaf" type="int" value="1"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="363" name="FireflyWP1" type="BasicNPC" gid="5323" x="4896" y="2688" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="364" name="FireflyWP2" type="BasicNPC" gid="5323" x="5728" y="2688" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="365" name="FireflyWP3" type="BasicNPC" gid="5323" x="5920" y="2496" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="366" name="FireflyWP4" type="BasicNPC" gid="5323" x="6112" y="2272" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="367" name="FireflyWP5" type="BasicNPC" gid="5323" x="6272" y="1888" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="368" name="FireflyWP6" type="BasicNPC" gid="5323" x="6464" y="1504" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="369" name="FireflyWP7" type="BasicNPC" gid="5323" x="6272" y="1024" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="370" name="FireflyWP8" type="BasicNPC" gid="5323" x="6112" y="640" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="371" name="FireflyWP9" type="BasicNPC" gid="5323" x="5856" y="352" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="372" name="Chest1" type="Chest" gid="7597" x="4896" y="1248" width="64" height="64">
    <properties>
     <property name="Mushroom" type="int" value="1"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="361" name="Chest1" type="Chest" gid="7597" x="160" y="2528" width="64" height="64">
+  <object id="373" name="Firefly" type="BasicNPC" gid="5323" x="4768" y="1696" width="64" height="64">
    <properties>
-    <property name="GreenLeaf" type="int" value="1"/>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="firefly"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="nightbright" type="bool" value="true"/>
     <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+    <property name="onInit">
+
+return function(self)
+    if GameState:isFlagSet(self) then self:remove() end
+end</property>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Action = require &quot;actions/Action&quot;
+local Move = require &quot;actions/Move&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    if not self.touched then
+        self.touched = -1
+    end
+
+    self.touched = self.touched + 1
+    if self.touched == 0 then
+        self.isInteractable = false
+        return Serial {
+            PlayAudio(&quot;sfx&quot;, &quot;choose&quot;, 1.0, true),
+            Move(self, self.scene.objectLookup.FireflyWP0_1, &quot;firefly&quot;),
+            Move(self, self.scene.objectLookup.FireflyWP0_2, &quot;firefly&quot;),
+            Move(self, self.scene.objectLookup.FireflyWP0_3, &quot;firefly&quot;),
+            Do(function()
+                self.isInteractable = true
+                self.object.x = self.x
+                self.object.y = self.y
+                self:updateCollision()
+            end)
+        }
+    elseif self.touched == 1 then
+        self.isInteractable = false
+        return Serial {
+            PlayAudio(&quot;sfx&quot;, &quot;choose&quot;, 1.0, true),
+            Move(self, self.scene.objectLookup.FireflyWP1, &quot;firefly&quot;),
+            Move(self, self.scene.objectLookup.FireflyWP2, &quot;firefly&quot;),
+            Move(self, self.scene.objectLookup.FireflyWP3, &quot;firefly&quot;),
+            Do(function()
+                self.isInteractable = true
+                self.object.x = self.x
+                self.object.y = self.y
+                self:updateCollision()
+            end)
+        }
+    elseif self.touched == 2 then
+        self.isInteractable = false
+        return Serial {
+            PlayAudio(&quot;sfx&quot;, &quot;choose&quot;, 1.0, true),
+            Move(self, self.scene.objectLookup.FireflyWP4, &quot;firefly&quot;),
+            Move(self, self.scene.objectLookup.FireflyWP5, &quot;firefly&quot;),
+            Move(self, self.scene.objectLookup.FireflyWP6, &quot;firefly&quot;),
+            Do(function()
+                self.isInteractable = true
+                self.object.x = self.x
+                self.object.y = self.y
+                self:updateCollision()
+            end)
+        }
+    elseif self.touched == 3 then
+        self.isInteractable = false
+        return Serial {
+            PlayAudio(&quot;sfx&quot;, &quot;choose&quot;, 1.0, true),
+            Move(self, self.scene.objectLookup.FireflyWP7, &quot;firefly&quot;),
+            Move(self, self.scene.objectLookup.FireflyWP8, &quot;firefly&quot;),
+            Move(self, self.scene.objectLookup.FireflyWP9, &quot;firefly&quot;),
+            Do(function()
+                self.isInteractable = true
+                self.object.x = self.x
+                self.object.y = self.y
+                self:updateCollision()
+            end)
+        }
+    elseif self.touched == 4 then
+        self.isInteractable = false
+        self.hidden = true
+        return Serial {
+            MessageBox{message=&quot;You received a Yellow Leaf!&quot;, blocking=true, sfx=&quot;levelup&quot;},
+            Do(function()
+                GameState:grantItem(require &quot;data/items/YellowLeaf&quot;, 1)
+                GameState:setFlag(self)
+                self:remove()
+            end)
+        }
+    end
+
+    return Action()
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/pest.png"/>
+   </properties>
+  </object>
+  <object id="374" name="FireflyWP0_3" type="BasicNPC" gid="5323" x="4800" y="2560" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="375" name="FireflyWP0_2" type="BasicNPC" gid="5323" x="4416" y="2272" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="376" name="FireflyWP0_1" type="BasicNPC" gid="5323" x="4352" y="1728" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

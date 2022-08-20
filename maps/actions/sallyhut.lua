@@ -142,7 +142,7 @@ return function(scene, hint)
 			Animate(scene.objectLookup.SallysBed.sprite, "awake"),
 			Wait(1),
 			Animate(scene.objectLookup.SallysBed.sprite, "sit"),
-			Wait(2),
+			Wait(1),
 			MessageBox{message="Sally: Ahhh... {p80}a new day! {p80}And so much promise for the future!"},
 			Animate(scene.objectLookup.SallysBed.sprite, "empty"),
 			Do(function()
@@ -151,7 +151,7 @@ return function(scene, hint)
 				scene.player.x = scene.objectLookup.SallysBed.x + 70
 				scene.player.y = scene.objectLookup.SallysBed.y + 95
 			end),
-			Wait(0.5),
+			Wait(0.2),
 			Do(function()
 				scene.player.sprite:setAnimation("pose")
 				scene.player.state = "pose"

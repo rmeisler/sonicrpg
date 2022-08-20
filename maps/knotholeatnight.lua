@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 362,
+  nextobjectid = 377,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = true,
@@ -4171,8 +4171,8 @@ return {
           name = "Chest1",
           type = "Chest",
           shape = "rectangle",
-          x = 2464,
-          y = 960,
+          x = 2448,
+          y = 944,
           width = 64,
           height = 64,
           rotation = 0,
@@ -4180,6 +4180,7 @@ return {
           visible = true,
           properties = {
             ["Oscillator"] = 1,
+            ["align"] = "bottom_left",
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
@@ -4257,24 +4258,6 @@ return {
           }
         },
         {
-          id = 359,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 5824,
-          y = 480,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["Mushroom"] = 1,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 361,
           name = "Chest1",
           type = "Chest",
@@ -4290,6 +4273,240 @@ return {
             ["GreenLeaf"] = 1,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 363,
+          name = "FireflyWP1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4896,
+          y = 2688,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 364,
+          name = "FireflyWP2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 5728,
+          y = 2688,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 365,
+          name = "FireflyWP3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 5920,
+          y = 2496,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 366,
+          name = "FireflyWP4",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 6112,
+          y = 2272,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 367,
+          name = "FireflyWP5",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 6272,
+          y = 1888,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 368,
+          name = "FireflyWP6",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 6464,
+          y = 1504,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 369,
+          name = "FireflyWP7",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 6272,
+          y = 1024,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 370,
+          name = "FireflyWP8",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 6112,
+          y = 640,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 371,
+          name = "FireflyWP9",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 5856,
+          y = 352,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 372,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 4896,
+          y = 1248,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["Mushroom"] = 1,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 373,
+          name = "Firefly",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4768,
+          y = 1696,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "firefly",
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = true,
+            ["nightbright"] = true,
+            ["nonight"] = true,
+            ["onInit"] = "\n\nreturn function(self)\n    if GameState:isFlagSet(self) then self:remove() end\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Action = require \"actions/Action\"\nlocal Move = require \"actions/Move\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if not self.touched then\n        self.touched = -1\n    end\n\n    self.touched = self.touched + 1\n    if self.touched == 0 then\n        self.isInteractable = false\n        return Serial {\n            PlayAudio(\"sfx\", \"choose\", 1.0, true),\n            Move(self, self.scene.objectLookup.FireflyWP0_1, \"firefly\"),\n            Move(self, self.scene.objectLookup.FireflyWP0_2, \"firefly\"),\n            Move(self, self.scene.objectLookup.FireflyWP0_3, \"firefly\"),\n            Do(function()\n                self.isInteractable = true\n                self.object.x = self.x\n                self.object.y = self.y\n                self:updateCollision()\n            end)\n        }\n    elseif self.touched == 1 then\n        self.isInteractable = false\n        return Serial {\n            PlayAudio(\"sfx\", \"choose\", 1.0, true),\n            Move(self, self.scene.objectLookup.FireflyWP1, \"firefly\"),\n            Move(self, self.scene.objectLookup.FireflyWP2, \"firefly\"),\n            Move(self, self.scene.objectLookup.FireflyWP3, \"firefly\"),\n            Do(function()\n                self.isInteractable = true\n                self.object.x = self.x\n                self.object.y = self.y\n                self:updateCollision()\n            end)\n        }\n    elseif self.touched == 2 then\n        self.isInteractable = false\n        return Serial {\n            PlayAudio(\"sfx\", \"choose\", 1.0, true),\n            Move(self, self.scene.objectLookup.FireflyWP4, \"firefly\"),\n            Move(self, self.scene.objectLookup.FireflyWP5, \"firefly\"),\n            Move(self, self.scene.objectLookup.FireflyWP6, \"firefly\"),\n            Do(function()\n                self.isInteractable = true\n                self.object.x = self.x\n                self.object.y = self.y\n                self:updateCollision()\n            end)\n        }\n    elseif self.touched == 3 then\n        self.isInteractable = false\n        return Serial {\n            PlayAudio(\"sfx\", \"choose\", 1.0, true),\n            Move(self, self.scene.objectLookup.FireflyWP7, \"firefly\"),\n            Move(self, self.scene.objectLookup.FireflyWP8, \"firefly\"),\n            Move(self, self.scene.objectLookup.FireflyWP9, \"firefly\"),\n            Do(function()\n                self.isInteractable = true\n                self.object.x = self.x\n                self.object.y = self.y\n                self:updateCollision()\n            end)\n        }\n    elseif self.touched == 4 then\n        self.isInteractable = false\n        self.hidden = true\n        return Serial {\n            MessageBox{message=\"You received a Yellow Leaf!\", blocking=true, sfx=\"levelup\"},\n            Do(function()\n                GameState:grantItem(require \"data/items/YellowLeaf\", 1)\n                GameState:setFlag(self)\n                self:remove()\n            end)\n        }\n    end\n\n    return Action()\nend",
+            ["sprite"] = "../art/sprites/pest.png"
+          }
+        },
+        {
+          id = 374,
+          name = "FireflyWP0_3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4800,
+          y = 2560,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 375,
+          name = "FireflyWP0_2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4416,
+          y = 2272,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 376,
+          name = "FireflyWP0_1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4352,
+          y = 1728,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

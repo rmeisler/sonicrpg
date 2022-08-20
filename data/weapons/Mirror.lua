@@ -10,7 +10,7 @@ return {
 	usableBy = {"sonic", "sally", "antoine", "rotor"},
 	sprite = "sword",
 	color = {200,200,0,255},
-	stats = {},
+	stats = {attack=2},
 	event = {
 		type = EventType.Z,
 		action = require "data/battle/actions/Reflect"

@@ -51,9 +51,9 @@ return {
 	},
 
 	items = {
-		{count = 1, item = require "data/items/GreenLeaf"},
-		{count = 1, item = require "data/items/CrystalWater"},
-		{count = 1, item = require "data/items/Mine"},
+		{count = 3, item = require "data/items/GreenLeaf"},
+		{count = 3, item = require "data/items/BlueLeaf"},
+		{count = 3, item = require "data/items/CrystalWater"}
 	},
 
 	levelup = {

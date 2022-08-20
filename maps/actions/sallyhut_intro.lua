@@ -104,14 +104,18 @@ return function(scene)
 			Wait(2),
 			Animate(scene.objectLookup.SallyPensive.sprite, "thinking2"),
 			MessageBox {message="Sally: What a day...", textSpeed=2, closeAction=Wait(2.5)},
-			Wait(3),
+			Wait(2),
 			Animate(scene.objectLookup.SallyPensive.sprite, "idleright"),
-			MessageBox {message="Sally: Hmm...", textSpeed=2, closeAction=Wait(2.5)},
-			Move(scene.objectLookup.SallyPensive, scene.objectLookup.Waypoint2, "walk"),
+			MessageBox {message="Sally: ...", textSpeed=2, closeAction=Wait(2)},
 			Do(function()
 				scene.objectLookup.SallyPensive.sprite.sortOrderY = 99999
 			end),
-			Animate(scene.objectLookup.SallyPensive.sprite, "sit_computer"),
+			scene.objectLookup.SallyPensive:walk(
+				Transform.fromoffset(scene.objectLookup.Waypoint2, Transform(-95, 0)),
+				1,
+				"walkright",
+				"sit_computer"
+			),
 			Wait(1),
 
 			MessageBox {message="Sally: Nicole, {p30}open a new file.", textspeed=2},
