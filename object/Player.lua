@@ -212,13 +212,39 @@ function Player:updateKeyHint()
 		self:showKeyHint(false, specialKeyHint.specialHintPlayer)
 	elseif closestKeyHint then
 		self.curKeyHint = closestKeyHint
-		self:showKeyHint(true, nil)
+		if closestKeyHint.hidingSpot then
+			local dir
+			if  math.abs(self.x -
+						 (closestKeyHint.x + closestKeyHint.sprite.w)) >
+				math.abs((self.y + self.sprite.h) -
+						 (closestKeyHint.y + closestKeyHint.sprite.h*2))
+			then
+				if  self.x >
+					(closestKeyHint.x + closestKeyHint.sprite.w)
+				then
+					dir = "left"
+				else
+					dir = "right"
+				end
+			else
+				if (self.y + self.sprite.h) >
+				   (closestKeyHint.y + closestKeyHint.sprite.h*2)
+				then
+					dir = "up"
+				else
+					dir = "down"
+				end
+			end
+			self:showKeyHint(false, nil, "press"..dir)
+		else
+			self:showKeyHint(true, nil)
+		end
 	else
 		self:removeKeyHint()
 	end
 end
 
-function Player:showKeyHint(showPressX, specialHint)
+function Player:showKeyHint(showPressX, specialHint, showPressDir)
 	if self.erasingKeyHint then
 		return
 	end
@@ -233,8 +259,29 @@ function Player:showKeyHint(showPressX, specialHint)
 		specialHint = nil
 	end
 
-	-- Highest precedence goes to lshift press
-	if specialHint ~= nil and not self.showPressLsh then
+	-- Highest precedence goes to dir press
+	if showPressDir and showPressDir ~= self.showPressDir then
+		if self.showPressDir then
+			self.curKeyHintSprite:remove()
+		end
+		local pressDirXForm = Transform.relative(
+			self.transform,
+			Transform(self.sprite.w - 10, 0)
+		)
+		local pressDir = SpriteNode(
+			self.scene,
+			pressDirXForm,
+			{255,255,255,0},
+			showPressDir,
+			nil,
+			nil,
+			self.scene:hasUpperLayer() and "upper" or "objects"
+		)
+		pressDir.sortOrderY = Player.MAX_SORT_ORDER_Y
+		self.curKeyHintSprite = pressDir
+		table.insert(keyHintActions, Ease(pressDir.color, 4, 255, 5))
+		self.showPressDir = showPressDir
+	elseif specialHint ~= nil and not self.showPressLsh then
 		local pressLshXForm = Transform.relative(
 			self.transform,
 			Transform(self.sprite.w - 12, 0)
@@ -748,6 +795,7 @@ function Player:basicUpdate(dt)
 			if  not isSwatbot and
 			    spot and
 				self:spacialRelation(hotspots, spot) == "left" and
+				self:isFacing("right") and
 			    not (love.keyboard.isDown("up") or love.keyboard.isDown("down"))
 			then
 				self.y = spot.y + spot.sprite.h*2 - self.sprite.h + 1
@@ -813,6 +861,7 @@ function Player:basicUpdate(dt)
 			if  not isSwatbot and
 				spot and
 				self:spacialRelation(hotspots, spot) == "right" and
+				self:isFacing("left") and
 				not (love.keyboard.isDown("up") or love.keyboard.isDown("down"))
 			then
 				self.y = spot.y + spot.sprite.h*2 - self.sprite.h + 1
@@ -867,12 +916,12 @@ function Player:basicUpdate(dt)
 			local _, spot = next(self.inHidingSpot)
 			if not isSwatbot and
 			   spot and
-			   self:spacialRelation(hotspots, spot) == "above" and
+			   self:isFacing("down") and
 			   not (love.keyboard.isDown("left") or love.keyboard.isDown("right"))
 			then
 				self.state = Player.STATE_HIDEDOWN
 				self.x = spot.x + self.scene:getTileWidth() + (spot.object.properties.hideOffset or 0) - 7
-				self.y = spot.y + spot.sprite.h*2 - self.height - self.scene:getTileHeight()*2.5
+				self.y = spot.y + spot.sprite.h*2 - self.height - spot.object.height + 16
 				self.cinematic = true
 				self.hidingDirection = "down"
 				self.scene:run(
@@ -932,6 +981,7 @@ function Player:basicUpdate(dt)
 			if  not isSwatbot and
 			    spot and
 				self:spacialRelation(hotspots, spot) == "below" and
+				self:isFacing("up") and
 				not (love.keyboard.isDown("left") or love.keyboard.isDown("right"))
 			then
 				self.state = Player.STATE_HIDEUP
