@@ -110,8 +110,6 @@ function BattleActor:getSprite()
 end
 
 function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
-	local selfStats = self:getStats()
-	
 	isPassive = isPassive or false
 	
 	local sprite = self:getSprite()
@@ -124,16 +122,16 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 
 	-- Calculate damage based on stats of the attacker combined with our own
 	local direction = (sprite.transform.x > love.graphics.getWidth()/2) and 1 or -1
-	local defense = math.random(selfStats.defense * 2, selfStats.defense * 3)
-	local damage = math.max(0, math.floor((stats.attack * 10 + math.random(stats.attack)) - defense))
 	local impact = 50
 
 	local knockBackAction
 	local damageText
 	local damageTextColor = {255, 0, 20, 255}
 
+	local damage = self:calculateDamage(stats)
+	
 	-- Random chance of miss
-	if stats.miss or damage == 0 or ((math.random(10)/100) + (selfStats.speed/100)) > ((math.random(30)/100) + (stats.speed/100)) then
+	if stats.miss or damage == 0 then
 		if damage ~= 0 or stats.miss then
 			damageText = "miss"
 			damage = 0
@@ -150,7 +148,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 		}
 	else
 		-- Random chance of crit
-		if math.random() > (0.95 - (stats.luck/100)) then
+		if self:critChance(stats) then
 			damage = damage * 2
 			impact = impact * 1.5
 		end
@@ -227,6 +225,26 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 		action:add(self.scene, self:die())
 	end
 	return action
+end
+
+function BattleActor:critChance(stats)
+	return math.random() > (0.95 - (stats.luck/100))
+end
+
+function BattleActor:calculateDamage(stats)
+	-- Calculate damage based on stats of the attacker combined with our own
+	local selfStats = self:getStats()
+	local defense = math.random(selfStats.defense * 2, selfStats.defense * 3)
+	local damage = math.max(0, math.floor((stats.attack * 10 + math.random(stats.attack)) - defense))
+
+	-- Random chance of miss
+	if stats.miss or damage == 0 or ((math.random(10)/100) + (selfStats.speed/100)) > ((math.random(30)/100) + (stats.speed/100)) then
+		if damage ~= 0 or stats.miss then
+			damage = 0
+		end
+	end
+	
+	return damage
 end
 
 -- Takes a table of stat name => mult bonus

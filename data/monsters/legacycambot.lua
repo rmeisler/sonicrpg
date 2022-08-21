@@ -25,8 +25,8 @@ return {
 	sprite = "sprites/cambot2",
 
 	stats = {
-		xp    = 20,
-		maxhp = 1500,
+		xp    = 40,
+		maxhp = 1000,
 		attack = 35,
 		defense = 10,
 		speed = 10,
@@ -177,10 +177,9 @@ return {
 			target = self.scene.opponents[math.random(#self.scene.opponents)]
 			return Serial {
 				Telegraph(self, "Repair", {255,255,255,50}),
-				Parallel {
-					Ease(self.sprite.color, 2, 512, 1)
-				},
-				Heal("hp", 500)(self, target)
+				Ease(self.sprite.color, 2, 512, 1),
+				Heal("hp", 500)(self, target),
+				Ease(self.sprite.color, 2, 255, 1)
 			}
 		else
 			return Serial {

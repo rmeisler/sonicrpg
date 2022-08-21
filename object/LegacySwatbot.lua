@@ -119,7 +119,7 @@ function LegacySwatbot:getInitiative()
 	if ((self.manualFacing == "left"  and self.x < self.scene.player.x) or
 		(self.manualFacing == "right" and self.x > self.scene.player.x) or
 		(self.manualFacing == "up"    and self.y < (self.scene.player.y - self.scene.player.sprite.h)) or
-		(self.manualFacing == "down"  and (self.y + self.sprite.h) > (self.scene.player.y + self.scene.player.sprite.h)))
+		(self.manualFacing == "down"  and (self.y + self.sprite.h) > self.scene.player.y))
 	then
 		initiative = "player"
 	end

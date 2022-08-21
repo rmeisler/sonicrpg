@@ -2267,7 +2267,7 @@ return function(self)
         self.scene.objectLookup.Chest7:run(BlockPlayer{
             Do(function()
                 self.scene.objectLookup.Chest7.sprite:setAnimation(&quot;open&quot;)
-                GameState:grantItem(require &quot;data/weapon/Mirror&quot;, 1)
+                GameState:grantItem(require &quot;data/weapons/Mirror&quot;, 1)
             end),
             PlayAudio(&quot;sfx&quot;, &quot;choose&quot;, 1.0, true),
             MessageBox{message=&quot;You received a Mirror!&quot;}

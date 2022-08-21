@@ -60,7 +60,7 @@ return {
 		[1] = {
 			messages = {},
 			skills = {
-				require "data/battle/skills/Scan2",
+				require "data/battle/skills/Scan",
 			}
 		},
 		[2] = {

@@ -6,7 +6,7 @@ return {
 	unusable = function(target)
 		return target.side == TargetType.Party or target.aerial
 	end,
-	cost = 7,
-	desc = "Do several timed attacks for massive damage.",
+	cost = 8,
+	desc = "Deliver multiple blows by rapidly pressing x!",
 	action = require "data/battle/skills/actions/Pummel"
 }

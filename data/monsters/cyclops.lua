@@ -36,7 +36,7 @@ return {
 	hpBarOffset = Transform(550, 150),
 
 	stats = {
-		xp    = 30,
+		xp    = 50,
 		maxhp = 1300,
 		attack = 24,
 		defense = 100,
