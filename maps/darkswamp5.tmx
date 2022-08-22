@@ -410,6 +410,11 @@
     <property name="defaultAnim" value="idle"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
+    <property name="onInit">return function(self)
+    if GameState:isFlagSet(self) then
+        self:remove()
+    end
+end</property>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
@@ -427,6 +432,8 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
+    self.scene.player.x = self.x
+    self.scene.player.y = self.y + self.sprite.h*2
     local walkout, walkin, sprites = self.scene.player:split()
     return BlockPlayer {
         walkout,
@@ -439,6 +446,7 @@ return function(self)
                 {Layout.Text(&quot;???: Do you want to know about the Dark Swamp?&quot;), selectable = false},
                 {Layout.Text(&quot;Yes&quot;),
                     choose = function(menu)
+                        GameState:setFlag(self)
                         menu:close()
                         self.scene:run(BlockPlayer{
                             menu,

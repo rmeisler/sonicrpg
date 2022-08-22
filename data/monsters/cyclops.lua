@@ -163,13 +163,13 @@ return {
 			self.doLaser = 1
 		end
 		
-		if self.doLaser and self.doLaser > 0 then
+		--[[if self.doLaser and self.doLaser > 0 then
 			self.doLaser = self.doLaser - 1
 			return Serial {
 				Telegraph(self, "Eye Laser", {255,255,255,50}),
 				
 			}
-		end
+		end]]
 	
 		local sprite = self:getSprite()
 		if math.random() < 0.3 then

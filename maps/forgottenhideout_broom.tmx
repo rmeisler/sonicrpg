@@ -195,7 +195,8 @@ return function(self)
            GameState:isFlagSet(&quot;ep3_spoke_p&quot;)
         then
             GameState:setFlag(&quot;ep3_spoke_b2&quot;)
-            self.scene.player.x = self.scene.player.x - 60
+            self.scene.player.x = self.x
+            self.scene.player.y = self.y + self.sprite.h*2
             local walkout, walkin, sprites = self.scene.player:split()
             return BlockPlayer {
                 Do(function() self:facePlayer() end),
@@ -224,6 +225,8 @@ return function(self)
         end
     else
         GameState:setFlag(&quot;ep3_spoke_b1&quot;)
+        self.scene.player.x = self.x
+        self.scene.player.y = self.y + self.sprite.h*2
         local walkout, walkin, sprites = self.scene.player:split()
         return BlockPlayer {
             Do(function() self:facePlayer() end),

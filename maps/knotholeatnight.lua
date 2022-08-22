@@ -4167,25 +4167,6 @@ return {
           }
         },
         {
-          id = 348,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 2448,
-          y = 944,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["Oscillator"] = 1,
-            ["align"] = "bottom_left",
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 350,
           name = "Chest1",
           type = "Chest",
@@ -4253,24 +4234,6 @@ return {
           visible = true,
           properties = {
             ["Carrot"] = 1,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 361,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 160,
-          y = 2528,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["GreenLeaf"] = 1,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }

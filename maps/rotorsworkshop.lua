@@ -8,7 +8,7 @@ return {
   height = 23,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 28,
+  nextobjectid = 29,
   properties = {
     ["battlebg"] = "../art/backgrounds/prisonbg.png",
     ["onload"] = "actions/rotorsworkshop.lua",
@@ -536,6 +536,23 @@ return {
             ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox{message=\"Nicole: The computer terminal appears to be locked{p40}, Sally.\"}\n    }\nend",
             ["sprite"] = "../art/sprites/p.png",
             ["usableBy"] = "sally"
+          }
+        },
+        {
+          id = 28,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 128,
+          y = 576,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["Microchip"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }

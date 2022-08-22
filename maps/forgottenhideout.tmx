@@ -831,7 +831,9 @@ return function(self)
         end
 
         GameState:isFlagSet(&quot;ep3_spoke_t&quot;)
-        self.scene.player.y = self.scene.player.y + 60
+        self.scene.player.x = self.x
+        self.scene.player.y = self.y + self.sprite.h*2
+        self.scene.objectLookup.P.isInteractable = false
         local walkout, walkin, sprites = self.scene.player:split()
         return Serial {
             walkout,
@@ -849,15 +851,18 @@ return function(self)
             Ease(self, &quot;y&quot;, function() return self.y - 50 end, 8),
             Ease(self, &quot;y&quot;, function() return self.y + 50 end, 8),
             MessageBox {message = &quot;T: Then count me double in!&quot;},
-            walkin,
             PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1.0, true),
+            walkin,
             Do(function()
                 GameState:setFlag(&quot;ep3_spoke_t&quot;)
                 self.scene.player.x = self.scene.player.x + 60
                 self.scene.player.y = self.scene.player.y + 60
             end),
             Animate(self.sprite, &quot;tdowncross&quot;),
-            Do(function() self:refreshKeyHint() end)
+            Do(function()
+                self.scene.objectLookup.P.isInteractable = true
+                self:refreshKeyHint()
+            end)
         }
     end
 
@@ -954,6 +959,9 @@ return function(self)
         }
     else
         GameState:setFlag(self:getFlag())
+        self.scene.objectLookup.R.isInteractable = false
+        self.scene.player.x = self.x
+        self.scene.player.y = self.y + self.sprite.h*2
         local walkout, walkin, sprites = self.scene.player:split()
         return BlockPlayer {
             walkout,
@@ -976,7 +984,10 @@ return function(self)
             MessageBox {message = &quot;R: *blush*&quot;},
             Animate(self.scene.objectLookup.R.sprite, &quot;idledown&quot;),
             walkin,
-            Do(function() self:refreshKeyHint() end)
+            Do(function()
+                self.scene.objectLookup.R.isInteractable = true
+                self:refreshKeyHint()
+            end)
         }
     end
 end</property>
@@ -1049,6 +1060,9 @@ return function(self)
 
         if GameState:isFlagSet(&quot;ep3_spoke_r_almost&quot;) then
             GameState:setFlag(&quot;ep3_spoke_r&quot;)
+            self.scene.objectLookup.J.isInteractable = false
+            self.scene.player.x = self.x
+            self.scene.player.y = self.y + self.sprite.h*2
             local walkout, walkin, sprites = self.scene.player:split()
             return BlockPlayer {
                 walkout,
@@ -1190,13 +1204,13 @@ return function(self)
                Parallel {
                    Serial {
                        Animate(self.sprite, &quot;preaddown&quot;),
-                       Wait(2),
+                       Wait(1),
                        Animate(self.sprite, &quot;preadleft&quot;),
-                       Wait(2),
+                       Wait(1),
                        Animate(self.sprite, &quot;preaddown&quot;),
-                       Wait(2),
+                       Wait(1),
                        Animate(self.sprite, &quot;preadright&quot;),
-                       Wait(1)
+                       Wait(2)
                    },
                    MessageBox {message = &quot;P: ... {p80}... {p80}...&quot;, textSpeed=2}
                },
@@ -1219,7 +1233,9 @@ return function(self)
        end
 
         GameState:setFlag(&quot;ep3_spoke_p_almost&quot;)
+        self.scene.objectLookup.T.isInteractable = false
         self.scene.player.x = self.x
+        self.scene.player.y = self.y + self.sprite.h*2
         local walkout, walkin, sprites = self.scene.player:split()
         return BlockPlayer {
             walkout,
@@ -1239,6 +1255,7 @@ return function(self)
                 self:refreshKeyHint()
                 self.scene.player.x = self.scene.player.x + 60
                 self.scene.player.y = self.scene.player.y + 60
+                self.scene.objectLookup.T.isInteractable = true
             end)
         }
     end

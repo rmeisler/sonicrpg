@@ -43,15 +43,22 @@ end
 
 local PummelTrigger = function(self, key, _, target)
 	if key == "x" and self.punchtime <= 0 then
-		self.punchtime = 0.3
+		self.punchtime = 0.1
 		
 		if not target.origX then
 			target.origX = target:getSprite().transform.x
 		end
 
-		local stats = {attack=self.stats.attack/1.5, luck=self.stats.luck, speed=self.stats.speed}
+		local stats = {attack=math.max(1, self.stats.attack/3), luck=self.stats.luck, speed=self.stats.speed}
 		local damage = target:calculateDamage(stats)
 		target.hp = math.max(0, target.hp - damage)
+		
+		local damageText = tostring(damage)
+		local damageTextColor = {255,0,0,255}
+		if stats.miss then
+			damageText = "miss"
+			damageTextColor = {255,255,255,255}
+		end
 
 		self.scene.audio:stopSfx()
 		self.scene.audio:playSfx("smack")
@@ -71,9 +78,9 @@ local PummelTrigger = function(self, key, _, target)
 					target.origX + target.textOffset.x - 50,
 					targetSp.transform.y + target.textOffset.y
 				),
-				{255,0,0,255},
+				damageTextColor,
 				FontCache.ConsolasLarge,
-				tostring(damage),
+				damageText,
 				6,
 				false,
 				true -- outline

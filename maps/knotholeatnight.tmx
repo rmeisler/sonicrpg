@@ -2653,14 +2653,6 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="348" name="Chest1" type="Chest" gid="7597" x="2448" y="944" width="64" height="64">
-   <properties>
-    <property name="Oscillator" type="int" value="1"/>
-    <property name="align" value="bottom_left"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
   <object id="350" name="Chest1" type="Chest" gid="7597" x="2080" y="576" width="64" height="64">
    <properties>
     <property name="Carrot" type="int" value="1"/>
@@ -2685,13 +2677,6 @@ end</property>
   <object id="355" name="Chest1" type="Chest" gid="7597" x="4896" y="480" width="64" height="64">
    <properties>
     <property name="Carrot" type="int" value="1"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="361" name="Chest1" type="Chest" gid="7597" x="160" y="2528" width="64" height="64">
-   <properties>
-    <property name="GreenLeaf" type="int" value="1"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>

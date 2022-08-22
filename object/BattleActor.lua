@@ -132,7 +132,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 	
 	-- Random chance of miss
 	if stats.miss or damage == 0 then
-		if damage ~= 0 or stats.miss then
+		if stats.miss then
 			damageText = "miss"
 			damage = 0
 			damageTextColor = {255,255,255,255}
@@ -241,6 +241,7 @@ function BattleActor:calculateDamage(stats)
 	if stats.miss or damage == 0 or ((math.random(10)/100) + (selfStats.speed/100)) > ((math.random(30)/100) + (stats.speed/100)) then
 		if damage ~= 0 or stats.miss then
 			damage = 0
+			stats.miss = true
 		end
 	end
 	

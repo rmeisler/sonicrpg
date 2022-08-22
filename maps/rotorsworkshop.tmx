@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="23" tilewidth="32" tileheight="32" infinite="0" nextobjectid="28">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="23" tilewidth="32" tileheight="32" infinite="0" nextobjectid="29">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/prisonbg.png"/>
   <property name="onload" type="file" value="actions/rotorsworkshop.lua"/>
@@ -273,6 +273,12 @@ return function(self)
 end</property>
     <property name="sprite" type="file" value="../art/sprites/p.png"/>
     <property name="usableBy" value="sally"/>
+   </properties>
+  </object>
+  <object id="28" name="Chest1" type="Chest" gid="6839" x="128" y="576" width="64" height="64">
+   <properties>
+    <property name="Microchip" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
  </objectgroup>
