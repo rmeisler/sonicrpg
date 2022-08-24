@@ -311,11 +311,10 @@
   <object id="141" name="EyesTrap2" type="BasicNPC" gid="7597" x="480" y="2240" width="192" height="160">
    <properties>
     <property name="ghost" type="bool" value="true"/>
-    <property name="onInit">
-
-return function(self)
-    if GameState:isFlagSet(self.scene.objectLookup.Arm2) and not self:isRemoved() then
+    <property name="onPostInit">return function(self)
+    if GameState:isFlagSet(self.scene.objectLookup.Arm2) then
         self:remove()
+        self.scene.objectLookup.Arm2:remove()
     end
 end</property>
     <property name="whileColliding">local Animate = require &quot;actions/Animate&quot;
@@ -365,13 +364,13 @@ end</property>
     <property name="isBot" type="bool" value="true"/>
     <property name="onInit">return function(self)
     self.hidden = true
-    if GameState:isFlagSet(self) and not self:isRemoved() then
+    if GameState:isFlagSet(self) then
         self:remove()
     end
 end</property>
     <property name="onRemove">return function(self)
-     if self.scene.objectLookup.EyesTrap2 then
-         self.scene.objectLookup.EyesTrap2:remove()
+    if self.scene.objectLookup.EyesTrap2 then
+        self.scene.objectLookup.EyesTrap2:remove()
     end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
@@ -386,11 +385,10 @@ end</property>
   <object id="174" name="EyesTrap1" type="BasicNPC" gid="7597" x="2240" y="704" width="192" height="160">
    <properties>
     <property name="ghost" type="bool" value="true"/>
-    <property name="onInit">
-
-return function(self)
-    if GameState:isFlagSet(self.scene.objectLookup.Arm1) and not self:isRemoved() then
+    <property name="onPostInit">return function(self)
+    if GameState:isFlagSet(self.scene.objectLookup.Arm1) then
         self:remove()
+        self.scene.objectLookup.Arm1:remove()
     end
 end</property>
     <property name="whileColliding">local Animate = require &quot;actions/Animate&quot;
@@ -440,9 +438,14 @@ end</property>
     <property name="isBot" type="bool" value="true"/>
     <property name="onInit">return function(self)
     self.hidden = true
+    if GameState:isFlagSet(self) then
+        self:remove()
+    end
 end</property>
     <property name="onRemove">return function(self)
-     self.scene.objectLookup.EyesTrap1:remove()
+    if self.scene.objectLookup.EyesTrap1 then
+        self.scene.objectLookup.EyesTrap1:remove()
+    end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>

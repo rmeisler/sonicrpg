@@ -63,7 +63,7 @@ local PummelTrigger = function(self, key, _, target)
 		self.scene.audio:stopSfx()
 		self.scene.audio:playSfx("smack")
 		
-		local targetSp = target:getSprite()
+		local targetSp = target.sprite
 		self.scene:run(Spawn(Parallel {
 			Animate(function()
 				local xform = Transform.from(targetSp.transform)
@@ -75,7 +75,7 @@ local PummelTrigger = function(self, key, _, target)
 			end, "idle"),
 			BouncyText(
 				Transform(
-					target.origX + target.textOffset.x - 50,
+					target.origX + (target.mockSprite and (target.textOffset.x + target.sprite.w) or (target.textOffset.x - 50)),
 					targetSp.transform.y + target.textOffset.y
 				),
 				damageTextColor,
@@ -91,7 +91,7 @@ local PummelTrigger = function(self, key, _, target)
 end
 
 local LeapForward = function(self, target)
-	local targetSp = target:getSprite()
+	local targetSp = target.sprite
 	return Serial {
 		Animate(self.sprite, "leap", true),
 		Parallel {
@@ -106,7 +106,7 @@ local LeapForward = function(self, target)
 end
 
 local LeapBackward = function(self, target)
-	local targetSp = target:getSprite()
+	local targetSp = target.sprite
 	return Serial {
 		Ease(self.sprite.transform, "x", targetSp.transform.x + targetSp.w - 5, 1),
 		

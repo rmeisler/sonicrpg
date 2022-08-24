@@ -1971,8 +1971,7 @@
   <object id="476" name="Chest7" type="BasicNPC" gid="2311" x="608" y="4672" width="64" height="64">
    <properties>
     <property name="alignOffsetY" type="float" value="-8"/>
-    <property name="onInit">
-return function(self)
+    <property name="onInit">return function(self)
     if GameState:isFlagSet(self) then
         self.sprite:setAnimation(&quot;open&quot;)
     end
@@ -2261,7 +2260,7 @@ local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Do = require &quot;actions/Do&quot;
 
 return function(self)
-    if GameState:isFlagSet(self) then
+    if GameState:isFlagSet(self) and self.scene.objectLookup.Chest7 then
         GameState:setFlag(self.scene.objectLookup.Chest7)
         self.scene.objectLookup.Chest7.sprite:setAnimation(&quot;open&quot;)
         self.scene.objectLookup.Chest7:run(BlockPlayer{

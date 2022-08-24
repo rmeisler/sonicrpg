@@ -54,6 +54,10 @@ function NPC:construct(scene, layer, object)
 	if object.properties.onInit then
 		self.onInit = assert(loadstring(object.properties.onInit))()
 	end
+
+	if object.properties.onPostInit then
+		self.onPostInit = assert(loadstring(object.properties.onPostInit))()
+	end
 	
 	if object.properties.whileColliding then
 		self.whileColliding = assert(loadstring(object.properties.whileColliding))()
@@ -271,6 +275,10 @@ function NPC:init(useBaseUpdate)
 	
 	if self.onInit then
 		self.onInit(self)
+		
+		if self:isRemoved() then
+			return
+		end
 	end
 	
 	self.followStack = {}
@@ -310,6 +318,10 @@ function NPC:postInit()
 			self.scene:addObject(new)
 			removeFn(obj)
 		end
+	end
+	
+	if self.onPostInit then
+		self.onPostInit(self)
 	end
 end
 

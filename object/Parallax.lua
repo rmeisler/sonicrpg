@@ -23,7 +23,9 @@ function Parallax:construct(scene, layer)
 	self.h = self.layer.image:getHeight()
 
 	-- Parallax images are drawn as a 3x3 tiles, stitched together by drawing the image nine times
-	self.oneDraw = self.layer.draw
+	self.oneDraw = function()
+		love.graphics.draw(layer.image, layer.x, layer.y)
+	end
 	self.layer.draw = function()
 		local offsets = {
 			Transform(),

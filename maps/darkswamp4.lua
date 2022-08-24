@@ -846,7 +846,7 @@ return {
           properties = {
             ["ghost"] = true,
             ["isBot"] = true,
-            ["onInit"] = "return function(self)\n    self.hidden = true\nend",
+            ["onPostInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self.scene.objectLookup.Arm1) then\n        self:remove()\n    end\nend",
             ["sprite"] = "../art/sprites/phantomface.png"
           }
         },
@@ -887,7 +887,7 @@ return {
             ["ghost"] = true,
             ["isBot"] = true,
             ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self) then\n        self:remove()\n    end\nend",
-            ["onRemove"] = "return function(self)\n    self.scene.objectLookup.Eyes1:remove()\n    self.scene.objectLookup.Chest4.hidden = false\nend",
+            ["onRemove"] = "return function(self)\n    if GameState:isFlagSet(self) and self.scene.objectLookup.Eyes1 then\n        self.scene.objectLookup.Eyes1:remove()\n        self.scene.objectLookup.Chest4.hidden = false\n    end\nend",
             ["sprite"] = "../art/sprites/phantomgrab.png"
           }
         },

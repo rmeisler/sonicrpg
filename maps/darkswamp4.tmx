@@ -488,8 +488,11 @@
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
-    <property name="onInit">return function(self)
+    <property name="onPostInit">return function(self)
     self.hidden = true
+    if GameState:isFlagSet(self.scene.objectLookup.Arm1) then
+        self:remove()
+    end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomface.png"/>
    </properties>
@@ -572,8 +575,10 @@ end</property>
     end
 end</property>
     <property name="onRemove">return function(self)
-    self.scene.objectLookup.Eyes1:remove()
-    self.scene.objectLookup.Chest4.hidden = false
+    if GameState:isFlagSet(self) and self.scene.objectLookup.Eyes1 then
+        self.scene.objectLookup.Eyes1:remove()
+        self.scene.objectLookup.Chest4.hidden = false
+    end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>
