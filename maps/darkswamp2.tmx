@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="83" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="183">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="83" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="185">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/dswamp.png"/>
   <property name="noBattleMusic" type="bool" value="true"/>
@@ -785,6 +785,20 @@ end</property>
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/phantomface.png"/>
+   </properties>
+  </object>
+  <object id="183" name="AntHint" type="BasicNPC" gid="7597" x="480" y="1376" width="256" height="256">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="showHint" type="bool" value="true"/>
+    <property name="specialHint" value="antoine"/>
+   </properties>
+  </object>
+  <object id="184" name="AntHint" type="BasicNPC" gid="7597" x="1344" y="1024" width="256" height="256">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="showHint" type="bool" value="true"/>
+    <property name="specialHint" value="antoine"/>
    </properties>
   </object>
  </objectgroup>

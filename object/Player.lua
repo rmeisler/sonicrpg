@@ -207,7 +207,7 @@ function Player:updateKeyHint()
 		end
 	end
 
-	if specialKeyHint then
+	if specialKeyHint and not specialKeyHint.isInteractable and specialKeyHint.showHint then
 		self.curKeyHint = specialKeyHint
 		self:showKeyHint(false, specialKeyHint.specialHintPlayer)
 	elseif closestKeyHint then
@@ -236,8 +236,8 @@ function Player:updateKeyHint()
 				end
 			end
 			self:showKeyHint(false, nil, "press"..dir)
-		else
-			self:showKeyHint(true, nil)
+		elseif closestKeyHint.isInteractable then
+			self:showKeyHint(true, closestKeyHint.specialHintPlayer)
 		end
 	else
 		self:removeKeyHint()
@@ -281,7 +281,26 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 		self.curKeyHintSprite = pressDir
 		table.insert(keyHintActions, Ease(pressDir.color, 4, 255, 5))
 		self.showPressDir = showPressDir
-	elseif specialHint ~= nil and not self.showPressLsh then
+	elseif specialHint ~= nil and showPressX and not self.showPressX then
+		local pressXXForm = Transform.relative(
+			self.transform,
+			Transform(self.sprite.w - 10, 0)
+		)
+		local pressX = SpriteNode(
+			self.scene,
+			pressXXForm,
+			{255,255,255,0},
+			string.find(specialHint, GameState.leader) and "pressx" or "pressc",
+			nil,
+			nil,
+			self.scene:hasUpperLayer() and "upper" or "objects"
+		)
+		pressX.drawWithNight = false
+		pressX.sortOrderY = Player.MAX_SORT_ORDER_Y
+		self.curKeyHintSprite = pressX
+		table.insert(keyHintActions, Ease(pressX.color, 4, 255, 5))
+		self.showPressX = true
+	elseif specialHint ~= nil and not self.showPressLsh and not self.showPressX then
 		local pressLshXForm = Transform.relative(
 			self.transform,
 			Transform(self.sprite.w - 12, 0)
@@ -523,7 +542,6 @@ function Player:onChangeChar()
 			
 			-- Update keyhint
 			self.hidekeyhints = {}
-			self.keyhints = {}
 			self:removeKeyHint()
 		end)
 	}

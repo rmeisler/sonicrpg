@@ -8,7 +8,7 @@ return {
   height = 100,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 183,
+  nextobjectid = 185,
   properties = {
     ["battlebg"] = "../art/backgrounds/dswamp.png",
     ["noBattleMusic"] = true,
@@ -1393,6 +1393,42 @@ return {
           properties = {
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/phantomface.png"
+          }
+        },
+        {
+          id = 183,
+          name = "AntHint",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 480,
+          y = 1376,
+          width = 256,
+          height = 256,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["showHint"] = true,
+            ["specialHint"] = "antoine"
+          }
+        },
+        {
+          id = 184,
+          name = "AntHint",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1344,
+          y = 1024,
+          width = 256,
+          height = 256,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["showHint"] = true,
+            ["specialHint"] = "antoine"
           }
         }
       }

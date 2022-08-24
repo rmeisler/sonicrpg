@@ -45,6 +45,7 @@ function NPC:construct(scene, layer, object)
 	self.layer = layer
 
 	self.specialHintPlayer = object.properties.specialHint
+	self.showHint = object.properties.showHint
 	self.hidingSpot = object.properties.hidingspot
 	self.movespeed = object.properties.movespeed or 3
 	self.disappearOn = object.properties.disappearOn
@@ -76,11 +77,14 @@ function NPC:construct(scene, layer, object)
 	end
 	
 	if object.properties.usableBy then
+		self.specialHintPlayer = object.properties.usableBy
+		--[[
 		local usableBy = pack((object.properties.usableBy):split(','))
 		self.usableBy = {}
 		for _, v in pairs(usableBy) do
 			self.usableBy[v] = v
 		end
+		]]
 	end
 
 	if object.properties.onInteract then
@@ -570,9 +574,7 @@ function NPC:update(dt)
 					self.scene.player:isFacingObj(self)
 				then
 					if self.isInteractable or self.specialHintPlayer then
-						if not self.usableBy or self.usableBy[GameState.leader] then
-							self.scene.player.keyhints[tostring(self)] = self
-						end
+						self.scene.player.keyhints[tostring(self)] = self
 					end
 
 					if not self.scene.player.touching then
@@ -657,6 +659,7 @@ function NPC:keytriggered(key, uni)
 	end
     if  tostring(self.scene.player.curKeyHint) == tostring(self) and
 		self.isInteractable and
+		(not self.specialHintPlayer or string.find(self.specialHintPlayer, GameState.leader)) and
 		key == "x"
 	then
 		self.scene.player.hidekeyhints[tostring(self)] = self

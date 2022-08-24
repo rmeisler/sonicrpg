@@ -448,8 +448,12 @@ return function(self)
                                 msg = &quot;It's a beautiful day outside! {p60}Why are you spending it inside on the computer?&quot;
                             elseif not GameState:isFlagSet(&quot;ep3_ffmeetingover&quot;) then
                                 msg = &quot;It sounds like there's quite a bit of arguing between the Freedom Fighters and the Rebellion, doesn't it?&quot;
-                            elseif GameState:isFlagSet(&quot;ep3_ffmeetingover&quot;) then
+                            elseif not GameState:isFlagSet(&quot;ep3_sallynap&quot;) then
                                 msg = &quot;Ride the pulley out of Knothole and head East to the Dark Swamp!{p60}... But before you do that{p60}... maybe take a rest, huh?&quot;
+                            elseif not GameState:isFlagSet(&quot;ep3_sallynap_over&quot;) then
+                                msg = &quot;At this time of night, the view from the {h Lookout} must be breathtaking.&quot;
+                            else
+                                msg = &quot;Ride the pulley out of Knothole and head East to the Dark Swamp!&quot;
                             end
 
                             self.scene:run {

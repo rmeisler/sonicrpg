@@ -405,6 +405,7 @@ return function(self)
         return Do(function() end)
     else
         GameState:setFlag(self:getFlag())
+        GameState:setFlag(&quot;ep3_sallynap_over&quot;)
         local prevAnim = scene.player.ToIdle[self.scene.player.sprite.selected]
         return BlockPlayer {
             MessageBox {message = &quot;Sally: Leon?&quot;},

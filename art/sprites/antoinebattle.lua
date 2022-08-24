@@ -102,6 +102,13 @@ return {
 		throw = {
 			frames = {{10,1},{11,1},{12,1},{13,1}},
 			speed = 0.1
-		}
+		},
+		parry = {
+            frames = {{12,0},{13,0}},
+			speed = 0.2
+        },
+		parry_idle = {
+            frames = {{12,0}}
+        },
     }
 }
