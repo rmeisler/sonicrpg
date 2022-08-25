@@ -200,10 +200,7 @@ function BasicScene:onEnter(args)
 					end)
 				})
 			else
-				print("on load...")
 				self.player.basicUpdate = self.player.origUpdate or self.player.basicUpdate
-				print("party... "..GameState.leader)
-				print("mem... "..tostring(GameState.party[GameState.leader]))
 				self.player:updateSprite()
 			end
 			

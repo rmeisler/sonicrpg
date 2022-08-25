@@ -19,7 +19,9 @@ local LaserTrapArm = class(ExtPost)
 function LaserTrapArm:construct(scene, layer, object)
     self.ghost = true
     self.snapToObject = true
-    self:addInteract(LaserTrapArm.onInteract)
+	if not object.properties.disableInteract then
+		self:addInteract(LaserTrapArm.onInteract)
+	end
 end
 
 function LaserTrapArm:onInteract()
