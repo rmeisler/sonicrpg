@@ -22,6 +22,7 @@ function LaserTrap:construct(scene, layer, object)
 	self.deactivated = object.properties.deactivated
 	self.blink = object.properties.blink
 	self.respawnName = object.properties.respawn
+	self.bounceX = object.properties.bounceX or 1.0
 	self.bounceY = object.properties.bounceY or 1.0
 
 	if self.blink then
@@ -38,11 +39,17 @@ end
 function LaserTrap:postInit()
 	self.spawnPointLeft = self.scene.objectLookup[self.object.properties.spawnPointLeft]
 	self.spawnPointRight = self.scene.objectLookup[self.object.properties.spawnPointRight]
-	
 	self.spawnPointLeft.parentTrap = self
 	self.spawnPointRight.parentTrap = self
+	self.vertical = self.object.properties.vertical
 	
-	self.laserScale = ((self.spawnPointRight.x - self.spawnPointLeft.x) / 2) / self.scene:getTileWidth()
+	if self.vertical then
+		self.laserScale = ((self.spawnPointRight.y - self.spawnPointLeft.y) / 2) / self.scene:getTileHeight()
+		self.angle = math.pi/2
+	else
+		self.laserScale = ((self.spawnPointRight.x - self.spawnPointLeft.x) / 2) / self.scene:getTileWidth()
+		self.angle = 0
+	end
 	
 	self.laser1 = BasicNPC(
 		self.scene,
@@ -60,6 +67,7 @@ function LaserTrap:postInit()
 	self.laser1.sprite.transform.oy = self.laser1.sprite.h/2
 	self.laser1.sprite.transform.sx = 0.0
 	self.laser1.sprite.transform.sy = 1.0
+	self.laser1.sprite.transform.angle = self.angle
 	self.laser1.sprite.sortOrderY = 99999
 	self.scene:addObject(self.laser1)
 
@@ -79,6 +87,7 @@ function LaserTrap:postInit()
 	self.laser2.sprite.transform.oy = self.laser1.sprite.h/2
 	self.laser2.sprite.transform.sx = 0.0
 	self.laser2.sprite.transform.sy = 1.0
+	self.laser2.sprite.transform.angle = self.angle
 	self.laser2.sprite.sortOrderY = 99999
 	self.scene:addObject(self.laser2)
 	
@@ -134,6 +143,7 @@ function LaserTrap:update(dt)
 end
 
 function LaserTrap:use()
+	local fromUse = self.object.properties.fromUse
 	self.scene:run(BlockPlayer {
 		Parallel {
 			Ease(self.scene.camPos, "x", function() return self.scene.player.x - (self.x + self.object.width/2) end, 1, "inout"),
@@ -141,11 +151,17 @@ function LaserTrap:use()
 		},
 		Do(function()
 			self.scene.audio:playSfx("shocked", 0.5, true)
-			self:activate()
-			self.blink = true
-			self.blinkTime = 0
-			self.blinkOnTime = 2
-			self.blinkOffTime = 2
+			if fromUse == "blink" then
+				self:activate()
+				self.blink = true
+				self.blinkTime = 0
+				self.blinkOnTime = 2
+				self.blinkOffTime = 2
+			elseif fromUse == "activate" then
+				self:activate()
+			elseif fromUse == "deactivate" then
+				self:deactivate()
+			end
 		end),
 		Wait(2),
 		Parallel {
@@ -175,6 +191,12 @@ end
 
 function LaserTrap:disappearLasers()
     if self.alwaysOn then
+		if self.vertical then
+			self.laser1.sprite.transform.sx = 0
+			self.laser2.sprite.transform.sy = 0
+			return
+		end
+
         self.laser1:run {
             Do(function()
                 self.laser1.sprite.transform.ox = self.laser1.sprite.w
@@ -325,7 +347,9 @@ function LaserTrap:shockPlayer()
 		},
 		Serial {
 			Parallel {
-				Ease(player, "y", player.y - 100 * self.bounceY, 8, "linear"),
+				self.vertical and
+					Ease(player, "x", player.x + 100 * self.bounceX, 8, "linear") or
+					Ease(player, "y", player.y - 100 * self.bounceY, 8, "linear"),
 				respawnAction
 			},
 			Do(function()

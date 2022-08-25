@@ -10,7 +10,12 @@ function Switch:construct(scene, layer, object)
 	
 	self.onState = object.properties.onState or "on"
 	self.offState = object.properties.offState or "off"
-	
+
+	self.touched = false
+end
+
+function Switch:postInit()
+	NPC.postInit(self)
 	if not GameState:isFlagSet(self) then
 		self:addInteract(Switch.flip)
 		self.animState = self.offState
@@ -18,8 +23,6 @@ function Switch:construct(scene, layer, object)
 		self:removeInteract(Switch.flip)
 		self.animState = self.onState
 	end
-
-	self.touched = false
 end
 
 function Switch:flip()

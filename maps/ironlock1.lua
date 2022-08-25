@@ -4458,6 +4458,7 @@ return {
             ["alignOffsetY"] = 10,
             ["bounceY"] = -1,
             ["deactivated"] = true,
+            ["fromUse"] = "blink",
             ["ghost"] = true,
             ["spawnPointLeft"] = "BlinkLaserTrapShooter1",
             ["spawnPointRight"] = "BlinkLaserTrapShooter2"
@@ -4911,7 +4912,7 @@ return {
           height = 448,
           rotation = 0,
           gid = 1922,
-          visible = true,
+          visible = false,
           properties = {
             ["ghost"] = true,
             ["whileColliding"] = "local Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Repeat = require \"actions/Repeat\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self, player, prevState)\n    if GameState.leader == \"sonic\" and player.doingSpecialMove and not self.trapset then\n        self.trapset = true\n        self.scene:run(BlockPlayer {\n            Parallel {\n                PlayAudio(\"sfx\", \"alert\", 1.0),\n                Repeat(Parallel {\n                    Serial {\n                        Ease(self.scene.bgColor, 1, 510, 5, \"quad\"),\n                        Ease(self.scene.bgColor, 1, 255, 5, \"quad\"),\n                    },\n                    Do(function()\n                        ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n                    end)\n                 }, 5),\n                 MessageBox{message=\"Speed trap triggered! {p60}Intruder alert!\", closeAction=Wait(1)},\n                 Serial {\n                     Wait(0.5),\n                     Do(function()\n                         player.basicUpdate = function(p, dt) end\n                         player.sprite:setAnimation(\"shock\")\n                     end)\n                }\n            },\n            Do(function()\n                self.scene:restart{spawnPoint=\"Spawn 1\"}\n            end),\n            Wait(10)\n        })\n    end\nend"
