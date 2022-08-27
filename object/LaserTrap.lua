@@ -121,9 +121,15 @@ function LaserTrap:lasersOn()
 	self.laser2:run {
 		Ease(self.laser2.sprite.transform, "sx", self.laserScale, 5)
 	}
+	
+	self.ready = true
 end
 
 function LaserTrap:update(dt)
+	if not self.ready then
+		return
+	end
+
 	NPC.update(self, dt)
 	
 	if self.alwaysOn then
