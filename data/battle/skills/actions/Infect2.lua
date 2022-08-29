@@ -28,6 +28,7 @@ local KeyTrigger = function(self, key)
 			sfx = "levelup"
 		end
 
+		self.scene.audio:stopSfx()
 		Executor(self.scene):act(Serial {
 			PlayAudio("sfx", sfx, 1.0, true),
 			Parallel {
@@ -49,7 +50,7 @@ return function(self, target)
 	self.doneWithInfect = false
 	self.earlyExitInfect = false
 	target.malfunctioningTurns = 3
-	target.infectedStats = {attack = 20, speed = 100, luck = 0}
+	target.infectedStats = {attack = self.stats.focus, speed = 100, luck = 0}
 	
 	local keys = {"up", "down", "left", "right", "x", "z", "c"}
 	local fadeIn = {}

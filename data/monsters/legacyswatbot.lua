@@ -37,7 +37,7 @@ return {
 		maxhp = 450,
 		attack = 30,
 		defense = 20,
-		speed = 5,
+		speed = 10,
 		focus = 5,
 		luck = 5,
 	},
@@ -308,7 +308,7 @@ return {
 								end
 
 								c.poisoned = table.clone(self.stats)
-								c.poisoned.attack = c.poisoned.attack * 0.75
+								c.poisoned.attack = c.poisoned.attack * 0.3
 								c.poisoned.speed = 100
 								c.poisoned.nomiss = true
 								c.poisoned.nonlethal = true

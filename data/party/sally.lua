@@ -84,8 +84,7 @@ return {
 				GameState:getEarnedSkill("nicole_upgrade_scan", "Scan"),
 				GameState:getEarnedSkill("nicole_upgrade_infect", "Infect"),
 				require "data/battle/skills/Rally",
-				--GameState:getEarnedSkill("nicole_upgrade_interrupt", "Interrupt"),
-				require "data/battle/skills/Interrupt2"
+				GameState:getEarnedSkill("nicole_upgrade_interrupt", "Interrupt")
 			}
 		},
 		[7] = {
@@ -94,9 +93,8 @@ return {
 				GameState:getEarnedSkill("nicole_upgrade_scan", "Scan"),
 				GameState:getEarnedSkill("nicole_upgrade_infect", "Infect"),
 				require "data/battle/skills/Rally",
-				--GameState:getEarnedSkill("nicole_upgrade_interrupt", "Interrupt"),
-				require "data/battle/skills/Interrupt2",
-				require "data/battle/skills/Inspire",
+				GameState:getEarnedSkill("nicole_upgrade_interrupt", "Interrupt"),
+				require "data/battle/skills/Inspire"
 			}
 		},
 	},

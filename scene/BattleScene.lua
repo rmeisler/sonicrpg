@@ -771,6 +771,13 @@ function BattleScene:draw()
 			node.transform.y = node.origXformY
 		end
 	end
+	
+	--[[
+	-- Debug code for showing enemy collision (for things like Sonic "Slam" skill)
+	for _,oppo in pairs(self.opponents) do
+		love.graphics.circle("line", oppo.sprite.transform.x, oppo.sprite.transform.y, 32)
+	end
+	]]
 end
 
 -- Vertical screen shake
