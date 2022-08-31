@@ -32,7 +32,7 @@ return {
 
 	stats = {
 		xp    = 50,
-		maxhp = 1400,
+		maxhp = 1800,
 		attack = 24,
 		defense = 15,
 		speed = 2,
@@ -65,9 +65,37 @@ return {
 		self.getSprite = function(_)
 			return self.body:getSprite()
 		end
+		
+		self.turns = 0
 	end,
 
 	behavior = function (self, target)
+		self.turns = self.turns + 1
+		
+		if self.turns % 3 == 0 and not self.boulder then
+			-- Drop a boulder that we can slam into eye
+			local boulder = self.scene:addMonster("boulder")
+			local boulderSp = boulder:getSprite()
+			boulderSp.transform.y = -100
+			boulderSp.transform.x = 530
+			boulder.dropShadow.transform.y = boulderSp.transform.y + boulderSp.h - 14
+
+			-- Set ref to boulder
+			self.boulder = boulder
+			boulder:addHandler("dead", function() self.boulder = nil end)
+
+			return Serial {
+				PlayAudio("sfx", "openchasm", 1.0, true),
+				Ease(boulder.sprite.transform, "y", 340, 4, "quad"),
+				Ease(boulder.sprite.transform, "y", 335, 20, "quad"),
+				Ease(boulder.sprite.transform, "y", 340, 20, "quad"),
+				Ease(boulder.sprite.transform, "y", 338, 20, "quad"),
+				Ease(boulder.sprite.transform, "y", 340, 20, "quad"),
+				Ease(boulder.sprite.transform, "y", 338, 20, "quad"),
+				Ease(boulder.sprite.transform, "y", 340, 20, "quad")
+			}
+		end
+	
 		return Action()
 	end,
 }

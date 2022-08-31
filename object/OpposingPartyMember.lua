@@ -205,16 +205,18 @@ function OpposingPartyMember:beginTurn()
 		}
 		self.confused = false
 	elseif self.lostTurns > 1 then
-		local lostTurnMsg = self.name.." is still "..(self.lostTurnType or "bored").."!"
+		local lostTurnMsg = self.name.." is still "..((self.lostTurnType.."ed") or "bored").."!"
 		self.action = Telegraph(self, lostTurnMsg, {self.color[1],self.color[2],self.color[3],50})
 		self.lostTurns = self.lostTurns - 1
 	elseif self.lostTurns > 0 then
 		local lostTurnMsg = self.name.."'s "..(self.lostTurnType or "boredom").." has subsided."
 		self.action = Serial {
 			Do(function() self:getSprite():setAnimation("idle") end),
+			self.afterLostTurns and self.afterLostTurns(self, self.lostTurnType) or Action(),
 			Telegraph(self, lostTurnMsg, {self.color[1],self.color[2],self.color[3],50})
 		}
 		self.lostTurns = self.lostTurns - 1
+		self.lostTurnType = nil
 	else
 		local targetOverride = table.remove(self.targetOverrideStack, 1)
 		if targetOverride then

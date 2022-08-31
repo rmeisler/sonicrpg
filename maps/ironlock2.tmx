@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="240" height="160" tilewidth="32" tileheight="32" infinite="0" nextobjectid="704">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="240" height="160" tilewidth="32" tileheight="32" infinite="0" nextobjectid="705">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/ironlockbg.png"/>
   <property name="onload" type="file" value="actions/ironlockfloor.lua"/>
@@ -2249,36 +2249,6 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
    </properties>
   </object>
-  <object id="669" name="Cambot2" type="LegacyCambot" gid="37" x="2784" y="3616" width="64" height="64">
-   <properties>
-    <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="follow" value="Waypoint21,Waypoint22,Waypoint23,Waypoint22"/>
-    <property name="followRepeat" type="bool" value="true"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="ignoreMapCollision" type="bool" value="false"/>
-    <property name="ignorePlayer" type="bool" value="false"/>
-    <property name="noInvestigate" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
-    <property name="viewRange" value="View2"/>
-   </properties>
-  </object>
-  <object id="670" name="Waypoint22" type="BasicNPC" gid="1922" x="2784" y="3968" width="64" height="64">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="671" name="Waypoint21" type="BasicNPC" gid="1922" x="2784" y="3328" width="64" height="64">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="672" name="View2" type="BasicNPC" gid="1922" x="2688" y="4032" width="192" height="1088" visible="0">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
   <object id="673" name="LaserGate2" type="LaserTrap" gid="2374" x="7072" y="4064" width="32" height="224">
    <properties>
     <property name="alwaysOn" type="bool" value="true"/>
@@ -2491,6 +2461,20 @@ end</property>
   <object id="703" name="CB3View" type="BasicNPC" gid="1922" x="5632" y="3936" width="1312" height="288" visible="0">
    <properties>
     <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="704" name="Buzz1" type="LegacyCambot" gid="37" x="4448" y="4032" width="64" height="64">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/cyclops.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="boss" type="bool" value="true"/>
+    <property name="defaultAnim" value="idle"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="false"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="false"/>
+    <property name="sprite" type="file" value="../art/sprites/buzzbomber.png"/>
    </properties>
   </object>
  </objectgroup>

@@ -39,10 +39,7 @@ function Chest:requireLoot(name)
 		local itemName = string.format("data/%s/%s", itemType, name)
 		local status = pcall(require, itemName)
 		if status then
-			print("load item "..itemName)
 			return require(itemName)
-		else
-			print("fail load item "..itemName)
 		end
 	end
 	return nil

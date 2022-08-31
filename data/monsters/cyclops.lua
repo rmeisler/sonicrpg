@@ -37,8 +37,8 @@ return {
 
 	stats = {
 		xp    = 50,
-		maxhp = 1300,
-		attack = 24,
+		maxhp = 1800,
+		attack = 26,
 		defense = 100,
 		speed = 2,
 		focus = 1,
@@ -174,10 +174,8 @@ return {
 		local sprite = self:getSprite()
 		if math.random() < 0.3 then
 			local sapActions = {}
-			local spLoss = 5
 			for _, mem in pairs(self.scene.party) do
 				if mem.state ~= BattleActor.STATE_DEAD then
-					mem.sp = math.max(0, mem.sp - spLoss)
 					table.insert(sapActions, Serial {
 						Animate(mem.sprite, "hurt"),
 						Wait(2),
@@ -187,8 +185,6 @@ return {
 			end
 
 			return Serial {
-				Telegraph(self, "Roar", {255,255,255,50}),
-				Wait(0.5),
 				Do(function() sprite:setAnimation("roar") end),
 				PlayAudio("sfx", "cyclopsroar", 1.0, true),
 				Parallel {
@@ -197,11 +193,6 @@ return {
 						Do(function() sprite:setAnimation("idle") end)
 					},
 					Parallel(sapActions)
-				},
-				MessageBox {
-					message="Party members lost "..tostring(spLoss).." sp!",
-					rect=MessageBox.HEADLINER_RECT,
-					closeAction=Wait(1)
 				}
 			}
 		else

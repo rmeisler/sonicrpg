@@ -53,6 +53,8 @@ local PummelTrigger = function(self, key, _, target)
 		local damage = target:calculateDamage(stats)
 		target.hp = math.max(0, target.hp - damage)
 		
+		target:invoke("hit", damage)
+		
 		local damageText = tostring(damage)
 		local damageTextColor = {255,0,0,255}
 		if stats.miss then

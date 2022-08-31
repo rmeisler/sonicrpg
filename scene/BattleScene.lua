@@ -261,6 +261,14 @@ function BattleScene:update(dt)
 		return
 	end
 	
+	-- Update shadows for monsters
+	for _, oppo in pairs(self.opponents) do
+		if oppo.dropShadow then
+			local sprite = oppo:getSprite()
+			oppo.dropShadow.transform.x = sprite.transform.x - sprite.w + 18
+		end
+	end
+	
 	if self.state == BattleScene.STATE_PLAYERTURN then
 		-- Resolve against dead players
 		self.currentPlayer = table.remove(self.partyTurns, 1)

@@ -155,10 +155,10 @@ return function(self, target)
 			Serial {
 				Parallel {
 					Ease(target.sprite.transform, "x", function()
-						return target.sprite.transform.x + math.cos(self.slamArrow.transform.angle - math.pi/2) * 500
+						return target.sprite.transform.x + math.cos(self.slamArrow.transform.angle - math.pi/2) * 800
 					end, 3, "linear"),
 					Ease(target.sprite.transform, "y", function()
-						return target.sprite.transform.y + math.sin(self.slamArrow.transform.angle - math.pi/2) * 500
+						return target.sprite.transform.y + math.sin(self.slamArrow.transform.angle - math.pi/2) * 800
 					end, 3, "linear"),
 					
 					Do(function()
@@ -176,7 +176,7 @@ return function(self, target)
 								if (dx*dx) + (dy*dy) <= (dr*dr) then
 									oppo.hurtBySlam = true
 									Executor(self.scene):act(Serial {
-										oppo:takeDamage({attack=self.stats.attack*1.5, speed=100, luck=0}),
+										oppo:takeDamage({attack=target.stats.attack, speed=100, luck=0}, false, oppo.slamKnockbackFn),
 										Do(function()
 											oppo.sprite:setAnimation("idle")
 										end)
@@ -186,7 +186,7 @@ return function(self, target)
 						end
 					end)
 				},
-				Wait(2),
+				Wait(3),
 				Do(function()
 					for _,oppo in pairs(self.scene.opponents) do
 						oppo.hurtBySlam = false

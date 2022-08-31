@@ -143,7 +143,7 @@ return function(self, target)
 						PlayAudio("sfx", "shocked", 0.5, true),
 					}
 				},
-				target:takeDamage({attack = self.stats.focus, speed = 100, luck = (self.keycodeSuccess and 100 or 0)}),
+				target:takeDamage({attack = self.stats.focus, speed = 100, luck = (self.keycodeSuccess and 100 or 0)}, false, target.interruptKnockbackFn),
 				
 				MessageBox {
 					message=target.name.." can't move!",

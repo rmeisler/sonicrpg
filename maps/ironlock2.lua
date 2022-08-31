@@ -8,7 +8,7 @@ return {
   height = 160,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 704,
+  nextobjectid = 705,
   properties = {
     ["battlebg"] = "../art/backgrounds/ironlockbg.png",
     ["onload"] = "actions/ironlockfloor.lua",
@@ -3703,80 +3703,6 @@ return {
           }
         },
         {
-          id = 669,
-          name = "Cambot2",
-          type = "LegacyCambot",
-          shape = "rectangle",
-          x = 2784,
-          y = 3616,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/legacycambot.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
-            ["follow"] = "Waypoint21,Waypoint22,Waypoint23,Waypoint22",
-            ["followRepeat"] = true,
-            ["ghost"] = true,
-            ["ignoreMapCollision"] = false,
-            ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/cambot2.png",
-            ["viewRange"] = "View2"
-          }
-        },
-        {
-          id = 670,
-          name = "Waypoint22",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2784,
-          y = 3968,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 1922,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 671,
-          name = "Waypoint21",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2784,
-          y = 3328,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 1922,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 672,
-          name = "View2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2688,
-          y = 4032,
-          width = 192,
-          height = 1088,
-          rotation = 0,
-          gid = 1922,
-          visible = false,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
           id = 673,
           name = "LaserGate2",
           type = "LaserTrap",
@@ -4314,6 +4240,31 @@ return {
           visible = false,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 704,
+          name = "Buzz1",
+          type = "LegacyCambot",
+          shape = "rectangle",
+          x = 4448,
+          y = 4032,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/cyclops.lua",
+            ["battleOnCollide"] = true,
+            ["boss"] = true,
+            ["defaultAnim"] = "idle",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = false,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false,
+            ["sprite"] = "../art/sprites/buzzbomber.png"
           }
         }
       }
