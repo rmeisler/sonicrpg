@@ -34,7 +34,7 @@ return {
 		xp    = 50,
 		maxhp = 1800,
 		attack = 24,
-		defense = 15,
+		defense = 30,
 		speed = 2,
 		focus = 1,
 		luck = 1,
@@ -65,6 +65,8 @@ return {
 		self.getSprite = function(_)
 			return self.body:getSprite()
 		end
+		
+		self.pummelXForm = Transform(350, 330) -- Hack to make Sonic's Pummel skill work
 		
 		self.turns = 0
 	end,

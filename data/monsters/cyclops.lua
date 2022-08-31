@@ -65,6 +65,7 @@ return {
 		self.sprite.transform.x = 230
 		self.sprite.transform.y = 310
 		self.sprite.sortOrderY = -100
+		self.pummelXForm = Transform(350, 330) -- Hack to make Sonic's Pummel skill work
 		
 		self.mockSprite.transform.x = -60
 		self.mockSprite.transform.y = 50
@@ -78,6 +79,9 @@ return {
 		local hitHandler
 		hitHandler = function(damage)
 			self.eye.hp = self.eye.hp - damage
+			if self.eye.hp <= 0 then
+				self.hp = 0
+			end
 		end
 		self:addHandler("hit", hitHandler)
 		

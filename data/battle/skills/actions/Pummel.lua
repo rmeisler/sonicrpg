@@ -47,6 +47,7 @@ local PummelTrigger = function(self, key, _, target)
 		
 		if not target.origX then
 			target.origX = target:getSprite().transform.x
+			target.origY = target:getSprite().transform.y
 		end
 
 		local stats = {attack=math.max(1, self.stats.attack/3), luck=self.stats.luck, speed=self.stats.speed}
@@ -77,8 +78,10 @@ local PummelTrigger = function(self, key, _, target)
 			end, "idle"),
 			BouncyText(
 				Transform(
-					target.origX + (target.mockSprite and (target.textOffset.x + target.sprite.w) or (target.textOffset.x - 50)),
-					targetSp.transform.y + target.textOffset.y
+					(target.pummelXForm and target.pummelXForm.x or target.origX) +
+						(target.mockSprite and (target.textOffset.x + target.sprite.w) or (target.textOffset.x - 50)),
+					(target.pummelXForm and target.pummelXForm.y or target.origY) +
+						target.textOffset.y
 				),
 				damageTextColor,
 				FontCache.ConsolasLarge,
