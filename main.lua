@@ -51,9 +51,6 @@ function love.load()
 end
 
 function love.update(dt)
-	-- Stay on top of your garbage lua!!
-	collectgarbage("step")
-
     if love.keyboard.isDown("f") then
         dt = dt * 10
 	elseif love.keyboard.isDown("s") then

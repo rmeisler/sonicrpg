@@ -105,5 +105,16 @@ return function(scene, hint)
 		}
 	end
 	
+	if GameState:isFlagSet("ep3_spoke_b2") then
+		if hint == "fromworldmap" then
+			return Serial {
+				PlayAudio("music", "bheart", 1.0),
+				PlayAudio("music", "bhero", 1.0, true, true)
+			}
+		else
+			return PlayAudio("music", "bhero", 1.0, true, true)
+		end
+	end
+	
 	return PlayAudio("music", "forgottenhideout2", 1.0, true, true)
 end

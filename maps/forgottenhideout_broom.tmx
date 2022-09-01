@@ -204,6 +204,8 @@ return function(self)
                 Animate(sprites.sonic.sprite, &quot;idleup&quot;),
                 Animate(sprites.antoine.sprite, &quot;idleup&quot;),
                 Animate(sprites.sally.sprite, &quot;idleup&quot;),
+                AudioFade(&quot;music&quot;, 1.0, 0.0, 1),
+                PlayAudio(&quot;music&quot;, &quot;bhero&quot;, 1.0, true, true),
                 MessageBox {message = &quot;B: It seems as though we are all in agreement.&quot;},
                 MessageBox {message = &quot;B: I have only one condition...&quot;},
                 MessageBox {message = &quot;B: Take me with you first. {p60}I need to see how safe your home base is for myself.&quot;},

@@ -713,6 +713,16 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/bheart.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/bhero.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/antoinerescue.ogg",
 		category = "music"
 	},

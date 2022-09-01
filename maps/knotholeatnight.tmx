@@ -2613,7 +2613,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
    </properties>
   </object>
-  <object id="345" name="TailsHutWarmWindows" type="BasicNPC" gid="5323" x="1472" y="800" width="256" height="128">
+  <object id="345" name="TailsHutWarmWindows" type="BasicNPC" gid="5323" x="1472" y="802" width="256" height="128">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="25"/>
