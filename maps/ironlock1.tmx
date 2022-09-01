@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="150" height="160" tilewidth="32" tileheight="32" infinite="0" nextobjectid="521">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="150" height="160" tilewidth="32" tileheight="32" infinite="0" nextobjectid="525">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/ironlockbg.png"/>
   <property name="onload" type="file" value="actions/ironlock1.lua"/>
@@ -2466,32 +2466,6 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>
   </object>
-  <object id="499" name="Swatbot8" type="LegacySwatbot" gid="37" x="2496" y="4640" width="32" height="32">
-   <properties>
-    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
-    <property name="defaultAnim" value="idledown"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="ignorePlayer" type="bool" value="false"/>
-    <property name="noInvestigate" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
-    <property name="viewRange" value="SB8_View"/>
-   </properties>
-  </object>
-  <object id="500" name="Swatbot9" type="LegacySwatbot" gid="37" x="3648" y="4640" width="32" height="32">
-   <properties>
-    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
-    <property name="defaultAnim" value="idledown"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="ignorePlayer" type="bool" value="false"/>
-    <property name="noInvestigate" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
-    <property name="viewRange" value="SB9_View"/>
-   </properties>
-  </object>
   <object id="504" name="SB9_View" type="BasicNPC" gid="1922" x="3520" y="4896" width="288" height="288" visible="0">
    <properties>
     <property name="ghost" type="bool" value="true"/>
@@ -2500,56 +2474,6 @@ end</property>
   <object id="505" name="SB8_View" type="BasicNPC" gid="1922" x="2368" y="4896" width="288" height="288" visible="0">
    <properties>
     <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="509" name="BlinkLaserTrapShooter5" type="LaserTrapArm" gid="2374" x="2960" y="4658" width="32" height="32">
-   <properties>
-    <property name="defaultAnim" value="left_on"/>
-    <property name="disableInteract" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
-   </properties>
-  </object>
-  <object id="510" name="BlinkLaserTrapShooter6" type="LaserTrapArm" gid="2374" x="3056" y="4658" width="32" height="32">
-   <properties>
-    <property name="defaultAnim" value="right_on"/>
-    <property name="disableInteract" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
-   </properties>
-  </object>
-  <object id="511" name="BlinkLaserTrap3" type="LaserTrap" gid="2374" x="2976" y="4658" width="96" height="32">
-   <properties>
-    <property name="alignOffsetY" type="float" value="10"/>
-    <property name="alwaysOn" type="bool" value="true"/>
-    <property name="blink" type="bool" value="true"/>
-    <property name="bounceY" type="float" value="1"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="spawnPointLeft" value="BlinkLaserTrapShooter5"/>
-    <property name="spawnPointRight" value="BlinkLaserTrapShooter6"/>
-   </properties>
-  </object>
-  <object id="512" name="BlinkLaserTrapShooter7" type="LaserTrapArm" gid="2374" x="3024" y="4032" width="32" height="32">
-   <properties>
-    <property name="defaultAnim" value="left_on"/>
-    <property name="disableInteract" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
-   </properties>
-  </object>
-  <object id="513" name="BlinkLaserTrapShooter8" type="LaserTrapArm" gid="2374" x="3184" y="4032" width="32" height="32">
-   <properties>
-    <property name="defaultAnim" value="right_on"/>
-    <property name="disableInteract" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
-   </properties>
-  </object>
-  <object id="514" name="BlinkLaserTrap4" type="LaserTrap" gid="2374" x="3024" y="4032" width="192" height="32">
-   <properties>
-    <property name="alignOffsetY" type="float" value="10"/>
-    <property name="alwaysOn" type="bool" value="true"/>
-    <property name="blink" type="bool" value="true"/>
-    <property name="bounceY" type="float" value="1"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="spawnPointLeft" value="BlinkLaserTrapShooter7"/>
-    <property name="spawnPointRight" value="BlinkLaserTrapShooter8"/>
    </properties>
   </object>
   <object id="515" name="Crate" type="BasicNPC" gid="1922" x="1536" y="3648" width="64" height="96">
@@ -2564,6 +2488,40 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
+   </properties>
+  </object>
+  <object id="521" name="Buzz1" type="BuzzBomber" gid="37" x="3872" y="4736" width="64" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/buzzbomber.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="false"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="522" name="Swatbot7" type="LegacySwatbot" gid="37" x="2208" y="4768" width="32" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="follow" value="SB7_Waypoint1,SB7_Waypoint2"/>
+    <property name="followRepeat" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="false"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
+   </properties>
+  </object>
+  <object id="523" name="SB7_Waypoint2" type="BasicNPC" gid="1922" x="2464" y="4768" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="524" name="SB7_Waypoint1" type="BasicNPC" gid="1922" x="1760" y="4768" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

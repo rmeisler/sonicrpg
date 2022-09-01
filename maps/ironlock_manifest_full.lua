@@ -322,6 +322,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/buzzbomber.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/cambot.png"
 	},
 	{
@@ -571,6 +575,11 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/boulder.png"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/bee.ogg",
+		category = "sfx"
 	},
 	{
 		type = "sound",

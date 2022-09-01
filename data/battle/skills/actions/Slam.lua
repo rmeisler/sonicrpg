@@ -141,6 +141,8 @@ return function(self, target)
 			Ease(self.sprite.transform, "x", target.sprite.transform.x + target.sprite.w, 4, "linear"),
 			Ease(self.sprite.transform, "y", target.sprite.transform.y, 6, "linear"),
 		},
+		
+		PlayAudio("sfx", "smack", 1.0, true),
 
 		Parallel {
 			target:takeDamage(

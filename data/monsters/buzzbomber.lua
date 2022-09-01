@@ -33,7 +33,7 @@ return {
 
 	stats = {
 		xp    = 20,
-		maxhp = 600,
+		maxhp = 300,
 		attack = 35,
 		defense = 10,
 		speed = 15,
@@ -224,7 +224,11 @@ return {
 					Ease(self.sprite.transform, "y", target.sprite.transform.y, 4, "linear"),
 					
 					Serial {
-						Do(function() self.sprite:setAnimation("stinger") end),
+						Wait(0.3),
+						Do(function() self.sprite:setAnimation("stinger") end)
+					},
+					
+					Serial {
 						dodgeAction,
 						Try(
 							YieldUntil(

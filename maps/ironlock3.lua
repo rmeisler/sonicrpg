@@ -8,9 +8,9 @@ return {
   height = 56,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 610,
+  nextobjectid = 614,
   properties = {
-    ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["battlebg"] = "../art/backgrounds/ironlockbg.png",
     ["onload"] = "actions/ironlockfloor.lua",
     ["regionName"] = "Iron Lock",
     ["sectorName"] = "3F"
@@ -983,7 +983,87 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {}
+      objects = {
+        {
+          id = 610,
+          name = "Cambot1",
+          type = "LegacyCambot",
+          shape = "rectangle",
+          x = 2688,
+          y = 1216,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacycambot.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["follow"] = "Waypoint1,Waypoint2",
+            ["followRepeat"] = true,
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = false,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false,
+            ["sprite"] = "../art/sprites/cambot2.png"
+          }
+        },
+        {
+          id = 611,
+          name = "Waypoint1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1728,
+          y = 1184,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 612,
+          name = "Waypoint2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 3776,
+          y = 1184,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 613,
+          name = "Buzz1",
+          type = "BuzzBomber",
+          shape = "rectangle",
+          x = 384,
+          y = 1184,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/buzzbomberx2.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = false,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false
+          }
+        }
+      }
     },
     {
       type = "tilelayer",

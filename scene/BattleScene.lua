@@ -265,7 +265,7 @@ function BattleScene:update(dt)
 	for _, oppo in pairs(self.opponents) do
 		if oppo.dropShadow then
 			local sprite = oppo:getSprite()
-			oppo.dropShadow.transform.x = sprite.transform.x - sprite.w + 18
+			oppo.dropShadow.transform.x = sprite.transform.x - sprite.w/2 + 18
 		end
 	end
 	

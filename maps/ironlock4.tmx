@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="260" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="746">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="260" height="56" tilewidth="32" tileheight="32" infinite="0" nextobjectid="747">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="noBattleMusic" type="bool" value="true"/>
@@ -395,7 +395,7 @@
   <object id="615" name="Crate" type="BasicNPC" gid="1922" x="3328" y="1088" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -426,7 +426,7 @@
   <object id="619" name="Crate" type="BasicNPC" gid="1922" x="2720" y="1216" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -480,21 +480,21 @@
   <object id="631" name="Crate" type="BasicNPC" gid="1922" x="3264" y="1344" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
   <object id="632" name="Crate" type="BasicNPC" gid="1922" x="3328" y="1344" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
   <object id="633" name="Crate" type="BasicNPC" gid="1922" x="2496" y="1344" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -583,28 +583,28 @@
   <object id="646" name="Crate" type="BasicNPC" gid="1922" x="3520" y="1088" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
   <object id="647" name="Crate" type="BasicNPC" gid="1922" x="3520" y="1344" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
   <object id="648" name="Crate" type="BasicNPC" gid="1922" x="4320" y="1088" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
   <object id="649" name="Crate" type="BasicNPC" gid="1922" x="4384" y="1088" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -660,7 +660,7 @@
   <object id="657" name="Crate" type="BasicNPC" gid="1922" x="4960" y="1088" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -744,7 +744,7 @@
   <object id="673" name="Crate" type="BasicNPC" gid="1922" x="6048" y="1216" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -807,28 +807,28 @@
   <object id="682" name="Crate" type="BasicNPC" gid="1922" x="6656" y="1088" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
   <object id="683" name="Crate" type="BasicNPC" gid="1922" x="6656" y="1152" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
   <object id="684" name="Crate" type="BasicNPC" gid="1922" x="6656" y="1376" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
   <object id="685" name="Crate" type="BasicNPC" gid="1922" x="6656" y="1312" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hidingspot" type="bool" value="false"/>
+    <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -877,30 +877,6 @@
     <property name="align" value="bottom_left"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
-   </properties>
-  </object>
-  <object id="692" name="Swatbot3" type="LegacyCambot" gid="37" x="4768" y="1088" width="32" height="32">
-   <properties>
-    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="follow" value="Waypoint3_1,Waypoint3_2"/>
-    <property name="followRepeat" type="bool" value="true"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="ignorePlayer" type="bool" value="false"/>
-    <property name="noInvestigate" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
-    <property name="viewRange" value="View3"/>
-   </properties>
-  </object>
-  <object id="693" name="Waypoint3_2" type="BasicNPC" gid="1922" x="4896" y="1088" width="32" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="694" name="Waypoint3_1" type="BasicNPC" gid="1922" x="4608" y="1088" width="32" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
   <object id="695" name="View3" type="BasicNPC" gid="1922" x="4512" y="1152" width="448" height="128" visible="0">
@@ -1195,16 +1171,17 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="741" name="Chest2" type="Chest" gid="2311" x="5024" y="1152" width="64" height="64">
-   <properties>
-    <property name="GreenLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
   <object id="744" name="Chest1" type="Chest" gid="2311" x="6720" y="1344" width="64" height="64">
    <properties>
     <property name="Mine" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="746" name="Save" type="SavePoint" gid="1714" x="7968" y="1152" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
  </objectgroup>

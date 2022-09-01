@@ -38,6 +38,7 @@ return function(self, target)
 			target:getSprite():removeParallax()
 		end),
 		weaknessMessage,
+		target.onScan and target.onScan(target) or Action(),
 		MessageBox {
 			message=string.format("Nicole: Loading heads-up display of hp..."),
 			rect=MessageBox.HEADLINER_RECT,

@@ -54,8 +54,14 @@ return {
 
 	drops = {
 		{item = require "data/items/Mushroom", count = 1, chance = 0.2},
-		{item = require "data/items/Mushroom", count = 1, chance = 0.2},
 	},
+	
+	onScan = function(self)
+		-- Reduce speed so it doesn't dodge as much
+		return Do(function()
+			self.stats.speed = 10
+		end)
+	end,
 
 	behavior = function (self, target)
 		local stateOverride = nil

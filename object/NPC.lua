@@ -140,12 +140,6 @@ function NPC:construct(scene, layer, object)
 			end
 		end
 	end
-	
-	if self.isBot and GameState:isFlagSet(self:getFlag()) then
-		self:removeSceneHandler("update", NPC.update)
-		self:remove()
-		return
-	end
 end
 
 function NPC:onInteract()
@@ -169,8 +163,10 @@ function NPC:distanceFromPlayerSq(ignoreCache)
 	end
 
 	if ignoreCache or not self.distanceFromPlayer then
-		local dx = (self.scene.player.x - (self.x + self.sprite.w))
-		local dy = (self.scene.player.y - (self.y + self.sprite.h))
+		local w = self.sprite and self.sprite.w or self.object.width/2
+		local h = self.sprite and self.sprite.h or self.object.height/2
+		local dx = (self.scene.player.x - (self.x + w))
+		local dy = (self.scene.player.y - (self.y + h))
 		self.distanceFromPlayer = (dx*dx + dy*dy)
 	end
 	return self.distanceFromPlayer
@@ -283,6 +279,11 @@ function NPC:init(useBaseUpdate)
 		if self:isRemoved() then
 			return
 		end
+	end
+	
+	if self.isBot and GameState:isFlagSet(self:getFlag()) then
+		self:remove()
+		return
 	end
 	
 	self.followStack = {}

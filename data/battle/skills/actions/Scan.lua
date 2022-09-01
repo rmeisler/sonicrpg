@@ -39,6 +39,7 @@ return function(self, target)
 			target:getSprite():removeParallax()
 		end),
 		weaknessMessage,
+		target.onScan and target.onScan(target) or Action(),
 		MessageBox {
 			message=string.format("%s %d / %d", "Nicole: Remaining HP ", targetHp, targetMaxHp),
 			rect=MessageBox.HEADLINER_RECT,

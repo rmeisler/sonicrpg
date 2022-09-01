@@ -51,6 +51,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.onEnter = data.onEnter or function() return Action() end
 	self.onPreInit = data.onPreInit or function() end
 	self.onInit = data.onInit or function() end
+	self.onScan = data.onScan or nil
 	self.onConfused = data.onConfused or nil
 	self.onTease = data.onTease or nil
 	self.getHpStats = data.getHpStats or function(self) return self.hp, self.maxhp end
@@ -74,7 +75,7 @@ function OpposingPartyMember:setShadow(visible)
 	local sprite = self:getSprite()
 	self.dropShadow = SpriteNode(
 		self.scene,
-		Transform(sprite.transform.x - sprite.w + 18, sprite.transform.y + sprite.h - 14, 2, 2),
+		Transform(sprite.transform.x - sprite.w/2 + 18, sprite.transform.y + sprite.h - 14, 2, 2),
 		nil,
 		"dropshadow"
 	)

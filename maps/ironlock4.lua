@@ -8,7 +8,7 @@ return {
   height = 56,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 746,
+  nextobjectid = 747,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["noBattleMusic"] = true,
@@ -785,7 +785,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -860,7 +860,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1002,7 +1002,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1020,7 +1020,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1038,7 +1038,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1259,7 +1259,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1277,7 +1277,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1295,7 +1295,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1313,7 +1313,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1457,7 +1457,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1673,7 +1673,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1835,7 +1835,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1853,7 +1853,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1871,7 +1871,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1889,7 +1889,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hidingspot"] = false,
+            ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -2004,63 +2004,6 @@ return {
             ["align"] = "bottom_left",
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/save.png"
-          }
-        },
-        {
-          id = 692,
-          name = "Swatbot3",
-          type = "LegacyCambot",
-          shape = "rectangle",
-          x = 4768,
-          y = 1088,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/legacyswatbot.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
-            ["follow"] = "Waypoint3_1,Waypoint3_2",
-            ["followRepeat"] = true,
-            ["ghost"] = true,
-            ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/swatbotwhite.png",
-            ["viewRange"] = "View3"
-          }
-        },
-        {
-          id = 693,
-          name = "Waypoint3_2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4896,
-          y = 1088,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1922,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 694,
-          name = "Waypoint3_1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4608,
-          y = 1088,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1922,
-          visible = true,
-          properties = {
-            ["ghost"] = true
           }
         },
         {
@@ -2788,23 +2731,6 @@ return {
           }
         },
         {
-          id = 741,
-          name = "Chest2",
-          type = "Chest",
-          shape = "rectangle",
-          x = 5024,
-          y = 1152,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 2311,
-          visible = true,
-          properties = {
-            ["GreenLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 744,
           name = "Chest1",
           type = "Chest",
@@ -2819,6 +2745,24 @@ return {
           properties = {
             ["Mine"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 746,
+          name = "Save",
+          type = "SavePoint",
+          shape = "rectangle",
+          x = 7968,
+          y = 1152,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/save.png"
           }
         }
       }

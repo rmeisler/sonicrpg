@@ -56,5 +56,14 @@ return {
 	{
         type = "map",
 		file = "maps/ironlock3_door3.lua"
-    }
+    },
+	{
+		type = "sound",
+		file = "audio/sfx/bee.ogg",
+		category = "sfx"
+	},
+	{
+		type = "image",
+		file = "art/sprites/buzzbomber.png"
+	}
 }

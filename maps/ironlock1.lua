@@ -8,7 +8,7 @@ return {
   height = 160,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 521,
+  nextobjectid = 525,
   properties = {
     ["battlebg"] = "../art/backgrounds/ironlockbg.png",
     ["onload"] = "actions/ironlock1.lua",
@@ -4597,54 +4597,6 @@ return {
           }
         },
         {
-          id = 499,
-          name = "Swatbot8",
-          type = "LegacySwatbot",
-          shape = "rectangle",
-          x = 2496,
-          y = 4640,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/legacyswatbot.lua",
-            ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idledown",
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/swatbotwhite.png",
-            ["viewRange"] = "SB8_View"
-          }
-        },
-        {
-          id = 500,
-          name = "Swatbot9",
-          type = "LegacySwatbot",
-          shape = "rectangle",
-          x = 3648,
-          y = 4640,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/legacyswatbot.lua",
-            ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idledown",
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
-            ["sprite"] = "../art/sprites/swatbotwhite.png",
-            ["viewRange"] = "SB9_View"
-          }
-        },
-        {
           id = 504,
           name = "SB9_View",
           type = "BasicNPC",
@@ -4674,122 +4626,6 @@ return {
           visible = false,
           properties = {
             ["ghost"] = true
-          }
-        },
-        {
-          id = 509,
-          name = "BlinkLaserTrapShooter5",
-          type = "LaserTrapArm",
-          shape = "rectangle",
-          x = 2960,
-          y = 4658,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 2374,
-          visible = true,
-          properties = {
-            ["defaultAnim"] = "left_on",
-            ["disableInteract"] = true,
-            ["sprite"] = "../art/sprites/lasertrap.png"
-          }
-        },
-        {
-          id = 510,
-          name = "BlinkLaserTrapShooter6",
-          type = "LaserTrapArm",
-          shape = "rectangle",
-          x = 3056,
-          y = 4658,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 2374,
-          visible = true,
-          properties = {
-            ["defaultAnim"] = "right_on",
-            ["disableInteract"] = true,
-            ["sprite"] = "../art/sprites/lasertrap.png"
-          }
-        },
-        {
-          id = 511,
-          name = "BlinkLaserTrap3",
-          type = "LaserTrap",
-          shape = "rectangle",
-          x = 2976,
-          y = 4658,
-          width = 96,
-          height = 32,
-          rotation = 0,
-          gid = 2374,
-          visible = true,
-          properties = {
-            ["alignOffsetY"] = 10,
-            ["alwaysOn"] = true,
-            ["blink"] = true,
-            ["bounceY"] = 1,
-            ["ghost"] = true,
-            ["spawnPointLeft"] = "BlinkLaserTrapShooter5",
-            ["spawnPointRight"] = "BlinkLaserTrapShooter6"
-          }
-        },
-        {
-          id = 512,
-          name = "BlinkLaserTrapShooter7",
-          type = "LaserTrapArm",
-          shape = "rectangle",
-          x = 3024,
-          y = 4032,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 2374,
-          visible = true,
-          properties = {
-            ["defaultAnim"] = "left_on",
-            ["disableInteract"] = true,
-            ["sprite"] = "../art/sprites/lasertrap.png"
-          }
-        },
-        {
-          id = 513,
-          name = "BlinkLaserTrapShooter8",
-          type = "LaserTrapArm",
-          shape = "rectangle",
-          x = 3184,
-          y = 4032,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 2374,
-          visible = true,
-          properties = {
-            ["defaultAnim"] = "right_on",
-            ["disableInteract"] = true,
-            ["sprite"] = "../art/sprites/lasertrap.png"
-          }
-        },
-        {
-          id = 514,
-          name = "BlinkLaserTrap4",
-          type = "LaserTrap",
-          shape = "rectangle",
-          x = 3024,
-          y = 4032,
-          width = 192,
-          height = 32,
-          rotation = 0,
-          gid = 2374,
-          visible = true,
-          properties = {
-            ["alignOffsetY"] = 10,
-            ["alwaysOn"] = true,
-            ["blink"] = true,
-            ["bounceY"] = 1,
-            ["ghost"] = true,
-            ["spawnPointLeft"] = "BlinkLaserTrapShooter7",
-            ["spawnPointRight"] = "BlinkLaserTrapShooter8"
           }
         },
         {
@@ -4826,6 +4662,84 @@ return {
             ["align"] = "bottom_left",
             ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/crate.png"
+          }
+        },
+        {
+          id = 521,
+          name = "Buzz1",
+          type = "BuzzBomber",
+          shape = "rectangle",
+          x = 3872,
+          y = 4736,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/buzzbomber.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = false,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false
+          }
+        },
+        {
+          id = 522,
+          name = "Swatbot7",
+          type = "LegacySwatbot",
+          shape = "rectangle",
+          x = 2208,
+          y = 4768,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["follow"] = "SB7_Waypoint1,SB7_Waypoint2",
+            ["followRepeat"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false,
+            ["sprite"] = "../art/sprites/swatbotwhite.png"
+          }
+        },
+        {
+          id = 523,
+          name = "SB7_Waypoint2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2464,
+          y = 4768,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 524,
+          name = "SB7_Waypoint1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1760,
+          y = 4768,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

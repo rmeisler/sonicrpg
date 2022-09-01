@@ -74,7 +74,7 @@ function LegacyCambot:onCaughtPlayer()
 				self.countdownText:remove()
 			end),
 			-- Alarm sfx + blinking red screen
-			BlockPlayer {
+			Serial {
 				Parallel {
 					PlayAudio("sfx", "alert", 1.0),
 					Repeat(Parallel {
