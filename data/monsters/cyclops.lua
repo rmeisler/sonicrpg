@@ -81,6 +81,7 @@ return {
 			self.eye.hp = self.eye.hp - damage
 			if self.eye.hp <= 0 then
 				self.hp = 0
+				self.state = BattleActor.STATE_DEAD
 			end
 		end
 		self:addHandler("hit", hitHandler)

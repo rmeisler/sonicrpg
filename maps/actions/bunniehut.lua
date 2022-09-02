@@ -32,12 +32,6 @@ return function(scene)
 		Ease(text.color, 4, 0, 1)
 	})
 
-	if not scene.nighttime then
-		--scene.audio:playMusic("bunniesveggies", 1.0)
-	else
-		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
-	end
-
 	if not scene.updateHookAdded then
 		scene.updateHookAdded = true
 		scene:addHandler(
@@ -78,7 +72,7 @@ return function(scene)
 			end
 		)
 	end
-	
+
 	if scene.nighttime then
 		local prefix = "nighthide"
 		for _,layer in pairs(scene.map.layers) do
@@ -86,6 +80,16 @@ return function(scene)
 				layer.opacity = 1.0
 			end
 		end
+		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
+	else
+		local prefix = "nighthide"
+		for _,layer in pairs(scene.map.layers) do
+			if string.sub(layer.name, 1, #prefix) == prefix then
+				layer.opacity = 0.0
+			end
+		end
+		scene.objectLookup.Door.object.properties.scene = "knothole.lua"
+		scene.audio:playMusic("knotholehut", 0.8)
 	end
 
 	return Action()

@@ -36,8 +36,6 @@ return function(scene)
 		if GameState:isFlagSet("ep3_ffmeeting") then
 			scene.audio:playMusic("knotholehut", 0.8)
 		end
-	else
-		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
 	end
 
 	if not scene.updateHookAdded then
@@ -88,6 +86,15 @@ return function(scene)
 				layer.opacity = 1.0
 			end
 		end
+		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
+	else
+		local prefix = "nighthide"
+		for _,layer in pairs(scene.map.layers) do
+			if string.sub(layer.name, 1, #prefix) == prefix then
+				layer.opacity = 0.0
+			end
+		end
+		scene.objectLookup.Door.object.properties.scene = "knothole.lua"
 	end
 
 	return Action()

@@ -10,6 +10,7 @@ return {
   tileheight = 32,
   nextobjectid = 124,
   properties = {
+    ["onload"] = "actions/greatforest.lua",
     ["regionName"] = "",
     ["sectorName"] = "Great Forest"
   },

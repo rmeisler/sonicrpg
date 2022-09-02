@@ -32,7 +32,7 @@ function LaserTrap:construct(scene, layer, object)
 	end
 	
 	NPC.init(self)
-
+	
 	self:addHandler("collision", LaserTrap.touch, self)
 end
 
@@ -95,7 +95,9 @@ function LaserTrap:postInit()
 		self.respawn = self.scene.objectLookup[self.respawnName]
 	end
 	
-	if self.alwaysOn then
+	if GameState:isFlagSet(self) then
+		self:onUse()
+	elseif self.alwaysOn then
 		self:lasersOn()
 	end
 end
@@ -148,8 +150,23 @@ function LaserTrap:update(dt)
 	end
 end
 
-function LaserTrap:use()
+function LaserTrap:onUse()
 	local fromUse = self.object.properties.fromUse
+	if fromUse == "blink" then
+		self:activate()
+		self.blink = true
+		self.blinkTime = 0
+		self.blinkOnTime = 2
+		self.blinkOffTime = 2
+	elseif fromUse == "activate" then
+		self:activate()
+	elseif fromUse == "deactivate" then
+		self:deactivate()
+	end
+end
+
+function LaserTrap:use()
+	GameState:setFlag(self)
 	self.scene:run(BlockPlayer {
 		Parallel {
 			Ease(self.scene.camPos, "x", function() return self.scene.player.x - (self.x + self.object.width/2) end, 1, "inout"),
@@ -157,17 +174,7 @@ function LaserTrap:use()
 		},
 		Do(function()
 			self.scene.audio:playSfx("shocked", 0.5, true)
-			if fromUse == "blink" then
-				self:activate()
-				self.blink = true
-				self.blinkTime = 0
-				self.blinkOnTime = 2
-				self.blinkOffTime = 2
-			elseif fromUse == "activate" then
-				self:activate()
-			elseif fromUse == "deactivate" then
-				self:deactivate()
-			end
+			self:onUse()
 		end),
 		Wait(2),
 		Parallel {

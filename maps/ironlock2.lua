@@ -3422,7 +3422,6 @@ return {
             ["alwaysOn"] = true,
             ["bounceX"] = 1,
             ["fromUse"] = "deactivate",
-            ["onPostInit"] = "return function(self)\n    if GameState:isFlagSet(self.scene.objectLookup.Switch1) then\n        self:remove()\n    end\nend",
             ["spawnPointLeft"] = "LaserGate1Shooter1",
             ["spawnPointRight"] = "LaserGate1Shooter2",
             ["vertical"] = true
@@ -3441,6 +3440,7 @@ return {
           gid = 2374,
           visible = true,
           properties = {
+            ["alphaOverride"] = 0,
             ["defaultAnim"] = "left_on",
             ["disableInteract"] = true,
             ["sprite"] = "../art/sprites/lasertrap.png"
@@ -3480,7 +3480,6 @@ return {
             ["alwaysOn"] = true,
             ["bounceX"] = -1,
             ["fromUse"] = "deactivate",
-            ["onPostInit"] = "return function(self)\n    if GameState:isFlagSet(self.scene.objectLookup.Switch2) then\n        self:remove()\n    end\nend",
             ["spawnPointLeft"] = "LaserGate2Shooter1",
             ["spawnPointRight"] = "LaserGate2Shooter2",
             ["vertical"] = true
@@ -3499,6 +3498,7 @@ return {
           gid = 2374,
           visible = true,
           properties = {
+            ["alphaOverride"] = 0,
             ["defaultAnim"] = "left_on",
             ["disableInteract"] = true,
             ["sprite"] = "../art/sprites/lasertrap.png"

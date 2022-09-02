@@ -401,9 +401,6 @@ local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
 
 return function(self)
-    if GameState:isFlagSet(self:getFlag()) then
-        return Do(function() end)
-    else
         GameState:setFlag(self:getFlag())
         GameState:setFlag(&quot;ep3_sallynap_over&quot;)
         local prevAnim = scene.player.ToIdle[self.scene.player.sprite.selected]
@@ -461,7 +458,6 @@ return function(self)
                 self.scene:changeScene{map=&quot;sallyshut&quot;, fadeOutSpeed=0.1,fadeInSpeed=0.1,fadeOutMusic=true, nighttime=false, hint=&quot;night&quot;}
             end)
         }
-    end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/leon.png"/>
    </properties>

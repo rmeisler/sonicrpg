@@ -92,6 +92,13 @@ return function(scene, hint)
 			end
 		end
 	elseif GameState:isFlagSet("ep3_ffmeeting") then
+		scene.objectLookup.Door.object.properties.scene = "knothole.lua"
+		local prefix = "nighthide"
+		for _,layer in pairs(scene.map.layers) do
+			if string.sub(layer.name, 1, #prefix) == prefix then
+				layer.opacity = 0.0
+			end
+		end
 		scene.audio:playMusic("knotholehut", 0.8)
 	end
 	

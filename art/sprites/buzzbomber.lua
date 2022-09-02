@@ -18,6 +18,11 @@ return {
 			speed = 0.02
         },
 		
+		runright = {
+            frames = {{9,0},{10,0},{11,0},{12,0}},
+			speed = 0.02
+        },
+		
 		hurt = {
 			frames = {{8,0}}
 		}

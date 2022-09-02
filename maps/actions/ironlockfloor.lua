@@ -167,6 +167,10 @@ return function(scene, hint)
 			end),
 			
 			Parallel {
+				Repeat(Serial {
+					Wait(0.3),
+					PlayAudio("sfx", "swatbotstep", 1.0, true)
+				}, 2),
 				Serial {
 					Ease(scene.objectLookup.Swatbot8, "y", scene.objectLookup.Swatbot8.y - 400, 0.5, "linear"),
 					Do(function()
@@ -216,6 +220,10 @@ return function(scene, hint)
 								scene.objectLookup.Swatbot10.sprite:setAnimation("walkleft")
 							end),
 							Parallel {
+								Repeat(Serial {
+									Wait(0.3),
+									PlayAudio("sfx", "swatbotstep", 1.0, true)
+								}, 2),
 								Ease(scene.objectLookup.Swatbot4, "x", scene.objectLookup.Swatbot4.x - 200, 1, "linear"),
 								Ease(scene.objectLookup.Swatbot11, "x", scene.objectLookup.Swatbot11.x - 200, 1, "linear"),
 								Ease(scene.objectLookup.Swatbot9, "x", scene.objectLookup.Swatbot9.x - 200, 1, "linear"),
@@ -236,6 +244,10 @@ return function(scene, hint)
 								scene.objectLookup.Swatbot7.sprite:setAnimation("walkup")
 							end),
 							Parallel {
+								Repeat(Serial {
+									Wait(0.3),
+									PlayAudio("sfx", "swatbotstep", 1.0, true)
+								}, 2),
 								Ease(scene.objectLookup.Swatbot5, "y", scene.objectLookup.Swatbot5.y - 400, 0.3, "linear"),
 								Ease(scene.objectLookup.Swatbot6, "y", scene.objectLookup.Swatbot6.y - 400, 0.3, "linear"),
 								Ease(scene.objectLookup.Swatbot7, "y", scene.objectLookup.Swatbot7.y - 400, 0.3, "linear")
@@ -254,6 +266,10 @@ return function(scene, hint)
 								scene.objectLookup.Snively.sprite:setAnimation("walkright")
 							end),
 							Parallel {
+								Repeat(Serial {
+									Wait(0.3),
+									PlayAudio("sfx", "swatbotstep", 1.0, true)
+								}, 3),
 								Ease(scene.objectLookup.Swatbot1, "x", scene.objectLookup.Swatbot1.x + 250, 1, "linear"),
 								Ease(scene.objectLookup.Swatbot2, "x", scene.objectLookup.Swatbot2.x + 250, 1, "linear"),
 								Ease(scene.objectLookup.Swatbot3, "x", scene.objectLookup.Swatbot3.x + 250, 1, "linear"),

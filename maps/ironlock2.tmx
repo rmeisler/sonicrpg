@@ -2090,11 +2090,6 @@ end</property>
     <property name="alwaysOn" type="bool" value="true"/>
     <property name="bounceX" type="float" value="1"/>
     <property name="fromUse" value="deactivate"/>
-    <property name="onPostInit">return function(self)
-    if GameState:isFlagSet(self.scene.objectLookup.Switch1) then
-        self:remove()
-    end
-end</property>
     <property name="spawnPointLeft" value="LaserGate1Shooter1"/>
     <property name="spawnPointRight" value="LaserGate1Shooter2"/>
     <property name="vertical" type="bool" value="true"/>
@@ -2102,6 +2097,7 @@ end</property>
   </object>
   <object id="667" name="LaserGate1Shooter1" type="LaserTrapArm" gid="2374" x="2176" y="3840" width="32" height="32">
    <properties>
+    <property name="alphaOverride" type="int" value="0"/>
     <property name="defaultAnim" value="left_on"/>
     <property name="disableInteract" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
@@ -2119,11 +2115,6 @@ end</property>
     <property name="alwaysOn" type="bool" value="true"/>
     <property name="bounceX" type="float" value="-1"/>
     <property name="fromUse" value="deactivate"/>
-    <property name="onPostInit">return function(self)
-    if GameState:isFlagSet(self.scene.objectLookup.Switch2) then
-        self:remove()
-    end
-end</property>
     <property name="spawnPointLeft" value="LaserGate2Shooter1"/>
     <property name="spawnPointRight" value="LaserGate2Shooter2"/>
     <property name="vertical" type="bool" value="true"/>
@@ -2131,6 +2122,7 @@ end</property>
   </object>
   <object id="674" name="LaserGate2Shooter1" type="LaserTrapArm" gid="2374" x="7072" y="3840" width="32" height="32">
    <properties>
+    <property name="alphaOverride" type="int" value="0"/>
     <property name="defaultAnim" value="left_on"/>
     <property name="disableInteract" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>

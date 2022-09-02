@@ -278,6 +278,7 @@ end</property>
   <object id="28" name="Chest1" type="Chest" gid="6839" x="128" y="576" width="64" height="64">
    <properties>
     <property name="Microchip" type="int" value="1"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>

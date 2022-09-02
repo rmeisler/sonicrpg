@@ -149,7 +149,7 @@ return function(scene, hint)
 			end),
 			Wait(2),
 			Do(function()
-				scene.sceneMgr:pushScene {class = "CreditsSplashScene", fadeOutSpeed=0.1,fadeInSpeed=0.3, enterDelay=4}
+				scene.sceneMgr:pushScene {class = "CreditsSplashScene", fadeOutSpeed=0.05,fadeInSpeed=0.3, enterDelay=4}
 			end)
 		}
 	end

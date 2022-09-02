@@ -552,6 +552,7 @@ return {
           visible = true,
           properties = {
             ["Microchip"] = 1,
+            ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         }

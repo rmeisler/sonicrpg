@@ -144,6 +144,13 @@ return function(scene)
 			end
 		end
 	else
+		scene.objectLookup.Door.object.properties.scene = "knothole.lua"
+		local prefix = "nighthide"
+		for _,layer in pairs(scene.map.layers) do
+			if string.sub(layer.name, 1, #prefix) == prefix then
+				layer.opacity = 0.0
+			end
+		end
 		scene.audio:playMusic("doittoit", 0.5)
 	end
 	

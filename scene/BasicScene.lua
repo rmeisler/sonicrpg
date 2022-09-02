@@ -50,6 +50,8 @@ function BasicScene:onEnter(args)
 	self.nighttime = args.nighttime or self.map.properties.nighttime
 	self.noBattleMusic = self.map.properties.noBattleMusic
 	
+	print(self.mapName .. " is night? " .. tostring(self.nighttime))
+	
 	self.args = args
 	self.cacheSceneData = args.cache
 	

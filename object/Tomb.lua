@@ -32,6 +32,9 @@ function Tomb:construct(scene, layer, object)
 	end
 
 	self:addInteract(Tomb.investigate)
+	self.isInteractable = false
+	self.specialHintPlayer = "sally"
+	self.showHint = true
 end
 
 function Tomb:investigate()
