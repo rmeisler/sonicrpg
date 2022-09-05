@@ -323,6 +323,10 @@ function BasicScene:onReEnter(args)
 		if obj.flagForDeletion then
 			obj:remove()
 		end
+		
+		if obj.onEnter then
+			obj:onEnter()
+		end
 	end
 	
 	local onLoadAction = Action()
@@ -335,7 +339,6 @@ function BasicScene:onReEnter(args)
 	ScreenShader:sendColor("multColor", self.bgColor)
 	
 	if GameState.leader == "bunny" then
-		print("no special move")
 		self.player.noSpecialMove = true
 	end
 	return Serial {
@@ -365,7 +368,6 @@ function BasicScene:onReEnter(args)
 			self.reenteringFromBattle = false
 			
 			if GameState.leader == "bunny" then
-				print("yes special move")
 				self.player.noSpecialMove = false
 			end
 		end)

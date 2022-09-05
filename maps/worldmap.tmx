@@ -312,76 +312,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="notColliding">return function(self, player)
-    if player.onSubLocation == self then
-        player.onSubLocation = nil
-        self.scene:removeHandler(&quot;keytriggered&quot;, player.deatheggCallback)
-        self.scene.pressX.color = {100,100,100,255}
-    end
-end</property>
     <property name="sprite" type="file" value="../art/sprites/deathegg.png"/>
-    <property name="whileColliding">local TypeText = require &quot;actions/TypeText&quot;
-local Serial = require &quot;actions/Serial&quot;
-local Spawn = require &quot;actions/Spawn&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Do = require &quot;actions/Do&quot;
-local YieldUntil = require &quot;actions/YieldUntil&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local Menu = require &quot;actions/Menu&quot;
-
-local Layout = require &quot;util/Layout&quot;
-local Transform = require &quot;util/Transform&quot;
-
-return function(self, player, prevState)
-    if player.onSubLocation == self or not GameState:isFlagSet(&quot;ffmeeting&quot;) then
-        return
-    end
-    player.onSubLocation = self
-    self.scene.pressX.color = {255,255,255,255}
-
-    player.deatheggCallback = function(key)
-        if player.onSubLocation == self and not self.scene.sceneMgr.transitioning and key == &quot;x&quot; then
-            self.scene:run(BlockPlayer {
-                Menu {
-                    layout = Layout {
-                        {Layout.Text(&quot;Enter the Death Egg?&quot;), selectable = false},
-                        {Layout.Text(&quot;Yes&quot;), choose = function(menu)
-                            menu:close()
-                            self.scene.player:run(BlockPlayer {
-                                menu,
-                                Do(function()
-                                    self.scene:changeScene{map=&quot;deathegg_elevator1&quot;, hint=&quot;fromworldmap&quot;, fadeInSpeed = 0.1, fadeOutSpeed = 0.2, fadeOutMusic = true}
-                                    self.scene:removeHandler(&quot;keytriggered&quot;, player.deatheggCallback)
-                                end)
-                            })
-                         end},
-                        {Layout.Text(&quot;No&quot;), choose = function(menu)
-                            menu:close()
-                         end}
-                    },
-                    cancellable = true,
-                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
-                    selectedRow = 2
-                }
-            })
-        end
-    end
-    self.scene:addHandler(&quot;keytriggered&quot;, player.deatheggCallback)
-
-    self.typeText = TypeText(
-        Transform(50, 470),
-        {255, 255, 255, 0},
-        FontCache.TechnoSmall,
-        &quot;Death Egg&quot;,
-        100
-    )
-    self.scene:run(Spawn(Serial {
-        self.typeText,
-        Ease(self.typeText.color, 4, 255, 1),
-        YieldUntil(function() return self.state ~= self.STATE_TOUCHING end),
-        Ease(self.typeText.color, 4, 0, 1)
-    }))
-end</property>
    </properties>
   </object>
   <object id="6" name="Building3" type="BasicNPC" gid="3521" x="1632" y="1568" width="128" height="32">

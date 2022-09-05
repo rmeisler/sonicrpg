@@ -312,7 +312,8 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal While = require \"actions/While\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\n\nreturn function(self, player, prevState)\n    local arm = self.scene.objectLookup.Arm1\n    local eyes = self.scene.objectLookup.Eyes1\n    if GameState:isFlagSet(arm) then\n        arm:remove()\n        eyes:remove()\n        self:remove()\n        return\n    end\n    if prevState == self.STATE_IDLE and arm.hidden then\n        eyes.hidden = false\n        eyes:run(While(\n            function()\n                return not arm:isRemoved() and not eyes:isRemoved()\n            end,\n            Serial {\n                Animate(eyes.sprite, \"forward\"),\n                Wait(0.5),\n                Animate(eyes.sprite, \"smile\"),\n                Wait(0.5),\n                Do(function()\n                    arm.hidden = false\n                    arm.x = eyes.x - 60\n                    arm.y = eyes.y\n                end),\n                Ease(arm, \"y\", function() return arm.y + 40 end, 4),\n                Do(function()\n                    arm:updateCollision()\n                end),\n                Wait(2),\n                Do(function()\n                    arm:removeCollision()\n                end),\n                Parallel {\n                    Ease(arm, \"y\", function() return arm.y - 40 end, 2),\n                    Ease(arm.sprite.color, 4, 0, 4)\n                },\n                Do(function()\n                    if not arm:isRemoved() and not eyes:isRemoved() then\n                        arm.sprite.color[4] = 255\n                        arm.hidden = true\n                        eyes.sprite:setAnimation(\"forwardblink\")\n                    end\n                end)\n            },\n            Do(function() end)\n        ))\n    end\nend"
+            ["onInit"] = "return function(self)\n    if GameState:isFlagSet(\"ironlocksave.Arm1\") then\n        self:remove()\n    end\nend",
+            ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal While = require \"actions/While\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\n\nreturn function(self, player, prevState)\n    local arm = self.scene.objectLookup.Arm1\n    local eyes = self.scene.objectLookup.Eyes1\n    if GameState:isFlagSet(\"ironlocksave.Arm1\") then\n        return\n    end\n    if prevState == self.STATE_IDLE and arm.hidden then\n        eyes.hidden = false\n        eyes:run(While(\n            function()\n                return not arm:isRemoved() and not eyes:isRemoved()\n            end,\n            Serial {\n                Animate(eyes.sprite, \"forward\"),\n                Wait(0.5),\n                Animate(eyes.sprite, \"smile\"),\n                Wait(0.5),\n                Do(function()\n                    arm.hidden = false\n                    arm.x = eyes.x - 60\n                    arm.y = eyes.y\n                end),\n                Ease(arm, \"y\", function() return arm.y + 40 end, 4),\n                Do(function()\n                    arm.object.y = arm.y\n                    arm:updateCollision()\n                end),\n                Wait(2),\n                Parallel {\n                    Ease(arm, \"y\", function() return arm.y - 40 end, 2),\n                    Ease(arm.sprite.color, 4, 0, 4)\n                },\n                Do(function()\n                    if not arm:isRemoved() and not eyes:isRemoved() then\n                        arm.sprite.color[4] = 255\n                        arm.object.y = arm.y - 200\n                        arm:updateCollision()\n                        arm.hidden = true\n                        eyes.sprite:setAnimation(\"forwardblink\")\n                    end\n                end)\n            },\n            Do(function() end)\n        ))\n    end\nend"
           }
         },
         {
@@ -332,10 +333,10 @@ return {
             ["battleInitiative"] = "opponent",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
+            ["flagOverride"] = "ironlocksave.Arm1",
             ["ghost"] = true,
             ["isBot"] = true,
-            ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self) then\n        self:remove()\n    end\nend",
-            ["onRemove"] = "return function(self)\n    self.scene.objectLookup.Eyes1:remove()\nend",
+            ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(\"ironlocksave.Arm1\") then\n        self:remove()\n    end\nend",
             ["sprite"] = "../art/sprites/phantomgrab.png"
           }
         },
@@ -354,8 +355,7 @@ return {
           properties = {
             ["ghost"] = true,
             ["isBot"] = true,
-            ["onInit"] = "return function(self)\n    self.hidden = true\nend",
-            ["onRemove"] = "return function(self)\n    self.scene.objectLookup.EyesTrap1:remove()\nend",
+            ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(\"ironlocksave.Arm1\") then\n        self:remove()\n    end\nend",
             ["sprite"] = "../art/sprites/phantomface.png"
           }
         }

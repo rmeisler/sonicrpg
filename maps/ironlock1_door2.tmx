@@ -87,6 +87,11 @@
   <object id="22" name="EyesTrap1" type="BasicNPC" gid="6839" x="320" y="288" width="128" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
+    <property name="onInit">return function(self)
+    if GameState:isFlagSet(&quot;ironlocksave.Arm1&quot;) then
+        self:remove()
+    end
+end</property>
     <property name="whileColliding">local Animate = require &quot;actions/Animate&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Do = require &quot;actions/Do&quot;
@@ -98,10 +103,7 @@ local Parallel = require &quot;actions/Parallel&quot;
 return function(self, player, prevState)
     local arm = self.scene.objectLookup.Arm1
     local eyes = self.scene.objectLookup.Eyes1
-    if GameState:isFlagSet(arm) then
-        arm:remove()
-        eyes:remove()
-        self:remove()
+    if GameState:isFlagSet(&quot;ironlocksave.Arm1&quot;) then
         return
     end
     if prevState == self.STATE_IDLE and arm.hidden then
@@ -122,12 +124,10 @@ return function(self, player, prevState)
                 end),
                 Ease(arm, &quot;y&quot;, function() return arm.y + 40 end, 4),
                 Do(function()
+                    arm.object.y = arm.y
                     arm:updateCollision()
                 end),
                 Wait(2),
-                Do(function()
-                    arm:removeCollision()
-                end),
                 Parallel {
                     Ease(arm, &quot;y&quot;, function() return arm.y - 40 end, 2),
                     Ease(arm.sprite.color, 4, 0, 4)
@@ -135,6 +135,8 @@ return function(self, player, prevState)
                 Do(function()
                     if not arm:isRemoved() and not eyes:isRemoved() then
                         arm.sprite.color[4] = 255
+                        arm.object.y = arm.y - 200
+                        arm:updateCollision()
                         arm.hidden = true
                         eyes.sprite:setAnimation(&quot;forwardblink&quot;)
                     end
@@ -152,16 +154,14 @@ end</property>
     <property name="battleInitiative" value="opponent"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="flagOverride" value="ironlocksave.Arm1"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
     <property name="onInit">return function(self)
     self.hidden = true
-    if GameState:isFlagSet(self) then
+    if GameState:isFlagSet(&quot;ironlocksave.Arm1&quot;) then
         self:remove()
     end
-end</property>
-    <property name="onRemove">return function(self)
-    self.scene.objectLookup.Eyes1:remove()
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>
@@ -172,9 +172,9 @@ end</property>
     <property name="isBot" type="bool" value="true"/>
     <property name="onInit">return function(self)
     self.hidden = true
-end</property>
-    <property name="onRemove">return function(self)
-    self.scene.objectLookup.EyesTrap1:remove()
+    if GameState:isFlagSet(&quot;ironlocksave.Arm1&quot;) then
+        self:remove()
+    end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomface.png"/>
    </properties>

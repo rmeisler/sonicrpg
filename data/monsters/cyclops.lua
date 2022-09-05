@@ -135,6 +135,14 @@ return {
 	end,
 	
 	behavior = function (self, target)
+		if  self.hp <= 0 or
+		    self.eye.hp <= 0 or
+		    self.state == BattleActor.STATE_DEAD or
+		    self.eye.state == BattleActor.STATE_DEAD
+		then
+			return Action()
+		end
+	
 		if self.proneTurns > 1 then
 			self.proneTurns = self.proneTurns - 1
 			return Action()

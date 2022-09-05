@@ -101,7 +101,8 @@ local NPC = require &quot;object/NPC&quot;
 
 return function(self)
     GameState:setFlag(self:getFlag())
-    self.scene.player.x = self.scene.player.x - 60
+    self.scene.player.x = self.x
+    self.scene.player.y = self.y + self.sprite.h*2
     local walkout, walkin, sprites = self.scene.player:split{GameState.party.antoine, GameState.party.sonic, GameState.party.sally}
     return BlockPlayer {
         Parallel {

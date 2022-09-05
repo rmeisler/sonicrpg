@@ -768,6 +768,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["hidingspot"] = true,
+            ["nohidedown"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -786,6 +787,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["hidingspot"] = true,
+            ["nohidedown"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1260,6 +1262,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["hidingspot"] = true,
+            ["nohidedown"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1296,6 +1299,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["hidingspot"] = true,
+            ["nohidedown"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1314,6 +1318,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["hidingspot"] = true,
+            ["nohidedown"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1458,6 +1463,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["hidingspot"] = true,
+            ["nohidedown"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1530,6 +1536,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["hidingspot"] = false,
+            ["nohidedown"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1548,6 +1555,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["hidingspot"] = false,
+            ["nohidedown"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1566,6 +1574,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["hidingspot"] = false,
+            ["nohidedown"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1836,6 +1845,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["hidingspot"] = true,
+            ["nohidedown"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1854,6 +1864,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["hidingspot"] = true,
+            ["nohidedown"] = true,
             ["sprite"] = "../art/sprites/crate.png"
           }
         },
@@ -1986,24 +1997,6 @@ return {
             ["defaultAnim"] = "ironlock",
             ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/pillar.png"
-          }
-        },
-        {
-          id = 691,
-          name = "Save",
-          type = "SavePoint",
-          shape = "rectangle",
-          x = 2112,
-          y = 1152,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1714,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/save.png"
           }
         },
         {

@@ -934,6 +934,7 @@ function Player:basicUpdate(dt)
 			local _, spot = next(self.inHidingSpot)
 			if not isSwatbot and
 			   spot and
+			   not spot.noHideDown and
 			   self:isFacing("down") and
 			   not (love.keyboard.isDown("left") or love.keyboard.isDown("right"))
 			then

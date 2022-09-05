@@ -8,7 +8,7 @@ return {
   height = 56,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 614,
+  nextobjectid = 615,
   properties = {
     ["battlebg"] = "../art/backgrounds/ironlockbg.png",
     ["onload"] = "actions/ironlockfloor.lua",
@@ -754,6 +754,22 @@ return {
           properties = {
             ["BlueLeaf"] = 2,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 614,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 2688,
+          y = 1504,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["orientation"] = "up"
           }
         }
       }

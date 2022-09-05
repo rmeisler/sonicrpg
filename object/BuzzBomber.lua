@@ -32,6 +32,11 @@ function BuzzBomber:construct(scene, layer, object)
 	self:createBuzzProxy()
 	self:createDropShadow()
 	
+	if GameState:isFlagSet(self) then
+		self:remove()
+		return
+	end
+	
 	self:addSceneHandler("update", BuzzBomber.update)
 	
 	self.isBot = true

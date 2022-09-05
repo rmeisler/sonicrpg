@@ -670,7 +670,7 @@ return {
           properties = {
             ["isBot"] = true,
             ["nocollision"] = true,
-            ["onPostInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self.scene.objectLookup.Arm1) then\n        self:remove()\n    end\nend",
+            ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(\"darkswamp2.Arm1\") then\n        self:remove()\n    end\nend",
             ["sprite"] = "../art/sprites/phantomface.png"
           }
         },
@@ -722,7 +722,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["onInit"] = "return function(self)\n    if GameState:isFlagSet(self.scene.objectLookup.Arm1) then\n        self:remove()\n    end\nend",
+            ["onInit"] = "return function(self)\n    if GameState:isFlagSet(\"darkswamp2.Arm1\") then\n        self:remove()\n    end\nend",
             ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal While = require \"actions/While\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\n\nreturn function(self, player, prevState)\n    local arm = self.scene.objectLookup.Arm1\n    local eyes = self.scene.objectLookup.Eyes1\n    if GameState:isFlagSet(arm) then\n        arm:remove()\n        eyes:remove()\n        self:remove()\n        return\n    end\n    if prevState == self.STATE_IDLE and arm.hidden then\n        eyes.hidden = false\n        eyes:run(While(\n            function()\n                return not arm:isRemoved()\n            end,\n            Serial {\n                Animate(eyes.sprite, \"blink\"),\n                Animate(eyes.sprite, \"forward\"),\n                Wait(1),\n                Animate(eyes.sprite, \"smile\"),\n                Wait(1),\n                Do(function()\n                    arm.hidden = false\n                    arm.x = eyes.x - 60\n                    arm.y = eyes.y\n                end),\n                Ease(arm, \"y\", function() return arm.y + 90 end, 4),\n                Do(function()\n                    arm.object.y = arm.y\n                    arm:updateCollision()\n                end),\n                Wait(2),\n                Do(function()\n                    arm:removeCollision()\n                end),\n                Parallel {\n                    Ease(arm, \"y\", function() return arm.y - 90 end, 2),\n                    Ease(arm.sprite.color, 4, 0, 4)\n                },\n                Do(function()\n                    arm.sprite.color[4] = 255\n                    arm.hidden = true\n                    eyes.sprite:setAnimation(\"forwardblink\")\n                end)\n            },\n            Do(function() end)\n        ))\n    end\nend"
           }
         },
@@ -743,10 +743,10 @@ return {
             ["battleInitiative"] = "opponent",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
+            ["flagOverride"] = "darkswamp2.Arm1",
             ["ghost"] = true,
             ["isBot"] = true,
-            ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self) then\n        self:remove()\n    end\nend",
-            ["onRemove"] = "return function(self)\n    if self.scene.objectLookup.Eyes1 then\n        self.scene.objectLookup.Eyes1:remove()\n        self.scene.objectLookup.EyesTrap1:remove()\n    end\nend",
+            ["onInit"] = "local onEnter = function(self)\n    if GameState:isFlagSet(self) then\n        self.scene.objectLookup.Eyes1:remove()\n        self.scene.objectLookup.EyesTrap1:remove()\n    end\nend\n\nreturn function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self) then\n        self:remove()\n    end\n    self:addSceneHandler(\"enter\", onEnter)\nend",
             ["sprite"] = "../art/sprites/phantomgrab.png"
           }
         },
@@ -832,7 +832,7 @@ return {
           properties = {
             ["isBot"] = true,
             ["nocollision"] = true,
-            ["onPostInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self.scene.objectLookup.Arm4) then\n        self:remove()\n    end\nend",
+            ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(\"darkswamp2.Arm4\") then\n        self:remove()\n    end\nend",
             ["sprite"] = "../art/sprites/phantomface.png"
           }
         },
@@ -850,7 +850,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["onPostInit"] = "return function(self)\n    if GameState:isFlagSet(self.scene.objectLookup.Arm4) then\n        self:remove()\n    end\nend",
+            ["onInit"] = "return function(self)\n    if GameState:isFlagSet(\"darkswamp2.Arm4\") then\n        self:remove()\n    end\nend",
             ["whileColliding"] = "local Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal While = require \"actions/While\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\n\nreturn function(self, player, prevState)\n    local arm = self.scene.objectLookup.Arm4\n    local eyes = self.scene.objectLookup.Eyes4\n    if GameState:isFlagSet(arm) then\n        arm:remove()\n        eyes:remove()\n        self:remove()\n        return\n    end\n    if prevState == self.STATE_IDLE and arm.hidden then\n        eyes.hidden = false\n        eyes:run(While(\n            function()\n                return not arm:isRemoved()\n            end,\n            Serial {\n                Animate(eyes.sprite, \"blink\"),\n                Animate(eyes.sprite, \"forward\"),\n                Wait(1),\n                Animate(eyes.sprite, \"smile\"),\n                Wait(1),\n                Do(function()\n                    arm.hidden = false\n                    arm.x = eyes.x - 60\n                    arm.y = eyes.y\n                end),\n                Ease(arm, \"y\", function() return arm.y + 90 end, 4),\n                Do(function()\n                    arm.object.y = arm.y\n                    arm:updateCollision()\n                end),\n                Wait(2),\n                Do(function()\n                    arm:removeCollision()\n                end),\n                Parallel {\n                    Ease(arm, \"y\", function() return arm.y - 90 end, 2),\n                    Ease(arm.sprite.color, 4, 0, 4)\n                },\n                Do(function()\n                    arm.sprite.color[4] = 255\n                    arm.hidden = true\n                    eyes.sprite:setAnimation(\"forwardblink\")\n                end)\n            },\n            Do(function() end)\n        ))\n    end\nend"
           }
         },
@@ -871,10 +871,10 @@ return {
             ["battleInitiative"] = "opponent",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
+            ["flagOverride"] = "darkswamp2.Arm4",
             ["ghost"] = true,
             ["isBot"] = true,
-            ["onInit"] = "return function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self) then\n        self:remove()\n    end\nend",
-            ["onRemove"] = "return function(self)\n    if self.scene.objectLookup.Eyes4 then\n        self.scene.objectLookup.Eyes4:remove()\n        self.scene.objectLookup.EyesTrap4:remove()\n    end\nend",
+            ["onInit"] = "local onEnter = function(self)\n    if GameState:isFlagSet(self) then\n        self.scene.objectLookup.Eyes4:remove()\n        self.scene.objectLookup.EyesTrap4:remove()\n    end\nend\n\nreturn function(self)\n    self.hidden = true\n    if GameState:isFlagSet(self) then\n        self:remove()\n    end\n    self:addSceneHandler(\"enter\", onEnter)\nend",
             ["sprite"] = "../art/sprites/phantomgrab.png"
           }
         },

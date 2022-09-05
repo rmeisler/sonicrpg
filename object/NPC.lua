@@ -47,6 +47,7 @@ function NPC:construct(scene, layer, object)
 	self.specialHintPlayer = object.properties.specialHint
 	self.showHint = object.properties.showHint
 	self.hidingSpot = object.properties.hidingspot
+	self.noHideDown = object.properties.nohidedown
 	self.movespeed = object.properties.movespeed or 3
 	self.disappearOn = object.properties.disappearOn
 	self.angle = (object.properties.angle or 0) * (math.pi/180)
@@ -443,13 +444,17 @@ function NPC:getInitiative()
 end
 
 function NPC:getFlag()
-	return string.format(
-		"%s.%s.%d.%d",
-		self.scene.mapName,
-		self.name,
-		self.x,
-		self.y
-	)
+    if self.object.properties.flagOverride then
+	    return self.object.properties.flagOverride
+	else
+		return string.format(
+			"%s.%s.%d.%d",
+			self.scene.mapName,
+			self.name,
+			self.x,
+			self.y
+		)
+	end
 end
 
 function NPC:drop()

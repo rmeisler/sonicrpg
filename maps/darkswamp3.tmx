@@ -311,10 +311,9 @@
   <object id="141" name="EyesTrap2" type="BasicNPC" gid="7597" x="480" y="2240" width="192" height="160">
    <properties>
     <property name="ghost" type="bool" value="true"/>
-    <property name="onPostInit">return function(self)
-    if GameState:isFlagSet(self.scene.objectLookup.Arm2) then
+    <property name="onInit">return function(self)
+    if GameState:isFlagSet(&quot;darkswamp3.Arm2&quot;) then
         self:remove()
-        self.scene.objectLookup.Arm2:remove()
     end
 end</property>
     <property name="whileColliding">local Animate = require &quot;actions/Animate&quot;
@@ -327,7 +326,7 @@ local Serial = require &quot;actions/Serial&quot;
 
 return function(self, player, prevState)
     local arm = self.scene.objectLookup.Arm2
-    if prevState == self.STATE_IDLE and arm.hidden and not GameState:isFlagSet(arm) then
+    if prevState == self.STATE_IDLE and arm.hidden and not GameState:isFlagSet(&quot;darkswamp2.Arm2&quot;) then
         arm.hidden = false
         self:run(While(
             function() return not GameState:isFlagSet(arm) and not arm:isRemoved() end,
@@ -360,18 +359,21 @@ end</property>
     <property name="battleInitiative" value="opponent"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="flagOverride" value="darkswamp3.Arm2"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
-    <property name="onInit">return function(self)
+    <property name="onInit">local onEnter = function(self)
+    if GameState:isFlagSet(self) then
+        self.scene.objectLookup.EyesTrap2:remove()
+    end
+end
+
+return function(self)
     self.hidden = true
     if GameState:isFlagSet(self) then
         self:remove()
     end
-end</property>
-    <property name="onRemove">return function(self)
-    if self.scene.objectLookup.EyesTrap2 then
-        self.scene.objectLookup.EyesTrap2:remove()
-    end
+    self:addSceneHandler(&quot;enter&quot;, onEnter)
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>
@@ -385,10 +387,9 @@ end</property>
   <object id="174" name="EyesTrap1" type="BasicNPC" gid="7597" x="2240" y="704" width="192" height="160">
    <properties>
     <property name="ghost" type="bool" value="true"/>
-    <property name="onPostInit">return function(self)
-    if GameState:isFlagSet(self.scene.objectLookup.Arm1) then
+    <property name="onInit">return function(self)
+    if GameState:isFlagSet(&quot;darkswamp2.Arm1&quot;) then
         self:remove()
-        self.scene.objectLookup.Arm1:remove()
     end
 end</property>
     <property name="whileColliding">local Animate = require &quot;actions/Animate&quot;
@@ -434,18 +435,21 @@ end</property>
     <property name="battleInitiative" value="opponent"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="flagOverride" value="darkswamp3.Arm1"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
-    <property name="onInit">return function(self)
+    <property name="onInit">local onEnter = function(self)
+    if GameState:isFlagSet(self) then
+        self.scene.objectLookup.EyesTrap1:remove()
+    end
+end
+
+return function(self)
     self.hidden = true
     if GameState:isFlagSet(self) then
         self:remove()
     end
-end</property>
-    <property name="onRemove">return function(self)
-    if self.scene.objectLookup.EyesTrap1 then
-        self.scene.objectLookup.EyesTrap1:remove()
-    end
+    self:addSceneHandler(&quot;enter&quot;, onEnter)
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomgrab.png"/>
    </properties>

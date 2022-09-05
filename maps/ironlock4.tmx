@@ -389,6 +389,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="true"/>
+    <property name="nohidedown" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -396,6 +397,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="true"/>
+    <property name="nohidedown" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -584,6 +586,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="true"/>
+    <property name="nohidedown" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -598,6 +601,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="true"/>
+    <property name="nohidedown" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -605,6 +609,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="true"/>
+    <property name="nohidedown" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -661,6 +666,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="true"/>
+    <property name="nohidedown" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -689,6 +695,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="false"/>
+    <property name="nohidedown" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -696,6 +703,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="false"/>
+    <property name="nohidedown" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -703,6 +711,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="false"/>
+    <property name="nohidedown" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -808,6 +817,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="true"/>
+    <property name="nohidedown" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -815,6 +825,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="hidingspot" type="bool" value="true"/>
+    <property name="nohidedown" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/crate.png"/>
    </properties>
   </object>
@@ -870,13 +881,6 @@
     <property name="defaultAnim" value="ironlock"/>
     <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/pillar.png"/>
-   </properties>
-  </object>
-  <object id="691" name="Save" type="SavePoint" gid="1714" x="2112" y="1152" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
   <object id="695" name="View3" type="BasicNPC" gid="1922" x="4512" y="1152" width="448" height="128" visible="0">

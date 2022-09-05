@@ -173,6 +173,9 @@ function LaserTrap:use()
 			Ease(self.scene.camPos, "y", function() return self.scene.player.y - (self.y + self.object.height) end, 1, "inout"),
 		},
 		Do(function()
+			if not self.laser1 then
+				self:postInit()
+			end
 			self.scene.audio:playSfx("shocked", 0.5, true)
 			self:onUse()
 		end),
