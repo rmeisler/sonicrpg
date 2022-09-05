@@ -490,6 +490,9 @@
     <property name="isBot" type="bool" value="true"/>
     <property name="onInit">return function(self)
     self.hidden = true
+    if GameState:isFlagSet(&quot;darkswamp4.Arm1&quot;) then
+        self:remove()
+    end
 end</property>
     <property name="sprite" type="file" value="../art/sprites/phantomface.png"/>
    </properties>
@@ -513,45 +516,47 @@ local Parallel = require &quot;actions/Parallel&quot;
 return function(self, player, prevState)
     local arm = self.scene.objectLookup.Arm1
     local eyes = self.scene.objectLookup.Eyes1
-    if GameState:isFlagSet(&quot;darkswamp4.Arm1&quot;) then
+    if GameState:isFlagSet(arm) then
+        arm:remove()
+        eyes:remove()
+        self:remove()
+        self.scene.objectLookup.Chest4.hidden = false
         return
     end
     if prevState == self.STATE_IDLE and arm.hidden then
         eyes.hidden = false
         eyes:run(While(
             function()
-                return not arm:isRemoved() and not eyes:isRemoved()
+                return not arm:isRemoved()
             end,
             Serial {
+                Animate(eyes.sprite, &quot;blink&quot;),
                 Animate(eyes.sprite, &quot;forward&quot;),
-                Wait(0.5),
+                Wait(1),
                 Animate(eyes.sprite, &quot;smile&quot;),
-                Wait(0.5),
+                Wait(1),
                 Do(function()
                     arm.hidden = false
                     arm.x = eyes.x - 60
                     arm.y = eyes.y
                 end),
-                Ease(arm, &quot;y&quot;, function() return arm.y + 40 end, 4),
+                Ease(arm, &quot;y&quot;, function() return arm.y + 90 end, 4),
                 Do(function()
                     arm.object.y = arm.y
                     arm:updateCollision()
                 end),
                 Wait(2),
                 Do(function()
-                    arm.object.y = arm.y - 200
-                    arm:updateCollision()
+                    arm:removeCollision()
                 end),
                 Parallel {
-                    Ease(arm, &quot;y&quot;, function() return arm.y - 40 end, 2),
+                    Ease(arm, &quot;y&quot;, function() return arm.y - 90 end, 2),
                     Ease(arm.sprite.color, 4, 0, 4)
                 },
                 Do(function()
-                    if not arm:isRemoved() and not eyes:isRemoved() then
-                        arm.sprite.color[4] = 255
-                        arm.hidden = true
-                        eyes.sprite:setAnimation(&quot;forwardblink&quot;)
-                    end
+                    arm.sprite.color[4] = 255
+                    arm.hidden = true
+                    eyes.sprite:setAnimation(&quot;forwardblink&quot;)
                 end)
             },
             Do(function() end)
@@ -572,6 +577,7 @@ end</property>
     <property name="onInit">local onEnter = function(self)
     if GameState:isFlagSet(self) then
         self.scene.objectLookup.Eyes1:remove()
+        self.scene.objectLookup.EyesTrap1:remove()
         self.scene.objectLookup.Chest4.hidden = false
     end
 end
