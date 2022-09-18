@@ -123,10 +123,7 @@ return function(scene, hint)
 				},
 				Ease(scene.objectLookup.King.sprite.color, 4, 0, 0.3)
 			},
-			Spawn(Parallel {
-				Repeat(PlayAudio("sfx", "quake", 1.0)),
-				scene:screenShake(10, 30, 50)
-			}),
+			Spawn(scene:screenShake(10, 30, 120)),
 			Parallel {
 				Ease(scene.objectLookup.Sonic, "x", scene.objectLookup.Sally.x, 2, "linear"),
 				Ease(scene.objectLookup.Sally, "y", 352 - 98, 2, "linear"),
