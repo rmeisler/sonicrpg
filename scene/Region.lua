@@ -22,8 +22,9 @@ function Region:onEnter(args)
 	self.args = args
 
 	self.maps = {}
-	self.images = {}
-	self.animations = {}
+	self.images = args.images or {}
+	self.audio = args.audio or self.audio
+	self.animations = args.animations or {}
 	
 	local manifest = love.filesystem.load(args.manifest)()
 	
@@ -230,6 +231,9 @@ function Region:goToNext()
 		local mapName = self.args.map or self.primaryMap
 		local map = self.maps[mapName]
 		map.music = self.args.nextMusic
+		
+		collectgarbage("collect")
+		
 		-- Transition to primary scene
 		self.sceneMgr:switchScene {
 			class = "BasicScene",
@@ -242,6 +246,7 @@ function Region:goToNext()
 			fadeInSpeed = 0.2,
 			region = self.args.manifest,
 			spawn_point = self.args.spawn_point,
+			hint = self.args.hint,
 			cache = true
 		}
 	end

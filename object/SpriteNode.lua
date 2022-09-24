@@ -36,6 +36,7 @@ function SpriteNode:construct(scene, transform, color, imgsrc, w, h, layer)
 	self.drawWithShine = false
 	self.drawWithParallax = false
 	self.drawWithGlow = false
+	self.drawWithNight = true
 	self.glowColor = {0,0,0,0}
 	self.layer = layer
 	self.visible = true
@@ -153,7 +154,7 @@ function SpriteNode:update(dt)
 	
 	if self.drawWithParallax then
 		self.t = self.t + dt * self.parallaxSpeed
-		SpriteNode.scanShader:send("time", self.t)
+		SpriteNode.scanShader[self.drawWithParallax]:send("time", self.t)
 	end
 	
 	if self.drawWithShine then
@@ -229,20 +230,29 @@ function SpriteNode:removeShine()
 	self.drawWithShine = false
 end
 
-function SpriteNode:setParallax(speed)
-	self.drawWithParallax = true
+function SpriteNode:setParallax(speed, color)
+	color = color or "green"
+	self.drawWithParallax = color
 	self.t = 0
 	self.parallaxSpeed = speed or 1.0
 	
-	if not SpriteNode.parallaxMap then
-		SpriteNode.parallaxMap = love.graphics.newCanvas()
-		SpriteNode.scanShader = love.graphics.newShader [[
+	if not SpriteNode.scanShader then
+		SpriteNode.scanShader = {}
+	end
+	
+	if not SpriteNode.scanShader[color] then
+		local scanColors = {
+			green = "vec4(0,1,0,0)",
+			blue  = "vec4(0,1,1,0)",
+			yellow = "vec4(1,1,0,0)"
+		}
+		local script = string.gsub([[
 			extern number time;
 			vec4 effect(vec4 colour, Image tex, vec2 tc, vec2 sc)
 			{
 				if (time < 1.0) {
 					if (tc.y < time) {
-						return vec4(0,1,0,0) + Texel(tex, tc);
+						return COLORVEC + Texel(tex, tc);
 					} else {
 						return Texel(tex, tc);
 					}
@@ -250,12 +260,13 @@ function SpriteNode:setParallax(speed)
 					if ((tc.y + 1.0) < time) {
 						return Texel(tex, tc);
 					} else {
-						return vec4(0,1,0,0) + Texel(tex, tc);
+						return COLORVEC + Texel(tex, tc);
 					}
 				}
 			}
-		]]
-		SpriteNode.scanShader:send("time", 0)
+		]], "COLORVEC", scanColors[color])
+		SpriteNode.scanShader[color] = love.graphics.newShader(script)
+		SpriteNode.scanShader[color]:send("time", 0)
 	end
 end
 
@@ -337,11 +348,19 @@ function SpriteNode:draw(override)
 	elseif self.drawWithParallax then
 		local prevShader = love.graphics.getShader()
 		
-		love.graphics.setShader(SpriteNode.scanShader)
+		love.graphics.setShader(SpriteNode.scanShader[self.drawWithParallax])
 		
 		drawSprite()
 		
 		love.graphics.setShader(prevShader)
+	elseif self.scene.nighttime and
+		   not self.scene.map.properties.ignorenight and
+		   self.drawWithNight
+	then
+		self.scene.night:draw(function()
+			self.scene.night.shader:send("opacity", self.color[4]/255)
+			drawSprite()
+		end)
 	else
 		love.graphics.setColor(self.color)
 		drawSprite()

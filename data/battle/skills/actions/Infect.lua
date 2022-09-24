@@ -51,7 +51,7 @@ return function(self, target)
 				PlayAudio("sfx", "shocked", 0.5, true),
 			}
 		},
-		target:takeDamage({attack = 10, speed = 0, luck = 0}),
+		target:takeDamage({attack = self.stats.focus, speed = 100, luck = 0}),
 		
 		MessageBox {
 			message=target.name.." is malfunctioning!",

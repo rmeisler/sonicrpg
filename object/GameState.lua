@@ -101,12 +101,19 @@ function GameState:addToParty(member, level, new)
 	end
 
 	if self.inactiveMembers[member] then
-		self.party[member] = self.inactiveMembers[member]
+		self:addBackToParty(member)
 	else
 		self.party[member] = self.profiles[member][level]
 	end
 	
 	self.leader = member
+end
+
+function GameState:addBackToParty(member)
+    if self.inactiveMembers[member] then
+		self.party[member] = self.inactiveMembers[member]
+		self.inactiveMembers[member] = nil
+	end
 end
 
 function GameState:removeFromParty(member)
@@ -122,11 +129,49 @@ function GameState:partySize()
 	return count
 end
 
+function GameState:getGatedSkill(flag, skillName)
+	return function()
+		if self:isFlagSet(flag) then
+			return require("data/battle/skills/"..skillName)
+		else
+			return nil
+		end
+	end
+end
+
+function GameState:getEarnedSkill(flag, skillName)
+	return function()
+		local skillPath = "data/battle/skills/"..skillName
+		if self:isFlagSet(flag) then
+			skillPath = skillPath.."2"
+		end
+		return require(skillPath)
+	end
+end
+
 function GameState:getSkills(member)
 	local member = self.party[member]
 	for curLevel = member.level, 1, -1 do 
 		if member.levelup[curLevel] then
-			return member.levelup[curLevel].skills
+			local skillDefs = member.levelup[curLevel].skills
+			local skills = {}
+			for _, skill in pairs(skillDefs) do
+				if skill ~= nil then
+					if type(skill) == "function" then
+						table.insert(skills, skill())
+					else
+						table.insert(skills, skill)
+					end
+					if member.id == "sally" and
+					   self:isEquipped(member.id, ItemType.Accessory, "Signal Booster")
+					then
+						local skillCopy = table.clone(skills[#skills])
+						skillCopy.cost = math.max(1, math.floor(skillCopy.cost * (1.0 - 0.25)))
+						skills[#skills] = skillCopy
+					end
+				end
+			end
+			return skills
 		end
 	end
 	return {}
@@ -263,7 +308,7 @@ function GameState:levelup(member)
 		member.stats[stat] = self:calcNextStat(member, member.level-1, stat)
 	end
 
-	member.stats.maxxp = self:calcNextXp(member.id, member.level) - member.stats.startxp
+	member.stats.maxxp = self:calcNextXp(member.id, member.level) - self:calcNextXp(member.id, member.level-1)
 
 	-- Add stat bonuses from equipment
 	for _, equip in pairs(member.equip) do
@@ -365,24 +410,6 @@ function GameState:load(scene, slot)
 
 	local data = love.filesystem.load("sage2020_game"..tostring(slot)..".sav")()
 	
-	-- Add party members, grant items, set flags
-	for k, v in pairs(data.party) do
-		self:addToParty(k, v.level, false)
-		self.party[k].hp = v.hp
-		self.party[k].sp = v.sp
-		self.party[k].xp = v.xp
-		self.party[k].equip = v.equip
-		
-		-- Add stat bonuses from equipment
-		for _, equip in pairs(self.party[k].equip) do
-			for stat, bonus in pairs(equip.stats) do
-				self.party[k].stats[stat] = self.party[k].stats[stat] + bonus
-			end
-		end
-	end
-	
-	self.leader = data.leader
-	
 	-- Load inventory and flags
 	local types = {
 		ItemType.Weapon,
@@ -397,13 +424,68 @@ function GameState:load(scene, slot)
 	
 	self.flags = data.flags
 	
-	scene.sceneMgr:pushScene {
-		class = "Region",
-		manifest = data.region,
-		map = data.map,
-		spawn_point = data.spawnPoint,
-		nextMusic = data.music
-	}
+	-- ep3 save file
+	if self:isFlagSet("ep3_introdone") then
+		-- Add party members, grant items, set flags
+		for k, v in pairs(data.party) do
+			self:addToParty(k, v.level, false)
+			self.party[k].hp = v.hp
+			self.party[k].sp = v.sp
+			self.party[k].xp = v.xp
+			self.party[k].equip = v.equip
+			
+			-- Add stat bonuses from equipment
+			for _, equip in pairs(self.party[k].equip) do
+				for stat, bonus in pairs(equip.stats) do
+					self.party[k].stats[stat] = self.party[k].stats[stat] + bonus
+				end
+			end
+		end
+		for k, v in pairs(data.inactive) do
+			self.inactiveMembers[k] = self:loadPartyMember(k, v.level, false)
+			self.inactiveMembers[k].hp = v.hp
+			self.inactiveMembers[k].sp = v.sp
+			self.inactiveMembers[k].xp = v.xp
+			self.inactiveMembers[k].equip = v.equip
+			
+			-- Add stat bonuses from equipment
+			for _, equip in pairs(self.inactiveMembers[k].equip) do
+				for stat, bonus in pairs(equip.stats) do
+					self.inactiveMembers[k].stats[stat] = self.inactiveMembers[k].stats[stat] + bonus
+				end
+			end
+		end
+		self.leader = data.leader
+		
+		-- What manifest to use?...
+		if self:isFlagSet("ironlock_intro") then
+			-- Use ironlock manifest file
+			scene.sceneMgr:pushScene {
+				class = "Region",
+				manifest = "maps/ironlock_manifest_full.lua",
+				map = data.map,
+				spawn_point = data.spawnPoint,
+				nextMusic = data.music,
+				hint = "fromload"
+			}
+		else
+			-- Use default manifest file
+			scene.sceneMgr:pushScene {
+				class = "Region",
+				manifest = data.region,
+				map = data.map,
+				spawn_point = data.spawnPoint,
+				nextMusic = data.music,
+				hint = "fromload"
+			}
+		end
+	-- ep1 or ep2 save, treat as new game+
+	else
+		self:addToParty("sally", 6, true)
+		self.leader = "sally"
+		self:setFlag("ep3_intro")
+		scene.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/sonicdemo_manifest.lua"}
+	end
 end
 
 

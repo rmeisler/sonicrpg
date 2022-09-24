@@ -11,6 +11,17 @@ return {
 		shock = {
 			frames = {{11,4}}
 		},
+		runscared = {
+			frames = {{9,4},{10,4}},
+			speed = 0.04
+		},
+		
+		climb_1 = {
+			frames = {{1,3}}
+		},
+		climb_2 = {
+			frames = {{5,3}}
+		},
 		
 		stepup = {
 		    frames = {{0,3},{1,3},{0,3},{5,3}},
@@ -66,8 +77,17 @@ return {
 			frames = {{13,2}}
 		},
 		
+		leapleft = {
+			frames = {{6,1}}
+		},
+		leapright = {
+			frames = {{6,0}}
+		},
 		leapdown = {
-			frames = {{5,2}}
+			frames = {{6,2}}
+		},
+		leapup = {
+			frames = {{6,3}}
 		},
 		
 		idleright = {
@@ -128,6 +148,21 @@ return {
 			frames = {{10,1}}
 		},
 		
+		paceleft = {
+			frames = {{14,4},{15,4},{16,4},{15,4}},
+			speed = 0.15
+		},
+		paceright = {
+			frames = {{14,3},{15,3},{16,3},{15,3}},
+			speed = 0.15
+		},
+		scream = {
+			frames = {{16,2}}
+		},
+		determined = {
+			frames = {{15,2}}
+		},
+		
 		proud = {
 			frames = {{11,1},{12,1},{13,1},{14,1}},
 			speed = 0.2
@@ -144,5 +179,29 @@ return {
 			frames = {{15,1},{16,1}},
 			speed = 0.2
 		},
+		
+		meeting_idledown = {
+			frames = {{0,2}},
+			clip = {0,0,47,40}
+		},
+		meeting_shock = {
+			frames = {{11,4}},
+			clip = {0,0,47,40}
+		},
+		dead = {
+            frames = {{11,3}}
+        },
+		nauseated = {
+            frames = {{10,3}}
+        },
+		sleeping = {
+            frames = {{15,0}}
+        },
+		sleeping_tired = {
+            frames = {{14,0}}
+        },
+		crouch = {
+			frames = {{14,2}}
+		}
     }
 }

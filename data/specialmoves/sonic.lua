@@ -174,7 +174,7 @@ local RunUpdate = function(self, dt)
 			end
 		end
 		
-		if not self.cinematic then
+		if not self.cinematic and not self.noMoveSpecial then
 			if love.keyboard.isDown("left") then
 				if self.fy > 0 then
 					self.state = "juicedownleft"
@@ -252,7 +252,7 @@ local RunUpdate = function(self, dt)
 			end
 		end
 		
-		if not self.cinematic then
+		if not self.cinematic and not self.noMoveSpecial then
 			if love.keyboard.isDown("up") and not next(self.stairs) then
 				if self.fx > 0 then
 					self.state = "juiceupright"
@@ -708,6 +708,7 @@ local ChargeLeftRight = function(player, direction)
 	if player.skipChargeSpecialMove then
 		player.basicUpdate = RunUpdate
 		player.skipChargeSpecialMove = false
+		player.sprite:setAnimation(player.state)
 		return
 	end
 
@@ -882,6 +883,7 @@ local ChargeUpDown = function(player, direction)
 	if player.skipChargeSpecialMove then
 		player.basicUpdate = RunUpdate
 		player.skipChargeSpecialMove = false
+		player.sprite:setAnimation(player.state)
 		return
 	end
 

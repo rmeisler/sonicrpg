@@ -49,21 +49,29 @@ return function(scene, hint)
 			waitAction = Wait(waitTime)
 		end
 		return Serial {
-			Ease(self, "y", self.y - 50, 8, "linear"),
-			Ease(self, "y", self.y, 8, "linear"),
+			Ease(self, "y", function() return self.y - 50 end, 8, "linear"),
+			Ease(self, "y", function() return self.y + 50 end, 8, "linear"),
 			waitAction
 		}
 	end
 	
 	local caughtHandler
 	caughtHandler = function(bot)
+		scene.player:removeHandler("caught", caughtHandler)
 		scene.player.doingSpecialMove = false
 		scene.player.basicUpdate = function(p, dt) end
 		scene.player.sprite:setAnimation("shock")
 		for k,v in pairs(scene.player.keyhints) do
 			scene.player.hidekeyhints[k] = v
 		end
-		scene.player:removeHandler("caught", caughtHandler)
+		scene.player:removeKeyHint()
+		for _,piece in pairs(scene.player.extenderPieces or {}) do
+			piece:remove()
+		end
+		if scene.player.extenderarm then
+			scene.player.extenderarm:remove()
+		end
+		scene.player.extenderPieces = {}
 		scene:run(
 			BlockPlayer {
 				Wait(1),
@@ -84,11 +92,6 @@ return function(scene, hint)
 			
 			scene.player.doingSpecialMove = false
 			scene.player.basicUpdate = scene.player.origUpdate or scene.player.basicUpdate
-
-			if hint == "caught" then
-				scene.player.x = scene.player.x + 20
-				scene.player.y = scene.player.y + 50
-			end
 		end),
 		
 		Wait(1),
@@ -99,7 +102,7 @@ return function(scene, hint)
 				{name="objects"},
 				{
 					name = "FactoryBot",
-					x = scene.objectLookup.FStart.x,
+					x = scene.objectLookup.FStart.x + 50,
 					y = scene.objectLookup.FStart.y,
 					width = 64,
 					height = 32,
@@ -151,7 +154,7 @@ return function(scene, hint)
 						Animate(fbot.sprite, "idleleft"),
 						Parallel {
 							Do(function()
-								if not scene.player:isHiding("right") and
+								if scene.player and not scene.player:isHiding("right") and
 								   scene.objectLookup.FBotVisibility.state == NPC.STATE_TOUCHING
 								then
 									scene.player:invoke("caught", fbot)

@@ -45,9 +45,9 @@ return {
 	},
 
 	equip = {
-		weapon    = nil,
-		armor     = require "data/armor/RoyalCoat",
-		accessory = require "data/accessories/Boots",
+		weapon = nil,
+		armor  = require "data/armor/RoyalCoat",
+		legs   = require "data/legs/Boots",
 	},
 
 	items = {
@@ -60,6 +60,32 @@ return {
 				require "data/battle/skills/Bore",
 			}
 		},
+		[5] = {
+			messages = {"Antoine learned \"Run\"!"},
+			skills = {
+				require "data/battle/skills/Bore",
+				require "data/battle/skills/Run",
+			}
+		},
+		[6] = {
+			messages = {"Antoine learned \"Parry\"!"},
+			skills = {
+				require "data/battle/skills/Bore",
+				require "data/battle/skills/Run",
+				require "data/battle/skills/Parry",
+				GameState:getGatedSkill("ep3_antoine", "Resiliency")
+			}
+		},
+		[7] = {
+			messages = {"Antoine learned \"Cook\"!"},
+			skills = {
+				require "data/battle/skills/Bore",
+				require "data/battle/skills/Run",
+				require "data/battle/skills/Parry",
+				require "data/battle/skills/Cook",
+				GameState:getGatedSkill("ep3_antoine", "Resiliency")
+			}
+		}
 	},
 	
 	specialmove = require "data/specialmoves/antoine",

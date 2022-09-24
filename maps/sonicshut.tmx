@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="22">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="24">
  <properties>
-  <property name="onload" type="file" value="actions/sonicshut_intro.lua"/>
+  <property name="ignorenight" type="bool" value="true"/>
+  <property name="onload" type="file" value="actions/knotholehut.lua"/>
   <property name="regionName" value="Sonic's Hut"/>
  </properties>
  <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
@@ -58,6 +59,30 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <layer name="nighthide1" width="25" height="20" opacity="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,844,845,92,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,873,874,121,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,148,149,150,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,177,178,179,0,0,0,295,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,206,207,208,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
  <layer name="above2" width="25" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -82,14 +107,61 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <layer name="above3" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,870,866,867,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,899,895,896,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,928,924,925,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,953,954,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="nighthide2" width="25" height="20" opacity="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,192,188,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,221,217,218,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,250,246,247,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,275,276,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
  <objectgroup name="objects">
   <object id="1" name="Chest1" type="Chest" gid="6839" x="544" y="448" width="64" height="64">
    <properties>
-    <property name="GreenLeaf" type="int" value="1"/>
+    <property name="CrystalWater" type="int" value="2"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="3" name="Spawn 1" type="Player" gid="4565" x="384" y="288" width="32" height="32"/>
   <object id="4" name="Door" type="Door" gid="6839" x="352" y="608" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -112,12 +184,17 @@
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Do = require &quot;actions/Do&quot;
+local Action = require &quot;actions/Action&quot;
 
 local SpriteNode = require &quot;object/SpriteNode&quot;
 local Transform = require &quot;util/Transform&quot;
 local Rect = unpack(require &quot;util/Shapes&quot;)
 
 return function(self)
+    if GameState.leader ~= &quot;sonic&quot; then
+        return Action()
+    end
+
     local pic = SpriteNode(self.scene, Transform(0,0,1,1), {255,255,255,0}, &quot;splash/sonicpicture&quot;, nil, nil, &quot;ui&quot;)
 
     local w = (love.graphics.getWidth() - 10)
@@ -141,6 +218,7 @@ return function(self)
         Do(function() pic:remove() end)
     }
 end</property>
+    <property name="usableBy" value="sonic"/>
    </properties>
   </object>
   <object id="7" name="Guitar" type="BasicNPC" gid="6839" x="224" y="320" width="32" height="32">
@@ -154,11 +232,16 @@ local Do = require &quot;actions/Do&quot;
 local Menu = require &quot;actions/Menu&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Action = require &quot;actions/Action&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
 
 return function(self)
+    if GameState.leader ~= &quot;sonic&quot; then
+        return Action()
+    end
+
     return BlockPlayer { Menu {
         layout = Layout {
             {Layout.Text(&quot;Play guitar?&quot;), selectable = false},
@@ -198,6 +281,7 @@ return function(self)
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/guitar.png"/>
+    <property name="usableBy" value="sonic"/>
    </properties>
   </object>
   <object id="11" name="Brightness" type="BasicNPC" gid="6860" x="320" y="288" width="64" height="64">
@@ -207,7 +291,9 @@ end</property>
     player.lights[tostring(self)] = nil
 end</property>
     <property name="whileColliding">return function(self, player)
-    player.lights[tostring(self)] = true
+    if not self.scene.nighttime then
+        player.lights[tostring(self)] = true
+    end
 end</property>
    </properties>
   </object>
@@ -267,41 +353,9 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/pot.png"/>
    </properties>
   </object>
-  <object id="19" name="AlarmClock" type="BasicNPC" gid="6839" x="320" y="256" width="32" height="32">
+  <object id="23" name="Spawn 1" type="Player" gid="4565" x="384" y="448" width="32" height="32">
    <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alignOffsetY" type="float" value="-32"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Do = require &quot;actions/Do&quot;
-local Animate = require &quot;actions/Animate&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-
-return function(self)
-    return Serial {
-        Do(function()
-            self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
-            self.scene.player.noIdle = true
-        end),
-        MessageBox {
-            message = &quot;Sonic: Ugh. {p40}I can't believe Sal is making us use these alarm clocks...&quot;
-        },
-        Parallel {
-            Animate(self.scene.player.sprite, &quot;irritated&quot;, true),
-            MessageBox {
-                message = &quot;Sonic: Doesn't she know that a hedgehog needs his beauty sleep?!&quot;
-            }
-        },
-        Do(function()
-            self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1
-            self.scene.player.noIdle = false
-            self.scene.player.state = &quot;idledown&quot;
-            self.scene.player.hidekeyhints[tostring(self)] = nil
-        end)
-    }
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/clock.png"/>
+    <property name="orientation" value="down"/>
    </properties>
   </object>
  </objectgroup>

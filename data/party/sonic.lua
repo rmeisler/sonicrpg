@@ -46,12 +46,11 @@ return {
 
 	equip = {
 		weapon    = require "data/weapons/ThickGloves",
-		armor     = nil,
-		accessory = require "data/accessories/Backpack",
+		armor     = require "data/armor/Backpack"
 	},
 
 	items = {
-		
+		{count = 1, item = require "data/items/PowerRing"}
 	},
 	
 	levelup = {
@@ -77,6 +76,27 @@ return {
 				require "data/battle/skills/Spindash",
 				require "data/battle/skills/Roundabout",
 				require "data/battle/skills/Tease"
+			}
+		},
+		[6] = {
+			messages = {"Sonic learned \"Slam\"!"},
+			skills = {
+				require "data/battle/skills/PowerRing",
+				require "data/battle/skills/Spindash",
+				require "data/battle/skills/Roundabout",
+				require "data/battle/skills/Tease",
+				require "data/battle/skills/Slam"
+			}
+		},
+		[8] = {
+			messages = {"Sonic learned \"Pummel\"!"},
+			skills = {
+				require "data/battle/skills/PowerRing",
+				require "data/battle/skills/Spindash",
+				require "data/battle/skills/Roundabout",
+				require "data/battle/skills/Tease",
+				require "data/battle/skills/Slam",
+				require "data/battle/skills/Pummel"
 			}
 		},
 	},

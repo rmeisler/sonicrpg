@@ -4,7 +4,7 @@ return {
 	name = "Roundabout",
 	target = TargetType.Opponent,
 	unusable = function(target)
-		return target.side == TargetType.Party or target.name == "Mecha Arm"
+		return target.side == TargetType.Party or target.name == "Mecha Arm" or target.aerial
 	end,
 	cost = 6,
 	desc = "Confuses enemy.",

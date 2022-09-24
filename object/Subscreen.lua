@@ -170,9 +170,15 @@ function Subscreen:runBackground(menuArgs)
 end
 
 function Subscreen:openItemMenu()
-	local rows = {}
+	local optionPages = {}
+	--local itemsPerPage = 6
+	--local curPage = 1
 	for _,record in pairs(GameState.items) do
-		table.insert(rows, self:getItemEntry(record))
+		--[[if #optionPages[curPage] == itemsPerPage then
+			curPage = curPage + 1
+			optionPages[curPage] = {}
+		end]]
+		table.insert(optionPages, self:getItemEntry(record))
 	end
 
 	local _, first = next(GameState.items)
@@ -183,11 +189,11 @@ function Subscreen:openItemMenu()
 	end
 	
 	self:runBackground {
-		layout = Layout(rows),
+		layout = Layout(optionPages),
 		cancellable = true,
-		transform = Transform(510, 30 + (#rows * 40)/2),
+		transform = Transform(510, 80 + (#optionPages * 28)/2),
 		colSpacing = 230
-		--pagesOverride = math.floor((#rows / 6) + 1)
+		--pages = optionPages
 	}
 end
 
@@ -200,11 +206,11 @@ function Subscreen:openSkillsMenu(player)
 	local layout = {
 		Layout.Columns{ columnTemplate, columnTemplate },
 		Layout.Columns{ columnTemplate, columnTemplate },
-		Layout.Columns{ columnTemplate, columnTemplate },
+		Layout.Columns{ columnTemplate, columnTemplate }
 	}
-	local index = 1
+	local index = 0
 	for _, skill in pairs(GameState:getSkills(player.id)) do
-		layout[math.floor(index/3) + 1].__columns[((index + 1) % 2) + 1] = {
+		layout[math.floor(index / 2) + 1].__columns[(index % 2) + 1] = {
 			Layout.Text(string.format("%s%"..tostring(10 - skill.name:len()).."s", skill.name, "")),
 			Layout.Text{text={{255,255,0}, string.format("%s%"..tostring(skill.cost >= 10 and 0 or 1).."s", skill.cost, "")}},
 			choose = function(menu)
@@ -343,9 +349,10 @@ function Subscreen:getEquipEntry(itemType, item)
 		table.insert(row, Layout.Text{text={color, data.value}})
 	end
 	if itemEvent then
-		if item.event.type == EventType.X then
+		if item.event.type == EventType.X or item.showX then
 			table.insert(row, Layout.Image("xevent"))
-		elseif item.event.type == EventType.Z then
+		end
+		if item.event.type == EventType.Z or item.showZ then
 			table.insert(row, Layout.Image("zevent"))
 		end
 	end

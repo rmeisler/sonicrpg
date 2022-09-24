@@ -8,6 +8,9 @@ return {
         idle = {
             frames = {{0,0}}
         },
+		idle_lookup = {
+            frames = {{2,5}}
+        },
 		backward = {
 			frames = {{4,3}}
 		},
@@ -16,6 +19,9 @@ return {
 		},
         crouch = {
             frames = {{3,0}}
+        },
+		stun = {
+            frames = {{3,5}}
         },
         leap = {
             frames = {{4,0}}
@@ -73,5 +79,8 @@ return {
 		idleup = {
 			frames = {{1,5}}
 		},
+		block = {
+			frames = {{4,1}}
+		}
     }
 }

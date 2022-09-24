@@ -31,8 +31,6 @@ function BasicScene:onEnter(args)
 	
 	self.lastSpawnPoint = args.spawn_point or "Spawn 1"
 	
-	--print("spawn = "..self.lastSpawnPoint)
-	
 	self.spawnPoints = {}
 	
 	self.region = args.region
@@ -49,7 +47,12 @@ function BasicScene:onEnter(args)
 	self.mboxGradient = args.images["mboxgradient"]
 	self.camPos = Transform()
 	self.tutorial = args.tutorial
+	self.nighttime = args.nighttime or self.map.properties.nighttime
+	self.noBattleMusic = self.map.properties.noBattleMusic
 	
+	print(self.mapName .. " is night? " .. tostring(self.nighttime))
+	
+	self.args = args
 	self.cacheSceneData = args.cache
 	
 	-- NOTE: This is how we draw the lua map data
@@ -57,6 +60,35 @@ function BasicScene:onEnter(args)
 	-- All our SceneNode drawing interface requires is a
 	-- draw function, so this works out fine.
 	self:addNode(self.map, "tiles")
+
+	if self.nighttime and not self.map.properties.ignorenight then
+		self.originalMapDraw = self.map.drawTileLayer
+		self.originalImgDraw = self.map.drawImageLayer
+		self.map.drawTileLayer = function(map, layer)
+			if not self.night then
+				self.night = shine.nightcolor()
+			end
+			self.night:draw(function()
+				self.night.shader:send("opacity", layer.opacity or 1)
+				self.night.shader:send("lightness", 1 - (layer.properties.darkness or 0))
+				self.originalMapDraw(map, layer)
+			end)
+		end
+		self.map.drawImageLayer = function(map, layer)
+			if not self.night then
+				self.night = shine.nightcolor()
+			end
+			if layer.properties.nonight then
+				self.originalImgDraw(map, layer)
+			else
+				self.night:draw(function()
+					self.night.shader:send("opacity", layer.opacity or 1)
+					self.night.shader:send("lightness", 1 - (layer.properties.darkness or 0))
+					self.originalImgDraw(map, layer)
+				end)
+			end
+		end
+	end
 	
 	local placeholder
 	local classCache = {}
@@ -71,7 +103,7 @@ function BasicScene:onEnter(args)
 				self:sortedDraw(layer.name)
 			end
 			
-			for index,object in ipairs(layer.objects) do
+			for _,object in pairs(layer.objects) do
 				if not classCache[object.type] then
 					-- Dynamically load classes at most once
 					classCache[object.type] = require ("object/"..object.type)
@@ -155,7 +187,7 @@ function BasicScene:onEnter(args)
 			self.player.state = spawn.properties.orientation and "idle"..spawn.properties.orientation or "idledown"
 			
 			-- Restart special move, if necessary
-			if args.doingSpecialMove then
+			if args.doingSpecialMove and GameState.leader == "sonic" then
 				self.player.basicUpdate = function(p, dt) end
 				self.player.sprite.visible = false
 				self.player:run(BlockPlayer {
@@ -199,7 +231,14 @@ function BasicScene:onEnter(args)
 	local fadeInSpeed = args.fadeInSpeed or 1.0
 	self.bgColor = {0,0,0,255}
 	ScreenShader:sendColor("multColor", self.bgColor)
+	
+	if GameState.leader == "bunny" then
+		print("no special move")
+		self.player.noSpecialMove = true
+	end
+	
 	return Serial {
+		args.enterDelay and Wait(args.enterDelay) or Action(),
 		Spawn(
 			Serial {
 				Parallel {
@@ -218,11 +257,18 @@ function BasicScene:onEnter(args)
 		
 		Do(function()
 			self:addHandler("keytriggered", BasicScene.mainInput, self)
+			
+			if GameState.leader == "bunny" then
+				print("yes special move")
+				self.player.noSpecialMove = false
+			end
 		end)
 	}
 end
 
 function BasicScene:onReEnter(args)
+	print("re-enter")
+
 	-- Recreate player
 	self.player:remove()
 	local prevPlayer = self.player
@@ -245,7 +291,7 @@ function BasicScene:onReEnter(args)
 		self.player.state = spawn.properties.orientation and "idle"..spawn.properties.orientation or "idledown"
 		
 		-- Restart special move, if necessary
-		if args.doingSpecialMove then
+		if args.doingSpecialMove and GameState.leader == "sonic" then
 			self.player.basicUpdate = function(p, dt) end
 			self.player.sprite.visible = false
 			self.player:run(BlockPlayer {
@@ -269,12 +315,17 @@ function BasicScene:onReEnter(args)
 	self.enteringBattle = false
 	self.player.cinematic = false
 	self.reentering = true
+	self.nighttime = args.nighttime
 	
 	self.blur = nil
 	
 	for _, obj in pairs(self.map.objects) do
 		if obj.flagForDeletion then
 			obj:remove()
+		end
+		
+		if obj.onEnter then
+			obj:onEnter()
 		end
 	end
 	
@@ -286,6 +337,10 @@ function BasicScene:onReEnter(args)
 	local fadeInSpeed = args.fadeInSpeed or 1.0
 	self.bgColor = {0,0,0,255}
 	ScreenShader:sendColor("multColor", self.bgColor)
+	
+	if GameState.leader == "bunny" then
+		self.player.noSpecialMove = true
+	end
 	return Serial {
 		Do(function()
 			self.player.cinematicStack = 1
@@ -311,6 +366,10 @@ function BasicScene:onReEnter(args)
 			self.player.cinematicStack = 0
 			self.reentering = false
 			self.reenteringFromBattle = false
+			
+			if GameState.leader == "bunny" then
+				self.player.noSpecialMove = false
+			end
 		end)
 	}
 end
@@ -330,8 +389,9 @@ function BasicScene:onExit(args)
 		)
 	end
 	
-	return Serial {
-		Parallel {
+	local fadeAction = Action()
+	if not args.noFade then
+		fadeAction = Parallel {
 			fadeMusicOrNoop,
 		
 			-- Fade to black
@@ -341,13 +401,26 @@ function BasicScene:onExit(args)
 			Do(function()
 				ScreenShader:sendColor("multColor", self.bgColor)
 			end)
-		},
+		}
+	end
+	
+	return BlockPlayer {
+		fadeAction,
 		Do(function()
-			if not self.cacheSceneData then
+			if not self.enteringBattle and not args.tutorial then
 				self:remove()
 			end
 		end)
 	}
+end
+
+function BasicScene:hasUpperLayer()
+	for _, layer in pairs(self.map.layers) do
+		if layer.name == "upper" and layer.type == "objectgroup" then
+			return true
+		end
+	end
+	return false
 end
 
 function BasicScene:fadeIn(speed)
@@ -381,57 +454,69 @@ function BasicScene:remove()
 	for _, obj in pairs(self.map.objects) do
 		obj:remove()
 	end
+	self.map.drawTileLayer = self.originalMapDraw
+	self.map.drawImageLayer = self.originalImgDraw
 	self.map.objects = nil
 	self.objectLookup = nil
 	self.map.fallables = nil
+	self:removeNode(self.map)
+	
+	self:cleanupLayers()
+	self.handlers = {}
 
 	self.player:remove()
 	self.player = nil
+	
+	self:cleanupLayers()
 end
 
 function BasicScene:restart(args)
-	self.cacheSceneData = false
-	self.sceneMgr.cachedScenes[tostring(self.map)] = nil
 	self.isRestarting = true
-
-	self.sceneMgr:switchScene {
-		class = "BasicScene",
-		mapName = self.mapName,
-		map = self.map,
-		maps = self.maps,
-		region = self.region,
-		spawn_point = self.lastSpawnPoint,
-		spawn_point_offset = Transform(),
-		fadeInSpeed = 2,
-		fadeOutSpeed = 2,
-		fadeOutMusic = args.fadeOutMusic,
-		images = self.images,
-		animations = self.animations,
-		audio = self.audio,
-		tutorial = self.tutorial,
-		hint = args.hint
-	}
+	args = args or {}
+	args.mapName = self.mapName
+	args.spawnPoint = args.spawnPoint or self.lastSpawnPoint or "Spawn 1"
+	self:changeScene(args)
 end
 
 function BasicScene:changeScene(args)
-	local mapName = "maps/"..args.map..".lua"
-	self.sceneMgr:pushScene {
-		class = "BasicScene",
-		map = self.maps[mapName],
-		mapName = mapName,
-		maps = self.maps,
-		images = self.images,
-		region = self.region,
-		animations = self.animations,
-		audio = self.audio,
-		spawn_point = args.spawnPoint,
-		hint = args.hint,
-		tutorial = args.tutorial,
-		fadeOutSpeed = args.fadeOutSpeed,
-		fadeInSpeed = args.fadeInSpeed,
-		fadeOutMusic = args.fadeOutMusic,
-		cache = args.cache
-	}
+	local mapName = args.mapName or "maps/"..args.map..".lua"
+	local fun = args.fun or "switchScene"
+	
+	if args.manifest then
+		for k,_ in pairs(self.maps) do
+			if k ~= mapName then
+				self.maps[k] = nil
+			end
+		end
+
+		self.sceneMgr:switchScene {
+			class = "Region",
+			manifest = string.format("maps/%s.lua", args.manifest),
+			images = self.images,
+			audio = self.audio,
+			animations = self.animations
+		}
+	else
+		self.sceneMgr[fun](self.sceneMgr, {
+			class = "BasicScene",
+			map = self.maps[mapName],
+			mapName = mapName,
+			maps = self.maps,
+			images = self.images,
+			region = self.region,
+			animations = self.animations,
+			audio = self.audio,
+			spawn_point = args.spawnPoint,
+			hint = args.hint,
+			tutorial = args.tutorial,
+			fadeOutSpeed = args.fadeOutSpeed,
+			fadeInSpeed = args.fadeInSpeed,
+			fadeOutMusic = args.fadeOutMusic,
+			cache = args.cache,
+			nighttime = args.nighttime,
+			enterDelay = args.enterDelay
+		})
+	end
 end
 
 -- Vertical screen shake
@@ -461,12 +546,13 @@ function BasicScene:screenShake(str, sp, rp)
 end
 
 function BasicScene:addObject(object)
-	table.insert(self.map.objects, object)
-	object.objectIndex = #(self.map.objects)
+	self.map.objects[tostring(object)] = object
 end
 
 function BasicScene:removeObject(object)
-	table.remove(self.map.objects, object.objectIndex)
+	if self.map.objects then
+		self.map.objects[tostring(object)] = nil
+	end
 end
 
 function BasicScene:enterBattle(args)
@@ -488,7 +574,9 @@ function BasicScene:enterBattle(args)
 		end),
 	
 		-- Fade out current music
-		AudioFade("music", self.audio:getMusicVolume(), 0, 1),
+		self.noBattleMusic and
+			Action() or
+			AudioFade("music", self.audio:getMusicVolume(), 0, 1),
 
 		-- Play enter battle sfx
 		PlayAudio("sfx", "battlestart", 1.0, true),
@@ -506,8 +594,9 @@ function BasicScene:enterBattle(args)
 				images = self.images,
 				animations = self.animations,
 				background = self.map.properties.battlebg,
-				nextMusic = args.music,
+				nextMusic = self.noBattleMusic and self.audio:getCurrentMusic() or args.music,
 				prevMusic = args.prevMusic or self.audio:getCurrentMusic(),
+				noBattleMusic = self.noBattleMusic,
 				blur = self.blur,
 				opponents = args.opponents,
 				bossBattle = args.bossBattle,
@@ -626,8 +715,8 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 		worldOffsetY = -(self:getMapHeight() - love.graphics.getHeight())-- + self.camPos.y
 	end
 
-	for _,obj in ipairs(self.map.objects) do
-		if obj.sprite and obj.sprite.transform and obj.x then
+	for _,obj in pairs(self.map.objects) do
+		if obj.sprite and not obj.hidden and obj.sprite.transform and obj.x then
 			if obj.layer and obj.layer.properties and obj.layer.properties.movespeed then
 				obj.sprite.transform.x = math.floor((obj.x + worldOffsetX)*obj.layer.properties.movespeed)
 				obj.sprite.transform.y = math.floor((obj.y + worldOffsetY)*obj.layer.properties.movespeed)
@@ -642,7 +731,7 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 		if not layer.image then
 			layer.x = layer.offsetx + worldOffsetX
 			layer.y = layer.offsety + worldOffsetY
-		else
+		elseif layer.properties.type ~= "Parallax" then
 			layer.x = math.floor((layer.offsetx + worldOffsetX)*(layer.properties.movespeed or 1.05))
 			layer.y = math.floor((layer.offsety + worldOffsetY)*(layer.properties.movespeed or 1.05))
 			
@@ -736,8 +825,26 @@ function BasicScene:worldCoordToCollisionCoord(x, y)
 end
 
 function BasicScene:screenCoordToWorldCoord(x, y)
-	return  (x + self.player.x - love.graphics.getWidth()/2),
-			(y + self.player.y - love.graphics.getHeight()/2)
+	local xcoord
+	local ycoord
+
+	if self.player.x >= (self:getMapWidth() - love.graphics.getWidth()/2) then
+		xcoord = x + self.player.x - love.graphics.getWidth()/2 - (self.player.x - (self:getMapWidth() - love.graphics.getWidth()/2))
+	elseif self.player.x <= love.graphics.getWidth()/2 then
+		xcoord = x
+	else
+		xcoord = x + self.player.x - love.graphics.getWidth()/2
+	end
+	
+	if self.player.y >= (self:getMapHeight() - love.graphics.getHeight()/2) then
+		ycoord = y + self.player.y - love.graphics.getHeight()/2 - (self.player.y - (self:getMapHeight() - love.graphics.getHeight()/2))
+	elseif self.player.y <= love.graphics.getHeight()/2 then
+		ycoord = y
+	else
+		ycoord = y + self.player.y - love.graphics.getHeight()/2
+	end
+
+	return xcoord, ycoord
 end
 
 function BasicScene:collisionCoordToWorldCoord(x, y)

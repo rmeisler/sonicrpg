@@ -42,7 +42,7 @@ function Bot:construct(scene, layer, object)
 	self.noSetFlag = object.properties.noSetFlag
 	self.removeAfterFollow = object.properties.removeAfterFollow
 	
-	self.facingTime = 0
+	self.manualFacingTime = 0
 	self.movespeed = 2
 	self.walkspeed = 3
 	self.investigatespeed = 1
@@ -54,8 +54,9 @@ function Bot:construct(scene, layer, object)
 		left_bot  = {x = 20, y = 0}
 	}
 
-	self:updateFacing()
-	self.originalFacing = self.facing
+	--self:updateFacing()
+	self.manualFacing = "down"
+	self.originalFacing = self.manualFacing
 	
 	self:createDropShadow()
 	
@@ -252,7 +253,7 @@ function Bot:followActions()
 						self:follow(self.scene.objectLookup[target], "walk", self.walkspeed),
 						Do(function()
 							self.lastTarget = target
-							self.sprite:setAnimation("idle"..self.facing)
+							self.sprite:setAnimation("idle"..self.manualFacing)
 						end),
 						Wait(2)
 					}
@@ -278,17 +279,17 @@ function Bot:followActions()
 end
 
 function Bot:getInitiative()
-	if self.scene.player:isFacing(self.facing) then
-		if ((self.facing == "left"  and self.x > (self.scene.player.x + self.scene.player.sprite.w)) or
-		    (self.facing == "right" and (self.x + self.sprite.w*2) < (self.scene.player.x - self.scene.player.sprite.w)) or
-		    (self.facing == "up"    and self.y > (self.scene.player.y + self.scene.player.sprite.h)) or
-		    (self.facing == "down"  and (self.y + self.sprite.h*2) < (self.scene.player.y - self.scene.player.sprite.h)))
+	if self.scene.player:isFacing(self.manualFacing) then
+		if ((self.manualFacing == "left"  and self.x > (self.scene.player.x + self.scene.player.sprite.w)) or
+		    (self.manualFacing == "right" and (self.x + self.sprite.w*2) < (self.scene.player.x - self.scene.player.sprite.w)) or
+		    (self.manualFacing == "up"    and self.y > (self.scene.player.y + self.scene.player.sprite.h)) or
+		    (self.manualFacing == "down"  and (self.y + self.sprite.h*2) < (self.scene.player.y - self.scene.player.sprite.h)))
 		then
 			return "opponent"
-		elseif ((self.facing == "left"  and (self.x + self.sprite.w*2) < (self.scene.player.x - self.scene.player.sprite.w)) or
-				(self.facing == "right" and self.x > (self.scene.player.x + self.scene.player.sprite.w)) or
-				(self.facing == "up"    and (self.y + self.sprite.h*2) < (self.scene.player.y - self.scene.player.sprite.h)) or
-				(self.facing == "down"  and self.y > (self.scene.player.y + self.scene.player.sprite.h)))
+		elseif ((self.manualFacing == "left"  and (self.x + self.sprite.w*2) < (self.scene.player.x - self.scene.player.sprite.w)) or
+				(self.manualFacing == "right" and self.x > (self.scene.player.x + self.scene.player.sprite.w)) or
+				(self.manualFacing == "up"    and (self.y + self.sprite.h*2) > (self.scene.player.y - self.scene.player.sprite.h)) or
+				(self.manualFacing == "down"  and self.y < (self.scene.player.y + self.scene.player.sprite.h)))
 		then
 			return "player"
 		end
@@ -319,6 +320,10 @@ function Bot:getFlag()
 end
 
 function Bot:update(dt)
+	if self:isRemoved() then
+		self:removeSceneHandler("update")
+	end
+
 	if not self:baseUpdate(dt) then
 		return
 	end
@@ -340,10 +345,10 @@ function Bot:update(dt)
 		end
 
 		local lineOfSight = self:noticePlayer(false)
-		if lineOfSight == Bot.NOTICE_SEE or (lineOfSight == Bot.NOTICE_HEAR and self.noInvestigate) then
+		if self.noInvestigate then
 			self:removeSceneHandler("update")
 			self:addSceneHandler("update", Bot.updateAction)
-			self.sprite:setAnimation("idle"..self.facing)
+			self.sprite:setAnimation("idle"..self.manualFacing)
 			self:run {
 				self:hop(),
 				Do(function()
@@ -362,17 +367,17 @@ function Bot:update(dt)
 				Wait(1),
 				self:follow(self.scene.player, "run", self.runspeed, nil, true, function() return self.grabbed end)
 			}
-		elseif lineOfSight == Bot.NOTICE_HEAR then
+		elseif lineOfSight == Bot.NOTICE_HEAR or lineOfSight == Bot.NOTICE_SEE then
 			self:removeSceneHandler("update")
 			self:addSceneHandler("update", Bot.updateAction)
-			self.sprite:setAnimation("idle"..self.facing)
+			self.sprite:setAnimation("idle"..self.manualFacing)
 			self.visibleDist = self.visibleDist or 200
 			
 			-- Slap down a proxy object to move toward
 			self.investigateProxy = BasicNPC(
 				self.scene,
 				{name = "objects"},
-				{name = "investigateproxy", x = self.scene.player.x, y = self.scene.player.y, width = 32, height = 32,
+				{name = "investigateproxy", x = self.scene.player.x, y = self.scene.player.y, width = 64, height = 64,
 					properties = {ghost = true, align = NPC.ALIGN_BOTLEFT}
 				}
 			)
@@ -402,11 +407,11 @@ function Bot:update(dt)
 					end
 				),
 				Do(function()
-					self.sprite:setAnimation("light"..self.facing)
+					self.sprite:setAnimation("light"..self.manualFacing)
 				end),
-				Wait(1.6),
+				self:getWaitAfterInvestigate(),
 				Do(function()
-					self.sprite:setAnimation("idle"..self.facing)
+					self.sprite:setAnimation("idle"..self.manualFacing)
 					
 					-- Go back to regular patrolling
 					self:removeSceneHandler("update", Bot.investigateUpdate)
@@ -421,6 +426,10 @@ function Bot:update(dt)
 	end
 end
 
+function Bot:getWaitAfterInvestigate()
+	return Wait(1.6)
+end
+
 function Bot:investigateUpdate(dt)
 	if not self:baseUpdate(dt) then
 		return
@@ -432,36 +441,41 @@ function Bot:investigateUpdate(dt)
 
 	-- Bot sees you if he's facing you
 	if self:noticePlayer(true) == Bot.NOTICE_SEE then
-		self:removeSceneHandler("update", Bot.investigateUpdate)
-		self:addSceneHandler("update", Bot.updateAction)
-		self.action:stop()
-		self.sprite:setAnimation("idle"..self.facing)
-		self:run {
-			self:hop(),
-			Do(function()
-				self:removeSceneHandler("update", Bot.updateAction)
-				self:addSceneHandler("update", Bot.chaseUpdate)
-				self.behavior = Bot.BEHAVIOR_CHASING
-				self.scene.player.investigators[tostring(self.name)] = nil
-				self.scene.player.chasers[tostring(self.name)] = self
-				self.investigateProxy:remove()
-				if self.scene.audio:getCurrentMusic() ~= "trouble" then
-					self.prevSceneMusic = self.scene.audio:getCurrentMusic()
-				end
-				if not self.scene.enteringBattle and not self.noMusic then
-					self.scene.audio:playMusic("trouble", 1.0, true)
-				end
-				self.scene.player:invoke("caught", self)
-			end),
-			Wait(1),
-			self:follow(self.scene.player, "run", self.runspeed, nil, true, function() return self.grabbed end)
-		}
+		self:onCaughtPlayer()
 		return
 	end
-	
-	self.flashlight[self.facing].transform = self:getFlashlightOffset()
-	self.flashlight[self.facing].visible = true
-	self.flashlight[self.facing]:setAnimation(self.facing)
+
+	local facing = self.manualFacing
+	self.flashlight[facing].transform = self:getFlashlightOffset()
+	self.flashlight[facing].visible = true
+	self.flashlight[facing]:setAnimation(facing)
+end
+
+function Bot:onCaughtPlayer()
+	self:removeSceneHandler("update", Bot.investigateUpdate)
+	self:addSceneHandler("update", Bot.updateAction)
+	self.action:stop()
+	self.sprite:setAnimation("idle"..self.manualFacing)
+	self:run {
+		self:hop(),
+		Do(function()
+			self:removeSceneHandler("update", Bot.updateAction)
+			self:addSceneHandler("update", Bot.chaseUpdate)
+			self.behavior = Bot.BEHAVIOR_CHASING
+			self.scene.player.investigators[tostring(self.name)] = nil
+			self.scene.player.chasers[tostring(self.name)] = self
+			self.investigateProxy:remove()
+			if self.scene.audio:getCurrentMusic() ~= "trouble" then
+				self.prevSceneMusic = self.scene.audio:getCurrentMusic()
+			end
+			if not self.scene.enteringBattle and not self.noMusic then
+				self.scene.audio:playMusic("trouble", 1.0, true)
+			end
+			self.scene.player:invoke("caught", self)
+		end),
+		Wait(1),
+		self:follow(self.scene.player, "run", self.runspeed, nil, true, function() return self.grabbed end)
+	}
 end
 
 function Bot:chaseUpdate(dt)
@@ -494,13 +508,14 @@ function Bot:chaseUpdate(dt)
 end
 
 function Bot:getFlashlightOffset()
-	if self.facing == "up" then
+	local facing = self.manualFacing
+	if facing == "up" then
 		return Transform(self.sprite.transform.x - 3, self.sprite.transform.y - 35, 2, 2)
-	elseif self.facing == "down" then
+	elseif facing == "down" then
 		return Transform(self.sprite.transform.x + 23, self.sprite.transform.y + 106, 2, 2)
-	elseif self.facing == "right" then
+	elseif facing == "right" then
 		return Transform(self.sprite.transform.x + 104, self.sprite.transform.y + 88, 2, 2)
-	elseif self.facing == "left" then
+	elseif facing == "left" then
 		return Transform(self.sprite.transform.x - 208 + 26, self.sprite.transform.y + 90, 2, 2)
 	end
 end
@@ -603,22 +618,22 @@ function Bot:noticePlayer(ignoreShadow)
 		local isAbovePlayer = (self.scene.player.y + self.scene.player.sprite.h) > (self.y + self.sprite.h*2)
 		local isBelowPlayer = (self.scene.player.y + self.scene.player.sprite.h) < (self.y + self.sprite.h*2)
 		
-		if  self.facing == "right" and isLeftOfPlayer and not self.scene.player:isHiding("left") and
+		if  self.manualFacing == "right" and isLeftOfPlayer and not self.scene.player:isHiding("left") and
 			not ((isAbovePlayer and self.scene.player:isHiding("up")) or
 				 (isBelowPlayer and self.scene.player:isHiding("down")))
 		then
 			return Bot.NOTICE_SEE
-		elseif  self.facing == "left" and isRightOfPlayer and not self.scene.player:isHiding("right") and
+		elseif  self.manualFacing == "left" and isRightOfPlayer and not self.scene.player:isHiding("right") and
 				not ((isAbovePlayer and self.scene.player:isHiding("up")) or
 					 (isBelowPlayer and self.scene.player:isHiding("down")))
 		then
 			return Bot.NOTICE_SEE
-		elseif  self.facing == "up" and isBelowPlayer and not self.scene.player:isHiding("down") and
+		elseif  self.manualFacing == "up" and isBelowPlayer and not self.scene.player:isHiding("down") and
 				not ((isLeftOfPlayer and self.scene.player:isHiding("left")) or
 					 (isRightOfPlayer and self.scene.player:isHiding("right")))
 		then
 			return Bot.NOTICE_SEE
-		elseif  self.facing == "down" and isAbovePlayer and not self.scene.player:isHiding("up") and
+		elseif  self.manualFacing == "down" and isAbovePlayer and not self.scene.player:isHiding("up") and
 				not ((isLeftOfPlayer and self.scene.player:isHiding("left")) or
 					 (isRightOfPlayer and self.scene.player:isHiding("right")))
 		then
@@ -660,22 +675,24 @@ function Bot:createDropShadow()
 	)
 	self.scene:addObject(self.dropShadow)
 end
-
+--[[
 function Bot:updateFacing()
-	if self:isFacing("up") and self.facing ~= "up" then
-		self.facing = "up"
-		self.facingTime = 0
-	elseif self:isFacing("down") and self.facing ~= "down" then
-		self.facing = "down"
-		self.facingTime = 0
-	elseif self:isFacing("left") and self.facing ~= "left" then
-		self.facing = "left"
-		self.facingTime = 0
-	elseif self:isFacing("right") and self.facing ~= "right" then
-		self.facing = "right"
-		self.facingTime = 0
+	if self:isFacing("up") and self.manualFacing ~= "up" then
+		self.manualFacing = "up"
+		self.manualFacingTime = 0
+	elseif self:isFacing("down") and self.manualFacing ~= "down" then
+		self.manualFacing = "down"
+		self.manualFacingTime = 0
+	elseif self:isFacing("left") and self.manualFacing ~= "left" then
+		self.manualFacing = "left"
+		self.manualFacingTime = 0
+	elseif self:isFacing("right") and self.manualFacing ~= "right" then
+		self.manualFacing = "right"
+		self.manualFacingTime = 0
+	else
+		self.manualFacing = "down"
 	end
-end
+end]]
 
 function Bot:updateDropShadowPos(xonly)
 	self.dropShadow.x = self.x + 18
@@ -730,7 +747,7 @@ function Bot:baseUpdate(dt)
 		return
 	end
 	
-	self.facingTime = self.facingTime + dt
+	self.manualFacingTime = self.manualFacingTime + dt
 	
 	if self.visualColliders then
 		self.visualColliders.up.x = self.x + math.max(self.sprite.w*2 - self.visualColliders.up.sprite.w*3, 0)
@@ -743,7 +760,7 @@ function Bot:baseUpdate(dt)
 		self.visualColliders.right.y = self.y + self.sprite.h
 	end
 	
-	self:updateFacing()
+	--self:updateFacing()
 	
 	-- Update drop shadow position
 	self:updateDropShadowPos()
@@ -767,7 +784,7 @@ function Bot:baseUpdate(dt)
 			self.scene.player.basicUpdate = function(self, dt) end
 
 			self.patrol = false
-			self.sprite:setAnimation("hurt"..self.facing)
+			self.sprite:setAnimation("hurt"..self.manualFacing)
 			self:removeAllUpdates()
 			self:addSceneHandler("update", Bot.updateAction)
 			self.scene.player.chasers[tostring(self.name)] = nil
@@ -866,6 +883,7 @@ function Bot:getBattleArgs()
 			npc.flagForDeletion = true
 			npc.collided = true
 			table.insert(args.opponents, npc:getMonsterData())
+			table.insert(args.flags, self:getFlag())
 		end
 	end
 	
@@ -910,10 +928,6 @@ function Bot:remove()
 		then
 			self.scene.audio:playMusic(self.prevSceneMusic)
 		end
-	end
-
-	if not self.scene.isRestarting and not self.noSetFlag then
-		GameState:setFlag(self:getFlag())
 	end
 
 	self:removeAllUpdates()

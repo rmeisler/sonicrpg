@@ -4,7 +4,7 @@ local EventType = require "util/EventType"
 
 return {
 	name = "Reflector Mecha",
-	desc = "Can reflect laser attacks with (z)",
+	desc = "Press (z) to reflect laser attacks",
 	type = ItemType.Weapon,
 	subtype = WeaponType.Sword,
 	sprite = "sword",

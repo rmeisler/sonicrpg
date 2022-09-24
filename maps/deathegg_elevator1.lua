@@ -8,10 +8,12 @@ return {
   height = 30,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 15,
+  nextobjectid = 17,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
-    ["onload"] = "actions/deathegg.lua"
+    ["onload"] = "actions/deathegg.lua",
+    ["regionName"] = "Robotropolis",
+    ["sectorName"] = "Death Egg (1F)"
   },
   tilesets = {
     {
@@ -526,42 +528,6 @@ return {
           }
         },
         {
-          id = 12,
-          name = "Grabbable",
-          type = "ExtPost",
-          shape = "rectangle",
-          x = 224,
-          y = 608,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 9040,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/extpost2.png"
-          }
-        },
-        {
-          id = 13,
-          name = "Grabbable",
-          type = "ExtPost",
-          shape = "rectangle",
-          x = 928,
-          y = 608,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 9040,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/extpost2.png"
-          }
-        },
-        {
           id = 14,
           name = "Waypoint",
           type = "BasicNPC",
@@ -575,6 +541,22 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 16,
+          name = "Save",
+          type = "SavePoint",
+          shape = "rectangle",
+          x = 960,
+          y = 608,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8380,
+          visible = true,
+          properties = {
+            ["sprite"] = "../art/sprites/save.png"
           }
         }
       }

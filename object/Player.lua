@@ -5,6 +5,7 @@ local SceneNode = require "object/SceneNode"
 local NPC = require "object/NPC"
 local BasicNPC = require "object/BasicNPC"
 
+local BlockPlayer = require "actions/BlockPlayer"
 local Repeat = require "actions/Repeat"
 local Wait = require "actions/Wait"
 local WaitForFrame = require "actions/WaitForFrame"
@@ -206,12 +207,11 @@ function Player:updateKeyHint()
 		end
 	end
 
-	if specialKeyHint then
+	if specialKeyHint and not specialKeyHint.isInteractable and specialKeyHint.showHint then
 		self.curKeyHint = specialKeyHint
 		self:showKeyHint(false, specialKeyHint.specialHintPlayer)
 	elseif closestKeyHint then
 		self.curKeyHint = closestKeyHint
-		
 		if closestKeyHint.hidingSpot then
 			local dir
 			if  math.abs(self.x -
@@ -236,8 +236,8 @@ function Player:updateKeyHint()
 				end
 			end
 			self:showKeyHint(false, nil, "press"..dir)
-		else
-			self:showKeyHint(true, nil)
+		elseif closestKeyHint.isInteractable then
+			self:showKeyHint(true, closestKeyHint.specialHintPlayer)
 		end
 	else
 		self:removeKeyHint()
@@ -275,13 +275,32 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 			showPressDir,
 			nil,
 			nil,
-			"objects"
+			self.scene:hasUpperLayer() and "upper" or "objects"
 		)
 		pressDir.sortOrderY = Player.MAX_SORT_ORDER_Y
 		self.curKeyHintSprite = pressDir
 		table.insert(keyHintActions, Ease(pressDir.color, 4, 255, 5))
 		self.showPressDir = showPressDir
-	elseif specialHint ~= nil and not self.showPressLsh then		
+	elseif specialHint ~= nil and showPressX and not self.showPressX then
+		local pressXXForm = Transform.relative(
+			self.transform,
+			Transform(self.sprite.w - 10, 0)
+		)
+		local pressX = SpriteNode(
+			self.scene,
+			pressXXForm,
+			{255,255,255,0},
+			string.find(specialHint, GameState.leader) and "pressx" or "pressc",
+			nil,
+			nil,
+			self.scene:hasUpperLayer() and "upper" or "objects"
+		)
+		pressX.drawWithNight = false
+		pressX.sortOrderY = Player.MAX_SORT_ORDER_Y
+		self.curKeyHintSprite = pressX
+		table.insert(keyHintActions, Ease(pressX.color, 4, 255, 5))
+		self.showPressX = true
+	elseif specialHint ~= nil and not self.showPressLsh and not self.showPressX then
 		local pressLshXForm = Transform.relative(
 			self.transform,
 			Transform(self.sprite.w - 12, 0)
@@ -293,8 +312,9 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 			specialHint == GameState.leader and "presslsh" or "pressc",
 			nil,
 			nil,
-			"objects"
+			self.scene:hasUpperLayer() and "upper" or "objects"
 		)
+		pressLsh.drawWithNight = false
 		pressLsh.sortOrderY = Player.MAX_SORT_ORDER_Y
 		self.curKeyHintSprite = pressLsh
 		table.insert(keyHintActions, Ease(pressLsh.color, 4, 255, 5))
@@ -311,8 +331,9 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 			"pressx",
 			nil,
 			nil,
-			"objects"
+			self.scene:hasUpperLayer() and "upper" or "objects"
 		)
+		pressX.drawWithNight = false
 		pressX.sortOrderY = Player.MAX_SORT_ORDER_Y
 		self.curKeyHintSprite = pressX
 		table.insert(keyHintActions, Ease(pressX.color, 4, 255, 5))
@@ -507,6 +528,7 @@ function Player:onChangeChar()
 				GameState.leader = next(GameState.party)
 			end
 			self:updateSprite()
+			self:removeKeyHint()
 		end),
 		
 		self:spin(1, 0.02),
@@ -519,9 +541,8 @@ function Player:onChangeChar()
 			self.doingChangeChar = false
 			
 			-- Update keyhint
-			for k in pairs(self.keyhints) do
-				self.hidekeyhints[k] = nil
-			end
+			self.hidekeyhints = {}
+			self:removeKeyHint()
 		end)
 	}
 end
@@ -602,6 +623,10 @@ function Player:updateSprite()
 		self.layer.name
 	)
 	
+	if self.scene.nighttime then
+		self.sprite.drawWithNight = false
+	end
+
 	-- Debug
 	if self.debugHotspots then
 		local drawFn = self.sprite.draw
@@ -613,6 +638,10 @@ function Player:updateSprite()
 end
 
 function Player:updateShadows()
+	if self.ignoreLightingEffects then
+		return
+	end
+
 	-- If we are hiding, display our sprite more darkly
 	if self:inShadow() then
 		self.sprite.color[1] = 150
@@ -691,7 +720,8 @@ function Player:isHiding(direction)
 end
 
 function Player:inShadow()
-	return next(self.shadows)
+	return (self.scene.nighttime and not self.scene.map.properties.ignorenight) or
+			next(self.shadows)
 end
 
 function Player:inLight()
@@ -757,6 +787,8 @@ function Player:basicUpdate(dt)
 	self.doingSpecialMove = false
 	
 	local moving = false
+	local movingX = false
+	local movingY = false
     if love.keyboard.isDown("right") then
 		if  self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, movespeed, 0) and
 			self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, movespeed, 0)
@@ -775,9 +807,15 @@ function Player:basicUpdate(dt)
 			end
 			
 			moving = true
+			movingX = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
-			if not isSwatbot and spot and not (love.keyboard.isDown("up") or love.keyboard.isDown("down")) then
+			if  not isSwatbot and
+			    spot and
+				self:spacialRelation(hotspots, spot) == "left" and
+				self:isFacing("right") and
+			    not (love.keyboard.isDown("up") or love.keyboard.isDown("down"))
+			then
 				self.y = spot.y + spot.sprite.h*2 - self.sprite.h + 1
 				--self.sprite.sortOrderY = spot.y + spot.sprite.h*2 + 1
 				self.state = Player.STATE_HIDERIGHT
@@ -835,9 +873,15 @@ function Player:basicUpdate(dt)
 			end
 			
 			moving = true
+			movingX = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
-			if not isSwatbot and spot and not (love.keyboard.isDown("up") or love.keyboard.isDown("down")) then
+			if  not isSwatbot and
+				spot and
+				self:spacialRelation(hotspots, spot) == "right" and
+				self:isFacing("left") and
+				not (love.keyboard.isDown("up") or love.keyboard.isDown("down"))
+			then
 				self.y = spot.y + spot.sprite.h*2 - self.sprite.h + 1
 				--self.sprite.sortOrderY = spot.y + spot.sprite.h*2 + 1
 				self.state = Player.STATE_HIDELEFT
@@ -885,27 +929,20 @@ function Player:basicUpdate(dt)
 			self.y = self.y + movespeed
 			self.state = Player.STATE_WALKDOWN
 			moving = true
+			movingY = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
-			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
+			if not isSwatbot and
+			   spot and
+			   not spot.noHideDown and
+			   self:isFacing("down") and
+			   not (love.keyboard.isDown("left") or love.keyboard.isDown("right"))
+			then
 				self.state = Player.STATE_HIDEDOWN
 				self.x = spot.x + self.scene:getTileWidth() + (spot.object.properties.hideOffset or 0) - 7
-				self.y = spot.y + spot.sprite.h*2 - self.height - self.scene:getTileHeight()*1.5
+				self.y = spot.y + spot.sprite.h*2 - self.height - spot.object.height + 16
 				self.cinematic = true
 				self.hidingDirection = "down"
-				self.hideHand = BasicNPC(
-					self.scene,
-					{name = "objects"},
-					{name = "playerHideHand", x = self.x - 20, y = self.y + self.height, width = self.width, height = self.height,
-						properties = {
-							nocollision = true,
-							hidden = true,
-							defaultAnim = "hidedownhand",
-							sprite = "art/sprites/"..GameState.party[GameState.leader].sprite..".png"
-						}
-					}
-				)
-				self.scene:addObject(self.hideHand)
 				self.scene:run(
 					While(
 						function()
@@ -916,39 +953,27 @@ function Player:basicUpdate(dt)
 								Ease(self, "x", self.x - 20, 4, "inout"),
 								Wait(1)
 							},
-							Do(function()
-								self.hideHand.sprite:setAnimation("hidedownhand")
-								self.hideHand.sprite.transform.ox = 0
-								self.hideHand.sprite.transform.oy = self.hideHand.sprite.h
-								self.hideHand.sprite.transform.sx = 0
-								self.hideHand.sprite.transform.sy = 2
-								self.hideHand.hidden = false
-								self.hideHand.sprite.sortOrderY = self.hideHand.sprite.transform.y + self.hideHand.sprite.h*2 + 10
-							end),
 							Parallel {
 								Ease(self, "x", self.x - 25, 1, "inout"),
-								Ease(self.scene.camPos, "y", -self:peakDistance("down"), 1, "inout"),
-								Ease(self.hideHand.sprite.transform, "sx", 2, 2, "inout"),
-								Ease(self.hideHand, "x", self.hideHand.x - self.width, 2, "inout")
+								Ease(self.scene.camPos, "y", -self:peakDistance("down"), 1, "inout")
 							},
 							Repeat(Action())
 						},
 						Serial {
-							Parallel {
-								Ease(self, "x", self.x, 5, "inout"),
-								Ease(self.scene.camPos, "y", 0, 5, "inout"),
-
-								Ease(self.hideHand.sprite.transform, "sx", 0, 5, "inout"),
-								Ease(self.hideHand, "x", self.x - 20, 5, "inout")
+							BlockPlayer {
+								Parallel {
+									Ease(self, "x", self.x, 5, "inout"),
+									Ease(self.scene.camPos, "y", 0, 5, "inout")
+								},
+								Do(function()
+									self.cinematic = false
+									self.y = self.y - 20
+									self.dropShadowOverrideY = nil
+									if not next(self.investigators) then
+										self.state = Player.STATE_IDLEUP
+									end
+								end)
 							},
-							Do(function()
-								self.cinematic = false
-								self.hideHand:remove()
-								self.dropShadowOverrideY = nil
-								if not next(self.investigators) then
-									self.state = Player.STATE_IDLEUP
-								end
-							end),
 							Wait(1),
 							Do(function()
 								-- Hold hiding direction power for a little
@@ -969,9 +994,15 @@ function Player:basicUpdate(dt)
 			self.y = self.y - movespeed
 			self.state = Player.STATE_WALKUP
 			moving = true
+			movingY = true
 		elseif not moving then
 			local _, spot = next(self.inHidingSpot)
-			if not isSwatbot and spot and not (love.keyboard.isDown("left") or love.keyboard.isDown("right")) then
+			if  not isSwatbot and
+			    spot and
+				self:spacialRelation(hotspots, spot) == "below" and
+				self:isFacing("up") and
+				not (love.keyboard.isDown("left") or love.keyboard.isDown("right"))
+			then
 				self.state = Player.STATE_HIDEUP
 				self.x = spot.x + self.scene:getTileWidth() + (spot.object.properties.hideOffset or 0) - 7
 				self.cinematic = true
@@ -1018,6 +1049,33 @@ function Player:basicUpdate(dt)
 		self.scene.audio:playSfx("swatbotstep", 1.0)
 		self.lastSwatbotStepSfx = love.timer.getTime()
 	end
+	
+	-- Fan sounds?
+	local closestFan = nil
+	local closestFanDist = nil
+	for _, fan in pairs(self.scene.fans or {}) do
+		if not closestFan or
+		   (not fan.nosound and
+		    fan:distanceFromPlayerSq() < closestFanDist)
+		then
+		    closestFan = fan
+			closestFanDist = closestFan:distanceFromPlayerSq()
+		end
+	end
+	
+	if closestFan then
+		local minAudibleDist = 800
+		local maxAudibleDist = 200
+		local num = closestFan:distanceFromPlayerSq() - maxAudibleDist*maxAudibleDist
+		local denom = (minAudibleDist - maxAudibleDist)*(minAudibleDist - maxAudibleDist)
+		local volume = 1.0 - math.min(1.0, math.max(0.0, num) / denom)
+
+		self.scene.audio:setVolumeFor("sfx", "fan", volume)
+	end
+	
+	self.moving = moving
+	self.movingX = movingX
+	self.movingY = movingY
 
 	if prevState ~= self.state then
 		self.sprite.animations[self.state]:reset()
@@ -1127,6 +1185,24 @@ function Player:remove()
 				sprite:remove()
 			end
 		end
+	end
+end
+
+function Player:spacialRelation(hotspots, obj)
+	local leftdiff = math.abs(obj.x - hotspots.right_top.x)
+	local rightdiff = math.abs(hotspots.left_top.x - (obj.x + obj.sprite.w*2))
+	local belowdiff = math.abs((obj.y + obj.sprite.h*2) - hotspots.left_top.y)
+	local abovediff = math.abs(hotspots.right_bot.y - obj.y)
+	
+	local result = math.min(leftdiff, rightdiff, belowdiff, abovediff)
+	if result == leftdiff then
+		return "left"
+	elseif result == rightdiff then
+		return "right"
+	elseif result == belowdiff then
+		return "below"
+	elseif result == abovediff then
+		return "above"
 	end
 end
 

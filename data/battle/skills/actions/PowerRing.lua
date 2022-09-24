@@ -70,56 +70,64 @@ local RunCircle = function(self, speed, animLag)
 end
 
 local Spin = function(target, speed, iterations)
+	local targetSprite = target:getSprite()
+	if targetSprite.transform.ox == 0 then
+		targetSprite.transform.ox = targetSprite.w/2
+		targetSprite.transform.oy = targetSprite.h/2
+		targetSprite.transform.x = targetSprite.transform.x + targetSprite.w/2
+		targetSprite.transform.y = targetSprite.transform.y + targetSprite.h/2
+	end
 	return Repeat(Serial {
 		Parallel {
 			Serial {
-				Ease(target.sprite.transform, "x", 160, speed, "linear"),
-				Ease(target.sprite.transform, "x", 300, speed-1, "linear"),
-				Ease(target.sprite.transform, "x", 385, speed, "linear"),
+				Ease(targetSprite.transform, "x", 160, speed, "linear"),
+				Ease(targetSprite.transform, "x", 300, speed-1, "linear"),
+				Ease(targetSprite.transform, "x", 385, speed, "linear"),
 			},
 			Serial {
-				Ease(target.sprite.transform, "y", 160, speed, "linear"),
-				Ease(target.sprite.transform, "y", 100, speed-1, "linear"),
-				Ease(target.sprite.transform, "y", 160, speed, "linear")
+				Ease(targetSprite.transform, "y", 160, speed, "linear"),
+				Ease(targetSprite.transform, "y", 100, speed-1, "linear"),
+				Ease(targetSprite.transform, "y", 160, speed, "linear")
 			}
 		},
 		Parallel {
 			Serial {
-				Ease(target.sprite.transform, "x", 300, speed, "linear"),
-				Ease(target.sprite.transform, "x", 160, speed-1, "linear"),
-				Ease(target.sprite.transform, "x", 35,  speed, "linear"),
+				Ease(targetSprite.transform, "x", 300, speed, "linear"),
+				Ease(targetSprite.transform, "x", 160, speed-1, "linear"),
+				Ease(targetSprite.transform, "x", 35,  speed, "linear"),
 			},
 			Serial {
-				Ease(target.sprite.transform, "y", 300, speed, "linear"),
-				Ease(target.sprite.transform, "y", 390, speed-1, "linear"),
-				Ease(target.sprite.transform, "y", 300, speed, "linear")
+				Ease(targetSprite.transform, "y", 300, speed, "linear"),
+				Ease(targetSprite.transform, "y", 390, speed-1, "linear"),
+				Ease(targetSprite.transform, "y", 300, speed, "linear")
 			}
 		}
 	}, iterations)
 end
 
 local PickedUp = function(target, iterations)
-	target.origTransform = Transform.from(target.sprite.transform)
+	local targetSprite = target:getSprite()
+	target.origTransform = Transform.from(targetSprite.transform)
 	return Serial {
 		Wait(0.2),
 		Do(function()
-			target.sprite:setAnimation("hurt")
-			target.sprite.sortOrderY = 99999
+			targetSprite:setAnimation("hurt")
+			targetSprite.sortOrderY = 99999
 		end),
 		Repeat(Serial {
-			Ease(target.sprite.transform, "y", function() return target.sprite.transform.y - 2 end, 20),
-			Ease(target.sprite.transform, "y", function() return target.sprite.transform.y + 2 end, 20)
+			Ease(targetSprite.transform, "y", function() return targetSprite.transform.y - 2 end, 20),
+			Ease(targetSprite.transform, "y", function() return targetSprite.transform.y + 2 end, 20)
 		}, iterations),
 		Do(function()
-			target.sprite:trySetAnimation("hurtdown")
+			targetSprite:trySetAnimation("hurtdown")
 		end),
 		Spin(target, 12, 3),
 		Spin(target, 24, 14),
 		Parallel {
-			Ease(target.sprite.transform, "angle", math.pi, 2),
-			Ease(target.sprite.transform, "sx", 50, 2),
-			Ease(target.sprite.transform, "sy", 50, 2),
-			Ease(target.sprite.color, 4, 0, 2),
+			Ease(targetSprite.transform, "angle", math.pi, 2),
+			Ease(targetSprite.transform, "sx", 50, 2),
+			Ease(targetSprite.transform, "sy", 50, 2),
+			Ease(targetSprite.color, 4, 0, 2),
 		},
 		Do(function()
 			target.hp = 0
@@ -195,8 +203,12 @@ return function(self, targets)
 			)
 		end
 		
+		local prevMusic = self.scene.audio:getCurrentMusic()
 		action = Serial {
-			PlayAudio("music", "sonicring", 1.0, true),
+			Spawn(Serial {
+				PlayAudio("music", "sonicring", 1.0),
+				PlayAudio("music", prevMusic, 1.0, true, true)
+			}),
 			Animate(self.sprite, "foundring_backpack"),
 			Do(function() self.sprite:setGlow({255,255,0,255},2) end),
 			PlayAudio("sfx", "usering", 1.0, true),
@@ -312,7 +324,7 @@ return function(self, targets)
 						"flametrail",
 						nil,
 						nil,
-						"sprites"
+						"behind"
 					)
 					dust.transform.sx = 2
 					dust.transform.sy = 2

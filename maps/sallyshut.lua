@@ -8,9 +8,10 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 14,
+  nextobjectid = 18,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["ignorenight"] = true,
     ["onload"] = "actions/sallyhut.lua",
     ["regionName"] = "Sally's Hut"
   },
@@ -229,6 +230,42 @@ return {
       }
     },
     {
+      type = "tilelayer",
+      name = "nighthide",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      visible = true,
+      opacity = 0,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 844, 845, 0, 0, 0, 0, 0, 817, 818, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 873, 874, 121, 122, 0, 0, 0, 846, 847, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 148, 149, 150, 151, 0, 0, 0, 875, 876, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 177, 178, 179, 180, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 206, 207, 208, 209, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
       type = "objectgroup",
       name = "objects",
       visible = true,
@@ -253,9 +290,10 @@ return {
           properties = {
             ["GreenLeaf"] = 1,
             ["align"] = "bottom_left",
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\nlocal Do = require \"actions/Do\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sonic: Locked. {p50}I wonder what's in there...\", textSpeed=4},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    elseif GameState.leader == \"sally\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sally: ...\", textspeed=2},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\n    return Action()\nend",
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\nlocal Do = require \"actions/Do\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sonic: Locked. {p50}I wonder what's in there...\", textSpeed=4},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    elseif GameState.leader == \"sally\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sally: ...\", textspeed=2},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    elseif GameState.leader == \"bunny\" then\n        return BlockPlayer {\n            MessageBox {message=\"Bunnie: My daddy taught me not to snoop.\", textspeed=2},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\n    return Action()\nend",
             ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: I detect several personal effects within this chest, {p40}Sally.\"},\n        MessageBox {message=\"Nicole: Family pictures, {p40}royal garb, {p40}family heirlooms...\"},\n        MessageBox {message=\"Sally: That's enough Nicole.\"}\n    }\nend",
-            ["sprite"] = "../art/sprites/bigchest.png"
+            ["sprite"] = "../art/sprites/bigchest.png",
+            ["usableBy"] = "sonic,sally"
           }
         },
         {
@@ -299,8 +337,10 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = 8,
-            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: This is your bed, {p40}Sally.\"},\n        MessageBox {message=\"Nicole: ...{p40}are you tired, or something?\"}\n    }\nend",
-            ["sprite"] = "../art/sprites/sallybed.png"
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Menu = require \"actions/Menu\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Action = require \"actions/Action\"\nlocal Animate = require \"actions/Animate\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    if GameState.leader == \"sally\" then\n        if GameState:isFlagSet(\"ep3_ffmeetingover\") then\n            return BlockPlayer {\n                MessageBox{message=\"Sally: Hmmm...{p60} this bed looks so inviting.\"},\n                Do(function()\n                    self.scene.player.noIdle = true\n                    self.scene.player.sprite:setAnimation(\"thinking\")\n                end),\n                MessageBox{message=\"Sally: Maybe I could lay down for just a second...{p60} to rest my eyes...\"},\n                Menu {\n                    layout = Layout {\n                        {Layout.Text(\"Take a rest?\"), selectable = false},\n                        {Layout.Text(\"Yes\"), choose = function(menu)\n                            menu:close()\n                            GameState:setFlag(\"ep3_sallynap\")\n                            self.isInteractable = false\n                            self.usableBy = {}\n                            self.scene.player:removeKeyHint()\n                            self:run {\n                                menu,\n                                Do(function()\n                                    self.scene.player.sprite.visible = false\n                                    self.scene.player.dropShadow.hidden = true\n                                    self.scene.player.x = self.scene.objectLookup.SallysBed.x + 70\n                                    self.scene.player.y = self.scene.objectLookup.SallysBed.y + 90\n                                    self.scene.player:removeKeyHint()\n                                end),\n                                Do(function() self.scene.player:removeKeyHint() end),\n                                Animate(self.scene.objectLookup.SallysBed.sprite, \"sleeping\"),\n                                AudioFade(\"music\", 1.0, 0.0, 0.5),\n                                PlayAudio(\"music\", \"nap\", 1.0, true),\n                                Do(function()\n                                    self.scene:changeScene {\n                                        map=\"sallyshut\",\n                                        fadeOutSpeed=0.15,\n                                        fadeInSpeed=0.15,\n                                        hint = \"sleep\",\n                                        nighttime = true\n                                    }\n                                end),\n                                Do(function() end)\n                            }\n                        end},\n                        {Layout.Text(\"No\"), choose = function(menu)\n                            menu:close()\n                            self:run {\n                                menu,\n                                Do(function() self:refreshKeyHint() end)\n                            }\n                        end},\n                        colWidth = 200\n                    },\n                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n                    selectedRow = 2,\n                    cancellable = true\n                },\n                Do(function()\n                    self.scene.player.noIdle = false\n                end)\n            }\n        else\n            return BlockPlayer {\n                MessageBox{message=\"Sally: I definitely did not get enough sleep last night...{p60} and this bed looks so inviting...\"},\n                Do(function()\n                    self.scene.player.noIdle = true\n                    self.scene.player.sprite:setAnimation(\"thinking\")\n                end),\n                MessageBox{message=\"Sally: No, no, Sally-girl.{p60} Stay strong!\"},\n                Do(function()\n                    self.scene.player.noIdle = false\n                    self.scene.player.sprite:setAnimation(\"idledown\")\n                end)\n            }\n        end\n    else\n        return Action()\n    end\nend",
+            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: This is your bed, {p40}Sally.\"},\n        MessageBox {message=\"Nicole: ...{p40}are you tired or something?\"}\n    }\nend",
+            ["sprite"] = "../art/sprites/sallybed.png",
+            ["usableBy"] = "sally"
           }
         },
         {
@@ -317,8 +357,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return Serial {\n            MessageBox {message=\"Sonic: Sal's science textbooks... {p50}Boooring.\", blocking = true, textSpeed=4},\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sally\" then\n        return Serial {\n            MessageBox {message=\"Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.\", blocking = true},\n            MessageBox {message=\"Sally: Maybe I could read it to Tails.\", blocking = true}\n        }\n    end\n    return Action()\nend",
-            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: I am detecting a great deal of dust, {p40}Sally.\"},\n        Do(function()\n            self.scene.player.noIdle = true\n            self.scene.player.state = \"thinking\"\n        end),\n        MessageBox {message=\"Sally: Ha, {p40}ha. {p60}Very funny, Nicole.\"},\n        Do(function()\n            self.scene.player.state = \"thinking2\"\n        end),\n        MessageBox {message=\"Sally: I guess I haven't had much time to read recently...\", textspeed=2},\n        Do(function()\n            self.scene.player.noIdle = false\n        end)\n    }\nend",
+            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message=\"Nicole: I am detecting a great deal of dust, {p40}Sally.\"},\n        Do(function()\n            self.scene.player.noIdle = true\n            self.scene.player.sprite:setAnimation(\"thinking\")\n        end),\n        MessageBox {message=\"Sally: Ha, {p40}ha. {p60}Very funny, Nicole.\"},\n        Do(function()\n            self.scene.player.sprite:setAnimation(\"thinking2\")\n        end),\n        MessageBox {message=\"Sally: I guess I haven't had much time to read recently...\", textspeed=2},\n        Do(function()\n            self.scene.player.noIdle = false\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/sallybookshelf.png"
           }
         },
@@ -337,7 +376,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["ghost"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal DescBox = require \"actions/DescBox\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    self.menuClosing = false\n    local descBox = MessageBox{\n        message=\"Computer: What would you like to do?\",\n        noPressX = true,\n        closeAction = YieldUntil(self, \"menuClosing\")\n    }\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"nicolebeep\", 1.0, true),\n        Parallel {\n            descBox,\n            Serial {\n                Wait(1),\n                Menu {\n                    layout = Layout {\n                        {Layout.Text(\"Practice fighting\"), choose = function(menu)\n                            local fightMenuOpts = {{Layout.Text(\"Which boss?\"), selectable = false}}\n                            local bots = {\"rover\"}\n                            for _, name in pairs(bots) do\n                                local bot = require (\"data/monsters/\"..name)\n                                table.insert(fightMenuOpts, {Layout.Text(bot.name), choose = function(menu2)\n                                    self.scene:run {\n                                        Menu {\n                                            layout = Layout {\n                                                {Layout.Text(\"Fight \"..bot.name..\"?\"), selectable = false},\n                                                {Layout.Text(\"Yes\"), choose = function(menu3)\n                                                    menu:close()\n                                                    menu2:close()\n                                                    menu3:close()\n                                                    self.menuClosing = true\n                                                    self.scene:run {\n                                                        menu3,\n                                                        menu2,\n                                                        menu,\n                                                        descBox,\n                                                        self.scene:enterBattle {\n                                                            opponents = {name},\n                                                            music = \"boss\",\n                                                            bossBattle = true,\n                                                            practice = true\n                                                        },\n                                                        MessageBox{message=\"Computer: Fighting simulation complete.\", blocking = true},\n                                                        -- Hack to fix bug returning from battle\n                                                        Do(function()\n                                                            self.scene.player.cinematicStack = 1\n                                                        end)\n                                                    }\n                                                end},\n                                                {Layout.Text(\"No\"), choose = function(menu3)\n                                                    menu3:close()\n                                                end}\n                                            },\n                                            cancellable = true,\n                                            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2+30),\n                                            selectedRow = 2\n                                        }\n                                    }\n                                end})\n                            end\n                            self.scene:run {\n                                Parallel {menu,\n                                Menu {\n                                    layout = Layout(fightMenuOpts),\n                                    cancellable = true,\n                                    transform = Transform(love.graphics.getWidth()/2 + 200, love.graphics.getHeight()/2 + 30),\n                                    selectedRow = 2\n                                }}\n                            }\n                        end, desc = \"Practice fighting against past bosses.\"},\n                        {Layout.Text(\"Practice sneaking\"), choose = function(menu)\n                            self.scene:run {\n                                Parallel {menu,\n                                Menu {\n                                    layout = Layout {\n                                        {Layout.Text(\"Are you sure?\"), selectable = false},\n                                        {Layout.Text(\"Yes\"), choose = function(menu2)\n                                            menu:close()\n                                            menu2:close()\n                                            self.menuClosing = true\n                                            self.scene:run {\n                                                menu2,\n                                                menu,\n                                                descBox,\n                                                Do(function()\n                                                    self.scene.audio:stopMusic()\n                                                    self.scene:changeScene{map=\"stealthtut1\", tutorial=true}\n                                                end),\n                                                MessageBox {\n                                                    message = \"Computer: Stealth simulation complete.\",\n                                                    blocking = true\n                                                },\n                                                -- Hack to fix bug returning from battle\n                                                Do(function()\n                                                    self.scene.player.cinematicStack = 1\n                                                end)\n                                            }\n                                        end},\n                                        {Layout.Text(\"No\"), choose = function(menu2)\n                                            menu2:close()\n                                        end}\n                                    },\n                                    cancellable = true,\n                                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2+30),\n                                    selectedRow = 2\n                                }}\n                            }\n                        end, desc = \"Fighting isn't the only option.\"},\n                        {Layout.Text(\"Give me a hint\"), choose = function(menu)\n                            menu:close()\n                            self.menuClosing = true\n                            local msg = \"\"\n                            if not GameState:isFlagSet(\"rotorreveal_done\") then\n                                msg = \"Rotor's locked himself in his workshop for quite awhile, hasn't he?\"\n                            else\n                                msg = \"You're still here?? {p60}Shouldn't you be at the Death Egg right now?\"\n                            end\n\n                            self.scene:run {\n                                menu,\n                                descBox,\n                                MessageBox {\n                                    message = \"Computer: \"..msg,\n                                    blocking = true,\n                                    textSpeed = 4\n                                }\n                            }\n                        end, desc = \"Forgot what you were supposed to be doing?\"}\n                    },\n                    cancellable = true,\n                    withClose = Do(function() descBox:close() end),\n                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)\n                }\n            }\n        },\n        Do(function()\n            self:refreshKeyHint()\n        end)\n    }\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal DescBox = require \"actions/DescBox\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal YieldUntil = require \"actions/YieldUntil\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    self.menuClosing = false\n    local descBox = MessageBox{\n        message=\"Computer: What would you like to do?\",\n        noPressX = true,\n        closeAction = YieldUntil(self, \"menuClosing\")\n    }\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"nicolebeep\", 1.0, true),\n        Parallel {\n            descBox,\n            Serial {\n                Wait(1),\n                Menu {\n                    layout = Layout {\n                        {Layout.Text(\"Practice fighting\"), choose = function(menu)\n                            local fightMenuOpts = {{Layout.Text(\"Which boss?\"), selectable = false}}\n                            local bots = {\"rover\", \"juggerbot\"}\n                            for _, name in pairs(bots) do\n                                local bot = require (\"data/monsters/\"..name)\n                                table.insert(fightMenuOpts, {Layout.Text(bot.name), choose = function(menu2)\n                                    self.scene:run {\n                                        Menu {\n                                            layout = Layout {\n                                                {Layout.Text(\"Fight \"..bot.name..\"?\"), selectable = false},\n                                                {Layout.Text(\"Yes\"), choose = function(menu3)\n                                                    menu:close()\n                                                    menu2:close()\n                                                    menu3:close()\n                                                    self.menuClosing = true\n                                                    self.scene:run {\n                                                        menu3,\n                                                        menu2,\n                                                        menu,\n                                                        descBox,\n                                                        self.scene:enterBattle {\n                                                            opponents = {name},\n                                                            music = \"boss\",\n                                                            bossBattle = true,\n                                                            practice = true\n                                                        },\n                                                        MessageBox{message=\"Computer: Fighting simulation complete.\", blocking = true},\n                                                        -- Hack to fix bug returning from battle\n                                                        Do(function()\n                                                            self.scene.player.cinematicStack = 1\n                                                        end)\n                                                    }\n                                                end},\n                                                {Layout.Text(\"No\"), choose = function(menu3)\n                                                    menu3:close()\n                                                end}\n                                            },\n                                            cancellable = true,\n                                            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2+30),\n                                            selectedRow = 2\n                                        }\n                                    }\n                                end})\n                            end\n                            self.scene:run {\n                                Parallel {menu,\n                                Menu {\n                                    layout = Layout(fightMenuOpts),\n                                    cancellable = true,\n                                    transform = Transform(love.graphics.getWidth()/2 + 200, love.graphics.getHeight()/2 + 30),\n                                    selectedRow = 2\n                                }}\n                            }\n                        end, desc = \"Practice fighting against past bosses.\"},\n                        {Layout.Text(\"Practice sneaking\"), choose = function(menu)\n                            self.scene:run {\n                                Parallel {menu,\n                                Menu {\n                                    layout = Layout {\n                                        {Layout.Text(\"Are you sure?\"), selectable = false},\n                                        {Layout.Text(\"Yes\"), choose = function(menu2)\n                                            menu:close()\n                                            menu2:close()\n                                            self.menuClosing = true\n                                            self.scene:run {\n                                                menu2,\n                                                menu,\n                                                descBox,\n                                                Do(function()\n                                                    self.scene.audio:stopMusic()\n                                                    self.scene:changeScene{map=\"stealthtut1\", fun=\"pushScene\", tutorial=true}\n                                                end),\n                                                MessageBox {\n                                                    message = \"Computer: Stealth simulation complete.\",\n                                                    blocking = true\n                                                },\n                                                -- Hack to fix bug returning from battle\n                                                Do(function()\n                                                    self.scene.player.cinematicStack = 1\n                                                end)\n                                            }\n                                        end},\n                                        {Layout.Text(\"No\"), choose = function(menu2)\n                                            menu2:close()\n                                        end}\n                                    },\n                                    cancellable = true,\n                                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2+30),\n                                    selectedRow = 2\n                                }}\n                            }\n                        end, desc = \"Fighting isn't the only option.\"},\n                        {Layout.Text(\"Give me a hint\"), choose = function(menu)\n                            menu:close()\n                            self.menuClosing = true\n                            local msg = \"\"\n                            if not GameState:isFlagSet(\"ep3_knotholerun\") then\n                                msg = \"It's a beautiful day outside! {p60}Why are you spending it inside on the computer?\"\n                            elseif not GameState:isFlagSet(\"ep3_ffmeetingover\") then\n                                msg = \"It sounds like there's quite a bit of arguing between the Freedom Fighters and the Rebellion, doesn't it?\"\n                            elseif not GameState:isFlagSet(\"ep3_sallynap\") then\n                                msg = \"Ride the pulley out of Knothole and head East to the Dark Swamp!{p60}... But before you do that{p60}... maybe take a rest, huh?\"\n                            elseif not GameState:isFlagSet(\"ep3_sallynap_over\") then\n                                msg = \"At this time of night, the view from the {h Lookout} must be breathtaking.\"\n                            else\n                                msg = \"Ride the pulley out of Knothole and head East to the Dark Swamp!\"\n                            end\n\n                            self.scene:run {\n                                menu,\n                                descBox,\n                                MessageBox {\n                                    message = \"Computer: \"..msg,\n                                    blocking = true,\n                                    textSpeed = 4\n                                }\n                            }\n                        end, desc = \"Forgot what you were supposed to be doing?\"}\n                    },\n                    cancellable = true,\n                    withClose = Do(function() descBox:close() end),\n                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)\n                }\n            }\n        },\n        Do(function()\n            self:refreshKeyHint()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/stool.png"
           }
         },
@@ -392,7 +431,7 @@ return {
           properties = {
             ["ghost"] = true,
             ["notColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = nil\nend",
-            ["whileColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = true\nend"
+            ["whileColliding"] = "return function(self, player)\n    if not self.scene.nighttime then\n        player.lights[tostring(self)] = true\n    end\nend"
           }
         },
         {
@@ -410,26 +449,7 @@ return {
           properties = {
             ["ghost"] = true,
             ["notColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = nil\nend",
-            ["whileColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = true\nend"
-          }
-        },
-        {
-          id = 12,
-          name = "SallySad",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 256,
-          y = 416,
-          width = 32,
-          height = 64,
-          rotation = 0,
-          gid = 6839,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetY"] = -32,
-            ["defaultAnim"] = "sit_sad",
-            ["sprite"] = "../art/sprites/sally.png"
+            ["whileColliding"] = "return function(self, player)\n    if not self.scene.nighttime then\n        player.lights[tostring(self)] = true\n    end\nend"
           }
         },
         {
@@ -447,6 +467,54 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["ghost"] = true
+          }
+        },
+        {
+          id = 14,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 416,
+          y = 352,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 16,
+          name = "Waypoint2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 544,
+          y = 208,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 17,
+          name = "SallysBookshelfInteract",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 480,
+          y = 512,
+          width = 96,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            MessageBox {message=\"Sonic: Sal's science textbooks... {p50}Boooring.\", textSpeed=4},\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sally\" then\n        if GameState:isFlagSet(\"ep3_book\") then\n            return BlockPlayer {\n                MessageBox {message=\"Sally: I haven't read some of these in quite awhile... \"}, \n                Do(function() self:refreshKeyHint() end)\n            }\n        end\n        return BlockPlayer {\n            MessageBox {message=\"Sally: I haven't read some of these in quite awhile... \"},\n            MessageBox {message=\"Sally: ...'The Adventures of Windom'... {p60}I remember my father reading this to me when I was little.\"},\n            Menu {\n                layout = Layout {\n                    {Layout.Text(\"Take book?\"), selectable = false},\n                    {Layout.Text(\"Yes\"), choose = function(menu)\n                        menu:close()\n                        GameState:grantItem(require(\"data/items/Book\"), 1)\n                        GameState:setFlag(\"ep3_book\")\n                        self.scene:run {\n                            menu,\n                            MessageBox {message = \"You received {h 'The Adventures of Windom'}!\", sfx=\"levelup\", textspeed=8},\n                            Do(function() self:refreshKeyHint() end)\n                        }\n                    end},\n                    {Layout.Text(\"No\"), choose = function(menu)\n                        menu:close()\n                        self.scene:run {\n                            menu,\n                            Do(function() self:refreshKeyHint() end)\n                        }\n                    end}\n                },\n                cancellable = true,\n                selectedRow = 2,\n                transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)\n            },\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"bunny\" then\n        return BlockPlayer {\n            MessageBox {message=\"Bunnie: My goodness, {p40}that Sally-girl sure is a book worm!\"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\n    return Action()\nend",
+            ["usableBy"] = "sonic,sally"
           }
         }
       }

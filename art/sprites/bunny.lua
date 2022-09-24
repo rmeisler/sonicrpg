@@ -14,6 +14,12 @@ return {
 		concernedright = {
 			frames = {{11,0}}
 		},
+		upsetdown = {
+			frames = {{10,2}}
+		},
+		upsetright = {
+			frames = {{11,2}}
+		},
 		
 		climb_1 = {
 			frames = {{6,4}}
@@ -108,6 +114,15 @@ return {
 		},
 		extendup = {
 			frames = {{9,3}}
-		}
+		},
+		
+		meeting_idledown = {
+			frames = {{0,2}},
+			clip = {0,0,47,39}
+		},
+		meeting_shock = {
+			frames = {{11,4}},
+			clip = {0,0,47,39}
+		},
     }
 }

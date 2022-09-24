@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="14">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="18">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
+  <property name="ignorenight" type="bool" value="true"/>
   <property name="onload" type="file" value="actions/sallyhut.lua"/>
   <property name="regionName" value="Sally's Hut"/>
  </properties>
@@ -83,6 +84,30 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <layer name="nighthide" width="25" height="20" opacity="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,844,845,0,0,0,0,0,817,818,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,873,874,121,122,0,0,0,846,847,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,148,149,150,151,0,0,0,875,876,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,177,178,179,180,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,206,207,208,209,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
  <objectgroup name="objects">
   <object id="1" name="BigChest" type="BasicNPC" gid="6839" x="384" y="256" width="32" height="32">
    <properties>
@@ -112,6 +137,13 @@ return function(self)
                 self:refreshKeyHint()
             end)
         }
+    elseif GameState.leader == &quot;bunny&quot; then
+        return BlockPlayer {
+            MessageBox {message=&quot;Bunnie: My daddy taught me not to snoop.&quot;, textspeed=2},
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
     end
     return Action()
 end</property>
@@ -126,6 +158,7 @@ return function(self)
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/bigchest.png"/>
+    <property name="usableBy" value="sonic,sally"/>
    </properties>
   </object>
   <object id="2" name="Door" type="Door" gid="6839" x="352" y="608" width="64" height="64">
@@ -147,44 +180,116 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="8"/>
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Menu = require &quot;actions/Menu&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Action = require &quot;actions/Action&quot;
+local Animate = require &quot;actions/Animate&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+local Layout = require &quot;util/Layout&quot;
+local Transform = require &quot;util/Transform&quot;
+
+return function(self)
+    if GameState.leader == &quot;sally&quot; then
+        if GameState:isFlagSet(&quot;ep3_ffmeetingover&quot;) then
+            return BlockPlayer {
+                MessageBox{message=&quot;Sally: Hmmm...{p60} this bed looks so inviting.&quot;},
+                Do(function()
+                    self.scene.player.noIdle = true
+                    self.scene.player.sprite:setAnimation(&quot;thinking&quot;)
+                end),
+                MessageBox{message=&quot;Sally: Maybe I could lay down for just a second...{p60} to rest my eyes...&quot;},
+                Menu {
+                    layout = Layout {
+                        {Layout.Text(&quot;Take a rest?&quot;), selectable = false},
+                        {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                            menu:close()
+                            GameState:setFlag(&quot;ep3_sallynap&quot;)
+                            self.isInteractable = false
+                            self.usableBy = {}
+                            self.scene.player:removeKeyHint()
+                            self:run {
+                                menu,
+                                Do(function()
+                                    self.scene.player.sprite.visible = false
+                                    self.scene.player.dropShadow.hidden = true
+                                    self.scene.player.x = self.scene.objectLookup.SallysBed.x + 70
+                                    self.scene.player.y = self.scene.objectLookup.SallysBed.y + 90
+                                    self.scene.player:removeKeyHint()
+                                end),
+                                Do(function() self.scene.player:removeKeyHint() end),
+                                Animate(self.scene.objectLookup.SallysBed.sprite, &quot;sleeping&quot;),
+                                AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),
+                                PlayAudio(&quot;music&quot;, &quot;nap&quot;, 1.0, true),
+                                Do(function()
+                                    self.scene:changeScene {
+                                        map=&quot;sallyshut&quot;,
+                                        fadeOutSpeed=0.15,
+                                        fadeInSpeed=0.15,
+                                        hint = &quot;sleep&quot;,
+                                        nighttime = true
+                                    }
+                                end),
+                                Do(function() end)
+                            }
+                        end},
+                        {Layout.Text(&quot;No&quot;), choose = function(menu)
+                            menu:close()
+                            self:run {
+                                menu,
+                                Do(function() self:refreshKeyHint() end)
+                            }
+                        end},
+                        colWidth = 200
+                    },
+                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+                    selectedRow = 2,
+                    cancellable = true
+                },
+                Do(function()
+                    self.scene.player.noIdle = false
+                end)
+            }
+        else
+            return BlockPlayer {
+                MessageBox{message=&quot;Sally: I definitely did not get enough sleep last night...{p60} and this bed looks so inviting...&quot;},
+                Do(function()
+                    self.scene.player.noIdle = true
+                    self.scene.player.sprite:setAnimation(&quot;thinking&quot;)
+                end),
+                MessageBox{message=&quot;Sally: No, no, Sally-girl.{p60} Stay strong!&quot;},
+                Do(function()
+                    self.scene.player.noIdle = false
+                    self.scene.player.sprite:setAnimation(&quot;idledown&quot;)
+                end)
+            }
+        end
+    else
+        return Action()
+    end
+end</property>
     <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 
 return function(self)
     return BlockPlayer {
         MessageBox {message=&quot;Nicole: This is your bed, {p40}Sally.&quot;},
-        MessageBox {message=&quot;Nicole: ...{p40}are you tired, or something?&quot;}
+        MessageBox {message=&quot;Nicole: ...{p40}are you tired or something?&quot;}
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/sallybed.png"/>
+    <property name="usableBy" value="sally"/>
    </properties>
   </object>
   <object id="5" name="SallysBookshelf" type="BasicNPC" gid="6839" x="512" y="512" width="64" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Menu = require &quot;actions/Menu&quot;
-local Do = require &quot;actions/Do&quot;
-local Action = require &quot;actions/Action&quot;
-
-local Transform = require &quot;util/Transform&quot;
-local Layout = require &quot;util/Layout&quot;
-
-return function(self)
-    if GameState.leader == &quot;sonic&quot; then
-        return Serial {
-            MessageBox {message=&quot;Sonic: Sal's science textbooks... {p50}Boooring.&quot;, blocking = true, textSpeed=4},
-            Do(function() self:refreshKeyHint() end)
-        }
-    elseif GameState.leader == &quot;sally&quot; then
-        return Serial {
-            MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.&quot;, blocking = true},
-            MessageBox {message=&quot;Sally: Maybe I could read it to Tails.&quot;, blocking = true}
-        }
-    end
-    return Action()
-end</property>
     <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
@@ -194,11 +299,11 @@ return function(self)
         MessageBox {message=&quot;Nicole: I am detecting a great deal of dust, {p40}Sally.&quot;},
         Do(function()
             self.scene.player.noIdle = true
-            self.scene.player.state = &quot;thinking&quot;
+            self.scene.player.sprite:setAnimation(&quot;thinking&quot;)
         end),
         MessageBox {message=&quot;Sally: Ha, {p40}ha. {p60}Very funny, Nicole.&quot;},
         Do(function()
-            self.scene.player.state = &quot;thinking2&quot;
+            self.scene.player.sprite:setAnimation(&quot;thinking2&quot;)
         end),
         MessageBox {message=&quot;Sally: I guess I haven't had much time to read recently...&quot;, textspeed=2},
         Do(function()
@@ -245,7 +350,7 @@ return function(self)
                     layout = Layout {
                         {Layout.Text(&quot;Practice fighting&quot;), choose = function(menu)
                             local fightMenuOpts = {{Layout.Text(&quot;Which boss?&quot;), selectable = false}}
-                            local bots = {&quot;rover&quot;}
+                            local bots = {&quot;rover&quot;, &quot;juggerbot&quot;}
                             for _, name in pairs(bots) do
                                 local bot = require (&quot;data/monsters/&quot;..name)
                                 table.insert(fightMenuOpts, {Layout.Text(bot.name), choose = function(menu2)
@@ -313,7 +418,7 @@ return function(self)
                                                 descBox,
                                                 Do(function()
                                                     self.scene.audio:stopMusic()
-                                                    self.scene:changeScene{map=&quot;stealthtut1&quot;, tutorial=true}
+                                                    self.scene:changeScene{map=&quot;stealthtut1&quot;, fun=&quot;pushScene&quot;, tutorial=true}
                                                 end),
                                                 MessageBox {
                                                     message = &quot;Computer: Stealth simulation complete.&quot;,
@@ -339,10 +444,16 @@ return function(self)
                             menu:close()
                             self.menuClosing = true
                             local msg = &quot;&quot;
-                            if not GameState:isFlagSet(&quot;rotorreveal_done&quot;) then
-                                msg = &quot;Rotor's locked himself in his workshop for quite awhile, hasn't he?&quot;
+                            if not GameState:isFlagSet(&quot;ep3_knotholerun&quot;) then
+                                msg = &quot;It's a beautiful day outside! {p60}Why are you spending it inside on the computer?&quot;
+                            elseif not GameState:isFlagSet(&quot;ep3_ffmeetingover&quot;) then
+                                msg = &quot;It sounds like there's quite a bit of arguing between the Freedom Fighters and the Rebellion, doesn't it?&quot;
+                            elseif not GameState:isFlagSet(&quot;ep3_sallynap&quot;) then
+                                msg = &quot;Ride the pulley out of Knothole and head East to the Dark Swamp!{p60}... But before you do that{p60}... maybe take a rest, huh?&quot;
+                            elseif not GameState:isFlagSet(&quot;ep3_sallynap_over&quot;) then
+                                msg = &quot;At this time of night, the view from the {h Lookout} must be breathtaking.&quot;
                             else
-                                msg = &quot;You're still here?? {p60}Shouldn't you be at the Death Egg right now?&quot;
+                                msg = &quot;Ride the pulley out of Knothole and head East to the Dark Swamp!&quot;
                             end
 
                             self.scene:run {
@@ -391,7 +502,9 @@ end</property>
     player.lights[tostring(self)] = nil
 end</property>
     <property name="whileColliding">return function(self, player)
-    player.lights[tostring(self)] = true
+    if not self.scene.nighttime then
+        player.lights[tostring(self)] = true
+    end
 end</property>
    </properties>
   </object>
@@ -402,22 +515,88 @@ end</property>
     player.lights[tostring(self)] = nil
 end</property>
     <property name="whileColliding">return function(self, player)
-    player.lights[tostring(self)] = true
+    if not self.scene.nighttime then
+        player.lights[tostring(self)] = true
+    end
 end</property>
-   </properties>
-  </object>
-  <object id="12" name="SallySad" type="BasicNPC" gid="6839" x="256" y="416" width="32" height="64">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alignOffsetY" type="float" value="-32"/>
-    <property name="defaultAnim" value="sit_sad"/>
-    <property name="sprite" type="file" value="../art/sprites/sally.png"/>
    </properties>
   </object>
   <object id="13" name="Waypoint" type="BasicNPC" gid="6839" x="320" y="384" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="14" name="Spawn 1" type="Player" gid="4565" x="416" y="352" width="32" height="32"/>
+  <object id="16" name="Waypoint2" type="BasicNPC" gid="6839" x="544" y="208" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="17" name="SallysBookshelfInteract" type="BasicNPC" gid="6839" x="480" y="512" width="96" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local Do = require &quot;actions/Do&quot;
+local Action = require &quot;actions/Action&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    if GameState.leader == &quot;sonic&quot; then
+        return BlockPlayer {
+            MessageBox {message=&quot;Sonic: Sal's science textbooks... {p50}Boooring.&quot;, textSpeed=4},
+            Do(function() self:refreshKeyHint() end)
+        }
+    elseif GameState.leader == &quot;sally&quot; then
+        if GameState:isFlagSet(&quot;ep3_book&quot;) then
+            return BlockPlayer {
+                MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... &quot;}, 
+                Do(function() self:refreshKeyHint() end)
+            }
+        end
+        return BlockPlayer {
+            MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... &quot;},
+            MessageBox {message=&quot;Sally: ...'The Adventures of Windom'... {p60}I remember my father reading this to me when I was little.&quot;},
+            Menu {
+                layout = Layout {
+                    {Layout.Text(&quot;Take book?&quot;), selectable = false},
+                    {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                        menu:close()
+                        GameState:grantItem(require(&quot;data/items/Book&quot;), 1)
+                        GameState:setFlag(&quot;ep3_book&quot;)
+                        self.scene:run {
+                            menu,
+                            MessageBox {message = &quot;You received {h 'The Adventures of Windom'}!&quot;, sfx=&quot;levelup&quot;, textspeed=8},
+                            Do(function() self:refreshKeyHint() end)
+                        }
+                    end},
+                    {Layout.Text(&quot;No&quot;), choose = function(menu)
+                        menu:close()
+                        self.scene:run {
+                            menu,
+                            Do(function() self:refreshKeyHint() end)
+                        }
+                    end}
+                },
+                cancellable = true,
+                selectedRow = 2,
+                transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)
+            },
+            Do(function() self:refreshKeyHint() end)
+        }
+    elseif GameState.leader == &quot;bunny&quot; then
+        return BlockPlayer {
+            MessageBox {message=&quot;Bunnie: My goodness, {p40}that Sally-girl sure is a book worm!&quot;},
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+    return Action()
+end</property>
+    <property name="usableBy" value="sonic,sally"/>
    </properties>
   </object>
  </objectgroup>

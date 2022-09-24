@@ -76,6 +76,7 @@ function TitleSplashScene:onEnter()
 	self.audio:registerAs("sfx", "choose", love.audio.newSource("audio/sfx/choose.wav", "static"))
 	self.audio:registerAs("sfx", "cursor", love.audio.newSource("audio/sfx/cursor.wav", "static"))
 	self.audio:registerAs("sfx", "error", love.audio.newSource("audio/sfx/error.wav", "static"))
+	self.audio:registerAs("sfx", "wolf", love.audio.newSource("audio/sfx/wolf.ogg", "static"))
 	self.audio:registerAs("music", "pretitle", love.audio.newSource("audio/music/title.ogg", "static"))
 	
 	self.bgColor = {0,0,0,255}
@@ -116,11 +117,14 @@ function TitleSplashScene:onEnter()
 		end,
 		Serial {
 			Parallel {
-				Ease(self.bgColor, 1, 255, 0.13, "linear"),
-				Ease(self.bgColor, 2, 255, 0.13, "linear"),
-				Ease(self.bgColor, 3, 255, 0.13, "linear"),
+				Ease(self.bgColor, 1, 255, 0.2, "linear"),
+				Ease(self.bgColor, 2, 255, 0.2, "linear"),
+				Ease(self.bgColor, 3, 255, 0.2, "linear"),
 				AudioFade("music", 0.5, 1.0, 0.1),
 				Serial {
+					Wait(3),
+					PlayAudio("sfx", "wolf", 0.5, true),
+					Wait(5),
 					PlayAudio("music", "pretitle", 0.5, true),
 					Ease(self, "bgY", -466, 0.05, "inout"),
 				}
@@ -169,13 +173,9 @@ function TitleSplashScene:onExit(args)
 end
 
 function TitleSplashScene:newGame()
-	GameState:addToParty("sally", 3, true)
-	--GameState:addToParty("antoine", 1, true)
-	GameState:addToParty("bunny", 3, true)
-	GameState:addToParty("sonic", 3, true)
-	--GameState:addToParty("b", 1, true)
-	--GameState.leader = "sally"
-	GameState.leader = "sonic"
+	GameState:addToParty("sally", 6, true)
+	GameState.leader = "sally"
+	GameState:setFlag("ep3_intro")
 	
 	self.exiting = true
 	self.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/sonicdemo_manifest.lua"}

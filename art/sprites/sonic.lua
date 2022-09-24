@@ -36,14 +36,27 @@ return {
 		headidle = {
 			frames = {{13,2}}
 		},
+		headsmile = {
+			frames = {{15,2}}
+		},
 		headleft = {
 			frames = {{15,3}}
 		},
 		headright = {
 			frames = {{15,4}}
 		},
+		
+		leapleft = {
+			frames = {{6,1}}
+		},
+		leapright = {
+			frames = {{6,0}}
+		},
 		leapdown = {
-			frames = {{5,2}}
+			frames = {{6,2}}
+		},
+		leapup = {
+			frames = {{6,3}}
 		},
 		
 		lookleft = {
@@ -205,6 +218,13 @@ return {
 			frames = {{14,3}}
 		},
 		
+		laughright = {
+			frames = {{13,4}}
+		},
+		laughleft = {
+			frames = {{14,4}}
+		},
+		
 		ouchright = {
 			frames = {{16,0}}
 		},
@@ -311,6 +331,17 @@ return {
 			frames = {{14,8}}
 		},
 		
+		dead = {
+			frames = {{12,9}}
+		},
+		
+		prepare_race = {
+			frames = {{14,9}}
+		},
+		prepare_race2 = {
+			frames = {{13,9}}
+		},
+		
 		sit_sad = {
 			frames = {{10,7}}
 		},
@@ -319,6 +350,37 @@ return {
 		},
 		sit_smile = {
 			frames = {{12,7}}
-		}
+		},
+		
+		chargerun1 = {
+			frames = {{0,9},{1,9},{2,9},{3,9}},
+			speed = 0.07
+		},
+		chargerun2 = {
+			frames = {{4,9},{5,9},{6,9},{7,9}},
+			speed = 0.02
+		},
+		
+		worried2 = {
+			frames = {{8,9}}
+		},
+		
+		foottap = {
+			frames = {{9,9},{10,9},{11,9},{10,9}},
+			speed = 0.05
+		},
+		
+		meeting_idledown = {
+			frames = {{0,2}},
+			clip = {0,0,47,40}
+		},
+		meeting_irritated = {
+			frames = {{0,6}},
+			clip = {0,0,47,40}
+		},
+		meeting_shock = {
+			frames = {{11,4}},
+			clip = {0,0,47,40}
+		},
     }
 }

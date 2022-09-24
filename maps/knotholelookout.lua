@@ -1054,7 +1054,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["whileColliding"] = "local Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self, player, prevState)\n    if not self.panning and prevState == self.STATE_IDLE and love.keyboard.isDown(\"right\") then\n        self.panning = true\n        self.scene:run(BlockPlayer {\n            Ease(self.scene.camPos, \"x\", -800, 0.3),\n            Wait(2),\n            Ease(self.scene.camPos, \"x\", 0, 0.3),\n            Do(function() self.panning = false end)\n        })\n    end\nend"
+            ["whileColliding"] = "local Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self, player, prevState)\n    if not self.panning and prevState == self.STATE_IDLE and love.keyboard.isDown(\"right\") then\n        self.panning = true\n        player.basicUpdate = player.updateFun\n        player.state = \"idleright\"\n        self.scene:run(BlockPlayer {\n            Ease(self.scene.camPos, \"x\", -800, 0.3),\n            Wait(2),\n            Ease(self.scene.camPos, \"x\", 0, 0.3),\n            Do(function() self.panning = false end)\n        })\n    end\nend"
           }
         }
       }

@@ -3,6 +3,8 @@
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
   <property name="onload" type="file" value="actions/deatheggf2_4.lua"/>
+  <property name="regionName" value="Robotropolis"/>
+  <property name="sectorName" value="Death Egg (2F)"/>
  </properties>
  <tileset firstgid="1" source="datacenter.tsx"/>
  <tileset firstgid="3183" source="knothole.tsx"/>
@@ -675,7 +677,7 @@ return function(self)
 
                 MessageBox {message=&quot;Sonic: Uh oh!&quot;, textspeed=3, closeAction=Wait(1)},
                 Parallel {
-                    Wait(2),
+                    Wait(3),
 
                     -- Roar
                     Animate(function() return self.scene.objectLookup.JBot.head end, &quot;roar&quot;),
@@ -936,6 +938,9 @@ return function(self)
                         sprites.sonic.sprite:setAnimation(&quot;idleup&quot;)
                         sprites.sally.sprite:setAnimation(&quot;idleup&quot;)
                         sprites.bunny.sprite:setAnimation(&quot;idleup&quot;)
+                        sprites.sonic.sprite:swapLayer(&quot;upper&quot;)
+                        sprites.sally.sprite:swapLayer(&quot;upper&quot;)
+                        sprites.bunny.sprite:swapLayer(&quot;upper&quot;)
                     end),
 
                     MessageBox{message=&quot;Sonic: What!?{p60}... Who are--?{p60} How did--?&quot;, textspeed=4},
@@ -1048,10 +1053,10 @@ return function(self)
                                     Wait(0.5),
                                     Animate(ivan.sprite, &quot;ivanfall&quot;),
                                     Parallel {
-                                        Ease(ivan, &quot;x&quot;, function() return fleet.x end, 1),
+                                        Ease(ivan, &quot;x&quot;, function() return fleet.x end, 2),
                                         Serial {
-                                            Ease(ivan, &quot;y&quot;, function() return ivan.y - 200 end, 1),
-                                            Ease(ivan, &quot;y&quot;, function() return fleet.y end, 2)
+                                            Ease(ivan, &quot;y&quot;, function() return ivan.y - 200 end, 2, &quot;linear&quot;),
+                                            Ease(ivan, &quot;y&quot;, function() return fleet.y end, 2, &quot;quad&quot;)
                                         }
                                     },
                                     Do(function() ivan:remove() end)
@@ -1061,10 +1066,10 @@ return function(self)
                                     Wait(0.5),
                                     Animate(logan.sprite, &quot;loganfall&quot;),
                                     Parallel {
-                                        Ease(logan, &quot;x&quot;, function() return fleet.x end, 1),
+                                        Ease(logan, &quot;x&quot;, function() return fleet.x end, 2),
                                         Serial {
-                                            Ease(logan, &quot;y&quot;, function() return logan.y - 200 end, 1),
-                                            Ease(logan, &quot;y&quot;, function() return fleet.y end, 2)
+                                            Ease(logan, &quot;y&quot;, function() return logan.y - 200 end, 2, &quot;linear&quot;),
+                                            Ease(logan, &quot;y&quot;, function() return fleet.y end, 2, &quot;quad&quot;)
                                         }
                                     },
                                     Do(function() logan:remove() end)
@@ -1074,10 +1079,10 @@ return function(self)
                                     Wait(0.5),
                                     Animate(leon.sprite, &quot;leonfall&quot;),
                                     Parallel {
-                                        Ease(leon, &quot;x&quot;, function() return fleet.x end, 1),
+                                        Ease(leon, &quot;x&quot;, function() return fleet.x end, 2),
                                         Serial {
-                                            Ease(leon, &quot;y&quot;, function() return leon.y - 200 end, 1),
-                                            Ease(leon, &quot;y&quot;, function() return fleet.y end, 2)
+                                            Ease(leon, &quot;y&quot;, function() return leon.y - 200 end, 2, &quot;linear&quot;),
+                                            Ease(leon, &quot;y&quot;, function() return fleet.y end, 2, &quot;quad&quot;)
                                         }
                                     },
                                     Do(function() leon:remove() end)
@@ -1104,9 +1109,8 @@ return function(self)
                         self.scene.player:onSpecialMove()
                     end),
                     MessageBox{message=&quot;Sonic: Up! {p60}Over! {p60}And gone!&quot;, closeAction=Wait(1)},
-                    AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),
                     Do(function()
-                        self.scene.sceneMgr:pushScene {class = &quot;CreditsSplashScene&quot;, fadeOutSpeed = 0.5}
+                        self.scene.sceneMgr:pushScene {class = &quot;CreditsSplashScene&quot;, fadeOutSpeed = 0.1, fadeOutMusic = true}
                     end)
                 }
             })
@@ -1122,15 +1126,18 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
-  <object id="30" name="FactoryBot1" type="FactoryBot" gid="6703" x="960" y="1600" width="32" height="32">
+  <object id="30" name="FactoryBot1" type="FactoryBot" gid="6703" x="960" y="1632" width="32" height="32">
    <properties>
+    <property name="audibleDistance" type="float" value="300"/>
     <property name="battle" type="file" value="../data/monsters/factorybot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleup"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="noInvestigate" type="bool" value="true"/>
     <property name="noMusic" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/factorybot.png"/>
+    <property name="visibleDistance" type="float" value="300"/>
    </properties>
   </object>
  </objectgroup>

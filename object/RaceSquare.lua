@@ -15,6 +15,7 @@ local RaceSquare = class(NPC)
 
 function RaceSquare:construct(scene, layer, object)
 	self.ghost = true
+	self.specialHintPlayer = "sonic"
 	
 	self.hotspotOffsets = {
 		left_top = {x = 10, y = 10},
@@ -96,9 +97,9 @@ function RaceSquare:onCollision(prevState)
 			Serial {
 				Repeat(
 					Serial {
-						PlayAudio("sfx", "tick", 1.0),
+						PlayAudio("sfx", "tick", 1.0, true),
 						Wait(0.5),
-						PlayAudio("sfx", "tick", 1.0),
+						PlayAudio("sfx", "tick", 1.0, true),
 						Wait(0.5)
 					},
 					self.scene.totalSquares
@@ -120,6 +121,10 @@ function RaceSquare:onCollision(prevState)
 			
 			end)
 		))
+	end
+	
+	if not self.squares then
+		self:postInit()
 	end
 	
 	self.scene.squareNumber = self.scene.squareNumber - 1

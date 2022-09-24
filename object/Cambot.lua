@@ -47,13 +47,14 @@ function Cambot:construct(scene, layer, object)
 end
 
 function Cambot:getFlashlightOffset()
-	if self.facing == "up" then
+	local facing = self.manualFacing
+	if facing == "up" then
 		return Transform(self.sprite.transform.x - self.flashlightSprite.w + 20, self.sprite.transform.y - self.sprite.h - 10, 2, 2)
-	elseif self.facing == "down" then
+	elseif facing == "down" then
 		return Transform(self.sprite.transform.x - self.sprite.w*2 - 28, self.sprite.transform.y + self.sprite.h - 34, 2, 2)
-	elseif self.facing == "right" then
+	elseif facing == "right" then
 		return Transform(self.sprite.transform.x, self.sprite.transform.y + 1, 2, 2)
-	elseif self.facing == "left" then
+	elseif facing == "left" then
 		return Transform(self.sprite.transform.x - self.flashlightSprite.w*2 + 70, self.sprite.transform.y + 1, 2, 2)
 	end
 end

@@ -43,6 +43,7 @@ Layout.Image = function(args)
 			args = {name=args}
 		end
 		local node = SpriteNode(scene, Transform(0,0,2,2), args.color, args.name, nil, nil, false)
+		node.drawWithNight = false
 		if args.anim then
 			node:setAnimation(args.anim)
 		end

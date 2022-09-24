@@ -10,6 +10,7 @@ return function(scene)
 	local PlayAudio = require "actions/PlayAudio"
 	local Ease = require "actions/Ease"
 	local Parallel = require "actions/Parallel"
+	local YieldUntil = require "actions/YieldUntil"
 	local Serial = require "actions/Serial"
 	local Wait = require "actions/Wait"
 	local Repeat = require "actions/Repeat"
@@ -20,7 +21,8 @@ return function(scene)
 	local Animate = require "actions/Animate"
 	local shine = require "lib/shine"
 	
-	local FactoryBot = require "object/FactoryBot"
+	local NPC = require "object/NPC"
+	local BasicNPC = require "object/BasicNPC"
 
 	scene.player.collisionHSOffsets = {
 		right_top = {x = 0, y = 0},
@@ -30,6 +32,10 @@ return function(scene)
 	}
 	
 	if GameState:isFlagSet("deathegg:sneak3_done") then
+		if scene.audio:getCurrentMusic() == nil then
+			scene.audio:playMusic("mission2", 1.0)
+		end
+	
 		return Action()
 	end
 	
@@ -39,8 +45,8 @@ return function(scene)
 			waitAction = Wait(waitTime)
 		end
 		return Serial {
-			Ease(self, "y", self.y - 50, 8, "linear"),
-			Ease(self, "y", self.y, 8, "linear"),
+			Ease(self, "y", function() return self.y - 50 end, 8, "linear"),
+			Ease(self, "y", function() return self.y + 50 end, 8, "linear"),
 			waitAction
 		}
 	end
@@ -49,6 +55,7 @@ return function(scene)
 	scene.player.dropShadow.hidden = true
 	scene.cinematicPause = true
 	scene.player.noSpecialMove = true
+	scene.player.cinematicStack = scene.player.cinematicStack + 1
 
 	scene.player.handlers.caught = nil
 
@@ -60,7 +67,15 @@ return function(scene)
 		for k,v in pairs(scene.player.keyhints) do
 			scene.player.hidekeyhints[k] = v
 		end
+		scene.player:removeKeyHint()
 		scene.player:removeHandler("caught", caughtHandler)
+		for _,piece in pairs(scene.player.extenderPieces or {}) do
+			piece:remove()
+		end
+		if scene.player.extenderarm then
+			scene.player.extenderarm:remove()
+		end
+		scene.player.extenderPieces = {}
 		scene:run(
 			BlockPlayer {
 				Wait(1),
@@ -114,7 +129,9 @@ return function(scene)
 			fbot:run {
 				Parallel {
 					Do(function()
-						if scene.player and scene.player.x > fbot.x then
+						if scene.player and
+						  (scene.player.y + scene.player.sprite.h*2) > (fbot.y + fbot.sprite.h*2 + 200)
+						then
 							scene.player:invoke("caught", fbot)
 						end
 					end),
@@ -123,7 +140,8 @@ return function(scene)
 						Move(fbot, scene.objectLookup.FWaypoint2, "walk"),
 						Move(fbot, scene.objectLookup.FWaypoint3, "walk"),
 						YieldUntil(function()
-							return scene.objectLookup.PSwitch1.state == NPC.STATE_TOUCHING
+							return scene.objectLookup and
+								scene.objectLookup.PSwitch1.state == NPC.STATE_TOUCHING
 						end),
 						hop(fbot),
 						Wait(1.5),
@@ -134,7 +152,7 @@ return function(scene)
 								Wait(2)
 							},
 							Do(function()
-								if not scene.player:isHiding("left") and
+								if scene.player and not scene.player:isHiding("left") and
 								   scene.objectLookup.FBotVisibility1.state == NPC.STATE_TOUCHING
 								then
 									scene.player:invoke("caught", fbot)
@@ -144,7 +162,8 @@ return function(scene)
 						Move(fbot, scene.objectLookup.FWaypoint4, "walk"),
 						Move(fbot, scene.objectLookup.FWaypoint5, "walk"),
 						YieldUntil(function()
-							return scene.objectLookup.PSwitch2.state == NPC.STATE_TOUCHING
+							return scene.objectLookup and
+								scene.objectLookup.PSwitch2.state == NPC.STATE_TOUCHING
 						end),
 						hop(fbot),
 						hop(fbot),
@@ -152,7 +171,7 @@ return function(scene)
 						Animate(fbot.sprite, "idleleft"),
 						Parallel {
 							Do(function()
-								if not scene.player:isHiding("right") and
+								if scene.player and not scene.player:isHiding("right") and
 								   scene.objectLookup.SwatbotVisibility1.state == NPC.STATE_TOUCHING
 								then
 									scene.player:invoke("caught", fbot)
@@ -160,7 +179,9 @@ return function(scene)
 							end),
 							Wait(2)
 						},
-						Move(fbot, scene.objectLookup.FWaypoint4, "walk"),
+						Move(fbot, scene.objectLookup.FWaypoint6, "walk"),
+						Move(fbot, scene.objectLookup.FWaypoint7, "walk"),
+						Move(fbot, scene.objectLookup.FWaypoint8, "walk"),
 						Do(function() fbot:remove() end)
 					}
 				}
@@ -174,6 +195,7 @@ return function(scene)
 			scene.player.dropShadow.hidden = false
 			scene.cinematicPause = false
 			scene.player.noSpecialMove = false
+			scene.player.cinematicStack = scene.player.cinematicStack - 1
 		end)
 	}
 end

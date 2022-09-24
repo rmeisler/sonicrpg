@@ -8,8 +8,9 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 16,
+  nextobjectid = 18,
   properties = {
+    ["ignorenight"] = true,
     ["onload"] = "actions/antoineknotholehut.lua",
     ["regionName"] = "Antoine's Hut"
   },
@@ -219,6 +220,32 @@ return {
       terrains = {},
       tilecount = 3484,
       tiles = {}
+    },
+    {
+      name = "darkswamp",
+      firstgid = 20690,
+      filename = "darkswamp.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/darkswamp.png",
+      imagewidth = 2592,
+      imageheight = 2208,
+      transparentcolor = "#0000f8",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 5589,
+      tiles = {}
     }
   },
   layers = {
@@ -254,6 +281,42 @@ return {
         0, 0, 0, 0, 0, 0, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "tilelayer",
+      name = "nighthide",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      visible = true,
+      opacity = 0,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 17005, 17006, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 17034, 17035, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20982, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
       }
@@ -338,7 +401,7 @@ return {
       width = 25,
       height = 20,
       visible = true,
-      opacity = 0,
+      opacity = 1,
       offsetx = 0,
       offsety = 0,
       properties = {},
@@ -436,24 +499,6 @@ return {
             ["spawn_point_offset_x"] = 16,
             ["spawn_point_offset_y"] = 40,
             ["sprite"] = "../art/sprites/hutdoor.png"
-          }
-        },
-        {
-          id = 13,
-          name = "Stove",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 544,
-          y = 320,
-          width = 32,
-          height = 64,
-          rotation = 0,
-          gid = 6839,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal DescBox = require \"actions/DescBox\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Animate = require \"actions/Animate\"\nlocal Ease = require \"actions/Ease\"\nlocal AudioFade = require \"actions/AudioFade\"\n\nlocal SpriteNode = require \"object/SpriteNode\"\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"got_chilidog\") then\n        return Serial {\n            MessageBox{message=\"Sonic: It's no use. {p40}Ant's outta Chili!\", blocking = true},\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\n\n    self.scene.player.noIdle = true\n    return BlockPlayer {\n        Animate(self.scene.player.sprite, \"smileright\"),\n        MessageBox {message = \"Sonic: Antoine's got a way past cool kitchen!\"},\n        Animate(self.scene.player.sprite, \"thinking\"),\n        MessageBox {message = \"Sonic: I'm sure he won't mind if I borrow it for a Sonic second...\"},\n        Menu {\n            layout = Layout {\n                {Layout.Text(\"Cook some food?\"), selectable = false},\n                {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        AudioFade(\"music\", 0.8, 0, 2),\n                        Wait(0.5),\n                        PlayAudio(\"sfx\", \"switchcharshort\", 1.0, true),\n                        self.scene.player:spin(1, 0.01),\n                        self.scene.player:spin(1, 0.02),\n                        Animate(self.scene.player.sprite, \"posechef\"),\n                        Wait(0.5),\n                        MessageBox {\n                            message = \"Sonic: Let's do it to it!\",\n                        },\n                        Parallel {\n                            -- Fade to black\n                            Ease(self.scene.bgColor, 1, 0, 2, \"linear\"),\n                            Ease(self.scene.bgColor, 2, 0, 2, \"linear\"),\n                            Ease(self.scene.bgColor, 3, 0, 2, \"linear\"),\n                            Do(function()\n                                ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n                            end)\n                        },\n                        PlayAudio(\"sfx\", \"cooking\", 0.8),\n                        Do(function()\n                            for _,layer in pairs(self.scene.map.layers) do\n                                if layer.name == \"mess\" then\n                                    layer.opacity = 1.0\n                                    break\n                                end\n                            end\n                        end),\n                        Parallel {\n                            -- Fade in\n                            Ease(self.scene.bgColor, 1, 255, 2, \"linear\"),\n                            Ease(self.scene.bgColor, 2, 255, 2, \"linear\"),\n                            Ease(self.scene.bgColor, 3, 255, 2, \"linear\"),\n                            Do(function()\n                                ScreenShader:sendColor(\"multColor\", self.scene.bgColor)\n                            end)\n                        },\n                        PlayAudio(\"music\", \"sallyrally\", 1.0),\n                        PlayAudio(\"music\", \"knotholehut\", 1.0, true, true),\n                        Do(function() GameState:grantItem(require(\"data/items/Chilidog\"), 1) end),\n                        MessageBox {\n                            message = \"You received a Chilidog!\",\n                            blocking = true,\n                            sfx = \"choose\",\n                            textSpeed = 7\n                        },\n                        Do(function() GameState:setFlag(\"got_chilidog\") end)\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                end}\n            },\n            cancellable = true,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n            selectedRow = 2\n        },\n        Do(function()\n            self:refreshKeyHint()\n            self.scene.player.noIdle = false\n        end)\n    }\nend"
           }
         },
         {

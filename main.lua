@@ -41,21 +41,16 @@ local fullScreen = false
 function love.load()
     love.profiler = require "lib/profile"
     love.profiler.hookall("Lua")
+	collectgarbage("stop")
 
 	love.graphics.setShader(ScreenShader)
 	
 	math.randomseed(os.time())
 	
-	sceneMgr:pushScene {class = "TitleSplashScene"}
+	sceneMgr:pushScene {class = "SageSplashScene"}
 end
 
 function love.update(dt)
-	love.frame = 1--(love.frame or 0) + 1
-    if love.frame % 100 == 0 then
-        print(tostring(love.profiler.report('time', 20)))
-        love.profiler.reset()
-    end
-
     if love.keyboard.isDown("f") then
         dt = dt * 10
 	elseif love.keyboard.isDown("s") then
@@ -121,6 +116,15 @@ function love.joystickaxis(joystick, axis, value)
 	if dpadMapping[tostring(axis)] then
 		local val = dpadMapping[tostring(axis)][tostring(value)]
 		sceneMgr:keypressed(val, val)
+	end
+	
+	-- Hack: Map axis of l/r triggers to flat buttons (c)
+	if (axis == 3 or axis == 6) then
+		if value == 1 then
+			love.joystickpressed(joystick, 5)
+		else
+			love.joystickreleased(joystick, 5)
+		end
 	end
 end
 

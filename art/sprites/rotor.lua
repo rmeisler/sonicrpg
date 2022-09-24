@@ -110,5 +110,14 @@ return {
 		sad = {
 			frames = {{0,5}}
 		},
+		
+		meeting_idledown = {
+			frames = {{0,2}},
+			clip = {0,0,47,42}
+		},
+		meeting_shock = {
+			frames = {{7,4}},
+			clip = {0,0,47,42}
+		},
     }
 }

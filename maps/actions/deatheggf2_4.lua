@@ -48,22 +48,24 @@ return function(scene)
 			scene:screenShake(20, 40)
 		}
 	end
-
-	-- Continuous stepping sounds from Juggerbot in bg
-	scene:run(Spawn(
-		While(
-			function()
-				return not GameState:isFlagSet("ep2boss")
-		    end,
-			Repeat(Serial {
-				stepAction(),
-				Wait(5)
-			}),
-			Action()
-		)
-	))
 	
 	if not GameState:isFlagSet("deathegg:first_master_terminal") then
+		-- Continuous stepping sounds from Juggerbot in bg
+		scene:run(Spawn(
+			While(
+				function()
+					return not GameState:isFlagSet("ep2boss")
+				end,
+				Repeat(Serial {
+					stepAction(),
+					Wait(5)
+				}),
+				Action()
+			)
+		))
+		
+		scene.steppingSfx = true
+
 		GameState:setFlag("deathegg:first_master_terminal")
 		return BlockPlayer {
 			Wait(0.5),
@@ -72,6 +74,23 @@ return function(scene)
 			Ease(scene.camPos, "x", 0, 0.3)
 		}
 	else
+		if not scene.steppingSfx then
+			-- Continuous stepping sounds from Juggerbot in bg
+			scene:run(Spawn(
+				While(
+					function()
+						return not GameState:isFlagSet("ep2boss")
+					end,
+					Repeat(Serial {
+						stepAction(),
+						Wait(5)
+					}),
+					Action()
+				)
+			))
+			scene.steppingSfx = true
+		end
+		
 		return Action()
 	end
 end

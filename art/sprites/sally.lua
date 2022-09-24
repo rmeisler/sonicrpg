@@ -17,10 +17,6 @@ return {
 			speed = 0.5
 		},
 		
-		leapdown = {
-			frames = {{5,2}}
-		},
-		
 		crouchdown = {
 		    frames = {{13,7}}
 		},
@@ -154,6 +150,27 @@ return {
 			frames = {{3,5}}
 		},
 		
+		dead = {
+			frames = {{14,2}}
+		},
+		
+		leapleft = {
+			frames = {{6,1}}
+		},
+		leapright = {
+			frames = {{6,0}}
+		},
+		leapdown = {
+			frames = {{6,2}}
+		},
+		leapup = {
+			frames = {{6,3}}
+		},
+		
+		readdown = {
+			frames = {{2,6}}
+		},
+		
 		thinking = {
 			frames = {{10,4}}
 		},
@@ -162,6 +179,9 @@ return {
 		},
 		thinking3 = {
 			frames = {{10,5}}
+		},
+		thinking_laugh = {
+			frames = {{9,5}}
 		},
 		planning = {
 			frames = {{11,5}}
@@ -198,8 +218,67 @@ return {
 		sit_smile = {
 			frames = {{15,1}}
 		},
+		sit_lookright = {
+			frames = {{14,0}}
+		},
+		sit_computer = {
+			frames = {{15,0}}
+		},
 		frustrateddown = {
 			frames = {{0,5}}
+		},
+		sadleft = {
+			frames = {{1,5}}
+		},
+		meeting_sadleft = {
+			frames = {{1,5}},
+			clip = {0,0,47,44}
+		},
+		meeting_thinking = {
+			frames = {{10,4}},
+			clip = {0,0,47,44}
+		},
+		meeting_thinking2 = {
+			frames = {{9,4}},
+			clip = {0,0,47,44}
+		},
+		meeting_thinking3 = {
+			frames = {{10,5}},
+			clip = {0,0,47,44}
+		},
+		meeting_shock = {
+			frames = {{11,4}},
+			clip = {0,0,47,44}
+		},
+		meeting_idleleft = {
+			frames = {{0,1}},
+			clip = {0,0,47,44}
+		},
+		meeting_idledown = {
+			frames = {{0,2}},
+			clip = {0,0,47,44}
+		},
+		
+		hockey_pose = {
+			frames = {{11,6}}
+		},
+		hockey_hit = {
+			frames = {{10,6},{9,6}},
+			speed = 0.2
+		},
+		hockey_hit_done = {
+			frames = {{8,6}}
+		},
+		
+		youngdown = {
+			frames = {{5,5}}
+		},
+		
+		sadright = {
+			frames = {{12,0}}
+		},
+		noright = {
+			frames = {{13,0}}
 		},
     }
 }

@@ -21,177 +21,100 @@ local SpriteNode = require "object/SpriteNode"
 local NameScreen = require "actions/NameScreen"
 local Executor = require "actions/Executor"
 local Spawn = require "actions/Spawn"
+local BlockPlayer = require "actions/BlockPlayer"
 local AudioFade = require "actions/AudioFade"
 local Repeat = require "actions/Repeat"
 
 local BasicNPC = require "object/BasicNPC"
 
-return function(scene)
-	scene.player.noSonicCrash = false
-	
-	if (GameState:isFlagSet("b_speech") or
-		GameState:isFlagSet("met_b")) and
-		not scene.objectLookup.b
-	then
-		local placeNPC = function(id, x, y, sprite, anim, interact, height, offsetY)
-			scene.objectLookup[id] = BasicNPC(
-				scene,
-				{name = "objects"},
-				{
-					name = id,
-					x = x,
-					y = y,
-					width = 96,
-					height = height or 64,
-					properties = {sprite = "art/sprites/"..sprite..".png", defaultAnim = anim, align = "bottom_center", alignOffsetX = 20, alignOffsetY = -32 + (offsetY or 0)}
-				}
-			)
-			scene:addObject(scene.objectLookup[id])
-			scene.objectLookup[id]:addInteract(interact)
-		end
-		placeNPC(
-			"b",
-			1632,
-			2142,
-			"b",
-			"idledown",
-			function(b)
-				scene.player:removeKeyHint()
-				scene:run {
-					MessageBox{message="B: I'm in your debt, Freedom Fighters.", blocking = true},
-					MessageBox{message="Sonic: Yo, B. {p50}Maybe you should all come with us. {p50}You would be safe in Knothole and we could keep your guys' minds sharp.", blocking = true},
-					Animate(b.sprite, "pose"),
-					MessageBox{message="B: Mmm...", blocking = true},
-					MessageBox{message="B: That's a very kind offer, but I can't let my people risk the journey.", blocking = true}
-				}
-			end,
-			96,
-			-32
+return function(scene, hint)
+	if hint == "fromworldmap" then
+		local subtext = TypeText(
+			Transform(50, 470),
+			{255, 255, 255, 0},
+			FontCache.TechnoSmall,
+			"Robotropolis",
+			100
 		)
-		placeNPC(
-			"r",
-			608,
-			1888,
-			"r",
-			"idleright",
-			function(r)
-				scene.player:removeKeyHint()
-				scene:run(MessageBox{message="R: Thanks for saving uncle B!{p50}\n...Can you bring us more of those \"Power Rings\"?", blocking = true})
-			end
+		local text = TypeText(
+			Transform(50, 500),
+			{255, 255, 255, 0},
+			FontCache.Techno,
+			"B's Hideout",
+			100
 		)
-		placeNPC(
-			"j",
-			480,
-			1888,
-			"p",
-			"jdown",
-			function(j)
-				scene.player:removeKeyHint()
-				scene:run {
-					MessageBox{message="J: I've read about a beautiful place far away from here called the \"Great Forest\"!", blocking = true},
-					MessageBox{message="J: I wanna build a little home there and go on adventures with my #1 mate, R!", blocking = true},
-					Animate(scene.objectLookup.r.sprite, "idleleft"),
-					MessageBox{message="R: *blush*", blocking = true},
-					Animate(scene.objectLookup.r.sprite, "idleright")
-				}
-			end
-		)
-		placeNPC(
-			"t",
-			2880,
-			1856,
-			"p",
-			"tleft",
-			function(t)
-				scene.player:removeKeyHint()
-				scene:run {
-					Animate(t.sprite, "tleftcross"),
-					MessageBox{message="T: B is as stubborn as a goat! {p50}Even as he nearly dies from attrition, he insists that we are safer down here than anywhere else!", blocking = true},
-					MessageBox{message="T: I want to migrate our people to your village of Knothole. {p50}There, we can be safe from Robotnik, and I can study the \"Power Rings\"...", blocking = true},
-					MessageBox{message="T: ...{p50}if B would just listen to me...", blocking = true},
-					Animate(t.sprite, "tleft")
-				}
-			end
-		)
-		placeNPC(
-			"p",
-			2272,
-			1280,
-			"p",
-			"pdown",
-			function(p)
-				scene.player:removeKeyHint()
-				scene:run {
-					MessageBox{message="P: None of us can really remember our full names anymore.", blocking = true},
-					MessageBox{message="P: Rather than everyone having partial names then, we all just go by the first letter of our first name--{p50} supposing we can still remember it!", blocking = true}
-				}
-			end
-		)
-		scene.objectLookup.LowerDoor.sprite:setAnimation("open")
-		scene.objectLookup.LowerDoor:removeCollision()
-	end
-	
-	if GameState:isFlagSet("b_speech") then
-		return PlayAudio("music", "bhero", 1.0, true, true)
-	end
-	
-	if GameState:isFlagSet("met_b") then
-		scene.player.cinematicStack = scene.player.cinematicStack + 1
-	
-		return Serial {
-			Spawn(Serial {
-				PlayAudio("music", "bheart", 1.0),
-				PlayAudio("music", "bhero", 1.0, true, true)
-			}),
-			MessageBox{message="B: I've uploaded maps into Nicole to get you to the cell block where I assume they are holding your friend.", blocking = true},
-			
+		Executor(scene):act(Serial {
+			Wait(0.5),
+			subtext,
+			text,
 			Parallel {
-				MessageBox{message="B: When you're ready to leave, just go through that door...", blocking = true},
-				Ease(scene.camPos, "y", 600, 0.5, "inout")
+				Ease(text.color, 4, 255, 1),
+				Ease(subtext.color, 4, 255, 1),
 			},
-			Ease(scene.camPos, "y", 0, 1, "inout"),
-			
+			Wait(2),
+			Parallel {
+				Ease(text.color, 4, 0, 1),
+				Ease(subtext.color, 4, 0, 1)
+			}
+		})
+	end
+	
+	if hint == "fromrace" then
+		local walkout, walkin, sprites = scene.player:split()
+		scene.player.state = "idleleft"
+		scene.objectLookup.R.sprite:setAnimation("idleright")
+		scene.objectLookup.J.sprite:setAnimation("jright")
+		return BlockPlayer {
+			PlayAudio("music", "forgottenhideout2", 1.0, true, true),
+			walkout,
+			Animate(sprites.sonic.sprite, "idleleft"),
+			Animate(sprites.sally.sprite, "idleleft"),
+			Animate(sprites.antoine.sprite, "idleleft"),
+			Wait(1),
+			Ease(scene.objectLookup.R, "y", function() return scene.objectLookup.R.y - 50 end, 8),
+			Ease(scene.objectLookup.R, "y", function() return scene.objectLookup.R.y + 50 end, 8),
+			MessageBox{message="R: I-I did it!! {p60}I won!"},
+			MessageBox{message="J: I knew you could do it, mate!!"},
+			MessageBox{message="R: *whisper* Hey Sonic... {p60}I know ya did that to help me with J..."},
+			Animate(sprites.sonic.sprite, "earnestleft"),
+			MessageBox{message="Sonic: *whisper* Was it that obvious?"},
+			MessageBox{message="R: And umm... {p60}I think I feel better about going to Knothole now..."},
+			MessageBox{message="R: This race helped me see that I can count on me! {p60}Even though it's scary to move away{p60}, it'll be ok! {p60}Right?"},			
+			Animate(sprites.sonic.sprite, "smileleft"),
+			MessageBox{message="Sonic: You got it, little buddy!"},
+			Ease(scene.objectLookup.R, "y", function() return scene.objectLookup.R.y - 50 end, 8),
+			Ease(scene.objectLookup.R, "y", function() return scene.objectLookup.R.y + 50 end, 8),
+			MessageBox{message="R: You can tell B that I'm in too!"},
+			PlayAudio("sfx", "levelup", 1.0, true),
+			Ease(scene.objectLookup.J, "y", function() return scene.objectLookup.J.y - 50 end, 8),
+			Ease(scene.objectLookup.J, "y", function() return scene.objectLookup.J.y + 50 end, 8),
+			MessageBox{message="J: Wow! {p60}Alright R! {p60}You won't regret it mate!"},
+			Animate(scene.objectLookup.R.sprite, "idleleft"),
+			Wait(1),
+			Animate(sprites.sally.sprite, "idleup"),
+			MessageBox{message="Sally: I saw you slow down at the end there. {p60}For such a 'way past' guy, you sure are a softie."},
+			Animate(sprites.sonic.sprite, "idledown"),
+			MessageBox{message="Sonic: Say wha? {p60}I ain't no softie! {p60}Maybe I'm just not as fast as I used to be..."},
+			Animate(sprites.sally.sprite, "thinking_laugh"),
+			MessageBox{message="Sally: *chuckles* Whatever you say, Sonic Hedgehog."},
+			walkin,
 			Do(function()
-				GameState:setFlag("b_speech")
-				scene.player.cinematicStack = 0
+				scene.player.x = scene.player.x + 60
+				scene.player.y = scene.player.y + 60
 			end)
 		}
 	end
 	
-	if GameState:isFlagSet("forgotten_enter") then
-		return PlayAudio("music", "forgottendiscovery", 1.0, true, true)
+	if GameState:isFlagSet("ep3_spoke_b2") then
+		if hint == "fromworldmap" then
+			return Serial {
+				PlayAudio("music", "bheart", 1.0),
+				PlayAudio("music", "bhero", 1.0, true, true)
+			}
+		else
+			return PlayAudio("music", "bhero", 1.0, true, true)
+		end
 	end
 	
-	scene.player.y = scene.player.y - 340
-	local walkout, walkin, sprites = scene.player:split()
-	scene.player.y = scene.player.y + 340
-	
-	scene.player.cinematicStack = 1
-	scene.player.sprite:setAnimation("walkup")
-	scene.player.noIdle = true
-
-	return Serial {
-		PlayAudio("music", "forgottendiscovery", 1.0, true, true),
-		
-		Wait(2),
-		
-		Ease(scene.player, "y", scene.player.y - 280, 1, "linear"),
-		Do(function()
-			scene.player.noIdle = false
-			scene.player.sprite:setAnimation("idleup")
-		end),
-		
-		walkout,
-		
-		MessageBox{message="Sally: Which way did he go?", blocking=true},
-		MessageBox{message="Sonic: Not sure... {p40}let's scout it out.", blocking=true},
-		
-		walkin,
-		
-		Do(function()
-			scene.player.x = scene.player.x + 60
-			scene.player.cinematicStack = 0
-			GameState:setFlag("forgotten_enter")
-		end)
-	}
+	return PlayAudio("music", "forgottenhideout2", 1.0, true, true)
 end

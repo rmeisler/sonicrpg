@@ -76,7 +76,7 @@ function doSave(menu, index, spawnPoint)
 	menu.scene:run(Parallel {
 		menu,
 		menu.scene.subscreen,
-		MessageBox {message="Saved!", rect=MessageBox.HEADLINER_RECT, blocking = true, closeAction=Wait(0.6)}	
+		MessageBox {message="Saved!", rect=MessageBox.HEADLINER_RECT, blocking = true, sfx="levelup", closeAction=Wait(0.6)}	
 	})
 end
 

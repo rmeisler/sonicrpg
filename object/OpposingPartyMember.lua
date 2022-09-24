@@ -43,19 +43,27 @@ function OpposingPartyMember:construct(scene, data)
 	self.hp = data.stats.maxhp
 	self.maxhp = data.stats.maxhp
 	self.scan = data.scan
+	self.insult = data.insult
+	self.hpBarOffset = data.hpBarOffset or Transform(0,0)
 	self.hurtSfx = "smack"
 	self.behavior = data.behavior or function() end
 	self.onDead = data.onDead or function() return Action() end
 	self.onEnter = data.onEnter or function() return Action() end
 	self.onPreInit = data.onPreInit or function() end
 	self.onInit = data.onInit or function() end
+	self.onScan = data.onScan or nil
+	self.onConfused = data.onConfused or nil
+	self.onTease = data.onTease or nil
+	self.getHpStats = data.getHpStats or function(self) return self.hp, self.maxhp end
 	self.getIdleAnim = data.getIdleAnim or function(_self) return "idle" end
 	self.getBackwardAnim = data.getBackwardAnim or function(_self) return "backward" end
 	self.onAttack = data.onAttack
 	self.onBeforeAttack = data.onBeforeAttack
-	self.textOffset = data.textOffset or Transform(0, self.sprite.h/2 - 15)
+	self.textOffset = data.textOffset or Transform(0, self:getSprite().h/2 - 15)
 	self.color = data.color or {255,255,255,255}
 	self.boss = data.boss
+	self.bossPart = data.boss_part
+	self.aerial = data.aerial
 	self.targetOverrideStack = {}
 	
 	self.sprite.color = self.color
@@ -67,7 +75,7 @@ function OpposingPartyMember:setShadow(visible)
 	local sprite = self:getSprite()
 	self.dropShadow = SpriteNode(
 		self.scene,
-		Transform(sprite.transform.x - sprite.w + 18, sprite.transform.y + sprite.h - 14, 2, 2),
+		Transform(sprite.transform.x - sprite.w/2 + 18, sprite.transform.y + sprite.h - 14, 2, 2),
 		nil,
 		"dropshadow"
 	)
@@ -198,13 +206,18 @@ function OpposingPartyMember:beginTurn()
 		}
 		self.confused = false
 	elseif self.lostTurns > 1 then
-		local lostTurnMsg = self.name.." is still "..(self.lostTurnType or "bored").."!"
+		local lostTurnMsg = self.name.." is still "..((self.lostTurnType.."ed") or "bored").."!"
 		self.action = Telegraph(self, lostTurnMsg, {self.color[1],self.color[2],self.color[3],50})
 		self.lostTurns = self.lostTurns - 1
 	elseif self.lostTurns > 0 then
 		local lostTurnMsg = self.name.."'s "..(self.lostTurnType or "boredom").." has subsided."
-		self.action = Telegraph(self, lostTurnMsg, {self.color[1],self.color[2],self.color[3],50})
+		self.action = Serial {
+			Do(function() self:getSprite():setAnimation("idle") end),
+			self.afterLostTurns and self.afterLostTurns(self, self.lostTurnType) or Action(),
+			Telegraph(self, lostTurnMsg, {self.color[1],self.color[2],self.color[3],50})
+		}
 		self.lostTurns = self.lostTurns - 1
+		self.lostTurnType = nil
 	else
 		local targetOverride = table.remove(self.targetOverrideStack, 1)
 		if targetOverride then
@@ -259,7 +272,7 @@ function OpposingPartyMember:beginTurn()
 						PlayAudio("sfx", "shocked", 0.5, true),
 					}
 				},
-				self:takeDamage({attack = 10, speed = 0, luck = 0})
+				self:takeDamage(self.infectedStats or {attack = 10, speed = 100, luck = 0})
 			}
 		)
 		self.malfunctioningTurns = self.malfunctioningTurns - 1
@@ -268,7 +281,19 @@ function OpposingPartyMember:beginTurn()
 			additionalActions,
 			Telegraph(self, self.name.." is no longer malfunctioning.", {self.color[1],self.color[2],self.color[3],50})
 		)
+		self.infectedStats = nil
 		self.malfunctioningTurns = self.malfunctioningTurns - 1
+	end
+	
+	-- If poisoned, take some damage
+	if self.poisoned then
+		table.insert(
+			additionalActions,
+			Serial {
+				MessageBox {message=self.name.." is poisoned!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(0.6)},
+				self:takeDamage(self.poisoned, true, BattleActor.poisonKnockback)
+			}
+		)
 	end
 	
 	self.scene:run {

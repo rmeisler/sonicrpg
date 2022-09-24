@@ -45,14 +45,9 @@ return {
 	},
 
 	equip = {
-		weapon    = require "data/weapons/Gloves",
-		armor     = nil,
-		accessory = require "data/accessories/Backpack",
 	},
 
 	items = {
-		{count = 1, item = require "data/items/GreenLeaf"},
-		{count = 1, item = require "data/items/CrystalWater"},
 	},
 	
 	levelup = {

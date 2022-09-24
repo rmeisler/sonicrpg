@@ -141,6 +141,7 @@ function MessageBox:setScene(scene)
 		nil,
 		false
 	)
+	self.pressXSprite.drawWithNight = false
 	
 	self.scene = scene
 end

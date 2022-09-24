@@ -20,25 +20,40 @@ function LaserTrap:construct(scene, layer, object)
 	self.ghost = true
 	self.alwaysOn = object.properties.alwaysOn
 	self.deactivated = object.properties.deactivated
+	self.blink = object.properties.blink
 	self.respawnName = object.properties.respawn
+	self.bounceX = object.properties.bounceX or 1.0
+	self.bounceY = object.properties.bounceY or 1.0
 
+	if self.blink then
+		self.blinkTime = -1 * (object.properties.blinkOffset or 0)
+		self.blinkOnTime = object.properties.blinkOnTime or 1
+		self.blinkOffTime = object.properties.blinkOffTime or 1
+	end
+	
 	NPC.init(self)
-
+	
 	self:addHandler("collision", LaserTrap.touch, self)
 end
 
 function LaserTrap:postInit()
 	self.spawnPointLeft = self.scene.objectLookup[self.object.properties.spawnPointLeft]
 	self.spawnPointRight = self.scene.objectLookup[self.object.properties.spawnPointRight]
-	
 	self.spawnPointLeft.parentTrap = self
 	self.spawnPointRight.parentTrap = self
+	self.vertical = self.object.properties.vertical
 	
-	self.laserScale = ((self.spawnPointRight.x - self.spawnPointLeft.x) / 2) / self.scene:getTileWidth()
+	if self.vertical then
+		self.laserScale = ((self.spawnPointRight.y - self.spawnPointLeft.y) / 2) / self.scene:getTileHeight()
+		self.angle = math.pi/2
+	else
+		self.laserScale = ((self.spawnPointRight.x - self.spawnPointLeft.x) / 2) / self.scene:getTileWidth()
+		self.angle = 0
+	end
 	
 	self.laser1 = BasicNPC(
 		self.scene,
-		{name = "objects"},
+		{name = self.layer and self.layer.name or "objects"},
 		{
 			name = "beamsprite",
 			x = self.spawnPointLeft.x + self.spawnPointLeft.object.width/2,
@@ -52,12 +67,13 @@ function LaserTrap:postInit()
 	self.laser1.sprite.transform.oy = self.laser1.sprite.h/2
 	self.laser1.sprite.transform.sx = 0.0
 	self.laser1.sprite.transform.sy = 1.0
+	self.laser1.sprite.transform.angle = self.angle
 	self.laser1.sprite.sortOrderY = 99999
 	self.scene:addObject(self.laser1)
 
 	self.laser2 = BasicNPC(
 		self.scene,
-		{name = "objects"},
+		{name = self.layer and self.layer.name or "objects"},
 		{
 			name = "beamsprite",
 			x = self.spawnPointRight.x + self.spawnPointLeft.object.width/2,
@@ -71,6 +87,7 @@ function LaserTrap:postInit()
 	self.laser2.sprite.transform.oy = self.laser1.sprite.h/2
 	self.laser2.sprite.transform.sx = 0.0
 	self.laser2.sprite.transform.sy = 1.0
+	self.laser2.sprite.transform.angle = self.angle
 	self.laser2.sprite.sortOrderY = 99999
 	self.scene:addObject(self.laser2)
 	
@@ -78,35 +95,151 @@ function LaserTrap:postInit()
 		self.respawn = self.scene.objectLookup[self.respawnName]
 	end
 	
-	if self.alwaysOn then
+	if GameState:isFlagSet(self) then
+		self:onUse()
+	elseif self.alwaysOn then
 		self:lasersOn()
 	end
 end
 
 function LaserTrap:lasersOn()
+	self.laser1.x = self.spawnPointLeft.x + self.spawnPointLeft.object.width/2
+	self.laser1.y = self.spawnPointLeft.y + self.spawnPointLeft.object.height/2
+	self.laser1.sprite.transform.ox = 0
+	self.laser1.sprite.transform.oy = self.laser1.sprite.h/2
+	self.laser1.sprite.transform.sx = 0.0
+	self.laser1.sprite.transform.sy = 1.0
+
+	self.laser2.x = self.spawnPointRight.x + self.spawnPointLeft.object.width/2
+	self.laser2.y = self.spawnPointRight.y + self.spawnPointLeft.object.height/2
+	self.laser2.sprite.transform.ox = self.laser1.sprite.w
+	self.laser2.sprite.transform.oy = self.laser1.sprite.h/2
+	self.laser2.sprite.transform.sx = 0.0
+	self.laser2.sprite.transform.sy = 1.0
+
 	self.laser1:run {
 		Ease(self.laser1.sprite.transform, "sx", self.laserScale, 5)
 	}
 	self.laser2:run {
 		Ease(self.laser2.sprite.transform, "sx", self.laserScale, 5)
 	}
+	
+	self.ready = true
 end
 
 function LaserTrap:update(dt)
+	if not self.ready then
+		return
+	end
+
 	NPC.update(self, dt)
 	
 	if self.alwaysOn then
 		self:shockBots()
 	end
+	
+	if self.blink then
+		self.blinkTime = self.blinkTime + dt
+		if self.alwaysOn and self.blinkTime > self.blinkOnTime then
+			self.blinkTime = 0
+			self:deactivate()
+		elseif self.deactivated and self.blinkTime > self.blinkOffTime then
+			self.blinkTime = 0
+			self:activate()
+		end
+	end
+end
+
+function LaserTrap:onUse()
+	local fromUse = self.object.properties.fromUse
+	if fromUse == "blink" then
+		self:activate()
+		self.blink = true
+		self.blinkTime = 0
+		self.blinkOnTime = 2
+		self.blinkOffTime = 2
+	elseif fromUse == "activate" then
+		self:activate()
+	elseif fromUse == "deactivate" then
+		self:deactivate()
+	end
+end
+
+function LaserTrap:use()
+	GameState:setFlag(self)
+	self.scene:run(BlockPlayer {
+		Parallel {
+			Ease(self.scene.camPos, "x", function() return self.scene.player.x - (self.x + self.object.width/2) end, 1, "inout"),
+			Ease(self.scene.camPos, "y", function() return self.scene.player.y - (self.y + self.object.height) end, 1, "inout"),
+		},
+		Do(function()
+			if not self.laser1 then
+				self:postInit()
+			end
+			self.scene.audio:playSfx("shocked", 0.5, true)
+			self:onUse()
+		end),
+		Wait(2),
+		Parallel {
+			Ease(self.scene.camPos, "x", 0, 1, "inout"),
+			Ease(self.scene.camPos, "y", 0, 1, "inout"),
+		}
+	})
+end
+
+function LaserTrap:activate()
+	self:lasersOn()
+	self.alwaysOn = true
+	self.deactivated = false
+end
+
+function LaserTrap:activateWhenClose()
+	self:disappearLasers()
+	self.alwaysOn = false
+	self.deactivated = false
+end
+
+function LaserTrap:deactivate()
+	self:disappearLasers()
+	self.alwaysOn = false
+	self.deactivated = true
+end
+
+function LaserTrap:disappearLasers()
+    if self.alwaysOn then
+		if self.vertical then
+			self.laser1.sprite.transform.sx = 0
+			self.laser2.sprite.transform.sy = 0
+			return
+		end
+
+        self.laser1:run {
+            Do(function()
+                self.laser1.sprite.transform.ox = self.laser1.sprite.w
+                self.laser1.x = self.laser1.x + self.laserScale * self.scene:getTileWidth()
+            end),
+            Ease(self.laser1.sprite.transform, "sx", 0, 5)
+        }
+        self.laser2:run {
+            Do(function()
+                self.laser2.sprite.transform.ox = 0
+                self.laser2.x = self.laser2.x - self.laserScale * self.scene:getTileWidth()
+            end),
+            Ease(self.laser2.sprite.transform, "sx", 0, 5)
+        }
+    end
 end
 
 function LaserTrap:touch(prevState)
+    if not self.spawnPointLeft then
+		self:postInit()
+	end
+
 	if self.deactivated then
 		return
 	elseif self.alwaysOn then
 		self:shockPlayer()
 	elseif prevState == NPC.STATE_IDLE then
-	    local player = self.scene.player
         local laser1 = self.laser1
 		local laser2 = self.laser2
 		
@@ -230,7 +363,9 @@ function LaserTrap:shockPlayer()
 		},
 		Serial {
 			Parallel {
-				Ease(player, "y", player.y - 100, 8, "linear"),
+				self.vertical and
+					Ease(player, "x", player.x + 100 * self.bounceX, 8, "linear") or
+					Ease(player, "y", player.y - 100 * self.bounceY, 8, "linear"),
 				respawnAction
 			},
 			Do(function()

@@ -14,6 +14,7 @@ local Transform  = require "util/Transform"
 local Gradient   = require "util/Gradient"
 local Layout     = require "util/Layout"
 local Audio      = require "util/Audio"
+local ItemType   = require "util/ItemType"
 
 local Action    = require "actions/Action"
 local Executor  = require "actions/Executor"
@@ -66,6 +67,7 @@ function BattleScene:onEnter(args)
 	self.color = args.color
 	self.practice = args.practice
 	self.camPos = Transform()
+	self.noBattleMusic = args.noBattleMusic
 	
 	local onEnterCallback = args.onEnter or function(scene) return Action() end
 
@@ -93,9 +95,6 @@ function BattleScene:onEnter(args)
 	for k,v in pairs(args.opponents) do
 		local oppo = self:addMonster(v)
 		oppo:onPreInit()
-	end
-	for _,oppo in pairs(self.opponents) do
-		oppo:onInit()
 	end
 	table.sort(self.opponents, function(a, b) return a.sprite.transform.y < b.sprite.transform.y end)
 	
@@ -146,6 +145,13 @@ function BattleScene:onEnter(args)
 	self.state = BattleScene.STATE_PLAYERTURN
 	
 	local initiativeAction = Action()
+	
+	-- Initiative modified by Tuning Fork
+	if self.initiative == "opponent" and
+	   GameState:isEquipped(GameState.leader, ItemType.Accessory, "Tuning Fork")
+	then
+		self.initiative = nil
+	end
 
 	-- Player has initiative by encountering enemy from behind
 	if self.initiative == "player" then
@@ -166,14 +172,28 @@ function BattleScene:onEnter(args)
 		end
 
 		if #self.opponents == 1 then
-			initiativeAction = MessageBox {
-				message=self.opponents[1].name.." was caught off guard!",
-				rect=MessageBox.HEADLINER_RECT
+			initiativeAction = Serial {
+				MessageBox {
+					message=self.opponents[1].name.." was caught off guard!",
+					rect=MessageBox.HEADLINER_RECT
+				},
+				Do(function()
+					for _, opponent in pairs(self.opponents) do
+						opponent.sprite:setAnimation("backward")
+					end
+				end)
 			}
 		else
-			initiativeAction = MessageBox {
-				message="Bots were caught off guard!",
-				rect=MessageBox.HEADLINER_RECT
+			initiativeAction = Serial {
+				MessageBox {
+					message="Bots were caught off guard!",
+					rect=MessageBox.HEADLINER_RECT
+				},
+				Do(function()
+					for _, opponent in pairs(self.opponents) do
+						opponent.sprite:setAnimation("backward")
+					end
+				end)
 			}
 		end
 	-- Opponent has initiative by running toward player
@@ -188,10 +208,19 @@ function BattleScene:onEnter(args)
 		end
 		self.state = BattleScene.STATE_MONSTERTURN
 
-		initiativeAction = MessageBox {
-			message="You were caught off guard!",
-			rect=MessageBox.HEADLINER_RECT
-		}	
+		initiativeAction = Serial {
+			MessageBox {
+				message="You were caught off guard!",
+				rect=MessageBox.HEADLINER_RECT
+			},
+			Do(function()
+				for _, player in pairs(self.party) do
+					if player.state ~= BattleActor.STATE_DEAD then
+						player.sprite:setAnimation("idle")
+					end
+				end
+			end)
+		}
 	else
 		for _, mem in pairs(self.party) do
 			if mem.state ~= BattleActor.STATE_DEAD then
@@ -230,6 +259,14 @@ function BattleScene:update(dt)
 
 	if not self.initialized then
 		return
+	end
+	
+	-- Update shadows for monsters
+	for _, oppo in pairs(self.opponents) do
+		if oppo.dropShadow then
+			local sprite = oppo:getSprite()
+			oppo.dropShadow.transform.x = sprite.transform.x - sprite.w/2 + 18
+		end
 	end
 	
 	if self.state == BattleScene.STATE_PLAYERTURN then
@@ -324,6 +361,10 @@ function BattleScene:update(dt)
 				for _, mem in pairs(self.party) do
 					if mem.state ~= BattleActor.STATE_DEAD then
 						table.insert(self.partyTurns, mem)
+					elseif mem.extraLives > 0 then
+						mem.extraLives = mem.extraLives - 1
+						mem.state = BattleActor.STATE_IDLE
+						table.insert(self.partyTurns, mem)
 					end
 				end
 
@@ -345,8 +386,10 @@ function BattleScene:update(dt)
 			end
 			self:run {
 				-- Fade out current music
-				AudioFade("music", self.audio:getMusicVolume(), 0, 2),
-				PlayAudio("music", "victory", 1.0, true, true),
+				self.noBattleMusic and Action() or Serial {
+					AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+					PlayAudio("music", "victory", 1.0, true, true)
+				},
 				
 				Parallel(victoryPoses),
 				
@@ -428,8 +471,10 @@ function BattleScene:update(dt)
 		self.bgColor = {255,255,255,255}
 		self:run {
 			-- Fade out current music
-			AudioFade("music", self.audio:getMusicVolume(), 0, 2),
-			PlayAudio("music", "victory", 1.0, true, true),
+			self.noBattleMusic and Action() or Serial {
+				AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+				PlayAudio("music", "victory", 1.0, true, true)
+			},
 			
 			-- Play victory
 			Parallel {
@@ -479,7 +524,8 @@ end
 function BattleScene:earlyExit()
 	return Serial {
 		-- Fade out current music
-		AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+		self.noBattleMusic and Action() or
+			AudioFade("music", self.audio:getMusicVolume(), 0, 2),
 		Do(function()
 			-- Make sure party hp is reflected back into GameState if you run away...
 			for _,mem in ipairs(self.party) do
@@ -533,10 +579,12 @@ function BattleScene:onExit(args)
 					ScreenShader:sendColor("multColor", self.bgColor)
 				end),
 				
-				AudioFade("music", self.audio:getMusicVolume(), 0, 1)
+				self.noBattleMusic and Action() or
+					AudioFade("music", self.audio:getMusicVolume(), 0, 1)
 			},
 			
-			PlayAudio("music", self.prevMusic, 1, true, true)
+			self.noBattleMusic and Action() or
+				PlayAudio("music", self.prevMusic, 1, true, true)
 		}
 	end
 end
@@ -581,13 +629,15 @@ function BattleScene:addMonster(monster)
 					oppo.sprite.visible = false
 					oppo.mockSprite = SpriteNode(
 						self,
-						Transform.from(mem.sprite.transform),
+						Transform(mem.sprite.transform.x,mem.sprite.transform.y,2,2),
 						{255,255,255,255},
 						mem.mockSprite
 					)
 					oppo.mockSprite.transform.x = oppo.mockSprite.transform.x + mem.mockSpriteOffset.x
-					oppo.mockSprite.transform.y = oppo.mockSprite.transform.y + mem.mockSpriteOffset.y
+					oppo.mockSprite.transform.y = oppo.mockSprite.transform.y + mem.mockSpriteOffset.y					
 				end
+				
+				oppo:onInit()
 			end)
 		})
 	else
@@ -605,6 +655,8 @@ function BattleScene:addMonster(monster)
 			oppo.mockSprite.transform.x = oppo.mockSprite.transform.x + mem.mockSpriteOffset.x
 			oppo.mockSprite.transform.y = oppo.mockSprite.transform.y + mem.mockSpriteOffset.y
 		end
+		
+		oppo:onInit()
 	end
 	
 	table.insert(self.opponents, oppo)
@@ -624,7 +676,8 @@ function BattleScene:cleanMonsters()
 	-- Check if all monsters dead (This can happen due to counter attack or reflection)
 	local toremove = {}
 	for index,oppo in pairs(self.opponents) do
-		if oppo.state == BattleActor.STATE_DEAD then
+		if oppo.state == BattleActor.STATE_DEAD or oppo.hp == 0 then
+			oppo.state = BattleActor.STATE_DEAD
 			self.xpGain = self.xpGain + oppo.stats.xp				
 			for _,drop in pairs(oppo.drops) do
 				if math.random() < drop.chance then
@@ -726,6 +779,13 @@ function BattleScene:draw()
 			node.transform.y = node.origXformY
 		end
 	end
+	
+	--[[
+	-- Debug code for showing enemy collision (for things like Sonic "Slam" skill)
+	for _,oppo in pairs(self.opponents) do
+		love.graphics.circle("line", oppo.sprite.transform.x, oppo.sprite.transform.y, 32)
+	end
+	]]
 end
 
 -- Vertical screen shake

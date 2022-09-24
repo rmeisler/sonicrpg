@@ -55,6 +55,10 @@ return function(scene, hint)
 			break
 		end
 	end
+	
+	if elevatorLayer.offsety == 0 then
+		elevatorLayer.offsety = -300
+	end
 
 	scene.player.state = "idledown"
 	return BlockPlayer {

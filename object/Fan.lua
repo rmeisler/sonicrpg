@@ -68,6 +68,7 @@ end
 function Fan:exit()
 	if GameState:isFlagSet(self) and not self.nosound then
 		self.scene.audio:stopSfx("fan")
+		self.scene.fans[tostring(self)] = nil
 	end
 end
 
@@ -173,16 +174,6 @@ function Fan:update(dt)
 				end
 			end
 		end
-		
-		if not self.nosound then
-			local minAudibleDist = 800
-			local maxAudibleDist = 200
-			local num = self:distanceFromPlayerSq() - maxAudibleDist*maxAudibleDist
-			local denom = (minAudibleDist - maxAudibleDist)*(minAudibleDist - maxAudibleDist)
-			local volume = 1.0 - math.min(1.0, math.max(0.0, num) / denom)
-
-			self.scene.audio:setVolumeFor("sfx", "fan", volume)
-		end
 	end
 end
 
@@ -194,6 +185,11 @@ function Fan:use()
 	GameState:setFlag(self)
 	
 	if not self.nosound then
+		if not self.scene.fans then
+			self.scene.fans = {}
+		end
+		self.scene.fans[tostring(self)] = self
+		
 		self.scene.audio:playSfx("fan", 0.5)
 		self.scene.audio:setLooping("sfx", true)
 	end

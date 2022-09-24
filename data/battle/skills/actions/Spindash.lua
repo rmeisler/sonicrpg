@@ -19,15 +19,16 @@ local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
 
 local LeapBackward = function(self, target)
+	local targetSp = target.sprite
 	return Serial {
 		-- Bounce off target
 		Parallel {
-			Ease(self.sprite.transform, "y", target.sprite.transform.y - self.sprite.h*2.5, 4, "linear"),
-			Ease(self.sprite.transform, "x", target.sprite.transform.x + self.sprite.w*2, 4, "linear"),
+			Ease(self.sprite.transform, "y", targetSp.transform.y - self.sprite.h*2.5, 4, "linear"),
+			Ease(self.sprite.transform, "x", targetSp.transform.x + self.sprite.w*2, 4, "linear"),
 		},
 		Parallel {
-			Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 4, "linear"),
-			Ease(self.sprite.transform, "x", target.sprite.transform.x + self.sprite.w*3, 4, "linear")
+			Ease(self.sprite.transform, "y", targetSp.transform.y + targetSp.h - self.sprite.h, 4, "linear"),
+			Ease(self.sprite.transform, "x", targetSp.transform.x + self.sprite.w*3, 4, "linear")
 		},
 		
 		-- Land on ground
@@ -43,7 +44,7 @@ local LeapBackward = function(self, target)
 		Parallel {
 			Ease(self.sprite.transform, "x", self.sprite.transform.x, 3),
 			Serial {
-				Ease(self.sprite.transform, "y", self.sprite.transform.y - math.abs(target.sprite.transform.y - self.sprite.transform.y) - self.sprite.h, 4),
+				Ease(self.sprite.transform, "y", self.sprite.transform.y - math.abs(targetSp.transform.y - self.sprite.transform.y) - self.sprite.h, 4),
 				Ease(self.sprite.transform, "y", self.sprite.transform.y, 6)
 			}
 		},
@@ -85,6 +86,7 @@ local SawSpark = function(self, angle, xOffset, yOffset)
 end
 
 return function(self, target)
+	local targetSp = target:getSprite()
 	return Serial {
 		-- Setup temporary keytriggered event
 		Animate(self.sprite, "crouch", true),
@@ -145,8 +147,8 @@ return function(self, target)
 			}, 4),
 			
 			Repeat(Serial {
-				Ease(target:getSprite().transform, "x", target:getSprite().transform.x + 5, 30, "quad"),
-				Ease(target:getSprite().transform, "x", target:getSprite().transform.x - 5, 30, "quad"),
+				Ease(targetSp.transform, "x", targetSp.transform.x + 5, 30, "quad"),
+				Ease(targetSp.transform, "x", targetSp.transform.x - 5, 30, "quad"),
 			}, 25),
 			
 			Serial {
@@ -169,7 +171,7 @@ return function(self, target)
 			self.sprite.transform.angle = 0
 		end),
 		
-		Ease(target:getSprite().transform, "x", target:getSprite().transform.x, 30),
+		Ease(targetSp.transform, "x", targetSp.transform.x, 30),
 
 		LeapBackward(self, target),
 	}

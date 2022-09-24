@@ -8,9 +8,10 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 22,
+  nextobjectid = 24,
   properties = {
-    ["onload"] = "actions/sonicshut_intro.lua",
+    ["ignorenight"] = true,
+    ["onload"] = "actions/knotholehut.lua",
     ["regionName"] = "Sonic's Hut"
   },
   tilesets = {
@@ -193,6 +194,42 @@ return {
     },
     {
       type = "tilelayer",
+      name = "nighthide1",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      visible = true,
+      opacity = 0,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 844, 845, 92, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 873, 874, 121, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 148, 149, 150, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 177, 178, 179, 0, 0, 0, 295, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 206, 207, 208, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "tilelayer",
       name = "above2",
       x = 0,
       y = 0,
@@ -228,6 +265,78 @@ return {
       }
     },
     {
+      type = "tilelayer",
+      name = "above3",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 870, 866, 867, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 899, 895, 896, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 928, 924, 925, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 953, 954, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "tilelayer",
+      name = "nighthide2",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      visible = true,
+      opacity = 0,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 188, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 221, 217, 218, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 250, 246, 247, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 275, 276, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
       type = "objectgroup",
       name = "objects",
       visible = true,
@@ -250,23 +359,9 @@ return {
           gid = 6839,
           visible = true,
           properties = {
-            ["GreenLeaf"] = 1,
+            ["CrystalWater"] = 2,
             ["sprite"] = "../art/sprites/chest2.png"
           }
-        },
-        {
-          id = 3,
-          name = "Spawn 1",
-          type = "Player",
-          shape = "rectangle",
-          x = 384,
-          y = 288,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 4565,
-          visible = true,
-          properties = {}
         },
         {
           id = 4,
@@ -308,7 +403,8 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\n\nlocal SpriteNode = require \"object/SpriteNode\"\nlocal Transform = require \"util/Transform\"\nlocal Rect = unpack(require \"util/Shapes\")\n\nreturn function(self)\n    local pic = SpriteNode(self.scene, Transform(0,0,1,1), {255,255,255,0}, \"splash/sonicpicture\", nil, nil, \"ui\")\n\n    local w = (love.graphics.getWidth() - 10)\n    local h = 160\n    local rect = Rect(Transform(love.graphics.getWidth() / 2, h/2), w, h)\n\n    return Serial {\n        Ease(pic.color, 4, 255, 1, \"linear\"),\n        MessageBox {\n            message = \"Sonic: Uncle Chuck and Muttski...\",\n            textSpeed = 3,\n            rect = rect,\n            blocking = true\n        },\n        MessageBox {\n            message = \"Sonic: Don't worry guys, {p40}I'll save ya one of these days.\",\n            rect = rect,\n            blocking = true\n        },\n        Ease(pic.color, 4, 0, 1, \"linear\"),\n        Do(function() pic:remove() end)\n    }\nend"
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\n\nlocal SpriteNode = require \"object/SpriteNode\"\nlocal Transform = require \"util/Transform\"\nlocal Rect = unpack(require \"util/Shapes\")\n\nreturn function(self)\n    if GameState.leader ~= \"sonic\" then\n        return Action()\n    end\n\n    local pic = SpriteNode(self.scene, Transform(0,0,1,1), {255,255,255,0}, \"splash/sonicpicture\", nil, nil, \"ui\")\n\n    local w = (love.graphics.getWidth() - 10)\n    local h = 160\n    local rect = Rect(Transform(love.graphics.getWidth() / 2, h/2), w, h)\n\n    return Serial {\n        Ease(pic.color, 4, 255, 1, \"linear\"),\n        MessageBox {\n            message = \"Sonic: Uncle Chuck and Muttski...\",\n            textSpeed = 3,\n            rect = rect,\n            blocking = true\n        },\n        MessageBox {\n            message = \"Sonic: Don't worry guys, {p40}I'll save ya one of these days.\",\n            rect = rect,\n            blocking = true\n        },\n        Ease(pic.color, 4, 0, 1, \"linear\"),\n        Do(function() pic:remove() end)\n    }\nend",
+            ["usableBy"] = "sonic"
           }
         },
         {
@@ -326,8 +422,9 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["ghost"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Menu = require \"actions/Menu\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    return BlockPlayer { Menu {\n        layout = Layout {\n            {Layout.Text(\"Play guitar?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    MessageBox {\n                        message = \"Sonic: Eh, {p40}a little heavy metal isn't the worst way to start the morning...\",\n                        blocking = true\n                    },\n                    Do(function()\n                        self.hidden = true\n                        self.scene.player.noIdle = true\n                        self.scene.player.sprite:setAnimation(\"guitarstrum\")\n                    end),\n                    PlayAudio(\"music\", \"sonicguitar\", 1.0),\n                    MessageBox {\n                        message = \"Sonic: Way past cool! {p40}I need to play this thing more.\",\n                        blocking = true\n                    },\n                    Do(function()\n                        self.scene.player.noIdle = false\n                        self.hidden = false\n                    end),\n                    PlayAudio(\"music\", \"knotholehut\", 1.0, true),\n                }\n            end},\n            {Layout.Text(\"No\"), choose = function(menu) menu:close() end},\n        },\n        cancellable = true,\n        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n        selectedRow = 2,\n        blocking = true\n    },\n    Do(function() self:refreshKeyHint() end)\n    }\nend",
-            ["sprite"] = "../art/sprites/guitar.png"
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Menu = require \"actions/Menu\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Action = require \"actions/Action\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self)\n    if GameState.leader ~= \"sonic\" then\n        return Action()\n    end\n\n    return BlockPlayer { Menu {\n        layout = Layout {\n            {Layout.Text(\"Play guitar?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                menu:close()\n                self.scene:run {\n                    menu,\n                    MessageBox {\n                        message = \"Sonic: Eh, {p40}a little heavy metal isn't the worst way to start the morning...\",\n                        blocking = true\n                    },\n                    Do(function()\n                        self.hidden = true\n                        self.scene.player.noIdle = true\n                        self.scene.player.sprite:setAnimation(\"guitarstrum\")\n                    end),\n                    PlayAudio(\"music\", \"sonicguitar\", 1.0),\n                    MessageBox {\n                        message = \"Sonic: Way past cool! {p40}I need to play this thing more.\",\n                        blocking = true\n                    },\n                    Do(function()\n                        self.scene.player.noIdle = false\n                        self.hidden = false\n                    end),\n                    PlayAudio(\"music\", \"knotholehut\", 1.0, true),\n                }\n            end},\n            {Layout.Text(\"No\"), choose = function(menu) menu:close() end},\n        },\n        cancellable = true,\n        transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n        selectedRow = 2,\n        blocking = true\n    },\n    Do(function() self:refreshKeyHint() end)\n    }\nend",
+            ["sprite"] = "../art/sprites/guitar.png",
+            ["usableBy"] = "sonic"
           }
         },
         {
@@ -345,7 +442,7 @@ return {
           properties = {
             ["ghost"] = true,
             ["notColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = nil\nend",
-            ["whileColliding"] = "return function(self, player)\n    player.lights[tostring(self)] = true\nend"
+            ["whileColliding"] = "return function(self, player)\n    if not self.scene.nighttime then\n        player.lights[tostring(self)] = true\n    end\nend"
           }
         },
         {
@@ -482,23 +579,19 @@ return {
           }
         },
         {
-          id = 19,
-          name = "AlarmClock",
-          type = "BasicNPC",
+          id = 23,
+          name = "Spawn 1",
+          type = "Player",
           shape = "rectangle",
-          x = 320,
-          y = 256,
+          x = 384,
+          y = 448,
           width = 32,
           height = 32,
           rotation = 0,
-          gid = 6839,
+          gid = 4565,
           visible = true,
           properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetY"] = -32,
-            ["ghost"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return Serial {\n        Do(function()\n            self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1\n            self.scene.player.noIdle = true\n        end),\n        MessageBox {\n            message = \"Sonic: Ugh. {p40}I can't believe Sal is making us use these alarm clocks...\"\n        },\n        Parallel {\n            Animate(self.scene.player.sprite, \"irritated\", true),\n            MessageBox {\n                message = \"Sonic: Doesn't she know that a hedgehog needs his beauty sleep?!\"\n            }\n        },\n        Do(function()\n            self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1\n            self.scene.player.noIdle = false\n            self.scene.player.state = \"idledown\"\n            self.scene.player.hidekeyhints[tostring(self)] = nil\n        end)\n    }\nend",
-            ["sprite"] = "../art/sprites/clock.png"
+            ["orientation"] = "down"
           }
         }
       }

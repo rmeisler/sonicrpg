@@ -4,6 +4,7 @@ local Serial = require "actions/Serial"
 local Parallel = require "actions/Parallel"
 local Ease = require "actions/Ease"
 local Wait = require "actions/Wait"
+local Spawn = require "actions/Spawn"
 
 return function(self, msg, flashColor)
 	return Serial {

@@ -902,6 +902,10 @@ function Map:setFlippedGID(gid)
 	end
 
 	local tile = self.tiles[realgid]
+	
+	if not tile then
+	    print("gid = "..tostring(realgid))
+	end
 	local data = {
 		id         = tile.id,
 		gid        = gid,

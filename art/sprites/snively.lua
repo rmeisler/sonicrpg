@@ -118,6 +118,27 @@ return {
 			frames = {{8,4}}
 		},
 		
+		idleright_lookright = {
+            frames = {{9,0}}
+        },
+		
+		angryright = {
+            frames = {{10,0}}
+        },
+		
+		idleright_lookleft = {
+            frames = {{11,0}}
+        },
+		
+		idleright_smile = {
+            frames = {{12,0}}
+        },
+		
+		idleright_laugh = {
+            frames = {{13,0},{14,0}},
+			speed=0.2
+        },
+		
 		peekright = {
 			frames = {{2,4}}
 		},

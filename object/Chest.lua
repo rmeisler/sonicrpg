@@ -10,6 +10,10 @@ function Chest:construct(scene, layer, object)
 	object.properties.defaultAnim = nil
 	object.properties.appearAfter = nil
 	object.properties.alphaOverride = nil
+	object.properties.hidden = nil
+	
+	local nonight = object.properties.nonight
+	object.properties.nonight = nil
 	
 	self.disappearOnGrabbed = object.properties.disappearOnGrabbed
 	object.properties.disappearOnGrabbed = nil
@@ -24,19 +28,18 @@ function Chest:construct(scene, layer, object)
 	if GameState:isFlagSet(self) and self.sprite then
 		self.sprite:setAnimation("open")
 	end
+	
+	object.properties.nonight = nonight
 
 	self:addInteract(Chest.open)
 end
 
 function Chest:requireLoot(name)
-	for _, itemType in pairs {"items", "weapons", "armor", "accessories"} do
+	for _, itemType in pairs {"items", "weapons", "armor", "legs", "accessories"} do
 		local itemName = string.format("data/%s/%s", itemType, name)
 		local status = pcall(require, itemName)
 		if status then
-			print("load item "..itemName)
 			return require(itemName)
-		else
-			print("fail load item "..itemName)
 		end
 	end
 	return nil
@@ -89,17 +92,10 @@ function Chest:open()
 end
 
 function Chest:onScan()
-	return Serial {
-		MessageBox {
-			message="Nicole: {p50}.{p50}.{p50}.{p50}",
-			blocking=true,
-			closeAction=Action()
-		},
-		MessageBox {
-			message="Nicole: This is a chest{p50}, Sally.",
-			blocking=true,
-			textSpeed = 4
-		},
+	return MessageBox {
+		message="Nicole: This is a chest{p50}, Sally.",
+		blocking=true,
+		textSpeed = 4
 	}
 end
 

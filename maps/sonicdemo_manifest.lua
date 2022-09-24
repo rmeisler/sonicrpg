@@ -4,92 +4,48 @@ return {
 		file = "maps/worldmap.lua",
 		--primary = true
     },
-	
 	{
         type = "map",
-		file = "maps/deathegg_elevator1.lua",
-		primary = true
-    },
-	
-	{
-        type = "map",
-		file = "maps/deathegg_elevator2.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deathegg_elevator3.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deathegg_elevator4.lua",
+		file = "maps/darkswamp1.lua",
 		--primary = true
     },
-	
 	{
         type = "map",
-		file = "maps/deathegg1.lua"
+		file = "maps/darkswamp2.lua",
+		--primary = true
     },
-	
 	{
         type = "map",
-		file = "maps/deathegg3.lua"
+		file = "maps/darkswamp3.lua",
+		--primary = true
     },
-	
 	{
         type = "map",
-		file = "maps/deathegg4.lua"
+		file = "maps/darkswamp4.lua"
     },
-	
 	{
         type = "map",
-		file = "maps/deathegg5.lua"
+		file = "maps/darkswamp5.lua"
     },
-	
 	{
         type = "map",
-		file = "maps/deathegg6.lua"
+		file = "maps/darkswamp6.lua"
     },
-	
 	{
         type = "map",
-		file = "maps/deatheggf2_sneak1.lua"
+		file = "maps/darkswamp7.lua"
     },
-	
 	{
         type = "map",
-		file = "maps/deatheggf2_sneak2.lua"
+		file = "maps/darkswamp8.lua"
     },
-	
 	{
         type = "map",
-		file = "maps/deatheggf2_sneak3.lua"
+		file = "maps/darkswamp9.lua"
     },
-	
 	{
         type = "map",
-		file = "maps/deatheggf2_1.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deatheggf2_2.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deatheggf2_2.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deatheggf2_2.lua"
-    },
-	
-	{
-        type = "map",
-		file = "maps/deatheggf2_4.lua",
+		file = "maps/run1.lua",
 		--primary = true
     },
 	
@@ -101,8 +57,20 @@ return {
 	
 	{
         type = "map",
+		file = "maps/rebellionhut.lua"
+    },
+	
+	{
+        type = "map",
 		file = "maps/sonicshut.lua",
 		--primary = true
+    },
+	
+	{
+        type = "map",
+		file = "maps/sallyshutnight.lua",
+		-- REAL PRIMARY
+		primary = true
     },
 	
 	{
@@ -136,12 +104,6 @@ return {
 	
 	{
         type = "map",
-        file = "maps/robotnikwarroom.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
         file = "maps/forgottenhideout.lua",
 		--primary = true,
     },
@@ -157,10 +119,47 @@ return {
         file = "maps/knothole.lua",
 		--primary = true
     },
+	{
+        type = "map",
+        file = "maps/knotholeatnight.lua",
+		--primary = true
+    },
 	
 	{
         type = "map",
         file = "maps/knotholelookout.lua"
+    },
+	{
+        type = "map",
+        file = "maps/knotholelookoutatnight.lua"
+		--primary = true
+    },
+	
+	{
+        type = "map",
+        file = "maps/greatforest1.lua"
+    },
+	{
+        type = "map",
+        file = "maps/greatforest2.lua"
+    },
+	{
+        type = "map",
+        file = "maps/greatforest3.lua"
+    },
+	{
+        type = "map",
+        file = "maps/greatforest4.lua"
+    },
+	
+	{
+        type = "map",
+        file = "maps/greatforest2_uppath.lua"
+    },
+	
+	{
+        type = "map",
+        file = "maps/greatforest2_rightpath.lua"
     },
 	
 	{
@@ -183,7 +182,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/cursor.png"
+		file = "art/sprites/puck.png"
 	},
 	{
 		type = "image",
@@ -267,6 +266,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/nicholeprojection2.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/lasershield.png"
 	},
 	{
@@ -303,11 +306,35 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/r.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/p.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/b.png"
 	},
 	{
 		type = "image",
 		file = "art/sprites/leon.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/leon2.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/fleet.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/logan.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/ivan.png"
 	},
 	{
 		type = "image",
@@ -359,7 +386,15 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/mechaarmbattle.png"
+		file = "art/sprites/mechaarmrace.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/phantom.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/phantomstandin.png"
 	},
 	{
 		type = "image",
@@ -392,6 +427,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/cambot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/swatbotwhite.png"
 	},
 	{
 		type = "image",
@@ -515,6 +554,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/icon_book.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/icon_carrot.png"
 	},
 	{
@@ -599,6 +642,14 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/shockball.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/gas.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/botbeam.png"
 	},
 	{
@@ -626,42 +677,139 @@ return {
 		file = "art/sprites/boulder.png"
 	},
 	{
-		type = "image",
-		file = "art/parallax/robotropolis.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/hoverbotopening.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/hoverbot.png"
-	},
-	{
 		type = "sound",
-		file = "audio/sfx/elevatorend.ogg",
+		file = "audio/sfx/quake.ogg",
 		category = "sfx"
 	},
 	{
 		type = "sound",
-		file = "audio/music/exciting.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/sallymeetsleon.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/meettherebellion.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/fleetsmack.ogg",
+		file = "audio/sfx/wolf.ogg",
 		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/griffvehicle.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/poison.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/slash.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/sallysad.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/bsad.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/bheart.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/bhero.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/antoinerescue.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/antoine.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/missionready.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/memories.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/introspection.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/flutter.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/nap.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/tomb.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/trialcomplete.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/sonicrace.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/rebellionfanfare.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/tense2.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/royalwelcome.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/standup.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/project.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/leonenters.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/ep3transition.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/ep3intro.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",
@@ -681,11 +829,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/craft.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/cooking.ogg",
 		category = "sfx"
 	},
 	{
@@ -711,11 +854,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/splash2.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/fan.ogg",
 		category = "sfx"
 	},
 	{
@@ -785,22 +923,17 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/juggerbotroar.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/laser.ogg",
 		category = "sfx"
 	},
 	{
 		type = "sound",
 		file = "audio/sfx/lasersweep.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/factoryfloor.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/factoryspit.ogg",
 		category = "sfx"
 	},
 	{
@@ -835,11 +968,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/path.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
 		file = "audio/sfx/poptop.ogg",
 		category = "sfx"
 	},
@@ -855,17 +983,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/juggerbotstep.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/ratstep.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/juggerbotroar.ogg",
+		file = "audio/sfx/leonroar.ogg",
 		category = "sfx"
 	},
 	{
@@ -876,11 +994,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/swatbotlaser.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/swing.ogg",
 		category = "sfx"
 	},
 	{
@@ -896,6 +1009,21 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/cursor.wav",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/stare.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/cyclopsstep.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/cyclopsroar.ogg",
 		category = "sfx"
 	},
 	{
@@ -945,19 +1073,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/areyouready.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
 		file = "audio/music/lookout.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/music/lookout2.ogg",
 		category = "music",
 		looping = true
 	},
@@ -1001,21 +1117,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/bremembers.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/prisonintro.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/bheart.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
 		file = "audio/music/ringlake.ogg",
 		category = "music",
 	},
@@ -1026,42 +1127,14 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/btheme.ogg",
+		file = "audio/music/resiliency.ogg",
 		category = "music"
 	},
 	{
 		type = "sound",
-		file = "audio/music/bhero.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/music/forgottendiscovery.ogg",
+		file = "audio/music/forgottenhideout2.ogg",
 		category = "music",
 		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/follow.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/factory.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/sallyenters.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/sonictheme.ogg",
-		category = "music"
 	},
 	{
 		type = "sound",
@@ -1082,19 +1155,14 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/credits.ogg",
-		category = "music"
+		file = "audio/music/darkswamp.ogg",
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",
 		file = "audio/music/worldmap.ogg",
 		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/mission2.ogg",
-		category = "music",
-		looping = true,
 	},
 	{
 		type = "sound",
@@ -1104,40 +1172,14 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/escapefanfare.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/dead.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/deatheggtransition.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/robotnik.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/music/transition.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/escapelevel.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
 		file = "audio/music/trouble.ogg",
 		category = "music",
 		looping = true,
+	},
+	{
+		type = "sound",
+		file = "audio/music/troublefanfare.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",
@@ -1146,31 +1188,43 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/robobuilding.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/underground.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
 		file = "audio/music/patrol.ogg",
-		category = "music",
-		looping = true,
+		category = "music"
 	},
 	{
 		type = "sound",
-		file = "audio/music/knothole.ogg",
+		file = "audio/music/mission3.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/darkintro.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/ironlock.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/ironlocklouder.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/ironlockintro.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/awkward.ogg",
 		category = "music",
 		looping = true
 	},
 	{
 		type = "sound",
-		file = "audio/music/knothole2.ogg",
+		file = "audio/music/knothole.ogg",
 		category = "music",
 		looping = true
 	},
@@ -1206,6 +1260,12 @@ return {
 		file = "audio/music/sonicring.ogg",
 		category = "music",
 		volume = 1.0,
+	},
+	{
+		type = "sound",
+		file = "audio/music/knotholeatnight.ogg",
+		category = "music",
+		looping = true,
 	},
 	{
 		type = "sound",

@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="19">
+ <properties>
+  <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
+  <property name="onload" type="file" value="actions/sallyhut_intro.lua"/>
+  <property name="regionName" value="Sally's Hut"/>
+ </properties>
+ <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
+  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
+ </tileset>
+ <tileset firstgid="1045" source="knothole.tsx"/>
+ <tileset firstgid="4529" source="robotropolis.tsx"/>
+ <tileset firstgid="8029" source="knotholeindoors.tsx"/>
+ <tileset firstgid="9831" source="darkswamp2.tsx"/>
+ <layer name="floor" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1,2,3,4,5,6,7,8,9,10,11,12,13,0,0,0,0,0,0,
+0,0,0,0,0,0,30,31,32,33,34,35,36,37,38,39,40,41,42,0,0,0,0,0,0,
+0,0,0,0,0,0,59,60,61,62,63,64,65,66,67,68,69,70,71,0,0,0,0,0,0,
+0,0,0,0,0,0,88,89,90,91,92,93,94,95,96,97,98,99,100,0,0,0,0,0,0,
+0,0,0,0,0,0,117,118,119,120,121,122,123,124,125,126,127,128,129,0,0,0,0,0,0,
+0,0,0,0,0,0,146,147,148,149,150,151,152,153,154,155,156,157,158,0,0,0,0,0,0,
+0,0,0,0,0,0,175,176,177,178,179,180,181,182,183,184,185,186,187,0,0,0,0,0,0,
+0,0,0,0,0,0,204,205,206,207,208,209,210,211,212,213,214,215,216,0,0,0,0,0,0,
+0,0,0,0,0,0,233,234,235,236,237,238,239,240,241,242,243,244,245,0,0,0,0,0,0,
+0,0,0,0,0,0,262,263,264,265,266,267,268,269,270,271,272,273,274,0,0,0,0,0,0,
+0,0,0,0,0,0,291,292,293,294,295,296,297,298,299,300,301,302,303,0,0,0,0,0,0,
+0,0,0,0,0,0,320,321,322,323,324,325,326,327,328,329,330,331,332,0,0,0,0,0,0,
+0,0,0,0,0,0,349,350,351,352,353,354,355,356,357,358,359,360,361,0,0,0,0,0,0,
+0,0,0,0,0,0,378,379,380,381,382,383,384,385,386,387,388,389,390,0,0,0,0,0,0,
+0,0,0,0,0,0,407,408,409,410,411,412,413,414,415,416,417,418,419,0,0,0,0,0,0,
+0,0,0,0,0,0,436,437,438,439,440,441,442,443,444,445,446,447,448,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="above" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,86,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,844,845,0,0,0,0,0,0,251,252,253,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,873,874,0,0,0,0,0,0,280,281,282,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,173,0,0,0,0,0,0,168,309,310,311,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,338,339,340,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,367,368,369,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,396,397,398,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,425,426,427,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,255,256,257,258,259,0,0,0,0,0,366,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,284,285,286,287,288,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,313,314,315,316,317,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="computer" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,347,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="above2" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,614,615,0,0,0,817,818,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,644,0,0,0,846,847,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,875,876,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="objects">
+  <object id="1" name="BigChest" type="BasicNPC" gid="6839" x="384" y="256" width="32" height="32">
+   <properties>
+    <property name="GreenLeaf" type="int" value="1"/>
+    <property name="align" value="bottom_left"/>
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local Action = require &quot;actions/Action&quot;
+local Do = require &quot;actions/Do&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    if GameState.leader == &quot;sonic&quot; then
+        return BlockPlayer {
+            MessageBox {message=&quot;Sonic: Locked. {p50}I wonder what's in there...&quot;, textSpeed=4},
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif GameState.leader == &quot;sally&quot; then
+        return BlockPlayer {
+            MessageBox {message=&quot;Sally: ...&quot;, textspeed=2},
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif GameState.leader == &quot;bunny&quot; then
+        return BlockPlayer {
+            MessageBox {message=&quot;Bunnie: My daddy taught me not to snoop.&quot;, textspeed=2},
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    end
+    return Action()
+end</property>
+    <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return BlockPlayer {
+        MessageBox {message=&quot;Nicole: I detect several personal effects within this chest, {p40}Sally.&quot;},
+        MessageBox {message=&quot;Nicole: Family pictures, {p40}royal garb, {p40}family heirlooms...&quot;},
+        MessageBox {message=&quot;Sally: That's enough Nicole.&quot;}
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/bigchest.png"/>
+   </properties>
+  </object>
+  <object id="2" name="Door" type="Door" gid="6839" x="352" y="608" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-20"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="key" value="down"/>
+    <property name="orientation" value="up"/>
+    <property name="scene" type="file" value="knothole.lua"/>
+    <property name="spawn_point" value="SallyHutDoor"/>
+    <property name="spawn_point_offset_x" type="float" value="16"/>
+    <property name="spawn_point_offset_y" type="float" value="40"/>
+    <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
+   </properties>
+  </object>
+  <object id="4" name="SallysBed" type="BasicNPC" gid="6839" x="192" y="384" width="192" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="8"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return BlockPlayer {
+        MessageBox {message=&quot;Nicole: This is your bed, {p40}Sally.&quot;},
+        MessageBox {message=&quot;Nicole: ...{p40}are you tired, or something?&quot;}
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/sallybed.png"/>
+   </properties>
+  </object>
+  <object id="5" name="SallysBookshelf" type="BasicNPC" gid="6839" x="512" y="512" width="64" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local Do = require &quot;actions/Do&quot;
+local Action = require &quot;actions/Action&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    if GameState.leader == &quot;sonic&quot; then
+        return BlockPlayer {
+            MessageBox {message=&quot;Sonic: Sal's science textbooks... {p50}Boooring.&quot;, textSpeed=4},
+            Do(function() self:refreshKeyHint() end)
+        }
+    elseif GameState.leader == &quot;sally&quot; then
+        return BlockPlayer {
+            MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... {p40}! {p20}'The adventures of Windom'! {p20}I remember my father reading this to me.&quot;},
+            MessageBox {message=&quot;Sally: Maybe I could read it to Tails.&quot;},
+            Do(function() self:refreshKeyHint() end)
+        }
+    elseif GameState.leader == &quot;bunny&quot; then
+        return BlockPlayer {
+            MessageBox {message=&quot;Bunnie: My goodness, {p40}that Sally-girl sure is a book worm!&quot;},
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+    return Action()
+end</property>
+    <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return BlockPlayer {
+        MessageBox {message=&quot;Nicole: I am detecting a great deal of dust, {p40}Sally.&quot;},
+        Do(function()
+            self.scene.player.noIdle = true
+            self.scene.player.state = &quot;thinking&quot;
+        end),
+        MessageBox {message=&quot;Sally: Ha, {p40}ha. {p60}Very funny, Nicole.&quot;},
+        Do(function()
+            self.scene.player.state = &quot;thinking2&quot;
+        end),
+        MessageBox {message=&quot;Sally: I guess I haven't had much time to read recently...&quot;, textspeed=2},
+        Do(function()
+            self.scene.player.noIdle = false
+        end)
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/sallybookshelf.png"/>
+   </properties>
+  </object>
+  <object id="7" name="SallysStool" type="BasicNPC" gid="6839" x="512" y="320" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local Action = require &quot;actions/Action&quot;
+local Wait = require &quot;actions/Wait&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local DescBox = require &quot;actions/DescBox&quot;
+local Do = require &quot;actions/Do&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    self.menuClosing = false
+    local descBox = MessageBox{
+        message=&quot;Computer: What would you like to do?&quot;,
+        noPressX = true,
+        closeAction = YieldUntil(self, &quot;menuClosing&quot;)
+    }
+    return BlockPlayer {
+        PlayAudio(&quot;sfx&quot;, &quot;nicolebeep&quot;, 1.0, true),
+        Parallel {
+            descBox,
+            Serial {
+                Wait(1),
+                Menu {
+                    layout = Layout {
+                        {Layout.Text(&quot;Practice fighting&quot;), choose = function(menu)
+                            local fightMenuOpts = {{Layout.Text(&quot;Which boss?&quot;), selectable = false}}
+                            local bots = {&quot;rover&quot;}
+                            for _, name in pairs(bots) do
+                                local bot = require (&quot;data/monsters/&quot;..name)
+                                table.insert(fightMenuOpts, {Layout.Text(bot.name), choose = function(menu2)
+                                    self.scene:run {
+                                        Menu {
+                                            layout = Layout {
+                                                {Layout.Text(&quot;Fight &quot;..bot.name..&quot;?&quot;), selectable = false},
+                                                {Layout.Text(&quot;Yes&quot;), choose = function(menu3)
+                                                    menu:close()
+                                                    menu2:close()
+                                                    menu3:close()
+                                                    self.menuClosing = true
+                                                    self.scene:run {
+                                                        menu3,
+                                                        menu2,
+                                                        menu,
+                                                        descBox,
+                                                        self.scene:enterBattle {
+                                                            opponents = {name},
+                                                            music = &quot;boss&quot;,
+                                                            bossBattle = true,
+                                                            practice = true
+                                                        },
+                                                        MessageBox{message=&quot;Computer: Fighting simulation complete.&quot;, blocking = true},
+                                                        -- Hack to fix bug returning from battle
+                                                        Do(function()
+                                                            self.scene.player.cinematicStack = 1
+                                                        end)
+                                                    }
+                                                end},
+                                                {Layout.Text(&quot;No&quot;), choose = function(menu3)
+                                                    menu3:close()
+                                                end}
+                                            },
+                                            cancellable = true,
+                                            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2+30),
+                                            selectedRow = 2
+                                        }
+                                    }
+                                end})
+                            end
+                            self.scene:run {
+                                Parallel {menu,
+                                Menu {
+                                    layout = Layout(fightMenuOpts),
+                                    cancellable = true,
+                                    transform = Transform(love.graphics.getWidth()/2 + 200, love.graphics.getHeight()/2 + 30),
+                                    selectedRow = 2
+                                }}
+                            }
+                        end, desc = &quot;Practice fighting against past bosses.&quot;},
+                        {Layout.Text(&quot;Practice sneaking&quot;), choose = function(menu)
+                            self.scene:run {
+                                Parallel {menu,
+                                Menu {
+                                    layout = Layout {
+                                        {Layout.Text(&quot;Are you sure?&quot;), selectable = false},
+                                        {Layout.Text(&quot;Yes&quot;), choose = function(menu2)
+                                            menu:close()
+                                            menu2:close()
+                                            self.menuClosing = true
+                                            self.scene:run {
+                                                menu2,
+                                                menu,
+                                                descBox,
+                                                Do(function()
+                                                    self.scene.audio:stopMusic()
+                                                    self.scene:changeScene{map=&quot;stealthtut1&quot;, tutorial=true}
+                                                end),
+                                                MessageBox {
+                                                    message = &quot;Computer: Stealth simulation complete.&quot;,
+                                                    blocking = true
+                                                },
+                                                -- Hack to fix bug returning from battle
+                                                Do(function()
+                                                    self.scene.player.cinematicStack = 1
+                                                end)
+                                            }
+                                        end},
+                                        {Layout.Text(&quot;No&quot;), choose = function(menu2)
+                                            menu2:close()
+                                        end}
+                                    },
+                                    cancellable = true,
+                                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2+30),
+                                    selectedRow = 2
+                                }}
+                            }
+                        end, desc = &quot;Fighting isn't the only option.&quot;},
+                        {Layout.Text(&quot;Give me a hint&quot;), choose = function(menu)
+                            menu:close()
+                            self.menuClosing = true
+                            local msg = &quot;&quot;
+                            if not GameState:isFlagSet(&quot;rotorreveal_done&quot;) then
+                                msg = &quot;Rotor's locked himself in his workshop for quite awhile, hasn't he?&quot;
+                            else
+                                msg = &quot;You're still here?? {p60}Shouldn't you be at the Death Egg right now?&quot;
+                            end
+
+                            self.scene:run {
+                                menu,
+                                descBox,
+                                MessageBox {
+                                    message = &quot;Computer: &quot;..msg,
+                                    blocking = true,
+                                    textSpeed = 4
+                                }
+                            }
+                        end, desc = &quot;Forgot what you were supposed to be doing?&quot;}
+                    },
+                    cancellable = true,
+                    withClose = Do(function() descBox:close() end),
+                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)
+                }
+            }
+        },
+        Do(function()
+            self:refreshKeyHint()
+        end)
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/stool.png"/>
+   </properties>
+  </object>
+  <object id="8" name="DeskUpper" type="BasicNPC" gid="6839" x="512" y="288" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/sallycomputerdeskupper.png"/>
+   </properties>
+  </object>
+  <object id="9" name="DeskLower" type="BasicNPC" gid="6839" x="544" y="384" width="32" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/sallycomputerdesklower.png"/>
+   </properties>
+  </object>
+  <object id="14" name="Spawn 1" type="Player" gid="4565" x="384" y="384" width="32" height="32"/>
+  <object id="15" name="SallyPensive" type="BasicNPC" gid="6839" x="384" y="544" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idleup"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/sally.png"/>
+   </properties>
+  </object>
+  <object id="16" name="Waypoint2" type="BasicNPC" gid="6839" x="576" y="246" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="18" name="Waypoint1" type="BasicNPC" gid="6839" x="384" y="224" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="top" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,83,84,85,86,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,112,113,114,612,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,141,142,143,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,170,171,172,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,199,200,201,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,228,229,230,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="shadow" width="25" height="20" opacity="0.3">
+  <data encoding="csv">
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,
+6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936,6936
+</data>
+ </layer>
+ <layer name="Collision" width="25" height="20" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,119,0,0,0,0,0,0,
+0,0,0,0,0,0,119,119,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
+0,0,0,0,0,0,119,119,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119,119,119,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="BunnyExtCollision" width="25" height="20" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

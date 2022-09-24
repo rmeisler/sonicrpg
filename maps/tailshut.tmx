@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="24">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="30">
  <properties>
+  <property name="ignorenight" type="bool" value="true"/>
   <property name="lowerCollisionCircleY" type="float" value="300"/>
-  <property name="onload" type="file" value="actions/knotholehut.lua"/>
+  <property name="onload" type="file" value="actions/tailshut.lua"/>
   <property name="regionName" value="Tails' Room"/>
  </properties>
  <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
@@ -73,11 +74,11 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,593,594,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,622,623,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,583,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,233,538,539,0,0,0,0,0,0,317,0,0,245,0,0,0,0,0,0,
-0,0,0,0,0,0,0,567,568,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,233,0,0,0,0,0,0,0,0,317,0,0,245,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,597,598,599,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,626,627,628,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -98,8 +99,32 @@
 0,0,0,0,0,0,0,0,699,700,701,702,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,732,733,734,735,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,540,541,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,569,570,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="nighthide" width="25" height="20" opacity="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,844,845,92,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,873,874,121,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,148,149,150,151,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,177,178,179,180,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,206,207,208,209,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -130,13 +155,44 @@
     player.lights[tostring(self)] = nil
 end</property>
     <property name="whileColliding">return function(self, player)
-    player.lights[tostring(self)] = true
+    if not self.scene.nighttime then
+        player.lights[tostring(self)] = true
+    end
 end</property>
    </properties>
   </object>
   <object id="20" name="TailsBed" type="BasicNPC" gid="6839" x="416" y="384" width="192" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="onInit">return function(self)
+    if not self.scene.nighttime then
+        self.isInteractable = false
+    end
+end</property>
+    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Do = require &quot;actions/Do&quot;
+
+return function(self)
+    if self.scene.nighttime and not GameState:isFlagSet(&quot;ep3_read&quot;) then
+        return BlockPlayer {
+            MessageBox {message = &quot;Tails: You got some books in your hut, doncha?&quot;},
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif self.scene.nighttime and GameState:isFlagSet(&quot;ep3_read&quot;) then
+        return BlockPlayer {
+            MessageBox {message = &quot;Tails: zzz...&quot;},
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    end
+    return Do(function()
+        self:refreshKeyHint()
+    end)
+end</property>
     <property name="sprite" type="file" value="../art/sprites/tailsbed.png"/>
    </properties>
   </object>
@@ -160,7 +216,7 @@ return function(self)
                     menu:close()
                     self.scene:run {
                         menu,
-                        MessageBox{message=&quot;Diary: I wanted to play dirt hockey with Sonic today, {p30}but he said he was too busy. {p50}He always says that!&quot;, blocking = true, textSpeed = 3}
+                        MessageBox{message=&quot;Diary: That Fleet person seems pretty cool. {p50}Sonic doesn't seem to like her though... {p50}why's that?&quot;, blocking = true, textSpeed = 3}
                     }
                 end},
                 {Layout.Text(&quot;No&quot;), choose = function(menu)
@@ -176,6 +232,35 @@ return function(self)
         end)
     }
 end</property>
+   </properties>
+  </object>
+  <object id="26" name="Waypoint" type="BasicNPC" gid="6839" x="480" y="343" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="27" name="Plane" type="BasicNPC" gid="6860" x="256" y="448" width="96" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="plane"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/toys.png"/>
+   </properties>
+  </object>
+  <object id="28" name="Car" type="BasicNPC" gid="6860" x="224" y="384" width="64" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="car"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/toys.png"/>
+   </properties>
+  </object>
+  <object id="29" name="Ball" type="BasicNPC" gid="6860" x="256" y="416" width="64" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="ball"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/toys.png"/>
    </properties>
   </object>
  </objectgroup>

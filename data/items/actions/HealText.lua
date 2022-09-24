@@ -6,11 +6,19 @@ local Ease = require "actions/Ease"
 local Executor = require "actions/Executor"
 
 local Transform = require "util/Transform"
+local ItemType = require "util/ItemType"
+local TargetType = require "util/TargetType"
 
 return function(attribute, amount, color)
 	return function (target, transform)
-		local newstat = math.min(target[attribute] + amount, target.stats["max"..attribute])
 		return Do(function()
+			local maxVal
+			if attribute == "xp" then
+				maxVal = GameState:calcNextXp(target.id, target.level)
+			else
+				maxVal = target.stats["max"..attribute]
+			end
+			local newstat = math.min(target[attribute] + amount, maxVal)
 			Executor(target.scene):act(Parallel {
 				BouncyText(
 					transform,

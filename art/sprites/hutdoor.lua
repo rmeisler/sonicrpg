@@ -8,6 +8,10 @@ return {
         closed = {
             frames = {{0,0}}
         },
+		closing = {
+            frames = {{2,0},{1,0},{0,0}},
+			speed = 0.1
+        },
 		open = {
 			frames = {{2,0}}
 		},

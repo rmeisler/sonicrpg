@@ -123,7 +123,9 @@ function SceneEdge:goToScene()
 			Ease(self.scene.player, "y", self.scene.player.y - 100, 3, "linear"),
 			
 			Do(function()
-				self.scene.player.noIdle = false
+				if self.scene.player then
+					self.scene.player.noIdle = false
+				end
 			end)
 		}
 	elseif self.object.properties.key == "down" then
@@ -151,7 +153,9 @@ function SceneEdge:goToScene()
 			Ease(self.scene.player, "x", self.scene.player.x - 100, 3, "linear"),
 			
 			Do(function()
-				self.scene.player.noIdle = false
+				if self.scene.player then
+					self.scene.player.noIdle = false
+				end
 			end)
 		}
 	elseif self.object.properties.key == "right" then

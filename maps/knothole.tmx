@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="303">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="365">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="onload" type="file" value="actions/knothole.lua"/>
@@ -19,6 +19,10 @@
   <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
  </tileset>
  <tileset firstgid="19551" source="datacenter_interior.tsx"/>
+ <tileset firstgid="20741" source="worldmap.tsx"/>
+ <tileset firstgid="24225" name="darkswamp" tilewidth="32" tileheight="32" tilecount="5589" columns="81">
+  <image source="../art/tiles/darkswamp.png" trans="0000f8" width="2592" height="2208"/>
+ </tileset>
  <layer name="river" width="275" height="88">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -111,7 +115,14 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,12275,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="rivereffect"/>
+ <imagelayer name="rivereffect" opacity="0.5" offsetx="2976" offsety="1248">
+  <image source="../art/parallax/river.png" width="800" height="600"/>
+  <properties>
+   <property name="speedx" type="float" value="0"/>
+   <property name="speedy" type="float" value="2"/>
+   <property name="type" value="Parallax"/>
+  </properties>
+ </imagelayer>
  <layer name="inbetween" width="275" height="88">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -326,7 +337,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2937,2376,2377,2378,0,0,0,0,0,0,0,0,0,0,1833,1831,1832,1831,1831,1831,1831,1831,1831,1831,1779,1779,1780,1831,1779,1780,1831,1779,1780,1780,1831,1832,1831,1832,1832,1780,1831,1832,1832,1780,1831,1832,1832,1832,1831,1832,1832,1831,1831,1832,1836,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9218,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2919,0,0,0,0,2919,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1833,1832,1779,1831,1832,1780,1780,1780,1780,1779,1831,1779,1780,1780,1779,1780,1780,1780,1780,1832,1832,1831,1832,1831,1832,1832,1832,1779,1780,1832,1832,1779,1780,1779,1779,1779,1831,1831,1779,1780,1836,0,0,0,0,0,2936,2936,2936,2936,2936,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9218,0,0,0,0,0,0,0,0,2936,2936,2936,2936,2936,0,0,0,0,0,0,0,0,0,2919,2919,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2919,0,0,2919,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1882,1831,1779,1780,1779,1780,1779,1780,1779,1780,1779,1780,1779,1780,1780,1779,1780,1779,1780,1779,1780,1779,1780,1779,1780,1779,1780,1779,1780,1779,1780,1779,1780,1779,1780,1779,1780,1779,1780,1888,1889,0,0,0,0,0,2936,2936,2936,2936,2936,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9218,0,0,0,0,0,2936,0,0,0,0,2936,2936,2936,2936,2936,0,0,0,0,2936,2936,2936,2936,2936,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13052,13053,13054,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2919,2919,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1934,1935,1886,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1888,1887,1940,1941,0,0,0,0,0,2936,2936,0,2936,2936,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9218,0,0,0,0,0,0,0,0,0,0,0,2936,2936,2936,2936,2936,2936,0,0,2936,2936,2936,2936,2936,2936,2936,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1934,1935,1886,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1831,1832,1888,1887,1940,1941,0,0,0,0,0,2936,2936,2936,2936,2936,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9218,0,0,0,0,0,0,0,0,0,0,0,2936,2936,2936,2936,2936,2936,0,0,2936,2936,2936,2936,2936,2936,2936,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1934,1935,1886,1884,1885,1884,1885,1884,1885,1884,1885,1884,1884,1885,1884,1885,1884,1885,1780,1779,1780,1884,1885,1884,1885,1884,1885,1884,1885,1884,1885,1884,1885,1888,1887,1940,1941,0,0,0,0,0,0,0,2936,2936,2936,2936,2936,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9218,0,0,0,0,0,0,2936,0,2936,2936,0,2936,2936,2936,2936,2936,2936,0,0,0,0,2936,2936,2936,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1934,1935,1936,1935,1936,1936,1936,1936,1936,1936,1936,1936,1936,1936,1936,1937,1936,1937,1937,1936,1936,1936,1936,1936,1936,1936,1936,1936,1936,1936,1936,1940,1941,0,0,0,0,0,0,0,0,0,2936,2936,2936,2936,2936,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9218,0,0,0,0,0,2936,2936,0,2936,0,2936,2936,2936,2936,2936,2936,2936,0,0,0,2936,2936,2936,2936,2936,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9218,0,0,0,0,0,2936,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2936,2936,2919,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2606,2607,2607,2607,2607,2607,2607,2607,2607,2607,2608,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -429,8 +440,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5062,5063,0,0,0,0,0,0,0,5062,5062,5062,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5115,5115,0,0,0,0,0,0,0,5115,5115,5115,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5092,0,0,0,0,0,0,0,0,5062,5062,5062,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5115,5115,5115,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -521,8 +532,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,13622,13623,13624,13625,13626,13627,13628,13629,13630,13631,13632,13633,13634,13635,13636,13637,13638,13639,13640,13641,13642,13643,13644,13645,13646,13647,13648,13649,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,13622,13623,13624,13625,13626,13627,13628,13629,13630,13631,13632,13633,13634,13635,13636,13637,13638,13639,13640,13641,13642,13643,13644,13645,13646,13647,13648,13649,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,13622,13623,13624,13625,13626,13627,13628,13629,13630,13631,13632,13633,13634,13635,13636,13637,13638,13639,13640,13641,13642,13643,13644,13645,13646,13647,13648,13649,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,13622,13623,13624,13625,13626,13627,13628,13629,13630,13631,13632,13633,13634,13635,13636,13637,13638,13639,13640,13641,13642,13643,13644,13645,13646,13647,13648,13649,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5063,5062,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,13622,13623,13624,13625,13626,13627,13628,13629,13630,13631,13632,13633,13634,13635,13636,13637,13638,13639,13640,13641,13642,13643,13644,13645,13646,13647,13648,13649,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5062,5063,0,0,0,0,0,0,0,5062,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,13622,13623,13624,13625,13626,13627,13628,13629,13630,13631,13632,13633,13634,13635,13636,13637,13638,13639,13640,13641,13642,13643,13644,13645,13646,13647,13648,13649,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5115,5115,0,0,0,0,0,0,0,5063,5062,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,13622,13623,13624,13625,13626,13627,13628,13629,13630,13631,13632,13633,13634,13635,13636,13637,13638,13639,13640,13641,13642,13643,13644,13645,13646,13647,13648,13649,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5115,5115,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,13622,13623,13624,13625,13626,13627,13628,13629,13630,13631,13632,13633,13634,13635,13636,13637,13638,13639,13640,13641,13642,13643,13644,13645,13646,13647,13648,13649,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,13622,13623,13624,13625,13626,13627,13628,13629,13630,13631,13632,13633,13634,13635,13636,13637,13638,13639,13640,13641,13642,13643,13644,13645,13646,13647,13648,13649,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,13622,13623,13624,13625,13626,13627,13628,13629,13630,13631,13632,13633,13634,13635,13636,13637,13638,13639,13640,13641,13642,13643,13644,13645,13646,13647,13648,13649,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1042,34 +1053,6 @@
     <property name="sprite" type="file" value="../art/sprites/pulleycart.png"/>
    </properties>
   </object>
-  <object id="113" name="Square1" type="RaceSquare" gid="5323" x="352" y="1312" width="96" height="96">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
-    <property name="subject" value="YellowLeaf"/>
-   </properties>
-  </object>
-  <object id="114" name="Square2" type="RaceSquare" gid="5323" x="352" y="2624" width="96" height="96">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
-    <property name="subject" value="YellowLeaf"/>
-   </properties>
-  </object>
-  <object id="115" name="Square3" type="RaceSquare" gid="5323" x="2432" y="2624" width="96" height="96">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
-    <property name="subject" value="YellowLeaf"/>
-   </properties>
-  </object>
-  <object id="116" name="Square4" type="RaceSquare" gid="5323" x="2432" y="960" width="96" height="96">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
-    <property name="subject" value="YellowLeaf"/>
-   </properties>
-  </object>
   <object id="125" name="WarRoom3_inner" type="BasicNPC" gid="5323" x="4474" y="2528" width="38" height="28">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -1112,145 +1095,11 @@
     <property name="direction" value="up_right"/>
    </properties>
   </object>
-  <object id="206" name="Food1" type="InfestedPlant" gid="5323" x="480" y="1984" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="flag" value="bunnie_game_start"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-    <property name="startSeconds" type="float" value="1"/>
-   </properties>
-  </object>
-  <object id="207" name="Food2" type="InfestedPlant" gid="5323" x="608" y="1856" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="flag" value="bunnie_game_start"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-    <property name="startSeconds" type="float" value="4"/>
-   </properties>
-  </object>
-  <object id="208" name="Food3" type="InfestedPlant" gid="5323" x="736" y="1856" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="flag" value="bunnie_game_start"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-    <property name="startSeconds" type="float" value="5"/>
-   </properties>
-  </object>
-  <object id="209" name="Food4" type="InfestedPlant" gid="5323" x="1088" y="1888" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="flag" value="bunnie_game_start"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-    <property name="startSeconds" type="float" value="7"/>
-   </properties>
-  </object>
-  <object id="210" name="Food5" type="InfestedPlant" gid="5323" x="736" y="2240" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="flag" value="bunnie_game_start"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-    <property name="startSeconds" type="float" value="10"/>
-   </properties>
-  </object>
-  <object id="211" name="Food6" type="InfestedPlant" gid="5323" x="992" y="2240" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="flag" value="bunnie_game_start"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-    <property name="startSeconds" type="float" value="10"/>
-   </properties>
-  </object>
-  <object id="212" name="Food7" type="InfestedPlant" gid="5323" x="1248" y="1856" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="flag" value="bunnie_game_start"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-    <property name="startSeconds" type="float" value="25"/>
-   </properties>
-  </object>
-  <object id="213" name="Food8" type="InfestedPlant" gid="5323" x="704" y="2080" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="flag" value="bunnie_game_start"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-    <property name="startSeconds" type="float" value="28"/>
-   </properties>
-  </object>
-  <object id="214" name="Food9" type="InfestedPlant" gid="5323" x="1120" y="2432" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="flag" value="bunnie_game_start"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-    <property name="startSeconds" type="float" value="18"/>
-   </properties>
-  </object>
-  <object id="215" name="Food10" type="InfestedPlant" gid="5323" x="1088" y="2080" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="flag" value="bunnie_game_start"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-    <property name="startSeconds" type="float" value="22"/>
-   </properties>
-  </object>
-  <object id="216" name="Food11" type="InfestedPlant" gid="5323" x="608" y="2240" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="flag" value="bunnie_game_start"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-    <property name="startSeconds" type="float" value="15"/>
-   </properties>
-  </object>
-  <object id="217" name="Food12" type="InfestedPlant" gid="5323" x="608" y="2432" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="flag" value="bunnie_game_start"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-    <property name="startSeconds" type="float" value="17"/>
-   </properties>
-  </object>
-  <object id="218" name="Food13" type="InfestedPlant" gid="5323" x="1248" y="2240" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="flag" value="bunnie_game_start"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-    <property name="startSeconds" type="float" value="21"/>
-   </properties>
-  </object>
-  <object id="219" name="Food14" type="InfestedPlant" gid="5323" x="992" y="1984" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="flag" value="bunnie_game_start"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-    <property name="startSeconds" type="float" value="29"/>
-   </properties>
-  </object>
-  <object id="220" name="FoodExample" type="BasicNPC" gid="5323" x="608" y="2048" width="32" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="dying1"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/plant.png"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup name="objects">
-  <object id="1" name="Spawn 1" type="Player" gid="5323" x="1600" y="1184" width="32" height="32">
+  <object id="1" name="Spawn 1" type="Player" gid="5323" x="1600" y="1088" width="32" height="32">
    <properties>
-    <property name="orientation" value="up"/>
+    <property name="orientation" value="down"/>
    </properties>
   </object>
   <object id="2" name="SallyHut" type="BasicNPC" gid="5323" x="1088" y="800" width="416" height="192">
@@ -1330,7 +1179,7 @@
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
-  <object id="19" name="MiddlePost" type="BasicNPC" gid="5323" x="1728" y="928" width="32" height="96">
+  <object id="19" name="MiddlePost" type="BasicNPC" gid="5323" x="1728" y="960" width="32" height="128">
    <properties>
     <property name="defaultAnim" value="vert"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1475,12 +1324,6 @@
     <property name="defaultAnim" value="horiz"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/fence.png"/>
-   </properties>
-  </object>
-  <object id="42" name="Chest1" type="Chest" gid="7597" x="1664" y="224" width="64" height="64">
-   <properties>
-    <property name="Microchip" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
   <object id="43" name="Post" type="BasicNPC" gid="5323" x="2720" y="2016" width="32" height="32">
@@ -1656,19 +1499,15 @@
     <property name="sprite" type="file" value="../art/sprites/knotholebasebg.png"/>
    </properties>
   </object>
-  <object id="77" name="Chest2" type="Chest" gid="7597" x="5952" y="1888" width="64" height="32">
-   <properties>
-    <property name="Gear" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="78" name="RotorHutDoor" type="Door" gid="7660" x="1856" y="522" width="32" height="32">
+  <object id="78" name="RebellionHutDoor" type="Door" gid="7660" x="1856" y="522" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-44"/>
-    <property name="flagForDoor" value="notthistime"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="locked" type="bool" value="true"/>
+    <property name="key" value="up"/>
+    <property name="orientation" value="down"/>
+    <property name="scene" type="file" value="rebellionhut.lua"/>
+    <property name="spawn_point" value="Door"/>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
@@ -1690,85 +1529,21 @@
     <property name="alignOffsetX" type="float" value="-44"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
-    <property name="keyToDoor" value="Antoine's Key"/>
-    <property name="locked" type="bool" value="true"/>
     <property name="orientation" value="down"/>
     <property name="scene" type="file" value="antoineshut.lua"/>
     <property name="spawn_point" value="Door"/>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
    </properties>
   </object>
-  <object id="81" name="Bunnie" type="BasicNPC" gid="5323" x="640" y="2048" width="64" height="96">
+  <object id="81" name="FleetBicker" type="BasicNPC" gid="5323" x="480" y="1088" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="kneeling"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="lookright"/>
     <property name="ghost" type="bool" value="false"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Menu = require &quot;actions/Menu&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-
-local Transform = require &quot;util/Transform&quot;
-local Layout = require &quot;util/Layout&quot;
-
-local NPC = require &quot;object/NPC&quot;
-
-return function(self)
-    local pestEx = self.scene.objectLookup.PestExample
-    return BlockPlayer {
-        MessageBox {
-            message = &quot;Bunnie: There are some nasty pests eatin' up our veggies! {p60}Can you help me spray 'em before they end up ruinin' our whole yield?&quot;
-        },
-        Menu {
-            layout = Layout {
-                {Layout.Text(&quot;Spray pests?&quot;), selectable = false},
-                {Layout.Text(&quot;Yes&quot;), choose = function(menu)
-                    menu:close()
-                    self.scene:run {
-                        menu,
-                        PlayAudio(&quot;sfx&quot;, &quot;oppdeath&quot;, 1.0, true),
-                        Parallel {
-                            Ease(pestEx.sprite.color, 1, 800, 5),
-                            Ease(pestEx.sprite.color, 4, 0, 2)
-                        },
-                        Do(function()
-                            pestEx:remove()
-                        end),
-                        MessageBox {message = &quot;Bunnie: Thanks, sugah! {p40}Here's a spray bottle, {p20}anytime you see some bugs show up, press (x) to spray them!&quot;},
-                        Do(function()
-                            GameState:setFlag(&quot;bunnie_game_start&quot;)
-                            self:removeInteract(NPC.onInteract)
-                        end),
-                        PlayAudio(&quot;music&quot;, &quot;games&quot;, 1.0, true, true)
-                    }
-                end},
-                {Layout.Text(&quot;No&quot;), choose = function(menu)
-                    menu:close()
-                    self.scene:run {
-                        menu,
-                        MessageBox {message = &quot;Bunnie: Well good heavens, Sonic--{p40} what else you got goin' on right now?&quot;}
-                    }
-                end},
-            },
-            cancellable = true,
-            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
-            selectedRow = 2
-        },
-        Do(function()
-            if not GameState:isFlagSet(&quot;bunnie_game_start&quot;) then
-                self:refreshKeyHint()
-            end
-        end)
-    }
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
    </properties>
   </object>
   <object id="84" name="Sign" type="BasicNPC" gid="5323" x="2592" y="2048" width="64" height="64">
@@ -1827,6 +1602,11 @@ end</property>
     <property name="defaultAnim" value="foreground"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="onInit">return function(self)
+    if not GameState:isFlagSet(&quot;ep3_ffmeetingover&quot;) then
+        self.isInteractable = false
+    end
+end</property>
     <property name="onInteract">local Menu = require &quot;actions/Menu&quot;
 local Move = require &quot;actions/Move&quot;
 local Do = require &quot;actions/Do&quot;
@@ -1837,12 +1617,15 @@ local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
 
 return function(self)
-    return BlockPlayer { Menu {
+    return BlockPlayer {
+    Do(function() self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1 end),
+    Menu {
         layout = Layout {
             {Layout.Text(&quot;Leave Knothole?&quot;), selectable = false},
             {Layout.Text(&quot;Yes&quot;), choose = function(menu)
                 menu:close()
                 self.scene.player.hidekeyhints[tostring(self)] = self
+                self.scene.player:removeKeyHint()
                 self.scene:run {
                     menu,
                     Parallel {
@@ -1850,6 +1633,8 @@ return function(self)
                             local cart = self.scene.objectLookup.CartBG
                             self.scene.player.x = cart.x + cart.sprite.w
                             self.scene.player.y = cart.y + cart.sprite.h
+                            self.scene.player:removeKeyHint()
+                            self.scene.player.state = &quot;idledown&quot;
                         end),
                         Move(self.scene.objectLookup.CartBG, self.scene.objectLookup.CartWaypoint),
                         Move(self, self.scene.objectLookup.CartWaypoint)
@@ -1863,12 +1648,15 @@ return function(self)
             end},
             {Layout.Text(&quot;No&quot;), choose = function(menu)
                 menu:close()
+                self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1
             end}
         },
         cancellable = true,
         transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
         selectedRow = 2
-    }}
+    },
+        Do(function() self.scene.player.cinematicStack = 0 end),
+    }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/pulleycart.png"/>
    </properties>
@@ -2047,72 +1835,6 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="118" name="YellowLeaf" type="BasicNPC" gid="5323" x="512" y="768" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="hidden" type="bool" value="true"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-
-return function(self)
-    GameState:grantItem(require(&quot;data/items/YellowLeaf&quot;), 1)
-    return Serial {
-        Do(function() self:remove() end),
-        MessageBox {
-            message = &quot;You received a Yellow Leaf!&quot;,
-            blocking = true,
-            sfx = &quot;levelup&quot;
-        }
-    }
-end</property>
-    <property name="onPuzzleSolve">local Do = require &quot;actions/Do&quot;
-local Serial = require &quot;actions/Serial&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Repeat = require &quot;actions/Repeat&quot;
-local Wait = require &quot;actions/Wait&quot;
-local While = require &quot;actions/While&quot;
-
-return function(self)
-    self.sprite.color = {512,512,512,0}
-    return Serial {
-        Do(function()        
-            self.hidden = false
-        end),
-        Parallel {
-            Ease(self.sprite.color, 1, 255, 2),
-            Ease(self.sprite.color, 2, 255, 2),
-            Ease(self.sprite.color, 3, 255, 2),
-            Ease(self.sprite.color, 4, 255, 2)
-        },
-        Do(function()
-            self:run(Repeat(
-                While(
-                    function()
-                        return not self:isRemoved()
-                    end,
-                    Serial {
-                        Do(function()
-                            self.sprite:setShine(3)
-                        end),
-                        Wait(1.0),
-                        Do(function()
-                            self.sprite:removeShine()
-                        end),
-                        Wait(5)
-                    },
-                    Do(function() end)
-                )
-            ))
-        end)
-    }
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/leaf.png"/>
-   </properties>
-  </object>
   <object id="119" name="GrabRing" type="BasicNPC" gid="5323" x="7584" y="2080" width="64" height="64">
    <properties>
     <property name="ghost" type="bool" value="true"/>
@@ -2164,45 +1886,6 @@ return function(self)
 end</property>
    </properties>
   </object>
-  <object id="120" name="MusicRegion" type="BasicNPC" gid="5323" x="7424" y="2144" width="192" height="128">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="notColliding">local AudioFade = require &quot;actions/AudioFade&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-
-return function(self, player)
-    if not player.enteredRingLake then
-        return
-    end
-    player.enteredRingLake = false
-
-    player:run {
-        AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),
-        PlayAudio(&quot;music&quot;, &quot;knothole&quot;, 1.0, true, true),
-    }
-end</property>
-    <property name="whileColliding">local Serial = require &quot;actions/Serial&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local AudioFade = require &quot;actions/AudioFade&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-local While = require &quot;actions/While&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Do = require &quot;actions/Do&quot;
-local Repeat = require &quot;actions/Repeat&quot;
-
-return function(self, player)
-    if player.enteredRingLake then
-        return
-    end
-    player.enteredRingLake = true
-
-    player:run {
-        AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),
-        PlayAudio(&quot;music&quot;, &quot;ringlake&quot;, 1.0, true, true)
-    }
-end</property>
-   </properties>
-  </object>
   <object id="121" name="WarRoom3" type="BasicNPC" gid="5323" x="4384" y="2596" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -2238,7 +1921,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-20"/>
-    <property name="flagForDoor" value="sallysad_over"/>
+    <property name="flagForDoor" value="ep3_ffmeeting"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="onOpen">local Serial = require &quot;actions/Serial&quot;
@@ -2261,7 +1944,7 @@ local SpriteNode = require &quot;object/SpriteNode&quot;
 local BasicNPC = require &quot;object/BasicNPC&quot;
 
 return function(self)
-    if GameState:isFlagSet(&quot;rotorreveal_done&quot;) then
+    if GameState:isFlagSet(&quot;rotorreveal_done&quot;) or GameState:isFlagSet(&quot;ep3_intro&quot;) then
         return Action()
     end
 
@@ -2400,19 +2083,24 @@ return function(self)
                     Wait(2),
                     Do(function()
                         battleScene.partyByName.sally.sprite:setAnimation(&quot;sad&quot;)
-                        battleScene.audio:playMusic(&quot;sonicsad&quot;, 0.8)
                     end),
-                    MessageBox {message=&quot;Sally: *sigh* {p40}Well{p10}.{p10}.{p10}. {p40}so much for that plan...&quot;, textSpeed=4},
+                    MessageBox {message=&quot;Sally: *sigh* {p40}Breaking into the Robotnik's headquarters? {p40}This isn't going to work...&quot;, textSpeed=4},
+                    Wait(1),
                     Do(function()
                         rotor:setAnimation(&quot;sad&quot;)
                     end),
-                    Wait(1),
-                    Do(function()
-                        battleScene.partyByName.sonic.sprite:setAnimation(&quot;criticizing_sad&quot;)
-                    end),
-                    MessageBox {message=&quot;Sonic: ...&quot;, textSpeed=2},
-                    AudioFade(&quot;music&quot;, 0.8, 0, 1),
-                    Wait(1),
+                    Parallel {
+                        PlayAudio(&quot;music&quot;, &quot;sallyupset&quot;, 1.0),
+                        Serial {
+                            MessageBox {message=&quot;Rotor: Yeah... {p40}it's probably not worth the risk...&quot;, textSpeed=4},
+                            Wait(1),
+                            Do(function()
+                                battleScene.partyByName.sonic.sprite:setAnimation(&quot;criticizing_sad&quot;)
+                            end),
+                            MessageBox {message=&quot;Sonic: ...&quot;, textSpeed=2},
+                            Wait(1)
+                        }
+                    },
                     Do(function()
                         battleScene.partyByName.sonic.sprite:setAnimation(&quot;thinking&quot;)
                     end),
@@ -2420,7 +2108,7 @@ return function(self)
                     Do(function()
                         battleScene.partyByName.sonic.sprite:setAnimation(&quot;victory&quot;)
                     end),
-                    MessageBox {message=&quot;Sonic: B could get us into Robotnik's headquarters!&quot;},
+                    MessageBox {message=&quot;Sonic: B could get us in!&quot;},
                     Do(function()
                         battleScene.audio:playMusic(&quot;doittoit2&quot;, 1.0)
                         battleScene.partyByName.sally.sprite:setAnimation(&quot;idleup&quot;)
@@ -2473,24 +2161,13 @@ end</property>
   </object>
   <object id="132" name="Save" type="SavePoint" gid="7000" x="608" y="1280" width="32" height="32">
    <properties>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
   <object id="134" name="Ladder1" type="Ladder" gid="5323" x="5440" y="1856" width="32" height="576"/>
   <object id="135" name="Ladder2" type="Ladder" gid="5323" x="5664" y="1088" width="32" height="576"/>
   <object id="136" name="Ladder3" type="Ladder" gid="5323" x="5376" y="320" width="32" height="352"/>
-  <object id="138" name="Chest3" type="Chest" gid="7597" x="5792" y="448" width="64" height="64">
-   <properties>
-    <property name="ScrapMetal" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="139" name="Chest2" type="Chest" gid="7597" x="6208" y="448" width="64" height="64">
-   <properties>
-    <property name="BlueLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
   <object id="140" name="MiddlePost" type="BasicNPC" gid="5323" x="6144" y="448" width="32" height="96">
    <properties>
     <property name="defaultAnim" value="vert"/>
@@ -2676,92 +2353,255 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/fence.png"/>
    </properties>
   </object>
-  <object id="183" name="Chest1" type="Chest" gid="7597" x="5024" y="1856" width="64" height="64">
+  <object id="184" name="Chest4" type="Chest" gid="7597" x="7328" y="672" width="64" height="64">
    <properties>
     <property name="BlueLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="184" name="Chest3" type="Chest" gid="7597" x="7008" y="896" width="64" height="64">
+  <object id="222" name="Chest5" type="Chest" gid="7597" x="4736" y="1664" width="64" height="64">
    <properties>
-    <property name="Mushroom" type="int" value="1"/>
+    <property name="ElbowPads" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="188" name="AntoinesKeys" type="Pickup" gid="7597" x="7200" y="2752" width="32" height="32">
+  <object id="278" name="CartWaypoint" type="BasicNPC" gid="5323" x="8032" y="-160" width="96" height="32">
    <properties>
-    <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="item" value="AntoineKey"/>
-    <property name="sprite" type="file" value="../art/sprites/sparkle.png"/>
    </properties>
   </object>
-  <object id="190" name="Antoine" type="BasicNPC" gid="5323" x="7136" y="2400" width="64" height="96">
+  <object id="282" name="CartWaypoint2" type="BasicNPC" gid="5323" x="8032" y="704" width="96" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="340" name="SonicBicker" type="BasicNPC" gid="5323" x="576" y="1088" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-16"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="scaredhop1"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="worried"/>
     <property name="ghost" type="bool" value="false"/>
-    <property name="notColliding">return function(self, player)
-    -- Shiver
-    if not self.shiverTime then
-        self.shiverTime = 0
-        self.shiverDir = &quot;right&quot;
-    end
-    self.shiverTime = self.shiverTime + love.timer.getDelta()
-
-    if self.shiverDir == &quot;left&quot; and self.shiverTime &gt; 0.1 then
-        self.x = self.x - 2
-        self.shiverTime = 0
-        self.shiverDir = &quot;right&quot;
-    elseif self.shiverDir == &quot;right&quot; and self.shiverTime &gt; 0.1 then
-        self.x = self.x + 2
-        self.shiverTime = 0
-        self.shiverDir = &quot;left&quot;
-    end
-end</property>
+    <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
-local Animate = require &quot;actions/Animate&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Ease = require &quot;actions/Ease&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
 
 return function(self)
-    self.origY = self.y
-    return BlockPlayer {
-        MessageBox {
-            message = &quot;Antoine: Oh no, {p40}oh no, {p40}this is not being very good...&quot;,
-        },
-        Animate(self.sprite, &quot;scaredhop2&quot;),
-        Ease(self, &quot;y&quot;, function() return self.origY - 50 end, 7, &quot;linear&quot;),
-        Animate(self.sprite, &quot;scaredhop3&quot;),
-        Ease(self, &quot;y&quot;, function() return self.origY end, 7, &quot;linear&quot;),
-        Animate(self.sprite, &quot;scaredhop4&quot;),
-        Wait(0.1),
-        Animate(self.sprite, &quot;scaredhop5&quot;),
-        Wait(1),
-        Do(function() self.sprite:setAnimation(&quot;nervousleft&quot;) end),
-        MessageBox {
-            message = &quot;Antoine: Did I lose something?? {p40}Ha-ha! {p40}O-o-of course not! {p50}Why would you be having such a thought?&quot;,
-        },
-        Do(function()
-            self.sprite:setAnimation(&quot;scaredhop1&quot;)
-            self.scene.player.hidekeyhints[tostring(self)] = nil
-        end)
-    }
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Sonic: *whispering* Ugh. {p40}She is the worst!&quot;},
+            Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;lookright&quot;),
+            MessageBox {message = &quot;Fleet: What was that?&quot;},
+            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;shock&quot;),
+            Wait(0.8),
+            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;earnestleft&quot;),
+            MessageBox {message = &quot;Sonic: Uh...{p40}I said 'she got here first'!&quot;},
+            Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;smirk&quot;),
+            MessageBox {message = &quot;Fleet: When you're right, you're right!&quot;},
+            Do(function() self.scene.objectLookup.FleetBicker.sprite:setAnimation(&quot;laugh&quot;) end),
+            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;irritated&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;smirk&quot;),
+            MessageBox {message = &quot;Fleet: Now I think you can see why I'm known as the 'fastest living being on Mobius'.&quot;},
+            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;shock&quot;),
+            Wait(0.8),
+            Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;lookright&quot;),
+            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;worried&quot;),
+            MessageBox {message = &quot;Sonic: Hey, don't get too pumped, bird brain. {p40}I was goin' easy on ya. {p40}You're our guests after all.&quot;},
+            Animate(self.scene.objectLookup.FleetBicker.sprite, &quot;smirk&quot;),
+            MessageBox {message = &quot;Fleet: Hehe, {p40}keep telling yourself that.&quot;},
+            Do(function() self.scene.objectLookup.FleetBicker.sprite:setAnimation(&quot;laugh&quot;) end),
+            Animate(self.scene.objectLookup.SonicBicker.sprite, &quot;irritated&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
 end</property>
+    <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
+   </properties>
+  </object>
+  <object id="341" name="IvanBicker" type="BasicNPC" gid="5323" x="3360" y="2112" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="idleup"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            Do(function() self.scene.objectLookup.AntoineBicker:facePlayer() end),
+            MessageBox {message = &quot;Antoine: He is having the luck of his life that I am so sick, yes?&quot;},
+            Animate(self.scene.objectLookup.AntoineBicker.sprite, &quot;nauseated&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            MessageBox {message = &quot;Antoine: Yes! That is what I am to be telling you!&quot;},
+            Do(function() self.scene.objectLookup.AntoineBicker.sprite:setAnimation(&quot;proud&quot;) end),
+            MessageBox {message = &quot;Antoine: I am zee strongest of zee Freedom Fighterz!&quot;},
+            Animate(self.scene.objectLookup.IvanBicker.sprite, &quot;attitude&quot;),
+            Wait(1),
+            MessageBox {message = &quot;Ivan: That seems implausible.&quot;},
+            Animate(self.scene.objectLookup.AntoineBicker.sprite, &quot;shock&quot;),
+            Wait(0.8),
+            Do(function() self.scene.objectLookup.AntoineBicker.sprite:setAnimation(&quot;proud&quot;) end),
+            MessageBox {message = &quot;Antoine: How do you dare?!&quot;},
+            MessageBox {message = &quot;Antoine: I would challenge you to zee arm wrestling competition!!&quot;},
+            MessageBox {message = &quot;Antoine: But alas...{p40}I am feeling, a wee bit{p40}, how do you say...&quot;},
+            Animate(self.scene.objectLookup.AntoineBicker.sprite, &quot;nauseated&quot;),
+            MessageBox {message = &quot;Antoine: *cough*{p40} *cough*{p40} ah yes, {p40}{h under zee weather}. {p60}How unfortunate.&quot;},
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
+   </properties>
+  </object>
+  <object id="342" name="AntoineBicker" type="BasicNPC" gid="5323" x="3360" y="2048" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="pose"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
    </properties>
   </object>
-  <object id="191" name="Tails" type="BasicNPC" gid="5323" x="4736" y="2560" width="64" height="96">
+  <object id="347" name="RotorBicker" type="BasicNPC" gid="5323" x="7200" y="1184" width="96" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-10"/>
+    <property name="alignOffsetY" type="float" value="-20"/>
+    <property name="defaultAnim" value="idleup"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    local facingOpposite = {
+        idleleft = &quot;idleright&quot;,
+        idleright = &quot;idleleft&quot;,
+        idledown = &quot;idleup&quot;,
+        idleup = &quot;idledown&quot;,
+    }
+    return BlockPlayer {
+            MessageBox {message = &quot;Rotor: It'll work!&quot;},
+            MessageBox {message = &quot;Logan: It won't.&quot;},
+            Ease(self, &quot;y&quot;, function() return self.y - 50 end, 8),
+            Ease(self, &quot;y&quot;, function() return self.y + 50 end, 8),
+            MessageBox {message = &quot;Rotor: It will!&quot;},
+            Animate(self.scene.objectLookup.LoganBicker.sprite, &quot;irritated&quot;),
+            MessageBox {message = &quot;Logan: Wrong.&quot;},
+            Animate(self.sprite, &quot;shock&quot;),
+            Wait(0.8),
+            Animate(self.sprite, &quot;thinking&quot;),
+            MessageBox {message = &quot;Sally: What is going on here?&quot;},
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Rotor: Logan thinks our plan to infect Robotnik's army with the glitch won't work...&quot;},
+            Do(function() self.scene.objectLookup.LoganBicker:facePlayer() end),
+            MessageBox {message = &quot;Logan: Princess--{p40} if we release the software patch in its current state, then the cause of the glitch will be immediately obvious!&quot;},
+            MessageBox {message = &quot;Logan: All Robotnik has to do is rollback his bots' software to its previous version and we're toast!&quot;},
+            Do(function()
+                self.scene.player.noIdle = true
+                self.scene.player.sprite:setAnimation(&quot;thinking&quot;)
+            end),
+            MessageBox {message = &quot;Sally: I see...&quot;},
+            MessageBox {message = &quot;Logan: The plan can work{p60}, obviously...{p60} but we can't just have the glitch execute the minute these bots upload our software patch!&quot;},
+            MessageBox {message = &quot;Logan: If this is gonna work, we're gonna need to suppress the effects of the glitch until we fire off some kinda signal...&quot;},
+            MessageBox {message = &quot;Sally: Ah... {p60}so then Robotnik will be forced to actually read through the code and repair the problem\nmanually{p60}, buying us more time.&quot;},
+            MessageBox {message = &quot;Logan: Correct.&quot;},
+            Animate(self.sprite, &quot;idleup&quot;),
+            Ease(self, &quot;y&quot;, function() return self.y - 50 end, 8),
+            Ease(self, &quot;y&quot;, function() return self.y + 50 end, 8),
+            MessageBox {message = &quot;Rotor: But that'll take weeks of work!&quot;},
+            MessageBox {message = &quot;Logan: Correct.&quot;},
+            MessageBox {message = &quot;Sally: This is our one shot, Rotor. {p60}We gotta make sure it counts!&quot;},
+            Animate(self.sprite, &quot;thinking&quot;),
+            MessageBox {message = &quot;Rotor: ...{p60}Alright.&quot;},
+            Animate(self.scene.objectLookup.LoganBicker.sprite, &quot;attitude&quot;),
+            MessageBox {message = &quot;Logan: Looks like I was right after all...&quot;},
+            Animate(self.sprite, &quot;idleup&quot;),
+            MessageBox {message = &quot;Rotor: *sigh*&quot;},
+            Do(function() self.scene.player.sprite:setAnimation(&quot;thinking&quot;) end),
+            Wait(1),
+            MessageBox {message = &quot;Sally: *sigh* {p60}Ok children... {p60}I think it's time to call a team meeting...&quot;},
+            Do(function()
+                GameState:setFlag(&quot;ep3_ffmeeting&quot;)
+                self.scene:changeScene{map=&quot;knothole&quot;, fadeOutSpeed = 0.5, fadeInSpeed = 0.5, fadeOutMusic = true}
+            end)
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
+   </properties>
+  </object>
+  <object id="348" name="LoganBicker" type="BasicNPC" gid="5323" x="7200" y="1088" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="attitude"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/logan.png"/>
+   </properties>
+  </object>
+  <object id="350" name="Tails" type="BasicNPC" gid="5323" x="864" y="1760" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-16"/>
     <property name="alignOffsetY" type="float" value="-32"/>
-    <property name="defaultAnim" value="idleright"/>
+    <property name="defaultAnim" value="idledown"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Do = require &quot;actions/Do&quot;
@@ -2771,41 +2611,216 @@ local Wait = require &quot;actions/Wait&quot;
 local Ease = require &quot;actions/Ease&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Menu = require &quot;actions/Menu&quot;
+local Move = require &quot;actions/Move&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Spawn = require &quot;actions/Spawn&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Repeat = require &quot;actions/Repeat&quot;
+local While = require &quot;actions/While&quot;
+local Spawn = require &quot;actions/Spawn&quot;
 
+local BasicNPC = require &quot;object/BasicNPC&quot;
 local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
 
 return function(self)
-    local dir = self.x &gt; self.scene.player.x and &quot;left&quot; or &quot;right&quot;
-    if GameState:isFlagSet(&quot;missing_puc&quot;) then
-        return Serial {
-            Animate(self.sprite, &quot;sad&quot;..dir),
-            MessageBox{message = &quot;Tails: If only I could find that puc...&quot;, textSpeed = 3, blocking = true}
+    if GameState:isFlagSet(&quot;ep3_hockey&quot;) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox{message=&quot;Tails: You're pretty good at dirt hockey!&quot;},
+            Do(function() self:refreshKeyHint() end)
         }
     end
 
+    local nameMap = {
+        sonic = &quot;Sonic&quot;,
+        sally = &quot;Sally&quot;,
+        bunny = &quot;Bunnie&quot;
+    }
+    local dir = self.x &gt; self.scene.player.x and &quot;left&quot; or &quot;right&quot;
     self.origY = self.y
     return BlockPlayer {
-        Animate(self.sprite, &quot;idle&quot;..dir),
+        Do(function()
+            self:facePlayer()
+        end),
         MessageBox {
-            message = &quot;Tails: Hey Sonic! {p40}Ya wanna play some dirt hockey?&quot;,
+            message = &quot;Tails: Hey &quot;..nameMap[GameState.leader]..&quot;! {p40}Ya wanna play some dirt hockey?&quot;,
         },
         Menu {
             layout = Layout {
                 {Layout.Text(&quot;Play dirt hockey?&quot;), selectable = false},
                 {Layout.Text(&quot;Yes&quot;), choose = function(menu)
                     menu:close()
-                    self.scene:run {
+                    local tailsOrigX = self.x
+                    local tailsOrigY = self.y
+                    self.scene:run(BlockPlayer{
                         menu,
-                        Animate(self.sprite, &quot;joy&quot;..dir),
-                        Ease(self, &quot;y&quot;, function() return self.origY - 80 end, 7, &quot;linear&quot;),
-                        Ease(self, &quot;y&quot;, function() return self.origY end, 7, &quot;linear&quot;),
+                        Animate(self.sprite, &quot;hockeypose&quot;),
                         MessageBox {message = &quot;Tails: Alright! {p40}Let's do it to it!&quot;},
-                        MessageBox {message = &quot;Tails: Oh wait...&quot;},
-                        Animate(self.sprite, &quot;sad&quot;..dir),
-                        MessageBox {message = &quot;Tails: Where's my puc?! {p50}I guess we can't play right now...&quot;},
-                        Do(function() GameState:setFlag(&quot;missing_puc&quot;) end)
-                    }
+                        PlayAudio(&quot;music&quot;, &quot;games&quot;, 1.0, true, true),
+                        Do(function()
+                            self.scene.player.noIdle = true
+                            self.scene.player.sprite:setAnimation(&quot;walkdown&quot;)
+                        end),
+                        Parallel {
+                            Ease(self.scene.player, &quot;x&quot;, self.scene.objectLookup.HockeyWaypoint.x + 32, 1, &quot;linear&quot;),
+                            Ease(self.scene.player, &quot;y&quot;, self.scene.objectLookup.HockeyWaypoint.y, 1, &quot;linear&quot;)
+                        },
+                        Do(function()
+                            self.scene.player.sprite:setAnimation(&quot;idleup&quot;)
+                        end),
+                        Ease(self.scene.camPos, &quot;y&quot;, 100, 1),
+                        MessageBox {message = &quot;Tails: So here's how ya play...&quot;},
+                        MessageBox {message = &quot;Tails: I'll be goalie. {p60}You gotta get the puck past me!&quot;},
+                        MessageBox {message = &quot;Tails: Use the left and right arrow keys to aim!\n{p60}To hit the puck press (x)!&quot;},
+                        Do(function()
+                            self.scene.player.sprite:setAnimation(&quot;hockey_pose&quot;)
+                            self.scene.arrow = BasicNPC(
+                                self.scene,
+                                {name = &quot;lower&quot;},
+                                {name = &quot;arrow&quot;, x = self.scene.player.x, y = self.scene.player.y - 22, width = 64, height = 64, properties = {nocollision = true, sprite = &quot;art/sprites/arrow.png&quot;}}
+                            )
+                            self.scene.arrow.sprite.transform.ox = 16
+                            self.scene.arrow.sprite.transform.oy = 32
+                            self.scene.arrow.sprite.transform.sx = 4
+                            self.scene.arrow.sprite.transform.sy = 4
+                            self.scene.arrow.sprite.transform.angle = 0
+                            self.scene.arrow.sprite.color[4] = 0
+                            self.scene.arrow.sprite:setAnimation(&quot;point&quot;)
+                            self.scene:addObject(self.scene.arrow)
+                            self.scene.arrow:run(Ease(self.scene.arrow.sprite.color, 4, 255, 1))
+                            self.scene.player.hits = 10
+                            self.scene.player.puckhit = function(_, key)
+                                if key == &quot;x&quot; and not self.scene.arrow.hidden then
+                                    self.scene.arrow.hidden = true
+                                    self.scene.player.hits = self.scene.player.hits - 1
+                                    local gameoverAction = Serial {
+                                        Do(function()
+                                            self.scene.arrow.hidden = false
+                                            self.scene.arrow.sprite.color[4] = 0
+                                        end),
+                                        Ease(self.scene.arrow.sprite.color, 4, 255, 1)
+                                    }
+                                    if self.scene.player.hits &lt;= 0 then
+                                        gameoverAction = Serial {
+                                            Do(function()
+                                                self.scene.player.basicUpdate = self.scene.player.updateFun
+                                                self.scene.player:removeSceneHandler(&quot;keytriggered&quot;, self.scene.player.puckhit)
+                                                self.scene.arrow:remove()
+                                                GameState:setFlag(&quot;ep3_hockey&quot;)
+                                            end),
+                                            PlayAudio(&quot;music&quot;, &quot;sallyrally&quot;, 1.0),
+                                            PlayAudio(&quot;music&quot;, &quot;awkward&quot;, 1.0, true, true)
+                                        }
+                                    end
+                                    self.scene.player:run {
+                                        Animate(self.scene.player.sprite, &quot;hockey_hit&quot;),
+                                        Do(function()
+                                            local puck = BasicNPC(
+                                                self.scene,
+                                                {name = &quot;lower&quot;},
+                                                {name = &quot;puck&quot;, x = self.scene.player.x + 10, y = self.scene.player.y, width = 16, height = 16, properties = {sprite = &quot;art/sprites/puck.png&quot;}}
+                                            )
+                                            puck.sprite.transform.ox = 8
+                                            puck.sprite.transform.oy = 8
+                                            self.scene:addObject(puck)
+                                            self.scene.objectLookup.Puck = puck
+
+                                            local radians = self.scene.arrow.sprite.transform.angle
+                                            puck.speed = 2
+                                            puck.dist = 0
+                                            puck.x = self.scene.player.x + 10
+                                            puck.y = self.scene.player.y
+                                            puck.dx = math.cos(radians - math.pi/2)
+                                            puck.dy = math.sin(radians - math.pi/2)
+                                            local puckUpdate
+                                            puckUpdate = function(dt)
+                                                puck.dist = puck.dist + puck.speed*(dt/0.016)
+                                                puck.x = puck.x + (puck.dx * puck.dist)
+                                                puck.y = puck.y + (puck.dy * puck.dist)
+                                                if puck.y &lt; 0 or puck.y &gt; 2000 then
+                                                    self.scene:removeHandler(&quot;update&quot;, puckUpdate)
+                                                    puck:remove()
+                                                end
+                                            end
+                                            self.scene:addHandler(&quot;update&quot;, puckUpdate)
+                                        end),
+                                        Animate(self.scene.player.sprite, &quot;hockey_hit_done&quot;),
+                                        Wait(0.6),
+                                        Animate(self.scene.player.sprite, &quot;hockey_pose&quot;),
+                                        gameoverAction
+                                    }
+                                end
+                            end
+                            self.scene.player:addSceneHandler(&quot;keytriggered&quot;, self.scene.player.puckhit)
+                            self.scene.player.basicUpdate = function(self, dt)
+                                if love.keyboard.isDown(&quot;left&quot;) and self.scene.arrow.sprite.transform.angle &gt; -(math.pi/4) then
+                                    self.scene.arrow.sprite.transform.angle = self.scene.arrow.sprite.transform.angle - (math.pi/4) * 0.1 * (dt/0.016)
+                                elseif love.keyboard.isDown(&quot;right&quot;) and self.scene.arrow.sprite.transform.angle &lt; (math.pi/4) then
+                                    self.scene.arrow.sprite.transform.angle = self.scene.arrow.sprite.transform.angle + (math.pi/4) * 0.1 * (dt/0.016)
+                                end
+	end
+                        end),
+                        Do(function() self.sprite:setAnimation(&quot;hockeyflyright&quot;) end),
+                        Ease(self, &quot;x&quot;, self.scene.objectLookup.HockeyPost2.x - 64, 2, &quot;linear&quot;),
+                        Spawn(While(
+                            function() return not GameState:isFlagSet(&quot;ep3_hockey&quot;) end,
+                            Repeat(Serial {
+                                Do(function() self.sprite:setAnimation(&quot;hockeyflyleft&quot;) end),
+                                Ease(self, &quot;x&quot;, self.scene.objectLookup.HockeyPost1.x, 1, &quot;linear&quot;),
+                                Do(function() self.sprite:setAnimation(&quot;hockeyflyright&quot;) end),
+                                Ease(self, &quot;x&quot;, self.scene.objectLookup.HockeyPost2.x - 64, 1, &quot;linear&quot;)
+                            }),
+                            BlockPlayer {
+                                Wait(0.5),
+                                Parallel {
+                                    Ease(self, &quot;x&quot;, tailsOrigX, 0.5, &quot;linear&quot;),
+                                    Ease(self, &quot;y&quot;, tailsOrigY, 0.5, &quot;linear&quot;),
+                                    Ease(self.scene.camPos, &quot;y&quot;, 0, 0.5, &quot;linear&quot;)
+                                },
+                                Animate(self.sprite, &quot;hockeypose&quot;),
+                                Do(function()
+                                    self.scene.player.noIdle = false
+                                    self.scene.player.state = &quot;idleup&quot;
+                                    self.itemname = &quot;Green Leaf&quot;
+                                    if self.scene.player.hockey_score &gt; 9 then
+                                        self.itemname = &quot;Yellow Leaf&quot;
+                                    elseif self.scene.player.hockey_score &gt; 5 then
+                                        self.itemname = &quot;Blue Leaf&quot;
+                                    end
+                                    GameState:grantItem(require(&quot;data/items/&quot;..self.itemname:gsub(&quot;%s+&quot;, &quot;&quot;)), 1)
+                                end),
+                                MessageBox{message=&quot;Tails: That was so much fun!&quot;},
+                                MessageBox{message=&quot;Tails: You got the puck past me a few times, so here's a prize...&quot;},
+                                MessageBox {
+                                    message = function() return string.format(&quot;You received 2 %ss!&quot;, self.itemname) end,
+                                    blocking = true,
+                                    sfx = &quot;choose&quot;,
+                                    textSpeed = 7
+                                },
+                                Do(function() self.scene.objectLookup.Bunnie.hidden = false end),
+                                MessageBox{message=&quot;Bunnie: Tails!&quot;},
+                                Animate(self.sprite, &quot;shock&quot;),
+                                self:hop(),
+                                Parallel {
+                                    self.scene.objectLookup.Bunnie:walk(Transform(650, 1660), 1, &quot;walkright&quot;, &quot;upsetright&quot;),
+                                    MessageBox{message=&quot;Bunnie: Now what did I tell y'all 'bout playin' dirt hockey in the garden!?&quot;}
+                                },
+                                Animate(self.sprite, &quot;sadleft&quot;),
+                                MessageBox{message=&quot;Tails: Sorry Bunnie...&quot;},
+                                MessageBox{message=&quot;Sally: Sorry Bunnie, it was my bad.&quot;},
+                                Animate(self.scene.objectLookup.Bunnie.sprite, &quot;concernedright&quot;),
+                                MessageBox{message=&quot;Bunnie: *sigh* {p60}Why dontcha go play near Rotor's workshop instead, Tails?&quot;},
+                                Animate(self.sprite, &quot;idledown&quot;),
+                                Do(function()
+                                    self.scene.objectLookup.Bunnie:addInteract(function(bself)
+                                        bself:run(BlockPlayer { MessageBox{message=&quot;Bunnie: Oh now would ya look at that? {p60}That boy is doin' a number on our crops!&quot;} })
+                                    end)
+                                end),
+                                Spawn(self.scene.objectLookup.Bunnie:walk(Transform(650, 1760), 1, &quot;walkdown&quot;, &quot;kneeling&quot;))
+                            }
+                        ))
+                    })
                 end},
                 {Layout.Text(&quot;No&quot;), choose = function(menu)
                     menu:close()
@@ -2825,30 +2840,296 @@ return function(self)
         end)
     }
 end</property>
+    <property name="onUpdate">local Ease = require &quot;actions/Ease&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+
+return function(self, dt)
+    local puck = self.scene.objectLookup.Puck
+    if not puck or not puck.sprite then
+        return
+    end
+    if self:isTouching(puck.x, puck.y, puck.sprite.w, puck.sprite.h) and not puck.hitback then
+        puck.hitback = true
+        puck.dy = -puck.dy
+        puck.speed = 0.5
+        self:run {
+            PlayAudio(&quot;sfx&quot;, &quot;clink&quot;, 1.0, true),
+            Ease(self, &quot;y&quot;, function() return self.y - 2 end, 8),
+            Ease(self, &quot;y&quot;, function() return self.y + 2 end, 8),
+            Ease(self, &quot;y&quot;, function() return self.y - 1 end, 8),
+            Ease(self, &quot;y&quot;, function() return self.y + 1 end, 8)
+        }
+    end
+end</property>
     <property name="sprite" type="file" value="../art/sprites/tails.png"/>
    </properties>
   </object>
-  <object id="193" name="PestExample" type="BasicNPC" gid="5323" x="608" y="2048" width="64" height="64">
+  <object id="351" name="HockeyPost1" type="BasicNPC" gid="5323" x="704" y="1696" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="vert"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/pest.png"/>
+    <property name="onUpdate">local Ease = require &quot;actions/Ease&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+
+return function(self, dt)
+    local puck = self.scene.objectLookup.Puck
+    if not puck or not puck.sprite then
+        return
+    end
+    if self:isTouching(puck.x, puck.y, puck.sprite.w, puck.sprite.h) and not puck.hitpole then
+        if puck.x &gt; self.x + 10 then
+            puck.dx = -puck.dx
+        else
+            puck.dy = -puck.dy
+        end
+        puck.speed = 1
+        puck.hitpole = true
+        self:run {
+            PlayAudio(&quot;sfx&quot;, &quot;clink&quot;, 1.0, true),
+            Ease(self, &quot;x&quot;, function() return self.x - 3 end, 8),
+            Ease(self, &quot;x&quot;, function() return self.x + 3 end, 8),
+            Ease(self, &quot;x&quot;, function() return self.x - 2 end, 8),
+            Ease(self, &quot;x&quot;, function() return self.x + 2 end, 8),
+            Ease(self, &quot;x&quot;, function() return self.x - 1 end, 8),
+            Ease(self, &quot;x&quot;, function() return self.x + 1 end, 8)
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/fence.png"/>
    </properties>
   </object>
-  <object id="222" name="Chest5" type="Chest" gid="7597" x="4672" y="1344" width="64" height="64">
+  <object id="352" name="HockeyPost2" type="BasicNPC" gid="5323" x="1056" y="1696" width="32" height="32">
    <properties>
-    <property name="CrystalWater" type="int" value="1"/>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="vert"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="onUpdate">local Ease = require &quot;actions/Ease&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+
+return function(self, dt)
+    local puck = self.scene.objectLookup.Puck
+    if not puck or not puck.sprite then
+        return
+    end
+    if self:isTouching(puck.x, puck.y, puck.sprite.w, puck.sprite.h) and not puck.hitpole then
+        if puck.x &lt; self.x + 10 then
+            puck.dx = -puck.dx
+        else
+            puck.dy = -puck.dy
+        end
+        puck.speed = 1
+        puck.hitpole = true
+        self:run {
+            PlayAudio(&quot;sfx&quot;, &quot;clink&quot;, 1.0, true),
+            Ease(self, &quot;x&quot;, function() return self.x - 3 end, 8),
+            Ease(self, &quot;x&quot;, function() return self.x + 3 end, 8),
+            Ease(self, &quot;x&quot;, function() return self.x - 2 end, 8),
+            Ease(self, &quot;x&quot;, function() return self.x + 2 end, 8),
+            Ease(self, &quot;x&quot;, function() return self.x - 1 end, 8),
+            Ease(self, &quot;x&quot;, function() return self.x + 1 end, 8)
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/fence.png"/>
+   </properties>
+  </object>
+  <object id="353" name="HockeyWaypoint" type="BasicNPC" gid="5323" x="864" y="1920" width="64" height="32">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="defaultAnim" value="vert"/>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="354" name="HockeyScoreZone" type="BasicNPC" gid="5323" x="640" y="1600" width="512" height="64" visible="0">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="defaultAnim" value="vert"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="onUpdate">local Ease = require &quot;actions/Ease&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local BouncyText = require &quot;actions/BouncyText&quot;
+local Transform = require &quot;util/Transform&quot;
+
+return function(self, dt)
+    local puck = self.scene.objectLookup.Puck
+    if not puck or not puck.sprite then
+        return
+    end
+    if self:isTouching(puck.x, puck.y, puck.sprite.w, puck.sprite.h) and not puck.hitgoal then
+        puck.hitgoal = true
+        if not self.scene.player.hockey_score then self.scene.player.hockey_score = 0 end
+        self.scene.player.hockey_score = self.scene.player.hockey_score + 1
+        self:run {
+            PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1.0, true),
+            BouncyText(
+                Transform(puck.sprite.transform.x, puck.sprite.transform.y),
+                {0,255,0,255},
+                FontCache.ConsolasLarge,
+                &quot;+1&quot;,
+                6,
+                false,
+                true -- outline
+            )
+        }
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="355" name="IntroTrigger" type="BasicNPC" gid="5323" x="1536" y="1024" width="160" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Move = require &quot;actions/Move&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self, player)
+    if GameState:isFlagSet(&quot;ep3_knotholerun&quot;) then
+        return
+    end
+
+    GameState:setFlag(&quot;ep3_knotholerun&quot;)
+
+    local scene = self.scene
+    player.noIdle = true
+    scene:run(BlockPlayer {
+        Parallel {
+            AudioFade(&quot;music&quot;, 1.0, 0.0, 1),
+            Serial {
+                Do(function()
+                    player.sprite:setAnimation(&quot;walkdown&quot;)
+                end),
+                Ease(player, &quot;y&quot;, function() return player.y + 90 end, 1, &quot;linear&quot;),
+                Do(function()
+                    player.sprite:setAnimation(&quot;idledown&quot;)
+                end),
+                Wait(1)
+            }
+        },
+        MessageBox {message=&quot;Fleet: Awww, {p20}getting tired?&quot;, closeAction=Wait(1.5)},
+        Do(function()
+            scene.player.sprite:setAnimation(&quot;idleright&quot;)
+        end),
+        MessageBox {message=&quot;Sally: ?&quot;, closeAction=Wait(1)},
+        MessageBox {message=&quot;Sonic: Dream on, featherweight!&quot;, closeAction=Wait(1.5)},
+        Wait(1),
+        PlayAudio(&quot;music&quot;, &quot;awkward&quot;, 1.0, true, true),
+        -- Sonic/Fleet blast past Sally
+        Do(function()
+            scene.objectLookup.FleetEp3Run.hidden = false
+            scene.objectLookup.SonicEp3Run.hidden = false
+            scene.objectLookup.FleetEp3Run.movespeed = 30
+            scene.objectLookup.SonicEp3Run.movespeed = 30
+            scene.objectLookup.FleetEp3Run.sprite.transform.ox = scene.objectLookup.FleetEp3Run.sprite.w/2
+            scene.objectLookup.FleetEp3Run.sprite.transform.oy = scene.objectLookup.FleetEp3Run.sprite.h/2
+            scene.objectLookup.FleetEp3Run.sprite.transform.angle = -math.pi/6
+        end),
+        Parallel {
+            Move(scene.objectLookup.FleetEp3Run, scene.objectLookup.Ep3Waypoint, &quot;fly&quot;),
+            Serial {
+                Wait(0.2),
+                PlayAudio(&quot;sfx&quot;, &quot;sonicrunturn&quot;, 1.0, true),
+                Do(function()
+                    scene.player.sprite:setAnimation(&quot;idleleft&quot;)
+                end)
+            }
+        },
+        Wait(1),
+        Parallel {
+            Move(scene.objectLookup.SonicEp3Run, scene.objectLookup.Ep3Waypoint, &quot;juice&quot;),
+            Serial {
+                Wait(0.2),
+                Do(function() self.scene.audio:stopSfx() end),
+                PlayAudio(&quot;sfx&quot;, &quot;sonicrunturn&quot;, 1.0, true),
+                scene.player:spin(3, 0.01)
+            }
+        },
+        Do(function()
+            scene.objectLookup.FleetEp3Run:remove()
+            scene.objectLookup.SonicEp3Run:remove()
+            scene.player.sprite:setAnimation(&quot;shock&quot;)
+        end),
+        Wait(1),
+        Do(function()
+            scene.player.sprite:setAnimation(&quot;frustrateddown&quot;)
+        end),
+        MessageBox {message=&quot;Sally: Sonic!!&quot;},
+        Do(function()
+            scene.player.sprite:setAnimation(&quot;thinking&quot;)
+        end),
+        Wait(1),
+        Do(function()
+            scene.player.noIdle = false
+        end)
+    })
+end</property>
+   </properties>
+  </object>
+  <object id="356" name="Tablet" type="Tomb" gid="7597" x="8544" y="832" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-6"/>
+    <property name="benefit" value="Nicole learned 'Infect+'!"/>
+    <property name="expected" value="map"/>
+    <property name="onBenefit">return function(self)
+    GameState:setFlag(&quot;nicole_upgrade_infect&quot;)
+end</property>
+    <property name="riddle" value="I have rivers, but no water. {p60}I have forests, but no trees. {p60}I have cities, but no buildings"/>
+    <property name="sprite" type="file" value="../art/sprites/tablet.png"/>
+   </properties>
+  </object>
+  <object id="357" name="Chest2" type="Chest" gid="7597" x="3552" y="2048" width="64" height="64">
+   <properties>
+    <property name="Mushroom" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="278" name="CartWaypoint" type="BasicNPC" gid="5323" x="8032" y="-160" width="96" height="32">
+  <object id="358" name="Chest3" type="Chest" gid="7597" x="5664" y="2528" width="64" height="64">
    <properties>
-    <property name="ghost" type="bool" value="true"/>
+    <property name="ScrapMetal" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="282" name="CartWaypoint2" type="BasicNPC" gid="5323" x="8032" y="704" width="96" height="32">
+  <object id="359" name="Chest6" type="Chest" gid="7597" x="1760" y="1792" width="64" height="64">
    <properties>
+    <property name="Gear" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="360" name="Chest8" type="Chest" gid="7597" x="388" y="1280" width="64" height="64">
+   <properties>
+    <property name="ChefsHat" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="361" name="Chest7" type="Chest" gid="7597" x="864" y="2464" width="64" height="64">
+   <properties>
+    <property name="Mine" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="362" name="Chest9" type="Chest" gid="7597" x="7136" y="2592" width="64" height="64">
+   <properties>
+    <property name="GreenLeaf" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="363" name="Bunnie" type="BasicNPC" gid="5323" x="384" y="1760" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-16"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="idledown"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
    </properties>
   </object>
  </objectgroup>
@@ -2859,6 +3140,7 @@ end</property>
     <property name="defaultAnim" value="sitlookforward"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
    </properties>
   </object>
@@ -2868,6 +3150,7 @@ end</property>
     <property name="defaultAnim" value="sitlookforward"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
    </properties>
   </object>
@@ -2877,6 +3160,7 @@ end</property>
     <property name="defaultAnim" value="sitlookforward"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
    </properties>
   </object>
@@ -2886,6 +3170,7 @@ end</property>
     <property name="defaultAnim" value="planning"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/sally.png"/>
    </properties>
   </object>
@@ -2895,7 +3180,124 @@ end</property>
     <property name="defaultAnim" value="sitright"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
+   </properties>
+  </object>
+  <object id="309" name="FleetEp3Run" type="BasicNPC" gid="7597" x="1952" y="1056" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="flyleft"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
+   </properties>
+  </object>
+  <object id="310" name="SonicEp3Run" type="BasicNPC" gid="7597" x="2080" y="1088" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="juiceleft"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
+   </properties>
+  </object>
+  <object id="311" name="Ep3Waypoint" type="BasicNPC" gid="7597" x="960" y="1056" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="313" name="IvanMtg" type="BasicNPC" gid="7597" x="4864" y="1792" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="meeting_idleleft"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
+   </properties>
+  </object>
+  <object id="315" name="FleetMtg" type="BasicNPC" gid="7597" x="4712" y="1792" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="meeting_idleright"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
+   </properties>
+  </object>
+  <object id="316" name="LoganMtg" type="BasicNPC" gid="7597" x="4758" y="1792" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="meeting_idledown"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/logan.png"/>
+   </properties>
+  </object>
+  <object id="318" name="LeonMtg" type="BasicNPC" gid="7597" x="4320" y="1920" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="movespeed" type="float" value="1"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/leon.png"/>
+   </properties>
+  </object>
+  <object id="319" name="LeonWaypoint" type="BasicNPC" gid="7597" x="4544" y="1920" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="320" name="GriffMtg" type="BasicNPC" gid="7597" x="5312" y="2016" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idleleft"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
+    <property name="movespeed" type="float" value="25"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/griffvehicle.png"/>
+   </properties>
+  </object>
+  <object id="321" name="GriffWaypoint" type="BasicNPC" gid="7597" x="4640" y="2016" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="322" name="GriffMtg2" type="BasicNPC" gid="7597" x="4832" y="1792" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="meeting_idledown"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/griff.png"/>
+   </properties>
+  </object>
+  <object id="323" name="ProjectionMtg" type="BasicNPC" gid="7597" x="4780" y="1740" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/nicholeprojection2.png"/>
+   </properties>
+  </object>
+  <object id="324" name="NicoleMtg" type="BasicNPC" gid="7597" x="4805" y="1790" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/nicole.png"/>
    </properties>
   </object>
  </objectgroup>
@@ -3359,13 +3761,14 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <imagelayer name="godrays" opacity="0.5" offsetx="468" offsety="-384">
+ <imagelayer name="godrays" opacity="0.5" offsetx="8505" offsety="-352">
   <image source="../art/parallax/godrays.png" width="145" height="1200"/>
   <properties>
    <property name="movespeed" type="float" value="1"/>
    <property name="shimmer" type="bool" value="true"/>
   </properties>
  </imagelayer>
+ <objectgroup name="upper"/>
  <layer name="Collision" width="275" height="88" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12721,0,0,0,0,0,0,0,0,0,0,0,12721,0,0,12721,0,0,0,0,0,0,12721,0,0,0,0,0,0,0,0,0,0,0,12721,0,0,0,0,0,0,0,0,0,12721,0,0,0,0,0,0,0,0,0,0,0,12721,0,0,0,0,3021,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3021,0,0,0,0,0,0,0,531,0,0,0,0,0,0,0,0,0,0,0,0,0,531,0,0,0,0,0,531,531,0,0,0,0,0,0,0,0,0,0,0,0,531,0,0,0,531,0,0,0,0,0,0,0,0,0,0,0,0,531,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -3458,7 +3861,7 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3021,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12721,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,531,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="BunnyExtCollision" width="275" height="88">
+ <layer name="BunnyExtCollision" width="275" height="88" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -3474,6 +3877,34 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -3491,35 +3922,7 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,20900,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

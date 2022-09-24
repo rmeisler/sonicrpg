@@ -1,4 +1,4 @@
-return function(scene)
+return function(scene, hint)
 	local Transform = require "util/Transform"
 	local Rect = unpack(require "util/Shapes")
 	local Layout = require "util/Layout"
@@ -26,13 +26,16 @@ return function(scene)
 		"Great Forest",
 		100
 	)
-	Executor(scene):act(Serial {
-		Wait(0.5),
-		text,
-		Ease(text.color, 4, 255, 1),
-		Wait(2),
-		Ease(text.color, 4, 0, 1)
-	})
+	
+	if hint == "fromworldmap" then
+		Executor(scene):act(Serial {
+			Wait(0.5),
+			text,
+			Ease(text.color, 4, 255, 1),
+			Wait(2),
+			Ease(text.color, 4, 0, 1)
+		})
+	end
 	
 	scene.audio:playMusic("greatforest", 1.0)
 	

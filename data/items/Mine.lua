@@ -12,6 +12,6 @@ return {
 	img = "mine",
 	battleAction = function()
 		local Throw = require "data/items/actions/Throw"
-		return Throw("mine", {attack = 30, speed = 0, luck = 0})
+		return Throw("mine", {attack = 30, speed = 100, luck = 0})
 	end
 }

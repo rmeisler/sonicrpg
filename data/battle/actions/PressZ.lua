@@ -6,6 +6,7 @@ local Serial = require "actions/Serial"
 local Trigger = require "actions/Trigger"
 
 local TargetType = require "util/TargetType"
+local ItemType = require "util/ItemType"
 local SpriteNode = require "object/SpriteNode"
 
 return function(self, target, success, fail)
@@ -14,6 +15,13 @@ return function(self, target, success, fail)
 		target.state == self.STATE_IMMOBILIZED
 	then
 		return fail
+	end
+	
+	local ttl = 0.2
+	if self.side == TargetType.Party and
+	   GameState:isEquipped(self.id, ItemType.Accessory, "Lucky Coin")
+	then
+		ttl = ttl * 1.5
 	end
 	
 	return Try(
@@ -31,10 +39,10 @@ return function(self, target, success, fail)
 					Trigger("z", true),
 					success or Action(),
 					fail or Action(),
-					0.2
+					ttl
 				)
 			}
 		},
-		0.2
+		ttl
 	)
 end

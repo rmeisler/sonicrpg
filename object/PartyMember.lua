@@ -35,6 +35,7 @@ function PartyMember:construct(scene, data)
 	self.hp = data.hp or 0
 	self.sp = data.sp or 0
 	self.charge = 100
+	self.extraLives = 0
 	
 	self.sprite.color = table.clone(scene.color or {255,255,255,255})
 	
@@ -65,6 +66,8 @@ function PartyMember:construct(scene, data)
 		end
 		table.insert(self.options, {Layout.Text(option), choose = fun})
 	end
+	
+	self.origOptions = table.clone(self.options)
 	
 	self.textOffset = data.textOffset or Transform()
 
@@ -194,6 +197,24 @@ function PartyMember:beginTurn()
 			}
 		end
 	else
+		-- If poisoned, take some damage
+		local preAction = Action()
+		if self.poisoned then
+			preAction = Serial {
+				MessageBox {message=self.name.." is poisoned!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(0.6)},
+				self:takeDamage(self.poisoned, true, BattleActor.poisonKnockback)
+			}
+		end
+		
+		if self.onNextTurn then
+			print("next turn here")
+			preAction = Serial {
+				self.onNextTurn,
+				preAction
+			}
+			self.onNextTurn = nil
+		end
+	
 		BattleActor.beginTurn(self)
 		
 		self.turnover = false
@@ -203,7 +224,10 @@ function PartyMember:beginTurn()
 			layout = Layout(self.options),	
 		}
 		self.mainMenu:addHandler("cancel", PartyMember.skipTurn, self, self.mainMenu)
-		self.scene:run(self.mainMenu)
+		self.scene:run {
+			preAction,
+			self.mainMenu
+		}
 	end
 end
 
@@ -345,16 +369,6 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 		self.targetType == TargetType.AllParty
 	then
 		if key == "x" then
-			self.scene.audio:playSfx("choose", nil, true)
-
-			-- Choosing target
-			for _, arrow in pairs(self.arrow) do
-				arrow:remove()
-			end
-			self.arrow = nil
-			self.scene:removeHandler("keytriggered", PartyMember.chooseTargetKey, self)
-			self.scene:unfocus("keytriggered")
-			
 			local targets
 			local onBeforeAttackActions = {}
 			local onAttackActions = {}
@@ -378,18 +392,32 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 			end
 			
 			-- Perform callback
-			self.selectedMenu:close()
-			self.scene:run {
-				Parallel {
-					self.selectedMenu,
-					Serial {
-						Serial(onBeforeAttackActions),
-						self.callback(self, targets, unpack(self.callbackArgs)),
-						Serial(onAttackActions),
-						Do(function() self:endTurn() end)
+			if next(targets) ~= nil then
+				self.scene.audio:playSfx("choose", nil, true)
+				
+				-- Choosing target
+				for _, arrow in pairs(self.arrow) do
+					arrow:remove()
+				end
+				self.arrow = nil
+				self.scene:removeHandler("keytriggered", PartyMember.chooseTargetKey, self)
+				self.scene:unfocus("keytriggered")
+				
+				self.selectedMenu:close()
+				self.scene:run {
+					Parallel {
+						self.selectedMenu,
+						Serial {
+							Serial(onBeforeAttackActions),
+							self.callback(self, targets, unpack(self.callbackArgs)),
+							Serial(onAttackActions),
+							Do(function() self:endTurn() end)
+						}
 					}
 				}
-			}
+			else
+				self.scene.audio:playSfx("error", nil, true)
+			end
 		elseif key == "z" then
 			-- Back out of attack option
 			self:cleanupChooseTarget()

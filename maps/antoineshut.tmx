@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="16">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="18">
  <properties>
+  <property name="ignorenight" type="bool" value="true"/>
   <property name="onload" type="file" value="actions/antoineknotholehut.lua"/>
   <property name="regionName" value="Antoine's Hut"/>
  </properties>
@@ -16,6 +17,7 @@
   <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
  </tileset>
  <tileset firstgid="17206" source="worldmap.tsx"/>
+ <tileset firstgid="20690" source="darkswamp.tsx"/>
  <layer name="floor" width="25" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -36,6 +38,30 @@
 0,0,0,0,0,0,378,379,380,381,382,383,384,385,386,387,388,389,390,0,0,0,0,0,0,
 0,0,0,0,0,0,407,408,409,410,411,412,413,414,415,416,417,418,419,0,0,0,0,0,0,
 0,0,0,0,0,0,436,437,438,439,440,441,442,443,444,445,446,447,448,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="nighthide" width="25" height="20" opacity="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,17005,17006,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,17034,17035,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,20982,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
@@ -88,7 +114,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="mess" width="25" height="20" opacity="0">
+ <layer name="mess" width="25" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -150,114 +176,6 @@
     <property name="spawn_point_offset_x" type="float" value="16"/>
     <property name="spawn_point_offset_y" type="float" value="40"/>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
-   </properties>
-  </object>
-  <object id="13" name="Stove" type="BasicNPC" gid="6839" x="544" y="320" width="32" height="64">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Menu = require &quot;actions/Menu&quot;
-local Action = require &quot;actions/Action&quot;
-local Wait = require &quot;actions/Wait&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local DescBox = require &quot;actions/DescBox&quot;
-local Do = require &quot;actions/Do&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-local Animate = require &quot;actions/Animate&quot;
-local Ease = require &quot;actions/Ease&quot;
-local AudioFade = require &quot;actions/AudioFade&quot;
-
-local SpriteNode = require &quot;object/SpriteNode&quot;
-local Transform = require &quot;util/Transform&quot;
-local Layout = require &quot;util/Layout&quot;
-
-return function(self)
-    if GameState:isFlagSet(&quot;got_chilidog&quot;) then
-        return Serial {
-            MessageBox{message=&quot;Sonic: It's no use. {p40}Ant's outta Chili!&quot;, blocking = true},
-            Do(function() self:refreshKeyHint() end)
-        }
-    end
-
-    self.scene.player.noIdle = true
-    return BlockPlayer {
-        Animate(self.scene.player.sprite, &quot;smileright&quot;),
-        MessageBox {message = &quot;Sonic: Antoine's got a way past cool kitchen!&quot;},
-        Animate(self.scene.player.sprite, &quot;thinking&quot;),
-        MessageBox {message = &quot;Sonic: I'm sure he won't mind if I borrow it for a Sonic second...&quot;},
-        Menu {
-            layout = Layout {
-                {Layout.Text(&quot;Cook some food?&quot;), selectable = false},
-                {Layout.Text(&quot;Yes&quot;), choose = function(menu)
-                    menu:close()
-                    self.scene:run {
-                        menu,
-                        AudioFade(&quot;music&quot;, 0.8, 0, 2),
-                        Wait(0.5),
-                        PlayAudio(&quot;sfx&quot;, &quot;switchcharshort&quot;, 1.0, true),
-                        self.scene.player:spin(1, 0.01),
-                        self.scene.player:spin(1, 0.02),
-                        Animate(self.scene.player.sprite, &quot;posechef&quot;),
-                        Wait(0.5),
-                        MessageBox {
-                            message = &quot;Sonic: Let's do it to it!&quot;,
-                        },
-                        Parallel {
-                            -- Fade to black
-                            Ease(self.scene.bgColor, 1, 0, 2, &quot;linear&quot;),
-                            Ease(self.scene.bgColor, 2, 0, 2, &quot;linear&quot;),
-                            Ease(self.scene.bgColor, 3, 0, 2, &quot;linear&quot;),
-                            Do(function()
-                                ScreenShader:sendColor(&quot;multColor&quot;, self.scene.bgColor)
-                            end)
-                        },
-                        PlayAudio(&quot;sfx&quot;, &quot;cooking&quot;, 0.8),
-                        Do(function()
-                            for _,layer in pairs(self.scene.map.layers) do
-                                if layer.name == &quot;mess&quot; then
-                                    layer.opacity = 1.0
-                                    break
-                                end
-                            end
-                        end),
-                        Parallel {
-                            -- Fade in
-                            Ease(self.scene.bgColor, 1, 255, 2, &quot;linear&quot;),
-                            Ease(self.scene.bgColor, 2, 255, 2, &quot;linear&quot;),
-                            Ease(self.scene.bgColor, 3, 255, 2, &quot;linear&quot;),
-                            Do(function()
-                                ScreenShader:sendColor(&quot;multColor&quot;, self.scene.bgColor)
-                            end)
-                        },
-                        PlayAudio(&quot;music&quot;, &quot;sallyrally&quot;, 1.0),
-                        PlayAudio(&quot;music&quot;, &quot;knotholehut&quot;, 1.0, true, true),
-                        Do(function() GameState:grantItem(require(&quot;data/items/Chilidog&quot;), 1) end),
-                        MessageBox {
-                            message = &quot;You received a Chilidog!&quot;,
-                            blocking = true,
-                            sfx = &quot;choose&quot;,
-                            textSpeed = 7
-                        },
-                        Do(function() GameState:setFlag(&quot;got_chilidog&quot;) end)
-                    }
-                end},
-                {Layout.Text(&quot;No&quot;), choose = function(menu)
-                    menu:close()
-                end}
-            },
-            cancellable = true,
-            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
-            selectedRow = 2
-        },
-        Do(function()
-            self:refreshKeyHint()
-            self.scene.player.noIdle = false
-        end)
-    }
-end</property>
    </properties>
   </object>
   <object id="14" name="Pot" type="BasicNPC" gid="6839" x="480" y="544" width="32" height="32">

@@ -8,11 +8,17 @@ return {
         idle = {
             frames = {{0,1}}
         },
+		idle_lookup = {
+            frames = {{5,5}}
+        },
 		backward = {
 			frames = {{0,0}}
 		},
         crouch = {
             frames = {{3,0}}
+        },
+		stun = {
+            frames = {{0,4}}
         },
         leap = {
             frames = {{4,0}}
@@ -24,7 +30,7 @@ return {
 			frames = {{1,1}}
 		},
         pummel = {
-            frames = {{0,2},{1,2},{2,2},{3,2},{0,2},{1,2},{2,2},{3,2},{0,2},{1,2},{2,2},{3,2},{0,0},{2,0}},
+            frames = {{0,2},{1,2},{2,2},{3,2},{0,2},{1,2},{2,2},{3,2},{0,2},{1,2},{2,2},{3,2}},
             speed = 0.05
         },
 		spin = {
@@ -140,6 +146,12 @@ return {
 		},
 		idleup = {
 			frames = {{4,6}}
+		},
+		takenback = {
+			frames = {{0,10}}
+		},
+		block = {
+			frames = {{2,0}}
 		}
     }
 }

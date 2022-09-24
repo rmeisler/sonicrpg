@@ -13,7 +13,7 @@ return {
 		startxp = 0,
 		maxhp   = 500,
 		maxsp   = 15,
-		attack  = 5,
+		attack  = 7,
 		defense = 9,
 		speed   = 8,
 		focus   = 8,
@@ -45,14 +45,15 @@ return {
 	},
 
 	equip = {
-		weapon    = nil,
-		armor     = nil,
-		accessory = require "data/accessories/Boots",
+		armor = require "data/armor/ElbowPads",
+		legs = require "data/legs/Boots",
+		accessory = require "data/accessories/LeatherSash",
 	},
 
 	items = {
-		{count = 1, item = require "data/items/GreenLeaf"},
-		{count = 1, item = require "data/items/CrystalWater"},
+		{count = 3, item = require "data/items/GreenLeaf"},
+		{count = 3, item = require "data/items/BlueLeaf"},
+		{count = 3, item = require "data/items/CrystalWater"}
 	},
 
 	levelup = {
@@ -80,10 +81,20 @@ return {
 		[5] = {
 			messages = {"Sally learned \"Interrupt\"!"},
 			skills = {
-				require "data/battle/skills/Scan",
-				require "data/battle/skills/Infect",
+				GameState:getEarnedSkill("nicole_upgrade_scan", "Scan"),
+				GameState:getEarnedSkill("nicole_upgrade_infect", "Infect"),
 				require "data/battle/skills/Rally",
-				require "data/battle/skills/Interrupt"
+				GameState:getEarnedSkill("nicole_upgrade_interrupt", "Interrupt")
+			}
+		},
+		[7] = {
+			messages = {"Sally learned \"Inspire\"!"},
+			skills = {
+				GameState:getEarnedSkill("nicole_upgrade_scan", "Scan"),
+				GameState:getEarnedSkill("nicole_upgrade_infect", "Infect"),
+				require "data/battle/skills/Rally",
+				GameState:getEarnedSkill("nicole_upgrade_interrupt", "Interrupt"),
+				require "data/battle/skills/Inspire"
 			}
 		},
 	},

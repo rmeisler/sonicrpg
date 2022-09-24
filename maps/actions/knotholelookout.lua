@@ -34,7 +34,9 @@ return function(scene)
 		Ease(text.color, 4, 0, 1)
 	})
 
-	scene.audio:playMusic("lookout", 1.0)
+	if GameState:isFlagSet("ep3_ffmeeting") then
+		scene.audio:playMusic("lookout", 1.0)
+	end
 
 	return Action()
 end

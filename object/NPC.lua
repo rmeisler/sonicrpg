@@ -45,13 +45,20 @@ function NPC:construct(scene, layer, object)
 	self.layer = layer
 
 	self.specialHintPlayer = object.properties.specialHint
+	self.showHint = object.properties.showHint
 	self.hidingSpot = object.properties.hidingspot
+	self.noHideDown = object.properties.nohidedown
 	self.movespeed = object.properties.movespeed or 3
 	self.disappearOn = object.properties.disappearOn
 	self.angle = (object.properties.angle or 0) * (math.pi/180)
+	self.isBot = object.properties.isBot
 	
 	if object.properties.onInit then
 		self.onInit = assert(loadstring(object.properties.onInit))()
+	end
+
+	if object.properties.onPostInit then
+		self.onPostInit = assert(loadstring(object.properties.onPostInit))()
 	end
 	
 	if object.properties.whileColliding then
@@ -66,6 +73,21 @@ function NPC:construct(scene, layer, object)
 		self.onUpdate = assert(loadstring(object.properties.onUpdate))()
 	end
 	
+	if object.properties.onRemove then
+		self.onRemove = assert(loadstring(object.properties.onRemove))()
+	end
+	
+	if object.properties.usableBy then
+		self.specialHintPlayer = object.properties.usableBy
+		--[[
+		local usableBy = pack((object.properties.usableBy):split(','))
+		self.usableBy = {}
+		for _, v in pairs(usableBy) do
+			self.usableBy[v] = v
+		end
+		]]
+	end
+
 	if object.properties.onInteract then
 		self:addInteract(NPC.onInteract)
 	end
@@ -82,10 +104,11 @@ function NPC:construct(scene, layer, object)
 	-- TODO: Change this to be a metadata file in some cases, that contains info about image and animations
 	local sprite = object.properties.sprite
 	if sprite then
+		local alpha = object.properties.alphaOverride or (255 * (self.layer.opacity or 1))
 		self.sprite = SpriteNode(
 		    scene,
 			Transform(object.x, object.y, object.properties.scalex or 2, object.properties.scaley or 2),
-			{255,255,255, object.properties.alphaOverride or (255 * (self.layer.opacity or 1))},
+			{255,255,255, alpha},
 			sprite:match("art/sprites/(.*)%."),
 			nil,
 			nil,
@@ -105,6 +128,18 @@ function NPC:construct(scene, layer, object)
 			self.y = self.y + self.sprite.h
 			self.sprite.transform.angle = self.angle
 		end
+		
+		if  self.scene.nighttime and
+		    not self.scene.map.properties.ignorenight and
+			object.properties.nonight
+		then
+			self.sprite.drawWithNight = false
+			if object.properties.bright then
+				self.sprite.color = {512, 512, 512, alpha}
+			elseif not object.properties.nightbright then
+				self.sprite.color = {150, 150, 150, alpha}
+			end
+		end
 	end
 end
 
@@ -123,12 +158,27 @@ function NPC:onScan()
 	return Action()
 end
 
+function NPC:distanceFromPlayerSq(ignoreCache)
+	if not self.scene.player then
+		return 0
+	end
+
+	if ignoreCache or not self.distanceFromPlayer then
+		local w = self.sprite and self.sprite.w or self.object.width/2
+		local h = self.sprite and self.sprite.h or self.object.height/2
+		local dx = (self.scene.player.x - (self.x + w))
+		local dy = (self.scene.player.y - (self.y + h))
+		self.distanceFromPlayer = (dx*dx + dy*dy)
+	end
+	return self.distanceFromPlayer
+end
+
 function NPC:updateCollision()
 	self.collision = {}
 	
 	if not self.object.properties.nocollision then
-		local sx,sy = self.scene:worldCoordToCollisionCoord(self.x, self.y)
-		local dx,dy = self.scene:worldCoordToCollisionCoord(self.x + self.object.width, self.y + self.object.height)
+		local sx,sy = self.scene:worldCoordToCollisionCoord(self.object.x, self.object.y)
+		local dx,dy = self.scene:worldCoordToCollisionCoord(self.object.x + self.object.width, self.object.y + self.object.height)
 		for y=sy, dy-1 do
 			for x=sx, dx-1 do
 				if not self.ghost then
@@ -224,15 +274,24 @@ function NPC:init(useBaseUpdate)
 		)
 	end
 	
+	if self.onInit then
+		self.onInit(self)
+		
+		if self:isRemoved() then
+			return
+		end
+	end
+	
+	if self.isBot and GameState:isFlagSet(self:getFlag()) then
+		self:remove()
+		return
+	end
+	
 	self.followStack = {}
 	if self.object.properties.follow then
 		self.followStack = pack((self.object.properties.follow):split(','))
 	end
 	self.followRepeat = self.object.properties.followRepeat
-	
-	if self.onInit then
-		self.onInit(self)
-	end
 	
     self:addSceneHandler("keytriggered")
 	self:addSceneHandler("update", useBaseUpdate and NPC.update)
@@ -266,6 +325,10 @@ function NPC:postInit()
 			removeFn(obj)
 		end
 	end
+	
+	if self.onPostInit then
+		self.onPostInit(self)
+	end
 end
 
 function NPC:clone()
@@ -273,6 +336,9 @@ function NPC:clone()
 end
 
 function NPC:isFacing(direction)
+	if self.manualFacing then
+		return self.manualFacing == direction
+	end
 	if not self.sprite or not direction then
 		return false
 	end
@@ -322,6 +388,7 @@ function NPC:messageBox()
 		end
 		
 		battleArgs.initiative = self:getInitiative()
+		battleArgs.flags = {self:getFlag()}
 		
 		local npcArgs = self:getBattleArgs()
 		if next(npcArgs) then
@@ -332,9 +399,18 @@ function NPC:messageBox()
 	
 		action = BlockInput {
 			action,
+			Do(function()
+				self:onBattleComplete(battleArgs)
+			end),
 			self.scene:enterBattle(battleArgs),
 			Do(function()
-				self:onBattleComplete()
+				for _,piece in pairs(self.scene.player.extenderPieces or {}) do
+					piece:remove()
+				end
+				if self.scene.player.extenderarm then
+					self.scene.player.extenderarm:remove()
+				end
+				self.scene.player.extenderPieces = {}
 			end)
 		}
 	end
@@ -346,29 +422,39 @@ function NPC:getMonsterData()
 end
 
 function NPC:getBattleArgs()
+	self.flagForDeletion = true
 	return {
 		opponents = {
 			self:getMonsterData()
+		},
+		flags = {
+			self:getFlag()
 		}
 	}
 end
 
-function NPC:onBattleComplete()
-	-- noop
+function NPC:onBattleComplete(args)
+	for _, flag in pairs(args.flags) do
+		GameState:setFlag(flag)
+	end
 end
 
 function NPC:getInitiative()
-	return nil
+	return self.object.properties.battleInitiative
 end
 
 function NPC:getFlag()
-	return string.format(
-		"%s.%s.%d.%d",
-		self.scene.mapName,
-		self.name,
-		self.x,
-		self.y
-	)
+    if self.object.properties.flagOverride then
+	    return self.object.properties.flagOverride
+	else
+		return string.format(
+			"%s.%s.%d.%d",
+			self.scene.mapName,
+			self.name,
+			self.x,
+			self.y
+		)
+	end
 end
 
 function NPC:drop()
@@ -376,8 +462,8 @@ function NPC:drop()
 	self:run {
 		Wait(0.2),
 		Parallel {
-			Ease(self, "y", self.y + 500, 1),
-			Ease(self.sprite.color, 4, 0, 0.3),
+			Ease(self, "y", self.y + 400, 1),
+			Ease(self.sprite.color, 4, 0, 1),
 			
 			Serial {
 				Wait(0.05),
@@ -390,6 +476,31 @@ function NPC:drop()
 		Do(function()
 			self:remove()
 		end)
+	}
+end
+
+function NPC:walk(to, speed, walkAnim, stopAnim)
+	return Serial {
+		Do(function()
+			self.sprite:setAnimation(walkAnim)
+		end),
+		Parallel {
+			Ease(self, "x", to.x, speed, "linear"),
+			Ease(self, "y", to.y, speed, "linear")
+		},
+		Do(function()
+			self.sprite:setAnimation(stopAnim)
+			self.object.x = self.x
+			self.object.y = self.y
+			self:updateCollision()
+		end)
+	}
+end
+
+function NPC:hop()
+	return Serial {
+		Ease(self, "y", function() return self.y - 50 end, 8),
+		Ease(self, "y", function() return self.y + 50 end, 8)
 	}
 end
 
@@ -549,7 +660,12 @@ function NPC:onCollision(prevState)
 end
 
 function NPC:keytriggered(key, uni)
+	if not self.scene.player then
+		return
+	end
     if  tostring(self.scene.player.curKeyHint) == tostring(self) and
+		self.isInteractable and
+		(not self.specialHintPlayer or string.find(self.specialHintPlayer, GameState.leader)) and
 		key == "x"
 	then
 		self.scene.player.hidekeyhints[tostring(self)] = self
@@ -601,6 +717,10 @@ function NPC:remove()
 	if self.sprite then
 		self.sprite:remove()
 		self.sprite = nil
+	end
+	
+	if self.onRemove then
+		self.onRemove(self)
 	end
 	
 	SceneNode.remove(self)

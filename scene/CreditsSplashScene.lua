@@ -35,8 +35,9 @@ function CreditsSplashScene:onEnter()
 	
 	-- Setup music
 	self.audio:registerAs("music", "sonicrpglogo", love.audio.newSource("audio/music/credits.ogg", "static"))
-	self.audio:registerAs("music", "sallymeetsleon", love.audio.newSource("audio/music/sallymeetsleon.ogg", "static"))
-	self.audio:registerAs("music", "meettherebellion", love.audio.newSource("audio/music/meettherebellion.ogg", "static"))
+	self.audio:registerAs("music", "credits", love.audio.newSource("audio/music/credits.ogg", "static"))
+	self.audio:registerAs("music", "ironlocklouder", love.audio.newSource("audio/music/ironlocklouder.ogg", "static"))
+	self.audio:registerAs("sfx", "wolf", love.audio.newSource("audio/sfx/wolf.ogg", "static"))
 	
 	self.bgColor = {0,0,0,255}
 	self.logoColor = {255,255,255,0}
@@ -53,10 +54,9 @@ function CreditsSplashScene:onEnter()
 			AudioFade("music", 0.7, 1.0, 0.3),
 			Serial {
 				Spawn(Serial {
-					PlayAudio("music", "sonicrpglogo", 0.7),
-					Wait(2),
-					PlayAudio("music", "sallymeetsleon", 1.0),
-					PlayAudio("music", "meettherebellion", 1.0)
+					PlayAudio("music", "credits", 1.0),
+					Wait(1),
+					PlayAudio("music", "ironlocklouder", 1.0, true),
 				}),
 				Wait(3),
 				Parallel {
@@ -82,6 +82,7 @@ function CreditsSplashScene:onEnter()
 			
 			self:getScrollingCredits()
 		},
+		Spawn(AudioFade("music", 1.0, 0.0, 1)),
 		Do(function()
 			self.sceneMgr:backToTitle()
 		end)
@@ -105,15 +106,18 @@ end
 function CreditsSplashScene:getScrollingCredits()
 	local creditsText = [[
 [Story]
-Jacob Berkley/Adventure Master 18
+Jacob Berkley/Good Ol' Groovy Jake
 Reggie Meisler/RedG
 
 [Dialog]
-Jacob Berkley/Adventure Master 18
+Jacob Berkley/Good Ol' Groovy Jake
 Reggie Meisler/RedG
 
 [Music]
+Billy Adams
 Reggie Meisler/RedG
+Jesse Rose/GreenCauldron08
+F0XShadow
 Michael Tavera
 
 [Sound]
@@ -126,7 +130,7 @@ Anonymous
 Deebs
 Racoon Ninja
 Joey "The Plokman" Tripp Nimmo
-Ibeh Dubem/Flame-The-Hedgehog
+Ibeh Dubem/Flame the Teen
 Reggie Meisler/RedG
 Unstoppable Thombo
 Damien
@@ -148,13 +152,26 @@ Nz17
 [Concept Art]
 JayFoxFire
 Anya Stocks/Frostdrop1
-Jacob Berkley/Adventure Master 18
+Jacob Berkley/Good Ol' Groovy Jake
 Reggie Meisler/RedG
 RobertCo11
 Joey "The Plokman" Tripp Nimmo
 
+[Testing]
+ScaleyFoxy
+Fieryfurnace
+GreenCauldron08
+CaptainJotaro
+Jacob Berkley/Good Ol' Groovy Jake
+supermariobro58
+King Sonic
+Ibeh Dubem/Flame the Teen
+Ricardo "Zero Neoz" Fukunaga
+Pavel "Limepaul" Haluška
+
 [3D Concept Art]
 Nitrosaturn
+Pavel "Limepaul" Haluška
 
 [Splash Screen]
 Riggo
@@ -168,6 +185,9 @@ SEGAMew (@segamew)
 [2021 Box Art]
 sqrly jack
 
+[2022 Box Art]
+Jonathon Dobbs/InkPants
+
 [Framework]
 Reggie Meisler/RedG
 
@@ -176,7 +196,7 @@ Love2D
 
 [Programming]
 Reggie Meisler/RedG
-Tailsluver
+tailsluver29
 
 [Tools]
 Tiled
@@ -187,27 +207,40 @@ Audacity
 [Special Thanks]
 Fans United for SatAM
 Sea3on
-Jacob Berkley/Adventure Master 18
+Jacob Berkley/Good Ol' Groovy Jake
+Ibeh Dubem/Flame the Teen
 
 
 
 
 
 
-		 
-		 
-		 
-		 
+
+
+
+ This episode is dedicated to my wife Jazz, who
+    has been so supportive of this project.
+
+
+	
+	
+	
+	
+	
+
 
            Thanks for playing!
     Join our discord for project updates!
 	
 	
 	
-	        www.satamrpg.com
-			
-			
-			
+	
+	
+	
+	
+	
+	
+	        www.satamrpg.com	
 ]]
 	local text = TextNode(
 		self,
@@ -219,7 +252,7 @@ Jacob Berkley/Adventure Master 18
 		false
 	)
 	return Serial {
-		Ease(text.transform, "y", -3000, 0.01, "linear"),
+		Ease(text.transform, "y", -3850, 0.0075, "linear"),
 		Do(function()
 			print("done")
 		end)

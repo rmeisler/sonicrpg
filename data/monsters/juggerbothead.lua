@@ -43,6 +43,8 @@ return {
 		luck    = 1,
 	},
 	
+	boss_part = true,
+	
 	run_chance = 0.2,
 
 	coin = 0,

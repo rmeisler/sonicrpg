@@ -8,7 +8,7 @@ return {
   height = 26,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 225,
+  nextobjectid = 227,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_broom.lua",
@@ -78,7 +78,7 @@ return {
       margin = 0,
       image = "../art/tiles/greatforesttileset.png",
       imagewidth = 2208,
-      imageheight = 2144,
+      imageheight = 2400,
       transparentcolor = "#b326c3",
       tileoffset = {
         x = 0,
@@ -91,19 +91,19 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 4623,
+      tilecount = 5175,
       tiles = {}
     },
     {
       name = "knotholeindoors",
-      firstgid = 9314,
+      firstgid = 9866,
       filename = "knotholeindoors.tsx",
       tilewidth = 32,
       tileheight = 32,
       spacing = 0,
       margin = 0,
       image = "../art/tiles/knotholeinterior.png",
-      imagewidth = 1664,
+      imagewidth = 1696,
       imageheight = 1088,
       transparentcolor = "#b326bd",
       tileoffset = {
@@ -117,7 +117,7 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 1768,
+      tilecount = 1802,
       tiles = {}
     }
   },
@@ -321,66 +321,6 @@ return {
           }
         },
         {
-          id = 215,
-          name = "T",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 256,
-          y = 480,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["defaultAnim"] = "tleft",
-            ["ghost"] = true,
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
-            ["sprite"] = "../art/sprites/p.png"
-          }
-        },
-        {
-          id = 216,
-          name = "R",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 128,
-          y = 608,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["defaultAnim"] = "idleup",
-            ["ghost"] = true,
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
-            ["sprite"] = "../art/sprites/r.png"
-          }
-        },
-        {
-          id = 217,
-          name = "P",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 256,
-          y = 544,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["defaultAnim"] = "pleft",
-            ["ghost"] = true,
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
-            ["sprite"] = "../art/sprites/p.png"
-          }
-        },
-        {
           id = 218,
           name = "Spawn 1",
           type = "Player",
@@ -397,106 +337,26 @@ return {
           }
         },
         {
-          id = 219,
-          name = "Waypoint",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 160,
-          y = 384,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 220,
-          name = "Waypoint2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 416,
-          y = 768,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 221,
-          name = "Waypoint3",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 352,
-          y = 576,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 222,
+          id = 226,
           name = "B",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 96,
-          y = 544,
-          width = 96,
-          height = 32,
+          x = 384,
+          y = 448,
+          width = 64,
+          height = 96,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "rest",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/bbed.png"
-          }
-        },
-        {
-          id = 223,
-          name = "J",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 192,
-          y = 416,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["defaultAnim"] = "jdown",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/p.png"
-          }
-        },
-        {
-          id = 224,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 448,
-          y = 416,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 3501,
-          visible = true,
-          properties = {
-            ["ElbowPads"] = 1,
-            ["sprite"] = "../art/sprites/chest.png"
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "idledown",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\nlocal Spawn = require \"actions/Spawn\"\nlocal AudioFade = require \"actions/AudioFade\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep3_spoke_b2\") then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"B: I await your return Freedom Fighters.\"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\n\n    if not GameState:isFlagSet(\"ep3_spoke_t_intro\") then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"B: Welcome back, Freedom Fighters. {p60}You're always welcome here.\"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\n\n    if GameState:isFlagSet(\"ep3_spoke_b1\") then\n        if GameState:isFlagSet(\"ep3_spoke_t\") and\n           GameState:isFlagSet(\"ep3_spoke_r\") and\n           GameState:isFlagSet(\"ep3_spoke_j\") and\n           GameState:isFlagSet(\"ep3_spoke_p\")\n        then\n            GameState:setFlag(\"ep3_spoke_b2\")\n            self.scene.player.x = self.x\n            self.scene.player.y = self.y + self.sprite.h*2\n            local walkout, walkin, sprites = self.scene.player:split()\n            return BlockPlayer {\n                Do(function() self:facePlayer() end),\n                walkout,\n                Animate(sprites.sonic.sprite, \"idleup\"),\n                Animate(sprites.antoine.sprite, \"idleup\"),\n                Animate(sprites.sally.sprite, \"idleup\"),\n                AudioFade(\"music\", 1.0, 0.0, 1),\n                PlayAudio(\"music\", \"bhero\", 1.0, true, true),\n                MessageBox {message = \"B: It seems as though we are all in agreement.\"},\n                MessageBox {message = \"B: I have only one condition...\"},\n                MessageBox {message = \"B: Take me with you first. {p60}I need to see how safe your home base is for myself.\"},\n                MessageBox {message = \"Sally: That's great B!\"},\n                MessageBox {message = \"Sally: We have an important mission to finish first.{p60} After that, we can bring you to Knothole.\"},\n                walkin,\n                Do(function()\n                    self:refreshKeyHint()\n                    self.scene.player.x = self.scene.player.x + 60\n                    self.scene.player.y = self.scene.player.y + 60\n                end)\n            }\n        else\n            return BlockPlayer {\n                Do(function() self:facePlayer() end),\n                MessageBox {message = \"B: Have you spoken to everyone yet?\"},\n                Do(function() self:refreshKeyHint() end)\n            }\n        end\n    else\n        GameState:setFlag(\"ep3_spoke_b1\")\n        self.scene.player.x = self.x\n        self.scene.player.y = self.y + self.sprite.h*2\n        local walkout, walkin, sprites = self.scene.player:split()\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            walkout,\n            Animate(sprites.sonic.sprite, \"idleup\"),\n            Animate(sprites.sally.sprite, \"idleup\"),\n            Animate(sprites.antoine.sprite, \"idleup\"),\n            MessageBox {message = \"B: Welcome, Ms. Acorn{p60}, Mr. Hedgehog...\"},\n            MessageBox {message = \"B: Ah, and this must be Mr. Depardieu. {p60}On another mission that requires our help?\"},\n            MessageBox {message = \"Sonic: Not exactly... {p60}listen B, {p60}we know you are afraid of movin the Forgotten to Knothole, but--\"},\n            Animate(self.sprite, \"pose\"),\n            MessageBox {message = \"B: I know what you're going to say, and the answer is still 'no'.\"},\n            Animate(sprites.sonic.sprite, \"idledown\"),\n            MessageBox {message = \"Sonic: Your turn, Sal!\"},\n            Ease(sprites.sally, \"y\", function() return sprites.sally.y - 50 end, 8),\n            Ease(sprites.sally, \"y\", function() return sprites.sally.y + 50 end, 8),\n            MessageBox {message = \"Sally: Sonic!\"},\n            Animate(self.sprite, \"idledown\"),\n            Animate(sprites.sonic.sprite, \"idleup\"),\n            Parallel {\n                AudioFade(\"music\", 1.0, 0.0, 0.5),\n                MessageBox {message = \"B: ...Ms. Acorn{p60}, you understand the condition my people face, correct?\"}\n            },\n            MessageBox {message = \"Sally: Memory loss?\"},\n            PlayAudio(\"music\", \"bsad\", 0.8, true, true),\n            Animate(self.sprite, \"pose\"),\n            MessageBox {message = \"B: It's much worse than just that, unfortunately...\"},\n            MessageBox {message = \"B: I've had this condition much longer than the others.{p60} As it has progressed it has mutated from simple amnesia to a much more debilitating disorder...\"},\n            MessageBox {message = \"B: I see these flashes-- {p60}half-remembered memories of my past life...\"},\n            MessageBox {message = \"B: As soon as they disappear I am left with pain... {p60}worse than any physical torture you could imagine...\"},\n            Animate(sprites.sally.sprite, \"sadleft\"),\n            MessageBox {message = \"Sally: Oh B...\"},\n            Animate(self.sprite, \"idledown\"),\n            MessageBox {message = \"B: The only reason I haven't gone mad from it all is these people, Ms. Acorn. {p80}They are family to me{p60}, the reason I keep going.\"},\n            MessageBox {message = \"B: The thought of losing one of them during our transport?... {p60}I just can't let that happen.\"},\n            Animate(sprites.sally.sprite, \"idleup\"),\n            MessageBox {message = \"B: At least here I can know they are safe!\"},\n            MessageBox {message = \"Sally: What if I told you that this place isn't safe anymore, B?\"},\n            Ease(self, \"y\", function() return self.y - 50 end, 8),\n            Ease(self, \"y\", function() return self.y + 50 end, 8),\n            MessageBox {message = \"B: What!?\"},\n            Ease(sprites.sonic, \"y\", function() return sprites.sonic.y - 50 end, 8),\n            Ease(sprites.sonic, \"y\", function() return sprites.sonic.y + 50 end, 8),\n            MessageBox {message = \"Sonic: T's sayin' Buttnik's cleanup crew may be close to finding you guys! {p60}That's why we gotta get you all outta here!\"},\n            Animate(self.sprite, \"seriousdown\"),\n            MessageBox {message = \"B: ... {p60}if that's true...\"},\n            MessageBox {message = \"Sally: Please B... {p60}you'll all be much safer in Knothole.\"},\n            Spawn(AudioFade(\"music\", 0.8, 0.0, 0.5)),\n            Wait(1),\n            Animate(self.sprite, \"idledown\"),\n            MessageBox {message = \"B: Alright, I'll consider it. {p60}But I want you to make sure that the rest of my family agrees with you.\"},\n            Wait(1),\n            PlayAudio(\"music\", \"doittoit2\", 1.0, true, true),\n            Animate(sprites.sonic.sprite, \"idledown\"),\n            Animate(sprites.antoine.sprite, \"idleleft\"),\n            Animate(sprites.sally.sprite, \"idleright\"),\n            MessageBox {message = \"Antoine: He drives ze hard bargain, no?\"},\n            MessageBox {message = \"Sonic: Hey, that ain't a 'no'!\"},\n            MessageBox {message = \"Sally: Sounds like we need to get the rest of the Forgotten on board.\"},\n            MessageBox {message = \"Antoine: Zen we should be getting to work, yes?\"},\n            Animate(sprites.sonic.sprite, \"pose\"),\n            Animate(sprites.antoine.sprite, \"pose\"),\n            Animate(sprites.sally.sprite, \"pose\"),\n            MessageBox {message = \"All: Let's do it to it!\"},\n            AudioFade(\"music\", 1.0, 0.0, 0.5),\n            Wait(0.5),\n            walkin,\n            PlayAudio(\"music\", \"forgottenhideout2\", 1.0, true, true),\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.x = self.scene.player.x + 60\n                self.scene.player.y = self.scene.player.y + 60\n            end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/b.png"
           }
         }
       }

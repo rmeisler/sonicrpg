@@ -762,7 +762,7 @@ local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
 
 return function(self)
-    if self.scene.objectLookup.Block:isRemoved() then
+    if (not self.scene.objectLookup.Block or self.scene.objectLookup.Block:isRemoved()) and self.scene.steppingSfx then
         return Action()
     end
 
@@ -822,6 +822,7 @@ return function(self)
         }
     }
 end</property>
+    <property name="specialHint" value="sally"/>
     <property name="sprite" type="file" value="../art/sprites/terminal.png"/>
    </properties>
   </object>

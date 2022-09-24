@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="22">
+ <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
+  <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
+ </tileset>
+ <tileset firstgid="1045" source="knothole.tsx"/>
+ <tileset firstgid="4529" source="robotropolis.tsx"/>
+ <tileset firstgid="8029" source="cave.tsx"/>
+ <tileset firstgid="10374" source="knotholeindoors.tsx"/>
+ <tileset firstgid="12176" source="ironlock.tsx"/>
+ <layer name="floor" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,17234,17235,17236,17237,17234,17235,17236,17237,17234,17235,17236,17237,0,0,0,0,0,0,0,
+0,0,0,0,0,0,17304,17305,17306,17307,17304,17305,17306,17307,17304,17305,17306,17307,0,0,0,0,0,0,0,
+0,0,0,0,0,0,17374,17375,17376,17377,17374,17375,17376,17377,17374,17375,17376,17377,0,0,0,0,0,0,0,
+0,0,0,0,0,0,17444,17445,17446,17447,17444,17445,17446,17447,17444,17445,17446,17447,0,0,0,0,0,0,0,
+0,0,0,0,0,0,17514,17515,17516,17517,17514,17515,17516,17517,17514,17515,17516,17517,0,0,0,0,0,0,0,
+0,0,0,0,0,0,17584,17585,17586,17587,17584,17585,17586,17587,17584,17585,17586,17587,0,0,0,0,0,0,0,
+0,0,0,0,0,0,17234,17235,17236,17237,17234,17235,17236,17237,17234,17235,17236,17237,0,0,0,0,0,0,0,
+0,0,0,0,0,0,17304,17305,17306,17307,17304,17305,17306,17307,17304,17305,17306,17307,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="above" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,16782,16783,16720,16721,16720,16720,16721,16720,16790,16791,16784,16785,0,0,0,0,0,0,0,
+0,0,0,0,0,0,16712,16713,16790,16791,16790,16790,16791,16721,16791,16721,16714,16715,0,0,0,0,0,0,0,
+0,0,0,0,0,0,16782,16783,16791,16720,16721,16717,16718,16719,16790,16791,16784,16785,0,0,0,0,0,0,0,
+0,0,0,0,0,0,16712,16713,16719,16790,16791,16787,16788,16789,16721,16719,16714,16715,0,0,0,0,0,0,0,
+0,0,0,0,0,0,18007,18007,18007,18007,18007,18007,18007,18007,18007,18007,18007,18007,0,0,0,0,0,0,0,
+0,0,0,0,0,0,18147,18147,18077,18147,18147,18147,18147,18147,18147,18147,18147,18147,0,0,0,0,0,0,0,
+0,0,0,0,0,0,18217,18217,18217,18217,18217,18217,18217,18217,18217,18217,18217,18217,0,0,0,0,0,0,0,
+0,0,0,0,0,0,17164,17165,17166,17166,17165,17166,17166,17166,17165,17166,17165,17167,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,18812,18813,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,18882,18883,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="objects">
+  <object id="2" name="Door" type="Door" gid="6839" x="352" y="512" width="64" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-20"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="key" value="down"/>
+    <property name="orientation" value="up"/>
+    <property name="scene" type="file" value="ironlock1.lua"/>
+    <property name="spawn_point" value="Door3"/>
+    <property name="spawn_point_offset_x" type="float" value="16"/>
+    <property name="spawn_point_offset_y" type="float" value="40"/>
+    <property name="sprite" type="file" value="../art/sprites/door6.png"/>
+   </properties>
+  </object>
+  <object id="21" name="Ghost" type="BasicNPC" gid="6242" x="352" y="320" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="prealsmile"/>
+    <property name="onInit">return function(self)
+    if GameState:isFlagSet(self) then
+        self.handlers = {}
+        self:remove()
+    end
+end</property>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    GameState:setFlag(self:getFlag())
+    self.scene.player.x = self.x
+    self.scene.player.y = self.y + self.sprite.h*2
+    local walkout, walkin, sprites = self.scene.player:split{GameState.party.antoine, GameState.party.sonic, GameState.party.sally}
+    return BlockPlayer {
+        Parallel {
+            AudioFade(&quot;music&quot;, 1.0, 0.0, 1),
+            Serial {
+                walkout,
+                Animate(sprites.antoine.sprite, &quot;idleup&quot;),
+                Animate(sprites.sonic.sprite, &quot;idleup&quot;),
+                Animate(sprites.sally.sprite, &quot;idleup&quot;),
+                MessageBox {message = &quot;Sally: Oh my gosh, are you ok?! {p60}Have you been trapped here long?&quot;}
+            }
+        },
+        PlayAudio(&quot;music&quot;, &quot;mysterious&quot;, 1.0, true, true),
+        Animate(self.sprite, &quot;prealhappy2&quot;),
+        MessageBox {message = &quot;???: An acrostic? {p60}Just for me?&quot;, textSpeed=3},
+        MessageBox {message = &quot;Sally: ?&quot;},
+        Animate(self.sprite, &quot;prealhappy1&quot;),
+        MessageBox {message = &quot;???: Patient...{p60} Empathetic... {p60}Trusting... {p60}Easygoing... {p60}Reader!&quot;, textSpeed=3},
+        Parallel {
+            Serial {
+                Animate(self.sprite, &quot;prealhappy2&quot;),
+                MessageBox {message = &quot;???: I love it!&quot;, closeAction=Wait(1), textSpeed=3},
+                Animate(self.sprite, &quot;prealsmile&quot;),
+                MessageBox {message = &quot;???: Thank you, Emily...&quot;, closeAction=Wait(1), textSpeed=3}
+            },
+            Serial {
+                Ease(self.sprite.color, 4, 0, 0.3),
+                Animate(sprites.antoine.sprite, &quot;shock&quot;),
+                Animate(sprites.sonic.sprite, &quot;shock&quot;),
+                Animate(sprites.sally.sprite, &quot;shock&quot;)
+            }
+        },
+        Animate(sprites.antoine.sprite, &quot;idleleft&quot;),
+        Animate(sprites.sonic.sprite, &quot;idleright&quot;),
+        Animate(sprites.sally.sprite, &quot;idledown&quot;),
+        MessageBox{message=&quot;Sonic: Ok, this is getting mondo creepy Sal!&quot;},
+        Animate(sprites.sally.sprite, &quot;thinking&quot;),
+        MessageBox{message=&quot;Sally: What is going on?...&quot;},
+        MessageBox{message=&quot;Antoine: He iz zee ghost too??&quot;},
+        MessageBox{message=&quot;Sally: Something's seriously off about this place...&quot;},
+        walkin,
+        Do(function()
+            self.scene.player.x = self.scene.player.x + 100
+            self.scene.player.y = self.scene.player.y + 80
+            self:remove()
+        end)
+    }
+end</property>
+    <property name="onScan">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+return function(self)
+    return BlockPlayer {
+        MessageBox{message=&quot;Nicole: I'm detecting evidence of a temporal anamoly, Sally.&quot;},
+        MessageBox{message=&quot;Sally: {h Temporal anamoly}?!&quot;},
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="top" width="25" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Collision" width="25" height="20" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,16887,16887,16887,16887,16887,16887,16887,16887,16887,16887,16887,16887,16887,16887,0,0,0,0,0,0,
+0,0,0,0,0,16887,0,0,0,0,0,0,0,0,0,0,0,0,16887,0,0,0,0,0,0,
+0,0,0,0,0,16887,0,0,0,0,0,0,0,0,0,0,0,0,16887,0,0,0,0,0,0,
+0,0,0,0,0,16887,0,0,0,0,0,0,0,0,0,0,0,0,16887,0,0,0,0,0,0,
+0,0,0,0,0,16887,0,0,0,0,0,0,0,0,0,0,0,0,16887,0,0,0,0,0,0,
+0,0,0,0,0,16887,0,0,0,0,0,0,0,0,0,0,0,0,16887,0,0,0,0,0,0,
+0,0,0,0,0,16887,0,0,0,0,0,0,0,0,0,0,0,0,16887,0,0,0,0,0,0,
+0,0,0,0,0,16887,0,0,0,0,0,0,0,0,0,0,0,0,16887,0,0,0,0,0,0,
+0,0,0,0,0,16887,0,0,0,0,0,0,0,0,0,0,0,0,16887,0,0,0,0,0,0,
+0,0,0,0,0,16887,16887,16887,16887,16887,16887,16887,16887,16887,16887,16887,16887,16887,16887,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="BunnyExtCollision" width="25" height="20" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

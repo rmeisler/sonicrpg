@@ -18,6 +18,8 @@ return function(self, target)
 		}
 	end
 	
+	local targetHp, targetMaxHp = target:getHpStats()
+	
 	return Serial {
 		Animate(self.sprite, "nichole_start"),
 		Animate(self.sprite, "nichole_idle"),
@@ -37,8 +39,9 @@ return function(self, target)
 			target:getSprite():removeParallax()
 		end),
 		weaknessMessage,
+		target.onScan and target.onScan(target) or Action(),
 		MessageBox {
-			message=string.format("%s %d / %d", "Nicole: Remaining HP ", target.hp, target.maxhp),
+			message=string.format("%s %d / %d", "Nicole: Remaining HP ", targetHp, targetMaxHp),
 			rect=MessageBox.HEADLINER_RECT,
 			closeAction=Wait(1.2)
 		},

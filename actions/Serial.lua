@@ -78,7 +78,9 @@ end
 
 function Serial:cleanup(scene)
 	for k,v in pairs(self.animations) do
-		v:cleanup(scene)
+		if v.cleanup then
+			v:cleanup(scene)
+		end
 	end
 end
 
