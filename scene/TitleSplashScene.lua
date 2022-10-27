@@ -122,11 +122,9 @@ function TitleSplashScene:onEnter()
 				Ease(self.bgColor, 3, 255, 0.2, "linear"),
 				AudioFade("music", 0.5, 1.0, 0.1),
 				Serial {
-					Wait(3),
-					PlayAudio("sfx", "wolf", 0.5, true),
-					Wait(5),
-					PlayAudio("music", "pretitle", 0.5, true),
-					Ease(self, "bgY", -466, 0.05, "inout"),
+					Wait(4),
+					PlayAudio("music", "pretitle", 0.5, true, true),
+					Ease(self, "bgY", -466, 0.053, "inout"),
 				}
 			},
 
