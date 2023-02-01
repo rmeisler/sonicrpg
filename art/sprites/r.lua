@@ -72,5 +72,11 @@ return {
 			frames = {{5,2},{6,2},{7,2}},
 			speed = 0.15
 		},
+		hug = {
+			frames = {{5,4}}
+		},
+		sadleft = {
+			frames = {{11,1}}
+		},
     }
 }

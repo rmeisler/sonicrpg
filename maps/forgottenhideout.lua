@@ -8,7 +8,7 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 263,
+  nextobjectid = 269,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_hideout.lua",
@@ -896,22 +896,6 @@ return {
       properties = {},
       objects = {
         {
-          id = 172,
-          name = "Spawn 1",
-          type = "Player",
-          shape = "rectangle",
-          x = 1728,
-          y = 2688,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1586,
-          visible = true,
-          properties = {
-            ["orientation"] = "up"
-          }
-        },
-        {
           id = 185,
           name = "Stairs2",
           type = "Stairs",
@@ -1282,22 +1266,6 @@ return {
           }
         },
         {
-          id = 221,
-          name = "Save",
-          type = "SavePoint",
-          shape = "rectangle",
-          x = 1728,
-          y = 2240,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 2904,
-          visible = true,
-          properties = {
-            ["sprite"] = "../art/sprites/save.png"
-          }
-        },
-        {
           id = 247,
           name = "LowerExit",
           type = "SceneEdge",
@@ -1558,6 +1526,127 @@ return {
           properties = {
             ["ghost"] = true,
             ["orientation"] = "up"
+          }
+        },
+        {
+          id = 263,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 1728,
+          y = 2368,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1586,
+          visible = true,
+          properties = {
+            ["orientation"] = "up"
+          }
+        },
+        {
+          id = 264,
+          name = "B",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1732,
+          y = 2400,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/b.png"
+          }
+        },
+        {
+          id = 265,
+          name = "P",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1632,
+          y = 2272,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "pdown",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/p.png"
+          }
+        },
+        {
+          id = 266,
+          name = "J",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1696,
+          y = 2240,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "jdown",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/p.png"
+          }
+        },
+        {
+          id = 267,
+          name = "R",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1760,
+          y = 2240,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "idledown",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/r.png"
+          }
+        },
+        {
+          id = 268,
+          name = "T",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1824,
+          y = 2272,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "tdown",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/p.png"
           }
         }
       }

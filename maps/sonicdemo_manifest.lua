@@ -70,7 +70,6 @@ return {
         type = "map",
 		file = "maps/sallyshutnight.lua",
 		-- REAL PRIMARY
-		primary = true
     },
 	
 	{
@@ -111,7 +110,7 @@ return {
 	{
         type = "map",
         file = "maps/forgottenhideout_broom.lua",
-		--primary = true
+		primary = true
     },
 	
 	{
@@ -708,6 +707,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/bleaves2.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/bsad.ogg",
 		category = "music"
 	},
@@ -723,7 +727,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/antoinerescue.ogg",
+		file = "audio/music/bleaves.ogg",
 		category = "music"
 	},
 	{

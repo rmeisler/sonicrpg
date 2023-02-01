@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="110" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="263">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="110" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="269">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="onload" type="file" value="actions/forgotten_hideout.lua"/>
@@ -630,11 +630,6 @@
  </layer>
  <objectgroup name="lowerobjects"/>
  <objectgroup name="objects">
-  <object id="172" name="Spawn 1" type="Player" gid="1586" x="1728" y="2688" width="32" height="32">
-   <properties>
-    <property name="orientation" value="up"/>
-   </properties>
-  </object>
   <object id="185" name="Stairs2" type="Stairs" gid="1227" x="1920" y="2304" width="32" height="96">
    <properties>
     <property name="direction" value="up_right"/>
@@ -778,11 +773,6 @@ end</property>
     <property name="orientation" value="down"/>
     <property name="scene" type="file" value="forgottenhideout_broom.lua"/>
     <property name="spawn_point" value="Exit1"/>
-   </properties>
-  </object>
-  <object id="221" name="Save" type="SavePoint" gid="2904" x="1728" y="2240" width="32" height="32">
-   <properties>
-    <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
   <object id="247" name="LowerExit" type="SceneEdge" gid="1227" x="1664" y="2688" width="192" height="32">
@@ -1286,6 +1276,61 @@ end</property>
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="orientation" value="up"/>
+   </properties>
+  </object>
+  <object id="263" name="Spawn 1" type="Player" gid="1586" x="1728" y="2368" width="32" height="32">
+   <properties>
+    <property name="orientation" value="up"/>
+   </properties>
+  </object>
+  <object id="264" name="B" type="BasicNPC" gid="1227" x="1732" y="2400" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="idleup"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/b.png"/>
+   </properties>
+  </object>
+  <object id="265" name="P" type="BasicNPC" gid="1227" x="1632" y="2272" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="pdown"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
+   </properties>
+  </object>
+  <object id="266" name="J" type="BasicNPC" gid="1227" x="1696" y="2240" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="jdown"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
+   </properties>
+  </object>
+  <object id="267" name="R" type="BasicNPC" gid="1227" x="1760" y="2240" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/r.png"/>
+   </properties>
+  </object>
+  <object id="268" name="T" type="BasicNPC" gid="1227" x="1824" y="2272" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="tdown"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/p.png"/>
    </properties>
   </object>
  </objectgroup>

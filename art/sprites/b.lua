@@ -12,6 +12,25 @@ return {
 			frames = {{11,4}}
 		},
 		
+		lookdown = {
+			frames = {{13,1}}
+		},
+		
+		packupidle = {
+			frames = {{9,3}}
+		},
+		packup = {
+			frames = {{9,3},{10,3}},
+			speed = 0.5
+		},
+		packupstand = {
+			frames = {{11,3},{0,3}},
+			speed = 0.5
+		},
+		backpack = {
+			frames = {{12,3}}
+		},
+		
 		stepup = {
 		    frames = {{0,3},{1,3},{0,3},{5,3}},
 			speed = 0.5
@@ -101,6 +120,12 @@ return {
 		},
 		peekup = {
 			frames = {{6,4}}
+		},
+		kneelright = {
+			frames = {{13,0}}
+		},
+		kneelright_worry = {
+			frames = {{14,0}}
 		}
     }
 }
