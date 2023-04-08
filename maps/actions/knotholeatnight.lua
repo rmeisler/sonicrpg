@@ -27,7 +27,7 @@ return function(scene, hint)
 
 	scene.player.dustColor = Player.FOREST_DUST_COLOR
 	
-	scene.audio:playMusic("knotholeatnight", 0.8, true)
+	scene.audio:playMusic("snowday", 1.0, true)
 	
 	if GameState:isFlagSet("ep3_read") then
 		scene.objectLookup.TailsHutWarmWindows:remove()

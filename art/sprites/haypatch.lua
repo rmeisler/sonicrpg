@@ -15,6 +15,9 @@ return {
 		waffle = {
             frames = {{1,0},{0,0}},
 			speed = 0.2
+        },
+		snow = {
+            frames = {{4,0}}
         }
     }
 }

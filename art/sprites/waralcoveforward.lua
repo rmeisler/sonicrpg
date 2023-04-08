@@ -18,6 +18,14 @@ return {
 			frames = {{1,0}}
 		},
 		
+		right_snow = {
+			frames = {{2,0}}
+		},
+		
+		left_snow = {
+			frames = {{3,0}}
+		},
+		
 		right_clipped = {
 			frames = {{0,0}},
 			clip = {120,0,330,300}

@@ -7,6 +7,9 @@ return {
     animations = {
 		right = {
 			frames = {{0,0}}
+		},
+		right_snow = {
+			frames = {{1,0}}
 		}
     }
 }

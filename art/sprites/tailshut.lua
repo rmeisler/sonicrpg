@@ -10,6 +10,9 @@ return {
 		},
 		warmwindows = {
 			frames = {{1,0}}
-		}
+		},
+		snow = {
+			frames = {{2,0}}
+		},
     }
 }

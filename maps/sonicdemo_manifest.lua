@@ -110,13 +110,13 @@ return {
 	{
         type = "map",
         file = "maps/forgottenhideout_broom.lua",
-		primary = true
+		--primary = true
     },
 	
 	{
         type = "map",
-        file = "maps/knothole.lua",
-		--primary = true
+        file = "maps/knotholesnowday.lua",
+		primary = true
     },
 	{
         type = "map",
@@ -1267,7 +1267,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/knotholeatnight.ogg",
+		file = "audio/music/snowday.ogg",
 		category = "music",
 		looping = true,
 	},
