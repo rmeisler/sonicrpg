@@ -172,8 +172,8 @@ function TitleSplashScene:onExit(args)
 end
 
 function TitleSplashScene:newGame()
-	GameState:addToParty("sally", 6, true)
-	GameState.leader = "sally"
+	GameState:addToParty("logan", 8, true)
+	GameState.leader = "logan"
 	GameState:setFlag("ep3_intro")
 	
 	self.audio:stopSfx("wind")

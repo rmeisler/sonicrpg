@@ -349,6 +349,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/avatar/loganavatar.png"
+	},
+	{
+		type = "image",
 		file = "art/avatar/rotoravatar.png"
 	},
 	{
