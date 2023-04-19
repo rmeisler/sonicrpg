@@ -172,6 +172,7 @@ function TitleSplashScene:onExit(args)
 end
 
 function TitleSplashScene:newGame()
+	GameState:addToParty("rotor", 8, true)
 	GameState:addToParty("logan", 8, true)
 	GameState.leader = "logan"
 	GameState:setFlag("ep3_intro")
