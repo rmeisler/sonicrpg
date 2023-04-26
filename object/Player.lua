@@ -51,6 +51,7 @@ Player.ToIdle = {
 Player.DEFAULT_DUST_COLOR      = {255, 255, 255, 255}
 Player.ROBOTROPOLIS_DUST_COLOR = {130, 130, 200, 255}
 Player.FOREST_DUST_COLOR       = {255, 255, 200, 255}
+Player.SNOW_FOOTPRINT_TIME     = 0.2
 
 Player.MAX_SORT_ORDER_Y = 999999999
 
@@ -786,6 +787,14 @@ function Player:basicUpdate(dt)
 	end
 	self.doingSpecialMove = false
 	
+	if self.scene.map.properties.snow then
+		if not self.snowtime then
+			self.snowtime = 0
+			self.snowoffsety = 1
+		end
+		self.snowtime = self.snowtime + dt
+	end
+	
 	local moving = false
 	local movingX = false
 	local movingY = false
@@ -795,7 +804,8 @@ function Player:basicUpdate(dt)
 		then
 			self.x = self.x + movespeed
 			self.state = Player.STATE_WALKRIGHT
-			
+			self:makeSnowFootprint(hotspots.left_bot.x, hotspots.left_bot.y - 10 + self.snowoffsety * 5)
+
 			-- Going up stairs
 			local _, stairs = next(self.stairs)
 			if stairs then
@@ -861,7 +871,8 @@ function Player:basicUpdate(dt)
 		then
 			self.x = self.x - movespeed
 			self.state = Player.STATE_WALKLEFT
-			
+			self:makeSnowFootprint(hotspots.right_bot.x - 10, hotspots.right_bot.y - 10 + self.snowoffsety * 5)
+
 			-- Going up stairs
 			local _, stairs = next(self.stairs)
 			if stairs then
@@ -928,6 +939,7 @@ function Player:basicUpdate(dt)
 		then
 			self.y = self.y + movespeed
 			self.state = Player.STATE_WALKDOWN
+			self:makeSnowFootprint(hotspots.left_top.x + 15 + self.snowoffsety * 5, hotspots.left_top.y)
 			moving = true
 			movingY = true
 		elseif not moving then
@@ -993,6 +1005,7 @@ function Player:basicUpdate(dt)
 		then
 			self.y = self.y - movespeed
 			self.state = Player.STATE_WALKUP
+			self:makeSnowFootprint(hotspots.left_bot.x + 15 + self.snowoffsety * 5, hotspots.left_bot.y)
 			moving = true
 			movingY = true
 		elseif not moving then
@@ -1128,6 +1141,36 @@ function Player:peakDistance(dir)
 			return math.min(maxDist, love.graphics.getHeight()/2 - self.y - self.sprite.h*2)
 		else
 			return math.min(maxDist, self.scene:getMapHeight() - love.graphics.getHeight()/2 - self.y)
+		end
+	end
+end
+
+function Player:makeSnowFootprint(x, y)
+	if self.scene.map.properties.snow then
+		if self.snowtime > Player.SNOW_FOOTPRINT_TIME then
+			local footprint = BasicNPC(
+				self.scene,
+				{name = "objects"},
+				{name = "snow", x = x, y = y, width = 12, height = 6,
+					properties = {nocollision = true, sprite = "art/sprites/snowfootprint.png", align = NPC.ALIGN_BOTLEFT}
+				}
+			)
+			self.sprite.color = {255,255,255,255}
+			footprint.sprite:addSceneHandler("update", function(self, dt)
+				if not self.foottime then
+					self.foottime = 0
+				end
+				self.foottime = self.foottime + dt
+				if self.foottime > 1 then
+					self.color[4] = self.color[4] - 1
+					if self.color[4] == 0 then
+						self:remove()
+					end
+				end
+			end)
+			self.scene:addObject(footprint)
+			self.snowtime = 0
+			self.snowoffsety = self.snowoffsety * -1
 		end
 	end
 end

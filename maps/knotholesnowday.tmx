@@ -6,6 +6,7 @@
   <property name="onload" type="file" value="actions/knotholeatnight.lua"/>
   <property name="regionName" value="Great Forest"/>
   <property name="sectorName" value="Knothole (Night)"/>
+  <property name="snow" type="bool" value="true"/>
  </properties>
  <tileset firstgid="1" source="knothole.tsx"/>
  <tileset firstgid="3485" source="knotholeindoors.tsx"/>

@@ -14,7 +14,8 @@ return {
     ["nighttime"] = false,
     ["onload"] = "actions/knotholeatnight.lua",
     ["regionName"] = "Great Forest",
-    ["sectorName"] = "Knothole (Night)"
+    ["sectorName"] = "Knothole (Night)",
+    ["snow"] = true
   },
   tilesets = {
     {
