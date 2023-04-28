@@ -804,7 +804,9 @@ function Player:basicUpdate(dt)
 		then
 			self.x = self.x + movespeed
 			self.state = Player.STATE_WALKRIGHT
-			self:makeSnowFootprint(hotspots.left_bot.x, hotspots.left_bot.y - 10 + self.snowoffsety * 5)
+			if self.scene.map.properties.snow then
+				self:makeSnowFootprint(hotspots.left_bot.x, hotspots.left_bot.y - 10 + self.snowoffsety * 5)
+			end
 
 			-- Going up stairs
 			local _, stairs = next(self.stairs)
@@ -871,7 +873,9 @@ function Player:basicUpdate(dt)
 		then
 			self.x = self.x - movespeed
 			self.state = Player.STATE_WALKLEFT
-			self:makeSnowFootprint(hotspots.right_bot.x - 10, hotspots.right_bot.y - 10 + self.snowoffsety * 5)
+			if self.scene.map.properties.snow then
+				self:makeSnowFootprint(hotspots.right_bot.x - 10, hotspots.right_bot.y - 10 + self.snowoffsety * 5)
+			end
 
 			-- Going up stairs
 			local _, stairs = next(self.stairs)
@@ -939,7 +943,9 @@ function Player:basicUpdate(dt)
 		then
 			self.y = self.y + movespeed
 			self.state = Player.STATE_WALKDOWN
-			self:makeSnowFootprint(hotspots.left_top.x + 15 + self.snowoffsety * 5, hotspots.left_top.y)
+			if self.scene.map.properties.snow then
+				self:makeSnowFootprint(hotspots.left_top.x + 15 + self.snowoffsety * 5, hotspots.left_top.y)
+			end
 			moving = true
 			movingY = true
 		elseif not moving then
@@ -1005,7 +1011,9 @@ function Player:basicUpdate(dt)
 		then
 			self.y = self.y - movespeed
 			self.state = Player.STATE_WALKUP
-			self:makeSnowFootprint(hotspots.left_bot.x + 15 + self.snowoffsety * 5, hotspots.left_bot.y)
+			if self.scene.map.properties.snow then
+				self:makeSnowFootprint(hotspots.left_bot.x + 15 + self.snowoffsety * 5, hotspots.left_bot.y)
+			end
 			moving = true
 			movingY = true
 		elseif not moving then
@@ -1146,32 +1154,30 @@ function Player:peakDistance(dir)
 end
 
 function Player:makeSnowFootprint(x, y)
-	if self.scene.map.properties.snow then
-		if self.snowtime > Player.SNOW_FOOTPRINT_TIME then
-			local footprint = BasicNPC(
-				self.scene,
-				{name = "objects"},
-				{name = "snow", x = x, y = y, width = 12, height = 6,
-					properties = {nocollision = true, sprite = "art/sprites/snowfootprint.png", align = NPC.ALIGN_BOTLEFT}
-				}
-			)
-			self.sprite.color = {255,255,255,255}
-			footprint.sprite:addSceneHandler("update", function(self, dt)
-				if not self.foottime then
-					self.foottime = 0
+	if self.snowtime > Player.SNOW_FOOTPRINT_TIME then
+		local footprint = BasicNPC(
+			self.scene,
+			{name = "objects"},
+			{name = "snow", x = x, y = y, width = 12, height = 6,
+				properties = {nocollision = true, sprite = "art/sprites/snowfootprint.png", align = NPC.ALIGN_BOTLEFT}
+			}
+		)
+		self.sprite.color = {255,255,255,255}
+		footprint.sprite:addSceneHandler("update", function(self, dt)
+			if not self.foottime then
+				self.foottime = 0
+			end
+			self.foottime = self.foottime + dt
+			if self.foottime > 1 then
+				self.color[4] = self.color[4] - 1
+				if self.color[4] == 0 then
+					self:remove()
 				end
-				self.foottime = self.foottime + dt
-				if self.foottime > 1 then
-					self.color[4] = self.color[4] - 1
-					if self.color[4] == 0 then
-						self:remove()
-					end
-				end
-			end)
-			self.scene:addObject(footprint)
-			self.snowtime = 0
-			self.snowoffsety = self.snowoffsety * -1
-		end
+			end
+		end)
+		self.scene:addObject(footprint)
+		self.snowtime = 0
+		self.snowoffsety = self.snowoffsety * -1
 	end
 end
 
