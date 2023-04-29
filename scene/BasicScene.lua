@@ -423,6 +423,27 @@ function BasicScene:hasUpperLayer()
 	return false
 end
 
+function BasicScene:lightningFlash()
+	if not BasicScene.flashShader then
+		local script = [[
+			vec4 effect(vec4 colour, Image tex, vec2 tc, vec2 sc)
+			{
+			    return vec4(1,1,1,0) + Texel(tex, tc);
+			}
+		]]
+		BasicScene.flashShader = love.graphics.newShader(script)
+	end
+	return Serial {
+		Do(function()
+			self.lightFlash = true
+		end),
+		Wait(0.1),
+		Do(function()
+			self.lightFlash = false
+		end)
+	}
+end
+
 function BasicScene:fadeIn(speed)
 	speed = speed or 1
 	return Parallel {
@@ -893,6 +914,12 @@ function BasicScene:draw()
 			love.graphics.setDefaultFilter("nearest", "nearest")
 			Scene.draw(self)
 		end)
+	elseif self.lightFlash then
+		local prevShader = love.graphics.getShader()
+		love.graphics.setDefaultFilter("nearest", "nearest")
+		love.graphics.setShader(BasicScene.flashShader)
+		Scene.draw(self)
+		love.graphics.setShader(prevShader)
 	else
 		love.graphics.setDefaultFilter("nearest", "nearest")
 		Scene.draw(self)

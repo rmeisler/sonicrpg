@@ -87,7 +87,7 @@ return {
 		},
 		
 		seriousdown = {
-			frames = {{6,2}}
+			frames = {{0,4}}
 		},
 		crouchdown = {
 			frames = {{4,2}}

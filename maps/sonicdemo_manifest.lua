@@ -120,8 +120,8 @@ return {
     },
 	{
         type = "map",
-        file = "maps/knotholeatnight.lua",
-		--primary = true
+        file = "maps/knotholeatnight_ep4intro.lua",
+		primary = true
     },
 	
 	{
@@ -253,11 +253,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/fadeplatformedge.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/fadeplatform.png"
+		file = "art/parallax/rain.png"
 	},
 	{
 		type = "image",
@@ -685,12 +681,17 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/quake.ogg",
+		file = "audio/sfx/thunder1.wav",
 		category = "sfx"
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/wolf.ogg",
+		file = "audio/sfx/thunder2.wav",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/rain.ogg",
 		category = "sfx"
 	},
 	{
@@ -715,32 +716,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/bleaves2.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/bsad.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/bheart.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/bhero.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/bleaves.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/antoine.ogg",
+		file = "audio/music/btheme.ogg",
 		category = "music"
 	},
 	{
@@ -796,6 +772,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/royalwelcome.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/ep4intro.ogg",
 		category = "music"
 	},
 	{
