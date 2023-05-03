@@ -36,18 +36,18 @@ return function(scene)
 		end),
 		Wait(1),
 		Ease(scene.camPos, "y", 0, 0.2),
-		Wait(1),
-		PlayAudio("music", "btheme", 1.0, true),
-		MessageBox{message="Sally: So... {p60}whaddya think?", closeAction=Wait(3)},
+		Wait(0.5),
+		MessageBox{message="Sally: So... {p80}whaddya think?", closeAction=Wait(3)},
 		PlayAudio("music", "btheme", 1.0, true),
 		Animate(scene.objectLookup.B.sprite, "seriousdown"),
+		PlayAudio("music", "btheme", 1.0, true),
 		MessageBox{message="B: It's more beautiful than I could have ever imagined...", closeAction=Wait(3)},
 		Animate(scene.objectLookup.Sally.sprite, "thinking2"),
 		MessageBox{message="Sally: Do you feel safe bringing the rest of your family here?", closeAction=Wait(3)},
 		Animate(scene.objectLookup.B.sprite, "idledown"),
 		MessageBox{message="B: Oh yes--{p60} I would like to help them relocate as soon as possible.", closeAction=Wait(3)},
 		Animate(scene.objectLookup.Sally.sprite, "idleleft"),
-		MessageBox{message="Sally: Wonderful!{p60} We'll be sure to--", closeAction=Wait(1)},
+		MessageBox{message="Sally: That's wonderful, B!{p60} We'll be sure to--", closeAction=Wait(1)},
 		Do(function()
 			scene.audio:stopMusic()
 		end),
@@ -71,18 +71,13 @@ return function(scene)
 				end
 			end
 		end),
-		PlayAudio("sfx", "rain", 1.0, true, true),
+		PlayAudio("sfx", "rain", 0.2, true, true),
 		Wait(2.7),
 		PlayAudio("music", "ep4intro", 1.0, true),
-		-- Lightning strikes
-		-- Sally and B look up worried
-		-- Rotor comes over
 		Animate(scene.objectLookup.B.sprite, "idleright"),
 		Animate(scene.objectLookup.Sally.sprite, "idleleft"),
 		Wait(2),
-		MessageBox{message="Rotor: Sally! {p60}We're getting some wild readings from our weather balloon!", closeAction=Wait(3)},
-		MessageBox{message="Rotor: Looks like a major storm is comin' in fast!", closeAction=Wait(3)},
-		MessageBox{message="Sally: We'd better get inside, B.", closeAction=Wait(3)},
+		MessageBox{message="Sally: We'd better get inside.", closeAction=Wait(3)},
 		-- Transition to scene with Tails seeing lightning in his bed, scared, hiding under sheets
 	}
 end
