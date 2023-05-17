@@ -180,7 +180,7 @@ Workshop</property>
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="26" name="Logan" type="BasicNPC" gid="4565" x="192" y="352" width="64" height="96">
+  <object id="26" name="Logan" type="BasicNPC" gid="4565" x="320" y="288" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
@@ -282,7 +282,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="29" name="Rotor2" type="BasicNPC" gid="4565" x="256" y="352" width="64" height="96">
+  <object id="29" name="Rotor2" type="BasicNPC" gid="4565" x="448" y="256" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>

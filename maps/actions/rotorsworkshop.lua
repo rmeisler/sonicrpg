@@ -1,4 +1,4 @@
-return function(scene)
+return function(scene, hint)
 	local Transform = require "util/Transform"
 	local Rect = unpack(require "util/Shapes")
 	local Layout = require "util/Layout"
@@ -10,7 +10,9 @@ return function(scene)
 	local MessageBox = require "actions/MessageBox"
 	local PlayAudio = require "actions/PlayAudio"
 	local Ease = require "actions/Ease"
+	local Animate = require "actions/Animate"
 	local Parallel = require "actions/Parallel"
+	local Spawn = require "actions/Spawn"
 	local Serial = require "actions/Serial"
 	local Executor = require "actions/Executor"
 	local Wait = require "actions/Wait"
@@ -32,21 +34,7 @@ return function(scene)
 		"Workshop",
 		100
 	)
-	Executor(scene):act(Serial {
-		Wait(0.5),
-		subtext,
-		text,
-		Parallel {
-			Ease(text.color, 4, 255, 1),
-			Ease(subtext.color, 4, 255, 1),
-		},
-		Wait(2),
-		Parallel {
-			Ease(text.color, 4, 0, 1),
-			Ease(subtext.color, 4, 0, 1)
-		}
-	})
-	
+
 	if not scene.updateHookAdded then
 		scene.updateHookAdded = true
 		scene:addHandler(
@@ -127,7 +115,66 @@ return function(scene)
 		)
 	end
 	
-	if scene.nighttime then
+	if hint == "intro" then
+		scene.audio:stopSfx()
+		scene.objectLookup.Logan.hidden = false
+		scene.objectLookup.Logan.ghost = false
+		scene.objectLookup.Logan.isInteractable = true
+		scene.objectLookup.Logan:updateCollision()
+		scene.objectLookup.Logan.sprite:setAnimation("idledown")
+
+		scene.objectLookup.Rotor2.hidden = false
+		scene.objectLookup.Rotor2.ghost = false
+		scene.objectLookup.Rotor2.isInteractable = true
+		scene.objectLookup.Rotor2:updateCollision()
+		scene.objectLookup.Rotor2.sprite:setAnimation("idleright")
+
+		scene.objectLookup.Rotor:remove()
+		scene.objectLookup.Computer.isInteractable = false
+		scene.camPos.y = 300
+
+		return Serial {
+			Do(function()
+				scene.camPos.y = 300
+			end),
+			Animate(scene.objectLookup.Logan.sprite, "idledown"),
+			Wait(4),
+			PlayAudio("music", "flutter", 0.8, true),
+			Serial {
+				Wait(0.5),
+				subtext,
+				text,
+				Parallel {
+					Ease(text.color, 4, 255, 1),
+					Ease(subtext.color, 4, 255, 1),
+				},
+				Wait(2),
+				Parallel {
+					Ease(text.color, 4, 0, 1),
+					Ease(subtext.color, 4, 0, 1)
+				}
+			},
+			Wait(4),
+			MessageBox{message="Logan: ...*yawn*", closeAction=Wait(1)},
+			MessageBox{message="Logan: Seems like the storm has passed..."},
+			PlayAudio("music", "rotorsworkshop", 1.0, true),
+			Animate(scene.objectLookup.Logan.sprite, "shock"),
+			Parallel {
+				MessageBox{message="Logan: !!", closeAction=Wait(1)},
+				scene.objectLookup.Logan:hop()
+			},
+			MessageBox{message="Logan: Brr!!"},
+			Wait(0.5),
+			Animate(scene.objectLookup.Rotor2.sprite, "idleleft"),
+			MessageBox{message="Rotor: ...Huh?"},
+			Animate(scene.objectLookup.Logan.sprite, "idleright"),
+			MessageBox{message="Logan: Why is it freezing cold in here!?"},
+			MessageBox{message="Rotor: Feels fine to me."},
+			MessageBox{message="Logan: Of course it feels fine to you{p60}, you're a walrus!"},
+			Wait(0.5),
+			MessageBox{message="Rotor: Good point."},
+		}
+	elseif scene.nighttime then
 		scene.objectLookup.Logan.hidden = false
 		scene.objectLookup.Logan.ghost = false
 		scene.objectLookup.Logan.isInteractable = true
@@ -136,6 +183,21 @@ return function(scene)
 		scene.objectLookup.Rotor:remove()
 		scene.objectLookup.Computer.isInteractable = false
 		
+		Executor(scene):act(Serial {
+			Wait(0.5),
+			subtext,
+			text,
+			Parallel {
+				Ease(text.color, 4, 255, 1),
+				Ease(subtext.color, 4, 255, 1),
+			},
+			Wait(2),
+			Parallel {
+				Ease(text.color, 4, 0, 1),
+				Ease(subtext.color, 4, 0, 1)
+			}
+		})
+
 		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
 		local prefix = "nighthide"
 		for _,layer in pairs(scene.map.layers) do
@@ -144,6 +206,21 @@ return function(scene)
 			end
 		end
 	else
+		Executor(scene):act(Serial {
+			Wait(0.5),
+			subtext,
+			text,
+			Parallel {
+				Ease(text.color, 4, 255, 1),
+				Ease(subtext.color, 4, 255, 1),
+			},
+			Wait(2),
+			Parallel {
+				Ease(text.color, 4, 0, 1),
+				Ease(subtext.color, 4, 0, 1)
+			}
+		})
+
 		scene.objectLookup.Door.object.properties.scene = "knothole.lua"
 		local prefix = "nighthide"
 		for _,layer in pairs(scene.map.layers) do

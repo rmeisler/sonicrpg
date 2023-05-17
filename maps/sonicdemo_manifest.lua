@@ -776,6 +776,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/ep4harp.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/ep4intro.ogg",
 		category = "music"
 	},
@@ -1257,6 +1262,12 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/snowday.ogg",
+		category = "music",
+		looping = true,
+	},
+	{
+		type = "sound",
+		file = "audio/music/logantheme.ogg",
 		category = "music",
 		looping = true,
 	},

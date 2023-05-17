@@ -35,9 +35,15 @@ return function(scene)
 			scene.camPos.y = -900
 		end),
 		Wait(1),
-		Ease(scene.camPos, "y", 0, 0.2),
-		Wait(0.5),
-		MessageBox{message="Sally: So... {p80}whaddya think?", closeAction=Wait(3)},
+		PlayAudio("music", "ep4harp", 0.3, true),
+		Wait(3),
+		Parallel {
+			MessageBox{message="Sally: So... {p80}whaddya think?", closeAction=Wait(5)},
+			Serial {
+				Ease(scene.camPos, "y", 0, 0.15),
+				Wait(2)
+			}
+		},
 		PlayAudio("music", "btheme", 1.0, true),
 		Animate(scene.objectLookup.B.sprite, "seriousdown"),
 		PlayAudio("music", "btheme", 1.0, true),
@@ -55,7 +61,7 @@ return function(scene)
 		scene:lightningFlash(),
 		Wait(0.1),
 		scene:lightningFlash(),
-		PlayAudio("sfx", "thunder2", 1.0, true),
+		PlayAudio("sfx", "thunder2",0.8, true),
 		Animate(scene.objectLookup.Sally.sprite, "shock"),
 		Parallel
 		{
@@ -77,7 +83,10 @@ return function(scene)
 		Animate(scene.objectLookup.B.sprite, "idleright"),
 		Animate(scene.objectLookup.Sally.sprite, "idleleft"),
 		Wait(2),
-		MessageBox{message="Sally: We'd better get inside.", closeAction=Wait(3)},
+		MessageBox{message="Sally: We'd better get inside.", closeAction=Wait(1.5)},
+		Do(function()
+			scene:changeScene{map="rotorsworkshop", fadeOutSpeed=0.2, fadeInSpeed=0.08, enterDelay=3, hint="intro"}
+		end),
 		-- Transition to scene with Tails seeing lightning in his bed, scared, hiding under sheets
 	}
 end
