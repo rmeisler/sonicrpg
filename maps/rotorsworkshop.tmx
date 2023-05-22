@@ -180,11 +180,11 @@ Workshop</property>
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="26" name="Logan" type="BasicNPC" gid="4565" x="320" y="288" width="64" height="96">
+  <object id="26" name="Logan" type="BasicNPC" gid="4565" x="320" y="320" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-8"/>
-    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="alignOffsetX" type="float" value="-24"/>
+    <property name="alignOffsetY" type="float" value="-48"/>
     <property name="defaultAnim" value="idleleft"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="hidden" type="bool" value="true"/>
@@ -285,9 +285,9 @@ end</property>
   <object id="29" name="Rotor2" type="BasicNPC" gid="4565" x="448" y="256" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-8"/>
-    <property name="alignOffsetY" type="float" value="-32"/>
-    <property name="defaultAnim" value="idleleft"/>
+    <property name="alignOffsetX" type="float" value="-24"/>
+    <property name="alignOffsetY" type="float" value="0"/>
+    <property name="defaultAnim" value="sleeping"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nonight" type="bool" value="true"/>

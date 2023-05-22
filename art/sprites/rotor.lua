@@ -48,6 +48,19 @@ return {
 			frames = {{1,3}, {2,3}, {3,3}, {4,3},{5,3}, {6,3}, {7,3}, {8,3}},
 			speed = 0.1
 		},
+		sleeping = {
+			frames = {{9,2}}
+		},
+		waking = {
+			frames = {{10,2}, {9,2},{10,2}, {9,2},{10,2}, {9,2},{10,2}, {9,2}},
+			speed = 0.1
+		},
+		awake = {
+			frames = {{10,2}}
+		},
+		laylookleft = {
+			frames = {{11,2}}
+		},
 		
 		aimright = {
 			frames = {{9,0}}

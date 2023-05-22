@@ -42,7 +42,24 @@ return {
 		shock = {
 			frames = {{11,4}}
 		},
-		
+		sleeping = {
+			frames = {{7,5}}
+		},
+		waking = {
+			frames = {{6,5},{7,5},{6,5},{7,5},{6,5},{7,5}},
+			speed = 0.1
+		},
+		laying = {
+			frames = {{6,5}}
+		},
+		cold = {
+			frames = {{8,5}}
+		},
+		shiver = {
+			frames = {{8,5},{9,5},{8,5},{10,5}},
+			speed = 0.07
+		},
+
 		meeting_idledown = {
 			frames = {{0,2}},
 			clip = {0,0,47,46}

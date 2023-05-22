@@ -127,7 +127,6 @@ return function(scene, hint)
 		scene.objectLookup.Rotor2.ghost = false
 		scene.objectLookup.Rotor2.isInteractable = true
 		scene.objectLookup.Rotor2:updateCollision()
-		scene.objectLookup.Rotor2.sprite:setAnimation("idleright")
 
 		scene.objectLookup.Rotor:remove()
 		scene.objectLookup.Computer.isInteractable = false
@@ -137,7 +136,7 @@ return function(scene, hint)
 			Do(function()
 				scene.camPos.y = 300
 			end),
-			Animate(scene.objectLookup.Logan.sprite, "idledown"),
+			Animate(scene.objectLookup.Logan.sprite, "sleeping"),
 			Wait(4),
 			PlayAudio("music", "flutter", 0.8, true),
 			Serial {
@@ -155,24 +154,35 @@ return function(scene, hint)
 				}
 			},
 			Wait(4),
+			Animate(scene.objectLookup.Logan.sprite, "waking"),
+			Animate(scene.objectLookup.Logan.sprite, "laying"),
 			MessageBox{message="Logan: ...*yawn*", closeAction=Wait(1)},
 			MessageBox{message="Logan: Seems like the storm has passed..."},
 			PlayAudio("music", "rotorsworkshop", 1.0, true),
-			Animate(scene.objectLookup.Logan.sprite, "shock"),
+			Animate(scene.objectLookup.Logan.sprite, "cold"),
 			Parallel {
 				MessageBox{message="Logan: !!", closeAction=Wait(1)},
-				scene.objectLookup.Logan:hop()
+				Serial {
+					scene.objectLookup.Logan:hop(),
+					Do(function()
+						scene.objectLookup.Logan.sprite:setAnimation("shiver")
+					end)
+				},
 			},
 			MessageBox{message="Logan: Brr!!"},
+			Animate(scene.objectLookup.Rotor2.sprite, "waking"),
 			Wait(0.5),
-			Animate(scene.objectLookup.Rotor2.sprite, "idleleft"),
+			Animate(scene.objectLookup.Rotor2.sprite, "laylookleft"),
 			MessageBox{message="Rotor: ...Huh?"},
-			Animate(scene.objectLookup.Logan.sprite, "idleright"),
 			MessageBox{message="Logan: Why is it freezing cold in here!?"},
 			MessageBox{message="Rotor: Feels fine to me."},
+			Animate(scene.objectLookup.Logan.sprite, "idleright"),
+			Wait(0.5),
 			MessageBox{message="Logan: Of course it feels fine to you{p60}, you're a walrus!"},
+			Animate(scene.objectLookup.Rotor2.sprite, "awake"),
 			Wait(0.5),
 			MessageBox{message="Rotor: Good point."},
+			Animate(scene.objectLookup.Logan.sprite, "idledown"),
 		}
 	elseif scene.nighttime then
 		scene.objectLookup.Logan.hidden = false
