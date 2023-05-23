@@ -84,8 +84,9 @@ return function(scene)
 		Animate(scene.objectLookup.Sally.sprite, "idleleft"),
 		Wait(2),
 		MessageBox{message="Sally: We'd better get inside.", closeAction=Wait(1.5)},
+		PlayAudio("music", "spooky", 0.9, true),
 		Do(function()
-			scene:changeScene{map="rotorsworkshop", fadeOutSpeed=0.2, fadeInSpeed=0.08, enterDelay=3, hint="intro"}
+			scene:changeScene{map="sonicshut", fadeOutSpeed=0.5, fadeInSpeed=0.5, hint="sleep", nighttime=true}
 		end),
 		-- Transition to scene with Tails seeing lightning in his bed, scared, hiding under sheets
 	}

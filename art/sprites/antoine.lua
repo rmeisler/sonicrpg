@@ -195,13 +195,14 @@ return {
             frames = {{10,3}}
         },
 		sleeping = {
-            frames = {{15,0}}
-        },
-		sleeping_tired = {
             frames = {{14,0}}
         },
 		crouch = {
 			frames = {{14,2}}
-		}
+		},
+		bedscared = {
+            frames = {{15,0},{16,0}},
+			speed = 0.1
+        },
     }
 }

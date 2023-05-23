@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 30,
+  nextobjectid = 31,
   properties = {
     ["ignorenight"] = true,
     ["lowerCollisionCircleY"] = 300,
@@ -512,6 +512,22 @@ return {
             ["defaultAnim"] = "ball",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/toys.png"
+          }
+        },
+        {
+          id = 30,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 384,
+          y = 352,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["orientation"] = "down"
           }
         }
       }

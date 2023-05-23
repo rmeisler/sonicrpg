@@ -1273,10 +1273,8 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/talkingtosally.ogg",
+		file = "audio/music/spooky.ogg",
 		category = "music",
-		volume = 1.0,
-		looping = true,
 	},
 	{
 		type = "sound",

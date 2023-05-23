@@ -8,6 +8,7 @@ return function(scene, hint)
 	local TypeText = require "actions/TypeText"
 	local Menu = require "actions/Menu"
 	local MessageBox = require "actions/MessageBox"
+	local BlockPlayer = require "actions/BlockPlayer"
 	local PlayAudio = require "actions/PlayAudio"
 	local Ease = require "actions/Ease"
 	local Animate = require "actions/Animate"
@@ -132,7 +133,7 @@ return function(scene, hint)
 		scene.objectLookup.Computer.isInteractable = false
 		scene.camPos.y = 300
 
-		return Serial {
+		return BlockPlayer {
 			Do(function()
 				scene.camPos.y = 300
 			end),
@@ -153,7 +154,7 @@ return function(scene, hint)
 					Ease(subtext.color, 4, 0, 1)
 				}
 			},
-			Wait(4),
+			Wait(2),
 			Animate(scene.objectLookup.Logan.sprite, "waking"),
 			Animate(scene.objectLookup.Logan.sprite, "laying"),
 			MessageBox{message="Logan: ...*yawn*", closeAction=Wait(1)},
@@ -176,12 +177,16 @@ return function(scene, hint)
 			MessageBox{message="Rotor: ...Huh?"},
 			MessageBox{message="Logan: Why is it freezing cold in here!?"},
 			MessageBox{message="Rotor: Feels fine to me."},
+			Animate(scene.objectLookup.Logan.sprite, "cold"),
+			scene.objectLookup.Logan:hop(),
+			Wait(0.5),
 			Animate(scene.objectLookup.Logan.sprite, "idleright"),
 			Wait(0.5),
 			MessageBox{message="Logan: Of course it feels fine to you{p60}, you're a walrus!"},
 			Animate(scene.objectLookup.Rotor2.sprite, "awake"),
 			Wait(0.5),
 			MessageBox{message="Rotor: Good point."},
+			PlayAudio("music", "doittoit", 1.0, true, true),
 			Animate(scene.objectLookup.Logan.sprite, "idledown"),
 		}
 	elseif scene.nighttime then

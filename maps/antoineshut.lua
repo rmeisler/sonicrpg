@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 18,
+  nextobjectid = 20,
   properties = {
     ["ignorenight"] = true,
     ["onload"] = "actions/antoineknotholehut.lua",
@@ -537,6 +537,41 @@ return {
             ["defaultAnim"] = "plant",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/pot.png"
+          }
+        },
+        {
+          id = 18,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 384,
+          y = 384,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["orientation"] = "down"
+          }
+        },
+        {
+          id = 19,
+          name = "Antoine",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 192,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["alignOffsetY"] = -12,
+            ["defaultAnim"] = "sleeping",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/antoine.png"
           }
         }
       }

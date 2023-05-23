@@ -1,4 +1,4 @@
-return function(scene)
+return function(scene, hint)
 	local Transform = require "util/Transform"
 	local Rect = unpack(require "util/Shapes")
 	local Layout = require "util/Layout"
@@ -106,7 +106,7 @@ return function(scene)
 			end
 		)
 	end
-	
+
 	if scene.nighttime then
 		scene.objectLookup.TailsBed.sprite:setAnimation("tailssleep")
 
@@ -117,7 +117,51 @@ return function(scene)
 			end
 		end
 
-		if not GameState:isFlagSet("ep3_read") then
+		if hint == "sleep" then
+			scene.player.sprite.visible = false
+			scene.player.dropShadow.hidden = true
+
+			scene.camPos.x = 0
+			scene.camPos.y = 0
+
+			-- Undo ignore night
+			local shine = require "lib/shine"
+
+			scene.map.properties.ignorenight = false
+			scene.originalMapDraw = scene.map.drawTileLayer
+			scene.map.drawTileLayer = function(map, layer)
+				if not scene.night then
+					scene.night = shine.nightcolor()
+				end
+				scene.night:draw(function()
+					scene.night.shader:send("opacity", layer.opacity or 1)
+					scene.night.shader:send("lightness", 1 - (layer.properties.darkness or 0))
+					scene.originalMapDraw(map, layer)
+				end)
+			end
+			
+			scene.objectLookup.TailsBed.sprite:setAnimation("tailsawake")
+
+			return BlockPlayer {
+				Do(function()
+					scene.player.sprite.visible = false
+					scene.player.dropShadow.hidden = true
+				end),
+				Wait(1),
+				-- Flash twice
+				scene:lightningFlash(),
+				Wait(0.1),
+				scene:lightningFlash(),
+				Do(function() scene.audio:stopSfx("thunder2") end),
+				PlayAudio("sfx", "thunder2", 0.8, true),
+				Wait(1.5),
+				MessageBox{message="Tails: Whoah! {p60}Cool!!", closeAction=Wait(0.5)},
+				Do(function()
+					scene:changeScene{map="antoineshut", fadeOutSpeed=0.5, fadeInSpeed=0.5, hint="sleep", nighttime=true}
+					--scene:changeScene{map="rotorsworkshop", fadeOutSpeed=0.2, fadeInSpeed=0.08, enterDelay=3, hint="intro"}
+				end)
+			}
+		elseif not GameState:isFlagSet("ep3_read") then
 			scene.objectLookup.TailsBed.sprite:setAnimation("tailsawake")
 			if GameState:isFlagSet("ep3_book") then
 			    GameState:setFlag("ep3_read")

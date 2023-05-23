@@ -8,10 +8,10 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 24,
+  nextobjectid = 25,
   properties = {
     ["ignorenight"] = true,
-    ["onload"] = "actions/knotholehut.lua",
+    ["onload"] = "actions/sonicshut_intro.lua",
     ["regionName"] = "Sonic's Hut"
   },
   tilesets = {
@@ -592,6 +592,25 @@ return {
           visible = true,
           properties = {
             ["orientation"] = "down"
+          }
+        },
+        {
+          id = 24,
+          name = "Sonic",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 224,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["alignOffsetY"] = -12,
+            ["defaultAnim"] = "sleeping",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/sonic.png"
           }
         }
       }

@@ -80,57 +80,40 @@ return function(scene, hint)
 	--scene.audio:playMusic("knotholehut", 0.8)
 	
 	if hint == "sleep" then
-		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
+		scene.player.sprite.visible = false
+		scene.player.dropShadow.hidden = true
+
+		-- Undo ignore night
+		local shine = require "lib/shine"
+
+		scene.map.properties.ignorenight = false
+		scene.originalMapDraw = scene.map.drawTileLayer
+		scene.map.drawTileLayer = function(map, layer)
+			if not scene.night then
+				scene.night = shine.nightcolor()
+			end
+			scene.night:draw(function()
+				scene.night.shader:send("opacity", layer.opacity or 1)
+				scene.night.shader:send("lightness", 1 - (layer.properties.darkness or 0))
+				scene.originalMapDraw(map, layer)
+			end)
+		end
+
 		return BlockPlayer {
 			Do(function()
-				scene.player.noIdle = true
-				scene.player.hidekeyhints[tostring(scene.objectLookup.SonicBed)] = scene.objectLookup.SonicBed
-				scene.objectLookup.SonicBed.handlers = {}
-				scene.player.y = scene.player.y + 16
-				scene.player.sprite:setAnimation("sleeping")
+				scene.player.sprite.visible = false
 				scene.player.dropShadow.hidden = true
-				GameState:removeFromParty("antoine")
-				GameState:removeFromParty("sally")
 			end),
-			Wait(5),
-			Do(function()
-				scene.player.sprite:setAnimation("sleepingwat")
-			end),
-			Spawn(Serial {
-				PlayAudio("music", "rotorsworkshop", 1.0),
-				Wait(1),
-				PlayAudio("music", "knotholeatnight", 0.8, true, true),
-			}),
-			MessageBox{message="Sonic: *yawn*{p60} what time is it?..."},
 			Wait(1),
+			-- Flash twice
+			scene:lightningFlash(),
+			Wait(0.1),
+			scene:lightningFlash(),
+			PlayAudio("sfx", "thunder2", 0.8, true),
+			Wait(1.5),
 			Do(function()
-				scene.player.sprite:setAnimation("shock")
-				scene.player.object.properties.ignoreMapCollision = true
-			end),
-			Parallel {
-				Serial {
-					Ease(scene.player, "y", function() return scene.player.y - 180 end, 4, "linear"),
-					Ease(scene.player, "y", function() return scene.player.y + 180 end, 4, "linear"),
-					Ease(scene.player, "y", function() return scene.player.y - 3 end, 20, "quad"),
-					Ease(scene.player, "y", function() return scene.player.y + 3 end, 20, "quad"),
-					Ease(scene.player, "y", function() return scene.player.y - 2 end, 20, "quad"),
-					Ease(scene.player, "y", function() return scene.player.y + 2 end, 20, "quad"),
-					Ease(scene.player, "y", function() return scene.player.y - 1 end, 20, "quad"),
-					Ease(scene.player, "y", function() return scene.player.y + 1 end, 20, "quad")
-				},
-				Ease(scene.player, "x", function() return scene.player.x - 90 end, 2.5, "linear")
-			},
-			MessageBox{message="Sonic: Uh oh!{p60} I slept the whole day!"},
-			Do(function()
-				scene.player.sprite:setAnimation("worried2")
-			end),
-			MessageBox{message="Sonic: Sal's not gonna be happy about this..."},
-			Wait(0.5),
-			Do(function()
-				scene.player.noIdle = false
-				scene.player.hidekeyhints[tostring(scene.objectLookup.SonicBed)] = nil
-				scene.player.dropShadow.hidden = false
-				scene.player.object.properties.ignoreMapCollision = false
+				scene:changeScene{map="tailshut", fadeOutSpeed=0.5, fadeInSpeed=0.5, hint="sleep", nighttime=true}
+				--scene:changeScene{map="rotorsworkshop", fadeOutSpeed=0.2, fadeInSpeed=0.08, enterDelay=3, hint="intro"}
 			end)
 		}
 	else
@@ -141,7 +124,6 @@ return function(scene, hint)
 		elseif not scene.nighttime and not GameState:isFlagSet("ep3_ffmeeting") then
 			scene.audio:playMusic("awkward", 1.0)
 		else
-			scene.objectLookup.SonicBed.handlers = {}
 			scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
 		end
 	end
