@@ -157,12 +157,12 @@ return function(scene, hint)
 			Wait(2),
 			Animate(scene.objectLookup.Logan.sprite, "waking"),
 			Animate(scene.objectLookup.Logan.sprite, "laying"),
-			MessageBox{message="Logan: ...*yawn*", closeAction=Wait(1)},
+			MessageBox{message="Logan: ...*yawn*", closeAction=Wait(2)},
 			MessageBox{message="Logan: Seems like the storm has passed..."},
 			PlayAudio("music", "rotorsworkshop", 1.0, true),
 			Animate(scene.objectLookup.Logan.sprite, "cold"),
 			Parallel {
-				MessageBox{message="Logan: !!", closeAction=Wait(1)},
+				MessageBox{message="Logan: !!", closeAction=Wait(0.5)},
 				Serial {
 					scene.objectLookup.Logan:hop(),
 					Do(function()
