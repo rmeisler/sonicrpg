@@ -2,6 +2,7 @@ return function(scene, hint)
 	local Transform = require "util/Transform"
 	local Rect = unpack(require "util/Shapes")
 	local Layout = require "util/Layout"
+	local Player = require "object/Player"
 
 	local Action = require "actions/Action"
 	local AudioFade = require "actions/AudioFade"
@@ -188,6 +189,21 @@ return function(scene, hint)
 			MessageBox{message="Rotor: Good point."},
 			PlayAudio("music", "doittoit", 1.0, true, true),
 			Animate(scene.objectLookup.Logan.sprite, "idledown"),
+			Do(function()
+				scene.objectLookup.Logan:removeCollision()
+				scene.objectLookup.Logan:remove()
+
+				scene.camPos.y = 0
+				scene.player.x = scene.objectLookup.Logan.x + 40
+				scene.player.y = scene.objectLookup.Logan.y + 58
+				scene.player.state = Player.STATE_IDLEDOWN
+
+				scene.player.sprite.visible = true
+				scene.player.dropShadow.hidden = false
+
+				scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"
+				scene.objectLookup.Door.object.properties.hint = "intro"
+			end)
 		}
 	elseif scene.nighttime then
 		scene.objectLookup.Logan.hidden = false
@@ -213,7 +229,7 @@ return function(scene, hint)
 			}
 		})
 
-		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
+		scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"
 		local prefix = "nighthide"
 		for _,layer in pairs(scene.map.layers) do
 			if string.sub(layer.name, 1, #prefix) == prefix then

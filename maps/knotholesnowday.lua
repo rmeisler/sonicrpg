@@ -4519,7 +4519,7 @@ return {
         {
           id = 391,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1088,
           y = 2176,
@@ -4537,7 +4537,7 @@ return {
         {
           id = 392,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1088,
           y = 1696,
@@ -4555,7 +4555,7 @@ return {
         {
           id = 393,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 704,
           y = 1792,
@@ -4573,7 +4573,7 @@ return {
         {
           id = 394,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 672,
           y = 2048,
@@ -4591,7 +4591,7 @@ return {
         {
           id = 395,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 288,
           y = 2176,
@@ -4609,7 +4609,7 @@ return {
         {
           id = 396,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 352,
           y = 1664,
@@ -4627,7 +4627,7 @@ return {
         {
           id = 397,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 704,
           y = 1536,
@@ -4645,7 +4645,7 @@ return {
         {
           id = 398,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1152,
           y = 1536,
@@ -4663,7 +4663,7 @@ return {
         {
           id = 399,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1088,
           y = 1088,
@@ -4681,7 +4681,7 @@ return {
         {
           id = 400,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 672,
           y = 896,
@@ -4699,7 +4699,7 @@ return {
         {
           id = 402,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 352,
           y = 896,
@@ -4717,7 +4717,7 @@ return {
         {
           id = 403,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 672,
           y = 992,
@@ -4735,7 +4735,7 @@ return {
         {
           id = 404,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 480,
           y = 672,
@@ -4753,7 +4753,7 @@ return {
         {
           id = 405,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1568,
           y = 864,
@@ -4771,7 +4771,7 @@ return {
         {
           id = 406,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1536,
           y = 576,
@@ -4789,7 +4789,7 @@ return {
         {
           id = 407,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1664,
           y = 576,
@@ -4807,7 +4807,7 @@ return {
         {
           id = 408,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1088,
           y = 800,
@@ -4825,7 +4825,7 @@ return {
         {
           id = 409,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1888,
           y = 864,
@@ -4843,7 +4843,7 @@ return {
         {
           id = 410,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 2592,
           y = 640,
@@ -4861,7 +4861,7 @@ return {
         {
           id = 411,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1920,
           y = 1280,
@@ -4879,7 +4879,7 @@ return {
         {
           id = 412,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 2592,
           y = 1312,
@@ -4897,7 +4897,7 @@ return {
         {
           id = 413,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 2528,
           y = 1856,
@@ -4915,7 +4915,7 @@ return {
         {
           id = 414,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 2144,
           y = 2080,
@@ -4933,7 +4933,7 @@ return {
         {
           id = 415,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 2080,
           y = 1408,
@@ -4951,7 +4951,7 @@ return {
         {
           id = 416,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 2176,
           y = 1408,
@@ -4969,7 +4969,7 @@ return {
         {
           id = 417,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 384,
           y = 416,
@@ -4987,7 +4987,7 @@ return {
         {
           id = 418,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 928,
           y = 224,
@@ -5005,7 +5005,7 @@ return {
         {
           id = 419,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1952,
           y = 2336,
@@ -5023,7 +5023,7 @@ return {
         {
           id = 420,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1568,
           y = 2368,
@@ -5041,7 +5041,7 @@ return {
         {
           id = 421,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1440,
           y = 2592,
@@ -5059,7 +5059,7 @@ return {
         {
           id = 422,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 800,
           y = 2592,
@@ -5077,7 +5077,7 @@ return {
         {
           id = 423,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 480,
           y = 2496,
@@ -5095,7 +5095,7 @@ return {
         {
           id = 424,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 352,
           y = 2496,
@@ -5113,7 +5113,7 @@ return {
         {
           id = 425,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 96,
           y = 1408,
@@ -5131,7 +5131,7 @@ return {
         {
           id = 426,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 3040,
           y = 2112,
@@ -5149,7 +5149,7 @@ return {
         {
           id = 427,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 3712,
           y = 2176,
@@ -5167,7 +5167,7 @@ return {
         {
           id = 428,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 4160,
           y = 1728,
@@ -5185,7 +5185,7 @@ return {
         {
           id = 429,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 4256,
           y = 1728,
@@ -5203,7 +5203,7 @@ return {
         {
           id = 430,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 4448,
           y = 1472,
@@ -5221,7 +5221,7 @@ return {
         {
           id = 431,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 4352,
           y = 2016,
@@ -5239,7 +5239,7 @@ return {
         {
           id = 432,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 5024,
           y = 2048,
@@ -5257,7 +5257,7 @@ return {
         {
           id = 433,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 5376,
           y = 2304,
@@ -5275,7 +5275,7 @@ return {
         {
           id = 434,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 4576,
           y = 2624,
@@ -5293,7 +5293,7 @@ return {
         {
           id = 435,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 4352,
           y = 2432,
@@ -5311,7 +5311,7 @@ return {
         {
           id = 436,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 4128,
           y = 2432,
@@ -5329,7 +5329,7 @@ return {
         {
           id = 437,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 5856,
           y = 2080,
@@ -5347,7 +5347,7 @@ return {
         {
           id = 438,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 6048,
           y = 2432,
@@ -5365,7 +5365,7 @@ return {
         {
           id = 439,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 6432,
           y = 2400,
@@ -5383,7 +5383,7 @@ return {
         {
           id = 440,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 6528,
           y = 1856,
@@ -5401,7 +5401,7 @@ return {
         {
           id = 441,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 5920,
           y = 2656,
@@ -5419,7 +5419,7 @@ return {
         {
           id = 442,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 7168,
           y = 2688,
@@ -5437,7 +5437,7 @@ return {
         {
           id = 443,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 7072,
           y = 2688,
@@ -5455,7 +5455,7 @@ return {
         {
           id = 444,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 7008,
           y = 2496,
@@ -5473,7 +5473,7 @@ return {
         {
           id = 445,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 7136,
           y = 2272,
@@ -5491,7 +5491,7 @@ return {
         {
           id = 446,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 7392,
           y = 1408,
@@ -5509,7 +5509,7 @@ return {
         {
           id = 447,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 6848,
           y = 1216,
@@ -5527,7 +5527,7 @@ return {
         {
           id = 448,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 6528,
           y = 1408,
@@ -5545,7 +5545,7 @@ return {
         {
           id = 449,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 6400,
           y = 1408,
@@ -5563,7 +5563,7 @@ return {
         {
           id = 450,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 7072,
           y = 1760,
@@ -5581,7 +5581,7 @@ return {
         {
           id = 451,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 6720,
           y = 1216,
@@ -5599,7 +5599,7 @@ return {
         {
           id = 452,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 7008,
           y = 1216,
@@ -5617,7 +5617,7 @@ return {
         {
           id = 453,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 7520,
           y = 1408,
@@ -5635,7 +5635,7 @@ return {
         {
           id = 454,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 7840,
           y = 1376,
@@ -5653,7 +5653,7 @@ return {
         {
           id = 455,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 8416,
           y = 1248,
@@ -5671,7 +5671,7 @@ return {
         {
           id = 456,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 7104,
           y = 896,
@@ -5689,7 +5689,7 @@ return {
         {
           id = 457,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 7776,
           y = 736,
@@ -5707,7 +5707,7 @@ return {
         {
           id = 458,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 8256,
           y = 640,
@@ -5725,7 +5725,7 @@ return {
         {
           id = 459,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 8352,
           y = 640,
@@ -5743,7 +5743,7 @@ return {
         {
           id = 460,
           name = "Bump",
-          type = "Chest",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 7968,
           y = 960,

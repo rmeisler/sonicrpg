@@ -110,7 +110,7 @@ return function(scene, hint)
 			Wait(0.1),
 			scene:lightningFlash(),
 			PlayAudio("sfx", "thunder2", 0.8, true),
-			Wait(1.5),
+			Wait(2),
 			Do(function()
 				scene:changeScene{map="tailshut", fadeOutSpeed=0.5, fadeInSpeed=0.5, hint="sleep", nighttime=true}
 				--scene:changeScene{map="rotorsworkshop", fadeOutSpeed=0.2, fadeInSpeed=0.08, enterDelay=3, hint="intro"}

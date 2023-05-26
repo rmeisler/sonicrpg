@@ -19,22 +19,24 @@ return function(scene, hint)
 	local Animate = require "actions/Animate"
 	local SpriteNode = require "object/SpriteNode"
 
-	local text = TypeText(
-		Transform(50, 500),
-		{255, 255, 255, 0},
-		FontCache.Techno,
-		scene.map.properties.regionName,
-		100
-	)
+	local titleText = function()
+		local text = TypeText(
+			Transform(50, 500),
+			{255, 255, 255, 0},
+			FontCache.Techno,
+			scene.map.properties.regionName,
+			100
+		)
 
-	Executor(scene):act(Serial {
-		Wait(0.5),
-		text,
-		Ease(text.color, 4, 255, 1),
-		Wait(2),
-		Ease(text.color, 4, 0, 1)
-	})
-
+		Executor(scene):act(Serial {
+			Wait(0.5),
+			text,
+			Ease(text.color, 4, 255, 1),
+			Wait(2),
+			Ease(text.color, 4, 0, 1)
+		})
+	end
+	
 	if not scene.nighttime then
 		if GameState:isFlagSet("ep3_ffmeeting") or
 		   not GameState:isFlagSet("ep3_knotholerun")
@@ -154,14 +156,15 @@ return function(scene, hint)
 				scene:lightningFlash(),
 				Do(function() scene.audio:stopSfx("thunder2") end),
 				PlayAudio("sfx", "thunder2", 0.8, true),
-				Wait(1.5),
-				MessageBox{message="Tails: Whoah! {p60}Cool!!", closeAction=Wait(0.5)},
+				Wait(1),
+				MessageBox{message="Tails: Whoah! {p60}Cool!!", closeAction=Wait(1)},
 				Do(function()
 					scene:changeScene{map="antoineshut", fadeOutSpeed=0.5, fadeInSpeed=0.5, hint="sleep", nighttime=true}
 					--scene:changeScene{map="rotorsworkshop", fadeOutSpeed=0.2, fadeInSpeed=0.08, enterDelay=3, hint="intro"}
 				end)
 			}
 		elseif not GameState:isFlagSet("ep3_read") then
+			titleText()
 			scene.objectLookup.TailsBed.sprite:setAnimation("tailsawake")
 			if GameState:isFlagSet("ep3_book") then
 			    GameState:setFlag("ep3_read")
@@ -227,6 +230,7 @@ return function(scene, hint)
 					end)
 				}
 			else
+				titleText()
 				return BlockPlayer {
 					Do(function()
 						scene.player.hidekeyhints[tostring(scene.objectLookup.Door)] = scene.objectLookup.Door
@@ -244,5 +248,6 @@ return function(scene, hint)
 		end
 	end
 
+	titleText()
 	return Action()
 end

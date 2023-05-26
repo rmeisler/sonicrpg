@@ -17,22 +17,6 @@ return function(scene, hint)
 	local BlockPlayer = require "actions/BlockPlayer"
 	local SpriteNode = require "object/SpriteNode"
 
-	local text = TypeText(
-		Transform(50, 500),
-		{255, 255, 255, 0},
-		FontCache.Techno,
-		scene.map.properties.regionName,
-		100
-	)
-
-	Executor(scene):act(Serial {
-		Wait(0.5),
-		text,
-		Ease(text.color, 4, 255, 1),
-		Wait(2),
-		Ease(text.color, 4, 0, 1)
-	})
-
 	if not scene.updateHookAdded then
 		scene.updateHookAdded = true
 		scene:addHandler(
@@ -148,7 +132,23 @@ return function(scene, hint)
 		end
 		scene.audio:playMusic("knotholehut", 0.8)
 	end
-	
+
+	local text = TypeText(
+		Transform(50, 500),
+		{255, 255, 255, 0},
+		FontCache.Techno,
+		scene.map.properties.regionName,
+		100
+	)
+
+	Executor(scene):act(Serial {
+		Wait(0.5),
+		text,
+		Ease(text.color, 4, 255, 1),
+		Wait(2),
+		Ease(text.color, 4, 0, 1)
+	})
+
 	if hint == "sleep" then
 		return BlockPlayer {
 			Do(function()
