@@ -186,8 +186,8 @@ return function(scene, hint)
 			MessageBox{message="Logan: Of course it feels fine to you{p60}, you're a walrus!"},
 			Animate(scene.objectLookup.Rotor2.sprite, "awake"),
 			Wait(0.5),
-			MessageBox{message="Rotor: Good point."},
-			PlayAudio("music", "doittoit", 1.0, true, true),
+			MessageBox{message="Rotor: Oh yeah! {p60}Good point."},
+			--PlayAudio("music", "doittoit", 1.0, true, true),
 			Animate(scene.objectLookup.Logan.sprite, "idledown"),
 			Do(function()
 				scene.objectLookup.Logan:removeCollision()

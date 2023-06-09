@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 461,
+  nextobjectid = 465,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = false,
@@ -708,6 +708,17 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2540, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2538, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2919, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2540, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2538, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2919, 2919, 2919, 0, 0, 0, 0, 2919, 0, 0, 0, 0, 0, 2919, 0, 0, 0, 0, 2919, 2919, 2919, 2919, 2919, 0, 2919, 2919, 2919, 2919, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
       }
+    },
+    {
+      type = "objectgroup",
+      name = "footprint",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {}
     },
     {
       type = "objectgroup",
@@ -4138,11 +4149,11 @@ return {
         },
         {
           id = 343,
-          name = "Rotor",
+          name = "Fleet",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 7296,
-          y = 1984,
+          x = 6816,
+          y = 2016,
           width = 64,
           height = 96,
           rotation = 0,
@@ -4152,11 +4163,11 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -8,
             ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "idleright",
+            ["defaultAnim"] = "laugh",
             ["ghost"] = false,
             ["nonight"] = true,
             ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: ...Logan is kinda...{p60} {h interesting}...{p60} \\ndon't ya think?\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: Oh!{p40} Hey, Sally.\"},\n            MessageBox {message = \"Rotor: Have you ever noticed how beautiful Knothole is at night, under the stars?\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
-            ["sprite"] = "../art/sprites/rotor.png"
+            ["sprite"] = "../art/sprites/fleet.png"
           }
         },
         {
@@ -5756,6 +5767,98 @@ return {
             ["defaultAnim"] = "bump2",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/groundsnow.png"
+          }
+        },
+        {
+          id = 461,
+          name = "Sally",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4736,
+          y = 1888,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -16,
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "coffeeright",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Tails: Whatcha got?\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        local origAnim = self.scene.player.sprite.selected\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Tails: Hey guys! Check out my snowman! {p60}Isn't he 'way past cool'?!\"},\n            MessageBox {message = \"Logan: Uhh...\"},\n            Animate(self.sprite, \"idleright\"),\n            MessageBox {message = \"Tails: I feel like he may be missing some stuff though...\"},\n            MessageBox {message = \"Logan: Like a face?\"},\n            self:hop(),\n            MessageBox {message = \"Tails: Yeah! {p60}He does need a face!\"},\n            Animate(self.sprite, \"idledown\"),\n            MessageBox {message = \"Tails: Would you guys help me find ten pieces of coal for his eyes, mouth, and body?\"},\n            MessageBox {message = \"Logan: I don't thi--\"},\n            MessageBox {message = \"Rotor: Of course!\"},\n            Animate(self.sprite, \"pose\"),\n            MessageBox {message = \"Tails: Wahoo!\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/sally.png"
+          }
+        },
+        {
+          id = 462,
+          name = "Leon",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4832,
+          y = 1888,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -16,
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "coffeeleft",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Tails: Whatcha got?\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        local origAnim = self.scene.player.sprite.selected\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Tails: Hey guys! Check out my snowman! {p60}Isn't he 'way past cool'?!\"},\n            MessageBox {message = \"Logan: Uhh...\"},\n            Animate(self.sprite, \"idleright\"),\n            MessageBox {message = \"Tails: I feel like he may be missing some stuff though...\"},\n            MessageBox {message = \"Logan: Like a face?\"},\n            self:hop(),\n            MessageBox {message = \"Tails: Yeah! {p60}He does need a face!\"},\n            Animate(self.sprite, \"idledown\"),\n            MessageBox {message = \"Tails: Would you guys help me find ten pieces of coal for his eyes, mouth, and body?\"},\n            MessageBox {message = \"Logan: I don't thi--\"},\n            MessageBox {message = \"Rotor: Of course!\"},\n            Animate(self.sprite, \"pose\"),\n            MessageBox {message = \"Tails: Wahoo!\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/leon.png"
+          }
+        },
+        {
+          id = 463,
+          name = "Ivan",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7008,
+          y = 2016,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "idleleft",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: ...Logan is kinda...{p60} {h interesting}...{p60} \\ndon't ya think?\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: Oh!{p40} Hey, Sally.\"},\n            MessageBox {message = \"Rotor: Have you ever noticed how beautiful Knothole is at night, under the stars?\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/ivan.png"
+          }
+        },
+        {
+          id = 464,
+          name = "Sonic",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1248,
+          y = 1952,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "idledown",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: ...Logan is kinda...{p60} {h interesting}...{p60} \\ndon't ya think?\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: Oh!{p40} Hey, Sally.\"},\n            MessageBox {message = \"Rotor: Have you ever noticed how beautiful Knothole is at night, under the stars?\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/sonic.png"
           }
         }
       }

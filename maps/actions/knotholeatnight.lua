@@ -39,13 +39,34 @@ return function(scene, hint)
 				scene.player.hidekeyhints[tostring(door)] = door
 				scene.audio:stopMusic()
 			end),
-			Wait(1.5),
-			MessageBox{message="Logan: What the..."},
 			PlayAudio("music", "snowday", 1.0, true, true),
-			Ease(scene.camPos, "y", -950, 0.25),
-			Ease(scene.camPos, "x", 5900, 0.1),
-			Ease(scene.camPos, "y", 200, 0.2),
-			Wait(1.5),
+			Wait(1),
+			MessageBox{message="Logan: What the...?", closeAction=Wait(1)},
+			Parallel {
+				Ease(scene.camPos, "x", 400, 0.5),
+				Ease(scene.camPos, "y", -1050, 0.5)
+			},
+			Ease(scene.camPos, "x", 500, 0.25, "linear"),
+			Parallel {
+				Ease(scene.camPos, "x", 2600, 0.5),
+				Ease(scene.camPos, "y", -950, 0.5)
+			},
+			Ease(scene.camPos, "x", 2700, 0.25, "linear"),
+			Parallel {
+				Ease(scene.camPos, "x", 3900, 0.5),
+				Ease(scene.camPos, "y", -1100, 0.5)
+			},
+			Ease(scene.camPos, "x", 4100, 0.25, "linear"),
+			Parallel {
+				Ease(scene.camPos, "x", 6100, 0.5),
+				Ease(scene.camPos, "y", -950, 0.5)
+			},
+			Ease(scene.camPos, "y", -850, 0.25, "linear"),
+			Parallel {
+				Ease(scene.camPos, "x", 6350, 0.5),
+				Ease(scene.camPos, "y", -400, 0.5)
+			},
+			Ease(scene.camPos, "x", 6250, 0.25, "linear"),
 			Parallel {
 				Ease(scene.camPos, "x", 0, 1),
 				Ease(scene.camPos, "y", 0, 1)

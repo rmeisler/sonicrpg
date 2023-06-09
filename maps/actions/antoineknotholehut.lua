@@ -118,7 +118,7 @@ return function(scene, hint)
 				Do(function()
 					scene.audio:stopSfx("rain")
 					scene.audio:stopSfx("thunder2")
-					scene:changeScene{map="rotorsworkshop", fadeOutSpeed=0.2, fadeInSpeed=0.08, enterDelay=2, hint="intro"}
+					scene:changeScene{map="rotorsworkshop", fadeOutSpeed=0.2, fadeInSpeed=0.08, enterDelay=3.5, hint="intro"}
 				end)
 			}
 		end

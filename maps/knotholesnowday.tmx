@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="461">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="465">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="nighttime" type="bool" value="false"/>
@@ -399,6 +399,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2540,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2538,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2919,2919,2919,0,0,0,0,2919,0,0,0,0,0,2919,0,0,0,0,2919,2919,2919,2919,2919,0,2919,2919,2919,2919,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="footprint"/>
  <objectgroup name="behindtree">
   <object id="382" name="Bush" type="BasicNPC" gid="5323" x="5888" y="1280" width="192" height="32">
    <properties>
@@ -2517,12 +2518,12 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="343" name="Rotor" type="BasicNPC" gid="5323" x="7296" y="1984" width="64" height="96">
+  <object id="343" name="Fleet" type="BasicNPC" gid="5323" x="6816" y="2016" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
     <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="idleright"/>
+    <property name="defaultAnim" value="laugh"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
@@ -2560,7 +2561,7 @@ return function(self)
         }
     end
 end</property>
-    <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
+    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
    </properties>
   </object>
   <object id="344" name="Tails" type="BasicNPC" gid="5323" x="3360" y="2080" width="64" height="96">
@@ -3247,6 +3248,206 @@ end</property>
     <property name="defaultAnim" value="bump2"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/groundsnow.png"/>
+   </properties>
+  </object>
+  <object id="461" name="Sally" type="BasicNPC" gid="5323" x="4736" y="1888" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-16"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="coffeeright"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+
+return function(self)
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Tails: Whatcha got?&quot;},
+            Animate(self.sprite, &quot;idleup&quot;),
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        local origAnim = self.scene.player.sprite.selected
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Tails: Hey guys! Check out my snowman! {p60}Isn't he 'way past cool'?!&quot;},
+            MessageBox {message = &quot;Logan: Uhh...&quot;},
+            Animate(self.sprite, &quot;idleright&quot;),
+            MessageBox {message = &quot;Tails: I feel like he may be missing some stuff though...&quot;},
+            MessageBox {message = &quot;Logan: Like a face?&quot;},
+            self:hop(),
+            MessageBox {message = &quot;Tails: Yeah! {p60}He does need a face!&quot;},
+            Animate(self.sprite, &quot;idledown&quot;),
+            MessageBox {message = &quot;Tails: Would you guys help me find ten pieces of coal for his eyes, mouth, and body?&quot;},
+            MessageBox {message = &quot;Logan: I don't thi--&quot;},
+            MessageBox {message = &quot;Rotor: Of course!&quot;},
+            Animate(self.sprite, &quot;pose&quot;),
+            MessageBox {message = &quot;Tails: Wahoo!&quot;},
+            Animate(self.sprite, &quot;idleup&quot;),
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/sally.png"/>
+   </properties>
+  </object>
+  <object id="462" name="Leon" type="BasicNPC" gid="5323" x="4832" y="1888" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-16"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="coffeeleft"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+
+return function(self)
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Tails: Whatcha got?&quot;},
+            Animate(self.sprite, &quot;idleup&quot;),
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        local origAnim = self.scene.player.sprite.selected
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Tails: Hey guys! Check out my snowman! {p60}Isn't he 'way past cool'?!&quot;},
+            MessageBox {message = &quot;Logan: Uhh...&quot;},
+            Animate(self.sprite, &quot;idleright&quot;),
+            MessageBox {message = &quot;Tails: I feel like he may be missing some stuff though...&quot;},
+            MessageBox {message = &quot;Logan: Like a face?&quot;},
+            self:hop(),
+            MessageBox {message = &quot;Tails: Yeah! {p60}He does need a face!&quot;},
+            Animate(self.sprite, &quot;idledown&quot;),
+            MessageBox {message = &quot;Tails: Would you guys help me find ten pieces of coal for his eyes, mouth, and body?&quot;},
+            MessageBox {message = &quot;Logan: I don't thi--&quot;},
+            MessageBox {message = &quot;Rotor: Of course!&quot;},
+            Animate(self.sprite, &quot;pose&quot;),
+            MessageBox {message = &quot;Tails: Wahoo!&quot;},
+            Animate(self.sprite, &quot;idleup&quot;),
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/leon.png"/>
+   </properties>
+  </object>
+  <object id="463" name="Ivan" type="BasicNPC" gid="5323" x="7008" y="2016" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="idleleft"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Rotor: ...Logan is kinda...{p60} {h interesting}...{p60} \ndon't ya think?&quot;},
+            Animate(self.sprite, &quot;idleright&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Rotor: Oh!{p40} Hey, Sally.&quot;},
+            MessageBox {message = &quot;Rotor: Have you ever noticed how beautiful Knothole is at night, under the stars?&quot;},
+            Animate(self.sprite, &quot;idleright&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
+   </properties>
+  </object>
+  <object id="464" name="Sonic" type="BasicNPC" gid="5323" x="1248" y="1952" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-16"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+
+local Transform = require &quot;util/Transform&quot;
+local Layout = require &quot;util/Layout&quot;
+
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    if GameState:isFlagSet(self:getFlag()) then
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Rotor: ...Logan is kinda...{p60} {h interesting}...{p60} \ndon't ya think?&quot;},
+            Animate(self.sprite, &quot;idleright&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    else
+        GameState:setFlag(self:getFlag())
+        return BlockPlayer {
+            Do(function() self:facePlayer() end),
+            MessageBox {message = &quot;Rotor: Oh!{p40} Hey, Sally.&quot;},
+            MessageBox {message = &quot;Rotor: Have you ever noticed how beautiful Knothole is at night, under the stars?&quot;},
+            Animate(self.sprite, &quot;idleright&quot;),
+            Do(function() self:refreshKeyHint() end)
+        }
+    end
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
    </properties>
   </object>
  </objectgroup>

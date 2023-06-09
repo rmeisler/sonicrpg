@@ -1157,7 +1157,7 @@ function Player:makeSnowFootprint(x, y)
 	if self.snowtime > Player.SNOW_FOOTPRINT_TIME then
 		local footprint = BasicNPC(
 			self.scene,
-			{name = "objects"},
+			{name = "footprint"},
 			{name = "snow", x = x, y = y, width = 12, height = 6,
 				properties = {nocollision = true, sprite = "art/sprites/snowfootprint.png", align = NPC.ALIGN_BOTLEFT}
 			}

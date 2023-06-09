@@ -154,6 +154,10 @@ return {
 			frames = {{14,2}}
 		},
 		
+		coffeeright = {
+			frames = {{15,2}}
+		},
+		
 		leapleft = {
 			frames = {{6,1}}
 		},

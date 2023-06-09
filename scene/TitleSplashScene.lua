@@ -78,7 +78,7 @@ function TitleSplashScene:onEnter()
 	self.audio:registerAs("sfx", "error", love.audio.newSource("audio/sfx/error.wav", "static"))
 	self.audio:registerAs("sfx", "wind", love.audio.newSource("audio/sfx/wind.ogg", "static"))
 	self.audio:registerAs("music", "pretitle", love.audio.newSource("audio/music/title.ogg", "static"))
-	
+
 	self.bgColor = {0,0,0,255}
 	self.logoColor = {255,255,255,0}
 	self.menuTextColor = {0,0,0,255}
@@ -185,7 +185,7 @@ end
 
 function TitleSplashScene:continue()
 	-- Make sure we have images ready for this screen
-	local party = {"sonic", "sally", "bunny", "rotor", "antoine"}
+	local party = {"sonic", "sally", "bunny", "rotor", "antoine", "logan"}
 	for _, member in pairs(party) do
 		self.images["sprites/"..member] = love.graphics.newImage("art/sprites/"..member..".png")
 		self.animations["sprites/"..member] = love.filesystem.load("art/sprites/"..member..".lua")()
