@@ -15,6 +15,7 @@ return function(scene, hint)
 	local Executor = require "actions/Executor"
 	local Wait = require "actions/Wait"
 	local Do = require "actions/Do"
+	local Spawn = require "actions/Spawn"
 	local BlockPlayer = require "actions/BlockPlayer"
 	local Animate = require "actions/Animate"
 	local SpriteNode = require "object/SpriteNode"
@@ -148,6 +149,8 @@ return function(scene, hint)
 				Do(function()
 					scene.player.sprite.visible = false
 					scene.player.dropShadow.hidden = true
+					scene.camPos.x = 0
+					scene.camPos.y = 0
 				end),
 				Wait(1),
 				-- Flash twice
@@ -155,7 +158,8 @@ return function(scene, hint)
 				Wait(0.1),
 				scene:lightningFlash(),
 				Do(function() scene.audio:stopSfx("thunder2") end),
-				PlayAudio("sfx", "thunder2", 0.8, true),
+				Spawn(scene:screenShake(35, 20, 10)),
+				PlayAudio("sfx", "thunder2",0.8, true),
 				Wait(1),
 				MessageBox{message="Tails: Whoah! {p60}Cool!!", closeAction=Wait(1)},
 				Do(function()

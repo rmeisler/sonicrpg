@@ -19,6 +19,7 @@ return function(scene, hint)
 	local BlockPlayer = require "actions/BlockPlayer"
 	local Do = require "actions/Do"
 	local Move = require "actions/Move"
+	local Spawn = require "actions/Spawn"
 	local shine = require "lib/shine"
 	local SpriteNode = require "object/SpriteNode"
 	local NameScreen = require "actions/NameScreen"
@@ -56,11 +57,43 @@ return function(scene, hint)
 				Ease(scene.camPos, "x", 3900, 0.5),
 				Ease(scene.camPos, "y", -1100, 0.5)
 			},
-			Ease(scene.camPos, "x", 4100, 0.25, "linear"),
+			Ease(scene.camPos, "x", 4000, 0.25, "linear"),
 			Parallel {
 				Ease(scene.camPos, "x", 6100, 0.5),
 				Ease(scene.camPos, "y", -950, 0.5)
 			},
+			Spawn(Parallel {
+				Repeat(Do(function()
+					if not scene.objectLookup.Sonic.dustTime or scene.objectLookup.Sonic.dustTime > 0.036 then
+						scene.objectLookup.Sonic.dustTime = 0
+					elseif scene.objectLookup.Sonic.dustTime < 0.036 then
+						scene.objectLookup.Sonic.dustTime = scene.objectLookup.Sonic.dustTime + love.timer.getDelta()
+						return
+					end
+					local dust = BasicNPC(
+						scene,
+						{name = "objects"},
+						{
+							name = "snowdust",
+							x = scene.objectLookup.Sonic.x + scene.objectLookup.Sonic.sprite.w,
+							y = scene.objectLookup.Sonic.y - scene.objectLookup.Sonic.sprite.h/2,
+							width = 40,
+							height = 36,
+							properties = {defaultAnim = "updown", nocollision = true, sprite = "art/sprites/snowdust.png"}
+						}
+					)
+					scene:addObject(dust)
+					dust.sprite:onAnimationComplete(function()
+						local ref = dust
+						if ref then
+							ref:remove()
+						end
+					end)
+					scene.objectLookup.Sonic.dustTime = scene.objectLookup.Sonic.dustTime + love.timer.getDelta()
+				end), 200),
+				Ease(scene.objectLookup.Sonic, "x", 850, 0.4),
+				Ease(scene.objectLookup.Sonic, "y", 2300, 0.4)
+			}),
 			Ease(scene.camPos, "y", -850, 0.25, "linear"),
 			Parallel {
 				Ease(scene.camPos, "x", 6350, 0.5),

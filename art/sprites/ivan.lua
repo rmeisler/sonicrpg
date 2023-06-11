@@ -36,6 +36,9 @@ return {
 		attitude = {
 			frames = {{1,5}}
 		},
+		snow_attitude = {
+			frames = {{2,5}}
+		},
 	
 		meeting_idledown = {
 			frames = {{0,2}},

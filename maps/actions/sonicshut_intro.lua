@@ -103,13 +103,16 @@ return function(scene, hint)
 			Do(function()
 				scene.player.sprite.visible = false
 				scene.player.dropShadow.hidden = true
+				scene.camPos.x = 0
+				scene.camPos.y = 0
 			end),
 			Wait(1),
 			-- Flash twice
 			scene:lightningFlash(),
 			Wait(0.1),
 			scene:lightningFlash(),
-			PlayAudio("sfx", "thunder2", 0.8, true),
+			Spawn(scene:screenShake(35, 20, 10)),
+			PlayAudio("sfx", "thunder2",0.8, true),
 			Wait(2),
 			Do(function()
 				scene:changeScene{map="tailshut", fadeOutSpeed=0.5, fadeInSpeed=0.5, hint="sleep", nighttime=true}

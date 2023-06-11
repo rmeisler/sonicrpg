@@ -15,6 +15,7 @@ return function(scene)
 	local Serial = require "actions/Serial"
 	local BlockPlayer = require "actions/BlockPlayer"
 	local Executor = require "actions/Executor"
+	local Spawn = require "actions/Spawn"
 	local Wait = require "actions/Wait"
 	local Do = require "actions/Do"
 	local shine = require "lib/shine"
@@ -53,16 +54,28 @@ return function(scene)
 		Animate(scene.objectLookup.B.sprite, "idledown"),
 		MessageBox{message="B: Oh yes--{p60} I would like to help them relocate as soon as possible.", closeAction=Wait(3)},
 		Animate(scene.objectLookup.Sally.sprite, "idleleft"),
-		MessageBox{message="Sally: That's wonderful, B!{p60} We'll be sure to--", closeAction=Wait(1)},
+		MessageBox{message="Sally: That's wonderful, B! {p60}We'll be sure to--", closeAction=Wait(1)},
 		Do(function()
 			scene.audio:stopMusic()
 		end),
+		PlayAudio("sfx", "nicolewarning", 1.0, true),
+		Wait(1.5),
+		Animate(scene.objectLookup.B.sprite, "idleright"),
+		MessageBox{message="B: What is that?", closeAction=Wait(2)},
+		Animate(scene.objectLookup.Sally.sprite, "nicholedown"),
+		MessageBox{message="Sally: Something's up with Nicole...", closeAction=Wait(1.5)},
+		MessageBox{message="Sally: Nicole?", closeAction=Wait(1)},
+		Animate(scene.objectLookup.Sally.sprite, "nicholedown"),
+		MessageBox{message="Nicole: Knothole weather balloon 3 is reporting a {h level 10 atmospheric storm}, {p30}Sally.", sfx="nicolebeep", closeAction=Wait(3)},
+		MessageBox{message="Sally: Level 10?!", closeAction=Wait(1)},
 		-- Flash twice
 		scene:lightningFlash(),
 		Wait(0.1),
 		scene:lightningFlash(),
+		Spawn(scene:screenShake(35, 20, 10)),
 		PlayAudio("sfx", "thunder2",0.8, true),
 		Animate(scene.objectLookup.Sally.sprite, "shock"),
+		Animate(scene.objectLookup.B.sprite, "idledown"),
 		Parallel
 		{
 			scene.objectLookup.Sally:hop(),
@@ -83,7 +96,7 @@ return function(scene)
 		Animate(scene.objectLookup.B.sprite, "idleright"),
 		Animate(scene.objectLookup.Sally.sprite, "idleleft"),
 		Wait(2),
-		MessageBox{message="Sally: We'd better get inside.", closeAction=Wait(1.5)},
+		MessageBox{message="Sally: We'd better get inside!", closeAction=Wait(1.5)},
 		PlayAudio("music", "spooky", 0.9, true),
 		Do(function()
 			scene:changeScene{map="sonicshut", fadeOutSpeed=0.5, fadeInSpeed=0.5, hint="sleep", nighttime=true}

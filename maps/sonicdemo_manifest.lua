@@ -457,6 +457,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/snowdust.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/spindust.png"
 	},
 	{
@@ -947,6 +951,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/nicholescan.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/nicolewarning.ogg",
 		category = "sfx"
 	},
 	{

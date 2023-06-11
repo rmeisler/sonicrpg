@@ -341,7 +341,10 @@ return {
 		prepare_race2 = {
 			frames = {{13,9}}
 		},
-		
+		snowboard = {
+			frames = {{0,10}}
+		},
+
 		sit_sad = {
 			frames = {{10,7}}
 		},
