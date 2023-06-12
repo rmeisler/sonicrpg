@@ -47,21 +47,18 @@ return function(scene, hint)
 				Ease(scene.camPos, "x", 400, 0.5),
 				Ease(scene.camPos, "y", -1050, 0.5)
 			},
-			Ease(scene.camPos, "x", 500, 0.25, "linear"),
+			Ease(scene.camPos, "x", 500, 0.28, "linear"),
 			Parallel {
 				Ease(scene.camPos, "x", 2600, 0.5),
 				Ease(scene.camPos, "y", -950, 0.5)
 			},
-			Ease(scene.camPos, "x", 2700, 0.25, "linear"),
+			Ease(scene.camPos, "x", 2700, 0.28, "linear"),
 			Parallel {
 				Ease(scene.camPos, "x", 3900, 0.5),
 				Ease(scene.camPos, "y", -1100, 0.5)
 			},
-			Ease(scene.camPos, "x", 4000, 0.25, "linear"),
-			Parallel {
-				Ease(scene.camPos, "x", 6100, 0.5),
-				Ease(scene.camPos, "y", -950, 0.5)
-			},
+			Ease(scene.camPos, "x", 4000, 0.28, "linear"),
+			Ease(scene.camPos, "x", 6100, 0.5),
 			Spawn(Parallel {
 				Repeat(Do(function()
 					if not scene.objectLookup.Sonic.dustTime or scene.objectLookup.Sonic.dustTime > 0.036 then
@@ -91,20 +88,24 @@ return function(scene, hint)
 					end)
 					scene.objectLookup.Sonic.dustTime = scene.objectLookup.Sonic.dustTime + love.timer.getDelta()
 				end), 200),
-				Ease(scene.objectLookup.Sonic, "x", 850, 0.4),
-				Ease(scene.objectLookup.Sonic, "y", 2300, 0.4)
+				Ease(scene.objectLookup.Sonic, "x", 600, 0.4),
+				Ease(scene.objectLookup.Sonic, "y", 2100, 0.4)
 			}),
-			Ease(scene.camPos, "y", -850, 0.25, "linear"),
 			Parallel {
-				Ease(scene.camPos, "x", 6350, 0.5),
-				Ease(scene.camPos, "y", -400, 0.5)
+				Ease(scene.camPos, "x", 6250, 0.3),
+				Ease(scene.camPos, "y", -400, 0.3)
 			},
-			Ease(scene.camPos, "x", 6250, 0.25, "linear"),
+			Wait(2.5),
 			Parallel {
 				Ease(scene.camPos, "x", 0, 1),
 				Ease(scene.camPos, "y", 0, 1)
 			},
-			MessageBox{message="Logan: Ah. {p60}Welp, I'm going back inside."},
+			MessageBox{message="Logan: Ah...", closeAction=Wait(1)},
+			Wait(0.5),
+			Do(function()
+				scene.player.state = "idleup"
+			end),
+			MessageBox{message="Logan: Welp, I'm going back inside.", closeAction=Wait(1)},
 			Do(function()
 				scene.player.noIdle = false
 				scene.player.hidekeyhints = {}
