@@ -2789,11 +2789,11 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "idledown",
+            ["alignOffsetY"] = -24,
+            ["defaultAnim"] = "smores",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep4_tails_snowman\") then\n        return BlockPlayer {\n            MessageBox {message = \"Fleet: \"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        if GameState:isFlagSet(\"ep4_tails_snowman_coal\") and not GameState:isFlagSet(\"ep4_tails_snowman_carrot\") and not GameState:hasItem(\"Carrot\") then\n            GameState:grantItem(require \"data/items/Carrot\", 1)\n            return BlockPlayer {\n                MessageBox {message = \"Bunnie: Hey sugah{p40}, why don't you give this to Tails...\"},\n                MessageBox {message = \"You received a {h Carrot}!\", sfx=\"choose\"},\n                MessageBox {message = \"Bunnie: That lil' ol' snowman needs a nose after all!\"},\n                Do(function() self:refreshKeyHint() end)\n            }\n        end\n        return BlockPlayer {\n            MessageBox {message = \"Bunnie: What a sweet little muffin Antoine is helpin' me roast up these delicious ol' cookie sandwhiches!\"},\n            MessageBox {message = \"Antoine: Zey are not zee 'cookie sandwhiches', zey are zee s'mores!\"},\n            MessageBox {message = \"Bunnie: Oh yes, I keep forgettin' hun.\"},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if self.scene.player.keyhints[tostring(self.scene.objectLookup.Antoine)] then\n        return Do(function() end)\n    end\n    if GameState:isFlagSet(\"ep4_tails_snowman\") then\n        return BlockPlayer {\n            MessageBox {message = \"Fleet: \"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        if GameState:isFlagSet(\"ep4_tails_snowman_coal\") and not GameState:isFlagSet(\"ep4_tails_snowman_carrot\") and not GameState:hasItem(\"Carrot\") then\n            GameState:grantItem(require \"data/items/Carrot\", 1)\n            return BlockPlayer {\n                MessageBox {message = \"Bunnie: Hey sugah{p40}, why don't you give this to Tails...\"},\n                MessageBox {message = \"You received a {h Carrot}!\", sfx=\"choose\"},\n                MessageBox {message = \"Bunnie: That lil' ol' snowman needs a nose after all!\"},\n                Do(function() self:refreshKeyHint() end)\n            }\n        end\n        return BlockPlayer {\n            MessageBox {message = \"Bunnie: What a sweet little muffin Antoine is helpin' me roast up these delicious ol' cookie sandwhiches!\"},\n            MessageBox {message = \"Antoine: Zey are not zee 'cookie sandwhiches', zey are zee s'mores!\"},\n            MessageBox {message = \"Bunnie: Oh yes, I keep forgettin' hun.\"},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/bunny.png"
           }
         },
@@ -3880,11 +3880,11 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "idledown",
+            ["alignOffsetY"] = -24,
+            ["defaultAnim"] = "smores",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep4_tails_snowman\") then\n        return BlockPlayer {\n            MessageBox {message = \"Fleet: \"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        return BlockPlayer {\n            MessageBox {message = \"Antoine: 'ello!{p60} Would you like try a s'more too?\"},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if self.scene.player.keyhints[tostring(self.scene.objectLookup.Bunnie)] then\n        return Do(function() end)\n    end\n    if GameState:isFlagSet(\"ep4_tails_snowman\") then\n        return BlockPlayer {\n            MessageBox {message = \"Fleet: \"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        return BlockPlayer {\n            MessageBox {message = \"Antoine: 'ello!{p60} Would you like try a s'more too?\"},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/antoine.png"
           }
         },
@@ -5848,7 +5848,6 @@ return {
             ["defaultAnim"] = "blank",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "",
             ["sprite"] = "../art/sprites/snowman.png"
           }
         },

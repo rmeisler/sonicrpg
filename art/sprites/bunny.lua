@@ -97,7 +97,11 @@ return {
 		peekup = {
 			frames = {{13,3}}
 		},
-		
+
+		smores = {
+			frames = {{14,2}}
+		},
+
 		stepback = {
 		    frames = {{0,3},{1,3},{0,3},{5,3}},
 			speed = 0.5

@@ -1653,8 +1653,8 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="idledown"/>
+    <property name="alignOffsetY" type="float" value="-24"/>
+    <property name="defaultAnim" value="smores"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
@@ -1674,6 +1674,9 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
+    if self.scene.player.keyhints[tostring(self.scene.objectLookup.Antoine)] then
+        return Do(function() end)
+    end
     if GameState:isFlagSet(&quot;ep4_tails_snowman&quot;) then
         return BlockPlayer {
             MessageBox {message = &quot;Fleet: &quot;},
@@ -2178,8 +2181,8 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="idledown"/>
+    <property name="alignOffsetY" type="float" value="-24"/>
+    <property name="defaultAnim" value="smores"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
@@ -2199,6 +2202,9 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
+    if self.scene.player.keyhints[tostring(self.scene.objectLookup.Bunnie)] then
+        return Do(function() end)
+    end
     if GameState:isFlagSet(&quot;ep4_tails_snowman&quot;) then
         return BlockPlayer {
             MessageBox {message = &quot;Fleet: &quot;},
@@ -3373,7 +3379,6 @@ end</property>
     <property name="defaultAnim" value="blank"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
-    <property name="onInteract" value=""/>
     <property name="sprite" type="file" value="../art/sprites/snowman.png"/>
    </properties>
   </object>
