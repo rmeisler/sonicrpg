@@ -155,7 +155,8 @@ return {
 		},
 		
 		coffeeright = {
-			frames = {{15,2}}
+			frames = {{15,2},{16,2}},
+			speed = 0.5
 		},
 		
 		leapleft = {

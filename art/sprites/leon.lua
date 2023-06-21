@@ -16,7 +16,8 @@ return {
         },
 
 		coffeeleft = {
-            frames = {{10,1}}
+            frames = {{10,1},{11,1}},
+			speed = 0.5
         },
 
 		walkright = {

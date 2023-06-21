@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 471,
+  nextobjectid = 483,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = false,
@@ -2793,7 +2793,7 @@ return {
             ["defaultAnim"] = "idledown",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep4_tails_snowman\") then\n        return BlockPlayer {\n            MessageBox {message = \"Fleet: \"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        return BlockPlayer {\n            MessageBox {message = \"Bunnie: What a sweet little muffin Antoine is helpin' me roast up these delicious ol' cookie sandwhiches!\"},\n            MessageBox {message = \"Antoine: Zey are not zee 'cookie sandwhiches', zey are zee s'mores!\"},\n            MessageBox {message = \"Bunnie: Oh yes, I keep forgettin' hun.\"},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep4_tails_snowman\") then\n        return BlockPlayer {\n            MessageBox {message = \"Fleet: \"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        if GameState:isFlagSet(\"ep4_tails_snowman_coal\") and not GameState:isFlagSet(\"ep4_tails_snowman_carrot\") and not GameState:hasItem(\"Carrot\") then\n            GameState:grantItem(require \"data/items/Carrot\", 1)\n            return BlockPlayer {\n                MessageBox {message = \"Bunnie: Hey sugah{p40}, why don't you give this to Tails...\"},\n                MessageBox {message = \"You received a {h Carrot}!\", sfx=\"choose\"},\n                MessageBox {message = \"Bunnie: That lil' ol' snowman needs a nose after all!\"},\n                Do(function() self:refreshKeyHint() end)\n            }\n        end\n        return BlockPlayer {\n            MessageBox {message = \"Bunnie: What a sweet little muffin Antoine is helpin' me roast up these delicious ol' cookie sandwhiches!\"},\n            MessageBox {message = \"Antoine: Zey are not zee 'cookie sandwhiches', zey are zee s'mores!\"},\n            MessageBox {message = \"Bunnie: Oh yes, I keep forgettin' hun.\"},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/bunny.png"
           }
         },
@@ -3879,8 +3879,8 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["alignOffsetX"] = -16,
-            ["alignOffsetY"] = 0,
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
             ["defaultAnim"] = "idledown",
             ["ghost"] = false,
             ["nonight"] = true,
@@ -4189,7 +4189,7 @@ return {
             ["defaultAnim"] = "idleright",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep4_tails_snowman\") then\n        return BlockPlayer {\n            MessageBox {message = \"Fleet: \"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Tails: Hey guys! {p60}I'm trying to make this snowman, but he's missing a few things...\"},\n            MessageBox {message = \"Tails: Could you help me find {h 10 pieces of Coal}?\"},\n            Do(function()\n                self.sprite:setAnimation(\"idleright\")\n                self:refreshKeyHint()\n            end)\n        }\n    end\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep4_tails_snowman\") then\n        return BlockPlayer {\n            MessageBox {message = \"Fleet: \"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState:isFlagSet(\"ep4_tails_snowman_coal\") then\n        if GameState:hasItem(\"Carrot\") then\n            GameState:removeItem(\"Carrot\")\n            return BlockPlayer {\n                self:hop(),\n                MessageBox {message = \"Tails: Wow! {p60}Thanks for this carrot guys!!\", sfx=\"choose\"},\n                Animate(self.sprite, \"joyright\"),\n                self:hop(),\n                Wait(0.5),\n                Ease(self.scene.objectLookup.SnowmanNose.sprite.color, 4, 255, 1),\n                MessageBox {message = \"Tails: Check him out now!\", sfx=\"levelup\"},\n                Wait(0.5),\n                Do(function()\n                    self.sprite:setAnimation(\"idleright\")\n                    GameState:setFlag(\"ep4_tails_snowman_carrot\")\n                    self:refreshKeyHint()\n                end)\n            }\n        end\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Tails: Thanks for the Coal! {p60}He's got personality now!\"},\n            MessageBox {message = \"Tails: Hmmm... {p60}I still feel like he's missing something though...\"},\n            Do(function()\n                self.sprite:setAnimation(\"idleright\")\n                self:refreshKeyHint()\n            end)\n        }\n    else\n        if GameState:hasItem(\"Lump of Coal\") and GameState:getItem(\"Lump of Coal\").count == 9 then\n            GameState:removeItem(\"Lump of Coal\")\n            return BlockPlayer {\n                self:hop(),\n                MessageBox {message = \"Tails: Wow! {p60}Thanks for the coal guys!!\", sfx=\"choose\"},\n                Animate(self.sprite, \"joyright\"),\n                self:hop(),\n                Wait(0.5),\n                Ease(self.scene.objectLookup.SnowmanFace.sprite.color, 4, 255, 1),\n                MessageBox {message = \"Tails: Check him out now!\", sfx=\"levelup\"},\n                Wait(0.5),\n                Do(function()\n                    self.sprite:setAnimation(\"idleright\")\n                    GameState:setFlag(\"ep4_tails_snowman_coal\")\n                    self:refreshKeyHint()\n                end)\n            }\n        end\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Tails: Hey guys! {p60}I'm trying to make this snowman, but he's missing a few things...\"},\n            MessageBox {message = \"Tails: Could you help me find {h 9 Lumps of Coal}?\"},\n            Do(function()\n                self.sprite:setAnimation(\"idleright\")\n                self:refreshKeyHint()\n            end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/tails.png"
           }
         },
@@ -4237,18 +4237,19 @@ return {
         },
         {
           id = 347,
-          name = "Chest1",
+          name = "Coal1",
           type = "Chest",
           shape = "rectangle",
-          x = 864,
-          y = 2144,
+          x = 672,
+          y = 2048,
           width = 64,
           height = 64,
           rotation = 0,
           gid = 7597,
           visible = true,
           properties = {
-            ["Microchip"] = 1,
+            ["Coal"] = 1,
+            ["hidden"] = true,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
@@ -4323,38 +4324,6 @@ return {
             ["Carrot"] = 1,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 363,
-          name = "FireflyWP1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4896,
-          y = 2688,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 364,
-          name = "FireflyWP2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 5728,
-          y = 2688,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["ghost"] = true
           }
         },
         {
@@ -5899,6 +5868,7 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -16,
             ["alignOffsetY"] = -32,
+            ["alphaOverride"] = 0,
             ["defaultAnim"] = "arms",
             ["ghost"] = false,
             ["nocollision"] = true,
@@ -5922,6 +5892,7 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -16,
             ["alignOffsetY"] = -32,
+            ["alphaOverride"] = 0,
             ["defaultAnim"] = "hat",
             ["ghost"] = false,
             ["nocollision"] = true,
@@ -5945,6 +5916,7 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -16,
             ["alignOffsetY"] = -32,
+            ["alphaOverride"] = 0,
             ["defaultAnim"] = "face",
             ["ghost"] = false,
             ["nocollision"] = true,
@@ -5968,6 +5940,7 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -16,
             ["alignOffsetY"] = -32,
+            ["alphaOverride"] = 0,
             ["defaultAnim"] = "nose",
             ["ghost"] = false,
             ["nocollision"] = true,
@@ -5991,11 +5964,174 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -16,
             ["alignOffsetY"] = -32,
+            ["alphaOverride"] = 0,
             ["defaultAnim"] = "scarf",
             ["ghost"] = false,
             ["nocollision"] = true,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/snowman.png"
+          }
+        },
+        {
+          id = 472,
+          name = "Coal2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4608,
+          y = 2624,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["nonight"] = true,
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
+          }
+        },
+        {
+          id = 473,
+          name = "Coal3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 8384,
+          y = 640,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["nonight"] = true,
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
+          }
+        },
+        {
+          id = 474,
+          name = "Coal4",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 896,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["nonight"] = true,
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
+          }
+        },
+        {
+          id = 475,
+          name = "Coal5",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2624,
+          y = 640,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["nonight"] = true,
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
+          }
+        },
+        {
+          id = 477,
+          name = "Coal7",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 384,
+          y = 2496,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["nonight"] = true,
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
+          }
+        },
+        {
+          id = 479,
+          name = "Coal9",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 384,
+          y = 1312,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["nonight"] = true,
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
+          }
+        },
+        {
+          id = 480,
+          name = "Coal1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4448,
+          y = 1472,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["nonight"] = true,
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
+          }
+        },
+        {
+          id = 481,
+          name = "Coal8",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1568,
+          y = 192,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["nonight"] = true,
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
+          }
+        },
+        {
+          id = 482,
+          name = "Coal6",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7200,
+          y = 2688,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["nonight"] = true,
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
           }
         }
       }

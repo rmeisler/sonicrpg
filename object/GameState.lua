@@ -245,6 +245,10 @@ function GameState:useItem(record)
 	end
 end
 
+function GameState:removeItem(name)
+	self.items[name] = nil
+end
+
 function GameState:isEquipped(member, itemType, itemName)
 	local item = self.party[member].equip[itemType]
 	if item then
