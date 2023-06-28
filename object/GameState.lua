@@ -428,8 +428,8 @@ function GameState:load(scene, slot)
 	
 	self.flags = data.flags
 	
-	-- ep3 save file
-	if self:isFlagSet("ep3_introdone") then
+	-- ep4 save file
+	if self:isFlagSet("ep4_introdone") then
 		-- Add party members, grant items, set flags
 		for k, v in pairs(data.party) do
 			self:addToParty(k, v.level, false)
@@ -483,7 +483,7 @@ function GameState:load(scene, slot)
 				hint = "fromload"
 			}
 		end
-	-- ep1 or ep2 save, treat as new game+
+	-- ep1 or ep2 or ep3 save, treat as new game+
 	else
 		self:addToParty("sally", 6, true)
 		self.leader = "sally"

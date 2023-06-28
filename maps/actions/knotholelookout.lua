@@ -1,4 +1,4 @@
-return function(scene)
+return function(scene, hint)
 	local Transform = require "util/Transform"
 	local Rect = unpack(require "util/Shapes")
 	local Layout = require "util/Layout"
@@ -34,6 +34,11 @@ return function(scene)
 		Ease(text.color, 4, 0, 1)
 	})
 
+	if hint == "snowday" then
+		scene.objectLookup.Entrance.object.properties.scene = "knotholesnowday.lua"
+		return Action()
+	end
+	
 	if GameState:isFlagSet("ep3_ffmeeting") then
 		scene.audio:playMusic("lookout", 1.0)
 	end

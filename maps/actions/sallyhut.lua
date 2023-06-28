@@ -92,7 +92,20 @@ return function(scene, hint)
 			end
 		)
 	end
-	
+
+	if hint == "snowday" then
+		scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"
+		scene.objectLookup.SallysBed.isInteractable = false
+		Executor(scene):act(Serial {
+			Wait(0.5),
+			text,
+			Ease(text.color, 4, 255, 1),
+			Wait(2),
+			Ease(text.color, 4, 0, 1)
+		})
+		return Action()
+	end
+
 	if not scene.nighttime and
 	   (GameState:isFlagSet("ep3_ffmeeting") or not GameState:isFlagSet("ep3_knotholerun"))
 	then

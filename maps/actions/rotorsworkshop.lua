@@ -116,8 +116,13 @@ return function(scene, hint)
 			end
 		)
 	end
-	
-	if hint == "intro" then
+
+	if hint == "snowday" then
+		scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"
+		scene.objectLookup.Rotor:remove()
+		scene.objectLookup.Rotor2:remove()
+		scene.objectLookup.Logan:remove()
+	elseif hint == "intro" then
 		scene.audio:stopSfx()
 		scene.objectLookup.Logan.hidden = false
 		scene.objectLookup.Logan.ghost = false
@@ -213,23 +218,8 @@ return function(scene, hint)
 
 		scene.objectLookup.Rotor:remove()
 		scene.objectLookup.Computer.isInteractable = false
-		
-		Executor(scene):act(Serial {
-			Wait(0.5),
-			subtext,
-			text,
-			Parallel {
-				Ease(text.color, 4, 255, 1),
-				Ease(subtext.color, 4, 255, 1),
-			},
-			Wait(2),
-			Parallel {
-				Ease(text.color, 4, 0, 1),
-				Ease(subtext.color, 4, 0, 1)
-			}
-		})
 
-		scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"
+		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
 		local prefix = "nighthide"
 		for _,layer in pairs(scene.map.layers) do
 			if string.sub(layer.name, 1, #prefix) == prefix then
@@ -237,21 +227,6 @@ return function(scene, hint)
 			end
 		end
 	else
-		Executor(scene):act(Serial {
-			Wait(0.5),
-			subtext,
-			text,
-			Parallel {
-				Ease(text.color, 4, 255, 1),
-				Ease(subtext.color, 4, 255, 1),
-			},
-			Wait(2),
-			Parallel {
-				Ease(text.color, 4, 0, 1),
-				Ease(subtext.color, 4, 0, 1)
-			}
-		})
-
 		scene.objectLookup.Door.object.properties.scene = "knothole.lua"
 		local prefix = "nighthide"
 		for _,layer in pairs(scene.map.layers) do
@@ -259,8 +234,24 @@ return function(scene, hint)
 				layer.opacity = 0.0
 			end
 		end
+
 		scene.audio:playMusic("doittoit", 0.5)
 	end
+
+	Executor(scene):act(Serial {
+		Wait(0.5),
+		subtext,
+		text,
+		Parallel {
+			Ease(text.color, 4, 255, 1),
+			Ease(subtext.color, 4, 255, 1),
+		},
+		Wait(2),
+		Parallel {
+			Ease(text.color, 4, 0, 1),
+			Ease(subtext.color, 4, 0, 1)
+		}
+	})
 	
 	return Action()
 end

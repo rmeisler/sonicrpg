@@ -58,7 +58,7 @@ return function(scene, hint)
 			end
 		)
 	end
-	
+
 	if GameState:isFlagSet("got_chilidog") then
 		for _,layer in pairs(scene.map.layers) do
 			if layer.name == "mess" then
@@ -67,8 +67,11 @@ return function(scene, hint)
 			end
 		end
 	end
-	
-	if scene.nighttime then
+
+	if hint == "snowday" then
+		scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"
+		scene.objectLookup.Antoine:remove()
+	elseif scene.nighttime then
 		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
 		local prefix = "nighthide"
 		for _,layer in pairs(scene.map.layers) do

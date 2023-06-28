@@ -78,8 +78,11 @@ return function(scene, hint)
 	)
 
 	--scene.audio:playMusic("knotholehut", 0.8)
-	
-	if hint == "sleep" then
+
+	if hint == "snowday" then
+		scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"
+		scene.objectLookup.Sonic:remove()
+	elseif hint == "sleep" then
 		scene.player.sprite.visible = false
 		scene.player.dropShadow.hidden = true
 

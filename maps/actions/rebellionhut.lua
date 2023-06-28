@@ -1,4 +1,4 @@
-return function(scene)
+return function(scene, hint)
 	local Transform = require "util/Transform"
 	local Rect = unpack(require "util/Shapes")
 	local Layout = require "util/Layout"
@@ -39,19 +39,6 @@ return function(scene)
 	scene.objectLookup.Fleet.isInteractable = false
 	scene.objectLookup.Ivan.isInteractable = false
 
-	if not scene.nighttime then
-		if GameState:isFlagSet("ep3_ffmeeting") or
-		   not GameState:isFlagSet("ep3_knotholerun")
-		then
-			scene.audio:playMusic("knotholehut", 0.8)
-		elseif not GameState:isFlagSet("ep3_ffmeeting") then
-			scene.audio:playMusic("awkward", 1.0)
-		end
-		scene.objectLookup.Door.object.properties.scene = "knothole.lua"
-	else
-		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
-	end
-
 	if not scene.updateHookAdded then
 		scene.updateHookAdded = true
 		scene:addHandler(
@@ -91,6 +78,22 @@ return function(scene)
 				end
 			end
 		)
+	end
+	
+	if hint == "snowday" then
+		scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"
+		return Action()
+	elseif not scene.nighttime then
+		if GameState:isFlagSet("ep3_ffmeeting") or
+		   not GameState:isFlagSet("ep3_knotholerun")
+		then
+			scene.audio:playMusic("knotholehut", 0.8)
+		elseif not GameState:isFlagSet("ep3_ffmeeting") then
+			scene.audio:playMusic("awkward", 1.0)
+		end
+		scene.objectLookup.Door.object.properties.scene = "knothole.lua"
+	else
+		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
 	end
 
 	return Do(function()

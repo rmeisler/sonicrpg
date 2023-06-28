@@ -57,7 +57,14 @@ return function(scene, hint)
 				Ease(scene.camPos, "x", 3900, 0.5),
 				Ease(scene.camPos, "y", -1100, 0.5)
 			},
-			Ease(scene.camPos, "x", 4000, 0.28, "linear"),
+			Parallel {
+				Serial {
+					Animate(scene.objectLookup.Tails.sprite, "joyright"),
+					scene.objectLookup.Tails:hop()
+				},
+				Ease(scene.camPos, "x", 4000, 0.28, "linear")
+			},
+			Animate(scene.objectLookup.Tails.sprite, "idleright"),
 			Ease(scene.camPos, "x", 6100, 0.5),
 			Spawn(Parallel {
 				Repeat(Do(function()
@@ -109,6 +116,7 @@ return function(scene, hint)
 			Do(function()
 				scene.player.noIdle = false
 				scene.player.hidekeyhints = {}
+				GameState:setFlag("ep4_introdone")
 			end)
 		}
 	end

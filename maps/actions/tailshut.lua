@@ -38,7 +38,9 @@ return function(scene, hint)
 		})
 	end
 	
-	if not scene.nighttime then
+	if hint == "snowday" then
+		scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"
+	elseif not scene.nighttime then
 		if GameState:isFlagSet("ep3_ffmeeting") or
 		   not GameState:isFlagSet("ep3_knotholerun")
 		then
