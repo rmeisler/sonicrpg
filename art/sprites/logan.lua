@@ -36,6 +36,9 @@ return {
 		attitude = {
 			frames = {{1,5}}
 		},
+		pose = {
+			frames = {{1,5}}
+		},
 		irritated = {
 			frames = {{1,6}}
 		},

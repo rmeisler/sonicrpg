@@ -55,6 +55,10 @@ return {
 			frames = {{2,6},{3,6}},
 			speed = 0.2
 		},
+		hatlaugh = {
+			frames = {{4,6},{5,6}},
+			speed = 0.2
+		},
 		shock = {
 			frames = {{11,4}}
 		},

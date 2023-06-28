@@ -4150,7 +4150,7 @@ return {
           gid = 7597,
           visible = true,
           properties = {
-            ["TuningFork"] = 1,
+            ["Mushroom"] = 1,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
@@ -4171,7 +4171,7 @@ return {
             ["align"] = "bottom_left",
             ["alignOffsetX"] = -8,
             ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "laugh",
+            ["defaultAnim"] = "hatlaugh",
             ["ghost"] = false,
             ["nonight"] = true,
             ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep4_tails_snowman\") then\n        return BlockPlayer {\n            MessageBox {message = \"Fleet: \"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        return BlockPlayer {\n            MessageBox {message = \"Fleet: Ivan's just upset that he can't beat me in a snowball fight!\"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
@@ -4230,15 +4230,15 @@ return {
           name = "Chest1",
           type = "Chest",
           shape = "rectangle",
-          x = 960,
-          y = 1344,
+          x = 2048,
+          y = 1792,
           width = 64,
           height = 64,
           rotation = 0,
           gid = 7597,
           visible = true,
           properties = {
-            ["Gear"] = 1,
+            ["RainbowSyrup"] = 1,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
@@ -4294,60 +4294,6 @@ return {
           visible = true,
           properties = {
             ["BlueLeaf"] = 1,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 353,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 6592,
-          y = 2784,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["CrystalWater"] = 1,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 355,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 4896,
-          y = 480,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["Carrot"] = 1,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 372,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 4896,
-          y = 1248,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["Mushroom"] = 1,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }

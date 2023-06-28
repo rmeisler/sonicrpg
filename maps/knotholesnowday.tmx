@@ -2482,7 +2482,7 @@ end</property>
   </object>
   <object id="342" name="Chest1" type="Chest" gid="7597" x="8544" y="832" width="64" height="64">
    <properties>
-    <property name="TuningFork" type="int" value="1"/>
+    <property name="Mushroom" type="int" value="1"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
@@ -2492,7 +2492,7 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-8"/>
     <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="laugh"/>
+    <property name="defaultAnim" value="hatlaugh"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
@@ -2644,9 +2644,9 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/tailshut.png"/>
    </properties>
   </object>
-  <object id="346" name="Chest1" type="Chest" gid="7597" x="960" y="1344" width="64" height="64">
+  <object id="346" name="Chest1" type="Chest" gid="7597" x="2048" y="1792" width="64" height="64">
    <properties>
-    <property name="Gear" type="int" value="1"/>
+    <property name="RainbowSyrup" type="int" value="1"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
@@ -2669,27 +2669,6 @@ end</property>
   <object id="351" name="Chest1" type="Chest" gid="7597" x="512" y="768" width="64" height="64">
    <properties>
     <property name="BlueLeaf" type="int" value="1"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="353" name="Chest1" type="Chest" gid="7597" x="6592" y="2784" width="64" height="64">
-   <properties>
-    <property name="CrystalWater" type="int" value="1"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="355" name="Chest1" type="Chest" gid="7597" x="4896" y="480" width="64" height="64">
-   <properties>
-    <property name="Carrot" type="int" value="1"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="372" name="Chest1" type="Chest" gid="7597" x="4896" y="1248" width="64" height="64">
-   <properties>
-    <property name="Mushroom" type="int" value="1"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
