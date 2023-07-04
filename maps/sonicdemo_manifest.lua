@@ -685,6 +685,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/cooking.wav",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/thunder1.wav",
 		category = "sfx"
 	},

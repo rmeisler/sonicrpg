@@ -62,6 +62,12 @@ return {
 			frames = {{8,5},{9,5},{8,5},{10,5}},
 			speed = 0.07
 		},
+		climb_1 = {
+			frames = {{1,3}}
+		},
+		climb_2 = {
+			frames = {{5,3}}
+		},
 
 		meeting_idledown = {
 			frames = {{0,2}},

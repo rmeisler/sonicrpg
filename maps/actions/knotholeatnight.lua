@@ -117,6 +117,7 @@ return function(scene, hint)
 				scene.player.noIdle = false
 				scene.player.hidekeyhints = {}
 				GameState:setFlag("ep4_introdone")
+				GameState:addToParty("rotor", 8, true)
 			end)
 		}
 	end

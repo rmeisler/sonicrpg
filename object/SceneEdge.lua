@@ -188,6 +188,7 @@ function SceneEdge:goToScene()
 		fadeInSpeed = self.object.properties.fade_in_speed,
 		fadeOutSpeed = self.object.properties.fade_out_speed,
 		fadeOutMusic = self.object.properties.fade_out_music,
+		hint = self.object.properties.hint,
 		images = self.scene.images,
 		animations = self.scene.animations,
 		audio = self.scene.audio,

@@ -123,7 +123,13 @@ return {
 		sad = {
 			frames = {{0,5}}
 		},
-		
+		climb_1 = {
+			frames = {{1,3}}
+		},
+		climb_2 = {
+			frames = {{5,3}}
+		},
+
 		meeting_idledown = {
 			frames = {{0,2}},
 			clip = {0,0,47,42}

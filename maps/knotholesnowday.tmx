@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="484">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="485">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="nighttime" type="bool" value="false"/>
@@ -2647,14 +2647,6 @@ end</property>
   <object id="346" name="Chest1" type="Chest" gid="7597" x="2048" y="1792" width="64" height="64">
    <properties>
     <property name="RainbowSyrup" type="int" value="1"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="347" name="Coal1" type="Chest" gid="7597" x="672" y="2048" width="64" height="64">
-   <properties>
-    <property name="Coal" type="int" value="1"/>
-    <property name="hidden" type="bool" value="true"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>

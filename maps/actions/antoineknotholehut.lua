@@ -71,6 +71,12 @@ return function(scene, hint)
 	if hint == "snowday" then
 		scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"
 		scene.objectLookup.Antoine:remove()
+		local prefix = "nighthide"
+		for _,layer in pairs(scene.map.layers) do
+			if string.sub(layer.name, 1, #prefix) == prefix then
+				layer.opacity = 0.0
+			end
+		end
 	elseif scene.nighttime then
 		scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
 		local prefix = "nighthide"

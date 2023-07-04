@@ -232,7 +232,7 @@ return function(self)
     if GameState.leader == &quot;rotor&quot; or GameState.leader == &quot;logan&quot; then
         if GameState:isFlagSet(&quot;got_hotcocoa&quot;) then
             return Serial {
-                MessageBox{message=&quot;Rotor: Uhh{p60}, I don't wanna over stay my welcome here...&quot;, blocking = true},
+                MessageBox{message= GameState.leader == &quot;rotor&quot; and &quot;Rotor: Uhh{p60}, I don't wanna over stay my welcome here...&quot; or &quot;Logan: Nothin' else to make.&quot;, blocking = true},
                 Do(function() self:refreshKeyHint() end)
             }
         end
@@ -254,7 +254,7 @@ return function(self)
                             Animate(self.scene.player.sprite, &quot;pose&quot;),
                             Wait(0.5),
                             MessageBox {
-                                message = &quot;Rotor: Alright!&quot;,
+                                message = GameState.leader == &quot;rotor&quot; and &quot;Rotor: Alright!&quot; or &quot;Logan: Whatever.&quot;,
                             },
                             Parallel {
                                 -- Fade to black

@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 484,
+  nextobjectid = 485,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = false,
@@ -4239,25 +4239,6 @@ return {
           visible = true,
           properties = {
             ["RainbowSyrup"] = 1,
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 347,
-          name = "Coal1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 672,
-          y = 2048,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["Coal"] = 1,
-            ["hidden"] = true,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
