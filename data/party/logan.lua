@@ -67,7 +67,7 @@ return {
 		},]]
 	},
 	
-	specialmove = require "data/specialmoves/sonic",
+	specialmove = require "data/specialmoves/logan",
 
 	battle = {
 		require "data/battle/SonicHit",

@@ -5920,6 +5920,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
+            ["loganTargetable"] = true,
             ["nonight"] = true,
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
           }
@@ -5938,6 +5939,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
+            ["loganTargetable"] = true,
             ["nonight"] = true,
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
           }
@@ -5956,6 +5958,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
+            ["loganTargetable"] = true,
             ["nonight"] = true,
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
           }
@@ -5974,6 +5977,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
+            ["loganTargetable"] = true,
             ["nonight"] = true,
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
           }
@@ -5992,6 +5996,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
+            ["loganTargetable"] = true,
             ["nonight"] = true,
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
           }
@@ -6010,6 +6015,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
+            ["loganTargetable"] = true,
             ["nonight"] = true,
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
           }
@@ -6028,6 +6034,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
+            ["loganTargetable"] = true,
             ["nonight"] = true,
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
           }
@@ -6046,6 +6053,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
+            ["loganTargetable"] = true,
             ["nonight"] = true,
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
           }
@@ -6064,6 +6072,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
+            ["loganTargetable"] = true,
             ["nonight"] = true,
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
           }

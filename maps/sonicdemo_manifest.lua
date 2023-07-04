@@ -181,6 +181,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/rotorpad.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/puck.png"
 	},
 	{
@@ -685,7 +689,12 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/cooking.wav",
+		file = "audio/sfx/cooking.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/factoryspit.ogg",
 		category = "sfx"
 	},
 	{
