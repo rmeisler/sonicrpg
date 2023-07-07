@@ -33,6 +33,9 @@ return {
 			frames = {{1,3}, {2,3}, {3,3}, {4,3},{5,3}, {6,3}, {7,3}, {8,3}},
 			speed = 0.09
 		},
+		sitright = {
+            frames = {{9,0}}
+        },
 		attitude = {
 			frames = {{1,5}}
 		},

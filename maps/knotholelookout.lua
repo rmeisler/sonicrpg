@@ -8,7 +8,7 @@ return {
   height = 21,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 172,
+  nextobjectid = 176,
   properties = {
     ["onload"] = "actions/knotholelookout.lua"
   },
@@ -1055,6 +1055,66 @@ return {
           properties = {
             ["ghost"] = true,
             ["whileColliding"] = "local Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self, player, prevState)\n    if not self.panning and prevState == self.STATE_IDLE and love.keyboard.isDown(\"right\") then\n        self.panning = true\n        player.basicUpdate = player.updateFun\n        player.state = \"idleright\"\n        self.scene:run(BlockPlayer {\n            Ease(self.scene.camPos, \"x\", -800, 0.3),\n            Wait(2),\n            Ease(self.scene.camPos, \"x\", 0, 0.3),\n            Do(function() self.panning = false end)\n        })\n    end\nend"
+          }
+        },
+        {
+          id = 172,
+          name = "Rotor",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1440,
+          y = 544,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -32,
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "sitright",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/rotor.png"
+          }
+        },
+        {
+          id = 174,
+          name = "Logan",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1440,
+          y = 480,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -32,
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "sitright",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/logan.png"
+          }
+        },
+        {
+          id = 175,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 1696,
+          y = 480,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["orientation"] = "down"
           }
         }
       }

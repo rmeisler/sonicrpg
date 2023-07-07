@@ -126,7 +126,8 @@ return {
 	
 	{
         type = "map",
-        file = "maps/knotholelookout.lua"
+        file = "maps/knotholelookout.lua",
+		primary = true -- testing
     },
 	{
         type = "map",

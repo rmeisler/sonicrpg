@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="85" height="21" tilewidth="32" tileheight="32" infinite="0" nextobjectid="172">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="85" height="21" tilewidth="32" tileheight="32" infinite="0" nextobjectid="176">
  <properties>
   <property name="onload" type="file" value="actions/knotholelookout.lua"/>
  </properties>
@@ -569,6 +569,33 @@ return function(self, player, prevState)
         })
     end
 end</property>
+   </properties>
+  </object>
+  <object id="172" name="Rotor" type="BasicNPC" gid="5323" x="1440" y="544" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-32"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="sitright"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
+   </properties>
+  </object>
+  <object id="174" name="Logan" type="BasicNPC" gid="5323" x="1440" y="480" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-32"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="sitright"/>
+    <property name="ghost" type="bool" value="false"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/logan.png"/>
+   </properties>
+  </object>
+  <object id="175" name="Spawn 1" type="Player" gid="5323" x="1696" y="480" width="32" height="32">
+   <properties>
+    <property name="orientation" value="down"/>
    </properties>
   </object>
  </objectgroup>
