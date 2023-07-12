@@ -1,11 +1,15 @@
 return {
     image = "logan.png",
-    starting = "meeting_idleup",
+    starting = "idle",
     w = 47,
     h = 55,
 
     animations = {
-	    idleright = {
+	    idle = {
+			frames = {{0,1}}
+		},
+
+		idleright = {
             frames = {{0,0}}
         },
 		idleleft = {

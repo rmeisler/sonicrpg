@@ -165,7 +165,7 @@ function Bot:postInit()
 		end
 	end
 	
-	if not self.visualColliders then
+	if not self.object.properties.novisualcolliders and not self.visualColliders then
 		self.visualColliders = {}
 		self.visualColliders.left = BasicNPC(
 			self.scene,

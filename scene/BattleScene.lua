@@ -267,8 +267,10 @@ function BattleScene:update(dt)
 			local sprite = oppo:getSprite()
 			oppo.dropShadow.transform.x = sprite.transform.x - sprite.w/2 + 18
 		end
+
+		oppo:onUpdate(dt)
 	end
-	
+
 	if self.state == BattleScene.STATE_PLAYERTURN then
 		-- Resolve against dead players
 		self.currentPlayer = table.remove(self.partyTurns, 1)

@@ -51,6 +51,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.onEnter = data.onEnter or function() return Action() end
 	self.onPreInit = data.onPreInit or function() end
 	self.onInit = data.onInit or function() end
+	self.onUpdate = data.onUpdate or function(self, dt) end
 	self.onScan = data.onScan or nil
 	self.onConfused = data.onConfused or nil
 	self.onTease = data.onTease or nil

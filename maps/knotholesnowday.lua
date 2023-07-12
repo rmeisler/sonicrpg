@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 485,
+  nextobjectid = 487,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = false,
@@ -6075,6 +6075,32 @@ return {
             ["loganTargetable"] = true,
             ["nonight"] = true,
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self)\n    GameState:grantItem(require \"data/items/Coal\", 1)\n    return BlockPlayer {\n        MessageBox {message = \"Found a {h Lump of Coal}!\", sfx=\"levelup\"},\n        Do(function() self:remove() end)\n    }\nend"
+          }
+        },
+        {
+          id = 485,
+          name = "Firebird",
+          type = "Cambot",
+          shape = "rectangle",
+          x = 480,
+          y = 1952,
+          width = 224,
+          height = 96,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/firebirdv1.lua",
+            ["battleOnCollide"] = true,
+            ["boss"] = true,
+            ["defaultAnim"] = "fire",
+            ["ghost"] = false,
+            ["ignorePlayer"] = true,
+            ["noInvestigate"] = true,
+            ["noflashlight"] = true,
+            ["nonight"] = true,
+            ["novisualcolliders"] = true,
+            ["sprite"] = "../art/sprites/firebirdv1.png"
           }
         }
       }
