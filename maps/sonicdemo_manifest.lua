@@ -198,6 +198,14 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/firebirdv1_head.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/firebirdv1_piece.png"
+	},
+	{
+		type = "image",
 		file = "art/splash/sonicpicture.png"
 	},
 	{
