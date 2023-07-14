@@ -33,7 +33,7 @@ return {
 		xp = 50,
 		maxhp = 3000,
 		attack = 30,
-		defense = 100,
+		defense = 30,
 		speed = 2,
 		focus = 1,
 		luck = 1,
@@ -82,6 +82,9 @@ return {
 		
 		self.sprite.transform.x = self.sprite.transform.x + 250
 		self.sprite.transform.y = self.sprite.transform.y - 170
+
+		self.state = "ice"
+		self.charge = 0
 	end,
 
 	onUpdate = function (self, dt)
@@ -91,8 +94,41 @@ return {
 	behavior = function (self, target)
 		-- Starting state, setup
 		if self.state == "fire" then
-			
+			if self.charge == 3 then
+				return Serial {
+					Telegraph(self, "Napalm", {255,255,255,50}),
+					Animate(self:getSprite(), "fire_attack"),
+					Wait(2),
+					Do(function()
+						self.charge = 0
+						self.state = "ice"
+						self:getSprite():setAnimation("ice_idle")
+					end)
+				}
+			end
+			self.charge = self.charge + 1
+			return Serial {
+				Telegraph(self, "Charging "..tostring(4 - self.charge).."...", {255,255,255,50}),
+				Animate(self:getSprite(), "fire_charge"..tostring(self.charge))
+			}
 		elseif self.state == "ice" then
+		    if self.charge == 3 then
+				return Serial {
+					Telegraph(self, "Iceblast", {255,255,255,50}),
+					Animate(self:getSprite(), "ice_attack"),
+					Wait(2),
+					Do(function()
+						self.charge = 0
+						self.state = "fire"
+						self:getSprite():setAnimation("fire_idle")
+					end)
+				}
+			end
+			self.charge = self.charge + 1
+			return Serial {
+				Telegraph(self, "Charging "..tostring(4 - self.charge).."...", {255,255,255,50}),
+				Animate(self:getSprite(), "ice_charge"..tostring(self.charge))
+			}
 		end
 	end,
 }
