@@ -8,6 +8,9 @@ return {
 	    idle = {
 			frames = {{0,1}}
 		},
+		hurt = {
+			frames = {{13,2}}
+		},
 
 		idleright = {
             frames = {{0,0}}

@@ -69,7 +69,7 @@ function SpriteNode:add(name, ani)
 end
 
 function SpriteNode:trySetAnimation(name)
-	if self.animations[name] then
+	if self.animationOverrideStack[name] or self.animations[name] then
 		self:setAnimation(name)
 	end
 end

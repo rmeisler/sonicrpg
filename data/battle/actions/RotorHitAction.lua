@@ -9,16 +9,26 @@ local Do = require "actions/Do"
 
 local PressX = require "data/battle/actions/PressX"
 local OnHitEvent = require "data/battle/actions/OnHitEvent"
+local Telegraph = require "data/monsters/actions/Telegraph"
 
 local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
+local ItemType = require "util/ItemType"
 
 return function(self, target)
+	local spriteName
+	if GameState:isEquipped("rotor", ItemType.Weapon, "Hammer") then
+		spriteName = "hammer"
+	elseif GameState:isEquipped("rotor", ItemType.Weapon, "Wrench") then
+		spriteName = "wrench"
+	else
+		return Telegraph(self, "No weapon equipped...", {255,255,255,50})
+	end
 	local wrench = SpriteNode(
 		self.scene,
 		Transform.from(self.sprite.transform),
 		{255,255,255,255},
-		"wrench",
+		spriteName,
 		nil,
 		nil,
 		"ui"

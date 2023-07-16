@@ -69,8 +69,7 @@ return {
 	{
         type = "map",
 		file = "maps/sallyshutnight.lua",
-		-- REAL PRIMARY
-    },
+	},
 	
 	{
         type = "map",
@@ -116,7 +115,7 @@ return {
 	{
         type = "map",
         file = "maps/knotholesnowday.lua",
-		primary = true
+		--primary = true -- testing
     },
 	{
         type = "map",
@@ -127,7 +126,7 @@ return {
 	{
         type = "map",
         file = "maps/knotholelookout.lua",
-		primary = true -- testing
+		--primary = true -- testing
     },
 	{
         type = "map",
@@ -203,6 +202,14 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/firebirdv1_piece.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/fireball.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/freezepoof.png"
 	},
 	{
 		type = "image",
@@ -487,6 +494,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/ringbeam.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/hammer.png"
 	},
 	{
 		type = "image",

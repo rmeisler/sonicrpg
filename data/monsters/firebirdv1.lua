@@ -1,6 +1,7 @@
 local Serial = require "actions/Serial"
 local Parallel = require "actions/Parallel"
 local Do = require "actions/Do"
+local Repeat = require "actions/Repeat"
 local Animate = require "actions/Animate"
 local Wait = require "actions/Wait"
 local Ease = require "actions/Ease"
@@ -9,6 +10,7 @@ local PlayAudio = require "actions/PlayAudio"
 local YieldUntil = require "actions/YieldUntil"
 local Try = require "actions/Try"
 local BouncyText = require "actions/BouncyText"
+local Executor = require "actions/Executor"
 
 local SpriteNode = require "object/SpriteNode"
 local BattleActor = require "object/BattleActor"
@@ -95,14 +97,66 @@ return {
 		-- Starting state, setup
 		if self.state == "fire" then
 			if self.charge == 3 then
+				local sprite = self:getSprite()
+				local origTargetXform = target.sprite.transform
+				local headXformOffset
+				if target.playerSlot == 1 then
+					headXformOffset = Transform(50, 50)
+				elseif target.playerSlot == 2 then
+					headXformOffset = Transform(0, 80)
+				elseif target.playerSlot == 3 then
+					headXformOffset = Transform(-50, 110)
+				end
 				return Serial {
 					Telegraph(self, "Napalm", {255,255,255,50}),
+					Parallel {
+						Ease(sprite.transform, "x", sprite.transform.x + headXformOffset.x, 2),
+						Ease(sprite.transform, "y", sprite.transform.y + headXformOffset.y, 2)
+					},
 					Animate(self:getSprite(), "fire_attack"),
-					Wait(2),
+					Wait(0.5),
+					Parallel {
+						Serial {
+							Wait(2),
+							target:takeDamage(self.stats)
+						},
+						Repeat(Serial {
+							Do(function()
+								local xform = sprite.transform
+								local targetXForm = target.sprite.transform
+								local fireball = SpriteNode(self.scene, Transform(xform.x + 200, xform.y + 120, 4, 4), nil, "fireball", nil, nil, "sprites")
+								Executor(self.scene):act(Serial {
+									Parallel {
+										Ease(fireball.transform, "x", target.sprite.transform.x, 2, "linear"),
+										Ease(fireball.transform, "y", target.sprite.transform.y, 2, "linear")
+									},
+									Animate(target.sprite, "hurt"),
+									Ease(target.sprite.transform, "x", targetXForm.x + 5, 30, "quad"),
+									Do(function()
+										fireball:remove()
+									end),
+									Ease(target.sprite.transform, "x", targetXForm.x, 30, "quad"),
+									Do(function()
+										-- noop
+									end)
+								})
+							end),
+							Wait(0.05),
+						}, 50)
+					},
+					Parallel {
+						Ease(sprite.transform, "x", sprite.transform.x, 2),
+						Ease(sprite.transform, "y", sprite.transform.y, 2),
+						Ease(target.sprite.transform, "x", origTargetXform.x, 2),
+						Ease(target.sprite.transform, "y", origTargetXform.y, 2)
+					},
+					Animate(target.sprite, "idle"),
 					Do(function()
 						self.charge = 0
 						self.state = "ice"
-						self:getSprite():setAnimation("ice_idle")
+						self:getSprite():pushOverride("idle", "ice_idle")
+						self:getSprite():pushOverride("hurt", "ice_hurt")
+						self:getSprite():setAnimation("idle")
 					end)
 				}
 			end
@@ -113,14 +167,66 @@ return {
 			}
 		elseif self.state == "ice" then
 		    if self.charge == 3 then
+				local sprite = self:getSprite()
+				local origTargetXform = target.sprite.transform
+				local headXformOffset
+				if target.playerSlot == 1 then
+					headXformOffset = Transform(50, 50)
+				elseif target.playerSlot == 2 then
+					headXformOffset = Transform(0, 80)
+				elseif target.playerSlot == 3 then
+					headXformOffset = Transform(-50, 110)
+				end
 				return Serial {
 					Telegraph(self, "Iceblast", {255,255,255,50}),
+					Parallel {
+						Ease(sprite.transform, "x", sprite.transform.x + headXformOffset.x, 2),
+						Ease(sprite.transform, "y", sprite.transform.y + headXformOffset.y, 2)
+					},
 					Animate(self:getSprite(), "ice_attack"),
-					Wait(2),
+					Wait(0.5),
+					Parallel {
+						Serial {
+							Wait(2),
+							target:takeDamage(self.stats)
+						},
+						Repeat(Serial {
+							Do(function()
+								local xform = sprite.transform
+								local targetXForm = target.sprite.transform
+								local freezepoof = SpriteNode(self.scene, Transform(xform.x + 180, xform.y + 120, 4, 4), nil, "freezepoof", nil, nil, "sprites")
+								Executor(self.scene):act(Serial {
+									Parallel {
+										Ease(freezepoof.transform, "x", target.sprite.transform.x, 2, "linear"),
+										Ease(freezepoof.transform, "y", target.sprite.transform.y, 2, "linear")
+									},
+									Animate(target.sprite, "hurt"),
+									Ease(target.sprite.transform, "x", targetXForm.x + 5, 30, "quad"),
+									Do(function()
+										freezepoof:remove()
+									end),
+									Ease(target.sprite.transform, "x", targetXForm.x, 30, "quad"),
+									Do(function()
+										-- noop
+									end)
+								})
+							end),
+							Wait(0.05),
+						}, 50)
+					},
+					Parallel {
+						Ease(sprite.transform, "x", sprite.transform.x, 2),
+						Ease(sprite.transform, "y", sprite.transform.y, 2),
+						Ease(target.sprite.transform, "x", origTargetXform.x, 2),
+						Ease(target.sprite.transform, "y", origTargetXform.y, 2)
+					},
+					Animate(target.sprite, "idle"),
 					Do(function()
 						self.charge = 0
 						self.state = "fire"
-						self:getSprite():setAnimation("fire_idle")
+						self:getSprite():pushOverride("idle", "fire_idle")
+						self:getSprite():pushOverride("hurt", "fire_hurt")
+						self:getSprite():setAnimation("idle")
 					end)
 				}
 			end
@@ -131,4 +237,8 @@ return {
 			}
 		end
 	end,
+	
+	getHurt = function(self)
+		
+	end
 }

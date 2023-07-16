@@ -5,6 +5,13 @@ return {
     h = 86,
 
     animations = {
+		idle = {
+			frames = {{1,0}}
+		},
+		hurt = {
+			frames = {{0,0}}
+		},
+
 		ice_hurt = {
             frames = {{0,0}}
         },

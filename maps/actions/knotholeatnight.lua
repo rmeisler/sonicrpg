@@ -40,6 +40,7 @@ return function(scene, hint)
 				scene.player.hidekeyhints[tostring(door)] = door
 				scene.audio:stopMusic()
 			end),
+			Wait(1),
 			PlayAudio("music", "snowday", 1.0, true, true),
 			Wait(1),
 			MessageBox{message="Logan: What the...?", closeAction=Wait(1)},
@@ -62,7 +63,7 @@ return function(scene, hint)
 					Animate(scene.objectLookup.Tails.sprite, "joyright"),
 					scene.objectLookup.Tails:hop()
 				},
-				Ease(scene.camPos, "x", 4000, 0.28, "linear")
+				Ease(scene.camPos, "x", 4000, 0.3, "linear")
 			},
 			Animate(scene.objectLookup.Tails.sprite, "idleright"),
 			Ease(scene.camPos, "x", 6100, 0.5),
@@ -102,7 +103,7 @@ return function(scene, hint)
 				Ease(scene.camPos, "x", 6250, 0.3),
 				Ease(scene.camPos, "y", -400, 0.3)
 			},
-			Wait(2.5),
+			Wait(3),
 			Parallel {
 				Ease(scene.camPos, "x", 0, 1),
 				Ease(scene.camPos, "y", 0, 1)
