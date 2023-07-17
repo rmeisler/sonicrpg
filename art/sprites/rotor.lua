@@ -11,7 +11,10 @@ return {
 		shock = {
 			frames = {{7,4}}
 		},
-		
+		frozen = {
+			frames = {{9,4}}
+		},
+
 		sitright = {
 			frames = {{1,5}}
 		},

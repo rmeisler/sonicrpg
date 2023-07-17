@@ -11,6 +11,15 @@ return {
 		victory = {
 			frames = {{0,4}}
 		},
+		frozen = {
+			frames = {{7,1}}
+		},
+		cold = {
+			frames = {{8,1}}
+		},
+		shock = {
+			frames = {{8,1}}
+		},
 		prethrow = {
 			frames = {{1,1}}
 		},

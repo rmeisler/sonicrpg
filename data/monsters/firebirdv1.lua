@@ -36,7 +36,7 @@ return {
 		maxhp = 3000,
 		attack = 30,
 		defense = 30,
-		speed = 2,
+		speed = 5,
 		focus = 1,
 		luck = 1,
 	},
@@ -50,14 +50,6 @@ return {
 	drops = {},
 
 	scan = "Nah.",
-
-	onAttack = function (self, attacker)
-		if self.hp <= 0 then
-			return Action()
-		end
-
-		
-	end,
 
 	onInit = function (self)
 		local x = self.sprite.transform.x
@@ -89,10 +81,6 @@ return {
 		self.charge = 0
 	end,
 
-	onUpdate = function (self, dt)
-		
-	end,
-
 	behavior = function (self, target)
 		-- Starting state, setup
 		if self.state == "fire" then
@@ -118,7 +106,8 @@ return {
 					Parallel {
 						Serial {
 							Wait(2),
-							target:takeDamage(self.stats)
+							target:takeDamage({attack = 100, speed = 100, luck = 0}),
+							Wait(1),
 						},
 						Repeat(Serial {
 							Do(function()
@@ -150,8 +139,12 @@ return {
 						Ease(target.sprite.transform, "x", origTargetXform.x, 2),
 						Ease(target.sprite.transform, "y", origTargetXform.y, 2)
 					},
-					Animate(target.sprite, "idle"),
 					Do(function()
+						if target.hp > 0 then
+							target.sprite:setAnimation("idle")
+						else
+							target.sprite:setAnimation("dead")
+						end
 						self.charge = 0
 						self.state = "ice"
 						self:getSprite():pushOverride("idle", "ice_idle")
@@ -162,8 +155,21 @@ return {
 			end
 			self.charge = self.charge + 1
 			return Serial {
-				Telegraph(self, "Charging "..tostring(4 - self.charge).."...", {255,255,255,50}),
-				Animate(self:getSprite(), "fire_charge"..tostring(self.charge))
+				Do(function() self:getSprite():setAnimation("fire_charge"..tostring(self.charge)) end),
+				Parallel {
+					Telegraph(self, "Charging "..tostring(4 - self.charge).."...", {255,255,255,50}),
+
+					Serial {
+						Parallel {
+							Ease(self:getSprite().transform, "x", self:getSprite().transform.x + 20, 2),
+							Ease(self:getSprite().transform, "y", self:getSprite().transform.y + 10, 2)
+						},
+						Parallel {
+							Ease(self:getSprite().transform, "x", self:getSprite().transform.x, 2),
+							Ease(self:getSprite().transform, "y", self:getSprite().transform.y, 2)
+						}
+					},
+				}
 			}
 		elseif self.state == "ice" then
 		    if self.charge == 3 then
@@ -184,11 +190,10 @@ return {
 						Ease(sprite.transform, "y", sprite.transform.y + headXformOffset.y, 2)
 					},
 					Animate(self:getSprite(), "ice_attack"),
-					Wait(0.5),
 					Parallel {
 						Serial {
-							Wait(2),
-							target:takeDamage(self.stats)
+							Wait(0.5),
+							Animate(target.sprite, "cold")
 						},
 						Repeat(Serial {
 							Do(function()
@@ -200,7 +205,6 @@ return {
 										Ease(freezepoof.transform, "x", target.sprite.transform.x, 2, "linear"),
 										Ease(freezepoof.transform, "y", target.sprite.transform.y, 2, "linear")
 									},
-									Animate(target.sprite, "hurt"),
 									Ease(target.sprite.transform, "x", targetXForm.x + 5, 30, "quad"),
 									Do(function()
 										freezepoof:remove()
@@ -212,16 +216,42 @@ return {
 								})
 							end),
 							Wait(0.05),
-						}, 50)
+						}, 30)
 					},
+					PlayAudio("sfx", "slice", 0.5, true),
+					Animate(target.sprite, "frozen"),
+					Repeat(Serial {
+						Do(function()
+							local xform = sprite.transform
+							local targetXForm = target.sprite.transform
+							local freezepoof = SpriteNode(self.scene, Transform(xform.x + 180, xform.y + 120, 4, 4), nil, "freezepoof", nil, nil, "sprites")
+							Executor(self.scene):act(Serial {
+								Parallel {
+									Ease(freezepoof.transform, "x", target.sprite.transform.x, 2, "linear"),
+									Ease(freezepoof.transform, "y", target.sprite.transform.y, 2, "linear")
+								},
+								Ease(target.sprite.transform, "x", targetXForm.x + 5, 30, "quad"),
+								Do(function()
+									freezepoof:remove()
+								end),
+								Ease(target.sprite.transform, "x", targetXForm.x, 30, "quad"),
+								Do(function()
+									-- noop
+								end)
+							})
+						end),
+						Wait(0.05),
+					}, 20),
 					Parallel {
 						Ease(sprite.transform, "x", sprite.transform.x, 2),
 						Ease(sprite.transform, "y", sprite.transform.y, 2),
 						Ease(target.sprite.transform, "x", origTargetXform.x, 2),
 						Ease(target.sprite.transform, "y", origTargetXform.y, 2)
 					},
-					Animate(target.sprite, "idle"),
 					Do(function()
+						target.state = BattleActor.STATE_IMMOBILIZED
+						target.turnsImmobilized = 2
+
 						self.charge = 0
 						self.state = "fire"
 						self:getSprite():pushOverride("idle", "fire_idle")
@@ -232,13 +262,22 @@ return {
 			end
 			self.charge = self.charge + 1
 			return Serial {
-				Telegraph(self, "Charging "..tostring(4 - self.charge).."...", {255,255,255,50}),
-				Animate(self:getSprite(), "ice_charge"..tostring(self.charge))
+				Do(function() self:getSprite():setAnimation("ice_charge"..tostring(self.charge)) end),
+				Parallel {
+					Telegraph(self, "Charging "..tostring(4 - self.charge).."...", {255,255,255,50}),
+
+					Serial {
+						Parallel {
+							Ease(self:getSprite().transform, "x", self:getSprite().transform.x + 20, 2),
+							Ease(self:getSprite().transform, "y", self:getSprite().transform.y + 10, 2)
+						},
+						Parallel {
+							Ease(self:getSprite().transform, "x", self:getSprite().transform.x, 2),
+							Ease(self:getSprite().transform, "y", self:getSprite().transform.y, 2)
+						}
+					},
+				}
 			}
 		end
-	end,
-	
-	getHurt = function(self)
-		
 	end
 }

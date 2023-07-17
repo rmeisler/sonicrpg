@@ -11,6 +11,9 @@ return {
 		hurt = {
 			frames = {{13,2}}
 		},
+		frozen = {
+			frames = {{10,6}}
+		},
 
 		idleright = {
             frames = {{0,0}}
