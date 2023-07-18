@@ -101,7 +101,7 @@ return {
 						Ease(sprite.transform, "x", sprite.transform.x + headXformOffset.x, 2),
 						Ease(sprite.transform, "y", sprite.transform.y + headXformOffset.y, 2)
 					},
-					Animate(self:getSprite(), "fire_attack"),
+					Do(function() self:getSprite():setAnimation("fire_attack") end),
 					Wait(0.5),
 					Parallel {
 						Serial {
@@ -189,7 +189,7 @@ return {
 						Ease(sprite.transform, "x", sprite.transform.x + headXformOffset.x, 2),
 						Ease(sprite.transform, "y", sprite.transform.y + headXformOffset.y, 2)
 					},
-					Animate(self:getSprite(), "ice_attack"),
+					Do(function() self:getSprite():setAnimation("ice_attack") end),
 					Parallel {
 						Serial {
 							Wait(0.5),

@@ -54,14 +54,14 @@ return {
 	},
 	
 	levelup = {
-		--[[[2] = {
-			messages = {"Rotor learned \"Tinker\"!"},
+		[3] = {
+			messages = {"Rotor learned \"Throw\"!"},
 			skills = {
-				require "data/battle/skills/Tinker",
+				require "data/battle/skills/Throw",
 			}
-		},]]
+		},
 	},
-	
+
 	specialmove = require "data/specialmoves/rotor",
 
 	battle = {

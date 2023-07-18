@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 487,
+  nextobjectid = 488,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = false,
@@ -3311,23 +3311,6 @@ return {
           }
         },
         {
-          id = 132,
-          name = "Save",
-          type = "SavePoint",
-          shape = "rectangle",
-          x = 608,
-          y = 1280,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7000,
-          visible = true,
-          properties = {
-            ["nonight"] = true,
-            ["sprite"] = "../art/sprites/save.png"
-          }
-        },
-        {
           id = 134,
           name = "Ladder1",
           type = "Ladder",
@@ -6101,6 +6084,23 @@ return {
             ["nonight"] = true,
             ["novisualcolliders"] = true,
             ["sprite"] = "../art/sprites/firebirdv1.png"
+          }
+        },
+        {
+          id = 487,
+          name = "Save",
+          type = "SavePoint",
+          shape = "rectangle",
+          x = 7840,
+          y = 1152,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7000,
+          visible = true,
+          properties = {
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/save.png"
           }
         }
       }
