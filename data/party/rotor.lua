@@ -60,6 +60,18 @@ return {
 				require "data/battle/skills/Throw",
 			}
 		},
+		[4] = {
+			messages = {"Rotor learned \"Junk\"!"},
+			skills = {
+				require "data/battle/skills/Junk",
+			}
+		},
+		[5] = {
+			messages = {"Rotor learned \"Super Mine\"!"},
+			skills = {
+				require "data/battle/skills/SuperMine",
+			}
+		},
 	},
 
 	specialmove = require "data/specialmoves/rotor",

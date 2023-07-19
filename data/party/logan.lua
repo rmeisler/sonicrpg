@@ -52,19 +52,29 @@ return {
 	
 	levelup = {
 		[1] = {
-			messages = {},
+			messages = {"Logan learned \"Scan\"!"},
 			skills = {
-				require "data/battle/skills/Spindash",
-				--require "data/battle/skills/PowerRing"
+				require "data/battle/skills/Scan",
 			}
 		},
-		--[[[3] = {
-			messages = {"Sonic learned \"Bounce\"!"},
+		[2] = {
+			messages = {"Logan learned \"Hologram\"!"},
 			skills = {
-				require "data/battle/skills/Spindash",
-				require "data/battle/skills/Bounce",
+				require "data/battle/skills/Hologram",
 			}
-		},]]
+		},
+		[3] = {
+			messages = {"Logan learned \"Predict\"!"},
+			skills = {
+				require "data/battle/skills/Predict",
+			}
+		},
+		[4] = {
+			messages = {"Logan learned \"Super Shield\"!"},
+			skills = {
+				require "data/battle/skills/SuperShield",
+			}
+		},
 	},
 	
 	specialmove = require "data/specialmoves/logan",
