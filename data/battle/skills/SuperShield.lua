@@ -1,7 +1,7 @@
 local TargetType = require "util/TargetType"
 
 return {
-	name = "Super Shield",
+	name = "Shield",
 	target = TargetType.Party,
 	unusable = function(target)
 		return target.side == TargetType.Opponent

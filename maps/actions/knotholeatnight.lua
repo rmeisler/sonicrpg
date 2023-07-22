@@ -41,7 +41,7 @@ return function(scene, hint)
 				scene.audio:stopMusic()
 			end),
 			Wait(1),
-			PlayAudio("music", "snowday", 1.0, true, true),
+			PlayAudio("music", "snowday", 0.8, true, true),
 			Wait(1),
 			MessageBox{message="Logan: What the...?", closeAction=Wait(1)},
 			Parallel {

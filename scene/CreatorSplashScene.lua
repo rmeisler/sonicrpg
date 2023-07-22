@@ -16,8 +16,11 @@ local CreatorSplashScene = class(Scene)
 function CreatorSplashScene:onEnter()
 	self:pushLayer("ui")
 	
+	love.graphics.setBackgroundColor(255, 255, 255, 255)
+	
 	self.bgColor = {0,0,0,255}
 	ScreenShader:sendColor("multColor", self.bgColor)
+	self.typeTextColor = {0,0,0,255}
 
 	return Serial {
 		Parallel {
@@ -30,7 +33,7 @@ function CreatorSplashScene:onEnter()
 		},
 		TypeText(
 			Transform(70, 250),
-			{255, 255, 255, 255},
+			self.typeTextColor,
 			FontCache.Consolas,
 			"Sonic The Hedgehog and all related characters and \n"
 			.."  intellectual property are owned by SEGA Inc.\n\n"
@@ -48,6 +51,9 @@ function CreatorSplashScene:onExit()
 	ScreenShader:sendColor("multColor", self.bgColor)
 	return Serial {
 		Parallel {
+			Ease(self.typeTextColor, 1, 255, 1, "linear"),
+			Ease(self.typeTextColor, 2, 255, 1, "linear"),
+			Ease(self.typeTextColor, 3, 255, 1, "linear"),
 			Ease(self.bgColor, 1, 0, 0.5, "linear"),
 			Ease(self.bgColor, 2, 0, 0.5, "linear"),
 			Ease(self.bgColor, 3, 0, 0.5, "linear"),

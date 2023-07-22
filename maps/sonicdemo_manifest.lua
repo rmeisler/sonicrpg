@@ -125,6 +125,12 @@ return {
 	
 	{
         type = "map",
+        file = "maps/knothole.lua",
+		primary = true -- TEST
+    },
+	
+	{
+        type = "map",
         file = "maps/knotholelookout.lua",
 		--primary = true -- testing
     },
@@ -153,7 +159,8 @@ return {
 	
 	{
         type = "map",
-        file = "maps/greatforest2_uppath.lua"
+        file = "maps/greatforest2_uppath.lua",
+		--primary = true, -- TEST
     },
 	
 	{
@@ -1110,6 +1117,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/rotorsworkshop.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/rotormsg.ogg",
 		category = "music"
 	},
 	{

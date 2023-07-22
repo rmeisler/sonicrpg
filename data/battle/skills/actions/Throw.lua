@@ -104,9 +104,9 @@ return function(self, target)
 		Do(function()
 			local attack = self.stats.attack
 			if self.releaseVal > 14 then
-				attack = self.stats.attack * 2   -- good
+				attack = self.stats.attack * 2.5 -- good
 			elseif self.releaseVal > 9 then
-				attack = self.stats.attack * 1.5 -- mid
+				attack = self.stats.attack * 2   -- mid
 			end
 			Executor(self.scene):act(target:takeDamage({attack = attack, speed = 100, luck = 0}))
 		end),

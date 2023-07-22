@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 365,
+  nextobjectid = 366,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["onload"] = "actions/knothole.lua",
@@ -1609,22 +1609,6 @@ return {
       draworder = "topdown",
       properties = {},
       objects = {
-        {
-          id = 1,
-          name = "Spawn 1",
-          type = "Player",
-          shape = "rectangle",
-          x = 1600,
-          y = 1088,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["orientation"] = "down"
-          }
-        },
         {
           id = 2,
           name = "SallyHut",
@@ -4187,6 +4171,22 @@ return {
             ["ghost"] = true,
             ["hidden"] = true,
             ["sprite"] = "../art/sprites/bunny.png"
+          }
+        },
+        {
+          id = 365,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 4768,
+          y = 2016,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["orientation"] = "down"
           }
         }
       }

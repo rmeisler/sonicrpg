@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="365">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="88" tilewidth="32" tileheight="32" infinite="0" nextobjectid="366">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="onload" type="file" value="actions/knothole.lua"/>
@@ -1097,11 +1097,6 @@
   </object>
  </objectgroup>
  <objectgroup name="objects">
-  <object id="1" name="Spawn 1" type="Player" gid="5323" x="1600" y="1088" width="32" height="32">
-   <properties>
-    <property name="orientation" value="down"/>
-   </properties>
-  </object>
   <object id="2" name="SallyHut" type="BasicNPC" gid="5323" x="1088" y="800" width="416" height="192">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -3130,6 +3125,11 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
+   </properties>
+  </object>
+  <object id="365" name="Spawn 1" type="Player" gid="5323" x="4768" y="2016" width="32" height="32">
+   <properties>
+    <property name="orientation" value="down"/>
    </properties>
   </object>
  </objectgroup>

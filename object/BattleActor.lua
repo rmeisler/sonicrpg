@@ -109,7 +109,7 @@ function BattleActor:getSprite()
 	return self.sprite
 end
 
-function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
+function BattleActor:takeDamage(stats, isPassive, knockbackActionFun, attacker)
 	isPassive = isPassive or false
 	
 	local sprite = self:getSprite()
@@ -182,7 +182,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun)
 		
 		Serial {
 			Do(function()
-				self:invoke("hit", damage)
+				self:invoke("hit", damage, attacker)
 				if (damage > 0 and sprite.animations["hurt"] and not self.noHurtAnim) then
 					sprite:setAnimation("hurt")
 				end

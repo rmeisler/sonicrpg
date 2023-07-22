@@ -79,11 +79,11 @@ function TitleSplashScene:onEnter()
 	self.audio:registerAs("sfx", "wind", love.audio.newSource("audio/sfx/wind.ogg", "static"))
 	self.audio:registerAs("music", "pretitle", love.audio.newSource("audio/music/title.ogg", "static"))
 
-	self.bgColor = {0,0,0,255}
+	self.bgColor = {255,255,255,255}
 	self.logoColor = {255,255,255,0}
 	self.menuTextColor = {0,0,0,255}
 	self.logoScale = 0
-	
+
 	self.menu = Menu {
 		layout = Layout{
 			{
@@ -109,7 +109,8 @@ function TitleSplashScene:onEnter()
 	}
 	
 	ScreenShader:sendColor("multColor", {255,255,255,255})
-	
+	love.graphics.setBackgroundColor(0,0,0,255)
+
 	self.exiting = false
 	return Executor(self):act(While(
 		function()

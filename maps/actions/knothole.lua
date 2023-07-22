@@ -25,6 +25,34 @@ return function(scene, hint)
 	local Player = require "object/Player"
 	local BasicNPC = require "object/BasicNPC"
 	
+	-- TEST
+	GameState:setFlag("ep3_knotholerun")
+	GameState:setFlag("ep4_introdone")
+	hint = "notworld"
+	
+	local hop = function(obj)
+		return Serial {
+			Ease(obj, "y", function() return obj.y - 30 end, 8),
+			Ease(obj, "y", function() return obj.y + 30 end, 8, "quad"),
+			Ease(obj, "y", function() return obj.y - 5 end, 20, "quad"),
+			Ease(obj, "y", function() return obj.y + 5 end, 20, "quad"),
+			Ease(obj, "y", function() return obj.y - 2 end, 20, "quad"),
+			Ease(obj, "y", function() return obj.y + 2 end, 20, "quad")
+		}
+	end
+	local dblhop = function(obj)
+		return Serial {
+			Ease(obj, "y", function() return obj.y - 30 end, 8),
+			Ease(obj, "y", function() return obj.y + 30 end, 8, "quad"),
+			Ease(obj, "y", function() return obj.y - 30 end, 8),
+			Ease(obj, "y", function() return obj.y + 30 end, 8, "quad"),
+			Ease(obj, "y", function() return obj.y - 5 end, 20, "quad"),
+			Ease(obj, "y", function() return obj.y + 5 end, 20, "quad"),
+			Ease(obj, "y", function() return obj.y - 2 end, 20, "quad"),
+			Ease(obj, "y", function() return obj.y + 2 end, 20, "quad")
+		}
+	end
+	
 	local knotholeIntro = function()
 		local subtext = TypeText(
 			Transform(50, 470),
@@ -95,6 +123,112 @@ return function(scene, hint)
 		knotholeIntro()
 		scene.audio:playMusic("knothole", 0.8, true)
 		return Action()
+	elseif GameState:isFlagSet("ep4_introdone") and
+		not GameState:isFlagSet("ep4_ffmeetingover")
+	then
+		GameState:setFlag("ep4_ffmeetingover")
+
+		scene.audio:stopMusic()
+
+		scene.objectLookup.SonicMtg.hidden = false
+		scene.objectLookup.RotorMtg.hidden = false
+		scene.objectLookup.AntoineMtg.hidden = false
+		scene.objectLookup.SallyMtg.hidden = false
+		scene.objectLookup.BunnieMtg.hidden = false
+		scene.objectLookup.FleetMtg.hidden = false
+		scene.objectLookup.LoganMtg.hidden = false
+		scene.objectLookup.IvanMtg.hidden = false
+		scene.objectLookup.LeonMtg.hidden = false
+		
+		local sally = scene.objectLookup.SallyMtg
+		local antoine = scene.objectLookup.AntoineMtg
+		local sonic = scene.objectLookup.SonicMtg
+		local rotor = scene.objectLookup.RotorMtg
+		local bunnie = scene.objectLookup.BunnieMtg
+
+		local fleet = scene.objectLookup.FleetMtg
+		local logan = scene.objectLookup.LoganMtg
+		local ivan = scene.objectLookup.IvanMtg
+		local leon = scene.objectLookup.LeonMtg
+
+		leon.x = scene.objectLookup.RotorMtg.x - 40
+		leon.y = scene.objectLookup.RotorMtg.y
+		leon.sprite:setAnimation("idleright")
+
+		scene.player.sprite.visible = false
+		scene.player.dropShadow.hidden = true
+
+		return BlockPlayer {
+			Do(function()
+				scene.player.x = scene.objectLookup.BunnieMtg.x
+				scene.player.y = scene.objectLookup.BunnieMtg.y + 64
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+				scene.player.cinematic = true
+			end),
+
+			Wait(2),
+
+			MessageBox {message="Sally: I'm sure no one will be surprised to hear this..."},
+			PlayAudio("music", "project", 1.0, true, true),
+			MessageBox {message="Sally: Leon and I have discovered that Robotnik was behind last night's snow storm."},
+			MessageBox {message="Leon: Our current data suggests that Robotnik has relocated {h Project Firebird} to the Northern Mountains and is conducting field tests in the area..."},
+			MessageBox {message="Leon: And that last night's storm and the subsequent\nweather anomoly we've experienced were both due to those field tests..."},
+			hop(antoine),
+			MessageBox {message="Antoine: {h P-P-Project Firebird}!?"},
+			hop(bunnie),
+			MessageBox {message="Bunnie: My goodness! {p60}If that's what field testing looks like..."},
+			hop(sonic),
+			MessageBox {message="Sonic: Yo Sal{p40}, how can these storms be coming all the way here from the Nothern Mountains? {p60}Aren't they mondo far away?"},
+			MessageBox {message="Sally: The Northern Mountains are about 800 miles from Knothole. {p60}Which means that Project Firebird is even more dangerous than we predicted..."},
+			MessageBox {message="Sonic: Uh oh."},
+			Animate(ivan.sprite, "meeting_idledown_attitude"),
+			MessageBox {message="Ivan: 'Uh oh', indeed."},
+			Animate(fleet.sprite, "meeting_lookright"),
+			MessageBox {message="Fleet: ..."},
+			MessageBox {message="Leon: How close are we to deploying the computer virus?"},
+			Animate(logan.sprite, "meeting_idledown_attitude"),
+			MessageBox {message="Logan: We've got at least two weeks of work ahead of us..."},
+			MessageBox {message="Rotor: ... yeah{p60}...and four weeks of testing..."},
+			MessageBox {message="Leon: ..."},
+			Wait(1),
+			AudioFade("music", 1.0, 0.0, 0.5),
+			Wait(1),
+			MessageBox {message="Sally: There's something else."},
+			MessageBox {message="Sally: We picked up a distress signal in the area. {p60}It seems like it's been on repeat for a long time..."},
+			Animate(logan.sprite, "meeting_idledown"),
+			Animate(ivan.sprite, "meeting_idledown"),
+			Animate(fleet.sprite, "meeting_idledown"),
+			MessageBox {message="Rotor: How can you tell?"},
+			MessageBox {message="Sally: It's requesting assistance from the Kingdom of Mobotropolis..."},
+			Parallel {
+				hop(sonic),
+				hop(bunnie),
+				hop(antoine)
+			},
+			MessageBox {message="Sally: You're gonna want to hear this, Rotor."},
+			MessageBox {message="Sally: Nicole. {p60}Play audio."},
+			MessageBox {message="Nicole: Playing{p60}, Sally.", sfx="nichole"},
+			Wait(1),
+			MessageBox {message="*zzzz* {p60}{h Sir Bartholomew Walrus} reporting from site \nC231-090 *zzzz* {p60}requesting transport back to Mobotropolis\n*zzzz*"},
+			MessageBox {message="Nicole: End of message.", sfx="nichole"},
+			PlayAudio("music", "rotormsg", 1.0, true),
+			MessageBox {message="Rotor: Pop-Pop! {p60}That's my Pop-Pop, Sally!", closeAction=Wait(2.5)},
+			Animate(sally.sprite, "meeting_thinking"),
+			MessageBox {message="Sally: I know...", closeAction=Wait(2.5)},
+			MessageBox {message="Rotor: He's alive! {p60}He needs our help!", closeAction=Wait(3)},
+			MessageBox {message="Sally: It could be a trap, Rotor.", closeAction=Wait(2.5)},
+			MessageBox {message="Rotor: Maybe so, {p60}but we still gotta go, right?", closeAction=Wait(3.5)},
+			MessageBox {message="Rotor: If he's out there{p60}, who knows how long he's been in trouble! {p100}We gotta save him!", closeAction=Wait(3.5)},
+			Animate(sally.sprite, "meeting_idleleft"),
+			MessageBox {message="Sally: Well...", closeAction=Wait(2)},
+			Wait(2),
+			-- Sally looks at Leon. He shakes his head no.
+			Animate(sally.sprite, "meeting_sadleft"),
+			MessageBox {message="Sally: I'm sorry Rotor{p60}, it's just too dangerous.", closeAction=Wait(4)},
+			MessageBox {message="Rotor: But...", closeAction=Wait(2.5)},
+			MessageBox {message="Sally: ..." , closeAction=Wait(3.5)},
+		}
 	elseif GameState:isFlagSet("ep3_intro") and
 		GameState:isFlagSet("ep3_ffmeeting") and
 		not GameState:isFlagSet("ep3_ffmeetingover")
@@ -126,29 +260,6 @@ return function(scene, hint)
 		local logan = scene.objectLookup.LoganMtg
 		local ivan = scene.objectLookup.IvanMtg
 		local leon = scene.objectLookup.LeonMtg
-		
-		local hop = function(obj)
-			return Serial {
-				Ease(obj, "y", function() return obj.y - 30 end, 8),
-				Ease(obj, "y", function() return obj.y + 30 end, 8, "quad"),
-				Ease(obj, "y", function() return obj.y - 5 end, 20, "quad"),
-				Ease(obj, "y", function() return obj.y + 5 end, 20, "quad"),
-				Ease(obj, "y", function() return obj.y - 2 end, 20, "quad"),
-				Ease(obj, "y", function() return obj.y + 2 end, 20, "quad")
-			}
-		end
-		local dblhop = function(obj)
-			return Serial {
-				Ease(obj, "y", function() return obj.y - 30 end, 8),
-				Ease(obj, "y", function() return obj.y + 30 end, 8, "quad"),
-				Ease(obj, "y", function() return obj.y - 30 end, 8),
-				Ease(obj, "y", function() return obj.y + 30 end, 8, "quad"),
-				Ease(obj, "y", function() return obj.y - 5 end, 20, "quad"),
-				Ease(obj, "y", function() return obj.y + 5 end, 20, "quad"),
-				Ease(obj, "y", function() return obj.y - 2 end, 20, "quad"),
-				Ease(obj, "y", function() return obj.y + 2 end, 20, "quad")
-			}
-		end
 
 		scene.player.sprite.visible = false
 		scene.player.dropShadow.hidden = true
@@ -163,7 +274,7 @@ return function(scene, hint)
 			end),
 
 			Wait(2),
-			
+
 			PlayAudio("music", "royalwelcome", 1.0, true, true),
 			Animate(sally.sprite, "planning_smile"),
 			MessageBox {message="Sally: To start off, I'd like to welcome the Rebellion to Knothole Village! {p60}I am sure many of you have already become acquainted--"},

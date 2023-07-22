@@ -51,27 +51,12 @@ return {
 	},
 	
 	levelup = {
-		[1] = {
-			messages = {"Logan learned \"Scan\"!"},
-			skills = {
-				require "data/battle/skills/Scan",
-			}
-		},
-		[2] = {
-			messages = {"Logan learned \"Hologram\"!"},
-			skills = {
-				require "data/battle/skills/Hologram",
-			}
-		},
-		[3] = {
-			messages = {"Logan learned \"Predict\"!"},
-			skills = {
-				require "data/battle/skills/Predict",
-			}
-		},
-		[4] = {
+		[5] = {
 			messages = {"Logan learned \"Super Shield\"!"},
 			skills = {
+				require "data/battle/skills/LoganScan",
+				require "data/battle/skills/Hologram",
+				require "data/battle/skills/Predict",
 				require "data/battle/skills/SuperShield",
 			}
 		},
