@@ -8,7 +8,7 @@ return {
   height = 23,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 30,
+  nextobjectid = 32,
   properties = {
     ["battlebg"] = "../art/backgrounds/prisonbg.png",
     ["onload"] = "actions/rotorsworkshop.lua",
@@ -577,6 +577,22 @@ return {
             ["hidden"] = true,
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/rotor.png"
+          }
+        },
+        {
+          id = 31,
+          name = "Waypoint1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 512,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

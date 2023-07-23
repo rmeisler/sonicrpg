@@ -97,7 +97,8 @@ return {
 	
 	{
         type = "map",
-		file = "maps/rotorsworkshop.lua"
+		file = "maps/rotorsworkshop.lua",
+		primary = true -- TEST
     },
 	
 	{
@@ -120,13 +121,13 @@ return {
 	{
         type = "map",
         file = "maps/knotholeatnight_ep4intro.lua",
-		primary = true
+		--primary = true -- REAL
     },
 	
 	{
         type = "map",
         file = "maps/knothole.lua",
-		primary = true -- TEST
+		--primary = true -- TEST
     },
 	
 	{
@@ -1116,12 +1117,27 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/sadintrospect.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/rotorsworkshop.ogg",
 		category = "music"
 	},
 	{
 		type = "sound",
+		file = "audio/music/rotorsentimental.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/rotormsg.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/rotorready.ogg",
 		category = "music"
 	},
 	{

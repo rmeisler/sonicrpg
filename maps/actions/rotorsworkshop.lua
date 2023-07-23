@@ -8,6 +8,7 @@ return function(scene, hint)
 	local AudioFade = require "actions/AudioFade"
 	local TypeText = require "actions/TypeText"
 	local Menu = require "actions/Menu"
+	local Move = require "actions/Move"
 	local MessageBox = require "actions/MessageBox"
 	local BlockPlayer = require "actions/BlockPlayer"
 	local PlayAudio = require "actions/PlayAudio"
@@ -20,6 +21,8 @@ return function(scene, hint)
 	local Wait = require "actions/Wait"
 	local Do = require "actions/Do"
 	local SpriteNode = require "object/SpriteNode"
+	
+	hint = "ep4_aftermeeting"
 
 	local subtext = TypeText(
 		Transform(50, 470),
@@ -122,6 +125,104 @@ return function(scene, hint)
 		scene.objectLookup.Rotor:remove()
 		scene.objectLookup.Rotor2:remove()
 		scene.objectLookup.Logan:remove()
+	elseif hint == "ep4_aftermeeting" then
+		scene.objectLookup.Logan.hidden = false
+		scene.objectLookup.Logan.ghost = false
+		scene.objectLookup.Logan.isInteractable = true
+		scene.objectLookup.Logan:updateCollision()
+		scene.objectLookup.Logan.sprite:setAnimation("idleup")
+		scene.objectLookup.Logan.x = scene.player.x
+		scene.objectLookup.Logan.y = scene.player.y
+
+		scene.objectLookup.Rotor2.hidden = false
+		scene.objectLookup.Rotor2.ghost = false
+		scene.objectLookup.Rotor2.isInteractable = true
+		scene.objectLookup.Rotor2:updateCollision()
+
+		scene.objectLookup.Rotor:remove()
+		
+		scene.camPos.y = 300
+		scene.player.sprite.visible = false
+
+		return BlockPlayer {
+			Do(function()
+				scene.camPos.y = 300
+				scene.player.sprite.visible = false
+			end),
+			Animate(scene.objectLookup.Rotor2.sprite, "awake"),
+			Wait(2),
+			PlayAudio("music", "sadintrospect", 1.0, true),
+			Wait(2),
+			Animate(scene.objectLookup.Rotor2.sprite, "sleeping"),
+			MessageBox{message="Rotor: *sigh*"},
+			Wait(2),
+			PlayAudio("sfx", "door", 1.0, true),
+			Animate(scene.objectLookup.Door.sprite, "opening"),
+			Animate(scene.objectLookup.Door.sprite, "open"),
+			Wait(1),
+			Move(scene.objectLookup.Logan, scene.objectLookup.Waypoint1, "walk"),
+			Animate(scene.objectLookup.Logan.sprite, "idleup"),
+			Wait(1),
+			MessageBox{message="Logan: Hey..."},
+			Animate(scene.objectLookup.Rotor2.sprite, "awake"),
+			MessageBox{message="Rotor: Hey."},
+			Wait(1),
+			MessageBox{message="Logan: ..."},
+			Do(function()
+				scene.objectLookup.Logan.sprite:setAnimation("walkup")
+			end),
+			Parallel {
+				Ease(scene.objectLookup.Logan, "x", 320, 0.5, "linear"),
+				Ease(scene.objectLookup.Logan, "y", 160, 0.5, "linear"),
+			},
+			Animate(scene.objectLookup.Logan.sprite, "idleright"),
+			Wait(1),
+			MessageBox{message="Logan: So you're just gonna let that pompous princess tell you what to do, huh?"},
+			PlayAudio("music", "sonicsad", 1.0, true, true),
+			MessageBox{message="Rotor: *sigh* {p60}Sally's right. {p60}It's too dangerous."},
+			Animate(scene.objectLookup.Logan.sprite, "irritated"),
+			MessageBox{message="Logan: And I was beginning to think you and I were the same..."},
+			Animate(scene.objectLookup.Rotor2.sprite, "laylookleft"),
+			MessageBox{message="Rotor: What's that supposed to mean?"},
+			Animate(scene.objectLookup.Logan.sprite, "idleright"),
+			MessageBox{message="Logan: It 'means' you should stand up for yourself!"},
+			MessageBox{message="Logan: How many times has Miss 'No Danger' Princess Sally gone chasing after her father?"},
+			MessageBox{message="Logan: She nearly let Iron Lock collapse around her team just to listen to a few incoherent sentences from some interdimensional ghost!"},
+			Animate(scene.objectLookup.Rotor2.sprite, "awake"),
+			MessageBox{message="Rotor: ..."},
+			Wait(1),
+			Animate(scene.objectLookup.Logan.sprite, "attitude"),
+			MessageBox{message="Logan: I'm just sayin'... {p60}if it were my mom up there in the mountains?..."},
+			MessageBox{message="Logan: Well, I wouldn't be taking 'no' for an answer. {p60}I'd high-tail my butt up that mountain."},
+			AudioFade("music", 1, 0, 0.5),
+			MessageBox{message="Rotor: ...{p60}Yeah...{p60} I mean you're right!"},
+			Animate(scene.objectLookup.Logan.sprite, "idleright"),
+			scene.objectLookup.Logan:hop(),
+			MessageBox{message="Logan: Of course I'm right!"},
+			Animate(scene.objectLookup.Rotor2.sprite, "laylookleft"),
+			MessageBox{message="Rotor: But how am I supposed to find my way to him without Nicole?"},
+			Animate(scene.objectLookup.Logan.sprite, "angrydown"),
+			scene.objectLookup.Logan:hop(),
+			MessageBox{message="Logan: *snort* Nicole!?"},
+			Animate(scene.objectLookup.Logan.sprite, "idleright"),
+			MessageBox{message="Logan: You don't need that second-rate soundboard! {p60}I can help guide you there with my own computer!"},
+			MessageBox{message="Rotor: Whoah! {p100}You'd do that for me?"},
+			PlayAudio("music", "rotorsentimental", 1.0, true),
+			Animate(scene.objectLookup.Logan.sprite, "irritated"),
+			MessageBox{message="Logan: Uh... {p120}yeah. {p120}I mean it's no big deal..."},
+			MessageBox{message="Logan: Besides... {p60}I gotta see the look on the Princess' face when we get back!"},
+			MessageBox{message="Rotor: W-Well, alright!"},
+			PlayAudio("music", "rotorready", 1.0, true, true),
+			Animate(scene.objectLookup.Rotor2.sprite, "idleleft"),
+			scene.objectLookup.Rotor2:hop(),
+			Do(function()
+				scene.objectLookup.Rotor2.y = scene.objectLookup.Rotor2.y + 20
+			end),
+			Animate(scene.objectLookup.Logan.sprite, "idleright"),
+			MessageBox{message="Rotor: I-I guess we gotta get to the {h Freedom Stormer}\nthen."},
+			MessageBox{message="Rotor: I stashed it in the {h Great Forest}{p60}, behind some\nboulders for safe keeping..."},
+			MessageBox{message="Logan: Let's do it!"},
+		}
 	elseif hint == "intro" then
 		scene.audio:stopSfx()
 		scene.objectLookup.Logan.hidden = false
