@@ -21,8 +21,6 @@ return function(scene, hint)
 	local Wait = require "actions/Wait"
 	local Do = require "actions/Do"
 	local SpriteNode = require "object/SpriteNode"
-	
-	hint = "ep4_aftermeeting"
 
 	local subtext = TypeText(
 		Transform(50, 470),
@@ -181,33 +179,33 @@ return function(scene, hint)
 			PlayAudio("music", "sonicsad", 1.0, true, true),
 			MessageBox{message="Rotor: *sigh* {p60}Sally's right. {p60}It's too dangerous."},
 			Animate(scene.objectLookup.Logan.sprite, "irritated"),
-			MessageBox{message="Logan: And I was beginning to think you and I were the same..."},
+			MessageBox{message="Logan: And to think I was beginning to respect you..."},
 			Animate(scene.objectLookup.Rotor2.sprite, "laylookleft"),
 			MessageBox{message="Rotor: What's that supposed to mean?"},
 			Animate(scene.objectLookup.Logan.sprite, "idleright"),
 			MessageBox{message="Logan: It 'means' you should stand up for yourself!"},
 			MessageBox{message="Logan: How many times has Miss 'No Danger' Princess Sally gone chasing after her father?"},
-			MessageBox{message="Logan: She nearly let Iron Lock collapse around her team just to listen to a few incoherent sentences from some interdimensional ghost!"},
+			MessageBox{message="Logan: She nearly let Iron Lock collapse around her team just so she could listen to a few incoherent sentences from some interdimensional ghost!"},
 			Animate(scene.objectLookup.Rotor2.sprite, "awake"),
 			MessageBox{message="Rotor: ..."},
 			Wait(1),
 			Animate(scene.objectLookup.Logan.sprite, "attitude"),
 			MessageBox{message="Logan: I'm just sayin'... {p60}if it were my mom up there in the mountains?..."},
-			MessageBox{message="Logan: Well, I wouldn't be taking 'no' for an answer. {p60}I'd high-tail my butt up that mountain."},
+			MessageBox{message="Logan: Well, I wouldn't be taking 'no' for an answer. {p120}I'd high-tail my butt up that mountain."},
 			AudioFade("music", 1, 0, 0.5),
-			MessageBox{message="Rotor: ...{p60}Yeah...{p60} I mean you're right!"},
+			MessageBox{message="Rotor: ...{p60}Yeah...{p60} ya know--{p60} you're right!"},
 			Animate(scene.objectLookup.Logan.sprite, "idleright"),
 			scene.objectLookup.Logan:hop(),
 			MessageBox{message="Logan: Of course I'm right!"},
 			Animate(scene.objectLookup.Rotor2.sprite, "laylookleft"),
-			MessageBox{message="Rotor: But how am I supposed to find my way to him without Nicole?"},
+			MessageBox{message="Rotor: But how'm I supposed to find my way to him without Nicole?"},
 			Animate(scene.objectLookup.Logan.sprite, "angrydown"),
 			scene.objectLookup.Logan:hop(),
 			MessageBox{message="Logan: *snort* Nicole!?"},
 			Animate(scene.objectLookup.Logan.sprite, "idleright"),
 			MessageBox{message="Logan: You don't need that second-rate soundboard! {p60}I can help guide you there with my own computer!"},
-			MessageBox{message="Rotor: Whoah! {p100}You'd do that for me?"},
 			PlayAudio("music", "rotorsentimental", 1.0, true),
+			MessageBox{message="Rotor: Whoah! {p100}You'd do that for me?"},
 			Animate(scene.objectLookup.Logan.sprite, "irritated"),
 			MessageBox{message="Logan: Uh... {p120}yeah. {p120}I mean it's no big deal..."},
 			MessageBox{message="Logan: Besides... {p60}I gotta see the look on the Princess' face when we get back!"},
@@ -221,7 +219,22 @@ return function(scene, hint)
 			Animate(scene.objectLookup.Logan.sprite, "idleright"),
 			MessageBox{message="Rotor: I-I guess we gotta get to the {h Freedom Stormer}\nthen."},
 			MessageBox{message="Rotor: I stashed it in the {h Great Forest}{p60}, behind some\nboulders for safe keeping..."},
+			Animate(scene.objectLookup.Logan.sprite, "pose"),
+			Animate(scene.objectLookup.Rotor2.sprite, "pose"),
 			MessageBox{message="Logan: Let's do it!"},
+			Parallel {
+				Ease(scene.objectLookup.Logan, "x", function() return scene.objectLookup.Logan.x + 50 end, 2, "linear"),
+				Ease(scene.objectLookup.Rotor2, "x", function() return scene.objectLookup.Rotor2.x - 50 end, 2, "linear")
+			},
+			Do(function()
+				scene.player.x = scene.objectLookup.Logan.x + 20
+				scene.player.y = scene.objectLookup.Logan.y + 100
+				scene.player.sprite.visible = true
+				scene.camPos.y = 0
+				scene.player.state = "idledown"
+				scene.objectLookup.Logan:remove()
+				scene.objectLookup.Rotor2:remove()
+			end)
 		}
 	elseif hint == "intro" then
 		scene.audio:stopSfx()

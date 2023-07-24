@@ -25,10 +25,10 @@ return function(scene, hint)
 	local Player = require "object/Player"
 	local BasicNPC = require "object/BasicNPC"
 	
-	-- TEST
+	--[[ TEST
 	GameState:setFlag("ep3_knotholerun")
 	GameState:setFlag("ep4_introdone")
-	hint = "notworld"
+	hint = "notworld"]]
 	
 	local hop = function(obj)
 		return Serial {
@@ -119,10 +119,6 @@ return function(scene, hint)
 				Move(scene.objectLookup.Cart, scene.objectLookup.CartWaypoint2)
 			}
 		}
-	elseif not GameState:isFlagSet("ep3_knotholerun") then
-		knotholeIntro()
-		scene.audio:playMusic("knothole", 0.8, true)
-		return Action()
 	elseif GameState:isFlagSet("ep4_introdone") and
 		not GameState:isFlagSet("ep4_ffmeetingover")
 	then
@@ -169,9 +165,11 @@ return function(scene, hint)
 
 			Wait(2),
 
-			MessageBox {message="Sally: I'm sure no one will be surprised to hear this..."},
+			MessageBox {message="Sally: Let's get started."},
 			PlayAudio("music", "project", 1.0, true, true),
 			MessageBox {message="Sally: Leon and I have discovered that Robotnik was behind last night's snow storm."},
+			hop(sonic),
+			MessageBox {message="Sonic: Who could'a a guessed!"
 			MessageBox {message="Leon: Our current data suggests that Robotnik has relocated {h Project Firebird} to the Northern Mountains and is conducting field tests in the area..."},
 			MessageBox {message="Leon: And that last night's storm and the subsequent\nweather anomoly we experienced were both due to those field tests..."},
 			hop(antoine),
@@ -229,6 +227,12 @@ return function(scene, hint)
 			MessageBox {message="Rotor: But...", closeAction=Wait(2.5)},
 			MessageBox {message="Sally: ..." , closeAction=Wait(3.5)},
 		}
+	elseif GameState:isFlagSet("ep3_intro") and
+		not GameState:isFlagSet("ep3_knotholerun")
+	then
+		knotholeIntro()
+		scene.audio:playMusic("knothole", 0.8, true)
+		return Action()
 	elseif GameState:isFlagSet("ep3_intro") and
 		GameState:isFlagSet("ep3_ffmeeting") and
 		not GameState:isFlagSet("ep3_ffmeetingover")

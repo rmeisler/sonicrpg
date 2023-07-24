@@ -98,7 +98,7 @@ return {
 	{
         type = "map",
 		file = "maps/rotorsworkshop.lua",
-		primary = true -- TEST
+		--primary = true -- TEST
     },
 	
 	{
@@ -121,7 +121,7 @@ return {
 	{
         type = "map",
         file = "maps/knotholeatnight_ep4intro.lua",
-		--primary = true -- REAL
+		primary = true -- REAL
     },
 	
 	{
