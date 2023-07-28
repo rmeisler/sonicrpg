@@ -6,6 +6,11 @@ return {
     },
 	{
         type = "map",
+		file = "maps/snowboard.lua",
+		primary = true -- TEST
+    },
+	{
+        type = "map",
 		file = "maps/darkswamp1.lua",
 		--primary = true
     },
@@ -121,7 +126,7 @@ return {
 	{
         type = "map",
         file = "maps/knotholeatnight_ep4intro.lua",
-		primary = true -- REAL
+		--primary = true -- REAL
     },
 	
 	{

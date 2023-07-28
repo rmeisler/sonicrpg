@@ -341,8 +341,20 @@ return {
 		prepare_race2 = {
 			frames = {{13,9}}
 		},
+		snowboard_left = {
+			frames = {{0,10},{1,10}},
+			speed = 0.02
+		},
 		snowboard = {
-			frames = {{0,10}}
+			frames = {{2,10},{3,10}},
+			speed = 0.02
+		},
+		snowboard_ramp = {
+			frames = {{4,10}}
+		},
+		snowboard_leap = {
+			frames = {{5,10},{5,10}},
+			speed = 0.02
 		},
 
 		sit_sad = {

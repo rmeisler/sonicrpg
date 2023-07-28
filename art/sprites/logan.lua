@@ -78,6 +78,15 @@ return {
 			frames = {{8,5},{9,5},{8,5},{10,5}},
 			speed = 0.07
 		},
+		snowboard = {
+			frames = {{4,5}}
+		},
+		snowboard_ramp = {
+			frames = {{5,5}}
+		},
+		snowboard_leap = {
+			frames = {{4,6}}
+		},
 		climb_1 = {
 			frames = {{1,3}}
 		},
