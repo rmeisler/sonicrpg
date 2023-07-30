@@ -623,7 +623,6 @@ function Player:updateSprite()
 		nil,
 		self.layer.name
 	)
-	
 	if self.scene.nighttime then
 		self.sprite.drawWithNight = false
 	end

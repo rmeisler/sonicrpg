@@ -96,7 +96,7 @@ function BasicScene:onEnter(args)
 		-- Initialize map objects
 		if layer.objects then
 			self:pushLayer(layer.name, true)
-		
+
 			local drawFun = layer.draw
 			layer.draw = function()
 				drawFun()
@@ -907,6 +907,24 @@ function BasicScene:canMoveWhitelist(x, y, dx, dy, whiteList)
 	end
 	local mapx, mapy = self:worldCoordToCollisionCoord(x + dx, y + dy)
 	return not self.map[mapName][mapy][mapx] or (whiteList and whiteList[mapy] and whiteList[mapy][mapx])
+end
+
+function BasicScene:swapLayer(toLayerNum)
+	-- Swap object layer (assumes naming convention of "objects" or "objectsN"
+	local layerStr = tostring(toLayerNum)
+	local objLayer = toLayerNum == 1 and "objects" or ("objects"..layerStr)
+	self.player.sprite:swapLayer(objLayer)
+	self.player.dropShadow.sprite:swapLayer(objLayer)
+	self.player.onlyInteractWithLayer = objLayer
+
+	-- Swap collision layer (assumes naming convention of "Collision" or "CollisionN"
+	local colLayer = toLayerNum == 1 and "Collision" or ("Collision"..layerStr)
+	for _,layer in pairs(self.map.layers) do
+		if layer.name == colLayer then
+			self.map.collisionMap = layer.data
+			break
+		end
+	end
 end
 
 function BasicScene:draw()

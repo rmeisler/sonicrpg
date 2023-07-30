@@ -43,6 +43,34 @@ return {
 			frames = {{1,3}, {2,3}, {3,3}, {4,3},{5,3}, {6,3}, {7,3}, {8,3}},
 			speed = 0.09
 		},
+		
+		crouchright = {
+            frames = {{0,0}}
+        },
+		crouchleft = {
+			frames = {{0,1}}
+		},
+		crouchdown = {
+			frames = {{0,2}}
+		},
+		crouchup = {
+			frames = {{0,3}}
+		},
+
+		jumpright = {
+            frames = {{3,0}}
+        },
+		jumpleft = {
+			frames = {{3,1}}
+		},
+		jumpdown = {
+			frames = {{3,2}}
+		},
+		jumpup = {
+			frames = {{3,3}}
+		},
+
+		
 		sitright = {
             frames = {{9,0}}
         },

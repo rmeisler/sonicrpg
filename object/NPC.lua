@@ -560,7 +560,14 @@ function NPC:update(dt)
 		}
 		return
 	end
-	
+
+	-- Don't interact with player if player doesn't care about your layer
+	if  self.scene.player.onlyInteractWithLayer ~= nil and
+		self.scene.player.onlyInteractWithLayer ~= self.layer.name
+	then
+		return
+	end
+
 	for _,coord in ipairs(self.collision) do
 		-- Separating axis-theorem
 		local x = self.scene.player.collisionX

@@ -7,9 +7,18 @@ return {
 	{
         type = "map",
 		file = "maps/snowboard.lua",
+		--primary = true -- TEST
+    },
+	{
+        type = "map",
+		file = "maps/northmountains_landing.lua",
 		primary = true -- TEST
     },
 	{
+        type = "map",
+		file = "maps/northmountains_1.lua"
+    },
+	--[[{
         type = "map",
 		file = "maps/darkswamp1.lua",
 		--primary = true
@@ -52,7 +61,7 @@ return {
         type = "map",
 		file = "maps/run1.lua",
 		--primary = true
-    },
+    },]]
 	
 	{
         type = "map",
@@ -1338,6 +1347,12 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/snowday.ogg",
+		category = "music",
+		looping = true,
+	},
+	{
+		type = "sound",
+		file = "audio/music/snowcap.ogg",
 		category = "music",
 		looping = true,
 	},
