@@ -736,6 +736,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/wind.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/factoryspit.ogg",
 		category = "sfx"
 	},

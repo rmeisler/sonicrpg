@@ -62,7 +62,8 @@ function Player:construct(scene, layer, object)
 	self.y = 0
 	self.collisionX = 0
 	self.collisionY = 0
-	self.movespeed = 4
+	self.baseMoveSpeed = 4
+	self.movespeed = self.baseMoveSpeed
 	self.layer = layer
 	self.object = object
 	self.cinematicStack = 0

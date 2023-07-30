@@ -49,6 +49,7 @@ function BasicScene:onEnter(args)
 	self.tutorial = args.tutorial
 	self.nighttime = args.nighttime or self.map.properties.nighttime
 	self.noBattleMusic = self.map.properties.noBattleMusic
+	self.currentLayer = "objects"
 	
 	print(self.mapName .. " is night? " .. tostring(self.nighttime))
 	
@@ -916,6 +917,7 @@ function BasicScene:swapLayer(toLayerNum)
 	self.player.sprite:swapLayer(objLayer)
 	self.player.dropShadow.sprite:swapLayer(objLayer)
 	self.player.onlyInteractWithLayer = objLayer
+	self.currentLayer = objLayer
 
 	-- Swap collision layer (assumes naming convention of "Collision" or "CollisionN"
 	local colLayer = toLayerNum == 1 and "Collision" or ("Collision"..layerStr)
@@ -923,6 +925,13 @@ function BasicScene:swapLayer(toLayerNum)
 		if layer.name == colLayer then
 			self.map.collisionMap = layer.data
 			break
+		end
+	end
+
+	-- Update collision map with objects on same layer
+	for _, obj in pairs(self.map.objects) do
+		if obj.layer.name == objLayer then
+			obj:updateCollision()
 		end
 	end
 end

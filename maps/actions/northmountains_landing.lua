@@ -58,11 +58,19 @@ return function(scene, hint)
 	end
 
 	if hint == "fromworldmap" or true then
-		showTitle()
-		return PlayAudio("music", "snowcap", 1.0, true, true)
+		return Serial {
+			PlayAudio("sfx", "wind", 0.5, true, true),
+			Wait(2),
+			Do(showTitle),
+			PlayAudio("music", "snowcap", 1.0, true, true)
+		}
 	elseif hint == "fromload" then
-		showTitle()
-		return PlayAudio("music", "snowcap", 1.0, true, true)
+		return Serial {
+			PlayAudio("sfx", "wind", 0.5, true, true),
+			Wait(2),
+			Do(showTitle),
+			PlayAudio("music", "snowcap", 1.0, true, true)
+		}
 	end
 
 	return Action()

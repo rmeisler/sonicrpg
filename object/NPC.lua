@@ -175,7 +175,13 @@ end
 
 function NPC:updateCollision()
 	self.collision = {}
-	
+    if self.scene.map.properties.layered and
+	   self.scene.currentLayer ~= self.layer.name and
+	   self.layer.name ~= "all"
+	then
+		return
+	end
+
 	if not self.object.properties.nocollision then
 		local sx,sy = self.scene:worldCoordToCollisionCoord(self.object.x, self.object.y)
 		local dx,dy = self.scene:worldCoordToCollisionCoord(self.object.x + self.object.width, self.object.y + self.object.height)
@@ -562,8 +568,9 @@ function NPC:update(dt)
 	end
 
 	-- Don't interact with player if player doesn't care about your layer
-	if  self.scene.player.onlyInteractWithLayer ~= nil and
-		self.scene.player.onlyInteractWithLayer ~= self.layer.name
+	if (self.scene.player.onlyInteractWithLayer ~= nil and
+		self.scene.player.onlyInteractWithLayer ~= self.layer.name) and
+		self.layer.name ~= "all"
 	then
 		return
 	end

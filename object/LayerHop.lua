@@ -24,6 +24,65 @@ end
 function LayerHop:notColliding(player)
 	if self.keyhint then
 		self.keyhint:remove()
+		self.keyhint = nil
+	end
+end
+
+function LayerHop:keytriggered(key, uni)
+	if self.key == key and
+	   self.state == NPC.STATE_TOUCHING and
+	   not self.scene.player.isHopping
+	then
+		self.scene.player.isHopping = true
+		local hopAction
+		if self.key == "right" then
+			hopAction = Parallel {
+				Ease(self.scene.player, "x", self.scene.player.x + 90, 5, "linear"),
+				Serial {
+					Ease(self.scene.player, "y", self.scene.player.y - 50, 5, "inout"),
+					Ease(self.scene.player, "y", self.scene.player.y + 100, 6, "inout")
+				},
+			}
+		elseif self.key == "left" then
+			hopAction = Parallel {
+				Ease(self.scene.player, "x", self.scene.player.x - 90, 5, "linear"),
+				Serial {
+					Ease(self.scene.player, "y", self.scene.player.y - 50, 5, "inout"),
+					Ease(self.scene.player, "y", self.scene.player.y + 100, 6, "inout")
+				},
+			}
+		elseif self.key == "up" then
+			hopAction = Serial {
+				Ease(self.scene.player, "y", self.scene.player.y - 150, 5, "inout"),
+				Ease(self.scene.player, "y", self.scene.player.y - 120, 6, "inout")
+			}
+		elseif self.key == "down" then
+			hopAction = Serial {
+				Ease(self.scene.player, "y", self.scene.player.y - 20, 5, "inout"),
+				Ease(self.scene.player, "y", self.scene.player.y + 150, 6, "inout")
+			}
+		end
+		
+		self.scene:run {
+			Do(function()
+				self.scene.player.cinematic = true
+				self.scene.player.noIdle = true
+				self.scene.player.dropShadow.sprite.visible = false
+			end),
+			Animate(self.scene.player.sprite, "crouch"..self.key),
+			Wait(0.1),
+			Animate(self.scene.player.sprite, "jump"..self.key),
+			hopAction,
+			Animate(self.scene.player.sprite, "crouch"..self.key),
+			Do(function()
+				self.scene:swapLayer(self.toLayer)
+				self.scene.player.movespeed = self.scene.player.baseMoveSpeed
+				self.scene.player.cinematic = false
+				self.scene.player.isHopping = false
+				self.scene.player.noIdle = false
+				self.scene.player.dropShadow.sprite.visible = true
+			end),
+		}
 	end
 end
 
@@ -54,57 +113,6 @@ function LayerHop:onCollision(prevState)
 			self.scene:hasUpperLayer() and "upper" or "objects"
 		)
 		self.keyhint.sortOrderY = 9999999
-	elseif love.keyboard.isDown(self.key) then
-		self.scene.player.isHopping = true
-		local hopAction
-		if self.key == "right" then
-			hopAction = Parallel {
-				Ease(self.scene.player, "x", self.scene.player.x + 120, 5, "linear"),
-				Serial {
-					Ease(self.scene.player, "y", self.scene.player.y - 50, 5, "inout"),
-					Ease(self.scene.player, "y", self.scene.player.y + 100, 6, "inout")
-				},
-			}
-		elseif self.key == "left" then
-			hopAction = Parallel {
-				Ease(self.scene.player, "x", self.scene.player.x - 120, 5, "linear"),
-				Serial {
-					Ease(self.scene.player, "y", self.scene.player.y - 50, 5, "inout"),
-					Ease(self.scene.player, "y", self.scene.player.y + 100, 6, "inout")
-				},
-			}
-		elseif self.key == "up" then
-			hopAction = Serial {
-				Ease(self.scene.player, "y", self.scene.player.y - 150, 5, "inout"),
-				Ease(self.scene.player, "y", self.scene.player.y - 120, 6, "inout")
-			}
-		elseif self.key == "down" then
-			hopAction = Serial {
-				Ease(self.scene.player, "y", self.scene.player.y - 20, 5, "inout"),
-				Ease(self.scene.player, "y", self.scene.player.y + 210, 6, "inout")
-			}
-		end
-		
-		self.scene:run {
-			Do(function()
-				self.scene.player.cinematic = true
-				self.scene.player.noIdle = true
-				self.scene.player.dropShadow.sprite.visible = false
-			end),
-			Animate(self.scene.player.sprite, "crouch"..self.key),
-			Wait(0.1),
-			Animate(self.scene.player.sprite, "jump"..self.key),
-			hopAction,
-			Animate(self.scene.player.sprite, "crouch"..self.key),
-			Do(function()
-				self.scene:swapLayer(self.toLayer)
-				self.scene.player.movespeed = 4
-				self.scene.player.cinematic = false
-				self.scene.player.isHopping = false
-				self.scene.player.noIdle = false
-				self.scene.player.dropShadow.sprite.visible = true
-			end),
-		}
 	end
 end
 
