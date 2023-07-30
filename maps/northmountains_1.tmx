@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="87" height="112" tilewidth="32" tileheight="32" infinite="0" nextobjectid="47">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="87" height="112" tilewidth="32" tileheight="32" infinite="0" nextobjectid="50">
  <tileset firstgid="1" source="forest2.tsx"/>
  <tileset firstgid="5176" source="knothole.tsx"/>
  <tileset firstgid="8660" source="robotropolis.tsx"/>
@@ -843,7 +843,7 @@
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="22" name="Ladder1.3" type="Ladder" gid="8696" x="1536" y="1152" width="32" height="96"/>
+  <object id="22" name="Ladder1.3" type="Ladder" gid="8696" x="1536" y="1152" width="32" height="32"/>
   <object id="23" name="Ladder2.3" type="Ladder" gid="8696" x="2240" y="1824" width="32" height="128"/>
   <object id="24" name="LayerSwap" type="LayerTouch" gid="8696" x="1504" y="1120" width="96" height="32">
    <properties>
@@ -851,14 +851,14 @@
     <property name="toLayer" type="int" value="2"/>
    </properties>
   </object>
-  <object id="32" name="Ladder3.3" type="Ladder" gid="8696" x="1216" y="3136" width="32" height="64"/>
+  <object id="32" name="Ladder3.3" type="Ladder" gid="8696" x="1216" y="3136" width="32" height="96"/>
   <object id="36" name="LayerSwap" type="LayerTouch" gid="8696" x="2208" y="1888" width="96" height="32">
    <properties>
     <property name="fromLayer" type="int" value="3"/>
     <property name="toLayer" type="int" value="4"/>
    </properties>
   </object>
-  <object id="41" name="LayerSwap" type="LayerTouch" gid="8696" x="1184" y="3008" width="96" height="32">
+  <object id="41" name="LayerSwap" type="LayerTouch" gid="8696" x="1216" y="3008" width="32" height="32">
    <properties>
     <property name="fromLayer" type="int" value="3"/>
     <property name="toLayer" type="int" value="1"/>
@@ -1104,7 +1104,7 @@
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="29" name="Ladder1.2" type="Ladder" gid="8696" x="1536" y="1152" width="32" height="96"/>
+  <object id="29" name="Ladder1.2" type="Ladder" gid="8696" x="1536" y="1120" width="32" height="64"/>
   <object id="33" name="LayerSwap" type="LayerTouch" gid="8696" x="1504" y="1216" width="96" height="32">
    <properties>
     <property name="fromLayer" type="int" value="2"/>
@@ -1387,7 +1387,7 @@
     <property name="toLayer" type="int" value="2"/>
    </properties>
   </object>
-  <object id="7" name="Hop" type="LayerHop" gid="10970" x="1472" y="3136" width="32" height="192">
+  <object id="7" name="Hop" type="LayerHop" gid="10970" x="1440" y="3136" width="32" height="192">
    <properties>
     <property name="fromLayer" type="int" value="3"/>
     <property name="key" value="right"/>
@@ -1403,7 +1403,21 @@
     <property name="spawn_point" value="DownPath"/>
    </properties>
   </object>
-  <object id="31" name="Ladder3.1" type="Ladder" gid="8696" x="1216" y="3072" width="32" height="480"/>
+  <object id="31" name="Ladder3.1" type="Ladder" gid="8696" x="1216" y="2976" width="32" height="384"/>
+  <object id="48" name="LayerSwap" type="LayerTouch" gid="8696" x="1184" y="3200" width="96" height="32">
+   <properties>
+    <property name="fromLayer" type="int" value="1"/>
+    <property name="toLayer" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="49" name="Hop" type="LayerHop" gid="10970" x="1312" y="1248" width="64" height="64">
+   <properties>
+    <property name="fromLayer" type="int" value="1"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="key" value="right"/>
+    <property name="toLayer" type="int" value="2"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="Collision4" width="87" height="112" visible="0">
   <data encoding="csv">
@@ -1615,7 +1629,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,0,0,0,0,0,672,672,672,0,0,0,0,0,0,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,0,0,0,0,672,672,672,672,672,0,0,0,0,0,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,0,0,0,0,672,0,0,0,672,0,0,0,0,0,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,0,0,0,0,672,0,0,0,672,0,0,0,0,0,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

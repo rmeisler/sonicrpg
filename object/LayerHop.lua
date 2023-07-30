@@ -98,6 +98,7 @@ function LayerHop:onCollision(prevState)
 			Animate(self.scene.player.sprite, "crouch"..self.key),
 			Do(function()
 				self.scene:swapLayer(self.toLayer)
+				self.scene.player.movespeed = 4
 				self.scene.player.cinematic = false
 				self.scene.player.isHopping = false
 				self.scene.player.noIdle = false

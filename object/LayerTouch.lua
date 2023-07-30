@@ -26,13 +26,14 @@ function LayerTouch:onCollision(prevState)
 	local curObjectLayer = "objects"..tostring(self.fromLayer)
 	if  (self.scene.player.onlyInteractWithLayer ~= nil and
 	     self.scene.player.onlyInteractWithLayer ~= curObjectLayer) or
-		self.scene.player.doingSpecialMove or
-		next(self.scene.player.ladders) ~= nil
+		self.scene.player.doingSpecialMove --or
+		--next(self.scene.player.ladders) ~= nil
 	then
 		return
 	end
 
 	self.scene:swapLayer(self.toLayer)
+	self.scene.player.movespeed = 4
 end
 
 
