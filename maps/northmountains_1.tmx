@@ -1463,7 +1463,7 @@ end</property>
     <property name="spawn_point" value="DownPath"/>
    </properties>
   </object>
-  <object id="49" name="Hop" type="LayerHop" gid="10970" x="1280" y="1280" width="64" height="64">
+  <object id="49" name="Hop" type="LayerHop" gid="10970" x="1312" y="1280" width="64" height="64">
    <properties>
     <property name="fromLayer" type="int" value="1"/>
     <property name="ghost" type="bool" value="true"/>

@@ -1981,7 +1981,7 @@ return {
           name = "Hop",
           type = "LayerHop",
           shape = "rectangle",
-          x = 1280,
+          x = 1312,
           y = 1280,
           width = 64,
           height = 64,

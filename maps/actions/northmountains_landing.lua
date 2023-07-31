@@ -58,18 +58,24 @@ return function(scene, hint)
 	end
 
 	if hint == "fromworldmap" or true then
+		scene.camPos.y = 300
 		return Serial {
 			PlayAudio("sfx", "wind", 0.5, true, true),
 			Wait(2),
 			Do(showTitle),
-			PlayAudio("music", "snowcap", 1.0, true, true)
+			PlayAudio("music", "snowcap", 1.0, true, true),
+			Wait(3),
+			Ease(scene.camPos, "y", 0, 1)
 		}
 	elseif hint == "fromload" then
+		scene.camPos.y = 300
 		return Serial {
 			PlayAudio("sfx", "wind", 0.5, true, true),
 			Wait(2),
 			Do(showTitle),
-			PlayAudio("music", "snowcap", 1.0, true, true)
+			PlayAudio("music", "snowcap", 1.0, true, true),
+			Wait(3),
+			Ease(scene.camPos, "y", 0, 1)
 		}
 	end
 
