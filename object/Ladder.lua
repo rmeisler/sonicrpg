@@ -59,7 +59,7 @@ function Ladder:construct(scene, layer, object)
 end
 
 function Ladder:notColliding(player)
-	if player.noLadder then
+	if next(player.noLadder) ~= nil then
 		return
 	end
 
@@ -77,7 +77,7 @@ function Ladder:notColliding(player)
 end
 
 function Ladder:whileColliding(player)
-	if player.noLadder then
+	if next(player.noLadder) ~= nil then
 		return
 	end
 

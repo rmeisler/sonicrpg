@@ -8,7 +8,7 @@ return {
   height = 112,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 83,
+  nextobjectid = 84,
   properties = {
     ["layered"] = true
   },
@@ -1074,8 +1074,8 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["notColliding"] = "return function(self, player)\n    self.scene.player.noLadder = false\nend",
-            ["whileColliding"] = "return function(self, player)\n    self.scene.player.noLadder = true\nend"
+            ["notColliding"] = "return function(self, player)\n    self.scene.player.noLadder[tostring(self)] = nil\nend",
+            ["whileColliding"] = "return function(self, player)\n    self.scene.player.noLadder[tostring(self)] = true\nend"
           }
         },
         {

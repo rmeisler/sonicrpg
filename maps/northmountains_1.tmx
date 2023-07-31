@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="87" height="112" tilewidth="32" tileheight="32" infinite="0" nextobjectid="83">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="87" height="112" tilewidth="32" tileheight="32" infinite="0" nextobjectid="84">
  <properties>
   <property name="layered" type="bool" value="true"/>
  </properties>
@@ -846,10 +846,10 @@
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)
-    self.scene.player.noLadder = false
+    self.scene.player.noLadder[tostring(self)] = nil
 end</property>
     <property name="whileColliding">return function(self, player)
-    self.scene.player.noLadder = true
+    self.scene.player.noLadder[tostring(self)] = true
 end</property>
    </properties>
   </object>

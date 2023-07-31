@@ -72,7 +72,7 @@ function Player:construct(scene, layer, object)
 	
 	self.isSwatbot = {}
 	self.lastSwatbotStepSfx = love.timer.getTime()
-	
+
 	-- A hashset of objects that are contributing to our hiding in shadow
 	-- Note: If hashset is empty, we are not in shadows/light. If it has at least
 	-- one element, then we are in shadows/light.
@@ -99,7 +99,10 @@ function Player:construct(scene, layer, object)
 	
 	-- A hashset of ladders we are touching
 	self.ladders = {}
-	
+
+	-- A hashset of things blocking your ladder access
+	self.noLadder = {}
+
 	-- A hashset of keyhints we are touching
 	self.keyhints = {}
 

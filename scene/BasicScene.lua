@@ -49,10 +49,9 @@ function BasicScene:onEnter(args)
 	self.tutorial = args.tutorial
 	self.nighttime = args.nighttime or self.map.properties.nighttime
 	self.noBattleMusic = self.map.properties.noBattleMusic
-	self.currentLayer = "objects"
-	
-	print(self.mapName .. " is night? " .. tostring(self.nighttime))
-	
+	self.layered = self.map.properties.layered
+	self.currentLayer = "objects"..(self.map.properties.currentLayer and tostring(self.map.properties.currentLayer) or "")
+
 	self.args = args
 	self.cacheSceneData = args.cache
 	
@@ -171,10 +170,14 @@ function BasicScene:onEnter(args)
 	end
 	
 	-- Pan to player
+	local toLayer
 	if self.player then
 		-- Place player at spawn point and orient them appropriately
 		if self.lastSpawnPoint then
 			local spawn = self.spawnPoints[self.lastSpawnPoint]
+			local spawnNpc = self.objectLookup[spawn.name]
+			toLayer = spawnNpc.layer.name
+
 			local spawnOffset = args.spawn_point_offset or
 				Transform(spawn.width/2, spawn.height/2)
 			if not self.player.object.properties.strictLocation then
@@ -263,6 +266,12 @@ function BasicScene:onEnter(args)
 			if GameState.leader == "bunny" then
 				print("yes special move")
 				self.player.noSpecialMove = false
+			end
+
+			-- Swap layer, if applicable
+			if self.layered and toLayer then
+				local layerId = toLayer:gsub("objects", "")
+				self:swapLayer(layerId ~= "" and tonumber(layerId) or 1)
 			end
 		end)
 	}
