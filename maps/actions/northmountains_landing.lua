@@ -61,8 +61,9 @@ return function(scene, hint)
 		scene.camPos.y = 300
 		return Serial {
 			PlayAudio("sfx", "wind", 0.5, true, true),
-			Wait(2),
+			Wait(3),
 			Do(showTitle),
+			Wait(1),
 			PlayAudio("music", "snowcap", 1.0, true, true),
 			Wait(3),
 			Ease(scene.camPos, "y", 0, 1)
@@ -71,8 +72,9 @@ return function(scene, hint)
 		scene.camPos.y = 300
 		return Serial {
 			PlayAudio("sfx", "wind", 0.5, true, true),
-			Wait(2),
+			Wait(3),
 			Do(showTitle),
+			Wait(1),
 			PlayAudio("music", "snowcap", 1.0, true, true),
 			Wait(3),
 			Ease(scene.camPos, "y", 0, 1)
