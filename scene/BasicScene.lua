@@ -552,7 +552,7 @@ function BasicScene:changeScene(args)
 end
 
 -- Vertical screen shake
-function BasicScene:screenShake(str, sp, rp)
+function BasicScene:screenShake(str, sp, rp, noReset)
 	local strength = str or 50
 	local speed = sp or 15
 	local repeatTimes = rp or 1
@@ -572,7 +572,9 @@ function BasicScene:screenShake(str, sp, rp)
 		
 		Do(function()
 			self.isScreenShaking = false
-			self.camPos.y = 0
+			if not noReset then
+				self.camPos.y = 0
+			end
 		end)
 	}
 end
