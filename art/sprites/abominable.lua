@@ -6,18 +6,37 @@ return {
 
     animations = {
         dark_left = {
-            frames = {{6,0},{7,0}},
+            frames = {{9,0},{10,0}},
 			speed = 0.4
         },
 		dark_right = {
-            frames = {{8,0},{9,0}},
+            frames = {{11,0},{12,0}},
 			speed = 0.4
         },
 		dark_leap_left = {
-            frames = {{4,0}}
+            frames = {{7,0}}
         },
 		dark_leap_right = {
+            frames = {{8,0}}
+        },
+
+		leap_left = {
             frames = {{5,0}}
-        }
+        },
+		leap_right = {
+            frames = {{4,0}}
+        },
+		idleleft = {
+            frames = {{2,0},{3,0}},
+			speed = 0.4
+        },
+		idleright = {
+            frames = {{0,0},{1,0}},
+			speed = 0.4
+        },
+		idle = {
+            frames = {{0,0},{1,0}},
+			speed = 0.4
+        },
     }
 }

@@ -80,6 +80,9 @@ return {
 		pose = {
 			frames = {{1,5}}
 		},
+		victory = {
+			frames = {{1,5}}
+		},
 		irritated = {
 			frames = {{1,6}}
 		},
