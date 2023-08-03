@@ -8,9 +8,11 @@ return {
   height = 112,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 84,
+  nextobjectid = 96,
   properties = {
-    ["layered"] = true
+    ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
+    ["layered"] = true,
+    ["onload"] = "actions/northmountains.lua"
   },
   tilesets = {
     {
@@ -1257,6 +1259,192 @@ return {
             ["ghost"] = true,
             ["key"] = "down",
             ["toLayer"] = 4
+          }
+        },
+        {
+          id = 86,
+          name = "Swatbot1",
+          type = "Swatbot",
+          shape = "rectangle",
+          x = 448,
+          y = 1504,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idleright",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "View1"
+          }
+        },
+        {
+          id = 87,
+          name = "View1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 320,
+          y = 1696,
+          width = 448,
+          height = 320,
+          rotation = 0,
+          gid = 8696,
+          visible = false,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 88,
+          name = "View2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1792,
+          y = 1632,
+          width = 576,
+          height = 384,
+          rotation = 0,
+          gid = 8696,
+          visible = false,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 89,
+          name = "Swatbot2",
+          type = "Swatbot",
+          shape = "rectangle",
+          x = 2208,
+          y = 1440,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idleright",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "View2"
+          }
+        },
+        {
+          id = 90,
+          name = "Swatbot3",
+          type = "Swatbot",
+          shape = "rectangle",
+          x = 1120,
+          y = 2848,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idleright",
+            ["disappearAfterBattle"] = true,
+            ["follow"] = "WP1,WP2,WP3,WP4",
+            ["followRepeat"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "View3"
+          }
+        },
+        {
+          id = 91,
+          name = "WP1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1376,
+          y = 2848,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 92,
+          name = "WP2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1376,
+          y = 3232,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 93,
+          name = "WP3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1088,
+          y = 3232,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 94,
+          name = "WP4",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1088,
+          y = 2848,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 95,
+          name = "View3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1056,
+          y = 3040,
+          width = 384,
+          height = 256,
+          rotation = 0,
+          gid = 8696,
+          visible = false,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

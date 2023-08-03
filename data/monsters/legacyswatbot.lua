@@ -33,11 +33,11 @@ return {
 	insult = "Swatbutt",
 
 	stats = {
-		xp    = 20,
+		xp    = 10,
 		maxhp = 450,
 		attack = 30,
 		defense = 20,
-		speed = 12,
+		speed = 8,
 		focus = 5,
 		luck = 5,
 	},

@@ -26,6 +26,10 @@ return {
         type = "map",
 		file = "maps/northmountains_3.lua"
     },
+	{
+        type = "map",
+		file = "maps/northmountains_cave.lua"
+    },
 	--[[{
         type = "map",
 		file = "maps/darkswamp1.lua",

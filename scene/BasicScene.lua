@@ -289,8 +289,11 @@ function BasicScene:onReEnter(args)
 	self.player.y = prevPlayer.y
 
 	-- Place player at spawn point and orient them appropriately
+	local toLayer = self.currentLayer
 	if args.spawn_point then
 		local spawn = self.spawnPoints[args.spawn_point]
+		local spawnNpc = self.objectLookup[spawn.name]
+		toLayer = spawnNpc.layer.name
 		local spawnOffset = args.spawn_point_offset or
 			Transform(spawn.width/2, spawn.height/2)
 		self.player.x = spawn.x + spawnOffset.x
@@ -380,6 +383,12 @@ function BasicScene:onReEnter(args)
 			
 			if GameState.leader == "bunny" then
 				self.player.noSpecialMove = false
+			end
+
+			-- Swap layer, if applicable
+			if self.layered and toLayer then
+				local layerId = toLayer:gsub("objects", "")
+				self:swapLayer(layerId ~= "" and tonumber(layerId) or 1)
 			end
 		end)
 	}
@@ -602,7 +611,8 @@ function BasicScene:enterBattle(args)
 		Do(function()
 			self.player.cinematic = true
 			self.enteringBattle = true
-			
+			self:invoke("onEnterBattle")
+
 			self.bgColor = {255,255,255,255}
 			ScreenShader:sendColor("multColor", self.bgColor)
 		end),

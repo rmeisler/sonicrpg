@@ -20,7 +20,7 @@ return function(self, target)
 	end
 
 	return Serial {
-		Animate(self.sprite, "scan"),
+		Do(function() self.sprite:setAnimation("scan") end),
 		MessageBox {
 			message="Logan: Scanning...",
 			rect=MessageBox.HEADLINER_RECT,

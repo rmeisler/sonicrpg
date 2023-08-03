@@ -11,24 +11,24 @@ return {
 
 	startingstats = {
 		startxp = 0,
-		maxhp   = 450,
-		maxsp   = 10,
-		attack  = 8,
-		defense = 7,
-		speed   = 10,
+		maxhp   = 350,
+		maxsp   = 5,
+		attack  = 5,
+		defense = 5,
+		speed   = 5,
 		focus   = 5,
-		luck    = 4,
+		luck    = 5,
 	},
 
 	maxstats = {
 		startxp = 95000,
 		maxhp   = 10000,
 		maxsp   = 100,
-		attack  = 80,
-		defense = 70,
-		speed   = 100,
-		focus   = 80,
-		luck    = 40,
+		attack  = 50,
+		defense = 50,
+		speed   = 50,
+		focus   = 50,
+		luck    = 50,
 	},
 
 	growth = {
@@ -45,9 +45,17 @@ return {
 	},
 
 	equip = {
+		weapon = require "data/weapons/Computer",
+		armor  = require "data/armor/RoyalCoat",
+		legs   = require "data/legs/Boots",
+		accessory = require "data/accessories/CopperAmulet",
 	},
 
 	items = {
+		{count = 3, item = require "data/items/GreenLeaf"},
+		{count = 3, item = require "data/items/BlueLeaf"},
+		{count = 3, item = require "data/items/CrystalWater"},
+		{count = 1, item = require "data/items/RainbowSyrup"},
 	},
 	
 	levelup = {
@@ -65,7 +73,7 @@ return {
 	specialmove = require "data/specialmoves/logan",
 
 	battle = {
-		require "data/battle/SonicHit",
+		require "data/battle/LoganHit",
 		require "data/battle/Skills",
 		require "data/battle/Items",
 	}

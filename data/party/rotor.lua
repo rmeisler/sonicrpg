@@ -47,7 +47,7 @@ return {
 	equip = {
 		weapon    = require "data/weapons/Hammer",
 		armor     = nil,
-		accessory = require "data/accessories/OldHat",
+		accessory = require "data/accessories/LeatherSash",
 	},
 
 	items = {

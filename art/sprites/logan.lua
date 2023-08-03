@@ -93,7 +93,8 @@ return {
 			frames = {{7,5}}
 		},
 		scan = {
-			frames = {{3,6}}
+			frames = {{6,6},{5,6}},
+			speed = 0.2
 		},
 		waking = {
 			frames = {{6,5},{7,5},{6,5},{7,5},{6,5},{7,5}},

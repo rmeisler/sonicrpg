@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="87" height="112" tilewidth="32" tileheight="32" infinite="0" nextobjectid="84">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="87" height="112" tilewidth="32" tileheight="32" infinite="0" nextobjectid="96">
  <properties>
+  <property name="battlebg" type="file" value="../art/backgrounds/northmountainsbg.png"/>
   <property name="layered" type="bool" value="true"/>
+  <property name="onload" type="file" value="actions/northmountains.lua"/>
  </properties>
  <tileset firstgid="1" source="forest2.tsx"/>
  <tileset firstgid="5176" source="knothole.tsx"/>
@@ -922,6 +924,82 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="down"/>
     <property name="toLayer" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="86" name="Swatbot1" type="Swatbot" gid="8696" x="448" y="1504" width="32" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
+    <property name="viewRange" value="View1"/>
+   </properties>
+  </object>
+  <object id="87" name="View1" type="BasicNPC" gid="8696" x="320" y="1696" width="448" height="320" visible="0">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="88" name="View2" type="BasicNPC" gid="8696" x="1792" y="1632" width="576" height="384" visible="0">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="89" name="Swatbot2" type="Swatbot" gid="8696" x="2208" y="1440" width="32" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
+    <property name="viewRange" value="View2"/>
+   </properties>
+  </object>
+  <object id="90" name="Swatbot3" type="Swatbot" gid="8696" x="1120" y="2848" width="32" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="follow" value="WP1,WP2,WP3,WP4"/>
+    <property name="followRepeat" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
+    <property name="viewRange" value="View3"/>
+   </properties>
+  </object>
+  <object id="91" name="WP1" type="BasicNPC" gid="8696" x="1376" y="2848" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="92" name="WP2" type="BasicNPC" gid="8696" x="1376" y="3232" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="93" name="WP3" type="BasicNPC" gid="8696" x="1088" y="3232" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="94" name="WP4" type="BasicNPC" gid="8696" x="1088" y="2848" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="95" name="View3" type="BasicNPC" gid="8696" x="1056" y="3040" width="384" height="256" visible="0">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

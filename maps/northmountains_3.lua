@@ -8,11 +8,11 @@ return {
   height = 120,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 170,
+  nextobjectid = 176,
   properties = {
-    ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
     ["layered"] = true,
-    ["onload"] = "actions/northmountains_2.lua"
+    ["onload"] = "actions/northmountains.lua"
   },
   tilesets = {
     {
@@ -611,13 +611,12 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8597, 8598, 8599, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8597, 8598, 8599, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -626,6 +625,7 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8597, 8598, 8599, 0, 0, 0, 0, 8597, 8598, 8599, 0, 0, 0, 0, 8597, 8598, 8599, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 2343, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -712,7 +712,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["whileColliding"] = "local Ease = require \"actions/Ease\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"ep4_abominable3\") or self.scene.objectLookup.Swatbot1:isRemoved() then\n        return\n    end\n    GameState:setFlag(\"ep4_abominable3\")\n    self.scene.objectLookup.Swatbot1.falling = true\n    self.scene.objectLookup.Swatbot2.falling = true\n    self.scene.objectLookup.Swatbot1.sprite:setAnimation(\"idleright\")\n    self.scene.objectLookup.Swatbot2.sprite:setAnimation(\"idleleft\")\n    self.scene.objectLookup.Swatbot2.falling = true\n    self.scene.objectLookup.Swatbot1:removeCollision()\n    self.scene.objectLookup.Swatbot2:removeCollision()\n    self.scene.objectLookup.Swatbot1:removeAllUpdates()\n    self.scene.objectLookup.Swatbot2:removeAllUpdates()\n    self.scene:run(BlockPlayer {\n        Parallel {\n            Ease(self.scene.camPos, \"x\", -300, 1),\n            Ease(self.scene.camPos, \"y\", 500, 1)\n        },\n        Wait(1),\n        Animate(self.scene.objectLookup.Abominable.sprite, \"dark_leap_left\"),\n        Ease(self.scene.objectLookup.Abominable, \"y\", self.scene.objectLookup.Swatbot1.y - 80, 3, \"quad\"),\n        Do(function() self.scene.objectLookup.Abominable.sprite:setAnimation(\"dark_left\") end),\n        PlayAudio(\"sfx\", \"cyclopsstep\", 1.0, true),\n        Animate(self.scene.objectLookup.Swatbot1.sprite, \"hurtdown\"),\n        Animate(self.scene.objectLookup.Swatbot2.sprite, \"hurtdown\"),\n        Parallel {\n            self.scene:screenShake(20, 30, 1, true),\n            Serial {\n                Parallel {\n                    Ease(self.scene.objectLookup.Swatbot1, \"x\", function() return self.scene.objectLookup.Swatbot1.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot1, \"y\", function() return self.scene.objectLookup.Swatbot1.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot2, \"x\", function() return self.scene.objectLookup.Swatbot2.x + 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot2, \"y\", function() return self.scene.objectLookup.Swatbot2.y - 250 end, 2)\n                },\n                Parallel {\n                    Ease(self.scene.objectLookup.Swatbot1, \"x\", function() return self.scene.objectLookup.Swatbot1.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot1, \"y\", function() return self.scene.objectLookup.Swatbot1.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot2, \"x\", function() return self.scene.objectLookup.Swatbot2.x + 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot2, \"y\", function() return self.scene.objectLookup.Swatbot2.y + 800 end, 2, \"quad\")\n                },\n                Do(function()\n                    self.scene.objectLookup.Swatbot1:remove()\n                    self.scene.objectLookup.Swatbot2:remove()\n                end)\n            }\n        },\n        Wait(1),\n        Parallel {\n            Ease(self.scene.camPos, \"x\", 0, 1),\n            Ease(self.scene.camPos, \"y\", 0, 1)\n        },\n        Do(function()\n            self.scene.objectLookup.Abominable:remove()\n        end)\n    })\nend"
+            ["whileColliding"] = "local Ease = require \"actions/Ease\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"ep4_abominable3\") or self.scene.objectLookup.Swatbot1:isRemoved() then\n        return\n    end\n    GameState:setFlag(\"ep4_abominable3\")\n    self.scene.objectLookup.Swatbot1.dropShadow:remove()\n    self.scene.objectLookup.Swatbot2.dropShadow:remove()\n    self.scene.objectLookup.Swatbot2.falling = true\n    self.scene.objectLookup.Swatbot1.falling = true\n    self.scene.objectLookup.Swatbot2.falling = true\n    self.scene.objectLookup.Swatbot1.sprite:setAnimation(\"idleright\")\n    self.scene.objectLookup.Swatbot2.sprite:setAnimation(\"idleleft\")\n    self.scene.objectLookup.Swatbot2.falling = true\n    self.scene.objectLookup.Swatbot1:removeCollision()\n    self.scene.objectLookup.Swatbot2:removeCollision()\n    self.scene.objectLookup.Swatbot1:removeAllUpdates()\n    self.scene.objectLookup.Swatbot2:removeAllUpdates()\n    self.scene:run(BlockPlayer {\n        Parallel {\n            Ease(self.scene.camPos, \"x\", -300, 1),\n            Ease(self.scene.camPos, \"y\", 500, 1)\n        },\n        Wait(1),\n        Animate(self.scene.objectLookup.Abominable.sprite, \"dark_leap_left\"),\n        Ease(self.scene.objectLookup.Abominable, \"y\", self.scene.objectLookup.Swatbot1.y - 80, 3, \"quad\"),\n        Do(function() self.scene.objectLookup.Abominable.sprite:setAnimation(\"dark_left\") end),\n        PlayAudio(\"sfx\", \"cyclopsstep\", 1.0, true),\n        Animate(self.scene.objectLookup.Swatbot1.sprite, \"hurtdown\"),\n        Animate(self.scene.objectLookup.Swatbot2.sprite, \"hurtdown\"),\n        Parallel {\n            self.scene:screenShake(20, 30, 1, true),\n            Serial {\n                Parallel {\n                    Ease(self.scene.objectLookup.Swatbot1, \"x\", function() return self.scene.objectLookup.Swatbot1.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot1, \"y\", function() return self.scene.objectLookup.Swatbot1.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot2, \"x\", function() return self.scene.objectLookup.Swatbot2.x + 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot2, \"y\", function() return self.scene.objectLookup.Swatbot2.y - 250 end, 2)\n                },\n                Parallel {\n                    Ease(self.scene.objectLookup.Swatbot1, \"x\", function() return self.scene.objectLookup.Swatbot1.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot1, \"y\", function() return self.scene.objectLookup.Swatbot1.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot2, \"x\", function() return self.scene.objectLookup.Swatbot2.x + 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot2, \"y\", function() return self.scene.objectLookup.Swatbot2.y + 800 end, 2, \"quad\")\n                },\n                Do(function()\n                    self.scene.objectLookup.Swatbot1:remove()\n                    self.scene.objectLookup.Swatbot2:remove()\n                end)\n            }\n        },\n        Wait(1),\n        Parallel {\n            Ease(self.scene.camPos, \"x\", 0, 1),\n            Ease(self.scene.camPos, \"y\", 0, 1)\n        },\n        Do(function()\n            self.scene.objectLookup.Abominable:remove()\n        end)\n    })\nend"
           }
         },
         {
@@ -729,7 +729,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["whileColliding"] = "local Ease = require \"actions/Ease\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"ep4_abominable4\") then\n        return\n    end\n    GameState:setFlag(\"ep4_abominable4\")\n    self.scene:run(BlockPlayer {\n        Parallel {\n            Ease(self.scene.camPos, \"x\", -300, 1),\n            Ease(self.scene.camPos, \"y\", 50, 1)\n        },\n        Wait(1),\n        MessageBox{message=\"Swatbot 1: zzz. Destroy the roboticized creature. zzz.\"},\n        Animate(self.scene.objectLookup.Abominable2.sprite, \"leap_left\"),\n        Ease(self.scene.objectLookup.Abominable2, \"y\", function() return self.scene.objectLookup.Abominable2.y - 200 end, 2),\n        Ease(self.scene.objectLookup.Abominable2, \"y\", function() return self.scene.objectLookup.Abominable2.y + 200 end, 4, \"quad\"),\n        Do(function() self.scene.objectLookup.Abominable.sprite:setAnimation(\"idleleft\") end),\n        PlayAudio(\"sfx\", \"cyclopsstep\", 1.0, true),\n        Do(function()\n            self.scene.objectLookup.Swatbot9.sprite:setAnimation(\"hurtdown\")\n            self.scene.objectLookup.Swatbot10.sprite:setAnimation(\"hurtdown\")\n            self.scene.objectLookup.Swatbo11.sprite:setAnimation(\"hurtdown\")\n            self.scene.objectLookup.Swatbot12.sprite:setAnimation(\"hurtdown\")\n        end),\n        Parallel {\n            self.scene:screenShake(20, 30, 1, true),\n            Serial {\n                Parallel {\n                    Ease(self.scene.objectLookup.Swatbot9, \"x\", function() return self.scene.objectLookup.Swatbot9.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot9, \"y\", function() return self.scene.objectLookup.Swatbot9.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot10, \"x\", function() return self.scene.objectLookup.Swatbot10.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot10, \"y\", function() return self.scene.objectLookup.Swatbot10.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot11, \"x\", function() return self.scene.objectLookup.Swatbot11.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot11, \"y\", function() return self.scene.objectLookup.Swatbot11.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot12, \"x\", function() return self.scene.objectLookup.Swatbot12.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot12, \"y\", function() return self.scene.objectLookup.Swatbot12.y - 250 end, 2)\n                },\n                Parallel {\n                    Ease(self.scene.objectLookup.Swatbot9, \"x\", function() return self.scene.objectLookup.Swatbot9.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot9, \"y\", function() return self.scene.objectLookup.Swatbot9.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot10, \"x\", function() return self.scene.objectLookup.Swatbot10.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot10, \"y\", function() return self.scene.objectLookup.Swatbot10.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot11, \"x\", function() return self.scene.objectLookup.Swatbot11.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot11, \"y\", function() return self.scene.objectLookup.Swatbot11.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot12, \"x\", function() return self.scene.objectLookup.Swatbot12.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot12, \"y\", function() return self.scene.objectLookup.Swatbot12.y + 800 end, 2, \"quad\")\n                },\n                Do(function()\n                    self.scene.objectLookup.Swatbot9:remove()\n                    self.scene.objectLookup.Swatbot10:remove()\n                    self.scene.objectLookup.Swatbot11:remove()\n                    self.scene.objectLookup.Swatbot12:remove()\n                end)\n            }\n        },\n        Wait(1),\n        Parallel {\n            Ease(self.scene.camPos, \"x\", 0, 1),\n            Ease(self.scene.camPos, \"y\", 0, 1)\n        },\n        Do(function()\n            self.scene.objectLookup.Abominable2:remove()\n        end)\n    })\nend"
+            ["whileColliding"] = "local Ease = require \"actions/Ease\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"ep4_abominable4\") then\n        return\n    end\n    GameState:setFlag(\"ep4_abominable4\")\n    self.scene:run(BlockPlayer {\n        Parallel {\n            Ease(self.scene.camPos, \"x\", -300, 1),\n            Ease(self.scene.camPos, \"y\", 50, 1)\n        },\n        Wait(1),\n        MessageBox{message=\"Swatbot 1: zzz. Destroy the roboticized creature. zzz.\"},\n        Animate(self.scene.objectLookup.Abominable2.sprite, \"leap_left\"),\n        Ease(self.scene.objectLookup.Abominable2, \"y\", function() return self.scene.objectLookup.Abominable2.y - 200 end, 2),\n        Ease(self.scene.objectLookup.Abominable2, \"y\", function() return self.scene.objectLookup.Abominable2.y + 200 end, 4, \"quad\"),\n        Do(function() self.scene.objectLookup.Abominable.sprite:setAnimation(\"idleleft\") end),\n        PlayAudio(\"sfx\", \"cyclopsstep\", 1.0, true),\n        Do(function()\n            self.scene.objectLookup.Swatbot9.sprite:setAnimation(\"hurtdown\")\n            self.scene.objectLookup.Swatbot10.sprite:setAnimation(\"hurtdown\")\n            self.scene.objectLookup.Swatbo11.sprite:setAnimation(\"hurtdown\")\n            self.scene.objectLookup.Swatbot12.sprite:setAnimation(\"hurtdown\")\n        end),\n        Parallel {\n            self.scene:screenShake(20, 30, 1, true),\n            Serial {\n                Parallel {\n                    Ease(self.scene.objectLookup.Swatbot13, \"x\", function() return self.scene.objectLookup.Swatbot13.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot13, \"y\", function() return self.scene.objectLookup.Swatbot13.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot10, \"x\", function() return self.scene.objectLookup.Swatbot10.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot10, \"y\", function() return self.scene.objectLookup.Swatbot10.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot11, \"x\", function() return self.scene.objectLookup.Swatbot11.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot11, \"y\", function() return self.scene.objectLookup.Swatbot11.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot12, \"x\", function() return self.scene.objectLookup.Swatbot12.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot12, \"y\", function() return self.scene.objectLookup.Swatbot12.y - 250 end, 2)\n                },\n                Parallel {\n                    Ease(self.scene.objectLookup.Swatbot13, \"x\", function() return self.scene.objectLookup.Swatbot13.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot13, \"y\", function() return self.scene.objectLookup.Swatbot13.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot10, \"x\", function() return self.scene.objectLookup.Swatbot10.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot10, \"y\", function() return self.scene.objectLookup.Swatbot10.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot11, \"x\", function() return self.scene.objectLookup.Swatbot11.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot11, \"y\", function() return self.scene.objectLookup.Swatbot11.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot12, \"x\", function() return self.scene.objectLookup.Swatbot12.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot12, \"y\", function() return self.scene.objectLookup.Swatbot12.y + 800 end, 2, \"quad\")\n                },\n                Do(function()\n                    self.scene.objectLookup.Swatbot13:remove()\n                    self.scene.objectLookup.Swatbot10:remove()\n                    self.scene.objectLookup.Swatbot11:remove()\n                    self.scene.objectLookup.Swatbot12:remove()\n                end)\n            }\n        },\n        Wait(1),\n        Parallel {\n            Ease(self.scene.camPos, \"x\", 0, 1),\n            Ease(self.scene.camPos, \"y\", 0, 1)\n        },\n        Do(function()\n            self.scene.objectLookup.Abominable2:remove()\n        end)\n    })\nend"
           }
         }
       }
@@ -1105,10 +1105,10 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1210,8 +1210,8 @@ return {
           name = "Swatbot3",
           type = "Swatbot",
           shape = "rectangle",
-          x = 1952,
-          y = 1600,
+          x = 1888,
+          y = 1664,
           width = 32,
           height = 32,
           rotation = 0,
@@ -1224,7 +1224,7 @@ return {
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
+            ["noInvestigate"] = true,
             ["noMusic"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png",
             ["viewRange"] = "View2"
@@ -1235,8 +1235,8 @@ return {
           name = "Swatbot4",
           type = "Swatbot",
           shape = "rectangle",
-          x = 2496,
-          y = 1760,
+          x = 2016,
+          y = 1664,
           width = 32,
           height = 32,
           rotation = 0,
@@ -1249,10 +1249,10 @@ return {
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
+            ["noInvestigate"] = true,
             ["noMusic"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png",
-            ["viewRange"] = "View3"
+            ["viewRange"] = "View2"
           }
         },
         {
@@ -1260,7 +1260,7 @@ return {
           name = "Swatbot5",
           type = "Swatbot",
           shape = "rectangle",
-          x = 2592,
+          x = 2528,
           y = 1760,
           width = 32,
           height = 32,
@@ -1274,7 +1274,7 @@ return {
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
+            ["noInvestigate"] = true,
             ["noMusic"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png",
             ["viewRange"] = "View3"
@@ -1282,7 +1282,7 @@ return {
         },
         {
           id = 152,
-          name = "Swatbot8",
+          name = "Swatbot9",
           type = "Swatbot",
           shape = "rectangle",
           x = 1952,
@@ -1299,7 +1299,7 @@ return {
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
+            ["noInvestigate"] = true,
             ["noMusic"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png",
             ["viewRange"] = "View4"
@@ -1307,7 +1307,7 @@ return {
         },
         {
           id = 153,
-          name = "Swatbot6",
+          name = "Swatbot7",
           type = "Swatbot",
           shape = "rectangle",
           x = 2080,
@@ -1324,7 +1324,7 @@ return {
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
+            ["noInvestigate"] = true,
             ["noMusic"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png",
             ["viewRange"] = "View4"
@@ -1332,7 +1332,7 @@ return {
         },
         {
           id = 154,
-          name = "Swatbot7",
+          name = "Swatbot8",
           type = "Swatbot",
           shape = "rectangle",
           x = 2016,
@@ -1349,7 +1349,7 @@ return {
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
+            ["noInvestigate"] = true,
             ["noMusic"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png",
             ["viewRange"] = "View4"
@@ -1357,7 +1357,7 @@ return {
         },
         {
           id = 155,
-          name = "Swatbot9",
+          name = "Swatbot10",
           type = "BasicNPC",
           shape = "rectangle",
           x = 2400,
@@ -1370,12 +1370,13 @@ return {
           properties = {
             ["defaultAnim"] = "idleright",
             ["ghost"] = true,
+            ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png"
           }
         },
         {
           id = 156,
-          name = "Swatbot11",
+          name = "Swatbot12",
           type = "BasicNPC",
           shape = "rectangle",
           x = 2528,
@@ -1388,12 +1389,13 @@ return {
           properties = {
             ["defaultAnim"] = "idleright",
             ["ghost"] = true,
+            ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png"
           }
         },
         {
           id = 157,
-          name = "Swatbot10",
+          name = "Swatbot11",
           type = "BasicNPC",
           shape = "rectangle",
           x = 2464,
@@ -1406,12 +1408,13 @@ return {
           properties = {
             ["defaultAnim"] = "idleright",
             ["ghost"] = true,
+            ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png"
           }
         },
         {
           id = 158,
-          name = "Swatbot12",
+          name = "Swatbot13",
           type = "BasicNPC",
           shape = "rectangle",
           x = 2592,
@@ -1424,6 +1427,7 @@ return {
           properties = {
             ["defaultAnim"] = "idleright",
             ["ghost"] = true,
+            ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png"
           }
         },
@@ -1543,6 +1547,76 @@ return {
           visible = false,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 172,
+          name = "Swatbot6",
+          type = "Swatbot",
+          shape = "rectangle",
+          x = 2592,
+          y = 1760,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = true,
+            ["noMusic"] = true,
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "View3"
+          }
+        },
+        {
+          id = 173,
+          name = "Swatbot7",
+          type = "Swatbot",
+          shape = "rectangle",
+          x = 2656,
+          y = 1728,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = true,
+            ["noMusic"] = true,
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "View3"
+          }
+        },
+        {
+          id = 175,
+          name = "CavePath",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 1952,
+          y = 1568,
+          width = 128,
+          height = 64,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["key"] = "up",
+            ["orientation"] = "down",
+            ["scene"] = "northmountains_cave.lua",
+            ["spawn_point"] = "DownPath"
           }
         }
       }
@@ -2222,7 +2296,7 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8441, 8442, 8443, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8493, 8494, 8495, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8545, 8546, 8547, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2287,7 +2361,7 @@ return {
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
+            ["noInvestigate"] = true,
             ["noMusic"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png",
             ["viewRange"] = "View1"
@@ -2312,7 +2386,7 @@ return {
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = false,
-            ["noInvestigate"] = false,
+            ["noInvestigate"] = true,
             ["noMusic"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png",
             ["viewRange"] = "View1"
@@ -2389,6 +2463,23 @@ return {
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/abominable.png"
           }
+        },
+        {
+          id = 171,
+          name = "Chest4",
+          type = "Chest",
+          shape = "rectangle",
+          x = 992,
+          y = 2336,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["Wrench"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
         }
       }
     },
@@ -2408,9 +2499,9 @@ return {
           type = "Ladder",
           shape = "rectangle",
           x = 1024,
-          y = 2976,
+          y = 2944,
           width = 32,
-          height = 544,
+          height = 512,
           rotation = 0,
           gid = 8696,
           visible = true,
@@ -2425,9 +2516,9 @@ return {
           type = "Ladder",
           shape = "rectangle",
           x = 800,
-          y = 2976,
+          y = 2944,
           width = 32,
-          height = 384,
+          height = 352,
           rotation = 0,
           gid = 8696,
           visible = true,
@@ -2442,9 +2533,9 @@ return {
           type = "Ladder",
           shape = "rectangle",
           x = 576,
-          y = 2976,
+          y = 2944,
           width = 32,
-          height = 224,
+          height = 192,
           rotation = 0,
           gid = 8696,
           visible = true,
@@ -2459,9 +2550,9 @@ return {
           type = "Ladder",
           shape = "rectangle",
           x = 1984,
-          y = 2592,
+          y = 2624,
           width = 32,
-          height = 672,
+          height = 768,
           rotation = 0,
           gid = 8696,
           visible = true,
@@ -2620,7 +2711,7 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 672, 672, 672, 672, 672, 672, 672, 672, 672, 672, 672, 672, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 672, 672, 672, 672, 672, 672, 672, 672, 672, 672, 672, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 672, 0, 0, 0, 0, 0, 0, 0, 0, 0, 672, 672, 0, 0, 0, 0, 0, 672, 672, 672, 672, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 672, 672, 672, 672, 672, 672, 672, 672, 672, 672, 672, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 672, 672, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 672, 0, 0, 0, 672, 0, 0, 672, 0, 0, 0, 672, 0, 0, 672, 0, 0, 0, 672, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 672, 672, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         672, 672, 672, 672, 672, 672, 672, 672, 672, 0, 0, 0, 0, 672, 672, 672, 672, 0, 0, 0, 672, 672, 672, 672, 0, 0, 0, 672, 672, 672, 672, 0, 0, 0, 672, 672, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         672, 672, 672, 672, 672, 672, 672, 672, 672, 672, 0, 0, 672, 672, 672, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 672, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 672, 672, 672, 672, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 672, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

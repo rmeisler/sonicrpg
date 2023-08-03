@@ -10,8 +10,9 @@ return {
   tileheight = 32,
   nextobjectid = 123,
   properties = {
+    ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
     ["layered"] = true,
-    ["onload"] = "actions/northmountains_2.lua"
+    ["onload"] = "actions/northmountains.lua"
   },
   tilesets = {
     {

@@ -58,8 +58,8 @@ return function(scene, hint)
 	end
 
 	if hint == "fromworldmap" or true then
-		scene.camPos.y = 300
-		return Serial {
+		scene.camPos.y = 350
+		return BlockPlayer {
 			PlayAudio("sfx", "wind", 0.5, true, true),
 			Wait(3),
 			Do(showTitle),
@@ -69,8 +69,8 @@ return function(scene, hint)
 			Ease(scene.camPos, "y", 0, 1)
 		}
 	elseif hint == "fromload" then
-		scene.camPos.y = 400
-		return Serial {
+		scene.camPos.y = 350
+		return BlockPlayer {
 			PlayAudio("sfx", "wind", 0.5, true, true),
 			Wait(3),
 			Do(showTitle),

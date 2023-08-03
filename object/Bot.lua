@@ -324,10 +324,18 @@ function Bot:update(dt)
 		self:removeSceneHandler("update")
 	end
 
+	-- Don't interact with player if player doesn't care about your layer
+	if (self.scene.player.onlyInteractWithLayer ~= nil and
+		self.scene.player.onlyInteractWithLayer ~= self.layer.name) and
+		self.layer.name ~= "all"
+	then
+		return
+	end
+
 	if not self:baseUpdate(dt) then
 		return
 	end
-	
+
 	if not self.friendlyCond or not self.friendlyCond(self) then
 		if self.viewRanges then
 			local touching = false
