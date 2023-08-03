@@ -8,7 +8,7 @@ return {
   height = 120,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 176,
+  nextobjectid = 177,
   properties = {
     ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
     ["layered"] = true,
@@ -714,23 +714,6 @@ return {
             ["ghost"] = true,
             ["whileColliding"] = "local Ease = require \"actions/Ease\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"ep4_abominable3\") or self.scene.objectLookup.Swatbot1:isRemoved() then\n        return\n    end\n    GameState:setFlag(\"ep4_abominable3\")\n    self.scene.objectLookup.Swatbot1.dropShadow:remove()\n    self.scene.objectLookup.Swatbot2.dropShadow:remove()\n    self.scene.objectLookup.Swatbot2.falling = true\n    self.scene.objectLookup.Swatbot1.falling = true\n    self.scene.objectLookup.Swatbot2.falling = true\n    self.scene.objectLookup.Swatbot1.sprite:setAnimation(\"idleright\")\n    self.scene.objectLookup.Swatbot2.sprite:setAnimation(\"idleleft\")\n    self.scene.objectLookup.Swatbot2.falling = true\n    self.scene.objectLookup.Swatbot1:removeCollision()\n    self.scene.objectLookup.Swatbot2:removeCollision()\n    self.scene.objectLookup.Swatbot1:removeAllUpdates()\n    self.scene.objectLookup.Swatbot2:removeAllUpdates()\n    self.scene:run(BlockPlayer {\n        Parallel {\n            Ease(self.scene.camPos, \"x\", -300, 1),\n            Ease(self.scene.camPos, \"y\", 500, 1)\n        },\n        Wait(1),\n        Animate(self.scene.objectLookup.Abominable.sprite, \"dark_leap_left\"),\n        Ease(self.scene.objectLookup.Abominable, \"y\", self.scene.objectLookup.Swatbot1.y - 80, 3, \"quad\"),\n        Do(function() self.scene.objectLookup.Abominable.sprite:setAnimation(\"dark_left\") end),\n        PlayAudio(\"sfx\", \"cyclopsstep\", 1.0, true),\n        Animate(self.scene.objectLookup.Swatbot1.sprite, \"hurtdown\"),\n        Animate(self.scene.objectLookup.Swatbot2.sprite, \"hurtdown\"),\n        Parallel {\n            self.scene:screenShake(20, 30, 1, true),\n            Serial {\n                Parallel {\n                    Ease(self.scene.objectLookup.Swatbot1, \"x\", function() return self.scene.objectLookup.Swatbot1.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot1, \"y\", function() return self.scene.objectLookup.Swatbot1.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot2, \"x\", function() return self.scene.objectLookup.Swatbot2.x + 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot2, \"y\", function() return self.scene.objectLookup.Swatbot2.y - 250 end, 2)\n                },\n                Parallel {\n                    Ease(self.scene.objectLookup.Swatbot1, \"x\", function() return self.scene.objectLookup.Swatbot1.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot1, \"y\", function() return self.scene.objectLookup.Swatbot1.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot2, \"x\", function() return self.scene.objectLookup.Swatbot2.x + 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot2, \"y\", function() return self.scene.objectLookup.Swatbot2.y + 800 end, 2, \"quad\")\n                },\n                Do(function()\n                    self.scene.objectLookup.Swatbot1:remove()\n                    self.scene.objectLookup.Swatbot2:remove()\n                end)\n            }\n        },\n        Wait(1),\n        Parallel {\n            Ease(self.scene.camPos, \"x\", 0, 1),\n            Ease(self.scene.camPos, \"y\", 0, 1)\n        },\n        Do(function()\n            self.scene.objectLookup.Abominable:remove()\n        end)\n    })\nend"
           }
-        },
-        {
-          id = 166,
-          name = "Event",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2048,
-          y = 640,
-          width = 32,
-          height = 128,
-          rotation = 0,
-          gid = 8696,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["whileColliding"] = "local Ease = require \"actions/Ease\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"ep4_abominable4\") then\n        return\n    end\n    GameState:setFlag(\"ep4_abominable4\")\n    self.scene:run(BlockPlayer {\n        Parallel {\n            Ease(self.scene.camPos, \"x\", -300, 1),\n            Ease(self.scene.camPos, \"y\", 50, 1)\n        },\n        Wait(1),\n        MessageBox{message=\"Swatbot 1: zzz. Destroy the roboticized creature. zzz.\"},\n        Animate(self.scene.objectLookup.Abominable2.sprite, \"leap_left\"),\n        Ease(self.scene.objectLookup.Abominable2, \"y\", function() return self.scene.objectLookup.Abominable2.y - 200 end, 2),\n        Ease(self.scene.objectLookup.Abominable2, \"y\", function() return self.scene.objectLookup.Abominable2.y + 200 end, 4, \"quad\"),\n        Do(function() self.scene.objectLookup.Abominable.sprite:setAnimation(\"idleleft\") end),\n        PlayAudio(\"sfx\", \"cyclopsstep\", 1.0, true),\n        Do(function()\n            self.scene.objectLookup.Swatbot9.sprite:setAnimation(\"hurtdown\")\n            self.scene.objectLookup.Swatbot10.sprite:setAnimation(\"hurtdown\")\n            self.scene.objectLookup.Swatbo11.sprite:setAnimation(\"hurtdown\")\n            self.scene.objectLookup.Swatbot12.sprite:setAnimation(\"hurtdown\")\n        end),\n        Parallel {\n            self.scene:screenShake(20, 30, 1, true),\n            Serial {\n                Parallel {\n                    Ease(self.scene.objectLookup.Swatbot13, \"x\", function() return self.scene.objectLookup.Swatbot13.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot13, \"y\", function() return self.scene.objectLookup.Swatbot13.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot10, \"x\", function() return self.scene.objectLookup.Swatbot10.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot10, \"y\", function() return self.scene.objectLookup.Swatbot10.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot11, \"x\", function() return self.scene.objectLookup.Swatbot11.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot11, \"y\", function() return self.scene.objectLookup.Swatbot11.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot12, \"x\", function() return self.scene.objectLookup.Swatbot12.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot12, \"y\", function() return self.scene.objectLookup.Swatbot12.y - 250 end, 2)\n                },\n                Parallel {\n                    Ease(self.scene.objectLookup.Swatbot13, \"x\", function() return self.scene.objectLookup.Swatbot13.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot13, \"y\", function() return self.scene.objectLookup.Swatbot13.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot10, \"x\", function() return self.scene.objectLookup.Swatbot10.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot10, \"y\", function() return self.scene.objectLookup.Swatbot10.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot11, \"x\", function() return self.scene.objectLookup.Swatbot11.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot11, \"y\", function() return self.scene.objectLookup.Swatbot11.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot12, \"x\", function() return self.scene.objectLookup.Swatbot12.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot12, \"y\", function() return self.scene.objectLookup.Swatbot12.y + 800 end, 2, \"quad\")\n                },\n                Do(function()\n                    self.scene.objectLookup.Swatbot13:remove()\n                    self.scene.objectLookup.Swatbot10:remove()\n                    self.scene.objectLookup.Swatbot11:remove()\n                    self.scene.objectLookup.Swatbot12:remove()\n                end)\n            }\n        },\n        Wait(1),\n        Parallel {\n            Ease(self.scene.camPos, \"x\", 0, 1),\n            Ease(self.scene.camPos, \"y\", 0, 1)\n        },\n        Do(function()\n            self.scene.objectLookup.Abominable2:remove()\n        end)\n    })\nend"
-          }
         }
       }
     },
@@ -1360,14 +1343,15 @@ return {
           name = "Swatbot10",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2400,
-          y = 512,
+          x = 2304,
+          y = 544,
           width = 32,
           height = 32,
           rotation = 0,
           gid = 8696,
           visible = true,
           properties = {
+            ["align"] = "bottom_left",
             ["defaultAnim"] = "idleright",
             ["ghost"] = true,
             ["noInvestigate"] = true,
@@ -1379,14 +1363,15 @@ return {
           name = "Swatbot12",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2528,
-          y = 512,
+          x = 2432,
+          y = 544,
           width = 32,
           height = 32,
           rotation = 0,
           gid = 8696,
           visible = true,
           properties = {
+            ["align"] = "bottom_left",
             ["defaultAnim"] = "idleright",
             ["ghost"] = true,
             ["noInvestigate"] = true,
@@ -1398,14 +1383,15 @@ return {
           name = "Swatbot11",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2464,
-          y = 480,
+          x = 2368,
+          y = 512,
           width = 32,
           height = 32,
           rotation = 0,
           gid = 8696,
           visible = true,
           properties = {
+            ["align"] = "bottom_left",
             ["defaultAnim"] = "idleright",
             ["ghost"] = true,
             ["noInvestigate"] = true,
@@ -1417,14 +1403,15 @@ return {
           name = "Swatbot13",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2592,
-          y = 480,
+          x = 2496,
+          y = 512,
           width = 32,
           height = 32,
           rotation = 0,
           gid = 8696,
           visible = true,
           properties = {
+            ["align"] = "bottom_left",
             ["defaultAnim"] = "idleright",
             ["ghost"] = true,
             ["noInvestigate"] = true,
@@ -1436,8 +1423,8 @@ return {
           name = "Abominable2",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2560,
-          y = 448,
+          x = 2592,
+          y = 480,
           width = 128,
           height = 96,
           rotation = 0,
@@ -1445,7 +1432,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "dark_left",
+            ["defaultAnim"] = "idleleft",
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/abominable.png"
           }
@@ -1617,6 +1604,23 @@ return {
             ["orientation"] = "down",
             ["scene"] = "northmountains_cave.lua",
             ["spawn_point"] = "DownPath"
+          }
+        },
+        {
+          id = 176,
+          name = "Event",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2144,
+          y = 640,
+          width = 32,
+          height = 128,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "local Ease = require \"actions/Ease\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"ep4_abominable4\") then\n        return\n    end\n    GameState:setFlag(\"ep4_abominable4\")\n    self.scene:run(BlockPlayer {\n        Parallel {\n            Ease(self.scene.camPos, \"x\", -300, 1),\n            Ease(self.scene.camPos, \"y\", 50, 1)\n        },\n        Wait(1),\n        MessageBox{message=\"Swatbot 1: There it is.\"},\n        MessageBox{message=\"Swatbot 1: zzz. Priority 1, destroy roboticized creature. zzz.\"},\n        Animate(self.scene.objectLookup.Abominable2.sprite, \"leap_left\"),\n        Ease(self.scene.objectLookup.Abominable2, \"y\", function() return self.scene.objectLookup.Abominable2.y - 200 end, 2),\n        Ease(self.scene.objectLookup.Abominable2, \"y\", function() return self.scene.objectLookup.Abominable2.y + 200 end, 4, \"quad\"),\n        Do(function() self.scene.objectLookup.Abominable2.sprite:setAnimation(\"idleleft\") end),\n        PlayAudio(\"sfx\", \"cyclopsstep\", 1.0, true),\n        Do(function()\n            self.scene.objectLookup.Swatbot13.sprite:setAnimation(\"hurtdown\")\n            self.scene.objectLookup.Swatbot10.sprite:setAnimation(\"hurtdown\")\n            self.scene.objectLookup.Swatbot11.sprite:setAnimation(\"hurtdown\")\n            self.scene.objectLookup.Swatbot12.sprite:setAnimation(\"hurtdown\")\n        end),\n        Parallel {\n            self.scene:screenShake(20, 30, 1, true),\n            Serial {\n                Parallel {\n                    Ease(self.scene.objectLookup.Swatbot13, \"x\", function() return self.scene.objectLookup.Swatbot13.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot13, \"y\", function() return self.scene.objectLookup.Swatbot13.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot10, \"x\", function() return self.scene.objectLookup.Swatbot10.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot10, \"y\", function() return self.scene.objectLookup.Swatbot10.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot11, \"x\", function() return self.scene.objectLookup.Swatbot11.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot11, \"y\", function() return self.scene.objectLookup.Swatbot11.y - 250 end, 2),\n                    Ease(self.scene.objectLookup.Swatbot12, \"x\", function() return self.scene.objectLookup.Swatbot12.x - 80 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot12, \"y\", function() return self.scene.objectLookup.Swatbot12.y - 250 end, 2)\n                },\n                Parallel {\n                    Ease(self.scene.objectLookup.Swatbot13, \"x\", function() return self.scene.objectLookup.Swatbot13.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot13, \"y\", function() return self.scene.objectLookup.Swatbot13.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot10, \"x\", function() return self.scene.objectLookup.Swatbot10.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot10, \"y\", function() return self.scene.objectLookup.Swatbot10.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot11, \"x\", function() return self.scene.objectLookup.Swatbot11.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot11, \"y\", function() return self.scene.objectLookup.Swatbot11.y + 800 end, 2, \"quad\"),\n                    Ease(self.scene.objectLookup.Swatbot12, \"x\", function() return self.scene.objectLookup.Swatbot12.x - 100 end, 2, \"linear\"),\n                    Ease(self.scene.objectLookup.Swatbot12, \"y\", function() return self.scene.objectLookup.Swatbot12.y + 800 end, 2, \"quad\")\n                },\n                Do(function()\n                    self.scene.objectLookup.Swatbot13:remove()\n                    self.scene.objectLookup.Swatbot10:remove()\n                    self.scene.objectLookup.Swatbot11:remove()\n                    self.scene.objectLookup.Swatbot12:remove()\n                end)\n            }\n        },\n        Wait(1),\n        Parallel {\n            Ease(self.scene.camPos, \"x\", 0, 1),\n            Ease(self.scene.camPos, \"y\", 0, 1)\n        },\n        Do(function()\n            self.scene.objectLookup.Abominable2:remove()\n        end)\n    })\nend"
           }
         }
       }
@@ -2460,6 +2464,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "dark_left",
+            ["isBot"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/abominable.png"
           }

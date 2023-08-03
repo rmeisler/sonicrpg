@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="120" tilewidth="32" tileheight="32" infinite="0" nextobjectid="176">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="120" tilewidth="32" tileheight="32" infinite="0" nextobjectid="177">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/northmountainsbg.png"/>
   <property name="layered" type="bool" value="true"/>
@@ -627,85 +627,6 @@ return function(self, player)
 end</property>
    </properties>
   </object>
-  <object id="166" name="Event" type="BasicNPC" gid="8696" x="2048" y="640" width="32" height="128">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="whileColliding">local Ease = require &quot;actions/Ease&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-local Serial = require &quot;actions/Serial&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Animate = require &quot;actions/Animate&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-
-return function(self, player)
-    if GameState:isFlagSet(&quot;ep4_abominable4&quot;) then
-        return
-    end
-    GameState:setFlag(&quot;ep4_abominable4&quot;)
-    self.scene:run(BlockPlayer {
-        Parallel {
-            Ease(self.scene.camPos, &quot;x&quot;, -300, 1),
-            Ease(self.scene.camPos, &quot;y&quot;, 50, 1)
-        },
-        Wait(1),
-        MessageBox{message=&quot;Swatbot 1: zzz. Destroy the roboticized creature. zzz.&quot;},
-        Animate(self.scene.objectLookup.Abominable2.sprite, &quot;leap_left&quot;),
-        Ease(self.scene.objectLookup.Abominable2, &quot;y&quot;, function() return self.scene.objectLookup.Abominable2.y - 200 end, 2),
-        Ease(self.scene.objectLookup.Abominable2, &quot;y&quot;, function() return self.scene.objectLookup.Abominable2.y + 200 end, 4, &quot;quad&quot;),
-        Do(function() self.scene.objectLookup.Abominable.sprite:setAnimation(&quot;idleleft&quot;) end),
-        PlayAudio(&quot;sfx&quot;, &quot;cyclopsstep&quot;, 1.0, true),
-        Do(function()
-            self.scene.objectLookup.Swatbot9.sprite:setAnimation(&quot;hurtdown&quot;)
-            self.scene.objectLookup.Swatbot10.sprite:setAnimation(&quot;hurtdown&quot;)
-            self.scene.objectLookup.Swatbo11.sprite:setAnimation(&quot;hurtdown&quot;)
-            self.scene.objectLookup.Swatbot12.sprite:setAnimation(&quot;hurtdown&quot;)
-        end),
-        Parallel {
-            self.scene:screenShake(20, 30, 1, true),
-            Serial {
-                Parallel {
-                    Ease(self.scene.objectLookup.Swatbot13, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot13.x - 80 end, 2, &quot;linear&quot;),
-                    Ease(self.scene.objectLookup.Swatbot13, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot13.y - 250 end, 2),
-                    Ease(self.scene.objectLookup.Swatbot10, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot10.x - 80 end, 2, &quot;linear&quot;),
-                    Ease(self.scene.objectLookup.Swatbot10, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot10.y - 250 end, 2),
-                    Ease(self.scene.objectLookup.Swatbot11, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot11.x - 80 end, 2, &quot;linear&quot;),
-                    Ease(self.scene.objectLookup.Swatbot11, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot11.y - 250 end, 2),
-                    Ease(self.scene.objectLookup.Swatbot12, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot12.x - 80 end, 2, &quot;linear&quot;),
-                    Ease(self.scene.objectLookup.Swatbot12, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot12.y - 250 end, 2)
-                },
-                Parallel {
-                    Ease(self.scene.objectLookup.Swatbot13, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot13.x - 100 end, 2, &quot;linear&quot;),
-                    Ease(self.scene.objectLookup.Swatbot13, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot13.y + 800 end, 2, &quot;quad&quot;),
-                    Ease(self.scene.objectLookup.Swatbot10, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot10.x - 100 end, 2, &quot;linear&quot;),
-                    Ease(self.scene.objectLookup.Swatbot10, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot10.y + 800 end, 2, &quot;quad&quot;),
-                    Ease(self.scene.objectLookup.Swatbot11, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot11.x - 100 end, 2, &quot;linear&quot;),
-                    Ease(self.scene.objectLookup.Swatbot11, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot11.y + 800 end, 2, &quot;quad&quot;),
-                    Ease(self.scene.objectLookup.Swatbot12, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot12.x - 100 end, 2, &quot;linear&quot;),
-                    Ease(self.scene.objectLookup.Swatbot12, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot12.y + 800 end, 2, &quot;quad&quot;)
-                },
-                Do(function()
-                    self.scene.objectLookup.Swatbot13:remove()
-                    self.scene.objectLookup.Swatbot10:remove()
-                    self.scene.objectLookup.Swatbot11:remove()
-                    self.scene.objectLookup.Swatbot12:remove()
-                end)
-            }
-        },
-        Wait(1),
-        Parallel {
-            Ease(self.scene.camPos, &quot;x&quot;, 0, 1),
-            Ease(self.scene.camPos, &quot;y&quot;, 0, 1)
-        },
-        Do(function()
-            self.scene.objectLookup.Abominable2:remove()
-        end)
-    })
-end</property>
-   </properties>
-  </object>
  </objectgroup>
  <layer name="shadow" width="96" height="120">
   <data encoding="csv">
@@ -1188,42 +1109,46 @@ end</property>
     <property name="viewRange" value="View4"/>
    </properties>
   </object>
-  <object id="155" name="Swatbot10" type="BasicNPC" gid="8696" x="2400" y="512" width="32" height="32">
-   <properties>
-    <property name="defaultAnim" value="idleright"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="noInvestigate" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
-   </properties>
-  </object>
-  <object id="156" name="Swatbot12" type="BasicNPC" gid="8696" x="2528" y="512" width="32" height="32">
-   <properties>
-    <property name="defaultAnim" value="idleright"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="noInvestigate" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
-   </properties>
-  </object>
-  <object id="157" name="Swatbot11" type="BasicNPC" gid="8696" x="2464" y="480" width="32" height="32">
-   <properties>
-    <property name="defaultAnim" value="idleright"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="noInvestigate" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
-   </properties>
-  </object>
-  <object id="158" name="Swatbot13" type="BasicNPC" gid="8696" x="2592" y="480" width="32" height="32">
-   <properties>
-    <property name="defaultAnim" value="idleright"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="noInvestigate" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
-   </properties>
-  </object>
-  <object id="160" name="Abominable2" type="BasicNPC" gid="10970" x="2560" y="448" width="128" height="96">
+  <object id="155" name="Swatbot10" type="BasicNPC" gid="8696" x="2304" y="544" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="dark_left"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
+   </properties>
+  </object>
+  <object id="156" name="Swatbot12" type="BasicNPC" gid="8696" x="2432" y="544" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
+   </properties>
+  </object>
+  <object id="157" name="Swatbot11" type="BasicNPC" gid="8696" x="2368" y="512" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
+   </properties>
+  </object>
+  <object id="158" name="Swatbot13" type="BasicNPC" gid="8696" x="2496" y="512" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
+   </properties>
+  </object>
+  <object id="160" name="Abominable2" type="BasicNPC" gid="10970" x="2592" y="480" width="128" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idleleft"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/abominable.png"/>
    </properties>
@@ -1296,6 +1221,86 @@ end</property>
     <property name="orientation" value="down"/>
     <property name="scene" type="file" value="northmountains_cave.lua"/>
     <property name="spawn_point" value="DownPath"/>
+   </properties>
+  </object>
+  <object id="176" name="Event" type="BasicNPC" gid="8696" x="2144" y="640" width="32" height="128">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">local Ease = require &quot;actions/Ease&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self, player)
+    if GameState:isFlagSet(&quot;ep4_abominable4&quot;) then
+        return
+    end
+    GameState:setFlag(&quot;ep4_abominable4&quot;)
+    self.scene:run(BlockPlayer {
+        Parallel {
+            Ease(self.scene.camPos, &quot;x&quot;, -300, 1),
+            Ease(self.scene.camPos, &quot;y&quot;, 50, 1)
+        },
+        Wait(1),
+        MessageBox{message=&quot;Swatbot 1: There it is.&quot;},
+        MessageBox{message=&quot;Swatbot 1: zzz. Priority 1, destroy roboticized creature. zzz.&quot;},
+        Animate(self.scene.objectLookup.Abominable2.sprite, &quot;leap_left&quot;),
+        Ease(self.scene.objectLookup.Abominable2, &quot;y&quot;, function() return self.scene.objectLookup.Abominable2.y - 200 end, 2),
+        Ease(self.scene.objectLookup.Abominable2, &quot;y&quot;, function() return self.scene.objectLookup.Abominable2.y + 200 end, 4, &quot;quad&quot;),
+        Do(function() self.scene.objectLookup.Abominable2.sprite:setAnimation(&quot;idleleft&quot;) end),
+        PlayAudio(&quot;sfx&quot;, &quot;cyclopsstep&quot;, 1.0, true),
+        Do(function()
+            self.scene.objectLookup.Swatbot13.sprite:setAnimation(&quot;hurtdown&quot;)
+            self.scene.objectLookup.Swatbot10.sprite:setAnimation(&quot;hurtdown&quot;)
+            self.scene.objectLookup.Swatbot11.sprite:setAnimation(&quot;hurtdown&quot;)
+            self.scene.objectLookup.Swatbot12.sprite:setAnimation(&quot;hurtdown&quot;)
+        end),
+        Parallel {
+            self.scene:screenShake(20, 30, 1, true),
+            Serial {
+                Parallel {
+                    Ease(self.scene.objectLookup.Swatbot13, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot13.x - 80 end, 2, &quot;linear&quot;),
+                    Ease(self.scene.objectLookup.Swatbot13, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot13.y - 250 end, 2),
+                    Ease(self.scene.objectLookup.Swatbot10, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot10.x - 80 end, 2, &quot;linear&quot;),
+                    Ease(self.scene.objectLookup.Swatbot10, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot10.y - 250 end, 2),
+                    Ease(self.scene.objectLookup.Swatbot11, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot11.x - 80 end, 2, &quot;linear&quot;),
+                    Ease(self.scene.objectLookup.Swatbot11, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot11.y - 250 end, 2),
+                    Ease(self.scene.objectLookup.Swatbot12, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot12.x - 80 end, 2, &quot;linear&quot;),
+                    Ease(self.scene.objectLookup.Swatbot12, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot12.y - 250 end, 2)
+                },
+                Parallel {
+                    Ease(self.scene.objectLookup.Swatbot13, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot13.x - 100 end, 2, &quot;linear&quot;),
+                    Ease(self.scene.objectLookup.Swatbot13, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot13.y + 800 end, 2, &quot;quad&quot;),
+                    Ease(self.scene.objectLookup.Swatbot10, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot10.x - 100 end, 2, &quot;linear&quot;),
+                    Ease(self.scene.objectLookup.Swatbot10, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot10.y + 800 end, 2, &quot;quad&quot;),
+                    Ease(self.scene.objectLookup.Swatbot11, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot11.x - 100 end, 2, &quot;linear&quot;),
+                    Ease(self.scene.objectLookup.Swatbot11, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot11.y + 800 end, 2, &quot;quad&quot;),
+                    Ease(self.scene.objectLookup.Swatbot12, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot12.x - 100 end, 2, &quot;linear&quot;),
+                    Ease(self.scene.objectLookup.Swatbot12, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot12.y + 800 end, 2, &quot;quad&quot;)
+                },
+                Do(function()
+                    self.scene.objectLookup.Swatbot13:remove()
+                    self.scene.objectLookup.Swatbot10:remove()
+                    self.scene.objectLookup.Swatbot11:remove()
+                    self.scene.objectLookup.Swatbot12:remove()
+                end)
+            }
+        },
+        Wait(1),
+        Parallel {
+            Ease(self.scene.camPos, &quot;x&quot;, 0, 1),
+            Ease(self.scene.camPos, &quot;y&quot;, 0, 1)
+        },
+        Do(function()
+            self.scene.objectLookup.Abominable2:remove()
+        end)
+    })
+end</property>
    </properties>
   </object>
  </objectgroup>
@@ -1986,6 +1991,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="dark_left"/>
+    <property name="isBot" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/abominable.png"/>
    </properties>

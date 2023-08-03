@@ -244,6 +244,13 @@ function BasicScene:onEnter(args)
 	
 	return Serial {
 		args.enterDelay and Wait(args.enterDelay) or Action(),
+		Do(function()
+			-- Swap layer, if applicable
+			if self.layered and toLayer then
+				local layerId = toLayer:gsub("objects", "")
+				self:swapLayer(layerId ~= "" and tonumber(layerId) or 1)
+			end
+		end),
 		Spawn(
 			Serial {
 				Parallel {
@@ -266,12 +273,6 @@ function BasicScene:onEnter(args)
 			if GameState.leader == "bunny" then
 				print("yes special move")
 				self.player.noSpecialMove = false
-			end
-
-			-- Swap layer, if applicable
-			if self.layered and toLayer then
-				local layerId = toLayer:gsub("objects", "")
-				self:swapLayer(layerId ~= "" and tonumber(layerId) or 1)
 			end
 		end)
 	}
@@ -358,6 +359,12 @@ function BasicScene:onReEnter(args)
 	return Serial {
 		Do(function()
 			self.player.cinematicStack = 1
+
+			-- Swap layer, if applicable
+			if self.layered and toLayer then
+				local layerId = toLayer:gsub("objects", "")
+				self:swapLayer(layerId ~= "" and tonumber(layerId) or 1)
+			end
 		end),
 	
 		Parallel {
@@ -383,12 +390,6 @@ function BasicScene:onReEnter(args)
 			
 			if GameState.leader == "bunny" then
 				self.player.noSpecialMove = false
-			end
-
-			-- Swap layer, if applicable
-			if self.layered and toLayer then
-				local layerId = toLayer:gsub("objects", "")
-				self:swapLayer(layerId ~= "" and tonumber(layerId) or 1)
 			end
 		end)
 	}

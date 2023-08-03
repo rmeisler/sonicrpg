@@ -21,10 +21,10 @@ return {
         },
 
 		leap_left = {
-            frames = {{5,0}}
+            frames = {{6,0}}
         },
 		leap_right = {
-            frames = {{4,0}}
+            frames = {{5,0}}
         },
 		idleleft = {
             frames = {{2,0},{3,0}},
