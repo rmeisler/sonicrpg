@@ -81,6 +81,7 @@ return function(player)
 				Do(function()
 					player.scene.objectLookup.RotorTrap.sprite:setAnimation("active")
 					player.basicUpdate = player.updateFun
+					player.placeTrap:addSceneHandler("update")
 					player.placeTrap = nil
 				end)
 			})

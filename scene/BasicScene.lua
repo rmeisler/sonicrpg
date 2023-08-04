@@ -338,13 +338,11 @@ function BasicScene:onReEnter(args)
 	for _, obj in pairs(self.map.objects) do
 		if obj.flagForDeletion then
 			obj:remove()
-		end
-		
-		if obj.onEnter then
+		elseif obj.onEnter then
 			obj:onEnter()
 		end
 	end
-	
+
 	local onLoadAction = Action()
 	if self.map.properties.onload then
 		onLoadAction = love.filesystem.load("maps/"..self.map.properties.onload)()(self, args.hint)
@@ -940,6 +938,7 @@ function BasicScene:swapLayer(toLayerNum)
 	self.player.sprite:swapLayer(objLayer)
 	self.player.dropShadow.sprite:swapLayer(objLayer)
 	self.player.onlyInteractWithLayer = objLayer
+	self.player.layer = {name = objLayer}
 	self.currentLayer = objLayer
 	self.currentLayerId = toLayerNum
 

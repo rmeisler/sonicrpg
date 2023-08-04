@@ -8,6 +8,7 @@
  <tileset firstgid="1" source="forest2.tsx"/>
  <tileset firstgid="5176" source="knothole.tsx"/>
  <tileset firstgid="8660" source="robotropolis.tsx"/>
+ <tileset firstgid="12160" source="cave.tsx"/>
  <imagelayer name="bg" offsetx="0" offsety="1984">
   <image source="../art/parallax/northmountains.png" width="800" height="800"/>
   <properties>
@@ -567,10 +568,14 @@ local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 
 return function(self, player)
-    if GameState:isFlagSet(&quot;ep4_abominable3&quot;) or self.scene.objectLookup.Swatbot1:isRemoved() then
+    if GameState:isFlagSet(&quot;ep4_abominable3&quot;) then
         return
     end
     GameState:setFlag(&quot;ep4_abominable3&quot;)
+    if self.scene.objectLookup.Swatbot1:isRemoved() and self.scene.objectLookup.Swatbot2:isRemoved() then
+        self.scene.objectLookup.Abominable:permanentRemove()
+        return
+    end
     self.scene.objectLookup.Swatbot1.dropShadow:remove()
     self.scene.objectLookup.Swatbot2.dropShadow:remove()
     self.scene.objectLookup.Swatbot2.falling = true
@@ -611,8 +616,8 @@ return function(self, player)
                     Ease(self.scene.objectLookup.Swatbot2, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot2.y + 800 end, 2, &quot;quad&quot;)
                 },
                 Do(function()
-                    self.scene.objectLookup.Swatbot1:remove()
-                    self.scene.objectLookup.Swatbot2:remove()
+                    self.scene.objectLookup.Swatbot1:permanentRemove()
+                    self.scene.objectLookup.Swatbot2:permanentRemove()
                 end)
             }
         },
@@ -622,7 +627,7 @@ return function(self, player)
             Ease(self.scene.camPos, &quot;y&quot;, 0, 1)
         },
         Do(function()
-            self.scene.objectLookup.Abominable:remove()
+            self.scene.objectLookup.Abominable:permanentRemove()
         end)
     })
 end</property>
@@ -1014,7 +1019,7 @@ end</property>
 end</property>
    </properties>
   </object>
-  <object id="138" name="Hop" type="LayerHop" gid="10970" x="1184" y="2688" width="64" height="64">
+  <object id="138" name="Hop" type="LayerHop" gid="10970" x="1184" y="2688" width="64" height="32">
    <properties>
     <property name="fromLayer" type="int" value="3"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1037,6 +1042,7 @@ end</property>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="noMusic" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
     <property name="viewRange" value="View2"/>
    </properties>
@@ -1051,6 +1057,7 @@ end</property>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="noMusic" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
     <property name="viewRange" value="View2"/>
    </properties>
@@ -1065,6 +1072,7 @@ end</property>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="noMusic" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
     <property name="viewRange" value="View3"/>
    </properties>
@@ -1079,6 +1087,7 @@ end</property>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="noMusic" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
     <property name="viewRange" value="View4"/>
    </properties>
@@ -1093,6 +1102,7 @@ end</property>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="noMusic" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
     <property name="viewRange" value="View4"/>
    </properties>
@@ -1107,6 +1117,7 @@ end</property>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="noMusic" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
     <property name="viewRange" value="View4"/>
    </properties>
@@ -1117,6 +1128,7 @@ end</property>
     <property name="defaultAnim" value="idleright"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
    </properties>
   </object>
@@ -1126,6 +1138,7 @@ end</property>
     <property name="defaultAnim" value="idleright"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
    </properties>
   </object>
@@ -1135,6 +1148,7 @@ end</property>
     <property name="defaultAnim" value="idleright"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
    </properties>
   </object>
@@ -1144,6 +1158,7 @@ end</property>
     <property name="defaultAnim" value="idleright"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
    </properties>
   </object>
@@ -1198,6 +1213,7 @@ end</property>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="noMusic" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
     <property name="viewRange" value="View3"/>
    </properties>
@@ -1212,11 +1228,12 @@ end</property>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="noMusic" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
     <property name="viewRange" value="View3"/>
    </properties>
   </object>
-  <object id="175" name="CavePath" type="SceneEdge" gid="10970" x="1952" y="1568" width="128" height="64">
+  <object id="175" name="CavePath" type="SceneEdge" gid="10970" x="1952" y="1568" width="128" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
@@ -1680,7 +1697,7 @@ end</property>
  </layer>
  <objectgroup name="lower2"/>
  <objectgroup name="objects2">
-  <object id="139" name="Hop" type="LayerHop" gid="10970" x="672" y="2592" width="64" height="64">
+  <object id="139" name="Hop" type="LayerHop" gid="10970" x="672" y="2592" width="64" height="32">
    <properties>
     <property name="fromLayer" type="int" value="2"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1949,6 +1966,7 @@ end</property>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="noMusic" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
     <property name="viewRange" value="View1"/>
    </properties>
@@ -1963,6 +1981,7 @@ end</property>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="noMusic" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
     <property name="viewRange" value="View1"/>
    </properties>
@@ -1983,7 +2002,7 @@ end</property>
 end</property>
    </properties>
   </object>
-  <object id="141" name="Hop" type="LayerHop" gid="10970" x="896" y="2432" width="64" height="64">
+  <object id="141" name="Hop" type="LayerHop" gid="10970" x="896" y="2432" width="64" height="32">
    <properties>
     <property name="fromLayer" type="int" value="1"/>
     <property name="ghost" type="bool" value="true"/>
@@ -2215,7 +2234,7 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,741,741,741,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2045,0,0,0,1976,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,741,0,741,741,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2045,1976,1976,1976,1976,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,741,0,741,741,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1976,1976,1976,1976,0,0,0,1976,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,741,0,0,741,741,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1976,1976,1976,0,0,0,0,0,0,1976,1976,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,741,0,0,741,741,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1976,1976,1976,0,0,0,0,0,0,0,0,0,1976,1976,1976,1976,1976,0,0,0,0,0,0,0,0,0,0,0,0,0,741,0,0,741,741,0,0,0,0,0,0,0,0,
@@ -2229,7 +2248,7 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1976,1976,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1976,1976,1976,1976,741,741,741,741,741,741,741,0,0,0,0,741,741,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1976,0,0,0,0,0,0,0,0,0,0,0,0,0,1976,1976,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1976,1976,1976,1976,1976,1976,1976,1976,0,0,0,1976,1976,1976,1976,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1976,0,0,0,1976,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1976,1976,1976,1976,1976,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2494,7 +2513,7 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,672,672,672,672,672,0,0,0,0,0,0,0,0,0,0,0,0,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,0,0,0,0,0,0,0,0,0,672,672,672,672,0,0,0,0,0,0,672,672,0,0,0,0,672,672,0,0,0,0,0,0,0,0,0,0,672,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,672,672,672,0,0,0,672,672,672,0,0,0,672,672,672,672,672,672,672,672,672,0,0,0,0,0,672,672,672,672,672,672,672,672,672,672,672,672,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,672,672,672,672,672,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

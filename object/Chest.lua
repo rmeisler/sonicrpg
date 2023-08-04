@@ -85,6 +85,7 @@ function Chest:open()
 			if self.disappearOnGrabbed then
 				self:remove()
 			end
+			self.scene.audio:stopSfx("choose")
 			
 			self:refreshKeyHint()
 		end)

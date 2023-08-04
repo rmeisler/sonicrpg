@@ -44,7 +44,11 @@ function Subscreen:construct(scene, transform, color, img)
 			Ease(self.color, 4, 0, 2),
 			
 			-- Remove subscreen player selection
-			Do(function() self:remove() end)
+			Do(function()
+				self:remove()
+				self.scene.audio:stopSfx("cursor") -- Hack, get off repeat
+				self.scene.audio:stopSfx("choose") -- Hack, get off repeat
+			end)
 		}
 	}
 	

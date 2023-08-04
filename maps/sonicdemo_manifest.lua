@@ -12,7 +12,7 @@ return {
 	{
         type = "map",
 		file = "maps/northmountains_landing.lua",
-		primary = true -- TEST
+		--primary = true -- TEST
     },
 	{
         type = "map",
@@ -29,6 +29,11 @@ return {
 	{
         type = "map",
 		file = "maps/northmountains_cave.lua"
+    },
+	{
+        type = "map",
+		file = "maps/bartcave.lua",
+		primary = true -- TEST
     },
 	--[[{
         type = "map",
@@ -789,6 +794,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/sallysad.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/bart.ogg",
 		category = "music"
 	},
 	{

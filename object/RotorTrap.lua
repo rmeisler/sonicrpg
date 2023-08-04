@@ -35,6 +35,7 @@ function RotorTrap:construct(scene, layer, object)
 	self.hotspots.left_bot.y = self.y + self.sprite.h / 2
 
 	self.shockedBots = {}
+	self:removeSceneHandler("update")
 end
 
 function RotorTrap:update(dt)
@@ -53,34 +54,45 @@ function RotorTrap:shockBots()
 		   not obj:isRemoved() and
 		   not self.shockedBots[tostring(obj)] and
 		   obj:isTouching(
-				self.x - self.sprite.w/4,
-				self.y + self.sprite.w/4,
-				self.sprite.w / 2,
-				self.sprite.h / 2)
+				self.x + self.sprite.w,
+				self.y + self.sprite.h,
+				self.sprite.w/5,
+				self.sprite.h/5)
 		then
 			self.shockedBots[tostring(obj)] = obj
-			obj:disableBot()
-			obj:run {
-				Do(function()
-					obj.sprite:setAnimation("hurtdown")
-				end),
+			obj.sprite:setAnimation("hurtdown")
+			obj:removeCollision()
+			obj:removeAllUpdates()
+			self.scene.player.chasers[tostring(obj.name)] = nil
+			self:run {
 				PlayAudio("sfx", "shocked", 1.0, true),
 				While(
 					function()
-						return obj:isTouching(self.x, self.y, self.object.width, self.object.height)
+						return self.sprite and obj:isTouching(
+							self.x + self.sprite.w,
+							self.y + self.sprite.h,
+							self.sprite.w/5,
+							self.sprite.h/5)
 					end,
 					Repeat(Serial {
 						Do(function()
-							obj.sprite:setInvertedColor()
+							if obj.sprite then
+								obj.sprite:setInvertedColor()
+							end
 						end),
 						Wait(0.1),
 						Do(function()
-							obj.sprite:removeInvertedColor()
+							if obj.sprite then
+								obj.sprite:removeInvertedColor()
+							end
 						end),
 						Wait(0.1),
 					}),
 					Do(function()
-						obj:enabledBot()
+						if obj.sprite then
+							obj.sprite:removeInvertedColor()
+							obj:addSceneHandler("update")
+						end
 					end)
 				)
 			}

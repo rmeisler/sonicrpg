@@ -446,6 +446,11 @@ function NPC:onBattleComplete(args)
 	end
 end
 
+function NPC:permanentRemove()
+	GameState:setFlag(flag)
+	self:remove()
+end
+
 function NPC:getInitiative()
 	return self.object.properties.battleInitiative
 end
@@ -623,10 +628,10 @@ function NPC:isTouching(x, y, w, h)
 	if not self.hotspots then
 		return false
 	end
-	
+
 	w = w or self.scene:getTileWidth()
 	h = h or self.scene:getTileHeight()
-	
+
 	local fuzz = 5
 	return (x + w) >= (self.hotspots.left_bot.x - fuzz) and
 		x < (self.hotspots.right_bot.x + fuzz) and
