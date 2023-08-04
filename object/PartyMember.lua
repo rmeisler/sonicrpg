@@ -497,12 +497,7 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 		
 		if invalidateArrowPos and self.arrow then
 			self.arrow.transform.x = target.sprite.transform.x + target.sprite.w / 2
-			
-			if self.id == "rotor" then
-				self.arrow.transform.y = target.sprite.transform.y - target.sprite.h * 2
-			else
-				self.arrow.transform.y = target.sprite.transform.y - target.sprite.h * 1.5
-			end
+			self.arrow.transform.y = target.sprite.transform.y - target.sprite.h * 1.5
 			
 			-- Can't target
 			if unusable and unusable(target) then

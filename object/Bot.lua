@@ -943,11 +943,23 @@ function Bot:remove()
 	NPC.remove(self)
 end
 
-function Bot:removeAllUpdates()
+function Bot:removeAllUpdates(exceptActions)
 	self:removeSceneHandler("update", Bot.investigateUpdate)
 	self:removeSceneHandler("update", Bot.chaseUpdate)
-	self:removeSceneHandler("update", Bot.updateAction)
 	self:removeSceneHandler("update", Bot.update)
+	if not exceptActions then
+		self:removeSceneHandler("update", Bot.updateAction)
+	end
 end
+
+function Bot:disableBot()
+	self:removeAllUpdates(true)
+end
+
+function Bot:enableBot()
+	self:removeSceneHandler("update", Bot.updateAction)
+	self:addSceneHandler("update")
+end
+
 
 return Bot

@@ -653,6 +653,17 @@ return {
     },
     {
       type = "objectgroup",
+      name = "lower4",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {}
+    },
+    {
+      type = "objectgroup",
       name = "objects4",
       visible = true,
       opacity = 1,
@@ -1127,6 +1138,17 @@ return {
     },
     {
       type = "objectgroup",
+      name = "lower3",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {}
+    },
+    {
+      type = "objectgroup",
       name = "objects3",
       visible = true,
       opacity = 1,
@@ -1343,7 +1365,7 @@ return {
           name = "Swatbot10",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2304,
+          x = 2272,
           y = 544,
           width = 32,
           height = 32,
@@ -1363,7 +1385,7 @@ return {
           name = "Swatbot12",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2432,
+          x = 2400,
           y = 544,
           width = 32,
           height = 32,
@@ -1383,7 +1405,7 @@ return {
           name = "Swatbot11",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2368,
+          x = 2336,
           y = 512,
           width = 32,
           height = 32,
@@ -1403,7 +1425,7 @@ return {
           name = "Swatbot13",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2496,
+          x = 2464,
           y = 512,
           width = 32,
           height = 32,
@@ -1423,7 +1445,7 @@ return {
           name = "Abominable2",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2592,
+          x = 2560,
           y = 480,
           width = 128,
           height = 96,
@@ -1467,7 +1489,7 @@ return {
           gid = 10970,
           visible = true,
           properties = {
-            ["Mine"] = 1,
+            ["LaserShield"] = 2,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1611,7 +1633,7 @@ return {
           name = "Event",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2144,
+          x = 2080,
           y = 640,
           width = 32,
           height = 128,
@@ -2035,6 +2057,17 @@ return {
     },
     {
       type = "objectgroup",
+      name = "lower2",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {}
+    },
+    {
+      type = "objectgroup",
       name = "objects2",
       visible = true,
       opacity = 1,
@@ -2335,6 +2368,17 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
       }
+    },
+    {
+      type = "objectgroup",
+      name = "lower",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {}
     },
     {
       type = "objectgroup",

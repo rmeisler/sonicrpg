@@ -16,6 +16,8 @@ local While = require "actions/While"
 local Action = require "actions/Action"
 local Executor = require "actions/Executor"
 
+local RotorTrap = require "object/RotorTrap"
+
 return function(player)
 	player.basicUpdate = function(self, dt)
 		if love.keyboard.isDown("lshift") then
@@ -23,9 +25,12 @@ return function(player)
 				if player.scene.objectLookup.RotorTrap then
 					player.scene.objectLookup.RotorTrap:remove()
 				end
-				local npc = BasicNPC(
+				local npc = RotorTrap(
 					player.scene,
-					{name = "lower"},
+					{name = ((self.scene.currentLayerId == 1) and
+						"lower" or
+						("lower"..tostring(self.scene.currentLayerId)))
+					},
 					{
 						name = "RotorTrap",
 						x = player.x + 50,

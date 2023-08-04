@@ -103,6 +103,13 @@ function LayerHop:onCollision(prevState)
 			self.scene.player.transform,
 			Transform(self.scene.player.sprite.w - 10, 0)
 		)
+		-- HACK: Rotor is too differently shaped for this transform, change it
+		if GameState.leader == "rotor" then
+			pressDirXForm = Transform.relative(
+				self.scene.player.transform,
+				Transform(self.scene.player.sprite.w - 15, -10)
+			)
+		end
 		self.keyhint = SpriteNode(
 			self.scene,
 			pressDirXForm,

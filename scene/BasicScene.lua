@@ -50,7 +50,8 @@ function BasicScene:onEnter(args)
 	self.nighttime = args.nighttime or self.map.properties.nighttime
 	self.noBattleMusic = self.map.properties.noBattleMusic
 	self.layered = self.map.properties.layered
-	self.currentLayer = "objects"..(self.map.properties.currentLayer and tostring(self.map.properties.currentLayer) or "")
+	self.currentLayerId = self.map.properties.currentLayer or 1
+	self.currentLayer = "objects"..(self.currentLayerId > 1 and tostring(self.currentLayerId) or "")
 
 	self.args = args
 	self.cacheSceneData = args.cache
@@ -940,6 +941,7 @@ function BasicScene:swapLayer(toLayerNum)
 	self.player.dropShadow.sprite:swapLayer(objLayer)
 	self.player.onlyInteractWithLayer = objLayer
 	self.currentLayer = objLayer
+	self.currentLayerId = toLayerNum
 
 	-- Swap collision layer (assumes naming convention of "Collision" or "CollisionN"
 	local colLayer = toLayerNum == 1 and "Collision" or ("Collision"..layerStr)

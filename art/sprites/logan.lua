@@ -83,6 +83,9 @@ return {
 		victory = {
 			frames = {{1,5}}
 		},
+		dead = {
+			frames = {{7,6}}
+		},
 		irritated = {
 			frames = {{1,6}}
 		},

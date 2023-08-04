@@ -510,6 +510,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="lower4"/>
  <objectgroup name="objects4">
   <object id="130" name="Event" type="BasicNPC" gid="8696" x="512" y="3168" width="32" height="160">
    <properties>
@@ -1000,6 +1001,7 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="lower3"/>
  <objectgroup name="objects3">
   <object id="135" name="NoLadderPlz" type="BasicNPC" gid="10970" x="768" y="2784" width="352" height="256">
    <properties>
@@ -1109,7 +1111,7 @@ end</property>
     <property name="viewRange" value="View4"/>
    </properties>
   </object>
-  <object id="155" name="Swatbot10" type="BasicNPC" gid="8696" x="2304" y="544" width="32" height="32">
+  <object id="155" name="Swatbot10" type="BasicNPC" gid="8696" x="2272" y="544" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleright"/>
@@ -1118,7 +1120,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
    </properties>
   </object>
-  <object id="156" name="Swatbot12" type="BasicNPC" gid="8696" x="2432" y="544" width="32" height="32">
+  <object id="156" name="Swatbot12" type="BasicNPC" gid="8696" x="2400" y="544" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleright"/>
@@ -1127,7 +1129,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
    </properties>
   </object>
-  <object id="157" name="Swatbot11" type="BasicNPC" gid="8696" x="2368" y="512" width="32" height="32">
+  <object id="157" name="Swatbot11" type="BasicNPC" gid="8696" x="2336" y="512" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleright"/>
@@ -1136,7 +1138,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
    </properties>
   </object>
-  <object id="158" name="Swatbot13" type="BasicNPC" gid="8696" x="2496" y="512" width="32" height="32">
+  <object id="158" name="Swatbot13" type="BasicNPC" gid="8696" x="2464" y="512" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleright"/>
@@ -1145,7 +1147,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
    </properties>
   </object>
-  <object id="160" name="Abominable2" type="BasicNPC" gid="10970" x="2592" y="480" width="128" height="96">
+  <object id="160" name="Abominable2" type="BasicNPC" gid="10970" x="2560" y="480" width="128" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleleft"/>
@@ -1161,7 +1163,7 @@ end</property>
   </object>
   <object id="164" name="Chest1" type="Chest" gid="10970" x="2688" y="1664" width="64" height="64">
    <properties>
-    <property name="Mine" type="int" value="1"/>
+    <property name="LaserShield" type="int" value="2"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -1223,7 +1225,7 @@ end</property>
     <property name="spawn_point" value="DownPath"/>
    </properties>
   </object>
-  <object id="176" name="Event" type="BasicNPC" gid="8696" x="2144" y="640" width="32" height="128">
+  <object id="176" name="Event" type="BasicNPC" gid="8696" x="2080" y="640" width="32" height="128">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="whileColliding">local Ease = require &quot;actions/Ease&quot;
@@ -1676,6 +1678,7 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="lower2"/>
  <objectgroup name="objects2">
   <object id="139" name="Hop" type="LayerHop" gid="10970" x="672" y="2592" width="64" height="64">
    <properties>
@@ -1934,6 +1937,7 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="lower"/>
  <objectgroup name="objects">
   <object id="126" name="Swatbot1" type="Swatbot" gid="8696" x="1856" y="2368" width="32" height="32">
    <properties>

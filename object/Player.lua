@@ -273,6 +273,13 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 			self.transform,
 			Transform(self.sprite.w - 10, 0)
 		)
+		-- HACK: Rotor is too differently shaped for this transform, change it
+		if GameState.leader == "rotor" then
+			pressDirXForm = Transform.relative(
+				self.transform,
+				Transform(self.sprite.w - 15, -10)
+			)
+		end
 		local pressDir = SpriteNode(
 			self.scene,
 			pressDirXForm,
@@ -291,6 +298,13 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 			self.transform,
 			Transform(self.sprite.w - 10, 0)
 		)
+		-- HACK: Rotor is too differently shaped for this transform, change it
+		if GameState.leader == "rotor" then
+			pressXXForm = Transform.relative(
+				self.transform,
+				Transform(self.sprite.w - 15, -10)
+			)
+		end
 		local pressX = SpriteNode(
 			self.scene,
 			pressXXForm,
@@ -310,6 +324,13 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 			self.transform,
 			Transform(self.sprite.w - 12, 0)
 		)
+		-- HACK: Rotor is too differently shaped for this transform, change it
+		if GameState.leader == "rotor" then
+			pressLshXForm = Transform.relative(
+				self.transform,
+				Transform(self.sprite.w - 17, -10)
+			)
+		end
 		local pressLsh = SpriteNode(
 			self.scene,
 			pressLshXForm,
@@ -329,6 +350,13 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 			self.transform,
 			Transform(self.sprite.w - 10, 0)
 		)
+		-- HACK: Rotor is too differently shaped for this transform, change it
+		if GameState.leader == "rotor" then
+			pressXXForm = Transform.relative(
+				self.transform,
+				Transform(self.sprite.w - 15, -10)
+			)
+		end
 		local pressX = SpriteNode(
 			self.scene,
 			pressXXForm,
@@ -754,7 +782,12 @@ function Player:basicUpdate(dt)
 	-- Update drop shadow position
 	self.dropShadow.x = self.x - 22
 	self.dropShadow.y = self.dropShadowOverrideY or self.y + self.sprite.h - 15
-	
+
+	-- HACK: Rotor is big
+	if GameState.leader == "rotor" then
+		self.dropShadow.x = self.x - 5
+	end
+
 	local prevState = self.state
 	
 	if not self.noIdle then

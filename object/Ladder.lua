@@ -37,6 +37,12 @@ function Ladder:construct(scene, layer, object)
 		player.dropShadow.x = player.x - 22
 		player.dropShadow.y = self.y + self.object.height + player.sprite.h*2
 
+		-- HACK: Rotor is big
+		if GameState.leader == "rotor" then
+			player.x = self.x
+			player.dropShadow.x = player.x - 10
+		end
+		
 		if love.keyboard.isDown("up") then
 			player.y = player.y - movespeed
 			self.climbAnimTime = self.climbAnimTime + dt

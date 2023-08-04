@@ -350,6 +350,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="lower4"/>
  <objectgroup name="objects4">
   <object id="82" name="Chest1" type="Chest" gid="10970" x="1888" y="1888" width="64" height="64">
    <properties>
@@ -682,6 +683,7 @@ end
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="lower3"/>
  <objectgroup name="objects3">
   <object id="80" name="LeftPath" type="SceneEdge" gid="10970" x="0" y="2112" width="64" height="64">
    <properties>
@@ -1146,6 +1148,7 @@ end
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="lower2"/>
  <objectgroup name="objects2">
   <object id="96" name="Hop" type="LayerHop" gid="10970" x="1408" y="736" width="64" height="64">
    <properties>
@@ -1157,7 +1160,7 @@ end
   </object>
   <object id="111" name="Chest2" type="Chest" gid="10970" x="1632" y="640" width="64" height="64">
    <properties>
-    <property name="YellowLeaf" type="int" value="1"/>
+    <property name="BlasterArmor" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -1338,6 +1341,7 @@ end
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="lower"/>
  <objectgroup name="objects"/>
  <objectgroup name="all">
   <object id="81" name="Ladder1" type="Ladder" gid="8696" x="1952" y="2080" width="32" height="704">
