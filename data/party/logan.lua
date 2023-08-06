@@ -57,15 +57,13 @@ return {
 		{count = 3, item = require "data/items/CrystalWater"},
 		{count = 1, item = require "data/items/RainbowSyrup"},
 	},
-	
+
 	levelup = {
 		[5] = {
 			messages = {"Logan learned \"Super Shield\"!"},
 			skills = {
 				require "data/battle/skills/LoganScan",
-				require "data/battle/skills/Hologram",
-				require "data/battle/skills/Predict",
-				require "data/battle/skills/SuperShield",
+				require "data/battle/skills/Hologram"
 			}
 		},
 	},

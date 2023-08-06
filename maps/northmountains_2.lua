@@ -8,7 +8,7 @@ return {
   height = 80,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 123,
+  nextobjectid = 129,
   properties = {
     ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
     ["layered"] = true,
@@ -525,7 +525,7 @@ return {
           gid = 10970,
           visible = true,
           properties = {
-            ["BlueScarf"] = 1,
+            ["CopperAmulet"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1143,7 +1143,7 @@ return {
           height = 416,
           rotation = 0,
           gid = 10970,
-          visible = true,
+          visible = false,
           properties = {
             ["ghost"] = true,
             ["notColliding"] = "return function(self, player)\n    self.scene.player.noLadder[tostring(self)] = nil\nend",
@@ -1233,6 +1233,104 @@ return {
           properties = {
             ["ghost"] = true,
             ["whileColliding"] = "return function(self, player)\n    if not player.hidelayer then\n        return\n    end\n\n    player.hidelayer = false\n    for _, layer in pairs(self.scene.map.layers) do\n        if layer.name == \"tempoverlay1\" then\n            layer.opacity = 1.0\n            break\n        end\n    end\nend\n"
+          }
+        },
+        {
+          id = 123,
+          name = "Swatbot1",
+          type = "Swatbot",
+          shape = "rectangle",
+          x = 1600,
+          y = 1600,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "View1"
+          }
+        },
+        {
+          id = 124,
+          name = "Swatbot2",
+          type = "Swatbot",
+          shape = "rectangle",
+          x = 1728,
+          y = 1600,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "View1"
+          }
+        },
+        {
+          id = 126,
+          name = "View1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1504,
+          y = 1696,
+          width = 352,
+          height = 224,
+          rotation = 0,
+          gid = 10970,
+          visible = false,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 127,
+          name = "Chest3",
+          type = "Chest",
+          shape = "rectangle",
+          x = 1120,
+          y = 1472,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["CrystalWater"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 128,
+          name = "Chest4",
+          type = "Chest",
+          shape = "rectangle",
+          x = 1088,
+          y = 832,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["GreenLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }

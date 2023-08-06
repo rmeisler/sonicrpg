@@ -42,6 +42,7 @@ function Bot:construct(scene, layer, object)
 	self.noSetFlag = object.properties.noSetFlag
 	self.removeAfterFollow = object.properties.removeAfterFollow
 	self.noPushAway = object.properties.noPushAway
+	self.disabled = object.properties.disabled
 
 	self.manualFacingTime = 0
 	self.movespeed = 2
@@ -894,7 +895,7 @@ function Bot:getBattleArgs()
 			npc.flagForDeletion = true
 			npc.collided = true
 			table.insert(args.opponents, npc:getMonsterData())
-			table.insert(args.flags, self:getFlag())
+			table.insert(args.flags, npc:getFlag())
 		end
 	end
 	

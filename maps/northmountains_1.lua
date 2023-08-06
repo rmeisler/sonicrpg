@@ -8,7 +8,7 @@ return {
   height = 112,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 96,
+  nextobjectid = 108,
   properties = {
     ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
     ["layered"] = true,
@@ -1288,8 +1288,8 @@ return {
           name = "Swatbot1",
           type = "Swatbot",
           shape = "rectangle",
-          x = 448,
-          y = 1504,
+          x = 896,
+          y = 1248,
           width = 32,
           height = 32,
           rotation = 0,
@@ -1298,7 +1298,7 @@ return {
           properties = {
             ["battle"] = "../data/monsters/legacyswatbot.lua",
             ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idleright",
+            ["defaultAnim"] = "idleleft",
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = false,
@@ -1312,10 +1312,10 @@ return {
           name = "View1",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 320,
-          y = 1696,
-          width = 448,
-          height = 320,
+          x = 768,
+          y = 1344,
+          width = 288,
+          height = 224,
           rotation = 0,
           gid = 8696,
           visible = false,
@@ -1328,10 +1328,10 @@ return {
           name = "View2",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1792,
-          y = 1632,
-          width = 576,
-          height = 384,
+          x = 1408,
+          y = 1376,
+          width = 288,
+          height = 224,
           rotation = 0,
           gid = 8696,
           visible = false,
@@ -1344,8 +1344,8 @@ return {
           name = "Swatbot2",
           type = "Swatbot",
           shape = "rectangle",
-          x = 2208,
-          y = 1440,
+          x = 1536,
+          y = 1248,
           width = 32,
           height = 32,
           rotation = 0,
@@ -1364,12 +1364,12 @@ return {
           }
         },
         {
-          id = 90,
+          id = 97,
           name = "Swatbot3",
           type = "Swatbot",
           shape = "rectangle",
-          x = 1120,
-          y = 2848,
+          x = 960,
+          y = 1824,
           width = 32,
           height = 32,
           rotation = 0,
@@ -1378,9 +1378,9 @@ return {
           properties = {
             ["battle"] = "../data/monsters/legacyswatbot.lua",
             ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idleright",
+            ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
-            ["follow"] = "WP1,WP2,WP3,WP4",
+            ["follow"] = "Waypoint1,Waypoint2",
             ["followRepeat"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = false,
@@ -1390,83 +1390,142 @@ return {
           }
         },
         {
-          id = 91,
-          name = "WP1",
-          type = "BasicNPC",
+          id = 98,
+          name = "Swatbot4",
+          type = "Swatbot",
           shape = "rectangle",
-          x = 1376,
-          y = 2848,
+          x = 1536,
+          y = 1824,
           width = 32,
           height = 32,
           rotation = 0,
           gid = 8696,
           visible = true,
           properties = {
-            ["ghost"] = true
+            ["battle"] = "../data/monsters/legacyswatbot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/swatbotwhite.png",
+            ["viewRange"] = "View4"
           }
         },
         {
-          id = 92,
-          name = "WP2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1376,
-          y = 3232,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 8696,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 93,
-          name = "WP3",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1088,
-          y = 3232,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 8696,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 94,
-          name = "WP4",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1088,
-          y = 2848,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 8696,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 95,
+          id = 99,
           name = "View3",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1056,
-          y = 3040,
-          width = 384,
-          height = 256,
+          x = 832,
+          y = 2400,
+          width = 288,
+          height = 672,
           rotation = 0,
           gid = 8696,
           visible = false,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 100,
+          name = "View4",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1408,
+          y = 2048,
+          width = 288,
+          height = 320,
+          rotation = 0,
+          gid = 8696,
+          visible = false,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 101,
+          name = "Waypoint1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 960,
+          y = 2400,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 102,
+          name = "Waypoint2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 960,
+          y = 1792,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 104,
+          name = "Chest4",
+          type = "Chest",
+          shape = "rectangle",
+          x = 320,
+          y = 1536,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["LaserShield"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 106,
+          name = "Chest5",
+          type = "Chest",
+          shape = "rectangle",
+          x = 2400,
+          y = 1440,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["GreenLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 107,
+          name = "Chest6",
+          type = "Chest",
+          shape = "rectangle",
+          x = 864,
+          y = 1024,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["CrystalWater"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }
@@ -1761,13 +1820,13 @@ return {
           gid = 10970,
           visible = true,
           properties = {
-            ["Carrot"] = 1,
+            ["GreenLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
         {
           id = 42,
-          name = "Chest3",
+          name = "Chest2",
           type = "Chest",
           shape = "rectangle",
           x = 1504,
@@ -1778,7 +1837,7 @@ return {
           gid = 10970,
           visible = true,
           properties = {
-            ["Mushroom"] = 1,
+            ["BlueLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },

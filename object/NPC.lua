@@ -442,12 +442,13 @@ end
 
 function NPC:onBattleComplete(args)
 	for _, flag in pairs(args.flags) do
+		print("Setting flag "..flag)
 		GameState:setFlag(flag)
 	end
 end
 
 function NPC:permanentRemove()
-	GameState:setFlag(flag)
+	GameState:setFlag(self:getFlag())
 	self:remove()
 end
 

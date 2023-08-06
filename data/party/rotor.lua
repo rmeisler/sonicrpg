@@ -55,10 +55,9 @@ return {
 	
 	levelup = {
 		[3] = {
-			messages = {"Rotor learned \"Super Mine\"!"},
+			messages = {"Rotor learned \"Sabotage\"!"},
 			skills = {
 				require "data/battle/skills/Throw",
-				require "data/battle/skills/SuperMine",
 				require "data/battle/skills/Sabotage",
 			}
 		},

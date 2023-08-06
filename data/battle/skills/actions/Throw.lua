@@ -54,7 +54,7 @@ return function(self, target)
 	return Serial {
 		-- Leap forward while attacking
 		Animate(self.sprite, "prethrow"),
-		Telegraph(self, "Press and hold x...", {255,255,255,50}),
+		Telegraph(self, "Press and hold x... {p60}release when green!", {255,255,255,50}),
 		Ease(self.throwImg.color, 4, 255, 2),
 		YieldUntil(function() return love.keyboard.isDown("x") end),
 		Do(function() self.throwImg:setAnimation("hold") end),

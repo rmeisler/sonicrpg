@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="80" tilewidth="32" tileheight="32" infinite="0" nextobjectid="123">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="80" tilewidth="32" tileheight="32" infinite="0" nextobjectid="129">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/northmountainsbg.png"/>
   <property name="layered" type="bool" value="true"/>
@@ -354,7 +354,7 @@
  <objectgroup name="objects4">
   <object id="82" name="Chest1" type="Chest" gid="10970" x="1888" y="1888" width="64" height="64">
    <properties>
-    <property name="BlueScarf" type="int" value="1"/>
+    <property name="CopperAmulet" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -767,7 +767,7 @@ end</property>
 end</property>
    </properties>
   </object>
-  <object id="110" name="NoLadderPlz" type="BasicNPC" gid="10970" x="1184" y="1664" width="160" height="416">
+  <object id="110" name="NoLadderPlz" type="BasicNPC" gid="10970" x="1184" y="1664" width="160" height="416" visible="0">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)
@@ -893,6 +893,49 @@ end
     end
 end
 </property>
+   </properties>
+  </object>
+  <object id="123" name="Swatbot1" type="Swatbot" gid="8696" x="1600" y="1600" width="32" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
+    <property name="viewRange" value="View1"/>
+   </properties>
+  </object>
+  <object id="124" name="Swatbot2" type="Swatbot" gid="8696" x="1728" y="1600" width="32" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
+    <property name="viewRange" value="View1"/>
+   </properties>
+  </object>
+  <object id="126" name="View1" type="BasicNPC" gid="10970" x="1504" y="1696" width="352" height="224" visible="0">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="127" name="Chest3" type="Chest" gid="10970" x="1120" y="1472" width="64" height="64">
+   <properties>
+    <property name="CrystalWater" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="128" name="Chest4" type="Chest" gid="10970" x="1088" y="832" width="64" height="64">
+   <properties>
+    <property name="GreenLeaf" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
  </objectgroup>

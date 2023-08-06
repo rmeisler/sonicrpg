@@ -20,6 +20,7 @@ local BattleActor = class(EventHandler)
 BattleActor.STATE_IDLE   = "idle"
 BattleActor.STATE_DEAD   = "dead"
 BattleActor.STATE_IMMOBILIZED = "immobile"
+BattleActor.STATE_HOLOGRAM = "hologram"
 
 function BattleActor:construct(scene, data)
 	self.scene = scene

@@ -129,13 +129,13 @@
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="16" name="Chest4" type="Chest" gid="6839" x="288" y="416" width="64" height="64">
+  <object id="16" name="Chest4" type="Chest" gid="6839" x="320" y="416" width="64" height="64">
    <properties>
     <property name="BlueLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="17" name="Chest5" type="Chest" gid="6839" x="416" y="416" width="64" height="64">
+  <object id="17" name="Chest5" type="Chest" gid="6839" x="480" y="416" width="64" height="64">
    <properties>
     <property name="BlueLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>

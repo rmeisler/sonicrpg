@@ -1,6 +1,6 @@
 return {
     image = "abominable.png",
-    starting = "dark_left",
+    starting = "idle",
     w = 136,
     h = 131,
 

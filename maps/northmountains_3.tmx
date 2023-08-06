@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="120" tilewidth="32" tileheight="32" infinite="0" nextobjectid="177">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="120" tilewidth="32" tileheight="32" infinite="0" nextobjectid="178">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/northmountainsbg.png"/>
   <property name="layered" type="bool" value="true"/>
@@ -1165,8 +1165,14 @@ end</property>
   <object id="160" name="Abominable2" type="BasicNPC" gid="10970" x="2560" y="480" width="128" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="battle" type="file" value="../data/monsters/abominable.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleleft"/>
-    <property name="nocollision" type="bool" value="true"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="true"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/abominable.png"/>
    </properties>
   </object>
@@ -1265,9 +1271,12 @@ return function(self, player)
             Ease(self.scene.camPos, &quot;x&quot;, -300, 1),
             Ease(self.scene.camPos, &quot;y&quot;, 50, 1)
         },
-        Wait(1),
-        MessageBox{message=&quot;Swatbot 1: There it is.&quot;},
-        MessageBox{message=&quot;Swatbot 1: zzz. Priority 1, destroy roboticized creature. zzz.&quot;},
+        Animate(self.scene.objectLookup.Swatbot13.sprite, &quot;shoot&quot;),
+        MessageBox{message=&quot;Swatbot 1: There it is. zzz.&quot;},
+        MessageBox{message=&quot;Swatbot 1: Priority 1{p60}, destroy roboticized creature.&quot;},
+        Animate(self.scene.objectLookup.Swatbot12.sprite, &quot;shoot&quot;),
+        Animate(self.scene.objectLookup.Swatbot11.sprite, &quot;shoot&quot;),
+        Animate(self.scene.objectLookup.Swatbot10.sprite, &quot;shoot&quot;),
         Animate(self.scene.objectLookup.Abominable2.sprite, &quot;leap_left&quot;),
         Ease(self.scene.objectLookup.Abominable2, &quot;y&quot;, function() return self.scene.objectLookup.Abominable2.y - 200 end, 2),
         Ease(self.scene.objectLookup.Abominable2, &quot;y&quot;, function() return self.scene.objectLookup.Abominable2.y + 200 end, 4, &quot;quad&quot;),
@@ -1314,10 +1323,7 @@ return function(self, player)
         Parallel {
             Ease(self.scene.camPos, &quot;x&quot;, 0, 1),
             Ease(self.scene.camPos, &quot;y&quot;, 0, 1)
-        },
-        Do(function()
-            self.scene.objectLookup.Abominable2:remove()
-        end)
+        }
     })
 end</property>
    </properties>
@@ -2010,10 +2016,11 @@ end</property>
     <property name="toLayer" type="int" value="2"/>
    </properties>
   </object>
-  <object id="162" name="Abominable" type="BasicNPC" gid="10970" x="1856" y="1792" width="128" height="96">
+  <object id="162" name="Abominable" type="Bot" gid="10970" x="1856" y="1792" width="128" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="dark_left"/>
+    <property name="disabled" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/abominable.png"/>
