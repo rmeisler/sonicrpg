@@ -36,12 +36,17 @@ function RotorTrap:construct(scene, layer, object)
 
 	self.shockedBots = {}
 	self:removeSceneHandler("update")
+	self:addSceneHandler("onEnterBattle")
 end
 
 function RotorTrap:update(dt)
 	NPC.update(self, dt)
 
 	self:shockBots()
+end
+
+function RotorTrap:onEnterBattle()
+	self.shockedBots = {}
 end
 
 function RotorTrap:shockBots()

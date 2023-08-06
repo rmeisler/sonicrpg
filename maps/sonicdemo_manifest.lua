@@ -645,6 +645,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/icon_marshmallow.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/zevent.png"
 	},
 	{

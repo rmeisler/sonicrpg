@@ -869,6 +869,14 @@ function Bot:updateAction(dt)
 		local cy = self.hotspots.left_top.y
 		local cw = self.hotspots.right_top.x - cx
 		local ch = self.hotspots.right_bot.y - cy
+
+		if (self.scene.player.onlyInteractWithLayer ~= nil and
+			self.scene.player.onlyInteractWithLayer ~= self.layer.name) and
+			self.layer.name ~= "all"
+		then
+			return
+		end
+
 		if  self.scene.player:isTouching(cx, cy, cw, ch) then
 			self.scene.audio:stopSfx(self.stepSfx)
 			self.state = NPC.STATE_TOUCHING

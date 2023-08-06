@@ -6,7 +6,6 @@ local Wait = require "actions/Wait"
 local Action = require "actions/Action"
 local YieldUntil = require "actions/YieldUntil"
 local Try = require "actions/Try"
-local Action = require "actions/Action"
 local Ease = require "actions/Ease"
 local Animate = require "actions/Animate"
 local PlayAudio = require "actions/PlayAudio"
@@ -32,7 +31,7 @@ return {
 	sprite = "sprites/phantomstandin",
 
 	mockSprite = "sprites/abominable",
-	mockSpriteOffset = Transform(-100, -240),
+	mockSpriteOffset = Transform(-100, -200),
 
 	--insult = "creepo",
 
@@ -55,13 +54,22 @@ return {
 	drops = {
 		{item = require "data/items/Mushroom", count = 2, chance = 1.0},
 	},
-
 	
 	scan = "Yeti's like sweets...",
+
+	onAttack = function(self, attacker)
+		if self.angry or self.gaveMarshmallow then
+			return Action()
+		else
+			self.angry = true
+			return Telegraph(self, "Yeti is angry!", {255,255,255,50})
+		end
+	end,
 
 	behavior = function (self, target)
 		if not GameState:isFlagSet("ep4_abominable_fight") then
 			GameState:setFlag("ep4_abominable_fight")
+			self.turns = 0
 			return Serial {
 				Wait(1),
 				Do(function()
@@ -69,18 +77,60 @@ return {
 				end),
 				MessageBox{message="Rotor: Whoah{p60}, that thing is big!"},
 				Do(function()
+					target.scene.partyByName.rotor.sprite:setAnimation("idle")
 					target.scene.partyByName.logan.sprite:setAnimation("pose")
 				end),
 				MessageBox{message="Logan: Yeah, and it's in our way. {p60}We gotta do something to get past it."},
 				Do(function()
-					target.scene.partyByName.rotor.sprite:setAnimation("idle")
 					target.scene.partyByName.logan.sprite:setAnimation("idle")
 				end)
 			}
 		end
 
-		return Serial {
-			Telegraph(self, "Yeti looks curious...", {255,255,255,50})
-		}
+		local selfSp = self:getSprite()
+		if self.angry then
+			local damageAllParty = {}
+			for _,mem in pairs(self.scene.party) do
+				table.insert(damageAllParty, mem:takeDamage(self.stats))
+			end
+			return Serial {
+				Animate(selfSp, "leap_right"),
+				Ease(selfSp.transform, "y", function() return selfSp.transform.y - 200 end, 2),
+				Ease(selfSp.transform, "y", function() return selfSp.transform.y + 200 end, 4, "quad"),
+				Do(function() selfSp:setAnimation("idle") end),
+				self.scene:screenShake(20, 30, 1),
+				Parallel(damageAllParty)
+			}
+		elseif self.turns == 3 then
+			return Serial {
+				Do(function() selfSp:setAnimation("idleleft") end),
+				Wait(1),
+				Animate(selfSp, "leap_left"),
+				Parallel {
+					Ease(selfSp.transform, "x", function() return selfSp.transform.x - 200 end, 2, "linear"),
+					Ease(selfSp.transform, "y", function() return selfSp.transform.y - 200 end, 2, "linear")
+				},
+				Parallel {
+					Ease(selfSp.transform, "x", function() return selfSp.transform.x - 200 end, 2, "linear"),
+					Ease(selfSp.transform, "y", function() return selfSp.transform.y + 200 end, 4, "quad")
+				},
+				Do(function()
+					self.hp = 0
+					self.state = self.STATE_DEAD
+					selfSp:remove()
+					self:invoke("dead")
+				end),
+				MessageBox {message="Yeti left the battle...", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(0.6)},
+				
+				self.gaveMarshmallow and
+					MessageBox {message="Logan learned \"Call Yeti\"!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(3), sfx="levelup"} or
+					Action()
+			}
+		else
+			self.turns = self.turns + 1
+			return Serial {
+				Telegraph(self, "Yeti looks at you curiously...", {255,255,255,50})
+			}
+		end
 	end
 }

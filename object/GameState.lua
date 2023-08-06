@@ -343,10 +343,6 @@ function GameState:loadSlots()
 end
 
 function GameState:save(scene, slot, spawnPoint)
-	if slot > 3 or slot < 1 then
-		error("Only valid slot value is 1, 2, or 3")
-	end
-
 	-- Save slots meta
 	local maxLevel = 0
 	for _, v in pairs(self.party) do
@@ -408,10 +404,6 @@ function GameState:save(scene, slot, spawnPoint)
 end
 
 function GameState:load(scene, slot)
-	if slot > 3 or slot < 1 then
-		error("Only valid slot value is 1, 2, or 3")
-	end
-
 	local data = love.filesystem.load("sage2020_game"..tostring(slot)..".sav")()
 	
 	-- Load inventory and flags
@@ -428,6 +420,7 @@ function GameState:load(scene, slot)
 	
 	self.flags = data.flags
 	
+	self:setFlag("ep4_introdone")
 	-- ep4 save file
 	if self:isFlagSet("ep4_introdone") then
 		-- Add party members, grant items, set flags

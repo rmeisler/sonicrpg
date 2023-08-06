@@ -38,5 +38,9 @@ return {
             frames = {{0,0},{1,0}},
 			speed = 0.4
         },
+		backward = {
+            frames = {{2,0},{3,0}},
+			speed = 0.4
+        },
     }
 }
