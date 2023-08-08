@@ -32,7 +32,7 @@ return function(scene, hint)
 		scene.objectLookup.TailsHutWarmWindows:remove()
 	end
 	
-	if hint == "intro" then
+	if hint == "intro" and not GameState:isFlagSet("ep4_introdone") then
 		return BlockPlayer {
 			Do(function()
 				scene.player:removeKeyHint()
@@ -108,19 +108,69 @@ return function(scene, hint)
 				Ease(scene.camPos, "x", 0, 1),
 				Ease(scene.camPos, "y", 0, 1)
 			},
-			MessageBox{message="Logan: Ah...", closeAction=Wait(1)},
-			Wait(0.5),
+			MessageBox{message="Logan: Ah..."},
+			MessageBox{message="Logan: Welp, I'm going back inside."},
 			Do(function()
 				scene.player.state = "idleup"
 			end),
-			MessageBox{message="Logan: Welp, I'm going back inside.", closeAction=Wait(1)},
+			Wait(0.5),
 			Do(function()
+				scene.objectLookup.WorkshopDoor:interact()
+				scene.objectLookup.Rotor.hidden = false
+			end),
+			Ease(scene.player, "y", function() return scene.player.y + 32 end, 8, "linear"),
+			MessageBox{message="Rotor: Oh no you don't!"},
+			MessageBox{message="Logan: W-What are you doing?!"},
+			Do(function()
+				scene.player.state = "idleup"
+			end),
+			MessageBox{message="Rotor: You've been couped up in that room since coming here."},
+			MessageBox{message="Rotor: You only come out when it's time for team meetings!"},
+			Do(function()
+				scene.player.state = "irritated"
+			end),
+			MessageBox{message="Logan: No way! {p60}I came out for the Iron Lock mission, didn't I?"},
+			Animate(scene.objectLookup.Rotor.sprite, "thinking"),
+			MessageBox{message="Rotor: Uh yeah{p60}, but the point is that you never take breaks!"},
+			Do(function()
+				scene.player.state = "idleup"
+			end),
+			MessageBox{message="Logan: Well... {p60}w-what does it matter anyways?!"},
+			Do(function()
+				scene.player.state = "angrydown"
+			end),
+			MessageBox{message="Logan: I-I'm doing exactly what I supposed to be doing! {p60}Working to take down Robotnik!"},
+			Animate(scene.objectLookup.Rotor.sprite, "idledown"),
+			MessageBox{message="Rotor: I know you're a little shy, but--"},
+			Do(function()
+				scene.player.state = "shock"
+			end),
+			Wait(1),
+			Do(function()
+				scene.player.state = "pose"
+			end),
+			MessageBox{message="Logan: Me?!{p60} Shy?!{p60} *snort*{p60} No way, I'm the least shy person you've ever met!"},
+			Animate(scene.objectLookup.Rotor.sprite, "pose"),
+			MessageBox{message="Rotor: Ok then{p60}, prove it."},
+			Do(function()
+				scene.player.state = "shock"
+			end),
+			MessageBox{message="Logan: Ugh!"},
+			Parallel {
+				Ease(scene.objectLookup.Rotor, "x", scene.player.x - scene.player.width, 2, "linear"),
+				Ease(scene.objectLookup.Rotor, "y", scene.player.y - scene.player.height, 2, "linear")
+			},
+			Do(function()
+				scene.objectLookup.Rotor:remove()
+				scene.player.state = "idledown"
 				scene.player.noIdle = false
 				scene.player.hidekeyhints = {}
 				GameState:setFlag("ep4_introdone")
 				GameState:addToParty("rotor", 8, true)
 			end)
 		}
+	else
+		scene.objectLookup.Rotor:remove()
 	end
 
 	scene.audio:playMusic("snowday", 1.0, true)

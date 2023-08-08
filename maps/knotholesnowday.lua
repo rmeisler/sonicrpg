@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 489,
+  nextobjectid = 492,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["nighttime"] = false,
@@ -6075,6 +6075,29 @@ return {
           properties = {
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/save.png"
+          }
+        },
+        {
+          id = 489,
+          name = "Rotor",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7424,
+          y = 960,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetY"] = -20,
+            ["defaultAnim"] = "idledown",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/rotor.png"
           }
         }
       }

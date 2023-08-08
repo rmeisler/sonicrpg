@@ -116,6 +116,11 @@ return {
 		nicholeup = {
 			frames = {{9,3}}
 		},
+
+		nicholedown_beep = {
+			frames = {{10,2},{9,2}},
+			speed = 0.4
+		},
 		
 		hideright = {
 			frames = {{1,4}}

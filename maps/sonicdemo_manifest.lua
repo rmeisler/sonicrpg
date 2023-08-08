@@ -38,7 +38,7 @@ return {
 	{
         type = "map",
 		file = "maps/bartcave2.lua",
-		primary = true -- TEST
+		--primary = true -- TEST
     },
 	--[[{
         type = "map",
@@ -157,7 +157,7 @@ return {
 	{
         type = "map",
         file = "maps/knotholeatnight_ep4intro.lua",
-		--primary = true -- REAL
+		primary = true -- REAL
     },
 	
 	{

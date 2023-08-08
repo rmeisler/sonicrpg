@@ -1291,6 +1291,13 @@ function Player:spacialRelation(hotspots, obj)
 	end
 end
 
+function Player:hop()
+	return Serial {
+		Ease(self.sprite.transform, "y", function() return self.sprite.transform.y - 50 end, 8),
+		Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + 50 end, 8)
+	}
+end
+
 function Player:run(action)
 	if not action.type then
 		action = Serial(action)

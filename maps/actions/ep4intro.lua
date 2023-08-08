@@ -62,10 +62,9 @@ return function(scene)
 		Wait(1.5),
 		Animate(scene.objectLookup.B.sprite, "idleright"),
 		MessageBox{message="B: What is that?", closeAction=Wait(2)},
-		Animate(scene.objectLookup.Sally.sprite, "nicholedown"),
+		Do(function() scene.objectLookup.Sally.sprite:setAnimation("nicholedown_beep") end),
 		MessageBox{message="Sally: Something's up with Nicole...", closeAction=Wait(1.5)},
 		MessageBox{message="Sally: Nicole?", closeAction=Wait(1)},
-		Animate(scene.objectLookup.Sally.sprite, "nicholedown"),
 		MessageBox{message="Nicole: Knothole weather balloon 3 is reporting a {h level 10 atmospheric storm}, {p30}Sally.", sfx="nicolebeep", closeAction=Wait(3)},
 		MessageBox{message="Sally: Level 10?!", closeAction=Wait(1)},
 		-- Flash twice
