@@ -289,7 +289,6 @@ function NPC:init(useBaseUpdate)
 	end
 	
 	if self.isBot and GameState:isFlagSet(self:getFlag()) then
-		print("remove based on flag "..self:getFlag())
 		self:remove()
 		return
 	end

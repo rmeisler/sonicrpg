@@ -308,23 +308,6 @@ return {
       properties = {},
       objects = {
         {
-          id = 12,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 256,
-          y = 544,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 6839,
-          visible = true,
-          properties = {
-            ["GreenLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 13,
           name = "DownPath",
           type = "SceneEdge",
@@ -345,70 +328,19 @@ return {
           }
         },
         {
-          id = 14,
-          name = "Chest3",
-          type = "Chest",
-          shape = "rectangle",
-          x = 576,
-          y = 544,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 6839,
-          visible = true,
-          properties = {
-            ["GreenLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 15,
-          name = "Chest2",
+          name = "Chest1",
           type = "Chest",
           shape = "rectangle",
           x = 416,
-          y = 544,
+          y = 480,
           width = 64,
           height = 64,
           rotation = 0,
           gid = 6839,
           visible = true,
           properties = {
-            ["GreenLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 16,
-          name = "Chest4",
-          type = "Chest",
-          shape = "rectangle",
-          x = 320,
-          y = 416,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 6839,
-          visible = true,
-          properties = {
-            ["BlueLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 17,
-          name = "Chest5",
-          type = "Chest",
-          shape = "rectangle",
-          x = 480,
-          y = 416,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 6839,
-          visible = true,
-          properties = {
-            ["BlueLeaf"] = 1,
+            ["GreenLeaf"] = 3,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         }

@@ -810,7 +810,7 @@ return function(self, player)
             Ease(self.scene.objectLookup.Abominable, &quot;x&quot;, function() return self.scene.objectLookup.Abominable.x + 100 end, 3, &quot;linear&quot;),
             Ease(self.scene.objectLookup.Abominable, &quot;y&quot;, function() return self.scene.objectLookup.Abominable.y + 800 end, 3, &quot;quad&quot;)
         },
-        Do(function() self.scene.objectLookup.Abominable:remove() end),
+        Do(function() self.scene.objectLookup.Abominable:permanentRemove() end),
         Parallel {
             Ease(self.scene.camPos, &quot;x&quot;, 0, 1),
             Ease(self.scene.camPos, &quot;y&quot;, 0, 1)
@@ -895,7 +895,7 @@ end
 </property>
    </properties>
   </object>
-  <object id="123" name="Swatbot1" type="Swatbot" gid="8696" x="1568" y="1600" width="32" height="32">
+  <object id="123" name="Swatbot1" type="Swatbot" gid="8696" x="1600" y="1600" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
@@ -1211,6 +1211,7 @@ end
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="dark_left"/>
+    <property name="isBot" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/abominable.png"/>
    </properties>

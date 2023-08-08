@@ -18,6 +18,10 @@ return function(attribute, amount, color)
 			else
 				maxVal = target.stats["max"..attribute]
 			end
+			if maxVal == nil then
+				print("maxVal didn't exist for target "..tostring(target.name)..", using 9999")
+				maxVal = 9999
+			end
 			local newstat = math.min(target[attribute] + amount, maxVal)
 			Executor(target.scene):act(Parallel {
 				BouncyText(

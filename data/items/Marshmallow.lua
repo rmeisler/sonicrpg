@@ -13,6 +13,7 @@ return {
 		plant = 10
 	},
 	battleAction = function()
+		local Action = require "actions/Action"
 		local Telegraph = require "data/monsters/actions/Telegraph"
 		local Wait = require "actions/Wait"
 		local MessageBox = require "actions/MessageBox"
@@ -20,19 +21,22 @@ return {
 		local Heal = require "data/items/actions/Heal"
 		local SpHeal = require "data/items/actions/SpHeal"
 		return function(self, target)
+			local extraAction = Action()
 			-- Giving marshmallow to yeti makes him happy
 			if target.name == "Yeti" then
 				target.turns = 3
 				target.angry = false
-				target.gaveMarshmallow = true
-				return Serial {
+				target.gaveMarshmallow = self.name
+				GameState:setFlag("ep4_abominable_"..self.id)
+				extraAction = Serial {
 					Telegraph(target, "Yeti looks happy!", {255,255,255,50}),
 					MessageBox {message="Yeti: F-{p60}Friend.", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)}
 				}
 			end
 			return Serial {
 				Heal("hp", 1000)(self, target),
-				SpHeal("sp", 10)(self, target)
+				SpHeal("sp", 10)(self, target),
+				extraAction
 			}
 		end
 	end,

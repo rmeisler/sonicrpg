@@ -59,6 +59,7 @@ return {
 			skills = {
 				require "data/battle/skills/Throw",
 				require "data/battle/skills/Sabotage",
+				GameState:getGatedSkill("ep4_abominable_rotor", "CallYeti")
 			}
 		},
 	},

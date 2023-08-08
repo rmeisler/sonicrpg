@@ -8,7 +8,7 @@ return {
   height = 112,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 108,
+  nextobjectid = 120,
   properties = {
     ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
     ["layered"] = true,
@@ -1288,8 +1288,8 @@ return {
           name = "Swatbot1",
           type = "Swatbot",
           shape = "rectangle",
-          x = 896,
-          y = 1248,
+          x = 608,
+          y = 1536,
           width = 32,
           height = 32,
           rotation = 0,
@@ -1300,11 +1300,13 @@ return {
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idleleft",
             ["disappearAfterBattle"] = true,
+            ["follow"] = "Waypoint5,Waypoint3,Waypoint4,Waypoint3,Waypoint5,Waypoint6",
+            ["followRepeat"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = false,
             ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png",
-            ["viewRange"] = "View1"
+            ["viewRange"] = "View1,View1.2"
           }
         },
         {
@@ -1312,10 +1314,10 @@ return {
           name = "View1",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 768,
-          y = 1344,
-          width = 288,
-          height = 224,
+          x = 576,
+          y = 1312,
+          width = 480,
+          height = 192,
           rotation = 0,
           gid = 8696,
           visible = false,
@@ -1406,11 +1408,13 @@ return {
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
+            ["follow"] = "Waypoint8,Waypoint9,Waypoint10,Waypoint11,Waypoint12,Waypoint8,Waypoint7",
+            ["followRepeat"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = false,
             ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png",
-            ["viewRange"] = "View4"
+            ["viewRange"] = "View4,View4.1"
           }
         },
         {
@@ -1435,9 +1439,9 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 1408,
-          y = 2048,
-          width = 288,
-          height = 320,
+          y = 1984,
+          width = 576,
+          height = 256,
           rotation = 0,
           gid = 8696,
           visible = false,
@@ -1526,6 +1530,198 @@ return {
           properties = {
             ["CrystalWater"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 108,
+          name = "Waypoint3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 704,
+          y = 1280,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 109,
+          name = "Waypoint4",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 928,
+          y = 1216,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 110,
+          name = "Waypoint5",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 608,
+          y = 1408,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 111,
+          name = "Waypoint6",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 608,
+          y = 1568,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 112,
+          name = "View1.2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 480,
+          y = 1728,
+          width = 320,
+          height = 512,
+          rotation = 0,
+          gid = 8696,
+          visible = false,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 113,
+          name = "Waypoint7",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1504,
+          y = 1824,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 114,
+          name = "Waypoint8",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1824,
+          y = 1824,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 115,
+          name = "Waypoint9",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1984,
+          y = 1600,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 116,
+          name = "Waypoint10",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2272,
+          y = 1600,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 117,
+          name = "Waypoint11",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2272,
+          y = 1312,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 118,
+          name = "Waypoint12",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1792,
+          y = 1312,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 119,
+          name = "View4.1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1632,
+          y = 1696,
+          width = 736,
+          height = 576,
+          rotation = 0,
+          gid = 8696,
+          visible = false,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

@@ -63,7 +63,8 @@ return {
 			messages = {"Logan learned \"Super Shield\"!"},
 			skills = {
 				require "data/battle/skills/LoganScan",
-				require "data/battle/skills/Hologram"
+				require "data/battle/skills/Hologram",
+				GameState:getGatedSkill("ep4_abominable_logan", "CallYeti")
 			}
 		},
 	},

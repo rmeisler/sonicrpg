@@ -42,6 +42,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.drops = data.drops
 	self.hp = data.stats.maxhp
 	self.maxhp = data.stats.maxhp
+	self.maxsp = 999 -- just to prevent issues
 	self.scan = data.scan
 	self.insult = data.insult
 	self.hpBarOffset = data.hpBarOffset or Transform(0,0)

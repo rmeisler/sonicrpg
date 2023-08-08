@@ -326,15 +326,15 @@ function Bot:update(dt)
 		self:removeSceneHandler("update")
 	end
 
+	if not self:baseUpdate(dt) then
+		return
+	end
+
 	-- Don't interact with player if player doesn't care about your layer
 	if (self.scene.player.onlyInteractWithLayer ~= nil and
 		self.scene.player.onlyInteractWithLayer ~= self.layer.name) and
 		self.layer.name ~= "all"
 	then
-		return
-	end
-
-	if not self:baseUpdate(dt) then
 		return
 	end
 

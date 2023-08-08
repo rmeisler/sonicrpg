@@ -102,12 +102,6 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="12" name="Chest1" type="Chest" gid="6839" x="256" y="544" width="64" height="64">
-   <properties>
-    <property name="GreenLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
   <object id="13" name="DownPath" type="SceneEdge" gid="6839" x="416" y="768" width="64" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
@@ -117,27 +111,9 @@
     <property name="spawn_point" value="CavePath"/>
    </properties>
   </object>
-  <object id="14" name="Chest3" type="Chest" gid="6839" x="576" y="544" width="64" height="64">
+  <object id="15" name="Chest1" type="Chest" gid="6839" x="416" y="480" width="64" height="64">
    <properties>
-    <property name="GreenLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="15" name="Chest2" type="Chest" gid="6839" x="416" y="544" width="64" height="64">
-   <properties>
-    <property name="GreenLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="16" name="Chest4" type="Chest" gid="6839" x="320" y="416" width="64" height="64">
-   <properties>
-    <property name="BlueLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
-  <object id="17" name="Chest5" type="Chest" gid="6839" x="480" y="416" width="64" height="64">
-   <properties>
-    <property name="BlueLeaf" type="int" value="1"/>
+    <property name="GreenLeaf" type="int" value="3"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>

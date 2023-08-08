@@ -1164,7 +1164,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["whileColliding"] = "local Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"ep4_abominable1\") then\n        return\n    end\n    GameState:setFlag(\"ep4_abominable1\")\n    self.scene:run(BlockPlayer {\n        Parallel {\n            Ease(self.scene.camPos, \"x\", -600, 1),\n            Ease(self.scene.camPos, \"y\", 1400, 1)\n        },\n        Wait(2),\n        Do(function() self.scene.objectLookup.Abominable.sprite:setAnimation(\"dark_right\") end),\n        Wait(1),\n        Animate(self.scene.objectLookup.Abominable.sprite, \"dark_leap_right\"),\n        Parallel {\n            Ease(self.scene.objectLookup.Abominable, \"x\", function() return self.scene.objectLookup.Abominable.x + 200 end, 3, \"linear\"),\n            Ease(self.scene.objectLookup.Abominable, \"y\", function() return self.scene.objectLookup.Abominable.y - 200 end, 3, \"linear\")\n        },\n        Parallel {\n            Ease(self.scene.objectLookup.Abominable, \"x\", function() return self.scene.objectLookup.Abominable.x + 100 end, 3, \"linear\"),\n            Ease(self.scene.objectLookup.Abominable, \"y\", function() return self.scene.objectLookup.Abominable.y + 800 end, 3, \"quad\")\n        },\n        Do(function() self.scene.objectLookup.Abominable:remove() end),\n        Parallel {\n            Ease(self.scene.camPos, \"x\", 0, 1),\n            Ease(self.scene.camPos, \"y\", 0, 1)\n        },\n    })\nend"
+            ["whileColliding"] = "local Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self, player)\n    if GameState:isFlagSet(\"ep4_abominable1\") then\n        return\n    end\n    GameState:setFlag(\"ep4_abominable1\")\n    self.scene:run(BlockPlayer {\n        Parallel {\n            Ease(self.scene.camPos, \"x\", -600, 1),\n            Ease(self.scene.camPos, \"y\", 1400, 1)\n        },\n        Wait(2),\n        Do(function() self.scene.objectLookup.Abominable.sprite:setAnimation(\"dark_right\") end),\n        Wait(1),\n        Animate(self.scene.objectLookup.Abominable.sprite, \"dark_leap_right\"),\n        Parallel {\n            Ease(self.scene.objectLookup.Abominable, \"x\", function() return self.scene.objectLookup.Abominable.x + 200 end, 3, \"linear\"),\n            Ease(self.scene.objectLookup.Abominable, \"y\", function() return self.scene.objectLookup.Abominable.y - 200 end, 3, \"linear\")\n        },\n        Parallel {\n            Ease(self.scene.objectLookup.Abominable, \"x\", function() return self.scene.objectLookup.Abominable.x + 100 end, 3, \"linear\"),\n            Ease(self.scene.objectLookup.Abominable, \"y\", function() return self.scene.objectLookup.Abominable.y + 800 end, 3, \"quad\")\n        },\n        Do(function() self.scene.objectLookup.Abominable:permanentRemove() end),\n        Parallel {\n            Ease(self.scene.camPos, \"x\", 0, 1),\n            Ease(self.scene.camPos, \"y\", 0, 1)\n        },\n    })\nend"
           }
         },
         {
@@ -1240,7 +1240,7 @@ return {
           name = "Swatbot1",
           type = "Swatbot",
           shape = "rectangle",
-          x = 1568,
+          x = 1600,
           y = 1600,
           width = 32,
           height = 32,
@@ -1695,6 +1695,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "dark_left",
+            ["isBot"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/abominable.png"
           }

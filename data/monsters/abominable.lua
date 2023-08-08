@@ -107,11 +107,11 @@ return {
 				Wait(1),
 				Animate(selfSp, "leap_left"),
 				Parallel {
-					Ease(selfSp.transform, "x", function() return selfSp.transform.x - 200 end, 2, "linear"),
-					Ease(selfSp.transform, "y", function() return selfSp.transform.y - 200 end, 2, "linear")
+					Ease(selfSp.transform, "x", function() return selfSp.transform.x - 400 end, 3, "linear"),
+					Ease(selfSp.transform, "y", function() return selfSp.transform.y - 200 end, 3, "linear")
 				},
 				Parallel {
-					Ease(selfSp.transform, "x", function() return selfSp.transform.x - 200 end, 2, "linear"),
+					Ease(selfSp.transform, "x", function() return selfSp.transform.x - 400 end, 4, "linear"),
 					Ease(selfSp.transform, "y", function() return selfSp.transform.y + 200 end, 4, "quad")
 				},
 				Do(function()
@@ -123,7 +123,7 @@ return {
 				MessageBox {message="Yeti left the battle...", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(0.6)},
 				
 				self.gaveMarshmallow and
-					MessageBox {message="Logan learned \"Call Yeti\"!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(3), sfx="levelup"} or
+					MessageBox {message=(self.gaveMarshmallow).." learned \"Call Yeti\"!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(3), sfx="levelup"} or
 					Action()
 			}
 		else
