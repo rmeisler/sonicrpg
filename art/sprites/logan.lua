@@ -14,6 +14,13 @@ return {
 		hurt = {
 			frames = {{13,2}}
 		},
+		prethrow = {
+			frames = {{1,7}}
+		},
+		throw = {
+			frames = {{1,7},{2,7},{3,7}},
+			speed = 0.1
+		},
 		frozen = {
 			frames = {{10,6}}
 		},

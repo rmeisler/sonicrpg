@@ -356,6 +356,9 @@ return {
 			frames = {{5,10},{5,10}},
 			speed = 0.02
 		},
+		snowboard_idle = {
+			frames = {{7,10}}
+		},
 
 		sit_sad = {
 			frames = {{10,7}}

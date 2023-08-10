@@ -553,6 +553,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/snowball.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/explosion.png"
 	},
 	{
@@ -646,6 +650,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/icon_marshmallow.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_hat.png"
 	},
 	{
 		type = "image",

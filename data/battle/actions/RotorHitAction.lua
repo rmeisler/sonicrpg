@@ -17,7 +17,9 @@ local ItemType = require "util/ItemType"
 
 return function(self, target)
 	local spriteName
-	if GameState:isEquipped("rotor", ItemType.Weapon, "Hammer") then
+	if target.id == "Fleet" then
+		spriteName = "snowball"
+	elseif GameState:isEquipped("rotor", ItemType.Weapon, "Hammer") then
 		spriteName = "hammer"
 	elseif GameState:isEquipped("rotor", ItemType.Weapon, "Wrench") then
 		spriteName = "wrench"

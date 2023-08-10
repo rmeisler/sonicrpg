@@ -256,9 +256,23 @@ end</property>
     <property name="defaultAnim" value="computer_idle"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 
 return function(self)
+    if GameState.leader == &quot;logan&quot; then
+        return BlockPlayer {
+            Do(function()
+                self.scene.player.noIdle = true
+                self.scene.player.state = &quot;pose&quot;
+            end),
+            MessageBox{message=&quot;Logan: Hey, it may not look like much, but it's a reliable!&quot;},
+            Do(function()
+                self.scene.player.noIdle = false
+            end),
+        }
+    end
+
     return BlockPlayer {
         MessageBox{message=&quot;Sally: Logan could use a new computer... {p60}this one's older than I am!&quot;}
     }
@@ -272,7 +286,6 @@ return function(self)
     }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/p.png"/>
-    <property name="usableBy" value="sally"/>
    </properties>
   </object>
   <object id="28" name="Chest1" type="Chest" gid="6839" x="128" y="576" width="64" height="64">
@@ -291,6 +304,11 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nonight" type="bool" value="true"/>
+    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+
+return function(self)
+    return MessageBox{message=&quot;Rotor: Why don't you check the thermometer out there?&quot;, blocking=true}
+end</property>
     <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
    </properties>
   </object>

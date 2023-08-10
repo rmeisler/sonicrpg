@@ -1,12 +1,15 @@
 return {
     image = "fleet.png",
-    starting = "flyleft",
+    starting = "idle",
     w = 47,
     h = 55,
 
     animations = {
         flyleft = {
 			frames = {{9,4}}
+		},
+		idle = {
+			frames = {{5,7}}
 		},
 		idleright = {
 			frames = {{0,0}}
@@ -58,6 +61,22 @@ return {
 		hatlaugh = {
 			frames = {{4,6},{5,6}},
 			speed = 0.2
+		},
+		hatsmirk = {
+			frames = {{4,7}}
+		},
+		hatfrustrated = {
+			frames = {{2,7}}
+		},
+		hurt = {
+			frames = {{6,6}}
+		},
+		prethrow = {
+			frames = {{6,7}}
+		},
+		throw = {
+			frames = {{7,7},{8,7}},
+			speed = 0.1
 		},
 		shock = {
 			frames = {{11,4}}

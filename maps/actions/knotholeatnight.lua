@@ -25,6 +25,7 @@ return function(scene, hint)
 	local NameScreen = require "actions/NameScreen"
 	local Player = require "object/Player"
 	local BasicNPC = require "object/BasicNPC"
+	local NPC = require "object/NPC"
 
 	scene.player.dustColor = Player.FOREST_DUST_COLOR
 
@@ -117,6 +118,7 @@ return function(scene, hint)
 			Do(function()
 				scene.objectLookup.WorkshopDoor:interact()
 				scene.objectLookup.Rotor.hidden = false
+				scene.objectLookup.Rotor.sprite:setAnimation("pose")
 			end),
 			Ease(scene.player, "y", function() return scene.player.y + 32 end, 8, "linear"),
 			MessageBox{message="Rotor: Oh no you don't!"},
@@ -124,6 +126,7 @@ return function(scene, hint)
 			Do(function()
 				scene.player.state = "idleup"
 			end),
+			Animate(scene.objectLookup.Rotor.sprite, "idledown"),
 			MessageBox{message="Rotor: You've been couped up in that room since coming here."},
 			MessageBox{message="Rotor: You only come out when it's time for team meetings!"},
 			Do(function()
@@ -167,10 +170,35 @@ return function(scene, hint)
 				scene.player.hidekeyhints = {}
 				GameState:setFlag("ep4_introdone")
 				GameState:addToParty("rotor", 8, true)
+				GameState.leader = "logan"
 			end)
 		}
 	else
 		scene.objectLookup.Rotor:remove()
+		if GameState:isFlagSet("ep4_beat_fleet") then
+			scene.objectLookup.Fleet.sprite:setAnimation("frustrated")
+			scene.objectLookup.Fleet:removeInteract(NPC.onInteract)
+			scene.objectLookup.Fleet.onInteract = function(self)
+				scene:run(BlockPlayer {
+					MessageBox {message="Fleet: Hmph! {p60}Come back to gloat?"}
+				})
+			end
+			scene.objectLookup.Fleet:addInteract(scene.objectLookup.Fleet.onInteract)
+		end
+		
+		-- Snowman flags
+		if GameState:isFlagSet("ep4_tails_snowman_coal") then
+			scene.objectLookup.SnowmanFace.sprite.color[4] = 255
+		end
+		if GameState:isFlagSet("ep4_tails_snowman_carrot") then
+			scene.objectLookup.SnowmanNose.sprite.color[4] = 255
+		end
+		if GameState:isFlagSet("ep4_tails_snowman_hat") then
+			scene.objectLookup.SnowmanHat.sprite.color[4] = 255
+		end
+		if GameState:isFlagSet("ep4_tails_snowman_scarf") then
+			scene.objectLookup.SnowmanScarf.sprite.color[4] = 255
+		end
 	end
 
 	scene.audio:playMusic("snowday", 1.0, true)

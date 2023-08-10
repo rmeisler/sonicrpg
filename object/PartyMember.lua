@@ -51,20 +51,7 @@ function PartyMember:construct(scene, data)
 	self.actions = data.battle or {}
 	self.options = {}
 	for _,v in pairs(self.actions) do
-		local option = v.name
-		local target = v.target
-		local action = v.action
-		local fun
-		if target == TargetType.None then
-			fun = function(menu)
-				self.scene:run(action(self, menu))
-			end
-		else
-			fun = function(menu)
-				self:chooseTarget(menu, target, v.unusable or function(_target) return false end, action)
-			end
-		end
-		table.insert(self.options, {Layout.Text(option), choose = fun})
+		self:addBattleOption(v)
 	end
 	
 	self.origOptions = table.clone(self.options)
@@ -101,6 +88,23 @@ function PartyMember:construct(scene, data)
 	end)
 	
 	self.side = TargetType.Party
+end
+
+function PartyMember:addBattleOption(battleSkill)
+	local option = battleSkill.name
+	local target = battleSkill.target
+	local action = battleSkill.action
+	local fun
+	if target == TargetType.None then
+		fun = function(menu)
+			self.scene:run(action(self, menu))
+		end
+	else
+		fun = function(menu)
+			self:chooseTarget(menu, target, battleSkill.unusable or function(_target) return false end, action)
+		end
+	end
+	table.insert(self.options, {Layout.Text(option), choose = fun})
 end
 
 function PartyMember:setShadow()

@@ -532,10 +532,9 @@ return {
             ["alignOffsetY"] = -32,
             ["defaultAnim"] = "computer_idle",
             ["nonight"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox{message=\"Sally: Logan could use a new computer... {p60}this one's older than I am!\"}\n    }\nend",
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    if GameState.leader == \"logan\" then\n        return BlockPlayer {\n            Do(function()\n                self.scene.player.noIdle = true\n                self.scene.player.state = \"pose\"\n            end),\n            MessageBox{message=\"Logan: Hey, it may not look like much, but it's a reliable!\"},\n            Do(function()\n                self.scene.player.noIdle = false\n            end),\n        }\n    end\n\n    return BlockPlayer {\n        MessageBox{message=\"Sally: Logan could use a new computer... {p60}this one's older than I am!\"}\n    }\nend",
             ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox{message=\"Nicole: The computer terminal appears to be locked{p40}, Sally.\"}\n    }\nend",
-            ["sprite"] = "../art/sprites/p.png",
-            ["usableBy"] = "sally"
+            ["sprite"] = "../art/sprites/p.png"
           }
         },
         {
@@ -576,6 +575,7 @@ return {
             ["ghost"] = true,
             ["hidden"] = true,
             ["nonight"] = true,
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox{message=\"Rotor: Why don't you check the thermometer out there?\", blocking=true}\nend",
             ["sprite"] = "../art/sprites/rotor.png"
           }
         },

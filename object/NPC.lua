@@ -50,6 +50,7 @@ function NPC:construct(scene, layer, object)
 	self.noHideDown = object.properties.nohidedown
 	self.movespeed = object.properties.movespeed or 3
 	self.disappearOn = object.properties.disappearOn
+	self.disappearOnFlag = object.properties.disappearOnFlag
 	self.angle = (object.properties.angle or 0) * (math.pi/180)
 	self.isBot = object.properties.isBot
 	
@@ -288,7 +289,7 @@ function NPC:init(useBaseUpdate)
 		end
 	end
 	
-	if self.isBot and GameState:isFlagSet(self:getFlag()) then
+	if (self.isBot or self.disappearOnFlag) and GameState:isFlagSet(self:getFlag()) then
 		self:remove()
 		return
 	end
