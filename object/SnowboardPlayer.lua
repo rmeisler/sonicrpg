@@ -42,10 +42,17 @@ function SnowboardPlayer:construct(scene, layer, object)
 
 	self:removeSceneHandler("update", Player.update)
 	self:removeSceneHandler("keytriggered", Player.keytriggered)
+	self:addSceneHandler("keytriggered", SnowboardPlayer.keytriggered)
 	self:addSceneHandler("update", SnowboardPlayer.update)
 	self.dropShadow:remove()
 	
 	scene.player = self
+end
+
+function SnowboardPlayer:keytriggered(key)
+	if key == "r" then
+		self.scene:restart()
+	end
 end
 
 function SnowboardPlayer:update(dt)
@@ -58,6 +65,32 @@ function SnowboardPlayer:update(dt)
 	end
 	
 	if self.blocked or not self.scene:playerMovable() or self.scene.playerDead then
+		return
+	end
+	
+	if self.jump then
+		if self.midjump then
+			return
+		end
+		self.midjump = true
+		self.scene:run {
+			Animate(self.sprite, "snowboard_ramp"),
+			Ease(self, "x", function() return self.x + 150 end, 6, "linear"),
+			Parallel {
+				Ease(self, "x", function() return self.x + 200 end, 6, "linear"),
+				Ease(self, "y", function() return self.y - 100 end, 6, "linear")
+			},
+			Animate(self.sprite, "snowboard_leap"),
+			Parallel {
+				Ease(self, "x", function() return self.x + 300 end, 5, "linear"),
+				Ease(self, "y", function() return self.y + 400 end, 5, "quad")
+			},
+			Animate(self.sprite, "snowboard_ramp"),
+			Do(function()
+				self.jump = false
+				self.midjump = false
+			end)
+		}
 		return
 	end
 	
@@ -126,7 +159,7 @@ function SnowboardPlayer:update(dt)
 	
 	if not self.noDust then
 		-- Spawn dust sprite
-		if self.frameCounter % 5 == 0 then
+		if self.frameCounter % 5 == 0 and not self.jump then
 			local dustX, dustY = self.x - self.width * 2 - 5, self.y - 15
 			local dustAnim = "right"
 			local dustObject = BasicNPC(
@@ -183,7 +216,7 @@ function SnowboardPlayer:moveForward(dt)
 	
 
 	-- Stay within snowboard area
-	if true then --not self.jump then
+	if not self.jump then
 		self.y = math.min(math.max(self.y, (self.x - 32) / 2), 550 + (self.x - 400 - 32) / 2)
 	end
 end
@@ -232,12 +265,6 @@ function SnowboardPlayer:dodgeLaser()
 			end),
 			Wait(1.2)
 		}
-	}
-end
-
-function SnowboardPlayer:jump()
-	return Serial {
-		--Ease(
 	}
 end
 
