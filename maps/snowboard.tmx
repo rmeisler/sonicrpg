@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="300" height="150" tilewidth="32" tileheight="32" infinite="0" nextobjectid="3">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="300" height="150" tilewidth="32" tileheight="32" infinite="0" nextobjectid="4">
+ <properties>
+  <property name="onload" type="file" value="actions/snowboard.lua"/>
+ </properties>
  <tileset firstgid="1" source="knothole.tsx"/>
  <tileset firstgid="3485" source="forest2.tsx"/>
  <tileset firstgid="8660" source="robotropolis.tsx"/>
  <imagelayer name="sky">
-  <image source="../art/parallax/overlooklayer5.png" width="1600" height="362"/>
+  <image source="../art/parallax/overlooklayer5.png" width="1600" height="600"/>
   <properties>
    <property name="movespeed" type="float" value="0"/>
   </properties>
@@ -164,7 +167,12 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="Spawn 1" type="SnowboardPlayer" gid="8696" x="64" y="192" width="32" height="32"/>
+  <object id="1" name="Spawn 1" type="SnowboardPlayer" gid="8696" x="-128" y="96" width="32" height="32"/>
+  <object id="3" name="Ramp" type="BasicNPC" gid="8696" x="1728" y="1280" width="32" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="lower_obstacles" width="300" height="150">
   <data encoding="csv">

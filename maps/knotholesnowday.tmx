@@ -3520,7 +3520,7 @@ return function(self)
                 {&quot;Yes&quot;, Serial {
                     MessageBox {message = &quot;Sonic: Let's juice!&quot;},
                     Do(function()
-                        self.scene:changeScene {map=&quot;snowboard&quot;}
+                        self.changeScene = true
                     end)
                 }},
                 {&quot;No&quot;, Serial {
@@ -3529,7 +3529,12 @@ return function(self)
                         self:refreshKeyHint()
                     end)
                 }}
-            })
+            }),
+            Do(function()
+                if self.changeScene then
+                    self.scene:changeScene {map=&quot;snowboard&quot;}
+                end
+            end)
         }
     end
 end</property>

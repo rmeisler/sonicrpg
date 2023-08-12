@@ -1402,6 +1402,12 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/snowboard.ogg",
+		category = "music",
+		looping = true,
+	},
+	{
+		type = "sound",
 		file = "audio/music/snowcap.ogg",
 		category = "music",
 		looping = true,

@@ -8,8 +8,10 @@ return {
   height = 150,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 3,
-  properties = {},
+  nextobjectid = 4,
+  properties = {
+    ["onload"] = "actions/snowboard.lua"
+  },
   tilesets = {
     {
       name = "forest",
@@ -284,14 +286,30 @@ return {
           name = "Spawn 1",
           type = "SnowboardPlayer",
           shape = "rectangle",
-          x = 64,
-          y = 192,
+          x = -128,
+          y = 96,
           width = 32,
           height = 32,
           rotation = 0,
           gid = 8696,
           visible = true,
           properties = {}
+        },
+        {
+          id = 3,
+          name = "Ramp",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1728,
+          y = 1280,
+          width = 32,
+          height = 64,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
         }
       }
     },

@@ -538,6 +538,7 @@ function BasicScene:changeScene(args)
 			animations = self.animations
 		}
 	else
+		print("change scene...")
 		self.sceneMgr[fun](self.sceneMgr, {
 			class = "BasicScene",
 			map = self.maps[mapName],

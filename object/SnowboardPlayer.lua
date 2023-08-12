@@ -19,8 +19,8 @@ local Repeat = require "actions/Repeat"
 local Transform = require "util/Transform"
 
 -- Constants
-local RUN_FORCE_MAGNITUDE = 5
-local ORTHO_BURST_MAGNITUDE = 1
+local RUN_FORCE_MAGNITUDE = 10
+local ORTHO_BURST_MAGNITUDE = 5
 local ANIMATION_WAIT = 0.01
 
 local SLOWDOWN_SPEED = 1
@@ -43,6 +43,7 @@ function SnowboardPlayer:construct(scene, layer, object)
 	self:removeSceneHandler("update", Player.update)
 	self:removeSceneHandler("keytriggered", Player.keytriggered)
 	self:addSceneHandler("update", SnowboardPlayer.update)
+	self.dropShadow:remove()
 	
 	scene.player = self
 end
@@ -125,24 +126,9 @@ function SnowboardPlayer:update(dt)
 	
 	if not self.noDust then
 		-- Spawn dust sprite
-		if self.frameCounter % 2 == 0 then
-			local dustX, dustY = self.x, self.y + self.halfHeight
-			local dustAnim
-			if self.fx > 0 then
-				dustX = dustX - self.width * 2 - 5
-				dustAnim = "right"
-			elseif self.fx < 0 then
-				dustX = dustX + self.halfWidth
-				dustAnim = "left"
-			elseif self.fy > 0 then
-				dustX = self.x - self.width
-				dustY = dustY - self.halfHeight
-				dustAnim = "updown"
-			elseif self.fy < 0 then
-				dustX = self.x - self.width
-				dustY = dustY + self.halfHeight
-				dustAnim = "updown"
-			end
+		if self.frameCounter % 5 == 0 then
+			local dustX, dustY = self.x - self.width * 2 - 5, self.y - 15
+			local dustAnim = "right"
 			local dustObject = BasicNPC(
 				self.scene,
 				{name = "objects"},
@@ -174,8 +160,8 @@ function SnowboardPlayer:update(dt)
 	self.frameCounter = self.frameCounter + 1
 	
 	-- Update drop shadow position
-	self.dropShadow.x = self.x - 35
-	self.dropShadow.y = (self.origY or self.y) + self.sprite.h - 15
+	--self.dropShadow.x = self.x - 35
+	--self.dropShadow.y = (self.origY or self.y) + self.sprite.h - 15
 	
 	self:updateShadows()
 	self:updateKeyHint()
@@ -195,17 +181,11 @@ function SnowboardPlayer:moveForward(dt)
 	self.x = self.x + vel
 	self.y = self.y + (vel / 2) + (self.fy + self.by) * (dt/0.016)
 	
-	--print("fy = "..tostring(self.fy)..", by = "..tostring(self.by))
 
-	--[[if (self.fy + self.by) ~= 0 then
-		self.y = math.max(
-			self.scene:getMapHeight() - 420,
-			math.min(
-				self.scene:getMapHeight() - self.sprite.h,
-				self.y + (self.fy + self.by) * (dt/0.016)
-			)
-		)
-	end]]
+	-- Stay within snowboard area
+	if true then --not self.jump then
+		self.y = math.min(math.max(self.y, (self.x - 32) / 2), 550 + (self.x - 400 - 32) / 2)
+	end
 end
 
 function SnowboardPlayer:dodgeLaser()
@@ -252,6 +232,12 @@ function SnowboardPlayer:dodgeLaser()
 			end),
 			Wait(1.2)
 		}
+	}
+end
+
+function SnowboardPlayer:jump()
+	return Serial {
+		--Ease(
 	}
 end
 
