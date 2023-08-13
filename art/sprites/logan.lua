@@ -135,6 +135,9 @@ return {
 		snowboard_leap = {
 			frames = {{4,6}}
 		},
+		snowboard_fail = {
+			frames = {{4,7}}
+		},
 		climb_1 = {
 			frames = {{1,3}}
 		},

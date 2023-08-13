@@ -557,6 +557,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/snowboulder.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/explosion.png"
 	},
 	{
@@ -1402,7 +1406,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/snowboard.ogg",
+		file = "audio/music/lupusremix.ogg",
 		category = "music",
 		looping = true,
 	},

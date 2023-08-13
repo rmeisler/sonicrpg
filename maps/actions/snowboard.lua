@@ -27,18 +27,26 @@ return function(scene, hint)
 
 	scene.audio:stopMusic()
 	scene.player.blocked = true
-	scene.camPos.x = -1500
-	scene.camPos.y = -2000
+	scene.camPos.x = -14000
+	scene.camPos.y = -7000
 	return BlockPlayer {
 		Wait(1),
-		PlayAudio("music", "snowboard", 1.0, true, true),
+		PlayAudio("music", "lupusremix", 1.0, true, true),
+		Wait(1),
+		MessageBox{message="Sonic: I'll tell ya what... {p120}If you can make it through my obstacle course, I'll give you my way past cool {h scarf}!"},
 		Parallel {
-			Ease(scene.camPos, "x", 0, 0.5),
-			Ease(scene.camPos, "y", 0, 0.5)
+			Serial {
+				Wait(3),
+				Do(function()
+					scene.player.blocked = false
+				end)
+			},
+			Ease(scene.camPos, "x", -100, 0.2),
+			Ease(scene.camPos, "y", -50, 0.2)
 		},
 		PlayAudio("sfx", "sonicrunturn", 1.0, true),
 		Do(function()
-			scene.player.blocked = false
+			scene.objectLookup.Sonic:remove()
 		end)
 	}
 end

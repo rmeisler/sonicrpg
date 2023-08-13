@@ -19,8 +19,8 @@ local Repeat = require "actions/Repeat"
 local Transform = require "util/Transform"
 
 -- Constants
-local RUN_FORCE_MAGNITUDE = 10
-local ORTHO_BURST_MAGNITUDE = 5
+local RUN_FORCE_MAGNITUDE = 12
+local ORTHO_BURST_MAGNITUDE = 6
 local ANIMATION_WAIT = 0.01
 
 local SLOWDOWN_SPEED = 1
@@ -65,6 +65,9 @@ function SnowboardPlayer:update(dt)
 	end
 	
 	if self.blocked or not self.scene:playerMovable() or self.scene.playerDead then
+		if self.scene.playerDead then
+			self.scene.player.sprite:setAnimation("snowboard_fail")
+		end
 		return
 	end
 	
@@ -74,19 +77,23 @@ function SnowboardPlayer:update(dt)
 		end
 		self.midjump = true
 		self.scene:run {
+			Do(function()
+				self.sprite:swapLayer("objects")
+			end),
 			Animate(self.sprite, "snowboard_ramp"),
-			Ease(self, "x", function() return self.x + 150 end, 6, "linear"),
+			Ease(self, "x", function() return self.x + 150 end, 5, "linear"),
 			Parallel {
-				Ease(self, "x", function() return self.x + 200 end, 6, "linear"),
-				Ease(self, "y", function() return self.y - 100 end, 6, "linear")
+				Ease(self, "x", function() return self.x + 400 end, 5, "linear"),
+				Ease(self, "y", function() return self.y - 100 end, 5, "linear")
 			},
 			Animate(self.sprite, "snowboard_leap"),
 			Parallel {
-				Ease(self, "x", function() return self.x + 300 end, 5, "linear"),
+				Ease(self, "x", function() return self.x + 200 end, 5, "linear"),
 				Ease(self, "y", function() return self.y + 400 end, 5, "quad")
 			},
 			Animate(self.sprite, "snowboard_ramp"),
 			Do(function()
+				self.sprite:swapLayer("objects2")
 				self.jump = false
 				self.midjump = false
 			end)

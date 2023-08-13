@@ -306,7 +306,7 @@ return function(scene, hint)
 			Animate(scene.objectLookup.Rotor2.sprite, "awake"),
 			Wait(0.5),
 			MessageBox{message="Rotor: Oh yeah! {p60}Good point."},
-			--PlayAudio("music", "doittoit", 1.0, true, true),
+			PlayAudio("music", "doittoit", 1.0, true, true),
 			Animate(scene.objectLookup.Logan.sprite, "idledown"),
 			Do(function()
 				scene.objectLookup.Logan:removeCollision()

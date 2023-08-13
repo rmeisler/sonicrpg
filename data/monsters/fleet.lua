@@ -28,7 +28,7 @@ return {
 
 	stats = {
 		xp    = 0,
-		maxhp = 1, --1000,
+		maxhp = 1000,
 		attack = 50,
 		defense = 30,
 		speed = 10,
@@ -46,7 +46,7 @@ return {
 		-- Change logan and rotor skills to only be throwing snowball or items
 		for _,mem in pairs(self.scene.party) do
 			mem.options = {}
-			mem:addBattleOption(require "data/battle/RotorHit")
+			mem:addBattleOption(require "data/battle/SnowballHit")
 			mem:addBattleOption(require "data/battle/Items")
 		end
 

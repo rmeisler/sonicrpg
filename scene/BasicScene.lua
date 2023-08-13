@@ -840,15 +840,20 @@ function BasicScene:update(dt)
 		self.timer = 0
 	end
 
-	-- Shift tiles based on player position
-	local worldOffsetX = math.floor((-self.player.x + love.graphics.getWidth()/2))
-	local worldOffsetY = math.floor((-self.player.y + love.graphics.getHeight()/2))
+	local panX = self.panX or self.player.x
+	local panY = self.panY or self.player.y
 	
+	-- Shift tiles based on player position
+	local worldOffsetX = math.floor((-panX + love.graphics.getWidth()/2))
+	local worldOffsetY = math.floor((-panY + love.graphics.getHeight()/2))
 	self:pan(
 		math.floor((worldOffsetX + self.camPos.x)),
 		math.floor((worldOffsetY + self.camPos.y))
 	)
-	self:updatePlayerPos()
+
+	if not self.panX and not self.panY then
+		self:updatePlayerPos()
+	end
 end
 
 function BasicScene:getMapWidth()
@@ -937,7 +942,9 @@ function BasicScene:swapLayer(toLayerNum)
 	local layerStr = tostring(toLayerNum)
 	local objLayer = toLayerNum == 1 and "objects" or ("objects"..layerStr)
 	self.player.sprite:swapLayer(objLayer)
-	self.player.dropShadow.sprite:swapLayer(objLayer)
+	if not self.player.dropShadow:isRemoved() then
+		self.player.dropShadow.sprite:swapLayer(objLayer)
+	end
 	self.player.onlyInteractWithLayer = objLayer
 	self.player.layer = {name = objLayer}
 	self.currentLayer = objLayer

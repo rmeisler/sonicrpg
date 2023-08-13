@@ -3,6 +3,7 @@ local Repeat = require "actions/Repeat"
 local Parallel = require "actions/Parallel"
 local Do = require "actions/Do"
 local Ease = require "actions/Ease"
+local Wait = require "actions/Wait"
 
 local NPC = require "object/NPC"
 
@@ -60,8 +61,10 @@ function EscapeObstacle:killPlayer()
 				},
 				Do(function()
 					self.scene.invincible = false
-					self.scene.player.sprite.visible = false
-					self.scene.player.dropShadow.sprite.visible = false
+					if not self.scene.player.dropShadow:isRemoved() then
+						self.scene.player.sprite.visible = false
+						self.scene.player.dropShadow.sprite.visible = false
+					end
 					self.scene.player.fx = 0
 					self.scene.player.bx = 0
 					self.scene.player.extraBx = 0
@@ -70,6 +73,10 @@ function EscapeObstacle:killPlayer()
 					self.scene.player.noGas = true
 					self.scene.player.cinematic = true
 					self.scene.playerDead = true
+				end),
+				Wait(3),
+				Do(function()
+					self.scene:restart()
 				end)
 			}
 		end
