@@ -41,7 +41,7 @@ return function(self, target)
 		Animate(self.sprite, "throw"),
 		Do(function()
 			snowball.color[4] = 255
-			snowball.transform.x = snowball.transform.x - self.sprite.w*2
+			snowball.transform.x = snowball.transform.x - self.sprite.w * 1.5
 		end),
 		Parallel {
 			Ease(snowball.transform, "x", target.sprite.transform.x, 3, "linear"),

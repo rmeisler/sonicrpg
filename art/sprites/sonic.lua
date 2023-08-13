@@ -359,6 +359,9 @@ return {
 		snowboard_idle = {
 			frames = {{7,10}}
 		},
+		scarfirritated = {
+			frames = {{8,10}}
+		},
 
 		sit_sad = {
 			frames = {{10,7}}

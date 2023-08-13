@@ -37,13 +37,19 @@
 </data>
  </layer>
  <imagelayer name="Image Layer 7" offsetx="1088" offsety="32">
-  <image source="../art/parallax/overlooklayer5.png" width="1600" height="362"/>
+  <image source="../art/parallax/overlooklayer5.png" width="1600" height="600"/>
   <properties>
    <property name="movespeed" type="float" value="1.03"/>
   </properties>
  </imagelayer>
+ <imagelayer name="twilight" opacity="0" offsetx="1408" offsety="32">
+  <image source="../art/parallax/twilightoverlooklayer5.png" width="800" height="600"/>
+  <properties>
+   <property name="nonight" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
  <imagelayer name="Copy of Image Layer 7" offsetx="-384" offsety="32">
-  <image source="../art/parallax/overlooklayer5.png" width="1600" height="362"/>
+  <image source="../art/parallax/overlooklayer5.png" width="1600" height="600"/>
   <properties>
    <property name="movespeed" type="float" value="1.03"/>
   </properties>

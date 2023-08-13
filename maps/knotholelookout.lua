@@ -221,6 +221,18 @@ return {
     },
     {
       type = "imagelayer",
+      name = "twilight",
+      visible = true,
+      opacity = 0,
+      offsetx = 1408,
+      offsety = 32,
+      image = "../art/parallax/twilightoverlooklayer5.png",
+      properties = {
+        ["nonight"] = true
+      }
+    },
+    {
+      type = "imagelayer",
       name = "Copy of Image Layer 7",
       visible = true,
       opacity = 1,

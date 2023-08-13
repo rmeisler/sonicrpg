@@ -53,13 +53,9 @@ return {
 		-- Leave on death
 		self.die = function(_)
 			GameState:setFlag("ep4_beat_fleet")
-			GameState:grantItem(require "data/items/TopHat", 1)
 			return Serial {
 				Animate(self.sprite, "hatfrustrated"),
 				MessageBox {message="Fleet: Ok, ok{p60}, I give up!"},
-				MessageBox {message="Fleet gave you her {h Top Hat}!", rect=MessageBox.HEADLINER_RECT, sfx="levelup"},
-				Animate(self.sprite, "frustrated"),
-				Wait(0.5),
 				self.scene:earlyExit()
 			}
 		end

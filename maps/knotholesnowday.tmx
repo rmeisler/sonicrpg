@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="283" height="96" tilewidth="32" tileheight="32" infinite="0" nextobjectid="492">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="283" height="96" tilewidth="32" tileheight="32" infinite="0" nextobjectid="493">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbgsnow.png"/>
   <property name="nighttime" type="bool" value="false"/>
@@ -2605,6 +2605,11 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
+    if GameState:isFlagSet(&quot;ep4_beat_fleet&quot;) then
+        return BlockPlayer {
+            MessageBox {message=&quot;Fleet: Hmph! {p60}Come back to gloat?&quot;}
+        }
+    end
     if GameState:isFlagSet(&quot;ep4_tails_snowman_coal&quot;) then
         return BlockPlayer {
             Animate(self.sprite, &quot;hatsmirk&quot;),
@@ -2613,7 +2618,8 @@ return function(self)
                 {&quot;Yes&quot;, Serial {
                     MessageBox {message = &quot;Fleet: You asked for it!&quot;},
                     self.scene:enterBattle {
-                        opponents = {&quot;fleet&quot;}
+                        opponents = {&quot;fleet&quot;},
+                        arrowColor = {150,150,150,255}
                     }
                 }},
                 {&quot;No&quot;, Serial {
@@ -2664,9 +2670,12 @@ return function(self)
            GameState:isFlagSet(&quot;ep4_tails_snowman_scarf&quot;) and
            GameState:isFlagSet(&quot;ep4_tails_snowman_carrot&quot;)
         then
+            GameState:setFlag(&quot;ep4_tails_snowman&quot;)
             return BlockPlayer {
                 MessageBox {message = &quot;Tails: Thanks so much for helping me guys{p60}, this is the best snowman ever!&quot;},
-                Do(function() self:refreshKeyHint() end)
+                Do(function()
+                    self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true}
+                end)
             }
         end
 
@@ -3508,9 +3517,9 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
-    if GameState:isFlagSet(&quot;ep4_tails_snowman&quot;) then
+    if GameState:isFlagSet(&quot;ep4_beat_sonic&quot;) then
         return BlockPlayer {
-            MessageBox {message = &quot;Fleet: &quot;},
+            MessageBox {message = &quot;Sonic: Yeah, yeah{p60}, I bet you think you're pretty hot stuff.&quot;},
             Do(function() self:refreshKeyHint() end)
         }
     else
@@ -3803,6 +3812,12 @@ end</property>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
+   </properties>
+  </object>
+  <object id="492" name="SnowboardSpawn" type="Player" gid="5323" x="1696" y="2272" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="orientation" value="up"/>
    </properties>
   </object>
  </objectgroup>
