@@ -45,7 +45,7 @@ function SnowboardPlayer:construct(scene, layer, object)
 	self:addSceneHandler("keytriggered", SnowboardPlayer.keytriggered)
 	self:addSceneHandler("update", SnowboardPlayer.update)
 	self.dropShadow:remove()
-	
+
 	scene.player = self
 end
 

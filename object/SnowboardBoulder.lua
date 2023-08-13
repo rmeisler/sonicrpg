@@ -23,8 +23,14 @@ function SnowboardBoulder:move(dt)
 	self.x = self.x + vel
 	self.y = self.y + (vel / 2)
 	self.sprite.transform.angle = self.sprite.transform.angle + dt * 20
-	
-	NPC.updateCollision(self)
+
+	local cx = self.hotspots.left_top.x
+	local cy = self.hotspots.left_top.y
+	local cw = self.hotspots.right_top.x - cx
+	local ch = self.hotspots.right_bot.y - cy
+	if self.scene.player:isTouching(cx, cy, cw, ch) then
+		self:invoke("collision")
+	end
 end
 
 

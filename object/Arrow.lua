@@ -6,11 +6,11 @@ local Arrow = class(DrawableNode)
 
 function Arrow:construct(scene, transform, color)
 	self:addSceneNode("ui")
-	
+
 	self.crossedout = SpriteNode(
 		self.scene,
 		Transform(transform.x - 8, transform.y + 17),
-		{255,255,255,0},
+		{color[1],color[2],color[3],0},
 		"crossedout",
 		nil,
 		nil,

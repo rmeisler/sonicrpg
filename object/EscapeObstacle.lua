@@ -4,6 +4,10 @@ local Parallel = require "actions/Parallel"
 local Do = require "actions/Do"
 local Ease = require "actions/Ease"
 local Wait = require "actions/Wait"
+local Menu = require "actions/Menu"
+
+local Layout = require "util/Layout"
+local Transform = require "util/Transform"
 
 local NPC = require "object/NPC"
 
@@ -75,9 +79,24 @@ function EscapeObstacle:killPlayer()
 					self.scene.playerDead = true
 				end),
 				Wait(3),
-				Do(function()
-					self.scene:restart()
-				end)
+				Menu {
+					layout = Layout {
+						{Layout.Text("Try again?"), selectable = false},
+						{Layout.Text("Yes"),
+							choose = function(menu)
+								menu:close()
+								self.scene:restart()
+							end},
+						{Layout.Text("No"),
+							choose = function(menu)
+								menu:close()
+								self.scene:changeScene{map="knotholesnowday", hint="snowboard_fail", spawnPoint="SnowboardSpawn"}
+							end},
+						colWidth = 200
+					},
+					transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+					selectedRow = 2
+				}
 			}
 		end
 		self.touched = true

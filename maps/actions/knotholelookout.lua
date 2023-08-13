@@ -40,7 +40,15 @@ return function(scene, hint)
 		return Action()
 	end
 	
-	if true then
+	if GameState:isFlagSet("ep4_tails_snowman") then
+		-- turn on twilight layer
+		for _,layer in pairs(scene.map.layers) do
+			if layer.name == "twilight" then
+				layer.opacity = 1
+				break
+			end
+		end
+		-- make everything else darker
 		scene.player.sprite.visible = false
 		scene.player.dropShadow.hidden = true
 		scene.camPos.x = 800
@@ -58,7 +66,8 @@ return function(scene, hint)
 			Wait(2),
 			MessageBox{message="Logan: Rotor..."},
 			MessageBox{message="Rotor: Yeah?"},
-			MessageBox{message="Logan: ...{p60}I still think I would've been better off inside working, and this was a total waste of time...{p60} but... {p60}I had fun."},
+			MessageBox{message="Logan: ...{p60}I still think I would've been better off inside working, and this was a total waste of time..."},
+			MessageBox{message="Logan: ...but I had fun."},
 			MessageBox{message="Rotor: *chuckle*"},
 			Wait(2.5),
 			MessageBox{message="Logan: ...huh..."},
@@ -100,8 +109,17 @@ return function(scene, hint)
 			MessageBox{message="Rotor: ...well{p60}, you know what I think?"},
 			MessageBox{message="Logan: Some kinda empty platitude about how 'there's still hope' and 'we can do anything if we work\ntogether!'?"},
 			MessageBox{message="Rotor: Ha ha{p60}, yeah pretty much."},
+			Do(function()
+				scene.objectLookup.Logan.x = scene.objectLookup.Logan.x - 10
+			end),
+			Animate(scene.objectLookup.Logan.sprite, "angrydown"),
 			MessageBox{message="Logan: Yeah? Well save it for someone who cares!"},
 			MessageBox{message="Logan: Robotnik will be history soon and it won't be thanks to the 'power of friendship' or whatever, it will be through good ol' fashion hard work!"},
+			Do(function()
+				scene.objectLookup.Logan.sprite:setAnimation("walkleft")
+			end),
+			Ease(scene.objectLookup.Logan, "x", function() return scene.objectLookup.Logan.x - 400 end, 2, "linear"),
+			MessageBox{message="Rotor: *sigh*"}
 		}
 	end
 

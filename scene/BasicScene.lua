@@ -509,6 +509,8 @@ function BasicScene:remove()
 	self.player = nil
 	
 	self:cleanupLayers()
+	
+	print("destroying cur scene")
 end
 
 function BasicScene:restart(args)
@@ -648,7 +650,8 @@ function BasicScene:enterBattle(args)
 				initiative = args.initiative,
 				color = args.color,
 				practice = args.practice,
-				onEnter = args.onEnter
+				onEnter = args.onEnter,
+				arrowColor = args.arrowColor
 			}
 		end),
 		

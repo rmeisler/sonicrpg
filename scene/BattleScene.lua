@@ -68,6 +68,7 @@ function BattleScene:onEnter(args)
 	self.practice = args.practice
 	self.camPos = Transform()
 	self.noBattleMusic = args.noBattleMusic
+	self.arrowColor = args.arrowColor
 	
 	local onEnterCallback = args.onEnter or function(scene) return Action() end
 
@@ -281,9 +282,9 @@ function BattleScene:update(dt)
 		self.topSprite = sprite
 
 		if playerId == "rotor" then
-			self.arrow = Arrow(self, Transform.relative(sprite.transform, Transform(0, -sprite.h * 1.3)))
+			self.arrow = Arrow(self, Transform.relative(sprite.transform, Transform(0, -sprite.h * 1.3)), self.arrowColor)
 		else
-			self.arrow = Arrow(self, Transform.relative(sprite.transform, Transform(0, -sprite.h)))
+			self.arrow = Arrow(self, Transform.relative(sprite.transform, Transform(0, -sprite.h)), self.arrowColor)
 		end
 		self.state = BattleScene.STATE_PLAYERTURN_PENDING
 	elseif self.state == BattleScene.STATE_PLAYERTURN_PENDING then

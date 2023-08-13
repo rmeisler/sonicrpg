@@ -176,16 +176,21 @@ return function(scene, hint)
 	else
 		scene.objectLookup.Rotor:remove()
 		if GameState:isFlagSet("ep4_beat_fleet") then
-			scene.objectLookup.Fleet.sprite:setAnimation("frustrated")
-			scene.objectLookup.Fleet:removeInteract(NPC.onInteract)
-			scene.objectLookup.Fleet.onInteract = function(self)
-				scene:run(BlockPlayer {
-					MessageBox {message="Fleet: Hmph! {p60}Come back to gloat?"}
-				})
+			if not GameState:hasItem("Top Hat") and not GameState:isFlagSet("ep4_tails_snowman_hat") then
+				GameState:grantItem(require "data/items/TopHat", 1)
+				return BlockPlayer {
+					Animate(scene.objectLookup.Fleet.sprite, "hatfrustrated"),
+					MessageBox{message = "You received a {h Top Hat}!", sfx="levelup"},
+					Animate(scene.objectLookup.Fleet.sprite, "frustrated")
+				}
 			end
-			scene.objectLookup.Fleet:addInteract(scene.objectLookup.Fleet.onInteract)
+			scene.objectLookup.Fleet.sprite:setAnimation("frustrated")
 		end
-		
+
+		if GameState:isFlagSet("ep4_beat_sonic") then
+			scene.objectLookup.Sonic.sprite:setAnimation("irritated")
+		end
+
 		-- Snowman flags
 		if GameState:isFlagSet("ep4_tails_snowman_coal") then
 			scene.objectLookup.SnowmanFace.sprite.color[4] = 255
@@ -198,6 +203,22 @@ return function(scene, hint)
 		end
 		if GameState:isFlagSet("ep4_tails_snowman_scarf") then
 			scene.objectLookup.SnowmanScarf.sprite.color[4] = 255
+		end
+
+		if hint == "snowboard_fail" then
+			scene.audio:playMusic("snowday", 1.0, true)
+			return BlockPlayer {
+				MessageBox{message = "Sonic: Hey, don't feel bad...{p60} bein' this cool ain't for everyone."}
+			}
+		elseif hint == "snowboard_win" then
+			scene.audio:playMusic("snowday", 1.0, true)
+			GameState:grantItem(require "data/items/Scarf", 1)
+			return BlockPlayer {
+				Animate(scene.objectLookup.Sonic.sprite, "scarfirritated"),
+				MessageBox{message = "Sonic: Ok, ok{p60}, a deal's a deal."},
+				MessageBox{message = "You received a {h Scarf}!", sfx="levelup"},
+				Animate(scene.objectLookup.Sonic.sprite, "irritated")
+			}
 		end
 	end
 
