@@ -12,13 +12,7 @@ return function(topDialogue, mapQtoA)
 		local q, a = unpack(questionAndAnswer)
 		table.insert(options, {
 			Layout.Text(q),
-			choose = function(menu)
-				menu:close()
-				menu.scene:run {
-					menu,
-					a
-				}
-			end
+			choose = a
 		})
 	end
     return Menu {

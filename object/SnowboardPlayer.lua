@@ -112,12 +112,12 @@ function SnowboardPlayer:update(dt)
 
 	if not self.cinematic then
 		self.state = "snowboard"
-		if love.keyboard.isDown("up") then
+		if love.keyboard.isDown("up") or love.keyboard.isDown("right") then
 			self.fx = self.fxOverride or RUN_FORCE_MAGNITUDE
 			self.fy = -RUN_FORCE_MAGNITUDE
 			self.bx = ORTHO_BURST_MAGNITUDE
 			self.bigDust = true
-		elseif love.keyboard.isDown("down") then
+		elseif love.keyboard.isDown("down") or love.keyboard.isDown("left") then
 			self.fx = self.fxOverride or RUN_FORCE_MAGNITUDE
 			self.fy = RUN_FORCE_MAGNITUDE
 			self.bx = ORTHO_BURST_MAGNITUDE

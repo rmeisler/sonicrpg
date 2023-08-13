@@ -46,7 +46,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.scan = data.scan
 	self.insult = data.insult
 	self.hpBarOffset = data.hpBarOffset or Transform(0,0)
-	self.hurtSfx = "smack"
+	self.hurtSfx = data.hurtSfx or "smack"
 	self.behavior = data.behavior or function() end
 	self.onDead = data.onDead or function() return Action() end
 	self.onEnter = data.onEnter or function() return Action() end

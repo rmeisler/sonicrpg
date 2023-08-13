@@ -47,8 +47,7 @@ return {
 	equip = {
 		weapon = require "data/weapons/Computer",
 		armor  = require "data/armor/RoyalCoat",
-		legs   = require "data/legs/Boots",
-		accessory = require "data/accessories/CopperAmulet",
+		legs   = require "data/legs/Boots"
 	},
 
 	items = {
@@ -68,7 +67,7 @@ return {
 			}
 		},
 	},
-	
+
 	specialmove = require "data/specialmoves/logan",
 
 	battle = {

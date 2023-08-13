@@ -22,12 +22,10 @@ return function(player)
 
 	-- Find nearest targetable
 	local targets = {}
-	local maxDistance = 2000*2000
 	for _, object in pairs(player.scene.map.objects) do
 		if  not object:isRemoved() and
 		    object.object and
-			object.object.properties.loganTargetable and
-			object:distanceFromPlayerSq(true) < maxDistance
+			object.object.properties.loganTargetable
 		then
 			table.insert(targets, object)
 		end

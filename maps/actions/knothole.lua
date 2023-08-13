@@ -25,11 +25,6 @@ return function(scene, hint)
 	local Player = require "object/Player"
 	local BasicNPC = require "object/BasicNPC"
 	
-	--[[ TEST
-	GameState:setFlag("ep3_knotholerun")
-	GameState:setFlag("ep4_introdone")
-	hint = "notworld"]]
-	
 	local hop = function(obj)
 		return Serial {
 			Ease(obj, "y", function() return obj.y - 30 end, 8),
@@ -164,12 +159,8 @@ return function(scene, hint)
 			end),
 
 			Wait(2),
-
-			MessageBox {message="Sally: Let's get started."},
+			MessageBox {message="Sally: Let me save you all the suspense{p60}, Leon and I have discovered that Robotnik was behind last night's snow storm."},
 			PlayAudio("music", "project", 1.0, true, true),
-			MessageBox {message="Sally: Leon and I have discovered that Robotnik was behind last night's snow storm."},
-			hop(sonic),
-			MessageBox {message="Sonic: Who could'a a guessed!"
 			MessageBox {message="Leon: Our current data suggests that Robotnik has relocated {h Project Firebird} to the Northern Mountains and is conducting field tests in the area..."},
 			MessageBox {message="Leon: And that last night's storm and the subsequent\nweather anomoly we experienced were both due to those field tests..."},
 			hop(antoine),
@@ -225,7 +216,9 @@ return function(scene, hint)
 			Animate(sally.sprite, "meeting_sadleft"),
 			MessageBox {message="Sally: I'm sorry Rotor{p60}, it's just too dangerous.", closeAction=Wait(4)},
 			MessageBox {message="Rotor: But...", closeAction=Wait(2.5)},
-			MessageBox {message="Sally: ..." , closeAction=Wait(3.5)},
+			Do(function()
+				scene:changeScene{map="rotorsworkshop", hint="ep4_aftermeeting", fadeInSpeed = 0.5, fadeOutSpeed = 0.5, enterDelay = 3}
+			end)
 		}
 	elseif GameState:isFlagSet("ep3_intro") and
 		not GameState:isFlagSet("ep3_knotholerun")

@@ -492,6 +492,22 @@ function BattleScene:update(dt)
 				Do(function()
 				end)
 			}
+		elseif self.noLose then
+			self:run {
+				AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+				PlayAudio("music", "nomore", 1.0, true),
+				Do(function() self.opponents[1].sprite:setAnimation("hatlaugh") end),
+				MessageBox {
+					message="Fleet: How embarassing for you...",
+					rect=MessageBox.HEADLINER_RECT,
+					textSpeed = 3
+				},
+				Do(function()
+					self.sceneMgr:popScene{hint="lost_fight"}
+				end),
+				Do(function()
+				end)
+			}
 		else
 			-- HACK: For factoryfloor
 			self.audio:stopSfx("factoryfloor")

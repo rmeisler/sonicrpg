@@ -19,7 +19,7 @@ function BlockPlayer:setScene(scene)
 		scene,
 		Do(function()
 			if scene.player then
-				scene.player.cinematicStack = scene.player.cinematicStack - 1
+				scene.player.cinematicStack = math.max(0, scene.player.cinematicStack - 1)
 			end
 		end)
 	)

@@ -68,38 +68,6 @@ return function(scene, hint)
 			},
 			Animate(scene.objectLookup.Tails.sprite, "idleright"),
 			Ease(scene.camPos, "x", 6100, 0.5),
-			Spawn(Parallel {
-				Repeat(Do(function()
-					if not scene.objectLookup.Sonic.dustTime or scene.objectLookup.Sonic.dustTime > 0.036 then
-						scene.objectLookup.Sonic.dustTime = 0
-					elseif scene.objectLookup.Sonic.dustTime < 0.036 then
-						scene.objectLookup.Sonic.dustTime = scene.objectLookup.Sonic.dustTime + love.timer.getDelta()
-						return
-					end
-					local dust = BasicNPC(
-						scene,
-						{name = "objects"},
-						{
-							name = "snowdust",
-							x = scene.objectLookup.Sonic.x + scene.objectLookup.Sonic.sprite.w,
-							y = scene.objectLookup.Sonic.y - scene.objectLookup.Sonic.sprite.h/2,
-							width = 40,
-							height = 36,
-							properties = {defaultAnim = "updown", nocollision = true, sprite = "art/sprites/snowdust.png"}
-						}
-					)
-					scene:addObject(dust)
-					dust.sprite:onAnimationComplete(function()
-						local ref = dust
-						if ref then
-							ref:remove()
-						end
-					end)
-					scene.objectLookup.Sonic.dustTime = scene.objectLookup.Sonic.dustTime + love.timer.getDelta()
-				end), 200),
-				Ease(scene.objectLookup.Sonic, "x", 600, 0.4),
-				Ease(scene.objectLookup.Sonic, "y", 2100, 0.4)
-			}),
 			Parallel {
 				Ease(scene.camPos, "x", 6250, 0.3),
 				Ease(scene.camPos, "y", -400, 0.3)
@@ -178,6 +146,9 @@ return function(scene, hint)
 		if GameState:isFlagSet("ep4_beat_fleet") then
 			if not GameState:hasItem("Top Hat") and not GameState:isFlagSet("ep4_tails_snowman_hat") then
 				GameState:grantItem(require "data/items/TopHat", 1)
+				scene.audio:playMusic("snowday", 1.0, true)
+				scene.player.y = scene.player.y + 50
+				scene.player.state = "idleup"
 				return BlockPlayer {
 					Animate(scene.objectLookup.Fleet.sprite, "hatfrustrated"),
 					MessageBox{message = "You received a {h Top Hat}!", sfx="levelup"},
@@ -205,7 +176,15 @@ return function(scene, hint)
 			scene.objectLookup.SnowmanScarf.sprite.color[4] = 255
 		end
 
-		if hint == "snowboard_fail" then
+		if hint == "lost_fight" then
+			scene.audio:playMusic("snowday", 1.0, true)
+			scene.player.y = scene.player.y + 50
+			scene.player.state = "idleup"
+			scene.objectLookup.Fleet.sprite:setAnimation("hatlaugh")
+			return BlockPlayer {
+				MessageBox{message = "Fleet: I told you... {p60}I am the master of snowball fights!"}
+			}
+		elseif hint == "snowboard_fail" then
 			scene.audio:playMusic("snowday", 1.0, true)
 			return BlockPlayer {
 				MessageBox{message = "Sonic: Hey, don't feel bad...{p60} bein' this cool ain't for everyone."}

@@ -42,12 +42,17 @@ return {
 
 	drops = {},
 
+	hurtSfx = "smack2",
+
 	onInit = function(self)
+		self.scene.noLose = true
+
 		-- Change logan and rotor skills to only be throwing snowball or items
 		for _,mem in pairs(self.scene.party) do
 			mem.options = {}
 			mem:addBattleOption(require "data/battle/SnowballHit")
 			mem:addBattleOption(require "data/battle/Items")
+			mem.origOptions = mem.options -- Don't reset options on death
 		end
 
 		-- Leave on death
@@ -56,9 +61,10 @@ return {
 			return Serial {
 				Animate(self.sprite, "hatfrustrated"),
 				MessageBox {message="Fleet: Ok, ok{p60}, I give up!"},
-				self.scene:earlyExit()
+				Do(function() self.scene.sceneMgr:popScene{} end)
 			}
 		end
+		self.turns = 0
 	end,
 
 	behavior = function (self, target)
@@ -74,37 +80,82 @@ return {
 		snowball.transform.ox = snowball.w/2
 		snowball.transform.oy = snowball.h/2
 		snowball.transform.angle = math.pi / 6
-		return Serial {
-			Telegraph(self, "Fastball", {255,255,255,50}),
-			Animate(self.sprite, "prethrow"),
-			Wait(0.5),
-			Animate(self.sprite, "throw", true),
-			Do(function()
-				snowball.color[4] = 255
-			end),
-			Parallel {
-				Serial {
-					Parallel {
-						Ease(snowball.transform, "x", target.sprite.transform.x, 2.5, "linear"),
-						Ease(snowball.transform, "y", target.sprite.transform.y, 2.5, "linear")
-					},
-					Do(function()
-						snowball:remove()
-						self.sprite:setAnimation("idle")
-					end)
-				},
-				Ease(snowball.transform, "angle", -math.pi * 3.25, 2.5, "linear"),
-				PressZ(
-					self,
-					target,
+		
+		self.turns = self.turns + 1
+
+		if self.turns % 3 == 0 then
+			-- Every third turn do a curve ball
+			return Serial {
+				Telegraph(self, "Curveball", {255,255,255,50}),
+				Animate(self.sprite, "prethrow"),
+				Wait(0.5),
+				Animate(self.sprite, "throw", true),
+				Do(function()
+					snowball.color[4] = 255
+				end),
+				Parallel {
 					Serial {
-						PlayAudio("sfx", "pressx", 1.0, true),
-						target:takeDamage({miss = true, attack = 1, speed = 1, luck = 1})
+						Parallel {
+							Ease(snowball.transform, "x", target.sprite.transform.x - 200, 2.5, "log"),
+							Ease(snowball.transform, "y", target.sprite.transform.y + 200, 2.5, "log")
+						},
+						Parallel {
+							Ease(snowball.transform, "x", target.sprite.transform.x, 2.5, "linear"),
+							Ease(snowball.transform, "y", target.sprite.transform.y, 2.5, "linear")
+						},
+						Do(function()
+							snowball:remove()
+							self.sprite:setAnimation("idle")
+						end)
 					},
-					target:takeDamage(self.stats)
-				)
-			},
-			
-		}
+					Ease(snowball.transform, "angle", -math.pi * 3.25, 2.5, "linear"),
+					Serial {
+						Wait(0.2),
+						PressZ(
+							self,
+							target,
+							Serial {
+								PlayAudio("sfx", "pressx", 1.0, true),
+								target:takeDamage({miss = true, attack = 1, speed = 1, luck = 1})
+							},
+							target:takeDamage(self.stats)
+						)
+					}
+				}
+			}
+		else
+			-- Most turns do fast ball
+			return Serial {
+				Telegraph(self, "Fastball", {255,255,255,50}),
+				Animate(self.sprite, "prethrow"),
+				Wait(0.5),
+				Animate(self.sprite, "throw", true),
+				Do(function()
+					snowball.color[4] = 255
+				end),
+				Parallel {
+					Serial {
+						Parallel {
+							Ease(snowball.transform, "x", target.sprite.transform.x, 2.5, "linear"),
+							Ease(snowball.transform, "y", target.sprite.transform.y, 2.5, "linear")
+						},
+						Do(function()
+							snowball:remove()
+							self.sprite:setAnimation("idle")
+						end)
+					},
+					Ease(snowball.transform, "angle", -math.pi * 3.25, 2.5, "linear"),
+					PressZ(
+						self,
+						target,
+						Serial {
+							PlayAudio("sfx", "pressx", 1.0, true),
+							target:takeDamage({miss = true, attack = 1, speed = 1, luck = 1})
+						},
+						target:takeDamage(self.stats)
+					)
+				}
+			}
+		end
 	end
 }

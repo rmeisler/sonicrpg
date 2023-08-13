@@ -657,6 +657,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/spooky.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/royalwelcome.ogg",
 		category = "music"
 	},
