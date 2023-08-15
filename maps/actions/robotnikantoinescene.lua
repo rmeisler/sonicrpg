@@ -8,6 +8,7 @@ local Animate = require "actions/Animate"
 local TypeText = require "actions/TypeText"
 local Menu = require "actions/Menu"
 local MessageBox = require "actions/MessageBox"
+local BlockPlayer = require "actions/BlockPlayer"
 local AudioFade = require "actions/AudioFade"
 local PlayAudio = require "actions/PlayAudio"
 local Ease = require "actions/Ease"
@@ -29,7 +30,6 @@ local BasicNPC = require "object/BasicNPC"
 return function(scene)
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.sprite.visible = false
-	scene.player.cinematicStack = scene.player.cinematicStack + 1
 	scene.player.y = 0
 
 	local robotnik = scene.objectLookup.Robotnik
@@ -40,7 +40,30 @@ return function(scene)
 	snively.sprite.color[3] = 180
 	
 	scene.bgColor = {255,255,255,255}
-	
+
+	GameState:setFlag("ep4_introdone")
+	if GameState:isFlagSet("ep4_introdone") then
+		robotnik.sprite:setAnimation("faceup")
+		if scene.objectLookup.Rover then
+			scene.objectLookup.Rover:remove()
+			scene.objectLookup.Antoine:remove()
+		end
+		scene.objectLookup.Snively:remove()
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.sprite.visible = false
+				scene.player.x = 544
+				scene.player.y = 1100
+			end),
+			Ease(scene.player, "y", 800, 0.3),
+			PlayAudio("music", "robotnik", 1.0, true, true),
+			MessageBox{message="Robotnik: Snively...", closeAction=Wait(2), textSpeed=1},
+			MessageBox{message="Snively: Y-y-yes sir.", closeAction=Wait(2)}
+		}
+	end
+
+	scene.player.cinematicStack = scene.player.cinematicStack + 1
 	if GameState:isFlagSet("beatboss1") then
 		robotnik.sprite:setAnimation("faceup")
 		if scene.objectLookup.Rover then

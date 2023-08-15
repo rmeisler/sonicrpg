@@ -159,14 +159,14 @@ return function(scene, hint)
 			end),
 
 			Wait(2),
-			MessageBox {message="Sally: Let me save you all the suspense{p60}, Leon and I have discovered that Robotnik was behind last night's snow storm."},
+			MessageBox {message="Sally: Let me save you all the suspense{p60}, Leon and I have discovered that Robotnik was behind yesterday's snow storm."},
 			PlayAudio("music", "project", 1.0, true, true),
-			MessageBox {message="Leon: Our current data suggests that Robotnik has relocated {h Project Firebird} to the Northern Mountains and is conducting field tests in the area..."},
-			MessageBox {message="Leon: And that last night's storm and the subsequent\nweather anomoly we experienced were both due to those field tests..."},
-			hop(antoine),
-			MessageBox {message="Antoine: {h P-P-Project Firebird}!?"},
+			MessageBox {message="Leon: Our current data suggests that Robotnik has relocated\n {h Project Firebird} to the Northern Mountains and\nis conducting field tests in the area..."},
+			MessageBox {message="Leon: And that the storm we experienced was the result of those field tests..."},
 			hop(bunnie),
 			MessageBox {message="Bunnie: My goodness! {p60}If that's what field testing looks like..."},
+			hop(antoine),
+			MessageBox {message="Antoine: {h P-P-Project Firebird}!?"},
 			hop(sonic),
 			MessageBox {message="Sonic: Yo Sal{p40}, how can these storms be coming all the way here from the Nothern Mountains? {p60}Aren't they mondo far away?"},
 			MessageBox {message="Sally: The Northern Mountains are about 800 miles from Knothole. {p60}Which means that Project Firebird is even more dangerous than we predicted..."},
@@ -217,7 +217,9 @@ return function(scene, hint)
 			MessageBox {message="Sally: I'm sorry Rotor{p60}, it's just too dangerous.", closeAction=Wait(4)},
 			MessageBox {message="Rotor: But...", closeAction=Wait(2.5)},
 			Do(function()
-				scene:changeScene{map="rotorsworkshop", hint="ep4_aftermeeting", fadeInSpeed = 0.5, fadeOutSpeed = 0.5, enterDelay = 3}
+				-- If not set from ep 3 save file, set this
+				GameState:setFlag("ep3_ffmeetingover")
+				scene:changeScene{map="rotorsworkshop", hint="ep4_aftermeeting", fadeInSpeed = 0.2, fadeOutSpeed = 0.2, enterDelay = 3}
 			end)
 		}
 	elseif GameState:isFlagSet("ep3_intro") and
@@ -651,6 +653,7 @@ return function(scene, hint)
 			scene.objectLookup.Tails:remove()
 			scene.objectLookup.HockeyPost1:remove()
 			scene.objectLookup.HockeyPost2:remove()
+			scene.objectLookup.Cart.isInteractable = true
 			
 			scene.audio:playMusic("knothole", 1.0, true)
 		end

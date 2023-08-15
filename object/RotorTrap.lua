@@ -55,7 +55,8 @@ function RotorTrap:shockBots()
 	end
 	for _, obj in pairs(self.scene.map.objects) do
 		if obj.isBot and
-		   obj.disableBot and
+		   --obj.disableBot and
+		   not obj.destructing and
 		   not obj:isRemoved() and
 		   not self.shockedBots[tostring(obj)] and
 		   obj:isTouching(
@@ -65,11 +66,14 @@ function RotorTrap:shockBots()
 				self.sprite.h/5)
 		then
 			self.shockedBots[tostring(obj)] = obj
-			obj.sprite:setAnimation("hurtdown")
+			obj.sprite:trySetAnimation("hurtdown")
 			obj:removeCollision()
-			obj:removeAllUpdates()
+			if obj.removeAllUpdates then
+				obj:removeAllUpdates()
+			end
 			self.scene.player.chasers[tostring(obj.name)] = nil
-			self:run {
+			obj.destructing = obj.destructable
+			obj:run {
 				PlayAudio("sfx", "shocked", 1.0, true),
 				While(
 					function()
@@ -79,26 +83,47 @@ function RotorTrap:shockBots()
 							self.sprite.w/5,
 							self.sprite.h/5)
 					end,
-					Repeat(Serial {
-						Do(function()
-							if obj.sprite then
-								obj.sprite:setInvertedColor()
-							end
-						end),
-						Wait(0.1),
+					Serial {
+						Repeat(Serial {
+							Do(function()
+								if obj.sprite then
+									obj.sprite:setInvertedColor()
+								end
+							end),
+							Wait(0.1),
+							Do(function()
+								if obj.sprite then
+									obj.sprite:removeInvertedColor()
+								end
+							end),
+							Wait(0.1),
+						}, obj.destructable and 3),
+						obj.destructable and
+							Serial {
+								Do(function()
+									obj.sprite:removeInvertedColor()
+								end),
+								PlayAudio("sfx", "oppdeath", 1.0, true),
+								Ease(obj.sprite.color, 4, 0, 1),
+								Do(function() obj:permanentRemove() end)
+							} or
+							Action()
+					},
+					obj.destructable and
+						Serial {
+							Do(function()
+								obj.sprite:removeInvertedColor()
+							end),
+							PlayAudio("sfx", "oppdeath", 1.0, true),
+							Ease(obj.sprite.color, 4, 0, 1),
+							Do(function() obj:permanentRemove() end)
+						} or
 						Do(function()
 							if obj.sprite then
 								obj.sprite:removeInvertedColor()
+								obj:addSceneHandler("update")
 							end
-						end),
-						Wait(0.1),
-					}),
-					Do(function()
-						if obj.sprite then
-							obj.sprite:removeInvertedColor()
-							obj:addSceneHandler("update")
-						end
-					end)
+						end)
 				)
 			}
 		end

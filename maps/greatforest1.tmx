@@ -351,6 +351,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="lower"/>
  <objectgroup name="objects">
   <object id="1" name="Spawn 1" type="Player" gid="5323" x="416" y="2496" width="32" height="32">
    <properties>
@@ -499,38 +500,90 @@
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="103" name="Boulder" type="BasicNPC" gid="5323" x="384" y="256" width="64" height="64">
+  <object id="103" name="Boulder2" type="BasicNPC" gid="5323" x="384" y="256" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="knothole"/>
+    <property name="destructable" type="bool" value="true"/>
+    <property name="isBot" type="bool" value="true"/>
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Do = require &quot;actions/Do&quot;
+
+return function(self)
+    self.scene.objectLookup.Boulder1.isInteractable = false
+    self.scene.objectLookup.Boulder2.isInteractable = false
+    local walkout, walkin, sprites = self.scene.player:split()
+    return BlockPlayer {
+        walkout,
+        MessageBox{message=&quot;Logan: How the heck are we supposed to get past these boulders?&quot;},
+        MessageBox{message=&quot;Rotor: My shock pad device oughta do it. {p60}Press {h left shift} to try it out!&quot;},
+        walkin,
+        Do(function()
+            self.scene.player.x = self.scene.player.x + 60
+            self.scene.player.y = self.scene.player.y + 60
+        end)
+    }
+end</property>
+    <property name="specialHint" value="rotor"/>
+    <property name="sprite" type="file" value="../art/sprites/boulder.png"/>
+    <property name="usableBy" value="rotor"/>
+   </properties>
+  </object>
+  <object id="105" name="Boulder1" type="BasicNPC" gid="5323" x="480" y="256" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="knothole"/>
+    <property name="destructable" type="bool" value="true"/>
+    <property name="isBot" type="bool" value="true"/>
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Do = require &quot;actions/Do&quot;
+
+return function(self)
+    self.scene.objectLookup.Boulder1.isInteractable = false
+    self.scene.objectLookup.Boulder2.isInteractable = false
+    local walkout, walkin, sprites = self.scene.player:split()
+    return BlockPlayer {
+        walkout,
+        MessageBox{message=&quot;Logan: How the heck are we supposed to get past these boulders?&quot;},
+        MessageBox{message=&quot;Rotor: My shock pad device oughta do it. {p60}Press {h left shift} to try it out!&quot;},
+        walkin,
+        Do(function()
+            self.scene.player.x = self.scene.player.x + 60
+            self.scene.player.y = self.scene.player.y + 60
+        end)
+    }
+end</property>
+    <property name="specialHint" value="rotor"/>
+    <property name="sprite" type="file" value="../art/sprites/boulder.png"/>
+    <property name="usableBy" value="rotor"/>
+   </properties>
+  </object>
+  <object id="106" name="Boulder4" type="BasicNPC" gid="5323" x="397" y="192" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="knothole"/>
+    <property name="destructable" type="bool" value="true"/>
+    <property name="isBot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/boulder.png"/>
    </properties>
   </object>
-  <object id="105" name="Boulder" type="BasicNPC" gid="5323" x="480" y="256" width="64" height="64">
+  <object id="107" name="Boulder3" type="BasicNPC" gid="5323" x="433" y="224" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="knothole"/>
+    <property name="destructable" type="bool" value="true"/>
+    <property name="isBot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/boulder.png"/>
    </properties>
   </object>
-  <object id="106" name="Boulder" type="BasicNPC" gid="5323" x="397" y="192" width="64" height="64">
+  <object id="108" name="Boulder5" type="BasicNPC" gid="5323" x="465" y="192" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="knothole"/>
-    <property name="sprite" type="file" value="../art/sprites/boulder.png"/>
-   </properties>
-  </object>
-  <object id="107" name="Boulder" type="BasicNPC" gid="5323" x="433" y="224" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="knothole"/>
-    <property name="sprite" type="file" value="../art/sprites/boulder.png"/>
-   </properties>
-  </object>
-  <object id="108" name="Boulder" type="BasicNPC" gid="5323" x="465" y="192" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="knothole"/>
+    <property name="destructable" type="bool" value="true"/>
+    <property name="isBot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/boulder.png"/>
    </properties>
   </object>

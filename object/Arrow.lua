@@ -10,7 +10,7 @@ function Arrow:construct(scene, transform, color)
 	self.crossedout = SpriteNode(
 		self.scene,
 		Transform(transform.x - 8, transform.y + 17),
-		{color[1],color[2],color[3],0},
+		{self.color[1], self.color[2], self.color[3],0},
 		"crossedout",
 		nil,
 		nil,

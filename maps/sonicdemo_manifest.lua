@@ -9,10 +9,10 @@ return {
 		file = "maps/snowboard.lua",
 		--primary = true -- TEST
     },
-	--[[{
+	{
         type = "map",
 		file = "maps/northmountains_landing.lua",
-		--primary = true -- TEST
+		primary = true -- TEST
     },
 	{
         type = "map",
@@ -39,7 +39,7 @@ return {
         type = "map",
 		file = "maps/bartcave2.lua",
 		--primary = true -- TEST
-    },]]
+    },
 	--[[{
         type = "map",
 		file = "maps/darkswamp1.lua",
@@ -137,6 +137,11 @@ return {
 		--primary = true -- TEST
     },
 	
+	{
+		type = "map",
+		file = "maps/robotnikwarroom.lua"
+	},
+	
 	--[[{
         type = "map",
         file = "maps/forgottenhideout.lua",
@@ -157,7 +162,7 @@ return {
 	{
         type = "map",
         file = "maps/knotholeatnight_ep4intro.lua",
-		primary = true -- REAL
+		--primary = true -- REAL
     },
 	
 	{
@@ -176,10 +181,11 @@ return {
         file = "maps/knotholelookoutatnight.lua"
 		--primary = true
     },
-	
-	--[[{
+
+	{
         type = "map",
-        file = "maps/greatforest1.lua"
+        file = "maps/greatforest1.lua",
+		--primary = true -- TEST
     },
 	{
         type = "map",
@@ -203,7 +209,7 @@ return {
 	{
         type = "map",
         file = "maps/greatforest2_rightpath.lua"
-    },]]
+    },
 	
 	{
 		type = "gradient",
@@ -354,6 +360,14 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/juggerbotrightarm.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/leftrightview.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/updownview.png"
 	},
 	{
 		type = "image",
@@ -972,6 +986,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/rotor.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/rotormsg.ogg",
 		category = "music"
 	},
@@ -1059,6 +1078,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/robotnik.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/patrol.ogg",
 		category = "music"
 	},
@@ -1132,6 +1156,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/alarm.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/bee.ogg",
 		category = "sfx"
 	},
 	{

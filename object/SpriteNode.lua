@@ -7,6 +7,7 @@ function SpriteNode:construct(scene, transform, color, imgsrc, w, h, layer)
 	self.locationOffsets = {}
 	self.animationOverrideStack = {}
 	if type(imgsrc) == "string" then
+		print("img index = "..tostring(imgsrc))
 		self.imgsrc = imgsrc
 		self.img = scene.images[imgsrc]
 		self.animations = {}

@@ -53,6 +53,7 @@ function NPC:construct(scene, layer, object)
 	self.disappearOnFlag = object.properties.disappearOnFlag
 	self.angle = (object.properties.angle or 0) * (math.pi/180)
 	self.isBot = object.properties.isBot
+	self.destructable = object.properties.destructable
 	
 	if object.properties.onInit then
 		self.onInit = assert(loadstring(object.properties.onInit))()

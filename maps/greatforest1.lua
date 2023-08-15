@@ -610,6 +610,17 @@ return {
     },
     {
       type = "objectgroup",
+      name = "lower",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {}
+    },
+    {
+      type = "objectgroup",
       name = "objects",
       visible = true,
       opacity = 1,
@@ -987,7 +998,7 @@ return {
         },
         {
           id = 103,
-          name = "Boulder",
+          name = "Boulder2",
           type = "BasicNPC",
           shape = "rectangle",
           x = 384,
@@ -1000,12 +1011,17 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "knothole",
-            ["sprite"] = "../art/sprites/boulder.png"
+            ["destructable"] = true,
+            ["isBot"] = true,
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    self.scene.objectLookup.Boulder1.isInteractable = false\n    self.scene.objectLookup.Boulder2.isInteractable = false\n    local walkout, walkin, sprites = self.scene.player:split()\n    return BlockPlayer {\n        walkout,\n        MessageBox{message=\"Logan: How the heck are we supposed to get past these boulders?\"},\n        MessageBox{message=\"Rotor: My shock pad device oughta do it. {p60}Press {h left shift} to try it out!\"},\n        walkin,\n        Do(function()\n            self.scene.player.x = self.scene.player.x + 60\n            self.scene.player.y = self.scene.player.y + 60\n        end)\n    }\nend",
+            ["specialHint"] = "rotor",
+            ["sprite"] = "../art/sprites/boulder.png",
+            ["usableBy"] = "rotor"
           }
         },
         {
           id = 105,
-          name = "Boulder",
+          name = "Boulder1",
           type = "BasicNPC",
           shape = "rectangle",
           x = 480,
@@ -1018,12 +1034,17 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "knothole",
-            ["sprite"] = "../art/sprites/boulder.png"
+            ["destructable"] = true,
+            ["isBot"] = true,
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    self.scene.objectLookup.Boulder1.isInteractable = false\n    self.scene.objectLookup.Boulder2.isInteractable = false\n    local walkout, walkin, sprites = self.scene.player:split()\n    return BlockPlayer {\n        walkout,\n        MessageBox{message=\"Logan: How the heck are we supposed to get past these boulders?\"},\n        MessageBox{message=\"Rotor: My shock pad device oughta do it. {p60}Press {h left shift} to try it out!\"},\n        walkin,\n        Do(function()\n            self.scene.player.x = self.scene.player.x + 60\n            self.scene.player.y = self.scene.player.y + 60\n        end)\n    }\nend",
+            ["specialHint"] = "rotor",
+            ["sprite"] = "../art/sprites/boulder.png",
+            ["usableBy"] = "rotor"
           }
         },
         {
           id = 106,
-          name = "Boulder",
+          name = "Boulder4",
           type = "BasicNPC",
           shape = "rectangle",
           x = 397,
@@ -1036,12 +1057,14 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "knothole",
+            ["destructable"] = true,
+            ["isBot"] = true,
             ["sprite"] = "../art/sprites/boulder.png"
           }
         },
         {
           id = 107,
-          name = "Boulder",
+          name = "Boulder3",
           type = "BasicNPC",
           shape = "rectangle",
           x = 433,
@@ -1054,12 +1077,14 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "knothole",
+            ["destructable"] = true,
+            ["isBot"] = true,
             ["sprite"] = "../art/sprites/boulder.png"
           }
         },
         {
           id = 108,
-          name = "Boulder",
+          name = "Boulder5",
           type = "BasicNPC",
           shape = "rectangle",
           x = 465,
@@ -1072,6 +1097,8 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "knothole",
+            ["destructable"] = true,
+            ["isBot"] = true,
             ["sprite"] = "../art/sprites/boulder.png"
           }
         }

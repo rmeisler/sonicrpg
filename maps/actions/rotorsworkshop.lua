@@ -320,6 +320,7 @@ return function(scene, hint)
 				scene.player.sprite.visible = true
 				scene.player.dropShadow.hidden = false
 
+				scene.objectLookup.Computer.isInteractable = true
 				scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"
 				scene.objectLookup.Door.object.properties.hint = "intro"
 			end)
