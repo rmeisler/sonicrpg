@@ -52,14 +52,41 @@ return function(scene)
 		return BlockPlayer {
 			Do(function()
 				scene.player.sprite.visible = false
-				scene.player.dropShadow.sprite.visible = false
+				scene.player.dropShadow.hidden = true
 				scene.player.x = 544
 				scene.player.y = 1100
+				scene.objectLookup.RBComputer.sprite:setAnimation("onsnively")
 			end),
-			Ease(scene.player, "y", 800, 0.3),
-			PlayAudio("music", "robotnik", 1.0, true, true),
-			MessageBox{message="Robotnik: Snively...", closeAction=Wait(2), textSpeed=1},
-			MessageBox{message="Snively: Y-y-yes sir.", closeAction=Wait(2)}
+			Spawn(Serial {
+				PlayAudio("music", "deatheggtransition", 1.0),
+				PlayAudio("music", "robotnik", 1.0, true, true)
+			}),
+			Ease(scene.player, "y", 750, 0.2),
+			MessageBox{message="Robotnik: Status report, Snively...", textSpeed=3},
+			MessageBox{message="Snively: *shivering* S-S-Sir... {p30}Your theory that the Northern Mountains f-f-frigid temperatures would provide an optimal t-t-testing environment appear to be\ncorrect.", textSpeed=3},
+			MessageBox{message="Robotnik: Ooooooh... {p60}that's good Snively. {p60}That's very good, indeed...", textSpeed=3},
+			MessageBox{message="Snively: S-S-Sir. {p60}P-P-Perhaps I could r-r-return to Robotropolis and resume t-t-testing r-r-remotely.", textSpeed=3},
+			MessageBox{message="Robotnik: Hmmmm... {p80}no{p60}, I think I prefer you remain on site.", textSpeed=3},
+			MessageBox{message="Snively: B-b-but s-s-sir--", textSpeed=3, closeAction=Wait(0.5)},
+			Parallel {
+				Animate(scene.objectLookup.RBComputer.sprite, "onsnivelyoff"),
+				MessageBox{message="Robotnik: Goodbye, Snively.", textSpeed=3}
+			},
+			Ease(scene.player, "y", 900, 0.5),
+			Animate(scene.objectLookup.Robotnik.sprite, "spinaround"),
+			Animate(scene.objectLookup.Robotnik.sprite, "facedowngrin"),
+			MessageBox{message="Robotnik: Once Project Firebird is complete, I will finally destroy the Great Forest and every living creature in it!!", textSpeed=3},
+			Do(function()
+				scene:changeScene{
+					map="knothole",
+					hint="ep4_sally_see_rotor",
+					spawnPoint="WorkshopDoor",
+					fadeOutSpeed = 0.2,
+					fadeInSpeed = 0.2,
+					fadeOutMusic = true,
+					enterDelay = 2
+				}
+			end)
 		}
 	end
 

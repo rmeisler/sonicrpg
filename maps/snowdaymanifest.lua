@@ -1,43 +1,7 @@
 return {
 	{
         type = "map",
-		file = "maps/worldmap.lua",
-		--primary = true
-    },
-	{
-        type = "map",
 		file = "maps/snowboard.lua",
-		--primary = true -- TEST
-    },
-	{
-        type = "map",
-		file = "maps/northmountains_landing.lua",
-		--primary = true -- TEST
-    },
-	{
-        type = "map",
-		file = "maps/northmountains_1.lua"
-    },
-	{
-        type = "map",
-		file = "maps/northmountains_2.lua"
-    },
-	{
-        type = "map",
-		file = "maps/northmountains_3.lua"
-    },
-	{
-        type = "map",
-		file = "maps/northmountains_cave.lua"
-    },
-	{
-        type = "map",
-		file = "maps/bartcave.lua",
-		--primary = true -- TEST
-    },
-	{
-        type = "map",
-		file = "maps/bartcave2.lua",
 		--primary = true -- TEST
     },
 	{
@@ -80,22 +44,6 @@ return {
 		--primary = true -- TEST
     },
 	{
-		type = "map",
-		file = "maps/robotnikwarroom.lua"
-	},
-	--[[{
-        type = "map",
-        file = "maps/forgottenhideout.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgottenhideout_broom.lua",
-		--primary = true
-    },]]
-	
-	{
         type = "map",
         file = "maps/knotholesnowday.lua",
 		--primary = true -- testing
@@ -108,48 +56,8 @@ return {
 	
 	{
         type = "map",
-        file = "maps/knothole.lua",
-		--primary = true -- TEST
-    },
-	
-	{
-        type = "map",
         file = "maps/knotholelookout.lua",
 		--primary = true -- testing
-    },
-	{
-        type = "map",
-        file = "maps/knotholelookoutatnight.lua"
-		--primary = true
-    },
-
-	{
-        type = "map",
-        file = "maps/greatforest1.lua",
-		primary = true -- TEST
-    },
-	{
-        type = "map",
-        file = "maps/greatforest2.lua"
-    },
-	{
-        type = "map",
-        file = "maps/greatforest3.lua"
-    },
-	{
-        type = "map",
-        file = "maps/greatforest4.lua"
-    },
-	
-	{
-        type = "map",
-        file = "maps/greatforest2_uppath.lua",
-		--primary = true, -- TEST
-    },
-	
-	{
-        type = "map",
-        file = "maps/greatforest2_rightpath.lua"
     },
 	
 	{
@@ -877,11 +785,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/boomerang.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
 		file = "audio/sfx/smack.ogg",
 		category = "sfx"
 	},
@@ -902,65 +805,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/tick.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/tock.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/music/sadintrospect.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
 		file = "audio/music/rotorsworkshop.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/rotorsentimental.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/rotor2.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/rotormsg.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/rotorready.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/lookout.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/music/games.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/music/greatforest.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/puzzlesolve.ogg",
 		category = "music"
 	},
 	{
@@ -975,79 +820,9 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/ringlake.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/sonicsad.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/secretcave.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
 		file = "audio/music/doittoit.ogg",
 		category = "music",
 		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/music/doittoit2.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/music/trouble.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/troublefanfare.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/robotrouble.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/robotnik.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/deatheggtransition.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/patrol.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/darkintro.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/knothole.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/music/knotholehut.ogg",
-		category = "music",
-		looping = true,
 	},
 	{
 		type = "sound",
@@ -1077,12 +852,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/snowcap.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
 		file = "audio/music/logantheme.ogg",
 		category = "music",
 		looping = true,
@@ -1102,11 +871,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/alarm.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/bee.ogg",
 		category = "sfx"
 	},
 	{

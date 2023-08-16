@@ -83,8 +83,43 @@ return function(scene, hint)
 			scene.audio:playMusic("knothole", 0.8, true)
 		end
 	end
-	
+
 	scene.player.dustColor = Player.FOREST_DUST_COLOR
+
+	if hint == "ep4_sally_see_rotor" then
+		scene.objectLookup.SonicBicker:remove()
+		scene.objectLookup.FleetBicker:remove()
+		scene.objectLookup.AntoineBicker:remove()
+		scene.objectLookup.IvanBicker:remove()
+		scene.objectLookup.LoganBicker:remove()
+		scene.objectLookup.RotorBicker:remove()
+		scene.objectLookup.Tails:remove()
+		scene.objectLookup.HockeyPost1:remove()
+		scene.objectLookup.HockeyPost2:remove()
+
+		scene.objectLookup.SallySad.sprite.visible = true
+		local door = scene.objectLookup.WorkshopDoor
+		scene.player.hidekeyhints[tostring(door)] = door
+
+		return BlockPlayer {
+			PlayAudio("music", "sadintrospect", 1.0, true),
+			MessageBox{message="Sally: Rotor?...", textSpeed=3},
+			Wait(2),
+			MessageBox{message="Sally: Are you in there, Rotor?", textSpeed=3},
+			Wait(2),
+			Animate(scene.objectLookup.SallySad.sprite, "sadleft"),
+			MessageBox{message="Sally: *sigh*", textSpeed=3},
+			Do(function()
+				scene:changeScene{
+					map="northmountains_landing",
+					fadeOutSpeed = 0.2,
+					fadeInSpeed = 0.2,
+					fadeOutMusic = true,
+					enterDelay = 2
+				}
+			end)
+		}
+	end
 
 	if hint == "fromworldmap" then
 		knotholeIntro()

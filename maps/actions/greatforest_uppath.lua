@@ -59,7 +59,7 @@ return function(scene, hint)
 				Do(function()
 					local walkout, walkin, sprites = scene.player:split()
 					scene.player:run(BlockPlayer {
-						PlayAudio("music", "rotor", 1.0, true, true),
+						PlayAudio("music", "rotor2", 1.0, true, true),
 						Ease(scene.camPos, "y", 450, 1),
 						MessageBox {message="Rotor: There it is!"},
 						Ease(scene.camPos, "y", 0, 1),
@@ -78,7 +78,7 @@ return function(scene, hint)
 						Animate(sprites.rotor.sprite, "idleright"),
 						MessageBox {message="Rotor: Hey! {p60}I put in a lot of hours into this!"},
 						Animate(sprites.rotor.sprite, "explaining_right1"),
-						MessageBox {message="Rotor: And it's flight tested! {p60}This oughtta get us to the Northern Mountains, no prob."},
+						MessageBox {message="Rotor: And it's flight tested! {p60}This oughtta get us to the Northern Mountains, no problem!"},
 						MessageBox {message="Logan: If you say so..."},
 						walkin,
 						Do(function()

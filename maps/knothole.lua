@@ -8,7 +8,7 @@ return {
   height = 88,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 366,
+  nextobjectid = 367,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["onload"] = "actions/knothole.lua",
@@ -4187,6 +4187,29 @@ return {
           visible = true,
           properties = {
             ["orientation"] = "down"
+          }
+        },
+        {
+          id = 366,
+          name = "SallySad",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7424,
+          y = 992,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -16,
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/sally.png"
           }
         }
       }

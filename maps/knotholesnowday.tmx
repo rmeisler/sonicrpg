@@ -3704,7 +3704,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/snowman.png"/>
    </properties>
   </object>
-  <object id="468" name="SnowmanFace" type="BasicNPC" gid="5323" x="3584" y="2464" width="64" height="96">
+  <object id="468" name="SnowmanFace" type="BasicNPC" gid="5323" x="3584" y="2465" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-16"/>
@@ -3717,7 +3717,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/snowman.png"/>
    </properties>
   </object>
-  <object id="469" name="SnowmanNose" type="BasicNPC" gid="5323" x="3584" y="2465" width="64" height="96">
+  <object id="469" name="SnowmanNose" type="BasicNPC" gid="5323" x="3584" y="2466" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-16"/>
@@ -3730,7 +3730,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/snowman.png"/>
    </properties>
   </object>
-  <object id="470" name="SnowmanScarf" type="BasicNPC" gid="5323" x="3584" y="2465" width="64" height="96">
+  <object id="470" name="SnowmanScarf" type="BasicNPC" gid="5323" x="3584" y="2466" width="64" height="96">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-16"/>
