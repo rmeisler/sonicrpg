@@ -81,6 +81,9 @@ return {
 		},
 
 		
+		sadleft = {
+			frames = {{0,6}}
+		},
 		sitright = {
             frames = {{9,0}}
         },

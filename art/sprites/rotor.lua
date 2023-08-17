@@ -154,6 +154,9 @@ return {
 		sad = {
 			frames = {{0,5}}
 		},
+		hug = {
+			frames = {{3,5}}
+		},
 		climb_1 = {
 			frames = {{1,3}}
 		},

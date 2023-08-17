@@ -85,6 +85,77 @@ return function(scene, hint)
 	end
 
 	scene.player.dustColor = Player.FOREST_DUST_COLOR
+	
+	scene.objectLookup.SallySad.hidden = true
+
+	scene.objectLookup.AntoineEp4End.hidden = true
+	scene.objectLookup.BunnieEp4End.hidden = true
+	scene.objectLookup.RotorEp4End.hidden = true
+	scene.objectLookup.SallyEp4End.hidden = true
+	scene.objectLookup.TailsEp4End.hidden = true
+	scene.objectLookup.SonicEp4End.hidden = true
+	scene.objectLookup.BEp4End.hidden = true
+	scene.objectLookup.LoganEp4End.hidden = true
+	scene.objectLookup.IvanEp4End.hidden = true
+	scene.objectLookup.LeonEp4End.hidden = true
+
+	if hint == "ep4_end" then
+		scene.objectLookup.AntoineEp4End.hidden = false
+		scene.objectLookup.BunnieEp4End.hidden = false
+		scene.objectLookup.RotorEp4End.hidden = false
+		scene.objectLookup.TailsEp4End.hidden = false
+		scene.objectLookup.SonicEp4End.hidden = false
+		scene.objectLookup.BEp4End.hidden = false
+		scene.objectLookup.LoganEp4End.hidden = false
+		scene.objectLookup.IvanEp4End.hidden = false
+		scene.objectLookup.LeonEp4End.hidden = false
+
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+				scene.objectLookup.SallyEp4End.hidden = true
+				scene.objectLookup.RotorEp4End.sprite:setAnimation("hug")
+			end),
+			PlayAudio("music", "rotorsok", 1.0, true, true),
+			MessageBox{message="Sonic: Welcome back, Rote!"},
+			MessageBox{message="Sally: Thank goodness you're ok, Rotor!"},
+			MessageBox{message="Sally: I'm so sorry I wasn't more supportive..."},
+			MessageBox{message="Rotor: It's alright, Sally."},
+			Do(function()
+				scene.objectLookup.SallyEp4End.hidden = false
+				scene.objectLookup.SallyEp4End.x = scene.objectLookup.SallyEp4End.x + 16
+				scene.objectLookup.RotorEp4End.sprite:setAnimation("idleright")
+			end),
+			MessageBox{message="Rotor: Ya know{p30}, it was actually kind of a good opportunity for me to get out of the workshop for once!"},
+			MessageBox{message="Bunnie: So that nasty ol' Project Firebird's gone?"},
+			MessageBox{message="Rotor: That's what it seems like, Bunnie..."},
+			Wait(1),
+			scene.objectLookup.FleetEp4End:hop(),
+			MessageBox{message="Fleet: Logan!! {p60}What are you trying to do{p30}, give me a heart attack!?"},
+			MessageBox{message="Logan: ...{p60}Sorry Fleet...", textSpeed=3},
+			MessageBox{message="Leon: It would seem that life here in Knothole is making you lose your sense of discipline, Logan...", textSpeed=3},
+			MessageBox{message="Logan: I-I'm sorry, sir. {p60}It won't happen again.", textSpeed=3},
+			MessageBox{message="Leon: See that it doesn't."},
+			MessageBox{message="Leon: And one last thing, Logan... {p60}well done.", textSpeed=3},
+			Animate(scene.objectLookup.LoganEp4End.sprite, "idleup"),
+			scene.objectLookup.LoganEp4End:hop(),
+			MessageBox{message="Logan: Sir?"},
+			MessageBox{message="Leon: Taking down Robotnik's most powerful machine is no small feat... {p60}you should be proud.", textSpeed=3},
+			scene.objectLookup.LoganEp4End:hop(),
+			MessageBox{message="Logan: T-Thank you, sir!"},
+			Wait(1),
+			Do(function()
+				scene:changeScene {
+					map = "rotorsworkshop",
+					fadeOutSpeed = 0.2,
+					fadeInSpeed = 0.2,
+					fadeOutMusic = true,
+					hint = "ep4_end"
+				}
+			end)
+		}
+	end
 
 	if hint == "ep4_sally_see_rotor" then
 		scene.objectLookup.SonicBicker:remove()
@@ -98,10 +169,12 @@ return function(scene, hint)
 		scene.objectLookup.HockeyPost2:remove()
 
 		scene.objectLookup.SallySad.sprite.visible = true
-		local door = scene.objectLookup.WorkshopDoor
-		scene.player.hidekeyhints[tostring(door)] = door
 
 		return BlockPlayer {
+			Do(function()
+				local door = scene.objectLookup.WorkshopDoor
+				scene.player.hidekeyhints[tostring(door)] = door
+			end),
 			PlayAudio("music", "sadintrospect", 1.0, true),
 			MessageBox{message="Sally: Rotor?...", textSpeed=3},
 			Wait(2),

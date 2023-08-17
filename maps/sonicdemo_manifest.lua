@@ -927,6 +927,16 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/rotorsok.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/loganend.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/rotor2.ogg",
 		category = "music"
 	},

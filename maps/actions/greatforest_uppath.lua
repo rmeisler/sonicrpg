@@ -78,7 +78,7 @@ return function(scene, hint)
 						Animate(sprites.rotor.sprite, "idleright"),
 						MessageBox {message="Rotor: Hey! {p60}I put in a lot of hours into this!"},
 						Animate(sprites.rotor.sprite, "explaining_right1"),
-						MessageBox {message="Rotor: And it's flight tested! {p60}This oughtta get us to the Northern Mountains, no problem!"},
+						MessageBox {message="Rotor: Besides{p60}, it's flight tested! {p60}This oughtta get us to the Northern Mountains, no problem!"},
 						MessageBox {message="Logan: If you say so..."},
 						walkin,
 						Do(function()

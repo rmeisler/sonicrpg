@@ -65,7 +65,7 @@ return function(scene)
 			MessageBox{message="Robotnik: Status report, Snively...", textSpeed=3},
 			MessageBox{message="Snively: *shivering* S-S-Sir... {p30}Your theory that the Northern Mountains f-f-frigid temperatures would provide an optimal t-t-testing environment appear to be\ncorrect.", textSpeed=3},
 			MessageBox{message="Robotnik: Ooooooh... {p60}that's good Snively. {p60}That's very good, indeed...", textSpeed=3},
-			MessageBox{message="Snively: S-S-Sir. {p60}P-P-Perhaps I could r-r-return to Robotropolis and resume t-t-testing r-r-remotely.", textSpeed=3},
+			MessageBox{message="Snively: S-S-Sir. {p60}P-P-Perhaps I could r-r-return to Robotropolis and resume t-t-testing Project Firebird's capabilities r-r-remotely?", textSpeed=3},
 			MessageBox{message="Robotnik: Hmmmm... {p80}no{p60}, I think I prefer you remain on site.", textSpeed=3},
 			MessageBox{message="Snively: B-b-but s-s-sir--", textSpeed=3, closeAction=Wait(0.5)},
 			Parallel {
@@ -79,8 +79,8 @@ return function(scene)
 			Do(function()
 				scene:changeScene{
 					map="knothole",
-					hint="ep4_sally_see_rotor",
-					spawnPoint="WorkshopDoor",
+					hint="ep4_end", --"ep4_sally_see_rotor",
+					spawnPoint="Ep4EndSpawn", --"WorkshopDoor",
 					fadeOutSpeed = 0.2,
 					fadeInSpeed = 0.2,
 					fadeOutMusic = true,

@@ -33,6 +33,12 @@ return {
 			frames = {{1,3}, {2,3}, {3,3}, {4,3},{5,3}, {6,3}, {7,3}, {8,3}},
 			speed = 0.09
 		},
+		idleup_lookleft = {
+			frames = {{0,5}}
+		},
+		idleup_lookright = {
+			frames = {{3,5}}
+		},
 		attitude = {
 			frames = {{1,5}}
 		},

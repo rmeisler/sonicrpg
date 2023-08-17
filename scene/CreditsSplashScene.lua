@@ -31,13 +31,12 @@ function CreditsSplashScene:onEnter()
 	self.bg = love.graphics.newImage("art/splash/title3.png")
 	self.soniclogo = love.graphics.newImage("art/sprites/rpglogo.png")
 	
-	self.bgY = 0
+	self.bgY = -466
 	
 	-- Setup music
 	self.audio:registerAs("music", "sonicrpglogo", love.audio.newSource("audio/music/credits.ogg", "static"))
 	self.audio:registerAs("music", "credits", love.audio.newSource("audio/music/credits.ogg", "static"))
-	self.audio:registerAs("music", "ironlocklouder", love.audio.newSource("audio/music/ironlocklouder.ogg", "static"))
-	self.audio:registerAs("sfx", "wolf", love.audio.newSource("audio/sfx/wolf.ogg", "static"))
+	self.audio:registerAs("music", "snowday", love.audio.newSource("audio/music/snowday.ogg", "static"))
 	
 	self.bgColor = {0,0,0,255}
 	self.logoColor = {255,255,255,0}
@@ -56,7 +55,7 @@ function CreditsSplashScene:onEnter()
 				Spawn(Serial {
 					PlayAudio("music", "credits", 1.0),
 					Wait(1),
-					PlayAudio("music", "ironlocklouder", 1.0, true),
+					PlayAudio("music", "snowday", 1.0, true),
 				}),
 				Wait(3),
 				Parallel {
@@ -66,7 +65,7 @@ function CreditsSplashScene:onEnter()
 				},
 				Wait(8)
 			},
-			Ease(self, "bgY", -466, 0.2, "inout")
+			Ease(self, "bgY", 100, 0.2, "inout")
 		},
 		
 		Parallel {
@@ -127,6 +126,7 @@ SEGA
 Anonymous
 
 [Sprites]
+AmeixaRoxa
 Deebs
 Racoon Ninja
 Joey "The Plokman" Tripp Nimmo
@@ -150,6 +150,7 @@ Reggie Meisler/RedG
 Nz17
 
 [Concept Art]
+AmeixaRoxa
 JayFoxFire
 Anya Stocks/Frostdrop1
 Jacob Berkley/Good Ol' Groovy Jake
@@ -188,6 +189,9 @@ sqrly jack
 [2022 Box Art]
 Jonathon Dobbs/InkPants
 
+[2023 Box Art]
+RingMasterLeon
+
 [Framework]
 Reggie Meisler/RedG
 
@@ -209,6 +213,7 @@ Fans United for SatAM
 Sea3on
 Jacob Berkley/Good Ol' Groovy Jake
 Ibeh Dubem/Flame the Teen
+AmeixaRoxa
 
 
 
@@ -218,9 +223,9 @@ Ibeh Dubem/Flame the Teen
 
 
 
- This episode is dedicated to my wife Jazz, who
-    has been so supportive of this project.
-
+    This episode is dedicated to a local
+      artist and activist, Rick Bell.
+	          Rest in power.
 
 	
 	
@@ -261,7 +266,14 @@ end
 
 function CreditsSplashScene:draw()
 	love.graphics.setColor(self.bgColor)
-	
+	love.graphics.draw(
+		self.bg,
+		0,
+		-600,
+		0,
+		1,
+		1
+	)
 	love.graphics.draw(
 		self.bg,
 		0,

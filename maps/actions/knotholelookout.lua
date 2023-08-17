@@ -82,7 +82,7 @@ return function(scene, hint)
 			Wait(3),
 			MessageBox{message="Logan: Hey...{p60} do you remember what it was like to have a mom and dad?", textSpeed = 3},
 			MessageBox{message="Rotor: Huh?", textSpeed = 3},
-			MessageBox{message="Logan: You heard me! {p120}I am not repeating myself!"},
+			MessageBox{message="Logan: You heard me! {p60}I am not repeating myself!"},
 			Wait(1),
 			MessageBox{message="Rotor: Uh, well... {p60}to be honest... {p60}no.", textSpeed = 3},
 			MessageBox{message="Rotor: I, uh... {p60}didn't really know my parents very well. {p60}I was mostly raised by my Pop-Pop.", textSpeed = 3},

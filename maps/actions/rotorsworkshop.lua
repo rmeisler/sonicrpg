@@ -123,6 +123,89 @@ return function(scene, hint)
 		scene.objectLookup.Rotor:remove()
 		scene.objectLookup.Rotor2:remove()
 		scene.objectLookup.Logan:remove()
+	elseif hint == "ep4_end" then
+		scene.objectLookup.Logan.hidden = false
+		scene.objectLookup.Logan.ghost = false
+		scene.objectLookup.Logan.isInteractable = true
+		scene.objectLookup.Logan:updateCollision()
+		scene.objectLookup.Logan.sprite:setAnimation("idleup")
+		scene.objectLookup.Logan.x = scene.player.x
+		scene.objectLookup.Logan.y = scene.player.y
+
+		scene.objectLookup.Rotor2.hidden = false
+		scene.objectLookup.Rotor2.ghost = false
+		scene.objectLookup.Rotor2.isInteractable = true
+		scene.objectLookup.Rotor2:updateCollision()
+
+		scene.objectLookup.Rotor:remove()
+		
+		scene.camPos.y = 300
+		scene.player.sprite.visible = false
+
+		return BlockPlayer {
+			Do(function()
+				scene.camPos.y = 300
+				scene.player.sprite.visible = false
+			end),
+			Animate(scene.objectLookup.Rotor2.sprite, "awake"),
+			Wait(2),
+			PlayAudio("music", "sadintrospect", 1.0, true),
+			Wait(2),
+			Animate(scene.objectLookup.Rotor2.sprite, "sleeping"),
+			Wait(2),
+			PlayAudio("sfx", "door", 1.0, true),
+			Animate(scene.objectLookup.Door.sprite, "opening"),
+			Animate(scene.objectLookup.Door.sprite, "open"),
+			Wait(1),
+			Move(scene.objectLookup.Logan, scene.objectLookup.Waypoint1, "walk"),
+			Animate(scene.objectLookup.Logan.sprite, "idleup"),
+			Wait(1),
+			MessageBox{message="Logan: Hey..."},
+			Animate(scene.objectLookup.Rotor2.sprite, "awake"),
+			MessageBox{message="Rotor: Hey."},
+			Wait(1),
+			MessageBox{message="Rotor: Guess I can't keep thinking Pop-Pop's still out there somewhere, huh?"},
+			MessageBox{message="Logan: ..."},
+			Do(function()
+				scene.objectLookup.Logan.sprite:setAnimation("walkup")
+			end),
+			Parallel {
+				Ease(scene.objectLookup.Logan, "x", 320, 0.5, "linear"),
+				Ease(scene.objectLookup.Logan, "y", 160, 0.5, "linear"),
+			},
+			Animate(scene.objectLookup.Logan.sprite, "idleright"),
+			Wait(1),
+			MessageBox{message="Rotor: I'm glad I got to see him one last time though... {p60}I just wish I had at least grabbed some of his research before we escaped..."},
+			MessageBox{message="Logan: Funny you should mention that..."},
+			MessageBox{message="Logan gives Rotor {h Bart's Journal}!", sfx="levelup"},
+			PlayAudio("music", "rotorsentimental", 1.0, true),
+			Animate(scene.objectLookup.Rotor2.sprite, "idleleft"),
+			scene.objectLookup.Rotor2:hop(),
+			Do(function()
+				scene.objectLookup.Rotor2.y = scene.objectLookup.Rotor2.y + 20
+			end),
+			MessageBox{message="Rotor: H-How did you--{p30} W-When did you-- {p30}!?"},
+			Animate(scene.objectLookup.Logan.sprite, "pose"),
+			MessageBox{message="Logan: Your 'Pop-Pop' told me, \"You better hang onto this for Rotor{p60}, he'll probably misplace it somehow\"."},
+			MessageBox{message="Rotor: *tearful chuckle*"},
+			Wait(1),
+			Animate(scene.objectLookup.Logan.sprite, "idleright"),
+			MessageBox{message="Logan: Hey{p60}, now that I'm giving you this, it's on you not to lose it in one of your junk drawers!"},
+			PlayAudio("music", "loganend", 0.7, true),
+			MessageBox{message="Rotor: ...Thank you, Logan.", textSpeed=2, closeAction=Wait(2)},
+			Wait(1),
+			Animate(scene.objectLookup.Logan.sprite, "irritated"),
+			MessageBox{message="Logan: ...Y-yeah{p80}, no problem.", textSpeed=2, closeAction=Wait(2)},
+			Wait(1),
+			Do(function()
+				scene.sceneMgr:pushScene {
+					class = "CreditsSplashScene",
+					fadeOutSpeed = 0.05,
+					fadeInSpeed = 0.3,
+					enterDelay = 6
+				}
+			end)
+		}
 	elseif hint == "ep4_aftermeeting" then
 		scene.objectLookup.Logan.hidden = false
 		scene.objectLookup.Logan.ghost = false
