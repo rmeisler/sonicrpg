@@ -38,6 +38,11 @@ return {
 	{
         type = "map",
 		file = "maps/bartcave2.lua",
+		--primary = true -- TEST
+    },
+	{
+        type = "map",
+		file = "maps/bartroom.lua",
 		primary = true -- TEST
     },
 	{

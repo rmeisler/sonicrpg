@@ -190,7 +190,7 @@ sqrly jack
 Jonathon Dobbs/InkPants
 
 [2023 Box Art]
-RingMasterLeon/Leon Nalić
+Leon Nalić/RingMasterLeon
 
 [Framework]
 Reggie Meisler/RedG
