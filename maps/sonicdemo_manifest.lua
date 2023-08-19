@@ -38,7 +38,7 @@ return {
 	{
         type = "map",
 		file = "maps/bartcave2.lua",
-		--primary = true -- TEST
+		primary = true -- TEST
     },
 	{
         type = "map",
@@ -126,7 +126,7 @@ return {
 	{
         type = "map",
         file = "maps/greatforest1.lua",
-		primary = true -- TEST
+		--primary = true -- TEST
     },
 	{
         type = "map",
@@ -492,15 +492,23 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/stuneffect.png"
-	},
-	{
-		type = "image",
 		file = "art/sprites/blast1.png"
 	},
 	{
 		type = "image",
 		file = "art/sprites/fireshot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/projectfirebird.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/freezepoof.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/fireball.png"
 	},
 	{
 		type = "image",
@@ -553,6 +561,16 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/cooking.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/griffvehicle.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/griffvehicle2.ogg",
 		category = "sfx"
 	},
 	{
@@ -873,6 +891,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/cyclopsroar.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/firebirdbreath.ogg",
 		category = "sfx"
 	},
 	{

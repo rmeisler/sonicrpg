@@ -304,7 +304,7 @@ function PartyMember:chooseTarget(menu, targetType, unusable, callback, ...)
 				"ui"
 			)
 			-- Can't target for some reason
-			if unusable and unusable(target) then
+			if (unusable and unusable(target)) or target.untargetable then
 				arrow.color = {150,150,150, 255}
 			else
 				arrow.color = {255, 255, 255, 255}
@@ -330,7 +330,7 @@ function PartyMember:chooseTarget(menu, targetType, unusable, callback, ...)
 				"ui"
 			)
 			-- Can't target for some reason
-			if unusable and unusable(target) then
+			if (unusable and unusable(target)) or target.untargetable then
 				arrow.color = {150,150,150, 255}
 			else
 				arrow.color = {255, 255, 255, 255}
@@ -360,7 +360,7 @@ function PartyMember:chooseTarget(menu, targetType, unusable, callback, ...)
 		)
 		
 		-- Can't target for some reason
-		if unusable and unusable(target) then
+		if (unusable and unusable(target)) or target.untargetable then
 			self.arrow.color = {150,150,150, 255}
 		else
 			self.arrow.color = {255, 255, 255, 255}
@@ -379,14 +379,14 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 			if self.targetType == TargetType.AllParty then
 				targets = table.clone(self.scene.party)
 				for index, target in pairs(targets) do
-					if unusable and unusable(target) then
+					if (unusable and unusable(target)) or target.untargetable then
 						targets[index] = nil
 					end
 				end
 			else
 				targets = table.clone(self.scene.opponents)
 				for index, target in pairs(targets) do
-					if not unusable or not unusable(target) then
+					if (not unusable or not unusable(target)) and not target.untargetable then
 						table.insert(onAttackActions, (target.onAttack and target.state ~= BattleActor.STATE_IMMOBILIZED) and target:onAttack(self) or Action())
 						table.insert(onBeforeAttackActions, target.onBeforeAttack and target:onBeforeAttack(self) or Action())
 					else
@@ -451,7 +451,7 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 		
 		elseif key == "x" then
 			-- Can't attack flying if we can't target flying
-			if unusable and unusable(target) then
+			if (unusable and unusable(target)) or target.untargetable then
 				self.scene.audio:playSfx("error", nil, true)
 			else
 				self.scene.audio:playSfx("choose", nil, true)
@@ -504,7 +504,7 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 			self.arrow.transform.y = target.sprite.transform.y - target.sprite.h * 1.5
 			
 			-- Can't target
-			if unusable and unusable(target) then
+			if (unusable and unusable(target)) or target.untargetable then
 				self.arrow.color = {150,150,150, 255}
 			else
 				self.arrow.color = {255, 255, 255, 255}

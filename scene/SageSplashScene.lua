@@ -12,7 +12,7 @@ local SageSplashScene = class(Scene)
 
 function SageSplashScene:onEnter()
 	self.video = love.graphics.newVideo("art/splash/sage.ogv")
-	self.video:getSource():setVolume(1.0)
+	self.video:getSource():setVolume(0.5)
 	self.video:play()
 
 	return Serial {

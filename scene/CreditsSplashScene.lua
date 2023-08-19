@@ -190,7 +190,7 @@ sqrly jack
 Jonathon Dobbs/InkPants
 
 [2023 Box Art]
-RingMasterLeon
+RingMasterLeon/Leon Nalić
 
 [Framework]
 Reggie Meisler/RedG
@@ -220,9 +220,6 @@ AmeixaRoxa
 
 
 
-
-
-
     This episode is dedicated to a local
       artist and activist, Rick Bell.
 	          Rest in power.
@@ -230,15 +227,9 @@ AmeixaRoxa
 	
 	
 	
-	
-	
-
 
            Thanks for playing!
     Join our discord for project updates!
-	
-	
-	
 	
 	
 	
