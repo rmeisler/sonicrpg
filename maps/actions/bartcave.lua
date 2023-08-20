@@ -57,30 +57,6 @@ return function(scene, hint)
 		})
 	end
 
-	if hint == "fromworldmap" or true then
-		return BlockPlayer {
-			Wait(3),
-			Ease(scene.camPos, "y", 500, 0.5),
-			Do(showTitle),
-			Wait(1),
-			PlayAudio("music", "bart", 1.0, true, true),
-			Wait(2),
-			MessageBox{message="Bart: Welcome to the Lost City..."},
-			Wait(3),
-			Ease(scene.camPos, "y", 0, 1)
-		}
-	elseif hint == "fromload" then
-		scene.camPos.y = 350
-		return BlockPlayer {
-			Wait(3),
-			Ease(scene.camPos, "y", 500, 0.5),
-			Do(showTitle),
-			Wait(1),
-			PlayAudio("music", "bart", 1.0, true, true),
-			Wait(3),
-			Ease(scene.camPos, "y", 0, 1)
-		}
-	end
-
+	scene.audio:stopMusic()
 	return Action()
 end

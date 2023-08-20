@@ -11,6 +11,7 @@ function Chest:construct(scene, layer, object)
 	object.properties.appearAfter = nil
 	object.properties.alphaOverride = nil
 	object.properties.hidden = nil
+	object.properties.loganTargetable = nil
 	
 	local nonight = object.properties.nonight
 	object.properties.nonight = nil

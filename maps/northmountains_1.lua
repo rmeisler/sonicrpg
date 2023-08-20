@@ -8,7 +8,7 @@ return {
   height = 112,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 120,
+  nextobjectid = 121,
   properties = {
     ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
     ["layered"] = true,
@@ -1722,6 +1722,23 @@ return {
           visible = false,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 120,
+          name = "Next",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1472,
+          y = 3072,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["loganTargetable"] = true
           }
         }
       }

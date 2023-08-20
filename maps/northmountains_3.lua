@@ -8,7 +8,7 @@ return {
   height = 155,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 202,
+  nextobjectid = 204,
   properties = {
     ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
     ["layered"] = true,

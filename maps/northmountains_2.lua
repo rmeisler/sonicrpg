@@ -8,7 +8,7 @@ return {
   height = 80,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 129,
+  nextobjectid = 130,
   properties = {
     ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
     ["layered"] = true,
@@ -1331,6 +1331,23 @@ return {
           properties = {
             ["GreenLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 129,
+          name = "Next",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2560,
+          y = 1664,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["loganTargetable"] = true
           }
         }
       }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="87" height="112" tilewidth="32" tileheight="32" infinite="0" nextobjectid="120">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="87" height="112" tilewidth="32" tileheight="32" infinite="0" nextobjectid="121">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/northmountainsbg.png"/>
   <property name="layered" type="bool" value="true"/>
@@ -1092,6 +1092,12 @@ end</property>
   <object id="119" name="View4.1" type="BasicNPC" gid="8696" x="1632" y="1696" width="736" height="576" visible="0">
    <properties>
     <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="120" name="Next" type="BasicNPC" gid="10970" x="1472" y="3072" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="loganTargetable" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
