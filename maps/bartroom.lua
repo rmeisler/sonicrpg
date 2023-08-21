@@ -8,11 +8,11 @@ return {
   height = 27,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 20,
+  nextobjectid = 23,
   properties = {
     ["onload"] = "actions/bartroom.lua",
     ["regionName"] = "Northern Mountains",
-    ["sectorName"] = "Bart's Room"
+    ["sectorName"] = "Bart's Lab "
   },
   tilesets = {
     {
@@ -299,9 +299,9 @@ return {
           name = "DownPath",
           type = "SceneEdge",
           shape = "rectangle",
-          x = 416,
+          x = 384,
           y = 768,
-          width = 64,
+          width = 160,
           height = 32,
           rotation = 0,
           gid = 6839,
@@ -328,6 +328,28 @@ return {
           visible = true,
           properties = {
             ["orientation"] = "up"
+          }
+        },
+        {
+          id = 20,
+          name = "Bart",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 416,
+          y = 704,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Ease = require \"actions/Ease\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep4_bart_intro4\") then\n        GameState:setFlag(\"ep4_bart_intro5\")\n        return BlockPlayer {\n            MessageBox{message=\"Bart: Finally, we have my escavation analyzer! {p100}This helps me investigate the molecular composition of my samples...\"},\n            MessageBox{message=\"Logan: --Enlightening?\"},\n            self:hop(),\n            Animate(self.sprite, \"pose\"),\n            MessageBox{message=\"Bart: Precisley!\"},\n            self.scene.player:hop(),\n            MessageBox{message=\"Rotor: Pop-Pop! {p60}Would you listen to me for a second!\"},\n            Animate(self.sprite, \"idledown\"),\n            AudioFade(\"music\", 1.0, 0.0, 1),\n            MessageBox{message=\"Bart: Let me guess... {p100}you want to tell me that we need to get out of here right away because Robotnik has built a devastatingly terrible machine below our very feet?...\"},\n            MessageBox{message=\"Rotor: !! {p60}How did you know?!\"},\n            MessageBox{message=\"Bart: I may be old, but I'm not deaf! {p60}I of course could hear Julian{p60}-- err--{p60} \\\"Robotnik's\\\"{p60} coup happening over radio ten years ago...\"},\n            MessageBox{message=\"Bart: I knew I was stranded here the minute I heard the announcement.\", textSpeed=3},\n            MessageBox{message=\"Bart: \\\"Mobotropolis will henceforth be known as \\nRobotropolis\\\"...\", textSpeed=3},\n            MessageBox{message=\"Bart: I have also spied on numerous communications to and from the test site below. {p60}{h Project Firebird}\\n is it?\"},\n            MessageBox{message=\"Logan: I guess we didn't give you enough credit, old timer.\"},\n            MessageBox{message=\"Bart: ...{p60}You have no idea how happy I am to see you, my dear boy. {p60}Though your arrival was not part of the plan{p60}, I am so glad I've gotten the chance to see you one last time...\", textSpeed=3},\n            MessageBox{message=\"Rotor: What do you mean \\\"one last time\\\"?\"},\n            MessageBox{message=\"Bart: ...\"},\n            MessageBox{message=\"Bart: I know you want me to leave with you, Rotor, but I can not...\"},\n            self.scene.player:hop(),\n            MessageBox{message=\"Rotor: But why Pop-Pop!?\"},\n            MessageBox{message=\"Bart: ...\"},\n            Do(function()\n                self.sprite:setAnimation(\"walkup\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 416, 1, \"linear\"),\n                Ease(self, \"y\", 220, 1, \"linear\")\n            },\n            Animate(self.sprite, \"idleup\"),\n            MessageBox{message=\"Bart: When you get to be my age you have a great deal of regrets...\"},\n            self:hop(),\n            Animate(self.sprite, \"idledown\"),\n            MessageBox{message=\"Bart: My greatest regret was not doing more to stop Julian from taking power!\"},\n            MessageBox{message=\"Bart: I could tell the man was trouble the minute he stepped foot in Mobotropolis...\"},\n            MessageBox{message=\"Bart: And yet, I said nothing...\"},\n            self:hop(),\n            Animate(self.sprite, \"idledown\"),\n            MessageBox{message=\"Bart: This time will be different! {p60}I am going to collapse my research station and these ancient ruins atop Julian's little science experiment!\"},\n            Wait(1),\n            MessageBox{message=\"Bart: It won't stop the tyrant, of course... {p60}but at least I'll have done some damage!\"},\n            MessageBox{message=\"Logan: Can't you trigger the collapse remotely?\"},\n            MessageBox{message=\"Bart: Unfortunately, no. {p60}The subroutine can only be activated from my computer console...\"},\n            PlayAudio(\"music\", \"rotorangry\", 1.0, true),\n            MessageBox{message=\"Rotor: ... {p60}So that's it? {p100}I come all this way to save you and you're just gonna end it anyways!?\"},\n            MessageBox{message=\"Logan: Rotor...\"},\n            MessageBox{message=\"Bart: ...\"}\n        }\n    elseif GameState:isFlagSet(\"ep4_bart_intro3\") then\n        GameState:setFlag(\"ep4_bart_intro4\")\n        return BlockPlayer {\n            MessageBox{message=\"Bart: This pod is uh... {p60}technically just a washing machine and dryer...{p100} but it functions satisfactorily!\"},\n            MessageBox{message=\"Rotor: *sigh*\"},\n            Do(function()\n                self.sprite:setAnimation(\"walkup\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 456, 1, \"linear\"),\n                Ease(self, \"y\", 280, 1, \"linear\")\n            },\n            Do(function()\n                self.sprite:setAnimation(\"walkdown\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 386, 1, \"linear\"),\n                Ease(self, \"y\", 356, 1, \"linear\")\n            },\n            Do(function()\n                self.sprite:setAnimation(\"idledown\")\n                self:removeCollision()\n                self.object.x = self.x\n                self.object.y = self.y + 64\n                self:updateCollision()\n            end)\n        }\n    elseif GameState:isFlagSet(\"ep4_bart_intro2\") then\n        GameState:setFlag(\"ep4_bart_intro3\")\n        return BlockPlayer {\n            MessageBox{message=\"Bart: Here is my workstation... {p60}on the right you can see an excavated skull from one of our ancient Mobian ancestors...{p100} fascinating!\"},\n            MessageBox{message=\"Rotor: Listen, uh...\"},\n            Do(function()\n                self.sprite:setAnimation(\"walkdown\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 642, 1, \"linear\"),\n                Ease(self, \"y\", 386, 1, \"linear\")\n            },\n            Do(function()\n                self.sprite:setAnimation(\"idledown\")\n                self:removeCollision()\n                self.object.x = self.x\n                self.object.y = self.y + 96\n                self:updateCollision()\n            end)\n        }\n    else\n        GameState:setFlag(\"ep4_bart_intro2\")\n        return BlockPlayer {\n            MessageBox{message=\"Bart: In the ancient ruins there are plants which can only be seen under florescent light! {p100}Truly remakable, isn't it?\"},\n            MessageBox{message=\"Rotor: That's great Pop-Pop...\"},\n            Do(function()\n                self.sprite:setAnimation(\"walkup\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 416, 1, \"linear\"),\n                Ease(self, \"y\", 220, 1, \"linear\")\n            },\n            Do(function()\n                self.sprite:setAnimation(\"idledown\")\n                self:removeCollision()\n                self.object.x = self.x\n                self.object.y = self.y + 96\n                self:updateCollision()\n            end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/bart.png"
           }
         }
       }

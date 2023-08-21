@@ -57,10 +57,34 @@ return function(scene, hint)
 		})
 	end
 
+	scene.objectLookup.Bart.isInteractable = false
+	scene.objectLookup.Bart.hidden = false
+	scene.audio:stopMusic()
 	return BlockPlayer {
-		Wait(1),
+		Wait(2),
+		PlayAudio("music", "bart", 1.0, true, true),
 		Do(showTitle),
-		Wait(0.5),
-		PlayAudio("music", "bart", 1.0, true, true)
+		Wait(2),
+		scene.objectLookup.Bart:hop(),
+		Animate(scene.objectLookup.Bart.sprite, "pose"),
+		MessageBox {message="Bart: Welcome to my lab!"},
+		Animate(scene.objectLookup.Bart.sprite, "idledown"),
+		MessageBox {message="Bart: *ahem*"},
+		Do(function()
+			scene.objectLookup.Bart.sprite:setAnimation("walkup")
+		end),
+		Parallel {
+			Ease(scene.objectLookup.Bart, "x", 224, 1, "linear"),
+			Ease(scene.objectLookup.Bart, "y", 380, 1, "linear")
+		},
+		Do(function()
+			scene.objectLookup.Bart.isInteractable = true
+			scene.objectLookup.Bart.sprite:setAnimation("idledown")
+			scene.objectLookup.Bart.ghost = false
+			scene.objectLookup.Bart:removeCollision()
+			scene.objectLookup.Bart.object.x = scene.objectLookup.Bart.x
+            scene.objectLookup.Bart.object.y = scene.objectLookup.Bart.y + 96
+			scene.objectLookup.Bart:updateCollision()
+		end),
 	}
 end

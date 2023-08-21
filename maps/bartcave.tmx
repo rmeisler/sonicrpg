@@ -317,20 +317,24 @@ return function(self)
            sprites.rotor.sprite:setAnimation(&quot;walkdown&quot;)
         end),
         Parallel {
-            Ease(sprites.rotor, &quot;y&quot;, function() return sprites.rotor.y + 500 end, 0.7, &quot;linear&quot;),
+            Serial {
+                Ease(sprites.rotor, &quot;y&quot;, function() return sprites.rotor.y + 500 end, 0.7, &quot;linear&quot;),
+                Do(function()
+                    sprites.rotor.sprite:setAnimation(&quot;idledown&quot;)
+                end)
+            },
             Serial {
                 Wait(1),
                 Do(function()
                     sprites.logan.sprite:setAnimation(&quot;walkdown&quot;)
                 end),
                 Ease(sprites.logan, &quot;y&quot;, function() return sprites.logan.y + 500 end, 0.7, &quot;linear&quot;),
+                Do(function()
+                    sprites.logan.sprite:setAnimation(&quot;idledown&quot;)
+                end)
             },
             Ease(self.scene.player, &quot;y&quot;, function() return self.scene.player.y + 550 end, 0.5)
         },
-        Do(function()
-            sprites.rotor.sprite:setAnimation(&quot;idledown&quot;)
-            sprites.logan.sprite:setAnimation(&quot;idledown&quot;)
-        end),
         MessageBox{message=&quot;Bart: My dear boy, you're all grown up! {p60}What are you doing here?&quot;},
         MessageBox{message=&quot;Rotor: We heard your distress signal from Knothole{p60}, we're here to rescue you!&quot;},
         MessageBox{message=&quot;Bart: Is that so! {p60}And who might this young woman be?&quot;},
@@ -339,10 +343,19 @@ return function(self)
         sprites.logan:hop(),
         MessageBox{message=&quot;Logan: *blush*&quot;},
         AudioFade(&quot;music&quot;, 1.0, 0.0, 0.5),
+        Do(function()
+            self.scene.objectLookup.Bart.sprite:setAnimation(&quot;pose&quot;)
+        end),
         self.scene.objectLookup.Bart:hop(),
         MessageBox{message=&quot;Bart: Ah! {p60}Yes, this is tremendous!&quot;},
         PlayAudio(&quot;music&quot;, &quot;rotorready&quot;, 1.0, true, true),
+        Do(function()
+            self.scene.objectLookup.Bart.sprite:setAnimation(&quot;idledown&quot;)
+        end),
         MessageBox{message=&quot;Bart: Come with me, my boy! {p60}You can bring your little friend with you. {p60}I have to show you my lab!&quot;},
+        Do(function()
+            self.scene.objectLookup.Bart.sprite:setAnimation(&quot;walkdown&quot;)
+        end),
         Ease(self.scene.objectLookup.Bart, &quot;y&quot;, function() return self.scene.objectLookup.Bart.y + 300 end, 1, &quot;linear&quot;),
         Do(function() self.scene.objectLookup.Bart:remove() end),
         Animate(sprites.rotor.sprite, &quot;idleright&quot;),
@@ -361,6 +374,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-16"/>
+    <property name="defaultAnim" value="idleup"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/bart.png"/>

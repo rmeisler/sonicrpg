@@ -955,6 +955,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/rotorangry.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/rotorsok.ogg",
 		category = "music"
 	},
