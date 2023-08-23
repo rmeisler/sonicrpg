@@ -129,6 +129,9 @@ return {
 			frames = {{8,5},{9,5},{8,5},{10,5}},
 			speed = 0.07
 		},
+		leapdown = {
+			frames = {{7,2}}
+		},
 		snowboard = {
 			frames = {{4,5}}
 		},

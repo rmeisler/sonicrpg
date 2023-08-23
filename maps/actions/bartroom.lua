@@ -71,11 +71,18 @@ return function(scene, hint)
 		Animate(scene.objectLookup.Bart.sprite, "idledown"),
 		MessageBox {message="Bart: *ahem*"},
 		Do(function()
+			scene.objectLookup.Bart.sprite:setAnimation("walkdown")
+		end),
+		Parallel {
+			Ease(scene.objectLookup.Bart, "x", 320, 1, "linear"),
+			Ease(scene.objectLookup.Bart, "y", 685, 1, "linear")
+		},
+		Do(function()
 			scene.objectLookup.Bart.sprite:setAnimation("walkup")
 		end),
 		Parallel {
-			Ease(scene.objectLookup.Bart, "x", 224, 1, "linear"),
-			Ease(scene.objectLookup.Bart, "y", 380, 1, "linear")
+			Ease(scene.objectLookup.Bart, "x", 224, 0.5, "linear"),
+			Ease(scene.objectLookup.Bart, "y", 380, 0.5, "linear")
 		},
 		Do(function()
 			scene.objectLookup.Bart.isInteractable = true

@@ -8,7 +8,7 @@ return {
   height = 27,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 23,
+  nextobjectid = 31,
   properties = {
     ["onload"] = "actions/bartroom.lua",
     ["regionName"] = "Northern Mountains",
@@ -260,9 +260,9 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17361, 17362, 17363, 17364, 17365, 17366, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 17377, 17378, 17379, 17380, 17381, 17382, 17383, 17384, 17385, 17386, 17387, 17388, 17389, 17390, 17391, 17392, 17393, 17394, 17395, 17396, 17397, 17398, 17399, 0, 0, 0,
         0, 0, 0, 17402, 17403, 17404, 17405, 17406, 17407, 17408, 17409, 17410, 17411, 17412, 17413, 17414, 17415, 17416, 17417, 17418, 17419, 17420, 17421, 17422, 17423, 17424, 0, 0, 0,
-        0, 0, 0, 17427, 17428, 17429, 17430, 17431, 17432, 17433, 17434, 17435, 17436, 17437, 17438, 17439, 17440, 17441, 17442, 17443, 17444, 17445, 17446, 17447, 17448, 17449, 0, 0, 0,
-        0, 0, 0, 17452, 17453, 17454, 17455, 17456, 17457, 17458, 17459, 17460, 17461, 17462, 17463, 17464, 17465, 17466, 17467, 17468, 17469, 17470, 17471, 17472, 17473, 17474, 0, 0, 0,
-        0, 0, 0, 17477, 17478, 17479, 17480, 17481, 17482, 17483, 17484, 17485, 17486, 17487, 17488, 17489, 17490, 17491, 17492, 17493, 17494, 17495, 17496, 17497, 17498, 17499, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 17432, 17433, 17434, 17435, 17436, 17437, 17438, 17439, 17440, 17441, 17442, 17443, 17444, 17445, 17446, 17447, 17448, 17449, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 17457, 17458, 17459, 17460, 17461, 17462, 17463, 17464, 17465, 17466, 17467, 17468, 17469, 17470, 17471, 17472, 17473, 17474, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 17482, 17483, 17484, 17485, 17486, 17487, 17488, 17489, 17490, 17491, 17492, 17493, 17494, 17495, 17496, 17497, 17498, 17499, 0, 0, 0,
         0, 0, 0, 17502, 17503, 17504, 17505, 17506, 17507, 17508, 17509, 17510, 17511, 17512, 17513, 17514, 17515, 17516, 17517, 17518, 17519, 17520, 17521, 17522, 17523, 17524, 0, 0, 0,
         0, 0, 0, 17527, 17528, 17529, 17530, 17531, 17532, 17533, 17534, 17535, 17536, 17537, 17538, 17539, 17540, 17541, 17542, 17543, 17544, 17545, 17546, 17547, 17548, 17549, 0, 0, 0,
         0, 0, 0, 17552, 17553, 17554, 17555, 17556, 17557, 17558, 17559, 17560, 17561, 17562, 17563, 17564, 17565, 17566, 17567, 17568, 17569, 17570, 17571, 17572, 17573, 17574, 0, 0, 0,
@@ -348,8 +348,126 @@ return {
             ["defaultAnim"] = "idleup",
             ["ghost"] = true,
             ["hidden"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Ease = require \"actions/Ease\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep4_bart_intro4\") then\n        GameState:setFlag(\"ep4_bart_intro5\")\n        return BlockPlayer {\n            MessageBox{message=\"Bart: Finally, we have my escavation analyzer! {p100}This helps me investigate the molecular composition of my samples...\"},\n            MessageBox{message=\"Logan: --Enlightening?\"},\n            self:hop(),\n            Animate(self.sprite, \"pose\"),\n            MessageBox{message=\"Bart: Precisley!\"},\n            self.scene.player:hop(),\n            MessageBox{message=\"Rotor: Pop-Pop! {p60}Would you listen to me for a second!\"},\n            Animate(self.sprite, \"idledown\"),\n            AudioFade(\"music\", 1.0, 0.0, 1),\n            MessageBox{message=\"Bart: Let me guess... {p100}you want to tell me that we need to get out of here right away because Robotnik has built a devastatingly terrible machine below our very feet?...\"},\n            MessageBox{message=\"Rotor: !! {p60}How did you know?!\"},\n            MessageBox{message=\"Bart: I may be old, but I'm not deaf! {p60}I of course could hear Julian{p60}-- err--{p60} \\\"Robotnik's\\\"{p60} coup happening over radio ten years ago...\"},\n            MessageBox{message=\"Bart: I knew I was stranded here the minute I heard the announcement.\", textSpeed=3},\n            MessageBox{message=\"Bart: \\\"Mobotropolis will henceforth be known as \\nRobotropolis\\\"...\", textSpeed=3},\n            MessageBox{message=\"Bart: I have also spied on numerous communications to and from the test site below. {p60}{h Project Firebird}\\n is it?\"},\n            MessageBox{message=\"Logan: I guess we didn't give you enough credit, old timer.\"},\n            MessageBox{message=\"Bart: ...{p60}You have no idea how happy I am to see you, my dear boy. {p60}Though your arrival was not part of the plan{p60}, I am so glad I've gotten the chance to see you one last time...\", textSpeed=3},\n            MessageBox{message=\"Rotor: What do you mean \\\"one last time\\\"?\"},\n            MessageBox{message=\"Bart: ...\"},\n            MessageBox{message=\"Bart: I know you want me to leave with you, Rotor, but I can not...\"},\n            self.scene.player:hop(),\n            MessageBox{message=\"Rotor: But why Pop-Pop!?\"},\n            MessageBox{message=\"Bart: ...\"},\n            Do(function()\n                self.sprite:setAnimation(\"walkup\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 416, 1, \"linear\"),\n                Ease(self, \"y\", 220, 1, \"linear\")\n            },\n            Animate(self.sprite, \"idleup\"),\n            MessageBox{message=\"Bart: When you get to be my age you have a great deal of regrets...\"},\n            self:hop(),\n            Animate(self.sprite, \"idledown\"),\n            MessageBox{message=\"Bart: My greatest regret was not doing more to stop Julian from taking power!\"},\n            MessageBox{message=\"Bart: I could tell the man was trouble the minute he stepped foot in Mobotropolis...\"},\n            MessageBox{message=\"Bart: And yet, I said nothing...\"},\n            self:hop(),\n            Animate(self.sprite, \"idledown\"),\n            MessageBox{message=\"Bart: This time will be different! {p60}I am going to collapse my research station and these ancient ruins atop Julian's little science experiment!\"},\n            Wait(1),\n            MessageBox{message=\"Bart: It won't stop the tyrant, of course... {p60}but at least I'll have done some damage!\"},\n            MessageBox{message=\"Logan: Can't you trigger the collapse remotely?\"},\n            MessageBox{message=\"Bart: Unfortunately, no. {p60}The subroutine can only be activated from my computer console...\"},\n            PlayAudio(\"music\", \"rotorangry\", 1.0, true),\n            MessageBox{message=\"Rotor: ... {p60}So that's it? {p100}I come all this way to save you and you're just gonna end it anyways!?\"},\n            MessageBox{message=\"Logan: Rotor...\"},\n            MessageBox{message=\"Bart: ...\"}\n        }\n    elseif GameState:isFlagSet(\"ep4_bart_intro3\") then\n        GameState:setFlag(\"ep4_bart_intro4\")\n        return BlockPlayer {\n            MessageBox{message=\"Bart: This pod is uh... {p60}technically just a washing machine and dryer...{p100} but it functions satisfactorily!\"},\n            MessageBox{message=\"Rotor: *sigh*\"},\n            Do(function()\n                self.sprite:setAnimation(\"walkup\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 456, 1, \"linear\"),\n                Ease(self, \"y\", 280, 1, \"linear\")\n            },\n            Do(function()\n                self.sprite:setAnimation(\"walkdown\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 386, 1, \"linear\"),\n                Ease(self, \"y\", 356, 1, \"linear\")\n            },\n            Do(function()\n                self.sprite:setAnimation(\"idledown\")\n                self:removeCollision()\n                self.object.x = self.x\n                self.object.y = self.y + 64\n                self:updateCollision()\n            end)\n        }\n    elseif GameState:isFlagSet(\"ep4_bart_intro2\") then\n        GameState:setFlag(\"ep4_bart_intro3\")\n        return BlockPlayer {\n            MessageBox{message=\"Bart: Here is my workstation... {p60}on the right you can see an excavated skull from one of our ancient Mobian ancestors...{p100} fascinating!\"},\n            MessageBox{message=\"Rotor: Listen, uh...\"},\n            Do(function()\n                self.sprite:setAnimation(\"walkdown\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 642, 1, \"linear\"),\n                Ease(self, \"y\", 386, 1, \"linear\")\n            },\n            Do(function()\n                self.sprite:setAnimation(\"idledown\")\n                self:removeCollision()\n                self.object.x = self.x\n                self.object.y = self.y + 96\n                self:updateCollision()\n            end)\n        }\n    else\n        GameState:setFlag(\"ep4_bart_intro2\")\n        return BlockPlayer {\n            MessageBox{message=\"Bart: In the ancient ruins there are plants which can only be seen under florescent light! {p100}Truly remakable, isn't it?\"},\n            MessageBox{message=\"Rotor: That's great Pop-Pop...\"},\n            Do(function()\n                self.sprite:setAnimation(\"walkup\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 416, 1, \"linear\"),\n                Ease(self, \"y\", 220, 1, \"linear\")\n            },\n            Do(function()\n                self.sprite:setAnimation(\"idledown\")\n                self:removeCollision()\n                self.object.x = self.x\n                self.object.y = self.y + 96\n                self:updateCollision()\n            end)\n        }\n    end\nend",
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Ease = require \"actions/Ease\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\nlocal Wait = require \"actions/Wait\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Move = require \"actions/Move\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep4_bart_intro4\") then\n        GameState:setFlag(\"ep4_bart_intro5\")\n        self.scene.player.x = self.x + 16\n        self.scene.player.y = self.y - 64\n        local walkout, walkin, sprites = self.scene.player:split()\n        self.scene.player.x = self.x + 96\n        self.scene.player.y = self.y + 96\n        sprites.rotor.object.properties.ignoreMapCollision = true\n        return BlockPlayer {\n            walkout,\n            Animate(sprites.logan.sprite, \"idledown\"),\n            Animate(sprites.rotor.sprite, \"idledown\"),\n            MessageBox{message=\"Bart: Finally, we have my excavation analyzer! {p100}This helps me investigate the molecular composition of my samples...\"},\n            Animate(sprites.logan.sprite, \"pose\"),\n            MessageBox{message=\"Logan: --Enlightening?\"},\n            self:hop(),\n            Animate(self.sprite, \"pose\"),\n            MessageBox{message=\"Bart: Precisley!\"},\n            Animate(sprites.logan.sprite, \"idledown\"),\n            self.scene.player:hop(),\n            MessageBox{message=\"Rotor: Pop-Pop! {p60}Would you listen to me for a second!\"},\n            Animate(self.sprite, \"idledown\"),\n            AudioFade(\"music\", 1.0, 0.0, 0.2),\n            MessageBox{message=\"Bart: Let me guess... {p100}you want to tell me that we need to get out of here right away because Robotnik has built a devastatingly terrible machine below our very feet?...\"},\n            sprites.rotor:hop(),\n            Animate(sprites.rotor.sprite, \"shock\"),\n            MessageBox{message=\"Rotor: !! {p60}How did you know?!\"},\n            Animate(sprites.rotor.sprite, \"idledown\"),\n            PlayAudio(\"music\", \"bartsomber\", 1.0, true, true),\n            MessageBox{message=\"Bart: I may be old, but I'm not deaf! {p60}I of course could hear Julian{p60}-- err--{p60} \\\"Robotnik's\\\"{p60} coup happening over radio ten years ago...\"},\n            MessageBox{message=\"Bart: I knew I was stranded here the minute I heard the announcement.\", textSpeed=3},\n            MessageBox{message=\"Bart: \\\"Mobotropolis will henceforth be known as \\nRobotropolis\\\"...\", textSpeed=3},\n            MessageBox{message=\"Bart: I have also spied on numerous communications to and from the test site below. {p60}{h Project Firebird}\\nis it?\"},\n            Animate(sprites.logan.sprite, \"pose\"),\n            MessageBox{message=\"Logan: I guess we didn't give you enough credit, old timer.\"},\n            MessageBox{message=\"Bart: ...{p60}You have no idea how happy I am to see you, my dear boy. {p60}Though your arrival was not part of the plan{p60}, I am so glad I've gotten the chance to see you one last time...\", textSpeed=3},\n            Animate(sprites.logan.sprite, \"idledown\"),\n            Animate(sprites.rotor.sprite, \"thinking\"),\n            MessageBox{message=\"Rotor: What do you mean \\\"one last time\\\"?\"},\n            MessageBox{message=\"Bart: ...\"},\n            MessageBox{message=\"Bart: I know you want me to leave with you, Rotor, but I can not...\"},\n            Animate(sprites.rotor.sprite, \"idledown\"),\n            self.scene.player:hop(),\n            MessageBox{message=\"Rotor: But why Pop-Pop!?\"},\n            MessageBox{message=\"Bart: ...\"},\n            Do(function()\n                self.sprite:setAnimation(\"walkup\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 416, 1, \"linear\"),\n                Ease(self, \"y\", 220, 1, \"linear\")\n            },\n            Animate(self.sprite, \"idleup\"),\n            Animate(sprites.rotor.sprite, \"idleup\"),\n            Animate(sprites.logan.sprite, \"idleup\"),\n            MessageBox{message=\"Bart: When you get to be my age you have a great deal of regrets...\"},\n            self:hop(),\n            Animate(self.sprite, \"idledown\"),\n            MessageBox{message=\"Bart: My greatest regret was not doing more to stop Julian from taking power!!\"},\n            MessageBox{message=\"Bart: I could tell the man was trouble the minute he stepped foot in Mobotropolis!!\"},\n            MessageBox{message=\"Bart: And yet, I said nothing...\"},\n            self:hop(),\n            Animate(self.sprite, \"idledown\"),\n            MessageBox{message=\"Bart: Well, not this time dammit!\"},\n            MessageBox{message=\"Bart: I'm going to collapse my entire research station and these ancient ruins ontop Julian's little science experiment!!\"},\n            AudioFade(\"music\", 1.0, 0.0, 1),\n            sprites.rotor:hop(),\n            PlayAudio(\"music\", \"rotorangry\", 1.0, true),\n            Animate(sprites.rotor.sprite, \"thinking\"),\n            MessageBox{message=\"Rotor: ... {p60}So that's it? {p100}I come all this way to save you and you're just gonna end it anyways!?\"},\n            Animate(sprites.logan.sprite, \"idleleft\"),\n            MessageBox{message=\"Logan: Rotor...\"},\n            Animate(sprites.rotor.sprite, \"idledown\"),\n            MessageBox{message=\"Rotor: I gotta get some air...\"},\n            Move(sprites.rotor, self.scene.objectLookup.Waypoint1),\n            Animate(sprites.logan.sprite, \"idledown\"),\n            Move(sprites.rotor, self.scene.objectLookup.Waypoint2),\n            Move(sprites.rotor, self.scene.objectLookup.Waypoint3),\n            Do(function()\n                sprites.rotor:remove()\n                self.scene:changeScene{map=\"bartcave\", fadeOutMusic=true, fadeOutSpeed=0.2, fadeInSpeed=0.2, enterDelay=2, hint=\"from_bart_room\"}\n            end),\n            MessageBox{message=\"Bart: ...\"},\n        }\n    elseif GameState:isFlagSet(\"ep4_bart_intro3\") then\n        GameState:setFlag(\"ep4_bart_intro4\")\n        return BlockPlayer {\n            MessageBox{message=\"Bart: This pod is uh... {p60}technically just a washing machine and dryer...{p100} but it functions satisfactorily!\"},\n            MessageBox{message=\"Rotor: *sigh*\"},\n            Do(function()\n                self.sprite:setAnimation(\"walkup\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 456, 1, \"linear\"),\n                Ease(self, \"y\", 280, 1, \"linear\")\n            },\n            Do(function()\n                self.sprite:setAnimation(\"walkdown\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 386, 1, \"linear\"),\n                Ease(self, \"y\", 356, 1, \"linear\")\n            },\n            Do(function()\n                self.sprite:setAnimation(\"idledown\")\n                self:removeCollision()\n                self.object.x = self.x\n                self.object.y = self.y + 64\n                self:updateCollision()\n            end)\n        }\n    elseif GameState:isFlagSet(\"ep4_bart_intro2\") then\n        GameState:setFlag(\"ep4_bart_intro3\")\n        return BlockPlayer {\n            MessageBox{message=\"Bart: Here is my workstation... {p60}on the right you can see an excavated skull from one of our ancient Mobian ancestors...\"},\n            MessageBox{message=\"Bart: They worshipped a mythical race of giants called the 'Mandara'. {p60}The tomb you were standing in was a sacred place meant for self-reflection... {p100} fascinating!\"},\n            MessageBox{message=\"Rotor: Yeah, that's super interesting... {p60}listen, uh--\"},\n            Do(function()\n                self.sprite:setAnimation(\"walkdown\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 642, 0.5, \"linear\"),\n                Ease(self, \"y\", 386, 0.5, \"linear\")\n            },\n            Do(function()\n                self.sprite:setAnimation(\"idledown\")\n                self:removeCollision()\n                self.object.x = self.x\n                self.object.y = self.y + 96\n                self:updateCollision()\n            end)\n        }\n    else\n        GameState:setFlag(\"ep4_bart_intro2\")\n        return BlockPlayer {\n            MessageBox{message=\"Bart: In the ancient ruins there are plants which can only be seen under florescent light{p60}, the ancient Mobians referred to them as {h Angel's Hair}!\"},\n            MessageBox{message=\"Bart: They would sometimes build entire cities beneath a brush of Angel's Hair to avoid detection! {p100}Truly remakable{p30}, isn't it?\"},\n            MessageBox{message=\"Rotor: Uhh{p60}, yeah that's incredible Pop-Pop... {p60}I, uh--\"},\n            Do(function()\n                self.sprite:setAnimation(\"walkup\")\n            end),\n            Parallel {\n                Ease(self, \"x\", 416, 0.5, \"linear\"),\n                Ease(self, \"y\", 220, 0.5, \"linear\")\n            },\n            Do(function()\n                self.sprite:setAnimation(\"idledown\")\n                self:removeCollision()\n                self.object.x = self.x\n                self.object.y = self.y + 96\n                self:updateCollision()\n            end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/bart.png"
+          }
+        },
+        {
+          id = 23,
+          name = "Waypoint1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 640,
+          y = 480,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 24,
+          name = "Waypoint2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 640,
+          y = 608,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 25,
+          name = "Waypoint3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 416,
+          y = 928,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 26,
+          name = "Console",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 369,
+          y = 608,
+          width = 192,
+          height = 128,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = 0,
+            ["sprite"] = "../art/sprites/bartexcavator.png"
+          }
+        },
+        {
+          id = 27,
+          name = "Chair",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 320,
+          y = 544,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/bartchair.png"
+          }
+        },
+        {
+          id = 28,
+          name = "Plant",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 160,
+          y = 416,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetY"] = -8,
+            ["sprite"] = "../art/sprites/invisoplant.png"
+          }
+        },
+        {
+          id = 30,
+          name = "Save",
+          type = "SavePoint",
+          shape = "rectangle",
+          x = 288,
+          y = 640,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6242,
+          visible = true,
+          properties = {
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/save.png"
           }
         }
       }
@@ -384,7 +502,7 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 17453, 17454, 17455, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

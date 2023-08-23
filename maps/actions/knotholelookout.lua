@@ -93,6 +93,7 @@ return function(scene, hint)
 			Wait(1),
 			MessageBox{message="Logan: ...you think he might still be out there?", textSpeed = 3},
 			MessageBox{message="Rotor: ...I'm not sure...{p60} but I like to think so.", textSpeed = 3},
+			Wait(2.5),
 			MessageBox{message="Rotor: What about you?", textSpeed = 3},
 			MessageBox{message="Logan: Well, it's none of your business...{p60} but...", textSpeed = 3},
 			MessageBox{message="Logan: ...during Robotnik's coup I was imprisoned with my mom and the rest of my family.", textSpeed = 3},
@@ -112,6 +113,7 @@ return function(scene, hint)
 			MessageBox{message="Rotor: ...well{p60}, you know what I think?", textSpeed = 3},
 			MessageBox{message="Logan: Some kinda empty platitude about how 'there's still hope' and 'we can do anything if we work\ntogether!'?", textSpeed = 3},
 			MessageBox{message="Rotor: Ha ha{p60}, yeah pretty much.", textSpeed = 3},
+			AudioFade("music", 1, 0, 1),
 			Do(function()
 				scene.objectLookup.Logan.x = scene.objectLookup.Logan.x - 10
 			end),
@@ -122,10 +124,7 @@ return function(scene, hint)
 				scene.objectLookup.Logan.sprite:setAnimation("walkleft")
 			end),
 			Ease(scene.objectLookup.Logan, "x", function() return scene.objectLookup.Logan.x - 400 end, 1, "linear"),
-			Parallel {
-				AudioFade("music", 1, 0, 1),
-				MessageBox{message="Rotor: *sigh*", textSpeed = 3}
-			},
+			MessageBox{message="Rotor: *sigh*", textSpeed = 3},
 			Wait(1),
 			MessageBox{message="Rotor: Huh?...", textSpeed = 3},
 			Do(function()

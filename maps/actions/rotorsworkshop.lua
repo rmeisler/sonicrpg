@@ -191,7 +191,7 @@ return function(scene, hint)
 			Wait(1),
 			Animate(scene.objectLookup.Logan.sprite, "idleright"),
 			MessageBox{message="Logan: Hey{p60}, now that I'm giving you this, it's on you not to lose it in one of your junk drawers!"},
-			PlayAudio("music", "loganend", 0.7, true),
+			PlayAudio("music", "loganend", 0.9, true),
 			MessageBox{message="Rotor: ...Thank you, Logan.", textSpeed=2, closeAction=Wait(2)},
 			Wait(1),
 			Animate(scene.objectLookup.Logan.sprite, "irritated"),

@@ -33,16 +33,21 @@ return {
 	{
         type = "map",
 		file = "maps/bartcave.lua",
-		--primary = true -- TEST
-    },
-	{
-        type = "map",
-		file = "maps/bartcave2.lua",
 		primary = true -- TEST
     },
 	{
         type = "map",
+		file = "maps/bartcave2.lua",
+		--primary = true -- TEST
+    },
+	{
+        type = "map",
 		file = "maps/bartroom.lua",
+		--primary = true -- TEST
+    },
+	{
+        type = "map",
+		file = "maps/testsite.lua",
 		--primary = true -- TEST
     },
 	{
@@ -620,6 +625,16 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/bartsomber.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/worldmap.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/btheme.ogg",
 		category = "music"
 	},
@@ -1140,6 +1155,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/battlestart.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/elevator.ogg",
 		category = "sfx"
 	},
 	{

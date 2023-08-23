@@ -51,6 +51,9 @@ return {
 			frames = {{1,3}, {2,3}, {3,3}, {4,3},{5,3}, {6,3}, {7,3}, {8,3}},
 			speed = 0.09
 		},
+		dead = {
+			frames = {{9,3}}
+		},
 
 		crouchright = {
             frames = {{0,0}}

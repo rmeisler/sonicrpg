@@ -57,6 +57,124 @@ return function(scene, hint)
 		})
 	end
 
+	hint = hint or "from_bart_room"
+	if hint == "from_testsite" then
+		local trapLayer
+		for _,layer in pairs(scene.map.layers) do
+			if layer.name == "trap" then
+				trapLayer = layer
+				break
+			end
+		end
+		scene.objectLookup.Rotor.hidden = false
+		scene.objectLookup.Bart.hidden = false
+		scene.objectLookup.Bart.y = scene.objectLookup.Rotor.y + 120
+		scene.objectLookup.Rotor.sprite:setAnimation("idledown")
+		scene.objectLookup.Bart.sprite:setAnimation("idleup")
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+			end),
+			Spawn(Repeat(PlayAudio("sfx", "elevator", 1.0))),
+			Spawn(scene:screenShake(10, 30, 1000)),
+			Wait(2),
+			Animate(scene.objectLookup.Rotor.sprite, "shock"),
+			-- Shake cave tile
+			Parallel {
+				Repeat(Serial {
+					Ease(trapLayer, "offsetx", -1, 20),
+					Ease(trapLayer, "offsetx", 1, 20)
+				}, 30),
+				Serial {
+					MessageBox {message="Rotor: Pop-Pop!!", closeAction=Wait(0.5)},
+					Animate(scene.objectLookup.Rotor.sprite, "walkdown", true),
+					Ease(scene.objectLookup.Rotor, "y", function() return scene.objectLookup.Rotor.y + 120 end, 3),
+					Ease(scene.objectLookup.Bart, "y", function() return scene.objectLookup.Bart.y + 120 end, 3),
+				}
+			},
+			Do(function() trapLayer.offsetx=0 end),
+			Animate(scene.objectLookup.Rotor.sprite, "shock"),
+			Wait(0.5),
+			Do(function()
+				scene.objectLookup.Rotor.sprite:swapLayer("trapobjects")
+			end),
+			Parallel {
+				Ease(trapLayer, "offsety", 100, 2),
+				Ease(trapLayer, "opacity", 0, 0.5),
+				Ease(scene.objectLookup.Rotor, "y", function() return scene.objectLookup.Rotor.y  + 1000 end, 1)
+			},
+			MessageBox {message="Bart: Rotor!!"},
+			Do(function()
+				scene:changeScene{map="testsite", hint="battletime"}
+			end)
+		}
+	elseif hint == "from_bart_room" then
+		scene.objectLookup.Rotor.hidden = false
+		scene.objectLookup.Bart.hidden = false
+		scene.objectLookup.Bart.y = scene.objectLookup.Rotor.y + 260
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+			end),
+			Wait(2),
+			MessageBox {message="Rotor: ..."},
+			Wait(1),
+			Do(function()
+				scene.objectLookup.Bart.sprite:setAnimation("walkup")
+			end),
+			Ease(scene.objectLookup.Bart, "y", function() return scene.objectLookup.Bart.y - 140 end, 1, "linear"),
+			Do(function()
+				scene.objectLookup.Bart.sprite:setAnimation("idleup")
+			end),
+			MessageBox {message="Bart: Rotor..."},
+			MessageBox {message="Rotor: ..."},
+			Wait(1),
+			PlayAudio("music", "bartsomber", 1.0, true, true),
+			MessageBox {message="Rotor: Why are you doing this, Pop-Pop?"},
+			Wait(1),
+			MessageBox {message="Bart: ..."},
+			MessageBox {message="Rotor: The Freedom Fighters will find some other way of defeating {h Project Firebird}! {p60}You don't need to\ndo this!!"},
+			Wait(1),
+			MessageBox {message="Bart: ..."},
+			MessageBox {message="Rotor: Am I so unimportant to you that you'd rather die a martyr than live out the rest of your life in Knothole with me?"},
+			scene.objectLookup.Bart:hop(),
+			MessageBox {message="Bart: Of course not!"},
+			scene.objectLookup.Rotor:hop(),
+			Animate(scene.objectLookup.Rotor.sprite, "idledown"),
+			MessageBox {message="Bart: You have it all wrong, my dear child!"},
+			MessageBox {message="Bart: I have to do this because... {p60}because...", textSpeed=3},
+			scene.objectLookup.Bart:hop(),
+			MessageBox {message="Bart: Because I failed you! {p60}I failed everyone!"},
+			Animate(scene.objectLookup.Bart.sprite, "idledown"),
+			MessageBox {message="Bart: Had I stopped Julian back when you were young, you would not have had to grow up in this terrible world!"},
+			MessageBox {message="Bart: You would have had a future! {p60}You would have been able to study archeology and carry on the\nfamily legacy!!"},
+			AudioFade("music", 1.0, 0.0, 1),
+			MessageBox {message="Rotor: ...You know I never wanted to be an archeologist, Pop-Pop..."},
+			scene.objectLookup.Bart:hop(),
+			Animate(scene.objectLookup.Bart.sprite, "pose"),
+			MessageBox {message="Bart: ...{p60}Ha ha! {p60}Ah yes...{p60} you take too much after your father..."},
+			Animate(scene.objectLookup.Bart.sprite, "idledown"),
+			MessageBox {message="Rotor: It's ok, Pop-Pop. {p60}Ya know{p60}, I've actually been able to live a pretty great life in Knothole{p60}, all things considered..."},
+			MessageBox {message="Rotor: If you want to make it up to me, Pop-Pop, come home with me!"},
+			Wait(2),
+			Animate(scene.objectLookup.Bart.sprite, "idleup"),
+			Wait(1),
+			MessageBox {message="Bart: ...I--", textSpeed=3},
+			Spawn(Repeat(PlayAudio("sfx", "elevator", 1.0))),
+			Spawn(scene:screenShake(10, 30, 1000)),
+			Wait(1),
+			MessageBox {message="Rotor: Whoah! {p60}What's going on??", closeAction=Wait(1)},
+			Wait(0.3),
+			PlayAudio("music", "darkintro", 1.0, true, true),
+			MessageBox {message="Bart: {h Project Firebird}!!", closeAction=Wait(2)},
+			Do(function()
+				scene:changeScene{map="testsite"}
+			end)
+		}
+	end
+
 	scene.audio:stopMusic()
 	return Action()
 end

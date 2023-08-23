@@ -57,9 +57,17 @@ return function(scene, hint)
 		})
 	end
 	
+	if GameState:isFlagSet("ep4_meet_bart") and not GameState:isFlagSet("ep4_meet_bart_laser") then
+		GameState:setFlag("ep4_meet_bart_laser")
+		return Serial {
+			Wait(1),
+			Do(function() scene.objectLookup.LaserGate2:use() end)
+		}
+	end
+	
 	scene.audio:stopSfx("wind")
 	scene.audio:stopMusic()
-	return BlockPlayer {
+	return Serial {
 		Wait(1),
 		Do(showTitle),
 		Wait(0.5),

@@ -79,8 +79,8 @@ return function(scene)
 			Do(function()
 				scene:changeScene{
 					map="knothole",
-					hint="ep4_end", --"ep4_sally_see_rotor",
-					spawnPoint="Ep4EndSpawn", --"WorkshopDoor",
+					hint="ep4_sally_see_rotor", --"ep4_end",
+					spawnPoint="WorkshopDoor", --"Ep4EndSpawn",
 					fadeOutSpeed = 0.2,
 					fadeInSpeed = 0.2,
 					fadeOutMusic = true,

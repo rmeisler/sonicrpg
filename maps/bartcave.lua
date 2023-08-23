@@ -8,7 +8,7 @@ return {
   height = 45,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 24,
+  nextobjectid = 26,
   properties = {
     ["onload"] = "actions/bartcave.lua",
     ["regionName"] = "Northern Mountains",
@@ -235,6 +235,78 @@ return {
     },
     {
       type = "tilelayer",
+      name = "trap",
+      x = 0,
+      y = 0,
+      width = 81,
+      height = 45,
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9456, 9457, 9458, 9459, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9491, 9492, 9493, 9494, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9526, 9527, 9528, 9529, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9561, 9562, 9563, 9564, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "trapobjects",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {}
+    },
+    {
+      type = "tilelayer",
       name = "floor",
       x = 0,
       y = 0,
@@ -267,10 +339,10 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9735, 9769, 9769, 9770, 9769, 9770, 9770, 9769, 9771, 9735, 9736, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9735, 9769, 9460, 9495, 9460, 9462, 9460, 9495, 9771, 9735, 9736, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9735, 9769, 9495, 9530, 9531, 9495, 9460, 9495, 9771, 9735, 9736, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9735, 9769, 9495, 9456, 9457, 9458, 9459, 9460, 9771, 9735, 9736, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9735, 9769, 9460, 9491, 9492, 9493, 9494, 9460, 9771, 9735, 9736, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9735, 9769, 9495, 9526, 9527, 9528, 9529, 9495, 9771, 9735, 9736, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9734, 9735, 9769, 9462, 9561, 9562, 9563, 9564, 9460, 9771, 9735, 9736, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9735, 9769, 9495, 0, 0, 0, 0, 9460, 9771, 9735, 9736, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9735, 9769, 9460, 0, 0, 0, 0, 9460, 9771, 9735, 9736, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9735, 9769, 9495, 0, 0, 0, 0, 9495, 9771, 9735, 9736, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9734, 9735, 9769, 9462, 0, 0, 0, 0, 9460, 9771, 9735, 9736, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9734, 9735, 9769, 9495, 9460, 9495, 9460, 9495, 9460, 9771, 9735, 9736, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9734, 9735, 9769, 9460, 9460, 9495, 9460, 9495, 9530, 9771, 9735, 9736, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9734, 9735, 9769, 9495, 9456, 9457, 9458, 9459, 9460, 9771, 9735, 9736, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 9700, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -499,22 +571,6 @@ return {
       properties = {},
       objects = {
         {
-          id = 20,
-          name = "Spawn 1",
-          type = "Player",
-          shape = "rectangle",
-          x = 1280,
-          y = 1376,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 6839,
-          visible = true,
-          properties = {
-            ["orientation"] = "up"
-          }
-        },
-        {
           id = 21,
           name = "DownPath",
           type = "SceneEdge",
@@ -548,7 +604,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Animate = require \"actions/Animate\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Wait = require \"actions/Wait\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal AudioFade = require \"actions/AudioFade\"\n\nreturn function(self)\n    local walkout, walkin, sprites = self.scene.player:split()\n    return BlockPlayer {\n        walkout,\n        Animate(sprites.rotor.sprite, \"idleup\"),\n        Animate(sprites.logan.sprite, \"idleup\"),\n        MessageBox{message=\"Rotor: Wow...\"},\n        Wait(1),\n        MessageBox{message=\"Logan: This has got to be at least 1000 years old...\"},\n        MessageBox{message=\"Rotor: This must've been what Pop-Pop was researching...\"},\n        MessageBox{message=\"???: ...{p60}R-{p60}Rotor?\"},\n        Parallel {\n            Animate(sprites.rotor.sprite, \"idledown\"),\n            Animate(sprites.logan.sprite, \"idledown\"),\n            sprites.rotor:hop(),\n            sprites.logan:hop()\n        },\n        Wait(1),\n        Do(function()\n            self.scene.objectLookup.Bart.hidden = false\n        end),\n        Ease(self.scene.camPos, \"y\", -564, 1),\n        PlayAudio(\"music\", \"rotormsg\", 1.0, true),\n        MessageBox{message=\"Rotor: Pop-Pop!\"},\n        Ease(self.scene.camPos, \"y\", 0, 1),\n        Do(function()\n           sprites.rotor.sprite:setAnimation(\"walkdown\")\n        end),\n        Parallel {\n            Serial {\n                Ease(sprites.rotor, \"y\", function() return sprites.rotor.y + 500 end, 0.7, \"linear\"),\n                Do(function()\n                    sprites.rotor.sprite:setAnimation(\"idledown\")\n                end)\n            },\n            Serial {\n                Wait(1),\n                Do(function()\n                    sprites.logan.sprite:setAnimation(\"walkdown\")\n                end),\n                Ease(sprites.logan, \"y\", function() return sprites.logan.y + 500 end, 0.7, \"linear\"),\n                Do(function()\n                    sprites.logan.sprite:setAnimation(\"idledown\")\n                end)\n            },\n            Ease(self.scene.player, \"y\", function() return self.scene.player.y + 550 end, 0.5)\n        },\n        MessageBox{message=\"Bart: My dear boy, you're all grown up! {p60}What are you doing here?\"},\n        MessageBox{message=\"Rotor: We heard your distress signal from Knothole{p60}, we're here to rescue you!\"},\n        MessageBox{message=\"Bart: Is that so! {p60}And who might this young woman be?\"},\n        MessageBox{message=\"Rotor: This is Logan, Pop-Pop. {p60}I wouldn't have made it here without her help.\"},\n        MessageBox{message=\"Bart: Well now{p60}, thank you Logan for helping an old man see his grandson again!\"},\n        sprites.logan:hop(),\n        MessageBox{message=\"Logan: *blush*\"},\n        AudioFade(\"music\", 1.0, 0.0, 0.5),\n        Do(function()\n            self.scene.objectLookup.Bart.sprite:setAnimation(\"pose\")\n        end),\n        self.scene.objectLookup.Bart:hop(),\n        MessageBox{message=\"Bart: Ah! {p60}Yes, this is tremendous!\"},\n        PlayAudio(\"music\", \"rotorready\", 1.0, true, true),\n        Do(function()\n            self.scene.objectLookup.Bart.sprite:setAnimation(\"idledown\")\n        end),\n        MessageBox{message=\"Bart: Come with me, my boy! {p60}You can bring your little friend with you. {p60}I have to show you my lab!\"},\n        Do(function()\n            self.scene.objectLookup.Bart.sprite:setAnimation(\"walkdown\")\n        end),\n        Ease(self.scene.objectLookup.Bart, \"y\", function() return self.scene.objectLookup.Bart.y + 300 end, 1, \"linear\"),\n        Do(function() self.scene.objectLookup.Bart:remove() end),\n        Animate(sprites.rotor.sprite, \"idleright\"),\n        Animate(sprites.logan.sprite, \"idleleft\"),\n        MessageBox{message=\"Logan: At some point we're gonna need to fill him in on the whole Robotnik{p60}, evil empire{p60}, world-ending machine{p30} thing.\"},\n        MessageBox{message=\"Rotor: *sigh*\"},\n        walkin,\n        Do(function()\n            self.scene.player.x = self.scene.player.x + 60\n        end)\n    }\nend"
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Animate = require \"actions/Animate\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Wait = require \"actions/Wait\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal AudioFade = require \"actions/AudioFade\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep4_meet_bart\") then\n        if GameState.leader == \"logan\" then\n            return BlockPlayer {\n                MessageBox{message=\"Logan: I've never seen an ancient tomb in such good condition before...\"}\n            }\n        else\n            return BlockPlayer {\n                MessageBox{message=\"Rotor: Huh... {p60}the guy in the middle kinda looks like Robotnik...\"}\n            }\n        end\n    end\n\n    GameState:setFlag(\"ep4_meet_bart\")\n    local walkout, walkin, sprites = self.scene.player:split()\n    return BlockPlayer {\n        walkout,\n        Animate(sprites.rotor.sprite, \"idleup\"),\n        Animate(sprites.logan.sprite, \"idleup\"),\n        MessageBox{message=\"Rotor: Wow...\"},\n        Wait(1),\n        MessageBox{message=\"Logan: This has got to be at least 1000 years old...\"},\n        MessageBox{message=\"Rotor: This must've been what Pop-Pop was researching...\"},\n        MessageBox{message=\"???: ...{p60}R-{p60}Rotor?\"},\n        Parallel {\n            Animate(sprites.rotor.sprite, \"idledown\"),\n            Animate(sprites.logan.sprite, \"idledown\"),\n            sprites.rotor:hop(),\n            sprites.logan:hop()\n        },\n        Wait(1),\n        Do(function()\n            self.scene.objectLookup.Bart.hidden = false\n        end),\n        Ease(self.scene.camPos, \"y\", -564, 1),\n        PlayAudio(\"music\", \"rotormsg\", 1.0, true),\n        MessageBox{message=\"Rotor: Pop-Pop!\"},\n        Ease(self.scene.camPos, \"y\", 0, 1),\n        Do(function()\n           sprites.rotor.sprite:setAnimation(\"walkdown\")\n        end),\n        Parallel {\n            Serial {\n                Ease(sprites.rotor, \"y\", function() return sprites.rotor.y + 500 end, 0.7, \"linear\"),\n                Do(function()\n                    sprites.rotor.sprite:setAnimation(\"idledown\")\n                end)\n            },\n            Serial {\n                Wait(1),\n                Do(function()\n                    sprites.logan.sprite:setAnimation(\"walkdown\")\n                end),\n                Ease(sprites.logan, \"y\", function() return sprites.logan.y + 500 end, 0.7, \"linear\"),\n                Do(function()\n                    sprites.logan.sprite:setAnimation(\"idledown\")\n                end)\n            },\n            Ease(self.scene.player, \"y\", function() return self.scene.player.y + 550 end, 0.5)\n        },\n        MessageBox{message=\"Bart: My dear boy, you're all grown up! {p100}What are you doing here?\"},\n        MessageBox{message=\"Rotor: We heard your distress signal from Knothole{p60}, we're here to rescue you!\"},\n        MessageBox{message=\"Bart: Is that so! {p60}And who might this young woman be?\"},\n        MessageBox{message=\"Rotor: This is Logan, Pop-Pop. {p60}I wouldn't have made it here without her help.\"},\n        MessageBox{message=\"Bart: Well now{p60}, thank you Logan for helping an old man see his grandson again!\"},\n        sprites.logan:hop(),\n        MessageBox{message=\"Logan: *blush*\"},\n        AudioFade(\"music\", 1.0, 0.0, 0.5),\n        Do(function()\n            self.scene.objectLookup.Bart.sprite:setAnimation(\"pose\")\n        end),\n        self.scene.objectLookup.Bart:hop(),\n        MessageBox{message=\"Bart: Ah! {p60}Yes, this is tremendous!\"},\n        PlayAudio(\"music\", \"rotorready\", 1.0, true, true),\n        Do(function()\n            self.scene.objectLookup.Bart.sprite:setAnimation(\"idledown\")\n        end),\n        MessageBox{message=\"Bart: Come with me, my boy! {p60}You can bring your little friend with you. {p60}I have to show you my lab!\"},\n        Do(function()\n            self.scene.objectLookup.Bart.sprite:setAnimation(\"walkdown\")\n        end),\n        Ease(self.scene.objectLookup.Bart, \"y\", function() return self.scene.objectLookup.Bart.y + 300 end, 1, \"linear\"),\n        Do(function() self.scene.objectLookup.Bart:remove() end),\n        Animate(sprites.rotor.sprite, \"idleright\"),\n        Animate(sprites.logan.sprite, \"idleleft\"),\n        MessageBox{message=\"Logan: At some point we're gonna need to fill him in on the whole Robotnik{p60}, evil empire{p60}, world-ending machine{p30} thing.\"},\n        MessageBox{message=\"Rotor: *sigh*\"},\n        walkin,\n        Do(function()\n            self.scene.player.x = self.scene.player.x + 60\n        end)\n    }\nend"
           }
         },
         {
@@ -570,6 +626,43 @@ return {
             ["ghost"] = true,
             ["hidden"] = true,
             ["sprite"] = "../art/sprites/bart.png"
+          }
+        },
+        {
+          id = 24,
+          name = "Rotor",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1280,
+          y = 608,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -16,
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["sprite"] = "../art/sprites/rotor.png"
+          }
+        },
+        {
+          id = 25,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 1280,
+          y = 640,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["orientation"] = "up"
           }
         }
       }
