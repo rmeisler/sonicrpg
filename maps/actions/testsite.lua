@@ -94,7 +94,6 @@ return function(scene, hint)
 			MessageBox{message="Logan: It must have somehow been triggered by our fight with Firebird!"},
 			Spawn(scene:screenShake(10, 30, 40)),
 			AudioFade("music", 1.0, 0.0, 1),
-			PlayAudio("music", "sonicenters", 1.0, true),
 			-- Sonic and Fleet arrive on the scene
 			Parallel {
 				Serial {
@@ -122,7 +121,7 @@ return function(scene, hint)
 							)
 							dustObject.sprite.color = {130, 130, 200, 255}
 							dustObject.x = dustObject.x - sonic.sprite.w*2 - dustObject.sprite.w - 5
-							dustObject.y = dustObject.y + sonic.sprite.h - dustObject.sprite.h*2
+							dustObject.y = dustObject.y + sonic.sprite.h*1.5 - dustObject.sprite.h*2
 							dustObject.sprite.transform.sx = 4
 							dustObject.sprite.transform.sy = 4
 							dustObject.sprite:setAnimation("right")
@@ -186,7 +185,7 @@ return function(scene, hint)
 					)
 					dustObject.sprite.color = {130, 130, 200, 255}
 					dustObject.x = dustObject.x - sonic.sprite.w*2 - dustObject.sprite.w - 5
-					dustObject.y = dustObject.y + sonic.sprite.h*2 - dustObject.sprite.h*2
+					dustObject.y = dustObject.y + sonic.sprite.h*1.5 - dustObject.sprite.h*2
 					dustObject.sprite.transform.sx = 4
 					dustObject.sprite.transform.sy = 4
 					dustObject.sprite:setAnimation("right")
@@ -249,8 +248,8 @@ return function(scene, hint)
 			Wait(1),
 			Parallel {
 				Serial {
-					MessageBox{message="Snively: *screams* {p60}T-T-Test subject 1-0241 has b-b-broken free from its holding chamber!!"},
-					MessageBox{message="Snively: All S-S-SSwatbots report to Test Room C!!\n{p60}C-C-Contain {h Project Firebird}!!"}
+					MessageBox{message="Snively: *screams* {p60}Test subject has broken free from its holding chamber!!"},
+					MessageBox{message="Snively: All Swatbots report to Test Room C!!\n{p60}Contain {h Project Firebird}!!"}
 				},
 				Ease(scene.objectLookup.Snively, "x", function() return scene.objectLookup.Snively.x + 1200 end, 0.4, "linear")
 			},
