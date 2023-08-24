@@ -362,6 +362,9 @@ return {
 		scarfirritated = {
 			frames = {{8,10}}
 		},
+		cry = {
+			frames = {{9,10}}
+		},
 
 		sit_sad = {
 			frames = {{10,7}}

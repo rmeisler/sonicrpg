@@ -20,6 +20,7 @@ return function(scene, hint)
 	local SpriteNode = require "object/SpriteNode"
 	local TextNode = require "object/TextNode"
 	local BasicNPC = require "object/BasicNPC"
+	local NPC = require "object/NPC"
 	
 	local Move = require "actions/Move"
 	local BlockPlayer = require "actions/BlockPlayer"
@@ -56,8 +57,155 @@ return function(scene, hint)
 			}
 		})
 	end
+	
+	if scene.reenteringFromBattle then
+		scene.player.sprite.visible = false
+		scene.player.dropShadow.hidden = true
+		scene.objectLookup.Firebird.sprite:setAnimation("hurt")
+		scene.objectLookup.Rotor.sprite:setAnimation("idleleft")
+		scene.objectLookup.Logan.sprite:setAnimation("idleleft")
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+			end),
+			Spawn(Repeat(Serial {
+				Ease(scene.objectLookup.Firebird, "x", function() return scene.objectLookup.Firebird.x - 2 end, 20),
+				Ease(scene.objectLookup.Firebird, "x", function() return scene.objectLookup.Firebird.x + 2 end, 20)
+			})),
+			MessageBox{message="Logan: It won't be disabled for long!"},
+			Wait(1),
+			PlayAudio("sfx", "elevator", 1.0, true),
+			Spawn(scene:screenShake(10, 30, 40)),
+			Ease(scene.objectLookup.Boulder1, "y", function() return scene.objectLookup.Rotor.y end, 3),
+			PlayAudio("sfx", "explosion", 1.0, true),
+			Animate(scene.objectLookup.Rotor.sprite, "idleright"),
+			Parallel {
+				Serial {
+					Wait(0.5),
+					Ease(scene.objectLookup.Boulder2, "y", function() return scene.objectLookup.Rotor.y + 20 end, 3),
+					PlayAudio("sfx", "explosion", 1.0, true)
+				},
+				MessageBox{message="Rotor: The cave--{p60} it's starting to collapse!"}
+			},
+			Ease(scene.objectLookup.Boulder3, "y", function() return scene.objectLookup.Rotor.y - 20 end, 3),
+			PlayAudio("sfx", "explosion", 1.0, true),
+			MessageBox{message="Logan: Your Pop-Pop wouldn't have started the process with us down here--"},
+			MessageBox{message="Logan: It must have somehow been triggered by our fight with Firebird!"},
+			Spawn(scene:screenShake(10, 30, 40)),
+			AudioFade("music", 1.0, 0.0, 1),
+			PlayAudio("music", "sonicenters", 1.0, true),
+			-- Sonic and Fleet arrive on the scene
+			Parallel {
+				Serial {
+					Wait(0.2),
+					PlayAudio("sfx", "sonicrunturn", 1.0, true)
+				},
+				Serial {
+					Parallel {
+						Ease(scene.objectLookup.Sonic, "x", function() return scene.objectLookup.Rotor.x - 150 end, 1),
+						Repeat(Do(function()
+							local sonic = scene.objectLookup.Sonic
+							if not sonic.dustTime or sonic.dustTime > 0.005 then
+								sonic.dustTime = 0
+							elseif sonic.dustTime < 0.005 then
+								sonic.dustTime = sonic.dustTime + love.timer.getDelta()
+								return
+							end
+							
+							local dustObject = BasicNPC(
+								scene,
+								{name = "objects"},
+								{name = "dust", x = sonic.x, y = sonic.y, width = 40, height = 36,
+									properties = {nocollision = true, sprite = "art/sprites/dust.png", align = NPC.ALIGN_BOTLEFT}
+								}
+							)
+							dustObject.sprite.color = {130, 130, 200, 255}
+							dustObject.x = dustObject.x - sonic.sprite.w*2 - dustObject.sprite.w - 5
+							dustObject.y = dustObject.y + sonic.sprite.h - dustObject.sprite.h*2
+							dustObject.sprite.transform.sx = 4
+							dustObject.sprite.transform.sy = 4
+							dustObject.sprite:setAnimation("right")
+							
+							dustObject.sprite.animations[dustObject.sprite.selected].callback = function()
+								local ref = dustObject
+								ref:remove()
+							end
+							scene:addObject(dustObject)
+							sonic.dustTime = sonic.dustTime + love.timer.getDelta()
+						end), 20),
+					},
+					Animate(scene.objectLookup.Sonic.sprite, "idleright"),
+				},
+				Serial {
+					Animate(scene.objectLookup.Fleet.sprite, "flyright"),
+					Do(function()
+						scene.objectLookup.Fleet.sprite.transform.angle = math.pi/6
+					end),
+					Ease(scene.objectLookup.Fleet, "x", function() return scene.objectLookup.Rotor.x - 100 end, 1),
+					Animate(scene.objectLookup.Fleet.sprite, "idleright"),
+					Do(function()
+						scene.objectLookup.Fleet.sprite.transform.angle = 0
+					end),
+				}
+			},
+			Animate(scene.objectLookup.Rotor.sprite, "idleleft"),
+			Parallel {
+				scene.objectLookup.Rotor:hop(),
+				scene.objectLookup.Logan:hop()
+			},
+			Animate(scene.objectLookup.Fleet.sprite, "smirk"),
+			MessageBox{message="Fleet: Staying out of trouble, I see?"},
+			Animate(scene.objectLookup.Sonic.sprite, "irritated"),
+			scene.objectLookup.Sonic:hop(),
+			MessageBox{message="Sonic: Hey! {p60}I'm the one who delivers the quippy lines around here!"},
+			MessageBox{message="Rotor: Sonic, we gotta get my Pop-Pop! {p60}He's on the floor above!"},
+			Spawn(scene:screenShake(10, 30, 40)),
+			PlayAudio("sfx", "sonicrun", 1.0, true),
+			Animate(scene.objectLookup.Sonic.sprite, "chargerun1"),
+			Do(function() scene.objectLookup.Sonic.sprite:setAnimation("chargerun2") end),
+			MessageBox{message="Sonic: I'm on it, Rote!"},
+			Do(function() scene.objectLookup.Sonic.sprite:setAnimation("juiceright") end),
+			Parallel {
+				Ease(scene.objectLookup.Sonic, "x", function() return scene.objectLookup.Sonic.x + 900 end, 2),
+				Repeat(Do(function()
+					local sonic = scene.objectLookup.Sonic
+					if not sonic.dustTime or sonic.dustTime > 0.01 then
+						sonic.dustTime = 0
+					elseif sonic.dustTime < 0.01 then
+						sonic.dustTime = sonic.dustTime + love.timer.getDelta()
+						return
+					end
+					
+					local dustObject = BasicNPC(
+						scene,
+						{name = "objects"},
+						{name = "dust", x = sonic.x, y = sonic.y, width = 40, height = 36,
+							properties = {nocollision = true, sprite = "art/sprites/dust.png", align = NPC.ALIGN_BOTLEFT}
+						}
+					)
+					dustObject.sprite.color = {130, 130, 200, 255}
+					dustObject.x = dustObject.x - sonic.sprite.w*2 - dustObject.sprite.w - 5
+					dustObject.y = dustObject.y + sonic.sprite.h*2 - dustObject.sprite.h*2
+					dustObject.sprite.transform.sx = 4
+					dustObject.sprite.transform.sy = 4
+					dustObject.sprite:setAnimation("right")
+					
+					dustObject.sprite.animations[dustObject.sprite.selected].callback = function()
+						local ref = dustObject
+						ref:remove()
+					end
+					scene:addObject(dustObject)
+					sonic.dustTime = sonic.dustTime + love.timer.getDelta()
+				end), 100),
+			},
+			Do(function()
+				scene:changeScene{map="bartcave", hint="ep4_bart_dies", spawnPoint="DownPath", fadeInSpeed=0.2, fadeOutSpeed=0.2}
+			end)
+		}
+	end
 
-	if hint=="battletime" then
+	if hint == "battletime" then
 		return BlockPlayer {
 			Do(function()
 				scene.player.sprite.visible = false

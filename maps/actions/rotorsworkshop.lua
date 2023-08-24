@@ -175,7 +175,7 @@ return function(scene, hint)
 			},
 			Animate(scene.objectLookup.Logan.sprite, "idleright"),
 			Wait(1),
-			MessageBox{message="Rotor: I'm glad I got to see him one last time though... {p60}I just wish I had at least grabbed some of his research before we escaped..."},
+			MessageBox{message="Rotor: I'm glad I got to see him one last time though... {p100}I just wish I had at least grabbed some of his research before we escaped..."},
 			MessageBox{message="Logan: Funny you should mention that..."},
 			MessageBox{message="Logan gives Rotor {h Bart's Journal}!", sfx="levelup"},
 			PlayAudio("music", "rotorsentimental", 1.0, true),

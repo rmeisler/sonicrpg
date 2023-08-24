@@ -8,9 +8,9 @@ return {
   height = 45,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 112,
+  nextobjectid = 114,
   properties = {
-    ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["battlebg"] = "../art/backgrounds/firebirdtestsite.PNG",
     ["onload"] = "actions/testsite.lua",
     ["regionName"] = "Northern Mountains",
     ["sectorName"] = "Test Site"
@@ -602,7 +602,7 @@ return {
           name = "Boulder2",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 896,
+          x = 960,
           y = 64,
           width = 64,
           height = 64,
@@ -620,7 +620,7 @@ return {
           name = "Boulder3",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1120,
+          x = 1088,
           y = 64,
           width = 64,
           height = 64,
@@ -669,6 +669,44 @@ return {
             ["defaultAnim"] = "leapdown",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/logan.png"
+          }
+        },
+        {
+          id = 112,
+          name = "Sonic",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 32,
+          y = 576,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "juiceright",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/sonic.png"
+          }
+        },
+        {
+          id = 113,
+          name = "Fleet",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 64,
+          y = 544,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "flyright",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/fleet.png"
           }
         }
       }

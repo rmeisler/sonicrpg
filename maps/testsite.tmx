@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="51" height="45" tilewidth="32" tileheight="32" infinite="0" nextobjectid="112">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="51" height="45" tilewidth="32" tileheight="32" infinite="0" nextobjectid="114">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
+  <property name="battlebg" type="file" value="../art/backgrounds/firebirdtestsite.PNG"/>
   <property name="onload" type="file" value="actions/testsite.lua"/>
   <property name="regionName" value="Northern Mountains"/>
   <property name="sectorName" value="Test Site"/>
@@ -304,14 +304,14 @@
     <property name="sprite" type="file" value="../art/sprites/boulder.png"/>
    </properties>
   </object>
-  <object id="108" name="Boulder2" type="BasicNPC" gid="6839" x="896" y="64" width="64" height="64">
+  <object id="108" name="Boulder2" type="BasicNPC" gid="6839" x="960" y="64" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/boulder.png"/>
    </properties>
   </object>
-  <object id="109" name="Boulder3" type="BasicNPC" gid="6839" x="1120" y="64" width="64" height="64">
+  <object id="109" name="Boulder3" type="BasicNPC" gid="6839" x="1088" y="64" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
@@ -332,6 +332,22 @@
     <property name="defaultAnim" value="leapdown"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/logan.png"/>
+   </properties>
+  </object>
+  <object id="112" name="Sonic" type="BasicNPC" gid="6839" x="32" y="576" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="juiceright"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
+   </properties>
+  </object>
+  <object id="113" name="Fleet" type="BasicNPC" gid="6839" x="64" y="544" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="flyright"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
    </properties>
   </object>
  </objectgroup>

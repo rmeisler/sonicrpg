@@ -58,7 +58,43 @@ return function(scene, hint)
 	end
 
 	hint = hint or "from_bart_room"
-	if hint == "from_testsite" then
+	if hint == "ep4_bart_dies" then
+		scene.audio:stopMusic()
+		scene.objectLookup.Bart.hidden = false
+		scene.objectLookup.Boulder.hidden = false
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+			end),
+			Animate(scene.objectLookup.Bart.sprite, "dying"),
+			Wait(2),
+			Ease(scene.objectLookup.Sonic, "y", scene.objectLookup.Bart.y + 100, 2),
+			Animate(scene.objectLookup.Sonic.sprite, "idleup"),
+			Wait(1.5),
+			MessageBox{message="Bart: S... {p60}Sonic... {p60}is that you, m-my boy?", textSpeed=2},
+			PlayAudio("music", "bartsacrifice", 1.0, true),
+			MessageBox{message="Sonic: Y-{p60}Y-Yeah... {p60}it's me, doc...", textSpeed=3},
+			MessageBox{message="Sonic: *tears*{p60} I-I came here to take you home...", textSpeed=3},
+			MessageBox{message="Bart: H-Heh...{p60} thank you, S-Sonic... {p60}but I'm already on my way home...", textSpeed=2},
+			MessageBox{message="Sonic: ...", textSpeed=3},
+			MessageBox{message="Bart: L-Let Rotor know...{p60} that I... {p60}I'm s-sorry... {p60}and that I'm p-proud of him... {p60}would you?", textSpeed=2},
+			Wait(1),
+			Animate(scene.objectLookup.Sonic.sprite, "cry"),
+			MessageBox{message="Sonic: *tears* You got it, big guy...", textSpeed=3},
+			Do(function()
+				scene:changeScene{
+					map="knothole",
+					hint="ep4_end",
+					spawnPoint="Ep4EndSpawn",
+					fadeOutSpeed = 0.1,
+					fadeInSpeed = 0.8,
+					fadeOutMusic = true,
+					enterDelay = 2
+				}
+			end)
+		}
+	elseif hint == "from_testsite" then
 		local trapLayer
 		for _,layer in pairs(scene.map.layers) do
 			if layer.name == "trap" then
@@ -150,12 +186,14 @@ return function(scene, hint)
 			Animate(scene.objectLookup.Bart.sprite, "idledown"),
 			MessageBox {message="Bart: Had I stopped Julian back when you were young, you would not have had to grow up in this terrible world!"},
 			MessageBox {message="Bart: You would have had a future! {p60}You would have been able to study archeology and carry on the\nfamily legacy!!"},
-			AudioFade("music", 1.0, 0.0, 1),
+			Wait(1),
 			MessageBox {message="Rotor: ...You know I never wanted to be an archeologist, Pop-Pop..."},
+			AudioFade("music", 1.0, 0.0, 0.5),
 			scene.objectLookup.Bart:hop(),
 			Animate(scene.objectLookup.Bart.sprite, "pose"),
 			MessageBox {message="Bart: ...{p60}Ha ha! {p60}Ah yes...{p60} you take too much after your father..."},
 			Animate(scene.objectLookup.Bart.sprite, "idledown"),
+			PlayAudio("music", "rotorsentimental", 1.0, true),
 			MessageBox {message="Rotor: It's ok, Pop-Pop. {p60}Ya know{p60}, I've actually been able to live a pretty great life in Knothole{p60}, all things considered..."},
 			MessageBox {message="Rotor: If you want to make it up to me, Pop-Pop, come home with me!"},
 			Wait(2),

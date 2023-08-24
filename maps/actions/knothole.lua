@@ -118,26 +118,24 @@ return function(scene, hint)
 				scene.objectLookup.RotorEp4End.sprite:setAnimation("hug")
 			end),
 			PlayAudio("music", "rotorsok", 1.0, true, true),
-			MessageBox{message="Sonic: Welcome back, Rote!"},
 			MessageBox{message="Sally: Thank goodness you're ok, Rotor!"},
-			MessageBox{message="Sally: I'm so sorry I wasn't more supportive..."},
+			MessageBox{message="Sally: I'm so sorry I wasn't more supportive...", textSpeed=3},
 			MessageBox{message="Rotor: It's alright, Sally."},
 			Do(function()
 				scene.objectLookup.SallyEp4End.hidden = false
 				scene.objectLookup.SallyEp4End.x = scene.objectLookup.SallyEp4End.x + 16
 				scene.objectLookup.RotorEp4End.sprite:setAnimation("idleright")
 			end),
-			MessageBox{message="Rotor: Ya know{p30}, it was actually kind of a good opportunity for me to get out of the workshop for once!"},
-			MessageBox{message="Bunnie: So that nasty ol' Project Firebird's gone?"},
-			MessageBox{message="Rotor: That's what it seems like, Bunnie..."},
+			MessageBox{message="Bunnie: So that nasty ol' Project Firebird's really gone?"},
+			Animate(scene.objectLookup.RotorEp4End.sprite, "idleup"),
+			MessageBox{message="Rotor: That's what it seems like, Bunnie... {p60}thanks to Pop-Pop..."},
 			Wait(1),
 			scene.objectLookup.FleetEp4End:hop(),
 			MessageBox{message="Fleet: Logan!! {p60}What are you trying to do{p30}, give me a heart attack!?"},
 			MessageBox{message="Logan: ...{p60}Sorry Fleet...", textSpeed=3},
 			MessageBox{message="Leon: It would seem that life here in Knothole is making you lose your sense of discipline, Logan...", textSpeed=3},
 			MessageBox{message="Logan: I-I'm sorry, sir. {p60}It won't happen again.", textSpeed=3},
-			MessageBox{message="Leon: See that it doesn't."},
-			MessageBox{message="Leon: And one last thing, Logan... {p60}well done.", textSpeed=3},
+			MessageBox{message="Leon: One last thing, Logan... {p60}well done.", textSpeed=3},
 			Animate(scene.objectLookup.LoganEp4End.sprite, "idleup"),
 			scene.objectLookup.LoganEp4End:hop(),
 			MessageBox{message="Logan: Sir?"},

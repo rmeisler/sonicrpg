@@ -334,6 +334,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/dust.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/snowdust.png"
 	},
 	{
@@ -626,6 +630,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/bartsomber.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/bartsacrifice.ogg",
 		category = "music"
 	},
 	{

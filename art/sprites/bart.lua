@@ -5,6 +5,9 @@ return {
     h = 58,
 
     animations = {
+		dying = {
+			frames = {{8,0}}
+		},
 		pose = {
 			frames = {{6,0},{7,0}},
 			speed = 0.4

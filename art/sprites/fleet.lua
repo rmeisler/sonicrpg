@@ -8,6 +8,9 @@ return {
         flyleft = {
 			frames = {{9,4}}
 		},
+		flyright = {
+			frames = {{9,5}}
+		},
 		idle = {
 			frames = {{5,7}}
 		},
