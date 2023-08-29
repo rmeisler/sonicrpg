@@ -41,7 +41,6 @@ return function(scene)
 	
 	scene.bgColor = {255,255,255,255}
 
-	GameState:setFlag("ep4_introdone")
 	if GameState:isFlagSet("ep4_introdone") then
 		robotnik.sprite:setAnimation("faceup")
 		if scene.objectLookup.Rover then

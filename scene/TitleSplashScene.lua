@@ -181,7 +181,7 @@ function TitleSplashScene:newGame()
 	self.audio:stopSfx("wind")
 	
 	self.exiting = true
-	self.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/sonicdemo_manifest.lua"}
+	self.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/snowdaymanifest.lua"}
 end
 
 function TitleSplashScene:continue()

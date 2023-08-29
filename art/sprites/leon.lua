@@ -6,13 +6,21 @@ return {
 
     animations = {
         idleright = {
-            frames = {{0,0}}
+            frames = {{0,6}}
         },
 		idleleft = {
             frames = {{0,1}}
         },
 		idledown = {
             frames = {{0,2}}
+        },
+		
+		idlerightsad = {
+            frames = {{1,6}}
+        },
+		idlerightshakehead = {
+            frames = {{2,6},{3,6},{2,6},{3,6},{1,6}},
+			speed = 0.3
         },
 
 		coffeeleft = {

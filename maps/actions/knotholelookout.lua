@@ -45,7 +45,9 @@ return function(scene, hint)
 		return Action()
 	end
 	
-	if GameState:isFlagSet("ep4_tails_snowman") then
+	if  not GameState:isFlagSet("ep4_rotor_logan_lookout") and
+		GameState:isFlagSet("ep4_tails_snowman")
+	then
 		-- turn on twilight layer
 		for _,layer in pairs(scene.map.layers) do
 			if layer.name == "twilight" then
@@ -53,6 +55,7 @@ return function(scene, hint)
 				break
 			end
 		end
+		GameState:setFlag("ep4_rotor_logan_lookout")
 		-- make everything else darker
 		scene.player.sprite.visible = false
 		scene.player.dropShadow.hidden = true
@@ -78,7 +81,7 @@ return function(scene, hint)
 			MessageBox{message="Logan: I don't remember the last I had fun...{p60}\nmust've been way back... {p60}like...", textSpeed = 3},
 			MessageBox{message="Rotor: Before Robotnik?", textSpeed = 3},
 			Wait(1),
-			MessageBox{message="Logan: Um{p60}, yes...", textSpeed = 3},
+			MessageBox{message="Logan: Um{p60}, yeah...", textSpeed = 3},
 			Wait(3),
 			MessageBox{message="Logan: Hey...{p60} do you remember what it was like to have a mom and dad?", textSpeed = 3},
 			MessageBox{message="Rotor: Huh?", textSpeed = 3},
@@ -93,9 +96,9 @@ return function(scene, hint)
 			Wait(1),
 			MessageBox{message="Logan: ...you think he might still be out there?", textSpeed = 3},
 			MessageBox{message="Rotor: ...I'm not sure...{p60} but I like to think so.", textSpeed = 3},
-			Wait(2.5),
+			Wait(2),
 			MessageBox{message="Rotor: What about you?", textSpeed = 3},
-			MessageBox{message="Logan: Well, it's none of your business...{p60} but...", textSpeed = 3},
+			MessageBox{message="Logan: Well, not that it's any of your business, but...", textSpeed = 3},
 			MessageBox{message="Logan: ...during Robotnik's coup I was imprisoned with my mom and the rest of my family.", textSpeed = 3},
 			MessageBox{message="Logan: I had to watch each of them get roboticized, one by one, until all that was left was just\nme and my mom.", textSpeed = 3},
 			MessageBox{message="Logan: I kept expecting someone to show up. {p60}The King and his royal guard to save the day, maybe...", textSpeed = 3},
@@ -103,8 +106,6 @@ return function(scene, hint)
 			MessageBox{message="Logan: I was alone in that cell for awhile before Leon finally found me.", textSpeed = 3},
 			MessageBox{message="Logan: I'm grateful that he saved me and all... {p60}but by the time he got there, I feel like a part of me was already gone.", textSpeed = 3},
 			MessageBox{message="Logan: That feeling of hope... {p60}that everything would turn out alright... {p60}I've never really felt that since I lost my mom.", textSpeed = 3},
-			Wait(1.5),
-			MessageBox{message="Rotor: I...{p60}I'm sorry.", textSpeed = 3},
 			Wait(2),
 			MessageBox{message="Logan: Guess that's why I keep my distance from people... {p120}makes it easier to deal with when they eventually get roboticized...", textSpeed = 3},
 			Wait(1),
@@ -125,12 +126,13 @@ return function(scene, hint)
 			end),
 			Ease(scene.objectLookup.Logan, "x", function() return scene.objectLookup.Logan.x - 400 end, 1, "linear"),
 			MessageBox{message="Rotor: *sigh*", textSpeed = 3},
-			Wait(1),
-			MessageBox{message="Rotor: Huh?...", textSpeed = 3},
 			Do(function()
 				scene:changeScene{map="knothole", fadeInSpeed = 0.5, fadeOutSpeed = 0.5, enterDelay = 3}
 			end)
 		}
+	else
+		scene.objectLookup.Logan:remove()
+		scene.objectLookup.Rotor:remove()
 	end
 
 	showTitle()

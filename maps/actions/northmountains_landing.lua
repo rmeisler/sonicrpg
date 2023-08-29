@@ -57,18 +57,7 @@ return function(scene, hint)
 		})
 	end
 
-	if hint == "fromworldmap" or true then
-		scene.camPos.y = 350
-		return BlockPlayer {
-			PlayAudio("sfx", "wind", 0.5, true, true),
-			Wait(3),
-			Do(showTitle),
-			Wait(1),
-			PlayAudio("music", "snowcap", 1.0, true, true),
-			Wait(3),
-			Ease(scene.camPos, "y", 0, 1)
-		}
-	elseif hint == "fromload" then
+	if hint == "fromregion" or hint == "fromload" then
 		scene.camPos.y = 350
 		return BlockPlayer {
 			PlayAudio("sfx", "wind", 0.5, true, true),

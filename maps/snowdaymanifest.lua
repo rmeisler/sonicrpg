@@ -1,6 +1,11 @@
 return {
 	{
         type = "map",
+        file = "maps/knotholeatnight_ep4intro.lua",
+		primary = true -- REAL
+    },
+	{
+        type = "map",
 		file = "maps/snowboard.lua",
 		--primary = true -- TEST
     },
@@ -47,11 +52,6 @@ return {
         type = "map",
         file = "maps/knotholesnowday.lua",
 		--primary = true -- testing
-    },
-	{
-        type = "map",
-        file = "maps/knotholeatnight_ep4intro.lua",
-		--primary = true -- REAL
     },
 	
 	{

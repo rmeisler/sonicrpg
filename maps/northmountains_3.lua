@@ -1930,7 +1930,6 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["battle"] = "../data/monsters/abominable.lua",
-            ["battleInitiative"] = "opponent",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idleleft",
             ["disappearAfterBattle"] = true,

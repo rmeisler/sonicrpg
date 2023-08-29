@@ -25,8 +25,11 @@ function Region:onEnter(args)
 	self.images = args.images or {}
 	self.audio = args.audio or self.audio
 	self.animations = args.animations or {}
-	
-	local manifest = love.filesystem.load(args.manifest)()
+	local manifestFile, err = love.filesystem.load(args.manifest)
+	if manifestFile == nil then
+		print(err)
+	end
+	local manifest = manifestFile()
 	
 	-- Construct tasks from manifest
 	self.loadSonicSprite = Task {type = "image", file = "art/sprites/sonicloading.png"}
@@ -132,9 +135,9 @@ function Region:loadingAnimation(tasks)
 			Parallel(tasks),
 			
 			-- Fade in screen
-			Ease(self.bgColor, 1, 255, 1),
-			Ease(self.bgColor, 2, 255, 1),
-			Ease(self.bgColor, 3, 255, 1),
+			Ease(self.bgColor, 1, 255, self.args.fadeInSpeed or 1),
+			Ease(self.bgColor, 2, 255, self.args.fadeInSpeed or 1),
+			Ease(self.bgColor, 3, 255, self.args.fadeInSpeed or 1),
 			Do(function() ScreenShader:sendColor("multColor", self.bgColor) end),
 
 			-- Animated "Loading..." text
@@ -243,10 +246,14 @@ function Region:goToNext()
 			images = self.images,
 			animations = self.animations,
 			audio = self.audio,
-			fadeInSpeed = 0.2,
+			fadeInSpeed = self.args.fadeInSpeed or 0.2,
 			region = self.args.manifest,
 			spawn_point = self.args.spawn_point,
 			hint = self.args.hint,
+			nighttime = self.args.nighttime,
+			tutorial = self.args.tutorial,
+			fadeOutSpeed = self.args.fadeOutSpeed,
+			fadeOutMusic = self.args.fadeOutMusic,
 			cache = true
 		}
 	end

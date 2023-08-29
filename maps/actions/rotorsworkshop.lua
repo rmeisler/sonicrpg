@@ -214,6 +214,7 @@ return function(scene, hint)
 		scene.objectLookup.Logan.sprite:setAnimation("idleup")
 		scene.objectLookup.Logan.x = scene.player.x
 		scene.objectLookup.Logan.y = scene.player.y
+		scene.objectLookup.Logan:removeCollision()
 
 		scene.objectLookup.Rotor2.hidden = false
 		scene.objectLookup.Rotor2.ghost = false
@@ -316,6 +317,7 @@ return function(scene, hint)
 				scene.camPos.y = 0
 				scene.player.state = "idledown"
 				scene.objectLookup.Logan:remove()
+				scene.objectLookup.Rotor:remove()
 				scene.objectLookup.Rotor2:remove()
 			end)
 		}

@@ -74,20 +74,23 @@ return function(scene, hint)
 			Animate(scene.objectLookup.Sonic.sprite, "idleup"),
 			MessageBox{message="Sonic: !", textSpeed=3},
 			Spawn(scene:screenShake(10, 30, 40)),
-			Wait(2),
+			Wait(1.5),
+			PlayAudio("music", "bartsacrifice", 0.6, true),
 			MessageBox{message="Bart: S... {p32}Sonic... {p30}is that you, m-my boy?", textSpeed=2},
 			Wait(1),
-			MessageBox{message="Sonic: Y-{p30}Y-Yeah... {p30}it's me, doc... {p60}I'm here to take you home.", textSpeed=4},
+			MessageBox{message="Sonic: Y-{p20}Y-Yeah... {p20}it's me, doc... {p50}I'm here to take you home.", textSpeed=3},
 			Wait(2),
-			PlayAudio("music", "bartsacrifice", 0.6, true),
-			MessageBox{message="Bart: H-Heh...{p20} thank you, S-Sonic... {p30}but I'm already on my way home...", textSpeed=2},
-			Wait(2),
+			Spawn(scene:screenShake(10, 30, 40)),
+			MessageBox{message="Bart: H-Heh...{p20} thank you, S-Sonic... {p50}but I'm already on my way home...", textSpeed=2},
+			Wait(1),
 			MessageBox{message="Sonic: ...", textSpeed=3},
 			Wait(2),
+			Spawn(scene:screenShake(10, 30, 40)),
 			MessageBox{message="Bart: L-Let Rotor know that I... {p20}I'm s-sorry... {p50}and that I'm p-proud of him... {p10}would you?", textSpeed=2},
 			Wait(2),
 			Animate(scene.objectLookup.Sonic.sprite, "cry"),
-			MessageBox{message="Sonic: You got it, big guy...", textSpeed=3, closeAction=Wait(2)},
+			MessageBox{message="Sonic: You got it, big guy...", textSpeed=3, closeAction=Wait(2.5)},
+			Spawn(scene:screenShake(10, 30, 40)),
 			Do(function()
 				scene:changeScene{
 					map="knothole",
@@ -118,8 +121,8 @@ return function(scene, hint)
 				scene.player.sprite.visible = false
 				scene.player.dropShadow.hidden = true
 			end),
-			Spawn(Repeat(PlayAudio("sfx", "elevator", 1.0))),
-			Spawn(scene:screenShake(10, 30, 1000)),
+			PlayAudio("sfx", "elevator", 1.0, true),
+			Spawn(scene:screenShake(10, 30, 40)),
 			Wait(2),
 			Animate(scene.objectLookup.Rotor.sprite, "shock"),
 			-- Shake cave tile
@@ -146,6 +149,8 @@ return function(scene, hint)
 				Ease(trapLayer, "opacity", 0, 0.5),
 				Ease(scene.objectLookup.Rotor, "y", function() return scene.objectLookup.Rotor.y  + 1000 end, 1)
 			},
+			PlayAudio("sfx", "elevator", 1.0, true),
+			Spawn(scene:screenShake(10, 30, 40)),
 			MessageBox {message="Bart: Rotor!!"},
 			Do(function()
 				scene:changeScene{map="testsite", hint="battletime"}
@@ -171,16 +176,16 @@ return function(scene, hint)
 				scene.objectLookup.Bart.sprite:setAnimation("idleup")
 			end),
 			MessageBox {message="Bart: Rotor..."},
-			Wait(1),
+			Wait(1.5),
 			MessageBox {message="Rotor: ..."},
-			Wait(2),
+			Wait(1.5),
 			PlayAudio("music", "bartsomber", 1.0, true, true),
 			MessageBox {message="Rotor: Why are you doing this, Pop-Pop?"},
-			Wait(2),
+			Wait(1.5),
 			MessageBox {message="Bart: ..."},
 			Wait(1),
 			MessageBox {message="Rotor: The Freedom Fighters will find some other way of defeating {h Project Firebird}! {p60}You don't need to\ndo this!!"},
-			Wait(2),
+			Wait(1.5),
 			MessageBox {message="Bart: ..."},
 			Wait(1),
 			MessageBox {message="Rotor: Am I so unimportant to you that you'd rather die a martyr than live out the rest of your life in Knothole with me?"},
@@ -215,7 +220,8 @@ return function(scene, hint)
 			MessageBox {message="Rotor: Whoah! {p60}What's going on??", closeAction=Wait(1)},
 			Wait(0.3),
 			PlayAudio("music", "darkintro", 1.0, true, true),
-			MessageBox {message="Bart: {h Project Firebird}!!", closeAction=Wait(2)},
+			MessageBox {message="Bart: No!! {p60}How is this possible!?", closeAction=Wait(2)},
+			MessageBox {message="Bart: The explosives I setup to collapse my research station onto Firebird have somehow been erroneously triggered!!", closeAction=Wait(2)},
 			Do(function()
 				scene:changeScene{map="testsite"}
 			end)

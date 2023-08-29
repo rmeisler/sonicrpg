@@ -18,6 +18,9 @@ return {
 		sitright = {
 			frames = {{1,5}}
 		},
+		sitrightupset = {
+			frames = {{4,5}}
+		},
 		
 		leapdown = {
 			frames = {{5,2}}

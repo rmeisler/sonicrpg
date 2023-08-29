@@ -28,7 +28,7 @@ return {
 
 	stats = {
 		xp    = 0,
-		maxhp = 1000,
+		maxhp = 800,
 		attack = 50,
 		defense = 30,
 		speed = 10,
@@ -51,7 +51,6 @@ return {
 		for _,mem in pairs(self.scene.party) do
 			mem.options = {}
 			mem:addBattleOption(require "data/battle/SnowballHit")
-			mem:addBattleOption(require "data/battle/Items")
 			mem.origOptions = mem.options -- Don't reset options on death
 		end
 

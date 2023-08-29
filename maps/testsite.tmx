@@ -334,7 +334,7 @@
     <property name="sprite" type="file" value="../art/sprites/logan.png"/>
    </properties>
   </object>
-  <object id="112" name="Sonic" type="BasicNPC" gid="6839" x="32" y="576" width="64" height="64">
+  <object id="112" name="Sonic" type="BasicNPC" gid="6839" x="32" y="608" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="juiceright"/>
@@ -342,7 +342,7 @@
     <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
    </properties>
   </object>
-  <object id="113" name="Fleet" type="BasicNPC" gid="6839" x="64" y="544" width="64" height="64">
+  <object id="113" name="Fleet" type="BasicNPC" gid="6839" x="64" y="576" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="flyright"/>

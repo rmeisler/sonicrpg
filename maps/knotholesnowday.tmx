@@ -2761,6 +2761,7 @@ local Ease = require &quot;actions/Ease&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Animate = require &quot;actions/Animate&quot;
 local Action = require &quot;actions/Action&quot;
+local Spawn = require &quot;actions/Spawn&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
@@ -2777,7 +2778,7 @@ return function(self)
             return BlockPlayer {
                 MessageBox {message = &quot;Tails: Thanks so much for helping me guys{p60}, this is the best snowman ever!&quot;},
                 Do(function()
-                    self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true}
+                    self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true, manifest = &quot;postsnowdaymanifest&quot;}
                 end)
             }
         end
@@ -2817,10 +2818,10 @@ return function(self)
             if GameState:isFlagSet(&quot;ep4_tails_snowman_hat&quot;) and
                GameState:isFlagSet(&quot;ep4_tails_snowman_carrot&quot;)
             then
-                endAction = Serial {
+                endAction = Spawn(Serial {
                     MessageBox {message = &quot;Tails: Thanks so much for helping me guys{p60}, this is the best snowman ever!&quot;},
                     Do(function() self:refreshKeyHint() end)
-                }
+                })
             end
             GameState:removeItem(&quot;Scarf&quot;)
             return BlockPlayer {

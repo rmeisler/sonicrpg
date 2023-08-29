@@ -537,7 +537,15 @@ function BasicScene:changeScene(args)
 			manifest = string.format("maps/%s.lua", args.manifest),
 			images = self.images,
 			audio = self.audio,
-			animations = self.animations
+			animations = self.animations,
+			hint = args.hint,
+			tutorial = args.tutorial,
+			fadeOutSpeed = args.fadeOutSpeed,
+			fadeInSpeed = args.fadeInSpeed,
+			fadeOutMusic = args.fadeOutMusic,
+			spawn_point = args.spawnPoint,
+			nighttime = args.nighttime,
+			enterDelay = args.enterDelay
 		}
 	else
 		print("change scene...")

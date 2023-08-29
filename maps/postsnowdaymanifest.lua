@@ -1,54 +1,13 @@
 return {
 	{
         type = "map",
+        file = "maps/knotholelookout.lua",
+		primary = true -- testing
+    },
+	{
+        type = "map",
 		file = "maps/worldmap.lua",
 		--primary = true
-    },
-	{
-        type = "map",
-		file = "maps/snowboard.lua",
-		--primary = true -- TEST
-    },
-	{
-        type = "map",
-		file = "maps/northmountains_landing.lua",
-		--primary = true -- TEST
-    },
-	{
-        type = "map",
-		file = "maps/northmountains_1.lua"
-    },
-	{
-        type = "map",
-		file = "maps/northmountains_2.lua"
-    },
-	{
-        type = "map",
-		file = "maps/northmountains_3.lua"
-    },
-	{
-        type = "map",
-		file = "maps/northmountains_cave.lua"
-    },
-	{
-        type = "map",
-		file = "maps/bartcave.lua",
-		--primary = true -- TEST
-    },
-	{
-        type = "map",
-		file = "maps/bartcave2.lua",
-		--primary = true -- TEST
-    },
-	{
-        type = "map",
-		file = "maps/bartroom.lua",
-		--primary = true -- TEST
-    },
-	{
-        type = "map",
-		file = "maps/testsite.lua",
-		--primary = true -- TEST
     },
 	{
         type = "map",
@@ -93,7 +52,7 @@ return {
 		type = "map",
 		file = "maps/robotnikwarroom.lua"
 	},
-	--[[{
+	{
         type = "map",
         file = "maps/forgottenhideout.lua",
 		--primary = true,
@@ -103,34 +62,12 @@ return {
         type = "map",
         file = "maps/forgottenhideout_broom.lua",
 		--primary = true
-    },]]
-	
-	{
-        type = "map",
-        file = "maps/knotholesnowday.lua",
-		--primary = true -- testing
-    },
-	{
-        type = "map",
-        file = "maps/knotholeatnight_ep4intro.lua",
-		primary = true -- REAL
     },
 	
 	{
         type = "map",
         file = "maps/knothole.lua",
 		--primary = true -- TEST
-    },
-	
-	{
-        type = "map",
-        file = "maps/knotholelookout.lua",
-		--primary = true -- testing
-    },
-	{
-        type = "map",
-        file = "maps/knotholelookoutatnight.lua"
-		--primary = true
     },
 
 	{
@@ -514,22 +451,6 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/projectfirebird.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/freezepoof.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/fireball.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/plasmabeam.png"
-	},
-	{
-		type = "image",
 		file = "art/sprites/smack.png"
 	},
 	{
@@ -599,21 +520,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/thunder1.wav",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/thunder2.wav",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/rain.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
 		file = "audio/sfx/poison.ogg",
 		category = "sfx"
 	},
@@ -624,17 +530,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/bart.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
 		file = "audio/music/bartsomber.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/bartsacrifice.ogg",
 		category = "music"
 	},
 	{
@@ -924,11 +820,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/firebirdbreath.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
 		file = "audio/sfx/boomerang.ogg",
 		category = "sfx"
 	},
@@ -1015,12 +906,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/games.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
 		file = "audio/music/greatforest.ogg",
 		category = "music",
 		looping = true,
@@ -1049,12 +934,6 @@ return {
 		type = "sound",
 		file = "audio/music/sonicsad.ogg",
 		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/secretcave.ogg",
-		category = "music",
-		looping = true,
 	},
 	{
 		type = "sound",
@@ -1101,11 +980,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/darkintro.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
 		file = "audio/music/knothole.ogg",
 		category = "music",
 		looping = true
@@ -1132,33 +1006,8 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/snowday.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/lupusremix.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/snowcap.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
 		file = "audio/music/logantheme.ogg",
 		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/victory.ogg",
-		category = "music",
-		volume = 0.3,
 		looping = true,
 	},
 	{

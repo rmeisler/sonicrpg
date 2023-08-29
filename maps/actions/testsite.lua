@@ -80,18 +80,11 @@ return function(scene, hint)
 			Ease(scene.objectLookup.Boulder1, "y", function() return scene.objectLookup.Rotor.y end, 3),
 			PlayAudio("sfx", "explosion", 1.0, true),
 			Animate(scene.objectLookup.Rotor.sprite, "idleright"),
-			Parallel {
-				Serial {
-					Wait(0.5),
-					Ease(scene.objectLookup.Boulder2, "y", function() return scene.objectLookup.Rotor.y + 20 end, 3),
-					PlayAudio("sfx", "explosion", 1.0, true)
-				},
-				MessageBox{message="Rotor: The cave--{p60} it's starting to collapse!"}
-			},
+			Wait(0.5),
+			Ease(scene.objectLookup.Boulder2, "y", function() return scene.objectLookup.Rotor.y + 20 end, 3),
+			PlayAudio("sfx", "explosion", 1.0, true),
 			Ease(scene.objectLookup.Boulder3, "y", function() return scene.objectLookup.Rotor.y - 20 end, 3),
 			PlayAudio("sfx", "explosion", 1.0, true),
-			MessageBox{message="Logan: Your Pop-Pop wouldn't have started the process with us down here--"},
-			MessageBox{message="Logan: It must have somehow been triggered by our fight with Firebird!"},
 			Spawn(scene:screenShake(10, 30, 40)),
 			AudioFade("music", 1.0, 0.0, 1),
 			-- Sonic and Fleet arrive on the scene
@@ -114,7 +107,7 @@ return function(scene, hint)
 							
 							local dustObject = BasicNPC(
 								scene,
-								{name = "objects"},
+								{name = "upper"},
 								{name = "dust", x = sonic.x, y = sonic.y, width = 40, height = 36,
 									properties = {nocollision = true, sprite = "art/sprites/dust.png", align = NPC.ALIGN_BOTLEFT}
 								}
@@ -158,6 +151,12 @@ return function(scene, hint)
 			Animate(scene.objectLookup.Sonic.sprite, "irritated"),
 			scene.objectLookup.Sonic:hop(),
 			MessageBox{message="Sonic: Hey! {p60}I'm the one who delivers the quippy lines around here!"},
+			PlayAudio("sfx", "elevator", 1.0, true),
+			Spawn(scene:screenShake(10, 30, 40)),
+			MessageBox{message="Rotor: Sonic! {p60}Fleet!"},
+			Animate(scene.objectLookup.Logan.sprite, "irritated"),
+			MessageBox{message="Logan: Took you long enough!"},
+			scene.objectLookup.Rotor:hop(),
 			MessageBox{message="Rotor: Sonic, we gotta get my Pop-Pop! {p60}He's on the floor above!"},
 			Spawn(scene:screenShake(10, 30, 40)),
 			PlayAudio("sfx", "sonicrun", 1.0, true),
@@ -178,7 +177,7 @@ return function(scene, hint)
 					
 					local dustObject = BasicNPC(
 						scene,
-						{name = "objects"},
+						{name = "upper"},
 						{name = "dust", x = sonic.x, y = sonic.y, width = 40, height = 36,
 							properties = {nocollision = true, sprite = "art/sprites/dust.png", align = NPC.ALIGN_BOTLEFT}
 						}

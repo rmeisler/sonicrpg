@@ -57,6 +57,10 @@ return {
 	
 	scan = "Yeti's like sweets...",
 
+	onInit = function(self)
+		self.scene.initiative = "opponent"
+	end,
+	
 	onAttack = function(self, attacker)
 		if self.angry or self.gaveMarshmallow then
 			return Action()

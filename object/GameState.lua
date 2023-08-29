@@ -455,7 +455,35 @@ function GameState:load(scene, slot)
 		self.leader = data.leader
 		
 		-- What manifest to use?...
-		if self:isFlagSet("ironlock_intro") then
+		if self:isFlagSet("ep4_to_the_mnt") then
+			scene.sceneMgr:pushScene {
+				class = "Region",
+				manifest = "maps/northmountainsmanifest.lua",
+				map = data.map,
+				spawn_point = data.spawnPoint,
+				nextMusic = data.music,
+				hint = "fromload"
+			}
+		elseif self:isFlagSet("ep4_ffmeetingover") then
+			scene.sceneMgr:pushScene {
+				class = "Region",
+				manifest = "maps/postsnowdaymanifest.lua",
+				map = data.map,
+				spawn_point = data.spawnPoint,
+				nextMusic = data.music,
+				hint = "fromload"
+			}
+		elseif self:isFlagSet("ep4_introdone") then
+			-- Use ironlock manifest file
+			scene.sceneMgr:pushScene {
+				class = "Region",
+				manifest = "maps/snowdaymanifest.lua",
+				map = data.map,
+				spawn_point = data.spawnPoint,
+				nextMusic = data.music,
+				hint = "fromload"
+			}
+		elseif self:isFlagSet("ironlock_intro") then
 			-- Use ironlock manifest file
 			scene.sceneMgr:pushScene {
 				class = "Region",

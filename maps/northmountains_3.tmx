@@ -1661,7 +1661,6 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="battle" type="file" value="../data/monsters/abominable.lua"/>
-    <property name="battleInitiative" value="opponent"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleleft"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
