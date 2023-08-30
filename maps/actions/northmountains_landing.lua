@@ -58,6 +58,7 @@ return function(scene, hint)
 	end
 
 	if hint == "fromregion" or hint == "fromload" then
+		scene.player.hidekeyhints[tostring(scene.objectLookup.Save)] = true
 		scene.camPos.y = 350
 		return BlockPlayer {
 			PlayAudio("sfx", "wind", 0.5, true, true),

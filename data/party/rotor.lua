@@ -55,10 +55,10 @@ return {
 	
 	levelup = {
 		[3] = {
-			messages = {"Rotor learned \"Sabotage\"!"},
+			messages = {"Rotor learned \"Multi-Throw\"!"},
 			skills = {
 				require "data/battle/skills/Throw",
-				require "data/battle/skills/Sabotage",
+				require "data/battle/skills/MultiThrow",
 				GameState:getGatedSkill("ep4_abominable_rotor", "CallYeti")
 			}
 		},

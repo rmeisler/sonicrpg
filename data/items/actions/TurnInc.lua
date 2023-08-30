@@ -30,7 +30,7 @@ return function()
 					local sparkle = SpriteNode(
 						target.scene,
 						Transform(targetXform.x - sparkleCount*10, targetXform.y + target.sprite.h/2),
-						{500,0,500,0},
+						{500,500,500,0},
 						"sparkle",
 						5,
 						5,
@@ -62,14 +62,15 @@ return function()
 				Wait(0.1)
 			}, 4),
 			
-			-- Fade in and out purple glow
+			-- Fade in and out white glow
 			Serial {
-				Do(function() target.sprite:setGlow({255,0,255,255},2) end),
+				Do(function() target.sprite:setGlow({255,255,255,255},2) end),
 				PlayAudio("sfx", "heal", 1.0, true),
 				Parallel {
 					Ease(target.sprite.glowColor, 4, 50, 3),
 					Ease(target.sprite, "glowSize", 6, 3),
 					Ease(target.sprite.color, 1, 500, 3),
+					Ease(target.sprite.color, 2, 500, 3),
 					Ease(target.sprite.color, 3, 500, 3),
 				},
 				BouncyText(
@@ -77,9 +78,9 @@ return function()
 						target.sprite.transform.x + bouncyTextOffset + target.textOffset.x,
 						target.sprite.transform.y + target.textOffset.y
 					),
-					{255, 0, 255, 255},
+					{255, 255, 255, 255},
 					FontCache.Consolas,
-					"cured",
+					"+3 turns",
 					10,
 					false,
 					true
@@ -88,6 +89,7 @@ return function()
 					Ease(target.sprite.glowColor, 4, 0, 6, "quad"),
 					Ease(target.sprite, "glowSize", 2, 6, "quad"),
 					Ease(target.sprite.color, 1, target.color[1], 6, "quad"),
+					Ease(target.sprite.color, 2, target.color[2], 6, "quad"),
 					Ease(target.sprite.color, 3, target.color[3], 6, "quad"),
 				},
 				Do(function() target.sprite:removeGlow() end)

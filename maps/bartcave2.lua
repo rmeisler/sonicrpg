@@ -1704,7 +1704,7 @@ return {
           gid = 6839,
           visible = true,
           properties = {
-            ["BlasterArmor"] = 1,
+            ["WhiteLeaf"] = 1,
             ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }

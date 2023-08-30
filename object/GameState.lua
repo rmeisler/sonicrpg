@@ -209,7 +209,9 @@ end
 
 function GameState:grantItem(item, count)
 	if item.type then
-		table.insert(self[item.type], item)
+		for i=1,count do
+			table.insert(self[item.type], item)
+		end
 	else
 		if not (self.items[item.name]) then
 			self.items[item.name] = {item = item, count = count}

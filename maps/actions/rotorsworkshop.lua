@@ -303,9 +303,13 @@ return function(scene, hint)
 			Animate(scene.objectLookup.Logan.sprite, "idleright"),
 			MessageBox{message="Rotor: I-I guess we gotta get to the {h Freedom Stormer}\nthen."},
 			MessageBox{message="Rotor: I stashed it in the {h Great Forest}{p60}, behind some\nboulders for safe keeping..."},
+			Wait(1),
+			scene.objectLookup.Rotor2:hop(),
+			MessageBox{message="Rotor: Oh! {p60}And I've been holding onto these for a special mission..."},
+			MessageBox{message="You received 2 {h Blaster Armor}!", sfx="levelup"},
 			Animate(scene.objectLookup.Logan.sprite, "pose"),
 			Animate(scene.objectLookup.Rotor2.sprite, "pose"),
-			MessageBox{message="Logan: Let's do it!"},
+			MessageBox{message="Logan: Let's go already!!"},
 			Parallel {
 				Ease(scene.objectLookup.Logan, "x", function() return scene.objectLookup.Logan.x + 50 end, 2, "linear"),
 				Ease(scene.objectLookup.Rotor2, "x", function() return scene.objectLookup.Rotor2.x - 50 end, 2, "linear")

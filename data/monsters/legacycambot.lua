@@ -7,6 +7,8 @@ local PlayAudio = require "actions/PlayAudio"
 local Parallel = require "actions/Parallel"
 local Repeat = require "actions/Repeat"
 local Ease = require "actions/Ease"
+local Try = require "actions/Try"
+local YieldUntil = require "actions/YieldUntil"
 local Animate = require "actions/Animate"
 local IfElse = require "actions/IfElse"
 local BouncyText = require "actions/BouncyText"
@@ -197,6 +199,9 @@ return {
 					self.shockSprite.transform.y = self.sprite.transform.y - self.sprite.h/2
 				end),
 				Parallel {
+					target.defenseEvent and
+						target.defenseEvent(self, target) or
+						Action(),
 					Serial {
 						Ease(self.shockSprite.color, 4, 255, 5),
 						Wait(0.5),
@@ -206,7 +211,17 @@ return {
 					Ease(self.shockSprite.transform, "y", target.sprite.transform.y - target.sprite.h/2, 1)
 				},
 				Parallel {
-					target:takeDamage(self.stats, true, BattleActor.shockKnockback),
+					Try(
+						YieldUntil(
+							function()
+								return target.dodged
+							end
+						),
+						Do(function()
+							target.dodged = false
+						end),
+						target:takeDamage(self.stats, true, BattleActor.shockKnockback)
+					),
 					Ease(self.sprite.color, 1, 255, 1),
 					Ease(self.sprite.color, 2, 255, 1),
 					Ease(self.sprite.color, 3, 255, 1)

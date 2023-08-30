@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="80" tilewidth="32" tileheight="32" infinite="0" nextobjectid="130">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="80" tilewidth="32" tileheight="32" infinite="0" nextobjectid="134">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/northmountainsbg.png"/>
   <property name="layered" type="bool" value="true"/>
@@ -428,6 +428,18 @@ end
     <property name="orientation" value="left"/>
     <property name="scene" type="file" value="northmountains_3.lua"/>
     <property name="spawn_point" value="LeftPath"/>
+   </properties>
+  </object>
+  <object id="133" name="Cambot1" type="LegacyCambot" gid="8696" x="1952" y="2208" width="32" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idleleft"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
    </properties>
   </object>
  </objectgroup>
@@ -944,6 +956,24 @@ end
     <property name="loganTargetable" type="bool" value="true"/>
    </properties>
   </object>
+  <object id="131" name="Cambot2" type="LegacyCambot" gid="8696" x="1248" y="800" width="32" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
+    <property name="viewRange" value="View2"/>
+   </properties>
+  </object>
+  <object id="132" name="View2" type="BasicNPC" gid="10970" x="1088" y="896" width="320" height="160" visible="0">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="tempoverlay1" width="96" height="80">
   <data encoding="csv">
@@ -1209,7 +1239,7 @@ end
   </object>
   <object id="111" name="Chest2" type="Chest" gid="10970" x="1632" y="640" width="64" height="64">
    <properties>
-    <property name="BlasterArmor" type="int" value="1"/>
+    <property name="WhiteLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>

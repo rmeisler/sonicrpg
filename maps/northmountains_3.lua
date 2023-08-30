@@ -8,7 +8,7 @@ return {
   height = 155,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 204,
+  nextobjectid = 208,
   properties = {
     ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
     ["layered"] = true,
@@ -1988,7 +1988,7 @@ return {
           gid = 10970,
           visible = true,
           properties = {
-            ["Marshmallow"] = 1,
+            ["Mine"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -2171,7 +2171,7 @@ return {
           gid = 10970,
           visible = true,
           properties = {
-            ["RainbowSyrup"] = 1,
+            ["YellowLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -2348,6 +2348,29 @@ return {
           properties = {
             ["Wrench"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 207,
+          name = "Cambot2",
+          type = "LegacyCambot",
+          shape = "rectangle",
+          x = 896,
+          y = 2880,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacycambot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/cambot2.png"
           }
         }
       }
@@ -2940,6 +2963,29 @@ return {
             ["key"] = "down",
             ["toLayer"] = 3
           }
+        },
+        {
+          id = 206,
+          name = "Cambot1",
+          type = "LegacyCambot",
+          shape = "rectangle",
+          x = 800,
+          y = 3648,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacycambot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/cambot2.png"
+          }
         }
       }
     },
@@ -3445,7 +3491,7 @@ return {
           gid = 10970,
           visible = true,
           properties = {
-            ["Mine"] = 1,
+            ["RainbowSyrup"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },

@@ -181,6 +181,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/camflashlight.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/leftrightview.png"
 	},
 	{
@@ -190,6 +194,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/swatbotwhite.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/cambot2.png"
 	},
 	{
 		type = "image",

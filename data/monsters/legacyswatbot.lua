@@ -25,6 +25,50 @@ local Telegraph = require "data/monsters/actions/Telegraph"
 local OnHitEvent = require "data/battle/actions/OnHitEvent"
 local BattleActor = require "object/BattleActor"
 
+local getDodgeAction = function(self, target)
+	if target.id == "sonic" and not target.laserShield then
+		return PressX(
+			self,
+			target,
+			Serial {
+				Do(function()
+					target.dodged = true
+				end),
+				PlayAudio("sfx", "pressx", 1.0, true),
+				Parallel {
+					Serial {
+						Animate(target.sprite, "leap_dodge"),
+						Ease(target.sprite.transform, "y", target.sprite.transform.y - target.sprite.h*2, 6, "linear"),
+						Wait(0.1),
+						Ease(target.sprite.transform, "y", target.sprite.transform.y, 6, "quad"),
+						Animate(target.sprite, "crouch"),
+						Wait(0.1),
+						Animate(target.sprite, "victory"),
+						Wait(0.6),
+						Animate(target.sprite, "idle"),
+					},
+					BouncyText(
+						Transform(
+							target.sprite.transform.x + 10 + (target.textOffset.x),
+							target.sprite.transform.y + (target.textOffset.y)),
+						{255,255,255,255},
+						FontCache.ConsolasLarge,
+						"miss",
+						6,
+						false,
+						true -- outline
+					),
+				}
+			},
+			Do(function() end)
+		)
+	else
+		return target.defenseEvent and
+			target.defenseEvent(self, target) or
+			Action()
+	end
+end
+
 return {
 	name = "Legacy Swatbot",
 	altName = "Legacy Swatbot",
@@ -72,49 +116,7 @@ return {
 			-- Either do Arm Laser or Laser Sweep
 			if math.random() < 0.9 or next(self.targetOverrideStack) ~= nil then
 				local laserShot = function(t)
-					local dodgeAction = Action()
-					if t.id == "sonic" and not t.laserShield then
-						dodgeAction = PressX(
-							self,
-							t,
-							Serial {
-								Do(function()
-									t.dodged = true
-								end),
-								PlayAudio("sfx", "pressx", 1.0, true),
-								Parallel {
-									Serial {
-										Animate(t.sprite, "leap_dodge"),
-										Ease(t.sprite.transform, "y", t.sprite.transform.y - t.sprite.h*2, 6, "linear"),
-										Wait(0.1),
-										Ease(t.sprite.transform, "y", t.sprite.transform.y, 6, "quad"),
-										Animate(t.sprite, "crouch"),
-										Wait(0.1),
-										Animate(t.sprite, "victory"),
-										Wait(0.6),
-										Animate(t.sprite, "idle"),
-									},
-									BouncyText(
-										Transform(
-											t.sprite.transform.x + 10 + (t.textOffset.x),
-											t.sprite.transform.y + (t.textOffset.y)),
-										{255,255,255,255},
-										FontCache.ConsolasLarge,
-										"miss",
-										6,
-										false,
-										true -- outline
-									),
-								}
-							},
-							Do(function() end)
-						)
-					else
-						dodgeAction = t.defenseEvent and
-							t.defenseEvent(self, t) or
-							dodgeAction
-					end
-					
+					local dodgeAction = getDodgeAction(self, t)
 					return Serial {
 						Do(function()
 							self.targetSprite.transform.x = t.sprite.transform.x - 40
@@ -248,11 +250,23 @@ return {
 				}
 			else
 				-- Damage all party members
+				local dodgeAllPartyMembers = {}
 				local dmgAllPartyMembers = {}
 				local _, firstPartyMember = next(self.scene.party)
 				local lastPartyMember
 				for _, mem in pairs(self.scene.party) do
-					table.insert(dmgAllPartyMembers, OnHitEvent(self, mem))
+					table.insert(dodgeAllPartyMembers, getDodgeAction(self, mem))
+					table.insert(dmgAllPartyMembers, Try(
+						YieldUntil(
+							function()
+								return mem.dodged
+							end
+						),
+						Do(function()
+							mem.dodged = false
+						end),
+						mem:takeDamage(self.stats, true, BattleActor.shockKnockback)
+					))
 					lastPartyMember = mem
 				end
 
@@ -263,6 +277,8 @@ return {
 					Animate(self.sprite, "shoot_idle"),
 					
 					Wait(0.5),
+
+					Parallel(dodgeAllPartyMembers),
 					
 					PlayAudio("sfx", "lasersweep", 1.0, true),
 					
@@ -281,7 +297,7 @@ return {
 						self.beamSprite.transform.sx = 0
 						self.beamSprite.transform.angle = 0
 					end),
-					
+
 					Parallel(dmgAllPartyMembers),
 					Animate(self.sprite, "shoot_retract"),
 					Animate(self.sprite, "idle"),

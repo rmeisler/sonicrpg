@@ -13,34 +13,19 @@ local Transform = require "util/Transform"
 
 return function(self, target)
 	return Serial {
-		Animate(self.sprite, "nichole_start"),
-		Animate(self.sprite, "nichole_idle"),
-		
-		MessageBox {
-			message="Nicole: Running program \"X\"...",
-			rect=MessageBox.HEADLINER_RECT,
-			sfx="nichole",
-			closeAction=Wait(0.6)
-		},
-		
+		-- Leap forward while attacking
+		Animate(self.sprite, "leap"),
 		Parallel {
-			Animate(function()
-				local xform = Transform(
-					target.sprite.transform.x - target.sprite.w,
-					target.sprite.transform.y - target.sprite.h,
-					2,
-					2
-				)
-				return SpriteNode(self.scene, xform, nil, "lightning", nil, nil, "ui"), true
-			end, "idle"),
-			
-			Serial {
-				Wait(0.2),
-				PlayAudio("sfx", "shocked", 0.5, true),
-			}
+			Ease(self.sprite.transform, "x", self.sprite.transform.x - 200, 5, "linear"),
+			Ease(self.sprite.transform, "y", self.sprite.transform.y - 200, 5, "linear")
 		},
-		target:takeDamage({attack = self.stats.focus, speed = self.stats.speed, luck = self.stats.luck}),
-		Animate(self.sprite, "nichole_retract"),
-		Animate(self.sprite, "idle"),
+		Parallel {
+			Ease(self.sprite.transform, "x", target.sprite.transform.x, 5, "linear"),
+			Ease(self.sprite.transform, "y", target.sprite.transform.y, 5, "linear")
+		},
+		Animate(self.sprite, "crouchtinker"),
+		Wait(1),
+		
+		-- Enter code to reduce either attack, defense, or speed
 	}
 end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="155" tilewidth="32" tileheight="32" infinite="0" nextobjectid="204">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="155" tilewidth="32" tileheight="32" infinite="0" nextobjectid="208">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/northmountainsbg.png"/>
   <property name="layered" type="bool" value="true"/>
@@ -1686,7 +1686,7 @@ end</property>
   </object>
   <object id="165" name="Chest3" type="Chest" gid="10970" x="1856" y="1600" width="64" height="64">
    <properties>
-    <property name="Marshmallow" type="int" value="1"/>
+    <property name="Mine" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -1844,7 +1844,7 @@ end</property>
   </object>
   <object id="186" name="Chest8" type="Chest" gid="10970" x="2240" y="3840" width="64" height="64">
    <properties>
-    <property name="RainbowSyrup" type="int" value="1"/>
+    <property name="YellowLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -1986,6 +1986,18 @@ end</property>
    <properties>
     <property name="Wrench" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="207" name="Cambot2" type="LegacyCambot" gid="8696" x="896" y="2880" width="32" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
    </properties>
   </object>
  </objectgroup>
@@ -2490,6 +2502,18 @@ end</property>
     <property name="toLayer" type="int" value="3"/>
    </properties>
   </object>
+  <object id="206" name="Cambot1" type="LegacyCambot" gid="8696" x="800" y="3648" width="32" height="32">
+   <properties>
+    <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignorePlayer" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="ground" width="96" height="155">
   <data encoding="csv">
@@ -2877,7 +2901,7 @@ end</property>
   </object>
   <object id="180" name="Chest7" type="Chest" gid="10970" x="1344" y="3552" width="64" height="64">
    <properties>
-    <property name="Mine" type="int" value="1"/>
+    <property name="RainbowSyrup" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>

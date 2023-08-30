@@ -8,7 +8,7 @@ return {
   height = 38,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 6,
+  nextobjectid = 7,
   properties = {
     ["onload"] = "actions/northmountains_landing.lua",
     ["regionName"] = "Northern Mountains",
@@ -91,6 +91,32 @@ return {
       properties = {},
       terrains = {},
       tilecount = 3500,
+      tiles = {}
+    },
+    {
+      name = "cave",
+      firstgid = 12160,
+      filename = "cave.tsx",
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "../art/tiles/caves.png",
+      imagewidth = 1120,
+      imageheight = 2144,
+      transparentcolor = "#b326bd",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 2345,
       tiles = {}
     }
   },
@@ -231,7 +257,7 @@ return {
           type = "SavePoint",
           shape = "rectangle",
           x = 416,
-          y = 672,
+          y = 864,
           width = 32,
           height = 32,
           rotation = 0,
@@ -240,6 +266,23 @@ return {
           properties = {
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/save.png"
+          }
+        },
+        {
+          id = 6,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 224,
+          y = 992,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["BlasterArmor"] = 2,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }
@@ -288,9 +331,9 @@ return {
         0, 0, 0, 0, 0, 0, 8119, 8119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8119, 8119, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 8119, 0, 8119, 8119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8119, 8119, 8119, 8119, 0, 0, 0, 0,
         0, 0, 0, 8119, 8119, 8119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8119, 0, 0, 0, 0,
-        0, 0, 0, 8119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8119, 8119, 8119, 0, 0,
-        0, 0, 0, 8119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8119, 0, 0,
-        0, 0, 8119, 8119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8119, 0, 0,
+        0, 0, 0, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 0, 0,
+        0, 0, 0, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 0, 0,
+        0, 0, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 8119, 0, 0,
         0, 0, 8119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8119, 8119, 0,
         0, 0, 8119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8119, 0,
         0, 0, 8119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8119, 0,

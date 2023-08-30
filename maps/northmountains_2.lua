@@ -8,7 +8,7 @@ return {
   height = 80,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 130,
+  nextobjectid = 134,
   properties = {
     ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
     ["layered"] = true,
@@ -635,6 +635,29 @@ return {
             ["orientation"] = "left",
             ["scene"] = "northmountains_3.lua",
             ["spawn_point"] = "LeftPath"
+          }
+        },
+        {
+          id = 133,
+          name = "Cambot1",
+          type = "LegacyCambot",
+          shape = "rectangle",
+          x = 1952,
+          y = 2208,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacycambot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idleleft",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/cambot2.png"
           }
         }
       }
@@ -1349,6 +1372,46 @@ return {
             ["ghost"] = true,
             ["loganTargetable"] = true
           }
+        },
+        {
+          id = 131,
+          name = "Cambot2",
+          type = "LegacyCambot",
+          shape = "rectangle",
+          x = 1248,
+          y = 800,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 8696,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/legacycambot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/cambot2.png",
+            ["viewRange"] = "View2"
+          }
+        },
+        {
+          id = 132,
+          name = "View2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1088,
+          y = 896,
+          width = 320,
+          height = 160,
+          rotation = 0,
+          gid = 10970,
+          visible = false,
+          properties = {
+            ["ghost"] = true
+          }
         }
       }
     },
@@ -1693,7 +1756,7 @@ return {
           gid = 10970,
           visible = true,
           properties = {
-            ["BlasterArmor"] = 1,
+            ["WhiteLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
