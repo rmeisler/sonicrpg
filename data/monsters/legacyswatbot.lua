@@ -81,7 +81,7 @@ return {
 		maxhp = 380,
 		attack = 26,
 		defense = 20,
-		speed = 8,
+		speed = 9,
 		focus = 5,
 		luck = 5,
 	},

@@ -8,7 +8,7 @@ return {
   height = 155,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 208,
+  nextobjectid = 211,
   properties = {
     ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
     ["layered"] = true,
@@ -1942,23 +1942,6 @@ return {
           }
         },
         {
-          id = 163,
-          name = "Chest2",
-          type = "Chest",
-          shape = "rectangle",
-          x = 2688,
-          y = 2112,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 10970,
-          visible = true,
-          properties = {
-            ["BlueLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 164,
           name = "Chest1",
           type = "Chest",
@@ -1972,6 +1955,7 @@ return {
           visible = true,
           properties = {
             ["LaserShield"] = 1,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1988,7 +1972,8 @@ return {
           gid = 10970,
           visible = true,
           properties = {
-            ["Mine"] = 1,
+            ["BlueLeaf"] = 1,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -2172,6 +2157,7 @@ return {
           visible = true,
           properties = {
             ["YellowLeaf"] = 1,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -2347,6 +2333,7 @@ return {
           visible = true,
           properties = {
             ["Wrench"] = 1,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -2942,6 +2929,7 @@ return {
           visible = true,
           properties = {
             ["LaserShield"] = 1,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -2985,6 +2973,24 @@ return {
             ["ignorePlayer"] = false,
             ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/cambot2.png"
+          }
+        },
+        {
+          id = 209,
+          name = "NoLadderPlz",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 864,
+          y = 3744,
+          width = 96,
+          height = 224,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["notColliding"] = "return function(self, player)\n    self.scene.player.noLadder[tostring(self)] = nil\nend",
+            ["whileColliding"] = "return function(self, player)\n    self.scene.player.noLadder[tostring(self)] = true\nend"
           }
         }
       }
@@ -3492,6 +3498,7 @@ return {
           visible = true,
           properties = {
             ["RainbowSyrup"] = 1,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -3512,6 +3519,24 @@ return {
             ["ghost"] = true,
             ["key"] = "right",
             ["toLayer"] = 2
+          }
+        },
+        {
+          id = 210,
+          name = "NoLadderPlz",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 864,
+          y = 3616,
+          width = 96,
+          height = 256,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["notColliding"] = "return function(self, player)\n    self.scene.player.noLadder[tostring(self)] = nil\nend",
+            ["whileColliding"] = "return function(self, player)\n    self.scene.player.noLadder[tostring(self)] = true\nend"
           }
         }
       }

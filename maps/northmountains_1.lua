@@ -654,6 +654,7 @@ return {
           visible = true,
           properties = {
             ["RainbowSyrup"] = 1,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1269,8 +1270,8 @@ return {
           name = "Hop",
           type = "LayerHop",
           shape = "rectangle",
-          x = 2112,
-          y = 1728,
+          x = 2048,
+          y = 1792,
           width = 96,
           height = 96,
           rotation = 0,
@@ -1438,23 +1439,6 @@ return {
           }
         },
         {
-          id = 106,
-          name = "Chest5",
-          type = "Chest",
-          shape = "rectangle",
-          x = 2400,
-          y = 1440,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 10970,
-          visible = true,
-          properties = {
-            ["GreenLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 107,
           name = "Chest6",
           type = "Chest",
@@ -1468,6 +1452,7 @@ return {
           visible = true,
           properties = {
             ["CrystalWater"] = 1,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1911,6 +1896,7 @@ return {
           visible = true,
           properties = {
             ["GreenLeaf"] = 1,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1928,6 +1914,8 @@ return {
           visible = true,
           properties = {
             ["BlueLeaf"] = 1,
+            ["GreenLeaf"] = 1,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1955,7 +1943,7 @@ return {
           type = "Chest",
           shape = "rectangle",
           x = 1216,
-          y = 2432,
+          y = 2400,
           width = 64,
           height = 64,
           rotation = 0,
@@ -1963,6 +1951,7 @@ return {
           visible = true,
           properties = {
             ["RocketBoots"] = 1,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1974,7 +1963,7 @@ return {
           x = 1056,
           y = 2400,
           width = 64,
-          height = 32,
+          height = 64,
           rotation = 0,
           gid = 10970,
           visible = true,
@@ -1993,7 +1982,7 @@ return {
           x = 960,
           y = 2496,
           width = 64,
-          height = 32,
+          height = 64,
           rotation = 0,
           gid = 10970,
           visible = true,
@@ -2324,9 +2313,9 @@ return {
           type = "LayerHop",
           shape = "rectangle",
           x = 1024,
-          y = 1344,
+          y = 1280,
           width = 96,
-          height = 128,
+          height = 64,
           rotation = 0,
           gid = 10970,
           visible = true,
@@ -2363,9 +2352,9 @@ return {
           type = "LayerHop",
           shape = "rectangle",
           x = 1280,
-          y = 1344,
+          y = 1280,
           width = 96,
-          height = 128,
+          height = 64,
           rotation = 0,
           gid = 10970,
           visible = true,
@@ -2384,7 +2373,7 @@ return {
           x = 1152,
           y = 2304,
           width = 64,
-          height = 32,
+          height = 64,
           rotation = 0,
           gid = 10970,
           visible = true,
@@ -2409,6 +2398,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "knothole",
+            ["isBot"] = true,
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Ease = require \"actions/Ease\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self, player)\n    return BlockPlayer {\n        Ease(self, \"x\", self.x - 64, 3, \"linear\"),\n        Do(function() self.scene.objectLookup.Boulder.sprite:swapLayer(\"objects3\") end),\n        Ease(self, \"y\", self.scene.objectLookup.Swatbot1.y + self.scene.objectLookup.Swatbot1.sprite.h, 5),\n        PlayAudio(\"sfx\", \"smack\", 1.0, true),\n        Animate(self.scene.objectLookup.Swatbot1.sprite, \"hurtdown\"),\n        Ease(self, \"y\", function() return self.y + 2 end, 20),\n        Ease(self, \"y\", function() return self.y - 2 end, 20),\n        Ease(self, \"y\", function() return self.y + 2 end, 20),\n        Ease(self, \"y\", function() return self.y - 1 end, 20),\n        Ease(self, \"y\", function() return self.y + 1 end, 20),\n        PlayAudio(\"sfx\", \"oppdeath\", 1.0, true),\n        Ease(self.scene.objectLookup.Swatbot1.sprite.color, 4, 0, 1),\n        Ease(self.sprite.color, 4, 0, 1),\n        Do(function()\n            self.isInteractable = false\n            self.scene.objectLookup.Swatbot1:permanentRemove()\n            self:permanentRemove()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/boulder.png"
           }
         },
@@ -2417,8 +2408,8 @@ return {
           name = "Cambot3",
           type = "LegacyCambot",
           shape = "rectangle",
-          x = 1312,
-          y = 1600,
+          x = 1184,
+          y = 2112,
           width = 32,
           height = 32,
           rotation = 0,
@@ -2427,7 +2418,7 @@ return {
           properties = {
             ["battle"] = "../data/monsters/legacycambot.lua",
             ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idleleft",
+            ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = false,
@@ -2441,8 +2432,8 @@ return {
           name = "ViewC3",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1120,
-          y = 1696,
+          x = 1088,
+          y = 2208,
           width = 288,
           height = 288,
           rotation = 0,

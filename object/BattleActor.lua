@@ -129,7 +129,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun, attacker)
 	local damageText
 	local damageTextColor = {255, 0, 20, 255}
 
-	local damage = self:calculateDamage(stats)
+	local damage = stats.damage or self:calculateDamage(stats)
 	
 	-- Random chance of miss
 	if stats.miss or damage == 0 then

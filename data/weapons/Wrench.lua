@@ -11,6 +11,6 @@ return {
 	sprite = "sword",
 	color = {200,200,0,255},
 	stats = {
-		attack = 3
+		attack = 4
 	}
 }

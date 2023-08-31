@@ -292,13 +292,12 @@ return function(scene, hint)
 			Wait(1),
 			Animate(leon.sprite, "idleright"),
 			MessageBox {message="Sally: There's something else."},
+			PlayAudio("music", "bartsomber", 1.0, true, true),
 			MessageBox {message="Sally: We picked up a distress signal in the area. {p60}It seems like it's been on repeat for a long time..."},
 			Animate(logan.sprite, "meeting_idledown"),
 			Animate(ivan.sprite, "meeting_idledown"),
 			Animate(fleet.sprite, "meeting_idledown"),
-			MessageBox {message="Rotor: How can you tell?"},
-			PlayAudio("music", "bartsomber", 1.0, true, true),
-			MessageBox {message="Sally: It's requesting assistance from the Kingdom of Mobotropolis..."},
+			MessageBox {message="Sally: ...it's requesting assistance from the Kingdom of Mobotropolis..."},
 			Parallel {
 				hop(sonic),
 				hop(bunnie),
@@ -330,7 +329,6 @@ return function(scene, hint)
 			-- Sally looks at Leon. He shakes his head no.
 			Animate(sally.sprite, "meeting_sadleft"),
 			MessageBox {message="Sally: I'm sorry Rotor{p60}, it's just too dangerous.", closeAction=Wait(4)},
-			MessageBox {message="Rotor: But...", closeAction=Wait(2.5)},
 			Do(function()
 				-- If not set from ep 3 save file, set this
 				GameState:setFlag("ep3_ffmeetingover")

@@ -61,6 +61,9 @@ return function(scene, hint)
 		scene.player.hidekeyhints[tostring(scene.objectLookup.Save)] = true
 		scene.camPos.y = 350
 		return BlockPlayer {
+			Do(function()
+				scene.player.hidekeyhints[tostring(scene.objectLookup.Save)] = true
+			end),
 			PlayAudio("sfx", "wind", 0.5, true, true),
 			Wait(3),
 			Do(showTitle),

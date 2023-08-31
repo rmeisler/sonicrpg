@@ -2895,10 +2895,14 @@ return function(self)
                 end)
             }
         end
+        local walkout, walkin, sprites = self.scene.player:split()
         return BlockPlayer {
             Do(function() self:facePlayer() end),
             MessageBox {message = &quot;Tails: Hey guys! {p60}I'm trying to make this snowman, but he's missing a few things...&quot;},
             MessageBox {message = &quot;Tails: Could you help me find {h 9 Lumps of Coal}?&quot;},
+            walkout,
+            MessageBox{message=&quot;Logan: I should be able to find them using my computer's scanner ({h lshift})...&quot;},
+            walkin,
             Do(function()
                 self.sprite:setAnimation(&quot;idleright&quot;)
                 self:refreshKeyHint()

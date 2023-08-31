@@ -38,8 +38,8 @@ return {
 
 	stats = {
 		xp = 120,
-		maxhp = 10, --4000,
-		attack = 60,
+		maxhp = 5000,
+		attack = 80,
 		defense = 30,
 		speed = 5,
 		focus = 1,
@@ -231,6 +231,7 @@ return {
 					self.beamSprite.transform.x = 700
 					self.beamSprite.transform.y = self.beamSpriteStart.transform.y + self.beamSpriteStart.h*4
 				end),
+				PlayAudio("sfx", "plasmabeam", 0.8, true),
 				Parallel {
 					Ease(self.beamSpriteStart.transform, "sy", 5, 3),
 					Ease(self.beamSprite.transform, "sy", 5, 3),
@@ -340,7 +341,7 @@ return {
 								PlayAudio("sfx", "pressx", 1.0, true),
 								target:takeDamage({miss = true, attack = 1, speed = 1, luck = 1})
 							},
-							target:takeDamage({attack = 90, speed = 100, luck = 0})
+							target:takeDamage({attack = 95, speed = 100, luck = 0})
 						),
 						Wait(1),
 					},

@@ -355,6 +355,7 @@
   <object id="82" name="Chest1" type="Chest" gid="10970" x="1888" y="1888" width="64" height="64">
    <properties>
     <property name="CopperAmulet" type="int" value="1"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -941,12 +942,14 @@ end
   <object id="127" name="Chest3" type="Chest" gid="10970" x="1120" y="1472" width="64" height="64">
    <properties>
     <property name="CrystalWater" type="int" value="1"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
   <object id="128" name="Chest4" type="Chest" gid="10970" x="1088" y="832" width="64" height="64">
    <properties>
-    <property name="GreenLeaf" type="int" value="1"/>
+    <property name="GreenLeaf" type="int" value="2"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -1240,6 +1243,7 @@ end
   <object id="111" name="Chest2" type="Chest" gid="10970" x="1632" y="640" width="64" height="64">
    <properties>
     <property name="WhiteLeaf" type="int" value="1"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>

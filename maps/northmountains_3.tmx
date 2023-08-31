@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="155" tilewidth="32" tileheight="32" infinite="0" nextobjectid="208">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="155" tilewidth="32" tileheight="32" infinite="0" nextobjectid="211">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/northmountainsbg.png"/>
   <property name="layered" type="bool" value="true"/>
@@ -1672,21 +1672,17 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/abominable.png"/>
    </properties>
   </object>
-  <object id="163" name="Chest2" type="Chest" gid="10970" x="2688" y="2112" width="64" height="64">
-   <properties>
-    <property name="BlueLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
   <object id="164" name="Chest1" type="Chest" gid="10970" x="2688" y="2784" width="64" height="64">
    <properties>
     <property name="LaserShield" type="int" value="1"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
   <object id="165" name="Chest3" type="Chest" gid="10970" x="1856" y="1600" width="64" height="64">
    <properties>
-    <property name="Mine" type="int" value="1"/>
+    <property name="BlueLeaf" type="int" value="1"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -1845,6 +1841,7 @@ end</property>
   <object id="186" name="Chest8" type="Chest" gid="10970" x="2240" y="3840" width="64" height="64">
    <properties>
     <property name="YellowLeaf" type="int" value="1"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -1985,6 +1982,7 @@ end</property>
   <object id="201" name="Chest4" type="Chest" gid="10970" x="896" y="2848" width="64" height="64">
    <properties>
     <property name="Wrench" type="int" value="1"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -2491,6 +2489,7 @@ end</property>
   <object id="182" name="Chest8" type="Chest" gid="10970" x="736" y="3616" width="64" height="64">
    <properties>
     <property name="LaserShield" type="int" value="1"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -2512,6 +2511,17 @@ end</property>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
+   </properties>
+  </object>
+  <object id="209" name="NoLadderPlz" type="BasicNPC" gid="10970" x="864" y="3744" width="96" height="224">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="notColliding">return function(self, player)
+    self.scene.player.noLadder[tostring(self)] = nil
+end</property>
+    <property name="whileColliding">return function(self, player)
+    self.scene.player.noLadder[tostring(self)] = true
+end</property>
    </properties>
   </object>
  </objectgroup>
@@ -2902,6 +2912,7 @@ end</property>
   <object id="180" name="Chest7" type="Chest" gid="10970" x="1344" y="3552" width="64" height="64">
    <properties>
     <property name="RainbowSyrup" type="int" value="1"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -2911,6 +2922,17 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="right"/>
     <property name="toLayer" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="210" name="NoLadderPlz" type="BasicNPC" gid="10970" x="864" y="3616" width="96" height="256">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="notColliding">return function(self, player)
+    self.scene.player.noLadder[tostring(self)] = nil
+end</property>
+    <property name="whileColliding">return function(self, player)
+    self.scene.player.noLadder[tostring(self)] = true
+end</property>
    </properties>
   </object>
  </objectgroup>

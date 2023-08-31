@@ -526,6 +526,7 @@ return {
           visible = true,
           properties = {
             ["CopperAmulet"] = 1,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1336,6 +1337,7 @@ return {
           visible = true,
           properties = {
             ["CrystalWater"] = 1,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1352,7 +1354,8 @@ return {
           gid = 10970,
           visible = true,
           properties = {
-            ["GreenLeaf"] = 1,
+            ["GreenLeaf"] = 2,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1757,6 +1760,7 @@ return {
           visible = true,
           properties = {
             ["WhiteLeaf"] = 1,
+            ["loganTargetable"] = true,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },

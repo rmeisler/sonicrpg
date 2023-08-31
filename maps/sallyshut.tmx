@@ -350,7 +350,7 @@ return function(self)
                     layout = Layout {
                         {Layout.Text(&quot;Practice fighting&quot;), choose = function(menu)
                             local fightMenuOpts = {{Layout.Text(&quot;Which boss?&quot;), selectable = false}}
-                            local bots = {&quot;rover&quot;, &quot;juggerbot&quot;}
+                            local bots = {&quot;rover&quot;, &quot;juggerbot&quot;, &quot;cyclops&quot;}
                             for _, name in pairs(bots) do
                                 local bot = require (&quot;data/monsters/&quot;..name)
                                 table.insert(fightMenuOpts, {Layout.Text(bot.name), choose = function(menu2)
@@ -452,8 +452,12 @@ return function(self)
                                 msg = &quot;Ride the pulley out of Knothole and head East to the Dark Swamp!{p60}... But before you do that{p60}... maybe take a rest, huh?&quot;
                             elseif not GameState:isFlagSet(&quot;ep3_sallynap_over&quot;) then
                                 msg = &quot;At this time of night, the view from the {h Lookout} must be breathtaking.&quot;
-                            else
+                            elseif not GameState:isFlagSet(&quot;ep3_boss&quot;) then
                                 msg = &quot;Ride the pulley out of Knothole and head East to the Dark Swamp!&quot;
+                            elseif not GameState:isFlagSet(&quot;ep4_tails_snowman&quot;) then
+                                 msg = &quot;Tails could use some help with that snowman...&quot;
+                            else
+                                 msg = &quot;Ride the pulley out of Knothole and head to the Great Forest to get the Freedom Stormer!&quot;
                             end
 
                             self.scene:run {

@@ -85,12 +85,6 @@
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
-  <object id="6" name="Chest1" type="Chest" gid="10970" x="224" y="992" width="64" height="64">
-   <properties>
-    <property name="BlasterArmor" type="int" value="2"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
  </objectgroup>
  <imagelayer name="snowstorm" opacity="0.4">
   <image source="../art/parallax/snowstorm.png" width="800" height="600"/>

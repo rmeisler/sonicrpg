@@ -267,23 +267,6 @@ return {
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/save.png"
           }
-        },
-        {
-          id = 6,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 224,
-          y = 992,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 10970,
-          visible = true,
-          properties = {
-            ["BlasterArmor"] = 2,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
         }
       }
     },

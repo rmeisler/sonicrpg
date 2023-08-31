@@ -6,7 +6,7 @@ return {
 	unusable = function(target)
 		return target.side == TargetType.Party
 	end,
-	cost = 10,
+	cost = 6,
 	desc = "Reduce an opponent's attack, defense, or speed",
 	action = require "data/battle/skills/actions/Sabotage"
 }

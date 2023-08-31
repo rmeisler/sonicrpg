@@ -483,6 +483,7 @@
   <object id="12" name="Chest2" type="Chest" gid="10970" x="1952" y="1184" width="64" height="64">
    <properties>
     <property name="RainbowSyrup" type="int" value="1"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -920,7 +921,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/snowtree.png"/>
    </properties>
   </object>
-  <object id="79" name="Hop" type="LayerHop" gid="10970" x="2112" y="1728" width="96" height="96">
+  <object id="79" name="Hop" type="LayerHop" gid="10970" x="2048" y="1792" width="96" height="96">
    <properties>
     <property name="fromLayer" type="int" value="3"/>
     <property name="ghost" type="bool" value="true"/>
@@ -994,15 +995,10 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="106" name="Chest5" type="Chest" gid="10970" x="2400" y="1440" width="64" height="64">
-   <properties>
-    <property name="GreenLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
-   </properties>
-  </object>
   <object id="107" name="Chest6" type="Chest" gid="10970" x="320" y="1536" width="64" height="64">
    <properties>
     <property name="CrystalWater" type="int" value="1"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -1303,12 +1299,15 @@ end</property>
   <object id="19" name="Chest1" type="Chest" gid="10970" x="800" y="1376" width="64" height="64">
    <properties>
     <property name="GreenLeaf" type="int" value="1"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
   <object id="42" name="Chest2" type="Chest" gid="10970" x="1504" y="992" width="64" height="64">
    <properties>
     <property name="BlueLeaf" type="int" value="1"/>
+    <property name="GreenLeaf" type="int" value="1"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -1319,13 +1318,14 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/snowtree.png"/>
    </properties>
   </object>
-  <object id="75" name="Chest3" type="Chest" gid="10970" x="1216" y="2432" width="64" height="64">
+  <object id="75" name="Chest3" type="Chest" gid="10970" x="1216" y="2400" width="64" height="64">
    <properties>
     <property name="RocketBoots" type="int" value="1"/>
+    <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="77" name="Hop" type="LayerHop" gid="10970" x="1056" y="2400" width="64" height="32">
+  <object id="77" name="Hop" type="LayerHop" gid="10970" x="1056" y="2400" width="64" height="64">
    <properties>
     <property name="fromLayer" type="int" value="2"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1333,7 +1333,7 @@ end</property>
     <property name="toLayer" type="int" value="2"/>
    </properties>
   </object>
-  <object id="80" name="Hop" type="LayerHop" gid="10970" x="960" y="2496" width="64" height="32">
+  <object id="80" name="Hop" type="LayerHop" gid="10970" x="960" y="2496" width="64" height="64">
    <properties>
     <property name="fromLayer" type="int" value="2"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1589,7 +1589,7 @@ end</property>
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="6" name="Hop" type="LayerHop" gid="10970" x="1024" y="1344" width="96" height="128">
+  <object id="6" name="Hop" type="LayerHop" gid="10970" x="1024" y="1280" width="96" height="64">
    <properties>
     <property name="fromLayer" type="int" value="1"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1606,7 +1606,7 @@ end</property>
     <property name="spawn_point" value="DownPath"/>
    </properties>
   </object>
-  <object id="49" name="Hop" type="LayerHop" gid="10970" x="1280" y="1344" width="96" height="128">
+  <object id="49" name="Hop" type="LayerHop" gid="10970" x="1280" y="1280" width="96" height="64">
    <properties>
     <property name="fromLayer" type="int" value="1"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1614,7 +1614,7 @@ end</property>
     <property name="toLayer" type="int" value="2"/>
    </properties>
   </object>
-  <object id="74" name="Hop" type="LayerHop" gid="10970" x="1152" y="2304" width="64" height="32">
+  <object id="74" name="Hop" type="LayerHop" gid="10970" x="1152" y="2304" width="64" height="64">
    <properties>
     <property name="fromLayer" type="int" value="1"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1625,14 +1625,43 @@ end</property>
   <object id="121" name="Boulder" type="BasicNPC" gid="10970" x="1056" y="992" width="64" height="64">
    <properties>
     <property name="defaultAnim" value="knothole"/>
+    <property name="isBot" type="bool" value="true"/>
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Ease = require &quot;actions/Ease&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Do = require &quot;actions/Do&quot;
+
+return function(self, player)
+    return BlockPlayer {
+        Ease(self, &quot;x&quot;, self.x - 64, 3, &quot;linear&quot;),
+        Do(function() self.scene.objectLookup.Boulder.sprite:swapLayer(&quot;objects3&quot;) end),
+        Ease(self, &quot;y&quot;, self.scene.objectLookup.Swatbot1.y + self.scene.objectLookup.Swatbot1.sprite.h, 5),
+        PlayAudio(&quot;sfx&quot;, &quot;smack&quot;, 1.0, true),
+        Animate(self.scene.objectLookup.Swatbot1.sprite, &quot;hurtdown&quot;),
+        Ease(self, &quot;y&quot;, function() return self.y + 2 end, 20),
+        Ease(self, &quot;y&quot;, function() return self.y - 2 end, 20),
+        Ease(self, &quot;y&quot;, function() return self.y + 2 end, 20),
+        Ease(self, &quot;y&quot;, function() return self.y - 1 end, 20),
+        Ease(self, &quot;y&quot;, function() return self.y + 1 end, 20),
+        PlayAudio(&quot;sfx&quot;, &quot;oppdeath&quot;, 1.0, true),
+        Ease(self.scene.objectLookup.Swatbot1.sprite.color, 4, 0, 1),
+        Ease(self.sprite.color, 4, 0, 1),
+        Do(function()
+            self.isInteractable = false
+            self.scene.objectLookup.Swatbot1:permanentRemove()
+            self:permanentRemove()
+        end)
+    }
+end</property>
     <property name="sprite" type="file" value="../art/sprites/boulder.png"/>
    </properties>
   </object>
-  <object id="128" name="Cambot3" type="LegacyCambot" gid="8696" x="1312" y="1600" width="32" height="32">
+  <object id="128" name="Cambot3" type="LegacyCambot" gid="8696" x="1184" y="2112" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
-    <property name="defaultAnim" value="idleleft"/>
+    <property name="defaultAnim" value="idledown"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignorePlayer" type="bool" value="false"/>
@@ -1641,7 +1670,7 @@ end</property>
     <property name="viewRange" value="ViewC3"/>
    </properties>
   </object>
-  <object id="132" name="ViewC3" type="BasicNPC" gid="10970" x="1120" y="1696" width="288" height="288" visible="0">
+  <object id="132" name="ViewC3" type="BasicNPC" gid="10970" x="1088" y="2208" width="288" height="288" visible="0">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
