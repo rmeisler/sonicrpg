@@ -2792,7 +2792,7 @@ return function(self)
                 endAction = Serial {
                     MessageBox {message = &quot;Tails: Thanks so much for helping me guys{p60}, this is the best snowman ever!&quot;},
                     Do(function()
-                        self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true}
+                        self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true, manifest = &quot;postsnowdaymanifest&quot;}
                     end)
                 }
             end
@@ -2820,7 +2820,9 @@ return function(self)
             then
                 endAction = Spawn(Serial {
                     MessageBox {message = &quot;Tails: Thanks so much for helping me guys{p60}, this is the best snowman ever!&quot;},
-                    Do(function() self:refreshKeyHint() end)
+                    Do(function()
+                        self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true, manifest = &quot;postsnowdaymanifest&quot;}
+                    end)
                 })
             end
             GameState:removeItem(&quot;Scarf&quot;)
@@ -2847,7 +2849,9 @@ return function(self)
             then
                 endAction = Serial {
                     MessageBox {message = &quot;Tails: Thanks so much for helping me guys{p60}, this is the best snowman ever!&quot;},
-                    Do(function() self:refreshKeyHint() end)
+                    Do(function()
+                        self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true, manifest = &quot;postsnowdaymanifest&quot;}
+                    end)
                 }
             end
             GameState:removeItem(&quot;Top Hat&quot;)
