@@ -428,7 +428,12 @@ function BasicScene:onExit(args)
 		fadeAction,
 		Do(function()
 			if not self.enteringBattle and not args.tutorial then
-				self:remove()
+				if args.manifest then
+					self.sceneMgr:cleanup()
+					print("done with cleanup")
+				else
+					self:remove()
+				end
 			end
 		end)
 	}
@@ -490,26 +495,61 @@ function BasicScene:fadeOut(speed)
 	}
 end
 
-function BasicScene:remove()
-	-- Delete all map objects
-	for _, obj in pairs(self.map.objects) do
-		obj:remove()
+function BasicScene:remove(cleanupResources)
+	if self.removed then -- Already called remove
+		return
 	end
-	self.map.drawTileLayer = self.originalMapDraw
-	self.map.drawImageLayer = self.originalImgDraw
-	self.map.objects = nil
+	if cleanupResources then
+		self.audio:cleanup()
+		self.audio = nil
+		self.images = nil
+		self.animations = nil
+		self.mboxGradient = nil
+		self:removeNode(self.map)
+		for _, map in pairs(self.maps) do
+			if map.layers then
+				for _,layer in pairs(map.layers) do
+					layer.image = nil
+				end
+			end
+			if map.objects then
+				for _, obj in pairs(map.objects) do
+					if obj.remove then
+						obj:remove()
+						obj.sprite:remove()
+						obj.sprite:cleanup()
+					end
+				end
+			end
+		end
+	else
+		-- Delete all map objects
+		for _, obj in pairs(self.map.objects) do
+			obj:remove()
+		end
+		self.map.drawTileLayer = self.originalMapDraw
+		self.map.drawImageLayer = self.originalImgDraw
+		self.map.objects = nil
+		self.map.fallables = nil
+		self:removeNode(self.map)
+	end
+
 	self.objectLookup = nil
-	self.map.fallables = nil
-	self:removeNode(self.map)
-	
+
 	self:cleanupLayers()
 	self.handlers = {}
 
 	self.player:remove()
 	self.player = nil
-	
+
 	self:cleanupLayers()
-	
+	self.removed = true
+
+	if cleanupResources then
+		self.map = nil
+		self.maps = nil
+	end
+
 	print("destroying cur scene")
 end
 

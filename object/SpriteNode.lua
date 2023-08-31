@@ -115,6 +115,11 @@ function SpriteNode:setAnimation(name)
 	end
 end
 
+function SpriteNode:cleanup()
+	self.img = nil
+	self.animations = nil
+end
+
 function SpriteNode:getAnimation(name)
 	if self.animationOverrideStack[name] then
 		return self.animations[self.animationOverrideStack[name][1]]

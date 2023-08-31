@@ -41,6 +41,8 @@ return function(scene, hint)
 
 	if hint == "snowday" then
 		showTitle()
+		scene.objectLookup.Logan:remove()
+		scene.objectLookup.Rotor:remove()
 		scene.objectLookup.Entrance.object.properties.scene = "knotholesnowday.lua"
 		return Action()
 	end

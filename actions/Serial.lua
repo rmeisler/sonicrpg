@@ -28,6 +28,11 @@ end
 
 function Serial:setScene(scene)
 	self.scene = scene
+	if self.animations == nil then
+		-- Edge case, we are mid destruction, leave gracefully
+		self.done = true
+		return
+	end
 	if self.animations[self.index] then
 		self.animations[self.index]:setScene(scene)
 	end

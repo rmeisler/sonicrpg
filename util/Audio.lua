@@ -243,6 +243,13 @@ function Audio:stopAmbient()
 	end
 end
 
+function Audio:cleanup()
+	self.sfx = {}
+	self.music = {}
+	self.ambient = {}
+	self.current = {}
+end
+
 function Audio:stopAll()
 	love.audio.stop()
 	self.current = {}

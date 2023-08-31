@@ -20,6 +20,16 @@ function SceneManager:construct()
 	Task.SpawnThreads()
 end
 
+function SceneManager:cleanup()
+	for id,scene in pairs(self.sceneStack) do
+		if scene.remove then
+			scene:remove(true)
+		end
+	end
+	self.cachedScenes = {}
+	collectgarbage("collect")
+end
+
 function SceneManager:getCurrent()
 	return self.sceneStack[self.current]
 end

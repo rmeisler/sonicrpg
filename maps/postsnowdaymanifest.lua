@@ -52,17 +52,6 @@ return {
 		type = "map",
 		file = "maps/robotnikwarroom.lua"
 	},
-	{
-        type = "map",
-        file = "maps/forgottenhideout.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgottenhideout_broom.lua",
-		--primary = true
-    },
 	
 	{
         type = "map",
@@ -550,47 +539,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/nap.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/spooky.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/royalwelcome.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/ep4harp.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/ep4intro.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/standup.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
 		file = "audio/music/project.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/leonenters.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/ep3transition.ogg",
 		category = "music"
 	},
 	{
