@@ -65,6 +65,7 @@ function RotorTrap:shockBots()
 				self.sprite.w/5,
 				self.sprite.h/5)
 		then
+			self.scene.audio:playMusic(obj.prevSceneMusic)
 			self.shockedBots[tostring(obj)] = obj
 			obj.sprite:trySetAnimation("hurtdown")
 			obj:removeCollision()

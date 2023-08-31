@@ -390,7 +390,8 @@ function Player:removeKeyHint()
 			Do(function()
 				self.curKeyHintSprite:remove()
 				self.curKeyHintSprite = nil
-				
+
+				self.keyhints = {}
 				self.showPressLsh = false
 				self.showPressX = false
 				self.showPressDir = false
