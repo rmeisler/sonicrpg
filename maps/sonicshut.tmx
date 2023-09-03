@@ -155,6 +155,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="lower"/>
  <objectgroup name="objects">
   <object id="1" name="Chest1" type="Chest" gid="6839" x="544" y="448" width="64" height="64">
    <properties>

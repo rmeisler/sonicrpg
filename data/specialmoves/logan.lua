@@ -76,9 +76,6 @@ return function(player)
 			return love.keyboard.isDown("lshift") or player.loganSpecialGoneTooFar
 		end,
 		Serial {
-			Do(function()
-				player.sprite.sortOrderY = player.y
-			end),
 			Animate(player.sprite, "scan"),
 			PlayAudio("sfx", "nichole", 1.0, true),
 			Wait(1),
@@ -86,7 +83,6 @@ return function(player)
 			aggro,
 			Do(function()
 				player.basicUpdate = player.updateFun
-				player.sprite.sortOrderY = nil
 			end)
 		},
 		Serial {
@@ -98,7 +94,6 @@ return function(player)
 			},
 			Do(function()
 				player.basicUpdate = player.updateFun
-				player.sprite.sortOrderY = nil
 				player.scene:pauseEnemies(false)
 			end)
 		}

@@ -90,6 +90,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="lower"/>
  <objectgroup name="objects">
   <object id="2" name="Door" type="Door" gid="6839" x="352" y="608" width="64" height="64">
    <properties>

@@ -59,6 +59,10 @@ function NPC:construct(scene, layer, object)
 		self.onInit = assert(loadstring(object.properties.onInit))()
 	end
 
+	if object.properties.onRotorTrap then
+		self.onRotorTrap = assert(loadstring(object.properties.onRotorTrap))()
+	end
+
 	if object.properties.onPostInit then
 		self.onPostInit = assert(loadstring(object.properties.onPostInit))()
 	end

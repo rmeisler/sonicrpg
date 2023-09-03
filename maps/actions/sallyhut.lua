@@ -105,8 +105,20 @@ return function(scene, hint)
 		})
 		return Action()
 	end
-
-	if not scene.nighttime and
+	
+	if GameState:isFlagSet("ep4_introdone") then
+		scene.objectLookup.Door.object.properties.scene = "knothole.lua"
+		scene.objectLookup.SallysBed.isInteractable = false
+		Executor(scene):act(Serial {
+			Wait(0.5),
+			text,
+			Ease(text.color, 4, 255, 1),
+			Wait(2),
+			Ease(text.color, 4, 0, 1)
+		})
+		scene.audio:playMusic("knotholehut", 0.8)
+		return Action()
+	elseif not scene.nighttime and
 	   (GameState:isFlagSet("ep3_ffmeeting") or not GameState:isFlagSet("ep3_knotholerun"))
 	then
 		if hint == "night" then

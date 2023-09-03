@@ -94,6 +94,7 @@ function MessageBox:construct(args) -- name, message, rect, closeAction, blockin
 		-- Mark opened
 		Do(function()
 			self.opened = false
+			self.scene.audio:stopSfx()
 		end),
 		-- Fade out/shrink
 		Parallel {

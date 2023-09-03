@@ -151,6 +151,7 @@ Workshop</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="lower"/>
  <objectgroup name="objects">
   <object id="4" name="Door" type="Door" gid="6839" x="352" y="704" width="64" height="32">
    <properties>
@@ -264,9 +265,9 @@ return function(self)
         return BlockPlayer {
             Do(function()
                 self.scene.player.noIdle = true
-                self.scene.player.state = &quot;pose&quot;
+                self.scene.player.sprite:setAnimation(&quot;pose&quot;)
             end),
-            MessageBox{message=&quot;Logan: Hey, it may not look like much, but it's a reliable!&quot;},
+            MessageBox{message=&quot;Logan: Hey, it may not look like much, but it's reliable!&quot;},
             Do(function()
                 self.scene.player.noIdle = false
             end),

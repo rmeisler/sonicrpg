@@ -4,6 +4,6 @@ return {
 	name = "Copper Amulet",
 	desc = "Protects the wearer from being poisoned.",
 	type = ItemType.Accessory,
-	usableBy = {"antoine", "sally", "sonic", "rotor", "bunny"},
+	usableBy = {"antoine", "sally", "sonic", "rotor", "bunny", "logan", "fleet", "ivan", "leon"},
 	stats = {}
 }

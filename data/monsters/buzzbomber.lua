@@ -368,7 +368,7 @@ return {
 						table.insert(targetList, i)
 					end
 				end
-				secondTarget = self.scene.opponents[targetList[math.random(#targetList)]]
+				secondTarget = self.scene.opponents[targetList[math.random(1, #targetList)]]
 			else
 				local targetList = {}
 				for i, c in pairs(self.scene.party) do
@@ -376,7 +376,7 @@ return {
 						table.insert(targetList, i)
 					end
 				end
-				secondTarget = self.scene.party[targetList[math.random(#targetList)]]
+				secondTarget = self.scene.party[targetList[math.random(1, #targetList)]]
 			end
 		
 			return Serial {

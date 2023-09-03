@@ -94,8 +94,10 @@ return function(scene, hint)
 			end
 		end
 		scene.objectLookup.Door.object.properties.scene = "knothole.lua"
-		
-		if not GameState:isFlagSet("ep3_ffmeeting") then
+
+		if GameState:isFlagSet("ep4_introdone") then
+			scene.audio:playMusic("knotholehut", 0.8)
+		elseif not GameState:isFlagSet("ep3_ffmeeting") then
 			scene.audio:playMusic("awkward", 1.0)
 		else
 			scene.audio:playMusic("knotholehut", 0.8)

@@ -140,11 +140,11 @@ end
 
 
 return function(self, target)
-	self.pressx = SpriteNode(self.scene, Transform.from(self.sprite.transform, Transform(-16,-self.sprite.h)), nil, "pressx", nil, nil, "ui")
+	self.pressx = SpriteNode(self.scene, Transform.fromoffset(self.sprite.transform, Transform(-40,-self.sprite.h)), nil, "pressx", nil, nil, "ui")
 	self.pressx:setAnimation("idle")
 	self.pressx.color[4] = 0
 
-	self.pressz = SpriteNode(self.scene, Transform.from(self.sprite.transform, Transform(16,-self.sprite.h)), nil, "pressz", nil, nil, "ui")
+	self.pressz = SpriteNode(self.scene, Transform.fromoffset(self.sprite.transform, Transform(0,-self.sprite.h)), nil, "pressz", nil, nil, "ui")
 	self.pressz:setAnimation("idle")
 	self.pressz.color[4] = 0
 

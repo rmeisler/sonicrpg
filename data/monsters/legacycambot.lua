@@ -28,8 +28,8 @@ return {
 
 	stats = {
 		xp    = 40,
-		maxhp = 1000,
-		attack = 35,
+		maxhp = 800,
+		attack = 30,
 		defense = 10,
 		speed = 10,
 		focus = 5,
@@ -176,7 +176,7 @@ return {
 				}
 			end
 		elseif math.random() < 0.4 then
-			target = self.scene.opponents[math.random(#self.scene.opponents)]
+			target = self.scene.opponents[math.random(1, #self.scene.opponents)]
 			return Serial {
 				Telegraph(self, "Repair", {255,255,255,50}),
 				Ease(self.sprite.color, 2, 512, 1),

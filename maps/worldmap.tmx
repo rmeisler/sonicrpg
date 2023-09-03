@@ -2139,7 +2139,7 @@ local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
 
 return function(self, player, prevState)
-    if player.onLocation == self then
+    if player.onLocation == self or GameState:isFlagSet(&quot;ep4_introdone&quot;) then
         return
     end
     player.onLocation = self
@@ -2245,7 +2245,7 @@ local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
 
 return function(self, player, prevState)
-    if player.onSubLocation == self then
+    if player.onSubLocation == self or GameState:isFlagSet(&quot;ep4_introdone&quot;) then
         return
     end
     player.onSubLocation = self

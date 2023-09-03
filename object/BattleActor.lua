@@ -241,7 +241,7 @@ function BattleActor:calculateDamage(stats)
 	-- Random chance of miss
 	if stats.miss or
 	   damage == 0 or
-	   ((selfStats.speed > stats.speed) and math.random(100) <= (selfStats.speed - stats.speed))
+	   ((selfStats.speed > stats.speed) and (math.random(1, 100) <= (selfStats.speed - stats.speed)))
 	then
 		if damage ~= 0 or stats.miss then
 			damage = 0

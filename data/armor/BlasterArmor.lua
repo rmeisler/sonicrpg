@@ -12,6 +12,8 @@ return {
 	},
 	event = {
 		type = EventType.Z,
-		action = require "data/battle/actions/Absorb"
+		action = function()
+			return require "data/battle/actions/Absorb"
+		end
 	}
 }

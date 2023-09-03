@@ -11,6 +11,9 @@ end
 
 function Spawn:update(dt)
 	-- Important to call in update
+	if type(self.action) == "function" then
+		self.action = self.action()
+	end
 	Executor(self.scene):act(self.action)
 	self.done = true
 end

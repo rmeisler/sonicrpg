@@ -456,7 +456,7 @@ function GameState:load(scene, slot)
 		self.leader = data.leader
 		
 		-- What manifest to use?...
-		if self:isFlagSet("ep4_to_the_mnt") then
+		if self:isFlagSet("ep4_to_the_mnt") or self:isFlagSet("ep4_abominable1") then
 			scene.sceneMgr:pushScene {
 				class = "Region",
 				manifest = "maps/northmountainsmanifest.lua",
@@ -468,7 +468,7 @@ function GameState:load(scene, slot)
 		elseif self:isFlagSet("ep4_ffmeetingover") then
 			scene.sceneMgr:pushScene {
 				class = "Region",
-				manifest = "maps/postsnowdaymanifest.lua",
+				manifest = "maps/sonicdemo_manifest.lua",
 				map = data.map,
 				spawn_point = data.spawnPoint,
 				nextMusic = data.music,
@@ -478,7 +478,7 @@ function GameState:load(scene, slot)
 			-- Use ironlock manifest file
 			scene.sceneMgr:pushScene {
 				class = "Region",
-				manifest = "maps/snowdaymanifest.lua",
+				manifest = "maps/sonicdemo_manifest.lua",
 				map = data.map,
 				spawn_point = data.spawnPoint,
 				nextMusic = data.music,

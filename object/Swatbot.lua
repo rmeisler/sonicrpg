@@ -25,7 +25,7 @@ function Swatbot:construct(scene, layer, object)
 	if self:isRemoved() then
 		return
 	end
-	
+	self.ghost = true
 	Bot.init(self, true)
 	
 	self.collision = {}

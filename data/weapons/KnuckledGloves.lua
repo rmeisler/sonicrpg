@@ -14,7 +14,9 @@ return {
 	},
 	event = {
 		type = EventType.X,
-		action = require "data/battle/actions/Leach"
+		action = function()
+			return require "data/battle/actions/Leach"
+		end
 	},
 	sprite = "sword",
 	color = {200,200,0,255},

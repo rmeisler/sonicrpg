@@ -1823,7 +1823,7 @@
     <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
    </properties>
   </object>
-  <object id="38" name="Obstacle" type="EscapeObstacle" gid="8696" x="7328" y="3936" width="64" height="64">
+  <object id="38" name="Obstacle" type="EscapeObstacle" gid="8696" x="7296" y="3936" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="snow"/>
@@ -1868,7 +1868,7 @@
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="74" name="Obstacle" type="EscapeObstacle" gid="8696" x="7456" y="4000" width="64" height="64">
+  <object id="74" name="Obstacle" type="EscapeObstacle" gid="8696" x="7392" y="3968" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="snow"/>
@@ -1876,7 +1876,7 @@
     <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
    </properties>
   </object>
-  <object id="75" name="Obstacle" type="EscapeObstacle" gid="8696" x="7328" y="4064" width="64" height="64">
+  <object id="75" name="Obstacle" type="EscapeObstacle" gid="8696" x="7296" y="4064" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="snow"/>
@@ -1884,7 +1884,7 @@
     <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
    </properties>
   </object>
-  <object id="79" name="Obstacle" type="EscapeObstacle" gid="8696" x="7840" y="4032" width="64" height="64">
+  <object id="79" name="Obstacle" type="EscapeObstacle" gid="8696" x="7808" y="4000" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="snow"/>
@@ -1892,7 +1892,7 @@
     <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
    </properties>
   </object>
-  <object id="80" name="Obstacle" type="EscapeObstacle" gid="8696" x="7712" y="3936" width="64" height="64">
+  <object id="80" name="Obstacle" type="EscapeObstacle" gid="8696" x="7680" y="3936" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="snow"/>
@@ -1906,14 +1906,6 @@
    </properties>
   </object>
   <object id="82" name="Obstacle" type="EscapeObstacle" gid="8696" x="7008" y="4192" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="snow"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
-   </properties>
-  </object>
-  <object id="83" name="Obstacle" type="EscapeObstacle" gid="8696" x="7712" y="4064" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="snow"/>
@@ -2035,7 +2027,7 @@
     <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
    </properties>
   </object>
-  <object id="111" name="Obstacle" type="EscapeObstacle" gid="8696" x="8096" y="4256" width="64" height="64">
+  <object id="111" name="Obstacle" type="EscapeObstacle" gid="8696" x="7904" y="4064" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="snow"/>
@@ -2187,7 +2179,7 @@
     <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
    </properties>
   </object>
-  <object id="139" name="Obstacle" type="EscapeObstacle" gid="8696" x="10496" y="5408" width="64" height="64">
+  <object id="139" name="Obstacle" type="EscapeObstacle" gid="8696" x="10560" y="5376" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="snow"/>
@@ -2195,7 +2187,7 @@
     <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
    </properties>
   </object>
-  <object id="140" name="Obstacle" type="EscapeObstacle" gid="8696" x="10592" y="5472" width="64" height="64">
+  <object id="140" name="Obstacle" type="EscapeObstacle" gid="8696" x="10656" y="5440" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="snow"/>
@@ -2203,7 +2195,7 @@
     <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
    </properties>
   </object>
-  <object id="141" name="Obstacle" type="EscapeObstacle" gid="8696" x="10688" y="5504" width="64" height="64">
+  <object id="141" name="Obstacle" type="EscapeObstacle" gid="8696" x="10752" y="5472" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="snow"/>
@@ -2736,14 +2728,6 @@
     <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
    </properties>
   </object>
-  <object id="224" name="Obstacle" type="EscapeObstacle" gid="8696" x="7584" y="4032" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="snow"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
-   </properties>
-  </object>
   <object id="225" name="Obstacle" type="EscapeObstacle" gid="8696" x="7456" y="3872" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
@@ -2848,7 +2832,7 @@
     <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
    </properties>
   </object>
-  <object id="242" name="Obstacle" type="EscapeObstacle" gid="8696" x="11904" y="6464" width="64" height="64">
+  <object id="242" name="Obstacle" type="EscapeObstacle" gid="8696" x="11936" y="6496" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="snow"/>
@@ -2856,7 +2840,7 @@
     <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
    </properties>
   </object>
-  <object id="243" name="Obstacle" type="EscapeObstacle" gid="8696" x="10784" y="5568" width="64" height="64">
+  <object id="243" name="Obstacle" type="EscapeObstacle" gid="8696" x="10848" y="5536" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="snow"/>
@@ -3986,6 +3970,7 @@ return function(self, player)
         Wait(3),
         Do(function()
             GameState:setFlag(&quot;ep4_beat_sonic&quot;)
+            GameState.leader = GameState.prevLeader
             self.scene:changeScene{map=&quot;knotholesnowday&quot;, spawnPoint=&quot;SnowboardSpawn&quot;, hint = &quot;snowboard_win&quot;}
         end)
     }
@@ -4010,6 +3995,7 @@ return function(self, player)
         Wait(3),
         Do(function()
             GameState:setFlag(&quot;ep4_beat_sonic&quot;)
+            GameState.leader = GameState.prevLeader
             self.scene:changeScene{map=&quot;knotholesnowday&quot;, spawnPoint=&quot;SnowboardSpawn&quot;, hint = &quot;snowboard_win&quot;}
         end)
     }
@@ -4034,6 +4020,7 @@ return function(self, player)
         Wait(3),
         Do(function()
             GameState:setFlag(&quot;ep4_beat_sonic&quot;)
+            GameState.leader = GameState.prevLeader
             self.scene:changeScene{map=&quot;knotholesnowday&quot;, spawnPoint=&quot;SnowboardSpawn&quot;, hint = &quot;snowboard_win&quot;}
         end)
     }
@@ -4058,6 +4045,7 @@ return function(self, player)
         Wait(3),
         Do(function()
             GameState:setFlag(&quot;ep4_beat_sonic&quot;)
+            GameState.leader = GameState.prevLeader
             self.scene:changeScene{map=&quot;knotholesnowday&quot;, spawnPoint=&quot;SnowboardSpawn&quot;, hint = &quot;snowboard_win&quot;}
         end)
     }
@@ -4082,6 +4070,7 @@ return function(self, player)
         Wait(3),
         Do(function()
             GameState:setFlag(&quot;ep4_beat_sonic&quot;)
+            GameState.leader = GameState.prevLeader
             self.scene:changeScene{map=&quot;knotholesnowday&quot;, spawnPoint=&quot;SnowboardSpawn&quot;, hint = &quot;snowboard_win&quot;}
         end)
     }
@@ -4106,6 +4095,7 @@ return function(self, player)
         Wait(3),
         Do(function()
             GameState:setFlag(&quot;ep4_beat_sonic&quot;)
+            GameState.leader = GameState.prevLeader
             self.scene:changeScene{map=&quot;knotholesnowday&quot;, spawnPoint=&quot;SnowboardSpawn&quot;, hint = &quot;snowboard_win&quot;}
         end)
     }

@@ -87,7 +87,7 @@ end
 
 function OpposingPartyMember:beginTurn()
 	-- Choose a target
-	self.selectedTarget = math.random(#self.scene.party)
+	self.selectedTarget = math.random(1, #self.scene.party)
 	
 	-- If current target is dead, choose another
 	local iterations = 1
@@ -201,7 +201,7 @@ function OpposingPartyMember:beginTurn()
 			end
 		end
 	elseif self.confused then
-		self.selectedTarget = math.random(#self.scene.opponents)
+		self.selectedTarget = math.random(1, #self.scene.opponents)
 		self.action = Serial {
 			Telegraph(self, self.name.." is confused!", {self.color[1],self.color[2],self.color[3],50}),
 			self.behavior(self, self.scene.opponents[self.selectedTarget]) or Action()

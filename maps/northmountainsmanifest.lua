@@ -22,6 +22,14 @@ return {
     },
 	{
         type = "map",
+		file = "maps/knothole.lua"
+    },
+	{
+        type = "map",
+		file = "maps/rotorsworkshop.lua"
+    },
+	{
+        type = "map",
 		file = "maps/bartcave.lua",
 		--primary = true -- TEST
     },

@@ -8,7 +8,7 @@ return {
   height = 45,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 28,
+  nextobjectid = 29,
   properties = {
     ["onload"] = "actions/bartcave.lua",
     ["regionName"] = "Northern Mountains",
@@ -703,6 +703,20 @@ return {
             ["hidden"] = true,
             ["sprite"] = "../art/sprites/boulder.png"
           }
+        },
+        {
+          id = 28,
+          name = "HidingSpot1",
+          type = "HidingSpot",
+          shape = "rectangle",
+          x = 1152,
+          y = 992,
+          width = 320,
+          height = 32,
+          rotation = 0,
+          gid = 6860,
+          visible = true,
+          properties = {}
         }
       }
     },

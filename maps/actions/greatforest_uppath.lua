@@ -43,6 +43,12 @@ return function(scene, hint)
 	scene.audio:playMusic("greatforest", 1.0)
 	
 	scene.player.dustColor = Player.FOREST_DUST_COLOR
+	
+	if GameState:isFlagSet("ep4_seeplane") then
+		return Action()
+	end
+
+	GameState:setFlag("ep4_seeplane")
 	return BlockPlayer {
 		Parallel {
 			Serial {

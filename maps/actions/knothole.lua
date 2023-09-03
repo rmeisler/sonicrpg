@@ -98,6 +98,7 @@ return function(scene, hint)
 	scene.objectLookup.LoganEp4End.hidden = true
 	scene.objectLookup.IvanEp4End.hidden = true
 	scene.objectLookup.LeonEp4End.hidden = true
+	scene.objectLookup.FleetEp4End.hidden = true
 
 	if hint == "ep4_end" then
 		scene.objectLookup.AntoineEp4End.hidden = false
@@ -109,6 +110,7 @@ return function(scene, hint)
 		scene.objectLookup.LoganEp4End.hidden = false
 		scene.objectLookup.IvanEp4End.hidden = false
 		scene.objectLookup.LeonEp4End.hidden = false
+		scene.objectLookup.FleetEp4End.hidden = false
 
 		return BlockPlayer {
 			Do(function()
@@ -163,7 +165,7 @@ return function(scene, hint)
 		scene.objectLookup.HockeyPost2:remove()
 
 		scene.objectLookup.SallySad.hidden = false
-
+		scene.audio:stopMusic()
 		return BlockPlayer {
 			Do(function()
 				local door = scene.objectLookup.WorkshopDoor
@@ -267,7 +269,7 @@ return function(scene, hint)
 			Wait(2),
 			PlayAudio("music", "project", 1.0, true, true),
 			MessageBox {message="Sally: Let me save you all the suspense{p60}, Leon and I have discovered that Robotnik was behind yesterday's snow storm."},
-			MessageBox {message="Leon: Our current data suggests that Robotnik has relocated\n{h Project Firebird} to the Northern Mountains and is conducting\nfield tests in the area..."},
+			MessageBox {message="Leon: Our current data suggests that Robotnik has relocated\n{h Project Firebird} to the Northern Mountains and is\nconducting field tests in the area..."},
 			MessageBox {message="Leon: And that the storm we experienced was the result of those field tests..."},
 			hop(bunnie),
 			MessageBox {message="Bunnie: My goodness! {p60}If that's what field testing looks like..."},

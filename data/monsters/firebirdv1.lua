@@ -275,9 +275,13 @@ return {
 							target,
 							Serial {
 								PlayAudio("sfx", "pressx", 1.0, true),
-								target:takeDamage({miss = true, attack = 1, speed = 1, luck = 1})
+								Spawn(function()
+								    return target:takeDamage({miss = true, attack = 1, speed = 1, luck = 1})
+								end)
 							},
-							target:takeDamage(self.stats)
+							Spawn(function()
+							    return target:takeDamage(self.stats)
+							end)
 						)
 					}
 				},
@@ -350,6 +354,10 @@ return {
 							local xform = sprite.transform
 							local targetXForm = target.sprite.transform
 							local fireball = SpriteNode(self.scene, Transform(xform.x + sprite.w*2 - 50, xform.y + 200, 4, 4), nil, "fireball", nil, nil, "infront")
+							if not self.fireballs then
+								self.fireballs = {}
+							end
+							table.insert(self.fireballs, fireball)
 							Executor(self.scene):act(Serial {
 								Parallel {
 									Ease(fireball.transform, "x", target.sprite.transform.x - 20, 2, "linear"),
@@ -369,6 +377,12 @@ return {
 						Wait(0.05),
 					}, 50)
 				},
+				Do(function()
+					for _, f in pairs(self.fireballs) do
+						f:remove()
+					end
+					self.fireballs = nil
+				end),
 				Parallel {
 					Ease(sprite.transform, "x", sprite.transform.x, 2),
 					Ease(sprite.transform, "y", sprite.transform.y, 2),
@@ -418,6 +432,10 @@ return {
 							local xform = sprite.transform
 							local targetXForm = target.sprite.transform
 							local freezepoof = SpriteNode(self.scene, Transform(xform.x + sprite.w*2 - 50, xform.y + 200, 4, 4), nil, "freezepoof", nil, nil, "infront")
+							if not self.freezepoofs then
+								self.freezepoofs = {}
+							end
+							table.insert(self.freezepoofs, freezepoof)
 							Executor(self.scene):act(Serial {
 								Parallel {
 									Ease(freezepoof.transform, "x", target.sprite.transform.x - 20, 2, "linear"),
@@ -436,6 +454,12 @@ return {
 						Wait(0.05),
 					}, 30)
 				},
+				Do(function()
+					for _, f in pairs(self.freezepoofs) do
+						f:remove()
+					end
+					self.freezepoofs = nil
+				end),
 				Spawn(
 					PressZ(
 						self,

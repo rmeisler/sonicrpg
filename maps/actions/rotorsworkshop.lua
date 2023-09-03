@@ -21,6 +21,8 @@ return function(scene, hint)
 	local Wait = require "actions/Wait"
 	local Do = require "actions/Do"
 	local SpriteNode = require "object/SpriteNode"
+	
+	local ItemType = require "util/ItemType"
 
 	local subtext = TypeText(
 		Transform(50, 470),
@@ -315,6 +317,21 @@ return function(scene, hint)
 				Ease(scene.objectLookup.Rotor2, "x", function() return scene.objectLookup.Rotor2.x - 50 end, 2, "linear")
 			},
 			Do(function()
+				scene.objectLookup.Door.object.properties.scene = "knothole.lua"
+				GameState:grantItem(require "data/armor/BlasterArmor", 2)
+				local equipCount = 0
+				for id,item in pairs(GameState[ItemType.Armor]) do
+					if item.name == "Blaster Armor" then
+						equipCount = equipCount + 1
+						if equipCount == 1 then
+							GameState:equip("rotor", ItemType.Armor, id)
+						else
+							GameState:equip("logan", ItemType.Armor, id)
+							break
+						end
+					end
+				end
+		
 				scene.player.x = scene.objectLookup.Logan.x + 20
 				scene.player.y = scene.objectLookup.Logan.y + 100
 				scene.player.sprite.visible = true

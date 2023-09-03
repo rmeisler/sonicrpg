@@ -506,6 +506,11 @@
     <property name="defaultAnim" value="knothole"/>
     <property name="destructable" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
+    <property name="onInit">return function(self)
+    if GameState:isFlagSet(&quot;ep4_destroyboulder&quot;) then
+        self.isInteractable = false
+    end
+end</property>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Do = require &quot;actions/Do&quot;
@@ -513,6 +518,7 @@ local Do = require &quot;actions/Do&quot;
 return function(self)
     self.scene.objectLookup.Boulder1.isInteractable = false
     self.scene.objectLookup.Boulder2.isInteractable = false
+    GameState:setFlag(&quot;ep4_destroyboulder&quot;)
     local walkout, walkin, sprites = self.scene.player:split()
     return BlockPlayer {
         walkout,
@@ -536,6 +542,11 @@ end</property>
     <property name="defaultAnim" value="knothole"/>
     <property name="destructable" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
+    <property name="onInit">return function(self)
+    if GameState:isFlagSet(&quot;ep4_destroyboulder&quot;) then
+        self.isInteractable = false
+    end
+end</property>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Do = require &quot;actions/Do&quot;
@@ -543,6 +554,7 @@ local Do = require &quot;actions/Do&quot;
 return function(self)
     self.scene.objectLookup.Boulder1.isInteractable = false
     self.scene.objectLookup.Boulder2.isInteractable = false
+    GameState:setFlag(&quot;ep4_destroyboulder&quot;)
     local walkout, walkin, sprites = self.scene.player:split()
     return BlockPlayer {
         walkout,

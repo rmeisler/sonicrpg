@@ -11,47 +11,6 @@ return {
     },
 	{
         type = "map",
-		file = "maps/northmountains_landing.lua",
-		--primary = true -- TEST
-    },
-	{
-        type = "map",
-		file = "maps/northmountains_1.lua"
-    },
-	{
-        type = "map",
-		file = "maps/northmountains_2.lua"
-    },
-	{
-        type = "map",
-		file = "maps/northmountains_3.lua"
-    },
-	{
-        type = "map",
-		file = "maps/northmountains_cave.lua"
-    },
-	{
-        type = "map",
-		file = "maps/bartcave.lua",
-		--primary = true -- TEST
-    },
-	{
-        type = "map",
-		file = "maps/bartcave2.lua",
-		--primary = true -- TEST
-    },
-	{
-        type = "map",
-		file = "maps/bartroom.lua",
-		--primary = true -- TEST
-    },
-	{
-        type = "map",
-		file = "maps/testsite.lua",
-		--primary = true -- TEST
-    },
-	{
-        type = "map",
 		file = "maps/stealthtut1.lua",
 		--primary = true
     },
@@ -322,10 +281,6 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/swatbotwhite.png"
-	},
-	{
-		type = "image",
 		file = "art/sprites/rover.png"
 	},
 	{
@@ -514,10 +469,6 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/projectfirebird.png"
-	},
-	{
-		type = "image",
 		file = "art/sprites/freezepoof.png"
 	},
 	{
@@ -624,17 +575,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/bart.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
 		file = "audio/music/bartsomber.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/bartsacrifice.ogg",
 		category = "music"
 	},
 	{
@@ -654,17 +595,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/nap.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
 		file = "audio/music/spooky.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/royalwelcome.ogg",
 		category = "music"
 	},
 	{
@@ -679,11 +610,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/standup.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
 		file = "audio/music/project.ogg",
 		category = "music"
 	},
@@ -694,22 +620,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/ep3transition.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/ep3intro.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
 		file = "audio/sfx/slice.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/usering.ogg",
 		category = "sfx"
 	},
 	{
@@ -913,6 +824,10 @@ return {
 		category = "sfx"
 	},
 	{
+		type = "image",
+		file = "art/sprites/cyclops.png"
+	},
+	{
 		type = "sound",
 		file = "audio/sfx/cyclopsstep.ogg",
 		category = "sfx"
@@ -920,11 +835,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/cyclopsroar.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/firebirdbreath.ogg",
 		category = "sfx"
 	},
 	{
@@ -985,11 +895,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/rotorsok.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/loganend.ogg",
 		category = "music"
 	},
 	{

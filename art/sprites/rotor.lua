@@ -164,10 +164,10 @@ return {
 			frames = {{3,5}}
 		},
 		climb_1 = {
-			frames = {{1,3}}
+			frames = {{10,3}}
 		},
 		climb_2 = {
-			frames = {{5,3}}
+			frames = {{11,3}}
 		},
 
 		meeting_idledown = {

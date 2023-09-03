@@ -5,7 +5,7 @@
   <property name="nighttime" type="bool" value="false"/>
   <property name="onload" type="file" value="actions/knotholeatnight.lua"/>
   <property name="regionName" value="Great Forest"/>
-  <property name="sectorName" value="Knothole"/>
+  <property name="sectorName" value="Knothole Snowday"/>
   <property name="snow" type="bool" value="true"/>
  </properties>
  <tileset firstgid="1" source="knothole.tsx"/>
@@ -1874,30 +1874,23 @@ return function(self)
     if self.scene.player.keyhints[tostring(self.scene.objectLookup.Antoine)] then
         return Do(function() end)
     end
-    if GameState:isFlagSet(&quot;ep4_tails_snowman&quot;) then
+    if GameState:isFlagSet(&quot;ep4_tails_snowman_coal&quot;) and not GameState:isFlagSet(&quot;ep4_tails_snowman_carrot&quot;) and not GameState:hasItem(&quot;Carrot&quot;) then
+        GameState:grantItem(require &quot;data/items/Carrot&quot;, 1)
         return BlockPlayer {
-            MessageBox {message = &quot;Fleet: &quot;},
+            MessageBox {message = &quot;Bunnie: Hey sugah{p40}, why don't you give this to Tails...&quot;},
+            MessageBox {message = &quot;You received a {h Carrot}!&quot;, sfx=&quot;levelup&quot;},
+            MessageBox {message = &quot;Bunnie: That lil' ol' snowman needs a nose after all!&quot;},
             Do(function() self:refreshKeyHint() end)
         }
-    else
-        if GameState:isFlagSet(&quot;ep4_tails_snowman_coal&quot;) and not GameState:isFlagSet(&quot;ep4_tails_snowman_carrot&quot;) and not GameState:hasItem(&quot;Carrot&quot;) then
-            GameState:grantItem(require &quot;data/items/Carrot&quot;, 1)
-            return BlockPlayer {
-                MessageBox {message = &quot;Bunnie: Hey sugah{p40}, why don't you give this to Tails...&quot;},
-                MessageBox {message = &quot;You received a {h Carrot}!&quot;, sfx=&quot;levelup&quot;},
-                MessageBox {message = &quot;Bunnie: That lil' ol' snowman needs a nose after all!&quot;},
-                Do(function() self:refreshKeyHint() end)
-            }
-        end
-        return BlockPlayer {
-            MessageBox {message = &quot;Bunnie: What a sweet little muffin Antoine is helpin' me roast up these delicious ol' sugar cubes!&quot;},
-            MessageBox {message = &quot;Antoine: They are not the 'sugar cubes'{p60}, they are the marshmallows!&quot;},
-            MessageBox {message = &quot;Bunnie: Oh yes, I keep forgettin' hun.&quot;},
-            Do(function()
-                self:refreshKeyHint()
-            end)
-        }
     end
+    return BlockPlayer {
+        MessageBox {message = &quot;Bunnie: What a sweet little muffin Antoine is helpin' me roast up these delicious ol' sugar cubes!&quot;},
+        MessageBox {message = &quot;Antoine: They are not the 'sugar cubes'{p60}, they are the marshmallows!&quot;},
+        MessageBox {message = &quot;Bunnie: Oh yes, I keep forgettin' hun.&quot;},
+        Do(function()
+            self:refreshKeyHint()
+        end)
+    }
 end</property>
     <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
    </properties>
@@ -2778,7 +2771,7 @@ return function(self)
             return BlockPlayer {
                 MessageBox {message = &quot;Tails: Thanks so much for helping me guys{p60}, this is the best snowman ever!&quot;},
                 Do(function()
-                    self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true, manifest = &quot;postsnowdaymanifest&quot;}
+                    self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true, hint=&quot;ep4_sunset&quot;}
                 end)
             }
         end
@@ -2792,7 +2785,7 @@ return function(self)
                 endAction = Serial {
                     MessageBox {message = &quot;Tails: Thanks so much for helping me guys{p60}, this is the best snowman ever!&quot;},
                     Do(function()
-                        self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true, manifest = &quot;postsnowdaymanifest&quot;}
+                        self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true, hint=&quot;ep4_sunset&quot;}
                     end)
                 }
             end
@@ -2821,7 +2814,7 @@ return function(self)
                 endAction = Spawn(Serial {
                     MessageBox {message = &quot;Tails: Thanks so much for helping me guys{p60}, this is the best snowman ever!&quot;},
                     Do(function()
-                        self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true, manifest = &quot;postsnowdaymanifest&quot;}
+                        self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true, hint=&quot;ep4_sunset&quot;}
                     end)
                 })
             end
@@ -2850,7 +2843,7 @@ return function(self)
                 endAction = Serial {
                     MessageBox {message = &quot;Tails: Thanks so much for helping me guys{p60}, this is the best snowman ever!&quot;},
                     Do(function()
-                        self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true, manifest = &quot;postsnowdaymanifest&quot;}
+                        self.scene:changeScene{map=&quot;knotholelookout&quot;, fadeOutMusic=true, fadeInSpeed=0.2, fadeOutSpeed=0.2, enterDelay=3, nighttime=true, hint=&quot;ep4_sunset&quot;}
                     end)
                 }
             end
@@ -2875,6 +2868,7 @@ return function(self)
         return BlockPlayer {
             Do(function() self:facePlayer() end),
             MessageBox {message = &quot;Tails: Hmmm... {p60}I still feel like he's missing somethin' though...&quot;},
+            MessageBox {message = &quot;Tails: Yeah! {p60}Snowmen need a cool {h hat}{p60}, a warm {h scarf}{p60},\nand a pointy {h carrot} for a nose!&quot;},
             Do(function()
                 self.sprite:setAnimation(&quot;idleright&quot;)
                 self:refreshKeyHint()
@@ -3536,19 +3530,33 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
-    if GameState:isFlagSet(&quot;ep4_tails_snowman&quot;) then
+    if GameState.leader == &quot;rotor&quot; then
         return BlockPlayer {
-            MessageBox {message = &quot;Fleet: &quot;},
+            MessageBox {message = &quot;Rotor: What do you think this is all about, Sally?&quot;},
+            MessageBox {message = &quot;Sally: We're not sure yet, Rotor... {p60}but it is beautiful, isn't it?&quot;},
             Do(function() self:refreshKeyHint() end)
         }
-    else
+    elseif GameState.leader == &quot;logan&quot; then
         return BlockPlayer {
+            Do(function()
+                self.scene.player.noIdle=true
+                self.scene.player.sprite:setAnimation(&quot;irritated&quot;)
+            end),
             MessageBox {message = &quot;Logan: Princess, this is not normal! {p60}We need to figure out what caused this snow storm in the middle of\nsummer!&quot;},
             MessageBox {message = &quot;Sally: Don't worry Logan, Leon and I are investigating. {p60}Just take advantage of this winter\nwonderland for today and have fun with the others!&quot;},
+            Do(function()
+                self.scene.player.sprite:setAnimation(&quot;idleright&quot;)
+            end),
             MessageBox {message = &quot;Logan: B-{p30}But-{p30}But--&quot;, closeAction=Wait(1)},
             MessageBox {message = &quot;Leon: Listen to the Princess, Logan.&quot;},
+            Do(function()
+                self.scene.player.sprite:setAnimation(&quot;shock&quot;)
+            end),
             MessageBox {message = &quot;Logan: Ugh!&quot;},
-            Do(function() self:refreshKeyHint() end)
+            Do(function()
+                self.scene.player.noIdle=false
+                self:refreshKeyHint()
+            end)
         }
     end
 end</property>

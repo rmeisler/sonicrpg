@@ -76,13 +76,15 @@ return function(player)
 				Do(function()
 					player.scene.objectLookup.RotorTrap.sprite.color[4] = 255
 				end),
+				Do(function()
+					player.basicUpdate = player.updateFun
+					player.placeTrap:addSceneHandler("update")
+					player.placeTrap = nil
+				end),
 				player.scene.objectLookup.RotorTrap:hop(),
 				Animate(player.scene.objectLookup.RotorTrap.sprite, "activate"),
 				Do(function()
 					player.scene.objectLookup.RotorTrap.sprite:setAnimation("active")
-					player.basicUpdate = player.updateFun
-					player.placeTrap:addSceneHandler("update")
-					player.placeTrap = nil
 				end)
 			})
 		end

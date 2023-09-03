@@ -40,6 +40,10 @@ function SnowboardPlayer:construct(scene, layer, object)
 	self.extraBx = 0
 	self.state = "snowboard"
 
+	GameState.prevLeader = GameState.leader
+	GameState.leader = "logan"
+	self:updateSprite()
+
 	self:removeSceneHandler("update", Player.update)
 	self:removeSceneHandler("keytriggered", Player.keytriggered)
 	self:addSceneHandler("keytriggered", SnowboardPlayer.keytriggered)

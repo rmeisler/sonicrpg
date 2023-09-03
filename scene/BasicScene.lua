@@ -55,6 +55,20 @@ function BasicScene:onEnter(args)
 
 	self.args = args
 	self.cacheSceneData = args.cache
+
+	-- Cache collision layers
+	self.collisionLayer = {}
+	for _,layer in pairs(self.map.layers) do
+		if layer.name == "Collision" then
+			self.collisionLayer["objects"] = layer.data
+		elseif layer.name == "Collision2" then
+			self.collisionLayer["objects2"] = layer.data
+		elseif layer.name == "Collision3" then
+			self.collisionLayer["objects3"] = layer.data
+		elseif layer.name == "Collision4" then
+			self.collisionLayer["objects4"] = layer.data
+		end
+	end
 	
 	-- NOTE: This is how we draw the lua map data
 	-- There is a draw function on the sti map object.
@@ -496,10 +510,11 @@ function BasicScene:fadeOut(speed)
 end
 
 function BasicScene:remove(cleanupResources)
-	if self.removed then -- Already called remove
+	if self.cleaned then -- Already cleaned up
 		return
 	end
 	if cleanupResources then
+		print("clean up map")
 		self.audio:cleanup()
 		self.audio = nil
 		self.images = nil
@@ -543,11 +558,11 @@ function BasicScene:remove(cleanupResources)
 	self.player = nil
 
 	self:cleanupLayers()
-	self.removed = true
 
 	if cleanupResources then
 		self.map = nil
 		self.maps = nil
+		self.cleaned = true
 	end
 
 	print("destroying cur scene")
@@ -974,8 +989,8 @@ function BasicScene:canMove(x, y, dx, dy, mapName)
 	return not self.map[mapName][mapy][mapx]
 end
 
-function BasicScene:canMoveWhitelist(x, y, dx, dy, whiteList)
-	mapName = "collisionMap"
+function BasicScene:canMoveWhitelist(x, y, dx, dy, whiteList, collisionLayer)
+	collisionLayer = collisionLayer or self.map.collisionMap
 	-- Special case for map boundaries
 	if  (x + dx) <= 0 or
 		(x + dx) >= self:getMapWidth() or
@@ -985,7 +1000,7 @@ function BasicScene:canMoveWhitelist(x, y, dx, dy, whiteList)
 		return false
 	end
 	local mapx, mapy = self:worldCoordToCollisionCoord(x + dx, y + dy)
-	return not self.map[mapName][mapy][mapx] or (whiteList and whiteList[mapy] and whiteList[mapy][mapx])
+	return not collisionLayer[mapy][mapx] or (whiteList and whiteList[mapy] and whiteList[mapy][mapx])
 end
 
 function BasicScene:swapLayer(toLayerNum)
@@ -1002,13 +1017,7 @@ function BasicScene:swapLayer(toLayerNum)
 	self.currentLayerId = toLayerNum
 
 	-- Swap collision layer (assumes naming convention of "Collision" or "CollisionN"
-	local colLayer = toLayerNum == 1 and "Collision" or ("Collision"..layerStr)
-	for _,layer in pairs(self.map.layers) do
-		if layer.name == colLayer then
-			self.map.collisionMap = layer.data
-			break
-		end
-	end
+	self.map.collisionMap = self.collisionLayer[objLayer]
 
 	-- Update collision map with objects on same layer
 	for _, obj in pairs(self.map.objects) do

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="155" tilewidth="32" tileheight="32" infinite="0" nextobjectid="211">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="155" tilewidth="32" tileheight="32" infinite="0" nextobjectid="216">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/northmountainsbg.png"/>
   <property name="layered" type="bool" value="true"/>
@@ -793,70 +793,10 @@ local MessageBox = require &quot;actions/MessageBox&quot;
 
 return function(self, player)
     if GameState:isFlagSet(&quot;ep4_abominable3&quot;) then
-        player.chasers = {}
         return
     end
     GameState:setFlag(&quot;ep4_abominable3&quot;)
-    if self.scene.objectLookup.Swatbot1:isRemoved() and self.scene.objectLookup.Swatbot2:isRemoved() then
-        self.scene.objectLookup.Abominable:permanentRemove()
-        player.chasers = {}
-        return
-    end
-    player.chasers = {}
-    self.scene.objectLookup.Swatbot1.dropShadow:remove()
-    self.scene.objectLookup.Swatbot2.dropShadow:remove()
-    self.scene.objectLookup.Swatbot2.falling = true
-    self.scene.objectLookup.Swatbot1.falling = true
-    self.scene.objectLookup.Swatbot2.falling = true
-    self.scene.objectLookup.Swatbot1.sprite:setAnimation(&quot;idleright&quot;)
-    self.scene.objectLookup.Swatbot2.sprite:setAnimation(&quot;idleleft&quot;)
-    self.scene.objectLookup.Swatbot2.falling = true
-    self.scene.objectLookup.Swatbot1:removeCollision()
-    self.scene.objectLookup.Swatbot2:removeCollision()
-    self.scene.objectLookup.Swatbot1:removeAllUpdates()
-    self.scene.objectLookup.Swatbot2:removeAllUpdates()
-    self.scene:run(BlockPlayer {
-        Parallel {
-            Ease(self.scene.camPos, &quot;x&quot;, -300, 1),
-            Ease(self.scene.camPos, &quot;y&quot;, 500, 1)
-        },
-        Wait(1),
-        Animate(self.scene.objectLookup.Abominable.sprite, &quot;dark_leap_left&quot;),
-        Ease(self.scene.objectLookup.Abominable, &quot;y&quot;, self.scene.objectLookup.Swatbot1.y - 80, 3, &quot;quad&quot;),
-        Do(function() self.scene.objectLookup.Abominable.sprite:setAnimation(&quot;dark_left&quot;) end),
-        PlayAudio(&quot;sfx&quot;, &quot;cyclopsstep&quot;, 1.0, true),
-        Animate(self.scene.objectLookup.Swatbot1.sprite, &quot;hurtdown&quot;),
-        Animate(self.scene.objectLookup.Swatbot2.sprite, &quot;hurtdown&quot;),
-        Parallel {
-            self.scene:screenShake(20, 30, 1, true),
-            Serial {
-                Parallel {
-                    Ease(self.scene.objectLookup.Swatbot1, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot1.x - 80 end, 2, &quot;linear&quot;),
-                    Ease(self.scene.objectLookup.Swatbot1, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot1.y - 250 end, 2),
-                    Ease(self.scene.objectLookup.Swatbot2, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot2.x + 80 end, 2, &quot;linear&quot;),
-                    Ease(self.scene.objectLookup.Swatbot2, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot2.y - 250 end, 2)
-                },
-                Parallel {
-                    Ease(self.scene.objectLookup.Swatbot1, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot1.x - 100 end, 2, &quot;linear&quot;),
-                    Ease(self.scene.objectLookup.Swatbot1, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot1.y + 800 end, 2, &quot;quad&quot;),
-                    Ease(self.scene.objectLookup.Swatbot2, &quot;x&quot;, function() return self.scene.objectLookup.Swatbot2.x + 100 end, 2, &quot;linear&quot;),
-                    Ease(self.scene.objectLookup.Swatbot2, &quot;y&quot;, function() return self.scene.objectLookup.Swatbot2.y + 800 end, 2, &quot;quad&quot;)
-                },
-                Do(function()
-                    self.scene.objectLookup.Swatbot1:permanentRemove()
-                    self.scene.objectLookup.Swatbot2:permanentRemove()
-                end)
-            }
-        },
-        Wait(1),
-        Parallel {
-            Ease(self.scene.camPos, &quot;x&quot;, 0, 1),
-            Ease(self.scene.camPos, &quot;y&quot;, 0, 1)
-        },
-        Do(function()
-            self.scene.objectLookup.Abominable:permanentRemove()
-        end)
-    })
+    self.scene.objectLookup.Abominable:permanentRemove()
 end</property>
    </properties>
   </object>
@@ -1338,7 +1278,7 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="hidden" width="96" height="155" visible="0">
+ <layer name="hidden" width="96" height="155">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1499,7 +1439,7 @@ end</property>
  </layer>
  <objectgroup name="lower3"/>
  <objectgroup name="objects3">
-  <object id="135" name="NoLadderPlz" type="BasicNPC" gid="10970" x="768" y="3872" width="96" height="192">
+  <object id="135" name="NoLadderPlz" type="BasicNPC" gid="10970" x="736" y="3904" width="448" height="160">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)
@@ -1523,10 +1463,9 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="147" name="Swatbot3" type="Swatbot" gid="8696" x="1888" y="2784" width="32" height="32">
+  <object id="147" name="Swatbot3" type="Swatbot" gid="8696" x="1920" y="2752" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idledown"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1538,10 +1477,9 @@ end</property>
     <property name="viewRange" value="View2"/>
    </properties>
   </object>
-  <object id="150" name="Swatbot4" type="Swatbot" gid="8696" x="2016" y="2784" width="32" height="32">
+  <object id="150" name="Swatbot4" type="Swatbot" gid="8696" x="2016" y="2752" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idledown"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1556,7 +1494,6 @@ end</property>
   <object id="151" name="Swatbot5" type="Swatbot" gid="8696" x="2528" y="2880" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idledown"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1571,7 +1508,6 @@ end</property>
   <object id="152" name="Swatbot9" type="Swatbot" gid="8696" x="1952" y="2272" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleleft"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1586,7 +1522,6 @@ end</property>
   <object id="153" name="Swatbot7" type="Swatbot" gid="8696" x="2080" y="2272" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleleft"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1601,7 +1536,6 @@ end</property>
   <object id="154" name="Swatbot8" type="Swatbot" gid="8696" x="2016" y="2240" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleleft"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1617,6 +1551,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleright"/>
+    <property name="flagOverride" value="SwatbotLedge"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
@@ -1628,6 +1563,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleright"/>
+    <property name="flagOverride" value="SwatbotLedge"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
@@ -1639,6 +1575,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleright"/>
+    <property name="flagOverride" value="SwatbotLedge"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
@@ -1650,6 +1587,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleright"/>
+    <property name="flagOverride" value="SwatbotLedge"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
@@ -1666,9 +1604,30 @@ end</property>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignorePlayer" type="bool" value="true"/>
+    <property name="initiative" value="opponent"/>
     <property name="isBot" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="noPush" type="bool" value="true"/>
+    <property name="onRotorTrap">local Serial = require &quot;actions/Serial&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Do = require &quot;actions/Do&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Ease = require &quot;actions/Ease&quot;
+
+return function(self)
+    return Serial {
+        Animate(self.sprite, &quot;leapright&quot;),
+        Parallel {
+            Ease(self, &quot;x&quot;, function() return self.x + 200 end, 3, &quot;linear&quot;),
+            Ease(self, &quot;y&quot;, function() return self.y - 200 end, 3, &quot;linear&quot;)
+        },
+        Parallel {
+            Ease(self, &quot;x&quot;, function() return self.x + 100 end, 3, &quot;linear&quot;),
+            Ease(self, &quot;y&quot;, function() return self.y + 800 end, 3, &quot;quad&quot;)
+        },
+        Do(function() self:permanentRemove() end),
+    }
+end</property>
     <property name="sprite" type="file" value="../art/sprites/abominable.png"/>
    </properties>
   </object>
@@ -1699,7 +1658,6 @@ end</property>
   <object id="172" name="Swatbot6" type="Swatbot" gid="8696" x="2592" y="2880" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idledown"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1714,7 +1672,6 @@ end</property>
   <object id="173" name="Swatbot7" type="Swatbot" gid="8696" x="2656" y="2848" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idledown"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1818,7 +1775,6 @@ end</property>
   <object id="179" name="Swatbot9.1" type="Swatbot" gid="8696" x="2144" y="2240" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleleft"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1854,7 +1810,6 @@ end</property>
   <object id="191" name="Swatbot15" type="Swatbot" gid="8696" x="2368" y="1056" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleright"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1869,7 +1824,6 @@ end</property>
   <object id="192" name="Swatbot14" type="Swatbot" gid="8696" x="2400" y="960" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleright"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1968,17 +1922,6 @@ end</property>
    </properties>
   </object>
   <object id="198" name="block" type="BasicNPC" gid="10970" x="2208" y="928" width="128" height="32"/>
-  <object id="200" name="NoLadderPlz" type="BasicNPC" gid="10970" x="992" y="3872" width="96" height="192">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="notColliding">return function(self, player)
-    self.scene.player.noLadder[tostring(self)] = nil
-end</property>
-    <property name="whileColliding">return function(self, player)
-    self.scene.player.noLadder[tostring(self)] = true
-end</property>
-   </properties>
-  </object>
   <object id="201" name="Chest4" type="Chest" gid="10970" x="896" y="2848" width="64" height="64">
    <properties>
     <property name="Wrench" type="int" value="1"/>
@@ -1989,13 +1932,25 @@ end</property>
   <object id="207" name="Cambot2" type="LegacyCambot" gid="8696" x="896" y="2880" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idledown"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignorePlayer" type="bool" value="false"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
+    <property name="viewRange" value="CantSee"/>
+   </properties>
+  </object>
+  <object id="212" name="ViewC2" type="BasicNPC" gid="10581" x="768" y="2912" width="256" height="96" visible="0">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="viewRange" value="CantSee"/>
+   </properties>
+  </object>
+  <object id="213" name="CantSee" type="BasicNPC" gid="10581" x="672" y="2336" width="256" height="96" visible="0">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="viewRange" value="CantSee"/>
    </properties>
   </object>
  </objectgroup>
@@ -2182,8 +2137,8 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,539,539,538,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,539,539,538,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1929,2273,2205,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1719,1720,1721,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1789,1790,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2484,11 +2439,12 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="left"/>
     <property name="toLayer" type="int" value="3"/>
+    <property name="viewRange" value="CantSee"/>
    </properties>
   </object>
-  <object id="182" name="Chest8" type="Chest" gid="10970" x="736" y="3616" width="64" height="64">
+  <object id="182" name="Chest8" type="Chest" gid="10970" x="768" y="3584" width="64" height="64">
    <properties>
-    <property name="LaserShield" type="int" value="1"/>
+    <property name="CrystalWater" type="int" value="1"/>
     <property name="loganTargetable" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
@@ -2499,18 +2455,7 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="down"/>
     <property name="toLayer" type="int" value="3"/>
-   </properties>
-  </object>
-  <object id="206" name="Cambot1" type="LegacyCambot" gid="8696" x="800" y="3648" width="32" height="32">
-   <properties>
-    <property name="battle" type="file" value="../data/monsters/legacycambot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
-    <property name="defaultAnim" value="idledown"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="ignorePlayer" type="bool" value="false"/>
-    <property name="noInvestigate" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/cambot2.png"/>
+    <property name="viewRange" value="CantSee"/>
    </properties>
   </object>
   <object id="209" name="NoLadderPlz" type="BasicNPC" gid="10970" x="864" y="3744" width="96" height="224">
@@ -2519,6 +2464,19 @@ end</property>
     <property name="notColliding">return function(self, player)
     self.scene.player.noLadder[tostring(self)] = nil
 end</property>
+    <property name="viewRange" value="CantSee"/>
+    <property name="whileColliding">return function(self, player)
+    self.scene.player.noLadder[tostring(self)] = true
+end</property>
+   </properties>
+  </object>
+  <object id="211" name="NoLadderPlz" type="BasicNPC" gid="10970" x="832" y="3744" width="160" height="256">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="notColliding">return function(self, player)
+    self.scene.player.noLadder[tostring(self)] = nil
+end</property>
+    <property name="viewRange" value="CantSee"/>
     <property name="whileColliding">return function(self, player)
     self.scene.player.noLadder[tostring(self)] = true
 end</property>
@@ -2848,7 +2806,6 @@ end</property>
   <object id="126" name="Swatbot1" type="Swatbot" gid="8696" x="1856" y="3488" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleright"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -2857,13 +2814,12 @@ end</property>
     <property name="noMusic" type="bool" value="true"/>
     <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
-    <property name="viewRange" value="View1"/>
+    <property name="viewRange" value="CantSee"/>
    </properties>
   </object>
   <object id="127" name="Swatbot2" type="Swatbot" gid="8696" x="1984" y="3488" width="32" height="32">
    <properties>
     <property name="battle" type="file" value="../data/monsters/legacyswatbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleleft"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -2872,7 +2828,7 @@ end</property>
     <property name="noMusic" type="bool" value="true"/>
     <property name="noPush" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotwhite.png"/>
-    <property name="viewRange" value="View1"/>
+    <property name="viewRange" value="CantSee"/>
    </properties>
   </object>
   <object id="128" name="View1" type="BasicNPC" gid="10581" x="1664" y="3552" width="448" height="128" visible="0">
@@ -2924,7 +2880,7 @@ end</property>
     <property name="toLayer" type="int" value="2"/>
    </properties>
   </object>
-  <object id="210" name="NoLadderPlz" type="BasicNPC" gid="10970" x="864" y="3616" width="96" height="256">
+  <object id="210" name="NoLadderPlz" type="BasicNPC" gid="10970" x="832" y="3616" width="160" height="256">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)

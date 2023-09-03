@@ -57,7 +57,6 @@ return function(scene, hint)
 		})
 	end
 
-	hint = hint or "from_bart_room"
 	if hint == "ep4_bart_dies" then
 		scene.audio:stopMusic()
 		scene.objectLookup.Bart.hidden = false

@@ -16,6 +16,8 @@ return {
 	},
 	event = {
 		type = EventType.Z,
-		action = require "data/battle/actions/Reflect"
+		action = function()
+			return require "data/battle/actions/Reflect"
+		end
 	}
 }

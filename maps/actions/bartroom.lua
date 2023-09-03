@@ -60,6 +60,7 @@ return function(scene, hint)
 	scene.objectLookup.Bart.isInteractable = false
 	scene.objectLookup.Bart.hidden = false
 	scene.audio:stopMusic()
+	scene.player.hidekeyhints[tostring(scene.objectLookup.Save)] = true
 	return BlockPlayer {
 		Wait(2),
 		PlayAudio("music", "bart", 1.0, true, true),
@@ -74,8 +75,8 @@ return function(scene, hint)
 			scene.objectLookup.Bart.sprite:setAnimation("walkdown")
 		end),
 		Parallel {
-			Ease(scene.objectLookup.Bart, "x", 320, 1, "linear"),
-			Ease(scene.objectLookup.Bart, "y", 685, 1, "linear")
+			Ease(scene.objectLookup.Bart, "x", 300, 1, "linear"),
+			Ease(scene.objectLookup.Bart, "y", 605, 1, "linear")
 		},
 		Do(function()
 			scene.objectLookup.Bart.sprite:setAnimation("walkup")
@@ -92,6 +93,7 @@ return function(scene, hint)
 			scene.objectLookup.Bart.object.x = scene.objectLookup.Bart.x
             scene.objectLookup.Bart.object.y = scene.objectLookup.Bart.y + 96
 			scene.objectLookup.Bart:updateCollision()
+			scene.player.hidekeyhints[tostring(scene.objectLookup.Save)] = nil
 		end),
 	}
 end

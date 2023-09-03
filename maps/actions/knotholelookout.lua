@@ -39,7 +39,7 @@ return function(scene, hint)
 		})
 	end
 
-	if hint == "snowday" then
+	if hint == "snowday" and not GameState:isFlagSet("ep4_tails_snowman") then
 		showTitle()
 		scene.objectLookup.Logan:remove()
 		scene.objectLookup.Rotor:remove()
@@ -47,9 +47,7 @@ return function(scene, hint)
 		return Action()
 	end
 	
-	if  not GameState:isFlagSet("ep4_rotor_logan_lookout") and
-		GameState:isFlagSet("ep4_tails_snowman")
-	then
+	if hint == "ep4_sunset" then
 		-- turn on twilight layer
 		for _,layer in pairs(scene.map.layers) do
 			if layer.name == "twilight" then
@@ -108,6 +106,7 @@ return function(scene, hint)
 			MessageBox{message="Logan: I was alone in that cell for awhile before Leon finally found me.", textSpeed = 3},
 			MessageBox{message="Logan: I'm grateful that he saved me and all... {p60}but by the time he got there, I feel like a part of me was already gone.", textSpeed = 3},
 			MessageBox{message="Logan: That feeling of hope... {p60}that everything would turn out alright... {p60}I've never really felt that since I lost my mom.", textSpeed = 3},
+			MessageBox{message="Rotor: Wow... {p60}I'm sorry that happened to you...", textSpeed = 3},
 			Wait(2),
 			MessageBox{message="Logan: Guess that's why I keep my distance from people... {p120}makes it easier to deal with when they eventually get roboticized...", textSpeed = 3},
 			Wait(1),

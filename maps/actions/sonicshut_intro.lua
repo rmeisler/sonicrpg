@@ -60,11 +60,13 @@ return function(scene, hint)
 		)
 	end
 	
-	if scene.nighttime then
-		local prefix = "nighthide"
-		for _,layer in pairs(scene.map.layers) do
-			if string.sub(layer.name, 1, #prefix) == prefix then
-				layer.opacity = 1.0
+	local doNightTime = function()
+		if scene.nighttime then
+			local prefix = "nighthide"
+			for _,layer in pairs(scene.map.layers) do
+				if string.sub(layer.name, 1, #prefix) == prefix then
+					layer.opacity = 1.0
+				end
 			end
 		end
 	end
@@ -82,7 +84,14 @@ return function(scene, hint)
 	if hint == "snowday" then
 		scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"
 		scene.objectLookup.Sonic:remove()
+		local prefix = "nighthide"
+		for _,layer in pairs(scene.map.layers) do
+			if string.sub(layer.name, 1, #prefix) == prefix then
+				layer.opacity = 0.0
+			end
+		end
 	elseif hint == "sleep" then
+		doNightTime()
 		scene.player.sprite.visible = false
 		scene.player.dropShadow.hidden = true
 
@@ -123,13 +132,22 @@ return function(scene, hint)
 			end)
 		}
 	else
-		if not scene.nighttime and
+		if GameState:isFlagSet("ep4_introdone") then
+			local prefix = "nighthide"
+			for _,layer in pairs(scene.map.layers) do
+				if string.sub(layer.name, 1, #prefix) == prefix then
+					layer.opacity = 0.0
+				end
+			end
+			scene.audio:playMusic("knotholehut", 0.8)
+		elseif not scene.nighttime and
 		   (GameState:isFlagSet("ep3_ffmeeting") or not GameState:isFlagSet("ep3_knotholerun"))
 		then
 			scene.audio:playMusic("knotholehut", 0.8)
 		elseif not scene.nighttime and not GameState:isFlagSet("ep3_ffmeeting") then
 			scene.audio:playMusic("awkward", 1.0)
 		else
+			doNightTime()
 			scene.objectLookup.Door.object.properties.scene = "knotholeatnight.lua"
 		end
 	end
