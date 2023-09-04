@@ -149,7 +149,11 @@ function Bot:exit()
 	if self.prevSceneMusic and not self.scene.enteringBattle then
 		self.scene.audio:playMusic(self.prevSceneMusic)
 	end
-	
+
+	if self.shocked then
+		return
+	end
+
 	-- Go back to regular patrolling
 	if not self:isRemoved() then
 		self:removeAllUpdates()
@@ -518,7 +522,8 @@ function Bot:chaseUpdate(dt)
 		for _, object in pairs(self.scene.map.objects) do
 			if object.isBot and
 				not object:isRemoved() and
-				object.name ~= self.name
+				object.name ~= self.name and
+				not object.shocked
 			then
 				local dx = self.x - object.x
 				local dy = self.y - object.y
@@ -687,6 +692,7 @@ function Bot:hop(waitTime)
 	if waitTime then
 		waitAction = Wait(waitTime)
 	end
+	self.hopping = true
 	return Parallel {
 		Serial {
 			Ease(self, "y", self.y - 50, 8, "linear"),
@@ -695,6 +701,7 @@ function Bot:hop(waitTime)
 		},
 		Do(function()
 			self:updateDropShadowPos(true)
+			self.hopping = false
 		end)
 	}
 end
@@ -779,10 +786,12 @@ function Bot:baseUpdate(dt)
 	
 	self:updateAction(dt)
 
-	self.object.x = self.x
-	self.object.y = self.y
-	self:updateCollision()
-	
+	if not self.hopping then
+		self.object.x = self.x
+		self.object.y = self.y + self.sprite.h*2
+		self:updateCollision()
+	end
+
 	-- HACK
 	if not self.sprite or not self.scene.player then
 		return
@@ -1005,6 +1014,7 @@ function Bot:enableBot()
 end
 
 function Bot:restart()
+    self.behavior = Bot.BEHAVIOR_PATROLLING
 	self:addSceneHandler("update")
 	self:postInit()
 end

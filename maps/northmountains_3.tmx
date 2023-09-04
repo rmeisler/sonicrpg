@@ -773,6 +773,8 @@ return function(self, player)
         },
         Do(function()
             self.scene.objectLookup.Abominable:permanentRemove()
+            self.scene.player.ladders = {}
+            self.scene.player.noLadder = {}
         end)
     })
 end</property>

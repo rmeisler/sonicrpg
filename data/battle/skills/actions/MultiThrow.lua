@@ -67,8 +67,8 @@ local KeyTrigger = function(self, key)
 			self.pressz.color[4] = 255
 			self.curKey = "z"
 		else
-			self.pressx.color[4] = 255
 			self.pressz.color[4] = 0
+			self.pressx.color[4] = 255
 			self.curKey = "x"
 		end
 		
@@ -132,9 +132,6 @@ local KeyTrigger = function(self, key)
 				weapon:remove()
 			end)
 		})
-	else
-		self.scene.audio:playSfx("error", nil, true)
-		self.earlyExitThrow = true
 	end
 end
 

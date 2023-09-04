@@ -15,6 +15,10 @@ function Ease:construct(obj, prop, to, speed, func, test)
 end
 
 function Ease:update(dt)
+	if self.obj == nil then
+		self.t = 1.0
+		return
+	end
 	if self.t == 0 then
 		self.from = self.obj[self.prop]
 	end

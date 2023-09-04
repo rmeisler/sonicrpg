@@ -25,17 +25,16 @@ local RotorTrap = class(NPC)
 function RotorTrap:construct(scene, layer, object)
 	NPC.init(self)
 
-	self.hotspots.right_top.x = self.x + self.sprite.w / 2
+	self.hotspots.right_top.x = self.x + self.sprite.w / 3
 	self.hotspots.right_top.y = self.y - self.sprite.h / 2
-	self.hotspots.right_bot.x = self.x + self.sprite.w / 2
+	self.hotspots.right_bot.x = self.x + self.sprite.w / 3
 	self.hotspots.right_bot.y = self.y + self.sprite.h / 2
-	self.hotspots.left_top.x = self.x - self.sprite.w / 2
+	self.hotspots.left_top.x = self.x - self.sprite.w / 3
 	self.hotspots.left_top.y = self.y - self.sprite.h / 2
-	self.hotspots.left_bot.x = self.x - self.sprite.w / 2
+	self.hotspots.left_bot.x = self.x - self.sprite.w / 3
 	self.hotspots.left_bot.y = self.y + self.sprite.h / 2
 
 	self.timeToSwitch = 0.2
-	self.invert = true
 	self.shockedBots = {}
 	self:removeSceneHandler("update")
 	self:addSceneHandler("onEnterBattle")
@@ -46,7 +45,6 @@ function RotorTrap:update(dt)
 
 	self:shockBots()
 
-	self.timeToSwitch = self.timeToSwitch - dt
 	for _, bot in pairs(self.shockedBots) do
 		if self.sprite and not bot:isTouching(self.x + 64, self.y + 48, 64/5, 48/5) then
 			if bot.addCollisionHandler then
@@ -59,22 +57,25 @@ function RotorTrap:update(dt)
 				bot.sprite:removeInvertedColor()
 			end
 			self.shockedBots[tostring(bot)] = nil
+			self.scene.player.chasers[tostring(bot.name)] = nil
 			print("reset bot")
-			break
 		end
-	
-		if self.timeToSwitch <= 0 then
+	end
+
+	self.timeToSwitch = self.timeToSwitch - dt
+	if self.timeToSwitch <= 0 then
+		for _, bot in pairs(self.shockedBots) do
 			if bot.sprite and not bot.destructable then
-				if self.invert then
+				if bot.invert then
 					bot.sprite:setInvertedColor()
-					self.invert = false
+					bot.invert = false
 				else
 					bot.sprite:removeInvertedColor()
-					self.invert = true
+					bot.invert = true
 				end
 			end
-			self.timeToSwitch = 0.2
 		end
+		self.timeToSwitch = 0.2
 	end
 end
 

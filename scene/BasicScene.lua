@@ -665,9 +665,14 @@ function BasicScene:removeObject(object)
 end
 
 function BasicScene:enterBattle(args)
-	if self.enteringBattle then
+	if self.enteringBattle or next(args.opponents) == nil then
 		return Action()
 	end
+	local oppostr = ""
+	for k,v in pairs(args.opponents) do
+		oppostr = oppostr..v..", "
+	end
+	print("entering battle against... "..oppostr)
 	if not self.blur then
 		self.blur = shine.boxblur()
 		self.blur.radius_v = 0.0

@@ -464,27 +464,29 @@ return {
 					end
 					self.freezepoofs = nil
 				end),
-				Spawn(
-					PressZ(
-						self,
-						target,
-						Serial {
-							PlayAudio("sfx", "pressx", 1.0, true),
-							target:takeDamage(self.stats, false, function(_self, _impact, _direction) return Action() end)
-						},
-						Serial {
-							target:takeDamage(self.stats, false, function(_self, _impact, _direction) return Action() end),
-							PlayAudio("sfx", "slice", 0.3, true),
-							Animate(target.sprite, "frozen"),
-							Do(function()
-								target.state = BattleActor.STATE_IMMOBILIZED
-								target.turnsImmobilized = 2
-								self:getSprite():pushOverride("idle", "iceidle")
-								self:getSprite():pushOverride("hurt", "icehurt")
-							end)
-						}
-					)
-				),
+				not GameState:isEquipped(target.id, ItemType.Armor, "Yeti Armor") and
+					Spawn(
+						PressZ(
+							self,
+							target,
+							Serial {
+								PlayAudio("sfx", "pressx", 1.0, true),
+								target:takeDamage(self.stats, false, function(_self, _impact, _direction) return Action() end)
+							},
+							Serial {
+								target:takeDamage(self.stats, false, function(_self, _impact, _direction) return Action() end),
+								PlayAudio("sfx", "slice", 0.3, true),
+								Animate(target.sprite, "frozen"),
+								Do(function()
+									target.state = BattleActor.STATE_IMMOBILIZED
+									target.turnsImmobilized = 2
+									self:getSprite():pushOverride("idle", "iceidle")
+									self:getSprite():pushOverride("hurt", "icehurt")
+								end)
+							}
+						)
+					) or
+					Action(),
 				Repeat(Serial {
 					Do(function()
 						local xform = sprite.transform

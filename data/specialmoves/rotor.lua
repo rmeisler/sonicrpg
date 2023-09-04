@@ -70,6 +70,9 @@ return function(player)
 				player.placeTrap.y = player.y + 64
 			end
 		else
+			if not player.scene.objectLookup.RotorTrap then
+				return
+			end
 			player.basicUpdate = function(self, dt) end
 			player:run(Serial {
 				PlayAudio("sfx", "factoryspit", 1.0, true),

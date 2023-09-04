@@ -17,7 +17,7 @@ end
 
 function Move:setScene(scene)
 	Action.setScene(self, scene)
-	self.collisionMap = scene.collisionLayer[self.obj.layer]
+	self.collisionMap = scene.collisionLayer[self.obj.layer.name]
 end
 
 function Move:update(dt)
