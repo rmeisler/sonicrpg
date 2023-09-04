@@ -8,7 +8,7 @@ return {
   height = 155,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 216,
+  nextobjectid = 219,
   properties = {
     ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
     ["layered"] = true,
@@ -1626,14 +1626,14 @@ return {
           x = 736,
           y = 3904,
           width = 448,
-          height = 160,
+          height = 320,
           rotation = 0,
           gid = 10970,
-          visible = true,
+          visible = false,
           properties = {
             ["ghost"] = true,
-            ["notColliding"] = "return function(self, player)\n    self.scene.player.noLadder[tostring(self)] = nil\nend",
-            ["whileColliding"] = "return function(self, player)\n    self.scene.player.noLadder[tostring(self)] = true\nend"
+            ["notColliding"] = "return function(self, player)\n    self.scene.objectLookup.Ladder2.noThanks = nil\n    self.scene.objectLookup.Ladder3.noThanks = nil\nend",
+            ["whileColliding"] = "return function(self, player)\n    self.scene.objectLookup.Ladder2.noThanks = true\n    self.scene.objectLookup.Ladder3.noThanks = true\nend"
           }
         },
         {
@@ -1928,12 +1928,12 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["battle"] = "../data/monsters/abominable.lua",
+            ["battleInitiative"] = "cinematic",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idleleft",
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
             ["ignorePlayer"] = true,
-            ["initiative"] = "opponent",
             ["isBot"] = true,
             ["noInvestigate"] = true,
             ["noPush"] = true,
@@ -2369,6 +2369,23 @@ return {
           properties = {
             ["ghost"] = true,
             ["viewRange"] = "CantSee"
+          }
+        },
+        {
+          id = 216,
+          name = "StopLadderDown",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 864,
+          y = 3776,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player)\n    local ladder8str = tostring(self.scene.objectLookup.Ladder8)\n    if love.keyboard.isDown(\"down\") and player.ladders[ladder8str] then\n        player.ladders[ladder8str] = nil\n        player.noSpecialMove = false\n        player.noChangeChar = false\n        player.movespeed = player.origMoveSpeed\n        player.basicUpdate = player.updateFun\n        if self.botLayer then\n            self.scene:swapLayer(self.botLayer)\n        end\n    end\nend"
           }
         }
       }
@@ -3488,6 +3505,7 @@ return {
             ["defaultAnim"] = "dark_left",
             ["disabled"] = true,
             ["isBot"] = true,
+            ["noDropShadow"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/abominable.png"
           }
@@ -3545,6 +3563,23 @@ return {
             ["ghost"] = true,
             ["notColliding"] = "return function(self, player)\n    self.scene.player.noLadder[tostring(self)] = nil\nend",
             ["whileColliding"] = "return function(self, player)\n    self.scene.player.noLadder[tostring(self)] = true\nend"
+          }
+        },
+        {
+          id = 218,
+          name = "StopLadderUp",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 992,
+          y = 3520,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player)\n    local ladder3str = tostring(self.scene.objectLookup.Ladder3)\n    if love.keyboard.isDown(\"up\") and player.ladders[ladder3str] then\n        player.ladders[ladder3str] = nil\n        player.noSpecialMove = false\n        player.noChangeChar = false\n        player.movespeed = player.origMoveSpeed\n        player.basicUpdate = player.updateFun\n    end\nend"
           }
         }
       }

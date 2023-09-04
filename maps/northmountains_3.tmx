@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="155" tilewidth="32" tileheight="32" infinite="0" nextobjectid="216">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="155" tilewidth="32" tileheight="32" infinite="0" nextobjectid="219">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/northmountainsbg.png"/>
   <property name="layered" type="bool" value="true"/>
@@ -1439,14 +1439,16 @@ end</property>
  </layer>
  <objectgroup name="lower3"/>
  <objectgroup name="objects3">
-  <object id="135" name="NoLadderPlz" type="BasicNPC" gid="10970" x="736" y="3904" width="448" height="160">
+  <object id="135" name="NoLadderPlz" type="BasicNPC" gid="10970" x="736" y="3904" width="448" height="320" visible="0">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)
-    self.scene.player.noLadder[tostring(self)] = nil
+    self.scene.objectLookup.Ladder2.noThanks = nil
+    self.scene.objectLookup.Ladder3.noThanks = nil
 end</property>
     <property name="whileColliding">return function(self, player)
-    self.scene.player.noLadder[tostring(self)] = true
+    self.scene.objectLookup.Ladder2.noThanks = true
+    self.scene.objectLookup.Ladder3.noThanks = true
 end</property>
    </properties>
   </object>
@@ -1599,12 +1601,12 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="battle" type="file" value="../data/monsters/abominable.lua"/>
+    <property name="battleInitiative" value="cinematic"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleleft"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignorePlayer" type="bool" value="true"/>
-    <property name="initiative" value="opponent"/>
     <property name="isBot" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="noPush" type="bool" value="true"/>
@@ -1951,6 +1953,24 @@ end</property>
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="viewRange" value="CantSee"/>
+   </properties>
+  </object>
+  <object id="216" name="StopLadderDown" type="BasicNPC" gid="10970" x="864" y="3776" width="64" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player)
+    local ladder8str = tostring(self.scene.objectLookup.Ladder8)
+    if love.keyboard.isDown(&quot;down&quot;) and player.ladders[ladder8str] then
+        player.ladders[ladder8str] = nil
+        player.noSpecialMove = false
+        player.noChangeChar = false
+        player.movespeed = player.origMoveSpeed
+        player.basicUpdate = player.updateFun
+        if self.botLayer then
+            self.scene:swapLayer(self.botLayer)
+        end
+    end
+end</property>
    </properties>
   </object>
  </objectgroup>
@@ -2861,6 +2881,7 @@ end</property>
     <property name="defaultAnim" value="dark_left"/>
     <property name="disabled" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
+    <property name="noDropShadow" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/abominable.png"/>
    </properties>
@@ -2888,6 +2909,21 @@ end</property>
 end</property>
     <property name="whileColliding">return function(self, player)
     self.scene.player.noLadder[tostring(self)] = true
+end</property>
+   </properties>
+  </object>
+  <object id="218" name="StopLadderUp" type="BasicNPC" gid="10970" x="992" y="3520" width="64" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player)
+    local ladder3str = tostring(self.scene.objectLookup.Ladder3)
+    if love.keyboard.isDown(&quot;up&quot;) and player.ladders[ladder3str] then
+        player.ladders[ladder3str] = nil
+        player.noSpecialMove = false
+        player.noChangeChar = false
+        player.movespeed = player.origMoveSpeed
+        player.basicUpdate = player.updateFun
+    end
 end</property>
    </properties>
   </object>

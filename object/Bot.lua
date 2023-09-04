@@ -59,9 +59,11 @@ function Bot:construct(scene, layer, object)
 	--self:updateFacing()
 	self.manualFacing = "down"
 	self.originalFacing = self.manualFacing
-	
-	self:createDropShadow()
-	
+
+	if not object.properties.noDropShadow then
+		self:createDropShadow()
+	end
+
 	self.udflashlight = SpriteNode(
 		self.scene,
 		Transform(),
@@ -727,6 +729,9 @@ function Bot:updateFacing()
 end]]
 
 function Bot:updateDropShadowPos(xonly)
+	if not self.dropShadow then
+		return
+	end
 	self.dropShadow.x = self.x + 18
 	
 	if not xonly then
@@ -954,7 +959,9 @@ function Bot:remove()
 		return
 	end
 
-	self.dropShadow:remove()
+	if self.dropShadow then
+		self.dropShadow:remove()
+	end
 	for _, light in pairs(self.flashlight) do
 		light:remove()
 	end

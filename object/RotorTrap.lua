@@ -48,12 +48,7 @@ function RotorTrap:update(dt)
 
 	self.timeToSwitch = self.timeToSwitch - dt
 	for _, bot in pairs(self.shockedBots) do
-		if not bot:isTouching(
-				self.x + self.sprite.w,
-				self.y + self.sprite.h,
-				self.sprite.w/5,
-				self.sprite.h/5)
-		then
+		if self.sprite and not bot:isTouching(self.x + 64, self.y + 48, 64/5, 48/5) then
 			if bot.addCollisionHandler then
 				bot:addCollisionHandler()
 			end
@@ -64,6 +59,7 @@ function RotorTrap:update(dt)
 				bot.sprite:removeInvertedColor()
 			end
 			self.shockedBots[tostring(bot)] = nil
+			print("reset bot")
 			break
 		end
 	
@@ -92,6 +88,19 @@ function RotorTrap:shockBots()
 	end
 
 	for _, obj in pairs(self.scene.map.objects) do
+		if obj.shocked and not self.shockedBots[tostring(obj)] then
+			obj.shocked = false
+			if obj.addCollisionHandler then
+				obj:addCollisionHandler()
+			end
+			if obj.restart then
+				obj:restart()
+			end
+			if obj.sprite then
+				obj.sprite:removeInvertedColor()
+			end
+		end
+
 		if obj.isBot and
 		   (not self.scene.map.properties.layered or
 		   self.scene.currentLayer == obj.layer.name) and
@@ -105,6 +114,7 @@ function RotorTrap:shockBots()
 				self.sprite.w/5,
 				self.sprite.h/5)
 		then
+		    print("bot is shocked")
 			if obj.prevSceneMusic then
 				self.scene.audio:playMusic(obj.prevSceneMusic)
 			end
@@ -112,6 +122,7 @@ function RotorTrap:shockBots()
 				obj:onRotorTrap()
 			end
 			self.shockedBots[tostring(obj)] = obj
+			obj.shocked = true
 			
 			obj.sprite:trySetAnimation("hurtdown")
 			--obj:removeCollision()

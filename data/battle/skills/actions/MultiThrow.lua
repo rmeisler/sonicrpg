@@ -77,14 +77,14 @@ local KeyTrigger = function(self, key)
 		end
 		
 		-- Round robin select target from opponents list
-		local target = self.scene.opponents[self.lastSelection]
+		local target = self.scene.opponents[(self.lastSelection % #self.scene.opponents) + 1]
 		table.insert(self.hurtEnemies, target)
-		self.lastSelection = ((self.lastSelection + 1) % #self.scene.opponents) + 1
+		self.lastSelection = self.lastSelection + 1
 
 		self.weapon = MakeWeapon(self)
 		local weapon = self.weapon
 		self.scene.audio:stopSfx()
-		local targetSp = target:getSprite()
+		local targetSp = target.sprite
 		Executor(self.scene):act(Serial {
 			PlayAudio("sfx", "levelup", 1.0, true),
 			Spawn(Animate(self.sprite, "throw")),

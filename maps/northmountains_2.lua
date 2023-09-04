@@ -1808,6 +1808,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "dark_left",
+            ["flagOverride"] = "AbominableNM2",
             ["isBot"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/abominable.png"

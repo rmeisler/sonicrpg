@@ -276,7 +276,7 @@ return {
 					Animate(self.sprite, "shoot"),
 					Animate(self.sprite, "shoot_idle"),
 					
-					Wait(0.5),
+					Wait(0.2),
 
 					Parallel(dodgeAllPartyMembers),
 					

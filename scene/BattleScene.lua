@@ -199,6 +199,12 @@ function BattleScene:onEnter(args)
 				end
 			end)
 		}
+	-- Cinematic, opponent gets first turn but its just for cinematic purposes
+	elseif self.initiative == "cinematic" then
+		for _, oppo in pairs(self.opponents) do
+			table.insert(self.opponentTurns, oppo)
+		end
+		self.state = BattleScene.STATE_MONSTERTURN
 	else
 		for _, mem in pairs(self.party) do
 			if mem.state ~= BattleActor.STATE_DEAD and not mem.isHologram then
@@ -273,6 +279,10 @@ function BattleScene:update(dt)
 			end
 			return
 		end
+		
+		-- Fix messed up sfx
+		self.audio:stopSfx("choose")
+		self.audio:stopSfx("levelup")
 
 		-- Player begin turn
 		self.currentPlayer:beginTurn()

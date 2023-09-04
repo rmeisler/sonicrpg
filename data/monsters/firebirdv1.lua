@@ -149,6 +149,10 @@ return {
 	end,
 
 	behavior = function (self, target)
+		if self.hp <= 0 then
+			return Action()
+		end
+	
 		local sprite = self:getSprite()
 		if self.state == "pause_to_ice" then
 			-- 50% chance of shifting to ice or fly

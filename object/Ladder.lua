@@ -69,6 +69,10 @@ function Ladder:notColliding(player)
 		return
 	end
 
+	if self.noThanks then
+		return
+	end
+
 	if player.ladders[tostring(self)] then
 		player.ladders[tostring(self)] = nil
 		player.noSpecialMove = false
@@ -84,6 +88,10 @@ end
 
 function Ladder:whileColliding(player)
 	if next(player.noLadder) ~= nil then
+		return
+	end
+
+	if self.noThanks then
 		return
 	end
 
