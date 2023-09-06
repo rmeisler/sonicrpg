@@ -209,7 +209,7 @@ return function(scene, hint)
 				scene.player.dropShadow.hidden = false
 			end)
 		}
-	else
+	elseif hint ~= "snowday" then
 		local prefix = "nighthide"
 		for _,layer in pairs(scene.map.layers) do
 			if string.sub(layer.name, 1, #prefix) == prefix then

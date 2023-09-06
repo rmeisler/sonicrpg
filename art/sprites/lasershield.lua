@@ -12,6 +12,12 @@ return {
 		hurt = {
             frames = {{0,0}}
         },
+		frozen = {
+            frames = {{0,0}}
+        },
+		cold = {
+            frames = {{0,0}}
+        },
 		dead = {
             frames = {{0,0}}
         }

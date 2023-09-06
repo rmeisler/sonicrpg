@@ -195,7 +195,7 @@ return function(self, target)
 			end
 			local dmgActions = {}
 			for _, r in pairs(dmgCounter) do
-				table.insert(dmgActions, r.target:takeDamage({damage=r.damage, attack=0, speed=100, luck=0}))
+				table.insert(dmgActions, r.target:takeDamage({damage=math.floor(r.damage/2), attack=0, speed=100, luck=0}))
 			end
 			Executor(self.scene):act(Serial {
 				Parallel(dmgActions),

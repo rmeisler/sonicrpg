@@ -18,6 +18,7 @@ local SpriteNode = require "object/SpriteNode"
 local BattleActor = require "object/BattleActor"
 
 local Transform = require "util/Transform"
+local ItemType = require "util/ItemType"
 
 local PressX = require "data/battle/actions/PressX"
 local PressZ = require "data/battle/actions/PressZ"
@@ -406,6 +407,8 @@ return {
 				end)
 			}
 		elseif self.state == "ice" then
+			local hasYetiArmor = not target.laserShield and
+				GameState:isEquipped(target.id, ItemType.Armor, "Yeti Armor")
 			local origTargetXform = target.sprite.transform
 			local transitionSp = SpriteNode(
 			    self.scene,
@@ -427,10 +430,10 @@ return {
 				Animate(self:getSprite(), "iceattack"),
 				PlayAudio("sfx", "firebirdbreath", 1.0, true),
 				Parallel {
-					Serial {
+					not hasYetiArmor and Serial {
 						Wait(0.5),
 						Animate(target.sprite, "cold")
-					},
+					} or Action(),
 					Repeat(Serial {
 						Do(function()
 							local xform = sprite.transform
@@ -464,7 +467,7 @@ return {
 					end
 					self.freezepoofs = nil
 				end),
-				not GameState:isEquipped(target.id, ItemType.Armor, "Yeti Armor") and
+				not hasYetiArmor and
 					Spawn(
 						PressZ(
 							self,
@@ -478,15 +481,19 @@ return {
 								PlayAudio("sfx", "slice", 0.3, true),
 								Animate(target.sprite, "frozen"),
 								Do(function()
-									target.state = BattleActor.STATE_IMMOBILIZED
-									target.turnsImmobilized = 2
-									self:getSprite():pushOverride("idle", "iceidle")
-									self:getSprite():pushOverride("hurt", "icehurt")
+									if target.hp > 0 then
+										target.state = BattleActor.STATE_IMMOBILIZED
+										target.turnsImmobilized = 2
+										self:getSprite():pushOverride("idle", "iceidle")
+										self:getSprite():pushOverride("hurt", "icehurt")
+									end
 								end)
 							}
 						)
-					) or
-					Action(),
+					) or Serial {
+						PlayAudio("sfx", "pressx", 1.0, true),
+						target:takeDamage({damage=0,attack=0,luck=0,speed=0}, false, function(_self, _impact, _direction) return Action() end)
+					},
 				Repeat(Serial {
 					Do(function()
 						local xform = sprite.transform

@@ -125,7 +125,7 @@ function PartyMember:beginTurn()
 		if not self.turnsImmobilized then
 			self.turnsImmobilized = 1
 		else
-			self.turnsImmobilized = self.turnsImmobilized + 1
+			self.turnsImmobilized = self.turnsImmobilized - 1
 		end
 		
 		local shake = Repeat(Serial {
@@ -168,7 +168,7 @@ function PartyMember:beginTurn()
 		}, 2)
 		
 		-- Escape
-		if math.random() < self.turnsImmobilized * (self.stats.luck/50) then
+		if math.random(1, self.turnsImmobilized + 1) then
 			BattleActor.beginTurn(self)
 			
 			self.turnsImmobilized = nil

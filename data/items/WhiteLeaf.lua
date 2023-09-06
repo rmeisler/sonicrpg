@@ -5,7 +5,8 @@ return {
 	desc = "Gives party member 3 turns",
 	target = TargetType.Party,
 	unusable = function(target)
-		return target.side ~= TargetType.Party
+		local TTargetType = require "util/TargetType"
+		return target.side ~= TTargetType.Party
 	end,
 	usableFromMenu = false,
 	icon = "icon_plant",

@@ -26,6 +26,7 @@ return function(self, target)
 			PlayAudio("sfx", "pressx", 1.0, true),
 			Do(function()
 				target.dodged = true
+				target.sprite:pushOverride("hurt", "idle")
 			end),
 			Animate(function()
 				local xform = Transform(
@@ -36,7 +37,10 @@ return function(self, target)
 				)
 				return SpriteNode(target.scene, xform, nil, "sparkle", nil, nil, "ui"), true
 			end, "idle"),
-			target:takeDamage(reducedDmgStats, true, BattleActor.shockKnockback)
+			target:takeDamage(reducedDmgStats, true, BattleActor.shockKnockback),
+			Do(function()
+				target.sprite:popOverride("hurt")
+			end)
 		},
 		Do(function() end)
 	)

@@ -28,7 +28,10 @@ function SnowboardBoulder:move(dt)
 	local cy = self.hotspots.left_top.y
 	local cw = self.hotspots.right_top.x - cx
 	local ch = self.hotspots.right_bot.y - cy
-	if not self.scene.playerDead and self.scene.player:isTouching(cx, cy, cw, ch) then
+	if  not self.scene.playerDead and
+		not self.scene.player.jump and
+		self.scene.player:isTouching(cx, cy, cw, ch)
+	then
 		self:invoke("collision")
 	end
 end
