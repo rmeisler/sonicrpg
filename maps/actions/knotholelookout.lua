@@ -134,6 +134,12 @@ return function(scene, hint)
 	else
 		scene.objectLookup.Logan:remove()
 		scene.objectLookup.Rotor:remove()
+		for _,layer in pairs(scene.map.layers) do
+			if layer.name == "twilight" then
+				layer.opacity = 0
+				break
+			end
+		end
 	end
 
 	showTitle()
