@@ -170,6 +170,7 @@ return function(scene, hint)
 			Do(function()
 				local door = scene.objectLookup.WorkshopDoor
 				scene.player.hidekeyhints[tostring(door)] = door
+				scene.audio:stopMusic()
 			end),
 			Wait(2),
 			PlayAudio("music", "sadintrospect", 1.0, true),
