@@ -52,7 +52,7 @@ return {
 	coin = 0,
 
 	drops = {
-		{item = require "data/armor/YetiArmor", count = 1, chance = 1.0},
+		{item = require "data/items/YetiArmor", count = 1, chance = 1.0},
 	},
 	
 	scan = "Yeti's like sweets...",
@@ -119,6 +119,7 @@ return {
 					self.state = self.STATE_DEAD
 					selfSp:remove()
 					self:invoke("dead")
+					self.scene.enemyRan = true
 				end),
 				MessageBox {message="Yeti left the battle...", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(0.6)},
 				

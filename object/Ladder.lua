@@ -95,6 +95,13 @@ function Ladder:whileColliding(player)
 		return
 	end
 
+	if self.scene.map.properties.layered and
+	   self.scene.currentLayerId ~= self.topLayer and
+	   self.scene.currentLayerId ~= self.botLayer
+	then
+		return
+	end
+
 	if player.doingSpecialMove and GameState.leader == "sonic" then
 		player.basicUpdate = self.updateFun
 	end

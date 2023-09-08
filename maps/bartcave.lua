@@ -578,7 +578,7 @@ return {
           x = 1120,
           y = 1440,
           width = 384,
-          height = 64,
+          height = 32,
           rotation = 0,
           gid = 6839,
           visible = true,

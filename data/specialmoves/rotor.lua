@@ -74,6 +74,7 @@ return function(player)
 				return
 			end
 			player.basicUpdate = function(self, dt) end
+			local placeTrap = player.placeTrap
 			player:run(Serial {
 				PlayAudio("sfx", "factoryspit", 1.0, true),
 				Do(function()
@@ -81,8 +82,10 @@ return function(player)
 				end),
 				Do(function()
 					player.basicUpdate = player.updateFun
-					player.placeTrap:addSceneHandler("update")
-					player.placeTrap = nil
+					if placeTrap then
+						placeTrap:addSceneHandler("update")
+						placeTrap = nil
+					end
 				end),
 				player.scene.objectLookup.RotorTrap:hop(),
 				Animate(player.scene.objectLookup.RotorTrap.sprite, "activate"),

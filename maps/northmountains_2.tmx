@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="80" tilewidth="32" tileheight="32" infinite="0" nextobjectid="139">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="96" height="80" tilewidth="32" tileheight="32" infinite="0" nextobjectid="141">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/northmountainsbg.png"/>
   <property name="layered" type="bool" value="true"/>
@@ -391,6 +391,7 @@ end</property>
     if player.hidelayer == false then
         return
     end
+    self.scene.player.noLadder = {}
 
     player.hidelayer = false
     for _, layer in pairs(self.scene.map.layers) do
@@ -901,6 +902,7 @@ end
     if player.hidelayer == false then
         return
     end
+    self.scene.player.noLadder = {}
 
     player.hidelayer = false
     for _, layer in pairs(self.scene.map.layers) do
@@ -982,6 +984,22 @@ end
   <object id="138" name="CantSee" type="BasicNPC" gid="10970" x="768" y="320" width="320" height="160" visible="0">
    <properties>
     <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="139" name="FixLadder" type="BasicNPC" gid="10970" x="1632" y="1568" width="64" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player)
+    self.scene.player.noLadder = {}
+end</property>
+   </properties>
+  </object>
+  <object id="140" name="FixLadder" type="BasicNPC" gid="10970" x="1632" y="800" width="64" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player)
+    self.scene.player.noLadder = {}
+end</property>
    </properties>
   </object>
  </objectgroup>

@@ -300,6 +300,9 @@ function BattleScene:update(dt)
 	elseif self.state == BattleScene.STATE_PLAYERTURN_PENDING then
 		local member = self.currentPlayer
 		if member:isTurnOver() then
+			-- Fix messed up sfx
+			self.audio:stopSfx("choose")
+			self.audio:stopSfx("levelup")
 			self.arrow:remove()
 			self.state = BattleScene.STATE_PLAYERTURN_COMPLETE
 		end
@@ -401,16 +404,18 @@ function BattleScene:update(dt)
 	
 		-- Add up spoils of war from each opponent
 		local spoilsActions = {}
-		for _,reward in pairs(self.rewards) do
-			GameState:grantItem(reward.item, reward.count)
-			table.insert(
-				spoilsActions,
-				MessageBox {
-					message="Found "..tostring(reward.count).." "..tostring(reward.item.name)..
-					(reward.count > 1 and "s" or "").."!",
-					rect=MessageBox.HEADLINER_RECT
-				}
-			)
+		if not self.enemyRan then
+			for _,reward in pairs(self.rewards) do
+				GameState:grantItem(reward.item, reward.count)
+				table.insert(
+					spoilsActions,
+					MessageBox {
+						message="Found "..tostring(reward.count).." "..tostring(reward.item.name)..
+						(reward.count > 1 and "s" or "").."!",
+						rect=MessageBox.HEADLINER_RECT
+					}
+				)
+			end
 		end
 		table.insert(
 			spoilsActions,

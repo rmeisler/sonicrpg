@@ -40,6 +40,11 @@ return function(self, target)
 			target:takeDamage(reducedDmgStats, true, BattleActor.shockKnockback),
 			Do(function()
 				target.sprite:popOverride("hurt")
+				if target.hp <= 0 then
+					target.sprite:setAnimation("dead")
+				else
+					target.sprite:setAnimation("idle")
+				end
 			end)
 		},
 		Do(function() end)

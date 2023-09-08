@@ -455,6 +455,9 @@ end
 function NPC:permanentRemove()
 	GameState:setFlag(self:getFlag())
 	self:remove()
+	self.scene.player.keyhints[tostring(self)] = nil
+	self.scene.player.hidekeyhints[tostring(self)] = nil
+	self.scene.player.touching[tostring(self)] = nil
 end
 
 function NPC:getInitiative()

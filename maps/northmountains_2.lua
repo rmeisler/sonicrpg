@@ -8,7 +8,7 @@ return {
   height = 80,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 139,
+  nextobjectid = 141,
   properties = {
     ["battlebg"] = "../art/backgrounds/northmountainsbg.png",
     ["layered"] = true,
@@ -598,7 +598,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["whileColliding"] = "return function(self, player)\n    if player.hidelayer == false then\n        return\n    end\n\n    player.hidelayer = false\n    for _, layer in pairs(self.scene.map.layers) do\n        if layer.name == \"tempoverlay1\" then\n            layer.opacity = 1.0\n            break\n        end\n    end\nend\n"
+            ["whileColliding"] = "return function(self, player)\n    if player.hidelayer == false then\n        return\n    end\n    self.scene.player.noLadder = {}\n\n    player.hidelayer = false\n    for _, layer in pairs(self.scene.map.layers) do\n        if layer.name == \"tempoverlay1\" then\n            layer.opacity = 1.0\n            break\n        end\n    end\nend\n"
           }
         },
         {
@@ -1272,7 +1272,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["whileColliding"] = "return function(self, player)\n    if player.hidelayer == false then\n        return\n    end\n\n    player.hidelayer = false\n    for _, layer in pairs(self.scene.map.layers) do\n        if layer.name == \"tempoverlay1\" then\n            layer.opacity = 1.0\n            break\n        end\n    end\nend\n"
+            ["whileColliding"] = "return function(self, player)\n    if player.hidelayer == false then\n        return\n    end\n    self.scene.player.noLadder = {}\n\n    player.hidelayer = false\n    for _, layer in pairs(self.scene.map.layers) do\n        if layer.name == \"tempoverlay1\" then\n            layer.opacity = 1.0\n            break\n        end\n    end\nend\n"
           }
         },
         {
@@ -1443,6 +1443,40 @@ return {
           visible = false,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 139,
+          name = "FixLadder",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1632,
+          y = 1568,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player)\n    self.scene.player.noLadder = {}\nend"
+          }
+        },
+        {
+          id = 140,
+          name = "FixLadder",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1632,
+          y = 800,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 10970,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player)\n    self.scene.player.noLadder = {}\nend"
           }
         }
       }

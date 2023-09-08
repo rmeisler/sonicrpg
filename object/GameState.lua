@@ -416,8 +416,20 @@ function GameState:load(scene, slot)
 		ItemType.Accessory,
 		"items"
 	}
+	-- Regrant all items to make sure they are using latest code
 	for _, t in pairs(types) do
-		self[t] = data[t]
+		if t == "items" then
+			for itemName, item in pairs(data[t]) do
+				local itemFile = "data/items/"..itemName:gsub("%s+", "")
+				print("grant item "..itemFile)
+				local status = pcall(require, itemFile)
+				if status then
+					self:grantItem(require(itemFile), item.count)
+				end
+			end
+		else
+			self[t] = data[t]
+		end
 	end
 	
 	self.flags = data.flags

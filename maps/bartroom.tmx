@@ -196,7 +196,15 @@ return function(self)
         }
     elseif self.step == &quot;ep4_bart_intro3&quot; then
         self.step = &quot;ep4_bart_intro4&quot;
+        self.scene.player.x = self.x
+        self.scene.player.y = self.y + 64
+        local walkout, walkin, sprites = self.scene.player:split()
+        self.scene.player.x = self.x + 96
+        self.scene.player.y = self.y + 96
         return BlockPlayer {
+            walkout,
+            Animate(sprites.rotor.sprite, &quot;idleup&quot;),
+            Animate(sprites.logan.sprite, &quot;idleup&quot;),
             MessageBox{message=&quot;Bart: This pod is uh... {p60}technically just a washing machine and dryer...{p100} but it functions satisfactorily!&quot;},
             MessageBox{message=&quot;Rotor: *sigh*&quot;},
             Do(function()
@@ -219,11 +227,20 @@ return function(self)
                 self.object.x = self.x
                 self.object.y = self.y + 64
                 self:updateCollision()
-            end)
+            end),
+            walkin
         }
     elseif self.step == &quot;ep4_bart_intro2&quot; then
         self.step = &quot;ep4_bart_intro3&quot;
+        self.scene.player.x = self.x
+        self.scene.player.y = self.y + 64
+        local walkout, walkin, sprites = self.scene.player:split()
+        self.scene.player.x = self.x + 96
+        self.scene.player.y = self.y + 96
         return BlockPlayer {
+            walkout,
+            Animate(sprites.rotor.sprite, &quot;idleup&quot;),
+            Animate(sprites.logan.sprite, &quot;idleup&quot;),
             MessageBox{message=&quot;Bart: Here is my workstation... {p60}on the right you can see an excavated skull from one of our ancient Mobian ancestors...&quot;},
             MessageBox{message=&quot;Bart: They worshipped a mythical race of giants called the 'Mandara'. {p60}The tomb you were standing in was a sacred place meant for self-reflection... {p100} fascinating!&quot;},
             MessageBox{message=&quot;Rotor: Yeah, that's super interesting... {p60}listen, uh--&quot;},
@@ -240,11 +257,20 @@ return function(self)
                 self.object.x = self.x
                 self.object.y = self.y + 96
                 self:updateCollision()
-            end)
+            end),
+            walkin
         }
     else
         self.step = &quot;ep4_bart_intro2&quot;
+        self.scene.player.x = self.x
+        self.scene.player.y = self.y + 64
+        local walkout, walkin, sprites = self.scene.player:split()
+        self.scene.player.x = self.x + 96
+        self.scene.player.y = self.y + 96
         return BlockPlayer {
+            walkout,
+            Animate(sprites.rotor.sprite, &quot;idleup&quot;),
+            Animate(sprites.logan.sprite, &quot;idleup&quot;),
             MessageBox{message=&quot;Bart: In the ancient ruins there are plants which can only be seen under florescent light{p60}, the ancient Mobians referred to them as {h Angel's Hair}!&quot;},
             MessageBox{message=&quot;Bart: They would sometimes build entire cities beneath a brush of Angel's Hair to avoid detection! {p100}Truly remakable{p30}, isn't it?&quot;},
             MessageBox{message=&quot;Rotor: Uhh{p60}, yeah that's incredible Pop-Pop... {p60}I, uh--&quot;},
@@ -261,7 +287,8 @@ return function(self)
                 self.object.x = self.x
                 self.object.y = self.y + 96
                 self:updateCollision()
-            end)
+            end),
+            walkin
         }
     end
 end</property>

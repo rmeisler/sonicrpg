@@ -479,13 +479,16 @@ return {
 							Serial {
 								target:takeDamage(self.stats, false, function(_self, _impact, _direction) return Action() end),
 								PlayAudio("sfx", "slice", 0.3, true),
-								Animate(target.sprite, "frozen"),
 								Do(function()
 									if target.hp > 0 then
 										target.state = BattleActor.STATE_IMMOBILIZED
 										target.turnsImmobilized = 2
+										target.sprite:setAnimation("frozen")
 										self:getSprite():pushOverride("idle", "iceidle")
 										self:getSprite():pushOverride("hurt", "icehurt")
+									else
+										target.state = BattleActor.STATE_DEAD
+										target.sprite:setAnimation("dead")
 									end
 								end)
 							}

@@ -138,6 +138,7 @@ Anya Stocks/Frostdrop1
 E-122-Psi
 
 [Tiles]
+AmeixaRoxa
 Lucas Melo (Death Egg)
 Square Enix
 daemoth
@@ -163,6 +164,7 @@ GreenCauldron08
 CaptainJotaro
 AmeixaRoxa
 dataexpunded
+McMistle
 ScaleyFoxy
 Fieryfurnace
 Jacob Berkley/Good Ol' Groovy Jake
@@ -222,6 +224,8 @@ AmeixaRoxa
 
 
 
+
+
     This episode is dedicated to a local
       artist and activist, Rick Bell.
 	          Rest in power.
@@ -229,9 +233,13 @@ AmeixaRoxa
 	
 	
 	
+	
+	
 
            Thanks for playing!
     Join our discord for project updates!
+	
+	
 	
 	
 	

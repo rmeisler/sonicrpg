@@ -310,7 +310,7 @@
  </layer>
  <objectgroup name="lower"/>
  <objectgroup name="objects">
-  <object id="21" name="DownPath" type="SceneEdge" gid="6839" x="1120" y="1440" width="384" height="64">
+  <object id="21" name="DownPath" type="SceneEdge" gid="6839" x="1120" y="1440" width="384" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="down"/>
