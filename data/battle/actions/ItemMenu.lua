@@ -44,11 +44,18 @@ return function(self, mainMenu)
 				end
 				menu:close()
 				mainMenu:close()
-				return self.scene:run(Parallel {
-					menu,
-					mainMenu,
-					record.item.battleAction()(self)
-				})
+				return self.scene:run {
+					Parallel {
+						menu,
+						mainMenu,
+						record.item.battleAction()(self)
+					},
+					-- Hack fix sfx issues
+					Do(function()
+						self.scene.audio:stopSfx("choose")
+						self.scene.audio:stopSfx("levelup")
+					end)
+				}
 			end
 		else
 			chooseFun = function(menu)
@@ -68,10 +75,17 @@ return function(self, mainMenu)
 						end
 						menu:close()
 						mainMenuRef:close()
-						return Parallel {
-							menu,
-							mainMenuRef,
-							record.item.battleAction()(self, target)
+						return Serial {
+							Parallel {
+								menu,
+								mainMenuRef,
+								record.item.battleAction()(self, target)
+							},
+							-- Hack fix sfx issues
+							Do(function()
+								self.scene.audio:stopSfx("choose")
+								self.scene.audio:stopSfx("levelup")
+							end)
 						}
 					end
 				)

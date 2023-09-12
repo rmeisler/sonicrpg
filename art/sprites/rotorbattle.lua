@@ -33,6 +33,9 @@ return {
         hurt = {
             frames = {{5,1}}
         },
+		stun = {
+            frames = {{5,1}}
+        },
         dead = {
             frames = {{6,1}}
         },

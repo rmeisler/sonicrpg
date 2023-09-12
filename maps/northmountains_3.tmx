@@ -1916,7 +1916,7 @@ end</property>
   </object>
   <object id="197" name="SecretCavePath" type="SceneEdge" gid="10970" x="2208" y="864" width="128" height="32">
    <properties>
-    <property name="enterDelay" type="float" value="3"/>
+    <property name="enterDelay" type="float" value="1"/>
     <property name="fade_in_speed" type="float" value="1"/>
     <property name="fade_out_music" type="bool" value="true"/>
     <property name="fade_out_speed" type="float" value="0.2"/>

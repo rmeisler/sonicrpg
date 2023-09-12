@@ -490,6 +490,7 @@ return {
 										target.state = BattleActor.STATE_DEAD
 										target.sprite:setAnimation("dead")
 									end
+									self.doneWithIce = true
 								end)
 							}
 						)
@@ -525,7 +526,9 @@ return {
 					Ease(target.sprite.transform, "x", origTargetXform.x, 2),
 					Ease(target.sprite.transform, "y", origTargetXform.y, 2)
 				},
+				YieldUntil(self, "doneWithIce"),
 				Do(function()
+					self.doneWithIce = false
 					self:getSprite():setAnimation("idle")
 					self.state = "pause_to_fire"
 				end)

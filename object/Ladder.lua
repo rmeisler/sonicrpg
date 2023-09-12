@@ -96,6 +96,7 @@ function Ladder:whileColliding(player)
 	end
 
 	if self.scene.map.properties.layered and
+	   self.topLayer and self.botLayer and
 	   self.scene.currentLayerId ~= self.topLayer and
 	   self.scene.currentLayerId ~= self.botLayer
 	then

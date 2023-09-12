@@ -52,7 +52,7 @@ return {
 	coin = 0,
 
 	drops = {
-		{item = require "data/items/YetiArmor", count = 1, chance = 1.0},
+		{item = require "data/armor/YetiArmor", count = 1, chance = 1.0},
 	},
 	
 	scan = "Yeti's like sweets...",

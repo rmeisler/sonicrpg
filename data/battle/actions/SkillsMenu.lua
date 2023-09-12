@@ -41,11 +41,18 @@ return function(self, mainMenu)
 					self.sp = math.max(self.sp - skill.cost, 0)
 					menu:close()
 					mainMenu:close()
-					self.scene:run(Parallel {
-						menu,
-						mainMenu,
-						skill.action(self)
-					})
+					self.scene:run {
+						Parallel {
+							menu,
+							mainMenu,
+							skill.action(self)
+						},
+						-- Hack fix sfx issues
+						Do(function()
+							self.scene.audio:stopSfx("choose")
+							self.scene.audio:stopSfx("levelup")
+						end)
+					}
 				end
 			end
 		else
@@ -62,10 +69,17 @@ return function(self, mainMenu)
 							self.sp = math.max(self.sp - skill.cost, 0)
 							menu:close()
 							mainMenuRef:close()
-							return Parallel {
-								menu,
-								mainMenuRef,
-								skill.action(self, target)
+							return Serial {
+								Parallel {
+									menu,
+									mainMenuRef,
+									skill.action(self, target)
+								},
+								-- Hack fix sfx issues
+								Do(function()
+									self.scene.audio:stopSfx("choose")
+									self.scene.audio:stopSfx("levelup")
+								end)
 							}
 						end
 					)

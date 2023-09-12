@@ -14,6 +14,9 @@ return {
 		hurt = {
 			frames = {{13,2}}
 		},
+		stun = {
+			frames = {{13,2}}
+		},
 		prethrow = {
 			frames = {{1,7}}
 		},

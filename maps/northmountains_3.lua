@@ -2271,7 +2271,7 @@ return {
           gid = 10970,
           visible = true,
           properties = {
-            ["enterDelay"] = 3,
+            ["enterDelay"] = 1,
             ["fade_in_speed"] = 1,
             ["fade_out_music"] = true,
             ["fade_out_speed"] = 0.2,

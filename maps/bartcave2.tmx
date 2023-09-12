@@ -743,9 +743,10 @@
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="21" name="DownPath" type="SceneEdge" gid="6839" x="1600" y="4288" width="64" height="32">
+  <object id="21" name="DownPath" type="SceneEdge" gid="6839" x="1568" y="4320" width="128" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
+    <property name="hint" value="leavecave"/>
     <property name="key" value="down"/>
     <property name="orientation" value="up"/>
     <property name="scene" type="file" value="northmountains_3.lua"/>

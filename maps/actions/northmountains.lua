@@ -31,5 +31,12 @@ return function(scene, hint)
 	end
 	scene:addHandler("onEnterBattle", scene.stopSfxOnEnterBattle, scene)
 
-	return PlayAudio("sfx", "wind", 0.5, true, true)
+	if hint == "leavecave" and scene.objectLookup.block then
+		scene.objectLookup.block:remove()
+	end
+
+	return Parallel {
+		PlayAudio("sfx", "wind", 0.5, true, true),
+		PlayAudio("music", "snowcap", 1.0, true, true)
+	}
 end

@@ -257,6 +257,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/stuneffect.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/juggerbotbody.png"
 	},
 	{
