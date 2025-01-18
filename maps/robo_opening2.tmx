@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="97" height="192" tilewidth="32" tileheight="32" infinite="0" nextobjectid="248">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="97" height="192" tilewidth="32" tileheight="32" infinite="0" nextobjectid="244">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/robo_intro2.lua"/>
@@ -1224,26 +1224,6 @@ end
     <property name="hideOffset" type="int" value="26"/>
     <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/heap.png"/>
-   </properties>
-  </object>
-  <object id="244" name="SwatbotVisibility1" type="BasicNPC" gid="37" x="1376" y="5504" width="704" height="192">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="245" name="SwatbotVisibility2" type="BasicNPC" gid="37" x="1376" y="5760" width="704" height="192">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="246" name="SwatbotVisibility3" type="BasicNPC" gid="37" x="1376" y="5760" width="160" height="352">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="247" name="SwatbotVisibility4" type="BasicNPC" gid="37" x="1920" y="5760" width="160" height="352">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

@@ -8,7 +8,7 @@ function Do:construct(fun, passive)
 end
 
 function Do:update(dt)
-	self.fun()
+	self.fun(self.parentAction)
 	self.done = true
 end
 

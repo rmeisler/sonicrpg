@@ -41,6 +41,7 @@ end
 function Serial:inject(scene, action)
 	self.scene = scene
 	action:setScene(scene)
+	action.parentAction = self
 	table.insert(self.animations, self.index, action)
 end
 
@@ -48,6 +49,7 @@ function Serial:add(scene, action)
 	if self.index == #self.animations then
 		self.scene = scene
 		action:setScene(scene)
+		action.parentAction = self
 	end
 	table.insert(self.animations, action)
 end
@@ -68,6 +70,7 @@ function Serial:next()
 	local current = self.animations[self.index]
 	if current then
 		current:setScene(self.scene)
+		current.parentAction = self
 	end
 end
 

@@ -3,6 +3,20 @@ local Transform = require "util/Transform"
 local Action = require "actions/Action"
 local Move = class(Action)
 
+function Move.targetFromPos(x, y)
+	return {
+		x = x,
+		y = y,
+		hotspots = {
+			left_top  = {x = x - 15, y = y + 27},
+			left_bot  = {x = x - 15, y = y + 55},
+			right_top = {x = x + 12, y = y + 27},
+			right_bot = {x = x + 12, y = y + 55}
+		},
+		isRemoved = function() return false end
+	}
+end
+
 function Move:construct(obj, target, anim, ttl, earlyExitFun, overlap)
 	self.obj = obj
 	self.target = target

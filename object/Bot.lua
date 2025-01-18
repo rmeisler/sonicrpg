@@ -11,6 +11,7 @@ local Animate = require "actions/Animate"
 local Move = require "actions/Move"
 local PlayAudio = require "actions/PlayAudio"
 local AudioFade = require "actions/AudioFade"
+local MoveStep = require "actions/MoveStep"
 
 local Transform = require "util/Transform"
 
@@ -18,6 +19,8 @@ local SpriteNode = require "object/SpriteNode"
 local NPC = require "object/NPC"
 local BasicNPC = require "object/BasicNPC"
 local Player = require "object/Player"
+
+local bfs = require "util/bfs"
 
 local Bot = class(NPC)
 
@@ -111,6 +114,7 @@ function Bot:construct(scene, layer, object)
 	
 	self.originalX = self.x
 	self.originalY = self.y
+
 	self.originalLocation = BasicNPC(
 		self.scene,
 		{name = "objects"},
@@ -517,8 +521,14 @@ end
 function Bot:chaseUpdate(dt)
 	self:baseUpdate(dt)
 
-	-- If other bots are too close, push them away
+	if self.printplayerpos == nil or self.printplayerpos == 0 then
+		print ("player = "..tostring(self.scene.player.x)..", "..tostring(self.scene.player.y))
+		self.printplayerpos = 10
+	end
+	self.printplayerpos = self.printplayerpos - 1
+
 	if not self.noPushAway then
+		-- If other bots are too close, push them away
 		for _, object in pairs(self.scene.map.objects) do
 			if object.isBot and
 				not object:isRemoved() and
@@ -529,7 +539,6 @@ function Bot:chaseUpdate(dt)
 				local dy = self.y - object.y
 				local sqdist = dx*dx + dy*dy
 				if sqdist < 10*10 then
-					local dist = math.sqrt(sqdist)
 					if self.x > object.x then
 						self.x = self.x + self.movespeed * (dt/0.016)
 					else
@@ -544,6 +553,9 @@ function Bot:chaseUpdate(dt)
 			end
 		end
 	end
+
+	self.lastx = self.x
+	self.lasty = self.y
 end
 
 function Bot:getFlashlightOffset()
@@ -563,6 +575,37 @@ function Bot:hideFlashlight()
 	for _, sprite in pairs(self.flashlight) do
 		sprite.visible = false
 	end
+end
+
+function Bot:chasePlayer()
+	local cx, cy = self.scene:worldCoordToCollisionCoord(self.x, self.y)
+	local px, py = self.scene:worldCoordToCollisionCoord(self.scene.player.x, self.scene.player.y)
+	local collisionMap = self.scene.collisionLayer[self.layer.name]
+	local path = bfs(collisionMap, cx, cy, px, py)
+
+	local earlyExitFun = function() return self.grabbed end
+	local actions = {}
+	for _, p in ipairs(path) do
+		local pathx, pathy = self.scene:collisionCoordToWorldCoord(p[1], p[2])
+		print("collision coord = "..tostring(p[1])..", "..tostring(p[2]).."; world coord = "..tostring(pathx)..", "..tostring(pathy))
+		table.insert(actions, 1, Move(self, Move.targetFromPos(pathx, pathy), "run", nil, earlyExitFun))
+	end
+	table.insert(actions, 1,
+		Do(function()
+			-- set run speed
+			self.movespeed = self.runspeed
+			self.object.properties.ignoreMapCollision = true
+			print "ignore map collision"
+		end))
+	table.insert(actions,
+		Do(function(parent)
+			print "made it here"
+			self.object.properties.ignoreMapCollision = false
+			if not earlyExitFun() then
+				parent:add(self.scene, self:chasePlayer())
+			end
+		end))
+	return Serial(actions)
 end
 
 function Bot:follow(target, animType, speed, timeout, forever, earlyExitFun)
@@ -856,6 +899,7 @@ function Bot:baseUpdate(dt)
 			}
 		end
 	end
+
 	return true
 end
 

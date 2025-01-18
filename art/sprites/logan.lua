@@ -82,6 +82,29 @@ return {
 		jumpup = {
 			frames = {{3,3}}
 		},
+		
+		hideright = {
+			frames = {{1,4}}
+		},
+		hideleft = {
+			frames = {{3,4}}
+		},
+		hideup = {
+			frames = {{5,4}}
+		},
+		hidedown = {
+			frames = {{7,4}}
+		},
+		
+		peekright = {
+			frames = {{2,4}}
+		},
+		peekleft = {
+			frames = {{4,4}}
+		},
+		peekup = {
+			frames = {{6,4}}
+		},
 
 		
 		sadleft = {

@@ -370,7 +370,7 @@ return function(self, dt)
                     GameState:unsetFlag(&quot;tutorial:hide_pillar4&quot;)
                     GameState:unsetFlag(&quot;tutorial:hide_pillar2&quot;)
                     GameState:unsetFlag(&quot;tutorial:hide_pillar5&quot;)
-                    self.scene.sceneMgr:popScene{}
+                    self.scene.sceneMgr:popScene{hint=self.scene.hint}
                 end), Do(function() end)
             }
         )

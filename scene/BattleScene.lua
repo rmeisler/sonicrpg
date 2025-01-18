@@ -69,6 +69,7 @@ function BattleScene:onEnter(args)
 	self.camPos = Transform()
 	self.noBattleMusic = args.noBattleMusic
 	self.arrowColor = args.arrowColor
+	self.hint = args.hint
 	
 	local onEnterCallback = args.onEnter or function(scene) return Action() end
 
@@ -392,7 +393,7 @@ function BattleScene:update(dt)
 				},
 				
 				Do(function()
-					self.sceneMgr:popScene{}
+					self.sceneMgr:popScene{hint=self.hint}
 				end),
 				
 				Do(function()
@@ -480,7 +481,7 @@ function BattleScene:update(dt)
 			},
 			
 			Do(function()
-				self.sceneMgr:popScene{}
+				self.sceneMgr:popScene{hint=self.hint}
 			end),
 			
 			Do(function()
@@ -502,7 +503,7 @@ function BattleScene:update(dt)
 					textSpeed = 3
 				},
 				Do(function()
-					self.sceneMgr:popScene{}
+					self.sceneMgr:popScene{hint=self.hint}
 				end),
 				Do(function()
 				end)
@@ -547,7 +548,7 @@ function BattleScene:earlyExit()
 				partyMember.sp = mem.sp
 			end
 			
-			self.sceneMgr:popScene{}
+			self.sceneMgr:popScene{hint=self.hint}
 		end)
 	}
 end
@@ -759,7 +760,7 @@ function BattleScene:keytriggered(key)
 					menu:close()
 					self:run {
 						menu,
-						Do(function() self.sceneMgr:popScene{} end),
+						Do(function() self.sceneMgr:popScene{hint=self.hint} end),
 						Do(function() end)
 					}
 				end},

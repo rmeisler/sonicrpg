@@ -13,8 +13,9 @@ function Parallel:update(dt)
 		if self.scene and not v.scene then
 			v:setScene(self.scene)
 			v.scene = self.scene
+			v.parentAction = self
 		end
-		
+
 		if not v:isDone() or v.isPassive then
 			v:update(dt)
 		end
@@ -28,6 +29,11 @@ function Parallel:setScene(scene)
 end
 
 function Parallel:inject(scene, action)
+	action:setScene(scene)
+	table.insert(self.animations, action)
+end
+
+function Parallel:add(scene, action)
 	action:setScene(scene)
 	table.insert(self.animations, action)
 end

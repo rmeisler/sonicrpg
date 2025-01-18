@@ -47,7 +47,7 @@ function love.load()
 	
 	math.randomseed(os.time())
 	
-	sceneMgr:pushScene {class = "SageSplashScene"}
+	sceneMgr:pushScene {class = "TitleSplashScene"} -- "SageSplashScene"}
 end
 
 function love.update(dt)

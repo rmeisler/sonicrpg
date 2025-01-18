@@ -103,7 +103,7 @@ return function(scene, hint)
 			Wait(2),
 			Ease(text.color, 4, 0, 1)
 		})
-		return Action()
+		return PlayAudio("music", "snowday", 1.0, true, true)
 	end
 	
 	if GameState:isFlagSet("ep4_introdone") then

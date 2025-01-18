@@ -16,7 +16,7 @@ function TypeText:construct(transform, color, font, text, speed, noFastForward, 
     self.outline = outline
     self.noFastForward = noFastForward
     self.type = "TypeText"
-    self.textFont = font
+    self.textFont = font or FontCache.ConsolasSmall
     self.hlText = " "
     self.hlcolor = {0,255,255,self.color[4]}
     self.outlineCLR = {0,0,0,self.color[4]}

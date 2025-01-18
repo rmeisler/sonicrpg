@@ -8,12 +8,12 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 269,
+  nextobjectid = 247,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_hideout.lua",
     ["regionName"] = "Robotropolis",
-    ["sectorName"] = "B's Hideout"
+    ["sectorName"] = "???"
   },
   tilesets = {
     {
@@ -78,7 +78,7 @@ return {
       margin = 0,
       image = "../art/tiles/greatforesttileset.png",
       imagewidth = 2208,
-      imageheight = 2400,
+      imageheight = 2144,
       transparentcolor = "#b326c3",
       tileoffset = {
         x = 0,
@@ -91,19 +91,19 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 5175,
+      tilecount = 4623,
       tiles = {}
     },
     {
       name = "knotholeindoors",
-      firstgid = 9866,
+      firstgid = 9314,
       filename = "knotholeindoors.tsx",
       tilewidth = 32,
       tileheight = 32,
       spacing = 0,
       margin = 0,
       image = "../art/tiles/knotholeinterior.png",
-      imagewidth = 1696,
+      imagewidth = 1664,
       imageheight = 1088,
       transparentcolor = "#b326bd",
       tileoffset = {
@@ -117,59 +117,7 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 1802,
-      tiles = {}
-    },
-    {
-      name = "darkswamp2",
-      firstgid = 11668,
-      filename = "darkswamp2.tsx",
-      tilewidth = 32,
-      tileheight = 32,
-      spacing = 0,
-      margin = 0,
-      image = "../art/tiles/darkswamp2.png",
-      imagewidth = 1090,
-      imageheight = 1600,
-      transparentcolor = "#000000",
-      tileoffset = {
-        x = 0,
-        y = 0
-      },
-      grid = {
-        orientation = "orthogonal",
-        width = 32,
-        height = 32
-      },
-      properties = {},
-      terrains = {},
-      tilecount = 1700,
-      tiles = {}
-    },
-    {
-      name = "ironlock",
-      firstgid = 13368,
-      filename = "ironlock.tsx",
-      tilewidth = 32,
-      tileheight = 32,
-      spacing = 0,
-      margin = 0,
-      image = "../art/tiles/ironlock.png",
-      imagewidth = 2240,
-      imageheight = 3200,
-      transparentcolor = "#904f94",
-      tileoffset = {
-        x = 0,
-        y = 0
-      },
-      grid = {
-        orientation = "orthogonal",
-        width = 32,
-        height = 32
-      },
-      properties = {},
-      terrains = {},
-      tilecount = 7000,
+      tilecount = 1768,
       tiles = {}
     }
   },
@@ -644,7 +592,7 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4618, 4619, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4398, 4401, 4401, 4402, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4398, 4401, 4401, 4402, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4653, 4654, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4433, 4436, 4436, 4437, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4433, 4436, 4436, 4437, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3716, 3716, 3716, 3716, 3716, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4468, 4471, 4471, 4472, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4468, 4471, 4471, 4472, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3544, 3545, 3544, 3545, 0, 0, 3677, 3678, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3716, 3717, 3716, 3716, 3717, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4089, 0, 0, 0, 0, 4503, 4506, 4506, 4507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4503, 4506, 4506, 4507, 0, 0, 0, 0, 4082, 0, 0, 0, 0, 0, 0, 0, 3579, 3580, 3579, 3580, 0, 11455, 3712, 3713, 3716, 3716, 3716, 3716, 4636, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3716, 3717, 3716, 3716, 3717, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4089, 0, 0, 0, 0, 4503, 4506, 4506, 4507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4503, 4506, 4506, 4507, 0, 0, 0, 0, 4082, 0, 0, 0, 0, 0, 0, 0, 3579, 3580, 3579, 3580, 0, 10903, 3712, 3713, 3716, 3716, 3716, 3716, 4636, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4569, 4570, 4571, 0, 0, 4034, 4001, 4002, 4003, 4004, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4363, 4366, 4366, 4367, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4363, 4366, 4366, 4367, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3716, 3717, 3716, 3716, 3717, 4005, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4604, 4605, 4606, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4034, 4001, 4002, 4003, 4004, 4005, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4639, 4640, 4641, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4087, 4088, 4089, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4082, 4083, 4084, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -743,10 +691,10 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11371, 0, 11340, 11368, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11368, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11215, 11216, 4242, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4208, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11371, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10916, 0, 10788, 10791, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10791, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4242, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4209, 0, 0, 4208, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10788, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -883,7 +831,98 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {}
+      objects = {
+        {
+          id = 234,
+          name = "Square2",
+          type = "RaceSquare",
+          shape = "rectangle",
+          x = 2272,
+          y = 2080,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/racesquare.png",
+            ["subject"] = "UpperDoor"
+          }
+        },
+        {
+          id = 235,
+          name = "Square3",
+          type = "RaceSquare",
+          shape = "rectangle",
+          x = 1152,
+          y = 2080,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/racesquare.png",
+            ["subject"] = "UpperDoor"
+          }
+        },
+        {
+          id = 236,
+          name = "Square4",
+          type = "RaceSquare",
+          shape = "rectangle",
+          x = 2272,
+          y = 1408,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/racesquare.png",
+            ["subject"] = "UpperDoor"
+          }
+        },
+        {
+          id = 237,
+          name = "Square5",
+          type = "RaceSquare",
+          shape = "rectangle",
+          x = 1152,
+          y = 1376,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/racesquare.png",
+            ["subject"] = "UpperDoor"
+          }
+        },
+        {
+          id = 238,
+          name = "Square1",
+          type = "RaceSquare",
+          shape = "rectangle",
+          x = 1696,
+          y = 1152,
+          width = 96,
+          height = 96,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["sprite"] = "../art/sprites/racesquare.png",
+            ["subject"] = "UpperDoor"
+          }
+        }
+      }
     },
     {
       type = "objectgroup",
@@ -896,20 +935,35 @@ return {
       properties = {},
       objects = {
         {
+          id = 172,
+          name = "Spawn 1",
+          type = "Player",
+          shape = "rectangle",
+          x = 1728,
+          y = 2784,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1586,
+          visible = true,
+          properties = {
+            ["orientation"] = "up"
+          }
+        },
+        {
           id = 185,
           name = "Stairs2",
           type = "Stairs",
           shape = "rectangle",
           x = 1920,
-          y = 2304,
+          y = 2400,
           width = 32,
-          height = 96,
+          height = 288,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_right",
-            ["snap"] = true
+            ["direction"] = "up_right"
           }
         },
         {
@@ -918,15 +972,14 @@ return {
           type = "Stairs",
           shape = "rectangle",
           x = 1568,
-          y = 2304,
+          y = 2400,
           width = 32,
-          height = 96,
+          height = 288,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_left",
-            ["snap"] = true
+            ["direction"] = "up_left"
           }
         },
         {
@@ -935,9 +988,9 @@ return {
           type = "Stairs",
           shape = "rectangle",
           x = 1952,
-          y = 2272,
+          y = 2336,
           width = 192,
-          height = 224,
+          height = 320,
           rotation = 0,
           gid = 1227,
           visible = true,
@@ -951,15 +1004,14 @@ return {
           type = "Stairs",
           shape = "rectangle",
           x = 2176,
-          y = 2144,
+          y = 2176,
           width = 32,
-          height = 128,
+          height = 224,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_right",
-            ["snap"] = true
+            ["direction"] = "up_right"
           }
         },
         {
@@ -968,9 +1020,9 @@ return {
           type = "Stairs",
           shape = "rectangle",
           x = 1344,
-          y = 2272,
+          y = 2304,
           width = 192,
-          height = 224,
+          height = 288,
           rotation = 0,
           gid = 1227,
           visible = true,
@@ -984,15 +1036,14 @@ return {
           type = "Stairs",
           shape = "rectangle",
           x = 1312,
-          y = 2144,
+          y = 2176,
           width = 32,
-          height = 128,
+          height = 224,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_left",
-            ["snap"] = true
+            ["direction"] = "up_left"
           }
         },
         {
@@ -1001,15 +1052,14 @@ return {
           type = "Stairs",
           shape = "rectangle",
           x = 1280,
-          y = 1376,
+          y = 1440,
           width = 32,
-          height = 96,
+          height = 224,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_right",
-            ["snap"] = true
+            ["direction"] = "up_right"
           }
         },
         {
@@ -1034,15 +1084,14 @@ return {
           type = "Stairs",
           shape = "rectangle",
           x = 1536,
-          y = 1216,
+          y = 1248,
           width = 32,
-          height = 128,
+          height = 224,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_right",
-            ["snap"] = true
+            ["direction"] = "up_right"
           }
         },
         {
@@ -1053,7 +1102,7 @@ return {
           x = 1696,
           y = 1600,
           width = 128,
-          height = 64,
+          height = 32,
           rotation = 0,
           gid = 1227,
           visible = true,
@@ -1070,15 +1119,14 @@ return {
           type = "Stairs",
           shape = "rectangle",
           x = 2432,
-          y = 2048,
+          y = 2112,
           width = 32,
-          height = 96,
+          height = 224,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_right",
-            ["snap"] = true
+            ["direction"] = "up_right"
           }
         },
         {
@@ -1086,16 +1134,15 @@ return {
           name = "Stairs5",
           type = "Stairs",
           shape = "rectangle",
-          x = 2496,
-          y = 2016,
-          width = 32,
-          height = 128,
+          x = 2464,
+          y = 2048,
+          width = 96,
+          height = 160,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_right",
-            ["snap"] = true
+            ["direction"] = "up_right"
           }
         },
         {
@@ -1104,15 +1151,14 @@ return {
           type = "Stairs",
           shape = "rectangle",
           x = 1056,
-          y = 2048,
+          y = 2112,
           width = 32,
-          height = 96,
+          height = 224,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_left",
-            ["snap"] = true
+            ["direction"] = "up_left"
           }
         },
         {
@@ -1123,7 +1169,7 @@ return {
           x = 1024,
           y = 2048,
           width = 32,
-          height = 128,
+          height = 160,
           rotation = 0,
           gid = 1227,
           visible = true,
@@ -1137,9 +1183,9 @@ return {
           type = "HidingSpot",
           shape = "rectangle",
           x = 1696,
-          y = 1920,
+          y = 1952,
           width = 128,
-          height = 288,
+          height = 320,
           rotation = 0,
           gid = 3522,
           visible = true,
@@ -1182,16 +1228,15 @@ return {
           name = "Stairs4",
           type = "Stairs",
           shape = "rectangle",
-          x = 992,
+          x = 960,
           y = 2016,
-          width = 32,
+          width = 64,
           height = 128,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["direction"] = "up_left",
-            ["snap"] = true
+            ["direction"] = "up_left"
           }
         },
         {
@@ -1239,9 +1284,11 @@ return {
           gid = 1227,
           visible = true,
           properties = {
+            ["actions"] = "local Action = require \"actions/Action\"\n\nreturn function(self)\n    if GameState:isFlagSet(self) then\n        self.sprite:setAnimation(\"open\")\n        self:removeCollision()\n    end\n    return Action()\nend\n",
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "open",
-            ["nocollision"] = true,
+            ["defaultAnim"] = "closed",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self)\n    self.scene.player:removeKeyHint()\n    return MessageBox {message = \"Locked.\", blocking = true}\nend\n",
+            ["onPuzzleSolve"] = "local Serial = require \"actions/Serial\"\nlocal Animate = require \"actions/Animate\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    return Serial {\n        PlayAudio(\"sfx\", \"openchasm\", 1.0, true),\n        Animate(self.sprite, \"opening\"),\n        Animate(self.sprite, \"open\"),\n        Do(function()\n            GameState:setFlag(self)\n            self:removeCollision()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/door3.png"
           }
         },
@@ -1266,394 +1313,135 @@ return {
           }
         },
         {
-          id = 247,
-          name = "LowerExit",
-          type = "SceneEdge",
+          id = 221,
+          name = "Save",
+          type = "SavePoint",
           shape = "rectangle",
-          x = 1664,
-          y = 2688,
-          width = 192,
+          x = 1728,
+          y = 2240,
+          width = 32,
           height = 32,
           rotation = 0,
-          gid = 1227,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["sprite"] = "../art/sprites/save.png"
+          }
+        },
+        {
+          id = 222,
+          name = "Spawn 2",
+          type = "SpawnPoint",
+          shape = "rectangle",
+          x = 1728,
+          y = 2336,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1586,
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["key"] = "down",
-            ["no_run"] = true,
-            ["orientation"] = "up",
-            ["scene"] = "worldmap.lua",
-            ["spawn_point"] = "BHideoutSpawn"
+            ["orientation"] = "up"
           }
         },
         {
-          id = 248,
-          name = "T",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 3008,
-          y = 1920,
-          width = 64,
-          height = 96,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "tdowncross",
-            ["ghost"] = false,
-            ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\nlocal YieldUntil = require \"actions/YieldUntil\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep3_spoke_b1\") then\n        if GameState:isFlagSet(\"ep3_spoke_t\") then\n            return BlockPlayer {\n                MessageBox {message = \"T: I'd better pack up all my research equipment! {p60}I have a lot to move!\"},\n                Animate(self.sprite, \"tdowncross\"),\n                Do(function() self:refreshKeyHint() end)\n            }\n        end\n\n        GameState:isFlagSet(\"ep3_spoke_t\")\n        self.scene.player.x = self.x\n        self.scene.player.y = self.y + self.sprite.h*2\n        self.scene.objectLookup.P.isInteractable = false\n        local walkout, walkin, sprites = self.scene.player:split()\n        return Serial {\n            walkout,\n            Animate(sprites.sonic.sprite, \"idleup\"),\n            Animate(sprites.sally.sprite, \"idleup\"),\n            Animate(sprites.antoine.sprite, \"idleup\"),\n            MessageBox {message = \"Sally: I think we're close to convincing B to relocate! {p60}He told us he is willing to do it if everyone else is on board!\"},\n            Ease(self, \"y\", function() return self.y - 50 end, 8),\n            Ease(self, \"y\", function() return self.y + 50 end, 8),\n            MessageBox {message = \"T: What!?\"},\n            MessageBox {message = \"T: Well you can count me in!\"},\n            PlayAudio(\"sfx\", \"levelup\", 1.0, true),\n            MessageBox {message = \"T: ...You have a workshop in Knothole, correct?\"},\n            MessageBox {message = \"Sonic: Yeah! {p60}Rotor's workshop is way past cool! {p60}He's got gadgets and gizmos for days!\"},\n            Ease(self, \"y\", function() return self.y - 50 end, 8),\n            Ease(self, \"y\", function() return self.y + 50 end, 8),\n            MessageBox {message = \"T: Then count me double in!\"},\n            PlayAudio(\"sfx\", \"levelup\", 1.0, true),\n            walkin,\n            Do(function()\n                GameState:setFlag(\"ep3_spoke_t\")\n                self.scene.player.x = self.scene.player.x + 60\n                self.scene.player.y = self.scene.player.y + 60\n            end),\n            Animate(self.sprite, \"tdowncross\"),\n            Do(function()\n                self.scene.objectLookup.P.isInteractable = true\n                self:refreshKeyHint()\n            end)\n        }\n    end\n\n    GameState:setFlag(\"ep3_spoke_t_intro\")\n    return BlockPlayer {\n        MessageBox {message = \"T: Oh, you're back... {p60}Perhaps you can be of help.\"},\n        MessageBox {message = \"T: I've been seeing less Ratbots during my scrap searches. {p60}I worry that this means Robotnik's cleanup crew is getting close to discovering us!\"},\n        MessageBox {message = \"T: Maybe you can get through to B? {p60}It is no longer a luxury, but imperative that we relocate to your village of Knothole.\"},\n        Animate(self.sprite, \"tdowncross\"),\n        Do(function() self:refreshKeyHint() end)\n    }\nend",
-            ["sprite"] = "../art/sprites/p.png"
-          }
-        },
-        {
-          id = 249,
+          id = 224,
           name = "Chest1",
           type = "Chest",
           shape = "rectangle",
-          x = 2912,
-          y = 1824,
-          width = 64,
-          height = 64,
+          x = 2336,
+          y = 1280,
+          width = 32,
+          height = 32,
           rotation = 0,
           gid = 3501,
           visible = true,
           properties = {
-            ["ScrapMetal"] = 2,
-            ["sprite"] = "../art/sprites/chest2.png"
+            ["CrystalWater"] = 2,
+            ["sprite"] = "../art/sprites/chest.png"
           }
         },
         {
-          id = 250,
+          id = 239,
           name = "Chest2",
           type = "Chest",
           shape = "rectangle",
-          x = 288,
-          y = 2144,
-          width = 64,
-          height = 64,
+          x = 3168,
+          y = 1984,
+          width = 32,
+          height = 32,
           rotation = 0,
           gid = 3501,
           visible = true,
           properties = {
-            ["Microchip"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
+            ["BlueLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest.png"
           }
         },
         {
-          id = 251,
-          name = "Chest3",
+          id = 240,
+          name = "Chest1",
           type = "Chest",
           shape = "rectangle",
-          x = 1728,
-          y = 1472,
-          width = 64,
-          height = 64,
+          x = 416,
+          y = 1824,
+          width = 32,
+          height = 32,
           rotation = 0,
           gid = 3501,
           visible = true,
           properties = {
-            ["YellowLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
+            ["GreenLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest.png"
           }
         },
         {
-          id = 252,
-          name = "J",
+          id = 241,
+          name = "poster",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 480,
-          y = 1920,
+          x = 672,
+          y = 1792,
           width = 64,
-          height = 96,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "jdown",
-            ["ghost"] = false,
-            ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep3_spoke_b1\") then\n        if GameState:isFlagSet(\"ep3_spoke_r\") then\n            return BlockPlayer {\n                MessageBox {message = \"J: I can see it now... {p60}R and I trekkin' the Great Plains{p60}, the Great Forest{p60}, the Great Jungle{p60}-- it all sounds so {h GREAT}!\"},\n                MessageBox {message = \"J: What do I wear?! {p60}It might get a bit nippy in the Great Forest.\"},\n                Do(function() self:refreshKeyHint() end)\n            }\n        end\n\n        if GameState:isFlagSet(\"ep3_spoke_r_almost\") then\n            return BlockPlayer {\n                MessageBox {message = \"J: Come on, R...\"},\n                Do(function() self:refreshKeyHint() end)\n            }\n        end\n\n        GameState:setFlag(\"ep3_spoke_j\")\n        return BlockPlayer {\n            self:hop(),\n            MessageBox {message = \"J: Go to Knothole!? {p60}See the Great Forest!?\"},\n            MessageBox {message = \"J: Of course I am on board! {p60}I'd do anything to get out there and explore the world-- {p60}with R taggin' along of course!\"},\n            Animate(self.scene.objectLookup.R.sprite, \"idleleft\"),\n            MessageBox {message = \"R: *blush*\"},\n            Animate(self.scene.objectLookup.R.sprite, \"idledown\"),\n            MessageBox {message = \"J: You tell B that I'm in!\"},\n            PlayAudio(\"sfx\", \"levelup\", 1.0, true),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\n\n\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            MessageBox {message = \"J: I wonder how many steps there are in the Great Forest...\"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        self.scene.objectLookup.R.isInteractable = false\n        self.scene.player.x = self.x\n        self.scene.player.y = self.y + self.sprite.h*2\n        local walkout, walkin, sprites = self.scene.player:split()\n        return BlockPlayer {\n            walkout,\n            Animate(sprites.sonic.sprite, \"idleup\"),\n            Animate(sprites.sally.sprite, \"idleup\"),\n            Animate(sprites.antoine.sprite, \"idleup\"),\n            MessageBox {message = \"J: Welcome back, mates!\"},\n            MessageBox {message = \"J: Been tryin' to get me exercise in by running up and down these steps!\"},\n            MessageBox {message = \"J: Just buildin' up me muscle for the day when R & I can finally get outta here and go adventurin'!\"},\n            Animate(sprites.sonic.sprite, \"thinking\"),\n            MessageBox {message = \"Sonic: Do robots have muscl--?\", closeAction=Wait(0.5)},\n            Ease(sprites.sally, \"y\", function() return sprites.sally.y - 50 end, 8),\n            Ease(sprites.sally, \"y\", function() return sprites.sally.y + 50 end, 8),\n            MessageBox {message = \"Sally: *whisper* Sonic!\"},\n            MessageBox {message = \"Sally: *ahem* What Sonic means to say is that you're doing great, J!\"},\n            Animate(sprites.sonic.sprite, \"idleup\"),\n            MessageBox {message = \"J: Thanks!\"},\n            MessageBox {message = \"J: Even with all me trainin' though, I'll never be as fast as my number one mate, R! {p60}With his lil' rocket boots, I don't stand a chance!\"},\n            Animate(self.scene.objectLookup.R.sprite, \"idleleft\"),\n            MessageBox {message = \"R: *blush*\"},\n            Animate(self.scene.objectLookup.R.sprite, \"idledown\"),\n            walkin,\n            Do(function()\n                self.scene.objectLookup.R.isInteractable = true\n                self:refreshKeyHint()\n            end)\n        }\n    end\nend",
-            ["sprite"] = "../art/sprites/p.png"
-          }
-        },
-        {
-          id = 254,
-          name = "Waypoint1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2304,
-          y = 2112,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 255,
-          name = "Waypoint2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1088,
-          y = 2080,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 256,
-          name = "Waypoint3",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1120,
-          y = 1280,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 257,
-          name = "Waypoint4",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1856,
-          y = 1056,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 258,
-          name = "Stairs5",
-          type = "Stairs",
-          shape = "rectangle",
-          x = 2464,
-          y = 2048,
-          width = 32,
-          height = 128,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["direction"] = "up_right",
-            ["snap"] = true
-          }
-        },
-        {
-          id = 259,
-          name = "R",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 608,
-          y = 1920,
-          width = 64,
-          height = 96,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = -32,
-            ["defaultAnim"] = "idledown",
-            ["ghost"] = false,
-            ["ignoreMapCollision"] = true,
-            ["movespeed"] = 10,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Move = require \"actions/Move\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep3_spoke_b1\") then\n        if GameState:isFlagSet(\"ep3_spoke_r\") then\n            return BlockPlayer {\n                Do(function() self:facePlayer() end),\n                MessageBox {message = \"R: I've never been anywhere different before... {p60}I hope it's nice in Knothole.\"},\n                Do(function() self:refreshKeyHint() end)\n            }\n        end\n\n        if GameState:isFlagSet(\"ep3_spoke_r_almost\") then\n            GameState:setFlag(\"ep3_spoke_r\")\n            self.scene.objectLookup.J.isInteractable = false\n            self.scene.player.x = self.x\n            self.scene.player.y = self.y + self.sprite.h*2\n            local walkout, walkin, sprites = self.scene.player:split()\n            return BlockPlayer {\n                walkout,\n                Animate(sprites.sonic.sprite, \"idleup\"),\n                Animate(sprites.sally.sprite, \"idleup\"),\n                Animate(sprites.antoine.sprite, \"idleup\"),\n                MessageBox {message = \"R: *tears up*\"},\n                MessageBox {message = \"Sally: It's ok, R.\"},\n                Do(function() self:facePlayer() end),\n                MessageBox {message = \"R: *sniff* No! {p60}I screwed up!\"},\n                Ease(self, \"y\", function() return self.y - 50 end, 8),\n                Ease(self, \"y\", function() return self.y + 50 end, 8),\n                MessageBox {message = \"R: Can you keep a secret?\"},\n                MessageBox {message = \"Antoine: But of course!\"},\n                MessageBox {message = \"R: Ok well... {p60}*whisper* I kinda like J...\"},\n                MessageBox {message = \"Sally: Oh yeah?\"},\n                Ease(self, \"y\", function() return self.y - 50 end, 8),\n                Ease(self, \"y\", function() return self.y + 50 end, 8),\n                MessageBox {message = \"R: She's just so cool! {p60}I wanna be more like her... {p60}but now she probably just thinks I'm a baby for being so scared to leave here...\"},\n                MessageBox {message = \"Sonic: Hey little buddy, don't sell yourself short! {p60}You're way past cool!\"},\n                MessageBox {message = \"R: *sniff* Really?\"},\n                MessageBox {message = \"Sonic: Sure are! {p60}Nothin's cooler than bein' fast{p60}, and I bet you're as fast as lightning!\"},\n                Animate(self.scene.objectLookup.J.sprite, \"jright\"),\n                MessageBox {message = \"R: T-Thanks! {p60}I \\\"am\\\" fast!\"},\n                MessageBox {message = \"J: That's right! {p60}R here is the fastest dude in Mobius!\"},\n                MessageBox {message = \"Sonic: The fastest, huh?\"},\n                Animate(self.scene.objectLookup.R.sprite, \"idleleft\"),\n                MessageBox {message = \"J: That's right! {p60}I'd bet he's even faster than you, mate!\"},\n                MessageBox {message = \"R: *blush* Uhh... I dunno about that...\"},\n                MessageBox {message = \"Sonic: Is that a challenge?\"},\n                Animate(self.scene.objectLookup.R.sprite, \"idledown\"),\n                Ease(self, \"y\", function() return self.y - 50 end, 8),\n                Ease(self, \"y\", function() return self.y + 50 end, 8),\n                Wait(1),\n                MessageBox {message = \"R: ...uhhh...\"},\n                Animate(self.scene.objectLookup.R.sprite, \"idleleft\"),\n                Wait(1),\n                Animate(self.scene.objectLookup.R.sprite, \"idledown\"),\n                Ease(self, \"y\", function() return self.y - 50 end, 8),\n                Ease(self, \"y\", function() return self.y + 50 end, 8),\n                MessageBox {message = \"R: Yeah! {p60}I'm way faster than you are! {p60}And I uh... {p40}challenge you to a race, Sonic the Hedgehog!\"},\n                Do(function() self.sprite:setAnimation(\"hover\") end),\n                MessageBox {message = \"Sally: *whisper* Sonic, he's just a kid!\"},\n                MessageBox {message = \"Sonic: *whisper* Trust me on this, Sal.\"},\n                Animate(sprites.sonic.sprite, \"pose\"),\n                MessageBox {message = \"Sonic: Alright! {p60}Let's kick it!\"},\n                AudioFade(\"music\", 1.0, 0.0, 1),\n                Do(function()\n                    self.scene:changeScene{map=\"run1\", fadeOutSpeed = 0.2, fadeInSpeed = 0.2}\n                end)\n            }\n        end\n\n        if not GameState:isFlagSet(\"ep3_spoke_j\") then\n            return BlockPlayer {\n                Do(function() self:facePlayer() end),\n                MessageBox {message = \"R: L-L-Leave Robotropolis?...\"},\n                MessageBox {message = \"R: I-I dunno...{p60}what does J think?\"},\n                Do(function() self:refreshKeyHint() end)\n            }\n        end\n\n        GameState:setFlag(\"ep3_spoke_r_almost\")\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"R: L-L-Leave Robotropolis?...\"},\n            AudioFade(\"music\", 1.0, 0.0, 0.5),\n            Animate(self.scene.objectLookup.J.sprite, \"jright\"),\n            MessageBox {message = \"J: Yeah R, come on! {p60}We can finally go on all those adventures we've been talkin' about!!\"},\n            Animate(self.scene.objectLookup.R.sprite, \"idleleft\"),\n            PlayAudio(\"music\", \"sonicsad\", 1.0, true, true),\n            MessageBox {message = \"R: I-I dunno... {p60}what if we forget where we're going?... {p60}what if B gets sick?... {p60}what if a bunch of Ratbots get us as we're leaving Robotropolis?\"},\n            Wait(1),\n            MessageBox {message = \"R: ...\"},\n            Wait(1),\n            Animate(self.sprite, \"idledown\"),\n            MessageBox {message = \"R: I don't think I can do it...\"},\n            Wait(1),\n            Animate(self.scene.objectLookup.J.sprite, \"jleft\"),\n            MessageBox {message = \"J: *sigh* Alright, buddy.\"},\n            AudioFade(\"music\", 1.0, 0.0, 0.5),\n            PlayAudio(\"music\", \"forgottenhideout2\", 1.0, true, true),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            Ease(self, \"y\", function() return self.y - 50 end, 8),\n            Ease(self, \"y\", function() return self.y + 50 end, 8),\n            MessageBox {message = \"R: Hi!\"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
-            ["sprite"] = "../art/sprites/r.png"
-          }
-        },
-        {
-          id = 261,
-          name = "P",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 3136,
-          y = 1920,
-          width = 64,
-          height = 96,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "pdown",
-            ["ghost"] = false,
-            ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep3_spoke_b1\") then\n        if GameState:isFlagSet(\"ep3_spoke_p\") then\n            return BlockPlayer {\n                Ease(self, \"y\", function() return self.y - 50 end, 8),\n                Ease(self, \"y\", function() return self.y + 50 end, 8),\n                MessageBox {message = \"P: What happens next? {p60}Will Ben make it over the Great Hills? {p60}I gotta know!\"},\n                Animate(self.sprite, \"pdown\"),\n                Do(function() self:refreshKeyHint() end)\n            }\n        end\n\n       if GameState:isFlagSet(\"ep3_spoke_p_almost\") and GameState:hasItem(\"The Adventures of Windom\") then\n           GameState:setFlag(\"ep3_spoke_p\")\n           return BlockPlayer {\n               MessageBox {message = \"P: Got a book for me?\"},\n               MessageBox {message = \"P: {h Adventures of Windom} eh?...\"},\n               Parallel {\n                   Serial {\n                       Animate(self.sprite, \"preaddown\"),\n                       Wait(1),\n                       Animate(self.sprite, \"preadleft\"),\n                       Wait(1),\n                       Animate(self.sprite, \"preaddown\"),\n                       Wait(1),\n                       Animate(self.sprite, \"preadright\"),\n                       Wait(2)\n                   },\n                   MessageBox {message = \"P: ... {p80}... {p80}...\", textSpeed=2}\n               },\n               Animate(self.sprite, \"preaddown\"),\n               Ease(self, \"y\", function() return self.y - 50 end, 8),\n               Ease(self, \"y\", function() return self.y + 50 end, 8),\n               MessageBox {message = \"P: !!!\"},\n               MessageBox {message = \"P: This book is incredible!! {p60}I've never read anything like it!!\"},\n               MessageBox {message = \"P: The world building! {p60}The characters! {p60}The drama! {p60}And you say this is actually based on a true story?!\"},\n               Animate(self.sprite, \"pdown\"),\n               MessageBox {message = \"P: You can tell B that I am absolutely on board to move to Knothole!\"},\n               PlayAudio(\"sfx\", \"levelup\", 1.0, true),\n               Do(function() self:refreshKeyHint() end)\n           }\n       elseif GameState:isFlagSet(\"ep3_spoke_p_almost\") then\n           return BlockPlayer {\n               MessageBox {message = \"P: Got a book for me?\"},\n               Do(function() self:refreshKeyHint() end)\n           }\n       end\n\n        GameState:setFlag(\"ep3_spoke_p_almost\")\n        self.scene.objectLookup.T.isInteractable = false\n        self.scene.player.x = self.x\n        self.scene.player.y = self.y + self.sprite.h*2\n        local walkout, walkin, sprites = self.scene.player:split()\n        return BlockPlayer {\n            walkout,\n            Animate(sprites.sonic.sprite, \"idleup\"),\n            Animate(sprites.sally.sprite, \"idleup\"),\n            Animate(sprites.antoine.sprite, \"idleup\"),\n            MessageBox {message = \"P: I love reading, but at this point I've read all the books we have{p60}, multiple times even!\"},\n            MessageBox {message = \"Antoine: Where do you get all zese books from?\"},\n            MessageBox {message = \"P: They have been here as long as I can remember... {p60}I think...\"},\n            MessageBox {message = \"Sally: We are trying to convice B to relocate the Forgotten to Knothole. {p60}Would you be interested in that?\"},\n            MessageBox {message = \"P: Hmmm...\"},\n            MessageBox {message = \"Sonic: Yeah, and Knothole has a whole mess of books for you to read!\"},\n            MessageBox {message = \"P: How about this... {p60}show me your finest book from Knothole! {p60}If I like it, I'll agree to move to Knothole!\"},\n            MessageBox {message = \"Sally: Alright then!\"},\n            walkin,\n            Do(function()\n                self:refreshKeyHint()\n                self.scene.player.x = self.scene.player.x + 60\n                self.scene.player.y = self.scene.player.y + 60\n                self.scene.objectLookup.T.isInteractable = true\n            end)\n        }\n    end\n\n    if GameState:isFlagSet(self:getFlag()) then\n        return BlockPlayer {\n            MessageBox {message = \"P: Was I yellow? {p60}I don't actually remember now.\"},\n            Animate(self.sprite, \"pdown\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        GameState:setFlag(self:getFlag())\n        return BlockPlayer {\n            MessageBox {message = \"P: Hello again!\"},\n            MessageBox {message = \"P: We are a colorful bunch, aren't we?\"},\n            MessageBox {message = \"P: It wasn't Robotnik's doing of course, we did it to ourselves. {p60}By using reclaimed paint found in Robotropolis we were able to bring back some of the colors found on our original bodies!\"},\n            MessageBox {message = \"P: ...{p60}well, as much as we can remember of them...\"},\n            Animate(self.sprite, \"pdown\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
-            ["sprite"] = "../art/sprites/p.png"
-          }
-        },
-        {
-          id = 262,
-          name = "Spawn 2",
-          type = "Player",
-          shape = "rectangle",
-          x = 768,
-          y = 1856,
-          width = 32,
           height = 32,
           rotation = 0,
-          gid = 1586,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["orientation"] = "up"
-          }
-        },
-        {
-          id = 263,
-          name = "Spawn 1",
-          type = "Player",
-          shape = "rectangle",
-          x = 1728,
-          y = 2368,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1586,
-          visible = true,
-          properties = {
-            ["orientation"] = "up"
-          }
-        },
-        {
-          id = 264,
-          name = "B",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1732,
-          y = 2400,
-          width = 64,
-          height = 96,
-          rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = -16,
+            ["align"] = "bottom_center",
             ["defaultAnim"] = "idleup",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/b.png"
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    local walkout, walkin, sprites = self.scene.player:split()\n    self.scene.player:removeKeyHint()\n    self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1\n    return Serial {\n        walkout,\n        Animate(sprites.sonic.sprite, \"idleup\"),\n        Animate(sprites.sally.sprite, \"idleup\"),\n        MessageBox {message = \"Sally: Definitely not under Robotnik's control...\", blocking = true},\n        Animate(sprites.sonic.sprite, \"pose\"),\n        MessageBox {message = \"Sonic: These are my kinda people!\", blocking = true},\n        walkin,\n        Do(function()\n            self.scene.player.x = self.scene.player.x + 60\n            self.scene.player.y = self.scene.player.y + 60\n            self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1\n        end)\n    }\nend"
           }
         },
         {
-          id = 265,
-          name = "P",
-          type = "BasicNPC",
+          id = 246,
+          name = "LowerExit",
+          type = "SceneEdge",
           shape = "rectangle",
-          x = 1632,
-          y = 2272,
+          x = 1728,
+          y = 1568,
           width = 64,
-          height = 96,
+          height = 32,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "pdown",
+            ["fade_in_speed"] = 0.2,
+            ["fade_out_speed"] = 0.2,
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/p.png"
-          }
-        },
-        {
-          id = 266,
-          name = "J",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1696,
-          y = 2240,
-          width = 64,
-          height = 96,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "jdown",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/p.png"
-          }
-        },
-        {
-          id = 267,
-          name = "R",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1760,
-          y = 2240,
-          width = 64,
-          height = 96,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "idledown",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/r.png"
-          }
-        },
-        {
-          id = 268,
-          name = "T",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1824,
-          y = 2272,
-          width = 64,
-          height = 96,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "tdown",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/p.png"
+            ["key"] = "up",
+            ["orientation"] = "down",
+            ["scene"] = "sewer1.lua",
+            ["spawn_point"] = "Spawn 1"
           }
         }
       }
     },
     {
       type = "tilelayer",
-      name = "uppertiles",
+      name = "upper",
       x = 0,
       y = 0,
       width = 110,
@@ -1752,17 +1540,6 @@ return {
       }
     },
     {
-      type = "objectgroup",
-      name = "upper",
-      visible = true,
-      opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      draworder = "topdown",
-      properties = {},
-      objects = {}
-    },
-    {
       type = "tilelayer",
       name = "Collision",
       x = 0,
@@ -1776,21 +1553,21 @@ return {
       properties = {},
       encoding = "lua",
       data = {
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1808,18 +1585,18 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1832,24 +1609,24 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 2965, 2965, 2965, 2965, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

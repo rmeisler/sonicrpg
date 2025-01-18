@@ -8,7 +8,7 @@ return {
   height = 26,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 229,
+  nextobjectid = 225,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_broom.lua",
@@ -78,7 +78,7 @@ return {
       margin = 0,
       image = "../art/tiles/greatforesttileset.png",
       imagewidth = 2208,
-      imageheight = 2400,
+      imageheight = 2144,
       transparentcolor = "#b326c3",
       tileoffset = {
         x = 0,
@@ -91,19 +91,19 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 5175,
+      tilecount = 4623,
       tiles = {}
     },
     {
       name = "knotholeindoors",
-      firstgid = 9866,
+      firstgid = 9314,
       filename = "knotholeindoors.tsx",
       tilewidth = 32,
       tileheight = 32,
       spacing = 0,
       margin = 0,
       image = "../art/tiles/knotholeinterior.png",
-      imagewidth = 1696,
+      imagewidth = 1664,
       imageheight = 1088,
       transparentcolor = "#b326bd",
       tileoffset = {
@@ -117,7 +117,7 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 1802,
+      tilecount = 1768,
       tiles = {}
     }
   },
@@ -321,6 +321,66 @@ return {
           }
         },
         {
+          id = 215,
+          name = "T",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 256,
+          y = 480,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["defaultAnim"] = "tleft",
+            ["ghost"] = true,
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
+            ["sprite"] = "../art/sprites/p.png"
+          }
+        },
+        {
+          id = 216,
+          name = "R",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 128,
+          y = 608,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = true,
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
+            ["sprite"] = "../art/sprites/r.png"
+          }
+        },
+        {
+          id = 217,
+          name = "P",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 256,
+          y = 544,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["defaultAnim"] = "pleft",
+            ["ghost"] = true,
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return MessageBox {message = \"R: Who are you, exactly?\", blocking = true}\nend",
+            ["sprite"] = "../art/sprites/p.png"
+          }
+        },
+        {
           id = 218,
           name = "Spawn 1",
           type = "Player",
@@ -337,66 +397,106 @@ return {
           }
         },
         {
-          id = 226,
+          id = 219,
+          name = "Waypoint",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 160,
+          y = 384,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 220,
+          name = "Waypoint2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 416,
+          y = 768,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 221,
+          name = "Waypoint3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 576,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1227,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 222,
           name = "B",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 384,
-          y = 576,
-          width = 64,
-          height = 96,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "packup",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/b.png"
-          }
-        },
-        {
-          id = 227,
-          name = "B bags",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 384,
+          x = 96,
           y = 544,
-          width = 64,
-          height = 64,
+          width = 96,
+          height = 32,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = 0,
-            ["defaultAnim"] = "backpack",
+            ["defaultAnim"] = "rest",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/b.png"
+            ["sprite"] = "../art/sprites/bbed.png"
           }
         },
         {
-          id = 228,
-          name = "R",
+          id = 223,
+          name = "J",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 384,
-          y = 864,
+          x = 192,
+          y = 416,
           width = 64,
-          height = 96,
+          height = 32,
           rotation = 0,
           gid = 1227,
           visible = true,
           properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -8,
-            ["alignOffsetY"] = -16,
-            ["defaultAnim"] = "walkup",
+            ["align"] = "bottom_center",
+            ["defaultAnim"] = "jdown",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/r.png"
+            ["sprite"] = "../art/sprites/p.png"
+          }
+        },
+        {
+          id = 224,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 448,
+          y = 416,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 3501,
+          visible = true,
+          properties = {
+            ["ElbowPads"] = 1,
+            ["sprite"] = "../art/sprites/chest.png"
           }
         }
       }

@@ -52,6 +52,7 @@ function BasicScene:onEnter(args)
 	self.layered = self.map.properties.layered
 	self.currentLayerId = self.map.properties.currentLayer or 1
 	self.currentLayer = "objects"..(self.currentLayerId > 1 and tostring(self.currentLayerId) or "")
+	self.hint = args.hint
 
 	self.args = args
 	self.cacheSceneData = args.cache
@@ -237,15 +238,6 @@ function BasicScene:onEnter(args)
 	for _, obj in pairs(self.map.objects) do
 		obj:postInit()
 	end
-	
-	--[[ Create nodes for collision map
-	self.pathingNodes = {}
-	for y=1,self.map.height do
-		for x=1,self.map.width do
-			local px,py = self:collisionCoordToWorldCoord(x, y)
-			table.insert(self.pathingNodes, {x=px, y=py, canMove=not self.map["collisionMap"][y][x]})
-		end
-	end]]
 
 	-- Fade in scene
 	local fadeInSpeed = args.fadeInSpeed or 1.0
@@ -719,7 +711,8 @@ function BasicScene:enterBattle(args)
 				color = args.color,
 				practice = args.practice,
 				onEnter = args.onEnter,
-				arrowColor = args.arrowColor
+				arrowColor = args.arrowColor,
+				hint = args.hint or self.hint
 			}
 		end),
 		
@@ -756,7 +749,7 @@ function BasicScene:keytriggered(key, uni)
 						menu:close()
 						self:run {
 							menu,
-							Do(function() self.sceneMgr:popScene{} end),
+							Do(function() self.sceneMgr:popScene{hint=self.hint} end),
 							Do(function() end)
 						}
 					end},

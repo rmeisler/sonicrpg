@@ -8,7 +8,7 @@ return {
   height = 192,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 248,
+  nextobjectid = 244,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/robo_intro2.lua",
@@ -2513,70 +2513,6 @@ return {
             ["hideOffset"] = 26,
             ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/heap.png"
-          }
-        },
-        {
-          id = 244,
-          name = "SwatbotVisibility1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1376,
-          y = 5504,
-          width = 704,
-          height = 192,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 245,
-          name = "SwatbotVisibility2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1376,
-          y = 5760,
-          width = 704,
-          height = 192,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 246,
-          name = "SwatbotVisibility3",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1376,
-          y = 5760,
-          width = 160,
-          height = 352,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 247,
-          name = "SwatbotVisibility4",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1920,
-          y = 5760,
-          width = 160,
-          height = 352,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["ghost"] = true
           }
         }
       }
