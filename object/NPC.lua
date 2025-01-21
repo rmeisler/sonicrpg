@@ -624,7 +624,7 @@ function NPC:update(dt)
 	
 	if self.state ~= NPC.STATE_TOUCHING then
 		if self.notColliding then
-			self.notColliding(self, self.scene.player)
+			self.notColliding(self, self.scene.player, prevState)
 		end
 
 		self.scene.player.keyhints[tostring(self)] = nil

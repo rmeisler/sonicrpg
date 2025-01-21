@@ -69,6 +69,9 @@ function Player:construct(scene, layer, object)
 	self.cinematicStack = 0
 	self.spriteOverride = {}
 	self.dustColor = Player.DEFAULT_DUST_COLOR
+	self.flyLayer = self.scene.currentLayerId
+	self.flyLandingLayer = self.flyLayer
+	self.defaultFlyOffsetY = 20
 	
 	self.isSwatbot = {}
 	self.lastSwatbotStepSfx = love.timer.getTime()

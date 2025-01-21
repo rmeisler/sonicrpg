@@ -1019,7 +1019,7 @@ function BasicScene:swapLayer(toLayerNum)
 
 	-- Update collision map with objects on same layer
 	for _, obj in pairs(self.map.objects) do
-		if obj.layer.name == objLayer then
+		if obj.layer.name == objLayer and obj.updateCollision then
 			obj:updateCollision()
 		end
 	end

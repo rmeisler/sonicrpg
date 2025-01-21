@@ -3,238 +3,186 @@ local Player = require "object/Player"
 local SpriteNode = require "object/SpriteNode"
 local NPC = require "object/NPC"
 
-return function(player)
-	-- Pause controls
-	local origUpdate = player.basicUpdate
-	
-	-- Figure out where we are going to start the extender from and which direction to move
-	local lastXForm = Transform(player.transform.x, player.transform.y, 2, 2)
-	local deltaX = 0
-	local deltaY = 0
-	local sortOrderY
-	
-	player.state = Player.ToIdle[player.state]
-	if player.state == Player.STATE_IDLEUP then
-		lastXForm.x = lastXForm.x + 40
-		lastXForm.y = lastXForm.y + 74
-		deltaY = -6
-		player.sprite:setAnimation("extendup")
-	elseif player.state == Player.STATE_IDLEDOWN then
-		lastXForm.x = lastXForm.x + 56
-		lastXForm.y = lastXForm.y + 74
-		deltaY = 6
-		sortOrderY = player.transform.y + player.height*2
-		player.sprite:setAnimation("extenddown")
-	elseif player.state == Player.STATE_IDLELEFT then
-		lastXForm.x = lastXForm.x + 45
-		lastXForm.y = lastXForm.y + 72
-		deltaX = -6
-		sortOrderY = player.transform.y + player.height*2
-		player.sprite:setAnimation("extendleft")
-	elseif player.state == Player.STATE_IDLERIGHT then
-		lastXForm.x = lastXForm.x + 55
-		lastXForm.y = lastXForm.y + 72
-		deltaX = 6
-		sortOrderY = player.transform.y + player.height*2
-		player.sprite:setAnimation("extendright")
-	end
-	
-	local retracting = false
-	player.extenderPieces = {}
-	
-	player.extenderarm = SpriteNode(
-		player.scene,
-		Transform(lastXForm.x - 16 + deltaX * 2, lastXForm.y - 16 + deltaY * 2, 2, 2),
-		player.sprite.color,
-		"extenderarm",
-		nil,
-		nil,
-		"objects"
-	)
-	player.extenderarm:setAnimation(player.sprite.selected)
-	if sortOrderY then
-		player.extenderarm.sortOrderY = sortOrderY
-	end
-	
-	local counter = 0
-	player.basicUpdate = function(self, dt)
-		self:updateCollisionObj()
+local Do = require "actions/Do"
+local Ease = require "actions/Ease"
+local Animate = require "actions/Animate"
+local Parallel = require "actions/Parallel"
 
-		-- Bunny arm extends in the direction specified for N pixels
-		-- If arm collides with a special object, either retrieve it (item) or pull player toward object
-		if retracting == false then
-			local extObject = SpriteNode(
-				self.scene,
-				Transform.from(lastXForm),
-				self.sprite.color,
-				"extender",
-				nil,
-				nil,
-				"objects"
-			)
-			if sortOrderY then
-				extObject.sortOrderY = sortOrderY
-			end
-			
-			if  player.state == Player.STATE_IDLEUP and
-				extObject.transform.y < self.transform.y
-			then
-				extObject.sortOrderY = self.transform.y + self.height*2
-				self.extenderarm.oldSortOrderY = self.extenderarm.sortOrderY
-				self.extenderarm.sortOrderY = self.transform.y + self.height*2
-			else
-				self.extenderarm.sortOrderY = self.extenderarm.oldSortOrderY or
-					self.extenderarm.sortOrderY
-			end
-			
-			table.insert(self.extenderPieces, extObject)
-			lastXForm = Transform(lastXForm.x + deltaX, lastXForm.y + deltaY, 2, 2)
-			
-			-- If extender arm collides with BunnyExtCollision tile
-			local wx,wy = self.scene:screenCoordToWorldCoord(
-				self.extenderarm.transform.x,
-				self.extenderarm.transform.y
-			)
-			if  (deltaX > 0 and
-				not self.scene:canMove(
-					wx + self.extenderarm.w*2,
-					wy,
-					deltaX,
-					0,
-					"bunnyExtCollisionMap") or
-				not self.scene:canMove(
-					wx + self.extenderarm.w*2,
-					wy + self.extenderarm.h*2,
-					deltaX,
-					0,
-					"bunnyExtCollisionMap")) or
-				(deltaX < 0 and
-				not self.scene:canMove(
-					wx,
-					wy,
-					deltaX,
-					0,
-					"bunnyExtCollisionMap") or
-				not self.scene:canMove(
-					wx,
-					wy + self.extenderarm.h*2,
-					deltaX,
-					0,
-					"bunnyExtCollisionMap")) or
-				(deltaY > 0 and
-				not self.scene:canMove(
-					wx,
-					wy + self.extenderarm.h*2,
-					0,
-					deltaY,
-					"bunnyExtCollisionMap") or
-				not self.scene:canMove(
-					wx + self.extenderarm.w*2,
-					wy + self.extenderarm.h*2,
-					0,
-					deltaY,
-					"bunnyExtCollisionMap")) or
-				(deltaY < 0 and
-				not self.scene:canMove(
-					wx,
-					wy,
-					0,
-					deltaY,
-					"bunnyExtCollisionMap") or
-				not self.scene:canMove(
-					wx + self.extenderarm.w*2,
-					wy,
-					0,
-					deltaY,
-					"bunnyExtCollisionMap"))
-			then
-				self.scene.audio:playSfx("clink")
-				retracting = true
-			else
-				self.extenderarm.transform.x = self.extenderarm.transform.x + deltaX
-				self.extenderarm.transform.y = self.extenderarm.transform.y + deltaY
-				
-				counter = counter + 1
-			end
-			
-			if  not love.keyboard.isDown("lshift") or
-				self.extenderArmColliding or
-				#self.extenderPieces == 80
-			then
-				retracting = true
-			end
-		elseif #self.extenderPieces > 0 then
-			if self.extenderArmColliding then
-				local piece = table.remove(self.extenderPieces, 1)
-				piece:remove()
-				
-				if not self.extenderPull then
-					self.x = self.x + deltaX
-					self.y = self.y + deltaY
-					self.dropShadow.x = self.x - 22 + deltaX
-					self.dropShadow.y = (self.dropShadowOverrideY or self.y + self.sprite.h - 15) + deltaY
-				elseif self.extenderPull.grabbed then
-					-- Pull object to us
-					self.extenderPull.x = self.extenderPull.x - deltaX
-					self.extenderPull.y = self.extenderPull.y - deltaY
-					
-					if self.extenderPull.state == NPC.STATE_TOUCHING then
-						self.extenderPull.grabbed = false
-						self.extenderPull.readyToFall = false
-					end
-				end
-				
-				for _,piece in pairs(self.extenderPieces) do
-					if  (self.x > love.graphics.getWidth()/2) and
-						(self.x < self.scene:getMapWidth() - love.graphics.getWidth()/2)
-					then
-						piece.transform.x = piece.transform.x - deltaX
-					end
-					
-					if  (self.y > love.graphics.getHeight()/2) and
-						(self.y < self.scene:getMapHeight() - love.graphics.getHeight()/2)
-					then
-						piece.transform.y = piece.transform.y - deltaY
-						
-						if  player.state == Player.STATE_IDLEUP and
-							piece.transform.y < self.transform.y
-						then
-							piece.sortOrderY = nil
-						end
-					end
-				end
-			else
-				local piece = table.remove(self.extenderPieces)
-				piece:remove()
-			end
+local FLY_OFFSET_Y = 20
+
+return function(player)
+	-- Tails power is to fly around. What this allows him to do is fly from higher points of a map
+	-- down to lower points of the map. This is useful for puzzle solving, navigation, etc.
+
+	-- While flying, you can press X to change perspective (Tails' body to his drop spot)
+	player.defaultFlyOffsetY = FLY_OFFSET_Y
+	player.flyOffsetY = player.defaultFlyOffsetY
 	
-			if  ((self.x > love.graphics.getWidth()/2) and
-				(self.x < self.scene:getMapWidth() - love.graphics.getWidth()/2)) or
-				not self.extenderArmColliding
+	-- Flying is a toggle, so once you press lshift, you begin flying and stay flying until
+	-- you press lshift again
+	local flyingUpdateFun = function(self, dt)
+		if self.changingCamera then
+			return
+		end
+		
+		if 	self.cinematic or
+			self.cinematicStack > 0 or
+			self.blocked or
+			not self.scene:playerMovable() or
+			self.dontfuckingmove
+		then
+			return
+		end
+
+		local movespeed = self.movespeed * (dt/0.016)
+
+		-- Update drop shadow position
+		self.dropShadow.x = self.x - 22
+		self.dropShadow.y = self.y + self.sprite.h - 15 + self.flyOffsetY
+
+		local hotspots = self:updateCollisionObj()
+
+		hotspots.right_top.x = hotspots.right_top.x + self.collisionHSOffsets.right_top.x
+		hotspots.right_top.y = hotspots.right_top.y + self.collisionHSOffsets.right_top.y + self.flyOffsetY
+		hotspots.right_bot.x = hotspots.right_bot.x + self.collisionHSOffsets.right_bot.x
+		hotspots.right_bot.y = hotspots.right_bot.y + self.collisionHSOffsets.right_bot.y + self.flyOffsetY
+		hotspots.left_top.x = hotspots.left_top.x + self.collisionHSOffsets.left_top.x
+		hotspots.left_top.y = hotspots.left_top.y + self.collisionHSOffsets.left_top.y + self.flyOffsetY
+		hotspots.left_bot.x = hotspots.left_bot.x + self.collisionHSOffsets.left_bot.x
+		hotspots.left_bot.y = hotspots.left_bot.y + self.collisionHSOffsets.left_bot.y + self.flyOffsetY
+
+		if love.keyboard.isDown("right") then
+			if  self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, movespeed, 0) and
+				self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, movespeed, 0)
 			then
-				self.extenderarm.transform.x = self.extenderarm.transform.x - deltaX
+				self.x = self.x + movespeed
+				self.state = "flyright"
+
+				-- Going up stairs
+				local _, stairs = next(self.stairs)
+				if stairs then
+					if stairs.direction == "up_right" then
+						self.y = self.y - movespeed * 0.7
+					elseif stairs.direction == "up_left" then
+						self.y = self.y + movespeed * 0.7
+					end
+				end
 			end
-			
-			if  ((self.y > love.graphics.getHeight()/2) and
-				(self.y < self.scene:getMapHeight() - love.graphics.getHeight()/2)) or
-				not self.extenderArmColliding
+
+		elseif love.keyboard.isDown("left") then
+			if  self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, -movespeed, 0) and
+				self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, -movespeed, 0)
 			then
-				self.extenderarm.transform.y = self.extenderarm.transform.y - deltaY
+				self.x = self.x - movespeed
+				self.state = "flyleft"
+
+				-- Going up stairs
+				local _, stairs = next(self.stairs)
+				if stairs then
+					if stairs.direction == "up_right" then
+						self.y = self.y + movespeed * 0.7
+					elseif stairs.direction == "up_left" then
+						self.y = self.y - movespeed * 0.7
+					end
+				end
 			end
-		else
-			if not self.extenderPull and self.extenderArmColliding and self.extenderArmColliding.snapToObject then
-				self.x = self.extenderArmColliding.x + self.extenderArmColliding.sprite.w
-				self.y = self.extenderArmColliding.y + self.extenderArmColliding.sprite.h*2 - self.height
+		end
+
+		if love.keyboard.isDown("down") then
+			if  self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, 0, movespeed) and
+				self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, 0, movespeed)
+			then
+				self.y = self.y + movespeed
 			end
-			if self.extenderPull and not self.extenderPull.falling then
-				self.extenderPull.grabbed = false
-				self.extenderPull.readyToFall = false
+
+		elseif love.keyboard.isDown("up") then
+			if  self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, 0, -movespeed) and
+				self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, 0, -movespeed)
+			then
+				self.y = self.y - movespeed
 			end
-			self.extenderarm:remove()
-			self.extenderarm = nil
-			self.extenderArmColliding = nil
-			self.extenderPull = nil
-			self.basicUpdate = origUpdate
+		end
+
+		self.sprite:setAnimation(self.state)
+		self.sprite.sortOrderY = self.sprite.transform.y + self.flyOffsetY
+	end
+
+	-- Turn off regular update method
+	player.basicUpdate = function(self, dt) end
+	player:removeSceneHandler("keytriggered", Player.keytriggered)
+	local stopFlyingFun
+	stopFlyingFun = function(self, key)
+		if self.changingCamera then
+			return
+		end
+
+		if key == "x" then
+			local newCamPosY = -self.flyOffsetY
+			if self.scene.camPos.y == 0 then
+				newCamPosY = -self.flyOffsetY
+			else
+				newCamPosY = 0
+			end
+
+			self.changingCamera = true
+			self:run {
+				Ease(self.scene.camPos, "y", newCamPosY, 2, "linear"),
+				Do(function() self.changingCamera = false end)
+			}
+		elseif key == "lshift" then
+			self.basicUpdate = function(_self, _dt) end
+			self:removeSceneHandler("keytriggered", stopFlyingFun)
+
+			-- Detect whether we (our actual self = drop shadow)
+			-- are colliding with an elevation object. If so, this
+			-- is our new elevation to drop to
+
+			if self.flyLayer ~= self.flyLandingLayer then
+				self.scene:swapLayer(self.flyLandingLayer)
+			end
+			self.sprite.sortOrderY = nil
+
+			-- Slowly reduce elevation
+			self:run {
+				Parallel {
+					Ease(self, "y", self.y + self.flyOffsetY, 2, "linear"),
+					Ease(self.scene.camPos, "y", 0, 2, "linear")
+				},
+				Do(function()
+					self.basicUpdate = self.updateFun
+					self:addSceneHandler("keytriggered", Player.keytriggered)
+					self.movespeed = self.baseMoveSpeed
+					if player:isFacing("right") then
+						player.state = "idleright"
+					else
+						player.state = "idleleft"
+					end
+				end)
+			}
 		end
 	end
+
+	player:run {
+		Do(function()
+			if player:isFacing("right") then
+				player.sprite:setAnimation("flyright")
+				player.state = "flyright"
+			else
+				player.sprite:setAnimation("flyleft")
+				player.state = "flyleft"
+			end
+		end),
+		-- Some flying sfx...
+		-- PlayAudio("sfx", "antoinescared", 1.0, true),
+		Ease(player, "y", player.y - player.flyOffsetY, 2, "linear"),
+		Do(function()
+			player.basicUpdate = flyingUpdateFun
+			player:addSceneHandler("keytriggered", stopFlyingFun)
+			player.movespeed = player.baseMoveSpeed * 2
+			
+			if player.flyLayer ~= player.scene.currentLayerId then
+				player.scene:swapLayer(player.flyLayer)
+			end
+		end)
+	}
 end
