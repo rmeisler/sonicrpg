@@ -8,15 +8,29 @@ local Ease = require "actions/Ease"
 local Animate = require "actions/Animate"
 local Parallel = require "actions/Parallel"
 
-local FLY_OFFSET_Y = 20
 
 return function(player)
 	-- Tails power is to fly around. What this allows him to do is fly from higher points of a map
 	-- down to lower points of the map. This is useful for puzzle solving, navigation, etc.
 
 	-- While flying, you can press X to change perspective (Tails' body to his drop spot)
-	player.defaultFlyOffsetY = FLY_OFFSET_Y
-	player.flyOffsetY = player.defaultFlyOffsetY
+	player.flyOffsetY = player.flyOffsetY or player.defaultFlyOffsetY
+	player.tempFlyOffsetY = 0
+
+	player.flyingHotspots = player.hotspots
+	player.origIsTouching = player.isTouching
+	player.isTouching = function(self, x, y, w, h)
+		local tw = self.scene:getTileWidth()
+		local th = self.scene:getTileHeight()
+		w = w or tw
+		h = h or th
+
+		local fuzz = 5
+		return (x + w) >= (self.flyingHotspots.left_bot.x - fuzz) and
+			x < (self.flyingHotspots.right_top.x + fuzz) and
+			(self.flyingHotspots.left_bot.y + fuzz) >= y and
+			(self.flyingHotspots.right_top.y - fuzz) <= (y + math.max(th*2, h))
+	end
 	
 	-- Flying is a toggle, so once you press lshift, you begin flying and stay flying until
 	-- you press lshift again
@@ -38,9 +52,16 @@ return function(player)
 
 		-- Update drop shadow position
 		self.dropShadow.x = self.x - 22
-		self.dropShadow.y = self.y + self.sprite.h - 15 + self.flyOffsetY
+		self.dropShadow.y = self.y + self.sprite.h - 15 + self.flyOffsetY + self.tempFlyOffsetY
 
 		local hotspots = self:updateCollisionObj()
+
+		self.flyingHotspots = {
+		    right_top = {x = hotspots.right_top.x, y = hotspots.right_top.y + self.flyOffsetY},
+			right_bot = {x = hotspots.right_bot.x, y = hotspots.right_bot.y + self.flyOffsetY},
+			left_top  = {x = hotspots.left_top.x,  y = hotspots.left_top.y + self.flyOffsetY},
+			left_bot  = {x = hotspots.left_bot.x,  y = hotspots.left_bot.y + self.flyOffsetY},
+		}
 
 		hotspots.right_top.x = hotspots.right_top.x + self.collisionHSOffsets.right_top.x
 		hotspots.right_top.y = hotspots.right_top.y + self.collisionHSOffsets.right_top.y + self.flyOffsetY
@@ -145,13 +166,14 @@ return function(player)
 			-- Slowly reduce elevation
 			self:run {
 				Parallel {
-					Ease(self, "y", self.y + self.flyOffsetY, 2, "linear"),
+					Ease(self, "y", self.dropShadow.y - self.sprite.h + 15, 2, "linear"),
 					Ease(self.scene.camPos, "y", 0, 2, "linear")
 				},
 				Do(function()
 					self.basicUpdate = self.updateFun
 					self:addSceneHandler("keytriggered", Player.keytriggered)
 					self.movespeed = self.baseMoveSpeed
+					self.isTouching = self.origIsTouching
 					if player:isFacing("right") then
 						player.state = "idleright"
 					else
@@ -174,7 +196,7 @@ return function(player)
 		end),
 		-- Some flying sfx...
 		-- PlayAudio("sfx", "antoinescared", 1.0, true),
-		Ease(player, "y", player.y - player.flyOffsetY, 2, "linear"),
+		Ease(player, "y", player.y - player.defaultFlyOffsetY, 2, "linear"),
 		Do(function()
 			player.basicUpdate = flyingUpdateFun
 			player:addSceneHandler("keytriggered", stopFlyingFun)
@@ -182,6 +204,7 @@ return function(player)
 			
 			if player.flyLayer ~= player.scene.currentLayerId then
 				player.scene:swapLayer(player.flyLayer)
+				print("fly layer = "..tostring(player.flyLayer))
 			end
 		end)
 	}

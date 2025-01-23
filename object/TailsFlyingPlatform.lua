@@ -39,7 +39,6 @@ function TailsFlyingPlatform:whileColliding(player, prevState)
 	-- If colliding with this platform after you were previously not colliding,
 	-- set dropshadow to be on this platform and ensure that this is set as
 	-- your "landing zone"
-	player.flyOffsetY = player.defaultFlyOffsetY
 	player.flyLandingLayer = self.scene.currentLayerId
 end
 

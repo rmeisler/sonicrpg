@@ -1146,7 +1146,12 @@ function Player:basicUpdate(dt)
 end
 
 function Player:updateCollisionObj()
-	self.collisionX, self.collisionY = self.scene:worldCoordToCollisionCoord(self.x, self.y)
+	local flyOffsetY = 0
+	if self.doingSpecialMove and GameState.leader == "tails" then
+		flyOffsetY = self.flyOffsetY or 0
+	end
+
+	self.collisionX, self.collisionY = self.scene:worldCoordToCollisionCoord(self.x, self.y + flyOffsetY)
 	return self:updateHotspots()
 end
 
