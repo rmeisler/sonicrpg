@@ -7,12 +7,16 @@ local Do = require "actions/Do"
 local Ease = require "actions/Ease"
 local Animate = require "actions/Animate"
 local Parallel = require "actions/Parallel"
+local Wait = require "actions/Wait"
 
+local flyingUpdateFun
 
 return function(player)
 	-- Tails power is to fly around. What this allows him to do is fly from higher points of a map
 	-- down to lower points of the map. This is useful for puzzle solving, navigation, etc.
 
+	player.lookingAtShadow = false
+	
 	-- While flying, you can press X to change perspective (Tails' body to his drop spot)
 	player.flyOffsetY = player.flyOffsetY or player.defaultFlyOffsetY
 	player.tempFlyOffsetY = 0
@@ -34,7 +38,7 @@ return function(player)
 	
 	-- Flying is a toggle, so once you press lshift, you begin flying and stay flying until
 	-- you press lshift again
-	local flyingUpdateFun = function(self, dt)
+	flyingUpdateFun = function(self, dt)
 		if self.changingCamera then
 			return
 		end
@@ -138,18 +142,19 @@ return function(player)
 		end
 
 		if key == "x" then
-			local newCamPosY = -self.flyOffsetY
-			if self.scene.camPos.y == 0 then
-				newCamPosY = -self.flyOffsetY
+			--[[
+			local newZoom
+			if GlobalScale == 1 then
+				newZoom = 0.5
 			else
-				newCamPosY = 0
+				newZoom = 1
 			end
 
 			self.changingCamera = true
 			self:run {
-				Ease(self.scene.camPos, "y", newCamPosY, 2, "linear"),
+				Ease(_G, "GlobalScale", newZoom, 2, "linear"),
 				Do(function() self.changingCamera = false end)
-			}
+			}]]
 		elseif key == "lshift" then
 			self.basicUpdate = function(_self, _dt) end
 			self:removeSceneHandler("keytriggered", stopFlyingFun)
@@ -197,6 +202,8 @@ return function(player)
 		-- Some flying sfx...
 		-- PlayAudio("sfx", "antoinescared", 1.0, true),
 		Ease(player, "y", player.y - player.defaultFlyOffsetY, 2, "linear"),
+		Wait(0.5),
+		Ease(player.scene.camPos, "y", -200, 1, "linear"),
 		Do(function()
 			player.basicUpdate = flyingUpdateFun
 			player:addSceneHandler("keytriggered", stopFlyingFun)
@@ -204,7 +211,6 @@ return function(player)
 			
 			if player.flyLayer ~= player.scene.currentLayerId then
 				player.scene:swapLayer(player.flyLayer)
-				print("fly layer = "..tostring(player.flyLayer))
 			end
 		end)
 	}

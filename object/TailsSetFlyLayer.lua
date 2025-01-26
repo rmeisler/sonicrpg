@@ -20,7 +20,8 @@ function TailsSetFlyLayer:whileColliding(player, prevState)
 	-- Set fly layer
 	player.flyLayer = self.flyLayer
 	player.flyOffsetY = self.flyOffsetY
-	print("set by "..self.object.name)
+	
+	print("yok, setting offset to "..tostring(self.flyOffsetY))
 end
 
 function TailsSetFlyLayer:notColliding(player, prevState)
@@ -35,7 +36,8 @@ function TailsSetFlyLayer:notColliding(player, prevState)
 	-- Set fly layer
 	player.flyLayer = 4
 	player.flyOffsetY = player.defaultFlyOffsetY
-	print("unset by "..self.object.name)
+	
+	print("youch, setting offset to "..tostring(player.defaultFlyOffsetY))
 end
 
 

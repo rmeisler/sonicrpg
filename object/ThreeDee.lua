@@ -1,0 +1,51 @@
+local Player = require "object/Player"
+local NPC = require "object/NPC"
+
+local ThreeDee = class(NPC)
+
+function ThreeDee:construct(scene, layer, object)
+	self.ghost = true
+	self.depth = self.object.properties.depth
+	self.flyLandingLayer = self.object.properties.flyLandingLayer
+
+	NPC.init(self)
+end
+
+function ThreeDee:whileColliding(player, prevState)
+	if GameState.leader ~= "tails" or
+	   not player.doingSpecialMove
+	then
+        return
+    end
+
+    local playerY = player.y + player.flyOffsetY
+	local objBottomY = self.object.y + self.object.height
+    local onTop = (playerY < objBottomY) and (playerY > (objBottomY - self.depth))
+
+    if onTop then
+        player.tempFlyOffsetY = -self.object.height + 20
+		player.dropShadow.sprite.sortOrderY = nil
+		player.prevLandingLayer = player.flyLandingLayer
+		player.flyLandingLayer = self.flyLandingLayer
+    else
+        player.tempFlyOffsetY = 0
+		player.dropShadow.sprite.sortOrderY = 0
+		player.flyLandingLayer = player.prevLandingLayer or player.flyLandingLayer
+    end
+end
+
+function ThreeDee:notColliding(player, prevState)
+    if GameState.leader ~= "tails" or
+	   not player.doingSpecialMove or
+	   prevState == NPC.STATE_IDLE
+	then
+        return
+    end
+
+    player.tempFlyOffsetY = 0
+	player.dropShadow.sprite.sortOrderY = 0
+	player.flyLandingLayer = player.prevLandingLayer or player.flyLandingLayer
+end
+
+
+return ThreeDee

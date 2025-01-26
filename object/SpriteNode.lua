@@ -304,12 +304,12 @@ function SpriteNode:draw(override)
 
 	local xform = override or self.transform
 	local sprite = self.animations[self.selected]
-	
+
 	local drawSprite = function()
 		if not sprite then
 			return
 		end
-		sprite:draw(xform.x, xform.y, xform.angle, xform.sx, xform.sy, xform.ox, xform.oy, xform.shx, xform.shy)
+		sprite:draw(xform.x, xform.y, xform.angle, xform.sx * GlobalScale, xform.sy * GlobalScale, xform.ox, xform.oy, xform.shx, xform.shy)
 	end
 	
 	if self.drawWithGlow then

@@ -407,7 +407,7 @@ function Map:setSpriteBatches(layer)
 
 					if batch then
 						tab.batch = batch
-						tab.id = batch:add(tile.quad, tileX, tileY, tile.r, tile.sx, tile.sy)
+						tab.id = batch:add(tile.quad, tileX, tileY, tile.r, tile.sx * (GlobalScale or 1.0), tile.sy * (GlobalScale or 1.0))
 					end
 
 					self.tileInstances[tile.gid] = self.tileInstances[tile.gid] or {}
@@ -460,7 +460,7 @@ function Map:setSpriteBatches(layer)
 
 						if batch then
 							tab.batch = batch
-							tab.id = batch:add(tile.quad, tileX, tileY, tile.r, tile.sx, tile.sy)
+							tab.id = batch:add(tile.quad, tileX, tileY, tile.r, tile.sx * (GlobalScale or 1.0), tile.sy * (GlobalScale or 1.0))
 						end
 
 						self.tileInstances[tile.gid] = self.tileInstances[tile.gid] or {}
@@ -523,7 +523,7 @@ function Map:setSpriteBatches(layer)
 
 							if batch then
 								tab.batch = batch
-								tab.id = batch:add(tile.quad, tileX, tileY, tile.r, tile.sx, tile.sy)
+								tab.id = batch:add(tile.quad, tileX, tileY, tile.r, tile.sx * (GlobalScale or 1.0), tile.sy * (GlobalScale or 1.0))
 							end
 
 							self.tileInstances[tile.gid] = self.tileInstances[tile.gid] or {}
@@ -597,7 +597,7 @@ function Map:setObjectSpriteBatches(layer)
 
 			if batch then
 				tab.batch = batch
-				tab.id = batch:add(tile.quad, tileX, tileY, tileR, tile.sx, tile.sy, 0, oy)
+				tab.id = batch:add(tile.quad, tileX, tileY, tileR, tile.sx * (GlobalScale or 1.0), tile.sy * (GlobalScale or 1.0), 0, oy)
 				object.batchId = tab.id
 			end
 
@@ -717,7 +717,7 @@ function Map:update(dt)
 			if update and self.tileInstances[tile.gid] then
 				for _, j in pairs(self.tileInstances[tile.gid]) do
 					local t = self.tiles[tonumber(tile.animation[tile.frame].tileid) + self.tilesets[tile.tileset].firstgid]
-					j.batch:set(j.id, t.quad, j.x, j.y, j.r, tile.sx, tile.sy, 0, j.oy)
+					j.batch:set(j.id, t.quad, j.x, j.y, j.r, tile.sx * (GlobalScale or 1.0), tile.sy * (GlobalScale or 1.0), 0, j.oy)
 				end
 			end
 		end
@@ -1018,8 +1018,8 @@ function Map:swapTile(instance, tile)
 			instance.x,
 			instance.y,
 			tile.r,
-			tile.sx,
-			tile.sy
+			tile.sx * (GlobalScale or 1.0),
+			tile.sy * (GlobalScale or 1.0)
 		)
 	end
 
