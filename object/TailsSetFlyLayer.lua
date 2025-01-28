@@ -7,6 +7,7 @@ function TailsSetFlyLayer:construct(scene, layer, object)
 	self.ghost = true
 	self.flyLayer = self.object.properties.flyLayer
 	self.flyOffsetY = self.object.properties.flyOffsetY
+	self.flyLandingLayer = self.object.properties.flyLandingLayer
 
 	NPC.init(self)
 end
@@ -20,24 +21,18 @@ function TailsSetFlyLayer:whileColliding(player, prevState)
 	-- Set fly layer
 	player.flyLayer = self.flyLayer
 	player.flyOffsetY = self.flyOffsetY
-	
-	print("yok, setting offset to "..tostring(self.flyOffsetY))
 end
 
 function TailsSetFlyLayer:notColliding(player, prevState)
 	-- Only impacts Tails
 	if GameState.leader ~= "tails" or
-	   prevState == NPC.STATE_IDLE or
-	   player.doingSpecialMove
+	   prevState == NPC.STATE_IDLE
 	then
 		return
 	end
 
 	-- Set fly layer
-	player.flyLayer = 4
-	player.flyOffsetY = player.defaultFlyOffsetY
-	
-	print("youch, setting offset to "..tostring(player.defaultFlyOffsetY))
+	player.flyLandingLayer = self.flyLandingLayer
 end
 
 

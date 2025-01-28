@@ -8,14 +8,13 @@ local Ease = require "actions/Ease"
 local Animate = require "actions/Animate"
 local Parallel = require "actions/Parallel"
 local Wait = require "actions/Wait"
+local Action = require "actions/Action"
 
 local flyingUpdateFun
 
 return function(player)
 	-- Tails power is to fly around. What this allows him to do is fly from higher points of a map
 	-- down to lower points of the map. This is useful for puzzle solving, navigation, etc.
-
-	player.lookingAtShadow = false
 	
 	-- While flying, you can press X to change perspective (Tails' body to his drop spot)
 	player.flyOffsetY = player.flyOffsetY or player.defaultFlyOffsetY
@@ -128,90 +127,76 @@ return function(player)
 			end
 		end
 
+		-- Flytime countdown
+		self.flyTime = self.flyTime - dt
+
+		if self.flyTime > 0.0 and love.keyboard.isDown("lshift") then
+			-- Left shift is down? Increase elevation
+			self.flyOffsetY = self.flyOffsetY + 4
+			self.y = self.y - 4
+
+			-- If you go lower than layer 1, now you are on layer 2,
+			-- if you go lower than layer 2, now you are on layer 3, etc, etc
+			if self.flyOffsetY > 200 then
+				self.scene.camPos.y = self.scene.camPos.y - 4
+			elseif self.flyOffsetY > 0 then
+				if self.scene.currentLayerId ~= 2 then
+					print "set layer to 2"
+					self.scene:swapLayer(2, true)
+				end
+			end
+		else
+			-- Start falling out of the sky
+			if self.flyTime <= 0.0 then
+				self.flyOffsetY = self.flyOffsetY - 2
+				self.y = self.y + 2
+				
+				if self.scene.camPos.y < 0 then
+					self.scene.camPos.y = self.scene.camPos.y + 2
+				else
+					self.scene.camPos.y = 0
+				end
+			else
+				self.flyOffsetY = self.flyOffsetY - 1
+				self.y = self.y + 1
+
+				if self.scene.camPos.y < 0 then
+					self.scene.camPos.y = self.scene.camPos.y + 1
+				else
+					self.scene.camPos.y = 0
+				end
+			end
+		end
+
+		if self.flyOffsetY + self.tempFlyOffsetY <= 0 then
+			self.sprite.sortOrderY = nil
+			self.basicUpdate = self.updateFun
+			self.movespeed = self.baseMoveSpeed
+			self.isTouching = self.origIsTouching
+			if self:isFacing("right") then
+				self.state = "idleright"
+			else
+				self.state = "idleleft"
+			end
+
+			if self.scene.currentLayerId ~= self.flyLandingLayer then
+				print("set layer to "..tostring(self.flyLandingLayer))
+				self.scene:swapLayer(self.flyLandingLayer)
+			end
+			
+			if self.scene.camPos.y < 0 then
+				self:run(Ease(self.scene.camPos, "y", 0, 2, "linear"))
+			end
+
+			self.specialCoolDown = 1.0
+		end
+
 		self.sprite:setAnimation(self.state)
 		self.sprite.sortOrderY = self.sprite.transform.y + self.flyOffsetY
 	end
 
-	-- Turn off regular update method
-	player.basicUpdate = function(self, dt) end
-	player:removeSceneHandler("keytriggered", Player.keytriggered)
-	local stopFlyingFun
-	stopFlyingFun = function(self, key)
-		if self.changingCamera then
-			return
-		end
-
-		if key == "x" then
-			--[[
-			local newZoom
-			if GlobalScale == 1 then
-				newZoom = 0.5
-			else
-				newZoom = 1
-			end
-
-			self.changingCamera = true
-			self:run {
-				Ease(_G, "GlobalScale", newZoom, 2, "linear"),
-				Do(function() self.changingCamera = false end)
-			}]]
-		elseif key == "lshift" then
-			self.basicUpdate = function(_self, _dt) end
-			self:removeSceneHandler("keytriggered", stopFlyingFun)
-
-			-- Detect whether we (our actual self = drop shadow)
-			-- are colliding with an elevation object. If so, this
-			-- is our new elevation to drop to
-
-			if self.flyLayer ~= self.flyLandingLayer then
-				self.scene:swapLayer(self.flyLandingLayer)
-			end
-			self.sprite.sortOrderY = nil
-
-			-- Slowly reduce elevation
-			self:run {
-				Parallel {
-					Ease(self, "y", self.dropShadow.y - self.sprite.h + 15, 2, "linear"),
-					Ease(self.scene.camPos, "y", 0, 2, "linear")
-				},
-				Do(function()
-					self.basicUpdate = self.updateFun
-					self:addSceneHandler("keytriggered", Player.keytriggered)
-					self.movespeed = self.baseMoveSpeed
-					self.isTouching = self.origIsTouching
-					if player:isFacing("right") then
-						player.state = "idleright"
-					else
-						player.state = "idleleft"
-					end
-				end)
-			}
-		end
-	end
-
-	player:run {
-		Do(function()
-			if player:isFacing("right") then
-				player.sprite:setAnimation("flyright")
-				player.state = "flyright"
-			else
-				player.sprite:setAnimation("flyleft")
-				player.state = "flyleft"
-			end
-		end),
-		-- Some flying sfx...
-		-- PlayAudio("sfx", "antoinescared", 1.0, true),
-		Ease(player, "y", player.y - player.defaultFlyOffsetY, 2, "linear"),
-		Wait(0.5),
-		Ease(player.scene.camPos, "y", -200, 1, "linear"),
-		Do(function()
-			player.basicUpdate = flyingUpdateFun
-			player:addSceneHandler("keytriggered", stopFlyingFun)
-			player.movespeed = player.baseMoveSpeed * 2
-			
-			if player.flyLayer ~= player.scene.currentLayerId then
-				player.scene:swapLayer(player.flyLayer)
-			end
-		end)
-	}
+	-- Change update method to fly, increase base move speed
+	player.basicUpdate = flyingUpdateFun
+	player.flyTime = 2.0
+	player.state = "flyright"
 end

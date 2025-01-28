@@ -13,7 +13,8 @@ end
 
 function ThreeDee:whileColliding(player, prevState)
 	if GameState.leader ~= "tails" or
-	   not player.doingSpecialMove
+	   not player.doingSpecialMove or
+	   player.flyOffsetY < self.object.height
 	then
         return
     end
@@ -24,12 +25,12 @@ function ThreeDee:whileColliding(player, prevState)
 
     if onTop then
         player.tempFlyOffsetY = -self.object.height + 20
-		player.dropShadow.sprite.sortOrderY = nil
+		player.dropShadow.sprite.sortOrderY = 1000000
 		player.prevLandingLayer = player.flyLandingLayer
 		player.flyLandingLayer = self.flyLandingLayer
     else
+		player.dropShadow.sprite.sortOrderY = nil
         player.tempFlyOffsetY = 0
-		player.dropShadow.sprite.sortOrderY = 0
 		player.flyLandingLayer = player.prevLandingLayer or player.flyLandingLayer
     end
 end
@@ -42,8 +43,8 @@ function ThreeDee:notColliding(player, prevState)
         return
     end
 
+	player.dropShadow.sprite.sortOrderY = nil
     player.tempFlyOffsetY = 0
-	player.dropShadow.sprite.sortOrderY = 0
 	player.flyLandingLayer = player.prevLandingLayer or player.flyLandingLayer
 end
 

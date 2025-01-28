@@ -1001,14 +1001,18 @@ function BasicScene:canMoveWhitelist(x, y, dx, dy, whiteList, collisionLayer)
 	return not collisionLayer[mapy][mapx] or (whiteList and whiteList[mapy] and whiteList[mapy][mapx])
 end
 
-function BasicScene:swapLayer(toLayerNum)
+function BasicScene:swapLayer(toLayerNum, ignoreSprites)
 	-- Swap object layer (assumes naming convention of "objects" or "objectsN"
 	local layerStr = tostring(toLayerNum)
 	local objLayer = toLayerNum == 1 and "objects" or ("objects"..layerStr)
-	self.player.sprite:swapLayer(objLayer)
-	if not self.player.dropShadow:isRemoved() then
-		self.player.dropShadow.sprite:swapLayer(objLayer)
+
+	if not ignoreSprites then
+		self.player.sprite:swapLayer(objLayer)
+		if not self.player.dropShadow:isRemoved() then
+			self.player.dropShadow.sprite:swapLayer(objLayer)
+		end
 	end
+
 	self.player.onlyInteractWithLayer = objLayer
 	self.player.layer = {name = objLayer}
 	self.currentLayer = objLayer
