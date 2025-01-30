@@ -134,15 +134,22 @@ return function(player)
 			-- Left shift is down? Increase elevation
 			self.flyOffsetY = self.flyOffsetY + 4
 			self.y = self.y - 4
+			
+			if self.flyOffsetY > 200 then
+				self.scene.camPos.y = self.scene.camPos.y - 4
+			end
 
 			-- If you go lower than layer 1, now you are on layer 2,
 			-- if you go lower than layer 2, now you are on layer 3, etc, etc
-			if self.flyOffsetY > 200 then
-				self.scene.camPos.y = self.scene.camPos.y - 4
-			elseif self.flyOffsetY > 0 then
+			if self.flyOffsetY > 64 then
 				if self.scene.currentLayerId ~= 2 then
 					print "set layer to 2"
 					self.scene:swapLayer(2, true)
+				end
+			else
+				if self.scene.currentLayerId ~= 4 then
+					print "set layer to 4"
+					self.scene:swapLayer(4, true)
 				end
 			end
 		else
