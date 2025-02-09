@@ -91,11 +91,13 @@ return function(player)
 						self.y = self.y + movespeed * 0.7
 					end
 				end
+			else
+				print("wah 2? "..tostring(self.scene.currentLayerId))
 			end
 
 		elseif love.keyboard.isDown("left") then
-			if  self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, -movespeed, 0) and
-				self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, -movespeed, 0)
+			if  self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, -movespeed, 0, nil, true) and
+				self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, -movespeed, 0, nil, true)
 			then
 				self.x = self.x - movespeed
 				self.state = "flyleft"
@@ -109,6 +111,8 @@ return function(player)
 						self.y = self.y - movespeed * 0.7
 					end
 				end
+			else
+				print("wah? "..tostring(self.scene.currentLayerId))
 			end
 		end
 
@@ -138,40 +142,39 @@ return function(player)
 			if self.flyOffsetY > 200 then
 				self.scene.camPos.y = self.scene.camPos.y - 4
 			end
-
-			-- If you go lower than layer 1, now you are on layer 2,
-			-- if you go lower than layer 2, now you are on layer 3, etc, etc
-			if self.flyOffsetY > 64 then
-				if self.scene.currentLayerId ~= 2 then
-					print "set layer to 2"
-					self.scene:swapLayer(2, true)
-				end
-			else
-				if self.scene.currentLayerId ~= 4 then
-					print "set layer to 4"
-					self.scene:swapLayer(4, true)
-				end
-			end
 		else
 			-- Start falling out of the sky
 			if self.flyTime <= 0.0 then
-				self.flyOffsetY = self.flyOffsetY - 2
-				self.y = self.y + 2
+				self.flyOffsetY = self.flyOffsetY - 8
+				self.y = self.y + 8
 				
 				if self.scene.camPos.y < 0 then
-					self.scene.camPos.y = self.scene.camPos.y + 2
+					self.scene.camPos.y = self.scene.camPos.y + 8
 				else
 					self.scene.camPos.y = 0
 				end
 			else
-				self.flyOffsetY = self.flyOffsetY - 1
-				self.y = self.y + 1
+				self.flyOffsetY = self.flyOffsetY - 4
+				self.y = self.y + 4
 
 				if self.scene.camPos.y < 0 then
-					self.scene.camPos.y = self.scene.camPos.y + 1
+					self.scene.camPos.y = self.scene.camPos.y + 4
 				else
 					self.scene.camPos.y = 0
 				end
+			end
+		end
+
+		-- Update collision layer
+		if self.flyOffsetY > 160 then
+			if self.scene.currentLayerId ~= 1 then
+				print "set layer to 1"
+				self.scene:swapLayer(1, true)
+			end
+		else
+			if self.scene.currentLayerId ~= 3 then
+				print "set layer to 3"
+				self.scene:swapLayer(3, true)
 			end
 		end
 
@@ -180,6 +183,7 @@ return function(player)
 			self.basicUpdate = self.updateFun
 			self.movespeed = self.baseMoveSpeed
 			self.isTouching = self.origIsTouching
+
 			if self:isFacing("right") then
 				self.state = "idleright"
 			else
@@ -188,18 +192,26 @@ return function(player)
 
 			if self.scene.currentLayerId ~= self.flyLandingLayer then
 				print("set layer to "..tostring(self.flyLandingLayer))
-				self.scene:swapLayer(self.flyLandingLayer)
+				self.scene:swapLayer(self.flyLandingLayer, true)
+
+				if self.flyLandingLayer < 3 then
+					self.sprite.sortOrderY = 100001
+					self.dropShadow.sprite.sortOrderY = 100000
+					self.flyOffsetY = self.nextFlyOffsetY or 0
+					self.flyLandingLayer = self.nextFlyLandingLayer
+				else
+					self.flyOffsetY = 0
+					self.flyLandingLayer = self.nextFlyLandingLayer
+				end
 			end
-			
+
 			if self.scene.camPos.y < 0 then
 				self:run(Ease(self.scene.camPos, "y", 0, 2, "linear"))
 			end
-
-			self.specialCoolDown = 1.0
+		else
+			self.sprite:setAnimation(self.state)
+			self.sprite.sortOrderY = self.sprite.transform.y + self.flyOffsetY
 		end
-
-		self.sprite:setAnimation(self.state)
-		self.sprite.sortOrderY = self.sprite.transform.y + self.flyOffsetY
 	end
 
 	-- Change update method to fly, increase base move speed

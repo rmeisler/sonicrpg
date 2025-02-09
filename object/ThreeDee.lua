@@ -7,6 +7,8 @@ function ThreeDee:construct(scene, layer, object)
 	self.ghost = true
 	self.depth = self.object.properties.depth
 	self.flyLandingLayer = self.object.properties.flyLandingLayer
+	self.nextFlyLandingLayer = self.object.properties.nextFlyLandingLayer
+	self.nextFlyOffsetY = self.object.properties.nextFlyOffsetY
 
 	NPC.init(self)
 end
@@ -25,12 +27,18 @@ function ThreeDee:whileColliding(player, prevState)
 
     if onTop then
         player.tempFlyOffsetY = -self.object.height + 20
+		player.sprite.sortOrderY = 1000001
 		player.dropShadow.sprite.sortOrderY = 1000000
 		player.flyLandingLayer = self.flyLandingLayer
+		player.nextFlyLandingLayer = self.nextFlyLandingLayer
+		player.nextFlyOffsetY = self.nextFlyOffsetY
     else
-		player.dropShadow.sprite.sortOrderY = nil
+		player.sprite.sortOrderY = nil
+		player.dropShadow.sprite.sortOrderY = -1
         player.tempFlyOffsetY = 0
-		player.flyLandingLayer = 4
+		player.flyLandingLayer = self.nextFlyLandingLayer
+		player.nextFlyLandingLayer = self.nextFlyLandingLayer
+		player.nextFlyOffsetY = 0
     end
 end
 
@@ -42,9 +50,8 @@ function ThreeDee:notColliding(player, prevState)
         return
     end
 
-	player.dropShadow.sprite.sortOrderY = nil
     player.tempFlyOffsetY = 0
-	player.flyLandingLayer = 4
+	player.flyLandingLayer = self.nextFlyLandingLayer
 end
 
 

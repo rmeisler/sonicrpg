@@ -73,7 +73,6 @@ function Player:construct(scene, layer, object)
 	self.flyLandingLayer = self.flyLayer
 	self.defaultFlyOffsetY = 20
 	self.flyOffsetY = self.defaultFlyOffsetY
-	self.specialCoolDown = 0.0
 
 	self.isSwatbot = {}
 	self.lastSwatbotStepSfx = love.timer.getTime()
@@ -157,7 +156,7 @@ function Player:construct(scene, layer, object)
 		}
 	)
 	self.dropShadow.sprite.transform.sx = 1.3
-	self.dropShadow.sprite.sortOrderY = -1
+	self.dropShadow.sprite.sortOrderY = self.sprite.transform.y - 1
 	self.scene:addObject(self.dropShadow)
 	
 	self:updateHotspots()
@@ -788,6 +787,7 @@ function Player:basicUpdate(dt)
 	-- Update drop shadow position
 	self.dropShadow.x = self.x - 22
 	self.dropShadow.y = self.dropShadowOverrideY or self.y + self.sprite.h - 15
+	self.dropShadow.sprite.sortOrderY = self.sprite.transform.y - 1
 
 	-- HACK: Rotor is big
 	if GameState.leader == "rotor" then
@@ -824,13 +824,10 @@ function Player:basicUpdate(dt)
 	end
 	
 	if not isSwatbot and
-	   self.specialCoolDown <= 0.0 and
 	   love.keyboard.isDown("lshift")
     then
 		self:onSpecialMove()
 		return
-	elseif self.specialCoolDown > 0.0 then
-		self.specialCoolDown = self.specialCoolDown - dt
 	end
 	self.doingSpecialMove = false
 	

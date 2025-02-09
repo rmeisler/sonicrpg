@@ -973,7 +973,7 @@ function BasicScene:getTileHeight()
 	return self.map.tileheight
 end
 
-function BasicScene:canMove(x, y, dx, dy, mapName)
+function BasicScene:canMove(x, y, dx, dy, mapName, printl)
 	mapName = mapName or "collisionMap"
 	-- Special case for map boundaries
 	if  (x + dx) <= 0 or
@@ -984,7 +984,11 @@ function BasicScene:canMove(x, y, dx, dy, mapName)
 		return false
 	end
 	local mapx, mapy = self:worldCoordToCollisionCoord(x + dx, y + dy)
-	return not self.map[mapName][mapy][mapx]
+	result = not self.map[mapName][mapy][mapx]
+	if printl then
+		print("map collision check x = "..tostring(x + dx)..", y = "..tostring(y+dy)..", "..mapName..": mapx = "..tostring(mapx)..", mapy = "..tostring(mapy)..", result = "..tostring(self.map.collisionMap == self.map.collisionMap1))
+	end
+	return result
 end
 
 function BasicScene:canMoveWhitelist(x, y, dx, dy, whiteList, collisionLayer)
@@ -1023,7 +1027,7 @@ function BasicScene:swapLayer(toLayerNum, ignoreSprites)
 
 	-- Update collision map with objects on same layer
 	for _, obj in pairs(self.map.objects) do
-		if obj.layer.name == objLayer and obj.updateCollision then
+		if obj.updateCollision then
 			obj:updateCollision()
 		end
 	end

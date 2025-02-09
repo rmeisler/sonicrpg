@@ -178,7 +178,7 @@ end
 
 function TitleSplashScene:continue()
 	-- Make sure we have images ready for this screen
-	local party = {"sonic", "sally", "bunny", "rotor", "antoine", "logan", "b"}
+	local party = {"sonic", "sally", "bunny", "rotor", "antoine", "logan", "b", "tails"}
 	for _, member in pairs(party) do
 		self.images["sprites/"..member] = love.graphics.newImage("art/sprites/"..member..".png")
 		self.animations["sprites/"..member] = love.filesystem.load("art/sprites/"..member..".lua")()

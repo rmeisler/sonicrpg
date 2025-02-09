@@ -21,7 +21,8 @@ function TailsSetFlyLayer:whileColliding(player, prevState)
 	-- Set fly layer
 	player.flyLayer = self.flyLayer
 	player.flyOffsetY = self.flyOffsetY
-	player.dropShadow.sprite.sortOrderY = nil
+	player.sprite.sortOrderY = 100000
+	player.dropShadow.sprite.sortOrderY = 99999
 end
 
 function TailsSetFlyLayer:notColliding(player, prevState)

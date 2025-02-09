@@ -181,10 +181,25 @@ end
 
 function NPC:updateCollision()
 	self.collision = {}
+
     if self.scene.map.properties.layered and
 	   self.scene.currentLayer ~= self.layer.name and
 	   self.layer.name ~= "all"
 	then
+		-- FIXME: Need to implement an object-only collision map so we can independently remove
+		-- object collision without impacting map collision
+		if not self.ghost then
+			local sx,sy = self.scene:worldCoordToCollisionCoord(self.object.x, self.object.y)
+			local dx,dy = self.scene:worldCoordToCollisionCoord(self.object.x + self.object.width, self.object.y + self.object.height)
+			for y=sy, dy-1 do
+				for x=sx, dx-1 do
+					if self.scene.map.collisionMap[y] then
+						self.scene.map.collisionMap[y][x] = nil
+					end
+				end
+			end
+		end
+
 		return
 	end
 
