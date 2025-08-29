@@ -30,7 +30,9 @@ return function(scene, hint)
 	
 	scene.audio:playMusic("greatjungle", 0.5)
 	
-	scene.player.dustColor = Player.FOREST_DUST_COLOR
+	if scene.player then
+	    scene.player.dustColor = Player.FOREST_DUST_COLOR
+	end
 
 	Executor(scene):act(Serial {
 		Wait(0.5),

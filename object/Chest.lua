@@ -21,7 +21,7 @@ function Chest:construct(scene, layer, object)
 	
 	self.items = {}
 	for k,v in pairs(object.properties) do
-		if k ~= "sprite" then
+		if k ~= "sprite" and k ~= "swapLayers" then
 			self.items[k] = v
 		end
 	end

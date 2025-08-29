@@ -146,6 +146,22 @@ return {
 			frames = {{11,4},{12,4}},
 			speed = 0.1
 		},
+		
+		idleright_lookup = {
+            frames = {{11,3}}
+        },
+		
+		hug = {
+		    frames = {{0,4}}
+		},
+		
+		reading = {
+		    frames = {{16,3}}
+		},
+		
+		danger_pose_right = {
+			frames = {{16,1}}
+		},
 
 		hockeypose = {
 			frames = {{11,2}}

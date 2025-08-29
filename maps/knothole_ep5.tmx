@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="135" tilewidth="32" tileheight="32" infinite="0" nextobjectid="674">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="135" tilewidth="32" tileheight="32" infinite="0" nextobjectid="675">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="currentLayer" type="int" value="7"/>
@@ -2061,17 +2061,6 @@
     <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
-  <object id="81" name="B" type="BasicNPC" gid="5323" x="992" y="2400" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="alignOffsetX" type="float" value="-8"/>
-    <property name="alignOffsetY" type="float" value="-16"/>
-    <property name="defaultAnim" value="idledown"/>
-    <property name="ghost" type="bool" value="false"/>
-    <property name="nonight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/b.png"/>
-   </properties>
-  </object>
   <object id="84" name="Sign" type="BasicNPC" gid="5323" x="2592" y="2912" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -2675,31 +2664,6 @@ end</property>
     <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
-  <object id="555" name="IntroTrigger" type="TouchTrigger" gid="5323" x="1472" y="1920" width="288" height="64">
-   <properties>
-    <property name="atMostOnce" type="bool" value="true"/>
-    <property name="script">local MessageBox = require &quot;actions/MessageBox&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local Ease = require &quot;actions/Ease&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Do = require &quot;actions/Do&quot;
-
-return function(self)
-    return BlockPlayer {
-        Ease(self.scene.camPos, &quot;y&quot;, -100, 1),
-        Wait(1),
-        Do(function()
-            self.scene.player.state = &quot;joydown&quot;
-        end),
-        MessageBox{message=&quot;Tails: Woah, way past! I've never seen a butterfly like that before!&quot;},
-        Ease(self.scene.camPos, &quot;y&quot;, 0, 1),
-        Do(function()
-            self.scene.player.state = &quot;idledown&quot;
-        end),
-    }
-end</property>
-   </properties>
-  </object>
   <object id="559" name="Firefly" type="BasicNPC" gid="5323" x="1536" y="1984" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -2740,7 +2704,7 @@ return function(self)
     self.touched = self.touched + 1
     if self.touched == 0 then
         self.isInteractable = false
-        self:swapLayer(&quot;objects4&quot;)
+        self:swapLayer(&quot;objects6&quot;)
         return BlockPlayer {
             PlayAudio(&quot;sfx&quot;, &quot;choose&quot;, 1.0, true),
             Parallel {
@@ -3151,8 +3115,11 @@ return function(self, dt)
             end),
             Wait(0.5),
             Ease(self.scene.camPos, &quot;y&quot;, -800, 1),
-            Wait(0.5),
-            MessageBox{message=&quot;B: Hmmm{p80}, what's that kid up to?&quot;}
+            Wait(1),
+            MessageBox{message=&quot;B: Hmmm{p80}, what's that kid up to?&quot;},
+            Do(function()
+                self.scene:changeScene{map=&quot;greatjungle&quot;, fadeInSpeed = 1, fadeOutSpeed = 0.1}
+            end)
         })
     end
 end</property>
@@ -3851,16 +3818,19 @@ local Parallel = require &quot;actions/Parallel&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Wait = require &quot;actions/Wait&quot;
 local Do = require &quot;actions/Do&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
 local AudioFade = require &quot;actions/AudioFade&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
 
 return function(self)
-    return BlockPlayer {
+    return Serial {
         Do(function()
             if self.scene.player.doingSpecialMove then
                 self.scene.player.forceDrop = true
             end
         end),
+        YieldUntil(function() return self.scene.player.doingSpecialMove == false end),
+        BlockPlayer {
         Parallel {
             AudioFade(&quot;music&quot;, 1, 0, 1),
             Ease(self.scene.camPos, &quot;x&quot;, -(self.scene.objectLookup[&quot;SallyMtg&quot;].x - self.x), 1),
@@ -3896,7 +3866,7 @@ return function(self)
         Do(function()
             self.scene.player.state = &quot;idledown&quot;
         end),
-    }
+    }}
 end</property>
    </properties>
   </object>
@@ -4033,6 +4003,40 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
     <property name="nextFlyLandingLayer" type="int" value="7"/>
     <property name="nextFlyOffsetY" type="int" value="96"/>
+   </properties>
+  </object>
+  <object id="674" name="IntroTrigger" type="TouchTrigger" gid="5323" x="1472" y="2048" width="192" height="192" visible="0">
+   <properties>
+    <property name="atMostOnce" type="bool" value="true"/>
+    <property name="script">local MessageBox = require &quot;actions/MessageBox&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Serial = require &quot;actions/Serial&quot;
+local YieldUntil = require &quot;actions/YieldUntil&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Do = require &quot;actions/Do&quot;
+
+return function(self)
+    return Serial {
+        Do(function()
+            if self.scene.player.doingSpecialMove then
+                self.scene.player.forceDrop = true
+            end
+        end),
+        YieldUntil(function() return self.scene.player.doingSpecialMove == false end),
+        BlockPlayer {
+        Ease(self.scene.camPos, &quot;y&quot;, -100, 1),
+        Wait(1),
+        Do(function()
+            self.scene.player.state = &quot;joydown&quot;
+        end),
+        MessageBox{message=&quot;Tails: Woah, way past! I've never seen a butterfly like that before!&quot;},
+        Ease(self.scene.camPos, &quot;y&quot;, 0, 1),
+        Do(function()
+            self.scene.player.state = &quot;idledown&quot;
+        end),
+    }}
+end</property>
    </properties>
   </object>
  </objectgroup>

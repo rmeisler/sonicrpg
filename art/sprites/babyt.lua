@@ -11,6 +11,9 @@ return {
 		shock = {
 			frames = {{12,2}}
 		},
+		hug = {
+		    frames = {{0,4}}
+		},
 		
 		lookdown = {
 			frames = {{13,1}}
