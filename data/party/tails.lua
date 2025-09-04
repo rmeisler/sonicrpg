@@ -11,9 +11,9 @@ return {
 
 	startingstats = {
 		startxp = 0,
-		maxhp   = 450,
+		maxhp   = 350,
 		maxsp   = 10,
-		attack  = 8,
+		attack  = 7,
 		defense = 7,
 		speed   = 10,
 		focus   = 5,

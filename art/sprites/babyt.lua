@@ -23,11 +23,15 @@ return {
 			frames = {{9,1}}
 		},
 		cyclone = {
-			frames = {{12,1},{12,2},{10,2}},
+			frames = {{12,1},{12,3},{10,3},{12,0}},
 			speed = 0.25
 		},
-		cyclone_idle = {
-			frames = {{12,0}}
+		slap = {
+			frames = {{12,1},{12,3},{10,3},{12,0}},
+			speed = 0.15
+		},
+		block = {
+			frames = {{11,1}}
 		},
 		hurt = {
 			frames = {{11,0}}
@@ -36,7 +40,7 @@ return {
 			frames = {{10,1}}
 		},
 		victory = {
-			frames = {{0,4}}
+			frames = {{11,3}}
 		},
 		
 		packupidle = {

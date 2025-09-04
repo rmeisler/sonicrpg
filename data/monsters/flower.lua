@@ -155,7 +155,7 @@ return {
 										},
 										Parallel {
 											Stars(target, self),
-											finalAction(target, self, 3)
+											finalAction(target, self, 1.5)
 										}
 									},
 									finalAction()

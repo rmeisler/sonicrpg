@@ -11,24 +11,24 @@ return {
 
 	startingstats = {
 		startxp = 0,
-		maxhp   = 450,
-		maxsp   = 10,
-		attack  = 8,
-		defense = 7,
-		speed   = 10,
-		focus   = 5,
-		luck    = 4,
+		maxhp   = 250,
+		maxsp   = 5,
+		attack  = 15,
+		defense = 15,
+		speed   = 6,
+		focus   = 3,
+		luck    = 3,
 	},
 
 	maxstats = {
 		startxp = 95000,
 		maxhp   = 10000,
 		maxsp   = 100,
-		attack  = 80,
-		defense = 70,
-		speed   = 100,
-		focus   = 80,
-		luck    = 40,
+		attack  = 100,
+		defense = 100,
+		speed   = 50,
+		focus   = 50,
+		luck    = 50,
 	},
 
 	growth = {
@@ -45,7 +45,6 @@ return {
 	},
 
 	equip = {
-		--weapon = require "data/weapons/HockeyStick",
 	},
 
 	items = {

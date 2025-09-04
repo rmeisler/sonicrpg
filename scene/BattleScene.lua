@@ -292,7 +292,7 @@ function BattleScene:update(dt)
 		local playerId = self.currentPlayer.id
 		self.topSprite = sprite
 
-		if playerId == "rotor" then
+		if playerId == "rotor" or playerId == "babyt" then
 			self.arrow = Arrow(self, Transform.relative(sprite.transform, Transform(0, -sprite.h * 1.3)), self.arrowColor)
 		else
 			self.arrow = Arrow(self, Transform.relative(sprite.transform, Transform(0, -sprite.h)), self.arrowColor)

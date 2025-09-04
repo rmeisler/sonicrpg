@@ -20,9 +20,9 @@ local LeapBackward = function(self, target)
 		Wait(1.5),
 
 		-- Leap backward
-		Animate(self.sprite, "crouch"),
+		Animate(self.sprite, "idle"),
 		Wait(0.1),
-		Animate(self.sprite, "leap"),
+		Animate(self.sprite, "idle"),
 		Parallel {
 			Ease(self.sprite.transform, "x", self.sprite.transform.x, 3),
 			Serial {
@@ -31,7 +31,7 @@ local LeapBackward = function(self, target)
 			}
 		},
 		
-		Animate(self.sprite, "crouch"),
+		Animate(self.sprite, "idle"),
 		Wait(0.1),
 		Animate(self.sprite, "idle"),
 	}
@@ -40,10 +40,10 @@ end
 return function(self, target)
 	return Serial {
 		-- Leap forward while attacking
-		Animate(self.sprite, "crouch"),
+		Animate(self.sprite, "idle"),
 		Wait(0.1),
 
-		Animate(self.sprite, "leap", true),
+		Animate(self.sprite, "idle", true),
 		Parallel {
 			Ease(self.sprite.transform, "x", target.sprite.transform.x + math.abs(target.sprite.transform.x - self.sprite.transform.x)/2, 4, "linear"),
 			Ease(self.sprite.transform, "y", self.sprite.transform.y - self.sprite.h*3, 4, "linear"),
@@ -53,7 +53,7 @@ return function(self, target)
 			Ease(self.sprite.transform, "x", target.sprite.transform.x + target.sprite.w, 3, "linear"),
 			Serial {
 				Wait(0.09),
-				Animate(self.sprite, "swing", true),
+				Animate(self.sprite, "cyclone", true),
 				Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 4, "linear"),
 				Spawn(
 					Animate(function()
