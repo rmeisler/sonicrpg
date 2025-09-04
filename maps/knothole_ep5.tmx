@@ -2584,9 +2584,9 @@ end</property>
   </object>
   <object id="386" name="Ladder1" type="Ladder" gid="5323" x="5440" y="2720" width="32" height="576">
    <properties>
-    <property name="botLayer" type="int" value="5"/>
+    <property name="botLayer" type="int" value="7"/>
     <property name="nextFlyOffsetY" type="int" value="736"/>
-    <property name="topLayer" type="int" value="4"/>
+    <property name="topLayer" type="int" value="6"/>
    </properties>
   </object>
   <object id="507" name="Stairs2" type="Stairs" gid="5323" x="4608" y="2816" width="32" height="128">
@@ -3097,7 +3097,7 @@ return function(self, dt)
             },
             MessageBox {message=&quot;Tails: ... {p80}Ben Windom wouldn't give up...&quot;},
             self.scene.player:hop(),
-            PlayAudio(&quot;music&quot;, &quot;doittoit2&quot;, 1, true, true),
+            PlayAudio(&quot;music&quot;, &quot;doittoit2&quot;, 0.8, true, true),
             MessageBox {message=&quot;Tails: I'll show them! {p80}The Light of Mobius 'is'\nreal{p60}, and with this book, I'll be the one to find it!&quot;},
             Move(self.scene.player, self.scene.objectLookup.TailsWP_1, &quot;walkup&quot;),
             Do(function() self.scene.player.state = &quot;attitudedown&quot; end),
@@ -3118,7 +3118,7 @@ return function(self, dt)
             Wait(1),
             MessageBox{message=&quot;B: Hmmm{p80}, what's that kid up to?&quot;},
             Do(function()
-                self.scene:changeScene{map=&quot;greatjungle&quot;, fadeInSpeed = 1, fadeOutSpeed = 0.1}
+                self.scene:changeScene{map=&quot;greatjungle&quot;, fadeInSpeed = 1, fadeOutSpeed = 0.1, enterDelay=2, hint=&quot;from_knothole&quot;}
             end)
         })
     end
@@ -3581,9 +3581,9 @@ end</property>
  <objectgroup name="objects6">
   <object id="537" name="Ladder1" type="Ladder" gid="5323" x="5440" y="2720" width="32" height="576">
    <properties>
-    <property name="botLayer" type="int" value="5"/>
+    <property name="botLayer" type="int" value="7"/>
     <property name="nextFlyOffsetY" type="int" value="736"/>
-    <property name="topLayer" type="int" value="4"/>
+    <property name="topLayer" type="int" value="6"/>
    </properties>
   </object>
   <object id="544" name="Ladder2" type="Ladder" gid="5323" x="5664" y="1952" width="32" height="576">
@@ -3870,7 +3870,7 @@ return function(self)
 end</property>
    </properties>
   </object>
-  <object id="652" name="3DTree1" type="ThreeDee" gid="5323" x="4896" y="2816" width="992" height="768">
+  <object id="652" name="3DTree1" type="ThreeDee" gid="5323" x="4896" y="2816" width="992" height="768" visible="0">
    <properties>
     <property name="depth" type="int" value="480"/>
     <property name="flyLandingLayer" type="int" value="6"/>
@@ -3924,7 +3924,7 @@ end</property>
     <property name="nextFlyOffsetY" type="int" value="448"/>
    </properties>
   </object>
-  <object id="658" name="3DTree2" type="ThreeDee" gid="5323" x="4896" y="2816" width="992" height="1536">
+  <object id="658" name="3DTree2" type="ThreeDee" gid="5323" x="4896" y="2816" width="992" height="1536" visible="0">
    <properties>
     <property name="depth" type="int" value="1248"/>
     <property name="flyLandingLayer" type="int" value="6"/>
@@ -4025,13 +4025,10 @@ return function(self)
         end),
         YieldUntil(function() return self.scene.player.doingSpecialMove == false end),
         BlockPlayer {
-        Ease(self.scene.camPos, &quot;y&quot;, -100, 1),
-        Wait(1),
         Do(function()
             self.scene.player.state = &quot;joydown&quot;
         end),
         MessageBox{message=&quot;Tails: Woah, way past! I've never seen a butterfly like that before!&quot;},
-        Ease(self.scene.camPos, &quot;y&quot;, 0, 1),
         Do(function()
             self.scene.player.state = &quot;idledown&quot;
         end),

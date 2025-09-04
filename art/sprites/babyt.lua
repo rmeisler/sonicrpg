@@ -1,6 +1,6 @@
 return {
     image = "babyt.png",
-    starting = "idledown",
+    starting = "idle",
     w = 102,
     h = 55,
 
@@ -17,6 +17,26 @@ return {
 		
 		lookdown = {
 			frames = {{13,1}}
+		},
+		
+		idle = {
+			frames = {{9,1}}
+		},
+		cyclone = {
+			frames = {{12,1},{12,2},{10,2}},
+			speed = 0.25
+		},
+		cyclone_idle = {
+			frames = {{12,0}}
+		},
+		hurt = {
+			frames = {{11,0}}
+		},
+		dead = {
+			frames = {{10,1}}
+		},
+		victory = {
+			frames = {{0,4}}
 		},
 		
 		packupidle = {

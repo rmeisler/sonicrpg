@@ -2,7 +2,7 @@ return {
 	{
         type = "map",
         file = "maps/ep5intro.lua",
-		primary = true -- REAL
+		--primary = true -- REAL
     },
 	{
         type = "map",
@@ -13,6 +13,11 @@ return {
         type = "map",
         file = "maps/greatjungle2.lua",
 		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/greatjungle3.lua",
+		primary = true
     },
 	{
         type = "map",

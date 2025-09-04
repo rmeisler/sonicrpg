@@ -55,7 +55,6 @@ return {
 		[3] = {
 			messages = {},
 			skills = {
-				GameState:getEarnedSkill("nicole_upgrade_scan", "Scan"),
 				--require "data/battle/skills/Slap",
 				--require "data/battle/skills/Fly",
 			}
@@ -65,7 +64,7 @@ return {
 	specialmove = require "data/specialmoves/babyt",
 
 	battle = {
-		require "data/battle/SonicHit",
+		require "data/battle/BabyTHit",
 		require "data/battle/Skills",
 		require "data/battle/Items"
 	}
