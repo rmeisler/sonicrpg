@@ -190,7 +190,7 @@ return function(player)
 		end
 
 		-- Adjust camera
-		if math.abs(self.flyOffsetY + self.tempFlyOffsetY + self.scene.camPos.y) > 250 and not self.camMove then
+		if math.abs(self.flyOffsetY + self.tempFlyOffsetY + self.scene.camPos.y) > 250 and not self.camMove and not self.noFlyPan then
 			self.camMove = true
 			self:run {
 				Ease(self.scene.camPos, "y", -(self.flyOffsetY + self.tempFlyOffsetY), 2),
@@ -275,7 +275,7 @@ return function(player)
 			hotspots.left_bot.y = hotspots.left_bot.y - self.flyOffsetY
 
 			-- If we can't move after landing, reset our position to where we took off from and flicker
-			if not (
+			if self.y > self.scene:getMapHeight() or not (
 			   (self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, 0, -movespeed) and
 				self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, 0, -movespeed)) or
 			   (self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, 0, movespeed) and

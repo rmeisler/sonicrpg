@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="144" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="456">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="144" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="466">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="currentLayer" type="int" value="7"/>
@@ -333,7 +333,7 @@
   <object id="375" name="Weeds" type="BasicNPC" gid="5323" x="544" y="1376" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/brush_easy.lua"/>
+    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idle"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
@@ -344,7 +344,7 @@
   <object id="376" name="Weeds" type="BasicNPC" gid="5323" x="672" y="1472" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/brush_easy.lua"/>
+    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idle"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
@@ -355,7 +355,7 @@
   <object id="377" name="Weeds" type="BasicNPC" gid="5323" x="800" y="1376" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/brush_easy.lua"/>
+    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idle"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
@@ -366,7 +366,7 @@
   <object id="378" name="Weeds" type="BasicNPC" gid="5323" x="672" y="1248" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/brush_easy.lua"/>
+    <property name="battle" type="file" value="../data/monsters/brush.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idle"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
@@ -625,59 +625,119 @@
     <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
+  <object id="456" name="Weeds" type="BasicNPC" gid="5323" x="1728" y="448" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idle"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/brush.png"/>
+   </properties>
+  </object>
+  <object id="457" name="Weeds" type="BasicNPC" gid="5323" x="1728" y="352" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idle"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/brush.png"/>
+   </properties>
+  </object>
+  <object id="458" name="Weeds" type="BasicNPC" gid="5323" x="1728" y="256" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idle"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/brush.png"/>
+   </properties>
+  </object>
+  <object id="459" name="Weeds" type="BasicNPC" gid="5323" x="4384" y="1568" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="battle" type="file" value="../data/monsters/brush.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idle"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/brush.png"/>
+   </properties>
+  </object>
+  <object id="460" name="Weeds" type="BasicNPC" gid="5323" x="1888" y="448" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idle"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/brush.png"/>
+   </properties>
+  </object>
+  <object id="461" name="Weeds" type="BasicNPC" gid="5323" x="1888" y="352" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idle"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/brush.png"/>
+   </properties>
+  </object>
+  <object id="462" name="Weeds" type="BasicNPC" gid="5323" x="1888" y="256" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idle"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/brush.png"/>
+   </properties>
+  </object>
+  <object id="463" name="Weeds" type="BasicNPC" gid="5323" x="2048" y="448" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idle"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/brush.png"/>
+   </properties>
+  </object>
+  <object id="464" name="Weeds" type="BasicNPC" gid="5323" x="2048" y="352" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idle"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/brush.png"/>
+   </properties>
+  </object>
+  <object id="465" name="Weeds" type="BasicNPC" gid="5323" x="2048" y="256" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idle"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/brush.png"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="objects6">
   <object id="434" name="Ladder1" type="Ladder" gid="5323" x="512" y="768" width="64" height="256"/>
-  <object id="447" name="PalmTree" type="Chargeable" gid="5323" x="288" y="320" width="68" height="68">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="alignOffsetX" type="int" value="-32"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/palmtree.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
-   </properties>
-  </object>
-  <object id="448" name="PalmTree" type="Chargeable" gid="5323" x="640" y="320" width="68" height="68">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="alignOffsetX" type="int" value="-32"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/palmtree.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
-   </properties>
-  </object>
-  <object id="449" name="Bush" type="BasicNPC" gid="5323" x="672" y="480" width="192" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/knotholebush.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
-   </properties>
-  </object>
-  <object id="450" name="Bush" type="BasicNPC" gid="5323" x="160" y="480" width="192" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/knotholebush.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
-   </properties>
-  </object>
-  <object id="451" name="Bush" type="BasicNPC" gid="5323" x="1856" y="224" width="192" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/knotholebush.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
-   </properties>
-  </object>
-  <object id="452" name="Bush" type="BasicNPC" gid="5323" x="1856" y="448" width="192" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/knotholebush.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
-   </properties>
-  </object>
   <object id="453" name="Bush" type="BasicNPC" gid="5323" x="2336" y="256" width="192" height="32">
    <properties>
     <property name="align" value="bottom_left"/>

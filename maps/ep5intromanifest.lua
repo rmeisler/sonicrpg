@@ -17,6 +17,11 @@ return {
 	{
         type = "map",
         file = "maps/greatjungle3.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/greatjungle4.lua",
 		primary = true
     },
 	{

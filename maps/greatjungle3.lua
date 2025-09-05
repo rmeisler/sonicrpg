@@ -8,7 +8,7 @@ return {
   height = 64,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 456,
+  nextobjectid = 466,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["currentLayer"] = 7,
@@ -664,7 +664,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/brush_easy.lua",
+            ["battle"] = "../data/monsters/brush_hard.lua",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idle",
             ["disappearAfterBattle"] = true,
@@ -686,7 +686,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/brush_easy.lua",
+            ["battle"] = "../data/monsters/brush_hard.lua",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idle",
             ["disappearAfterBattle"] = true,
@@ -708,7 +708,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/brush_easy.lua",
+            ["battle"] = "../data/monsters/brush_hard.lua",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idle",
             ["disappearAfterBattle"] = true,
@@ -730,7 +730,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/brush_easy.lua",
+            ["battle"] = "../data/monsters/brush.lua",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idle",
             ["disappearAfterBattle"] = true,
@@ -1318,6 +1318,226 @@ return {
             ["sprite"] = "../art/sprites/palmtree.png",
             ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
+        },
+        {
+          id = 456,
+          name = "Weeds",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1728,
+          y = 448,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["battle"] = "../data/monsters/brush_hard.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idle",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/brush.png"
+          }
+        },
+        {
+          id = 457,
+          name = "Weeds",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1728,
+          y = 352,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["battle"] = "../data/monsters/brush_hard.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idle",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/brush.png"
+          }
+        },
+        {
+          id = 458,
+          name = "Weeds",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1728,
+          y = 256,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["battle"] = "../data/monsters/brush_hard.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idle",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/brush.png"
+          }
+        },
+        {
+          id = 459,
+          name = "Weeds",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4384,
+          y = 1568,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["battle"] = "../data/monsters/brush.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idle",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/brush.png"
+          }
+        },
+        {
+          id = 460,
+          name = "Weeds",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1888,
+          y = 448,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["battle"] = "../data/monsters/brush_hard.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idle",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/brush.png"
+          }
+        },
+        {
+          id = 461,
+          name = "Weeds",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1888,
+          y = 352,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["battle"] = "../data/monsters/brush_hard.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idle",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/brush.png"
+          }
+        },
+        {
+          id = 462,
+          name = "Weeds",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1888,
+          y = 256,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["battle"] = "../data/monsters/brush_hard.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idle",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/brush.png"
+          }
+        },
+        {
+          id = 463,
+          name = "Weeds",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2048,
+          y = 448,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["battle"] = "../data/monsters/brush_hard.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idle",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/brush.png"
+          }
+        },
+        {
+          id = 464,
+          name = "Weeds",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2048,
+          y = 352,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["battle"] = "../data/monsters/brush_hard.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idle",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/brush.png"
+          }
+        },
+        {
+          id = 465,
+          name = "Weeds",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2048,
+          y = 256,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["battle"] = "../data/monsters/brush_hard.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idle",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/brush.png"
+          }
         }
       }
     },
@@ -1344,122 +1564,6 @@ return {
           gid = 5323,
           visible = true,
           properties = {}
-        },
-        {
-          id = 447,
-          name = "PalmTree",
-          type = "Chargeable",
-          shape = "rectangle",
-          x = 288,
-          y = 320,
-          width = 68,
-          height = 68,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["alignOffsetX"] = -32,
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/palmtree.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
-          }
-        },
-        {
-          id = 448,
-          name = "PalmTree",
-          type = "Chargeable",
-          shape = "rectangle",
-          x = 640,
-          y = 320,
-          width = 68,
-          height = 68,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["alignOffsetX"] = -32,
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/palmtree.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
-          }
-        },
-        {
-          id = 449,
-          name = "Bush",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 672,
-          y = 480,
-          width = 192,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/knotholebush.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"
-          }
-        },
-        {
-          id = 450,
-          name = "Bush",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 160,
-          y = 480,
-          width = 192,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/knotholebush.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"
-          }
-        },
-        {
-          id = 451,
-          name = "Bush",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1856,
-          y = 224,
-          width = 192,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/knotholebush.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"
-          }
-        },
-        {
-          id = 452,
-          name = "Bush",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1856,
-          y = 448,
-          width = 192,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/knotholebush.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"
-          }
         },
         {
           id = 453,

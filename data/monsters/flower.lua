@@ -47,7 +47,7 @@ return {
 	run_chance = 1.0,
 	coin = 0,
 	drops = {
-		{item = require "data/items/GreenLeaf", count = 1, chance = 1.0},
+		{item = require "data/items/GreenLeaf", count = 1, chance = 0.5},
 	},
 	
 	scan = "You can dodge this flower's attacks if you're nimble!",
