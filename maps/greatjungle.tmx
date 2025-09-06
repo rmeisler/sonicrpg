@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="90" height="180" tilewidth="32" tileheight="32" infinite="0" nextobjectid="362">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
+  <property name="battlebg" type="file" value="../art/backgrounds/greatjunglebg.png"/>
   <property name="currentLayer" type="int" value="7"/>
   <property name="layerHeightMap" value="objects:320,objects2:160,objects3:20"/>
   <property name="layered" type="bool" value="true"/>
@@ -3067,6 +3067,8 @@
  <imagelayer name="godrays_1" opacity="0.5" offsetx="448" offsety="864">
   <image source="../art/parallax/godrays.png" width="145" height="1200"/>
   <properties>
+   <property name="max_shimmer" type="float" value="0.5"/>
+   <property name="min_shimmer" type="float" value="0.33"/>
    <property name="movespeed" type="float" value="1"/>
    <property name="shimmer" type="bool" value="true"/>
   </properties>
@@ -3074,6 +3076,8 @@
  <imagelayer name="godrays_2" opacity="0" offsetx="544" offsety="1376">
   <image source="../art/parallax/godrays.png" width="145" height="1200"/>
   <properties>
+   <property name="max_shimmer" type="float" value="0.5"/>
+   <property name="min_shimmer" type="float" value="0.33"/>
    <property name="movespeed" type="float" value="1"/>
    <property name="shimmer" type="bool" value="true"/>
   </properties>
@@ -3081,6 +3085,8 @@
  <imagelayer name="godrays_3" opacity="0" offsetx="960" offsety="992">
   <image source="../art/parallax/godrays.png" width="145" height="1200"/>
   <properties>
+   <property name="max_shimmer" type="float" value="0.5"/>
+   <property name="min_shimmer" type="float" value="0.33"/>
    <property name="movespeed" type="float" value="1"/>
    <property name="shimmer" type="bool" value="true"/>
   </properties>
@@ -3088,6 +3094,8 @@
  <imagelayer name="godrays2_1" opacity="0.5" offsetx="1952" offsety="1664">
   <image source="../art/parallax/godrays.png" width="145" height="1200"/>
   <properties>
+   <property name="max_shimmer" type="float" value="0.5"/>
+   <property name="min_shimmer" type="float" value="0.33"/>
    <property name="movespeed" type="float" value="1"/>
    <property name="shimmer" type="bool" value="true"/>
   </properties>
@@ -3095,6 +3103,8 @@
  <imagelayer name="godrays2_2" opacity="0" offsetx="1952" offsety="384">
   <image source="../art/parallax/godrays.png" width="145" height="1200"/>
   <properties>
+   <property name="max_shimmer" type="float" value="0.5"/>
+   <property name="min_shimmer" type="float" value="0.33"/>
    <property name="movespeed" type="float" value="1"/>
    <property name="shimmer" type="bool" value="true"/>
   </properties>
@@ -3102,6 +3112,8 @@
  <imagelayer name="godrays3_1" opacity="0.5" offsetx="928" offsety="3680">
   <image source="../art/parallax/godrays.png" width="145" height="1200"/>
   <properties>
+   <property name="max_shimmer" type="float" value="0.5"/>
+   <property name="min_shimmer" type="float" value="0.33"/>
    <property name="movespeed" type="float" value="1"/>
    <property name="shimmer" type="bool" value="true"/>
   </properties>
@@ -3109,6 +3121,8 @@
  <imagelayer name="godrays3_2" opacity="0" offsetx="480" offsety="3680">
   <image source="../art/parallax/godrays.png" width="145" height="1200"/>
   <properties>
+   <property name="max_shimmer" type="float" value="0.5"/>
+   <property name="min_shimmer" type="float" value="0.33"/>
    <property name="movespeed" type="float" value="1"/>
    <property name="shimmer" type="bool" value="true"/>
   </properties>
@@ -3116,6 +3130,8 @@
  <imagelayer name="godrays3_3" opacity="0" offsetx="704" offsety="3168">
   <image source="../art/parallax/godrays.png" width="145" height="1200"/>
   <properties>
+   <property name="max_shimmer" type="float" value="0.5"/>
+   <property name="min_shimmer" type="float" value="0.33"/>
    <property name="movespeed" type="float" value="1"/>
    <property name="shimmer" type="bool" value="true"/>
   </properties>

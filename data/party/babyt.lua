@@ -45,6 +45,7 @@ return {
 	},
 
 	equip = {
+		accessory = require "data/accessories/TranslatorCollar",
 	},
 
 	items = {

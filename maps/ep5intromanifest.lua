@@ -12,7 +12,7 @@ return {
 	{
         type = "map",
         file = "maps/greatjungle2.lua",
-		--primary = true
+		primary = true
     },
 	{
         type = "map",
@@ -22,7 +22,12 @@ return {
 	{
         type = "map",
         file = "maps/greatjungle4.lua",
-		primary = true
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/quicksand_cave1.lua",
+		--primary = true
     },
 	{
         type = "map",
@@ -559,6 +564,12 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/roboterrapod.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
 		file = "audio/music/lightofmobius.ogg",
 		category = "music",
 		looping = true
@@ -656,17 +667,12 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/ep3transition.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/ep3intro.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
 		file = "audio/sfx/slice.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/elevator.ogg",
 		category = "sfx"
 	},
 	{

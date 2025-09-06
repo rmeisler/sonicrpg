@@ -10,7 +10,7 @@ return {
   tileheight = 32,
   nextobjectid = 362,
   properties = {
-    ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
+    ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
     ["layerHeightMap"] = "objects:320,objects2:160,objects3:20",
     ["layered"] = true,
@@ -4856,6 +4856,8 @@ return {
       offsety = 864,
       image = "../art/parallax/godrays.png",
       properties = {
+        ["max_shimmer"] = 0.5,
+        ["min_shimmer"] = 0.33,
         ["movespeed"] = 1,
         ["shimmer"] = true
       }
@@ -4869,6 +4871,8 @@ return {
       offsety = 1376,
       image = "../art/parallax/godrays.png",
       properties = {
+        ["max_shimmer"] = 0.5,
+        ["min_shimmer"] = 0.33,
         ["movespeed"] = 1,
         ["shimmer"] = true
       }
@@ -4882,6 +4886,8 @@ return {
       offsety = 992,
       image = "../art/parallax/godrays.png",
       properties = {
+        ["max_shimmer"] = 0.5,
+        ["min_shimmer"] = 0.33,
         ["movespeed"] = 1,
         ["shimmer"] = true
       }
@@ -4895,6 +4901,8 @@ return {
       offsety = 1664,
       image = "../art/parallax/godrays.png",
       properties = {
+        ["max_shimmer"] = 0.5,
+        ["min_shimmer"] = 0.33,
         ["movespeed"] = 1,
         ["shimmer"] = true
       }
@@ -4908,6 +4916,8 @@ return {
       offsety = 384,
       image = "../art/parallax/godrays.png",
       properties = {
+        ["max_shimmer"] = 0.5,
+        ["min_shimmer"] = 0.33,
         ["movespeed"] = 1,
         ["shimmer"] = true
       }
@@ -4921,6 +4931,8 @@ return {
       offsety = 3680,
       image = "../art/parallax/godrays.png",
       properties = {
+        ["max_shimmer"] = 0.5,
+        ["min_shimmer"] = 0.33,
         ["movespeed"] = 1,
         ["shimmer"] = true
       }
@@ -4934,6 +4946,8 @@ return {
       offsety = 3680,
       image = "../art/parallax/godrays.png",
       properties = {
+        ["max_shimmer"] = 0.5,
+        ["min_shimmer"] = 0.33,
         ["movespeed"] = 1,
         ["shimmer"] = true
       }
@@ -4947,6 +4961,8 @@ return {
       offsety = 3168,
       image = "../art/parallax/godrays.png",
       properties = {
+        ["max_shimmer"] = 0.5,
+        ["min_shimmer"] = 0.33,
         ["movespeed"] = 1,
         ["shimmer"] = true
       }

@@ -43,16 +43,14 @@ return {
 			frames = {{11,3}}
 		},
 		
-		packupidle = {
-			frames = {{9,3}}
+		saddown = {
+			frames = {{11,2}}
 		},
-		packup = {
-			frames = {{9,3},{10,3}},
-			speed = 0.5
+		sadleft = {
+			frames = {{10,2}}
 		},
-		packupstand = {
-			frames = {{11,3},{0,3}},
-			speed = 0.5
+		sadright = {
+			frames = {{9,2}}
 		},
 		backpack = {
 			frames = {{12,3}}

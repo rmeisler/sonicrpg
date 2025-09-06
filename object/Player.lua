@@ -455,7 +455,8 @@ function Player:split(orderedParty)
 				end),
 				Animate(self.partySprites[id].sprite, walkOutAnim, true),
 				Parallel {
-					Wait(0.2),
+					-- Baby T is way wider and taller than other Freedom Fighters, so we need spread out more
+					self.partySprites["babyt"] and Wait(0.4) or Wait(0.2),
 					Do(function()
 						self.partySprites[id].x = self.partySprites[id].x + dir.x * (love.timer.getDelta()/0.016)
 						self.partySprites[id].y = self.partySprites[id].y + dir.y * (love.timer.getDelta()/0.016)
@@ -471,7 +472,8 @@ function Player:split(orderedParty)
 			Serial {
 				Animate(self.partySprites[id].sprite, walkInAnim, true),
 				Parallel {
-					Wait(0.2),
+					-- Baby T is way wider and taller than other Freedom Fighters, so we need spread out more
+					self.partySprites["babyt"] and Wait(0.4) or Wait(0.2),
 					Do(function()
 						self.partySprites[id].x = self.partySprites[id].x - dir.x * (love.timer.getDelta()/0.016)
 						self.partySprites[id].y = self.partySprites[id].y - dir.y * (love.timer.getDelta()/0.016)

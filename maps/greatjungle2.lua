@@ -10,7 +10,7 @@ return {
   tileheight = 32,
   nextobjectid = 370,
   properties = {
-    ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
+    ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
     ["layerHeightMap"] = "objects:320,objects2:160,objects3:20",
     ["layered"] = true,
@@ -680,6 +680,7 @@ return {
           gid = 5323,
           visible = true,
           properties = {
+            ["active"] = true,
             ["light"] = "godrays_1",
             ["quicksand"] = "Quicksand1"
           }
@@ -689,7 +690,7 @@ return {
           name = "Quicksand1",
           type = "Quicksand",
           shape = "rectangle",
-          x = 1600,
+          x = 1568,
           y = 672,
           width = 224,
           height = 128,
@@ -697,7 +698,7 @@ return {
           gid = 5323,
           visible = true,
           properties = {
-            ["exitScene"] = "",
+            ["exitScene"] = "quicksand_cave1.lua",
             ["image"] = "Quicksand1Image"
           }
         },
@@ -706,7 +707,7 @@ return {
           name = "Quicksand1Image",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 1600,
+          x = 1568,
           y = 672,
           width = 224,
           height = 128,
@@ -1492,6 +1493,8 @@ return {
       offsety = 864,
       image = "../art/parallax/godrays.png",
       properties = {
+        ["max_shimmer"] = 0.5,
+        ["min_shimmer"] = 0.33,
         ["movespeed"] = 1,
         ["shimmer"] = true
       }

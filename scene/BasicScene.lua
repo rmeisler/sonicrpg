@@ -897,7 +897,8 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 			
 			-- If image layer is configured to shimmer, setup a shimmer cycle and remove config
 			if layer.properties.shimmer then
-				local originalOpacity = layer.opacity
+				local maxOpacity = layer.properties.max_shimmer or layer.opacity
+				local minOpacity = layer.properties.min_shimmer or (maxOpacity/1.5)
 				Executor(self):act(
 					Repeat(
 						IfElse(
@@ -905,8 +906,8 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 								return not layer.noshimmer
 							end,
 							Serial {
-								Ease(layer, "opacity", originalOpacity/1.5, 3, "quad"),
-								Ease(layer, "opacity", originalOpacity, 3, "quad")
+								Ease(layer, "opacity", minOpacity, 3, "quad"),
+								Ease(layer, "opacity", maxOpacity, 3, "quad")
 							},
 							Action()
 						)
@@ -1039,6 +1040,9 @@ function BasicScene:canMove(x, y, dx, dy, mapName)
 		return false
 	end
 	local mapx, mapy = self:worldCoordToCollisionCoord(x + dx, y + dy)
+	if not self.map.objectCollisionMap then
+		return true
+	end
 	return (not self.map[mapName][mapy][mapx] and not self.map.objectCollisionMap[mapy][mapx])
 end
 

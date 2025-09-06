@@ -10,7 +10,7 @@ return {
   tileheight = 32,
   nextobjectid = 466,
   properties = {
-    ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
+    ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
     ["layerHeightMap"] = "objects:320,objects2:160,objects3:20",
     ["layered"] = true,
@@ -1408,72 +1408,6 @@ return {
           }
         },
         {
-          id = 460,
-          name = "Weeds",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1888,
-          y = 448,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/brush_hard.lua",
-            ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idle",
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/brush.png"
-          }
-        },
-        {
-          id = 461,
-          name = "Weeds",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1888,
-          y = 352,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/brush_hard.lua",
-            ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idle",
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/brush.png"
-          }
-        },
-        {
-          id = 462,
-          name = "Weeds",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1888,
-          y = 256,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/brush_hard.lua",
-            ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idle",
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/brush.png"
-          }
-        },
-        {
           id = 463,
           name = "Weeds",
           type = "BasicNPC",
@@ -1792,9 +1726,9 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 1536,
-          y = 1888,
+          y = 1952,
           width = 640,
-          height = 352,
+          height = 480,
           rotation = 0,
           gid = 5323,
           visible = true,

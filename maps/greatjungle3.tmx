@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="144" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="466">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
+  <property name="battlebg" type="file" value="../art/backgrounds/greatjunglebg.png"/>
   <property name="currentLayer" type="int" value="7"/>
   <property name="layerHeightMap" value="objects:320,objects2:160,objects3:20"/>
   <property name="layered" type="bool" value="true"/>
@@ -669,39 +669,6 @@
     <property name="sprite" type="file" value="../art/sprites/brush.png"/>
    </properties>
   </object>
-  <object id="460" name="Weeds" type="BasicNPC" gid="5323" x="1888" y="448" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
-    <property name="defaultAnim" value="idle"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/brush.png"/>
-   </properties>
-  </object>
-  <object id="461" name="Weeds" type="BasicNPC" gid="5323" x="1888" y="352" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
-    <property name="defaultAnim" value="idle"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/brush.png"/>
-   </properties>
-  </object>
-  <object id="462" name="Weeds" type="BasicNPC" gid="5323" x="1888" y="256" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/brush_hard.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
-    <property name="defaultAnim" value="idle"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/brush.png"/>
-   </properties>
-  </object>
   <object id="463" name="Weeds" type="BasicNPC" gid="5323" x="2048" y="448" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
@@ -811,7 +778,7 @@
     <property name="nextFlyOffsetY" type="int" value="272"/>
    </properties>
   </object>
-  <object id="396" name="Monkey2_VR1" type="BasicNPC" gid="5323" x="1536" y="1888" width="640" height="352">
+  <object id="396" name="Monkey2_VR1" type="BasicNPC" gid="5323" x="1536" y="1952" width="640" height="480">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>

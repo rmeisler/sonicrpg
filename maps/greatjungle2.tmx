@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="80" height="70" tilewidth="32" tileheight="32" infinite="0" nextobjectid="370">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
+  <property name="battlebg" type="file" value="../art/backgrounds/greatjunglebg.png"/>
   <property name="currentLayer" type="int" value="7"/>
   <property name="layerHeightMap" value="objects:320,objects2:160,objects3:20"/>
   <property name="layered" type="bool" value="true"/>
@@ -349,17 +349,18 @@
   </object>
   <object id="366" name="Light1" type="LightPuzzle" gid="5323" x="96" y="2080" width="160" height="128">
    <properties>
+    <property name="active" type="bool" value="true"/>
     <property name="light" value="godrays_1"/>
     <property name="quicksand" value="Quicksand1"/>
    </properties>
   </object>
-  <object id="367" name="Quicksand1" type="Quicksand" gid="5323" x="1600" y="672" width="224" height="128">
+  <object id="367" name="Quicksand1" type="Quicksand" gid="5323" x="1568" y="672" width="224" height="128">
    <properties>
-    <property name="exitScene" type="file" value=""/>
+    <property name="exitScene" type="file" value="quicksand_cave1.lua"/>
     <property name="image" value="Quicksand1Image"/>
    </properties>
   </object>
-  <object id="368" name="Quicksand1Image" type="BasicNPC" gid="5323" x="1600" y="672" width="224" height="128">
+  <object id="368" name="Quicksand1Image" type="BasicNPC" gid="5323" x="1568" y="672" width="224" height="128">
    <properties>
     <property name="alphaOverride" type="int" value="0"/>
     <property name="nocollision" type="bool" value="true"/>
@@ -1062,6 +1063,8 @@ end</property>
  <imagelayer name="godrays_1" opacity="0.5" offsetx="96" offsety="864">
   <image source="../art/parallax/godrays.png" width="145" height="1200"/>
   <properties>
+   <property name="max_shimmer" type="float" value="0.5"/>
+   <property name="min_shimmer" type="float" value="0.33"/>
    <property name="movespeed" type="float" value="1"/>
    <property name="shimmer" type="bool" value="true"/>
   </properties>
