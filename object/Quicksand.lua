@@ -1,5 +1,6 @@
 local BlockPlayer = require "actions/BlockPlayer"
 local Parallel = require "actions/Parallel"
+local Serial = require "actions/Serial"
 local Ease = require "actions/Ease"
 local Do = require "actions/Do"
 local Animate = require "actions/Animate"

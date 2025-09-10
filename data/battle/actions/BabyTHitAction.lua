@@ -15,6 +15,7 @@ local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
 
 local LeapBackward = function(self, target)
+	local targetSprite = target:getSprite()
 	return Serial {
 		-- Land on ground
 		Wait(1.5),
@@ -26,7 +27,7 @@ local LeapBackward = function(self, target)
 		Parallel {
 			Ease(self.sprite.transform, "x", self.sprite.transform.x, 3),
 			Serial {
-				Ease(self.sprite.transform, "y", self.sprite.transform.y - math.abs(target.sprite.transform.y - self.sprite.transform.y) - self.sprite.h, 4),
+				Ease(self.sprite.transform, "y", self.sprite.transform.y - math.abs(targetSprite.transform.y - self.sprite.transform.y) - self.sprite.h, 4),
 				Ease(self.sprite.transform, "y", self.sprite.transform.y, 6)
 			}
 		},
@@ -38,6 +39,7 @@ local LeapBackward = function(self, target)
 end
 
 return function(self, target)
+	local targetSprite = target:getSprite()
 	return Serial {
 		-- Leap forward while attacking
 		Animate(self.sprite, "idle"),
@@ -45,21 +47,21 @@ return function(self, target)
 
 		Animate(self.sprite, "idle", true),
 		Parallel {
-			Ease(self.sprite.transform, "x", target.sprite.transform.x + math.abs(target.sprite.transform.x - self.sprite.transform.x)/2, 4, "linear"),
+			Ease(self.sprite.transform, "x", targetSprite.transform.x + math.abs(targetSprite.transform.x - self.sprite.transform.x)/2, 4, "linear"),
 			Ease(self.sprite.transform, "y", self.sprite.transform.y - self.sprite.h*3, 4, "linear"),
 		},
 
 		Parallel {
-			Ease(self.sprite.transform, "x", target.sprite.transform.x + target.sprite.w, 3, "linear"),
+			Ease(self.sprite.transform, "x", targetSprite.transform.x + targetSprite.w, 3, "linear"),
 			Serial {
 				Wait(0.09),
 				Animate(self.sprite, "cyclone", true),
-				Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 4, "linear"),
+				Ease(self.sprite.transform, "y", targetSprite.transform.y + targetSprite.h - self.sprite.h, 4, "linear"),
 				Spawn(
 					Animate(function()
 						local xform = Transform(
-							target.sprite.transform.x,
-							target.sprite.transform.y,
+							targetSprite.transform.x,
+							targetSprite.transform.y,
 							3,
 							3
 						)

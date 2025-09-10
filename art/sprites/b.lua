@@ -1,10 +1,13 @@
 return {
     image = "b.png",
-    starting = "idledown",
+    starting = "idle",
     w = 47,
     h = 55,
 
     animations = {
+		idle = {
+			frames = {{0,1}}
+		},
 		pose = {
 			frames = {{0,4}}
 		},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="120" height="55" tilewidth="32" tileheight="32" infinite="0" nextobjectid="453">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="120" height="55" tilewidth="32" tileheight="32" infinite="0" nextobjectid="454">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/greatjunglebg.png"/>
+  <property name="battlebg" type="file" value="../art/backgrounds/greatjunglecliffbg.png"/>
   <property name="currentLayer" type="int" value="7"/>
   <property name="layerHeightMap" value="objects:320,objects2:160,objects3:20"/>
   <property name="layered" type="bool" value="true"/>
@@ -376,7 +376,7 @@ return function(self)
 
         Ease(self.scene.camPos, &quot;x&quot;, -350, 0.2, &quot;linear&quot;),
         Wait(1),
-        PlayAudio(&quot;music&quot;, &quot;storybooklonging&quot;, 0.8, true),
+        PlayAudio(&quot;music&quot;, &quot;storybooklonging&quot;, 1, true),
         Animate(sprites.tails.sprite, &quot;joyright&quot;),
         Parallel {
             sprites.tails:hop(),
@@ -435,15 +435,33 @@ return function(self)
         PlayAudio(&quot;sfx&quot;, &quot;elevator&quot;, 1.0, true, true),
         self.scene:screenShake(10, 30, 20),
         AudioFade(&quot;sfx&quot;, 1, 0, 1),
-        Wait(1),
-         PlayAudio(&quot;music&quot;, &quot;roboterrapod&quot;, 1.0, true, true),
+
+        -- Terrabot shows up
+        Do(function()
+            self.scene.objectLookup.Terrabot.hidden = false
+            self.scene.objectLookup.Terrabot.y = self.scene.objectLookup.Terrabot.y - 400
+            GameState:addToParty(&quot;b&quot;, 1, true)
+        end),
+        Ease(self.scene.objectLookup.Terrabot, &quot;y&quot;, function() return self.scene.objectLookup.Terrabot.y + 400 end, 6, &quot;quad&quot;),
+        Parallel {
+            Ease(self.scene.camPos, &quot;x&quot;, 200, 1, &quot;linear&quot;),
+            PlayAudio(&quot;sfx&quot;, &quot;juggerbotstep&quot;, 1.0, true),
+            self.scene:screenShake(20, 30, 3)
+        },
         Animate(sprites.tails.sprite, &quot;shock&quot;),
         Animate(sprites.babyt.sprite, &quot;shock&quot;),
+        Animate(self.scene.objectLookup.B.sprite, &quot;shock&quot;),
         Parallel {
             sprites.tails:hop(),
             sprites.babyt:hop(),
+            self.scene.objectLookup.B:hop(),
+            MessageBox{message=&quot;Tails: What the heck is that?!&quot;}
         },
-        MessageBox{message=&quot;Tails: What was that?&quot;}
+        self.scene:enterBattle{
+            opponents = {&quot;terrabot&quot;},
+            initiative = &quot;cinematic&quot;,
+            quiet = true
+        }
     }}
 end</property>
    </properties>
@@ -454,6 +472,14 @@ end</property>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/b.png"/>
+   </properties>
+  </object>
+  <object id="453" name="Terrabot" type="BasicNPC" gid="5323" x="2272" y="992" width="288" height="128">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/terrabot.png"/>
    </properties>
   </object>
  </objectgroup>

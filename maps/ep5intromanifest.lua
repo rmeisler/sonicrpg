@@ -7,12 +7,12 @@ return {
 	{
         type = "map",
         file = "maps/greatjungle.lua",
-		--primary = true
+		primary = true
     },
 	{
         type = "map",
         file = "maps/greatjungle2.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
@@ -565,6 +565,12 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/roboterrapod.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/sonicsad.ogg",
 		category = "music",
 		looping = true
 	},

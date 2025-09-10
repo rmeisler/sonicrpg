@@ -69,13 +69,6 @@ return {
 		self.bullet.transform.angle = math.pi / 6
 	end,
 	
-	onDead = function(self)
-		return Do(function()
-			self.scene.state = BattleScene.STATE_PLAYERWIN
-			self.scene:cleanMonsters()
-		end)
-	end,
-	
 	behavior = function (self, target)
 		if self.hp <= 0 then
 			return Action()

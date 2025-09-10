@@ -40,6 +40,7 @@ return {
 		luck = 0,
 	},
 	
+	transient = true,
 	run_chance = 1.0,
 	coin = 0,
 	drops = {},

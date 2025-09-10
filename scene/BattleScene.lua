@@ -70,6 +70,7 @@ function BattleScene:onEnter(args)
 	self.noBattleMusic = args.noBattleMusic
 	self.arrowColor = args.arrowColor
 	self.hint = args.hint
+	self.quiet = args.quiet
 	
 	local onEnterCallback = args.onEnter or function(scene) return Action() end
 
@@ -213,10 +214,10 @@ function BattleScene:onEnter(args)
 			end
 		end
 	end
-	
+
 	self.musicVolume = 1.0
 	return Serial {
-		PlayAudio("music", self.nextMusic, self.musicVolume, true, true),
+		not self.quiet and PlayAudio("music", self.nextMusic, self.musicVolume, true, true) or Action(),
 		Parallel {
 			-- Unblur + fade in
 			Ease(self.blur, "radius_h", 0, 2),
@@ -718,6 +719,8 @@ end
 function BattleScene:cleanMonsters()
 	-- Check if all monsters dead (This can happen due to counter attack or reflection)
 	local toremove = {}
+	local transientAliveCount = 0
+	local remainingAliveCount = 0
 	for index,oppo in pairs(self.opponents) do
 		if oppo.state == BattleActor.STATE_DEAD or oppo.hp == 0 then
 			oppo.state = BattleActor.STATE_DEAD
@@ -731,12 +734,15 @@ function BattleScene:cleanMonsters()
 			table.insert(self.opponentSlots, oppo.slot)
 			
 			self.selectedTarget = 1
+		else
+			transientAliveCount = transientAliveCount + (oppo.transient and 1 or 0)
 		end
+		remainingAliveCount = remainingAliveCount + 1
 	end
 	for _,index in pairs(toremove) do
 		table.remove(self.opponents, index)
 	end
-	if next(self.opponents) == nil then
+	if next(self.opponents) == nil or transientAliveCount == remainingAliveCount then
 		self.state = BattleScene.STATE_PLAYERWIN
 		return false -- Return whether battle should continue
 	else

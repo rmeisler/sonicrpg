@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="80" height="70" tilewidth="32" tileheight="32" infinite="0" nextobjectid="370">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="80" height="70" tilewidth="32" tileheight="32" infinite="0" nextobjectid="371">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/greatjunglebg.png"/>
   <property name="currentLayer" type="int" value="7"/>
@@ -315,7 +315,15 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="lower"/>
+ <objectgroup name="lower">
+  <object id="370" name="Quicksand1Image" type="BasicNPC" gid="5323" x="1568" y="672" width="224" height="128">
+   <properties>
+    <property name="alphaOverride" type="int" value="0"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/quicksand.png"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="objects7">
   <object id="1" name="Spawn 1" type="Player" gid="5323" x="448" y="128" width="32" height="32">
    <properties>
@@ -349,7 +357,7 @@
   </object>
   <object id="366" name="Light1" type="LightPuzzle" gid="5323" x="96" y="2080" width="160" height="128">
    <properties>
-    <property name="active" type="bool" value="true"/>
+    <property name="active" type="bool" value="false"/>
     <property name="light" value="godrays_1"/>
     <property name="quicksand" value="Quicksand1"/>
    </properties>
@@ -360,19 +368,12 @@
     <property name="image" value="Quicksand1Image"/>
    </properties>
   </object>
-  <object id="368" name="Quicksand1Image" type="BasicNPC" gid="5323" x="1568" y="672" width="224" height="128">
-   <properties>
-    <property name="alphaOverride" type="int" value="0"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/quicksand.png"/>
-   </properties>
-  </object>
   <object id="369" name="Entrance2" type="SceneEdge" gid="7660" x="2464" y="704" width="64" height="256">
    <properties>
     <property name="ghost" type="bool" value="true"/>
-    <property name="key" value="left"/>
+    <property name="key" value="right"/>
     <property name="no_run" type="bool" value="true"/>
-    <property name="orientation" value="right"/>
+    <property name="orientation" value="left"/>
     <property name="scene" type="file" value="greatjungle3.lua"/>
     <property name="spawn_point" value="Entrance1"/>
    </properties>
@@ -518,10 +519,10 @@ return function(self)
         MessageBox{message=&quot;Tails: ...I was actually on my way there anyways...&quot;},
         PlayAudio(&quot;music&quot;, &quot;tailstheme&quot;, 1, true, true),
         MessageBox{message=&quot;Tails: See?&quot;},
-        MessageBox{message=&quot;BabyT: Wow... a mystical light that grants you one wish?&quot;},
+        MessageBox{message=&quot;Baby T: Wow... a mystical light that grants you one wish?&quot;},
         MessageBox{message=&quot;Tails: Yeah, and I'm gonna use it to wish Robotnik away for good!&quot;},
-        Animate(self.scene.objectLookup.BabyT.sprite, &quot;pose&quot;),
-        MessageBox{message=&quot;BabyT: Waaaay past! {p60}Well, lead the way Mr. Adventurer.&quot;},
+        Animate(self.scene.objectLookup.BabyT.sprite, &quot;victory&quot;),
+        MessageBox{message=&quot;Baby T: Waaaay past! {p60}Well, lead the way, Mr. Adventurer.&quot;},
         Do(function()
             self.scene.player.state = &quot;pose&quot;
         end),
@@ -534,8 +535,10 @@ return function(self)
             self.scene.objectLookup.BabyT:permanentRemove()
             GameState:addToParty(&quot;babyt&quot;, 3, true)
             GameState.leader = &quot;tails&quot;
+            self.scene.objectLookup.Light1.active = true
         end),
         MessageBox{message=&quot;Baby T joined your party!&quot;, sfx=&quot;choose&quot;},
+        Do(function() self.scene.player.state = &quot;idledown&quot; end)
     }}
 end</property>
    </properties>

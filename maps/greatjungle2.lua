@@ -8,7 +8,7 @@ return {
   height = 70,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 370,
+  nextobjectid = 371,
   properties = {
     ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
@@ -581,7 +581,26 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {}
+      objects = {
+        {
+          id = 370,
+          name = "Quicksand1Image",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1568,
+          y = 672,
+          width = 224,
+          height = 128,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["alphaOverride"] = 0,
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/quicksand.png"
+          }
+        }
+      }
     },
     {
       type = "objectgroup",
@@ -680,7 +699,7 @@ return {
           gid = 5323,
           visible = true,
           properties = {
-            ["active"] = true,
+            ["active"] = false,
             ["light"] = "godrays_1",
             ["quicksand"] = "Quicksand1"
           }
@@ -703,24 +722,6 @@ return {
           }
         },
         {
-          id = 368,
-          name = "Quicksand1Image",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1568,
-          y = 672,
-          width = 224,
-          height = 128,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["alphaOverride"] = 0,
-            ["nocollision"] = true,
-            ["sprite"] = "../art/sprites/quicksand.png"
-          }
-        },
-        {
           id = 369,
           name = "Entrance2",
           type = "SceneEdge",
@@ -734,9 +735,9 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["key"] = "left",
+            ["key"] = "right",
             ["no_run"] = true,
-            ["orientation"] = "right",
+            ["orientation"] = "left",
             ["scene"] = "greatjungle3.lua",
             ["spawn_point"] = "Entrance1"
           }
@@ -866,7 +867,7 @@ return {
           visible = true,
           properties = {
             ["atMostOnce"] = true,
-            ["script"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal YieldUntil = require \"actions/YieldUntil\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self)\n    return Serial {\n        Do(function()\n            if self.scene.player.doingSpecialMove then\n                self.scene.player.forceDrop = true\n            end\n        end),\n        YieldUntil(function() return self.scene.player.doingSpecialMove == false end),\n        BlockPlayer {\n        Do(function()\n            self.scene.player.state = \"danger_pose_right\"\n        end),\n        MessageBox{message=\"Tails: I'm warning you!\"},\n\n        Animate(self.scene.objectLookup.BabyT.sprite, \"idleup\"),\n\n        Wait(1),\n\n        Ease(self.scene.objectLookup.BabyT, \"y\", function() return self.scene.objectLookup.BabyT.y - 100 end, 6, \"quad\"),\n        Ease(self.scene.objectLookup.BabyT, \"y\", function() return self.scene.objectLookup.BabyT.y + 130 end, 6, \"quad\"),\n        Parallel {\n            self.scene.objectLookup.Bush:hop(),\n            Ease(self.scene.objectLookup.Bush.sprite.color, 4, 0, 0.8),\n        },\n        Animate(self.scene.objectLookup.BabyT.sprite, \"hug\"),\n        MessageBox{message=\"Baby T: T...Tails?\", closeAction=Wait(1)},\n        MessageBox{message=\"Tails: Baby T?\", closeAction=Wait(1)},\n        Wait(0.5),\n        Parallel {\n            self.scene.objectLookup.BabyT:hop(),\n            MessageBox{message=\"Baby T: Tails!\", closeAction=Wait(1)}\n        },\n        Do(function()\n            self.scene.player.state = \"joyright\"\n        end),\n        Parallel {\n            self.scene.player:hop(),\n            MessageBox{message=\"Tails: Baby T!\", closeAction=Wait(1)}\n        },\n        PlayAudio(\"music\", \"babyt\", 1.0, true, true),\n        Do(function()\n            local babyt = self.scene.objectLookup.BabyT\n            self.scene.player.x = babyt.x + 21\n            self.scene.player.y = babyt.y + babyt.sprite.h\n            self.scene.player.state = \"hug\"\n            babyt.sprite:setAnimation(\"hug\")\n        end),\n        Wait(3),\n        \n        Do(function()\n            self.scene.player.x = self.scene.player.x - 32\n            self.scene.player.state = \"idleright_lookup\"\n        end),\n\n        MessageBox{message=\"Tails: Whaddya doin' here, Baby T?\"},\n        MessageBox{message=\"Baby T: Well... um... heh, I was sorta going out to play for a bit and... kinda... sorta... got lost?\"},\n        MessageBox{message=\"Tails: Oh yeah? Well don't worry, Baby T...\"},\n        Do(function()\n            self.scene.player.state = \"reading\"\n        end),\n        MessageBox{message=\"Tails: This book has a map of the Great Jungle! We can use it to get you home.\"},\n        self.scene.objectLookup.BabyT:hop(),\n        MessageBox{message=\"Baby T: Way past cool!\"},\n        AudioFade(\"music\", 1, 0, 1),\n        MessageBox{message=\"Tails: ...I was actually on my way there anyways...\"},\n        PlayAudio(\"music\", \"tailstheme\", 1, true, true),\n        MessageBox{message=\"Tails: See?\"},\n        MessageBox{message=\"BabyT: Wow... a mystical light that grants you one wish?\"},\n        MessageBox{message=\"Tails: Yeah, and I'm gonna use it to wish Robotnik away for good!\"},\n        Animate(self.scene.objectLookup.BabyT.sprite, \"pose\"),\n        MessageBox{message=\"BabyT: Waaaay past! {p60}Well, lead the way Mr. Adventurer.\"},\n        Do(function()\n            self.scene.player.state = \"pose\"\n        end),\n        Parallel {\n            MessageBox{message=\"Tails: Let's go!\", closeAction=Wait(1)},\n            Ease(self.scene.player, \"x\", function() return self.scene.player.x + 50 end, 1),\n            Ease(self.scene.objectLookup.BabyT, \"x\", function() return self.scene.objectLookup.BabyT.x - 50 end, 1)\n        },\n        Do(function()\n            self.scene.objectLookup.BabyT:permanentRemove()\n            GameState:addToParty(\"babyt\", 3, true)\n            GameState.leader = \"tails\"\n        end),\n        MessageBox{message=\"Baby T joined your party!\", sfx=\"choose\"},\n    }}\nend"
+            ["script"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal YieldUntil = require \"actions/YieldUntil\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self)\n    return Serial {\n        Do(function()\n            if self.scene.player.doingSpecialMove then\n                self.scene.player.forceDrop = true\n            end\n        end),\n        YieldUntil(function() return self.scene.player.doingSpecialMove == false end),\n        BlockPlayer {\n        Do(function()\n            self.scene.player.state = \"danger_pose_right\"\n        end),\n        MessageBox{message=\"Tails: I'm warning you!\"},\n\n        Animate(self.scene.objectLookup.BabyT.sprite, \"idleup\"),\n\n        Wait(1),\n\n        Ease(self.scene.objectLookup.BabyT, \"y\", function() return self.scene.objectLookup.BabyT.y - 100 end, 6, \"quad\"),\n        Ease(self.scene.objectLookup.BabyT, \"y\", function() return self.scene.objectLookup.BabyT.y + 130 end, 6, \"quad\"),\n        Parallel {\n            self.scene.objectLookup.Bush:hop(),\n            Ease(self.scene.objectLookup.Bush.sprite.color, 4, 0, 0.8),\n        },\n        Animate(self.scene.objectLookup.BabyT.sprite, \"hug\"),\n        MessageBox{message=\"Baby T: T...Tails?\", closeAction=Wait(1)},\n        MessageBox{message=\"Tails: Baby T?\", closeAction=Wait(1)},\n        Wait(0.5),\n        Parallel {\n            self.scene.objectLookup.BabyT:hop(),\n            MessageBox{message=\"Baby T: Tails!\", closeAction=Wait(1)}\n        },\n        Do(function()\n            self.scene.player.state = \"joyright\"\n        end),\n        Parallel {\n            self.scene.player:hop(),\n            MessageBox{message=\"Tails: Baby T!\", closeAction=Wait(1)}\n        },\n        PlayAudio(\"music\", \"babyt\", 1.0, true, true),\n        Do(function()\n            local babyt = self.scene.objectLookup.BabyT\n            self.scene.player.x = babyt.x + 21\n            self.scene.player.y = babyt.y + babyt.sprite.h\n            self.scene.player.state = \"hug\"\n            babyt.sprite:setAnimation(\"hug\")\n        end),\n        Wait(3),\n        \n        Do(function()\n            self.scene.player.x = self.scene.player.x - 32\n            self.scene.player.state = \"idleright_lookup\"\n        end),\n\n        MessageBox{message=\"Tails: Whaddya doin' here, Baby T?\"},\n        MessageBox{message=\"Baby T: Well... um... heh, I was sorta going out to play for a bit and... kinda... sorta... got lost?\"},\n        MessageBox{message=\"Tails: Oh yeah? Well don't worry, Baby T...\"},\n        Do(function()\n            self.scene.player.state = \"reading\"\n        end),\n        MessageBox{message=\"Tails: This book has a map of the Great Jungle! We can use it to get you home.\"},\n        self.scene.objectLookup.BabyT:hop(),\n        MessageBox{message=\"Baby T: Way past cool!\"},\n        AudioFade(\"music\", 1, 0, 1),\n        MessageBox{message=\"Tails: ...I was actually on my way there anyways...\"},\n        PlayAudio(\"music\", \"tailstheme\", 1, true, true),\n        MessageBox{message=\"Tails: See?\"},\n        MessageBox{message=\"Baby T: Wow... a mystical light that grants you one wish?\"},\n        MessageBox{message=\"Tails: Yeah, and I'm gonna use it to wish Robotnik away for good!\"},\n        Animate(self.scene.objectLookup.BabyT.sprite, \"victory\"),\n        MessageBox{message=\"Baby T: Waaaay past! {p60}Well, lead the way, Mr. Adventurer.\"},\n        Do(function()\n            self.scene.player.state = \"pose\"\n        end),\n        Parallel {\n            MessageBox{message=\"Tails: Let's go!\", closeAction=Wait(1)},\n            Ease(self.scene.player, \"x\", function() return self.scene.player.x + 50 end, 1),\n            Ease(self.scene.objectLookup.BabyT, \"x\", function() return self.scene.objectLookup.BabyT.x - 50 end, 1)\n        },\n        Do(function()\n            self.scene.objectLookup.BabyT:permanentRemove()\n            GameState:addToParty(\"babyt\", 3, true)\n            GameState.leader = \"tails\"\n            self.scene.objectLookup.Light1.active = true\n        end),\n        MessageBox{message=\"Baby T joined your party!\", sfx=\"choose\"},\n        Do(function() self.scene.player.state = \"idledown\" end)\n    }}\nend"
           }
         }
       }

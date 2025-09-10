@@ -752,6 +752,7 @@ function BasicScene:enterBattle(args)
 				images = self.images,
 				animations = self.animations,
 				background = self.map.properties.battlebg,
+				quiet = args.quiet,
 				nextMusic = self.noBattleMusic and self.audio:getCurrentMusic() or args.music,
 				prevMusic = args.prevMusic or self.audio:getCurrentMusic(),
 				noBattleMusic = self.noBattleMusic,
@@ -903,7 +904,7 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 					Repeat(
 						IfElse(
 							function()
-								return not layer.noshimmer
+								return layer.properties.active
 							end,
 							Serial {
 								Ease(layer, "opacity", minOpacity, 3, "quad"),
