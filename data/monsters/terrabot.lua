@@ -14,6 +14,7 @@ local BouncyText = require "actions/BouncyText"
 local Executor = require "actions/Executor"
 local Spawn = require "actions/Spawn"
 local MessageBox = require "actions/MessageBox"
+local TypeText = require "actions/TypeText"
 
 local SpriteNode = require "object/SpriteNode"
 local BattleActor = require "object/BattleActor"
@@ -122,7 +123,25 @@ return {
 			Animate(self.scene.partyByName.babyt.sprite, "dead"),
 			MessageBox{message="Baby T: Ugh... why?..."},
 			-- TO BE CONTINUED
-			PlayAudio("music", "troublefanfare", 1, true)
+			AudioFade("music", 1, 0, 2),
+			PlayAudio("music", "troublefanfare", 1, true, false, true),
+			Spawn(Serial {
+				Wait(1),
+				TypeText(
+					Transform(40, 200),
+					{255, 255, 255, 255},
+					FontCache.Techno,
+					"To Be Continued...",
+					4,
+					false,
+					true
+				),
+				Wait(4),
+				Do(function()
+					self.scene.sceneMgr:pushScene {class = "CreditsSplashScene", fadeOutSpeed=0.05,fadeInSpeed=0.3, enterDelay=4}
+				end)
+			}),
+			Wait(15)
 		}
 	end
 }

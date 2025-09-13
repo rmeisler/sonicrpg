@@ -462,6 +462,9 @@ return function(self)
             self.scene.objectLookup.B:hop(),
             MessageBox{message=&quot;Tails: What the heck is that?!&quot;, closeAction=Wait(1)}
         },
+        Do(function()
+            self.scene.audio:stopMusic()
+        end),
         self.scene:enterBattle{
             opponents = {&quot;terrabot&quot;},
             initiative = &quot;cinematic&quot;,

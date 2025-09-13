@@ -2,12 +2,12 @@ return {
 	{
         type = "map",
         file = "maps/ep5intro.lua",
-		--primary = true -- REAL
+		primary = true -- REAL
     },
 	{
         type = "map",
         file = "maps/greatjungle.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
@@ -565,6 +565,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/robotrouble.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/troublefanfare.ogg",
 		category = "music"
 	},
 	{

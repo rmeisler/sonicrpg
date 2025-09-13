@@ -33,10 +33,12 @@ function CreditsSplashScene:onEnter()
 	
 	self.bgY = -466
 	
+	self.audio:stopMusic()
+	
 	-- Setup music
 	self.audio:registerAs("music", "sonicrpglogo", love.audio.newSource("audio/music/credits.ogg", "static"))
 	self.audio:registerAs("music", "credits", love.audio.newSource("audio/music/credits.ogg", "static"))
-	self.audio:registerAs("music", "snowday", love.audio.newSource("audio/music/snowday.ogg", "static"))
+	self.audio:registerAs("music", "tailstheme", love.audio.newSource("audio/music/tailstheme.ogg", "static"))
 	
 	self.bgColor = {0,0,0,255}
 	self.logoColor = {255,255,255,0}
@@ -46,7 +48,7 @@ function CreditsSplashScene:onEnter()
 	
 	self.exiting = false
 	return Serial {
-		Parallel {
+		--[[Parallel {
 			Ease(self.bgColor, 1, 255, 0.3, "linear"),
 			Ease(self.bgColor, 2, 255, 0.3, "linear"),
 			Ease(self.bgColor, 3, 255, 0.3, "linear"),
@@ -55,7 +57,7 @@ function CreditsSplashScene:onEnter()
 				Spawn(Serial {
 					PlayAudio("music", "credits", 1.0),
 					Wait(1),
-					PlayAudio("music", "snowday", 1.0, true),
+					PlayAudio("music", "tailstheme", 1.0, true),
 				}),
 				Wait(3),
 				Parallel {
@@ -75,7 +77,13 @@ function CreditsSplashScene:onEnter()
 		},
 		
 		Wait(1),
+		]]
 		
+		Spawn(Serial {
+			Wait(1),
+			PlayAudio("music", "tailstheme", 1.0, true, true)
+		}),
+
 		Parallel {
 			Ease(self.logoXForm, "y", -550, 0.1, "linear"),
 			
@@ -118,7 +126,6 @@ Reggie Meisler/RedG
 Jesse Rose/GreenCauldron08
 F0XShadow
 Michael Tavera
-Fuse Hive
 
 [Sound]
 Anya Stocks/Frostdrop1
@@ -173,6 +180,7 @@ AmeixaRoxa
 dataexpunded
 McMistle
 ScaleyFoxy
+Ilya Rappu/Picnik
 Fieryfurnace
 Jacob Berkley/Good Ol' Groovy Jake
 supermariobro58
@@ -226,8 +234,10 @@ Audacity
 Fans United for SatAM
 Sea3on
 Jacob Berkley/Good Ol' Groovy Jake
+Billy Adams
 Ibeh Dubem/Flame the Teen
 AmeixaRoxa
+Ilya Rappu/Picnik
 
 
 
@@ -236,9 +246,8 @@ AmeixaRoxa
 
 
 
-    This episode is dedicated to a local
-      artist and activist, Rick Bell.
-	          Rest in power.
+       This episode is a two-parter,
+ the second part will be released Winter 2025...
 
 	
 	
@@ -256,7 +265,7 @@ AmeixaRoxa
 	
 	
 	
-	        www.satamrpg.com	
+	        www.sonic-rpg.com	
 ]]
 	local text = TextNode(
 		self,
@@ -268,7 +277,7 @@ AmeixaRoxa
 		false
 	)
 	return Serial {
-		Ease(text.transform, "y", -3850, 0.0075, "linear"),
+		Ease(text.transform, "y", -4000, 0.01, "linear"),
 		Do(function()
 			print("done")
 		end)
