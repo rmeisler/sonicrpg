@@ -405,6 +405,7 @@ return function(self)
         Wait(1),
         Animate(sprites.tails.sprite, &quot;idleleft&quot;),
         Animate(sprites.babyt.sprite, &quot;idleleft&quot;),
+        PlayAudio(&quot;music&quot;, &quot;curiosity&quot;, 0.7, true, true),
         Parallel {
             sprites.tails:hop(),
             MessageBox{message=&quot;Tails: B!?&quot;}
@@ -432,7 +433,10 @@ return function(self)
         Animate(sprites.babyt.sprite, &quot;sadleft&quot;),
         MessageBox{message=&quot;Tails: But-but--&quot;, closeAction=Wait(1)},
         MessageBox{message=&quot;B: No \&quot;buts\&quot;! {p60}Let's go.&quot;},
-        PlayAudio(&quot;sfx&quot;, &quot;elevator&quot;, 1.0, true, true),
+        Parallel {
+            AudioFade(&quot;music&quot;, 0.7, 0, 1),
+            PlayAudio(&quot;sfx&quot;, &quot;elevator&quot;, 1.0, true, true)
+        },
         self.scene:screenShake(10, 30, 20),
         AudioFade(&quot;sfx&quot;, 1, 0, 1),
 
@@ -448,6 +452,7 @@ return function(self)
             PlayAudio(&quot;sfx&quot;, &quot;juggerbotstep&quot;, 1.0, true),
             self.scene:screenShake(20, 30, 3)
         },
+        PlayAudio(&quot;music&quot;, &quot;robotrouble&quot;, 1.0, true),
         Animate(sprites.tails.sprite, &quot;shock&quot;),
         Animate(sprites.babyt.sprite, &quot;shock&quot;),
         Animate(self.scene.objectLookup.B.sprite, &quot;shock&quot;),
@@ -455,7 +460,7 @@ return function(self)
             sprites.tails:hop(),
             sprites.babyt:hop(),
             self.scene.objectLookup.B:hop(),
-            MessageBox{message=&quot;Tails: What the heck is that?!&quot;}
+            MessageBox{message=&quot;Tails: What the heck is that?!&quot;, closeAction=Wait(1)}
         },
         self.scene:enterBattle{
             opponents = {&quot;terrabot&quot;},

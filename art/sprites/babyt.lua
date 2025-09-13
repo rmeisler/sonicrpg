@@ -42,6 +42,10 @@ return {
 		victory = {
 			frames = {{11,3}}
 		},
+		roar = {
+			frames = {{9,0},{10,0}},
+			speed = 0.22
+		},
 		
 		saddown = {
 			frames = {{11,2}}

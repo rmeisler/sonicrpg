@@ -8,6 +8,9 @@ return {
 		idle = {
 			frames = {{0,1}}
 		},
+		dead = {
+			frames = {{9,4}}
+		},
 		pose = {
 			frames = {{0,4}}
 		},
@@ -19,6 +22,14 @@ return {
 			frames = {{13,1}}
 		},
 		
+		camoflauge = {
+			frames = {{2,4},{3,4},{4,4}},
+			speed = 2
+		},
+		redleft = {
+			frames = {{9,4}}
+		},
+
 		packupidle = {
 			frames = {{9,3}}
 		},

@@ -7,6 +7,7 @@ local Wait = require "actions/Wait"
 local Ease = require "actions/Ease"
 local Action = require "actions/Action"
 local PlayAudio = require "actions/PlayAudio"
+local AudioFade = require "actions/AudioFade"
 local YieldUntil = require "actions/YieldUntil"
 local Try = require "actions/Try"
 local BouncyText = require "actions/BouncyText"
@@ -65,13 +66,19 @@ return {
 		end
 		
 		return Serial {
+			PlayAudio("music", "boss", 1.0, true, true),
 			Animate(self.scene.partyByName.tails.sprite, "shock"),
 			Animate(self.scene.partyByName.b.sprite, "shock"),
 			Animate(self.scene.partyByName.babyt.sprite, "shock"),
 			MessageBox{message="Tails: W-what is that thing!?{p60} It...{p60} it looks like--"},
 			Animate(self.scene.partyByName.babyt.sprite, "sadleft"),
-			PlayAudio("music", "sonicsad", 1.0, true, true),
-			MessageBox{message="Baby T: Uncle!{p60} W...{p60}what have they done to you!?"},
+			Parallel {
+				Serial {
+					AudioFade("music", 1, 0, 1),
+					PlayAudio("music", "sonicsad", 1.0, true, true)
+				},
+				MessageBox{message="Baby T: Uncle!{p60} W...{p60}what have they done to you!?"}
+			},
 			Animate(self.scene.partyByName.b.sprite, "seriousdown"),
 			MessageBox{message="B: He's been roboticized..."},
 			Animate(self.scene.partyByName.tails.sprite, "sadleft"),
@@ -82,9 +89,40 @@ return {
 			MessageBox{message="Terrabot: ..."},
 			Animate(self.scene.partyByName.b.sprite, "idleleft"),
 			MessageBox{message="B: Let me try."},
+			AudioFade("music", 1, 0, 1),
+			Animate(self.scene.partyByName.b.sprite, "camoflauge"),
+			Animate(self.scene.partyByName.b.sprite, "redleft"),
 			MessageBox{message="B: 111101001000101011010101010010010011100011"},
 			Wait(1),
+			Animate(self:getSprite(), "getangry"),
+			Do(function() self:getSprite():setAnimation("angryidle") end),
+			Wait(1),
+			Animate(self.scene.partyByName.tails.sprite, "shock"),
+			Animate(self.scene.partyByName.babyt.sprite, "shock"),
+			Animate(self:getSprite(), "roar"),
 			-- ROAR
+			Parallel {
+				PlayAudio("sfx", "juggerbotroar", 1.0),
+				self.scene:screenShake(20, 30, 15)
+			},
+			Do(function() self:getSprite():setAnimation("angryidle") end),
+			Wait(1),
+			PlayAudio("music", "roboterrapod", 1.0, true, true),
+
+			-- Shoot lasers from eyes at B
+			Animate(self.scene.partyByName.b.sprite, "dead"),
+			Animate(self.scene.partyByName.tails.sprite, "saddown"),
+			Animate(self.scene.partyByName.babyt.sprite, "idleup"),
+			MessageBox{message="Tails: B!!"},
+			Animate(self.scene.partyByName.babyt.sprite, "roar"),
+			MessageBox{message="Baby T: Uncle!! Stop!!"},
+			
+			-- Shoot lasers from eyes at whole party
+			Animate(self.scene.partyByName.tails.sprite, "dead"),
+			Animate(self.scene.partyByName.babyt.sprite, "dead"),
+			MessageBox{message="Baby T: Ugh... why?..."},
+			-- TO BE CONTINUED
+			PlayAudio("music", "troublefanfare", 1, true)
 		}
 	end
 }

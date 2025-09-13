@@ -564,6 +564,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/robotrouble.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/roboterrapod.ogg",
 		category = "music",
 		looping = true
@@ -784,6 +789,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/plasmabeam.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/juggerbotstep.ogg",
 		category = "sfx"
 	},
 	{
