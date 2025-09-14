@@ -569,7 +569,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/troublefanfare.ogg",
+		file = "audio/music/meow.ogg",
 		category = "music"
 	},
 	{

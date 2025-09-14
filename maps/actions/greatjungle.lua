@@ -35,6 +35,9 @@ return function(scene, hint)
 	end
 	
 	if hint == "from_knothole" then
+		-- Reset hint
+		scene.hint = nil
+
 		return BlockPlayer {
 			Wait(1),
 			Do(function()
