@@ -9,7 +9,7 @@ return {
 			frames = {{0,1}}
 		},
 		dead = {
-			frames = {{9,4}}
+			frames = {{15,0}}
 		},
 		pose = {
 			frames = {{0,4}}

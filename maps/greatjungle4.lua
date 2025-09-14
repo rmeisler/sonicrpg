@@ -240,6 +240,56 @@ return {
     },
     {
       type = "imagelayer",
+      name = "ground",
+      visible = true,
+      opacity = 1,
+      offsetx = 1024,
+      offsety = 1056,
+      image = "../art/parallax/overlooklayer2.png",
+      properties = {}
+    },
+    {
+      type = "imagelayer",
+      name = "Copy of ground",
+      visible = true,
+      opacity = 1,
+      offsetx = 1024,
+      offsety = 1248,
+      image = "../art/parallax/overlooklayer2.png",
+      properties = {}
+    },
+    {
+      type = "imagelayer",
+      name = "Copy of Copy of ground",
+      visible = true,
+      opacity = 1,
+      offsetx = 1024,
+      offsety = 1408,
+      image = "../art/parallax/overlooklayer2.png",
+      properties = {}
+    },
+    {
+      type = "imagelayer",
+      name = "Copy of Copy of Copy of ground",
+      visible = true,
+      opacity = 1,
+      offsetx = 928,
+      offsety = 1536,
+      image = "../art/parallax/overlooklayer2.png",
+      properties = {}
+    },
+    {
+      type = "imagelayer",
+      name = "Copy of Copy of Copy of Copy of ground",
+      visible = true,
+      opacity = 1,
+      offsetx = 928,
+      offsety = 1440,
+      image = "../art/parallax/overlooklayer1.png",
+      properties = {}
+    },
+    {
+      type = "imagelayer",
       name = "sky2",
       visible = true,
       opacity = 1,

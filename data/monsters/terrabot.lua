@@ -57,13 +57,85 @@ return {
 
 	scan = "{h Laser Shields} might be a good idea...",
 
-	onInit = function (self)
+	onInit = function(self)
+		-- Setup beam sprite
+		self.beamSpriteLeft = SpriteNode(self.scene, Transform(), nil, "botbeam", nil, nil, "ui")
+		self.beamSpriteLeft.transform.sx = 0
+		self.beamSpriteLeft.transform.sy = 1
+		self.beamSpriteLeft.transform.ox = 0
+		self.beamSpriteLeft.color = {512,255,512,255}
+		self.beamSpriteLeft:setAnimation("red")
 		
+		self.beamSpriteRight = SpriteNode(self.scene, Transform(), nil, "botbeam", nil, nil, "ui")
+		self.beamSpriteRight.transform.sx = 0
+		self.beamSpriteRight.transform.sy = 1
+		self.beamSpriteRight.transform.ox = 0
+		self.beamSpriteRight.color = {512,255,512,255}
+		self.beamSpriteRight:setAnimation("red")
 	end,
 
 	behavior = function (self, target)
 		if self.hp <= 0 then
 			return Action()
+		end
+		
+		local shootLaser = function(self, target)
+			local selfSprite = self:getSprite()
+			
+			local singleLaser = function(beamSprite, xOffset)
+				return Serial {
+					Do(function()
+						beamSprite.transform.x = selfSprite.transform.x + xOffset + beamSprite.w
+						beamSprite.transform.y = selfSprite.transform.y + 83 + beamSprite.h*2
+						beamSprite.transform.ox = 0
+
+						local x1, y1 = beamSprite.transform.x, beamSprite.transform.y
+						local x2, y2 = target.sprite.transform.x, target.sprite.transform.y
+
+						local dx = (x2 - x1)
+						local dy = (y2 - y1)
+
+						local dot = dx * dx
+						local m1 = math.sqrt(dx*dx + dy*dy)
+						local m2 = dx
+						local angle = math.acos(dot / (m1 * m2))
+						
+						if beamSprite.transform.y > target.sprite.transform.y then
+							beamSprite.transform.angle = -angle
+						else
+							beamSprite.transform.angle = angle
+						end
+						
+						self.xDist = dx
+						self.yDist = dy
+						self.len = m1/beamSprite.w
+					end),
+					
+					-- Beam stretch to target and recede
+					Ease(beamSprite.transform, "sx", function() return self.len end, 8),
+					
+					Do(function()
+						beamSprite.transform.ox = beamSprite.w
+						
+						beamSprite.transform.x = beamSprite.transform.x + self.xDist
+						beamSprite.transform.y = beamSprite.transform.y + self.yDist
+					end),
+					
+					Ease(beamSprite.transform, "sx", 0, 8),
+				}
+			end
+			
+			return Serial {
+				Wait(0.2),
+				PlayAudio("sfx", "swatbotlaser", 1.0, true),
+				
+				Parallel {
+					singleLaser(self.beamSpriteLeft, 360),
+					singleLaser(self.beamSpriteRight, 386)
+				},
+
+				target:takeDamage(self.stats, true, BattleActor.shockKnockback)
+			}
 		end
 		
 		return Serial {
@@ -103,14 +175,16 @@ return {
 			Animate(self:getSprite(), "roar"),
 			-- ROAR
 			Parallel {
-				PlayAudio("sfx", "juggerbotroar", 1.0),
+				PlayAudio("sfx", "juggerbotroar", 0.8),
 				self.scene:screenShake(20, 30, 15)
 			},
 			Do(function() self:getSprite():setAnimation("angryidle") end),
 			Wait(1),
 			PlayAudio("music", "roboterrapod", 1.0, true, true),
+			Wait(1),
 
 			-- Shoot lasers from eyes at B
+			shootLaser(self, self.scene.partyByName.b),
 			Animate(self.scene.partyByName.b.sprite, "dead"),
 			Animate(self.scene.partyByName.tails.sprite, "saddown"),
 			Animate(self.scene.partyByName.babyt.sprite, "idleup"),
@@ -119,12 +193,16 @@ return {
 			MessageBox{message="Baby T: Uncle!! Stop!!"},
 			
 			-- Shoot lasers from eyes at whole party
+			Wait(2),
+			shootLaser(self, self.scene.partyByName.tails),
 			Animate(self.scene.partyByName.tails.sprite, "dead"),
+			Wait(1),
+			shootLaser(self, self.scene.partyByName.babyt),
 			Animate(self.scene.partyByName.babyt.sprite, "dead"),
+			Wait(1),
 			MessageBox{message="Baby T: Ugh... why?..."},
+			Wait(1),
 			-- TO BE CONTINUED
-			AudioFade("music", 1, 0, 2),
-			PlayAudio("music", "troublefanfare", 1, true, false, true),
 			Spawn(Serial {
 				Wait(1),
 				TypeText(
@@ -136,7 +214,7 @@ return {
 					false,
 					true
 				),
-				Wait(4),
+				Wait(5),
 				Do(function()
 					self.scene.sceneMgr:pushScene {class = "CreditsSplashScene", fadeOutSpeed=0.05,fadeInSpeed=0.3, enterDelay=4}
 				end)
