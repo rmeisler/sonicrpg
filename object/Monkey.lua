@@ -53,6 +53,7 @@ function Monkey:knockDown(tree)
 		-- Fade out and disappear
 		Ease(self.sprite.color, 4, 0, 2),
 		Do(function()
+			GameState:setFlag(self:getFlag())
 			self:remove()
 		end)
 	}

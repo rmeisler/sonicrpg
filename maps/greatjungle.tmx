@@ -1629,6 +1629,8 @@
   <object id="135" name="Monkey1" type="Monkey" gid="5323" x="1986" y="832" width="64" height="64">
    <properties>
     <property name="alignOffsetX" type="int" value="32"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="flagOverride" value="greatjungle.Monkey1"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/monkey.png"/>
     <property name="swapLayers" value="objects:objects5, objects2:objects5, objects3:objects5, objects4:objects5, objects5:objects4, objects6:objects5, objects7:objects5"/>
@@ -1638,6 +1640,8 @@
   <object id="325" name="Monkey2" type="Monkey" gid="5323" x="768" y="4704" width="64" height="64">
    <properties>
     <property name="alignOffsetX" type="int" value="32"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="flagOverride" value="greatjungle.Monkey2"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/monkey.png"/>
     <property name="swapLayers" value="objects:objects5, objects2:objects5, objects3:objects5, objects4:objects5, objects5:objects4, objects6:objects5, objects7:objects5"/>

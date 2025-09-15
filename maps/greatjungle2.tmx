@@ -343,6 +343,7 @@
   <object id="361" name="Bush" type="BasicNPC" gid="5323" x="1600" y="640" width="192" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/knotholebush.png"/>
    </properties>
@@ -351,6 +352,8 @@
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="walkup"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="flagOverride" value="BabyTIntro"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/babyt.png"/>
    </properties>
@@ -386,11 +389,6 @@
  <objectgroup name="objects2"/>
  <objectgroup name="objects"/>
  <objectgroup name="all">
-  <object id="137" name="Monkey1_VR1" type="BasicNPC" gid="5323" x="1376" y="1312" width="672" height="576" visible="0">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
   <object id="364" name="IntroTrigger" type="TouchTrigger" gid="5323" x="1312" y="704" width="512" height="192" visible="0">
    <properties>
     <property name="atMostOnce" type="bool" value="true"/>
@@ -532,13 +530,17 @@ return function(self)
             Ease(self.scene.objectLookup.BabyT, &quot;x&quot;, function() return self.scene.objectLookup.BabyT.x - 50 end, 1)
         },
         Do(function()
+            GameState:setFlag(self.scene.objectLookup.BabyT:getFlag())
+            GameState:setFlag(self.scene.objectLookup.Bush:getFlag())
             self.scene.objectLookup.BabyT:permanentRemove()
             GameState:addToParty(&quot;babyt&quot;, 3, true)
             GameState.leader = &quot;tails&quot;
             self.scene.objectLookup.Light1.active = true
         end),
         MessageBox{message=&quot;Baby T joined your party!&quot;, sfx=&quot;choose&quot;},
-        Do(function() self.scene.player.state = &quot;idledown&quot; end)
+        Do(function()
+            self.scene.player.state = &quot;idledown&quot;
+        end)
     }}
 end</property>
    </properties>

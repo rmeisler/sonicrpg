@@ -234,8 +234,8 @@ return {
       visible = true,
       opacity = 1,
       offsetx = 1216,
-      offsety = 544,
-      image = "../art/parallax/overlooklayer5.png",
+      offsety = 512,
+      image = "../art/parallax/overlooklayer6.png",
       properties = {}
     },
     {
@@ -243,14 +243,14 @@ return {
       name = "ground",
       visible = true,
       opacity = 1,
-      offsetx = 1024,
+      offsetx = 1152,
       offsety = 1056,
       image = "../art/parallax/overlooklayer2.png",
       properties = {}
     },
     {
       type = "imagelayer",
-      name = "Copy of ground",
+      name = "ground2",
       visible = true,
       opacity = 1,
       offsetx = 1024,
@@ -260,7 +260,7 @@ return {
     },
     {
       type = "imagelayer",
-      name = "Copy of Copy of ground",
+      name = "ground3",
       visible = true,
       opacity = 1,
       offsetx = 1024,
@@ -270,7 +270,7 @@ return {
     },
     {
       type = "imagelayer",
-      name = "Copy of Copy of Copy of ground",
+      name = "ground4",
       visible = true,
       opacity = 1,
       offsetx = 928,
@@ -280,7 +280,7 @@ return {
     },
     {
       type = "imagelayer",
-      name = "Copy of Copy of Copy of Copy of ground",
+      name = "ground5",
       visible = true,
       opacity = 1,
       offsetx = 928,
@@ -294,8 +294,8 @@ return {
       visible = true,
       opacity = 1,
       offsetx = 1920,
-      offsety = 544,
-      image = "../art/parallax/overlooklayer5.png",
+      offsety = 512,
+      image = "../art/parallax/overlooklayer6.png",
       properties = {}
     },
     {
@@ -304,7 +304,7 @@ return {
       visible = true,
       opacity = 1,
       offsetx = 2592,
-      offsety = 544,
+      offsety = 512,
       image = "../art/parallax/boulderbay.png",
       properties = {}
     },

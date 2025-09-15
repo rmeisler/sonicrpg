@@ -21,7 +21,7 @@ function ThreeDee:whileColliding(player, prevState)
 	   not player.doingSpecialMove or
 	   player.flyOffsetY < (self.object.height - 20)
 	then
-        return
+		return
     end
 
 	-- Check if our priority layer is not the current layer,

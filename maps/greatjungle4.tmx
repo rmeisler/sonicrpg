@@ -19,28 +19,28 @@
  <tileset firstgid="15006" source="darkswamp.tsx"/>
  <tileset firstgid="20595" source="darkswamp2.tsx"/>
  <tileset firstgid="22295" source="worldmap.tsx"/>
- <imagelayer name="sky" offsetx="1216" offsety="544">
-  <image source="../art/parallax/overlooklayer5.png" width="1600" height="600"/>
+ <imagelayer name="sky" offsetx="1216" offsety="512">
+  <image source="../art/parallax/overlooklayer6.png" width="1600" height="600"/>
  </imagelayer>
- <imagelayer name="ground" offsetx="1024" offsety="1056">
+ <imagelayer name="ground" offsetx="1152" offsety="1056">
   <image source="../art/parallax/overlooklayer2.png" width="1600" height="220"/>
  </imagelayer>
- <imagelayer name="Copy of ground" offsetx="1024" offsety="1248">
+ <imagelayer name="ground2" offsetx="1024" offsety="1248">
   <image source="../art/parallax/overlooklayer2.png" width="1600" height="220"/>
  </imagelayer>
- <imagelayer name="Copy of Copy of ground" offsetx="1024" offsety="1408">
+ <imagelayer name="ground3" offsetx="1024" offsety="1408">
   <image source="../art/parallax/overlooklayer2.png" width="1600" height="220"/>
  </imagelayer>
- <imagelayer name="Copy of Copy of Copy of ground" offsetx="928" offsety="1536">
+ <imagelayer name="ground4" offsetx="928" offsety="1536">
   <image source="../art/parallax/overlooklayer2.png" width="1600" height="220"/>
  </imagelayer>
- <imagelayer name="Copy of Copy of Copy of Copy of ground" offsetx="928" offsety="1440">
+ <imagelayer name="ground5" offsetx="928" offsety="1440">
   <image source="../art/parallax/overlooklayer1.png" width="1600" height="342"/>
  </imagelayer>
- <imagelayer name="sky2" offsetx="1920" offsety="544">
-  <image source="../art/parallax/overlooklayer5.png" width="1600" height="600"/>
+ <imagelayer name="sky2" offsetx="1920" offsety="512">
+  <image source="../art/parallax/overlooklayer6.png" width="1600" height="600"/>
  </imagelayer>
- <imagelayer name="boulderbay" offsetx="2592" offsety="544">
+ <imagelayer name="boulderbay" offsetx="2592" offsety="512">
   <image source="../art/parallax/boulderbay.png" width="1170" height="851"/>
  </imagelayer>
  <layer name="ground" width="120" height="55">

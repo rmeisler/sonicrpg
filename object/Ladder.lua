@@ -16,8 +16,13 @@ function Ladder:construct(scene, layer, object)
 	self.topLayer = self.object.properties.topLayer
 	self.botLayer = self.object.properties.botLayer
 	self.nextFlyOffsetY = self.object.properties.nextFlyOffsetY
+	self.onClimbDown = self.object.properties.onClimbDown
+	if self.onClimbDown then
+		self.onClimbDown = assert(loadstring(self.onClimbDown))()
+	end
+
 	NPC.init(self)
-	
+
 	self.updateFun = function(player, dt)
 		player:updateCollisionObj()
 
@@ -84,6 +89,10 @@ function Ladder:notColliding(player)
 
 		if self.botLayer and love.keyboard.isDown("down") then
 			self.scene:swapLayer(self.botLayer, true)
+		end
+		
+		if self.onClimbDown then
+			self.onClimbDown(self, player)
 		end
 
 		if love.keyboard.isDown("up") then

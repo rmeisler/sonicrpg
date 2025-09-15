@@ -32,12 +32,12 @@ NPC.ALIGN_BOTCENTER = "bottom_center"
 
 function NPC:construct(scene, layer, object)
 	self.state = NPC.STATE_IDLE
-	
+
 	self.appearAfter = object.properties.appearAfter
 	self.showOn = object.properties.showOn
 	self.ghost = object.properties.ghost or false
 	self.alignment = object.properties.align or NPC.ALIGN_DEFAULT
-	
+
 	self.x = object.x
 	self.y = object.y
 	self.name = object.name
@@ -50,7 +50,7 @@ function NPC:construct(scene, layer, object)
 	self.noHideDown = object.properties.nohidedown
 	self.movespeed = object.properties.movespeed or 3
 	self.disappearOn = object.properties.disappearOn
-	self.disappearOnFlag = object.properties.disappearOnFlag
+	self.disappearOnFlag = object.properties.disappearOnFlag or object.properties.disappearAfterBattle
 	self.angle = (object.properties.angle or 0) * (math.pi/180)
 	self.isBot = object.properties.isBot
 	self.destructable = object.properties.destructable

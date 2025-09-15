@@ -3102,6 +3102,8 @@ return {
           visible = true,
           properties = {
             ["alignOffsetX"] = 32,
+            ["disappearAfterBattle"] = true,
+            ["flagOverride"] = "greatjungle.Monkey1",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/monkey.png",
             ["swapLayers"] = "objects:objects5, objects2:objects5, objects3:objects5, objects4:objects5, objects5:objects4, objects6:objects5, objects7:objects5",
@@ -3122,6 +3124,8 @@ return {
           visible = true,
           properties = {
             ["alignOffsetX"] = 32,
+            ["disappearAfterBattle"] = true,
+            ["flagOverride"] = "greatjungle.Monkey2",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/monkey.png",
             ["swapLayers"] = "objects:objects5, objects2:objects5, objects3:objects5, objects4:objects5, objects5:objects4, objects6:objects5, objects7:objects5",
