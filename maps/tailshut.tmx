@@ -217,7 +217,7 @@ return function(self)
                     menu:close()
                     self.scene:run {
                         menu,
-                        MessageBox{message=&quot;Diary: Snow days are the best! {p60}Everybody hangs out in Knothole instead of heading to the city, and Sonic actually has time to play with me!&quot;, blocking = true, textSpeed = 3}
+                        MessageBox{message=&quot;Tails: I already know what it says!&quot;, blocking = true, textSpeed = 3}
                     }
                 end},
                 {Layout.Text(&quot;No&quot;), choose = function(menu)
@@ -270,6 +270,7 @@ end</property>
    </properties>
   </object>
  </objectgroup>
+ <objectgroup name="upper"/>
  <layer name="Collision" width="25" height="20" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

@@ -22,42 +22,53 @@ return function(scene, hint)
 	local Player = require "object/Player"
 	
 	
-	local text = TypeText(
-		Transform(50, 500),
+	local subtext = TypeText(
+		Transform(50, 470),
 		{255, 255, 255, 0},
-		FontCache.Techno,
+		FontCache.TechnoSmall,
 		"Great Jungle",
 		100
 	)
 	
-	if scene.player then
-	    scene.player.dustColor = Player.FOREST_DUST_COLOR
-	end
-	
-	if hint == "from_knothole" then
-		return BlockPlayer {
-			Wait(1),
-			Do(function()
-			    scene.player.noIdle = true
-				scene.player.sprite:setAnimation("walkdown")
-			end),
-			Ease(scene.player, "y", function() return scene.player.y + 200 end, 1, "linear"),
-			Do(function()
-				scene.player.noIdle = false
-			end),
-			MessageBox{message="Tails: Great Jungle, here I come!"},
-			PlayAudio("music", "greatjungle", 0.5, true, true),
-			Spawn(
-				Serial {
-					Wait(0.5),
-					text,
-					Ease(text.color, 4, 255, 1),
-					Wait(2),
-					Ease(text.color, 4, 0, 1)
-				}
-			)
+	local text = TypeText(
+		Transform(50, 500),
+		{255, 255, 255, 0},
+		FontCache.Techno,
+		"???",
+		100
+	)
+
+	return Spawn(
+		Serial {
+			BlockPlayer {
+				Wait(3),
+				Do(function()
+					scene.player.noIdle = true
+					scene.player.sprite:setAnimation("shock")
+				end),
+				Ease(scene.player, "y", function() return scene.player.y + 300 end, 6, "quad"),
+				PlayAudio("sfx", "bang", 1.0, true),
+				Do(function()
+					scene.player.sprite:setAnimation("dead")
+				end),
+				Wait(1),
+				Do(function()
+					scene.player.noIdle = false
+				end)
+			},
+			Wait(0.5),
+			subtext,
+			text,
+			Parallel {
+				Ease(text.color, 4, 255, 1),
+				Ease(subtext.color, 4, 255, 1),
+			},
+			PlayAudio("music", "meow", 0.5, true, true),
+			Wait(2),
+			Parallel {
+				Ease(text.color, 4, 0, 1),
+				Ease(subtext.color, 4, 0, 1)
+			}
 		}
-	end
-	
-	return PlayAudio("music", "greatjungle", 0.5, true, true)
+	)
 end

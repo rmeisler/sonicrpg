@@ -365,7 +365,10 @@ local Animate = require &quot;actions/Animate&quot;
 local AudioFade = require &quot;actions/AudioFade&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
 
+local ItemType = require &quot;util/ItemType&quot;
+
 return function(self)
+    local translate = GameState:isEquipped(&quot;babyt&quot;, ItemType.Accessory, &quot;Translator Collar&quot;)
     local walkout, walkin, sprites = scene.player:split()
 
     return Serial {
@@ -398,7 +401,7 @@ return function(self)
             MessageBox{message=&quot;Tails: There it is! {p60}{h Boulder Bay}!&quot;}
         },
         Wait(1),
-        MessageBox{message=&quot;Baby T: Home, sweet home!&quot;},
+        MessageBox{message=translate and &quot;Baby T: Home, sweet home!&quot; or &quot;Baby T: *grunts*&quot;},
         Wait(1),
         Animate(sprites.tails.sprite, &quot;idleright&quot;),
         MessageBox{message=&quot;Tails: It's just like in the story, Baby T! {p60}We'll find the Light of Mobius in no time!&quot;, closeAction=Wait(3)},
@@ -428,7 +431,7 @@ return function(self)
         Animate(sprites.babyt.sprite, &quot;shock&quot;),
         Parallel {
             sprites.babyt:hop(),
-            MessageBox{message=&quot;Baby T: Ah!! {p60}A Swatbot!&quot;}
+            MessageBox{message=translate and &quot;Baby T: Ah!! {p60}A Swatbot!&quot; or &quot;Baby T: *scared squeel*&quot;}
         },
         Animate(self.scene.objectLookup.B.sprite, &quot;seriousdown&quot;),
         MessageBox{message=&quot;B: Take it easy, kid. {p60}I'm no Swatbot.&quot;},

@@ -21,18 +21,24 @@ function Quicksand:construct(scene, layer, object)
 	self.exitObject = object.properties.exitObject
 	self.exitScene = object.properties.exitScene
 	self.depth = DEFAULT_DEPTH
-	self.active = object.properties.active or false
+	self.active = object.properties.active or GameState:isFlagSet(self:getFlag())
 	self.image = object.properties.image
 
 	NPC.init(self)
-	
+
 	self:addSceneHandler("update", Quicksand.update)
 end
 
 function Quicksand:update(dt)
 	local player = self.scene.player
 
-	if player.teleporting or not self.active then
+	-- Make visible
+	local imageObject = self.scene.objectLookup[self.image]
+	if self.active and imageObject and imageObject.sprite.color[4] == 0 then
+		imageObject.sprite.color[4] = 255
+	end
+
+	if not player or (player.teleporting or not self.active) then
 		return
 	end
 

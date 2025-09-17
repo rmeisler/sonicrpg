@@ -679,12 +679,10 @@ function Player:updateSprite()
 	end
 
 	local spriteWidth, spriteHeight = self.sprite.w,self.sprite.h
-	self.transform = Transform(
-		love.graphics.getWidth()/2 - spriteWidth,
-		love.graphics.getHeight()/2 - spriteHeight,
-		2,
-		2
-	)
+	self.transform.x = love.graphics.getWidth()/2 - spriteWidth
+	self.transform.y = love.graphics.getHeight()/2 - spriteHeight
+	self.transform.sx = 2
+	self.transform.sy = 2
 
 	self.width,self.height = spriteWidth, spriteHeight
 	self.halfWidth,self.halfHeight = math.floor(spriteWidth/2), math.floor(spriteHeight/2)

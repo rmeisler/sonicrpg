@@ -449,7 +449,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message = \"Inside the drawer is Tails' diary...\", blocking = true, textSpeed = 3},\n        Menu {\n        layout = Layout {\n            {Layout.Text(\"Read it?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        MessageBox{message=\"Diary: Snow days are the best! {p60}Everybody hangs out in Knothole instead of heading to the city, and Sonic actually has time to play with me!\", blocking = true, textSpeed = 3}\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                end}\n            },\n            cancellable = true,\n            selectedRow = 2,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)\n        },\n        Do(function()\n            self:refreshKeyHint()\n        end)\n    }\nend"
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox {message = \"Inside the drawer is Tails' diary...\", blocking = true, textSpeed = 3},\n        Menu {\n        layout = Layout {\n            {Layout.Text(\"Read it?\"), selectable = false},\n            {Layout.Text(\"Yes\"), choose = function(menu)\n                    menu:close()\n                    self.scene:run {\n                        menu,\n                        MessageBox{message=\"Tails: I already know what it says!\", blocking = true, textSpeed = 3}\n                    }\n                end},\n                {Layout.Text(\"No\"), choose = function(menu)\n                    menu:close()\n                end}\n            },\n            cancellable = true,\n            selectedRow = 2,\n            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)\n        },\n        Do(function()\n            self:refreshKeyHint()\n        end)\n    }\nend"
           }
         },
         {
@@ -542,6 +542,17 @@ return {
           }
         }
       }
+    },
+    {
+      type = "objectgroup",
+      name = "upper",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {}
     },
     {
       type = "tilelayer",

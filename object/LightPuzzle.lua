@@ -84,6 +84,7 @@ function LightPuzzle:touch(prevState)
 			Ease(quicksandImageObj.sprite.color, 4, 255, 1, "quad"),
 			Do(function()
 				quicksandObj.active = true
+				GameState:setFlag(quicksandObj:getFlag())
 			end),
 			Wait(0.5),
 			Parallel {

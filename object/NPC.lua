@@ -657,7 +657,7 @@ function NPC:maybeSwapLayer()
 		self.sprite:swapLayer(self.swapLayerMapping[self.scene.player.layer.name])
 	elseif wasAbovePlayer and not self.abovePlayer then
 		-- HACK
-		self.sprite:swapLayer("objects5")
+		self.sprite:swapLayer("objects7")
 	end
 end
 

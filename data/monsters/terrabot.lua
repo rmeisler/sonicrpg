@@ -72,6 +72,8 @@ return {
 		self.beamSpriteRight.transform.ox = 0
 		self.beamSpriteRight.color = {512,255,512,255}
 		self.beamSpriteRight:setAnimation("red")
+		
+		self.translate = GameState:isEquipped("babyt", ItemType.Accessory, "Translator Collar")
 	end,
 
 	behavior = function (self, target)
@@ -150,7 +152,7 @@ return {
 					AudioFade("music", 1, 0, 1),
 					PlayAudio("music", "sonicsad", 1.0, true, true)
 				},
-				MessageBox{message="Baby T: Uncle!{p60} W...{p60}what have they done to you!?"}
+				MessageBox{message=self.translate and "Baby T: Uncle!{p60} W...{p60}what have they done to you!?" or "Baby T: *cry*"}
 			},
 			Animate(self.scene.partyByName.b.sprite, "seriousdown"),
 			MessageBox{message="B: He's been roboticized..."},
@@ -158,7 +160,7 @@ return {
 			MessageBox{message="Tails: I'm sorry, Baby T..."},
 			MessageBox{message="Terrabot: ..."},
 			MessageBox{message="B: Your uncle is still in there, son. {p60}He's just buried under Robotnik's programming."},
-			MessageBox{message="Baby T: Uncle! {p60}Please remember who you are!!"},
+			MessageBox{message=self.translate and "Baby T: Uncle! {p60}Please remember who you are!!" or "Baby T: *whimper*"},
 			MessageBox{message="Terrabot: ..."},
 			Animate(self.scene.partyByName.b.sprite, "idleleft"),
 			MessageBox{message="B: Let me try."},
@@ -190,7 +192,7 @@ return {
 			Animate(self.scene.partyByName.babyt.sprite, "idleup"),
 			MessageBox{message="Tails: B!!"},
 			Animate(self.scene.partyByName.babyt.sprite, "roar"),
-			MessageBox{message="Baby T: Uncle!! Stop!!"},
+			MessageBox{message=self.translate and "Baby T: Uncle!! Stop!!" or "Baby T: *roar*!!"},
 			
 			-- Shoot lasers from eyes at whole party
 			Wait(2),
@@ -200,7 +202,7 @@ return {
 			shootLaser(self, self.scene.partyByName.babyt),
 			Animate(self.scene.partyByName.babyt.sprite, "dead"),
 			Wait(1),
-			MessageBox{message="Baby T: Ugh... why?..."},
+			MessageBox{message=self.translate and "Baby T: Ugh... why?..." or "Baby T: *weak whine*"},
 			Wait(1),
 			-- TO BE CONTINUED
 			Spawn(Serial {

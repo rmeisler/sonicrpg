@@ -3,19 +3,26 @@ local SpriteNode = require "object/SpriteNode"
 
 local Serial = require "actions/Serial"
 local Do = require "actions/Do"
+local PlayAudio = require "actions/PlayAudio"
 local YieldUntil = require "actions/YieldUntil"
 local Action = require "actions/Action"
+local Wait = require "actions/Wait"
 
 local Scene = require "scene/Scene"
 
 local SageSplashScene = class(Scene)
 
 function SageSplashScene:onEnter()
+	self.audio:registerAs("music", "sage", love.audio.newSource("audio/music/sage.ogg", "static"))
 	self.video = love.graphics.newVideo("art/splash/sage.ogv")
 	--self.video:getSource():setVolume(0.5)
-	self.video:play()
 
 	return Serial {
+		PlayAudio("music", "sage", 0.2, true),
+		Wait(0.5),
+		Do(function()
+			self.video:play()
+		end),
 		YieldUntil(function()
 			return not self.video:isPlaying()
 		end),

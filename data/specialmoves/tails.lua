@@ -19,15 +19,18 @@ return function(player)
 	-- Tails power is to fly around. What this allows him to do is fly from higher points of a map
 	-- down to lower points of the map. This is useful for puzzle solving, navigation, etc.
 	
+	
+	-- If not a layered map, Tails cannot fly
+	if not player.scene.layered then
+		player.scene.audio:playSfx("error")
+		return
+	end
+	
 	-- While flying, you can press X to change perspective (Tails' body to his drop spot)
 	player.flyOffsetY = player.flyOffsetY or player.defaultFlyOffsetY
 	player.tempFlyOffsetY = player.tempFlyOffsetY or 0
 	player.dropShadowOverrideSortOrderY = nil
 	player.threeDeeObjects = {}
-
-	print("flyOffsetY = "..tostring(player.flyOffsetY)..", tempFlyOffsetY = "..tostring(player.tempFlyOffsetY)..
-	      ", flyLandingLayer: "..tostring(player.flyLandingLayer)..", fly layer: "..tostring(player.scene.currentLayerId))
-
 	player.flyingHotspots = player.hotspots
 	player.origIsTouching = player.isTouching
 	player.isTouching = function(self, x, y, w, h)

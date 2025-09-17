@@ -62,5 +62,41 @@ return function(scene, hint)
 		}
 	end
 	
+	if hint == "from_mushroom" then
+		print("made it here!")
+		local quicksand = scene.objectLookup.Quicksand1
+		return BlockPlayer {
+			Do(function()
+				scene.player.noIdle = true
+				scene.player.nocollision = true
+				scene.player.teleporting = true
+				scene.player.sprite:setAnimation("shock")
+				quicksand.depth = scene.player.height * 2
+				scene.player.sprite:setCrop(quicksand.depth)
+			end),
+			Wait(2),
+			Parallel {
+				Ease(quicksand, "depth", 0, 4),
+				Ease(scene.player, "y", function() return scene.player.y - 150 end, 3),
+				Do(function()
+					scene.player.sprite:setCrop(quicksand.depth)
+				end)
+			},
+			Do(function()
+				scene.player.dropShadow.hidden = false
+				scene.player.dropShadowOverrideY = scene.player.y + scene.player.sprite.h + 215
+			end),
+			Ease(scene.player, "y", function() return scene.player.y + 280 end, 5),
+			Do(function()
+				scene.player.nocollision = false
+				scene.player.dropShadowOverrideY = nil
+				scene.player.noIdle = false
+				scene.player.teleporting = false
+				scene.player.state = "idledown"
+			end),
+			PlayAudio("music", "greatjungle", 0.5, true, true)
+		}
+	end
+	
 	return PlayAudio("music", "greatjungle", 0.5, true, true)
 end

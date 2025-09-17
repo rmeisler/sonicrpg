@@ -333,7 +333,7 @@
  </layer>
  <objectgroup name="lower"/>
  <objectgroup name="objects7">
-  <object id="371" name="PalmTree1" type="Chargeable" gid="5323" x="672" y="1536" width="68" height="68">
+  <object id="371" name="PalmTree1" type="Chargeable" gid="5323" x="670" y="1538" width="68" height="68">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="alignOffsetX" type="int" value="-32"/>
@@ -485,7 +485,7 @@
     <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
-  <object id="398" name="PalmTree2" type="Chargeable" gid="5323" x="1888" y="2016" width="68" height="68">
+  <object id="398" name="PalmTree2" type="Chargeable" gid="5323" x="1886" y="2018" width="68" height="68">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="alignOffsetX" type="int" value="-32"/>

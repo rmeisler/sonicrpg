@@ -179,7 +179,8 @@ function BasicScene:onEnter(args)
 					object.type == "SavePoint" or
 					object.type == "SceneEdge" or
 					object.type == "Door" or
-					object.type == "SpawnPoint"
+					object.type == "SpawnPoint" or
+					object.type == "Quicksand"
 				then
 					self.spawnPoints[object.name] = object
 				end
@@ -1086,7 +1087,7 @@ function BasicScene:swapLayer(toLayerNum, ignoreShadow)
 					object.sprite:swapLayer(object.swapLayerMapping[objLayer])
 				else
 					-- HACK
-					object.sprite:swapLayer("objects5")
+					object.sprite:swapLayer("objects7")
 				end
 			end
 		end

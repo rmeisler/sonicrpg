@@ -8,7 +8,7 @@ return {
   height = 70,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 371,
+  nextobjectid = 372,
   properties = {
     ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
@@ -743,6 +743,22 @@ return {
             ["orientation"] = "left",
             ["scene"] = "greatjungle3.lua",
             ["spawn_point"] = "Entrance1"
+          }
+        },
+        {
+          id = 371,
+          name = "Spawn 2",
+          type = "SpawnPoint",
+          shape = "rectangle",
+          x = 1664,
+          y = 640,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["orientation"] = "down"
           }
         }
       }
