@@ -1050,7 +1050,7 @@ return {
             ["ghost"] = true,
             ["key"] = "down",
             ["orientation"] = "up",
-            ["scene"] = "knothole.lua",
+            ["scene"] = "knothole_ep5.lua",
             ["spawn_point"] = "LookoutEntrance"
           }
         },

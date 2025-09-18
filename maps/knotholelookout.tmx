@@ -554,7 +554,7 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="down"/>
     <property name="orientation" value="up"/>
-    <property name="scene" type="file" value="knothole.lua"/>
+    <property name="scene" type="file" value="knothole_ep5.lua"/>
     <property name="spawn_point" value="LookoutEntrance"/>
    </properties>
   </object>

@@ -581,6 +581,7 @@ return {
           properties = {
             ["alignOffsetY"] = -12,
             ["defaultAnim"] = "sleeping",
+            ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/antoine.png"
           }

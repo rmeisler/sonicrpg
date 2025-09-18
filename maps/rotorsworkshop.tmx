@@ -259,6 +259,7 @@ end</property>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Do = require &quot;actions/Do&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
+local Action = require &quot;actions/Action&quot;
 
 return function(self)
     if GameState.leader == &quot;logan&quot; then
@@ -272,11 +273,17 @@ return function(self)
                 self.scene.player.noIdle = false
             end),
         }
+    elseif GameState.leader == &quot;sally&quot; then
+        return BlockPlayer {
+            MessageBox{message=&quot;Sally: Logan could use a new computer... {p60}this one's older than I am!&quot;}
+        }
+    elseif GameState.leader == &quot;tails&quot; then
+        return BlockPlayer {
+            MessageBox{message=&quot;Tails: *cough* {p20}*cough*{p60} this thing sure is dusty...&quot;}
+        }
     end
 
-    return BlockPlayer {
-        MessageBox{message=&quot;Sally: Logan could use a new computer... {p60}this one's older than I am!&quot;}
-    }
+    return Action()
 end</property>
     <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;

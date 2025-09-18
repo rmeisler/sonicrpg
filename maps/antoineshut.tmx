@@ -204,6 +204,7 @@
    <properties>
     <property name="alignOffsetY" type="float" value="-12"/>
     <property name="defaultAnim" value="sleeping"/>
+    <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
    </properties>

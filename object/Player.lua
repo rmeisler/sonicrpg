@@ -826,7 +826,8 @@ function Player:basicUpdate(dt)
 	if not self.noIdle then
 		self.state = Player.ToIdle[self.state] or self.state
 	end
-	
+
+	self.isTouching = Player.isTouching
 	local hotspots = self:updateCollisionObj()
 
 	hotspots.right_top.x = hotspots.right_top.x + self.collisionHSOffsets.right_top.x
