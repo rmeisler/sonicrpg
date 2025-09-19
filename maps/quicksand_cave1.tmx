@@ -124,7 +124,7 @@
     <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
-  <object id="22" name="Cat1" type="BasicNPC" gid="4565" x="352" y="416" width="64" height="64">
+  <object id="22" name="Cat1" type="BasicNPC" gid="4565" x="352" y="384" width="64" height="32">
    <properties>
     <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;

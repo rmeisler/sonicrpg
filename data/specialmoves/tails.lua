@@ -155,7 +155,9 @@ return function(player)
 			-- Left shift is down the whole time? Increase elevation until you run out of fly time
 			self.flyOffsetY = self.flyOffsetY + 4
 			self.y = self.y - 4
-			self.scene.camPos.y = self.scene.camPos.y - 4
+			if not self.scene.noPlayerPanning then
+				self.scene.camPos.y = self.scene.camPos.y - 4
+			end
 		elseif self.stopElevating and (love.keyboard.isDown("lshift") or self.forceDrop) and not self.stickyLShift then
 			-- Do not land unless all three dee objects agree
 			self.noLand = true
@@ -166,7 +168,7 @@ return function(player)
 				Parallel {
 					Ease(self, "flyOffsetY", self.flyOffsetY - (self.flyOffsetY + self.tempFlyOffsetY), 6, "linear"),
 					Ease(self, "y", self.y + (self.flyOffsetY + self.tempFlyOffsetY), 6, "linear"),
-					Ease(self.scene.camPos, "y", 0, 6, "linear")
+					not self.scene.noPlayerPanning and Ease(self.scene.camPos, "y", 0, 6, "linear") or Action()
 				},
 				Do(function()
 					-- Landing logic...
@@ -185,15 +187,21 @@ return function(player)
 			self.flyOffsetY = self.flyOffsetY - 1
 			self.y = self.y + 1
 
-			if self.scene.camPos.y < 0 then
-				self.scene.camPos.y = self.scene.camPos.y + 1
-			else
-				self.scene.camPos.y = 0
+			if not self.scene.noPlayerPanning then
+				if self.scene.camPos.y < 0 then
+					self.scene.camPos.y = self.scene.camPos.y + 1
+				else
+					self.scene.camPos.y = 0
+				end
 			end
 		end
 
 		-- Adjust camera
-		if math.abs(self.flyOffsetY + self.tempFlyOffsetY + self.scene.camPos.y) > 250 and not self.camMove and not self.noFlyPan then
+		if math.abs(self.flyOffsetY + self.tempFlyOffsetY + self.scene.camPos.y) > 250 and
+			not self.camMove and
+			not self.noFlyPan and
+			not self.scene.noPlayerPanning
+		then
 			self.camMove = true
 			self:run {
 				Ease(self.scene.camPos, "y", -(self.flyOffsetY + self.tempFlyOffsetY), 2),
@@ -267,8 +275,10 @@ return function(player)
 				self.flyOffsetY = 0
 			end
 
-			if self.scene.camPos.y < 0 then
-				self:run(Ease(self.scene.camPos, "y", 0, 2, "linear"))
+			if not self.scene.noPlayerPanning then
+				if self.scene.camPos.y < 0 then
+					self:run(Ease(self.scene.camPos, "y", 0, 2, "linear"))
+				end
 			end
 
 			-- Update hotspots

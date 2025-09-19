@@ -924,8 +924,10 @@ end
 function BasicScene:updatePlayerPos()
 	local xCap = love.graphics.getWidth()/2
 	local yCap = love.graphics.getHeight()/2
-	if self.player.doingSpecialMove then
-		--xCap = self.player.sprite.w*4
+	if self.noPlayerPanning then
+		self.player.sprite.transform.x = math.floor(self.player.x - self.player.width + self.camPos.x)
+		self.player.sprite.transform.y = math.floor(self.player.y - self.player.height + self.camPos.y)
+		return
 	end
 
 	if  self.player.x < xCap then
