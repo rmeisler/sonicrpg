@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="120" height="55" tilewidth="32" tileheight="32" infinite="0" nextobjectid="454">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="120" height="55" tilewidth="32" tileheight="32" infinite="0" nextobjectid="461">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/greatjunglecliffbg.png"/>
   <property name="currentLayer" type="int" value="7"/>
@@ -281,16 +281,6 @@
  </layer>
  <objectgroup name="lower"/>
  <objectgroup name="objects7">
-  <object id="442" name="Entrance1" type="SceneEdge" gid="7660" x="0" y="1152" width="64" height="160">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="key" value="left"/>
-    <property name="no_run" type="bool" value="true"/>
-    <property name="orientation" value="right"/>
-    <property name="scene" type="file" value="greatjungle3.lua"/>
-    <property name="spawn_point" value="Entrance2"/>
-   </properties>
-  </object>
   <object id="443" name="Spawn 1" type="Player" gid="5323" x="64" y="1056" width="32" height="32">
    <properties>
     <property name="orientation" value="right"/>
@@ -506,6 +496,17 @@ end</property>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/terrabot.png"/>
+   </properties>
+  </object>
+  <object id="460" name="Entrance1" type="SceneEdge" gid="7660" x="0" y="1152" width="64" height="160">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="key" value="left"/>
+    <property name="layerOverride" type="int" value="7"/>
+    <property name="no_run" type="bool" value="true"/>
+    <property name="orientation" value="right"/>
+    <property name="scene" type="file" value="greatjungle3.lua"/>
+    <property name="spawn_point" value="Entrance2"/>
    </properties>
   </object>
  </objectgroup>

@@ -233,6 +233,9 @@ function BasicScene:onEnter(args)
 			local spawn = self.spawnPoints[self.lastSpawnPoint]
 			local spawnNpc = self.objectLookup[spawn.name]
 			toLayer = spawnNpc.layer.name
+			if toLayer == "all" then
+				toLayer = "objects"..tostring(spawnNpc.object.properties.layerOverride or 1)
+			end
 
 			local spawnOffset = args.spawn_point_offset or
 				Transform(spawn.width/2, spawn.height/2)

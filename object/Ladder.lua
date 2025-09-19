@@ -16,6 +16,10 @@ function Ladder:construct(scene, layer, object)
 	self.topLayer = self.object.properties.topLayer
 	self.botLayer = self.object.properties.botLayer
 	self.nextFlyOffsetY = self.object.properties.nextFlyOffsetY
+	self.onClimbUp = self.object.properties.onClimbUp
+	if self.onClimbUp then
+		self.onClimbUp = assert(loadstring(self.onClimbUp))()
+	end
 	self.onClimbDown = self.object.properties.onClimbDown
 	if self.onClimbDown then
 		self.onClimbDown = assert(loadstring(self.onClimbDown))()
@@ -83,20 +87,22 @@ function Ladder:notColliding(player)
 		player.ladders[tostring(self)] = nil
 		player.noSpecialMove = false
 		player.noChangeChar = false
-		print("weird ladder stuff 1, layer = "..tostring(self.scene.currentLayerId))
-		--player.movespeed = player.origMoveSpeed
 		player.basicUpdate = player.updateFun
 
-		if self.botLayer and love.keyboard.isDown("down") then
-			self.scene:swapLayer(self.botLayer, true)
-		end
-		
-		if self.onClimbDown then
-			self.onClimbDown(self, player)
-		end
+		if love.keyboard.isDown("down") then
+			if self.botLayer then
+				self.scene:swapLayer(self.botLayer, true)
+			end
 
-		if love.keyboard.isDown("up") then
+			if self.onClimbDown then
+				self.onClimbDown(self, player)
+			end
+		elseif love.keyboard.isDown("up") then
 			player.flyOffsetY = self.nextFlyOffsetY
+			
+			if self.onClimbUp then
+				self.onClimbUp(self, player)
+			end
 		end
 	end
 end
@@ -127,9 +133,6 @@ function Ladder:whileColliding(player)
 		player.noSpecialMove = true
 		player.noChangeChar = true
 		player.state = "climb_1"
-		print("weird ladder stuff 2, layer = "..tostring(self.scene.currentLayerId))
-		--player.origMoveSpeed = player.movespeed
-		--player.movespeed = player.origMoveSpeed - 1
 		
 		self.climbAnimTime = 0
 		player.basicUpdate = self.updateFun

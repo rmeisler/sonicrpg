@@ -8,7 +8,7 @@ return {
   height = 55,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 454,
+  nextobjectid = 461,
   properties = {
     ["battlebg"] = "../art/backgrounds/greatjunglecliffbg.png",
     ["currentLayer"] = 7,
@@ -614,27 +614,6 @@ return {
       properties = {},
       objects = {
         {
-          id = 442,
-          name = "Entrance1",
-          type = "SceneEdge",
-          shape = "rectangle",
-          x = 0,
-          y = 1152,
-          width = 64,
-          height = 160,
-          rotation = 0,
-          gid = 7660,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["key"] = "left",
-            ["no_run"] = true,
-            ["orientation"] = "right",
-            ["scene"] = "greatjungle3.lua",
-            ["spawn_point"] = "Entrance2"
-          }
-        },
-        {
           id = 443,
           name = "Spawn 1",
           type = "Player",
@@ -926,6 +905,28 @@ return {
             ["hidden"] = true,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/terrabot.png"
+          }
+        },
+        {
+          id = 460,
+          name = "Entrance1",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 0,
+          y = 1152,
+          width = 64,
+          height = 160,
+          rotation = 0,
+          gid = 7660,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["key"] = "left",
+            ["layerOverride"] = 7,
+            ["no_run"] = true,
+            ["orientation"] = "right",
+            ["scene"] = "greatjungle3.lua",
+            ["spawn_point"] = "Entrance2"
           }
         }
       }

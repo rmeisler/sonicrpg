@@ -56,7 +56,8 @@ function SceneEdge:update(dt)
 	if  not self.scene.sceneMgr.transitioning and
 		self.state == self.STATE_TOUCHING and
 		(love.keyboard.isDown(self.object.properties.key) or
-			(GameState.leader == "sonic" and self.scene.player.doingSpecialMove and
+			((GameState.leader == "sonic" or GameState.leader == "babyt") and
+			 self.scene.player.doingSpecialMove and
 			 self.scene.player:isFacing(self.object.properties.key))) and
 		not self.readyMsgShowing and
 		(not self.needFlag or GameState:isFlagSet(self))
@@ -111,68 +112,70 @@ function SceneEdge:goToScene()
 	self.scene.player.ignoreSpecialMoveCollision = true
 	self.scene.player.cinematicStack = 1
 	
-	if self.object.properties.key == "up" then
-		self.scene.player:run {
-			Do(function()
-				if next(self.scene.player.ladders) == nil then
+	if not (GameState.leader == "tails" and self.scene.player.doingSpecialMove) then
+		if self.object.properties.key == "up" then
+			self.scene.player:run {
+				Do(function()
+					if next(self.scene.player.ladders) == nil then
+						self.scene.player.noIdle = true
+						self.scene.player.sprite:setAnimation("walkup")
+					end
+				end),
+				
+				Ease(self.scene.player, "y", self.scene.player.y - 100, 3, "linear"),
+				
+				Do(function()
+					if self.scene.player then
+						self.scene.player.noIdle = false
+					end
+				end)
+			}
+		elseif self.object.properties.key == "down" then
+			self.scene.player:run {
+				Do(function()
+					if next(self.scene.player.ladders) == nil then
+						self.scene.player.noIdle = true
+						self.scene.player.sprite:setAnimation("walkdown")
+					end
+				end),
+				
+				Ease(self.scene.player, "y", self.scene.player.y + 100, 3, "linear"),
+				
+				Do(function()
+					self.scene.player.noIdle = false
+				end)
+			}
+		elseif self.object.properties.key == "left" then
+			self.scene.player:run {
+				Do(function()
 					self.scene.player.noIdle = true
-					self.scene.player.sprite:setAnimation("walkup")
-				end
-			end),
-			
-			Ease(self.scene.player, "y", self.scene.player.y - 100, 3, "linear"),
-			
-			Do(function()
-				if self.scene.player then
-					self.scene.player.noIdle = false
-				end
-			end)
-		}
-	elseif self.object.properties.key == "down" then
-		self.scene.player:run {
-			Do(function()
-				if next(self.scene.player.ladders) == nil then
+					self.scene.player.sprite:setAnimation("walkleft")
+				end),
+				
+				Ease(self.scene.player, "x", self.scene.player.x - 100, 3, "linear"),
+				
+				Do(function()
+					if self.scene.player then
+						self.scene.player.noIdle = false
+					end
+				end)
+			}
+		elseif self.object.properties.key == "right" then
+			self.scene.player:run {
+				Do(function()
 					self.scene.player.noIdle = true
-					self.scene.player.sprite:setAnimation("walkdown")
-				end
-			end),
-			
-			Ease(self.scene.player, "y", self.scene.player.y + 100, 3, "linear"),
-			
-			Do(function()
-				self.scene.player.noIdle = false
-			end)
-		}
-	elseif self.object.properties.key == "left" then
-		self.scene.player:run {
-			Do(function()
-				self.scene.player.noIdle = true
-				self.scene.player.sprite:setAnimation("walkleft")
-			end),
-			
-			Ease(self.scene.player, "x", self.scene.player.x - 100, 3, "linear"),
-			
-			Do(function()
-				if self.scene.player then
-					self.scene.player.noIdle = false
-				end
-			end)
-		}
-	elseif self.object.properties.key == "right" then
-		self.scene.player:run {
-			Do(function()
-				self.scene.player.noIdle = true
-				self.scene.player.sprite:setAnimation("walkright")
-			end),
-			
-			Ease(self.scene.player, "x", self.scene.player.x + 100, 3, "linear"),
-			
-			Do(function()
-				if self.scene.player then
-					self.scene.player.noIdle = false
-				end
-			end)
-		}
+					self.scene.player.sprite:setAnimation("walkright")
+				end),
+				
+				Ease(self.scene.player, "x", self.scene.player.x + 100, 3, "linear"),
+				
+				Do(function()
+					if self.scene.player then
+						self.scene.player.noIdle = false
+					end
+				end)
+			}
+		end
 	end
 
 	self:onLeave()

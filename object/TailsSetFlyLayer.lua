@@ -6,6 +6,9 @@ local TailsSetFlyLayer = class(NPC)
 function TailsSetFlyLayer:construct(scene, layer, object)
 	self.ghost = true
 	self.flyLandingLayer = self.object.properties.flyLandingLayer
+	self.nextFlyLandingLayer = self.object.properties.nextFlyLandingLayer
+	self.nextFlyOffsetY = self.object.properties.nextFlyOffsetY
+	self.tempFlyOffsetY = self.object.properties.tempFlyOffsetY
 
 	NPC.init(self)
 end
@@ -17,6 +20,10 @@ function TailsSetFlyLayer:whileColliding(player, prevState)
 	end
 
 	player.flyLandingLayer = self.flyLandingLayer
+	player.nextFlyLandingLayer = self.nextFlyLandingLayer
+	player.flyOffsetY = 0
+	player.nextFlyOffsetY = self.nextFlyOffsetY
+	player.tempFlyOffsetY = self.tempFlyOffsetY
 end
 
 

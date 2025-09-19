@@ -8,7 +8,7 @@ return {
   height = 180,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 364,
+  nextobjectid = 365,
   properties = {
     ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
@@ -2833,26 +2833,6 @@ return {
           }
         },
         {
-          id = 360,
-          name = "Entrance2",
-          type = "SceneEdge",
-          shape = "rectangle",
-          x = 1888,
-          y = 5056,
-          width = 384,
-          height = 64,
-          rotation = 0,
-          gid = 7660,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["key"] = "down",
-            ["no_run"] = true,
-            ["orientation"] = "up",
-            ["scene"] = "greatjungle2.lua"
-          }
-        },
-        {
           id = 361,
           name = "TailsWP",
           type = "BasicNPC",
@@ -3462,6 +3442,27 @@ return {
           visible = false,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 364,
+          name = "Entrance2",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 1888,
+          y = 5056,
+          width = 384,
+          height = 64,
+          rotation = 0,
+          gid = 7660,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["key"] = "down",
+            ["layerOverride"] = 7,
+            ["no_run"] = true,
+            ["orientation"] = "up",
+            ["scene"] = "greatjungle2.lua"
           }
         }
       }

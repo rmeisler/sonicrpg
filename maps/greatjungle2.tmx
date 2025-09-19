@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="80" height="70" tilewidth="32" tileheight="32" infinite="0" nextobjectid="372">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="80" height="70" tilewidth="32" tileheight="32" infinite="0" nextobjectid="374">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/greatjunglebg.png"/>
   <property name="currentLayer" type="int" value="7"/>
@@ -330,16 +330,6 @@
     <property name="orientation" value="down"/>
    </properties>
   </object>
-  <object id="101" name="Entrance" type="SceneEdge" gid="7660" x="288" y="64" width="384" height="64">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="key" value="up"/>
-    <property name="no_run" type="bool" value="true"/>
-    <property name="orientation" value="down"/>
-    <property name="scene" type="file" value="greatjungle.lua"/>
-    <property name="spawn_point" value="Entrance2"/>
-   </properties>
-  </object>
   <object id="361" name="Bush" type="BasicNPC" gid="5323" x="1600" y="640" width="192" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -369,16 +359,6 @@
    <properties>
     <property name="exitScene" type="file" value="quicksand_cave1.lua"/>
     <property name="image" value="Quicksand1Image"/>
-   </properties>
-  </object>
-  <object id="369" name="Entrance2" type="SceneEdge" gid="7660" x="2464" y="704" width="64" height="256">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="key" value="right"/>
-    <property name="no_run" type="bool" value="true"/>
-    <property name="orientation" value="left"/>
-    <property name="scene" type="file" value="greatjungle3.lua"/>
-    <property name="spawn_point" value="Entrance1"/>
    </properties>
   </object>
   <object id="371" name="Spawn 2" type="SpawnPoint" gid="5323" x="1664" y="640" width="32" height="32">
@@ -548,6 +528,28 @@ return function(self)
         end)
     }}
 end</property>
+   </properties>
+  </object>
+  <object id="372" name="Entrance2" type="SceneEdge" gid="7660" x="2464" y="736" width="64" height="256">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="key" value="right"/>
+    <property name="layerOverride" type="int" value="7"/>
+    <property name="no_run" type="bool" value="true"/>
+    <property name="orientation" value="left"/>
+    <property name="scene" type="file" value="greatjungle3.lua"/>
+    <property name="spawn_point" value="Entrance1"/>
+   </properties>
+  </object>
+  <object id="373" name="Entrance" type="SceneEdge" gid="7660" x="256" y="64" width="384" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="key" value="up"/>
+    <property name="layerOverride" type="int" value="7"/>
+    <property name="no_run" type="bool" value="true"/>
+    <property name="orientation" value="down"/>
+    <property name="scene" type="file" value="greatjungle.lua"/>
+    <property name="spawn_point" value="Entrance2"/>
    </properties>
   </object>
  </objectgroup>
