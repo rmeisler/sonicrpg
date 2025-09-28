@@ -30,8 +30,14 @@ return function(player)
 	player.flyOffsetY = player.flyOffsetY or player.defaultFlyOffsetY
 	player.tempFlyOffsetY = player.tempFlyOffsetY or 0
 	player.dropShadowOverrideSortOrderY = nil
-	player.threeDeeObjects = {}
-	player.flyingHotspots = player.hotspots
+
+	local hotspots = player.hotspots
+	player.flyingHotspots = {
+		right_top = {x = hotspots.right_top.x, y = hotspots.right_top.y + player.flyOffsetY},
+		right_bot = {x = hotspots.right_bot.x, y = hotspots.right_bot.y + player.flyOffsetY},
+		left_top  = {x = hotspots.left_top.x,  y = hotspots.left_top.y + player.flyOffsetY},
+		left_bot  = {x = hotspots.left_bot.x,  y = hotspots.left_bot.y + player.flyOffsetY},
+	}
 	player.origIsTouching = player.isTouching
 	player.isTouching = function(self, x, y, w, h)
 		local tw = self.scene:getTileWidth()
@@ -45,6 +51,8 @@ return function(player)
 			(self.flyingHotspots.left_bot.y + fuzz) >= y and
 			(self.flyingHotspots.right_top.y - fuzz) <= (y + math.max(th*2, h))
 	end
+	
+	print("flyOffsetY = "..tostring(player.flyOffsetY).." tempFlyOffsetY = "..tostring(player.tempFlyOffsetY))
 
 	-- Flying is a toggle, so once you press lshift, you begin flying and stay flying until
 	-- you press lshift again
@@ -243,7 +251,6 @@ return function(player)
 			self.stopElevating = false
 			self.basicUpdate = self.updateFun
 			self.movespeed = self.baseMoveSpeed
-			self.isTouching = self.origIsTouching
 
 			local state_from_fly = {
 				flyleft = "idleleft",
@@ -270,6 +277,7 @@ return function(player)
 					self.flyOffsetY = 0
 					self.tempFlyOffsetY = 0
 					self.flyLandingLayer = self.nextFlyLandingLayer
+					self.isTouching = self.origIsTouching
 				end
 			elseif self.flyOffsetY < 0.0 then
 				self.flyOffsetY = 0
@@ -286,6 +294,8 @@ return function(player)
 			hotspots.right_bot.y = hotspots.right_bot.y - self.flyOffsetY
 			hotspots.left_top.y = hotspots.left_top.y - self.flyOffsetY
 			hotspots.left_bot.y = hotspots.left_bot.y - self.flyOffsetY
+			
+			print("landing")
 
 			-- If we can't move after landing, reset our position to where we took off from and flicker
 			if self.y > self.scene:getMapHeight() or not (

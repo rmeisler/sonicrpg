@@ -81,6 +81,12 @@ return {
     },
 	
 	{
+        type = "map",
+        file = "maps/worldmap.lua",
+		--primary = true -- testing
+    },
+	
+	{
 		type = "gradient",
 		name = "mboxgradient",
 		args = string.dump(function()
@@ -559,6 +565,12 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/lookout.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/worldmap.ogg",
 		category = "music",
 		looping = true
 	},

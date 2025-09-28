@@ -22,21 +22,21 @@ local TinyPlayer = class(Player)
 function TinyPlayer:construct(scene, layer, object)
 	-- Set scene reference to this player
 	scene.player = self
-	
 	self.worldLocations = {}
 	
+	self.playerType = "TinyPlayer"
+end
+
+function TinyPlayer:updateSprite()
+	Player.updateSprite(self)
+
 	self.sprite.transform.sx = 1.45
 	self.sprite.transform.sy = 1.45
 	self.noSpecialMove = true
-	--self.noChangeChar = true
 	self.movespeed = 2
-	
-	print("remove dropshadow")
 	self.dropShadow:remove()
 	
 	self:updateHotspots()
-	
-	self.playerType = "TinyPlayer"
 end
 
 function TinyPlayer:updateHotspots()

@@ -1736,8 +1736,8 @@ return {
           gid = 5323,
           visible = true,
           properties = {
-            ["depth"] = 64,
-            ["flyHeight"] = 200,
+            ["depth"] = 96,
+            ["flyHeight"] = 300,
             ["flyLandingLayer"] = 6,
             ["ghost"] = true,
             ["nextFlyLandingLayer"] = 7,

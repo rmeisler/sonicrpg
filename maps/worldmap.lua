@@ -8,7 +8,7 @@ return {
   height = 100,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 297,
+  nextobjectid = 299,
   properties = {
     ["onload"] = "actions/worldmap.lua"
   },
@@ -447,7 +447,7 @@ return {
         {
           id = 1,
           name = "Spawn 1",
-          type = "TinyPlayer",
+          type = "SpawnPoint",
           shape = "rectangle",
           x = 1040,
           y = 1175,
@@ -457,7 +457,8 @@ return {
           gid = 3521,
           visible = true,
           properties = {
-            ["orientation"] = "down"
+            ["orientation"] = "down",
+            ["tiny"] = true
           }
         },
         {
@@ -3246,9 +3247,9 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 544,
-          y = 2240,
-          width = 736,
-          height = 1344,
+          y = 1888,
+          width = 768,
+          height = 992,
           rotation = 0,
           gid = 3521,
           visible = true,
@@ -4490,7 +4491,8 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["orientation"] = "down"
+            ["orientation"] = "down",
+            ["tiny"] = true
           }
         },
         {
@@ -4507,7 +4509,44 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["orientation"] = "down"
+            ["orientation"] = "down",
+            ["tiny"] = true
+          }
+        },
+        {
+          id = 297,
+          name = "RegionGreatJungle",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 608,
+          y = 2208,
+          width = 352,
+          height = 160,
+          rotation = 0,
+          gid = 3521,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["notColliding"] = "return function(self, player)\n    if player.onLocation == self then\n        player.onLocation = nil\n        self.scene:removeHandler(\"keytriggered\", player.greatJungleCallback)\n        self.scene.pressX.color = {100,100,100,255}\n    end\nend",
+            ["whileColliding"] = "local TypeText = require \"actions/TypeText\"\nlocal Serial = require \"actions/Serial\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal YieldUntil = require \"actions/YieldUntil\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Menu = require \"actions/Menu\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nreturn function(self, player, prevState)\n    if player.onLocation == self then\n        return\n    end\n    player.onLocation = self\n    self.scene.pressX.color = {255,255,255,255}\n\n    player.greatJungleCallback = function(key)\n        if player.onLocation == self and\n           not player.onSubLocation and\n           not self.scene.sceneMgr.transitioning and\n           key == \"x\"\n       then\n            self.scene:run(BlockPlayer {\n                Menu {\n                    layout = Layout {\n                        {Layout.Text(\"Enter The Great Jungle?\"), selectable = false},\n                        {Layout.Text(\"Yes\"), choose = function(menu)\n                            menu:close()\n                            self.scene.player:run(BlockPlayer {\n                                menu,\n                                Do(function()\n                                    self.scene:changeScene{map=\"greatjungle\", hint=\"fromworldmap\", fadeOutSpeed = 0.5}\n                                    self.scene:removeHandler(\"keytriggered\", player.greatJungleCallback)\n                                end)\n                            })\n                         end},\n                        {Layout.Text(\"No\"), choose = function(menu)\n                            menu:close()\n                         end}\n                    },\n                    cancellable = true,\n                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n                    selectedRow = 2\n                }\n            })\n        end\n    end\n    self.scene:addHandler(\"keytriggered\", player.greatJungleCallback)\n\n    self.typeText = TypeText(\n        Transform(50, 500),\n        {255, 255, 255, 0},\n        FontCache.TechnoMed,\n        \"Great Jungle\",\n        100\n    )\n    self.scene:run(Spawn(Serial {\n        self.typeText,\n        Ease(self.typeText.color, 4, 255, 1),\n        YieldUntil(function() return self.state ~= self.STATE_TOUCHING end),\n        Ease(self.typeText.color, 4, 0, 1)\n    }))\nend"
+          }
+        },
+        {
+          id = 298,
+          name = "GreatJungleSpawn",
+          type = "SpawnPoint",
+          shape = "rectangle",
+          x = 768,
+          y = 2048,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 3521,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["orientation"] = "down",
+            ["tiny"] = true
           }
         }
       }

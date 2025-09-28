@@ -192,10 +192,11 @@ function NPC:distanceFromPlayerSq(ignoreCache)
 	return self.distanceFromPlayer
 end
 
-function NPC:updateCollision()
+function NPC:updateCollision(layerName)
 	self.collision = {}
 
-	local collisionLayer = self.scene.objectCollisionLayer[self.layer.name]
+	print(layerName or self.layer.name)
+	local collisionLayer = self.scene.objectCollisionLayer[layerName or self.layer.name]
 	if not self.object.properties.nocollision and collisionLayer then
 		local sx,sy = self.scene:worldCoordToCollisionCoord(self.object.x, self.object.y)
 		local dx,dy = self.scene:worldCoordToCollisionCoord(self.object.x + self.object.width, self.object.y + self.object.height)
@@ -220,8 +221,8 @@ function NPC:onPuzzleSolve()
 	return Action()
 end
 
-function NPC:removeCollision()
-    local collisionLayer = self.scene.objectCollisionLayer[self.layer.name]
+function NPC:removeCollision(layerName)
+    local collisionLayer = self.scene.objectCollisionLayer[layerName or self.layer.name]
 	if collisionLayer then
 		for _, pair in pairs(self.collision or {}) do
 			if collisionLayer[pair[2]] then

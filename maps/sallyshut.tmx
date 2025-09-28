@@ -341,15 +341,82 @@ return function(self)
         noPressX = true,
         closeAction = YieldUntil(self, &quot;menuClosing&quot;)
     }
-    return BlockPlayer {
-        PlayAudio(&quot;sfx&quot;, &quot;nicolebeep&quot;, 1.0, true),
-        Parallel {
-            descBox,
-            Serial {
-                Wait(1),
-                Menu {
-                    layout = Layout {
-                        {Layout.Text(&quot;Practice fighting&quot;), choose = function(menu)
+
+    layout = {
+        {Layout.Text(&quot;Give me a hint&quot;), choose = function(menu)
+            menu:close()
+            self.menuClosing = true
+            local msg = &quot;&quot;
+            if GameState:isFlagSet(&quot;ep5_knothole&quot;) then
+                msg = &quot;Press left-shift to fly and left-shift again to fast fall!&quot;
+            elseif GameState:isFlagSet(&quot;ep4_tails_snowman&quot;) then
+                msg = &quot;Ride the pulley out of Knothole and head to the Great Forest to get the Freedom Stormer!&quot;
+            elseif GameState:isFlagSet(&quot;ep4_introdone&quot;) then
+                 msg = &quot;Tails could use some help with that snowman...&quot;
+            elseif GameState:isFlagSet(&quot;ep3_intro&quot;) then
+                msg = &quot;It's a beautiful day outside! {p60}Why are you spending it inside on the computer?&quot;
+            elseif GameState:isFlagSet(&quot;ep3_knotholerun&quot;) then
+                msg = &quot;It sounds like there's quite a bit of arguing between the Freedom Fighters and the Rebellion, doesn't it?&quot;
+            elseif GameState:isFlagSet(&quot;ep3_ffmeetingover&quot;) then
+                msg = &quot;Ride the pulley out of Knothole and head East to the Dark Swamp!{p60}... But before you do that{p60}... maybe take a rest, huh?&quot;
+            elseif GameState:isFlagSet(&quot;ep3_sallynap&quot;) then
+                msg = &quot;At this time of night, the view from the {h Lookout} must be breathtaking.&quot;
+            elseif GameState:isFlagSet(&quot;ep3_sallynap_over&quot;) then
+                msg = &quot;Ride the pulley out of Knothole and head East to the Dark Swamp!&quot;
+            end
+
+            self.scene:run {
+                menu,
+                descBox,
+                MessageBox {
+                    message = &quot;Computer: &quot;..msg,
+                    blocking = true,
+                    textSpeed = 4
+                }
+            }
+        end, desc = &quot;Forgot what you were supposed to be doing?&quot;}
+    }
+
+    if not GameState:isFlagSet(&quot;ep5_knothole&quot;) then
+        table.insert(layout, 1, {Layout.Text(&quot;Practice sneaking&quot;), choose = function(menu)
+                            self.scene:run {
+                                Parallel {menu,
+                                Menu {
+                                    layout = Layout {
+                                        {Layout.Text(&quot;Are you sure?&quot;), selectable = false},
+                                        {Layout.Text(&quot;Yes&quot;), choose = function(menu2)
+                                            menu:close()
+                                            menu2:close()
+                                            self.menuClosing = true
+                                            self.scene:run {
+                                                menu2,
+                                                menu,
+                                                descBox,
+                                                Do(function()
+                                                    self.scene.audio:stopMusic()
+                                                    self.scene:changeScene{map=&quot;stealthtut1&quot;, fun=&quot;pushScene&quot;, tutorial=true}
+                                                end),
+                                                MessageBox {
+                                                    message = &quot;Computer: Stealth simulation complete.&quot;,
+                                                    blocking = true
+                                                },
+                                                -- Hack to fix bug returning from battle
+                                                Do(function()
+                                                    self.scene.player.cinematicStack = 1
+                                                end)
+                                            }
+                                        end},
+                                        {Layout.Text(&quot;No&quot;), choose = function(menu2)
+                                            menu2:close()
+                                        end}
+                                    },
+                                    cancellable = true,
+                                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2+30),
+                                    selectedRow = 2
+                                }}
+                            }
+                        end, desc = &quot;Fighting isn't the only option.&quot;})
+        table.insert(layout, 1, {Layout.Text(&quot;Practice fighting&quot;), choose = function(menu)
                             local fightMenuOpts = {{Layout.Text(&quot;Which boss?&quot;), selectable = false}}
                             local bots = {&quot;rover&quot;, &quot;juggerbot&quot;, &quot;cyclops&quot;}
                             for _, name in pairs(bots) do
@@ -402,76 +469,17 @@ return function(self)
                                     selectedRow = 2
                                 }}
                             }
-                        end, desc = &quot;Practice fighting against past bosses.&quot;},
-                        {Layout.Text(&quot;Practice sneaking&quot;), choose = function(menu)
-                            self.scene:run {
-                                Parallel {menu,
-                                Menu {
-                                    layout = Layout {
-                                        {Layout.Text(&quot;Are you sure?&quot;), selectable = false},
-                                        {Layout.Text(&quot;Yes&quot;), choose = function(menu2)
-                                            menu:close()
-                                            menu2:close()
-                                            self.menuClosing = true
-                                            self.scene:run {
-                                                menu2,
-                                                menu,
-                                                descBox,
-                                                Do(function()
-                                                    self.scene.audio:stopMusic()
-                                                    self.scene:changeScene{map=&quot;stealthtut1&quot;, fun=&quot;pushScene&quot;, tutorial=true}
-                                                end),
-                                                MessageBox {
-                                                    message = &quot;Computer: Stealth simulation complete.&quot;,
-                                                    blocking = true
-                                                },
-                                                -- Hack to fix bug returning from battle
-                                                Do(function()
-                                                    self.scene.player.cinematicStack = 1
-                                                end)
-                                            }
-                                        end},
-                                        {Layout.Text(&quot;No&quot;), choose = function(menu2)
-                                            menu2:close()
-                                        end}
-                                    },
-                                    cancellable = true,
-                                    transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2+30),
-                                    selectedRow = 2
-                                }}
-                            }
-                        end, desc = &quot;Fighting isn't the only option.&quot;},
-                        {Layout.Text(&quot;Give me a hint&quot;), choose = function(menu)
-                            menu:close()
-                            self.menuClosing = true
-                            local msg = &quot;&quot;
-                            if GameState:isFlagSet(&quot;ep4_tails_snowman&quot;) then
-                                msg = &quot;Ride the pulley out of Knothole and head to the Great Forest to get the Freedom Stormer!&quot;
-                            elseif GameState:isFlagSet(&quot;ep4_introdone&quot;) then
-                                 msg = &quot;Tails could use some help with that snowman...&quot;
-                            elseif GameState:isFlagSet(&quot;ep3_intro&quot;) then
-                                msg = &quot;It's a beautiful day outside! {p60}Why are you spending it inside on the computer?&quot;
-                            elseif GameState:isFlagSet(&quot;ep3_knotholerun&quot;) then
-                                msg = &quot;It sounds like there's quite a bit of arguing between the Freedom Fighters and the Rebellion, doesn't it?&quot;
-                            elseif GameState:isFlagSet(&quot;ep3_ffmeetingover&quot;) then
-                                msg = &quot;Ride the pulley out of Knothole and head East to the Dark Swamp!{p60}... But before you do that{p60}... maybe take a rest, huh?&quot;
-                            elseif GameState:isFlagSet(&quot;ep3_sallynap&quot;) then
-                                msg = &quot;At this time of night, the view from the {h Lookout} must be breathtaking.&quot;
-                            elseif GameState:isFlagSet(&quot;ep3_sallynap_over&quot;) then
-                                msg = &quot;Ride the pulley out of Knothole and head East to the Dark Swamp!&quot;
-                            end
+                        end, desc = &quot;Practice fighting against past bosses.&quot;})
+    end
 
-                            self.scene:run {
-                                menu,
-                                descBox,
-                                MessageBox {
-                                    message = &quot;Computer: &quot;..msg,
-                                    blocking = true,
-                                    textSpeed = 4
-                                }
-                            }
-                        end, desc = &quot;Forgot what you were supposed to be doing?&quot;}
-                    },
+    return BlockPlayer {
+        PlayAudio(&quot;sfx&quot;, &quot;nicolebeep&quot;, 1.0, true),
+        Parallel {
+            descBox,
+            Serial {
+                Wait(1),
+                Menu {
+                    layout = Layout(layout),
                     cancellable = true,
                     withClose = Do(function() descBox:close() end),
                     transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30)

@@ -15,6 +15,7 @@ function ThreeDeeMushroom:construct(scene, layer, object)
 	self.visualObject = self.object.properties.visualObject
 	self.flyHeight = self.object.properties.flyHeight
 	self.exitScene = self.object.properties.exitScene
+	self.landingOffsetY = 64
 end
 
 function ThreeDeeMushroom:land()

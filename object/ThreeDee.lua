@@ -11,6 +11,7 @@ function ThreeDee:construct(scene, layer, object)
 	self.nextFlyLandingLayer = self.object.properties.nextFlyLandingLayer
 	self.nextFlyOffsetY = self.object.properties.nextFlyOffsetY
 	self.priorityLayer = self.object.properties.priorityLayer
+	self.landingOffsetY = 30
 	self.lastOnTop = false
 
 	NPC.init(self)
@@ -19,7 +20,7 @@ end
 function ThreeDee:whileColliding(player, prevState)
 	if GameState.leader ~= "tails" or
 	   not player.doingSpecialMove or
-	   player.flyOffsetY < (self.object.height - 20)
+	   player.flyOffsetY < (self.object.height - self.landingOffsetY)
 	then
 		return
     end
@@ -36,7 +37,7 @@ function ThreeDee:whileColliding(player, prevState)
 	end]]
 
     if self:onTop() then
-		player.tempFlyOffsetY = -self.object.height + 20
+		player.tempFlyOffsetY = -self.object.height + self.landingOffsetY
 		player.flyLandingLayer = self.flyLandingLayer
 		player.nextFlyLandingLayer = self.nextFlyLandingLayer
 		player.nextFlyOffsetY = self.nextFlyOffsetY
@@ -51,6 +52,8 @@ function ThreeDee:whileColliding(player, prevState)
 		player.nextFlyOffsetY = 0
 		player.sprite.sortOrderY = nil
 		player.dropShadow.sprite.sortOrderY = nil
+		
+		print("1. tempFlyOffsetY = 0")
 
 		if self.lastOnTop and player.flyOffsetY > 500 then
 			--player:run(Ease(self.scene.camPos, "y", -player.flyOffsetY, 2, "linear"))
@@ -89,7 +92,9 @@ function ThreeDee:notColliding(player, prevState)
 		player.flyLandingLayer = self.nextFlyLandingLayer
 		player.sprite.sortOrderY = nil
 		player.dropShadow.sprite.sortOrderY = nil
-		
+
+		print("2. tempFlyOffsetY = 0 "..self.object.name.." "..tostring(self.scene.currentLayerId))
+
 		if self.lastOnTop and player.flyOffsetY > 500 then
 			--player:run(Ease(self.scene.camPos, "y", -player.flyOffsetY, 2, "linear"))
 		end

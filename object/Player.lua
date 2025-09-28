@@ -117,6 +117,9 @@ function Player:construct(scene, layer, object)
 	-- A hashset of keyhints to suppress
 	self.hidekeyhints = {}
 	
+	-- A hashset of threedee objects we are touching
+	self.threeDeeObjects = {}
+	
 	-- Current keyhint sprite and obj
 	self.curKeyHintSprite = nil
 	self.curKeyHint = nil
@@ -806,19 +809,21 @@ function Player:basicUpdate(dt)
 	self:updateShadows()
 	self:updateVisuals()
 	self:updateKeyHint()
-	
-	-- Update drop shadow position
-	self.dropShadow.x = self.x - 22
-	self.dropShadow.y = self.dropShadowOverrideY or self.y + self.sprite.h - 15
-	self.dropShadow.sprite.sortOrderY = self.dropShadowOverrideSortOrderY or self.sprite.transform.y - 1
-	self.dropShadow.sprite.transform.sx = 1.3
 
-	-- HACK: Rotor is big
-	if GameState.leader == "rotor" then
-		self.dropShadow.x = self.x - 5
-	elseif GameState.leader == "babyt" then
-		self.dropShadow.x = self.x - 60
-		self.dropShadow.sprite.transform.sx = 3
+	if self.dropShadow and self.dropShadow.sprite then
+		-- Update drop shadow position
+		self.dropShadow.x = self.x - 22
+		self.dropShadow.y = self.dropShadowOverrideY or self.y + self.sprite.h - 15
+		self.dropShadow.sprite.sortOrderY = self.dropShadowOverrideSortOrderY or self.sprite.transform.y - 1
+		self.dropShadow.sprite.transform.sx = 1.3
+
+		-- HACK: Rotor is big
+		if GameState.leader == "rotor" then
+			self.dropShadow.x = self.x - 5
+		elseif GameState.leader == "babyt" then
+			self.dropShadow.x = self.x - 60
+			self.dropShadow.sprite.transform.sx = 3
+		end
 	end
 
 	local prevState = self.state

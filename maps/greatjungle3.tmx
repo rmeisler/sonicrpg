@@ -807,8 +807,8 @@
   </object>
   <object id="412" name="3DMushroom1" type="ThreeDeeMushroom" gid="5323" x="4288" y="1856" width="80" height="224">
    <properties>
-    <property name="depth" type="int" value="64"/>
-    <property name="flyHeight" type="int" value="200"/>
+    <property name="depth" type="int" value="96"/>
+    <property name="flyHeight" type="int" value="300"/>
     <property name="flyLandingLayer" type="int" value="6"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="nextFlyLandingLayer" type="int" value="7"/>
