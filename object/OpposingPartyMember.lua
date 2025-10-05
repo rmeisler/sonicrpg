@@ -49,6 +49,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.hurtSfx = data.hurtSfx or "smack"
 	self.transient = data.transient or false
 	self.behavior = data.behavior or function() end
+	self.onDrop = data.onDrop or function(carriedTarget, carrier, target) return target:takeDamage(carriedTarget.stats) end
 	self.onDead = data.onDead or function() return Action() end
 	self.onEnter = data.onEnter or function() return Action() end
 	self.onPreInit = data.onPreInit or function() end
@@ -154,7 +155,8 @@ function OpposingPartyMember:beginTurn()
 			self.chanceToEscape = self.chanceToEscape * 2
 		end
 		
-		if math.random() > self.chanceToEscape then
+		local escaped = math.random() > self.chanceToEscape and not self.noEscape
+		if not escaped then
 			self.action = Serial {
 				shake,
 				Telegraph(self, self.name.." is immobilized!", {self.color[1],self.color[2],self.color[3],50}),

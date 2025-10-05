@@ -6,8 +6,8 @@
   <property name="layerHeightMap" value="objects:320,objects2:160,objects3:20"/>
   <property name="layered" type="bool" value="true"/>
   <property name="onload" type="file" value="actions/greatjungle.lua"/>
-  <property name="regionName" value="Entrance"/>
-  <property name="sectorName" value="Great Jungle"/>
+  <property name="regionName" value="Great Jungle"/>
+  <property name="sectorName" value="Entrance"/>
  </properties>
  <tileset firstgid="1" source="knothole.tsx"/>
  <tileset firstgid="3485" source="knotholeindoors.tsx"/>

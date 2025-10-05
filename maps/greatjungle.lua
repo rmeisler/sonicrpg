@@ -15,8 +15,8 @@ return {
     ["layerHeightMap"] = "objects:320,objects2:160,objects3:20",
     ["layered"] = true,
     ["onload"] = "actions/greatjungle.lua",
-    ["regionName"] = "Entrance",
-    ["sectorName"] = "Great Jungle"
+    ["regionName"] = "Great Jungle",
+    ["sectorName"] = "Entrance"
   },
   tilesets = {
     {

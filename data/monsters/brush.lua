@@ -49,6 +49,19 @@ return {
 
 	skipAnimation = true,
 	
+	onDrop = function (self, carrier, target)
+		local targetSprite = target:getSprite()
+		return Serial {
+			Do(function()
+				target.state = target.STATE_IMMOBILIZED
+				target.noEscape = true
+			end),
+
+			Ease(targetSprite.transform, "x", function() return targetSprite.transform.x - 5 end, 6),
+			Ease(targetSprite.transform, "x", function() return targetSprite.transform.x + 5 end, 6)
+		}
+	end,
+
 	onInit = function(self)
 		self.scene:addMonster("brush_spawn")
 		local flower = self.scene:addMonster("flower")

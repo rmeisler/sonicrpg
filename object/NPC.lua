@@ -195,7 +195,6 @@ end
 function NPC:updateCollision(layerName)
 	self.collision = {}
 
-	print(layerName or self.layer.name)
 	local collisionLayer = self.scene.objectCollisionLayer[layerName or self.layer.name]
 	if not self.object.properties.nocollision and collisionLayer then
 		local sx,sy = self.scene:worldCoordToCollisionCoord(self.object.x, self.object.y)
