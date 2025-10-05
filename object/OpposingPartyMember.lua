@@ -323,7 +323,7 @@ function OpposingPartyMember:die()
 	self.onAttack = nil
 	
 	local extraAnim = Action()
-	if self.state == BattleActor.STATE_IMMOBILIZED then
+	if self.state == BattleActor.STATE_IMMOBILIZED and self.immobilizedBy == "bunny" then
 		extraAnim = self.scene.partyByName["bunny"].reverseAnimation
 	end
 	

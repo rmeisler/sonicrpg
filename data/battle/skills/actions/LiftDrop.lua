@@ -19,7 +19,7 @@ local Layout = require "util/Layout"
 local Transform = require "util/Transform"
 local TargetType = require "util/TargetType"
 
-local dropAction = function(self, target, carriedTarget)
+local dropAction = function(self, target, carriedTarget, dropShadow)
 	local lastXForm = Transform.from(self.sprite.transform)
 	local FLY_HEIGHT = 150
 	local targetSprite = target:getSprite()
@@ -32,7 +32,10 @@ local dropAction = function(self, target, carriedTarget)
 			Ease(self.sprite.transform, "y", targetSprite.transform.y - targetSprite.h - FLY_HEIGHT/2, 3),
 
 			Ease(carriedTargetSprite.transform, "x", targetSprite.transform.x, 3),
-			Ease(carriedTargetSprite.transform, "y", targetSprite.transform.y - targetSprite.h - FLY_HEIGHT/2, 3)
+			Ease(carriedTargetSprite.transform, "y", targetSprite.transform.y - targetSprite.h - FLY_HEIGHT/2, 3),
+
+			Ease(dropShadow.transform, "x", targetSprite.transform.x, 3),
+			Ease(dropShadow.transform, "y", targetSprite.transform.y, 3)
 		},
 
 		-- Drop carried target
@@ -46,11 +49,14 @@ local dropAction = function(self, target, carriedTarget)
 		-- Fly back
 		Parallel {
 			Ease(self.sprite.transform, "x", lastXForm.x, 3),
-			Ease(self.sprite.transform, "y", lastXForm.y, 3)
+			Ease(self.sprite.transform, "y", lastXForm.y, 3),
+
+			Ease(dropShadow.transform, "x", lastXForm.x - self.sprite.w/2, 3),
+			Ease(dropShadow.transform, "y", lastXForm.y + FLY_HEIGHT + self.sprite.h, 3)
 		},
 
 		-- Land
-		Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + FLY_HEIGHT/2 end, 1),
+		Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + FLY_HEIGHT end, 1),
 		Do(function()
 			self.flying = false
 			self.sprite:popOverride("idle")
@@ -58,6 +64,8 @@ local dropAction = function(self, target, carriedTarget)
 
 			carriedTarget.sprite:setAnimation(carriedTarget.prevAnim)
 			carriedTarget.state = carriedTarget.STATE_IDLE
+			carriedTarget.noEscape = false
+			dropShadow:remove()
 		end)
 	}
 end
@@ -66,10 +74,21 @@ return function(self, target)
 	local lastXForm = Transform.from(self.sprite.transform)
 	local FLY_HEIGHT = 150
 	local targetSprite = target:getSprite()
+	
+	local dropShadow = SpriteNode(
+		self.scene,
+		Transform(lastXForm.x - self.sprite.w/2, lastXForm.y + self.sprite.h, 1.3, 2),
+		{255,255,255,0},
+		"dropshadow",
+		nil,
+		nil,
+		"behind"
+	)
 
 	return Serial {
 		Do(function()
 			self.sprite:setAnimation("flyleft")
+			dropShadow.color[4] = 255
 		end),
 
 		Parallel {
@@ -88,13 +107,17 @@ return function(self, target)
 			-- Flying drawbacks
 			target.prevAnim = targetSprite.selected
 			target.state = target.STATE_IMMOBILIZED
+			target.noEscape = true
 			target.sprite:swapLayer("infront")
 		end),
 
 		-- Fly toward target
 		Parallel {
 			Ease(self.sprite.transform, "x", targetSprite.transform.x, 3),
-			Ease(self.sprite.transform, "y", targetSprite.transform.y - targetSprite.h, 3)
+			Ease(self.sprite.transform, "y", targetSprite.transform.y - targetSprite.h, 3),
+			
+			Ease(dropShadow.transform, "x", targetSprite.transform.x, 3),
+			Ease(dropShadow.transform, "y", targetSprite.transform.y + targetSprite.h, 3)
 		},
 
 		-- Pickup
@@ -119,7 +142,10 @@ return function(self, target)
 			Ease(self.sprite.transform, "y", lastXForm.y - targetSprite.h - FLY_HEIGHT/2, 3),
 
 			Ease(targetSprite.transform, "x", lastXForm.x, 3),
-			Ease(targetSprite.transform, "y", lastXForm.y - FLY_HEIGHT/2, 3)
+			Ease(targetSprite.transform, "y", lastXForm.y - FLY_HEIGHT/2, 3),
+
+			Ease(dropShadow.transform, "x", lastXForm.x - self.sprite.w/2, 3),
+			Ease(dropShadow.transform, "y", lastXForm.y + self.sprite.h, 3)
 		},
 
 		Do(function()
@@ -133,13 +159,13 @@ return function(self, target)
 						self:chooseTarget(
 							menu,
 							TargetType.Opponent,
-							function(_target) return false end,
+							function(dropTarget) return dropTarget == self or dropTarget == target end,
 							function(dropSelf, dropTarget)
 								menu:close()
 								return Serial {
 									Parallel {
 										menu,
-										dropAction(dropSelf, dropTarget, target)
+										dropAction(dropSelf, dropTarget, target, dropShadow)
 									},
 									-- Hack fix sfx issues
 									Do(function()
