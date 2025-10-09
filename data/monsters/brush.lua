@@ -49,12 +49,23 @@ return {
 
 	skipAnimation = true,
 	
+	onDead = function(self)
+		return Do(function()
+			if self.immobilizedByObj then
+				local target = self.immobilizedByObj
+				target.state = target.STATE_IDLE
+				target.noEscape = false
+			end
+		end)
+	end,
+	
 	onDrop = function (self, carrier, target)
 		local targetSprite = target:getSprite()
 		return Serial {
 			Do(function()
 				target.state = target.STATE_IMMOBILIZED
 				target.noEscape = true
+				self.immobilizedByObj = target
 			end),
 
 			Ease(targetSprite.transform, "x", function() return targetSprite.transform.x - 5 end, 6),
@@ -69,6 +80,17 @@ return {
 
 		flower.untargetable = true
 		infrontOfFlower.onDead = function(self)
+			return Do(function()
+				flower.untargetable = false
+
+				if self.immobilizedByObj then
+					local target = self.immobilizedByObj
+					target.state = target.STATE_IDLE
+					target.noEscape = false
+				end
+			end)
+		end
+		infrontOfFlower.onLift = function(self, carrier)
 			return Do(function()
 				flower.untargetable = false
 			end)

@@ -116,7 +116,9 @@ return function(scene, hint)
 			Wait(2),
 			Ease(text.color, 4, 0, 1)
 		})
-		scene.audio:playMusic("knotholehut", 0.8)
+		if not GameState:isFlagSet("ep5_knothole_firefly_trigger") and not GameState:isFlagSet("ep5_knothole_meeting_trigger") then
+			scene.audio:playMusic("knotholehut", 0.8)
+		end
 		return Action()
 	end
 

@@ -49,14 +49,9 @@ return function(scene)
 		}
 	})
 
-	--scene.audio:playMusic("tailstheme", 1.0)
-	
-	if hint == "ep5intro" then
-		
-		
-	else
+	if not GameState:isFlagSet("ep5_knothole_firefly_trigger") and not GameState:isFlagSet("ep5_knothole_meeting_trigger") then
 		scene.audio:playMusic("knothole", 1.0)
-
-		return Action()
 	end
+
+	return Action()
 end

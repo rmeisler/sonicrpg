@@ -33,7 +33,7 @@ return function(scene)
 	})
 
 	if not scene.nighttime then
-		if GameState:isFlagSet("ep3_ffmeeting") then
+		if GameState:isFlagSet("ep3_ffmeeting") and not (GameState:isFlagSet("ep5_knothole_firefly_trigger") or GameState:isFlagSet("ep5_knothole_meeting_trigger")) then
 			scene.audio:playMusic("knotholehut", 0.8)
 		end
 	end

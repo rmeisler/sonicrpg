@@ -143,7 +143,10 @@ return function(scene, hint)
 				layer.opacity = 0.0
 			end
 		end
-		scene.audio:playMusic("knotholehut", 0.8)
+		
+		if not GameState:isFlagSet("ep5_knothole_firefly_trigger") and not GameState:isFlagSet("ep5_knothole_meeting_trigger") then
+			scene.audio:playMusic("knotholehut", 0.8)
+		end
 	end
 
 	local text = TypeText(

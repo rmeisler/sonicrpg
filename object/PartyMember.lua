@@ -429,18 +429,29 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 	else
 		local target = self.scene[self.targetType][self.scene.selectedTarget]
 		local invalidateArrowPos = false
+		local targetsSeen = {}
 
 		if key == "up" then
 			self.scene.audio:playSfx("cursor", nil, true)
-			self.scene.selectedTarget = (self.scene.selectedTarget == 1) and #self.scene[self.targetType] or (self.scene.selectedTarget - 1)
-			target = self.scene[self.targetType][self.scene.selectedTarget]
-			invalidateArrowPos = true
+			while invalidateArrowPos == false do
+				self.scene.selectedTarget = (self.scene.selectedTarget == 1) and #self.scene[self.targetType] or (self.scene.selectedTarget - 1)
+				target = self.scene[self.targetType][self.scene.selectedTarget]
+				if not target.untargetable or targetsSeen[tostring(target)] then
+					invalidateArrowPos = true
+				end
+				targetsSeen[tostring(target)] = true
+			end
 
 		elseif key == "down" then
 			self.scene.audio:playSfx("cursor", nil, true)
-			self.scene.selectedTarget = (self.scene.selectedTarget == #self.scene[self.targetType]) and 1 or (self.scene.selectedTarget + 1)
-			target = self.scene[self.targetType][self.scene.selectedTarget]
-			invalidateArrowPos = true
+			while invalidateArrowPos == false do
+				self.scene.selectedTarget = (self.scene.selectedTarget == #self.scene[self.targetType]) and 1 or (self.scene.selectedTarget + 1)
+				target = self.scene[self.targetType][self.scene.selectedTarget]
+				if not target.untargetable or targetsSeen[tostring(target)] then
+					invalidateArrowPos = true
+				end
+				targetsSeen[tostring(target)] = true
+			end
 			
 		elseif key == "left" or key == "right" then
 			-- Change target type

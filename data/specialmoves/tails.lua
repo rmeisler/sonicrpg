@@ -158,13 +158,16 @@ return function(player)
 		if not love.keyboard.isDown("lshift") then
 			self.stopElevating = true
 		end
+		
+		local elevationSpeed = 4 * (dt/0.016)
+		local dropSpeed = 1 * (dt/0.016)
 
 		if self.flyTime > 0.0 and love.keyboard.isDown("lshift") and not self.stopElevating then
 			-- Left shift is down the whole time? Increase elevation until you run out of fly time
-			self.flyOffsetY = self.flyOffsetY + 4
-			self.y = self.y - 4
+			self.flyOffsetY = self.flyOffsetY + elevationSpeed
+			self.y = self.y - elevationSpeed
 			if not self.scene.noPlayerPanning then
-				self.scene.camPos.y = self.scene.camPos.y - 4
+				self.scene.camPos.y = self.scene.camPos.y - elevationSpeed
 			end
 		elseif self.stopElevating and (love.keyboard.isDown("lshift") or self.forceDrop) and not self.stickyLShift then
 			-- Do not land unless all three dee objects agree
@@ -192,12 +195,12 @@ return function(player)
 			self.flyTime = 0.0
 		elseif self.flyTime <= 0.0 or not love.keyboard.isDown("lshift") and not self.stickyLShift then
 			-- Start falling out of the sky
-			self.flyOffsetY = self.flyOffsetY - 1
-			self.y = self.y + 1
+			self.flyOffsetY = self.flyOffsetY - dropSpeed
+			self.y = self.y + dropSpeed
 
 			if not self.scene.noPlayerPanning then
 				if self.scene.camPos.y < 0 then
-					self.scene.camPos.y = self.scene.camPos.y + 1
+					self.scene.camPos.y = self.scene.camPos.y + dropSpeed
 				else
 					self.scene.camPos.y = 0
 				end

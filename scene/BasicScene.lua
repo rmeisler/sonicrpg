@@ -214,10 +214,12 @@ function BasicScene:onEnter(args)
 	if self.map.music then
 		self.audio:setMusicVolume(1.0)
 		self.audio:playMusic(self.map.music)
+		self.map.music = nil
 	end
 	
 	if self.map.ambient then
 		self.audio:playAmbient(self.map.ambient)
+		self.map.ambient = nil
 	end
 	
 	local onLoadAction = Action()

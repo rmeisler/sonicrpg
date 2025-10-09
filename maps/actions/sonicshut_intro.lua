@@ -135,7 +135,9 @@ return function(scene, hint)
 		if GameState:isFlagSet("ep5_knothole") then
 			scene.objectLookup.Sonic:remove()
 			scene.objectLookup.Door.object.properties.scene = "knothole_ep5.lua"
-			scene.audio:playMusic("knotholehut", 0.8)
+			if not GameState:isFlagSet("ep5_knothole_firefly_trigger") and not GameState:isFlagSet("ep5_knothole_meeting_trigger") then
+				scene.audio:playMusic("knotholehut", 0.8)
+			end
 		elseif GameState:isFlagSet("ep4_introdone") then
 			local prefix = "nighthide"
 			for _,layer in pairs(scene.map.layers) do

@@ -53,6 +53,8 @@ return {
 
 	skipAnimation = true,
 	
+	heavy = true,
+	
 	onInit = function(self)
 		self.bullet = SpriteNode(
 			self.scene,
