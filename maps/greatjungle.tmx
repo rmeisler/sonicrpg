@@ -1603,7 +1603,7 @@
     <property name="flagOverride" value="greatjungle.Monkey2"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/monkey.png"/>
-    <property name="swapLayers" value="objects:objects5, objects2:objects5, objects3:objects5, objects4:objects5, objects5:objects4, objects6:objects5, objects7:objects5"/>
+    <property name="swapLayers" value="objects:objects5, objects2:objects5, objects3:objects5, objects4:objects3, objects5:objects4, objects6:objects5, objects7:objects5"/>
     <property name="viewRange" value="Monkey2_VR1"/>
    </properties>
   </object>
