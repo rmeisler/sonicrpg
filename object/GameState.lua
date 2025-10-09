@@ -519,9 +519,8 @@ function GameState:load(scene, slot)
 		end
 	-- ep1 or ep2 or ep3 save, treat as new game+
 	else
-		self:addToParty("logan", 8, true)
-		self.leader = "logan"
-		self:setFlag("ep3_intro")
+		self:addToParty("tails", 3, true)
+		self.leader = "tails"
 		scene.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/sonicdemo_manifest.lua"}
 	end
 end

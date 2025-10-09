@@ -143,7 +143,12 @@ return function(scene, hint)
 	end
 
 	showTitle()
-	if GameState:isFlagSet("ep3_ffmeeting") then
+	if GameState:isFlagSet("ep5_knothole") then
+		if not GameState:isFlagSet("ep5_knothole_firefly_trigger") and not GameState:isFlagSet("ep5_knothole_meeting_trigger") then
+			scene.audio:playMusic("lookout", 1.0)
+		end
+		scene.objectLookup.Entrance.object.properties.scene = "knothole_ep5.lua"
+	elseif GameState:isFlagSet("ep3_ffmeeting") then
 		scene.audio:playMusic("lookout", 1.0)
 	else
 		scene.audio:playMusic("lookout", 1.0)

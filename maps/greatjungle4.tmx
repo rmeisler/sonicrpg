@@ -340,7 +340,7 @@
     <property name="height" type="int" value="1000"/>
    </properties>
   </object>
-  <object id="450" name="IntroTrigger" type="TouchTrigger" gid="5323" x="2848" y="1024" width="32" height="64">
+  <object id="450" name="IntroTrigger" type="TouchTrigger" gid="5323" x="2816" y="1056" width="64" height="96">
    <properties>
     <property name="atMostOnce" type="bool" value="true"/>
     <property name="script">local MessageBox = require &quot;actions/MessageBox&quot;

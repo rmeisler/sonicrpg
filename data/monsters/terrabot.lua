@@ -40,11 +40,11 @@ return {
 	stats = {
 		xp = 120,
 		maxhp = 5000,
-		attack = 80,
-		defense = 30,
-		speed = 5,
-		focus = 1,
-		luck = 1,
+		attack = 100,
+		defense = 100,
+		speed = 100,
+		focus = 100,
+		luck = 100,
 	},
 
 	boss = true,

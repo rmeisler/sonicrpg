@@ -405,7 +405,7 @@ function Bot:update(dt)
 					self.scene.player:invoke("caught", self)
 				end),
 				Wait(1),
-				self:chasePlayer()
+				self:follow(self.scene.player, "run", self.runspeed, nil, true, function() return self.grabbed end)
 			}
 		elseif lineOfSight == Bot.NOTICE_HEAR or lineOfSight == Bot.NOTICE_SEE then
 			self:removeSceneHandler("update")
@@ -514,7 +514,7 @@ function Bot:onCaughtPlayer()
 			self.scene.player:invoke("caught", self)
 		end),
 		Wait(1),
-		self:chasePlayer()
+		self:follow(self.scene.player, "run", self.runspeed, nil, true, function() return self.grabbed end)
 	}
 end
 

@@ -1,94 +1,89 @@
 return {
-    {
-        type = "map",
-		file = "maps/knothole_ep5.lua",
-		primary = true,
-    },
-	
 	{
         type = "map",
-        file = "maps/robotnikwarroom.lua",
+        file = "maps/ep5intro.lua",
+		primary = true -- REAL
+    },
+	{
+        type = "map",
+        file = "maps/greatjungle.lua",
 		--primary = true
     },
-	
 	{
         type = "map",
-        file = "maps/roboterminal.lua"
-    },
-	
-	{
-        type = "map",
-        file = "maps/factoryfloor.lua"
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgottenstart.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgotten1.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgotten2.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgotten3.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgottenhideout.lua",
-		--primary = true,
-    },
-	
-	{
-        type = "map",
-        file = "maps/forgottenhideout_broom.lua",
+        file = "maps/greatjungle2.lua",
 		--primary = true
     },
-	
 	{
         type = "map",
-        file = "maps/datacenter_f4.lua"
-    },
-	
-	{
-        type = "map",
-        file = "maps/run1.lua",
+        file = "maps/greatjungle3.lua",
 		--primary = true
     },
-	
 	{
         type = "map",
-        file = "maps/sewer1.lua",
+        file = "maps/greatjungle4.lua",
 		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/quicksand_cave1.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/knothole_ep5.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+		file = "maps/stealthtut1.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+		file = "maps/rebellionhut.lua"
+    },
+	{
+        type = "map",
+		file = "maps/sonicshut.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+		file = "maps/sallyshut.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+		file = "maps/tailshut.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+		file = "maps/bunnieshut.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+		file = "maps/antoineshut.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+		file = "maps/rotorsworkshop.lua",
+		--primary = true -- TEST
     },
 	
 	{
         type = "map",
-        file = "maps/sewer2.lua"
+        file = "maps/knotholelookout.lua",
+		--primary = true -- testing
     },
 	
 	{
         type = "map",
-        file = "maps/sewer3.lua",
-		--primary = true
-    },
-	
-	{
-        type = "map",
-        file = "maps/prison.lua",
-		--primary = true
+        file = "maps/worldmap.lua",
+		--primary = true -- testing
     },
 	
 	{
@@ -107,27 +102,23 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/movingground.png"
+		file = "art/sprites/cursor.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/testsq.png"
+		file = "art/sprites/puck.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/leftrightview.png"
+		file = "art/sprites/rotorpad.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/updownview.png"
+		file = "art/splash/sonicpicture.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/fancenter.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/fanblade.png"
+		file = "art/splash/storybook1.png"
 	},
 	{
 		type = "image",
@@ -135,19 +126,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/sweatdrop.png"
-	},
-	{
-		type = "image",
 		file = "art/sprites/target.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/ratboteyes.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/camflashlight.png"
 	},
 	{
 		type = "image",
@@ -159,23 +138,19 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/extender.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/extenderarm.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/fadeplatformedge.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/fadeplatform.png"
+		file = "art/parallax/rain.png"
 	},
 	{
 		type = "image",
 		file = "art/sprites/nicholeprojection.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/nicholeprojection2.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/lasershield.png"
 	},
 	{
 		type = "image",
@@ -195,15 +170,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/antoinebattle.png"
-	},
-	{
-		type = "image",
 		file = "art/sprites/sonic.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/logan.png"
 	},
 	{
 		type = "image",
@@ -211,31 +178,43 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/bunny.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/b.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/sonicchargebody.png"
+		file = "art/sprites/babyt.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/sonicchargeleg1.png"
+		file = "art/sprites/leon.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/sonicchargeleg2.png"
+		file = "art/sprites/leon2.png"
 	},
 	{
 		type = "image",
-		file = "art/avatar/rotoravatar.png"
+		file = "art/sprites/fleet.png"
 	},
 	{
 		type = "image",
-		file = "art/avatar/antoineavatar.png"
+		file = "art/sprites/logan.png"
 	},
 	{
 		type = "image",
-		file = "art/avatar/sonicavatar.png"
+		file = "art/sprites/ivan.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/snowfootprint.png"
+	},
+	{
+		type = "image",
+		file = "art/avatar/loganavatar.png"
 	},
 	{
 		type = "image",
@@ -243,7 +222,11 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/sonicbattle.png"
+		file = "art/avatar/bavatar.png"
+	},
+	{
+		type = "image",
+		file = "art/avatar/babytavatar.png"
 	},
 	{
 		type = "image",
@@ -255,23 +238,47 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/avatar/sallyavatar.png"
+		file = "art/sprites/phantomstandin.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/sallybattle.png"
+		file = "art/sprites/blaster2.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/mechaarmbattle.png"
+		file = "art/sprites/juggerbotbody.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/swatbot.png"
+		file = "art/sprites/juggerbothead.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/cambot.png"
+		file = "art/sprites/juggerbotleftarm.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/juggerbotrightarm.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/leftrightview.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/updownview.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/flower.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/swatbotwhite.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/rover.png"
 	},
 	{
 		type = "image",
@@ -279,15 +286,11 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/dust.png"
+		file = "art/sprites/snowdust.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/spindust.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/ringbeam.png"
+		file = "art/sprites/hammer.png"
 	},
 	{
 		type = "image",
@@ -299,15 +302,19 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/snowball.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/snowboulder.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/explosion.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/blueballoon.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/waterblast.png"
+		file = "art/sprites/explosion2.png"
 	},
 	{
 		type = "image",
@@ -359,6 +366,46 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/icon_key.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_plant.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_ring.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_book.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_carrot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_mushroom.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_meat.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_marshmallow.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_hat.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_scarf.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/zevent.png"
 	},
 	{
@@ -368,6 +415,22 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/pressz.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/pressup.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/pressdown.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/pressleft.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/pressright.png"
 	},
 	{
 		type = "image",
@@ -391,11 +454,35 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/stuneffect.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/blast1.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/fireshot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/plasmabeam.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/smack.png"
 	},
 	{
 		type = "image",
 		file = "art/sprites/beamfire.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/shockball.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/gas.png"
 	},
 	{
 		type = "image",
@@ -411,6 +498,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/star.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/spark.png"
 	},
 	{
@@ -419,31 +510,217 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/parallax/genericforwardbg.png"
+		file = "art/sprites/boulder.png"
 	},
 	{
-		type = "image",
-		file = "art/parallax/genericforwardbg2.png"
+		type = "sound",
+		file = "audio/sfx/monkey.ogg",
+		category = "sfx"
 	},
 	{
-		type = "image",
-		file = "art/parallax/robotropolis.png"
+		type = "sound",
+		file = "audio/sfx/cooking.ogg",
+		category = "sfx"
 	},
 	{
-		type = "image",
-		file = "art/parallax/robobase.png"
+		type = "sound",
+		file = "audio/sfx/wind.ogg",
+		category = "sfx"
 	},
 	{
-		type = "image",
-		file = "art/sprites/hoverbotopening.png"
+		type = "sound",
+		file = "audio/sfx/factoryspit.ogg",
+		category = "sfx"
 	},
 	{
-		type = "image",
-		file = "art/sprites/hoverbot.png"
+		type = "sound",
+		file = "audio/sfx/thunder1.wav",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/thunder2.wav",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/rain.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/poison.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/slash.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/bounce.wav",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/lookout.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/worldmap.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/robotrouble.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/meow.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/roboterrapod.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/sonicsad.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/lightofmobius.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/babyt.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/trouble.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/bsad.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/sadintrospect.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/curiosity.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/greatjungle.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/btheme.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/flutter.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/nap.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/spooky.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/royalwelcome.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/knothole.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/ep4harp.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/ep4intro.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/standup.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/project.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/leonenters.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/slice.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/elevator.ogg",
+		category = "sfx"
 	},
 	{
 		type = "sound",
 		file = "audio/sfx/usering.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/shield.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/craft.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/locked.ogg",
 		category = "sfx"
 	},
 	{
@@ -464,11 +741,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/splash2.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/fan.ogg",
 		category = "sfx"
 	},
 	{
@@ -528,22 +800,32 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/stun.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/plasmabeam.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/juggerbotstep.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/juggerbotroar.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/laser.ogg",
 		category = "sfx"
 	},
 	{
 		type = "sound",
 		file = "audio/sfx/lasersweep.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/factoryfloor.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/factoryspit.ogg",
 		category = "sfx"
 	},
 	{
@@ -563,6 +845,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/nicolewarning.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/pressx.ogg",
 		category = "sfx"
 	},
@@ -574,11 +861,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/bang.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/path.ogg",
 		category = "sfx"
 	},
 	{
@@ -598,7 +880,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/ratstep.ogg",
+		file = "audio/sfx/leonroar.ogg",
 		category = "sfx"
 	},
 	{
@@ -613,7 +895,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/swing.ogg",
+		file = "audio/sfx/fly.wav",
 		category = "sfx"
 	},
 	{
@@ -633,7 +915,17 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/boomerang.ogg",
+		file = "audio/sfx/stare.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/cyclopsstep.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/cyclopsroar.ogg",
 		category = "sfx"
 	},
 	{
@@ -658,22 +950,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/tick.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/tock.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/music/puzzlesolve.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/boring.ogg",
+		file = "audio/music/rotorsworkshop.ogg",
 		category = "music"
 	},
 	{
@@ -684,81 +961,6 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/nomore.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/mysterious.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/bremembers.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/prisonintro.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/bheart.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/ringlake.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/sonicsad.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/btheme.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/bhero.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/music/forgottendiscovery.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/follow.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/factory.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/sallyenters.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/sonictheme.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/sonicenters.ogg",
 		category = "music"
 	},
 	{
@@ -775,98 +977,9 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/credits.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/worldmap.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/openingmission2.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/escapefanfare.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/dead.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/deatheggtransition.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/robotnik.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
-		file = "audio/music/transition.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/escapelevel.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/trouble.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/robotrouble.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/robobuilding.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/underground.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/patrol.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/knothole.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
 		file = "audio/music/battle.ogg",
 		category = "music",
 		volume = 0.3,
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/battle2.ogg",
-		category = "music",
-		volume = 0.7,
 		looping = true,
 	},
 	{
@@ -878,9 +991,54 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/sonicring.ogg",
+		file = "audio/music/snowday.ogg",
 		category = "music",
-		volume = 0.3,
+		looping = true,
+	},
+	{
+		type = "sound",
+		file = "audio/music/storybooklonging.ogg",
+		category = "music",
+		looping = true,
+	},
+	{
+		type = "sound",
+		file = "audio/music/tailstraining.ogg",
+		category = "music",
+		looping = true,
+	},
+	{
+		type = "sound",
+		file = "audio/music/tailssleep.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/tailssleep2.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/tailsawake.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/tailstheme.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/meettherebellion.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/knotholehut.ogg",
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",
@@ -892,6 +1050,16 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/battlestart.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/alarm.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/jump.ogg",
 		category = "sfx"
 	},
 	{
