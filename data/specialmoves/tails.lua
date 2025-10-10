@@ -160,7 +160,7 @@ return function(player)
 		end
 		
 		local elevationSpeed = 4 * (dt/0.016)
-		local dropSpeed = 1 * (dt/0.016)
+		local dropSpeed = 1.01 * (dt/0.016)
 
 		if self.flyTime > 0.0 and love.keyboard.isDown("lshift") and not self.stopElevating then
 			-- Left shift is down the whole time? Increase elevation until you run out of fly time
