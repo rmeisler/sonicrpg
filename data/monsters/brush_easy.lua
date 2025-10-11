@@ -61,16 +61,26 @@ return {
 	
 	onDrop = function (self, carrier, target)
 		local targetSprite = target:getSprite()
-		return Serial {
-			Do(function()
-				target.state = target.STATE_IMMOBILIZED
-				target.noEscape = true
-				self.immobilizedByObj = target
-			end),
+		
+		if target.name == "Weed" then
+			return Serial {
+				Parallel {
+					self:die(),
+					target:die()
+				}
+			}
+		else
+			return Serial {
+				Do(function()
+					target.state = target.STATE_IMMOBILIZED
+					target.noEscape = true
+					self.immobilizedByObj = target
+				end),
 
-			Ease(targetSprite.transform, "x", function() return targetSprite.transform.x - 5 end, 6),
-			Ease(targetSprite.transform, "x", function() return targetSprite.transform.x + 5 end, 6)
-		}
+				Ease(targetSprite.transform, "x", function() return targetSprite.transform.x - 5 end, 6),
+				Ease(targetSprite.transform, "x", function() return targetSprite.transform.x + 5 end, 6)
+			}
+		end
 	end,
 
 	onInit = function(self)

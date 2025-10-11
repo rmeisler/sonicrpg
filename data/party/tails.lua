@@ -56,13 +56,13 @@ return {
 		[3] = {
 			messages = {},
 			skills = {
-				--require "data/battle/skills/LiftDrop",
+				require "data/battle/skills/LiftDrop",
 			}
 		},
 		[4] = {
-			messages = {},
+			messages = {}, --"Tails learned {h\"Slap Shot\"}!"},
 			skills = {
-				--require "data/battle/skills/LiftDrop",
+				require "data/battle/skills/LiftDrop",
 				--require "data/battle/skills/SlapShot",
 			}
 		},

@@ -110,7 +110,7 @@ function OpposingPartyMember:beginTurn()
 	local additionalActions = {}
 	
 	-- Choose action based on current state
-	if self.state == BattleActor.STATE_IMMOBILIZED then
+	if self.state == BattleActor.STATE_IMMOBILIZED and not self.transient then
 		-- Shake left and right
 		local shake = Repeat(Serial {
 			Do(function()

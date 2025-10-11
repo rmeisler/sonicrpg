@@ -35,7 +35,7 @@ return {
 	sprite = "sprites/flower",
 
 	stats = {
-		xp    = 10,
+		xp    = 5,
 		maxhp = 180,
 		attack = 15,
 		defense = 15,
@@ -49,7 +49,7 @@ return {
 	drops = {
 	},
 	
-	scan = "You can dodge this flower's attacks if you're nimble!",
+	scan = "Try dropping a weed on the flower!",
 
 	skipAnimation = true,
 	
@@ -117,7 +117,7 @@ return {
 					end)
 				},
 
-				PressX(
+				target.flying and finalAction(self, target) or PressX(
 					self,
 					target,
 					Serial {
@@ -147,6 +147,9 @@ return {
 											Ease(self.bullet.transform, "x", self.sprite.transform.x, 4, "quad"),
 											Ease(self.bullet.transform, "y", self.sprite.transform.y, 4, "quad")
 										},
+										Do(function()
+											self.bullet.color[4] = 0
+										end),
 										Parallel {
 											Stars(target, self),
 											finalAction(target, self, 1.5)

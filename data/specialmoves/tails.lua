@@ -297,8 +297,6 @@ return function(player)
 			hotspots.right_bot.y = hotspots.right_bot.y - self.flyOffsetY
 			hotspots.left_top.y = hotspots.left_top.y - self.flyOffsetY
 			hotspots.left_bot.y = hotspots.left_bot.y - self.flyOffsetY
-			
-			print("landing")
 
 			-- If we can't move after landing, reset our position to where we took off from and flicker
 			if self.y > self.scene:getMapHeight() or not (
@@ -313,6 +311,9 @@ return function(player)
 			) then
 				self.x = self.takeOffX
 				self.y = self.takeOffY
+				self.flyOffsetY = self.takeOffFlyOffsetY
+				self.tempFlyOffsetY = self.takeOffTempFlyOffsetY
+				self.scene:swapLayer(self.takeOffLayer, true)
 				self:run(
 					Repeat(
 						Serial {
@@ -347,4 +348,7 @@ return function(player)
 	player.state = state_to_fly[player.state] or "flyright"
 	player.takeOffX = player.x
 	player.takeOffY = player.y
+	player.takeOffFlyOffsetY = player.flyOffsetY
+	player.takeOffTempFlyOffsetY = player.tempFlyOffsetY
+	player.takeOffLayer = player.scene.currentLayerId
 end

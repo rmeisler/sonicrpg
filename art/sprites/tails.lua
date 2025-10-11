@@ -130,6 +130,11 @@ return {
 			frames = {{9,3}}
 		},
 		
+		flyleftheavy = {
+			frames = {{9,5},{10,5}},
+			speed = 0.1
+		},
+		
 		flyright = {
 			frames = {{11,0},{12,0}},
 			speed = 0.1

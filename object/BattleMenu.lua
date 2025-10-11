@@ -35,6 +35,11 @@ function BattleMenu:draw()
 	-- Print opponent names
 	love.graphics.setFont(FontCache.Consolas)
 	for index,opponent in pairs(self.opponents) do
+		if opponent.selected then
+			love.graphics.setColor(255,255,0,255)
+		else
+			love.graphics.setColor(255,255,255,255)
+		end
 		love.graphics.print(opponent.name, self.transform.x + 15, self.transform.y + 15 + ((index-1) * 28))
 	end
 	

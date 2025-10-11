@@ -9,6 +9,7 @@ local MessageBox = require "actions/MessageBox"
 local PlayAudio = require "actions/PlayAudio"
 local Do = require "actions/Do"
 local Action = require "actions/Action"
+local Executor = require "actions/Executor"
 
 local PressX = require "data/battle/actions/PressX"
 local OnHitEvent = require "data/battle/actions/OnHitEvent"
@@ -61,12 +62,15 @@ local dropAction = function(self, target, carriedTarget, dropShadow)
 		Do(function()
 			self.flying = false
 			self.sprite:popOverride("idle")
+			self.sprite:setAnimation("idle")
 			self.options = self.origOptions
 			self.untargetable = false
 			carriedTarget.untargetable = false
-			carriedTarget.sprite:setAnimation(carriedTarget.prevAnim)
+			carriedTargetSprite:setAnimation(carriedTarget.prevAnim)
+			carriedTargetSprite:swapLayer("sprites")
 			carriedTarget.state = carriedTarget.STATE_IDLE
 			carriedTarget.noEscape = false
+			carriedTarget:removeHandler("hit", self.hitHandler)
 			dropShadow:remove()
 		end)
 	}
@@ -76,6 +80,9 @@ return function(self, target)
 	local lastXForm = Transform.from(self.sprite.transform)
 	local FLY_HEIGHT = 150
 	local targetSprite = target:getSprite()
+	local lastXFormTarget = Transform.from(targetSprite.transform)
+
+	target.prevAnim	= targetSprite.selected
 	
 	local dropShadow = SpriteNode(
 		self.scene,
@@ -86,6 +93,56 @@ return function(self, target)
 		nil,
 		"behind"
 	)
+	
+	if not target.heavy then
+		-- Can hold onto something for up to 3 turns unless they specify a diff value
+		self.liftTurns = target.maxLiftTurns or 3
+		self.hitHandler = function(damage)
+			if self.flying then
+				Executor(self.scene):act(Serial {
+					Do(function()
+						self.sprite:setAnimation("flyleftheavy")
+					end),
+					Parallel {
+						Ease(self.sprite.transform, "y", lastXForm.y, 6),
+						Ease(targetSprite.transform, "y", lastXForm.y, 6),
+					},
+					PlayAudio("sfx", "bang", 1.0, true),
+					Animate(self.sprite, "hurt"),
+					Animate(targetSprite, "hurt"),
+					Parallel {
+						Ease(self.sprite.transform, "y", function() return self.sprite.transform.y - 3 end, 8),
+						Ease(targetSprite.transform, "y", function() return targetSprite.transform.y - 3 end, 8),
+					},
+					Parallel {
+						Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + 3 end, 8),
+						Ease(targetSprite.transform, "y", function() return targetSprite.transform.y + 3 end, 8),
+					},
+					Wait(1),
+					Parallel {
+						Ease(targetSprite.transform, "x", lastXFormTarget.x, 6),
+						Ease(targetSprite.transform, "y", lastXFormTarget.y, 6)
+					},
+
+					Do(function()
+						self.flying = false
+						self.sprite:popOverride("idle")
+						self.sprite:setAnimation("idle")
+						self.options = self.origOptions
+						self.untargetable = false
+						target.untargetable = false
+						targetSprite:setAnimation(target.prevAnim)
+						target.state = target.STATE_IDLE
+						target.noEscape = false
+						dropShadow:remove()
+
+						target:removeHandler("hit", self.hitHandler)
+					end)
+				})
+			end
+		end
+		self:addHandler("hit", self.hitHandler)
+	end
 
 	return Serial {
 		Do(function()
@@ -117,7 +174,7 @@ return function(self, target)
 		},
 
 		-- Pickup
-		PlayAudio("sfx", "smack", 1.0, true),
+		PlayAudio("sfx", "bang", 1.0, true),
 		Animate(targetSprite, "hurt"),
 		Ease(targetSprite.transform, "x", function() return targetSprite.transform.x - 5 end, 6),
 		Ease(targetSprite.transform, "x", function() return targetSprite.transform.x + 5 end, 6),
@@ -127,7 +184,16 @@ return function(self, target)
 		-- If heavy, don't lift
 		target.heavy
 			and Serial {
-				Telegraph(self, "Too heavy to lift!", {255,255,255,50}),
+				Do(function()
+					self.sprite:setAnimation("flyleftheavy")
+				end),
+
+				Telegraph(self, target.name .. " is too heavy for Tails to lift!", {255,255,255,50}),
+				
+				Do(function()
+					targetSprite:setAnimation(target.prevAnim)
+					self.sprite:setAnimation("idle")
+				end),
 
 				-- Fly back to your original position (but above it)
 				Parallel {
@@ -143,12 +209,13 @@ return function(self, target)
 				Do(function()
 					self.flying = false
 					self.sprite:popOverride("idle")
+					self.sprite:setAnimation("idle")
 					dropShadow:remove()
 				end)
 			}
 			or Serial {
 				Do(function()
-					target.sprite:swapLayer("infront")
+					targetSprite:swapLayer("infront")
 				end),
 
 				-- Lift
@@ -177,7 +244,6 @@ return function(self, target)
 					target.immobilizedBy = "tails"
 					self.untargetable = true
 					target.untargetable = true
-					target.prevAnim = targetSprite.selected
 					target.state = target.STATE_IMMOBILIZED
 					target.noEscape = true
 					
@@ -190,13 +256,75 @@ return function(self, target)
 						{Layout.Text("Hold"),
 							choose = function(menu)
 								menu:close()
+								
+								self.liftTurns = self.liftTurns - 1
 
-								self.scene:run {
-									menu,
-									Do(function()
-										self:endTurn()
-									end)
-								}
+								if self.liftTurns == 0 then
+									self.scene:run {
+										menu,
+										Do(function()
+											self.sprite:setAnimation("flyleftheavy")
+										end),
+										Parallel {
+											Ease(self.sprite.transform, "y", lastXForm.y, 6),
+											Ease(targetSprite.transform, "y", lastXForm.y, 6),
+										},
+										PlayAudio("sfx", "bang", 1.0, true),
+										Animate(self.sprite, "hurt"),
+										Animate(targetSprite, "hurt"),
+										Parallel {
+											Ease(self.sprite.transform, "y", function() return self.sprite.transform.y - 3 end, 8),
+											Ease(targetSprite.transform, "y", function() return targetSprite.transform.y - 3 end, 8),
+										},
+										Parallel {
+											Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + 3 end, 8),
+											Ease(targetSprite.transform, "y", function() return targetSprite.transform.y + 3 end, 8),
+										},
+										Wait(1),
+										Parallel {
+											Ease(targetSprite.transform, "x", lastXFormTarget.x, 6),
+											Ease(targetSprite.transform, "y", lastXFormTarget.y, 6)
+										},
+
+										Do(function()
+											self.flying = false
+											self.sprite:popOverride("idle")
+											self.options = self.origOptions
+											self.untargetable = false
+											target.untargetable = false
+											targetSprite:setAnimation(target.prevAnim)
+											targetSprite:swapLayer("sprites")
+											target.state = target.STATE_IDLE
+											target.noEscape = false
+											target:removeHandler("hit", self.hitHandler)
+											dropShadow:remove()
+										end),
+										
+										Telegraph(self, "Tails dropped " .. target.name .. "!", {255,255,255,50}),
+										
+										Do(function()
+											self:endTurn()
+										end)
+									}
+								else
+									self.scene:run {
+										menu,
+										-- Fall down elevation a bit
+										Do(function()
+											self.sprite:setAnimation("flyleftheavy")
+										end),
+										Parallel {
+											Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + FLY_HEIGHT/4 end, 6, "quad"),
+											Ease(targetSprite.transform, "y", function() return targetSprite.transform.y + FLY_HEIGHT/4 end, 6, "quad"),
+										},
+										Telegraph(self, "Tails lost a little elevation...", {255,255,255,50}),
+
+										Do(function()
+											self.sprite:setAnimation("idle")
+											self:endTurn()
+										end)
+									}
+								end
 							end},
 						{Layout.Text("Drop"),
 							choose = function(menu)

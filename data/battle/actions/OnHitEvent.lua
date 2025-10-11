@@ -16,7 +16,6 @@ local Stars = require "data/battle/actions/Stars"
 local Transform = require "util/Transform"
 
 local SpriteNode = require "object/SpriteNode"
-local PartyMember = require "object/PartyMember"
 
 -- Respond to attack with defense event, if possible,
 -- otherwise target takes damage as normal
@@ -30,18 +29,14 @@ return function(self, target, returnAction, knockbackActionFun, details)
 	end
 
 	local actions = {}
-	if self.istype(PartyMember) and self.attackEvent then
+	if self.isParty and self.attackEvent then
 		table.insert(actions, self:attackEvent(target, returnAction, knockbackActionFun))
 	end
-	if target.istype(PartyMember) and target.defenseEvent then
+	if target.isParty and target.defenseEvent then
 		table.insert(actions, target.defenseEvent(self, target, returnAction, knockbackActionFun))
 	end
-	
-	-- 20% chance, all else being equal, you will get a chance at a special "x" event
-	if  next(actions) == nil and
-		self.istype(PartyMember)
-		--and (math.random() < 0.4 + (self.stats.luck/100))
-	then
+
+	if self.isParty and next(actions) == nil then
 		local bonusStats = {
 			attack = 1.2 * self.stats.attack,
 			speed = self.stats.speed,
@@ -107,7 +102,7 @@ return function(self, target, returnAction, knockbackActionFun, details)
 	
 	-- If target is sonic and attack is a laser, allow dodge
 	if  next(actions) == nil and
-		target.istype(PartyMember) and
+		target.isParty and
 		target.id == "sonic" and
 		details.attackType == "laser"
 	then

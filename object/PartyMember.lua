@@ -36,6 +36,7 @@ function PartyMember:construct(scene, data)
 	self.sp = data.sp or 0
 	self.charge = 100
 	self.extraLives = 0
+	self.isParty = true
 	
 	self.sprite.color = table.clone(scene.color or {255,255,255,255})
 	
@@ -343,6 +344,7 @@ function PartyMember:chooseTarget(menu, targetType, unusable, callback, ...)
 			self.scene.selectedTarget = 1
 			target = self.scene[self.targetType][self.scene.selectedTarget]
 		end
+		target.selected = true
 		self.arrow = SpriteNode(
 			self.scene,
 			Transform(
@@ -428,6 +430,7 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 		end
 	else
 		local target = self.scene[self.targetType][self.scene.selectedTarget]
+		local prevTarget = target
 		local invalidateArrowPos = false
 		local targetsSeen = {}
 
@@ -457,8 +460,16 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 			-- Change target type
 			self.targetType = self.targetType == TargetType.Opponent and TargetType.Party or TargetType.Opponent
 			self.scene.selectedTarget = 1
-			target = self.scene[self.targetType][self.scene.selectedTarget]
-			invalidateArrowPos = true
+
+			while invalidateArrowPos == false do
+				target = self.scene[self.targetType][self.scene.selectedTarget]
+				if not target.untargetable or targetsSeen[tostring(target)] then
+					invalidateArrowPos = true
+				else
+					self.scene.selectedTarget = (self.scene.selectedTarget == #self.scene[self.targetType]) and 1 or (self.scene.selectedTarget + 1)
+				end
+				targetsSeen[tostring(target)] = true
+			end
 		
 		elseif key == "x" then
 			-- Can't attack flying if we can't target flying
@@ -472,6 +483,7 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 				self.arrow = nil
 				self.scene:removeHandler("keytriggered", PartyMember.chooseTargetKey, self)
 				self.scene:unfocus("keytriggered")
+				target.selected = false
 				
 				-- Set sort order based on target
 				self.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h*2 - self.sprite.h*2
@@ -513,7 +525,9 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 		if invalidateArrowPos and self.arrow then
 			self.arrow.transform.x = target.sprite.transform.x + target.sprite.w / 2
 			self.arrow.transform.y = target.sprite.transform.y - target.sprite.h * 1.5
-			
+			prevTarget.selected = false
+			target.selected = true
+
 			-- Can't target
 			if (unusable and unusable(target)) or target.untargetable then
 				self.arrow.color = {150,150,150, 255}
@@ -544,7 +558,12 @@ function PartyMember:cleanupChooseTarget(menu)
 		end
 		self.arrow = nil
 	else
-		self.arrow:remove()	
+		self.arrow:remove()
+
+		local target = self.scene[self.targetType][self.scene.selectedTarget]
+		if target then
+			target.selected = false
+		end
 	end
 	
 	self.arrow = nil
