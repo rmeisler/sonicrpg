@@ -90,10 +90,10 @@ return {
 				end),
 				damageTaker and
 					damageTaker:takeDamage(stats) or
-					Action(),
+					Do(function() target.sprite:setAnimation(target.prevAnim or "idle") end),
 				Do(function()
 					self.sprite:setAnimation("idle")
-					if target.hp > 0 then
+					if target.state ~= target.STATE_IMMOBILIZED and target.hp > 0 then
 						target.sprite:setAnimation("idle")
 					end
 				end)
@@ -117,7 +117,7 @@ return {
 					end)
 				},
 
-				target.flying and finalAction(self, target) or PressX(
+				target.noCounter and finalAction(self, target) or PressX(
 					self,
 					target,
 					Serial {

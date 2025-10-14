@@ -1,4 +1,5 @@
 local Fun = require "util/EasingFunctions"
+local Transform = require "util/Transform"
 
 return {
 	id = "babyt",
@@ -8,6 +9,7 @@ return {
 	avatar = "avatar/babytavatar",
 	sprite = "sprites/babyt",
 	battlesprite = "sprites/babyt",
+	textOffset = Transform(-50, 0),
 
 	startingstats = {
 		startxp = 0,
@@ -55,10 +57,26 @@ return {
 		[3] = {
 			messages = {},
 			skills = {
-				--require "data/battle/skills/Slap",
-				--require "data/battle/skills/Fly",
+				require "data/battle/skills/Charge",
+				require "data/battle/skills/Roar",
+				require "data/battle/skills/Ball",
 			}
-		}
+		},
+		[4] = {
+			messages = {"Baby T learned \"{h Roar}\"!"},
+			skills = {
+				require "data/battle/skills/Charge",
+				require "data/battle/skills/Roar",
+			}
+		},
+		[5] = {
+			messages = {"Baby T learned \"{h Ball}\"!"},
+			skills = {
+				require "data/battle/skills/Ball",
+				require "data/battle/skills/Roar",
+				require "data/battle/skills/Ball",
+			}
+		},
 	},
 	
 	specialmove = require "data/specialmoves/babyt",

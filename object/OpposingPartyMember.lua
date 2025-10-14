@@ -37,7 +37,7 @@ function OpposingPartyMember:construct(scene, data)
 
 	self.name = data.altName or ""
 	self.stats = data.stats
-	self.flying = data.flying
+	self.aerial = data.aerial
 	self.run_chance = data.run_chance or 1.0
 	self.drops = data.drops
 	self.hp = data.stats.maxhp
@@ -51,7 +51,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.transient = data.transient or false
 	self.behavior = data.behavior or function() end
 	self.onLift = data.onLift or function(self, carrier) return Action() end
-	self.onDrop = data.onDrop or function(carriedTarget, carrier, target) return target:takeDamage(carriedTarget.stats) end
+	self.onDrop = data.onDrop or function(carriedTarget, carrier, target) return Action() end
 	self.onDead = data.onDead or function() return Action() end
 	self.onEnter = data.onEnter or function() return Action() end
 	self.onPreInit = data.onPreInit or function() end
@@ -189,7 +189,8 @@ function OpposingPartyMember:beginTurn()
 			else
 				self.action = Serial {
 					shake,
-					
+
+					self.escapeAction or Action(),
 					Do(function()
 						if self.prevAnim == "backward" or not self.prevAnim then
 							self.prevAnim = "idle"
@@ -197,10 +198,11 @@ function OpposingPartyMember:beginTurn()
 						sprite:setAnimation(self.prevAnim)
 						self.state = BattleActor.STATE_IDLE
 						self.chanceToEscape = nil
-						
+						self.escapeAction = nil
+
 						self:invoke("escape")
 					end),
-					
+
 					Telegraph(self, self.name.." broke free!", {self.color[1],self.color[2],self.color[3],50}),
 				}
 			end

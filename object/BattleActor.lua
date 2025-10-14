@@ -188,6 +188,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun, attacker)
 					sprite:setAnimation("hurt")
 				end
 			end),
+			self.onHit and self:onHit(attacker, damage) or Action(),
 			Serial {
 				Parallel {
 					Ease(sprite.color, 1, 500, 10, "quad"),
@@ -268,7 +269,7 @@ function BattleActor:pushStats(stats)
 	table.insert(self.statStack, 1, stats)
 end
 
-function BattleActor:popStats(stats)
+function BattleActor:popStats()
 	if not self.statStack then
 		return
 	end

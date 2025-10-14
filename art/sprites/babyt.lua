@@ -46,7 +46,18 @@ return {
 			frames = {{9,0},{10,0}},
 			speed = 0.22
 		},
-		
+		ball = {
+			frames = {{9,1},{10,1},{9,3},{9,4}},
+			speed = 0.22
+		},
+		ball_idle = {
+			frames = {{9,4}}
+		},
+		unball = {
+			frames = {{9,4},{9,3},{10,1},{9,1}},
+			speed = 0.22
+		},
+
 		saddown = {
 			frames = {{11,2}}
 		},

@@ -8,7 +8,7 @@ return {
   height = 74,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 487,
+  nextobjectid = 489,
   properties = {
     ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
@@ -1326,28 +1326,6 @@ return {
           }
         },
         {
-          id = 459,
-          name = "Weeds",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4384,
-          y = 1728,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/brush.lua",
-            ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idle",
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/brush.png"
-          }
-        },
-        {
           id = 463,
           name = "Weeds",
           type = "BasicNPC",
@@ -1430,6 +1408,23 @@ return {
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/med_step.png",
             ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
+          }
+        },
+        {
+          id = 488,
+          name = "Chest2",
+          type = "Chest",
+          shape = "rectangle",
+          x = 3136,
+          y = 640,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["CrystalWater"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }

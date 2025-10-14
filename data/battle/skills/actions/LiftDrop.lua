@@ -36,12 +36,12 @@ local dropAction = function(self, target, carriedTarget, dropShadow)
 			Ease(carriedTargetSprite.transform, "x", targetSprite.transform.x, 3),
 			Ease(carriedTargetSprite.transform, "y", targetSprite.transform.y - targetSprite.h - FLY_HEIGHT/2, 3),
 
-			Ease(dropShadow.transform, "x", targetSprite.transform.x, 3),
-			Ease(dropShadow.transform, "y", targetSprite.transform.y, 3)
+			Ease(dropShadow.transform, "x", targetSprite.transform.x - targetSprite.w/2, 3),
+			Ease(dropShadow.transform, "y", targetSprite.transform.y + targetSprite.h - dropShadow.h, 3)
 		},
 
 		-- Drop carried target
-		Ease(carriedTargetSprite.transform, "y", targetSprite.transform.y, 6),
+		Ease(carriedTargetSprite.transform, "y", targetSprite.transform.y + carriedTargetSprite.h/2, 6),
 		Ease(carriedTargetSprite.transform, "y", function() return carriedTargetSprite.transform.y - 3 end, 8, "quad"),
 		Ease(carriedTargetSprite.transform, "y", function() return carriedTargetSprite.transform.y + 3 end, 8, "quad"),
 
@@ -54,22 +54,27 @@ local dropAction = function(self, target, carriedTarget, dropShadow)
 			Ease(self.sprite.transform, "y", lastXForm.y, 3),
 
 			Ease(dropShadow.transform, "x", lastXForm.x - self.sprite.w/2, 3),
-			Ease(dropShadow.transform, "y", lastXForm.y + FLY_HEIGHT + self.sprite.h, 3)
+			Ease(dropShadow.transform, "y", lastXForm.y + FLY_HEIGHT + self.sprite.h/2 - dropShadow.h, 3)
 		},
 
 		-- Land
-		Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + FLY_HEIGHT end, 1),
+		Ease(self.sprite.transform, "y", self.lastXForm.y, 1),
 		Do(function()
-			self.flying = false
+			self.aerial = false
+			self.noCounter = false
 			self.sprite:popOverride("idle")
 			self.sprite:setAnimation("idle")
 			self.options = self.origOptions
 			self.untargetable = false
 			carriedTarget.untargetable = false
+			carriedTarget.aerial = false
+			carriedTarget.noCounter = false
 			carriedTargetSprite:setAnimation(carriedTarget.prevAnim)
 			carriedTargetSprite:swapLayer("sprites")
 			carriedTarget.state = carriedTarget.STATE_IDLE
 			carriedTarget.noEscape = false
+			carriedTarget.noHurtAnim = false
+			carriedTarget.stats.speed = carriedTarget.stats.origSpeed
 			carriedTarget:removeHandler("hit", self.hitHandler)
 			dropShadow:remove()
 		end)
@@ -82,7 +87,9 @@ return function(self, target)
 	local targetSprite = target:getSprite()
 	local lastXFormTarget = Transform.from(targetSprite.transform)
 
+	self.lastXForm = lastXForm
 	target.prevAnim	= targetSprite.selected
+	target.lastXForm = lastXFormTarget
 	
 	local dropShadow = SpriteNode(
 		self.scene,
@@ -98,7 +105,7 @@ return function(self, target)
 		-- Can hold onto something for up to 3 turns unless they specify a diff value
 		self.liftTurns = target.maxLiftTurns or 3
 		self.hitHandler = function(damage)
-			if self.flying then
+			if self.aerial then
 				Executor(self.scene):act(Serial {
 					Do(function()
 						self.sprite:setAnimation("flyleftheavy")
@@ -125,7 +132,10 @@ return function(self, target)
 					},
 
 					Do(function()
-						self.flying = false
+						self.aerial = false
+						target.aerial = false
+						self.noCounter = false
+						target.noCounter = false
 						self.sprite:popOverride("idle")
 						self.sprite:setAnimation("idle")
 						self.options = self.origOptions
@@ -134,6 +144,8 @@ return function(self, target)
 						targetSprite:setAnimation(target.prevAnim)
 						target.state = target.STATE_IDLE
 						target.noEscape = false
+						target.noHurtAnim = false
+						target.stats.speed = target.stats.origSpeed
 						dropShadow:remove()
 
 						target:removeHandler("hit", self.hitHandler)
@@ -160,7 +172,10 @@ return function(self, target)
 		
 		Do(function()
 			-- Flying benefits
-			self.flying = true
+			self.aerial = true
+			target.aerial = true
+			self.noCounter = true
+			target.noCounter = true
 			self.sprite:pushOverride("idle", "flyleft")
 		end),
 
@@ -170,12 +185,11 @@ return function(self, target)
 			Ease(self.sprite.transform, "y", targetSprite.transform.y - targetSprite.h, 3),
 			
 			Ease(dropShadow.transform, "x", targetSprite.transform.x, 3),
-			Ease(dropShadow.transform, "y", targetSprite.transform.y + targetSprite.h, 3)
+			Ease(dropShadow.transform, "y", targetSprite.transform.y + targetSprite.h - dropShadow.h, 3)
 		},
 
 		-- Pickup
 		PlayAudio("sfx", "bang", 1.0, true),
-		Animate(targetSprite, "hurt"),
 		Ease(targetSprite.transform, "x", function() return targetSprite.transform.x - 5 end, 6),
 		Ease(targetSprite.transform, "x", function() return targetSprite.transform.x + 5 end, 6),
 
@@ -201,13 +215,16 @@ return function(self, target)
 					Ease(self.sprite.transform, "y", lastXForm.y - FLY_HEIGHT, 3),
 
 					Ease(dropShadow.transform, "x", lastXForm.x - self.sprite.w/2, 3),
-					Ease(dropShadow.transform, "y", lastXForm.y + self.sprite.h, 3)
+					Ease(dropShadow.transform, "y", lastXForm.y + self.sprite.h - dropShadow.h, 3)
 				},
 
 				-- Land
 				Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + FLY_HEIGHT end, 1),
 				Do(function()
-					self.flying = false
+					self.aerial = false
+					target.aerial = false
+					self.noCounter = false
+					target.noCounter = false
 					self.sprite:popOverride("idle")
 					self.sprite:setAnimation("idle")
 					dropShadow:remove()
@@ -237,7 +254,7 @@ return function(self, target)
 					Ease(targetSprite.transform, "y", lastXForm.y - FLY_HEIGHT/2, 3),
 
 					Ease(dropShadow.transform, "x", lastXForm.x - self.sprite.w/2, 3),
-					Ease(dropShadow.transform, "y", lastXForm.y + self.sprite.h, 3)
+					Ease(dropShadow.transform, "y", lastXForm.y + self.sprite.h - dropShadow.h, 3)
 				},
 
 				Do(function()
@@ -246,6 +263,9 @@ return function(self, target)
 					target.untargetable = true
 					target.state = target.STATE_IMMOBILIZED
 					target.noEscape = true
+					target.noHurtAnim = true
+					target.stats.origSpeed = target.stats.speed
+					target.stats.speed = 100
 					
 					-- Give yourself another turn whydoncha
 					table.insert(self.scene.partyTurns, 1, self)
@@ -287,7 +307,10 @@ return function(self, target)
 										},
 
 										Do(function()
-											self.flying = false
+											self.aerial = false
+											target.aerial = false
+											self.noCounter = false
+											target.noCounter = false
 											self.sprite:popOverride("idle")
 											self.options = self.origOptions
 											self.untargetable = false
@@ -296,6 +319,8 @@ return function(self, target)
 											targetSprite:swapLayer("sprites")
 											target.state = target.STATE_IDLE
 											target.noEscape = false
+											target.noHurtAnim = false
+											target.stats.speed = target.stats.origSpeed
 											target:removeHandler("hit", self.hitHandler)
 											dropShadow:remove()
 										end),
@@ -334,6 +359,7 @@ return function(self, target)
 									function(dropTarget) return dropTarget == self or dropTarget == target end,
 									function(dropSelf, dropTarget)
 										menu:close()
+
 										return Serial {
 											Parallel {
 												menu,

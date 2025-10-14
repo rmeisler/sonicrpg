@@ -59,6 +59,11 @@ return {
 		end)
 	end,
 	
+	onLift = function (self, carrier)
+		local selfSprite = self:getSprite()
+		return Animate(selfSprite, "hurt")
+	end,
+	
 	onDrop = function (self, carrier, target)
 		local targetSprite = target:getSprite()
 		
@@ -73,8 +78,8 @@ return {
 			return Serial {
 				Do(function()
 					target.state = target.STATE_IMMOBILIZED
-					target.noEscape = true
-					self.immobilizedByObj = target
+					target.escapeAction = self:die()
+					target.immobilizedByObj = self
 				end),
 
 				Ease(targetSprite.transform, "x", function() return targetSprite.transform.x - 5 end, 6),

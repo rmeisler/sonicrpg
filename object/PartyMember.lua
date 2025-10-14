@@ -81,13 +81,6 @@ function PartyMember:construct(scene, data)
 		self.sprite:setAnimation("dead")
 	end
 	
-	self:addHandler("hit", function(damage)
-		if damage > 0 and self.state == BattleActor.STATE_IMMOBILIZED then
-			self.state = BattleActor.STATE_IDLE
-			self.prevAnim = "idle"
-		end
-	end)
-	
 	self.side = TargetType.Party
 end
 
@@ -121,8 +114,12 @@ end
 
 function PartyMember:beginTurn()
 	if self.state == BattleActor.STATE_IMMOBILIZED then
+		if self.noEscape then
+			self:endTurn()
+			return
+		end
+
 		self.turnover = false
-		
 		if not self.turnsImmobilized then
 			self.turnsImmobilized = 1
 		else
@@ -167,7 +164,7 @@ function PartyMember:beginTurn()
 			
 			Wait(0.5)
 		}, 2)
-		
+
 		-- Escape
 		if math.random(1, self.turnsImmobilized + 1) then
 			BattleActor.beginTurn(self)
@@ -180,7 +177,7 @@ function PartyMember:beginTurn()
 			}
 			self.mainMenu:addHandler("cancel", PartyMember.skipTurn, self, self.mainMenu)
 			self.state = BattleActor.STATE_IDLE
-			
+
 			self.scene:run {
 				shake,
 				self.escapeAction or Action(),
@@ -212,7 +209,6 @@ function PartyMember:beginTurn()
 		end
 		
 		if self.onNextTurn then
-			print("next turn here")
 			preAction = Serial {
 				self.onNextTurn,
 				preAction
@@ -234,6 +230,39 @@ function PartyMember:beginTurn()
 			self.mainMenu
 		}
 	end
+end
+
+function PartyMember:onHit(attacker, damage)
+	return Serial {
+		Do(function()
+			if damage > 0 and self.state == BattleActor.STATE_IMMOBILIZED and not self.noEscape then
+				self.state = BattleActor.STATE_IDLE
+				self.prevAnim = "idle"
+			end
+		end)
+	}
+end
+
+function PartyMember:onLift(carrier)
+	return Animate(self.sprite, "shock")
+end
+
+function PartyMember:onDrop(carrier, target)
+	return Serial {
+		--Animate(self.sprite, "dead"),
+		target:takeDamage(self.stats),
+
+		-- Go back to original spot
+		Animate(self.sprite, "idle"),
+		Parallel {
+			Ease(self.sprite.transform, "x", self.lastXForm.x, 6),
+			Ease(self.sprite.transform, "y", self.lastXForm.y, 6)
+		},
+		
+		Do(function()
+			self.lastXForm = nil
+		end)
+	}
 end
 
 function PartyMember:skipTurn(actionMenu)

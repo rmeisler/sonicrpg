@@ -60,10 +60,10 @@ return {
 			}
 		},
 		[4] = {
-			messages = {}, --"Tails learned {h\"Slap Shot\"}!"},
+			messages = {"Tails learned \"{h Called Shot}\"!"},
 			skills = {
 				require "data/battle/skills/LiftDrop",
-				--require "data/battle/skills/SlapShot",
+				require "data/battle/skills/CalledShot",
 			}
 		},
 	},
