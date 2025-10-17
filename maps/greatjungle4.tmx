@@ -340,7 +340,7 @@
     <property name="height" type="int" value="1000"/>
    </properties>
   </object>
-  <object id="450" name="IntroTrigger" type="TouchTrigger" gid="5323" x="2816" y="1056" width="64" height="96">
+  <object id="450" name="IntroTrigger" type="TouchTrigger" gid="5323" x="2784" y="1088" width="64" height="160">
    <properties>
     <property name="atMostOnce" type="bool" value="true"/>
     <property name="script">local MessageBox = require &quot;actions/MessageBox&quot;
@@ -365,6 +365,7 @@ return function(self)
         Do(function()
             if self.scene.player.doingSpecialMove then
                 self.scene.player.forceDrop = true
+                self.scene.player.stopElevating = true
             end
         end),
         YieldUntil(function() return self.scene.player.doingSpecialMove == false end),

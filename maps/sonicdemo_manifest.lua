@@ -569,6 +569,16 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/concerning.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/bintrospective.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/lookout.ogg",
 		category = "music",
 		looping = true

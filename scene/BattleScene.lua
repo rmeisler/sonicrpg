@@ -548,8 +548,21 @@ function BattleScene:earlyExit()
 				partyMember.hp = mem.hp
 				partyMember.sp = mem.sp
 			end
-			
-			self.sceneMgr:popScene{hint=self.hint}
+
+			self.sceneMgr:popScene{self.hint}
+		end)
+	}
+end
+
+function BattleScene:fadeOut(speed)
+	speed = speed or 1
+	return Parallel {
+		-- Fade to black
+		Ease(self.bgColor, 1, 0, 2 * speed, "linear"),
+		Ease(self.bgColor, 2, 0, 2 * speed, "linear"),
+		Ease(self.bgColor, 3, 0, 2 * speed, "linear"),
+		Do(function()
+			ScreenShader:sendColor("multColor", self.bgColor)
 		end)
 	}
 end

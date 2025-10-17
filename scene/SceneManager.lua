@@ -100,30 +100,35 @@ function SceneManager:backToTitle()
 end
 
 function SceneManager:popScene(args)
-	self.transitioning = true
-	local scene = self.sceneStack[self.current]
-	scene:invoke("exit")
-	self:invoke("exit", scene)
-	scene:run(BlockInput {
-		scene:onExit(args) or Action(),
-		Do(function()
-			table.remove(self.sceneStack)
-			self.current = self.current - 1
-			
-			local nextScene = self:getCurrent()
-			if nextScene then
-				nextScene:run {
-					nextScene:onReEnter(args) or Action(),
-					Do(function()
-						self.transitioning = false
-						nextScene:invoke("enter")
-						self:invoke("enter", nextScene)
-					end)
-				}
-			end
-		end)
-	})
-    
+	if args.noTransition then
+		table.remove(self.sceneStack)
+		self.current = self.current - 1
+	else
+		self.transitioning = true
+		local scene = self.sceneStack[self.current]
+		scene:invoke("exit")
+		self:invoke("exit", scene)
+		scene:run(BlockInput {
+			scene:onExit(args) or Action(),
+			Do(function()
+				table.remove(self.sceneStack)
+				self.current = self.current - 1
+				
+				local nextScene = self:getCurrent()
+				if nextScene then
+					nextScene:run {
+						nextScene:onReEnter(args) or Action(),
+						Do(function()
+							self.transitioning = false
+							nextScene:invoke("enter")
+							self:invoke("enter", nextScene)
+						end)
+					}
+				end
+			end)
+		})
+	end
+
 	return self.current ~= 0
 end
 

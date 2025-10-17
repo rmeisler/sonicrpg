@@ -92,7 +92,7 @@ return function(scene, hint)
 			MessageBox{message="King: From reading your letters I can tell that-- {p20}**zzzz** no longer a child, but a brilliant young woman.", closeAction=Wait(3)},
 			MessageBox{message="King: Stay strong and keep fighting my dear daughter--{p20} **zzzz** {p60}I have faith that we will some day be\nreunited...", closeAction=Wait(3)},
 			
-			Animate(scene.objectLookup.Sally.sprite, "sadleft"),
+			Animate(scene.objectLookup.Sally.sprite, "worriedleft"),
 			MessageBox{message="Sally: ...*sniff*... {p60}I love you daddy...", closeAction=Wait(2)},
 			
 			Wait(1),

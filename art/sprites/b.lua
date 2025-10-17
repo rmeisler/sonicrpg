@@ -17,6 +17,9 @@ return {
 		shock = {
 			frames = {{11,4}}
 		},
+		hurt = {
+		    frames = {{10,0}}
+		},
 		
 		lookdown = {
 			frames = {{13,1}}
@@ -53,18 +56,16 @@ return {
 		    frames = {{0,2},{1,2},{0,2},{5,2}},
 			speed = 0.5
 		},
+		weakcrouchleft = {
+		    frames = {{12,4},{13,4}},
+			speed = 0.5
+		},
 		
 		crouchleft = {
-		    frames = {{13,6}}
-		},
-		crouchright = {
-		    frames = {{14,6}}
+		    frames = {{11,0}}
 		},
 		jumpleft = {
-		    frames = {{15,6}}
-		},
-		jumpright = {
-		    frames = {{16,6}}
+		    frames = {{9,0}}
 		},
 		
 		leapdown = {

@@ -8,7 +8,7 @@ return {
   height = 180,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 366,
+  nextobjectid = 367,
   properties = {
     ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
@@ -1818,89 +1818,6 @@ return {
           }
         },
         {
-          id = 258,
-          name = "Weeds",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1696,
-          y = 1056,
-          width = 68,
-          height = 64,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/brush.lua",
-            ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idle",
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/brush.png"
-          }
-        },
-        {
-          id = 261,
-          name = "Weeds",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1696,
-          y = 928,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/brush_easy.lua",
-            ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idle",
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/brush.png"
-          }
-        },
-        {
-          id = 264,
-          name = "Weeds",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1696,
-          y = 1184,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/brush_easy.lua",
-            ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idle",
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/brush.png"
-          }
-        },
-        {
-          id = 267,
-          name = "Chest2",
-          type = "Chest",
-          shape = "rectangle",
-          x = 1696,
-          y = 1055,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["Mushroom"] = 1,
-            ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
           id = 270,
           name = "Mushroom1",
           type = "BasicNPC",
@@ -2808,6 +2725,23 @@ return {
             ["ghost"] = true,
             ["showHint"] = true,
             ["specialHint"] = "tails"
+          }
+        },
+        {
+          id = 366,
+          name = "Chest2",
+          type = "Chest",
+          shape = "rectangle",
+          x = 576,
+          y = 4543,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["Mushroom"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }

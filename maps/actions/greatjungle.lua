@@ -21,6 +21,30 @@ return function(scene, hint)
 	local NameScreen = require "actions/NameScreen"
 	local Player = require "object/Player"
 	
+	if hint == "meanwhile_1" then
+		return Do(function()
+			local mapName = "maps/knothole_ep5.lua"
+			scene.sceneMgr:switchScene {
+				class = "BasicScene",
+				map = scene.maps[mapName],
+				mapName = mapName,
+				maps = scene.maps,
+				images = scene.images,
+				region = scene.region,
+				animations = scene.animations,
+				audio = scene.audio,
+				hint = hint,
+				tutorial = false,
+				fadeOutSpeed = 10,
+				fadeInSpeed = 0.2,
+				fadeOutMusic = true,
+				cache = false,
+				nighttime = false,
+				enterDelay = 1
+			}
+		end)
+	end
+
 	
 	local text = TypeText(
 		Transform(50, 500),

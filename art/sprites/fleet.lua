@@ -48,6 +48,9 @@ return {
 		lookright = {
 			frames = {{1,5}}
 		},
+		lookleft = {
+			frames = {{4,5}}
+		},
 		frustrated = {
 			frames = {{1,7}}
 		},
