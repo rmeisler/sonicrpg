@@ -128,6 +128,9 @@ return {
 		irritated = {
 			frames = {{1,6}}
 		},
+		blush = {
+			frames = {{5,7}}
+		},
 		shock = {
 			frames = {{11,4}}
 		},

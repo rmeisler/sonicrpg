@@ -338,6 +338,13 @@ return {
 			frames = {{12,9}}
 		},
 		
+		attitude = {
+			frames = {{12,10}}
+		},
+		worrieddown = {
+			frames = {{10,10}}
+		},
+		
 		prepare_race = {
 			frames = {{14,9}}
 		},

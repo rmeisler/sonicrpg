@@ -140,6 +140,8 @@ return {
 			}
 		end
 		
+		self.scene.noBattleMusic = true
+
 		return Serial {
 			PlayAudio("music", "boss", 1.0, true, true),
 			Animate(self.scene.partyByName.tails.sprite, "shock"),
@@ -173,6 +175,7 @@ return {
 			Do(function() self:getSprite():setAnimation("angryidle") end),
 			Wait(1),
 			Animate(self.scene.partyByName.tails.sprite, "shock"),
+			Animate(self.scene.partyByName.b.sprite, "shock"),
 			Animate(self.scene.partyByName.babyt.sprite, "shock"),
 			Animate(self:getSprite(), "roar"),
 			-- ROAR
@@ -203,25 +206,67 @@ return {
 			Animate(self.scene.partyByName.babyt.sprite, "dead"),
 			Wait(1),
 			MessageBox{message=self.translate and "Baby T: Ugh... why?..." or "Baby T: *weak whine*"},
+			Wait(2),
+			MessageBox{message="B: ..."},
+			Do(function()
+				self.scene.partyByName.b.hp = 1
+				self.scene.partyByName.b.state = self.scene.partyByName.b.STATE_IDLE
+				self.scene.partyByName.b.sprite:setAnimation("weakcrouchleft")
+			end),
+			MessageBox{message="B: Ugh... {p60}*wheeze* {p60}gotta get these kids to safety..."},
 			Wait(1),
-			-- TO BE CONTINUED
-			Spawn(Serial {
-				Wait(1),
-				TypeText(
-					Transform(40, 200),
-					{255, 255, 255, 255},
-					FontCache.Techno,
-					"To Be Continued...",
-					4,
-					false,
-					true
-				),
-				Wait(5),
-				Do(function()
-					self.scene.sceneMgr:pushScene {class = "CreditsSplashScene", fadeOutSpeed=0.05,fadeInSpeed=0.3, enterDelay=4}
-				end)
-			}),
-			Wait(15)
+			Animate(self.scene.partyByName.b.sprite, "jumpleft"),
+			Ease(self.scene.partyByName.b.sprite.transform, "y", function() return self.scene.partyByName.b.sprite.transform.y - 150 end, 4, "quad"),
+			Ease(self.scene.partyByName.b.sprite.transform, "y", function() return self.scene.partyByName.babyt.sprite.transform.y end, 6, "quad"),
+			Do(function()
+				self.scene.partyByName.b.sprite:setAnimation("weakcrouchleft")
+				self.scene.partyByName.babyt.sprite:remove()
+			end),
+			Wait(1),
+			Animate(self.scene.partyByName.b.sprite, "jumpleft"),
+			Ease(self.scene.partyByName.b.sprite.transform, "y", function() return self.scene.partyByName.b.sprite.transform.y - 250 end, 4, "quad"),
+			Ease(self.scene.partyByName.b.sprite.transform, "y", function() return self.scene.partyByName.tails.sprite.transform.y end, 6, "quad"),
+			Do(function()
+				self.scene.partyByName.b.sprite:setAnimation("weakcrouchleft")
+				self.scene.partyByName.tails.sprite:remove()
+			end),
+			Wait(1),
+			AudioFade("music", 1, 0, 0.5),
+			MessageBox{message="B: *wheeze* {p60}... {p60}I know you can hear me behind Robotnik's programming..."},
+			PlayAudio("music", "bintrospective", 1, true),
+			MessageBox{message="B: I just want to tell you{p60} *wheeze* {p60}hang tight. {p60}I've seen what these kids can do. {p60}They will find a way to free us..."},
+			Wait(0.5),
+			Animate(self.scene.partyByName.b.sprite, "jumpleft"),
+			Parallel {
+				Ease(self.scene.partyByName.b.sprite.transform, "x", function() return self.scene.partyByName.b.sprite.transform.x + 300 end, 4, "quad"),
+				Ease(self.scene.partyByName.b.sprite.transform, "y", function() return self.scene.partyByName.b.sprite.transform.y - 150 end, 4, "quad")
+			},
+			self.scene:fadeOut(0.2),
+			Do(function()
+				self.scene.sceneMgr:popScene{noTransition=true}
+				local curScene = self.scene.sceneMgr:getCurrent()
+
+				local mapName = "maps/knothole_ep5.lua"
+				self.scene.sceneMgr:switchScene {
+					class = "BasicScene",
+					map = curScene.maps[mapName],
+					mapName = mapName,
+					maps = curScene.maps,
+					images = curScene.images,
+					region = curScene.region,
+					animations = curScene.animations,
+					audio = curScene.audio,
+					hint = "meanwhile_1",
+					spawn_point = "Meanwhile1_Spawn",
+					tutorial = false,
+					fadeOutSpeed = 0.2,
+					fadeInSpeed = 0.2,
+					fadeOutMusic = true,
+					cache = false,
+					nighttime = false,
+					enterDelay = 1
+				}
+			end)
 		}
 	end
 }

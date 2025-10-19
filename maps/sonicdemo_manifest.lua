@@ -569,6 +569,16 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/rotorsentimental.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/introspection.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/concerning.ogg",
 		category = "music"
 	},

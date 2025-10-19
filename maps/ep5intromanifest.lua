@@ -2,7 +2,7 @@ return {
 	{
         type = "map",
         file = "maps/ep5intro.lua",
-		primary = true -- REAL
+		--primary = true -- REAL
     },
 	{
         type = "map",
@@ -32,7 +32,7 @@ return {
 	{
         type = "map",
         file = "maps/knothole_ep5.lua",
-		--primary = true
+		primary = true
     },
 	{
         type = "map",
@@ -566,6 +566,16 @@ return {
 		type = "sound",
 		file = "audio/sfx/bounce.wav",
 		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/rotorsentimental.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/introspection.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",
