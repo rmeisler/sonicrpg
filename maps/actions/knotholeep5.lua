@@ -52,7 +52,7 @@ return function(scene, hint)
 		}
 	})
 	
-	if true then --hint == "meanwhile_1" then
+	if hint == "meanwhile_1" then
 		scene.objectLookup.Sally_Meanwhile1.hidden = false
 		scene.objectLookup.Sonic_Meanwhile1.hidden = false
 		scene.objectLookup.Fleet_Meanwhile1.hidden = false

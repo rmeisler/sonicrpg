@@ -32,6 +32,9 @@ return {
 		redleft = {
 			frames = {{9,4}}
 		},
+		reddown = {
+			frames = {{4,4}}
+		},
 
 		packupidle = {
 			frames = {{9,3}}

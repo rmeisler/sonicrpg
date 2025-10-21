@@ -483,7 +483,7 @@ return function(self)
 end</property>
    </properties>
   </object>
-  <object id="452" name="B" type="BasicNPC" gid="5323" x="2592" y="992" width="64" height="64">
+  <object id="452" name="B" type="BasicNPC" gid="5323" x="2592" y="1024" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="hidden" type="bool" value="true"/>
@@ -491,7 +491,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/b.png"/>
    </properties>
   </object>
-  <object id="453" name="Terrabot" type="BasicNPC" gid="5323" x="2272" y="992" width="288" height="128">
+  <object id="453" name="Terrabot" type="BasicNPC" gid="5323" x="2272" y="1024" width="288" height="128">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="hidden" type="bool" value="true"/>

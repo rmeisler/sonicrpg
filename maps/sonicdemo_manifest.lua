@@ -6,6 +6,16 @@ return {
     },
 	{
         type = "map",
+        file = "maps/boulderbay1.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/boulderbay2.lua",
+		--primary = true
+    },
+	{
+        type = "map",
         file = "maps/greatjungle.lua",
 		--primary = true
     },
@@ -566,6 +576,11 @@ return {
 		type = "sound",
 		file = "audio/sfx/bounce.wav",
 		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/boulderbay.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",
