@@ -135,7 +135,7 @@ return function(player)
 
 	player:run(While(
 		function()
-			return love.keyboard.isDown("lshift")
+			return love.keyboard.isDown("lshift") or not player.forceDrop
 		end,
 		Serial {
 			Do(function()
@@ -162,6 +162,8 @@ return function(player)
 		Do(function()
 			player.basicUpdate = player.updateFun
 			player.state = anim_to_idle[player.state]
+			player.charging = false
+			player.forceDrop = false
 		end)
 	))
 end

@@ -579,6 +579,16 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/bhero.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/patrol.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/boulderbay.ogg",
 		category = "music"
 	},

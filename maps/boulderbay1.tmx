@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="150" height="40" tilewidth="32" tileheight="32" infinite="0" nextobjectid="389">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="150" height="40" tilewidth="32" tileheight="32" infinite="0" nextobjectid="390">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/greatjunglebg.png"/>
+  <property name="battlebg" type="file" value="../art/backgrounds/boulderbaybg.png"/>
   <property name="currentLayer" type="int" value="7"/>
   <property name="layered" type="bool" value="true"/>
   <property name="onload" type="file" value="actions/boulderbay.lua"/>
@@ -250,37 +250,6 @@
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="dead"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local Do = require &quot;actions/Do&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local Animate = require &quot;actions/Animate&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local Wait = require &quot;actions/Wait&quot;
-
-local ItemType = require &quot;util/ItemType&quot;
-
-return function(self)
-    GameState:addBackToParty(&quot;babyt&quot;)
-    local translate = GameState:isEquipped(&quot;babyt&quot;, ItemType.Accessory, &quot;Translator Collar&quot;)
-    return BlockPlayer {
-        MessageBox {message=&quot;Baby T: ...&quot;},
-        MessageBox {message=translate and &quot;Baby T: Tails?&quot; or &quot;Baby T: *grunt*?&quot;},
-        Wait(1),
-        Animate(self.sprite, &quot;victory&quot;),
-        Parallel {
-            self:hop(),
-            MessageBox {message=translate and &quot;Baby T: We're back!&quot; or &quot;Baby T: *happy grunt*!&quot;}
-        },
-        Do(function()
-            self.hidden = true
-        end),
-        MessageBox {message=&quot;Baby T rejoined your party!&quot;, sfx=&quot;choose&quot;},
-        Do(function()
-            self:remove()
-        end)
-    }
-end</property>
     <property name="sprite" type="file" value="../art/sprites/babyt.png"/>
    </properties>
   </object>
@@ -298,7 +267,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/palmtree2.png"/>
    </properties>
   </object>
-  <object id="384" name="B" type="BasicNPC" gid="7597" x="3040" y="672" width="64" height="64">
+  <object id="384" name="B" type="BasicNPC" gid="7597" x="3552" y="672" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="reddown"/>
@@ -333,14 +302,14 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/b.png"/>
    </properties>
   </object>
-  <object id="386" name="Swatbot2" type="BasicNPC" gid="7597" x="3136" y="672" width="64" height="64">
+  <object id="386" name="Swatbot2" type="BasicNPC" gid="7597" x="3648" y="672" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="idleleft"/>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
    </properties>
   </object>
-  <object id="387" name="Swatbot1" type="BasicNPC" gid="7597" x="2944" y="672" width="64" height="64">
+  <object id="387" name="Swatbot1" type="BasicNPC" gid="7597" x="3456" y="672" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="idleright"/>
@@ -355,7 +324,7 @@ end</property>
  <objectgroup name="objects2"/>
  <objectgroup name="objects"/>
  <objectgroup name="all">
-  <object id="388" name="IntroTrigger" type="TouchTrigger" gid="5323" x="2688" y="1280" width="64" height="1280">
+  <object id="388" name="BTrigger" type="TouchTrigger" gid="5323" x="3200" y="1280" width="64" height="1280">
    <properties>
     <property name="atMostOnce" type="bool" value="true"/>
     <property name="script">local MessageBox = require &quot;actions/MessageBox&quot;
@@ -395,25 +364,67 @@ return function(self)
         Animate(sprites.tails.sprite, &quot;idleright&quot;),
         Animate(sprites.babyt.sprite, &quot;idleright&quot;),
         Wait(1),
-        Ease(self.scene.camPos, &quot;x&quot;, -350, 0.5, &quot;linear&quot;),
+        Ease(self.scene.camPos, &quot;x&quot;, -300, 0.5, &quot;linear&quot;),
         PlayAudio(&quot;music&quot;, &quot;patrol&quot;, 1, true, true),
         Wait(1),
-        MessageBox{message=&quot;Tails: B!&quot;},
-        Wait(1),
-        Ease(self.scene.camPos, &quot;x&quot;, 0, 0.5, &quot;linear&quot;),
-        Animate(sprites.b.sprite, &quot;shock&quot;),
+        Animate(sprites.tails.sprite, &quot;joyright&quot;),
         Parallel {
-            sprites.b:hop(),
+            sprites.tails:hop(),
+            MessageBox{message=&quot;Tails: B!&quot;}
+        },
+        Wait(0.5),
+        Animate(sprites.babyt.sprite, &quot;shock&quot;),
+        Parallel {
+            sprites.babyt:hop(),
             MessageBox{message=translate and &quot;Baby T: Ahh! {p60}Real Swatbots!&quot; or &quot;Baby T: *squeel*! {p60}*grunt grunt*!&quot;}
         },
         Wait(0.5),
+        Animate(sprites.tails.sprite, &quot;danger_pose_right&quot;),
         MessageBox{message=&quot;Tails: Come on, Baby T! {p60}We gotta help him!&quot;},
 
         self.scene:enterBattle{
             opponents = {&quot;swatbotx2&quot;},
-            initiative = &quot;player&quot;
+            hint = &quot;after_battle&quot;,
+            beforeBattle = walkin
         }
     }}
+end</property>
+   </properties>
+  </object>
+  <object id="389" name="BabyTTrigger" type="TouchTrigger" gid="5323" x="1952" y="1280" width="64" height="1280">
+   <properties>
+    <property name="atMostOnce" type="bool" value="true"/>
+    <property name="script">local Serial = require &quot;actions/Serial&quot;
+local Do = require &quot;actions/Do&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Wait = require &quot;actions/Wait&quot;
+
+local ItemType = require &quot;util/ItemType&quot;
+
+return function(self)
+    GameState:addBackToParty(&quot;babyt&quot;)
+    local translate = GameState:isEquipped(&quot;babyt&quot;, ItemType.Accessory, &quot;Translator Collar&quot;)
+    return BlockPlayer {
+        MessageBox {message=&quot;Baby T: ...&quot;},
+        MessageBox {message=translate and &quot;Baby T: Tails?&quot; or &quot;Baby T: *grunt*?&quot;},
+        Wait(1),
+        Animate(self.scene.objectLookup.BabyT.sprite, &quot;victory&quot;),
+        Parallel {
+            self.scene.objectLookup.BabyT:hop(),
+            MessageBox {message=translate and &quot;Baby T: We're back!&quot; or &quot;Baby T: *happy grunt*!&quot;}
+        },
+        Do(function()
+            self.scene.objectLookup.BabyT.hidden = true
+        end),
+        MessageBox {message=&quot;Baby T rejoined your party!&quot;, sfx=&quot;choose&quot;},
+        Do(function()
+            self.scene.objectLookup.BabyT:permanentRemove()
+            self:remove()
+        end)
+    }
 end</property>
    </properties>
   </object>

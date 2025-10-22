@@ -196,6 +196,25 @@ return function(scene, hint)
 			MessageBox{message="Ivan: You have no idea..."},
 			Do(function()
 				-- Change scene to Boulder Bay
+				local mapName = "maps/boulderbay1.lua"
+				self.scene.sceneMgr:switchScene {
+					class = "BasicScene",
+					map = curScene.maps[mapName],
+					mapName = mapName,
+					maps = curScene.maps,
+					images = curScene.images,
+					region = curScene.region,
+					animations = curScene.animations,
+					audio = curScene.audio,
+					hint = "from_cinematic",
+					tutorial = false,
+					fadeOutSpeed = 0.2,
+					fadeInSpeed = 0.2,
+					fadeOutMusic = true,
+					cache = false,
+					nighttime = false,
+					enterDelay = 1
+				}
 			end)
 		}
 	end

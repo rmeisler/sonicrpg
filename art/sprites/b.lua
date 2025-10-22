@@ -25,6 +25,11 @@ return {
 			frames = {{13,1}}
 		},
 		
+		blink_back = {
+			frames = {{1,4},{3,4}},
+			speed = 0.01
+		},
+		
 		camoflauge = {
 			frames = {{2,4},{3,4},{4,4}},
 			speed = 2

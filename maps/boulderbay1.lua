@@ -8,9 +8,9 @@ return {
   height = 40,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 389,
+  nextobjectid = 390,
   properties = {
-    ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
+    ["battlebg"] = "../art/backgrounds/boulderbaybg.png",
     ["currentLayer"] = 7,
     ["layered"] = true,
     ["onload"] = "actions/boulderbay.lua",
@@ -614,7 +614,6 @@ return {
           properties = {
             ["align"] = "bottom_center",
             ["defaultAnim"] = "dead",
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Animate = require \"actions/Animate\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Wait = require \"actions/Wait\"\n\nlocal ItemType = require \"util/ItemType\"\n\nreturn function(self)\n    GameState:addBackToParty(\"babyt\")\n    local translate = GameState:isEquipped(\"babyt\", ItemType.Accessory, \"Translator Collar\")\n    return BlockPlayer {\n        MessageBox {message=\"Baby T: ...\"},\n        MessageBox {message=translate and \"Baby T: Tails?\" or \"Baby T: *grunt*?\"},\n        Wait(1),\n        Animate(self.sprite, \"victory\"),\n        Parallel {\n            self:hop(),\n            MessageBox {message=translate and \"Baby T: We're back!\" or \"Baby T: *happy grunt*!\"}\n        },\n        Do(function()\n            self.hidden = true\n        end),\n        MessageBox {message=\"Baby T rejoined your party!\", sfx=\"choose\"},\n        Do(function()\n            self:remove()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/babyt.png"
           }
         },
@@ -659,7 +658,7 @@ return {
           name = "B",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 3040,
+          x = 3552,
           y = 672,
           width = 64,
           height = 64,
@@ -678,7 +677,7 @@ return {
           name = "Swatbot2",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 3136,
+          x = 3648,
           y = 672,
           width = 64,
           height = 64,
@@ -696,7 +695,7 @@ return {
           name = "Swatbot1",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2944,
+          x = 3456,
           y = 672,
           width = 64,
           height = 64,
@@ -789,10 +788,10 @@ return {
       objects = {
         {
           id = 388,
-          name = "IntroTrigger",
+          name = "BTrigger",
           type = "TouchTrigger",
           shape = "rectangle",
-          x = 2688,
+          x = 3200,
           y = 1280,
           width = 64,
           height = 1280,
@@ -801,7 +800,24 @@ return {
           visible = true,
           properties = {
             ["atMostOnce"] = true,
-            ["script"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal YieldUntil = require \"actions/YieldUntil\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nlocal ItemType = require \"util/ItemType\"\n\nreturn function(self)\n    local translate = GameState:isEquipped(\"babyt\", ItemType.Accessory, \"Translator Collar\")\n    local walkout, walkin, sprites = scene.player:split()\n\n    return Serial {\n        Do(function()\n            if self.scene.player.doingSpecialMove then\n                self.scene.player.forceDrop = true\n                self.scene.player.stopElevating = true\n            end\n        end),\n        YieldUntil(function() return self.scene.player.doingSpecialMove == false end),\n        BlockPlayer {\n        Do(function()\n            for k in pairs(GameState.party) do\n                sprites[k].x = scene.player.x - 60\n                sprites[k].y = scene.player.y - 60\n            end\n        end),\n        walkout,\n        Animate(sprites.tails.sprite, \"idleright\"),\n        Animate(sprites.babyt.sprite, \"idleright\"),\n        Wait(1),\n        Ease(self.scene.camPos, \"x\", -350, 0.5, \"linear\"),\n        PlayAudio(\"music\", \"patrol\", 1, true, true),\n        Wait(1),\n        MessageBox{message=\"Tails: B!\"},\n        Wait(1),\n        Ease(self.scene.camPos, \"x\", 0, 0.5, \"linear\"),\n        Animate(sprites.b.sprite, \"shock\"),\n        Parallel {\n            sprites.b:hop(),\n            MessageBox{message=translate and \"Baby T: Ahh! {p60}Real Swatbots!\" or \"Baby T: *squeel*! {p60}*grunt grunt*!\"}\n        },\n        Wait(0.5),\n        MessageBox{message=\"Tails: Come on, Baby T! {p60}We gotta help him!\"},\n\n        self.scene:enterBattle{\n            opponents = {\"swatbotx2\"},\n            initiative = \"player\"\n        }\n    }}\nend"
+            ["script"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal YieldUntil = require \"actions/YieldUntil\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\nlocal Do = require \"actions/Do\"\nlocal Animate = require \"actions/Animate\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nlocal ItemType = require \"util/ItemType\"\n\nreturn function(self)\n    local translate = GameState:isEquipped(\"babyt\", ItemType.Accessory, \"Translator Collar\")\n    local walkout, walkin, sprites = scene.player:split()\n\n    return Serial {\n        Do(function()\n            if self.scene.player.doingSpecialMove then\n                self.scene.player.forceDrop = true\n                self.scene.player.stopElevating = true\n            end\n        end),\n        YieldUntil(function() return self.scene.player.doingSpecialMove == false end),\n        BlockPlayer {\n        Do(function()\n            for k in pairs(GameState.party) do\n                sprites[k].x = scene.player.x - 60\n                sprites[k].y = scene.player.y - 60\n            end\n        end),\n        walkout,\n        Animate(sprites.tails.sprite, \"idleright\"),\n        Animate(sprites.babyt.sprite, \"idleright\"),\n        Wait(1),\n        Ease(self.scene.camPos, \"x\", -300, 0.5, \"linear\"),\n        PlayAudio(\"music\", \"patrol\", 1, true, true),\n        Wait(1),\n        Animate(sprites.tails.sprite, \"joyright\"),\n        Parallel {\n            sprites.tails:hop(),\n            MessageBox{message=\"Tails: B!\"}\n        },\n        Wait(0.5),\n        Animate(sprites.babyt.sprite, \"shock\"),\n        Parallel {\n            sprites.babyt:hop(),\n            MessageBox{message=translate and \"Baby T: Ahh! {p60}Real Swatbots!\" or \"Baby T: *squeel*! {p60}*grunt grunt*!\"}\n        },\n        Wait(0.5),\n        Animate(sprites.tails.sprite, \"danger_pose_right\"),\n        MessageBox{message=\"Tails: Come on, Baby T! {p60}We gotta help him!\"},\n\n        self.scene:enterBattle{\n            opponents = {\"swatbotx2\"},\n            hint = \"after_battle\",\n            beforeBattle = walkin\n        }\n    }}\nend"
+          }
+        },
+        {
+          id = 389,
+          name = "BabyTTrigger",
+          type = "TouchTrigger",
+          shape = "rectangle",
+          x = 1952,
+          y = 1280,
+          width = 64,
+          height = 1280,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["atMostOnce"] = true,
+            ["script"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Animate = require \"actions/Animate\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Wait = require \"actions/Wait\"\n\nlocal ItemType = require \"util/ItemType\"\n\nreturn function(self)\n    GameState:addBackToParty(\"babyt\")\n    local translate = GameState:isEquipped(\"babyt\", ItemType.Accessory, \"Translator Collar\")\n    return BlockPlayer {\n        MessageBox {message=\"Baby T: ...\"},\n        MessageBox {message=translate and \"Baby T: Tails?\" or \"Baby T: *grunt*?\"},\n        Wait(1),\n        Animate(self.scene.objectLookup.BabyT.sprite, \"victory\"),\n        Parallel {\n            self.scene.objectLookup.BabyT:hop(),\n            MessageBox {message=translate and \"Baby T: We're back!\" or \"Baby T: *happy grunt*!\"}\n        },\n        Do(function()\n            self.scene.objectLookup.BabyT.hidden = true\n        end),\n        MessageBox {message=\"Baby T rejoined your party!\", sfx=\"choose\"},\n        Do(function()\n            self.scene.objectLookup.BabyT:permanentRemove()\n            self:remove()\n        end)\n    }\nend"
           }
         }
       }
