@@ -453,7 +453,7 @@ return function(self)
         Do(function()
             self.scene.objectLookup.Terrabot.hidden = false
             self.scene.objectLookup.Terrabot.y = self.scene.objectLookup.Terrabot.y - 400
-            GameState:addToParty(&quot;b&quot;, 1, true)
+            GameState:addToParty(&quot;b&quot;, 5, true)
         end),
         Ease(self.scene.objectLookup.Terrabot, &quot;y&quot;, function() return self.scene.objectLookup.Terrabot.y + 400 end, 6, &quot;quad&quot;),
         Parallel {

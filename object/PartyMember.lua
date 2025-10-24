@@ -567,6 +567,10 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 	end
 end
 
+function PartyMember:getDamageTarget()
+	return self.targetOverride or self
+end
+
 function PartyMember:endTurn()
 	self.scene:invoke("turnover")
 	self.scene.handlers["turnover"] = {} -- Reset handlers

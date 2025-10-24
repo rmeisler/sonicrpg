@@ -2,6 +2,7 @@ return function(scene, hint)
 	local Transform = require "util/Transform"
 	local Rect = unpack(require "util/Shapes")
 	local Layout = require "util/Layout"
+	local ItemType = require "util/ItemType"
 
 	local Action = require "actions/Action"
 	local TypeText = require "actions/TypeText"
@@ -14,6 +15,7 @@ return function(scene, hint)
 	local BlockPlayer = require "actions/BlockPlayer"
 	local Parallel = require "actions/Parallel"
 	local Serial = require "actions/Serial"
+	local Move = require "actions/Move"
 	local Executor = require "actions/Executor"
 	local Wait = require "actions/Wait"
 	local Do = require "actions/Do"
@@ -32,6 +34,46 @@ return function(scene, hint)
 		100
 	)
 	
+	if hint == "after_battle_2" then
+		scene.objectLookup.Swatbot3:permanentRemove()
+		scene.objectLookup.Swatbot4:permanentRemove()
+		scene.objectLookup.Swatbot5:permanentRemove()
+		scene.objectLookup.B:permanentRemove()
+		
+		local walkout, walkin, sprites = scene.player:split()
+		for k in pairs(GameState.party) do
+			sprites[k].x = scene.player.x - 60
+			sprites[k].y = scene.player.y - 60
+		end
+		scene.audio:stopMusic()
+
+		local translate = GameState:isEquipped("babyt", ItemType.Accessory, "Translator Collar")
+
+		return BlockPlayer {
+			walkout,
+			Do(function()
+				sprites.babyt.x = sprites.babyt.x - 60
+				sprites.babyt.y = sprites.babyt.y + 60
+			end),
+			MessageBox{message=translate and "Baby T: We are getting pretty good at junkin' these bots!" or "Baby T: *proud grunt*!"},
+			Wait(1),
+			MessageBox{message="*GRUNT*! {p60} *GRUUUUUNT*!"},
+			Animate(sprites.tails.sprite, "shock"),
+			Animate(sprites.b.sprite, "shock"),
+			Animate(sprites.babyt.sprite, "shock"),
+			Parallel {
+				sprites.tails:hop(),
+				sprites.b:hop(),
+				sprites.babyt:hop()
+			},
+			Animate(sprites.tails.sprite, "idleright"),
+			Animate(sprites.b.sprite, "idleright"),
+			Animate(sprites.babyt.sprite, "idleright"),
+			MessageBox{message="Tails: We should check that out!"},
+			walkin
+		}
+	end
+	
 	if hint == "after_battle" then
 		scene.objectLookup.Swatbot1:permanentRemove()
 		scene.objectLookup.Swatbot2:permanentRemove()
@@ -47,28 +89,30 @@ return function(scene, hint)
 		scene.camPos.x = 0
 		scene.audio:stopMusic()
 
+		GameState:addToParty("b", 5, true)
+
 		return BlockPlayer {
 			walkout,
 			Animate(sprites.tails.sprite, "idleright"),
 			sprites.tails:hop(),
 			PlayAudio("music", "concerning", 1, true),
-			MessageBox{message="Tails: B! {p60}Can ya hear us, B?!"},
+			MessageBox{message="Tails: B! {p60}Can ya hear us, B?"},
 			Wait(2),
 
 			Animate(sprites.tails.sprite, "sadright"),
 			Animate(sprites.babyt.sprite, "sadright"),
 			MessageBox{message="Tails: Oh no, Baby T! *sniff* {p60}B has fallen under Robotnik's control again!"},
-			Wait(1),
+			Wait(2),
 			
 			Do(function()
 			    scene.objectLookup.B.sprite:setAnimation("blink_back")
 			end),
+			Animate(scene.objectLookup.B.sprite, "idledown"),
 			AudioFade("music", 1, 0, 1),
 			Wait(1),
 			PlayAudio("music", "bhero", 1, true, true),
 			Animate(scene.objectLookup.B.sprite, "idleleft"),
-			MessageBox{message="B: No need to fret, child! {p60}I'm just fine!"},
-			MessageBox{message="B: I was merely making myself appear to be under Robotnik's control to avoid being captured."},
+			MessageBox{message="B: There there. {p60}I'm just fine."},
 
 			Animate(sprites.tails.sprite, "idleright"),
 			Animate(sprites.babyt.sprite, "idleright"),
@@ -77,28 +121,50 @@ return function(scene, hint)
 				sprites.babyt:hop(),
 				MessageBox{message="Tails: Oh phew!"}
 			},
-			MessageBox{message="B: After rescuing you{p60}, I brought you both here to the beach. {p60}I was hoping that the wide open view might help me navigate back to Knothole..."},
+			MessageBox{message="B: I was merely making myself appear to be under Robotnik's control to avoid being captured."},
+			MessageBox{message="B: After rescuing you, I brought you both here to the beach. {p60}I was hoping that the wide open view might help me navigate back to Knothole..."},
 			Animate(scene.objectLookup.B.sprite, "pose"),
 			MessageBox{message="B: But alas... {p60}my memory is too limited to find the way..."},
 			
 			Parallel {
 				sprites.tails:hop(),
-				AudioFade("music", 1, 0, 1),
-				MessageBox{message="Tails: It's ok, B! {p60}If we--", closeAction=Wait(1)}
+				MessageBox{message="Tails: It's ok, B! {p60}If we--", closeAction=Wait(0.6)}
 			},
-			
-			-- Pan to see Swatbots surrounding caged Terrapods
+			Parallel {
+				AudioFade("music", 1, 0, 1),
+				MessageBox{message="zzz. {p60}That's the last Terrapod of Sector 8-H."}
+			},
+			Animate(sprites.tails.sprite, "shock"),
+			Animate(sprites.babyt.sprite, "shock"),
+			Animate(scene.objectLookup.B.sprite, "shock"),
+			Ease(scene.camPos, "x", -500, 1),
+			PlayAudio("music", "trouble", 1, true, true),
+			MessageBox{message="Swatbot: zzz. {p60}Intercept.", closeAction=Wait(0.6)},
+			Parallel {
+				Move(scene.objectLookup.Swatbot3, scene.objectLookup.B, "run"),
+				Move(scene.objectLookup.Swatbot4, scene.objectLookup.B, "run"),
+				Move(scene.objectLookup.Swatbot5, scene.objectLookup.B, "run"),
+
+				Serial {
+					Wait(0.5),
+					Ease(scene.camPos, "x", 0, 1)
+				}
+			},
+			scene:enterBattle{
+				opponents = {"swatbotx3"},
+				hint = "after_battle_2",
+				beforeBattle = walkin
+			}
 		}
 	end
 	
-	hint = "from_cinematic"
 	if hint == "from_cinematic" then
 		-- Reset hint
 		scene.hint = nil
 
-		GameState:addToParty("babyt", 3, true)
-		GameState.leader = "tails"
 		GameState:removeFromParty("babyt")
+		GameState:removeFromParty("b")
+		GameState.leader = "tails"
 		
 		local waterLayer1 = scene:findLayer("wateroverlay1")
 		local waterLayer2 = scene:findLayer("wateroverlay2")
@@ -131,7 +197,7 @@ return function(scene, hint)
 
 			MessageBox{message="Tails: ..."},
 			MessageBox{message="Tails: Ugh."},
-			Wait(0.5),
+			Wait(1),
 			Do(function()
 				scene.player.state = "idleleft"
 			end),
@@ -148,4 +214,24 @@ return function(scene, hint)
 			MessageBox{message="Tails: Where is everybody?..."},
 		}
 	end
+
+	scene.audio:stopMusic()
+	
+	local waterLayer1 = scene:findLayer("wateroverlay1")
+	local waterLayer2 = scene:findLayer("wateroverlay2")
+
+	return Spawn(
+		Repeat(Serial {
+			Do(function()
+				waterLayer1.opacity = 0.5
+				waterLayer2.opacity = 0
+			end),
+			Wait(2),
+			Do(function()
+				waterLayer1.opacity = 0
+				waterLayer2.opacity = 0.5
+			end),
+			Wait(2)
+		}, 10000)
+	)
 end

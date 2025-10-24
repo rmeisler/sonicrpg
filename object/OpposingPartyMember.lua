@@ -235,6 +235,18 @@ function OpposingPartyMember:beginTurn()
 
 		-- Choose action based on behavior
 		target = self.scene.party[self.selectedTarget]
+
+		local protected = false
+		local targetXForm
+		if target.targetOverride then
+			local origTarget = target
+			target = target.targetOverride
+			targetXForm = Transform.from(target.sprite.transform)
+			target.sprite.transform.x = origTarget.sprite.transform.x - 50
+			target.sprite.transform.y = origTarget.sprite.transform.y
+			protected = true
+		end
+
 		if target.laserShield and target.sprite ~= target.laserShield then
 			target.lastSprite = target.sprite
 			target.sprite = target.laserShield
@@ -256,6 +268,16 @@ function OpposingPartyMember:beginTurn()
 			self.action = Serial {
 				Telegraph(self, self.name.." feels compelled to attack "..target.name.."!", {255,255,255,50}),
 				self.action
+			}
+		end
+		
+		if targetXForm then
+			self.action = Serial {
+				self.action,
+				Parallel {
+					Ease(target.sprite.transform, "x", targetXForm.x, 8),
+					Ease(target.sprite.transform, "y", targetXForm.y, 8)
+				},
 			}
 		end
 	end

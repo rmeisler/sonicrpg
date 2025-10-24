@@ -11,6 +11,9 @@ return {
 		dead = {
 			frames = {{15,0}}
 		},
+		victory = {
+			frames = {{0,4}}
+		},
 		pose = {
 			frames = {{0,4}}
 		},
@@ -27,7 +30,7 @@ return {
 		
 		blink_back = {
 			frames = {{1,4},{3,4}},
-			speed = 0.01
+			speed = 0.1
 		},
 		
 		camoflauge = {
@@ -69,15 +72,17 @@ return {
 			speed = 0.5
 		},
 		
+		crouch = {
+		    frames = {{11,0}}
+		},
+		leap = {
+		    frames = {{7,1}}
+		},
 		crouchleft = {
 		    frames = {{11,0}}
 		},
 		jumpleft = {
 		    frames = {{9,0}}
-		},
-		
-		leapdown = {
-			frames = {{5,2}}
 		},
 		
 		idleright = {

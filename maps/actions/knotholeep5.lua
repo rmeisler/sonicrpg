@@ -197,15 +197,15 @@ return function(scene, hint)
 			Do(function()
 				-- Change scene to Boulder Bay
 				local mapName = "maps/boulderbay1.lua"
-				self.scene.sceneMgr:switchScene {
+				scene.sceneMgr:switchScene {
 					class = "BasicScene",
-					map = curScene.maps[mapName],
+					map = scene.maps[mapName],
 					mapName = mapName,
-					maps = curScene.maps,
-					images = curScene.images,
-					region = curScene.region,
-					animations = curScene.animations,
-					audio = curScene.audio,
+					maps = scene.maps,
+					images = scene.images,
+					region = scene.region,
+					animations = scene.animations,
+					audio = scene.audio,
 					hint = "from_cinematic",
 					tutorial = false,
 					fadeOutSpeed = 0.2,
