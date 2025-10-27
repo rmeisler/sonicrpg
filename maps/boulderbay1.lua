@@ -8,7 +8,7 @@ return {
   height = 25,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 394,
+  nextobjectid = 396,
   properties = {
     ["battlebg"] = "../art/backgrounds/boulderbaybg.png",
     ["currentLayer"] = 7,
@@ -522,19 +522,19 @@ return {
           name = "Entrance1",
           type = "SceneEdge",
           shape = "rectangle",
-          x = -32,
-          y = 1088,
-          width = 2048,
-          height = 64,
+          x = 4704,
+          y = 800,
+          width = 64,
+          height = 800,
           rotation = 0,
           gid = 7660,
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["key"] = "down",
+            ["key"] = "right",
             ["layerOverride"] = 7,
             ["no_run"] = true,
-            ["orientation"] = "up",
+            ["orientation"] = "left",
             ["scene"] = "boulderbay2.lua",
             ["spawn_point"] = "Entrance1"
           }
@@ -737,6 +737,27 @@ return {
           properties = {
             ["nonight"] = true,
             ["sprite"] = "../art/sprites/save.png"
+          }
+        },
+        {
+          id = 394,
+          name = "Swatbot5",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2816,
+          y = -32,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["defaultAnim"] = "idleleft",
+            ["ghost"] = true,
+            ["movespeed"] = 5,
+            ["onInteract"] = "return function(self)\n    return self.scene:enterBattle{\n        opponents = {\"swatbotx3\"}\n    }\nend",
+            ["sprite"] = "../art/sprites/swatbot.png"
           }
         }
       }

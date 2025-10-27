@@ -529,6 +529,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/terrapodroar.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/monkey.ogg",
 		category = "sfx"
 	},

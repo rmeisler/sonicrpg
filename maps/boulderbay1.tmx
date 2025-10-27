@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="150" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="394">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="150" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="396">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/boulderbaybg.png"/>
   <property name="currentLayer" type="int" value="7"/>
@@ -175,13 +175,13 @@
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="380" name="Entrance1" type="SceneEdge" gid="7660" x="-32" y="1088" width="2048" height="64">
+  <object id="380" name="Entrance1" type="SceneEdge" gid="7660" x="4704" y="800" width="64" height="800">
    <properties>
     <property name="ghost" type="bool" value="true"/>
-    <property name="key" value="down"/>
+    <property name="key" value="right"/>
     <property name="layerOverride" type="int" value="7"/>
     <property name="no_run" type="bool" value="true"/>
-    <property name="orientation" value="up"/>
+    <property name="orientation" value="left"/>
     <property name="scene" type="file" value="boulderbay2.lua"/>
     <property name="spawn_point" value="Entrance1"/>
    </properties>
@@ -274,6 +274,20 @@
    <properties>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
+   </properties>
+  </object>
+  <object id="394" name="Swatbot5" type="BasicNPC" gid="7597" x="2816" y="-32" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="defaultAnim" value="idleleft"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="movespeed" type="int" value="5"/>
+    <property name="onInteract">return function(self)
+    return self.scene:enterBattle{
+        opponents = {&quot;swatbotx3&quot;}
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
    </properties>
   </object>
  </objectgroup>

@@ -23,6 +23,12 @@ return {
 		hurt = {
 		    frames = {{10,0}}
 		},
+		block = {
+			frames = {{10,0}}
+		},
+		focus = {
+			frames = {{2,4}}
+		},
 		
 		lookdown = {
 			frames = {{13,1}}

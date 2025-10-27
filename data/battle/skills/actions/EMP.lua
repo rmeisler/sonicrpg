@@ -8,55 +8,37 @@ local AudioFade = require "actions/AudioFade"
 local PlayAudio = require "actions/PlayAudio"
 local Parallel = require "actions/Parallel"
 
-local Parallax = require "object/Parallax"
-local SpHeal = require "data/items/actions/SpHeal"
+local SpriteNode = require "object/SpriteNode"
+local Transform = require "util/Transform"
 
 return function(self, targets)
 	local actions = {}
-	local resetActions = {}
 	for _, target in pairs(targets) do
 		table.insert(
 			actions,
 			Serial {
-				Animate(target.sprite, "victory"),
+				Animate(target:getSprite(), "hurt"),
 				Wait(0.1),
-				SpHeal("sp", 3)(self, target),
+				Animate(function()
+					local xform = Transform.from(target:getSprite().transform)
+					xform.x = xform.x - 50
+					xform.y = xform.y - 50
+					return SpriteNode(self.scene, xform, nil, "lightning", nil, nil, "ui"), true
+				end, "idle"),
 				Do(function()
-					target.state = target.STATE_IDLE
-				end)
+					target.state = target.STATE_IMMOBILIZED
+				end),
+				Animate(target:getSprite(), "idle")
 			}
 		)
-		table.insert(resetActions, Animate(target.sprite, "idle"))
 	end
 
 	local prevMusic = self.scene.audio:getCurrentMusic()
 	return Serial {
-		MessageBox {
-			message="B: Hang in there...",
-			rect=MessageBox.HEADLINER_RECT,
-			textSpeed=8,
-			closeAction=Wait(0.6)
-		},
-		
-		Animate(self.sprite, "victory"),
-		Parallel {
-			MessageBox {
-				message="B: We've got what it takes!",
-				rect=MessageBox.HEADLINER_RECT,
-				textSpeed=8,
-				closeAction=Wait(0.6)
-			},
-			Serial {
-				AudioFade("music", 1.0, 0.0, 2),
-				Parallel {
-					PlayAudio("music", "sallyrally", 1.0),
-					Parallel(actions)
-				}
-			}
-		},
-		
+		Animate(self.sprite, "focus"),
+		Wait(1),
+		Parallel(actions),
+		PlayAudio("sfx", "shocked", 1, true),
 		Animate(self.sprite, "idle"),
-		Parallel(resetActions),
-		PlayAudio("music", prevMusic, 1.0, true, true),
 	}
 end

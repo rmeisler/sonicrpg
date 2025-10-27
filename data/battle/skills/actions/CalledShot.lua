@@ -13,6 +13,7 @@ local Spawn = require "actions/Spawn"
 local While = require "actions/While"
 local Action = require "actions/Action"
 local YieldUntil = require "actions/YieldUntil"
+local IfElse = require "actions/IfElse"
 
 local Stars = require "data/battle/actions/Stars"
 local PressX = require "data/battle/actions/PressX"
@@ -20,6 +21,31 @@ local OnHitEvent = require "data/battle/actions/OnHitEvent"
 
 local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
+
+
+local LineIntersectsCircle = function(A, B, C, r)
+	-- compute the euclidean distance between A and B
+	LAB = math.sqrt((B.x - A.x) * (B.x - A.x) + (B.y-A.y) * (B.y-A.y))
+
+	-- compute the direction vector D from A to B
+	Dx = (B.x - A.x) / LAB
+	Dy = (B.y - A.y) / LAB
+
+	-- the equation of the line AB is x = Dx*t + Ax, y = Dy*t + Ay with 0 <= t <= LAB.
+
+	-- compute the distance between the points A and E, where
+	-- E is the point of AB closest the circle center (Cx, Cy)
+	t = Dx * (C.x - A.x) + Dy * (C.y - A.y)
+
+	-- compute the coordinates of the point E
+	Ex = t * Dx + A.x
+	Ey = t * Dy + A.y
+
+	-- compute the euclidean distance between E and C
+	LEC = math.sqrt((Ex - C.x) * (Ex - C.x) + (Ey - C.y) * (Ey - C.y))
+
+	return LEC < r
+end
 
 local ArrowKey = function(self, key)
 	if key == "x" then
@@ -35,25 +61,7 @@ local ArrowUpdate = function(self, dt)
 	end
 end
 
-local TimedReflect = function(self)
-	return PressX(
-		self,
-		self,
-		Serial {
-			PlayAudio("sfx", "gotit", 1.0, true),
-
-			-- Note that puck should reflect toward next enemy
-			Do(function()
-				self.reflectPuck = true
-			end)
-		},
-		Do(function()
-			self.reflectPuck = false
-		end)
-	)
-end
-
-return function(self)
+return function(self, target)
 	local arrowXform = Transform(self.sprite.transform.x - self.sprite.w, self.sprite.transform.y + self.sprite.h/2 + 8, 4, 4)
 	arrowXform.ox = 16
 	arrowXform.oy = 32
@@ -83,6 +91,17 @@ return function(self)
 		nil,
 		"ui"
 	)
+	
+	local lockOnSprite = SpriteNode(self.scene, Transform(0, 0, 1, 1), nil, "target", nil, nil, "ui")
+	lockOnSprite.transform.ox = lockOnSprite.w/2
+	lockOnSprite.transform.oy = lockOnSprite.h/2
+	lockOnSprite.color[4] = 0
+	
+	local targetSprite = target:getSprite()
+	lockOnSprite.transform.x = targetSprite.transform.x + math.random(targetSprite.w/2) - math.random(targetSprite.w/2)
+	lockOnSprite.transform.y = targetSprite.transform.y + math.random(targetSprite.h/2) - math.random(targetSprite.h/2)
+	
+	self.calledShotLanded = false
 
 	return Serial {
 		Animate(self.sprite, "slap_idle", true),
@@ -92,6 +111,10 @@ return function(self)
 		Ease(self.puck.transform, "y", self.sprite.transform.y + self.sprite.h/2 + 8, 8, "quad"),
 		Ease(self.puck.transform, "y", function() return self.puck.transform.y - 30 end, 10, "quad"),
 		Ease(self.puck.transform, "y", function() return self.puck.transform.y + 30 end, 10, "quad"),
+		
+		-- Target fade in
+		Ease(lockOnSprite.color, 4, 255, 5),
+		PlayAudio("sfx", "target", 1.0, true),
 
 		-- Arrow fade in
 		Ease(self.slamArrow.color, 4, 255, 1),
@@ -115,6 +138,7 @@ return function(self)
 			self.scene:unfocus("keytriggered")
 			self.scene:unfocus("keytriggered")
 			self.slamArrow:remove()
+			self.origPuckXForm = Transform.from(self.puck.transform)
 		end),
 
 		Animate(self.sprite, "slap", true),
@@ -122,7 +146,7 @@ return function(self)
 		Wait(0.2),
 		PlayAudio("sfx", "poptop", 1.0, true),
 
-		-- Puck flies toward opponent
+		-- Puck sails toward arrow direction
 		Parallel {
 			Ease(self.puck.transform, "x", function()
 				return self.puck.transform.x + math.cos(self.slamArrow.transform.angle - math.pi/2) * 800
@@ -131,66 +155,56 @@ return function(self)
 				return self.puck.transform.y + math.sin(self.slamArrow.transform.angle - math.pi/2) * 800
 			end, 3, "linear"),
 
-			TimedReflect(self),
-
-			Do(function()
-				-- If puck intersects other opponents mid-section, those opponents should take damage along the way
-				local targetCx = self.puck.transform.x
-				local targetCy = self.puck.transform.y
-				local radius = 32
-				for _,oppo in pairs(self.scene.opponents) do
-					if not oppo.hurtBySlam then
-						local oppoCx = oppo.sprite.transform.x
-						local oppoCy = oppo.sprite.transform.y
-						local dx = targetCx - oppoCx
-						local dy = targetCy - oppoCy
-						local dr = self.puck.w/2 + oppo.sprite.w/2
-						if (dx*dx) + (dy*dy) <= (dr*dr) then
-							oppo.hurtBySlam = true
+			Serial {
+				--Wait(0.2),
+				Do(function()
+					-- If puck intersects lockOnSprite mid-section, then target takes massive damage, otherwise does nothing
+					local lineStartXForm = Transform.from(self.origPuckXForm)
+					local lineEndXFrom = Transform(
+						lineStartXForm.x + math.cos(self.slamArrow.transform.angle - math.pi/2) * 800,
+						lineStartXForm.y + math.sin(self.slamArrow.transform.angle - math.pi/2) * 800
+					)
+					local circleXForm = Transform.from(lockOnSprite.transform)
+					local radius = 10
+					if LineIntersectsCircle(lineStartXForm, lineEndXFrom, circleXForm, radius) then
+						if not self.calledShotLanded then
 							Executor(self.scene):act(Serial {
+								PlayAudio("sfx", "levelup", 1, true),
 								Parallel {
-									oppo:takeDamage({attack=self.stats.attack*2, speed=100, luck=0}, false, oppo.slamKnockbackFn),
-									self.reflectPuck and Stars(self, oppo) or Action()
+									Ease(lockOnSprite.color, 4, 0, 5),
+									Ease(lockOnSprite.transform, "sx", 2, 5),
+									Ease(lockOnSprite.transform, "sy", 2, 5),
+									target:takeDamage({attack=self.stats.attack*4, speed=100, luck=0}, false, target.slamKnockbackFn),
+									Stars(self, target)
 								},
 
 								Do(function()
-									oppo.sprite:setAnimation("idle")
+									targetSprite:setAnimation("idle")
 								end)
 							})
+
+							print("landed!")
+							self.calledShotLanded = true
 						end
 					end
-				end
-			end)
+				end)
+			}
 		},
-		
-		--[[
+
 		IfElse(
-			function() return self.reflectPuck end,
-			Serial {
-				Do(function()
-					self.reflectPuck = false
-				end),
+			function() return self.calledShotLanded end,
+			Action(),
+			Parallel {
+				Ease(lockOnSprite.color, 4, 0, 5),
+				target:takeDamage({attack=100, speed=100, luck=100, miss=true}, false)
+			}
+		),
 
-				Parallel {
-					Ease(self.puck.transform, "x", function()
-						return self.puck.transform.x + math.cos(self.slamArrow.transform.angle - math.pi/2) * 800
-					end, 3, "linear"),
-					Ease(self.puck.transform, "y", function()
-						return self.puck.transform.y + math.sin(self.slamArrow.transform.angle - math.pi/2) * 800
-					end, 3, "linear")
-				}
-			},
-			Do(function() end)
-		),]]
-
-		-- Unset hurt by slam
 		Do(function()
-			for _,oppo in pairs(self.scene.opponents) do
-				oppo.hurtBySlam = false
-			end
+			lockOnSprite:remove()
+			self.calledShotLanded = false
 		end),
-		
+
 		Animate(self.sprite, "idle"),
-		Do(function() self:endTurn() end)
 	}
 end

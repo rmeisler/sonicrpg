@@ -8,7 +8,7 @@ return {
 	type = ItemType.Weapon,
 	subtype = WeaponType.Sword,
 	sprite = "sword",
-	usableBy = {"bunny"},
+	usableBy = {"bunny", "b"},
 	color = {200,200,0,255},
 	stats = {
 		attack = 4,

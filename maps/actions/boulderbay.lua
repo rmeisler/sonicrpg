@@ -55,9 +55,11 @@ return function(scene, hint)
 				sprites.babyt.x = sprites.babyt.x - 60
 				sprites.babyt.y = sprites.babyt.y + 60
 			end),
+			Animate(sprites.babyt.sprite, "victory"),
 			MessageBox{message=translate and "Baby T: We are getting pretty good at junkin' these bots!" or "Baby T: *proud grunt*!"},
 			Wait(1),
-			MessageBox{message="*GRUNT*! {p60} *GRUUUUUNT*!"},
+			PlayAudio("sfx", "terrapodroar", 1, true),
+			MessageBox{message="*GRUUUUUNT*!"},
 			Animate(sprites.tails.sprite, "shock"),
 			Animate(sprites.b.sprite, "shock"),
 			Animate(sprites.babyt.sprite, "shock"),
@@ -66,11 +68,19 @@ return function(scene, hint)
 				sprites.b:hop(),
 				sprites.babyt:hop()
 			},
+			Wait(1),
 			Animate(sprites.tails.sprite, "idleright"),
 			Animate(sprites.b.sprite, "idleright"),
 			Animate(sprites.babyt.sprite, "idleright"),
 			MessageBox{message="Tails: We should check that out!"},
-			walkin
+			Do(function()
+				sprites.babyt.y = sprites.babyt.y - 60
+			end),
+			walkin,
+			Do(function()
+				GameState.leader = "tails"
+				scene.player:updateSprite()
+			end)
 		}
 	end
 	
@@ -137,6 +147,11 @@ return function(scene, hint)
 			Animate(sprites.tails.sprite, "shock"),
 			Animate(sprites.babyt.sprite, "shock"),
 			Animate(scene.objectLookup.B.sprite, "shock"),
+			Parallel {
+				sprites.tails:hop(),
+				sprites.babyt:hop(),
+				scene.objectLookup.B:hop()
+			},
 			Ease(scene.camPos, "x", -500, 1),
 			PlayAudio("music", "trouble", 1, true, true),
 			MessageBox{message="Swatbot: zzz. {p60}Intercept.", closeAction=Wait(0.6)},
