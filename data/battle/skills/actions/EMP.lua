@@ -28,6 +28,7 @@ return function(self, targets)
 				Do(function()
 					target.state = target.STATE_IMMOBILIZED
 				end),
+				Wait(1),
 				Animate(target:getSprite(), "idle")
 			}
 		)

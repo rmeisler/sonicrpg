@@ -55,6 +55,7 @@ return function(scene, hint)
 				sprites.babyt.x = sprites.babyt.x - 60
 				sprites.babyt.y = sprites.babyt.y + 60
 			end),
+			PlayAudio("music", "beach", 1, true, true),
 			Animate(sprites.babyt.sprite, "victory"),
 			MessageBox{message=translate and "Baby T: We are getting pretty good at junkin' these bots!" or "Baby T: *proud grunt*!"},
 			Wait(1),
@@ -209,6 +210,8 @@ return function(scene, hint)
 			Ease(text.color, 4, 255, 1),
 			Wait(2),
 			Ease(text.color, 4, 0, 1),
+			
+			PlayAudio("music", "beach", 1, true, true),
 
 			MessageBox{message="Tails: ..."},
 			MessageBox{message="Tails: Ugh."},
@@ -235,18 +238,21 @@ return function(scene, hint)
 	local waterLayer1 = scene:findLayer("wateroverlay1")
 	local waterLayer2 = scene:findLayer("wateroverlay2")
 
-	return Spawn(
-		Repeat(Serial {
-			Do(function()
-				waterLayer1.opacity = 0.5
-				waterLayer2.opacity = 0
-			end),
-			Wait(2),
-			Do(function()
-				waterLayer1.opacity = 0
-				waterLayer2.opacity = 0.5
-			end),
-			Wait(2)
-		}, 10000)
-	)
+	return Serial {
+		Spawn(
+			Repeat(Serial {
+				Do(function()
+					waterLayer1.opacity = 0.5
+					waterLayer2.opacity = 0
+				end),
+				Wait(2),
+				Do(function()
+					waterLayer1.opacity = 0
+					waterLayer2.opacity = 0.5
+				end),
+				Wait(2)
+			}, 10000)
+		),
+		PlayAudio("music", "beach", 1, true, true)
+	}
 end

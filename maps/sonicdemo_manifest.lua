@@ -584,6 +584,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/beach.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/bhero.ogg",
 		category = "music"
 	},

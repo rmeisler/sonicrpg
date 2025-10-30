@@ -521,12 +521,6 @@ end
 function Bot:chaseUpdate(dt)
 	self:baseUpdate(dt)
 
-	if self.printplayerpos == nil or self.printplayerpos == 0 then
-		print ("player = "..tostring(self.scene.player.x)..", "..tostring(self.scene.player.y))
-		self.printplayerpos = 10
-	end
-	self.printplayerpos = self.printplayerpos - 1
-
 	if not self.noPushAway then
 		-- If other bots are too close, push them away
 		for _, object in pairs(self.scene.map.objects) do

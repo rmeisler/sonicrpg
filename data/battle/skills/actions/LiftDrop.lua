@@ -356,7 +356,10 @@ return function(self, target)
 								self:chooseTarget(
 									menu,
 									TargetType.Opponent,
-									function(dropTarget) return dropTarget == self or dropTarget == target end,
+									function(dropTarget)
+										return dropTarget == self or dropTarget == target or
+											dropTarget.state == dropTarget.STATE_DEAD
+									end,
 									function(dropSelf, dropTarget)
 										menu:close()
 

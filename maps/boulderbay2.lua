@@ -8,7 +8,7 @@ return {
   height = 55,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 397,
+  nextobjectid = 399,
   properties = {
     ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
@@ -433,9 +433,9 @@ return {
           type = "SceneEdge",
           shape = "rectangle",
           x = 32,
-          y = 1760,
+          y = 1248,
           width = 64,
-          height = 1280,
+          height = 480,
           rotation = 0,
           gid = 7660,
           visible = true,
@@ -596,14 +596,18 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
+            ["audibleDistance"] = 0,
             ["battle"] = "../data/monsters/armedswatbot.lua",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idleright",
             ["disappearAfterBattle"] = true,
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
+            ["noInvestigate"] = true,
             ["noflashlight"] = true,
-            ["sprite"] = "../art/sprites/swatbotwithblaster.png"
+            ["sprite"] = "../art/sprites/swatbotwithblaster.png",
+            ["viewRange"] = "ViewRange",
+            ["visibleDistance"] = 0
           }
         },
         {
@@ -620,14 +624,51 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
+            ["audibleDistance"] = 0,
             ["battle"] = "../data/monsters/armedswatbot.lua",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idleright",
             ["disappearAfterBattle"] = true,
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
+            ["noInvestigate"] = true,
             ["noflashlight"] = true,
-            ["sprite"] = "../art/sprites/swatbotwithblaster.png"
+            ["sprite"] = "../art/sprites/swatbotwithblaster.png",
+            ["viewRange"] = "ViewRange",
+            ["visibleDistance"] = 0
+          }
+        },
+        {
+          id = 397,
+          name = "ViewRange",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 896,
+          y = 1248,
+          width = 672,
+          height = 224,
+          rotation = 0,
+          gid = 7597,
+          visible = false,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 398,
+          name = "InteractCage1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1120,
+          y = 1056,
+          width = 224,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox{message=\"Terrapod: *GRUNT!*\"},\n        MessageBox{message=\"Baby T: \"},\n    }\nend"
           }
         }
       }

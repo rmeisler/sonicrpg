@@ -15,7 +15,8 @@ return function(self, target)
 	return Serial {
 		Telegraph(self, self.name .. ": I will protect you.", {255,255,255,50}),
 		Animate(target.sprite, "victory"),
-		Wait(0.5),
+		Telegraph(target, target.name .. ": Thanks!", {255,255,255,50}),
 		Animate(target.sprite, "idle"),
+		
 	}
 end

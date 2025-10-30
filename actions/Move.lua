@@ -61,7 +61,7 @@ function Move:stepToward(target, speed)
 	local targetHS = target.hotspots
 
 	-- Target in air
-	if target.flyOffsetY then
+	if target.flyOffsetY and target.tempFlyOffsetY then
 		targetHS.left_top.y = targetHS.left_top.y - (target.flyOffsetY + target.tempFlyOffsetY)
 		targetHS.left_bot.y = targetHS.left_bot.y - (target.flyOffsetY + target.tempFlyOffsetY)
 		targetHS.right_top.y = targetHS.right_top.y - (target.flyOffsetY + target.tempFlyOffsetY)

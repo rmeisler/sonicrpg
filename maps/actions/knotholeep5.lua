@@ -170,7 +170,7 @@ return function(scene, hint)
 				Serial {
 					MessageBox{message="Logan: Could you at least just tag along... {p60}for me?"},
 					scene.objectLookup.Fleet_Meanwhile1:hop(),
-					Wait(1),
+					Wait(2),
 					Animate(scene.objectLookup.Fleet_Meanwhile1.sprite, "frustrated"),
 					MessageBox{message="Fleet: Ugh, fine!"},
 					Wait(0.5),

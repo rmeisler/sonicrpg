@@ -102,6 +102,7 @@ return function(self, target)
 	lockOnSprite.transform.y = targetSprite.transform.y + math.random(targetSprite.h/2) - math.random(targetSprite.h/2)
 	
 	self.calledShotLanded = false
+	self.calledShotDone = false
 
 	return Serial {
 		Animate(self.sprite, "slap_idle", true),
@@ -179,7 +180,10 @@ return function(self, target)
 								},
 
 								Do(function()
-									targetSprite:setAnimation("idle")
+									if target.hp > 0 then
+										targetSprite:setAnimation("idle")
+									end
+									self.calledShotDone = true
 								end)
 							})
 
@@ -196,7 +200,10 @@ return function(self, target)
 			Action(),
 			Parallel {
 				Ease(lockOnSprite.color, 4, 0, 5),
-				target:takeDamage({attack=100, speed=100, luck=100, miss=true}, false)
+				target:takeDamage({attack=100, speed=100, luck=100, miss=true}, false),
+				Do(function()
+					self.calledShotDone = true
+				end)
 			}
 		),
 
@@ -206,5 +213,6 @@ return function(self, target)
 		end),
 
 		Animate(self.sprite, "idle"),
+		YieldUntil(self, "calledShotDone")
 	}
 end

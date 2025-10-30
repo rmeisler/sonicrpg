@@ -277,7 +277,7 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 		elseif GameState.leader == "babyt" then
 			pressDirXForm = Transform.relative(
 				self.transform,
-				Transform(self.sprite.w - 60, -10)
+				Transform(self.sprite.w, -10)
 			)
 		end
 		local pressDir = SpriteNode(
@@ -308,7 +308,7 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 		elseif GameState.leader == "babyt" then
 			pressXXForm = Transform.relative(
 				self.transform,
-				Transform(self.sprite.w - 60, -10)
+				Transform(self.sprite.w, -10)
 			)
 		end
 		local pressX = SpriteNode(
@@ -340,7 +340,7 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 		elseif GameState.leader == "babyt" then
 			pressLshXForm = Transform.relative(
 				self.transform,
-				Transform(self.sprite.w - 62, -10)
+				Transform(self.sprite.w, -10)
 			)
 		end
 		local pressLsh = SpriteNode(
@@ -372,7 +372,7 @@ function Player:showKeyHint(showPressX, specialHint, showPressDir)
 		elseif GameState.leader == "babyt" then
 			pressXXForm = Transform.relative(
 				self.transform,
-				Transform(self.sprite.w - 60, -10)
+				Transform(self.sprite.w - 15, -10)
 			)
 		end
 		local pressX = SpriteNode(

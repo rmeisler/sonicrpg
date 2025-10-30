@@ -238,7 +238,7 @@ function OpposingPartyMember:beginTurn()
 
 		local protected = false
 		local targetXForm
-		if target.targetOverride then
+		if target.targetOverride and target.targetOverride.state == target.STATE_IDLE then
 			local origTarget = target
 			target = target.targetOverride
 			targetXForm = Transform.from(target.sprite.transform)
