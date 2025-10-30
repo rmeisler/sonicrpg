@@ -263,6 +263,10 @@ return {
 						},
 						Do(function() end)
 					)
+				else
+					dodgeAction = target.defenseEvent and
+						target.defenseEvent(self, target) or
+						dodgeAction
 				end
 
 				return Serial {
@@ -314,10 +318,7 @@ return {
 					end),
 
 					Parallel {
-						Serial {
-							Wait(0.2),
-							dodgeAction
-						},
+						dodgeAction,
 						
 						Serial {
 							PlayAudio("sfx", "swatbotlaser", 1.0, true),
