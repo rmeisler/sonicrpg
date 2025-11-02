@@ -124,11 +124,19 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/splash/sonicpicture.png"
+		file = "art/splash/storybook1.png"
 	},
 	{
 		type = "image",
-		file = "art/splash/storybook1.png"
+		file = "art/splash/storybook2.png"
+	},
+	{
+		type = "image",
+		file = "art/splash/storybook3.png"
+	},
+	{
+		type = "image",
+		file = "art/splash/storybook4.png"
 	},
 	{
 		type = "image",
@@ -589,6 +597,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/puzzlesolve.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/bhero.ogg",
 		category = "music"
 	},
@@ -961,6 +974,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/error.wav",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/tick.ogg",
 		category = "sfx"
 	},
 	{

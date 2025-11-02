@@ -8,7 +8,7 @@ return {
   height = 43,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 396,
+  nextobjectid = 397,
   properties = {
     ["battlebg"] = "../art/backgrounds/boulderbaybg.png",
     ["currentLayer"] = 7,
@@ -590,28 +590,6 @@ return {
           }
         },
         {
-          id = 380,
-          name = "Entrance1",
-          type = "SceneEdge",
-          shape = "rectangle",
-          x = 4704,
-          y = 1120,
-          width = 64,
-          height = 800,
-          rotation = 0,
-          gid = 7660,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["key"] = "right",
-            ["layerOverride"] = 7,
-            ["no_run"] = true,
-            ["orientation"] = "left",
-            ["scene"] = "boulderbay2.lua",
-            ["spawn_point"] = "Entrance1"
-          }
-        },
-        {
           id = 381,
           name = "BabyT",
           type = "BasicNPC",
@@ -799,8 +777,8 @@ return {
           name = "Save",
           type = "SavePoint",
           shape = "rectangle",
-          x = 2464,
-          y = 608,
+          x = 2496,
+          y = 640,
           width = 32,
           height = 32,
           rotation = 0,
@@ -923,6 +901,28 @@ return {
             ["atMostOnce"] = true,
             ["flagOverride"] = "BabyTTrigger_BoulderBay",
             ["script"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Animate = require \"actions/Animate\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Wait = require \"actions/Wait\"\n\nlocal ItemType = require \"util/ItemType\"\n\nreturn function(self)\n    GameState:addBackToParty(\"babyt\")\n    local translate = GameState:isEquipped(\"babyt\", ItemType.Accessory, \"Translator Collar\")\n    return BlockPlayer {\n        MessageBox {message=\"Baby T: ...\"},\n        MessageBox {message=translate and \"Baby T: Tails?\" or \"Baby T: *grunt*?\"},\n        Wait(1),\n        Animate(self.scene.objectLookup.BabyT.sprite, \"victory\"),\n        Parallel {\n            self.scene.objectLookup.BabyT:hop(),\n            MessageBox {message=translate and \"Baby T: We're back!\" or \"Baby T: *happy grunt*!\"}\n        },\n        Do(function()\n            self.scene.objectLookup.BabyT.hidden = true\n        end),\n        MessageBox {message=\"Baby T rejoined your party!\", sfx=\"choose\"},\n        Do(function()\n            self.scene.objectLookup.BabyT:permanentRemove()\n            self:remove()\n        end)\n    }\nend"
+          }
+        },
+        {
+          id = 396,
+          name = "Entrance1",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 4704,
+          y = 1248,
+          width = 64,
+          height = 800,
+          rotation = 0,
+          gid = 7660,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["key"] = "right",
+            ["layerOverride"] = 7,
+            ["no_run"] = true,
+            ["orientation"] = "left",
+            ["scene"] = "boulderbay2.lua",
+            ["spawn_point"] = "Entrance1"
           }
         }
       }

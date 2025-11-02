@@ -24,6 +24,9 @@ return {
 		idle = {
 			frames = {{14,2}}
 		},
+		backward = {
+			frames = {{0,0}}
+		},
 		block = {
 			frames = {{16,2}}
 		},

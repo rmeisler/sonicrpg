@@ -22,6 +22,9 @@ return {
 		idle = {
 			frames = {{9,1}}
 		},
+		backward = {
+			frames = {{0,0}}
+		},
 		cyclone = {
 			frames = {{12,1},{12,3},{10,3},{12,0}},
 			speed = 0.22

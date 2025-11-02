@@ -21,9 +21,9 @@ return function(self, targets)
 			Serial {
 				Animate(target.sprite, "hurt"),
 				Repeat(Serial {
-					Ease(target.sprite.transform, "x", function() return target.sprite.transform.x - 3 end, 8),
-					Ease(target.sprite.transform, "x", function() return target.sprite.transform.x + 3 end, 8)
-				}, 4),
+					Ease(target.sprite.transform, "x", function() return target.sprite.transform.x - 2 end, 16),
+					Ease(target.sprite.transform, "x", function() return target.sprite.transform.x + 2 end, 16)
+				}, 8),
 				Do(function()
 					local targetDebuffStats = table.clone(target.stats)
 					targetDebuffStats.defense = target.stats.defense * 0.5

@@ -8,6 +8,9 @@ return {
 		idle = {
 			frames = {{0,1}}
 		},
+		backward = {
+			frames = {{0,0}}
+		},
 		dead = {
 			frames = {{15,0}}
 		},

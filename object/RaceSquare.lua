@@ -8,6 +8,7 @@ local Animate = require "actions/Animate"
 local PlayAudio = require "actions/PlayAudio"
 local Repeat = require "actions/Repeat"
 local While = require "actions/While"
+local BlockPlayer = require "actions/BlockPlayer"
 
 local NPC = require "object/NPC"
 
@@ -70,7 +71,9 @@ function RaceSquare:update(dt)
 	local cy = self.hotspots.left_top.y
 	local cw = self.hotspots.right_top.x - cx
 	local ch = self.hotspots.right_bot.y - cy
-	if self.scene.player:isTouching(cx, cy, cw, ch) then
+	if self.scene.player:isTouching(cx, cy, cw, ch) and
+		not (GameState.leader == "tails" and self.scene.player.doingSpecialMove)
+	then
 		self.state = NPC.STATE_TOUCHING
 		self:invoke("collision")
 		self:onCollision()
@@ -137,12 +140,11 @@ function RaceSquare:onCollision(prevState)
 		
 		self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
 		self.scene:pauseEnemies(true)
-		self.scene.pausePlayer = true
 		
 		local prevMusic = self.scene.audio:getCurrentMusic()
 		local subjWidth = self.subject.sprite and self.subject.sprite.w*2 or self.subject.object.width
 		local subjHeight = self.subject.sprite and self.subject.sprite.h*2 or self.subject.object.height/2
-		self.scene.player:run {
+		self.scene.player:run(BlockPlayer {
 			PlayAudio("music", "puzzlesolve", 1.0, true),
 			Wait(4),
 			
@@ -167,7 +169,7 @@ function RaceSquare:onCollision(prevState)
 				self.scene:pauseEnemies(false)
 				self.scene.pausePlayer = false
 			end),
-		}
+		})
 	end
 end
 

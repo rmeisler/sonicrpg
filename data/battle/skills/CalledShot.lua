@@ -6,7 +6,7 @@ return {
 	unusable = function(target)
 		return target.side == TargetType.Party
 	end,
-	cost = 1,
+	cost = 3,
 	desc = "Hit the target on the opponent for massive damage!",
 	action = require "data/battle/skills/actions/CalledShot"
 }
