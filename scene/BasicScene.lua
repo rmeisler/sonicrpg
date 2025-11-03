@@ -877,7 +877,7 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 	end
 
 	if worldOffsetY > 0 then
-		worldOffsetY = self.camPos.y
+		worldOffsetY = self.camPos.y + (self.player.flyOffsetY + self.player.tempFlyOffsetY)
 	elseif worldOffsetY < -(self:getMapHeight() - love.graphics.getHeight()) then
 		worldOffsetY = -(self:getMapHeight() - love.graphics.getHeight())-- + self.camPos.y
 	end
@@ -943,10 +943,14 @@ function BasicScene:updatePlayerPos()
 		self.player.sprite.transform.x = math.floor(xCap - self.player.width + self.camPos.x)
 	end
 	
-	if  self.player.y < yCap then
-		self.player.sprite.transform.y = math.floor(self.player.y - self.player.height + self.camPos.y)
-	elseif self.player.y > self:getMapHeight() - yCap then
-		self.player.sprite.transform.y = math.floor(self.player.y - (self:getMapHeight() - love.graphics.getHeight()) - self.player.height + self.camPos.y)
+	local flyHeight = self.player.flyOffsetY + self.player.tempFlyOffsetY
+	local playerY = (GameState.leader == "tails" and self.player.doingSpecialMove) and
+		self.player.y + (self.player.flyOffsetY + self.player.tempFlyOffsetY) or
+		self.player.y
+	if  playerY < yCap then
+		self.player.sprite.transform.y = math.floor(playerY - self.player.height + self.camPos.y)
+	elseif playerY > self:getMapHeight() - yCap then
+		self.player.sprite.transform.y = math.floor(playerY - (self:getMapHeight() - love.graphics.getHeight()) - self.player.height + self.camPos.y)
 	else
 		self.player.sprite.transform.y = math.floor(yCap - self.player.height + self.camPos.y)
 	end
@@ -971,7 +975,7 @@ function BasicScene:update(dt)
 
 	local panX = self.panX or self.player.x
 	local panY = self.panY or self.player.y
-	
+
 	-- Shift tiles based on player position
 	local worldOffsetX = math.floor((-panX + love.graphics.getWidth()/2))
 	local worldOffsetY = math.floor((-panY + love.graphics.getHeight()/2))
@@ -980,6 +984,7 @@ function BasicScene:update(dt)
 		math.floor((worldOffsetY + self.camPos.y))
 	)
 
+	-- NOTE: This is where flying bug is
 	if not self.panX and not self.panY then
 		self:updatePlayerPos()
 	end

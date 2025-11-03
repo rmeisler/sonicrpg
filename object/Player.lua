@@ -72,7 +72,8 @@ function Player:construct(scene, layer, object)
 	self.flyLayer = self.scene.currentLayerId
 	self.flyLandingLayer = self.flyLayer
 	self.defaultFlyOffsetY = 20
-	self.flyOffsetY = self.defaultFlyOffsetY
+	self.flyOffsetY = 0
+	self.tempFlyOffsetY = 0
 	self.stickyLShift = false
 
 	self.isSwatbot = {}

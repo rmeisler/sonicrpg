@@ -140,6 +140,7 @@ function RaceSquare:onCollision(prevState)
 		
 		self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
 		self.scene:pauseEnemies(true)
+		self.scene.player.forceDrop = true
 		
 		local prevMusic = self.scene.audio:getCurrentMusic()
 		local subjWidth = self.subject.sprite and self.subject.sprite.w*2 or self.subject.object.width
