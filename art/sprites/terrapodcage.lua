@@ -10,6 +10,9 @@ return {
         },
 		under = {
             frames = {{1,0}}
-        }
+        },
+		over_noforcefield = {
+            frames = {{2,0}}
+        },
     }
 }

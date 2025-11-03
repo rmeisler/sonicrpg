@@ -38,8 +38,9 @@ return function(self, targets)
 	return Serial {
 		Animate(self.sprite, "focus"),
 		Wait(1),
+		PlayAudio("sfx", "factoryspit", 1, true),
 		Parallel(actions),
-		PlayAudio("sfx", "shocked", 1, true),
+		MessageBox {message="All bots disabled!", rect=MessageBox.HEADLINER_RECT, textSpeed=8, closeAction=Wait(1)},
 		Animate(self.sprite, "idle"),
 	}
 end

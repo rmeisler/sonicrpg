@@ -419,7 +419,7 @@ function Player:removeKeyHint()
 	end
 end
 
-function Player:split(orderedParty)
+function Player:split(orderedParty, horizontal)
 	-- Create sprites for all party members
 	local paths = {
 		{"walkright", "idleleft",  "walkleft",  Transform(self.movespeed, 0)},
@@ -427,6 +427,15 @@ function Player:split(orderedParty)
 		{"walkup",    "idledown",  "walkdown",  Transform(0, -self.movespeed)},
 		{"walkdown",  "idleup",    "walkup",    Transform(0, self.movespeed)}
 	}
+	if horizontal then
+		paths = {
+			{"walkright", "idleleft",  "walkleft",  Transform(self.movespeed, 0)},
+			{"walkleft",  "idleright", "walkright", Transform(-self.movespeed, 0)},
+			{"walkright", "idleleft",  "walkleft",  Transform(self.movespeed, 0)},
+			{"walkleft",  "idleright", "walkright", Transform(-self.movespeed, 0)}
+		}
+	end
+
 	local walkOutActions = {}
 	local walkInActions = {}
 	
@@ -475,8 +484,7 @@ function Player:split(orderedParty)
 			Serial {
 				Animate(self.partySprites[id].sprite, walkInAnim, true),
 				Parallel {
-					-- Baby T is way wider and taller than other Freedom Fighters, so we need spread out more
-					self.partySprites["babyt"] and Wait(0.4) or Wait(0.2),
+					Wait(0.2),
 					Do(function()
 						self.partySprites[id].x = self.partySprites[id].x - dir.x * (love.timer.getDelta()/0.016)
 						self.partySprites[id].y = self.partySprites[id].y - dir.y * (love.timer.getDelta()/0.016)

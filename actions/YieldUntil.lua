@@ -4,9 +4,14 @@ function YieldUntil:construct(obj, flag)
 	self.obj = obj
 	self.flag = flag
 	self.type = "YieldUntil"
+	self.done = false
 end
 
 function YieldUntil:isDone()
+	if self.done then
+		return true
+	end
+
 	-- Resolve lazy obj ref
 	if type(self.obj) == "function" and self.flag == nil then
 		return self.obj()
@@ -18,6 +23,7 @@ end
 
 function YieldUntil:finish()
 	-- noop
+	self.done = true
 end
 
 
