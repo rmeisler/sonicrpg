@@ -432,6 +432,13 @@ function BattleScene:update(dt)
 		for _,mem in ipairs(self.party) do
 			if not mem.isHologram then
 				local partyMember = GameState.party[mem.id]
+
+				if mem.state == BattleActor.STATE_DEAD and
+					GameState:isEquipped(mem.id, ItemType.Accessory, "Opal Pendant")
+				then
+					mem.hp = 1
+				end
+
 				partyMember.hp = mem.hp
 				partyMember.sp = mem.sp
 				

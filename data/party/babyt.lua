@@ -16,7 +16,7 @@ return {
 		maxhp   = 250,
 		maxsp   = 5,
 		attack  = 15,
-		defense = 15,
+		defense = 20,
 		speed   = 6,
 		focus   = 3,
 		luck    = 3,
@@ -57,9 +57,7 @@ return {
 		[3] = {
 			messages = {},
 			skills = {
-				require "data/battle/skills/Charge",
-				require "data/battle/skills/Roar",
-				require "data/battle/skills/Ball",
+				require "data/battle/skills/Charge"
 			}
 		},
 		[4] = {
@@ -72,7 +70,7 @@ return {
 		[5] = {
 			messages = {"Baby T learned \"{h Ball}\"!"},
 			skills = {
-				require "data/battle/skills/Ball",
+				require "data/battle/skills/Charge",
 				require "data/battle/skills/Roar",
 				require "data/battle/skills/Ball",
 			}

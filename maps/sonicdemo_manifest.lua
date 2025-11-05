@@ -16,6 +16,11 @@ return {
     },
 	{
         type = "map",
+        file = "maps/boulderbay3.lua",
+		--primary = true
+    },
+	{
+        type = "map",
         file = "maps/greatjungle.lua",
 		--primary = true
     },
@@ -292,7 +297,11 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/swatbotwhite.png"
+		file = "art/sprites/cambot2.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/camflashlight.png"
 	},
 	{
 		type = "image",

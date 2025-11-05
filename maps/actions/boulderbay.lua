@@ -232,8 +232,6 @@ return function(scene, hint)
 			MessageBox{message="Tails: Where is everybody?..."},
 		}
 	end
-
-	scene.audio:stopMusic()
 	
 	local waterLayer1 = scene:findLayer("wateroverlay1")
 	local waterLayer2 = scene:findLayer("wateroverlay2")

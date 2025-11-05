@@ -4,6 +4,7 @@
   <property name="battlebg" type="file" value="../art/backgrounds/greatjunglebg.png"/>
   <property name="currentLayer" type="int" value="7"/>
   <property name="layered" type="bool" value="true"/>
+  <property name="onload" type="file" value="actions/boulderbay2.lua"/>
   <property name="regionName" value=""/>
   <property name="sectorName" value="Boulder Bay"/>
  </properties>
@@ -379,6 +380,11 @@
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="over"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="onPostInit">return function(self)
+    if GameState:isFlagSet(&quot;ep5_cage1&quot;) then
+        self.sprite:setAnimation(&quot;over_noforcefield&quot;)
+    end
+end</property>
     <property name="sprite" type="file" value="../art/sprites/terrapodcage.png"/>
     <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
@@ -395,8 +401,13 @@
   <object id="391" name="AuntieT" type="BasicNPC" gid="7597" x="960" y="1535" width="384" height="288">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="auntt"/>
+    <property name="defaultAnim" value="auntt_sad"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="onPostInit">return function(self)
+    if GameState:isFlagSet(&quot;ep5_cage1&quot;) then
+        self.sprite:setAnimation(&quot;auntt&quot;)
+    end
+end</property>
     <property name="sprite" type="file" value="../art/sprites/terrapod.png"/>
     <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
@@ -406,22 +417,6 @@
     <property name="align" value="bottom_center"/>
     <property name="alignOffsetX" type="int" value="8"/>
     <property name="sprite" type="file" value="../art/sprites/palmtree2.png"/>
-   </properties>
-  </object>
-  <object id="393" name="Bush" type="BasicNPC" gid="5323" x="544" y="1344" width="192" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/knotholebush.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
-   </properties>
-  </object>
-  <object id="394" name="Bush" type="BasicNPC" gid="5323" x="544" y="1760" width="192" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/knotholebush.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="395" name="Swatbot1" type="Swatbot" gid="7597" x="1088" y="1632" width="64" height="32">
@@ -526,6 +521,7 @@ return function(self)
         },
         Wait(1),
         Animate(sprites.b.sprite, &quot;idleup&quot;),
+        Animate(self.scene.objectLookup.AuntieT.sprite, &quot;auntt&quot;),
         PlayAudio(&quot;sfx&quot;, &quot;terrapodroar&quot;, 1, true),
         MessageBox{message=&quot;Terrapod: *GRUNT!*&quot;},
         MessageBox{message=&quot;Tails: Wow, way past cool, B! {p60} Now let's see what she's sayin'...&quot;},
@@ -534,7 +530,7 @@ return function(self)
         PlayAudio(&quot;music&quot;, &quot;babyt&quot;, 1, true, true),
         MessageBox{message=&quot;Terrapod: Thank you for rescuing me--{p60} whatever you are!&quot;},
         MessageBox{message=&quot;Terrapod: Hmmm, {p60}these are some very peculiar friends you have, young Terrapod...&quot;},
-        MessageBox{message=&quot;Terrapod: Nevertheless! {p60}There are 3 others from my village that were also captured by metal creatures, {p60}can you help them too?&quot;},
+        MessageBox{message=&quot;Terrapod: There are 3 others from my village that were also captured by metal creatures, {p60}can you help them too?&quot;},
         Animate(sprites.tails.sprite, &quot;pose&quot;),
         Animate(sprites.babyt.sprite, &quot;victory&quot;),
         Animate(sprites.b.sprite, &quot;pose&quot;),
@@ -824,8 +820,6 @@ return function(self)
         Ease(storybook.color, 4, 0, 1),
         Animate(sprites.b.sprite, &quot;pose&quot;),
         MessageBox{message=&quot;B: History repeats itself...&quot;},
-        AudioFade(&quot;music&quot;, 1, 0, 1),
-        PlayAudio(&quot;music&quot;, &quot;beach&quot;, 1, true, true),
         Do(function()
             sprites.babyt.y = sprites.babyt.y - 60
         end),
@@ -837,15 +831,15 @@ end</property>
   <object id="425" name="Entrance2" type="SceneEdge" gid="7660" x="3008" y="1088" width="64" height="384">
    <properties>
     <property name="ghost" type="bool" value="true"/>
-    <property name="key" value="left"/>
+    <property name="key" value="right"/>
     <property name="layerOverride" type="int" value="7"/>
     <property name="no_run" type="bool" value="true"/>
-    <property name="orientation" value="right"/>
-    <property name="scene" type="file" value="boulderbay1.lua"/>
+    <property name="orientation" value="left"/>
+    <property name="scene" type="file" value="boulderbay3.lua"/>
     <property name="spawn_point" value="Entrance1"/>
    </properties>
   </object>
-  <object id="426" name="NoUpper" type="BasicNPC" gid="5323" x="1536" y="2336" width="1568" height="224">
+  <object id="426" name="NoUpper" type="BasicNPC" gid="5323" x="1536" y="2336" width="1568" height="224" visible="0">
    <properties>
     <property name="notColliding">return function(self, player)
     if not self.deactivateLayer then

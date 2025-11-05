@@ -8,7 +8,7 @@ return {
   height = 25,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 398,
+  nextobjectid = 399,
   properties = {
     ["battlebg"] = "../art/backgrounds/boulderbaybg.png",
     ["currentLayer"] = 7,
@@ -733,6 +733,23 @@ return {
             ["align"] = "bottom_center",
             ["alignOffsetX"] = 8,
             ["sprite"] = "../art/sprites/palmtree2.png"
+          }
+        },
+        {
+          id = 398,
+          name = "Chest2",
+          type = "Chest",
+          shape = "rectangle",
+          x = 1472,
+          y = 192,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["OpalPendant"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }

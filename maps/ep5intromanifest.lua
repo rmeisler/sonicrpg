@@ -2,16 +2,21 @@ return {
 	{
         type = "map",
         file = "maps/ep5intro.lua",
-		--primary = true -- REAL
+		primary = true -- REAL
     },
 	{
         type = "map",
         file = "maps/boulderbay1.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
         file = "maps/boulderbay2.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/boulderbay3.lua",
 		--primary = true
     },
 	{
@@ -288,7 +293,11 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/swatbotwhite.png"
+		file = "art/sprites/cambot2.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/camflashlight.png"
 	},
 	{
 		type = "image",

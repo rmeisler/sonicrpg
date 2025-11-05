@@ -53,16 +53,9 @@ return {
 	},
 
 	levelup = {
-		[3] = {
-			messages = {},
-			skills = {
-				require "data/battle/skills/LiftDrop",
-			}
-		},
 		[4] = {
 			messages = {"Tails learned \"{h Called Shot}\"!"},
 			skills = {
-				require "data/battle/skills/LiftDrop",
 				require "data/battle/skills/CalledShot",
 			}
 		},

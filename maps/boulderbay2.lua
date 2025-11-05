@@ -13,6 +13,7 @@ return {
     ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
     ["layered"] = true,
+    ["onload"] = "actions/boulderbay2.lua",
     ["regionName"] = "",
     ["sectorName"] = "Boulder Bay"
   },
@@ -732,6 +733,7 @@ return {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "over",
             ["ghost"] = true,
+            ["onPostInit"] = "return function(self)\n    if GameState:isFlagSet(\"ep5_cage1\") then\n        self.sprite:setAnimation(\"over_noforcefield\")\n    end\nend",
             ["sprite"] = "../art/sprites/terrapodcage.png",
             ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
@@ -770,8 +772,9 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "auntt",
+            ["defaultAnim"] = "auntt_sad",
             ["ghost"] = true,
+            ["onPostInit"] = "return function(self)\n    if GameState:isFlagSet(\"ep5_cage1\") then\n        self.sprite:setAnimation(\"auntt\")\n    end\nend",
             ["sprite"] = "../art/sprites/terrapod.png",
             ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
@@ -792,44 +795,6 @@ return {
             ["align"] = "bottom_center",
             ["alignOffsetX"] = 8,
             ["sprite"] = "../art/sprites/palmtree2.png"
-          }
-        },
-        {
-          id = 393,
-          name = "Bush",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 544,
-          y = 1344,
-          width = 192,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/knotholebush.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"
-          }
-        },
-        {
-          id = 394,
-          name = "Bush",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 544,
-          y = 1760,
-          width = 192,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["sprite"] = "../art/sprites/knotholebush.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
         {
@@ -920,7 +885,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Animate = require \"actions/Animate\"\nlocal Action = require \"actions/Action\"\n\nlocal ItemType = require \"util/ItemType\"\n\nreturn function(self)\n    if not GameState:isFlagSet(self.scene.objectLookup.Swatbot1:getFlag()) or not GameState:isFlagSet(self.scene.objectLookup.Swatbot2:getFlag()) then\n        return Action()\n    end\n\n    if GameState:isFlagSet(\"ep5_cage1\") then\n        return BlockPlayer {\n            PlayAudio(\"sfx\", \"terrapodroar\", 1, true),\n            MessageBox{message=\"Terrapod: *GRUNT!*\"}\n        }\n\n    else\n\n    GameState:setFlag(\"ep5_cage1\")\n    local walkout, walkin, sprites = self.scene.player:split(nil, true)\n    for k in pairs(GameState.party) do\n        sprites[k].x = self.scene.player.x - 60\n        sprites[k].y = self.scene.player.y - 60\n    end\n\n    local translate = GameState:isEquipped(\"babyt\", ItemType.Accessory, \"Translator Collar\")\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"terrapodroar\", 1, true),\n        MessageBox{message=\"Terrapod: *GRUNT!*\"},\n        walkout,\n        Animate(sprites.babyt.sprite, \"idleup\"),\n        Animate(sprites.b.sprite, \"idleup\"),\n        Animate(sprites.tails.sprite, \"idleup\"),\n        MessageBox{message=translate and \"Baby T: We gotta free her!\" or \"Baby T: *grunt*!\"},\n        MessageBox{message=\"B: Hmm... {p60}She seems to be behind a forcefield.\"},\n        MessageBox{message=\"B: I should be able to neutralize it.\"},\n        Animate(sprites.b.sprite, \"focus\"),\n        Parallel {\n            MessageBox{message=\"B used EMP!\", sfx=\"factoryspit\"},\n            Repeat(Serial {\n                Do(function() self.scene.objectLookup.Cage1_Over.sprite:setAnimation(\"over\") end),\n                Wait(0.05),\n                Do(function() self.scene.objectLookup.Cage1_Over.sprite:setAnimation(\"over_noforcefield\") end),\n                Wait(0.05)\n            }, 10),\n            AudioFade(\"music\", 1, 0, 1)\n        },\n        Wait(1),\n        Animate(sprites.b.sprite, \"idleup\"),\n        PlayAudio(\"sfx\", \"terrapodroar\", 1, true),\n        MessageBox{message=\"Terrapod: *GRUNT!*\"},\n        MessageBox{message=\"Tails: Wow, way past cool, B! {p60} Now let's see what she's sayin'...\"},\n        MessageBox{message=\"Tails places {h Translator Collar} on adult Terrapod!\"},\n        Wait(0.5),\n        PlayAudio(\"music\", \"babyt\", 1, true, true),\n        MessageBox{message=\"Terrapod: Thank you for rescuing me--{p60} whatever you are!\"},\n        MessageBox{message=\"Terrapod: Hmmm, {p60}these are some very peculiar friends you have, young Terrapod...\"},\n        MessageBox{message=\"Terrapod: Nevertheless! {p60}There are 3 others from my village that were also captured by metal creatures, {p60}can you help them too?\"},\n        Animate(sprites.tails.sprite, \"pose\"),\n        Animate(sprites.babyt.sprite, \"victory\"),\n        Animate(sprites.b.sprite, \"pose\"),\n        MessageBox{message=\"Tails: We're on it!\", sfx=\"levelup\"},\n        Parallel {\n            walkin,\n            AudioFade(\"music\", 1, 0, 1)\n        },\n        PlayAudio(\"music\", \"beach\", 1, true, true)\n    }\n    end\nend"
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Animate = require \"actions/Animate\"\nlocal Action = require \"actions/Action\"\n\nlocal ItemType = require \"util/ItemType\"\n\nreturn function(self)\n    if not GameState:isFlagSet(self.scene.objectLookup.Swatbot1:getFlag()) or not GameState:isFlagSet(self.scene.objectLookup.Swatbot2:getFlag()) then\n        return Action()\n    end\n\n    if GameState:isFlagSet(\"ep5_cage1\") then\n        return BlockPlayer {\n            PlayAudio(\"sfx\", \"terrapodroar\", 1, true),\n            MessageBox{message=\"Terrapod: *GRUNT!*\"}\n        }\n\n    else\n\n    GameState:setFlag(\"ep5_cage1\")\n    local walkout, walkin, sprites = self.scene.player:split(nil, true)\n    for k in pairs(GameState.party) do\n        sprites[k].x = self.scene.player.x - 60\n        sprites[k].y = self.scene.player.y - 60\n    end\n\n    local translate = GameState:isEquipped(\"babyt\", ItemType.Accessory, \"Translator Collar\")\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"terrapodroar\", 1, true),\n        MessageBox{message=\"Terrapod: *GRUNT!*\"},\n        walkout,\n        Animate(sprites.babyt.sprite, \"idleup\"),\n        Animate(sprites.b.sprite, \"idleup\"),\n        Animate(sprites.tails.sprite, \"idleup\"),\n        MessageBox{message=translate and \"Baby T: We gotta free her!\" or \"Baby T: *grunt*!\"},\n        MessageBox{message=\"B: Hmm... {p60}She seems to be behind a forcefield.\"},\n        MessageBox{message=\"B: I should be able to neutralize it.\"},\n        Animate(sprites.b.sprite, \"focus\"),\n        Parallel {\n            MessageBox{message=\"B used EMP!\", sfx=\"factoryspit\"},\n            Repeat(Serial {\n                Do(function() self.scene.objectLookup.Cage1_Over.sprite:setAnimation(\"over\") end),\n                Wait(0.05),\n                Do(function() self.scene.objectLookup.Cage1_Over.sprite:setAnimation(\"over_noforcefield\") end),\n                Wait(0.05)\n            }, 10),\n            AudioFade(\"music\", 1, 0, 1)\n        },\n        Wait(1),\n        Animate(sprites.b.sprite, \"idleup\"),\n        Animate(self.scene.objectLookup.AuntieT.sprite, \"auntt\"),\n        PlayAudio(\"sfx\", \"terrapodroar\", 1, true),\n        MessageBox{message=\"Terrapod: *GRUNT!*\"},\n        MessageBox{message=\"Tails: Wow, way past cool, B! {p60} Now let's see what she's sayin'...\"},\n        MessageBox{message=\"Tails places {h Translator Collar} on adult Terrapod!\"},\n        Wait(0.5),\n        PlayAudio(\"music\", \"babyt\", 1, true, true),\n        MessageBox{message=\"Terrapod: Thank you for rescuing me--{p60} whatever you are!\"},\n        MessageBox{message=\"Terrapod: Hmmm, {p60}these are some very peculiar friends you have, young Terrapod...\"},\n        MessageBox{message=\"Terrapod: There are 3 others from my village that were also captured by metal creatures, {p60}can you help them too?\"},\n        Animate(sprites.tails.sprite, \"pose\"),\n        Animate(sprites.babyt.sprite, \"victory\"),\n        Animate(sprites.b.sprite, \"pose\"),\n        MessageBox{message=\"Tails: We're on it!\", sfx=\"levelup\"},\n        Parallel {\n            walkin,\n            AudioFade(\"music\", 1, 0, 1)\n        },\n        PlayAudio(\"music\", \"beach\", 1, true, true)\n    }\n    end\nend"
           }
         },
         {
@@ -1302,7 +1267,7 @@ return {
           visible = true,
           properties = {
             ["atMostOnce"] = true,
-            ["script"] = "local Transform = require \"util/Transform\"\nlocal Rect = unpack(require \"util/Shapes\")\nlocal Layout = require \"util/Layout\"\nlocal ItemType = require \"util/ItemType\"\n\nlocal Action = require \"actions/Action\"\nlocal TypeText = require \"actions/TypeText\"\nlocal Menu = require \"actions/Menu\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Repeat = require \"actions/Repeat\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Serial = require \"actions/Serial\"\nlocal Move = require \"actions/Move\"\nlocal Executor = require \"actions/Executor\"\nlocal Wait = require \"actions/Wait\"\nlocal YieldUntil = require \"actions/YieldUntil\"\nlocal Do = require \"actions/Do\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Animate = require \"actions/Animate\"\nlocal shine = require \"lib/shine\"\nlocal SpriteNode = require \"object/SpriteNode\"\nlocal NameScreen = require \"actions/NameScreen\"\nlocal Player = require \"object/Player\"\n\nreturn function(self)\n    local walkout, walkin, sprites = scene.player:split()\n    for k in pairs(GameState.party) do\n        sprites[k].x = scene.player.x - 60\n        sprites[k].y = scene.player.y - 60\n    end\n    local translate = GameState:isEquipped(\"babyt\", ItemType.Accessory, \"Translator Collar\")\n    local storybook = SpriteNode(scene, Transform(0, 0, 1, 1), {255,255,255,0}, \"storybook2\", nil, nil, \"ui\")\n    \n    return Serial {\n        Do(function()\n            if self.scene.player.doingSpecialMove then\n                self.scene.player.forceDrop = true\n                self.scene.player.stopElevating = true\n            end\n        end),\n        YieldUntil(function() return self.scene.player.doingSpecialMove == false end),\n        BlockPlayer {\n        walkout,\n        Do(function()\n            sprites.babyt.x = sprites.babyt.x - 60\n            sprites.babyt.y = sprites.babyt.y + 60\n        end),\n        Animate(sprites.babyt.sprite, \"idleright\"),\n        Animate(sprites.tails.sprite, \"idleright\"),\n        Animate(sprites.b.sprite, \"idleright\"),\n        AudioFade(\"music\", 1, 0, 1),\n        PlayAudio(\"sfx\", \"terrapodroar\", 1, true),\n        MessageBox{message=\"*GRUUUUUNT*!\"},\n        Ease(scene.camPos, \"x\", -1100, 0.5),\n        PlayAudio(\"music\", \"patrol\", 1, true, true),\n        Wait(1.5),\n        Animate(sprites.tails.sprite, \"reading\"),\n        MessageBox{message=\"Tails: It's just like in the story...\"},\n        Ease(scene.camPos, \"x\", 0, 1),\n        Animate(sprites.babyt.sprite, \"idledown\"),\n        Animate(sprites.b.sprite, \"idleright\"),\n        MessageBox{message=\"B: What is this?\"},\n        Wait(0.5),\n        Ease(storybook.color, 4, 255, 1),\n        MessageBox{message=\"Tails: See, at this point in the story, Ben Windom and the Inventor Knight have reached Boulder Bay{p60}, just like us!\"},\n        MessageBox{message=\"Tails: And just like us they run into trouble! {p60}But instead of Swat-butts, they gotta deal with War Claws!\"},\n        MessageBox{message=translate and \"Baby T: Whoah they sound like bad news!\" or \"Baby T: *worried grunt*!\"},\n        MessageBox{message=\"B: War Claws...\"},\n        MessageBox{message=\"Tails: Yeah! {p60}Sally told me they were who we fought during the Great War... {p60}before Robotnik...\"},\n        Ease(storybook.color, 4, 0, 1),\n        Animate(sprites.b.sprite, \"pose\"),\n        MessageBox{message=\"B: History repeats itself...\"},\n        AudioFade(\"music\", 1, 0, 1),\n        PlayAudio(\"music\", \"beach\", 1, true, true),\n        Do(function()\n            sprites.babyt.y = sprites.babyt.y - 60\n        end),\n        walkin\n    }}\nend"
+            ["script"] = "local Transform = require \"util/Transform\"\nlocal Rect = unpack(require \"util/Shapes\")\nlocal Layout = require \"util/Layout\"\nlocal ItemType = require \"util/ItemType\"\n\nlocal Action = require \"actions/Action\"\nlocal TypeText = require \"actions/TypeText\"\nlocal Menu = require \"actions/Menu\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Repeat = require \"actions/Repeat\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Ease = require \"actions/Ease\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Serial = require \"actions/Serial\"\nlocal Move = require \"actions/Move\"\nlocal Executor = require \"actions/Executor\"\nlocal Wait = require \"actions/Wait\"\nlocal YieldUntil = require \"actions/YieldUntil\"\nlocal Do = require \"actions/Do\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Animate = require \"actions/Animate\"\nlocal shine = require \"lib/shine\"\nlocal SpriteNode = require \"object/SpriteNode\"\nlocal NameScreen = require \"actions/NameScreen\"\nlocal Player = require \"object/Player\"\n\nreturn function(self)\n    local walkout, walkin, sprites = scene.player:split()\n    for k in pairs(GameState.party) do\n        sprites[k].x = scene.player.x - 60\n        sprites[k].y = scene.player.y - 60\n    end\n    local translate = GameState:isEquipped(\"babyt\", ItemType.Accessory, \"Translator Collar\")\n    local storybook = SpriteNode(scene, Transform(0, 0, 1, 1), {255,255,255,0}, \"storybook2\", nil, nil, \"ui\")\n    \n    return Serial {\n        Do(function()\n            if self.scene.player.doingSpecialMove then\n                self.scene.player.forceDrop = true\n                self.scene.player.stopElevating = true\n            end\n        end),\n        YieldUntil(function() return self.scene.player.doingSpecialMove == false end),\n        BlockPlayer {\n        walkout,\n        Do(function()\n            sprites.babyt.x = sprites.babyt.x - 60\n            sprites.babyt.y = sprites.babyt.y + 60\n        end),\n        Animate(sprites.babyt.sprite, \"idleright\"),\n        Animate(sprites.tails.sprite, \"idleright\"),\n        Animate(sprites.b.sprite, \"idleright\"),\n        AudioFade(\"music\", 1, 0, 1),\n        PlayAudio(\"sfx\", \"terrapodroar\", 1, true),\n        MessageBox{message=\"*GRUUUUUNT*!\"},\n        Ease(scene.camPos, \"x\", -1100, 0.5),\n        PlayAudio(\"music\", \"patrol\", 1, true, true),\n        Wait(1.5),\n        Animate(sprites.tails.sprite, \"reading\"),\n        MessageBox{message=\"Tails: It's just like in the story...\"},\n        Ease(scene.camPos, \"x\", 0, 1),\n        Animate(sprites.babyt.sprite, \"idledown\"),\n        Animate(sprites.b.sprite, \"idleright\"),\n        MessageBox{message=\"B: What is this?\"},\n        Wait(0.5),\n        Ease(storybook.color, 4, 255, 1),\n        MessageBox{message=\"Tails: See, at this point in the story, Ben Windom and the Inventor Knight have reached Boulder Bay{p60}, just like us!\"},\n        MessageBox{message=\"Tails: And just like us they run into trouble! {p60}But instead of Swat-butts, they gotta deal with War Claws!\"},\n        MessageBox{message=translate and \"Baby T: Whoah they sound like bad news!\" or \"Baby T: *worried grunt*!\"},\n        MessageBox{message=\"B: War Claws...\"},\n        MessageBox{message=\"Tails: Yeah! {p60}Sally told me they were who we fought during the Great War... {p60}before Robotnik...\"},\n        Ease(storybook.color, 4, 0, 1),\n        Animate(sprites.b.sprite, \"pose\"),\n        MessageBox{message=\"B: History repeats itself...\"},\n        Do(function()\n            sprites.babyt.y = sprites.babyt.y - 60\n        end),\n        walkin\n    }}\nend"
           }
         },
         {
@@ -1319,11 +1284,11 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["key"] = "left",
+            ["key"] = "right",
             ["layerOverride"] = 7,
             ["no_run"] = true,
-            ["orientation"] = "right",
-            ["scene"] = "boulderbay1.lua",
+            ["orientation"] = "left",
+            ["scene"] = "boulderbay3.lua",
             ["spawn_point"] = "Entrance1"
           }
         },
@@ -1338,7 +1303,7 @@ return {
           height = 224,
           rotation = 0,
           gid = 5323,
-          visible = true,
+          visible = false,
           properties = {
             ["notColliding"] = "return function(self, player)\n    if not self.deactivateLayer then\n        self.deactivateLayer = self.scene:findLayer(\"hill_upper\")\n    end\n    self.deactivateLayer.opacity = 1\nend",
             ["whileColliding"] = "return function(self, player)\n    if not self.deactivateLayer then\n        self.deactivateLayer = self.scene:findLayer(\"hill_upper\")\n    end\n    self.deactivateLayer.opacity = 0\nend"
