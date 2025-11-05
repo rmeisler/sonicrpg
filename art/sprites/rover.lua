@@ -8,6 +8,9 @@ return {
 		idle = {
 			frames = {{1,0}}
 		},
+		idledown = {
+			frames = {{5,0}}
+		},
 		
 		crouched = {
 			frames = {{1,0}}

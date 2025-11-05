@@ -17,6 +17,9 @@ local SpriteNode = require "object/SpriteNode"
 local PressZ = require "data/battle/actions/PressZ"
 
 return function(self, target)
+	if not self.beamSprite then
+		return Action()
+	end
 	return PressZ(
 		self,
 		target,
