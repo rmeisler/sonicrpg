@@ -321,6 +321,7 @@ return {
 						dodgeAction,
 						
 						Serial {
+							Wait(0.2),
 							PlayAudio("sfx", "swatbotlaser", 1.0, true),
 							
 							Do(function()

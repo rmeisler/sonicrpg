@@ -6,7 +6,7 @@ return {
 	unusable = function(target)
 		return false
 	end,
-	cost = 3,
+	cost = 6,
 	desc = "Ready, aim, charge!",
 	action = require "data/battle/skills/actions/Charge"
 }

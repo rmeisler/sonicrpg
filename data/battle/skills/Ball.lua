@@ -6,7 +6,7 @@ return {
 	unusable = function(target)
 		return false
 	end,
-	cost = 5,
+	cost = 3,
 	desc = "Roll into a defensive ball for 50% reduction in damage",
 	action = require "data/battle/skills/actions/Ball"
 }

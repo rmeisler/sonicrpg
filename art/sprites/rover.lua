@@ -8,7 +8,69 @@ return {
 		idle = {
 			frames = {{1,0}}
 		},
+
+		idleright = {
+            frames = {{1,0}}
+        },
+		idleup = {
+			frames = {{2,0}}
+		},
+		idleleft = {
+			frames = {{3,0}}
+		},
 		idledown = {
+			frames = {{5,0}}
+		},
+		
+		walkright = {
+            frames = {{1,0}}
+        },
+		walkup = {
+			frames = {{2,0}}
+		},
+		walkleft = {
+			frames = {{3,0}}
+		},
+		walkdown = {
+			frames = {{5,0}}
+		},
+		
+		runright = {
+            frames = {{1,0}}
+        },
+		runup = {
+			frames = {{2,0}}
+		},
+		runleft = {
+			frames = {{3,0}}
+		},
+		rundown = {
+			frames = {{5,0}}
+		},
+		
+		lightright = {
+            frames = {{1,0}}
+        },
+		lightup = {
+			frames = {{2,0}}
+		},
+		lightleft = {
+			frames = {{3,0}}
+		},
+		lightdown = {
+			frames = {{5,0}}
+		},
+		
+		lightwalkright = {
+            frames = {{1,0}}
+        },
+		lightwalkup = {
+			frames = {{2,0}}
+		},
+		lightwalkleft = {
+			frames = {{3,0}}
+		},
+		lightwalkdown = {
 			frames = {{5,0}}
 		},
 		
