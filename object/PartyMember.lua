@@ -515,7 +515,7 @@ function PartyMember:chooseTargetKey(key, _, unusable)
 				target.selected = false
 				
 				-- Set sort order
-				self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h*2
+				self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h
 				
 				local startingX = self.dropShadow.transform.x
 				local startingY = self.dropShadow.transform.y

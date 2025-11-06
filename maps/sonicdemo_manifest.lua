@@ -385,6 +385,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/icon_conk.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/icon_charge.png"
 	},
 	{
