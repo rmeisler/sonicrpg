@@ -135,6 +135,7 @@ return function(scene, hint)
 			MessageBox{message="B: I was merely making myself appear to be under Robotnik's control to avoid being captured."},
 			MessageBox{message="B: After rescuing you, I brought you both here to the beach. {p60}I was hoping that the wide open view might help me navigate back to Knothole..."},
 			Animate(scene.objectLookup.B.sprite, "pose"),
+			MessageBox{message="B: There's something oddly familiar about this place..."},
 			MessageBox{message="B: But alas... {p60}my memory is too limited to find the way..."},
 			
 			Parallel {

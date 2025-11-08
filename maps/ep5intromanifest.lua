@@ -21,6 +21,11 @@ return {
     },
 	{
         type = "map",
+        file = "maps/boulderbay_meanwhile2.lua",
+		--primary = true
+    },
+	{
+        type = "map",
         file = "maps/greatjungle.lua",
 		--primary = true
     },
@@ -598,6 +603,11 @@ return {
 		type = "sound",
 		file = "audio/sfx/bounce.wav",
 		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/robotnikbattle.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",

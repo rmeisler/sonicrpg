@@ -605,6 +605,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/robotnikbattle.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/beach.ogg",
 		category = "music"
 	},

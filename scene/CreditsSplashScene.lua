@@ -124,6 +124,8 @@ Reggie Meisler/RedG
 Billy Adams
 Reggie Meisler/RedG
 Jesse Rose/GreenCauldron08
+Diego Leal E (Robotnik Boss Theme)
+Ilya Rappu/Picnik
 F0XShadow
 Michael Tavera
 
@@ -145,11 +147,12 @@ Unstoppable Thombo
 Damien
 Anya Stocks/Frostdrop1
 E-122-Psi
+Neoriceisgood
 
 [Tiles]
 AmeixaRoxa
-Seliel the Shaper (Boulder Bay)
-SciGho (Great Jungle)
+Seliel the Shaper
+SciGho
 Lucas Melo (Death Egg)
 Square Enix
 daemoth
