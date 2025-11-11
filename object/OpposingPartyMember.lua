@@ -36,7 +36,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.state = BattleActor.STATE_IDLE
 
 	self.name = data.altName or ""
-	self.stats = data.stats
+	self.stats = table.clone(data.stats)
 	self.aerial = data.aerial
 	self.run_chance = data.run_chance or 1.0
 	self.drops = data.drops

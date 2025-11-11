@@ -784,8 +784,11 @@ return function(self)
         MessageBox{message=&quot;Tails places {h Translator Collar} on adult Terrapod!&quot;},
         Wait(0.5),
         PlayAudio(&quot;music&quot;, &quot;babyt&quot;, 1, true, true),
-        MessageBox{message=&quot;Terrapod: Ahh...{p60} what brave little lads you are!&quot;},
+        MessageBox{message=&quot;Terrapod: Ahh...{p60} what brave lads you are!&quot;},
         MessageBox{message=&quot;Baby T: *happy grunt*!&quot;},
+        MessageBox{message=&quot;Terrapod: Never in all my days did I think I would see a friendly robot! {p60}You remind me of someone...&quot;},
+        MessageBox{message=&quot;B: A Swatbot?&quot;},
+        MessageBox{message=&quot;Terrapod: Ah, maybe that's it.&quot;},
         Parallel {
             walkin,
             AudioFade(&quot;music&quot;, 1, 0, 1)

@@ -2,7 +2,7 @@ return {
 	{
         type = "map",
         file = "maps/ep5intro.lua",
-		primary = true -- REAL
+		--primary = true -- REAL
     },
 	{
         type = "map",
@@ -22,7 +22,7 @@ return {
 	{
         type = "map",
         file = "maps/boulderbay_meanwhile2.lua",
-		--primary = true
+		primary = true
     },
 	{
         type = "map",
@@ -705,6 +705,11 @@ return {
 		file = "audio/music/trouble.ogg",
 		category = "music",
 		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/sonicupset.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",

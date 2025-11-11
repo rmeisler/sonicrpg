@@ -707,6 +707,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/sonicupset.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/bsad.ogg",
 		category = "music",
 		looping = true

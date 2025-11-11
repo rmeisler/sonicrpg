@@ -245,6 +245,9 @@ return {
 		frustrateddown = {
 			frames = {{0,5}}
 		},
+		frustratedright = {
+			frames = {{0,6}}
+		},
 		worriedleft = {
 			frames = {{1,5}}
 		},
