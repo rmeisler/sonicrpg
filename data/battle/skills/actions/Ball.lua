@@ -60,7 +60,7 @@ return function(self)
 
 			-- Increase defense
 			local buffStats = table.clone(self.stats)
-			buffStats.defense = self.stats.defense * 1.5
+			buffStats.defense = self.stats.defense * 3
 			self:pushStats(buffStats)
 
 			self.noCounter = true

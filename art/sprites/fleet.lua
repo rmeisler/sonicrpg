@@ -60,6 +60,12 @@ return {
 		sleeping_attitude = {
 		    frames = {{7,5}}
 		},
+		sadleft = {
+		    frames = {{7,6}}
+		},
+		thinking = {
+		    frames = {{8,6}}
+		},
 		frustrated = {
 			frames = {{1,7}}
 		},
