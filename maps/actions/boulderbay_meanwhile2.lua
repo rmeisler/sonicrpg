@@ -152,13 +152,13 @@ return function(scene, hint)
 			scene:screenShake(20, 30, 15)
 		},
 
+		Ease(scene.camPos, "y", -(scene.objectLookup.Ivan.y - scene.objectLookup["Spawn 1"].y), 8),
+
 		-- Fleet flies down next to Sonic and Sally
 		Do(function()
 			scene.objectLookup.Fleet.hidden = true
 			scene.objectLookup.Fleet2.hidden = false
 			scene.objectLookup.Sonic.movespeed = 40
-
-			scene.camPos.y = -(scene.objectLookup.Ivan.y - scene.objectLookup["Spawn 1"].y)
 		end),
 		Move(scene.objectLookup.Sonic, scene.objectLookup.SonicWP2, "juicecrouch"),
 		Animate(scene.objectLookup.Sonic.sprite, "shock"),
@@ -194,13 +194,15 @@ return function(scene, hint)
 		PlayAudio("sfx", "sonicrunturn", 1, true),
 		Move(scene.objectLookup.Sonic, scene.objectLookup.SonicWP3, "juicecrouch"),
 		Animate(scene.objectLookup.Sonic.sprite, "worried2"),
-		MessageBox{message="Sonic: H{p20}-He wasn't there..."},
+		MessageBox{message="Sonic: H{p10}-He wasn't there..."},
 		Animate(scene.objectLookup.Sally.sprite, "thinking2"),
 		MessageBox{message="Fleet: See? {p60}No problem. {p60}Quit making a big deal outta noth--"},
 		Animate(scene.objectLookup.Sonic.sprite, "worried"),
+		Animate(scene.objectLookup.Fleet.sprite, "lookright"),
+		Animate(scene.objectLookup.Ivan.sprite, "idleup"),
 		MessageBox{message="Sonic: For crying out loud, can you be serious for one second?!"},
 		MessageBox{message="Sonic: When you agreed to come along{p60}, for a minute there I actually thought that maybe you two cared about something more than just yourselves..."},
-		MessageBox{message="Sonic: 'Guess I was wrong."},
+		MessageBox{message="Sonic: Guess I was wrong."},
 		Animate(scene.objectLookup.Ivan.sprite, "attitude"),
 		Animate(scene.objectLookup.Fleet.sprite, "sadleft"),
 		MessageBox{message="Ivan: ..."},
@@ -218,9 +220,9 @@ return function(scene, hint)
 			MessageBox{message="Sally: Sonic, wait!"},
 		},
 		MessageBox{message="Sally: ...{p60}he never acts like this..."},
-		Animate(scene.objectLookup.Ivan.sprite, "idleleft"),
 		MessageBox{message="Ivan: ..."},
 		MessageBox{message="Fleet: I didn't think he'd--"},
+		Animate(scene.objectLookup.Ivan.sprite, "idleleft"),
 		Animate(scene.objectLookup.Sally.sprite, "frustratedright"),
 		MessageBox{message="Sally: Ok, listen up! {p80}If all you two are going to do is cause trouble, then you can just head back to Knothole right now!"},
 		Wait(0.5),
@@ -232,5 +234,6 @@ return function(scene, hint)
 		MessageBox{message="Ivan: We will stay."},
 		Animate(scene.objectLookup.Fleet.sprite, "thinking"),
 		MessageBox{message="Fleet: Yeah..."},
+		MessageBox{message="Sally: Good! {p60}Now let's catch up with Sonic!"},
 	}
 end

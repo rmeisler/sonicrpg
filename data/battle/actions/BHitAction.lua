@@ -26,6 +26,9 @@ return function(self, target)
 			Ease(self.sprite.transform, "x", target.sprite.transform.x + math.abs(target.sprite.transform.x - self.sprite.transform.x)/2, 4, "linear"),
 			Ease(self.sprite.transform, "y", self.sprite.transform.y - self.sprite.h*3, 6, "linear"),
 		},
+		Do(function()
+			self.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h/2
+		end),
 
 		Parallel {
 			Ease(self.sprite.transform, "x", target.sprite.transform.x + target.sprite.w, 4, "linear"),
@@ -76,6 +79,9 @@ return function(self, target)
 			Ease(self.sprite.transform, "x", origXForm.x, 3),
 			Serial {
 				Ease(self.sprite.transform, "y", origXForm.y - math.abs(target.sprite.transform.y - origXForm.y) - self.sprite.h, 4),
+				Do(function()
+					self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h
+				end),
 				Ease(self.sprite.transform, "y", origXForm.y, 6)
 			}
 		},
