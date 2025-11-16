@@ -19,6 +19,7 @@ MessageBox.DEFAULT_TEXT_SPEED = 4
 MessageBox.FAST_TEXT_SPEED = 12
 MessageBox.HEADLINER_RECT = Rect(Transform(love.graphics.getWidth()/2, 30), love.graphics.getWidth() - 10, 60)
 MessageBox.SUBLINER_RECT = Rect(Transform(love.graphics.getWidth()/2, love.graphics.getHeight() - 30), love.graphics.getWidth() - 10, 60)
+MessageBox.TOP_OF_WINDOW = Rect(Transform(love.graphics.getWidth()/2, 80), love.graphics.getWidth() - 10, 160)
 
 function MessageBox:construct(args) -- name, message, rect, closeAction, blocking, textSpeed
 	if not args.rect then

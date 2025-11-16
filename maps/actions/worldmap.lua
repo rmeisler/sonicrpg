@@ -1,4 +1,4 @@
-return function(scene)
+return function(scene, hint)
 	local Transform = require "util/Transform"
 	local Rect = unpack(require "util/Shapes")
 	local Layout = require "util/Layout"
@@ -19,7 +19,38 @@ return function(scene)
 	local Animate = require "actions/Animate"
 	local SpriteNode = require "object/SpriteNode"
 	local TextNode = require "object/TextNode"
+	local BlockPlayer = require "actions/BlockPlayer"
 	local Move = require "actions/Move"
+	
+	if hint == "ep5_robotnik_ship" then
+		local shipLayer1 = scene:findLayer("ship1")
+		local shipLayer2 = scene:findLayer("ship2")
+
+		scene.player.sprite.visible = false
+		scene.player.dropShadow.hidden = true
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+			end),
+			PlayAudio("sfx", "elevator", 1, true),
+			Repeat(Serial {
+				Do(function()
+					shipLayer1.opacity = 1
+					shipLayer2.opacity = 0
+				end),
+				Wait(0.2),
+				Do(function()
+					shipLayer1.opacity = 0
+					shipLayer2.opacity = 1
+				end),
+				Wait(0.2)
+			}, 6),
+			Do(function()
+				scene:changeScene{map="robotnikship_scene", fadeOutSpeed=2, fadeInSpeed=2}
+			end)
+		}
+	end
 	
 	local text = TypeText(
 		Transform(50, 500),

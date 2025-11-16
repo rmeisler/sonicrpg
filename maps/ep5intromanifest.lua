@@ -6,6 +6,11 @@ return {
     },
 	{
         type = "map",
+        file = "maps/robotnikship_scene.lua",
+		primary = true
+    },
+	{
+        type = "map",
         file = "maps/boulderbay1.lua",
 		--primary = true
     },

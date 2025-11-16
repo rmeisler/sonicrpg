@@ -22,6 +22,9 @@ return {
         },
 		grab_snively_lookback2 = {
             frames = {{10,0}}
-        }
+        },
+		idleup = {
+			frames = {{11,0}}
+		}
     }
 }

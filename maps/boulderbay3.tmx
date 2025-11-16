@@ -832,7 +832,7 @@ end</property>
     <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
-  <object id="493" name="InteractCage4" type="BasicNPC" gid="7597" x="1568" y="736" width="224" height="32">
+  <object id="493" name="InteractCage4" type="BasicNPC" gid="7597" x="1632" y="736" width="96" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
@@ -952,11 +952,11 @@ return function(self)
                 },
                 PlayAudio(&quot;music&quot;, &quot;robotnikship&quot;, 1, true),
                 Animate(self.scene.objectLookup.MamaT.sprite, &quot;mamat_sad&quot;),
-                MessageBox{message=&quot;Mama T: Robotnik!&quot;, closeAction=Wait(2)},
+                MessageBox{message=&quot;Mama T: Robotnik!&quot;, closeAction=Wait(1.5)},
 
                 Do(function()
                     GameState:grantItem(require &quot;data/items/RainbowConkShell&quot;, 1)
-                    self.scene:changeScene{map=&quot;boulderbay_meanwhile2&quot;, fadeOutSpeed=2, fadeInSpeed=0.5}
+                    self.scene:changeScene{map=&quot;worldmap&quot;, fadeOutSpeed=2, fadeInSpeed=2, hint=&quot;ep5_robotnik_ship&quot;, spawnPoint=&quot;BoulderBaySpawn&quot;}
                 end)
             }
         }
