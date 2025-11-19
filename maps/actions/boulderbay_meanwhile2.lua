@@ -235,5 +235,8 @@ return function(scene, hint)
 		Animate(scene.objectLookup.Fleet.sprite, "thinking"),
 		MessageBox{message="Fleet: Yeah..."},
 		MessageBox{message="Sally: Good! {p60}Now let's catch up with Sonic!"},
+		Do(function()
+			scene:changeScene{map="boulderbay_cliffs", fadeOutSpeed=0.2, fadeInSpeed=0.2, fadeOutMusic=true}
+		end)
 	}
 end

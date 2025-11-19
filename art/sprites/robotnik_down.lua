@@ -5,6 +5,12 @@ return {
     h = 95,
 
     animations = {
+		idle = {
+			frames = {{0,0}}
+		},
+		thinking = {
+			frames = {{4,0}}
+		},
         grab_snively = {
             frames = {{5,0}}
         },
@@ -25,6 +31,9 @@ return {
         },
 		idleup = {
 			frames = {{11,0}}
+		},
+		pose = {
+			frames = {{12,0}}
 		}
     }
 }

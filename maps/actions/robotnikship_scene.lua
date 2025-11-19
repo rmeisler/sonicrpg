@@ -44,18 +44,21 @@ return function(scene, hint)
 			rect=MessageBox.TOP_OF_WINDOW
 		},
 		Wait(1.5),
+		Animate(scene.objectLookup.Robotnik.sprite, "thinking"),
 		MessageBox{
 			message="Robotnik: Hmm... {p40}this place feels strangely familiar to me...",
 			closeAction=Wait(2),
 			rect=MessageBox.TOP_OF_WINDOW
 		},
 		Wait(1),
+		Animate(scene.objectLookup.Robotnik.sprite, "idle"),
 		MessageBox{
 			message="Robotnik: No matter. {p60}Those despicable \"Freedom Fighters\" will pay for the damage they've done to my beautiful {h Project Firebird}...",
 			closeAction=Wait(4),
 			rect=MessageBox.TOP_OF_WINDOW
 		},
 		Wait(0.5),
+		Animate(scene.objectLookup.Robotnik.sprite, "pose"),
 		MessageBox{
 			message="Robotnik: ...once my wish is granted, I will have the precise location of {h Knothole Village}...",
 			closeAction=Wait(4),
