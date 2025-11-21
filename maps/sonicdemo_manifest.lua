@@ -7,6 +7,11 @@ return {
 	{
         type = "map",
         file = "maps/robotnikship_scene.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/boulderbay_cliffs.lua",
 		primary = true
     },
 	{
@@ -612,6 +617,12 @@ return {
 		type = "sound",
 		file = "audio/sfx/bounce.wav",
 		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/dreammountain.ogg",
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",
