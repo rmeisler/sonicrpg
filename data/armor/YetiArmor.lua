@@ -5,7 +5,7 @@ return {
 	desc = "Very strong armor, protects against freeze.",
 	type = ItemType.Armor,
 	color = {0,0,0,255},
-	usableBy = {"sonic", "sally", "antoine", "bunnie", "rotor", "logan"},
+	usableBy = {"sonic", "sally", "antoine", "bunnie", "rotor", "logan", "tails", "b", "babyt"},
 	stats = {
 		defense = 10
 	}

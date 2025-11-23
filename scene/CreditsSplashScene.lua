@@ -140,6 +140,7 @@ AmeixaRoxa
 Deebs
 Racoon Ninja
 Joey "The Plokman" Tripp Nimmo
+Kronovi
 Ibeh Dubem/Flame the Teen
 Ilya Rappu/Picnik
 Reggie Meisler/RedG
