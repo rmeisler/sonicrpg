@@ -12,7 +12,12 @@ return {
 	{
         type = "map",
         file = "maps/boulderbay_cliffs.lua",
-		primary = true
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/dream_mountain_cave1.lua",
+		--primary = true
     },
 	{
         type = "map",
