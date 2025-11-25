@@ -30,12 +30,12 @@ return function(self, target)
 		end),
 		target.onTease and target:onTease() or Action(),
 		MessageBox {
-			message="Sonic: Hey! {p30}Over here, "..(target.insult or "bot-brain").."!",
+			message=self.name..": Hey! {p30}Over here, "..(target.insult or "bot-brain").."!",
 			rect=MessageBox.HEADLINER_RECT,
 			textSpeed=8,
 			closeAction=Wait(0.8)
 		},
-		Telegraph(target, target.name.." feels compelled to attack Sonic!", {255,255,255,50}),
+		Telegraph(target, target.name.." feels compelled to attack "..self.name.."!", {255,255,255,50}),
 		Do(function()
 			self.sprite:setAnimation("idle")
 		end)

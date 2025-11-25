@@ -169,9 +169,9 @@ function TitleSplashScene:onExit(args)
 end
 
 function TitleSplashScene:newGame()
-	GameState:addToParty("tails", 3, true)
-	--GameState:addToParty("babyt", 3, true)
-	--GameState:addToParty("b", 1, true)
+	GameState:addToParty("tails", 5, true)
+	GameState:addToParty("babyt", 5, true)
+	GameState:addToParty("b", 5, true)
 	GameState.leader = "tails"
 	
 	self.exiting = true

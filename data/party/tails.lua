@@ -59,6 +59,13 @@ return {
 				require "data/battle/skills/CalledShot",
 			}
 		},
+		[5] = {
+			messages = {"Tails learned \"{h Tease}\"!"},
+			skills = {
+				require "data/battle/skills/CalledShot",
+				require "data/battle/skills/Tease",
+			}
+		},
 	},
 	
 	specialmove = require "data/specialmoves/tails",

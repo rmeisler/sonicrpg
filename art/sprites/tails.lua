@@ -27,6 +27,10 @@ return {
 		backward = {
 			frames = {{0,0}}
 		},
+		tease = {
+			frames = {{11,5}, {12,5}},
+			speed = 0.5
+		},
 		block = {
 			frames = {{16,2}}
 		},

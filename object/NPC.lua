@@ -405,6 +405,7 @@ function NPC:messageBox()
 		self.collided = true
 
 		local battleArgs = {}
+		battleArgs.music = battleArgs.battleMusic
 		if objProps.boss then
 			battleArgs.music = "boss"
 			battleArgs.bossBattle = true

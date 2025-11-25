@@ -197,6 +197,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/golemarm.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/surprise.png"
 	},
 	{

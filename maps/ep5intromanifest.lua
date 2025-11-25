@@ -12,12 +12,12 @@ return {
 	{
         type = "map",
         file = "maps/dream_mountain_cave1.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
         file = "maps/boulderbay_cliffs.lua",
-		--primary = true
+		primary = true
     },
 	{
         type = "map",
@@ -190,6 +190,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/lasershield.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/golemarm.png"
 	},
 	{
 		type = "image",

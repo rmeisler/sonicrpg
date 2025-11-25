@@ -26,236 +26,250 @@ local Telegraph = require "data/monsters/actions/Telegraph"
 local Smack = require "data/monsters/actions/Smack"
 
 return {
-	name = "Cyclops",
-	altName = "Cyclops",
-	sprite = "sprites/phantomstandin",
-	
-	mockSprite = "sprites/cyclops",
-	mockSpriteOffset = Transform(-60, 50),
+	name = "Golem",
+	altName = "Golem",
+	sprite = "sprites/golem",
 
 	stats = {
 		xp    = 50,
 		maxhp = 1500,
-		attack = 26,
-		defense = 100,
-		speed = 2,
-		focus = 1,
-		luck = 1,
+		attack = 20,
+		defense = 30,
+		speed = 5,
+		focus = 50,
+		luck = 3,
 	},
-
-	boss_part = true,
 	
-	run_chance = 0.2,
+	hurtSfx = "openchasm",
+	is_bot = false,
+	insult = "rock-face",
+
+	run_chance = 0,
 
 	coin = 0,
 
 	drops = {
-		{item = require "data/items/CrystalWater", count = 1, chance = 0.8},
+		{item = require "data/items/RainbowSyrup", count = 1, chance = 1},
 	},
-	
-	scan = "Cyclops can lose balance when made dizzy.",
-	
-	getHpStats = function(self)
-		return self.eye.hp, self.eye.maxhp
-	end,
-	
+
+	scan = "",
+
 	onInit = function(self)
-		self.sprite.transform.x = 230
-		self.sprite.transform.y = 310
-		self.sprite.sortOrderY = -100
-		self.pummelXForm = Transform(350, 330) -- Hack to make Sonic's Pummel skill work
-		
-		self.mockSprite.transform.x = -60
-		self.mockSprite.transform.y = 50
-		self.mockSprite.sortOrderY = -100
-		
-		local oppo = self.scene:addMonster("cyclopseye")
-		oppo.body = self
-		oppo:onPreInit()
-		self.eye = oppo
-		
-		local hitHandler
-		hitHandler = function(damage)
-			self.eye.hp = self.eye.hp - damage
-			if self.eye.hp <= 0 then
-				self.hp = 0
-				self.state = BattleActor.STATE_DEAD
-			end
-		end
-		self:addHandler("hit", hitHandler)
-		
-		-- Screen shake every x seconds
-		self.scene:run(Spawn(
-			Repeat(
-				Serial {
-					PlayAudio("sfx", "quake", 1.0, true),
-					self.scene:screenShake(10, 30, 20),
-					Wait(5)
-				}
-			)
-		))
-		
-		self.proneTurns = 0
-	end,
-	
-	onConfused = function(self)
-		self.proneTurns = 2
-		self:getSprite():pushOverride("hurt", "prone_hurt")
+		-- Setup beam sprite
+		self.beamSprite = SpriteNode(self.scene, Transform(), nil, "botbeam", nil, nil, "ui")
+		self.beamSprite.transform.sx = 0
+		self.beamSprite.transform.sy = 1
+		self.beamSprite.transform.ox = 0
 
-		self.eye.aerial = false
-		self.eye.sprite.transform.x = 340
-		self.eye.sprite.transform.y = 300
+		self.sprite:setAnimation("hide")
 
-		return Serial {
-			Do(function()
-				self.confused = false
-				self:getSprite():setAnimation("dazed")
-			end),
-			Wait(0.5),
-			MessageBox {
-				message="Cyclops is feeling dizzy!",
-				rect=MessageBox.HEADLINER_RECT,
-				closeAction=Wait(1)
-			},
-			Animate(self:getSprite(), "fall"),
-			Do(function()
-				self:getSprite():setAnimation("prone")
-				self:getSprite():pushOverride("idle", "prone")
-				self:getSprite():pushOverride("backward", "prone")
-			end),
-			PlayAudio("sfx", "cyclopsstep", 1.0, true),
-			self.scene:screenShake(20, 30, 1)
+		self.states = {
+			"reveal",
+			"laser",
+			"rock",
+			"rock",
+			"laser-sweep",
+			"rock",
+			"shell",
+			"heal",
+			"noop",
+			"reveal2",
+			"defup"
 		}
-	end,
-	
-	onTease = function(self)
-		self.doLaser = 3
+		self.state_counter = 1
+		self.max_states = table.count(self.states)
 	end,
 	
 	behavior = function (self, target)
-		if  self.hp <= 0 or
-		    self.eye.hp <= 0 or
-		    self.state == BattleActor.STATE_DEAD or
-		    self.eye.state == BattleActor.STATE_DEAD
-		then
-			return Action()
-		end
-	
-		if self.proneTurns > 1 then
-			self.proneTurns = self.proneTurns - 1
-			return Action()
-		elseif self.proneTurns == 1 then
-			self.proneTurns = self.proneTurns - 1
-			self:getSprite():popOverride("hurt")
+		local state = self.states[self.state_counter]
+		self.state_counter = (self.state_counter % self.max_states) + 1
 
-			self.eye.aerial = true
-			self.eye.sprite.transform.y = 130
-			
-			local sp = self:getSprite()
+		if state == "reveal" then
 			return Serial {
-				Parallel {
-					Animate(sp, "unprone"),
-					Serial {
-						Ease(sp.transform, "y", function() return sp.transform.y - 150 end, 2),
-						Ease(sp.transform, "y", function() return sp.transform.y + 150 end, 3)
-					},
-				},
+				Animate(self.sprite, "reveal"),
 				Do(function()
-					self:getSprite():setAnimation("idle")
-					self:getSprite():popOverride("idle")
-					self:getSprite():popOverride("backward")
-				end),
-				PlayAudio("sfx", "cyclopsstep", 1.0, true),
-				self.scene:screenShake(20, 30, 1)
+					self.sprite:setAnimation("idle")
+				end)
 			}
-		end
-		
-		if math.random() < 0.2 then
-			self.doLaser = 1
-		end
-		
-		--[[if self.doLaser and self.doLaser > 0 then
-			self.doLaser = self.doLaser - 1
+		elseif state == "reveal2" then
 			return Serial {
-				Telegraph(self, "Eye Laser", {255,255,255,50}),
-				
+				Animate(self.sprite, "reveal"),
+				Do(function()
+					self:popStats()
+					self.sprite:setAnimation("idle")
+				end)
 			}
-		end]]
-	
-		local sprite = self:getSprite()
-		if math.random() < 0.3 then
-			local sapActions = {}
+		elseif state == "laser" then
+			local dodgeAction = target.defenseEvent and
+				target.defenseEvent(self, target) or
+				Action()
+
+			return Serial {
+				Telegraph(self, "Energy Beam", {500,500,500,50}),
+				Animate(self.sprite, "laser"),
+
+				Parallel {
+					Serial {
+						Wait(0.2),
+						dodgeAction
+					},
+					Serial {
+						Animate(function()
+							local xform = Transform.from(self.sprite.transform)
+							xform.x = xform.x - 40
+							xform.y = xform.y - 60
+							return SpriteNode(self.scene, xform, nil, "beamfire", nil, nil, "ui"), true
+						end, "idle"),
+						PlayAudio("sfx", "swatbotlaser", 1.0, true),
+							
+						Do(function()
+							self.beamSprite.transform.x = self.sprite.transform.x - 40 + self.beamSprite.w
+							self.beamSprite.transform.y = self.sprite.transform.y - 50 + self.beamSprite.h*2
+							self.beamSprite.transform.ox = 0
+							
+							local x1, y1 = self.beamSprite.transform.x, self.beamSprite.transform.y
+							local x2, y2 = target.sprite.transform.x, target.sprite.transform.y
+
+							local dx = (x2 - x1)
+							local dy = (y2 - y1)
+
+							local dot = dx * dx
+							local m1 = math.sqrt(dx*dx + dy*dy)
+							local m2 = dx
+							local angle = math.acos(dot / (m1 * m2))
+							
+							if self.beamSprite.transform.y > target.sprite.transform.y then
+								self.beamSprite.transform.angle = -angle
+							else
+								self.beamSprite.transform.angle = angle
+							end
+							
+							self.xDist = dx
+							self.yDist = dy
+							self.len = m1/self.beamSprite.w	
+						end),
+						
+						-- Beam stretch to target and recede
+						Ease(self.beamSprite.transform, "sx", function() return self.len end, 8),
+						
+						Do(function()
+							self.beamSprite.transform.ox = self.beamSprite.w
+							
+							self.beamSprite.transform.x = self.beamSprite.transform.x + self.xDist
+							self.beamSprite.transform.y = self.beamSprite.transform.y + self.yDist
+						end),
+
+						Ease(self.beamSprite.transform, "sx", 0, 8),
+
+						Try(
+							YieldUntil(
+								function()
+									return target.dodged
+								end
+							),
+							Do(function()
+								target.dodged = false
+							end),
+							target:takeDamage(self.stats, true, BattleActor.shockKnockback)
+						)
+					}
+				},
+
+				Do(function()
+					self.sprite:setAnimation("idle")
+				end)
+			}
+		elseif state == "rock" then
+			return Serial {
+				Telegraph(self, "Pebble Shooter", {500,500,500,50}),
+				Animate(self.sprite, "rock"),
+				Do(function()
+					self.sprite:setAnimation("idle")
+				end)
+			}
+		elseif state == "laser-sweep" then
+			-- Damage all party members
+			local dmgAllPartyMembers = {}
+			local _, firstPartyMember = next(self.scene.party)
+			local lastPartyMember
 			for _, mem in pairs(self.scene.party) do
-				if mem.state ~= BattleActor.STATE_DEAD then
-					table.insert(sapActions, Serial {
-						Animate(mem.sprite, "hurt"),
-						Wait(2),
-						Animate(mem.sprite, mem.sprite.selected)
-					})
-				end
+				table.insert(dmgAllPartyMembers, OnHitEvent(self, mem))
+				lastPartyMember = mem
 			end
 
 			return Serial {
-				Do(function() sprite:setAnimation("roar") end),
-				PlayAudio("sfx", "cyclopsroar", 1.0, true),
-				Parallel {
-					Serial {
-						self.scene:screenShake(20, 30, 15),
-						Do(function() sprite:setAnimation("idle") end)
-					},
-					Parallel(sapActions)
+				Telegraph(self, "Energy Beam Sweep", {500,500,500,50}),
+				Animate(self.sprite, "glow"),
+				Animate(self.sprite, "laser"),
+				
+				Animate(function()
+					local xform = Transform.from(self.sprite.transform)
+					xform.x = xform.x - 40
+					xform.y = xform.y - 60
+					return SpriteNode(self.scene, xform, nil, "beamfire", nil, nil, "ui"), true
+				end, "idle"),
+				
+				PlayAudio("sfx", "lasersweep", 1.0, true),
+				
+				Do(function()
+					self.beamSprite.transform.x = self.sprite.transform.x + self.sprite.w/2 - 40
+					self.beamSprite.transform.y = self.sprite.transform.y + self.sprite.h/2 - 60
+					self.beamSprite.transform.angle = -math.pi/6
+					self.beamSprite.transform.ox = 0
+				end),
+				
+				Ease(self.beamSprite.transform, "sx", 20.0, 12, "linear"),
+				Ease(self.beamSprite.transform, "angle", math.pi/6, 1, "linear"),
+				
+				-- Hide beam sprite
+				Do(function()
+					self.beamSprite.transform.sx = 0
+					self.beamSprite.transform.angle = 0
+				end),
+				
+				Parallel(dmgAllPartyMembers),
+				Do(function()
+					self.sprite:setAnimation("idle")
+				end)
+			}
+		elseif state == "shell" then
+			return Serial {
+				Telegraph(self, "Cocoon", {500,500,500,50}),
+				Animate(self.sprite, "shell"),
+				Do(function()
+					self:pushStats({attack = self.stats.attack, defense = 100, speed = self.stats.speed, luck = self.stats.luck})
+				end)
+			}
+		elseif state == "heal" then
+			return Serial {
+				Telegraph(self, "Revitalize", {500,500,500,50}),
+				Heal("hp", math.random(200,400))(self, self)
+			}
+		elseif state == "noop" then
+			return Telegraph(self, "Golem remains still", {500,500,500,50})
+		elseif state == "defup" then
+			return Serial {
+				Telegraph(self, "Defense Up", {500,500,500,50}),
+				Animate(self.sprite, "glow"),
+				Animate(self.sprite, "defup"),
+				Do(function()
+					self.sprite:setAnimation("idle")
+					self:pushStats({
+						attack = self.stats.attack,
+						defense = self.stats.defense * 1.5,
+						speed = self.stats.speed,
+						luck = self.stats.luck
+					})
+				end),
+				MessageBox {
+					message=self.name.." defense increased by 50%!",
+					rect=MessageBox.HEADLINER_RECT,
+					closeAction=Wait(1),
+					sfx="stare"
 				}
 			}
 		else
-			local takeDamageAction = Do(function()
-				for _, mem in pairs(self.scene.party) do
-					if mem.state ~= BattleActor.STATE_DEAD then
-						Executor(self.scene):act(Serial {
-							Do(function()
-								self.doneWithDamage = false
-							end),
-							mem:takeDamage{attack = 10, speed = 30, luck = 0},
-							Do(function()
-								self.doneWithDamage = true
-							end)
-						})
-					end
-				end
-			end)
-			return Serial {
-				Telegraph(self, "Stomp", {255,255,255,50}),
-				
-				Repeat(Serial {
-					PlayAudio("sfx", "cyclopsstep", 1.0, true),
-					Do(function() sprite:setAnimation("stomp1") end),
-					takeDamageAction,
-					self.scene:screenShake(20, 30, 1),
-					Wait(0.6),
-					PlayAudio("sfx", "cyclopsstep", 1.0, true),
-					Do(function() sprite:setAnimation("stomp2") end),
-					self.scene:screenShake(20, 30, 1),
-					Wait(0.6)
-				}, 2),
-				
-				Do(function()
-					sprite:setAnimation("idle")
-				end),
-				
-				Wait(1),
-				Do(function()
-					for _, mem in pairs(self.scene.party) do
-						if mem.state ~= BattleActor.STATE_DEAD then
-							mem.state = BattleActor.STATE_IMMOBILIZED
-							mem.sprite:setAnimation("stun")
-						end
-					end
-				end),
-				MessageBox {
-					message="Party is paralyzed!",
-					rect=MessageBox.HEADLINER_RECT,
-					closeAction=Wait(1)
-				}
-			}
+			return Action()
 		end
 	end
 }
