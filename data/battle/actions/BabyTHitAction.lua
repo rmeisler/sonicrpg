@@ -24,13 +24,13 @@ local LeapBackward = function(self, target)
 		Animate(self.sprite, "idle"),
 		Wait(0.1),
 		Animate(self.sprite, "idle"),
+		Do(function()
+			self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h
+		end),
 		Parallel {
 			Ease(self.sprite.transform, "x", self.sprite.transform.x, 3),
 			Serial {
 				Ease(self.sprite.transform, "y", self.sprite.transform.y - math.abs(targetSprite.transform.y - self.sprite.transform.y) - self.sprite.h, 4),
-				Do(function()
-					self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h
-				end),
 				Ease(self.sprite.transform, "y", self.sprite.transform.y, 6)
 			}
 		},

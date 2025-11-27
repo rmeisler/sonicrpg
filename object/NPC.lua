@@ -123,11 +123,13 @@ function NPC:construct(scene, layer, object)
 	-- TODO: Change this to be a metadata file in some cases, that contains info about image and animations
 	local sprite = object.properties.sprite
 	if sprite then
+		local colorOverride = object.properties.colorOverride or "255,255,255"
+		local r,g,b = colorOverride:split(",")
 		local alpha = object.properties.alphaOverride or (255 * (self.layer.opacity or 1))
 		self.sprite = SpriteNode(
 		    scene,
 			Transform(object.x, object.y, object.properties.scalex or 2, object.properties.scaley or 2),
-			{255,255,255, alpha},
+			{r,g,b,alpha},
 			sprite:match("art/sprites/(.*)%."),
 			nil,
 			nil,

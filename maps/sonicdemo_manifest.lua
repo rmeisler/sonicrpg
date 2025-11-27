@@ -635,6 +635,12 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/mysterious.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
 		file = "audio/music/robotnikbattle.ogg",
 		category = "music"
 	},

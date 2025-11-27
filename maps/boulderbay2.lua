@@ -8,7 +8,7 @@ return {
   height = 73,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 427,
+  nextobjectid = 428,
   properties = {
     ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
@@ -856,22 +856,6 @@ return {
           }
         },
         {
-          id = 397,
-          name = "ViewRange",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 896,
-          y = 1760,
-          width = 672,
-          height = 224,
-          rotation = 0,
-          gid = 7597,
-          visible = false,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
           id = 398,
           name = "InteractCage1",
           type = "BasicNPC",
@@ -1307,6 +1291,22 @@ return {
           properties = {
             ["notColliding"] = "return function(self, player)\n    if not self.deactivateLayer then\n        self.deactivateLayer = self.scene:findLayer(\"hill_upper\")\n    end\n    self.deactivateLayer.opacity = 1\nend",
             ["whileColliding"] = "return function(self, player)\n    if not self.deactivateLayer then\n        self.deactivateLayer = self.scene:findLayer(\"hill_upper\")\n    end\n    self.deactivateLayer.opacity = 0\nend"
+          }
+        },
+        {
+          id = 427,
+          name = "ViewRange",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 896,
+          y = 1760,
+          width = 672,
+          height = 224,
+          rotation = 0,
+          gid = 7597,
+          visible = false,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

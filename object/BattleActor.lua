@@ -270,7 +270,7 @@ function BattleActor:pushStats(stats)
 end
 
 function BattleActor:popStats()
-	if not self.statStack then
+	if not self.statStack or next(self.statStack) == nil then
 		return
 	end
 	table.remove(self.statStack, 1)

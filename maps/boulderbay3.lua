@@ -8,7 +8,7 @@ return {
   height = 79,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 504,
+  nextobjectid = 507,
   properties = {
     ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
@@ -813,22 +813,6 @@ return {
           }
         },
         {
-          id = 397,
-          name = "ViewRange",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 896,
-          y = 2400,
-          width = 576,
-          height = 224,
-          rotation = 0,
-          gid = 7597,
-          visible = false,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
           id = 398,
           name = "InteractCage2",
           type = "BasicNPC",
@@ -1100,22 +1084,6 @@ return {
           }
         },
         {
-          id = 446,
-          name = "ViewRange2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1920,
-          y = 2272,
-          width = 576,
-          height = 256,
-          rotation = 0,
-          gid = 7597,
-          visible = false,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
           id = 452,
           name = "PalmTree",
           type = "Chargeable",
@@ -1261,7 +1229,7 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Ease = require \"actions/Ease\"\nlocal Animate = require \"actions/Animate\"\nlocal Action = require \"actions/Action\"\n\nlocal ItemType = require \"util/ItemType\"\n\nreturn function(self)\n    if not GameState:isFlagSet(self.scene.objectLookup.Rover1:getFlag()) or\n        not GameState:isFlagSet(self.scene.objectLookup.Swatbot6:getFlag()) or\n        not GameState:isFlagSet(self.scene.objectLookup.Swatbot7:getFlag())\n    then\n        return Action()\n    end\n\n    if GameState:isFlagSet(\"ep5_cage4\") then\n        return BlockPlayer {\n            PlayAudio(\"sfx\", \"terrapodroar\", 1, true),\n            MessageBox{message=\"Terrapod: *GRUNT!*\"}\n        }\n\n    else\n\n    GameState:setFlag(\"ep5_cage4\")\n    local walkout, walkin, sprites = self.scene.player:split(nil, true)\n    for k in pairs(GameState.party) do\n        sprites[k].x = self.scene.player.x - 60\n        sprites[k].y = self.scene.player.y - 60\n    end\n\n    local shadowLayer = self.scene:findLayer(\"shadow2\")\n\n    local translate = GameState:isEquipped(\"babyt\", ItemType.Accessory, \"Translator Collar\")\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"terrapodroar\", 1, true),\n        MessageBox{message=\"Terrapod: *GRUNT!*\"},\n        walkout,\n        Animate(sprites.babyt.sprite, \"idleup\"),\n        Animate(sprites.tails.sprite, \"idleup\"),\n        Animate(sprites.b.sprite, \"idleup\"),\n        Wait(0.5),\n        Animate(sprites.b.sprite, \"focus\"),\n        Parallel {\n            MessageBox{message=\"B used EMP!\", sfx=\"factoryspit\"},\n            Repeat(Serial {\n                Do(function() self.scene.objectLookup.Cage4_Over.sprite:setAnimation(\"over\") end),\n                Wait(0.05),\n                Do(function() self.scene.objectLookup.Cage4_Over.sprite:setAnimation(\"over_noforcefield\") end),\n                Wait(0.05)\n            }, 10),\n            AudioFade(\"music\", 1, 0, 1)\n        },\n        Wait(1),\n        Animate(sprites.b.sprite, \"idleup\"),\n        Animate(self.scene.objectLookup.MamaT.sprite, \"mamat\"),\n        MessageBox{message=\"Tails places {h Translator Collar} on adult Terrapod!\"},\n        Wait(0.5),\n        PlayAudio(\"music\", \"babyt\", 1, true, true),\n        MessageBox{message=\"Mama T: I'm so happy to see you're safe, my child!\"},\n        Do(function() sprites.babyt.sprite.sortOrderY = 1000 end),\n        Parallel {\n            sprites.babyt:hop(),\n            MessageBox{message=\"Baby T: *happy grunt*!\"}\n        },\n        AudioFade(\"music\", 1, 0, 1),\n        Animate(self.scene.objectLookup.MamaT.sprite, \"mamat_sad\"),\n        MessageBox{message=\"Mama T: Tails, {p60}the man you know as {h Robotnik} is\\nhere, {p60}and he's searching for the {h Light of Mobius}...\"},\n        MessageBox{message=\"Mama T: He must be stopped{p60}, before it's too late...\"},\n        MessageBox{message=\"B: Knocking some Swatbots around is one thing... {p80} but facing off against Robotnik himself?...\"},\n        Animate(sprites.b.sprite, \"pose\"),\n        MessageBox{message=\"B: Maybe we should just wait for the real Freedom Fighters to show up...\"},\n        MessageBox{message=\"Mama T: Time is of the essence. {p60}Robotnik is already nearing the {h Cave of Light}, {p60}the sacred temple.\"},\n        Animate(sprites.b.sprite, \"idleup\"),\n        MessageBox{message=\"B: What will happen if Robotnik gets to this \\\"Light\\\" before we do? {p80}What exactly is this\\n\\\"Light of Mobius\\\"?\"},\n        PlayAudio(\"music\", \"lightofmobius\", 1, true, true),\n        Animate(self.scene.objectLookup.MamaT.sprite, \"mamat\"),\n        MessageBox{message=\"Mama T: The Light has existed since the dawn of Mobius... {p80}it's said that the Light is made from the hopes and dreams of all living beings...\"},\n        MessageBox{message=\"Mama T: As you approach the Light, you will be granted one wish... {p80}and although the Light naturally resists evil wishes that seek death, displacement, or power over others, we know that Robotnik is cunning--\"},\n        Animate(self.scene.objectLookup.MamaT.sprite, \"mamat_sad\"),\n        MessageBox{message=\"Mama T: He has undoubtedly found a way to still use the Light's power to serve his dark ambitions...\"},\n        Animate(self.scene.objectLookup.MamaT.sprite, \"mamat\"),\n        MessageBox{message=\"Mama T: Take this with you, {p60}this will reveal the secret entrance to the {h Cave of Light}...\"},\n        MessageBox{message=\"Mama T gives Tails {h Rainbow Conk Shell}!\", sfx=\"levelup\"},\n        -- Shadow passes overhead\n        Do(function()\n            shadowLayer.opacity = 0.6\n        end),\n        Parallel {\n            AudioFade(\"music\", 1, 0, 1),\n            Ease(shadowLayer, \"offsety\", 300, 0.1),\n            Serial {\n                Wait(3),\n                PlayAudio(\"sfx\", \"elevator\", 1, true),\n                Wait(1),\n                Do(function()\n                    sprites.b.sprite.sortOrderY = 1000\n                    sprites.tails.sprite.sortOrderY = 1000\n                end),\n                Animate(sprites.b.sprite, \"shock\"),\n                Animate(sprites.babyt.sprite, \"shock\"),\n                Animate(sprites.tails.sprite, \"shock\"),\n                Parallel {\n                    MessageBox{message=\"Tails: What's going on?!\", closeAction=Wait(1)},\n                    sprites.b:hop(),\n                    sprites.babyt:hop(),\n                    sprites.tails:hop(),\n                },\n                PlayAudio(\"music\", \"robotnikship\", 1, true),\n                Animate(self.scene.objectLookup.MamaT.sprite, \"mamat_sad\"),\n                MessageBox{message=\"Mama T: Robotnik!\", closeAction=Wait(1.5)},\n\n                Do(function()\n                    GameState:grantItem(require \"data/items/RainbowConkShell\", 1)\n                    self.scene:changeScene{map=\"worldmap\", fadeOutSpeed=2, fadeInSpeed=2, hint=\"ep5_robotnik_ship\", spawnPoint=\"BoulderBaySpawn\"}\n                end)\n            }\n        }\n    }\n    end\nend"
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Ease = require \"actions/Ease\"\nlocal Animate = require \"actions/Animate\"\nlocal Action = require \"actions/Action\"\n\nlocal ItemType = require \"util/ItemType\"\n\nreturn function(self)\n    if not GameState:isFlagSet(self.scene.objectLookup.Rover1:getFlag()) or\n        not GameState:isFlagSet(self.scene.objectLookup.Swatbot6:getFlag()) or\n        not GameState:isFlagSet(self.scene.objectLookup.Swatbot7:getFlag())\n    then\n        return Action()\n    end\n\n    if GameState:isFlagSet(\"ep5_cage4\") then\n        return BlockPlayer {\n            PlayAudio(\"sfx\", \"terrapodroar\", 1, true),\n            MessageBox{message=\"Terrapod: *GRUNT!*\"}\n        }\n\n    else\n\n    GameState:setFlag(\"ep5_cage4\")\n    local walkout, walkin, sprites = self.scene.player:split(nil, true)\n    for k in pairs(GameState.party) do\n        sprites[k].x = self.scene.player.x - 60\n        sprites[k].y = self.scene.player.y - 60\n    end\n\n    local shadowLayer = self.scene:findLayer(\"shadow2\")\n\n    local translate = GameState:isEquipped(\"babyt\", ItemType.Accessory, \"Translator Collar\")\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"terrapodroar\", 1, true),\n        MessageBox{message=\"Terrapod: *GRUNT!*\"},\n        walkout,\n        Animate(sprites.babyt.sprite, \"idleup\"),\n        Animate(sprites.tails.sprite, \"idleup\"),\n        Animate(sprites.b.sprite, \"idleup\"),\n        Wait(0.5),\n        Animate(sprites.b.sprite, \"focus\"),\n        Parallel {\n            MessageBox{message=\"B used EMP!\", sfx=\"factoryspit\"},\n            Repeat(Serial {\n                Do(function() self.scene.objectLookup.Cage4_Over.sprite:setAnimation(\"over\") end),\n                Wait(0.05),\n                Do(function() self.scene.objectLookup.Cage4_Over.sprite:setAnimation(\"over_noforcefield\") end),\n                Wait(0.05)\n            }, 10),\n            AudioFade(\"music\", 1, 0, 1)\n        },\n        Wait(1),\n        Animate(sprites.b.sprite, \"idleup\"),\n        Animate(self.scene.objectLookup.MamaT.sprite, \"mamat\"),\n        MessageBox{message=\"Tails places {h Translator Collar} on adult Terrapod!\"},\n        Wait(0.5),\n        PlayAudio(\"music\", \"babyt\", 1, true, true),\n        MessageBox{message=\"Mama T: I'm so happy to see you're safe, my child!\"},\n        Do(function() sprites.babyt.sprite.sortOrderY = 1000 end),\n        Parallel {\n            sprites.babyt:hop(),\n            MessageBox{message=\"Baby T: *happy grunt*!\"}\n        },\n        AudioFade(\"music\", 1, 0, 1),\n        Animate(self.scene.objectLookup.MamaT.sprite, \"mamat_sad\"),\n        MessageBox{message=\"Mama T: Tails, {p60}the man you know as {h Robotnik} is\\nhere, {p60}and he's searching for the {h Light of Mobius}...\"},\n        MessageBox{message=\"Mama T: He must be stopped{p60}, before it's too late...\"},\n        MessageBox{message=\"B: Knocking some Swatbots around is one thing... {p80} but facing off against Robotnik himself?...\"},\n        Animate(sprites.b.sprite, \"pose\"),\n        MessageBox{message=\"B: Maybe we should just wait for the real Freedom Fighters to show up...\"},\n        MessageBox{message=\"Mama T: Time is of the essence. {p60}Robotnik is already nearing the {h Cave of Light}, {p60}the sacred temple.\"},\n        Animate(sprites.b.sprite, \"idleup\"),\n        MessageBox{message=\"B: What will happen if Robotnik gets to this \\\"Light\\\" before we do? {p80}What exactly is this\\n\\\"Light of Mobius\\\"?\"},\n        PlayAudio(\"music\", \"lightofmobius\", 1, true, true),\n        Animate(self.scene.objectLookup.MamaT.sprite, \"mamat\"),\n        MessageBox{message=\"Mama T: The Light has existed since the dawn of Mobius... {p80}it's said that the Light is made from the hopes and dreams of all living beings...\"},\n        MessageBox{message=\"Mama T: As you approach the Light, you will be granted one wish... {p80}and although the Light naturally resists evil wishes that seek death, displacement, or power over others, we know that Robotnik is cunning--\"},\n        MessageBox{message=\"Mama T: He has undoubtedly found a way to still use the Light's power to serve his dark ambitions...\"},\n        MessageBox{message=\"Mama T: Take this with you{p60}, it will help you...\"},\n        -- Shadow passes overhead\n        Do(function()\n            shadowLayer.opacity = 0.6\n        end),\n        Parallel {\n            AudioFade(\"music\", 1, 0, 1),\n            Ease(shadowLayer, \"offsety\", 300, 0.1),\n            Serial {\n                Wait(3),\n                PlayAudio(\"sfx\", \"elevator\", 1, true),\n                Wait(1),\n                Do(function()\n                    sprites.b.sprite.sortOrderY = 1000\n                    sprites.tails.sprite.sortOrderY = 1000\n                end),\n                Animate(sprites.b.sprite, \"shock\"),\n                Animate(sprites.babyt.sprite, \"shock\"),\n                Animate(sprites.tails.sprite, \"shock\"),\n                Parallel {\n                    MessageBox{message=\"Tails: What's going on?!\", closeAction=Wait(1)},\n                    sprites.b:hop(),\n                    sprites.babyt:hop(),\n                    sprites.tails:hop(),\n                },\n                PlayAudio(\"music\", \"robotnikship\", 1, true),\n                Animate(self.scene.objectLookup.MamaT.sprite, \"mamat_sad\"),\n                MessageBox{message=\"Mama T: Robotnik!\", closeAction=Wait(1.5)},\n\n                Do(function()\n                    GameState:grantItem(require \"data/items/RainbowConkShell\", 1)\n                    self.scene:changeScene{map=\"worldmap\", fadeOutSpeed=2, fadeInSpeed=2, hint=\"ep5_robotnik_ship\", spawnPoint=\"BoulderBaySpawn\"}\n                end)\n            }\n        }\n    }\n    end\nend"
           }
         },
         {
@@ -1291,22 +1259,6 @@ return {
             ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7",
             ["viewRange"] = "ViewRange3",
             ["visibleDistance"] = 200
-          }
-        },
-        {
-          id = 495,
-          name = "ViewRange3",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1376,
-          y = 896,
-          width = 576,
-          height = 224,
-          rotation = 0,
-          gid = 7597,
-          visible = false,
-          properties = {
-            ["ghost"] = true
           }
         },
         {
@@ -1758,6 +1710,54 @@ return {
           properties = {
             ["notColliding"] = "return function(self, player)\n    if not self.deactivateLayer then\n        self.deactivateLayer = self.scene:findLayer(\"hill_upper2\")\n    end\n    self.deactivateLayer.opacity = 1\nend",
             ["whileColliding"] = "return function(self, player)\n    if not self.deactivateLayer then\n        self.deactivateLayer = self.scene:findLayer(\"hill_upper2\")\n    end\n    self.deactivateLayer.opacity = 0\nend"
+          }
+        },
+        {
+          id = 504,
+          name = "ViewRange",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 896,
+          y = 2400,
+          width = 576,
+          height = 224,
+          rotation = 0,
+          gid = 7597,
+          visible = false,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 505,
+          name = "ViewRange2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1920,
+          y = 2272,
+          width = 576,
+          height = 256,
+          rotation = 0,
+          gid = 7597,
+          visible = false,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 506,
+          name = "ViewRange3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1408,
+          y = 928,
+          width = 576,
+          height = 224,
+          rotation = 0,
+          gid = 7597,
+          visible = false,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

@@ -19,7 +19,9 @@ local BattleActor = require "object/BattleActor"
 
 local Transform = require "util/Transform"
 
+local Stars = require "data/battle/actions/Stars"
 local PressX = require "data/battle/actions/PressX"
+local PressZ = require "data/battle/actions/PressZ"
 local OnHitEvent = require "data/battle/actions/OnHitEvent"
 local Heal = require "data/items/actions/Heal"
 local Telegraph = require "data/monsters/actions/Telegraph"
@@ -32,10 +34,10 @@ return {
 
 	stats = {
 		xp    = 50,
-		maxhp = 1500,
-		attack = 20,
-		defense = 30,
-		speed = 5,
+		maxhp = 2500,
+		attack = 30,
+		defense = 50,
+		speed = 10,
 		focus = 50,
 		luck = 3,
 	},
@@ -61,20 +63,36 @@ return {
 		self.beamSprite.transform.sy = 1
 		self.beamSprite.transform.ox = 0
 
-		self.sprite:setAnimation("hide")
+		self.bullet = SpriteNode(
+			self.scene,
+			Transform(0,0,2,2),
+			{255,255,255,0},
+			"golemarm",
+			nil,
+			nil,
+			"ui"
+		)
+		self.bullet.transform.ox = 0
+		self.bullet.transform.oy = self.bullet.h/2
+		self.bullet.transform.angle = 0
+		
+		self.targetSprite = SpriteNode(self.scene, Transform(0, 0, 2, 2), nil, "target", nil, nil, "ui")
+		self.targetSprite.transform.ox = self.targetSprite.w/2
+		self.targetSprite.transform.oy = self.targetSprite.h/2
+		self.targetSprite.color[4] = 0
+
+		self.sprite:setAnimation("idle")
 
 		self.states = {
-			"reveal",
+			"defup",
+			"laser",
 			"laser",
 			"rock",
-			"rock",
-			"laser-sweep",
-			"rock",
-			"shell",
+			"laser",
+			"laser",
 			"heal",
-			"noop",
-			"reveal2",
-			"defup"
+			"rock",
+			"rock",
 		}
 		self.state_counter = 1
 		self.max_states = table.count(self.states)
@@ -84,22 +102,14 @@ return {
 		local state = self.states[self.state_counter]
 		self.state_counter = (self.state_counter % self.max_states) + 1
 
-		if state == "reveal" then
-			return Serial {
-				Animate(self.sprite, "reveal"),
-				Do(function()
-					self.sprite:setAnimation("idle")
-				end)
-			}
-		elseif state == "reveal2" then
-			return Serial {
-				Animate(self.sprite, "reveal"),
-				Do(function()
-					self:popStats()
-					self.sprite:setAnimation("idle")
-				end)
-			}
-		elseif state == "laser" then
+		if self.state_counter % 2 == 0 then
+			-- Bonus turn
+			table.insert(self.scene.opponentTurns, self)
+		end
+
+		if state == "laser" then
+			-- Energy beam target is always B
+			local target = self.scene.partyByName.b
 			local dodgeAction = target.defenseEvent and
 				target.defenseEvent(self, target) or
 				Action()
@@ -107,6 +117,35 @@ return {
 			return Serial {
 				Telegraph(self, "Energy Beam", {500,500,500,50}),
 				Animate(self.sprite, "laser"),
+				
+				Do(function()
+					self.targetSprite.transform.x = target.sprite.transform.x
+					self.targetSprite.transform.y = target.sprite.transform.y + 10
+				end),
+				Parallel {
+					Ease(self.targetSprite.color, 4, 255, 5),
+					Serial {
+						PlayAudio("sfx", "lockon", 1.0, true),
+						Parallel {
+							Ease(self.targetSprite.transform, "sx", 4, 12, "inout"),
+							Ease(self.targetSprite.transform, "sy", 4, 12, "inout")
+						},
+						Parallel {
+							Ease(self.targetSprite.transform, "sx", 1.5, 12, "inout"),
+							Ease(self.targetSprite.transform, "sy", 1.5, 12, "inout")
+						},
+						Parallel {
+							Ease(self.targetSprite.transform, "sx", 3, 12, "inout"),
+							Ease(self.targetSprite.transform, "sy", 3, 12, "inout")
+						},
+						Parallel {
+							Ease(self.targetSprite.transform, "sx", 2, 12, "inout"),
+							Ease(self.targetSprite.transform, "sy", 2, 12, "inout")
+						},
+						
+						Ease(self.targetSprite.color, 4, 0, 5),
+					}
+				},
 
 				Parallel {
 					Serial {
@@ -180,9 +219,94 @@ return {
 				end)
 			}
 		elseif state == "rock" then
+			self.bullet.transform.x = self.sprite.transform.x + 80
+			self.bullet.transform.y = self.sprite.transform.y + 20
+			
+			local finalAction = function(damageGiver, damageTaker, bonus)
+				local stats = nil
+				if damageGiver then
+					stats = table.clone(damageGiver.stats)
+					stats.attack = stats.attack * (bonus or 1.0)
+				end
+				return Serial {
+					Do(function()
+						self.bullet.color[4] = 0
+					end),
+					damageTaker and
+						damageTaker:takeDamage(stats) or
+						Do(function() target.sprite:setAnimation(target.prevAnim or "idle") end),
+					Do(function()
+						self.sprite:setAnimation("idle")
+						if target.state ~= target.STATE_IMMOBILIZED and target.hp > 0 then
+							target.sprite:setAnimation("idle")
+						end
+					end)
+				}
+			end
+
 			return Serial {
 				Telegraph(self, "Pebble Shooter", {500,500,500,50}),
 				Animate(self.sprite, "rock"),
+				Do(function()
+					self.bullet.color[4] = 255
+				end),
+				Parallel {
+					Serial {
+						Parallel {
+							Ease(self.bullet.transform, "x", target.sprite.transform.x - 30, 4, "linear"),
+							Ease(self.bullet.transform, "y", target.sprite.transform.y, 4, "linear")
+						},
+						Do(function()
+							self.bullet.color[4] = 0
+						end)
+					},
+
+					(target.noCounter or target.id == "b") and finalAction(self, target) or PressX(
+						self,
+						target,
+						Serial {
+							Do(function()
+								self.bullet.color[4] = 255
+							end),
+							PlayAudio("sfx", "pressx", 1.0, true),
+							-- Tails blocks, bullet pops up, press z to hit back
+							Animate(target.sprite, "block"),
+							Parallel {
+								Serial {
+									Ease(self.bullet.transform, "y", function() return self.bullet.transform.y - 200 end, 4, "quad"),
+									Ease(self.bullet.transform, "y", function() return self.bullet.transform.y + 200 end, 4, "quad")
+								},
+								Serial {
+									Wait(0.2),
+									PressZ(
+										self,
+										target,
+										Serial {
+											Parallel {
+												Animate(target.sprite, "slap"),
+												Serial {
+													Wait(0.1),
+													PlayAudio("sfx", "poptop", 1.0, true)
+												},
+												Ease(self.bullet.transform, "x", self.sprite.transform.x, 4, "quad"),
+												Ease(self.bullet.transform, "y", self.sprite.transform.y, 4, "quad")
+											},
+											Do(function()
+												self.bullet.color[4] = 0
+											end),
+											Parallel {
+												Stars(target, self),
+												finalAction(self, self, 1.5)
+											}
+										},
+										finalAction()
+									)
+								}
+							}
+						},
+						finalAction(self, target)
+					)
+				},
 				Do(function()
 					self.sprite:setAnimation("idle")
 				end)
@@ -193,7 +317,7 @@ return {
 			local _, firstPartyMember = next(self.scene.party)
 			local lastPartyMember
 			for _, mem in pairs(self.scene.party) do
-				table.insert(dmgAllPartyMembers, OnHitEvent(self, mem))
+				table.insert(dmgAllPartyMembers, mem:takeDamage(self.stats, true, BattleActor.shockKnockback))
 				lastPartyMember = mem
 			end
 
@@ -232,14 +356,6 @@ return {
 					self.sprite:setAnimation("idle")
 				end)
 			}
-		elseif state == "shell" then
-			return Serial {
-				Telegraph(self, "Cocoon", {500,500,500,50}),
-				Animate(self.sprite, "shell"),
-				Do(function()
-					self:pushStats({attack = self.stats.attack, defense = 100, speed = self.stats.speed, luck = self.stats.luck})
-				end)
-			}
 		elseif state == "heal" then
 			return Serial {
 				Telegraph(self, "Revitalize", {500,500,500,50}),
@@ -254,6 +370,7 @@ return {
 				Animate(self.sprite, "defup"),
 				Do(function()
 					self.sprite:setAnimation("idle")
+					self:popStats()
 					self:pushStats({
 						attack = self.stats.attack,
 						defense = self.stats.defense * 1.5,

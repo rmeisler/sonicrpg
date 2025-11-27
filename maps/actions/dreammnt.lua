@@ -33,7 +33,24 @@ return function(scene, hint)
 		"Mountain of Dreams",
 		100
 	)
-	
+
+	local waterfallLayer1 = scene:findLayer("waterfall1")
+	local waterfallLayer2 = scene:findLayer("waterfall2")
+	local waterfallAnim = Spawn(
+		Repeat(Serial {
+			Do(function()
+				waterfallLayer1.opacity = 0.7
+				waterfallLayer2.opacity = 0
+			end),
+			Wait(0.2),
+			Do(function()
+				waterfallLayer1.opacity = 0
+				waterfallLayer2.opacity = 0.7
+			end),
+			Wait(0.2),
+		}, 1000000)
+	)
+
 	local walkout, walkin, sprites = scene.player:split(nil, true)
 	for k in pairs(GameState.party) do
 		sprites[k].x = scene.player.x - 60
@@ -43,19 +60,12 @@ return function(scene, hint)
 	scene.camPos.y = -50
 
 	return BlockPlayer {
+		waterfallAnim,
 		walkout,
 		Animate(sprites.tails.sprite, "idleup"),
 		Animate(sprites.b.sprite, "idleup"),
 		Animate(sprites.babyt.sprite, "idleup"),
 
-		Wait(2),
-
-		MessageBox{message="Tails: The {h Cave of Light} must be up there..."},
-		Parallel {
-			Ease(scene.camPos, "x", -300, 0.2),
-			Ease(scene.camPos, "y", 4500, 0.2)
-		},
-		MessageBox{message="Baby T: I've always wondered what was up with this pretty green mountain!"},
 		Spawn(Serial {
 			Wait(0.5),
 			text,
@@ -63,10 +73,21 @@ return function(scene, hint)
 			Wait(2),
 			Ease(text.color, 4, 0, 1)
 		}),
+		Wait(2),
 		PlayAudio("music", "dreammountain", 1, true, true),
+		Wait(1),
+
+		MessageBox{message="Tails: In the story it looks like Ben and the Inventor Knight enter the cave right over there..."},
+		
 		Parallel {
-			Ease(scene.camPos, "x", 0, 0.2),
-			Ease(scene.camPos, "y", -50, 0.2)
+			Ease(scene.camPos, "x", -1500, 0.3),
+			Ease(scene.camPos, "y", 2000, 0.3)
+		},
+		Wait(1),
+		MessageBox{message="Baby T: I've always wondered what was up with this pretty green mountain!"},
+		Parallel {
+			Ease(scene.camPos, "x", 0, 0.6),
+			Ease(scene.camPos, "y", -50, 0.6)
 		},
 		Wait(1),
 		Animate(sprites.b.sprite, "pose"),
@@ -82,7 +103,7 @@ return function(scene, hint)
 		},
 		Animate(sprites.tails.sprite, "idleleft"),
 		Animate(sprites.b.sprite, "idleright"),
-		MessageBox{message="B: Ha ha! Not at all! {p60}On the contrary{p60}, I think all this excitement has perhaps awakened a hint as to who I used to be-- {p60}before being roboticized."},
+		MessageBox{message="B: Ha ha! Not at all! {p60}On the contrary, I think all this excitement has perhaps awakened a hint as to who I used to be-- {p60}before being roboticized."},
 		Animate(sprites.b.sprite, "pose"),
 		MessageBox{message="B: I think... {p60}I was an adventurer..."},
 		Animate(sprites.tails.sprite, "victory"),

@@ -230,7 +230,7 @@ return function(self)
             beforeBattle = Serial {
                 walkin,
                 Do(function()
-                    self.scene.player.x = self.scene.player.x + 40
+                    self.scene.player.x = self.scene.player.x + 100
                     self.scene.player.y = self.scene.player.y + 60
                     local layer = self.scene:findLayer(&quot;above2&quot;)
                     layer.opacity = 0
