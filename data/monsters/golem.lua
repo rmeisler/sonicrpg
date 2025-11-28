@@ -88,6 +88,7 @@ return {
 			"laser",
 			"laser",
 			"rock",
+			"rock",
 			"laser",
 			"laser",
 			"heal",
@@ -101,6 +102,9 @@ return {
 	behavior = function (self, target)
 		local state = self.states[self.state_counter]
 		self.state_counter = (self.state_counter % self.max_states) + 1
+		if state == "laser" and self.scene.partyByName.b.state == self.STATE_DEAD then
+			state = "rock"
+		end
 
 		if self.state_counter % 2 == 0 then
 			-- Bonus turn
@@ -109,7 +113,9 @@ return {
 
 		if state == "laser" then
 			-- Energy beam target is always B
-			local target = self.scene.partyByName.b
+			if next(self.targetOverrideStack) == nil then
+				target = self.scene.partyByName.b
+			end
 			local dodgeAction = target.defenseEvent and
 				target.defenseEvent(self, target) or
 				Action()

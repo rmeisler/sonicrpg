@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="31" height="35" tilewidth="32" tileheight="32" infinite="0" nextobjectid="37">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
+  <property name="battlebg" type="file" value="../art/backgrounds/caveoflight.png"/>
   <property name="onload" type="file" value="actions/dream_mountain_cave1.lua"/>
  </properties>
  <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
@@ -174,8 +174,6 @@
     <property name="align" value="bottom_center"/>
     <property name="alignOffsetX" type="int" value="96"/>
     <property name="alignOffsetY" type="int" value="-32"/>
-    <property name="battle" type="file" value="../data/monsters/golem.lua"/>
-    <property name="battleInitiative" value="opponent"/>
     <property name="colorOverride" value="0,180,0"/>
     <property name="defaultAnim" value="hide"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
@@ -227,6 +225,7 @@ return function(self)
         self.scene:enterBattle{
             opponents = {&quot;golem&quot;},
             hint = &quot;after_battle&quot;,
+            music = &quot;boss&quot;,
             beforeBattle = Serial {
                 walkin,
                 Do(function()

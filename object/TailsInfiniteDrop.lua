@@ -6,10 +6,6 @@ local TailsInfiniteDrop = class(NPC)
 function TailsInfiniteDrop:construct(scene, layer, object)
 	self.ghost = true
 	self.height = object.properties.height
-	
-	if not self.scene.player.infiniteDropObjects then
-		self.scene.player.infiniteDropObjects = {}
-	end
 
 	NPC.init(self)
 end
@@ -20,6 +16,10 @@ function TailsInfiniteDrop:whileColliding(player, prevState)
 	then
         return
     end
+	
+	if not player.infiniteDropObjects then
+		player.infiniteDropObjects = {}
+	end
 
 	player.infiniteDropObjects[tostring(self)] = self
 	player.noFlyPan = true
@@ -27,6 +27,10 @@ function TailsInfiniteDrop:whileColliding(player, prevState)
 end
 
 function TailsInfiniteDrop:notColliding(player, prevState)
+	if not player.infiniteDropObjects then
+		player.infiniteDropObjects = {}
+	end
+
     if GameState.leader ~= "tails" or
 	   not player.doingSpecialMove or
 	   next(player.infiniteDropObjects) == nil
