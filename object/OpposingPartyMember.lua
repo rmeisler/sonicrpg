@@ -45,6 +45,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.maxsp = 999 -- just to prevent issues
 	self.scan = data.scan
 	self.insult = data.insult
+	self.isBot = data.is_bot == nil or data.is_bot
 	self.hpBarOffset = data.hpBarOffset or Transform(0,0)
 	self.hurtSfx = data.hurtSfx or "smack"
 	self.heavy = data.heavy or false

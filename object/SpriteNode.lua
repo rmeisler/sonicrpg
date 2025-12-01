@@ -165,6 +165,7 @@ function SpriteNode:update(dt)
 	if self.drawWithShine then
 		self.t = self.t + dt * self.shineSpeed
 		SpriteNode.shineShader:send("time", self.t)
+		SpriteNode.shineShader:send("color", {self.color[1]/255, self.color[2]/255, self.color[3]/255, self.color[4]/255})
 	end
 	
     self.animations[self.selected]:update(dt)
@@ -235,17 +236,18 @@ function SpriteNode:setShine(speed)
 		SpriteNode.shineMap = love.graphics.newCanvas()
 		SpriteNode.shineShader = love.graphics.newShader [[
 			extern number time;
+			extern vec4 color;
 			vec4 effect(vec4 colour, Image tex, vec2 tc, vec2 sc)
 			{
 				if (time < 1.0) {
 					if (tc.x < time) {
 						return vec4(1,1,1,0) + Texel(tex, tc);
 					} else {
-						return Texel(tex, tc);
+						return color * Texel(tex, tc);
 					}
 				} else {
 					if ((tc.x + 1.0) < time) {
-						return Texel(tex, tc);
+						return color * Texel(tex, tc);
 					} else {
 						return vec4(1,1,1,0) + Texel(tex, tc);
 					}
@@ -253,6 +255,7 @@ function SpriteNode:setShine(speed)
 			}
 		]]
 		SpriteNode.shineShader:send("time", 0)
+		SpriteNode.shineShader:send("color", {self.color[1]/255, self.color[2]/255, self.color[3]/255, self.color[4]/255})
 	end
 end
 

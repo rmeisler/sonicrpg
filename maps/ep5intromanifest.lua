@@ -16,8 +16,13 @@ return {
     },
 	{
         type = "map",
-        file = "maps/boulderbay_cliffs.lua",
+        file = "maps/dream_mountain_cave2.lua",
 		primary = true
+    },
+	{
+        type = "map",
+        file = "maps/boulderbay_cliffs.lua",
+		--primary = true
     },
 	{
         type = "map",

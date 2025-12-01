@@ -28,6 +28,11 @@ return function(scene, hint)
 		"Cave of Light",
 		100
 	)
+	
+	if not scene.objectLookup["Golem"] or scene.objectLookup["Golem"]:isRemoved() then
+		local layer = scene:findLayer("above2")
+		layer.opacity = 0
+	end
 
 	return Spawn(Serial {
 		Wait(0.5),

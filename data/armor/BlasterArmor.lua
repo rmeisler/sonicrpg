@@ -6,7 +6,7 @@ return {
 	desc = "Press z to absorb 50% of incoming damage",
 	type = ItemType.Armor,
 	color = {0,0,0,255},
-	usableBy = {"sonic", "sally", "antoine", "bunnie", "rotor", "logan"},
+	usableBy = {"sonic", "sally", "antoine", "bunnie", "rotor", "logan", "tails", "b"},
 	stats = {
 		defense = 2
 	},

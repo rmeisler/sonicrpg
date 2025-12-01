@@ -21,6 +21,11 @@ return {
     },
 	{
         type = "map",
+        file = "maps/dream_mountain_cave2.lua",
+		--primary = true
+    },
+	{
+        type = "map",
         file = "maps/boulderbay1.lua",
 		--primary = true
     },
