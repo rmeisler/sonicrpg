@@ -458,7 +458,7 @@
   <object id="40" name="BenWindom" type="BasicNPC" gid="6839" x="768" y="1120" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="colorOverride" value="0,500,0"/>
+    <property name="colorOverride" value="0,255,0"/>
     <property name="defaultAnim" value="idleright"/>
     <property name="disappearOnFlag" type="bool" value="true"/>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
@@ -473,9 +473,7 @@ local Wait = require &quot;actions/Wait&quot;
 return function(self)
     return BlockPlayer {
         MessageBox{message=&quot;Ben Windom: I wish for everything in Boulder Bay to be returned to the state it was in before the War Claws discovered it...&quot;},
-        Do(function()
-            self.sprite:setShine(0.5)
-        end),
+        Do(function() self.sprite:setFadeWhite(2) end),
         Ease(self.sprite.color, 4, 0, 1),
         MessageBox{message=&quot;You received a {h Dream Shard}!&quot;, sfx=&quot;levelup&quot;},
         Do(function()
@@ -491,7 +489,7 @@ end</property>
   <object id="41" name="InventorKnight" type="BasicNPC" gid="6839" x="608" y="1152" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="colorOverride" value="0,500,0"/>
+    <property name="colorOverride" value="0,255,0"/>
     <property name="defaultAnim" value="idleright"/>
     <property name="disappearOnFlag" type="bool" value="true"/>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
@@ -506,9 +504,7 @@ local Wait = require &quot;actions/Wait&quot;
 return function(self)
     return BlockPlayer {
         MessageBox{message=&quot;Inventor Knight: I wish to invent something that changes the world...&quot;},
-        Do(function()
-            self.sprite:setShine(0.5)
-        end),
+        Do(function() self.sprite:setFadeWhite(2) end),
         Ease(self.sprite.color, 4, 0, 1),
         MessageBox{message=&quot;You received a {h Dream Shard}!&quot;, sfx=&quot;levelup&quot;},
         Do(function()
@@ -524,7 +520,7 @@ end</property>
   <object id="42" name="Terrapod" type="BasicNPC" gid="6839" x="608" y="608" width="288" height="96">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="colorOverride" value="0,500,0"/>
+    <property name="colorOverride" value="0,255,0"/>
     <property name="defaultAnim" value="mamat_sad"/>
     <property name="disappearOnFlag" type="bool" value="true"/>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
@@ -539,9 +535,7 @@ local Wait = require &quot;actions/Wait&quot;
 return function(self)
     return BlockPlayer {
         MessageBox{message=&quot;Mama T: I wish for that the colonizers of Boulder Bay would forget that it exists...&quot;},
-        Do(function()
-            self.sprite:setShine(0.5)
-        end),
+        Do(function() self.sprite:setFadeWhite(2) end),
         Ease(self.sprite.color, 4, 0, 1),
         MessageBox{message=&quot;You received a {h Dream Shard}!&quot;, sfx=&quot;levelup&quot;},
         Do(function()
@@ -557,7 +551,7 @@ end</property>
   <object id="43" name="WarClaw" type="BasicNPC" gid="6839" x="672" y="1824" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="colorOverride" value="0,500,0"/>
+    <property name="colorOverride" value="0,255,0"/>
     <property name="defaultAnim" value="idleleft"/>
     <property name="disappearOnFlag" type="bool" value="true"/>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
@@ -573,9 +567,7 @@ return function(self)
     return BlockPlayer {
         MessageBox{message=&quot;War Claw Soldier: I can't wish for death, destruction, or power over others?!&quot;},
         MessageBox{message=&quot;War Claw Soldier: What good is this Light?!&quot;},
-        Do(function()
-            self.sprite:setShine(0.5)
-        end),
+        Do(function() self.sprite:setFadeWhite(2) end),
         Ease(self.sprite.color, 4, 0, 1),
         MessageBox{message=&quot;You received a {h Dream Shard}!&quot;, sfx=&quot;levelup&quot;},
         Do(function()
@@ -591,7 +583,7 @@ end</property>
   <object id="45" name="Echidna" type="BasicNPC" gid="6839" x="480" y="2720" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="colorOverride" value="0,500,0"/>
+    <property name="colorOverride" value="0,255,0"/>
     <property name="defaultAnim" value="idleright"/>
     <property name="disappearOnFlag" type="bool" value="true"/>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
@@ -606,9 +598,7 @@ local Wait = require &quot;actions/Wait&quot;
 return function(self)
     return BlockPlayer {
         MessageBox{message=&quot;Echidna: I wish to save my people from annihilation...&quot;},
-        Do(function()
-            self.sprite:setShine(0.5)
-        end),
+        Do(function() self.sprite:setFadeWhite(2) end),
         Ease(self.sprite.color, 4, 0, 1),
         MessageBox{message=&quot;You received a {h Dream Shard}!&quot;, sfx=&quot;levelup&quot;},
         Do(function()

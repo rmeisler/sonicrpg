@@ -33,6 +33,7 @@ function SpriteNode:construct(scene, transform, color, imgsrc, w, h, layerName)
 		self:addAnimation("default", {{0,0}}, 1, {0, 0, self.w, self.h})
 	end
 
+	self.drawWithFadeWhite = false
 	self.drawWithShine = false
 	self.drawWithParallax = false
 	self.drawWithGlow = false
@@ -168,6 +169,12 @@ function SpriteNode:update(dt)
 		SpriteNode.shineShader:send("color", {self.color[1]/255, self.color[2]/255, self.color[3]/255, self.color[4]/255})
 	end
 	
+	if self.drawWithFadeWhite then
+		self.t = self.t + dt * self.fadeWhiteSpeed
+		SpriteNode.fadeWhiteShader:send("time", self.t)
+		SpriteNode.fadeWhiteShader:send("color", {self.color[1]/255, self.color[2]/255, self.color[3]/255, self.color[4]/255})
+	end
+	
     self.animations[self.selected]:update(dt)
 end
 
@@ -225,6 +232,30 @@ end
 
 function SpriteNode:removeCrop()
 	self.drawWithCrop = false
+end
+
+function SpriteNode:setFadeWhite(speed)
+	self.drawWithFadeWhite = true
+	self.t = 0
+	self.fadeWhiteSpeed = speed or 1.0
+	
+	if not SpriteNode.fadeWhiteMap then
+		SpriteNode.fadeWhiteMap = love.graphics.newCanvas()
+		SpriteNode.fadeWhiteShader = love.graphics.newShader [[
+			extern number time;
+			extern vec4 color;
+			vec4 effect(vec4 colour, Image tex, vec2 tc, vec2 sc)
+			{
+			    return vec4(time, time, time, 0) + color * Texel(tex, tc);
+			}
+		]]
+		SpriteNode.fadeWhiteShader:send("time", 0)
+		SpriteNode.fadeWhiteShader:send("color", {self.color[1]/255, self.color[2]/255, self.color[3]/255, self.color[4]/255})
+	end
+end
+
+function SpriteNode:removeFadeWhite()
+	self.drawWithFadeWhite = false
 end
 
 function SpriteNode:setShine(speed)
@@ -366,6 +397,14 @@ function SpriteNode:draw(override)
 	elseif self.drawWithInvertedColor then
 		local prevShader = love.graphics.getShader()
 		love.graphics.setShader(SpriteNode.invertedColorShader)
+		
+		drawSprite()
+		
+		love.graphics.setShader(prevShader)
+	elseif self.drawWithFadeWhite then
+		local prevShader = love.graphics.getShader()
+		
+		love.graphics.setShader(SpriteNode.fadeWhiteShader)
 		
 		drawSprite()
 		
