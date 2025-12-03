@@ -2,7 +2,7 @@
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="54" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="50">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
-  <property name="onload" type="file" value="actions/dream_mountain_cave1.lua"/>
+  <property name="onload" type="file" value="actions/dream_mountain_cave2_etc.lua"/>
  </properties>
  <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
   <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
@@ -448,18 +448,17 @@
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
-    <property name="layerOverride" type="int" value="7"/>
     <property name="no_run" type="bool" value="true"/>
     <property name="orientation" value="down"/>
-    <property name="scene" type="file" value="boulderbay_cliffs.lua"/>
+    <property name="scene" type="file" value="dream_mountain_cave3.lua"/>
     <property name="spawn_point" value="Entrance1"/>
    </properties>
   </object>
   <object id="40" name="BenWindom" type="BasicNPC" gid="6839" x="768" y="1120" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="colorOverride" value="0,255,0"/>
-    <property name="defaultAnim" value="idleright"/>
+    <property name="colorOverride" value="0,300,0"/>
+    <property name="defaultAnim" value="ben"/>
     <property name="disappearOnFlag" type="bool" value="true"/>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
@@ -482,15 +481,15 @@ return function(self)
         end)
     }
 end</property>
-    <property name="sprite" type="file" value="../art/sprites/b.png"/>
+    <property name="sprite" type="file" value="../art/sprites/ghosts.png"/>
     <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="41" name="InventorKnight" type="BasicNPC" gid="6839" x="608" y="1152" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="colorOverride" value="0,255,0"/>
-    <property name="defaultAnim" value="idleright"/>
+    <property name="colorOverride" value="0,300,0"/>
+    <property name="defaultAnim" value="inventor"/>
     <property name="disappearOnFlag" type="bool" value="true"/>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
@@ -513,14 +512,14 @@ return function(self)
         end)
     }
 end</property>
-    <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
+    <property name="sprite" type="file" value="../art/sprites/ghosts.png"/>
     <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="42" name="Terrapod" type="BasicNPC" gid="6839" x="608" y="608" width="288" height="96">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="colorOverride" value="0,255,0"/>
+    <property name="colorOverride" value="0,300,0"/>
     <property name="defaultAnim" value="mamat_sad"/>
     <property name="disappearOnFlag" type="bool" value="true"/>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
@@ -551,8 +550,8 @@ end</property>
   <object id="43" name="WarClaw" type="BasicNPC" gid="6839" x="672" y="1824" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="colorOverride" value="0,255,0"/>
-    <property name="defaultAnim" value="idleleft"/>
+    <property name="colorOverride" value="0,300,0"/>
+    <property name="defaultAnim" value="warclaw"/>
     <property name="disappearOnFlag" type="bool" value="true"/>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
@@ -576,15 +575,15 @@ return function(self)
         end)
     }
 end</property>
-    <property name="sprite" type="file" value="../art/sprites/vennie.png"/>
+    <property name="sprite" type="file" value="../art/sprites/ghosts.png"/>
     <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="45" name="Echidna" type="BasicNPC" gid="6839" x="480" y="2720" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="colorOverride" value="0,255,0"/>
-    <property name="defaultAnim" value="idleright"/>
+    <property name="colorOverride" value="0,300,0"/>
+    <property name="defaultAnim" value="pachamac"/>
     <property name="disappearOnFlag" type="bool" value="true"/>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
@@ -607,7 +606,7 @@ return function(self)
         end)
     }
 end</property>
-    <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
+    <property name="sprite" type="file" value="../art/sprites/ghosts.png"/>
     <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>

@@ -21,11 +21,12 @@ return {
 		local Serial = require "actions/Serial"
 		local Wait = require "actions/Wait"
 		local HealText = require "data/items/actions/HealText"
+		local Transform = require "util/Transform"
 		return function(target, transform)
 			return Serial {
-				HealText("hp", 200, {0, 255, 0, 255})(target, transform),
-				Wait(0.2),
-				HealText("sp", 5, {0, 255, 255, 255})(target, transform)
+				HealText("hp", 200, {0, 255, 0, 255})(target, Transform.from(transform)),
+				Wait(0.5),
+				HealText("sp", 5, {0, 255, 255, 255})(target, Transform.from(transform))
 			}
 		end
 	end

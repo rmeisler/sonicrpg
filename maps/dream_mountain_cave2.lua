@@ -11,7 +11,7 @@ return {
   nextobjectid = 50,
   properties = {
     ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
-    ["onload"] = "actions/dream_mountain_cave1.lua"
+    ["onload"] = "actions/dream_mountain_cave2_etc.lua"
   },
   tilesets = {
     {
@@ -697,10 +697,9 @@ return {
           properties = {
             ["ghost"] = true,
             ["key"] = "up",
-            ["layerOverride"] = 7,
             ["no_run"] = true,
             ["orientation"] = "down",
-            ["scene"] = "boulderbay_cliffs.lua",
+            ["scene"] = "dream_mountain_cave3.lua",
             ["spawn_point"] = "Entrance1"
           }
         },
@@ -718,11 +717,11 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["colorOverride"] = "0,255,0",
-            ["defaultAnim"] = "idleright",
+            ["colorOverride"] = "0,300,0",
+            ["defaultAnim"] = "ben",
             ["disappearOnFlag"] = true,
             ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox{message=\"Ben Windom: I wish for everything in Boulder Bay to be returned to the state it was in before the War Claws discovered it...\"},\n        Do(function() self.sprite:setFadeWhite(2) end),\n        Ease(self.sprite.color, 4, 0, 1),\n        MessageBox{message=\"You received a {h Dream Shard}!\", sfx=\"levelup\"},\n        Do(function()\n            self:permanentRemove()\n            GameState:grantItem(require \"data/items/DreamShard\", 1)\n        end)\n    }\nend",
-            ["sprite"] = "../art/sprites/b.png",
+            ["sprite"] = "../art/sprites/ghosts.png",
             ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
@@ -740,11 +739,11 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["colorOverride"] = "0,255,0",
-            ["defaultAnim"] = "idleright",
+            ["colorOverride"] = "0,300,0",
+            ["defaultAnim"] = "inventor",
             ["disappearOnFlag"] = true,
             ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox{message=\"Inventor Knight: I wish to invent something that changes the world...\"},\n        Do(function() self.sprite:setFadeWhite(2) end),\n        Ease(self.sprite.color, 4, 0, 1),\n        MessageBox{message=\"You received a {h Dream Shard}!\", sfx=\"levelup\"},\n        Do(function()\n            self:permanentRemove()\n            GameState:grantItem(require \"data/items/DreamShard\", 1)\n        end)\n    }\nend",
-            ["sprite"] = "../art/sprites/sonic.png",
+            ["sprite"] = "../art/sprites/ghosts.png",
             ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
@@ -762,7 +761,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["colorOverride"] = "0,255,0",
+            ["colorOverride"] = "0,300,0",
             ["defaultAnim"] = "mamat_sad",
             ["disappearOnFlag"] = true,
             ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox{message=\"Mama T: I wish for that the colonizers of Boulder Bay would forget that it exists...\"},\n        Do(function() self.sprite:setFadeWhite(2) end),\n        Ease(self.sprite.color, 4, 0, 1),\n        MessageBox{message=\"You received a {h Dream Shard}!\", sfx=\"levelup\"},\n        Do(function()\n            self:permanentRemove()\n            GameState:grantItem(require \"data/items/DreamShard\", 1)\n        end)\n    }\nend",
@@ -784,11 +783,11 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["colorOverride"] = "0,255,0",
-            ["defaultAnim"] = "idleleft",
+            ["colorOverride"] = "0,300,0",
+            ["defaultAnim"] = "warclaw",
             ["disappearOnFlag"] = true,
             ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox{message=\"War Claw Soldier: I can't wish for death, destruction, or power over others?!\"},\n        MessageBox{message=\"War Claw Soldier: What good is this Light?!\"},\n        Do(function() self.sprite:setFadeWhite(2) end),\n        Ease(self.sprite.color, 4, 0, 1),\n        MessageBox{message=\"You received a {h Dream Shard}!\", sfx=\"levelup\"},\n        Do(function()\n            self:permanentRemove()\n            GameState:grantItem(require \"data/items/DreamShard\", 1)\n        end)\n    }\nend",
-            ["sprite"] = "../art/sprites/vennie.png",
+            ["sprite"] = "../art/sprites/ghosts.png",
             ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
@@ -806,11 +805,11 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["colorOverride"] = "0,255,0",
-            ["defaultAnim"] = "idleright",
+            ["colorOverride"] = "0,300,0",
+            ["defaultAnim"] = "pachamac",
             ["disappearOnFlag"] = true,
             ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox{message=\"Echidna: I wish to save my people from annihilation...\"},\n        Do(function() self.sprite:setFadeWhite(2) end),\n        Ease(self.sprite.color, 4, 0, 1),\n        MessageBox{message=\"You received a {h Dream Shard}!\", sfx=\"levelup\"},\n        Do(function()\n            self:permanentRemove()\n            GameState:grantItem(require \"data/items/DreamShard\", 1)\n        end)\n    }\nend",
-            ["sprite"] = "../art/sprites/bunny.png",
+            ["sprite"] = "../art/sprites/ghosts.png",
             ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
