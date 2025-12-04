@@ -54,27 +54,19 @@ return {
 	},
 
 	levelup = {
-		[3] = {
-			messages = {},
+		[4] = {
+			messages = {"Baby T learned \"{h Charge}\"!"},
 			skills = {
 				require "data/battle/skills/Charge"
 			}
 		},
-		[4] = {
+		[5] = {
 			messages = {"Baby T learned \"{h Roar}\"!"},
 			skills = {
 				require "data/battle/skills/Charge",
 				require "data/battle/skills/Roar",
 			}
-		},
-		[5] = {
-			messages = {"Baby T learned \"{h Ball}\"!"},
-			skills = {
-				require "data/battle/skills/Charge",
-				require "data/battle/skills/Roar",
-				require "data/battle/skills/Ball",
-			}
-		},
+		}
 	},
 	
 	specialmove = require "data/specialmoves/babyt",

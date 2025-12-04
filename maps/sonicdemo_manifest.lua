@@ -661,6 +661,16 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/bleaves.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/bleaves2.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/robotnikbattle.ogg",
 		category = "music"
 	},

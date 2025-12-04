@@ -170,7 +170,7 @@ function SpriteNode:update(dt)
 	end
 	
 	if self.drawWithFadeWhite then
-		self.t = self.t + dt * self.fadeWhiteSpeed
+		self.t = math.max(0, self.t + dt * self.fadeWhiteSpeed)
 		SpriteNode.fadeWhiteShader:send("time", self.t)
 		SpriteNode.fadeWhiteShader:send("color", {self.color[1]/255, self.color[2]/255, self.color[3]/255, self.color[4]/255})
 	end
@@ -234,9 +234,9 @@ function SpriteNode:removeCrop()
 	self.drawWithCrop = false
 end
 
-function SpriteNode:setFadeWhite(speed)
+function SpriteNode:setFadeWhite(speed, startingt)
 	self.drawWithFadeWhite = true
-	self.t = 0
+	self.t = startingt or 0
 	self.fadeWhiteSpeed = speed or 1.0
 	
 	if not SpriteNode.fadeWhiteMap then

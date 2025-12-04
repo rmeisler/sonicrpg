@@ -364,7 +364,7 @@ return {
             ["key"] = "down",
             ["orientation"] = "up",
             ["scene"] = "dream_mountain_cave2.lua",
-            ["spawn_point"] = "Entrance1"
+            ["spawn_point"] = "Entrance2"
           }
         },
         {

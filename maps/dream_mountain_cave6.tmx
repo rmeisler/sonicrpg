@@ -129,7 +129,7 @@
     <property name="no_run" type="bool" value="true"/>
     <property name="orientation" value="up"/>
     <property name="scene" type="file" value="boulderbay_cliffs.lua"/>
-    <property name="spawn_point" value="Entrance2"/>
+    <property name="spawn_point" value="Entrance4"/>
    </properties>
   </object>
   <object id="35" name="Entrance1" type="SceneEdge" gid="6902" x="320" y="1024" width="160" height="32">
@@ -137,8 +137,8 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="down"/>
     <property name="orientation" value="up"/>
-    <property name="scene" type="file" value="dream_mountain_cave2.lua"/>
-    <property name="spawn_point" value="Entrance1"/>
+    <property name="scene" type="file" value="dream_mountain_cave5.lua"/>
+    <property name="spawn_point" value="Entrance2"/>
    </properties>
   </object>
   <object id="36" name="Spawn 1" type="Player" gid="4565" x="384" y="992" width="32" height="32">
