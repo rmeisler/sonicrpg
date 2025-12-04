@@ -47,7 +47,7 @@ return function(self, targets)
 		PlayAudio("sfx", "factoryspit", 1, true),
 		Parallel(actions),
 		Serial(afterActions),
-		next(action) ~= nil and MessageBox {message="All bots disabled!", rect=MessageBox.HEADLINER_RECT, textSpeed=8, closeAction=Wait(1)} or Action(),
+		next(actions) ~= nil and MessageBox {message="All bots disabled!", rect=MessageBox.HEADLINER_RECT, textSpeed=8, closeAction=Wait(1)} or Action(),
 		Animate(self.sprite, "idle"),
 	}
 end

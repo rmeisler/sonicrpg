@@ -222,7 +222,7 @@ end</property>
     <property name="key" value="up"/>
     <property name="no_run" type="bool" value="true"/>
     <property name="orientation" value="down"/>
-    <property name="scene" type="file" value="dream_mountain_cave2.lua"/>
+    <property name="scene" type="file" value="dream_mountain_cave5.lua"/>
     <property name="spawn_point" value="Entrance1"/>
    </properties>
   </object>

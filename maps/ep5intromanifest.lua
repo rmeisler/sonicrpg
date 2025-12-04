@@ -17,12 +17,22 @@ return {
 	{
         type = "map",
         file = "maps/dream_mountain_cave2.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
         file = "maps/dream_mountain_cave3.lua",
 		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/dream_mountain_cave4.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/dream_mountain_cave5.lua",
+		primary = true
     },
 	{
         type = "map",
