@@ -381,7 +381,7 @@ return function(self)
     local reflection = self.scene.objectLookup.Reflection
     refwalkout, refwalkin, refsprites = reflection:split(nil, true)
     for k in pairs(GameState.party) do
-        refsprites[k].x = reflection.x - 14
+        refsprites[k].x = reflection.x - 10
         refsprites[k].y = reflection.y
     end
 
@@ -408,6 +408,10 @@ return function(self)
         },
         Wait(1),
         MessageBox{message=&quot;Baby T's Reflection: Even though I have lived in Boudler Bay my whole life, I had to learn about the Light of Mobius from Tails!&quot;},
+        Parallel {
+            sprites.babyt:hop(),
+            refsprites.babyt:hop()
+        },
         PlayAudio(&quot;music&quot;, &quot;sonicsad&quot;, 1, true, true),
         Animate(sprites.tails.sprite, &quot;sadright&quot;),
         Animate(refsprites.tails.sprite, &quot;sadright&quot;),
@@ -455,7 +459,7 @@ return function(self)
         Wait(1),
         Animate(sprites.tails.sprite, &quot;idleleft&quot;),
         Animate(refsprites.tails.sprite, &quot;idleleft&quot;),
-        MessageBox{message=&quot;Tails: It's ok to be afraid, B. {p60}Sonic taught me that even heroes get scared sometimes.&quot;},
+        MessageBox{message=&quot;Tails: It's ok, B. {p60}If you forget something or get stuck, we'll help you.&quot;},
         Animate(sprites.babyt.sprite, &quot;idleleft&quot;),
         Animate(refsprites.babyt.sprite, &quot;idleleft&quot;),
         MessageBox{message=&quot;Baby T: Yeah! {p60}And remember when you saved us from my uncle? {p60}If it wasn't for you, we woulda been worm food.&quot;},
@@ -505,13 +509,18 @@ return function(self)
             Ease(refsprites.tails.sprite.color, 4, 0, 0.5),
             Ease(self.scene.player, &quot;y&quot;, function() return self.scene.player.y - 224 end, 0.5)
         },
+        Wait(2),
         Do(function()
             refsprites.tails:remove()
             refsprites.babyt:remove()
             refsprites.b:remove()
             reflection:remove()
+            sprites.tails.sprite:setFadeWhite(-1, 1)
+            sprites.b.sprite:setFadeWhite(-1, 1)
+            sprites.babyt.sprite:setFadeWhite(-1, 1)
             self.scene:findLayer(&quot;clipwaterfall&quot;).opacity = 0
         end),
+        Wait(2),
 
         walkin
     }
@@ -666,7 +675,7 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,12179,12180,12181,12183,12183,12183,12183,12183,12183,12183,12183,12179,12180,12181,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,12178,12183,12183,12183,12183,12183,12183,12183,12183,12183,12183,12183,12183,12184,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,12385,12386,12385,12386,12385,12386,12385,12386,12385,12386,12385,12386,12385,12386,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,12316,12317,12316,12317,12316,12317,12316,12317,12316,12317,12316,12317,12316,12317,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,12385,12386,12385,12386,12385,12386,12385,12386,12385,12386,12385,12386,12385,12386,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

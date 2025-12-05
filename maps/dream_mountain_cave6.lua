@@ -10,8 +10,7 @@ return {
   tileheight = 32,
   nextobjectid = 37,
   properties = {
-    ["battlebg"] = "../art/backgrounds/caveoflight.png",
-    ["onload"] = "actions/dream_mountain_cave2_etc.lua"
+    ["battlebg"] = "../art/backgrounds/caveoflight.png"
   },
   tilesets = {
     {
