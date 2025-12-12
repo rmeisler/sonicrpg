@@ -186,9 +186,8 @@ return function(self)
         Animate(sprites.tails.sprite, &quot;idleup&quot;),
         Animate(sprites.b.sprite, &quot;idleup&quot;),
         Animate(sprites.babyt.sprite, &quot;idleup&quot;),
-        MessageBox{message=&quot;???: Many souls have sought the power of the Light to bring great change...&quot;},
-        MessageBox{message=&quot;???: Consider your wish carefully or you may experience unintended consequences...&quot;},
-        MessageBox{message=&quot;Tails: What does that mean?&quot;},
+        MessageBox{message=&quot;???: The Light has the power to reach into the past and alter the course of history...&quot;},
+        MessageBox{message=&quot;???: Such wishes are the most powerful{p60}, and the most dangerous...&quot;},
         Parallel {
             Ease(self.sprite.color, 1, 255, 1),
             Ease(self.sprite.color, 2, 255, 1),
@@ -222,7 +221,7 @@ end</property>
     <property name="key" value="up"/>
     <property name="no_run" type="bool" value="true"/>
     <property name="orientation" value="down"/>
-    <property name="scene" type="file" value="dream_mountain_cave5.lua"/>
+    <property name="scene" type="file" value="dream_mountain_cave8.lua"/>
     <property name="spawn_point" value="Entrance1"/>
    </properties>
   </object>

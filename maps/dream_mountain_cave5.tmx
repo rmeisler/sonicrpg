@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="39" height="57" tilewidth="32" tileheight="32" infinite="0" nextobjectid="56">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="39" height="57" tilewidth="32" tileheight="32" infinite="0" nextobjectid="57">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
   <property name="onload" type="file" value="actions/dream_mountain_cave5.lua"/>
+  <property name="regionName" value="Cave of Light"/>
+  <property name="sectorName" value="The Present"/>
  </properties>
  <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
   <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
@@ -440,7 +442,7 @@ return function(self)
         Wait(1),
         Animate(sprites.b.sprite, &quot;pose&quot;),
         Animate(refsprites.b.sprite, &quot;idleup&quot;),
-        MessageBox{message=&quot;B: This is some kind of trial to test of our resolve, I'm sure of it...&quot;},
+        MessageBox{message=&quot;B: This is some kind of trial to test our resolve, I'm sure of it...&quot;},
         Wait(1),
         MessageBox{message=&quot;B's Reflection: I am no adventurer... {p60}I was barely able to leave a small, hidden corner of Robotropolis...&quot;},
         Animate(sprites.b.sprite, &quot;idleup&quot;),
@@ -462,69 +464,80 @@ return function(self)
         MessageBox{message=&quot;Tails: It's ok, B. {p60}If you forget something or get stuck, we'll help you.&quot;},
         Animate(sprites.babyt.sprite, &quot;idleleft&quot;),
         Animate(refsprites.babyt.sprite, &quot;idleleft&quot;),
-        MessageBox{message=&quot;Baby T: Yeah! {p60}And remember when you saved us from my uncle? {p60}If it wasn't for you, we woulda been worm food.&quot;},
-        Animate(sprites.b.sprite, &quot;idledown&quot;),
-        Animate(refsprites.b.sprite, &quot;idleup&quot;),
+        MessageBox{message=&quot;Baby T: Yeah! {p60}I think that's what being a Freedom Fighter must be about! {p60}We work together to do more than we could do alone!&quot;},
         PlayAudio(&quot;music&quot;, &quot;bleaves2&quot;, 1, true),
-        MessageBox{message=&quot;B: Thanks kids. {p60}We can't let these negative thoughts get us down!&quot;},
         Animate(sprites.tails.sprite, &quot;pose&quot;),
         Animate(refsprites.tails.sprite, &quot;idleup&quot;),
-        MessageBox{message=&quot;Tails: Yeah! {p60}Go take a hike-- {p30}uh-- {p30}me!&quot;},
+        MessageBox{message=&quot;Tails: Yeah! {p60}And remember when you saved us from Baby T's uncle? {p60}If it wasn't for you, we woulda been\nworm food!&quot;},
         Animate(sprites.babyt.sprite, &quot;victory&quot;),
         Animate(refsprites.babyt.sprite, &quot;idleup&quot;),
-        MessageBox{message=&quot;Baby T: Beat it, Fake Baby T!&quot;},
-        Wait(1),
-        Do(function()
-            sprites.tails.sprite:setFadeWhite(1)
-            sprites.b.sprite:setFadeWhite(1)
-            sprites.babyt.sprite:setFadeWhite(1)
-            refsprites.tails.sprite:setFadeWhite(1)
-            refsprites.b.sprite:setFadeWhite(1)
-            refsprites.babyt.sprite:setFadeWhite(1)
-        end),
-        Wait(2),
-        Do(function()
-            local tx, ty = sprites.tails.x, sprites.tails.y
-            local btx, bty = sprites.babyt.x, sprites.babyt.y
-            local bx, by = sprites.b.x, sprites.b.y
-
-            sprites.tails.x = refsprites.tails.x
-            sprites.tails.y = refsprites.tails.y
-            sprites.b.x = refsprites.b.x
-            sprites.b.y = refsprites.b.y
-            sprites.babyt.x = refsprites.babyt.x
-            sprites.babyt.y = refsprites.babyt.y
-
-            refsprites.tails.x = tx
-            refsprites.tails.y = ty
-            refsprites.b.x = bx
-            refsprites.b.y = by
-            refsprites.babyt.x = btx
-            refsprites.babyt.y = bty
-        end),
-
+        MessageBox{message=&quot;Baby T: Yeah, and remember how Tails walloped that Rover back there? {p60}These guys aren't so tough!&quot;},
+        Animate(sprites.b.sprite, &quot;idledown&quot;),
+        Animate(refsprites.b.sprite, &quot;idleup&quot;),
+        MessageBox{message=&quot;B: Thanks kids. {p60}I suppose we've made it this far... {p60}maybe we can make it just a little farther...&quot;},
         Parallel {
-            Ease(refsprites.b.sprite.color, 4, 0, 0.5),
-            Ease(refsprites.babyt.sprite.color, 4, 0, 0.5),
-            Ease(refsprites.tails.sprite.color, 4, 0, 0.5),
-            Ease(self.scene.player, &quot;y&quot;, function() return self.scene.player.y - 224 end, 0.5)
-        },
-        Wait(2),
-        Do(function()
-            refsprites.tails:remove()
-            refsprites.babyt:remove()
-            refsprites.b:remove()
-            reflection:remove()
-            sprites.tails.sprite:setFadeWhite(-1, 1)
-            sprites.b.sprite:setFadeWhite(-1, 1)
-            sprites.babyt.sprite:setFadeWhite(-1, 1)
-            self.scene:findLayer(&quot;clipwaterfall&quot;).opacity = 0
-        end),
-        Wait(2),
+            MessageBox{message=&quot;All: Let's do it to it!&quot;},
+            Serial {
+                Wait(1),
+                Do(function()
+                    sprites.tails.sprite:setFadeWhite(1)
+                    sprites.b.sprite:setFadeWhite(1)
+                    sprites.babyt.sprite:setFadeWhite(1)
+                    refsprites.tails.sprite:setFadeWhite(1)
+                    refsprites.b.sprite:setFadeWhite(1)
+                    refsprites.babyt.sprite:setFadeWhite(1)
+                end),
+                Wait(2),
+                Do(function()
+                    local tx, ty = sprites.tails.x, sprites.tails.y
+                    local btx, bty = sprites.babyt.x, sprites.babyt.y
+                    local bx, by = sprites.b.x, sprites.b.y
+        
+                    sprites.tails.x = refsprites.tails.x
+                    sprites.tails.y = refsprites.tails.y
+                    sprites.b.x = refsprites.b.x
+                    sprites.b.y = refsprites.b.y
+                    sprites.babyt.x = refsprites.babyt.x
+                    sprites.babyt.y = refsprites.babyt.y
+        
+                    refsprites.tails.x = tx
+                    refsprites.tails.y = ty
+                    refsprites.b.x = bx
+                    refsprites.b.y = by
+                    refsprites.babyt.x = btx
+                    refsprites.babyt.y = bty
+                end),
+        
+                Parallel {
+                    Ease(refsprites.b.sprite.color, 4, 0, 0.5),
+                    Ease(refsprites.babyt.sprite.color, 4, 0, 0.5),
+                    Ease(refsprites.tails.sprite.color, 4, 0, 0.5),
+                    Ease(self.scene.player, &quot;y&quot;, function() return self.scene.player.y - 224 end, 0.5)
+                },
+                Wait(1),
+                Do(function()
+                    refsprites.tails:remove()
+                    refsprites.babyt:remove()
+                    refsprites.b:remove()
+                    reflection:remove()
+                    sprites.tails.sprite:setFadeWhite(-1, 1)
+                    sprites.b.sprite:setFadeWhite(-1, 1)
+                    sprites.babyt.sprite:setFadeWhite(-1, 1)
+                    self.scene:findLayer(&quot;clipwaterfall&quot;).opacity = 0
+                end),
+                Wait(3),
 
-        walkin
+                walkin
+            }
+        }
     }
 end</property>
+   </properties>
+  </object>
+  <object id="56" name="Save" type="SavePoint" gid="6242" x="320" y="448" width="32" height="32">
+   <properties>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
  </objectgroup>

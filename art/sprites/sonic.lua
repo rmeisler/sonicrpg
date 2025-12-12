@@ -338,6 +338,21 @@ return {
 			frames = {{12,9}}
 		},
 		
+		younghug1 = {
+			frames = {{0,10}}
+		},
+		younghug2 = {
+			frames = {{1,10}}
+		},
+		youngsmile = {
+			frames = {{13,10}}
+		},
+		youngnice = {
+			frames = {{14,10}}
+		},
+		youngsurprise = {
+			frames = {{15,10}}
+		},
 		attitude = {
 			frames = {{12,10}}
 		},

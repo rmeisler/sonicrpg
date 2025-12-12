@@ -38,7 +38,7 @@ return function(scene, hint)
 		Wait(0.5),
 		text,
 		Ease(text.color, 4, 255, 1),
-		PlayAudio("music", "mysterious", 1.0, true, true),
+		PlayAudio("music", "lightofmobius", 1.0, true, true),
 		Wait(2),
 		Ease(text.color, 4, 0, 1)
 	})

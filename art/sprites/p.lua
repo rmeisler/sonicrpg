@@ -62,6 +62,9 @@ return {
 		epochtails = {
 		    frames = {{10,1}}
 		},
+		epochtailssad = {
+		    frames = {{10,0}}
+		},
 		
 		youngant_idle = {
 			frames = {{12,1}}

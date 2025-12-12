@@ -44,7 +44,7 @@ return function(scene, hint)
 
 	return Serial {
 		Do(function() scene.player.noSpecialMove = true end),
-		PlayAudio("music", "mysterious", 1.0, true, true),
+		PlayAudio("music", "lightofmobius", 1.0, true, true),
 		waterfallAnim
 	}
 end

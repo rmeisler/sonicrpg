@@ -41,6 +41,21 @@ return {
     },
 	{
         type = "map",
+        file = "maps/dream_mountain_cave6.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/dream_mountain_cave7.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/dream_mountain_cave8.lua",
+		--primary = true
+    },
+	{
+        type = "map",
         file = "maps/boulderbay1.lua",
 		--primary = true
     },
@@ -658,6 +673,11 @@ return {
 		file = "audio/music/mysterious.ogg",
 		category = "music",
 		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/tailssad.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",

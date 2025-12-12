@@ -32,13 +32,13 @@ return {
 	{
         type = "map",
         file = "maps/dream_mountain_cave5.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
         file = "maps/dream_mountain_cave6.lua",
-		--primary = true
-    },--[[
+		primary = true
+    },
 	{
         type = "map",
         file = "maps/dream_mountain_cave7.lua",
@@ -51,14 +51,9 @@ return {
     },
 	{
         type = "map",
-        file = "maps/dream_mountain_cave_race.lua",
+        file = "maps/greatforest_backstory.lua",
 		--primary = true
     },
-	{
-        type = "map",
-        file = "maps/dream_mountain_cave_light.lua",
-		--primary = true
-    },]]
 	{
         type = "map",
         file = "maps/boulderbay_cliffs.lua",
@@ -679,6 +674,11 @@ return {
 		file = "audio/music/mysterious.ogg",
 		category = "music",
 		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/tailssad.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",

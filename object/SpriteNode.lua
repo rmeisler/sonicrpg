@@ -15,6 +15,7 @@ function SpriteNode:construct(scene, transform, color, imgsrc, w, h, layerName)
 		local meta = scene.animations[imgsrc]
 		if not meta then
 			meta = {w=self.img:getWidth(), h=self.img:getHeight(), animations={idle={frames={{0,0}}}}, starting="idle"}
+			print("sprite animations not found for "..imgsrc)
 		end
 		self.w = meta.w --Ignore passed in w/h
 		self.h = meta.h
@@ -433,7 +434,7 @@ function SpriteNode:draw(override)
 		drawSprite()
 		
 		love.graphics.setShader(prevShader)
-	elseif self.scene.nighttime and
+	elseif (self.scene.nighttime or self.scene.sepia) and
 		   not self.scene.map.properties.ignorenight and
 		   self.drawWithNight
 	then

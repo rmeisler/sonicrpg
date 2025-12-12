@@ -32,8 +32,6 @@ function Reflection:construct(scene, layer, object)
 	self.y = object.y
 	self.color = {255,255,255,255}
 	self.state = object.properties.orientation and "idle"..object.properties.orientation or Player.STATE_IDLEDOWN
-	
-	self:updateSprite()
 
 	self.hotspotOffsets = {
 		right_top = {x = 0, y = 0},
@@ -43,10 +41,11 @@ function Reflection:construct(scene, layer, object)
 	}
 
 	self:addSceneHandler("update", Reflection.update)
-	self:addSceneHandler("keytriggered", Reflection.keytriggered)
 end
 
 function Reflection:update(dt)
+	self:updateSprite()
+
 	self.x = self.scene.player.x - self.sprite.w
 
 	local hotspots = self.scene.player:updateCollisionObj()
@@ -61,25 +60,14 @@ function Reflection:update(dt)
 	hotspots.left_bot.y = hotspots.left_bot.y + collisionHSOffsets.left_bot.y
 
 	local prevState = self.state
-	self.state = Player.ToIdle[self.state] or self.state
-
 	local baseMoveSpeed = self.movespeed
 	local movespeed = baseMoveSpeed * (dt/0.016)
 
-	local moving = false
-	local movingX = false
-	local movingY = false
     if love.keyboard.isDown("right") then
 		if  self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, movespeed, 0) and
 			self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, movespeed, 0)
 		then
 			self.x = self.x + movespeed
-			self.state = Player.STATE_WALKRIGHT
-
-			moving = true
-			movingX = true
-		elseif not moving then
-			self.state = Player.STATE_IDLERIGHT
 		end
 
     elseif love.keyboard.isDown("left") then
@@ -87,12 +75,6 @@ function Reflection:update(dt)
 			self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, -movespeed, 0)
 		then
 			self.x = self.x - movespeed
-			self.state = Player.STATE_WALKLEFT
-
-			moving = true
-			movingX = true
-		elseif not moving then
-			self.state = Player.STATE_IDLELEFT
 		end
     end
 
@@ -101,12 +83,6 @@ function Reflection:update(dt)
 			self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, 0, movespeed)
 		then
 			self.y = self.y - movespeed
-			self.state = Player.STATE_WALKUP
-			
-			moving = true
-			movingY = true
-		elseif not moving then
-			self.state = Player.STATE_IDLEUP
 		end
 
     elseif love.keyboard.isDown("up") then
@@ -114,18 +90,19 @@ function Reflection:update(dt)
 			self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, 0, -movespeed)
 		then
 			self.y = self.y + movespeed
-			self.state = Player.STATE_WALKDOWN
-			
-			moving = true
-			movingY = true
-		elseif not moving then
-			self.state = Player.STATE_IDLEDOWN
 		end
     end
-
-	self.moving = moving
-	self.movingX = movingX
-	self.movingY = movingY
+	
+	self.state = self.scene.player.state
+	if self.state == Player.STATE_IDLEDOWN then
+		self.state = Player.STATE_IDLEUP
+	elseif self.state == Player.STATE_IDLEUP then
+		self.state = Player.STATE_IDLEDOWN
+	elseif self.state == Player.STATE_WALKUP then
+		self.state = Player.STATE_WALKDOWN
+	elseif self.state == Player.STATE_WALKUP then
+		self.state = Player.STATE_WALKDOWN
+	end
 
 	if prevState ~= self.state then
 		self.sprite.animations[self.state]:reset()
@@ -138,10 +115,17 @@ function Reflection:updateSprite()
 	if not GameState.leader then
 		return
 	end
+
+	local spriteName = GameState.party[GameState.leader].sprite
+	if self.currentSprite == spriteName then
+		return
+	end
+
 	if self.sprite then
 		self.sprite:remove()
 	end
-	local spriteName = GameState.party[GameState.leader].sprite
+
+	self.currentSprite = spriteName
 	self.transform = Transform(0, 0, 2, 2)
 	self.sprite = SpriteNode(
 		self.scene,

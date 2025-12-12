@@ -533,14 +533,19 @@ function Player:spin(rotations, speed, sprite)
 	local lazySprite = sprite or function() return self.sprite end
 	return Repeat(
 		Serial {
+			Do(function() self.state = "idledown" end),
 			Animate(lazySprite, "idledown", true),
 			Wait(speed),
+			Do(function() self.state = "idleleft" end),
 			Animate(lazySprite, "idleleft", true),
 			Wait(speed),
+			Do(function() self.state = "idleup" end),
 			Animate(lazySprite, "idleup", true),
 			Wait(speed),
+			Do(function() self.state = "idleright" end),
 			Animate(lazySprite, "idleright", true),
 			Wait(speed),
+			Do(function() self.state = "idledown" end),
 			Animate(lazySprite, "idledown", true),
 		},
 		rotations

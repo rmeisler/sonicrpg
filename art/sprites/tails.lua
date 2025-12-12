@@ -85,6 +85,37 @@ return {
 			speed = 0.09
 		},
 		
+		youngdown = {
+			frames = {{0,5}}
+		},
+		youngwalkdown = {
+			frames = {{0,5},{1,5},{0,5},{2,5}},
+			speed = 0.5
+		},
+		youngwalkleft = {
+			frames = {{0,5},{1,5},{0,5},{2,5}},
+			speed = 0.5
+		},
+		youngwalkright = {
+			frames = {{0,5},{1,5},{0,5},{2,5}},
+			speed = 0.5
+		},
+		youngdownsad = {
+			frames = {{3,5}}
+		},
+		youngdownscared = {
+			frames = {{4,5}}
+		},
+		youngdownsmile = {
+			frames = {{5,5}}
+		},
+		youngleapright = {
+			frames = {{6,5}}
+		},
+		younglookleft = {
+			frames = {{7,5}}
+		},
+		
 		hideright = {
 			frames = {{1,4}}
 		},

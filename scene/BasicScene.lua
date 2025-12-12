@@ -49,6 +49,7 @@ function BasicScene:onEnter(args)
 	self.camPos = Transform()
 	self.tutorial = args.tutorial
 	self.nighttime = args.nighttime or self.map.properties.nighttime
+	self.sepia = args.sepia or self.map.properties.sepia
 	self.noBattleMusic = self.map.properties.noBattleMusic
 	self.layered = self.map.properties.layered
 	self.currentLayerId = self.map.properties.currentLayer or 1
@@ -116,12 +117,16 @@ function BasicScene:onEnter(args)
 	-- draw function, so this works out fine.
 	self:addNode(self.map, "tiles")
 
-	if self.nighttime and not self.map.properties.ignorenight then
+	if (self.nighttime or self.sepia) and not self.map.properties.ignorenight then
 		self.originalMapDraw = self.map.drawTileLayer
 		self.originalImgDraw = self.map.drawImageLayer
 		self.map.drawTileLayer = function(map, layer)
 			if not self.night then
-				self.night = shine.nightcolor()
+				if self.sepia then
+					self.night = shine.sepiatone()
+				else
+					self.night = shine.nightcolor()
+				end
 			end
 			self.night:draw(function()
 				self.night.shader:send("opacity", layer.opacity or 1)

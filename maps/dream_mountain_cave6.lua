@@ -8,7 +8,7 @@ return {
   height = 32,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 37,
+  nextobjectid = 38,
   properties = {
     ["battlebg"] = "../art/backgrounds/caveoflight.png"
   },
@@ -380,6 +380,23 @@ return {
           visible = true,
           properties = {
             ["orientation"] = "up"
+          }
+        },
+        {
+          id = 37,
+          name = "Chest1",
+          type = "Chest",
+          shape = "rectangle",
+          x = 384,
+          y = 608,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["YellowLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }

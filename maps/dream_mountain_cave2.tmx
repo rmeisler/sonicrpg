@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="54" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="50">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="54" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="51">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
   <property name="onload" type="file" value="actions/dream_mountain_cave2_etc.lua"/>
+  <property name="regionName" value="Cave of Light"/>
+  <property name="sectorName" value="The Past"/>
  </properties>
  <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
   <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
@@ -616,8 +618,14 @@ end</property>
   </object>
   <object id="49" name="Chest1" type="Chest" gid="6839" x="1504" y="2848" width="64" height="64">
    <properties>
-    <property name="BlasterArmor" type="int" value="1"/>
+    <property name="EmeraldCloak" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="50" name="Save" type="SavePoint" gid="6242" x="576" y="384" width="32" height="32">
+   <properties>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
  </objectgroup>

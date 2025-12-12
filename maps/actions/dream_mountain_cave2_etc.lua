@@ -21,5 +21,5 @@ return function(scene, hint)
 	local NameScreen = require "actions/NameScreen"
 	local Player = require "object/Player"
 
-	return PlayAudio("music", "mysterious", 1.0, true, true)
+	return PlayAudio("music", "lightofmobius", 1.0, true, true)
 end

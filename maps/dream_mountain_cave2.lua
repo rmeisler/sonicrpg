@@ -8,10 +8,12 @@ return {
   height = 100,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 50,
+  nextobjectid = 51,
   properties = {
     ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
-    ["onload"] = "actions/dream_mountain_cave2_etc.lua"
+    ["onload"] = "actions/dream_mountain_cave2_etc.lua",
+    ["regionName"] = "Cave of Light",
+    ["sectorName"] = "The Past"
   },
   tilesets = {
     {
@@ -830,8 +832,25 @@ return {
           gid = 6839,
           visible = true,
           properties = {
-            ["BlasterArmor"] = 1,
+            ["EmeraldCloak"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 50,
+          name = "Save",
+          type = "SavePoint",
+          shape = "rectangle",
+          x = 576,
+          y = 384,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6242,
+          visible = true,
+          properties = {
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/save.png"
           }
         }
       }
