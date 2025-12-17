@@ -56,6 +56,13 @@ function BattleActor:construct(scene, data)
 	end
 end
 
+function BattleActor:hop()
+	return Serial {
+		Ease(self.sprite.transform, "y", function() return self.sprite.transform.y - 50 end, 8),
+		Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + 50 end, 8)
+	}
+end
+
 function BattleActor:beginTurn()
 	
 end

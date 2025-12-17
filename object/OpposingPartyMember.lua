@@ -239,12 +239,14 @@ function OpposingPartyMember:beginTurn()
 
 		local protected = false
 		local targetXForm
+		local origTargetSortOrder = target.sprite.sortOrderY
 		if target.targetOverride and target.targetOverride.state == target.STATE_IDLE then
 			local origTarget = target
 			target = target.targetOverride
 			targetXForm = Transform.from(target.sprite.transform)
 			target.sprite.transform.x = origTarget.sprite.transform.x - 50
 			target.sprite.transform.y = origTarget.sprite.transform.y
+			target.sprite.sortOrderY = origTarget.sprite.transform.y + 50
 			protected = true
 		end
 
@@ -279,6 +281,9 @@ function OpposingPartyMember:beginTurn()
 					Ease(target.sprite.transform, "x", targetXForm.x, 8),
 					Ease(target.sprite.transform, "y", targetXForm.y, 8)
 				},
+				Do(function()
+					target.sprite.sortOrderY = origTargetSortOrder
+				end)
 			}
 		end
 	end

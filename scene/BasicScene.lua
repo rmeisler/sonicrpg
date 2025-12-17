@@ -485,7 +485,7 @@ function BasicScene:onExit(args)
 	return BlockPlayer {
 		fadeAction,
 		Do(function()
-			if not self.enteringBattle and not args.tutorial then
+			if not self.enteringBattle and not args.tutorial and not args.cinematic then
 				if args.manifest then
 					self.sceneMgr:cleanup()
 					print("done with cleanup")
@@ -649,6 +649,7 @@ function BasicScene:changeScene(args)
 			animations = self.animations,
 			hint = args.hint,
 			tutorial = args.tutorial,
+			cinematic = args.cinematic,
 			fadeOutSpeed = args.fadeOutSpeed,
 			fadeInSpeed = args.fadeInSpeed,
 			fadeOutMusic = args.fadeOutMusic,
@@ -670,6 +671,7 @@ function BasicScene:changeScene(args)
 			spawn_point = args.spawnPoint,
 			hint = args.hint,
 			tutorial = args.tutorial,
+			cinematic = args.cinematic,
 			fadeOutSpeed = args.fadeOutSpeed,
 			fadeInSpeed = args.fadeInSpeed,
 			fadeOutMusic = args.fadeOutMusic,

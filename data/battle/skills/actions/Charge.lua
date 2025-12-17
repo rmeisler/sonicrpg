@@ -112,7 +112,7 @@ return function(self)
 						if (dx*dx) + (dy*dy) <= (dr*dr) then
 							oppo.hurtBySlam = true
 							Executor(self.scene):act(Serial {
-								oppo:takeDamage({attack=self.stats.attack*2, speed=100, luck=0}, false, oppo.slamKnockbackFn),
+								oppo:takeDamage({attack=self.stats.attack*2.5, speed=100, luck=0}, false, oppo.slamKnockbackFn),
 								Do(function()
 									oppo.sprite:setAnimation("idle")
 								end)

@@ -23,6 +23,12 @@ return function(self, target, success, fail)
 	then
 		ttl = ttl * 1.5
 	end
+
+	if self.name == "Terrabot" then
+		print("made it to here")
+		ttl = ttl * 2.0
+		print("increase ttl!!!")
+	end
 	
 	return Try(
 		Trigger("z", true), -- If they press z too early, fail!

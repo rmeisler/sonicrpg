@@ -90,12 +90,14 @@ return function(scene, hint)
 		Wait(1),
 		MessageBox{message="Fox Boy: ..."},
 		Wait(1),
-		MessageBox{message="Sonic: I gotcha..."},
+		MessageBox{message="Sonic: ...{p60}they took my uncle...{p60}who did they take from you?"},
 		Wait(1),
+		MessageBox{message="Fox Boy: ...{p60}my mom."},
+		Wait(2),
 		Animate(scene.objectLookup.Sonic.sprite, "youngnice"),
 		MessageBox{message="Sonic: Look-- {p60}uh... {p60}why don't ya come back to Knothole with me, lil' bro?"},
+		MessageBox{message="Sonic: We got a way past cool community over there, plenty of food, and we can make you a hut--", closeAction=Wait(1)},
 		-- Tails hugs Sonic tight
-		Wait(1),
 		Ease(scene.objectLookup.Tails, "x", scene.objectLookup.Sonic.x, 5),
 		Do(function()
 			scene.objectLookup.Tails:remove()
@@ -103,7 +105,7 @@ return function(scene, hint)
 		Animate(scene.objectLookup.Sonic.sprite, "younghug1"),
 		Wait(2),
 		Animate(scene.objectLookup.Sonic.sprite, "younghug2"),
-		MessageBox{message="Sonic: Y-You'll be ok from now on."},
-		Do(function() scene.sceneMgr:popScene{} end)
+		MessageBox{message="Sonic: Y-You'll be ok from now on. {p60}I'll protect you."},
+		Do(function() scene.sceneMgr:popScene{hint="from_flashback"} end)
 	}
 end

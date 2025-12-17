@@ -74,7 +74,17 @@ return function(scene, hint)
 		}, 1000000)
 	)
 	
-	if hint == "from_cinematic" then
+	if hint == "from_flashback" then
+		return BlockPlayer {
+			Wait(1),
+			MessageBox{message="Fleet: I know you probably don't care{p60}, but I get it."},
+			Wait(1),
+			MessageBox{message="Ivan: Same."},
+			Wait(2),
+			MessageBox{message="Fleet: Well come on then! {p60}Are you gonna just sulk around here forever or are you gonna help us find that kid?"},
+			MessageBox{message=""},
+		}
+	elseif hint == "from_cinematic" then
 		local walkout, walkin, sprites = scene.player:split(nil, true)
 		for k in pairs(GameState.party) do
 			sprites[k].x = scene.player.x - 60

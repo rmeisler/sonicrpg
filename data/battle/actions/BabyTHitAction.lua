@@ -15,7 +15,7 @@ local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
 
 local LeapBackward = function(self, target)
-	local targetSprite = target:getSprite()
+	local targetSprite = target.sprite
 	return Serial {
 		-- Land on ground
 		Wait(1.5),
@@ -42,7 +42,7 @@ local LeapBackward = function(self, target)
 end
 
 return function(self, target)
-	local targetSprite = target:getSprite()
+	local targetSprite = target.sprite
 	return Serial {
 		-- Leap forward while attacking
 		Animate(self.sprite, "idle"),
@@ -54,7 +54,7 @@ return function(self, target)
 			Ease(self.sprite.transform, "y", self.sprite.transform.y - self.sprite.h*3, 4, "linear"),
 		},
 		Do(function()
-			self.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h/2
+			self.sprite.sortOrderY = targetSprite.transform.y + targetSprite.h/2
 		end),
 
 		Parallel {

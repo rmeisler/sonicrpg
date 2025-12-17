@@ -15,7 +15,7 @@ local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
 
 local LeapBackward = function(self, target)
-	local targetSprite = target:getSprite()
+	local targetSprite = target.sprite
 	return Serial {
 		-- Land on ground
 		Wait(1.5),
@@ -42,7 +42,7 @@ local LeapBackward = function(self, target)
 end
 
 return function(self, target)
-	local targetSprite = target:getSprite()
+	local targetSprite = target.sprite
 	return Serial {
 		-- Leap forward while attacking
 		Animate(self.sprite, "crouch"),

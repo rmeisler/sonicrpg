@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="128" height="200" tilewidth="32" tileheight="32" infinite="0" nextobjectid="513">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="128" height="200" tilewidth="32" tileheight="32" infinite="0" nextobjectid="514">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/greatjunglecliffbg.png"/>
   <property name="currentLayer" type="int" value="7"/>
@@ -1718,8 +1718,8 @@ local PlayAudio = require &quot;actions/PlayAudio&quot;
 return function(self)
     local dx, dy = self.scene.player.x - self.scene.objectLookup.Camera.x, self.scene.player.y - self.scene.objectLookup.Camera.y
     return BlockPlayer {
-        AudioFade(&quot;music&quot;, 1, 0, 1),
         Parallel {
+            AudioFade(&quot;music&quot;, 1, 0, 1),
             Ease(self.scene.camPos, &quot;x&quot;, dx, 0.5),
             Ease(self.scene.camPos, &quot;y&quot;, dy, 0.5)
         },
@@ -1761,10 +1761,29 @@ return function(self)
         MessageBox{message=&quot;Sonic: I'm not angry... {p60}I'm just... {p80}scared.&quot;},
         Wait(0.5),
         MessageBox{message=&quot;Sonic: I just can't believe I let this happen... {p60}I promised him that I'd protect him...&quot;},
-        Do(function() self.scene:changeScene{map=&quot;greatforest_backstory&quot;, fun=&quot;pushScene&quot;, fadeOutSpeed=0.2, fadeInSpeed=0.2} end)
+        Do(function() self.scene:changeScene{map=&quot;greatforest_backstory&quot;, fun=&quot;pushScene&quot;, fadeOutSpeed=0.2, fadeInSpeed=0.2, cinematic=true} end)
         -- flashback
     }
 end</property>
+   </properties>
+  </object>
+  <object id="513" name="Swatbot1" type="Swatbot" gid="7597" x="1888" y="1760" width="64" height="32">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="audibleDistance" type="int" value="0"/>
+    <property name="battle" type="file" value="../data/monsters/terrabot2.lua"/>
+    <property name="battleInitiative" value="cinematic"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="disappearOnFlag" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="noflashlight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbotwithblaster.png"/>
+    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
+    <property name="viewRange" value="ViewRange"/>
+    <property name="visibleDistance" type="int" value="100"/>
    </properties>
   </object>
  </objectgroup>

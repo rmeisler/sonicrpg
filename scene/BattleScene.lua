@@ -350,22 +350,26 @@ function BattleScene:update(dt)
 		end
 
 	elseif self.state == BattleScene.STATE_MONSTERTURN_COMPLETE then
-		if self:cleanMonsters() then
-			if not next(self.opponentTurns) then
-				-- Add turns for non-dead party members
-				for _, mem in pairs(self.party) do
-					if mem.state ~= BattleActor.STATE_DEAD and not mem.isHologram then
-						table.insert(self.partyTurns, mem)
-					elseif mem.extraLives > 0 then
-						mem.extraLives = mem.extraLives - 1
-						mem.state = BattleActor.STATE_IDLE
-						table.insert(self.partyTurns, mem)
+		if self.specialLoseAction then
+			self.state = BattleScene.STATE_MONSTERWIN
+		else
+			if self:cleanMonsters() then
+				if not next(self.opponentTurns) then
+					-- Add turns for non-dead party members
+					for _, mem in pairs(self.party) do
+						if mem.state ~= BattleActor.STATE_DEAD and not mem.isHologram then
+							table.insert(self.partyTurns, mem)
+						elseif mem.extraLives > 0 then
+							mem.extraLives = mem.extraLives - 1
+							mem.state = BattleActor.STATE_IDLE
+							table.insert(self.partyTurns, mem)
+						end
 					end
-				end
 
-				self.state = BattleScene.STATE_PLAYERTURN
-			else
-				self.state = BattleScene.STATE_MONSTERTURN
+					self.state = BattleScene.STATE_PLAYERTURN
+				else
+					self.state = BattleScene.STATE_MONSTERTURN
+				end
 			end
 		end
 		
@@ -578,6 +582,7 @@ function BattleScene:onExit(args)
 	if args.toTitle then
 		return Serial {
 			AudioFade("music", self.audio:getMusicVolume(), 0, 2),
+			self.specialLoseAction or Action(),
 			PlayAudio("music", "nomore", 1.0, true),
 			MessageBox {
 				message="The Freedom Fighters are no more...",

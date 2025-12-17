@@ -49,6 +49,7 @@ return {
 	},
 
 	items = {
+		{count = 10, item = require "data/items/CrystalWater"}
 	},
 	
 	levelup = {

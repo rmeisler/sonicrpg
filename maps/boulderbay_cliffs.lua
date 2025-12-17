@@ -8,7 +8,7 @@ return {
   height = 200,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 513,
+  nextobjectid = 514,
   properties = {
     ["battlebg"] = "../art/backgrounds/greatjunglecliffbg.png",
     ["currentLayer"] = 7,
@@ -2469,7 +2469,37 @@ return {
           visible = true,
           properties = {
             ["atMostOnce"] = true,
-            ["script"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self)\n    local dx, dy = self.scene.player.x - self.scene.objectLookup.Camera.x, self.scene.player.y - self.scene.objectLookup.Camera.y\n    return BlockPlayer {\n        AudioFade(\"music\", 1, 0, 1),\n        Parallel {\n            Ease(self.scene.camPos, \"x\", dx, 0.5),\n            Ease(self.scene.camPos, \"y\", dy, 0.5)\n        },\n        Wait(1),\n        PlayAudio(\"music\", \"introspection\", 1, true),\n        MessageBox{message=\"Ivan: Sooonic!\"},\n        MessageBox{message=\"Fleet: Yo hog{p60}, where you at?\"},\n        Animate(self.scene.objectLookup.Ivan.sprite, \"idleright\"),\n        MessageBox{message=\"Ivan: Fleet, please refrain from antagonism.\"},\n        Animate(self.scene.objectLookup.Fleet.sprite, \"frustrated\"),\n        MessageBox{message=\"Fleet: *sigh* {p60}You're always such a stick in the mud.\"},\n        Wait(1),\n        Ease(self.scene.camPos, \"y\", function() return self.scene.camPos.y + self.scene.objectLookup.Camera.y - self.scene.objectLookup.Sonic.y end, 0.5),\n        Wait(1),\n        Animate(self.scene.objectLookup.Fleet.sprite, \"idleup\"),\n        Animate(self.scene.objectLookup.Ivan.sprite, \"idleup\"),\n        MessageBox{message=\"Ivan: Mr. Hedgehog?\"},\n        Wait(0.5),\n        MessageBox{message=\"Sonic: Go away.\"},\n        Wait(0.5),\n        Ease(self.scene.camPos, \"y\", function() return self.scene.camPos.y - self.scene.objectLookup.Camera.y - self.scene.objectLookup.Sonic.y end, 0.5),\n        Animate(self.scene.objectLookup.Fleet.sprite, \"thinking\"),\n        MessageBox{message=\"Fleet: Welp, we tried, {p60}let's head back--\"},\n        Ease(self.scene.camPos, \"y\", function() return -(self.scene.objectLookup.Sonic.y - self.scene.player.y) end, 0.5),\n        Wait(1),\n        Animate(self.scene.objectLookup.Fleet.sprite, \"idleup\"),\n        MessageBox{message=\"Ivan: I apologize for my... {p60}recklessness.\"},\n        Wait(0.5),\n        MessageBox{message=\"Fleet: ...\"},\n        Wait(0.5),\n        Parallel {\n            self.scene.objectLookup.Fleet:hop(),\n            MessageBox{message=\"Fleet: Oh-- {p60}y-yeah, what he said. {p60}Sorry.\"}\n        },\n        Wait(0.5),\n        MessageBox{message=\"Sonic: ...\"},\n        Wait(0.5),\n        MessageBox{message=\"Fleet: Look, we get why you're angry--\"},\n        MessageBox{message=\"Sonic: I'm not angry... {p60}I'm just... {p80}scared.\"},\n        Wait(0.5),\n        MessageBox{message=\"Sonic: I just can't believe I let this happen... {p60}I promised him that I'd protect him...\"},\n        Do(function() self.scene:changeScene{map=\"greatforest_backstory\", fun=\"pushScene\", fadeOutSpeed=0.2, fadeInSpeed=0.2} end)\n        -- flashback\n    }\nend"
+            ["script"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self)\n    local dx, dy = self.scene.player.x - self.scene.objectLookup.Camera.x, self.scene.player.y - self.scene.objectLookup.Camera.y\n    return BlockPlayer {\n        Parallel {\n            AudioFade(\"music\", 1, 0, 1),\n            Ease(self.scene.camPos, \"x\", dx, 0.5),\n            Ease(self.scene.camPos, \"y\", dy, 0.5)\n        },\n        Wait(1),\n        PlayAudio(\"music\", \"introspection\", 1, true),\n        MessageBox{message=\"Ivan: Sooonic!\"},\n        MessageBox{message=\"Fleet: Yo hog{p60}, where you at?\"},\n        Animate(self.scene.objectLookup.Ivan.sprite, \"idleright\"),\n        MessageBox{message=\"Ivan: Fleet, please refrain from antagonism.\"},\n        Animate(self.scene.objectLookup.Fleet.sprite, \"frustrated\"),\n        MessageBox{message=\"Fleet: *sigh* {p60}You're always such a stick in the mud.\"},\n        Wait(1),\n        Ease(self.scene.camPos, \"y\", function() return self.scene.camPos.y + self.scene.objectLookup.Camera.y - self.scene.objectLookup.Sonic.y end, 0.5),\n        Wait(1),\n        Animate(self.scene.objectLookup.Fleet.sprite, \"idleup\"),\n        Animate(self.scene.objectLookup.Ivan.sprite, \"idleup\"),\n        MessageBox{message=\"Ivan: Mr. Hedgehog?\"},\n        Wait(0.5),\n        MessageBox{message=\"Sonic: Go away.\"},\n        Wait(0.5),\n        Ease(self.scene.camPos, \"y\", function() return self.scene.camPos.y - self.scene.objectLookup.Camera.y - self.scene.objectLookup.Sonic.y end, 0.5),\n        Animate(self.scene.objectLookup.Fleet.sprite, \"thinking\"),\n        MessageBox{message=\"Fleet: Welp, we tried, {p60}let's head back--\"},\n        Ease(self.scene.camPos, \"y\", function() return -(self.scene.objectLookup.Sonic.y - self.scene.player.y) end, 0.5),\n        Wait(1),\n        Animate(self.scene.objectLookup.Fleet.sprite, \"idleup\"),\n        MessageBox{message=\"Ivan: I apologize for my... {p60}recklessness.\"},\n        Wait(0.5),\n        MessageBox{message=\"Fleet: ...\"},\n        Wait(0.5),\n        Parallel {\n            self.scene.objectLookup.Fleet:hop(),\n            MessageBox{message=\"Fleet: Oh-- {p60}y-yeah, what he said. {p60}Sorry.\"}\n        },\n        Wait(0.5),\n        MessageBox{message=\"Sonic: ...\"},\n        Wait(0.5),\n        MessageBox{message=\"Fleet: Look, we get why you're angry--\"},\n        MessageBox{message=\"Sonic: I'm not angry... {p60}I'm just... {p80}scared.\"},\n        Wait(0.5),\n        MessageBox{message=\"Sonic: I just can't believe I let this happen... {p60}I promised him that I'd protect him...\"},\n        Do(function() self.scene:changeScene{map=\"greatforest_backstory\", fun=\"pushScene\", fadeOutSpeed=0.2, fadeInSpeed=0.2, cinematic=true} end)\n        -- flashback\n    }\nend"
+          }
+        },
+        {
+          id = 513,
+          name = "Swatbot1",
+          type = "Swatbot",
+          shape = "rectangle",
+          x = 1888,
+          y = 1760,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["audibleDistance"] = 0,
+            ["battle"] = "../data/monsters/terrabot2.lua",
+            ["battleInitiative"] = "cinematic",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idleright",
+            ["disappearAfterBattle"] = true,
+            ["disappearOnFlag"] = true,
+            ["ghost"] = true,
+            ["noInvestigate"] = true,
+            ["noflashlight"] = true,
+            ["sprite"] = "../art/sprites/swatbotwithblaster.png",
+            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7",
+            ["viewRange"] = "ViewRange",
+            ["visibleDistance"] = 100
           }
         }
       }
