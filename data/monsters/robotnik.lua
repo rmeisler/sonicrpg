@@ -32,7 +32,7 @@ local Smack = require "data/monsters/actions/Smack"
 return {
 	name = "Robotnik",
 	altName = "Robotnik",
-	sprite = "sprites/robotnik",
+	sprite = "sprites/robotnikbattle",
 
 	stats = {
 		xp = 200,
@@ -60,15 +60,8 @@ return {
 		self.beamSpriteLeft.transform.sx = 0
 		self.beamSpriteLeft.transform.sy = 1
 		self.beamSpriteLeft.transform.ox = 0
-		self.beamSpriteLeft.color = {512,255,512,255}
-		self.beamSpriteLeft:setAnimation("red")
-		
-		self.beamSpriteRight = SpriteNode(self.scene, Transform(), nil, "botbeam", nil, nil, "ui")
-		self.beamSpriteRight.transform.sx = 0
-		self.beamSpriteRight.transform.sy = 1
-		self.beamSpriteRight.transform.ox = 0
-		self.beamSpriteRight.color = {512,255,512,255}
-		self.beamSpriteRight:setAnimation("red")
+		self.beamSpriteLeft.color = {255,512,255,255}
+		self.beamSpriteLeft:setAnimation("green")
 		
 		self.translate = GameState:isEquipped("babyt", ItemType.Accessory, "Translator Collar")
 	end,

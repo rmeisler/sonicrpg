@@ -1771,16 +1771,16 @@ end</property>
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="audibleDistance" type="int" value="0"/>
-    <property name="battle" type="file" value="../data/monsters/terrabot2.lua"/>
+    <property name="battle" type="file" value="../data/monsters/robotnik.lua"/>
     <property name="battleInitiative" value="cinematic"/>
     <property name="battleOnCollide" type="bool" value="true"/>
-    <property name="defaultAnim" value="idleright"/>
+    <property name="defaultAnim" value="ground"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="disappearOnFlag" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="noflashlight" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/swatbotwithblaster.png"/>
+    <property name="sprite" type="file" value="../art/sprites/robotnikbattle.png"/>
     <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
     <property name="viewRange" value="ViewRange"/>
     <property name="visibleDistance" type="int" value="100"/>
