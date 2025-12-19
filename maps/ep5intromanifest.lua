@@ -888,6 +888,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/yourstoryendshere.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/slice.ogg",
 		category = "sfx"
 	},
