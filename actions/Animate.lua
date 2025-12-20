@@ -2,9 +2,10 @@ local Animate = class(require "actions/Action")
 
 function Animate:construct(sprite, animation, isPassive, frameActions, stopOnComplete)
 	self.sprite = sprite
+	self.continuousAnimation = type(self.sprite) == "table" and self.sprite.continuousAnimation or false
 	self.animation = animation
 	self.done = false
-	self.isPassive = isPassive or false
+	self.isPassive = isPassive or self.continuousAnimation or false
 	self.frameActions = frameActions or {}
 	self.stopOnComplete = stopOnComplete or true
 	self.tag = self.animation
@@ -12,6 +13,10 @@ function Animate:construct(sprite, animation, isPassive, frameActions, stopOnCom
 end
 
 function Animate:update(dt)
+	if self.continuousAnimation then
+		return
+	end
+
 	local anim = self.sprite:getAnimation(self.animation)
 	if not anim then
 		return
@@ -56,18 +61,20 @@ function Animate:reset()
 	if not anim then
 		return
 	end
-	anim:reset()
-	anim:play()
-	anim.callback = function()
-		self:invoke("done")
-		self.done = true
-		if self.stopOnComplete then
-			anim:stop()
+	if not self.continuousAnimation or self.temporary then
+		anim:reset()
+		anim:play()
+		anim.callback = function()
+			self:invoke("done")
+			self.done = true
+			if self.stopOnComplete then
+				anim:stop()
+			end
+			if self.temporary then
+				self.sprite:removeSceneNode()
+			end
+			anim.callback = function() end
 		end
-		if self.temporary then
-			self.sprite:removeSceneNode()
-		end
-		anim.callback = function() end
 	end
 end
 

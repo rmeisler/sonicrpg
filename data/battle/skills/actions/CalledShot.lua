@@ -98,8 +98,8 @@ return function(self, target)
 	lockOnSprite.color[4] = 0
 	
 	local targetSprite = target:getSprite()
-	lockOnSprite.transform.x = targetSprite.transform.x + math.random(targetSprite.w/2) - math.random(targetSprite.w/2)
-	lockOnSprite.transform.y = targetSprite.transform.y + math.random(targetSprite.h/2) - math.random(targetSprite.h/2)
+	lockOnSprite.transform.x = targetSprite.transform.x + targetSprite.w*2 - math.random(targetSprite.w)
+	lockOnSprite.transform.y = targetSprite.transform.y + targetSprite.h - math.random(targetSprite.h/2)
 	
 	self.calledShotLanded = false
 	self.calledShotDone = false
@@ -175,7 +175,7 @@ return function(self, target)
 									Ease(lockOnSprite.color, 4, 0, 5),
 									Ease(lockOnSprite.transform, "sx", 2, 5),
 									Ease(lockOnSprite.transform, "sy", 2, 5),
-									target:takeDamage({attack=self.stats.attack*4, speed=100, luck=0}, false, target.slamKnockbackFn),
+									target:takeDamage({attack=self.stats.attack*4, speed=100, luck=0}, false, target.calledShotKnockbackFn or target.slamKnockbackFn),
 									Stars(self, target)
 								},
 
