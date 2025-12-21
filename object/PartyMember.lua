@@ -198,6 +198,47 @@ function PartyMember:beginTurn()
 				end)
 			}
 		end
+	elseif self.confused then
+		self.turnsConfused = self.turnsConfused - 1
+		
+		if self.turnsConfused == 0 then
+			BattleActor.beginTurn(self)
+
+			self.turnsConfused = nil
+			self.confused = false
+
+			self.mainMenu = Menu {
+				transform = Transform(250, love.graphics.getHeight() - 97),
+				layout = Layout(self.options),	
+			}
+			self.mainMenu:addHandler("cancel", PartyMember.skipTurn, self, self.mainMenu)
+			self.state = BattleActor.STATE_IDLE
+
+			self.scene:run {
+				shake,
+				self.escapeAction or Action(),
+				Do(function()
+					self.sprite:setAnimation("idle")
+					self:invoke("escape")
+					self.escapeAction = nil
+				end),
+				self.mainMenu
+			}
+		else
+			local target = nil
+			for _, targetParty in pairs(self.scene.party) do
+				if targetParty.state ~= BattleActor.STATE_DEAD then
+					target = targetParty
+					break
+				end
+			end
+			self.scene:run {
+				self.actions[1].action(self, target),
+				Do(function()
+					self:endTurn()
+				end)
+			}
+		end
 	else
 		-- If poisoned, take some damage
 		local preAction = Action()

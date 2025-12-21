@@ -604,6 +604,26 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/yourstoryendshere.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/youdarechallengeme.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/robotnikhurt.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/robotnikgrit.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/babytroar.ogg",
 		category = "sfx"
 	},

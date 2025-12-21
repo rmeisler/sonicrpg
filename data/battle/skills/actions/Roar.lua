@@ -16,20 +16,21 @@ return function(self, targets)
 		self.scene:screenShake(20, 30, 15)
 	}
 	for _, target in pairs(targets) do
+		local targetSprite = target:getSprite()
 		table.insert(
 			afraidActions,
 			Serial {
-				Animate(target.sprite, "hurt"),
+				Animate(targetSprite, "hurt"),
 				Repeat(Serial {
-					Ease(target.sprite.transform, "x", function() return target.sprite.transform.x - 2 end, 16),
-					Ease(target.sprite.transform, "x", function() return target.sprite.transform.x + 2 end, 16)
+					Ease(targetSprite.transform, "x", function() return targetSprite.transform.x - 2 end, 16),
+					Ease(targetSprite.transform, "x", function() return targetSprite.transform.x + 2 end, 16)
 				}, 8),
 				Do(function()
 					local targetDebuffStats = table.clone(target.stats)
 					targetDebuffStats.defense = target.stats.defense * 0.5
 					target:pushStats(targetDebuffStats)
 					target.state = target.STATE_IDLE
-					target.sprite:setAnimation("idle")
+					targetSprite:setAnimation("idle")
 				end)
 			}
 		)

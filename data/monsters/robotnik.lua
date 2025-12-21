@@ -10,6 +10,7 @@ local PlayAudio = require "actions/PlayAudio"
 local AudioFade = require "actions/AudioFade"
 local YieldUntil = require "actions/YieldUntil"
 local Try = require "actions/Try"
+local IfElse = require "actions/IfElse"
 local BouncyText = require "actions/BouncyText"
 local Executor = require "actions/Executor"
 local Spawn = require "actions/Spawn"
@@ -64,8 +65,13 @@ return {
 		self.beamSprite.transform.sx = 0
 		self.beamSprite.transform.sy = 1
 		self.beamSprite.transform.ox = 0
-		self.beamSprite.color = {255,512,255,255}
+		self.beamSprite.color = {255,255,255,255}
 		self.beamSprite:setAnimation("green")
+		
+		self.targetSprite = SpriteNode(self.scene, Transform(0, 0, 2, 2), nil, "target", nil, nil, "ui")
+		self.targetSprite.transform.ox = self.targetSprite.w/2
+		self.targetSprite.transform.oy = self.targetSprite.h/2
+		self.targetSprite.color[4] = 0
 
 		self.dropShadow2 = SpriteNode(self.scene, Transform(), nil, "dropshadow", nil, nil, "behind")
 		self.dropShadow2.transform.ox = self.dropShadow.w/2
@@ -76,7 +82,9 @@ return {
 
 		self.translate = GameState:isEquipped("babyt", ItemType.Accessory, "Translator Collar")
 		self.aerial = true
-		
+		self.states = {"grab","special"} --{"laser", "special", "laser", "special", "noop", "grab","grab","special"}
+		self.numStates = table.count(self.states)
+
 		local selfSprite = self:getSprite()
 		selfSprite.transform.x = selfSprite.transform.x - 50
 		selfSprite.transform.y = selfSprite.transform.y - 100
@@ -95,7 +103,10 @@ return {
 					Ease(selfSprite.transform, "y", function() return selfSprite.transform.y - 20 end, 3),
 					Ease(self.dropShadow2.transform, "x", function() return self.dropShadow2.transform.x - 20 end, 3),
 				},
-				Ease(selfSprite.transform, "y", function() return selfSprite.transform.y + 100 end, 6),
+				Ease(selfSprite.transform, "y", self.groundPosition.y, 6),
+				Do(function()
+					self.dropShadow2.color[4] = 0
+				end),
 				Animate(selfSprite, "knockdown"),
 				Ease(selfSprite.transform, "y", function() return selfSprite.transform.y - 5 end, 8),
 				Ease(selfSprite.transform, "y", function() return selfSprite.transform.y + 5 end, 8),
@@ -121,6 +132,7 @@ return {
 			self.introDone = true
 
 			local selfSprite = self:getSprite()
+			self.groundPosition = Transform.from(selfSprite.transform)
 			return Serial {
 				PlayAudio("sfx", "yourstoryendshere", 1),
 				Do(function()
@@ -158,7 +170,366 @@ return {
 				)),
 			}
 		else
-			return Action()
+			local state = self.states[math.random(1,self.numStates)]
+			if not self.aerial then
+				state = "fly"
+			end
+
+			local selfSprite = self:getSprite()
+			if state == "laser" then
+				local dodgeAction = target.defenseEvent and
+					target.defenseEvent(self, target) or
+					Action()
+
+				return Serial {
+					Telegraph(self, "Arm Cannon", {500,500,500,50}),
+					Animate(selfSprite, "laser"),
+					
+					Do(function()
+						self.targetSprite.transform.x = target.sprite.transform.x
+						self.targetSprite.transform.y = target.sprite.transform.y + 10
+					end),
+					Parallel {
+						Ease(self.targetSprite.color, 4, 255, 5),
+						Serial {
+							PlayAudio("sfx", "lockon", 1.0, true),
+							Parallel {
+								Ease(self.targetSprite.transform, "sx", 4, 12, "inout"),
+								Ease(self.targetSprite.transform, "sy", 4, 12, "inout")
+							},
+							Parallel {
+								Ease(self.targetSprite.transform, "sx", 1.5, 12, "inout"),
+								Ease(self.targetSprite.transform, "sy", 1.5, 12, "inout")
+							},
+							Parallel {
+								Ease(self.targetSprite.transform, "sx", 3, 12, "inout"),
+								Ease(self.targetSprite.transform, "sy", 3, 12, "inout")
+							},
+							Parallel {
+								Ease(self.targetSprite.transform, "sx", 2, 12, "inout"),
+								Ease(self.targetSprite.transform, "sy", 2, 12, "inout")
+							},
+							
+							Ease(self.targetSprite.color, 4, 0, 5),
+						}
+					},
+
+					Parallel {
+						Serial {
+							Wait(0.2),
+							dodgeAction
+						},
+						Serial {
+							Animate(function()
+								local xform = Transform.from(selfSprite.transform)
+								xform.x = xform.x + 190
+								xform.y = xform.y + 80
+								return SpriteNode(self.scene, xform, nil, "beamfire", nil, nil, "ui"), true
+							end, "idle"),
+							PlayAudio("sfx", "swatbotlaser", 1.0, true),
+								
+							Do(function()
+								self.beamSprite.transform.x = selfSprite.transform.x + 190 + self.beamSprite.w
+								self.beamSprite.transform.y = selfSprite.transform.y + 80 + self.beamSprite.h*2
+								self.beamSprite.transform.ox = 0
+								
+								local x1, y1 = self.beamSprite.transform.x, self.beamSprite.transform.y
+								local x2, y2 = target.sprite.transform.x, target.sprite.transform.y
+
+								local dx = (x2 - x1)
+								local dy = (y2 - y1)
+
+								local dot = dx * dx
+								local m1 = math.sqrt(dx*dx + dy*dy)
+								local m2 = dx
+								local angle = math.acos(dot / (m1 * m2))
+								
+								if self.beamSprite.transform.y > target.sprite.transform.y then
+									self.beamSprite.transform.angle = -angle
+								else
+									self.beamSprite.transform.angle = angle
+								end
+								
+								self.xDist = dx
+								self.yDist = dy
+								self.len = m1/self.beamSprite.w	
+							end),
+							
+							-- Beam stretch to target and recede
+							Ease(self.beamSprite.transform, "sx", function() return self.len end, 8),
+							
+							Do(function()
+								self.beamSprite.transform.ox = self.beamSprite.w
+								
+								self.beamSprite.transform.x = self.beamSprite.transform.x + self.xDist
+								self.beamSprite.transform.y = self.beamSprite.transform.y + self.yDist
+							end),
+
+							Ease(self.beamSprite.transform, "sx", 0, 8),
+
+							Try(
+								YieldUntil(
+									function()
+										return target.dodged
+									end
+								),
+								Do(function()
+									target.dodged = false
+								end),
+								target:takeDamage(self.stats, true, BattleActor.shockKnockback)
+							)
+						}
+					},
+
+					Do(function()
+						selfSprite:setAnimation("idle")
+					end)
+				}
+			elseif state == "grab" then
+				local origTransform = Transform.from(selfSprite.transform)
+				local targetOrigTransform = Transform.from(target.sprite.transform)
+				local origDropShadowTransform = Transform.from(self.dropShadow2.transform)
+				self.pauseBob = true
+				return Serial {
+					Telegraph(self, "Grab", {500,500,500,50}),
+					Animate(selfSprite, "lunge"),
+					Wait(0.5),
+					Parallel {
+						Ease(selfSprite.transform, "x", target.sprite.transform.x, 2),
+						Ease(selfSprite.transform, "y", target.sprite.transform.y, 2),
+						Ease(self.dropShadow2.transform, "x", target.sprite.transform.x, 2),
+						Ease(self.dropShadow2.transform, "y", target.sprite.transform.y + target.sprite.h*2, 2)
+					},
+					Do(function()
+						target.origTransform = target.sprite.transform
+						
+						if target.id == "tails" then
+							target.sprite.transform = Transform.relative(selfSprite.transform, Transform(174, 48))
+						else
+							target.sprite.transform = Transform.relative(selfSprite.transform, Transform(174, 28))
+						end
+					end),
+					Animate(selfSprite, "grab"),
+					Animate(target.sprite, "hurt"),
+					PlayAudio("sfx", "bang", 1, true),
+					Wait(1),
+					Parallel {
+						Ease(selfSprite.transform, "x", origTransform.x, 4),
+						Ease(selfSprite.transform, "y", origTransform.y, 4),
+						Ease(self.dropShadow2.transform, "x", origDropShadowTransform.x, 4),
+						Ease(self.dropShadow2.transform, "y", origDropShadowTransform.y, 4)
+					},
+					Wait(1),
+					Animate(selfSprite, "throw"),
+					Do(function()
+						target.origTransform.x = target.sprite.transform.x
+						target.origTransform.y = target.sprite.transform.y
+						target.sprite.transform = target.origTransform
+					end),
+					Parallel {
+						Ease(target.sprite.transform, "x", 750, 4),
+						Ease(target.sprite.transform, "y", function() return target.sprite.transform.y - 50 end, 4)
+					},
+					Parallel {
+						target:takeDamage({attack=self.stats.attack*2, speed=self.stats.speed,luck=0}, true, Action()),
+						Serial {
+							Animate(target.sprite, "dead"),
+							PlayAudio("sfx", "openchasm", 1, true),
+							Ease(target.sprite.transform, "x", 700, 4),
+							Parallel {
+								Ease(target.sprite.transform, "x", targetOrigTransform.x, 5),
+								Ease(target.sprite.transform, "y", targetOrigTransform.y, 5)
+							},
+							PlayAudio("sfx", "bang", 1, true),
+							Ease(target.sprite.transform, "y", function() return target.sprite.transform.y - 5 end, 6),
+							Ease(target.sprite.transform, "y", function() return target.sprite.transform.y + 5 end, 6),
+							Do(function()
+								if target.hp <= 0 then
+									target.sprite:setAnimation("dead")
+								else
+									target.sprite:setAnimation("idle")
+								end
+							end)
+						}
+					},
+					Animate(selfSprite, "idle")
+				}
+			elseif state == "special" then
+				if target.id == "tails" then
+					return Serial {
+						Telegraph(self, "Intimidate", {500,500,500,50}),
+						Animate(selfSprite, "angry"),
+						Animate(target.sprite, "shock"),
+						Parallel {
+							PlayAudio("sfx", "youdarechallengeme", 1),
+							target:hop()
+						},
+						Do(function()
+							local newStats = table.clone(target.stats)
+							newStats.attack = newStats.attack * 0.5
+							target:pushStats(newStats)
+						end),
+						MessageBox {
+							message="Tails attack damage reduced!",
+							rect=MessageBox.HEADLINER_RECT,
+							closeAction=Wait(1)
+						},
+						Animate(selfSprite, "idle"),
+						Animate(target.sprite, "idle")
+					}
+				elseif target.id == "babyt" then
+					return Serial {
+						Telegraph(self, "Terrify", {500,500,500,50}),
+						Animate(selfSprite, "scary"),
+						PlayAudio("sfx", "robotnikgrit", 1, true),
+						PlayAudio("sfx", "stare", 1, true),
+						Animate(target.sprite, "shock"),
+						Parallel {
+							Repeat(Parallel {
+								Serial {
+									Parallel {
+										Ease(self.scene.bgColor, 1, 512, 8, "quad"),
+										Ease(self.scene.bgColor, 2, 512, 8, "quad"),
+										Ease(self.scene.bgColor, 3, 512, 8, "quad")
+									},
+									Parallel {
+										Ease(self.scene.bgColor, 1, 255, 8, "quad"),
+										Ease(self.scene.bgColor, 2, 255, 8, "quad"),
+										Ease(self.scene.bgColor, 3, 255, 8, "quad")
+									}
+								},
+								Do(function() 
+									ScreenShader:sendColor("multColor", self.scene.bgColor)
+								end)
+							}, 2),
+							target:hop()
+						},
+						MessageBox {
+							message="Baby T immobilized is from fear!",
+							rect=MessageBox.HEADLINER_RECT,
+							closeAction=Wait(1)
+						},
+						Do(function()
+							target.state = BattleActor.STATE_IMMOBILIZED
+							target.turnsImmobilized = 2
+						end),
+						Animate(selfSprite, "idle")
+					}
+				elseif target.id == "b" then
+					local origXForm = target.sprite.transform
+					return Serial {
+						Telegraph(self, "Compel", {500,500,500,50}),
+						Animate(selfSprite, "comehere2"),
+						Wait(0.5),
+						Animate(selfSprite, "comehere1"),
+						Wait(0.5),
+						Do(function() target.sprite:setAnimation("turncoat") end),
+						Wait(1),
+						Animate(target.sprite, "redleft"),
+						MessageBox {
+							message="B has fallen under Robotnik's control!",
+							rect=MessageBox.HEADLINER_RECT,
+							closeAction=Wait(1)
+						},
+						Animate(target.sprite, "redleapleft"),
+						Parallel {
+							Ease(target.sprite.transform, "x", selfSprite.transform.x + selfSprite.w*3, 4, "linear"),
+							Ease(target.sprite.transform, "y", self.groundPosition.y - self.sprite.h, 6, "linear"),
+						},
+						Do(function()
+							target.sprite.sortOrderY = selfSprite.transform.y + selfSprite.h/2
+						end),
+
+						Parallel {
+							Ease(target.sprite.transform, "x", selfSprite.transform.x + selfSprite.w*2, 4, "linear"),
+							Serial {
+								Wait(0.09),
+								Ease(target.sprite.transform, "y", self.groundPosition.y + selfSprite.h - target.sprite.h, 6, "linear")
+							}
+						},
+
+						-- Land on ground
+						Animate(target.sprite, "redcrouchleft"),
+						Wait(0.5),
+						Animate(target.sprite, "redidle"),
+						Do(function()
+							target.confused = true
+							target.turnsConfused = 3
+							target.escapeAction = Serial {
+								Do(function() target.sprite:setAnimation("turncoat") end),
+								Wait(1),
+								Animate(target.sprite, "idle"),
+								MessageBox {
+									message="B resisted Robotnik's control!",
+									rect=MessageBox.HEADLINER_RECT,
+									closeAction=Wait(1)
+								},
+								Animate(self.sprite, "crouch"),
+								Wait(0.1),
+								Animate(self.sprite, "leap"),
+								Parallel {
+									Ease(self.sprite.transform, "x", origXForm.x, 3),
+									Serial {
+										Ease(self.sprite.transform, "y", origXForm.y - math.abs(target.sprite.transform.y - origXForm.y) - self.sprite.h, 4),
+										Do(function()
+											self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h
+										end),
+										Ease(self.sprite.transform, "y", origXForm.y, 6)
+									}
+								},
+								
+								Animate(self.sprite, "crouch"),
+								Wait(0.1)
+							}
+						end),
+
+						Animate(selfSprite, "idle")
+					}
+				end
+			elseif state == "fly" then
+				self.aerial = true
+				return Serial {
+					Animate(selfSprite, "ground"),
+					Ease(selfSprite.transform, "x", self.groundPosition.x, 1),
+					Wait(1),
+					Do(function()
+						selfSprite:setAnimation("flyup")
+
+						self.dropShadow2.color[4] = 255
+						self.dropShadow2.transform.x = selfSprite.transform.x + selfSprite.w - self.dropShadow2.w/2
+						self.dropShadow2.transform.y = selfSprite.transform.y + selfSprite.h*2
+					end),
+					Parallel {
+						Ease(selfSprite.transform, "y", function() return selfSprite.transform.y - 100 end, 1),
+						Ease(self.dropShadow2.transform, "sx", 2.5, 1)
+					},
+					Do(function()
+						selfSprite:popOverride("idle")
+						selfSprite:popOverride("hurt")
+						selfSprite:setAnimation("idle")
+
+						self.sprite.w = self.sprite.w + 80
+						self.sprite.h = self.sprite.h + 80
+					end),
+					Spawn(While(
+						function() return self.aerial end,
+						Repeat(
+							Serial {
+								Parallel {
+									Ease(selfSprite.transform, "y", function() return self:getSprite().transform.y + 50 end, 0.5),
+									Ease(self.dropShadow2.transform, "sx", 3, 0.5),
+								},
+								Parallel {
+									Ease(selfSprite.transform, "y", function() return self:getSprite().transform.y - 50 end, 0.5),
+									Ease(self.dropShadow2.transform, "sx", 2.5, 0.5)
+								},
+							}
+						)
+					)),
+				}
+			else
+				return Action()
+			end
 		end
 	end
 }

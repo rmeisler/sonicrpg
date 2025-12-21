@@ -46,12 +46,45 @@ return {
 			frames = {{2,4},{3,4},{4,4}},
 			speed = 2
 		},
+		turncoat = {
+			frames = {{0,1},{9,4}},
+			speed = 2
+		},
 		redleft = {
 			frames = {{9,4}}
 		},
 		reddown = {
 			frames = {{4,4}}
 		},
+		
+		redidle = {
+			frames = {{14,4}}
+		},
+		redhurt = {
+			frames = {{14,3}}
+		},
+		redhurt = {
+			frames = {{14,3}}
+		},
+		redcrouchleft = {
+		    frames = {{16,3}}
+		},
+		redjumpleft = {
+		    frames = {{15,3}}
+		},
+		redleapleft = {
+		    frames = {{15,2}}
+		},
+		redcrouchright = {
+		    frames = {{16,4}}
+		},
+		redjumpright = {
+		    frames = {{15,4}}
+		},
+		redleapright = {
+		    frames = {{16,2}}
+		},
+		
 
 		packupidle = {
 			frames = {{9,3}}

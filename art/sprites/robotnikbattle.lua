@@ -25,6 +25,10 @@ return {
             frames = {{0,3},{1,3}},
 			speed = 0.1
         },
+		shock = {
+            frames = {{0,3},{1,3}},
+			speed = 0.1
+        },
 		veryhurt = {
             frames = {{2,3}}
         },
@@ -40,6 +44,22 @@ return {
         },
 		grab = {
             frames = {{0,1},{1,1}},
+			speed = 0.1
+        },
+		angry = {
+            frames = {{0,5},{1,5}},
+			speed = 0.1
+        },
+		scary = {
+            frames = {{2,5},{3,5}},
+			speed = 0.1
+        },
+		comehere1 = {
+            frames = {{0,6},{1,6}},
+			speed = 0.1
+        },
+		comehere2 = {
+            frames = {{2,6},{3,6}},
 			speed = 0.1
         },
 		throw = {

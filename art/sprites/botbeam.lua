@@ -13,6 +13,9 @@ return {
         },
 		red = {
             frames = {{2,0}}
+        },
+		green = {
+            frames = {{3,0}}
         }
     }
 }
