@@ -27,7 +27,7 @@ return function(self, target, success, fail, timeout)
 			Parallel {
 				-- Press X!
 				Animate(function()
-					return SpriteNode(self.scene, target.sprite.transform, nil, "pressx", nil, nil, "ui"), true
+					return SpriteNode(self.scene, target.pressXXForm or target:getSprite().transform, nil, "pressx", nil, nil, "ui"), true
 				end, "idle"),
 				
 				-- If they press x fast enough, success! Otherwise fail

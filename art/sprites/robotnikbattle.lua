@@ -21,6 +21,10 @@ return {
             frames = {{2,2},{3,2}},
 			speed = 0.1
         },
+		shieldbreak = {
+            frames = {{0,7},{1,7}},
+			speed = 0.1
+        },
 		hurt = {
             frames = {{0,3},{1,3}},
 			speed = 0.1

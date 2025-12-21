@@ -72,6 +72,9 @@ return {
 		self.targetSprite.transform.ox = self.targetSprite.w/2
 		self.targetSprite.transform.oy = self.targetSprite.h/2
 		self.targetSprite.color[4] = 0
+		
+		self.shieldSprite = SpriteNode(self.scene, Transform.relative(self:getSprite().transform, Transform(184, 34)), nil, "robotnikshield", nil, nil, "ui")
+		self.shieldSprite.color[4] = 0
 
 		self.dropShadow2 = SpriteNode(self.scene, Transform(), nil, "dropshadow", nil, nil, "behind")
 		self.dropShadow2.transform.ox = self.dropShadow.w/2
@@ -82,8 +85,42 @@ return {
 
 		self.translate = GameState:isEquipped("babyt", ItemType.Accessory, "Translator Collar")
 		self.aerial = true
-		self.states = {"grab","special"} --{"laser", "special", "laser", "special", "noop", "grab","grab","special"}
+		self.hasShield = true
+		self.states = {"laser"}
 		self.numStates = table.count(self.states)
+		self.pressXXForm = Transform.relative(self:getSprite().transform, Transform(200, 0))
+		self.shieldAction = function(self, target)
+			local selfSprite = self:getSprite()
+			return Serial {
+				Animate(selfSprite, "shield"),
+				Parallel {
+					Serial {
+						PlayAudio("sfx", "shield", 0.4, true),
+						Ease(self.shieldSprite.color, 4, 255, 5),
+						Wait(0.5),
+						Ease(self.shieldSprite.color, 4, 0, 2)
+					},
+					PressX(
+						target,
+						self,
+						Serial {
+							Animate(selfSprite, "shieldbreak"),
+							Do(function() self.shieldSprite:setAnimation("broken") end),
+							PlayAudio("sfx", "factoryspit", 1, true),
+							MessageBox {
+								message="Robotnik's shield is broken!",
+								rect=MessageBox.HEADLINER_RECT,
+								closeAction=Wait(1)
+							},
+							Do(function()
+								self.hasShield = false
+							end)
+						},
+						Do(function() end)
+					)
+				}
+			}
+		end
 
 		local selfSprite = self:getSprite()
 		selfSprite.transform.x = selfSprite.transform.x - 50
@@ -126,6 +163,14 @@ return {
 	behavior = function (self, target)
 		if self.hp <= 0 then
 			return Action()
+		end
+		
+		if self.hp <= 3500 and self.numStates == 1 then
+			table.insert(self.states, "special")
+			self.numStates = 2
+		elseif self.hp <= 2000 and self.numStates == 2 then
+			table.insert(self.states, "grab")
+			self.numStates = 3
 		end
 		
 		if not self.introDone then
@@ -289,24 +334,25 @@ return {
 				local origTransform = Transform.from(selfSprite.transform)
 				local targetOrigTransform = Transform.from(target.sprite.transform)
 				local origDropShadowTransform = Transform.from(self.dropShadow2.transform)
-				self.pauseBob = true
 				return Serial {
 					Telegraph(self, "Grab", {500,500,500,50}),
 					Animate(selfSprite, "lunge"),
 					Wait(0.5),
 					Parallel {
-						Ease(selfSprite.transform, "x", target.sprite.transform.x, 2),
+						Ease(selfSprite.transform, "x", target.sprite.transform.x - selfSprite.w, 2),
 						Ease(selfSprite.transform, "y", target.sprite.transform.y, 2),
-						Ease(self.dropShadow2.transform, "x", target.sprite.transform.x, 2),
+						Ease(self.dropShadow2.transform, "x", target.sprite.transform.x - selfSprite.w, 2),
 						Ease(self.dropShadow2.transform, "y", target.sprite.transform.y + target.sprite.h*2, 2)
 					},
 					Do(function()
 						target.origTransform = target.sprite.transform
+						target.originalSortOrderY = target.sprite.sortOrderY
+						target.sprite.sortOrderY = 10000
 						
 						if target.id == "tails" then
-							target.sprite.transform = Transform.relative(selfSprite.transform, Transform(174, 48))
-						else
 							target.sprite.transform = Transform.relative(selfSprite.transform, Transform(174, 28))
+						else
+							target.sprite.transform = Transform.relative(selfSprite.transform, Transform(174, 48))
 						end
 					end),
 					Animate(selfSprite, "grab"),
@@ -328,6 +374,10 @@ return {
 					end),
 					Parallel {
 						Ease(target.sprite.transform, "x", 750, 4),
+						Do(function()
+							target.sprite.sortOrderY = target.originalSortOrderY
+							target.originalSortOrderY = nil
+						end),
 						Ease(target.sprite.transform, "y", function() return target.sprite.transform.y - 50 end, 4)
 					},
 					Parallel {
@@ -355,6 +405,11 @@ return {
 					Animate(selfSprite, "idle")
 				}
 			elseif state == "special" then
+				-- Don't keep picking B if already compelled
+				if target.id == "b" and target.confused then
+					target = self.scene.partyByName.babyt
+				end
+
 				if target.id == "tails" then
 					return Serial {
 						Telegraph(self, "Intimidate", {500,500,500,50}),
@@ -417,12 +472,13 @@ return {
 					}
 				elseif target.id == "b" then
 					local origXForm = target.sprite.transform
+					self.scene.partyByName.babyt.targetOverride = nil
+					self.scene.partyByName.tails.targetOverride = nil
 					return Serial {
 						Telegraph(self, "Compel", {500,500,500,50}),
 						Animate(selfSprite, "comehere2"),
 						Wait(0.5),
 						Animate(selfSprite, "comehere1"),
-						Wait(0.5),
 						Do(function() target.sprite:setAnimation("turncoat") end),
 						Wait(1),
 						Animate(target.sprite, "redleft"),
@@ -455,6 +511,7 @@ return {
 						Do(function()
 							target.confused = true
 							target.turnsConfused = 3
+							target.confusedAction = (require "data/battle/actions/BFriendlyHitAction")
 							target.escapeAction = Serial {
 								Do(function() target.sprite:setAnimation("turncoat") end),
 								Wait(1),

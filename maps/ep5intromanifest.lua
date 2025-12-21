@@ -237,6 +237,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/robotnikshield.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/surprise.png"
 	},
 	{

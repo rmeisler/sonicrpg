@@ -18,7 +18,6 @@ local PressZ = require "data/battle/actions/PressZ"
 
 return function(self, target)
 	if not self.beamSprite and not self.beamSpriteLeft and not self.beamSpriteRight then
-		print("*************** got stuck here")
 		return Action()
 	end
 	
@@ -79,10 +78,11 @@ return function(self, target)
 
 			reflectAction,
 
-			self:takeDamage(self.stats, true, BattleActor.shockKnockback)
+			self.hasShield and
+				self.shieldAction(self, target) or
+				self:takeDamage(self.stats, true, BattleActor.shockKnockback)
 		},
 		Serial {
-			Do(function() print("made it here **************") end),
 			Do(function() end)
 		}
 	)

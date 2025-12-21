@@ -233,7 +233,7 @@ function PartyMember:beginTurn()
 				end
 			end
 			self.scene:run {
-				self.actions[1].action(self, target),
+				self.confusedAction and self.confusedAction(self, target) or Action(),
 				Do(function()
 					self:endTurn()
 				end)
