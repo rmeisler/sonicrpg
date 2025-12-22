@@ -5,15 +5,22 @@ function IfElse:construct(cond, ifTrue, ifFalse)
 	self.cond = cond
 	self.ifTrue = ifTrue or Action()
 	self.ifFalse = ifFalse or Action()
+	self.choseAction = nil
 
 	self.type = "IfElse"
 end
 
 function IfElse:update(dt)
-	if self.cond() then
-		self.ifTrue:update(dt)
-	else
-		self.ifFalse:update(dt)
+	if not self.choseAction then
+		if self.cond() then
+			self.choseAction = self.ifTrue
+		else
+			self.choseAction = self.ifFalse
+		end
+	end
+	
+	if self.choseAction then
+		self.choseAction:update(dt)
 	end
 end
 
@@ -23,7 +30,7 @@ function IfElse:setScene(scene)
 end
 
 function IfElse:isDone()
-	return true
+	return self.choseAction and self.choseAction:isDone()
 end
 
 function IfElse:cleanup(scene)
@@ -34,6 +41,7 @@ end
 function IfElse:reset()
 	self.ifTrue:reset()
 	self.ifFalse:reset()
+	self.choseAction = nil
 end
 
 
