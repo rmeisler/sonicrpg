@@ -14,16 +14,20 @@ function Parallax.ForBattle(scene, imgsrc, speedx, speedy)
 	layer.draw = function()
 		love.graphics.draw(layer.image, layer.x, layer.y)
 	end
-	return Parallax(scene, layer)
+	local obj = Parallax(scene, layer)
+	scene:addNode(obj, "ui")
+	return obj
 end
 
 function Parallax:construct(scene, layer)
 	self.layer = layer
 	self.w = self.layer.image:getWidth()
 	self.h = self.layer.image:getHeight()
+	self.color = {255,255,255,255}
 
 	-- Parallax images are drawn as a 3x3 tiles, stitched together by drawing the image nine times
 	self.oneDraw = function()
+		love.graphics.setColor(self.color)
 		love.graphics.draw(layer.image, layer.x, layer.y)
 	end
 	self.layer.draw = function()

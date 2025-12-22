@@ -8,7 +8,6 @@ local AudioFade = require "actions/AudioFade"
 local PlayAudio = require "actions/PlayAudio"
 local Parallel = require "actions/Parallel"
 
-local Parallax = require "object/Parallax"
 local Revive = require "data/items/actions/Revive"
 
 return function(self, target)
@@ -17,7 +16,7 @@ return function(self, target)
 			message="B: Hang in there...",
 			rect=MessageBox.HEADLINER_RECT,
 			textSpeed=8,
-			closeAction=Wait(0.6)
+			closeAction=Wait(1)
 		},
 		
 		Animate(self.sprite, "victory"),
@@ -26,7 +25,7 @@ return function(self, target)
 				message="B: You've got what it takes!",
 				rect=MessageBox.HEADLINER_RECT,
 				textSpeed=8,
-				closeAction=Wait(0.6)
+				closeAction=Wait(1)
 			},
 			Revive(1000)(self, target)
 		},

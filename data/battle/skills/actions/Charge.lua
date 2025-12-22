@@ -103,7 +103,7 @@ return function(self)
 				local targetCx = self.sprite.transform.x
 				local targetCy = self.sprite.transform.y
 				for _,oppo in pairs(self.scene.opponents) do
-					if oppo ~= self and not oppo.hurtBySlam then
+					if oppo ~= self and not oppo.hurtBySlam and not oppo.aerial then
 						local oppoCx = oppo.sprite.transform.x
 						local oppoCy = oppo.sprite.transform.y
 						local dx = targetCx - oppoCx

@@ -20,6 +20,7 @@ local While = require "actions/While"
 
 local SpriteNode = require "object/SpriteNode"
 local BattleActor = require "object/BattleActor"
+local Parallax = require "object/Parallax"
 
 local Transform = require "util/Transform"
 local ItemType = require "util/ItemType"
@@ -41,7 +42,7 @@ return {
 
 	stats = {
 		xp = 200,
-		maxhp = 5000,
+		maxhp = 8000,
 		attack = 30,
 		defense = 30,
 		speed = 10,
@@ -82,6 +83,9 @@ return {
 		self.dropShadow2.transform.sx = 3
 		self.dropShadow2.transform.sy = 2
 		self.dropShadow2.color[4] = 0
+		
+		self.parallax = Parallax.ForBattle(self.scene, "rain", 10, 10)
+		self.parallax.color = {0,255,0,0}
 
 		self.translate = GameState:isEquipped("babyt", ItemType.Accessory, "Translator Collar")
 		self.aerial = true
@@ -156,6 +160,17 @@ return {
 				end)
 			}
 		end
+		
+		self:addHandler("hit", function(damage, attacker)
+			-- Declare dead
+			if self.hp < 1000 then
+				self.state = BattleActor.STATE_DEAD
+				self.hp = 0
+				self.scene.noBattleMusic = true
+				self:getSprite():setAnimation("hurt")
+				self:getSprite():pushOverride("idle", "hurt")
+			end
+		end)
 
 		self.scene.audio:stopMusic()
 	end,
@@ -165,12 +180,17 @@ return {
 			return Action()
 		end
 		
-		if self.hp <= 3500 and self.numStates == 1 then
+		if self.hp <= 7000 and self.numStates == 1 then
 			table.insert(self.states, "special")
 			self.numStates = 2
-		elseif self.hp <= 2000 and self.numStates == 2 then
+		elseif self.hp <= 5000 and self.numStates == 2 then
+			table.insert(self.states, "special")
 			table.insert(self.states, "grab")
-			self.numStates = 3
+			self.numStates = 4
+		elseif self.hp <= 2500 and self.numStates == 4 then
+			table.insert(self.states, "grab")
+			table.insert(self.states, "acidrain")
+			self.numStates = 6
 		end
 		
 		if not self.introDone then
@@ -179,7 +199,15 @@ return {
 			local selfSprite = self:getSprite()
 			self.groundPosition = Transform.from(selfSprite.transform)
 			return Serial {
-				PlayAudio("sfx", "yourstoryendshere", 1),
+				Parallel {
+					PlayAudio("sfx", "yourstoryendshere", 1),
+					MessageBox {
+						message="Robotnik: Your story...{p60} ends here!",
+						rect=MessageBox.HEADLINER_RECT,
+						textSpeed=3,
+						closeAction=Wait(2)
+					}
+				},
 				Do(function()
 					selfSprite:setAnimation("flyup")
 
@@ -334,80 +362,200 @@ return {
 				local origTransform = Transform.from(selfSprite.transform)
 				local targetOrigTransform = Transform.from(target.sprite.transform)
 				local origDropShadowTransform = Transform.from(self.dropShadow2.transform)
+				
+				local counterAction = Action()
+				if target.id == "babyt" then
+					counterAction = Serial {
+						Animate(target.sprite, "slap"),
+						Animate(target.sprite, "idle")
+					}
+				elseif target.id == "tails" then
+					counterAction = Serial {
+						Animate(target.sprite, "slap"),
+						Animate(target.sprite, "idle")
+					}
+				elseif target.id == "b" then
+					counterAction = Serial {
+						Animate(target.sprite, "crouchleft"),
+						Wait(0.1),
+						Animate(target.sprite, "jumpleft"),
+						Ease(target.sprite.transform, "y", function() return target.sprite.transform.y - 50 end, 3),
+						Ease(target.sprite.transform, "y", function() return target.sprite.transform.y + 50 end, 3),
+						Animate(target.sprite, "crouchleft"),
+						Wait(0.1),
+						Animate(target.sprite, "idle")
+					}
+				end
+
+				self.countered = false
 				return Serial {
 					Telegraph(self, "Grab", {500,500,500,50}),
 					Animate(selfSprite, "lunge"),
 					Wait(0.5),
 					Parallel {
-						Ease(selfSprite.transform, "x", target.sprite.transform.x - selfSprite.w, 2),
-						Ease(selfSprite.transform, "y", target.sprite.transform.y, 2),
-						Ease(self.dropShadow2.transform, "x", target.sprite.transform.x - selfSprite.w, 2),
-						Ease(self.dropShadow2.transform, "y", target.sprite.transform.y + target.sprite.h*2, 2)
-					},
-					Do(function()
-						target.origTransform = target.sprite.transform
-						target.originalSortOrderY = target.sprite.sortOrderY
-						target.sprite.sortOrderY = 10000
-						
-						if target.id == "tails" then
-							target.sprite.transform = Transform.relative(selfSprite.transform, Transform(174, 28))
-						else
-							target.sprite.transform = Transform.relative(selfSprite.transform, Transform(174, 48))
-						end
-					end),
-					Animate(selfSprite, "grab"),
-					Animate(target.sprite, "hurt"),
-					PlayAudio("sfx", "bang", 1, true),
-					Wait(1),
-					Parallel {
-						Ease(selfSprite.transform, "x", origTransform.x, 4),
-						Ease(selfSprite.transform, "y", origTransform.y, 4),
-						Ease(self.dropShadow2.transform, "x", origDropShadowTransform.x, 4),
-						Ease(self.dropShadow2.transform, "y", origDropShadowTransform.y, 4)
-					},
-					Wait(1),
-					Animate(selfSprite, "throw"),
-					Do(function()
-						target.origTransform.x = target.sprite.transform.x
-						target.origTransform.y = target.sprite.transform.y
-						target.sprite.transform = target.origTransform
-					end),
-					Parallel {
-						Ease(target.sprite.transform, "x", 750, 4),
-						Do(function()
-							target.sprite.sortOrderY = target.originalSortOrderY
-							target.originalSortOrderY = nil
-						end),
-						Ease(target.sprite.transform, "y", function() return target.sprite.transform.y - 50 end, 4)
-					},
-					Parallel {
-						target:takeDamage({attack=self.stats.attack*2, speed=self.stats.speed,luck=0}, true, Action()),
-						Serial {
-							Animate(target.sprite, "dead"),
-							PlayAudio("sfx", "openchasm", 1, true),
-							Ease(target.sprite.transform, "x", 700, 4),
+						While(
+							function() return not self.countered end,
 							Parallel {
-								Ease(target.sprite.transform, "x", targetOrigTransform.x, 5),
-								Ease(target.sprite.transform, "y", targetOrigTransform.y, 5)
-							},
-							PlayAudio("sfx", "bang", 1, true),
-							Ease(target.sprite.transform, "y", function() return target.sprite.transform.y - 5 end, 6),
-							Ease(target.sprite.transform, "y", function() return target.sprite.transform.y + 5 end, 6),
-							Do(function()
-								if target.hp <= 0 then
-									target.sprite:setAnimation("dead")
-								else
-									target.sprite:setAnimation("idle")
-								end
-							end)
+								Ease(selfSprite.transform, "x", target.sprite.transform.x - selfSprite.w*1.5, 2),
+								Ease(selfSprite.transform, "y", target.sprite.transform.y - selfSprite.h, 2),
+								Ease(self.dropShadow2.transform, "x", target.sprite.transform.x - selfSprite.w, 2),
+								Ease(self.dropShadow2.transform, "y", target.sprite.transform.y + target.sprite.h + 20, 2)
+							}
+						),
+
+						Serial {
+							Wait(0.1),
+							PressX(
+								self,
+								target,
+								Serial {
+									Do(function()
+										self.countered = true
+									end),
+									Parallel {
+										counterAction,
+										Serial {
+											Wait(0.2),
+											Parallel {
+												self:takeDamage(target.stats),
+												Ease(selfSprite.transform, "x", origTransform.x, 4),
+												Ease(selfSprite.transform, "y", origTransform.y, 4),
+												Ease(self.dropShadow2.transform, "x", origDropShadowTransform.x, 4),
+												Ease(self.dropShadow2.transform, "y", origDropShadowTransform.y, 4)
+											},
+											Animate(selfSprite, "idle")
+										}
+									}
+								},
+								Do(function() end)
+							)
 						}
 					},
+
+					IfElse(
+						function() return not self.countered end,
+						Serial {
+							Do(function()
+								target.origTransform = target.sprite.transform
+								target.originalSortOrderY = target.sprite.sortOrderY
+								target.sprite.sortOrderY = 10000
+
+								if target.id == "babyt" then
+									target.sprite.transform = Transform.relative(selfSprite.transform, Transform(174, 48))
+								else
+									target.sprite.transform = Transform.relative(selfSprite.transform, Transform(174, 28))
+								end
+							end),
+							Animate(selfSprite, "grab"),
+							Animate(target.sprite, "hurt"),
+							PlayAudio("sfx", "bang", 1, true),
+							Wait(1),
+							Parallel {
+								Ease(selfSprite.transform, "x", origTransform.x, 4),
+								Ease(selfSprite.transform, "y", origTransform.y, 4),
+								Ease(self.dropShadow2.transform, "x", origDropShadowTransform.x, 4),
+								Ease(self.dropShadow2.transform, "y", origDropShadowTransform.y, 4)
+							},
+							Wait(2),
+							Animate(selfSprite, "throw"),
+							Do(function()
+								target.origTransform.x = target.sprite.transform.x
+								target.origTransform.y = target.sprite.transform.y
+								target.sprite.transform = target.origTransform
+							end),
+							Parallel {
+								Ease(target.sprite.transform, "x", 750, 4),
+								Do(function()
+									target.sprite.sortOrderY = target.originalSortOrderY
+									target.originalSortOrderY = nil
+								end),
+								Ease(target.sprite.transform, "y", function() return target.sprite.transform.y - 50 end, 4)
+							},
+							Parallel {
+								target:takeDamage({attack=self.stats.attack*2, speed=100, luck=0}, true, Action()),
+								Serial {
+									Animate(target.sprite, "dead"),
+									PlayAudio("sfx", "openchasm", 1, true),
+									Ease(target.sprite.transform, "x", 700, 4),
+									Parallel {
+										Ease(target.sprite.transform, "x", targetOrigTransform.x, 5),
+										Ease(target.sprite.transform, "y", targetOrigTransform.y, 5)
+									},
+									PlayAudio("sfx", "bang", 1, true),
+									Ease(target.sprite.transform, "y", function() return target.sprite.transform.y - 5 end, 6),
+									Ease(target.sprite.transform, "y", function() return target.sprite.transform.y + 5 end, 6),
+									Wait(1),
+									Animate(selfSprite, "idle"),
+									Wait(1),
+									Do(function()
+										if target.hp <= 0 then
+											target.sprite:setAnimation("dead")
+										else
+											target.sprite:setAnimation("idle")
+										end
+									end)
+								}
+							}
+						},
+						Action()
+					)
+				}
+			elseif state == "acidrain" then
+				local damageAllActions = {}
+				for _,party in pairs(self.scene.party) do
+					table.insert(damageAllActions, party:takeDamage(self.stats))
+				end
+
+				return Serial {
+					Telegraph(self, "Acid Rain", {500,500,500,50}),
+					Animate(selfSprite, "throw"),
+					Parallel {
+						MessageBox {
+							message="Robotnik: Yeeeesss...",
+							rect=MessageBox.HEADLINER_RECT,
+							textSpeed=2,
+							closeAction=Wait(2)
+						},
+						PlayAudio("sfx", "yeeeesss", 1)
+					},
+					Parallel {
+						PlayAudio("sfx", "thunder2", 1, true),
+						Repeat(Parallel {
+							Serial {
+								Parallel {
+									Ease(self.scene.bgColor, 1, 512, 8, "quad"),
+									Ease(self.scene.bgColor, 2, 512, 8, "quad"),
+									Ease(self.scene.bgColor, 3, 512, 8, "quad")
+								},
+								Parallel {
+									Ease(self.scene.bgColor, 1, 255, 8, "quad"),
+									Ease(self.scene.bgColor, 2, 255, 8, "quad"),
+									Ease(self.scene.bgColor, 3, 255, 8, "quad")
+								}
+							},
+							Do(function() 
+								ScreenShader:sendColor("multColor", self.scene.bgColor)
+							end)
+						}, 2),
+						Ease(self.parallax.color, 4, 255, 1)
+					},
+					Do(function() self.scene.audio:stopSfx() end),
+					PlayAudio("sfx", "wind", 1, true),
+					Wait(1),
+					Parallel(damageAllActions),
+					Wait(1),
+					Do(function() self.scene.audio:stopSfx("wind") end),
+					Ease(self.parallax.color, 4, 0),
 					Animate(selfSprite, "idle")
 				}
 			elseif state == "special" then
 				-- Don't keep picking B if already compelled
 				if target.id == "b" and target.confused then
-					target = self.scene.partyByName.babyt
+					if math.random(1,2) == 1 then
+						target = self.scene.partyByName.babyt
+					else
+						target = self.scene.partyByName.tails
+					end
 				end
 
 				if target.id == "tails" then
@@ -417,6 +565,12 @@ return {
 						Animate(target.sprite, "shock"),
 						Parallel {
 							PlayAudio("sfx", "youdarechallengeme", 1),
+							MessageBox {
+								message="Robotnik: You dare to challenge me?!",
+								rect=MessageBox.HEADLINER_RECT,
+								textSpeed=3,
+								closeAction=Wait(2.5)
+							},
 							target:hop()
 						},
 						Do(function()
@@ -471,17 +625,33 @@ return {
 						Animate(selfSprite, "idle")
 					}
 				elseif target.id == "b" then
-					local origXForm = target.sprite.transform
+					target.origXForm = target.origXForm or table.clone(target.sprite.transform)
 					self.scene.partyByName.babyt.targetOverride = nil
 					self.scene.partyByName.tails.targetOverride = nil
+					target.targetOverride = nil
+
+					target.confused = true
+					target.turnsConfused = 3
+
 					return Serial {
 						Telegraph(self, "Compel", {500,500,500,50}),
-						Animate(selfSprite, "comehere2"),
-						Wait(0.5),
-						Animate(selfSprite, "comehere1"),
-						Do(function() target.sprite:setAnimation("turncoat") end),
-						Wait(1),
-						Animate(target.sprite, "redleft"),
+						Parallel {
+							PlayAudio("sfx", "comehere", 1),
+							MessageBox {
+								message="Robotnik: Come here...",
+								rect=MessageBox.HEADLINER_RECT,
+								textSpeed=3,
+								closeAction=Wait(2.5)
+							},
+							Serial {
+								Animate(selfSprite, "comehere2"),
+								Wait(0.5),
+								Animate(selfSprite, "comehere1"),
+								Do(function() target.sprite:setAnimation("turncoat") end),
+								Wait(1),
+								Animate(target.sprite, "redleft")
+							}
+						},
 						MessageBox {
 							message="B has fallen under Robotnik's control!",
 							rect=MessageBox.HEADLINER_RECT,
@@ -490,7 +660,7 @@ return {
 						Animate(target.sprite, "redleapleft"),
 						Parallel {
 							Ease(target.sprite.transform, "x", selfSprite.transform.x + selfSprite.w*3, 4, "linear"),
-							Ease(target.sprite.transform, "y", self.groundPosition.y - self.sprite.h, 6, "linear"),
+							Ease(target.sprite.transform, "y", self.groundPosition.y - self.sprite.h/2, 6, "linear"),
 						},
 						Do(function()
 							target.sprite.sortOrderY = selfSprite.transform.y + selfSprite.h/2
@@ -509,11 +679,12 @@ return {
 						Wait(0.5),
 						Animate(target.sprite, "redidle"),
 						Do(function()
-							target.confused = true
-							target.turnsConfused = 3
 							target.confusedAction = (require "data/battle/actions/BFriendlyHitAction")
 							target.escapeAction = Serial {
-								Do(function() target.sprite:setAnimation("turncoat") end),
+								Do(function()
+									target.sprite:setAnimation("turncoat")
+									target.targetOverride = nil
+								end),
 								Wait(1),
 								Animate(target.sprite, "idle"),
 								MessageBox {
@@ -521,22 +692,23 @@ return {
 									rect=MessageBox.HEADLINER_RECT,
 									closeAction=Wait(1)
 								},
-								Animate(self.sprite, "crouch"),
+								Animate(target.sprite, "crouch"),
 								Wait(0.1),
-								Animate(self.sprite, "leap"),
+								Animate(target.sprite, "leap"),
 								Parallel {
-									Ease(self.sprite.transform, "x", origXForm.x, 3),
+									Ease(target.sprite.transform, "x", target.origXForm.x, 3),
 									Serial {
-										Ease(self.sprite.transform, "y", origXForm.y - math.abs(target.sprite.transform.y - origXForm.y) - self.sprite.h, 4),
+										Ease(target.sprite.transform, "y", target.origXForm.y - math.abs(target.sprite.transform.y - target.origXForm.y) - target.sprite.h, 4),
 										Do(function()
-											self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h
+											target.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h
 										end),
-										Ease(self.sprite.transform, "y", origXForm.y, 6)
+										Ease(target.sprite.transform, "y", target.origXForm.y, 6)
 									}
 								},
 								
-								Animate(self.sprite, "crouch"),
-								Wait(0.1)
+								Animate(target.sprite, "crouch"),
+								Wait(0.1),
+								Animate(target.sprite, "idle")
 							}
 						end),
 
@@ -545,6 +717,10 @@ return {
 				end
 			elseif state == "fly" then
 				self.aerial = true
+
+				-- Bonus turn
+				table.insert(self.scene.opponentTurns, self)
+
 				return Serial {
 					Animate(selfSprite, "ground"),
 					Ease(selfSprite.transform, "x", self.groundPosition.x, 1),

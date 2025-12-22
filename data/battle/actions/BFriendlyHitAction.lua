@@ -21,9 +21,9 @@ return function(self, target)
 		Animate(self.sprite, "redcrouchright"),
 		Wait(0.1),
 
-		Animate(self.sprite, "redleapright", true),
+		Animate(self.sprite, "redleapright"),
 		Parallel {
-			Ease(self.sprite.transform, "x", target.sprite.transform.x + math.abs(target.sprite.transform.x - self.sprite.transform.x)/2, 4, "linear"),
+			Ease(self.sprite.transform, "x", target.sprite.transform.x - math.abs(target.sprite.transform.x - self.sprite.transform.x)/2, 4, "linear"),
 			Ease(self.sprite.transform, "y", self.sprite.transform.y - self.sprite.h*3, 6, "linear"),
 		},
 		Do(function()
@@ -31,7 +31,7 @@ return function(self, target)
 		end),
 
 		Parallel {
-			Ease(self.sprite.transform, "x", target.sprite.transform.x + target.sprite.w, 4, "linear"),
+			Ease(self.sprite.transform, "x", target.sprite.transform.x - target.sprite.w, 4, "linear"),
 			Serial {
 				Wait(0.09),
 				Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 6, "linear")
@@ -47,11 +47,11 @@ return function(self, target)
 		Parallel {
 			Serial {
 				Parallel {
-					Ease(self.sprite.transform, "x", function() return self.sprite.transform.x - 20 end, 3),
+					Ease(self.sprite.transform, "x", function() return self.sprite.transform.x + 20 end, 3),
 					Ease(self.sprite.transform, "y", function() return self.sprite.transform.y - 100 end, 4)
 				},
 				Parallel {
-					Ease(self.sprite.transform, "x", function() return self.sprite.transform.x - 80 end, 3),
+					Ease(self.sprite.transform, "x", function() return self.sprite.transform.x + 80 end, 3),
 					Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 4)
 				},
 				Animate(self.sprite, "redcrouchright")
@@ -68,7 +68,7 @@ return function(self, target)
 			end, "idle"),
 			
 			-- Smack and bounce off
-			OnHitEvent(self, target)
+			target:takeDamage(self.stats)
 		},
 		
 		-- Leap backward
@@ -88,6 +88,6 @@ return function(self, target)
 		
 		Animate(self.sprite, "redcrouchright"),
 		Wait(0.1),
-		Animate(self.sprite, "redidle"),
+		Animate(self.sprite, "redidle")
 	}
 end

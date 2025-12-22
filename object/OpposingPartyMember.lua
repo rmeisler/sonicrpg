@@ -96,7 +96,7 @@ function OpposingPartyMember:beginTurn()
 	
 	-- If current target is dead, choose another
 	local iterations = 1
-	while self.scene.party[self.selectedTarget].state == BattleActor.STATE_DEAD do
+	while self.scene.party[self.selectedTarget].state == BattleActor.STATE_DEAD or self.scene.party[self.selectedTarget].confused do
 		self.selectedTarget = (self.selectedTarget % #self.scene.party) + 1
 		iterations = iterations + 1
 		if iterations > #self.scene.party then
@@ -244,6 +244,7 @@ function OpposingPartyMember:beginTurn()
 			local origTarget = target
 			target = target.targetOverride
 			targetXForm = Transform.from(target.sprite.transform)
+			target.origXForm = targetXForm
 			target.sprite.transform.x = origTarget.sprite.transform.x - 50
 			target.sprite.transform.y = origTarget.sprite.transform.y
 			target.sprite.sortOrderY = origTarget.sprite.transform.y + 50
@@ -275,16 +276,25 @@ function OpposingPartyMember:beginTurn()
 		end
 		
 		if targetXForm then
-			self.action = Serial {
-				self.action,
-				Parallel {
-					Ease(target.sprite.transform, "x", targetXForm.x, 8),
-					Ease(target.sprite.transform, "y", targetXForm.y, 8)
-				},
-				Do(function()
-					target.sprite.sortOrderY = origTargetSortOrder
-				end)
-			}
+			if not target.confused then
+				self.action = Serial {
+					self.action,
+					Parallel {
+						Ease(target.sprite.transform, "x", targetXForm.x, 8),
+						Ease(target.sprite.transform, "y", targetXForm.y, 8)
+					},
+					Do(function()
+						target.sprite.sortOrderY = origTargetSortOrder
+					end)
+				}
+			else
+				self.action = Serial {
+					self.action,
+					Do(function()
+						target.sprite.sortOrderY = origTargetSortOrder
+					end)
+				}
+			end
 		end
 	end
 	

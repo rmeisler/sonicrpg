@@ -5,7 +5,6 @@ local TextNode    = require "object/TextNode"
 local BattleActor = require "object/BattleActor"
 local PartyMember = require "object/PartyMember"
 local OpposingPartyMember = require "object/OpposingPartyMember"
-local Parallax    = require "object/Parallax"
 local Arrow       = require "object/Arrow"
 
 local Rect       = unpack(require "util/Shapes")

@@ -902,6 +902,16 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/comehere.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/yeeeesss.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/robotnikhurt.ogg",
 		category = "sfx"
 	},

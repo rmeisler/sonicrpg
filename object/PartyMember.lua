@@ -166,7 +166,7 @@ function PartyMember:beginTurn()
 		}, 2)
 
 		-- Escape
-		if math.random(1, self.turnsImmobilized + 1) then
+		if self.turnsImmobilized == 0 then
 			BattleActor.beginTurn(self)
 			
 			self.turnsImmobilized = nil
@@ -201,9 +201,10 @@ function PartyMember:beginTurn()
 	elseif self.confused then
 		self.turnsConfused = self.turnsConfused - 1
 		
-		if self.turnsConfused == 0 then
-			BattleActor.beginTurn(self)
+		BattleActor.beginTurn(self)
+		self.turnover = false
 
+		if self.turnsConfused == 0 then
 			self.turnsConfused = nil
 			self.confused = false
 
@@ -215,7 +216,6 @@ function PartyMember:beginTurn()
 			self.state = BattleActor.STATE_IDLE
 
 			self.scene:run {
-				shake,
 				self.escapeAction or Action(),
 				Do(function()
 					self.sprite:setAnimation("idle")
@@ -227,9 +227,10 @@ function PartyMember:beginTurn()
 		else
 			local target = nil
 			for _, targetParty in pairs(self.scene.party) do
-				if targetParty.state ~= BattleActor.STATE_DEAD then
-					target = targetParty
-					break
+				if targetParty.id ~= self.id and targetParty.state ~= BattleActor.STATE_DEAD then
+					if not target or math.random(1,2) == 1 then
+						target = targetParty
+					end
 				end
 			end
 			self.scene:run {
@@ -625,7 +626,7 @@ end
 
 function PartyMember:cleanupChooseTarget(menu)
 	if  self.targetType == TargetType.AllOpponents or
-		self.targetType == TargetType.AllParty
+		self.targetType == TargetType.AllPartyisTurnOver
 	then
 		for _, arrow in pairs(self.arrow) do
 			arrow:remove()
