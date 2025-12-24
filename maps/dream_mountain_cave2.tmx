@@ -537,7 +537,7 @@ local Wait = require &quot;actions/Wait&quot;
 
 return function(self)
     return BlockPlayer {
-        MessageBox{message=&quot;Mama T: I wish for that the colonizers of Boulder Bay would forget that it exists...&quot;},
+        MessageBox{message=&quot;Mama T: I wish that the invaders of Boulder Bay would forget that it exists...&quot;},
         Do(function() self.sprite:setFadeWhite(2) end),
         Ease(self.sprite.color, 4, 0, 1),
         MessageBox{message=&quot;You received a {h Dream Shard}!&quot;, sfx=&quot;levelup&quot;},

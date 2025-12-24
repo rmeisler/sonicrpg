@@ -37,7 +37,7 @@ return {
 	{
         type = "map",
         file = "maps/dream_mountain_cave6.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
@@ -48,6 +48,11 @@ return {
         type = "map",
         file = "maps/dream_mountain_cave8.lua",
 		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/dream_mountain_cave9.lua",
+		primary = true
     },
 	{
         type = "map",

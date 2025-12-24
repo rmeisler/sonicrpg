@@ -270,6 +270,9 @@ return {
 		holdring = {
 			frames = {{4,7}}
 		},
+		sadright = {
+			frames = {{2,10}}
+		},
 		sadleft = {
 			frames = {{5,7}}
 		},
@@ -365,14 +368,6 @@ return {
 		},
 		prepare_race2 = {
 			frames = {{13,9}}
-		},
-		snowboard_left = {
-			frames = {{0,10},{1,10}},
-			speed = 0.02
-		},
-		snowboard = {
-			frames = {{2,10},{3,10}},
-			speed = 0.02
 		},
 		snowboard_ramp = {
 			frames = {{4,10}}

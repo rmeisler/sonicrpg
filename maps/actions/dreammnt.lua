@@ -75,14 +75,41 @@ return function(scene, hint)
 	)
 	
 	if hint == "from_flashback" then
+		scene.camPos.y = scene.camPos.y - 100
+		scene.objectLookup.Sally.hidden = false
+		scene.objectLookup.Fleet.y = scene.objectLookup.Sonic.y + 80
+		scene.objectLookup.Ivan.y = scene.objectLookup.Sonic.y + 80
+		scene.objectLookup.Fleet.sprite:setAnimation("idleup")
+		scene.objectLookup.Ivan.sprite:setAnimation("idleup")
+
 		return BlockPlayer {
 			Wait(1),
 			MessageBox{message="Fleet: I know you probably don't care{p60}, but I get it."},
 			Wait(1),
 			MessageBox{message="Ivan: Same."},
-			Wait(2),
-			MessageBox{message="Fleet: Well come on then! {p60}Are you gonna just sulk around here forever or are you gonna help us find that kid?"},
-			MessageBox{message=""},
+			Wait(1.5),
+			AudioFade("music", 1, 0, 1),
+			MessageBox{message="Sally: Hey!"},
+			Move(scene.objectLookup.Sally, scene.objectLookup.SallyWP, "walk"),
+			Animate(scene.objectLookup.Sally.sprite, "thinking"),
+			MessageBox{message="Sally: I've been looking everywhere for you!"},
+			Animate(scene.objectLookup.Sonic.sprite, "sadright"),
+			Animate(scene.objectLookup.Fleet.sprite, "idleright"),
+			Animate(scene.objectLookup.Ivan.sprite, "idleright"),
+			MessageBox{message="Sonic: Sorry, Sal."},
+			MessageBox{message="Sally: If you all are finally done arguing, I think I saw Tails go into one of the caves up ahead!"},
+			Animate(scene.objectLookup.Sonic.sprite, "shock"),
+			Animate(scene.objectLookup.Ivan.sprite, "attitude"),
+			Animate(scene.objectLookup.Fleet.sprite, "shock"),
+			Parallel {
+				scene.objectLookup.Sonic:hop(),
+				scene.objectLookup.Fleet:hop()
+			},
+			Do(function()
+				GameState:setFlag("ep5_after_meanwhile3")
+
+				scene:changeScene{map="dream_mountain_cave7", fadeOutSpeed=0.2, fadeInSpeed=0.2}
+			end)
 		}
 	elseif hint == "from_cinematic" then
 		local walkout, walkin, sprites = scene.player:split(nil, true)
