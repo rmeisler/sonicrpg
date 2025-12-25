@@ -184,13 +184,12 @@ return {
 			table.insert(self.states, "special")
 			self.numStates = 2
 		elseif self.hp <= 5000 and self.numStates == 2 then
-			table.insert(self.states, "special")
 			table.insert(self.states, "grab")
-			self.numStates = 4
-		elseif self.hp <= 2500 and self.numStates == 4 then
+			self.numStates = 3
+		elseif self.hp <= 2500 and self.numStates == 3 then
 			table.insert(self.states, "grab")
 			table.insert(self.states, "acidrain")
-			self.numStates = 6
+			self.numStates = 5
 		end
 		
 		if not self.introDone then
@@ -464,7 +463,7 @@ return {
 								target.sprite.transform = target.origTransform
 							end),
 							Parallel {
-								Ease(target.sprite.transform, "x", 750, 4),
+								Ease(target.sprite.transform, "x", 750, 4, "quad"),
 								Do(function()
 									target.sprite.sortOrderY = target.originalSortOrderY
 									target.originalSortOrderY = nil
@@ -472,18 +471,22 @@ return {
 								Ease(target.sprite.transform, "y", function() return target.sprite.transform.y - 50 end, 4)
 							},
 							Parallel {
+								self.scene:screenShake(20, 30, 1),
 								target:takeDamage({attack=self.stats.attack*2, speed=100, luck=0}, true, Action()),
 								Serial {
-									Animate(target.sprite, "dead"),
 									PlayAudio("sfx", "openchasm", 1, true),
 									Ease(target.sprite.transform, "x", 700, 4),
 									Parallel {
-										Ease(target.sprite.transform, "x", targetOrigTransform.x, 5),
-										Ease(target.sprite.transform, "y", targetOrigTransform.y, 5)
+										Ease(target.sprite.transform, "x", targetOrigTransform.x, 6, "quad"),
+										Ease(target.sprite.transform, "y", targetOrigTransform.y, 6, "quad"),
+										Serial {
+											Wait(0.2),
+											Animate(target.sprite, "dead")
+										}
 									},
 									PlayAudio("sfx", "bang", 1, true),
-									Ease(target.sprite.transform, "y", function() return target.sprite.transform.y - 5 end, 6),
-									Ease(target.sprite.transform, "y", function() return target.sprite.transform.y + 5 end, 6),
+									Ease(target.sprite.transform, "y", function() return target.sprite.transform.y - 10 end, 6, "quad"),
+									Ease(target.sprite.transform, "y", function() return target.sprite.transform.y + 10 end, 6, "quad"),
 									Wait(1),
 									Animate(selfSprite, "idle"),
 									Wait(1),
@@ -513,8 +516,8 @@ return {
 						MessageBox {
 							message="Robotnik: Yeeeesss...",
 							rect=MessageBox.HEADLINER_RECT,
-							textSpeed=2,
-							closeAction=Wait(2)
+							textSpeed=3,
+							closeAction=Wait(1.5)
 						},
 						PlayAudio("sfx", "yeeeesss", 1)
 					},

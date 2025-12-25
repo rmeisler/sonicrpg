@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="26" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="60">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="26" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="65">
  <properties>
-  <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
-  <property name="onload" type="file" value="actions/dream_mountain_cave2_etc.lua"/>
+  <property name="battlebg" type="file" value="../art/backgrounds/caveoflight.png"/>
+  <property name="onload" type="file" value="actions/dream_mountain_cave9.lua"/>
   <property name="regionName" value="Cave of Light"/>
-  <property name="sectorName" value="The Future"/>
+  <property name="sectorName" value="Facing Robotnik"/>
  </properties>
  <tileset firstgid="1" name="knotholehut" tilewidth="32" tileheight="32" tilecount="1044" columns="29">
   <image source="../art/tiles/knotholehutinterior.png" trans="000000" width="950" height="1170"/>
@@ -181,13 +181,13 @@
 0,0,0,0,0,8873,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8875,0,0,0,0,0,
 0,0,0,0,0,8908,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8910,0,0,0,0,0,
 0,0,0,0,0,8943,8944,8944,8944,8944,8944,8944,8944,8944,8944,8944,8944,8944,8944,8944,8945,0,0,0,0,0,
-0,0,0,0,0,8220,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8215,0,0,0,0,0,
-0,0,0,0,0,8255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8250,0,0,0,0,0,
-0,0,0,0,0,8290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8285,0,0,0,0,0,
-0,0,0,0,0,8325,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8320,0,0,0,0,0,
-0,0,0,0,0,8360,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8355,0,0,0,0,0,
-0,0,0,0,0,8395,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8390,0,0,0,0,0,
-0,0,0,0,0,8430,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8425,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8215,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8250,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8285,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8320,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8355,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8390,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8425,0,0,0,0,0,
 0,0,0,0,0,8873,8874,8874,8874,8874,8874,8874,8909,8874,8874,8874,8874,8874,8874,8874,8875,0,0,0,0,0,
 0,0,0,0,0,8908,8909,8909,8909,8909,8909,8874,8874,8874,8909,8909,8909,8909,8909,8909,8910,0,0,0,0,0,
 0,0,0,0,0,8943,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8909,8945,0,0,0,0,0,
@@ -352,7 +352,7 @@
     <property name="spawn_point" value="Entrance1"/>
    </properties>
   </object>
-  <object id="54" name="Trigger" type="TouchTrigger" gid="6839" x="160" y="896" width="512" height="32">
+  <object id="54" name="Trigger" type="TouchTrigger" gid="6839" x="160" y="1952" width="512" height="32">
    <properties>
     <property name="atMostOnce" type="bool" value="true"/>
     <property name="script">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
@@ -367,30 +367,47 @@ local AudioFade = require &quot;actions/AudioFade&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
 local Spawn = require &quot;actions/Spawn&quot;
 
+local Transform = require &quot;util/Transform&quot;
+local SpriteNode = require &quot;object/SpriteNode&quot;
+
 return function(self)
+    self.scene.player.x = 380
     walkout, walkin, sprites = self.scene.player:split(nil, true)
     for k in pairs(GameState.party) do
         sprites[k].x = self.scene.player.x - 60
         sprites[k].y = self.scene.player.y - 60
     end
-
+    local storybook = SpriteNode(scene, Transform(0, 0, 1, 1), {255,255,255,0}, &quot;storybook3&quot;, nil, nil, &quot;ui&quot;)
     return BlockPlayer {
+        AudioFade(&quot;music&quot;, 1, 0, 1),
+        walkout,
+        Do(function()
+            sprites.b.x = sprites.b.x + 50
+        end),
+        Animate(sprites.b.sprite, &quot;idleright&quot;),
+        Animate(sprites.babyt.sprite, &quot;idleleft&quot;),
+        Animate(sprites.tails.sprite, &quot;reading&quot;),
+        MessageBox{message=&quot;Tails: I think we're getting close...&quot;},
+        Ease(storybook.color, 4, 255, 1),
+        Wait(1),
+        MessageBox{message=&quot;Tails: In the next part of the story, Ben and the Knight are approaching a bright light...&quot;},
+        Ease(storybook.color, 4, 0, 1),
+
         PlayAudio(&quot;sfx&quot;, &quot;elevator&quot;, 1.0, true),
         Parallel {
             Serial {
                 Wait(1),
-                walkout,
-                Animate(sprites.b.sprite, &quot;idledown&quot;),
-                Animate(sprites.babyt.sprite, &quot;idledown&quot;),
                 Animate(sprites.tails.sprite, &quot;idledown&quot;),
                 Wait(1),
-                MessageBox{message=&quot;Baby T: What is that?!&quot;, closeAction=Wait(1.5)},
-                MessageBox{message=&quot;Tails: Whatever it is{p60}, it sounds like it's coming closer...&quot;, closeAction=Wait(1.5)},
+                MessageBox{message=&quot;Baby T: What is that?&quot;, closeAction=Wait(1.5)},
+                MessageBox{message=&quot;Tails: Whatever it is{p60}, it sounds like it's coming closer!&quot;, closeAction=Wait(1.5)},
             },
-            scene:screenShake(10, 30, 140)
+            self.scene:screenShake(10, 30, 140)
         },
        -- Drill bursts onto scene
-       Ease(self.scene.objectLookup.Drill, &quot;x&quot;, function() return self.scene.objectLookup.Drill.x + 200 end, 1),
+       PlayAudio(&quot;sfx&quot;, &quot;explosion&quot;, 1, true),
+       self.scene:screenShake(25, 40),
+       Ease(self.scene.objectLookup.Drill, &quot;x&quot;, function() return self.scene.objectLookup.Drill.x + 200 end, 5, &quot;quad&quot;),
        Animate(sprites.b.sprite, &quot;shock&quot;),
        Animate(sprites.babyt.sprite, &quot;shock&quot;),
        Animate(sprites.tails.sprite, &quot;shock&quot;),
@@ -399,24 +416,82 @@ return function(self)
             sprites.babyt:hop(),
             sprites.tails:hop()
         },
-       Wait(1),
-       Ease(self.scene.objectLookup.Drill, &quot;x&quot;, function() return self.scene.objectLookup.Drill.x - 250 end, 1),
-        
-        walkin
+        Wait(1),
+        Parallel {
+            Ease(self.scene.objectLookup.Drill, &quot;x&quot;, function() return self.scene.objectLookup.Drill.x - 250 end, 1),
+            Ease(self.scene.camPos, &quot;y&quot;, function() return self.scene.camPos.y - 100 end, 1)
+        },
+
+        Animate(sprites.b.sprite, &quot;leap&quot;),
+        Animate(sprites.babyt.sprite, &quot;idle&quot;),
+        Animate(sprites.tails.sprite, &quot;leap&quot;),
+        Parallel {
+            Ease(sprites.babyt, &quot;y&quot;, function() return sprites.babyt.y + 30 end, 3),
+            Ease(sprites.b, &quot;x&quot;, function() return sprites.babyt.x + 60 end, 3),
+            Ease(sprites.tails, &quot;x&quot;, function() return sprites.babyt.x + 60 end, 3),
+            Serial {
+                Parallel {
+                    Ease(sprites.b, &quot;y&quot;, function() return sprites.b.y - 50 end, 3),
+                    Ease(sprites.tails, &quot;y&quot;, function() return sprites.tails.y - 50 end, 3)
+                },
+                Parallel {
+                    Ease(sprites.b, &quot;y&quot;, function() return sprites.b.y + 200 end, 3),
+                    Ease(sprites.tails, &quot;y&quot;, function() return sprites.tails.y + 130 end, 3)
+                },
+            }
+       },
+       Animate(sprites.b.sprite, &quot;crouch&quot;),
+       Animate(sprites.tails.sprite, &quot;crouch&quot;),
+       Wait(0.1),
+       Animate(sprites.b.sprite, &quot;idle&quot;),
+       Animate(sprites.tails.sprite, &quot;slap_idle&quot;),
+
+        Wait(2),
+        MessageBox{message=&quot;Well, well... {p60}what do we have here?&quot;, textSpeed=3},
+        PlayAudio(&quot;music&quot;, &quot;robotnik&quot;, 1, true, true),
+
+        Do(function() self.scene.objectLookup.Robotnik.sprite:setAnimation(&quot;walkright&quot;) end),
+        Ease(self.scene.objectLookup.Robotnik, &quot;x&quot;, function() return self.scene.objectLookup.Robotnik.x + 260 end, 0.3, &quot;linear&quot;),
+        Animate(self.scene.objectLookup.Robotnik.sprite, &quot;idleright&quot;),
+        MessageBox{message=&quot;Tails: Robotnik!&quot;},
+        MessageBox{message=&quot;Robotnik: Ah yes...{p40}you were the three I saw on the cliffs of the Great Jungle...&quot;, textSpeed=3},
+        MessageBox{message=&quot;Robotnik: I gave you the pleasure of being the first victims of my latest creation...&quot;, textSpeed=3},
+        Ease(self.scene.objectLookup.Terrabot, &quot;x&quot;, function() return self.scene.objectLookup.Terrabot.x + 180 end, 0.2),
+        MessageBox{message=&quot;Robotnik: And here he is... {p60}truly a work of art, wouldn't you agree?&quot;, textSpeed=3},
+        Parallel {
+            Animate(sprites.babyt.sprite, &quot;roar&quot;),
+            MessageBox{message=&quot;Baby T: That's not art, {p60}you didn't create anything! {p60}You just stole my uncle and made him into a\nrobot!&quot;}
+        },
+        MessageBox{message=&quot;Robotnik: The little beast speaks...&quot;, textSpeed=2},
+        MessageBox{message=&quot;Robotnik: You so narrowly survived your last encounter with the old boy...{p60} perhaps it's time for round\ntwo?&quot;, textSpeed=3},
+        Do(function() self.scene.partySprites = sprites end),
+        self.scene:enterBattle {
+            opponents = {&quot;terrabot2&quot;},
+            initiative = &quot;cinematic&quot;,
+            hint = &quot;after_terrabot&quot;,
+            noBattleMusic = true
+        }
     }
 end</property>
    </properties>
   </object>
-  <object id="58" name="Drill" type="BasicNPC" gid="6839" x="-192" y="1088" width="160" height="160">
+  <object id="58" name="Drill" type="BasicNPC" gid="6839" x="-192" y="2112" width="160" height="160">
    <properties>
+    <property name="defaultAnim" value="drill"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/drill.png"/>
    </properties>
   </object>
-  <object id="59" name="Terrabot" type="BasicNPC" gid="6839" x="-352" y="1088" width="160" height="160">
+  <object id="59" name="Terrabot" type="BasicNPC" gid="6839" x="-288" y="2016" width="160" height="160">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/terrabot.png"/>
+   </properties>
+  </object>
+  <object id="60" name="Robotnik" type="BasicNPC" gid="6839" x="-64" y="2048" width="160" height="160">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/robotnikbattle.png"/>
    </properties>
   </object>
  </objectgroup>

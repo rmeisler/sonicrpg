@@ -70,6 +70,9 @@ return {
 		sadright = {
 			frames = {{9,2}}
 		},
+		verysadleft = {
+			frames = {{10,4}}
+		},
 		backpack = {
 			frames = {{12,3}}
 		},

@@ -706,6 +706,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/robotnik.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/robotnikship.ogg",
 		category = "music"
 	},

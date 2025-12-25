@@ -253,6 +253,8 @@ return {
 				self.shootLaser(self, target)
 			}
 		elseif self.turnCount == 6 then
+			self.scene.partyByName.tails.targetOverride = nil
+			self.scene.partyByName.babyt.targetOverride = nil
 			return MessageBox{message="Baby T: If you can fight Robotnik's programming{p60} just this once{p60}, then I promise I'll take care of the rest!"}
 		elseif self.turnCount == 7 then
 			return Serial {
@@ -285,9 +287,16 @@ return {
 						Action()),
 				MessageBox{message="Uncle T: I-I'm s-*zzzz*-so s-*zzzz*-sorry."},
 				Animate(self.scene.partyByName.babyt.sprite, "sadleft"),
-				MessageBox{message="Baby T: *sob* It's ok{p60}, it's not your fault!"},
-				MessageBox{message="Uncle T: I ca-ca-can't-t-t harm R-R-Robotnik *zzzzzz*{p60}, b-b-but I ca-can ru-ru-run away..."},
-				
+				MessageBox{message="Baby T: It's ok!{p60} It's not your fault, uncle!"},
+				MessageBox{message="Uncle T: I ca-ca-can't-t-t harm R-R-Robotnik *zzzzzz*{p60}-- b-but I ca-can ru-ru-run..."},
+				MessageBox{message="Uncle T: Y-y-you must p-p-protect family now{p40},\nn-n-n-nephew..."},
+				Ease(self:getSprite().transform, "x", -600, 3),
+				Wait(1),
+				Animate(self.scene.partyByName.babyt.sprite, "verysadleft"),
+				MessageBox{message="Baby T: *sniff* Goodbye uncle... {p60}I won't let you down."},
+				Wait(1),
+				self.scene:earlyExit(),
+				Do(function() end)
 			}
 		end
 	end

@@ -25,6 +25,18 @@ return {
             frames = {{0,7},{1,7}},
 			speed = 0.1
         },
+		idleup = {
+			frames = {{3,7}}
+		},
+		idleright = {
+			frames = {{2,7}}
+		},
+		walkright = {
+			frames = {{2,7}}
+		},
+		angryright = {
+			frames = {{3,7}}
+		},
 		hurt = {
             frames = {{0,3},{1,3}},
 			speed = 0.1

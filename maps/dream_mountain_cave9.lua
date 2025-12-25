@@ -8,12 +8,12 @@ return {
   height = 100,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 59,
+  nextobjectid = 65,
   properties = {
-    ["battlebg"] = "../art/backgrounds/deatheggbattle.png",
-    ["onload"] = "actions/dream_mountain_cave2_etc.lua",
+    ["battlebg"] = "../art/backgrounds/caveoflight.png",
+    ["onload"] = "actions/dream_mountain_cave9.lua",
     ["regionName"] = "Cave of Light",
-    ["sectorName"] = "The Future"
+    ["sectorName"] = "Facing Robotnik"
   },
   tilesets = {
     {
@@ -364,13 +364,13 @@ return {
         0, 0, 0, 0, 0, 8873, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8875, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 8908, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8910, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 8943, 8944, 8944, 8944, 8944, 8944, 8944, 8944, 8944, 8944, 8944, 8944, 8944, 8944, 8944, 8945, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 8220, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8215, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 8255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8250, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 8290, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8285, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 8325, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8320, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 8360, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8355, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 8395, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8390, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 8430, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8425, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8215, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8250, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8285, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8320, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8355, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8390, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8425, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 8873, 8874, 8874, 8874, 8874, 8874, 8874, 8909, 8874, 8874, 8874, 8874, 8874, 8874, 8874, 8875, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 8908, 8909, 8909, 8909, 8909, 8909, 8874, 8874, 8874, 8909, 8909, 8909, 8909, 8909, 8909, 8910, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 8943, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8909, 8945, 0, 0, 0, 0, 0,
@@ -595,7 +595,7 @@ return {
           type = "TouchTrigger",
           shape = "rectangle",
           x = 160,
-          y = 896,
+          y = 1952,
           width = 512,
           height = 32,
           rotation = 0,
@@ -603,7 +603,7 @@ return {
           visible = true,
           properties = {
             ["atMostOnce"] = true,
-            ["script"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Spawn = require \"actions/Spawn\"\n\nreturn function(self)\n    walkout, walkin, sprites = self.scene.player:split(nil, true)\n    for k in pairs(GameState.party) do\n        sprites[k].x = self.scene.player.x - 60\n        sprites[k].y = self.scene.player.y - 60\n    end\n\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"elevator\", 1.0, true),\n        Parallel {\n            Serial {\n                Wait(1),\n                walkout,\n                Animate(sprites.b.sprite, \"idledown\"),\n                Animate(sprites.babyt.sprite, \"idledown\"),\n                Animate(sprites.tails.sprite, \"idledown\"),\n                Wait(1),\n                MessageBox{message=\"Baby T: What is that?!\", closeAction=Wait(1.5)},\n                MessageBox{message=\"Tails: Whatever it is{p60}, it sounds like it's coming closer...\", closeAction=Wait(1.5)},\n            },\n            scene:screenShake(10, 30, 140)\n        },\n       -- Drill bursts onto scene\n       Ease(self.scene.objectLookup.Drill, \"x\", function() return self.scene.objectLookup.Drill.x + 200 end, 1),\n       Animate(sprites.b.sprite, \"shock\"),\n       Animate(sprites.babyt.sprite, \"shock\"),\n       Animate(sprites.tails.sprite, \"shock\"),\n       Parallel {\n            sprites.b:hop(),\n            sprites.babyt:hop(),\n            sprites.tails:hop()\n        },\n       Wait(1),\n       Ease(self.scene.objectLookup.Drill, \"x\", function() return self.scene.objectLookup.Drill.x - 250 end, 1),\n        \n        walkin\n    }\nend"
+            ["script"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Do = require \"actions/Do\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Wait = require \"actions/Wait\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Spawn = require \"actions/Spawn\"\n\nlocal Transform = require \"util/Transform\"\nlocal SpriteNode = require \"object/SpriteNode\"\n\nreturn function(self)\n    self.scene.player.x = 380\n    walkout, walkin, sprites = self.scene.player:split(nil, true)\n    for k in pairs(GameState.party) do\n        sprites[k].x = self.scene.player.x - 60\n        sprites[k].y = self.scene.player.y - 60\n    end\n    local storybook = SpriteNode(scene, Transform(0, 0, 1, 1), {255,255,255,0}, \"storybook3\", nil, nil, \"ui\")\n    return BlockPlayer {\n        AudioFade(\"music\", 1, 0, 1),\n        walkout,\n        Do(function()\n            sprites.b.x = sprites.b.x + 50\n        end),\n        Animate(sprites.b.sprite, \"idleright\"),\n        Animate(sprites.babyt.sprite, \"idleleft\"),\n        Animate(sprites.tails.sprite, \"reading\"),\n        MessageBox{message=\"Tails: I think we're getting close...\"},\n        Ease(storybook.color, 4, 255, 1),\n        Wait(1),\n        MessageBox{message=\"Tails: In the next part of the story, Ben and the Knight are approaching a bright light...\"},\n        Ease(storybook.color, 4, 0, 1),\n\n        PlayAudio(\"sfx\", \"elevator\", 1.0, true),\n        Parallel {\n            Serial {\n                Wait(1),\n                Animate(sprites.tails.sprite, \"idledown\"),\n                Wait(1),\n                MessageBox{message=\"Baby T: What is that?\", closeAction=Wait(1.5)},\n                MessageBox{message=\"Tails: Whatever it is{p60}, it sounds like it's coming closer!\", closeAction=Wait(1.5)},\n            },\n            self.scene:screenShake(10, 30, 140)\n        },\n       -- Drill bursts onto scene\n       PlayAudio(\"sfx\", \"explosion\", 1, true),\n       self.scene:screenShake(25, 40),\n       Ease(self.scene.objectLookup.Drill, \"x\", function() return self.scene.objectLookup.Drill.x + 200 end, 5, \"quad\"),\n       Animate(sprites.b.sprite, \"shock\"),\n       Animate(sprites.babyt.sprite, \"shock\"),\n       Animate(sprites.tails.sprite, \"shock\"),\n       Parallel {\n            sprites.b:hop(),\n            sprites.babyt:hop(),\n            sprites.tails:hop()\n        },\n        Wait(1),\n        Parallel {\n            Ease(self.scene.objectLookup.Drill, \"x\", function() return self.scene.objectLookup.Drill.x - 250 end, 1),\n            Ease(self.scene.camPos, \"y\", function() return self.scene.camPos.y - 100 end, 1)\n        },\n\n        Animate(sprites.b.sprite, \"leap\"),\n        Animate(sprites.babyt.sprite, \"idle\"),\n        Animate(sprites.tails.sprite, \"leap\"),\n        Parallel {\n            Ease(sprites.babyt, \"y\", function() return sprites.babyt.y + 30 end, 3),\n            Ease(sprites.b, \"x\", function() return sprites.babyt.x + 60 end, 3),\n            Ease(sprites.tails, \"x\", function() return sprites.babyt.x + 60 end, 3),\n            Serial {\n                Parallel {\n                    Ease(sprites.b, \"y\", function() return sprites.b.y - 50 end, 3),\n                    Ease(sprites.tails, \"y\", function() return sprites.tails.y - 50 end, 3)\n                },\n                Parallel {\n                    Ease(sprites.b, \"y\", function() return sprites.b.y + 200 end, 3),\n                    Ease(sprites.tails, \"y\", function() return sprites.tails.y + 130 end, 3)\n                },\n            }\n       },\n       Animate(sprites.b.sprite, \"crouch\"),\n       Animate(sprites.tails.sprite, \"crouch\"),\n       Wait(0.1),\n       Animate(sprites.b.sprite, \"idle\"),\n       Animate(sprites.tails.sprite, \"slap_idle\"),\n\n        Wait(2),\n        MessageBox{message=\"Well, well... {p60}what do we have here?\", textSpeed=3},\n        PlayAudio(\"music\", \"robotnik\", 1, true, true),\n\n        Do(function() self.scene.objectLookup.Robotnik.sprite:setAnimation(\"walkright\") end),\n        Ease(self.scene.objectLookup.Robotnik, \"x\", function() return self.scene.objectLookup.Robotnik.x + 260 end, 0.3, \"linear\"),\n        Animate(self.scene.objectLookup.Robotnik.sprite, \"idleright\"),\n        MessageBox{message=\"Tails: Robotnik!\"},\n        MessageBox{message=\"Robotnik: Ah yes...{p40}you were the three I saw on the cliffs of the Great Jungle...\", textSpeed=3},\n        MessageBox{message=\"Robotnik: I gave you the pleasure of being the first victims of my latest creation...\", textSpeed=3},\n        Ease(self.scene.objectLookup.Terrabot, \"x\", function() return self.scene.objectLookup.Terrabot.x + 180 end, 0.2),\n        MessageBox{message=\"Robotnik: And here he is... {p60}truly a work of art, wouldn't you agree?\", textSpeed=3},\n        Parallel {\n            Animate(sprites.babyt.sprite, \"roar\"),\n            MessageBox{message=\"Baby T: That's not art, {p60}you didn't create anything! {p60}You just stole my uncle and made him into a\\nrobot!\"}\n        },\n        MessageBox{message=\"Robotnik: The little beast speaks...\", textSpeed=2},\n        MessageBox{message=\"Robotnik: You so narrowly survived your last encounter with the old boy...{p60} perhaps it's time for round\\ntwo?\", textSpeed=3},\n        Do(function() self.scene.partySprites = sprites end),\n        self.scene:enterBattle {\n            opponents = {\"terrabot2\"},\n            initiative = \"cinematic\",\n            hint = \"after_terrabot\",\n            noBattleMusic = true\n        }\n    }\nend"
           }
         },
         {
@@ -612,7 +612,25 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = -192,
-          y = 1088,
+          y = 2112,
+          width = 160,
+          height = 160,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "drill",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/drill.png"
+          }
+        },
+        {
+          id = 59,
+          name = "Terrabot",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = -288,
+          y = 2016,
           width = 160,
           height = 160,
           rotation = 0,
@@ -620,7 +638,24 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/drill.png"
+            ["sprite"] = "../art/sprites/terrabot.png"
+          }
+        },
+        {
+          id = 60,
+          name = "Robotnik",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = -64,
+          y = 2048,
+          width = 160,
+          height = 160,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/robotnikbattle.png"
           }
         }
       }

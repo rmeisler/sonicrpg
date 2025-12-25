@@ -559,7 +559,7 @@ function BattleScene:earlyExit()
 				partyMember.sp = mem.sp
 			end
 
-			self.sceneMgr:popScene{self.hint}
+			self.sceneMgr:popScene{hint=self.hint}
 		end)
 	}
 end
