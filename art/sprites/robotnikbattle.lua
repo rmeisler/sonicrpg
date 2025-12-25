@@ -48,6 +48,9 @@ return {
 		veryhurt = {
             frames = {{2,3}}
         },
+		veryhurt2 = {
+			frames = {{2,4}}
+		},
 		knockdown = {
             frames = {{3,3}}
         },

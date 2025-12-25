@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="26" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="65">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="26" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="67">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/caveoflight.png"/>
+  <property name="noBattleMusic" type="bool" value="true"/>
   <property name="onload" type="file" value="actions/dream_mountain_cave9.lua"/>
   <property name="regionName" value="Cave of Light"/>
   <property name="sectorName" value="Facing Robotnik"/>
@@ -456,7 +457,7 @@ return function(self)
         MessageBox{message=&quot;Tails: Robotnik!&quot;},
         MessageBox{message=&quot;Robotnik: Ah yes...{p40}you were the three I saw on the cliffs of the Great Jungle...&quot;, textSpeed=3},
         MessageBox{message=&quot;Robotnik: I gave you the pleasure of being the first victims of my latest creation...&quot;, textSpeed=3},
-        Ease(self.scene.objectLookup.Terrabot, &quot;x&quot;, function() return self.scene.objectLookup.Terrabot.x + 180 end, 0.2),
+        Ease(self.scene.objectLookup.Terrabot, &quot;x&quot;, function() return self.scene.objectLookup.Terrabot.x + 130 end, 0.2),
         MessageBox{message=&quot;Robotnik: And here he is... {p60}truly a work of art, wouldn't you agree?&quot;, textSpeed=3},
         Parallel {
             Animate(sprites.babyt.sprite, &quot;roar&quot;),
@@ -465,33 +466,46 @@ return function(self)
         MessageBox{message=&quot;Robotnik: The little beast speaks...&quot;, textSpeed=2},
         MessageBox{message=&quot;Robotnik: You so narrowly survived your last encounter with the old boy...{p60} perhaps it's time for round\ntwo?&quot;, textSpeed=3},
         Do(function() self.scene.partySprites = sprites end),
+        AudioFade(&quot;music&quot;, 1, 0, 1),
         self.scene:enterBattle {
             opponents = {&quot;terrabot2&quot;},
             initiative = &quot;cinematic&quot;,
             hint = &quot;after_terrabot&quot;,
-            noBattleMusic = true
+            music = &quot;roboterrapod&quot;
         }
     }
 end</property>
    </properties>
   </object>
-  <object id="58" name="Drill" type="BasicNPC" gid="6839" x="-192" y="2112" width="160" height="160">
+  <object id="58" name="Drill" type="BasicNPC" gid="6839" x="-192" y="2080" width="160" height="160">
    <properties>
     <property name="defaultAnim" value="drill"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/drill.png"/>
    </properties>
   </object>
-  <object id="59" name="Terrabot" type="BasicNPC" gid="6839" x="-288" y="2016" width="160" height="160">
+  <object id="59" name="Terrabot" type="BasicNPC" gid="6839" x="-288" y="1984" width="160" height="160">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/terrabot.png"/>
    </properties>
   </object>
-  <object id="60" name="Robotnik" type="BasicNPC" gid="6839" x="-64" y="2048" width="160" height="160">
+  <object id="60" name="Robotnik" type="BasicNPC" gid="6839" x="-64" y="2016" width="160" height="160">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/robotnikbattle.png"/>
+   </properties>
+  </object>
+  <object id="65" name="Chest1" type="Chest" gid="6839" x="224" y="2592" width="64" height="64">
+   <properties>
+    <property name="CrystalWater" type="int" value="3"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="66" name="Chest2" type="Chest" gid="6839" x="544" y="2592" width="64" height="64">
+   <properties>
+    <property name="BlueLeaf" type="int" value="3"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
  </objectgroup>

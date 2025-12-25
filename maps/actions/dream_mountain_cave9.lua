@@ -18,6 +18,7 @@ return function(scene, hint)
 	local Do = require "actions/Do"
 	local Spawn = require "actions/Spawn"
 	local shine = require "lib/shine"
+	local AudioFade = require "actions/AudioFade"
 	local SpriteNode = require "object/SpriteNode"
 	local NameScreen = require "actions/NameScreen"
 	local Player = require "object/Player"
@@ -33,10 +34,12 @@ return function(scene, hint)
 				scene.player.dropShadow.hidden = true
 			end),
 			
+			PlayAudio("music", "robotnik", 1, true, true),
 			Animate(scene.objectLookup.Robotnik.sprite, "angryright"),
 			MessageBox{message="Robotnik: You insolent fools! {p60}You'll pay for this...", textSpeed=3},
 			scene.partySprites.tails:hop(),
 			MessageBox{message="Tails: We won't let you reach the Light, Robotnik!! {p60}Give it up!"},
+			Animate(scene.objectLookup.Robotnik.sprite, "idleright"),
 			MessageBox{message="Robotnik: He he he... {p60}you dare to challenge me?...", textSpeed=3},
 			scene.partySprites.babyt:hop(),
 			MessageBox{message="Baby T: T-{p20}That's right! {p60}W-{p20}We're not scared of you!"},
@@ -46,17 +49,27 @@ return function(scene, hint)
 			MessageBox{message="Robotnik: Perhaps I've underestimated your motley crew of misfits.", textSpeed=3},
 			Animate(scene.objectLookup.Robotnik.sprite, "idleright"),
 			MessageBox{message="Robotnik: Unfortunately for you, {p60}your luck is about to run out!", textSpeed=3},
+			AudioFade("music", 1, 0, 1),
 			scene:enterBattle {
 				opponents = {"robotnik"},
 				initiative = "cinematic",
-				noBattleMusic = true
+				hint = "after_robotnik"
 			}
 		}
 	end
 	
 	if hint == "after_robotnik" then
+		scene.player.sprite.visible = false
+		scene.player.dropShadow.hidden = true
+		scene.objectLookup.Robotnik.sprite:setAnimation("veryhurt2")
+		scene.partySprites.babyt.sprite:setAnimation("idle")
 		return BlockPlayer {
-			Animate(scene.objectLookup.Robotnik.sprite, "veryhurt2"),
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+			end),
+
+			PlayAudio("music", "robotnik", 1, true, true),
 			Wait(1),
 			MessageBox{message="Robotnik: Ugh... {p60}it appears you've defeated me...", textSpeed=3},
 			MessageBox{message="Robotnik: I suppose you'll make your way to the Light now, to make your wish...", textSpeed=3},
@@ -77,8 +90,11 @@ return function(scene, hint)
 			MessageBox{message="Tails: ..."},
 			MessageBox{message="Robotnik: It seems that your little friend here is having second thoughts about that plan{p60}, he he he...", textSpeed=3},
 			MessageBox{message="Robotnik: ...while I would love to stay and help you work through this difficult decision, I really must be going...", textSpeed=3},
-			Animate(scene.objectLookup.Robotnik.sprite, "idle"),
-			MessageBox{message="Robotnik: ...after all, {p60}I have my own wish to make!"},
+			Do(function() scene.objectLookup.Robotnik.sprite:setAnimation("throw") end),
+			Parallel {
+				Ease(scene.objectLookup.Robotnik, "y", function() return scene.objectLookup.Robotnik.y - 80 end, 4),
+				MessageBox{message="Robotnik: ...after all, {p60}I have my own wish to make!"}
+			},
 		}
 	end
 	
