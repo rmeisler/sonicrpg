@@ -508,7 +508,7 @@ return function(self)
     if GameState:isFlagSet(&quot;ep5_cage2&quot;) then
         return BlockPlayer {
             PlayAudio(&quot;sfx&quot;, &quot;terrapodroar&quot;, 1, true),
-            MessageBox{message=&quot;Terrapod: *GRUNT!*&quot;}
+            MessageBox{message=&quot;Papa T: *sad grunt*...&quot;}
         }
 
     else
@@ -546,9 +546,9 @@ return function(self)
         MessageBox{message=&quot;Tails places {h Translator Collar} on adult Terrapod!&quot;},
         Wait(0.5),
         PlayAudio(&quot;music&quot;, &quot;babyt&quot;, 1, true, true),
-        MessageBox{message=&quot;Terrapod: Be careful, dear nephew! {p60}These mechanical creatures are dangerous!&quot;},
-        MessageBox{message=&quot;Terrapod: No offense to your friend here...&quot;},
-        MessageBox{message=&quot;B: Oh, {p60}none taken.&quot;},
+        MessageBox{message=&quot;Papa T: Thank you, son. {p60}I can see you are so much stronger than I gave you credit for...&quot;},
+        Animate(self.scene.objectLookup.UncleT.sprite, &quot;papat_sad&quot;),
+        MessageBox{message=&quot;Papa T: Your poor uncle... {p60}he fought bravely for the family, but he was captured.&quot;},
         Parallel {
             walkin,
             AudioFade(&quot;music&quot;, 1, 0, 1)
@@ -774,11 +774,11 @@ return function(self)
         MessageBox{message=&quot;Tails places {h Translator Collar} on adult Terrapod!&quot;},
         Wait(0.5),
         PlayAudio(&quot;music&quot;, &quot;babyt&quot;, 1, true, true),
-        MessageBox{message=&quot;Terrapod: Ahh...{p60} what brave lads you are!&quot;},
+        MessageBox{message=&quot;Grampa T: You did good, runt!&quot;},
         MessageBox{message=&quot;Baby T: *happy grunt*!&quot;},
-        MessageBox{message=&quot;Terrapod: Never in all my days did I think I would see a friendly robot! {p60}You remind me of someone...&quot;},
+        MessageBox{message=&quot;Grampa T: And never in all my days did I think I would see a friendly robot! {p60}This friend of yours does remind me of someone...&quot;},
         MessageBox{message=&quot;B: A Swatbot?&quot;},
-        MessageBox{message=&quot;Terrapod: Ah, maybe that's it.&quot;},
+        MessageBox{message=&quot;Grampa T: Ah, yes! {p60}You do share a striking resemblance, now that you mention it.&quot;},
         Parallel {
             walkin,
             AudioFade(&quot;music&quot;, 1, 0, 1)

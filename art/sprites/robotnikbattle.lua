@@ -13,6 +13,10 @@ return {
             frames = {{2,1},{3,1}},
 			speed = 0.1
         },
+		flyforward = {
+			frames = {{2,8},{3,8}},
+			speed = 0.1
+		},
 		laser = {
             frames = {{0,2},{1,2}},
 			speed = 0.1
@@ -32,7 +36,8 @@ return {
 			frames = {{2,7}}
 		},
 		walkright = {
-			frames = {{2,7}}
+			frames = {{2,7},{0,8},{2,7},{1,8}},
+			speed = 0.6
 		},
 		angryright = {
 			frames = {{3,7}}
@@ -49,7 +54,7 @@ return {
             frames = {{2,3}}
         },
 		veryhurt2 = {
-			frames = {{2,4}}
+			frames = {{3,4}}
 		},
 		knockdown = {
             frames = {{3,3}}

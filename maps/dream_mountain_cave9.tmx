@@ -461,7 +461,7 @@ return function(self)
         MessageBox{message=&quot;Robotnik: And here he is... {p60}truly a work of art, wouldn't you agree?&quot;, textSpeed=3},
         Parallel {
             Animate(sprites.babyt.sprite, &quot;roar&quot;),
-            MessageBox{message=&quot;Baby T: That's not art, {p60}you didn't create anything! {p60}You just stole my uncle and made him into a\nrobot!&quot;}
+            MessageBox{message=&quot;Baby T: You didn't create anything! {p60}That's my uncle!&quot;}
         },
         MessageBox{message=&quot;Robotnik: The little beast speaks...&quot;, textSpeed=2},
         MessageBox{message=&quot;Robotnik: You so narrowly survived your last encounter with the old boy...{p60} perhaps it's time for round\ntwo?&quot;, textSpeed=3},

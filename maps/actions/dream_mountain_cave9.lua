@@ -27,6 +27,7 @@ return function(scene, hint)
 		scene.player.sprite.visible = false
 		scene.player.dropShadow.hidden = true
 		scene.objectLookup.Terrabot:remove()
+		scene.partySprites.babyt.sprite:setAnimation("idle")
 
 		return BlockPlayer {
 			Do(function()
@@ -36,13 +37,14 @@ return function(scene, hint)
 			
 			PlayAudio("music", "robotnik", 1, true, true),
 			Animate(scene.objectLookup.Robotnik.sprite, "angryright"),
-			MessageBox{message="Robotnik: You insolent fools! {p60}You'll pay for this...", textSpeed=3},
+			MessageBox{message="Robotnik: My beautiful creation!! {p60}You'll pay for this!", textSpeed=3},
 			scene.partySprites.tails:hop(),
 			MessageBox{message="Tails: We won't let you reach the Light, Robotnik!! {p60}Give it up!"},
 			Animate(scene.objectLookup.Robotnik.sprite, "idleright"),
 			MessageBox{message="Robotnik: He he he... {p60}you dare to challenge me?...", textSpeed=3},
+			Animate(scene.partySprites.babyt.sprite, "roar"),
 			scene.partySprites.babyt:hop(),
-			MessageBox{message="Baby T: T-{p20}That's right! {p60}W-{p20}We're not scared of you!"},
+			MessageBox{message="Baby T: That's right! {p60}We're not scared of you!"},
 			scene.partySprites.b:hop(),
 			MessageBox{message="B: It's over, Robotnik."},
 			Wait(0.5),
@@ -89,12 +91,29 @@ return function(scene, hint)
 			Animate(scene.partySprites.tails.sprite, "saddown"),
 			MessageBox{message="Tails: ..."},
 			MessageBox{message="Robotnik: It seems that your little friend here is having second thoughts about that plan{p60}, he he he...", textSpeed=3},
+			AudioFade("music", 1, 0, 1),
 			MessageBox{message="Robotnik: ...while I would love to stay and help you work through this difficult decision, I really must be going...", textSpeed=3},
 			Do(function() scene.objectLookup.Robotnik.sprite:setAnimation("throw") end),
 			Parallel {
 				Ease(scene.objectLookup.Robotnik, "y", function() return scene.objectLookup.Robotnik.y - 80 end, 4),
 				MessageBox{message="Robotnik: ...after all, {p60}I have my own wish to make!"}
 			},
+			Do(function() scene.objectLookup.Robotnik.sprite:setAnimation("flyforward") end),
+			Ease(scene.objectLookup.Robotnik, "y", function() return scene.objectLookup.Robotnik.y + 30 end, 1),
+			Ease(scene.objectLookup.Robotnik, "y", function() return scene.objectLookup.Robotnik.y - 500 end, 3),
+			Animate(scene.partySprites.babyt.sprite, "saddown"),
+			Animate(scene.partySprites.b.sprite, "idleup"),
+			Parallel {
+				scene.partySprites.b:hop(),
+				MessageBox{message="B: He's heading for the Light! {p60}Go Tails!!"}
+			},
+			Do(function()
+				scene.partySprites.tails.sprite:setAnimation("flyup")
+				scene.partySprites.tails.sprite.sortOrderY = 10000
+			end),
+			Ease(scene.partySprites.tails, "y", function() return scene.partySprites.tails.y - 30 end, 2),
+			Wait(0.5),
+			Ease(scene.partySprites.tails, "y", function() return scene.partySprites.tails.y - 500 end, 3),
 		}
 	end
 	
