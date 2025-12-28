@@ -15,7 +15,7 @@ return function(self, target)
 		Animate(self.sprite, "victory"),
 		Parallel {
 			MessageBox {
-				message="Baby T: I'm grateful to know you!",
+				message=target.id == "babyt" and "Baby T: I gotta be strong!" or "Baby T: I'm grateful to know you!",
 				rect=MessageBox.HEADLINER_RECT,
 				textSpeed=8,
 				closeAction=Wait(1)

@@ -52,6 +52,11 @@ return {
 	{
         type = "map",
         file = "maps/dream_mountain_cave9.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/dream_mountain_cave10.lua",
 		primary = true
     },
 	{
@@ -187,6 +192,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/puck.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/emp.png"
 	},
 	{
 		type = "image",
@@ -382,7 +391,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/snowdust.png"
+		file = "art/sprites/dust.png"
 	},
 	{
 		type = "image",

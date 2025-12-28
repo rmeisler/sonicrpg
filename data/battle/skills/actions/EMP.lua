@@ -7,6 +7,7 @@ local Do = require "actions/Do"
 local AudioFade = require "actions/AudioFade"
 local PlayAudio = require "actions/PlayAudio"
 local Parallel = require "actions/Parallel"
+local Ease = require "actions/Ease"
 
 local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
@@ -24,8 +25,8 @@ return function(self, targets)
 					Wait(0.1),
 					Animate(function()
 						local xform = Transform.from(target:getSprite().transform)
-						xform.x = xform.x - 50
-						xform.y = xform.y - 50
+						xform.x = xform.x + target:getSprite().w
+						xform.y = xform.y + target:getSprite().h
 						return SpriteNode(self.scene, xform, nil, "lightning", nil, nil, "ui"), true
 					end, "idle"),
 					Do(function()
@@ -40,14 +41,21 @@ return function(self, targets)
 		end
 	end
 
+	local empLt = SpriteNode(self.scene, Transform(0,0,2,2), {255,255,255,0}, "emp", nil, nil, "ui")
+	empLt.transform.ox = empLt.w/2
+	empLt.transform.oy = empLt.h/2
+	empLt.transform.x = self.sprite.transform.x
+	empLt.transform.y = self.sprite.transform.y
+	
 	local prevMusic = self.scene.audio:getCurrentMusic()
 	return Serial {
 		Animate(self.sprite, "focus"),
-		Wait(1),
+		Ease(empLt.color, 4, 255, 3),
 		PlayAudio("sfx", "factoryspit", 1, true),
 		Parallel(actions),
 		Serial(afterActions),
 		next(actions) ~= nil and MessageBox {message="All bots disabled!", rect=MessageBox.HEADLINER_RECT, textSpeed=8, closeAction=Wait(1)} or Action(),
+		Ease(empLt.color, 4, 0, 3),
 		Animate(self.sprite, "idle"),
 	}
 end

@@ -38,15 +38,21 @@ return function(scene, hint)
 			PlayAudio("music", "robotnik", 1, true, true),
 			Animate(scene.objectLookup.Robotnik.sprite, "angryright"),
 			MessageBox{message="Robotnik: My beautiful creation!! {p60}You'll pay for this!", textSpeed=3},
-			scene.partySprites.tails:hop(),
-			MessageBox{message="Tails: We won't let you reach the Light, Robotnik!! {p60}Give it up!"},
+			Parallel {
+				scene.partySprites.tails:hop(),
+				MessageBox{message="Tails: We won't let you reach the Light, Robotnik!! {p60}Give it up!"}
+			},
 			Animate(scene.objectLookup.Robotnik.sprite, "idleright"),
 			MessageBox{message="Robotnik: He he he... {p60}you dare to challenge me?...", textSpeed=3},
-			Animate(scene.partySprites.babyt.sprite, "roar"),
-			scene.partySprites.babyt:hop(),
-			MessageBox{message="Baby T: That's right! {p60}We're not scared of you!"},
-			scene.partySprites.b:hop(),
-			MessageBox{message="B: It's over, Robotnik."},
+			Parallel {
+				Animate(scene.partySprites.babyt.sprite, "roar"),
+				scene.partySprites.babyt:hop(),
+				MessageBox{message="Baby T: That's right! {p60}We're not scared of you!"}
+			},
+			Parallel {
+				scene.partySprites.b:hop(),
+				MessageBox{message="B: It's over, Robotnik."}
+			},
 			Wait(0.5),
 			MessageBox{message="Robotnik: Perhaps I've underestimated your motley crew of misfits.", textSpeed=3},
 			Animate(scene.objectLookup.Robotnik.sprite, "idleright"),
@@ -101,8 +107,9 @@ return function(scene, hint)
 			Do(function() scene.objectLookup.Robotnik.sprite:setAnimation("flyforward") end),
 			Ease(scene.objectLookup.Robotnik, "y", function() return scene.objectLookup.Robotnik.y + 30 end, 1),
 			Ease(scene.objectLookup.Robotnik, "y", function() return scene.objectLookup.Robotnik.y - 500 end, 3),
-			Animate(scene.partySprites.babyt.sprite, "saddown"),
+			Animate(scene.partySprites.babyt.sprite, "idleup"),
 			Animate(scene.partySprites.b.sprite, "idleup"),
+			Animate(scene.partySprites.tails.sprite, "idleup"),
 			Parallel {
 				scene.partySprites.b:hop(),
 				MessageBox{message="B: He's heading for the Light! {p60}Go Tails!!"}

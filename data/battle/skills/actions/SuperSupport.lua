@@ -32,8 +32,9 @@ return function(self, targets)
 	return Serial {
 		Animate(self.sprite, "victory"),
 		Parallel {
+			self:hop(),
 			MessageBox {
-				message="Baby T: You guys are the best!",
+				message="Baby T: We can do this!",
 				rect=MessageBox.HEADLINER_RECT,
 				textSpeed=8,
 				closeAction=Wait(1)

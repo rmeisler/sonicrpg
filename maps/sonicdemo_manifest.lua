@@ -181,6 +181,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/emp.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/puck.png"
 	},
 	{
@@ -381,7 +385,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/snowdust.png"
+		file = "art/sprites/dust.png"
 	},
 	{
 		type = "image",

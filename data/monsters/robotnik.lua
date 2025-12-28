@@ -578,11 +578,11 @@ return {
 						},
 						Do(function()
 							local newStats = table.clone(target.stats)
-							newStats.attack = newStats.attack * 0.5
+							newStats.defense = newStats.defense * 0.25
 							target:pushStats(newStats)
 						end),
 						MessageBox {
-							message="Tails attack damage reduced!",
+							message="Tails defense reduced!",
 							rect=MessageBox.HEADLINER_RECT,
 							closeAction=Wait(1)
 						},
