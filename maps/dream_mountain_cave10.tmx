@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="4000" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="87">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="4000" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="89">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/caveoflight.png"/>
   <property name="noBattleMusic" type="bool" value="true"/>
@@ -218,6 +218,21 @@
     <property name="defaultAnim" value="race"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/tails.png"/>
+   </properties>
+  </object>
+  <object id="87" name="Sonic" type="BasicNPC" gid="6839" x="544" y="608" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="juicerightsmirkup"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
+   </properties>
+  </object>
+  <object id="88" name="Fleet" type="BasicNPC" gid="6839" x="544" y="480" width="64" height="64">
+   <properties>
+    <property name="angle" type="float" value="30"/>
+    <property name="defaultAnim" value="flyright"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
    </properties>
   </object>
  </objectgroup>

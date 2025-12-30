@@ -455,7 +455,7 @@ end
 function BasicScene:onExit(args)
 	local fadeOutSpeed = args.fadeOutSpeed or 1.0
 	ScreenShader:sendColor("multColor", self.bgColor)
-	
+
 	local fadeMusicOrNoop = Action()
 	if args.fadeOutMusic then
 		fadeMusicOrNoop = AudioFade(
@@ -473,9 +473,9 @@ function BasicScene:onExit(args)
 			fadeMusicOrNoop,
 		
 			-- Fade to black
-			Ease(self.bgColor, 1, 0, 2 * fadeOutSpeed, "linear"),
-			Ease(self.bgColor, 2, 0, 2 * fadeOutSpeed, "linear"),
-			Ease(self.bgColor, 3, 0, 2 * fadeOutSpeed, "linear"),
+			Ease(self.bgColor, 1, args.fadeWhite and 1024 or 0, 2 * fadeOutSpeed, "linear"),
+			Ease(self.bgColor, 2, args.fadeWhite and 1024 or 0, 2 * fadeOutSpeed, "linear"),
+			Ease(self.bgColor, 3, args.fadeWhite and 1024 or 0, 2 * fadeOutSpeed, "linear"),
 			Do(function()
 				ScreenShader:sendColor("multColor", self.bgColor)
 			end)
@@ -650,6 +650,7 @@ function BasicScene:changeScene(args)
 			hint = args.hint,
 			tutorial = args.tutorial,
 			cinematic = args.cinematic,
+			fadeWhite = args.fadeWhite,
 			fadeOutSpeed = args.fadeOutSpeed,
 			fadeInSpeed = args.fadeInSpeed,
 			fadeOutMusic = args.fadeOutMusic,
@@ -672,6 +673,7 @@ function BasicScene:changeScene(args)
 			hint = args.hint,
 			tutorial = args.tutorial,
 			cinematic = args.cinematic,
+			fadeWhite = args.fadeWhite,
 			fadeOutSpeed = args.fadeOutSpeed,
 			fadeInSpeed = args.fadeInSpeed,
 			fadeOutMusic = args.fadeOutMusic,

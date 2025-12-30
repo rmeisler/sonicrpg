@@ -5,6 +5,17 @@ return {
     h = 87,
 
     animations = {
+		ground = {
+            frames = {{16,0}}
+        },
+		hurt = {
+            frames = {{14,0},{15,0}},
+			speed = 0.1
+        },
+		aimlookback = {
+            frames = {{12,0},{13,0}},
+			speed = 0.1
+        },
 		angry = {
             frames = {{10,0},{11,0}},
 			speed = 0.1

@@ -8,7 +8,7 @@ return {
   height = 25,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 87,
+  nextobjectid = 89,
   properties = {
     ["battlebg"] = "../art/backgrounds/caveoflight.png",
     ["noBattleMusic"] = true,
@@ -619,6 +619,43 @@ return {
             ["defaultAnim"] = "race",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/tails.png"
+          }
+        },
+        {
+          id = 87,
+          name = "Sonic",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 544,
+          y = 608,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "juicerightsmirkup",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/sonic.png"
+          }
+        },
+        {
+          id = 88,
+          name = "Fleet",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 544,
+          y = 480,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["angle"] = 30,
+            ["defaultAnim"] = "flyright",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/fleet.png"
           }
         }
       }

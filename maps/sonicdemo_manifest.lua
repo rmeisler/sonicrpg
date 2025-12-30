@@ -700,6 +700,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/sonicfanfare2.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/dreammountain.ogg",
 		category = "music",
 		looping = true

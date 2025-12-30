@@ -169,13 +169,11 @@ function TitleSplashScene:onExit(args)
 end
 
 function TitleSplashScene:newGame()
-	GameState:addToParty("tails", 5, true)
-	GameState:addToParty("babyt", 5, true)
-	GameState:addToParty("b", 5, true)
+	GameState:addToParty("tails", 3, true)
 	GameState.leader = "tails"
-	
+
 	self.exiting = true
-	self.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/ep5intromanifest.lua"}
+	self.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/ep5intromanifest.lua", fadeWhite=true}
 end
 
 function TitleSplashScene:continue()

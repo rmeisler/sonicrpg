@@ -44,7 +44,48 @@ return function(scene)
 
 	GameState.leader = "tails"
 	
+	local dustObjects = {}
+	local currentDust = 0
+	for i=1,20 do
+		local dustAnim = "right"
+		--local dustX, dustY = self.x, self.y + self.halfHeight
+		--dustX = dustX - self.width * 2 - 5
+
+		local dustObject = BasicNPC(
+			scene,
+			{name = "objects"},
+			{name = "dust", x = 0, y = 0, width = 40, height = 36,
+				properties = {nocollision = true, sprite = "art/sprites/dust.png", align = "bottom_left"}
+			}
+		)
+		dustObject.sprite.color[1] = 130
+		dustObject.sprite.color[2] = 130
+		dustObject.sprite.color[3] = 200
+		dustObject.sprite.color[4] = 255
+		
+		--dustObject.x = dustObject.x - dustObject.sprite.w
+		--dustObject.y = dustObject.y - dustObject.sprite.h*2
+		dustObject.sprite.transform.sx = 4
+		dustObject.sprite.transform.sy = 4
+		dustObject.sprite:setAnimation(dustAnim)
+		dustObject.sprite:addSceneHandler("update", function(self, dt)
+			local anim = self.animations[self.selected]
+			if not anim then
+				return
+			end
+			if anim.position == #anim.frames then
+				self.color[4] = 0
+				currentDust = (currentDust + 1) % table.count(dustObjects)
+			end
+		end)
+		scene:addObject(dustObject)
+		table.insert(dustObjects, dustObject)
+	end
+
 	local ROBOTNIK_SPEED = 20
+
+	local sonic = scene.objectLookup.Sonic
+	local fleet = scene.objectLookup.Fleet
 	local tails = scene.objectLookup.Tails
 	local robotnik = scene.objectLookup.Robotnik
 	local chargeShot = BasicNPC(
@@ -75,7 +116,11 @@ return function(scene)
 		Do(function()
 			scene.objectLookup.Robotnik:addSceneHandler("update", function(self, dt)
 				local vx = ROBOTNIK_SPEED * (dt/0.016)
-				self.x = self.x + vx
+				if self.hurt then
+					self.x = self.x + vx * 0.2
+				else
+					self.x = self.x + vx
+				end
 				chargeShot.x = chargeShot.x + vx
 
 				if self.x > 48000 then
@@ -86,6 +131,20 @@ return function(scene)
 					tails.x = tails.x + vx
 				elseif self.x > 2000 then
 					tails.x = tails.x + vx
+				end
+				
+				if sonic.x > 80000 then
+					if sonic.x < robotnik.x - 200 then
+						sonic.x = sonic.x + vx + 2 * (dt/0.016)
+					else
+						sonic.x = sonic.x + vx
+					end
+				end
+				
+				if fleet.x > 80000 and fleet.x < 100000 then
+					fleet.x = fleet.x + vx + 60 * (dt/0.016)
+				elseif fleet.x > 100000 then
+					fleet.x = fleet.x + vx
 				end
 
 				if self.x > 9000 and self.x < 11000 then
@@ -101,15 +160,6 @@ return function(scene)
 				elseif self.x > 20000 and self.x < 22000 then
 					-- pan forward again
 					scene.camPos.x = scene.camPos.x - vx*1.5
-				--[[elseif self.x > 48000 and self.x < 50000 then
-					-- pan back
-					scene.camPos.x = scene.camPos.x - vx/2
-				elseif self.x > 50000 and self.x < 57000 then
-					-- look at tails
-					scene.camPos.x = scene.camPos.x - vx
-				elseif self.x > 57000 and self.x < 59000 then
-					-- pan forward again
-					scene.camPos.x = scene.camPos.x - vx*1.5]]
 				else
 					scene.camPos.x = scene.camPos.x - vx
 				end
@@ -143,7 +193,10 @@ return function(scene)
 				mine.sprite.transform.oy = 9.5
 				scene:addObject(mine)
 				
-				mine:run(Ease(mine, "y", function() return mine.y + 60 end, 6))
+				mine:run {
+					PlayAudio("sfx", "choose", 1, true, false, true),
+					Ease(mine, "y", function() return mine.y + 100 end, 8)
+				}
 
 				if not scene.mines then
 					scene.mines = {}
@@ -175,13 +228,41 @@ return function(scene)
 		Parallel {
 			Ease(chargeShot.sprite.transform, "sx", 1, 0.5),
 			Ease(chargeShot.sprite.transform, "sy", 1, 0.5),
-			
-			PlayAudio("sfx", "robotnikgrit", 1, true),
-			MessageBox{message="Robotnik: DIE!!", textSpeed=3, closeAction=Wait(2)},
 		},
-
-		MessageBox{message="Watch where you're pointing that thing! {p60}You could shoot your eye out!"},
+		MessageBox{message="Robotnik: DIE!!", textSpeed=3, closeAction=Wait(2)},
 		
-		Wait(1000)
+		
+		Do(function()
+			sonic.x = robotnik.x - 400
+		end),
+		MessageBox{message="Sonic: Yo Buttnik! {p60}Watch where you're pointing that thing!", closeAction=Wait(2)},
+		Do(function()
+			robotnik.sprite:setAnimation("aimlookback")
+		end),
+		PlayAudio("sfx", "robotnikgrit", 1, true),
+		
+		Wait(2),
+		Do(function()
+			fleet.x = robotnik.x - 400
+		end),
+		
+		PlayAudio("music", "sonicfanfare2", 1, true),
+		PlayAudio("sfx", "sonicrunturn", 1, true),
+		Wait(0.2),
+		Do(function()
+			robotnik.sprite:setAnimation("hurt")
+			robotnik.hurt = true
+			chargeShot.hidden = true
+		end),
+		PlayAudio("sfx", "robotnikhurt", 1, true),
+		Ease(robotnik, "y", function() return robotnik.y - 150 end, 3),
+		Ease(robotnik, "y", function() return robotnik.y + 250 end, 8),
+		Animate(robotnik.sprite, "hurt"),
+		
+		MessageBox{message="Fleet: Got him!", closeAction=Wait(1.5)},
+		MessageBox{message="Sonic: Way past cool, Fleet!", closeAction=Wait(2)},
+		Do(function()
+			scene:changeScene {map="lightofmobius", fadeOutSpeed=2, fadeInSpeed=2, fadeWhite=true}
+		end)
 	}
 end
