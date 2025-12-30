@@ -91,7 +91,7 @@ return function(scene, hint)
 			MessageBox{message="Robotnik: You can not wish to destroy me, or my empire... {p60}the Light forbids such wishes...", textSpeed=3},
 			Parallel {
 				scene.partySprites.babyt:hop(),
-				MessageBox{message="Baby T: Uh, maybe so! {p60}But he can still wish to change history so that you never took over!"}
+				MessageBox{message="Baby T: Maybe so! {p60}But he can still wish to change history so that you never took over!"}
 			},
 			Wait(1),
 			Animate(scene.partySprites.tails.sprite, "saddown"),

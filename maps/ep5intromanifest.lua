@@ -395,23 +395,11 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/hammer.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/wrench.png"
-	},
-	{
-		type = "image",
 		file = "art/sprites/mine.png"
 	},
 	{
 		type = "image",
-		file = "art/sprites/snowball.png"
-	},
-	{
-		type = "image",
-		file = "art/sprites/snowboulder.png"
+		file = "art/sprites/robotnikmine.png"
 	},
 	{
 		type = "image",
@@ -1254,9 +1242,8 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/tailstraining.ogg",
+		file = "audio/music/tailsrace.ogg",
 		category = "music",
-		looping = true,
 	},
 	{
 		type = "sound",

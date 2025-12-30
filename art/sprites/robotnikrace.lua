@@ -5,7 +5,23 @@ return {
     h = 87,
 
     animations = {
-        lookforward = {
+		angry = {
+            frames = {{10,0},{11,0}},
+			speed = 0.1
+        },
+		aim = {
+            frames = {{8,0},{9,0}},
+			speed = 0.1
+        },
+		scared = {
+            frames = {{6,0},{7,0}},
+			speed = 0.1
+        },
+		dropmines = {
+            frames = {{4,0},{5,0}},
+			speed = 0.1
+        },
+		lookforward = {
             frames = {{2,0},{3,0}},
 			speed = 0.1
         },

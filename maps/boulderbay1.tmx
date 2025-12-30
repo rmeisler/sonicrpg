@@ -378,12 +378,12 @@ return function(self)
         Animate(self.scene.objectLookup.BabyT.sprite, &quot;victory&quot;),
         Parallel {
             self.scene.objectLookup.BabyT:hop(),
-            MessageBox {message=translate and &quot;Baby T: We're back!&quot; or &quot;Baby T: *happy grunt*!&quot;}
+            MessageBox {message=translate and &quot;Baby T: We made it!&quot; or &quot;Baby T: *happy grunt*!&quot;}
         },
-        Do(function()
-            self.scene.objectLookup.BabyT.hidden = true
-        end),
         MessageBox {message=&quot;Baby T rejoined your party!&quot;, sfx=&quot;choose&quot;},
+        Wait(1),
+        Animate(self.scene.objectLookup.BabyT.sprite, &quot;saddown&quot;),
+        MessageBox {message=translate and &quot;Baby T: ...{p60}My poor uncle...&quot; or &quot;Baby T: *sad grunt*&quot;}
         Do(function()
             self.scene.objectLookup.BabyT:permanentRemove()
             self:remove()

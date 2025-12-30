@@ -89,18 +89,6 @@ return {
 			frames = {{13,5},{14,5}},
 			speed = 0.1
 		},
-		juiceright = {
-			frames = {{13,5},{14,5}},
-			speed = 0.1
-		},
-		juiceupright = {
-			frames = {{13,5},{14,5}},
-			speed = 0.1
-		},
-		juicedownright = {
-			frames = {{13,5},{14,5}},
-			speed = 0.1
-		},
 		
 		youngdown = {
 			frames = {{0,5}}

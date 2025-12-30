@@ -21,5 +21,9 @@ return {
 			frames = {{7,0},{6,0}},
 			speed = 0.08
 		},
+		charge = {
+			frames = {{8,0},{9,0}},
+			speed = 0.08
+		},
     }
 }
