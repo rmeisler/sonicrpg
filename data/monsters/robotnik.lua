@@ -176,6 +176,10 @@ return {
 	end,
 
 	behavior = function (self, target)
+		if target == nil then
+			return Telegraph(self, "No targets available", {500,500,500,50})
+		end
+	
 		if self.hp <= 0 then
 			return Action()
 		end
@@ -506,7 +510,7 @@ return {
 			elseif state == "acidrain" then
 				local damageAllActions = {}
 				for _,party in pairs(self.scene.party) do
-					table.insert(damageAllActions, party:takeDamage(self.stats))
+					table.insert(damageAllActions, party:takeDamage({attack=self.stats.attack, speed=100, luck=0}))
 				end
 
 				return Serial {

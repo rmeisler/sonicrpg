@@ -109,7 +109,7 @@ return function(scene)
 	scene:addObject(chargeShot)
 
 	return BlockPlayer {
-		Do(function()
+		--[[Do(function()
 			scene.player.sprite.visible = false
 			scene.player.dropShadow.hidden = true
 		end),
@@ -212,7 +212,7 @@ return function(scene)
 			Wait(0.2)
 		}, 5),
 		
-		MessageBox{message="Robotnik: Adieu{p40}, little fox boy...", textSpeed=3, closeAction=Wait(3)},
+		MessageBox{message="Robotnik: Adieu{p40}, fox boy...", textSpeed=3, closeAction=Wait(3)},
 		
 		Wait(6),
 		Do(function() robotnik.sprite:setAnimation("scared") end),
@@ -260,9 +260,12 @@ return function(scene)
 		Animate(robotnik.sprite, "hurt"),
 		
 		MessageBox{message="Fleet: Got him!", closeAction=Wait(1.5)},
-		MessageBox{message="Sonic: Way past cool, Fleet!", closeAction=Wait(2)},
+		MessageBox{message="Sonic: Way past cool, Fleet!", closeAction=Wait(2)},]]
+		Wait(2),
+		PlayAudio("sfx", "battlestart", 1, true),
 		Do(function()
-			scene:changeScene {map="lightofmobius", fadeOutSpeed=2, fadeInSpeed=2, fadeWhite=true}
+			love.graphics.setBackgroundColor(255, 255, 255, 255)
+			scene:changeScene {map="lightofmobius", fadeOutSpeed=0.2, enterDelay=1, fadeInSpeed=0.1, fadeWhite=true}
 		end)
 	}
 end

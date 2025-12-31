@@ -549,6 +549,7 @@ return function(self)
         MessageBox{message=&quot;Papa T: Thank you, son. {p60}I can see you are so much stronger than I gave you credit for...&quot;},
         Animate(self.scene.objectLookup.UncleT.sprite, &quot;papat_sad&quot;),
         MessageBox{message=&quot;Papa T: Your poor uncle... {p60}he fought bravely for the family, but he was captured.&quot;},
+        MessageBox{message=&quot;Papa T: I hope he's alright...&quot;},
         Parallel {
             walkin,
             AudioFade(&quot;music&quot;, 1, 0, 1)
@@ -908,11 +909,9 @@ return function(self)
         Animate(sprites.b.sprite, &quot;idleup&quot;),
         MessageBox{message=&quot;B: What will happen if Robotnik gets to this \&quot;Light\&quot; before we do? {p80}What exactly is this\n\&quot;Light of Mobius\&quot;?&quot;},
         PlayAudio(&quot;music&quot;, &quot;lightofmobius&quot;, 1, true, true),
-        Animate(self.scene.objectLookup.MamaT.sprite, &quot;mamat&quot;),
         MessageBox{message=&quot;Mama T: The Light has existed since the dawn of Mobius... {p80}it's said that the Light is made from the hopes and dreams of all living beings...&quot;},
         MessageBox{message=&quot;Mama T: As you approach the Light, you will be granted one wish... {p80}and although the Light naturally resists evil wishes that seek death, displacement, or power over others, we know that Robotnik is cunning--&quot;},
         MessageBox{message=&quot;Mama T: He has undoubtedly found a way to still use the Light's power to serve his dark ambitions...&quot;},
-        MessageBox{message=&quot;Mama T: Take this with you{p60}, it will help you...&quot;},
         -- Shadow passes overhead
         Do(function()
             shadowLayer.opacity = 0.6
@@ -938,11 +937,9 @@ return function(self)
                     sprites.tails:hop(),
                 },
                 PlayAudio(&quot;music&quot;, &quot;robotnikship&quot;, 1, true),
-                Animate(self.scene.objectLookup.MamaT.sprite, &quot;mamat_sad&quot;),
                 MessageBox{message=&quot;Mama T: Robotnik!&quot;, closeAction=Wait(1.5)},
 
                 Do(function()
-                    GameState:grantItem(require &quot;data/items/RainbowConkShell&quot;, 1)
                     self.scene:changeScene{map=&quot;worldmap&quot;, fadeOutSpeed=2, fadeInSpeed=2, hint=&quot;ep5_robotnik_ship&quot;, spawnPoint=&quot;BoulderBaySpawn&quot;}
                 end)
             }

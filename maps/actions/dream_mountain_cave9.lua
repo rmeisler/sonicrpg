@@ -121,6 +121,9 @@ return function(scene, hint)
 			Ease(scene.partySprites.tails, "y", function() return scene.partySprites.tails.y - 30 end, 2),
 			Wait(0.5),
 			Ease(scene.partySprites.tails, "y", function() return scene.partySprites.tails.y - 500 end, 3),
+			Do(function()
+				scene:changeScene{map="dream_mountain_cave10", fadeInSpeed=0.2, fadeOutSpeed=0.2}
+			end)
 		}
 	end
 	

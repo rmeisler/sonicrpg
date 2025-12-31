@@ -163,6 +163,9 @@ return {
 		saddown = {
 		    frames = {{10,3}}
 		},
+		crydown = {
+		    frames = {{8,4}}
+		},
 		joyright = {
 			frames = {{10,0}}
 		},

@@ -173,7 +173,7 @@ function TitleSplashScene:newGame()
 	GameState.leader = "tails"
 
 	self.exiting = true
-	self.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/ep5intromanifest.lua", fadeWhite=true}
+	self.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/ep5intromanifest.lua"}
 end
 
 function TitleSplashScene:continue()

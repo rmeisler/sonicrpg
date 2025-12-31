@@ -57,7 +57,12 @@ return {
 	{
         type = "map",
         file = "maps/dream_mountain_cave10.lua",
-		primary = true
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/lightofmobius.lua",
+		--primary = true
     },
 	{
         type = "map",
@@ -567,6 +572,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/snowball.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/smack.png"
 	},
 	{
@@ -608,6 +617,11 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/boulder.png"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/thelight.ogg",
+		category = "sfx"
 	},
 	{
 		type = "sound",
@@ -678,6 +692,12 @@ return {
 		type = "sound",
 		file = "audio/music/sonicfanfare2.ogg",
 		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/talkingtolight.ogg",
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",

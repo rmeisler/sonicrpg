@@ -169,7 +169,7 @@
     <property name="sprite" type="file" value="../art/sprites/palmtree2.png"/>
    </properties>
   </object>
-  <object id="378" name="Chest1" type="Chest" gid="7597" x="128" y="576" width="64" height="64">
+  <object id="378" name="Chest1" type="Chest" gid="7597" x="608" y="576" width="64" height="64">
    <properties>
     <property name="BlueLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
@@ -272,7 +272,7 @@
     <property name="sprite" type="file" value="../art/sprites/palmtree2.png"/>
    </properties>
   </object>
-  <object id="398" name="Chest2" type="Chest" gid="7597" x="1472" y="192" width="64" height="64">
+  <object id="398" name="Chest2" type="Chest" gid="7597" x="2144" y="256" width="64" height="64">
    <properties>
     <property name="OpalPendant" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
@@ -383,7 +383,7 @@ return function(self)
         MessageBox {message=&quot;Baby T rejoined your party!&quot;, sfx=&quot;choose&quot;},
         Wait(1),
         Animate(self.scene.objectLookup.BabyT.sprite, &quot;saddown&quot;),
-        MessageBox {message=translate and &quot;Baby T: ...{p60}My poor uncle...&quot; or &quot;Baby T: *sad grunt*&quot;}
+        MessageBox {message=translate and &quot;Baby T: ...{p60}My poor uncle...&quot; or &quot;Baby T: *sad grunt*&quot;},
         Do(function()
             self.scene.objectLookup.BabyT:permanentRemove()
             self:remove()

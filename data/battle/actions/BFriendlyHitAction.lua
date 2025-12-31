@@ -9,11 +9,16 @@ local Do = require "actions/Do"
 
 local PressX = require "data/battle/actions/PressX"
 local OnHitEvent = require "data/battle/actions/OnHitEvent"
+local Telegraph = require "data/monsters/actions/Telegraph"
 
 local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
 
 return function(self, target)
+	if target == nil then
+		return Telegraph(self, "No targets available", {500,500,500,50})
+	end
+
 	local origXForm = Transform.from(self.sprite.transform)
 
 	return Serial {

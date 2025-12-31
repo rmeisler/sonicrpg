@@ -8,7 +8,7 @@ return {
   height = 74,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 489,
+  nextobjectid = 490,
   properties = {
     ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
@@ -1596,6 +1596,23 @@ return {
           shape = "rectangle",
           x = 3136,
           y = 640,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["RainbowNectar"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 489,
+          name = "Chest3",
+          type = "Chest",
+          shape = "rectangle",
+          x = 1728,
+          y = 511,
           width = 64,
           height = 64,
           rotation = 0,

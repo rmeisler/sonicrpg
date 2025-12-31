@@ -2843,6 +2843,9 @@ return function(self, dt)
         local storybook = SpriteNode(scene, Transform(0, -20, 1, 1), {255,255,255,0}, &quot;storybook1&quot;, nil, nil, &quot;ui&quot;)
         self.scene.objectLookup.WarRoom2OuterOverlay.sprite.sortOrderY = -1
 
+        self.scene.objectLookup.LeonMtg.sprite.sortOrderY=100000
+        self.scene.objectLookup.IvanMtg.sprite.sortOrderY=100000
+
         -- Cinematic begins
         self:run(BlockPlayer {
             AudioFade(&quot;music&quot;, 1,0,1),
@@ -2873,7 +2876,7 @@ return function(self, dt)
             },
             Do(function() self.scene.objectLookup.BMtg:remove() end),
             -- Sally looks sad
-            Animate(self.scene.objectLookup.SallyMtg.sprite, &quot;meeting_sadleft&quot;), 
+            Animate(self.scene.objectLookup.SallyMtg.sprite, &quot;meeting_worriedleft&quot;), 
             AudioFade(&quot;music&quot;, 1,0,1),
             Wait(1),
             MessageBox {message=&quot;Sonic: He'll be ok, Sal. I'll talk to him.&quot;},

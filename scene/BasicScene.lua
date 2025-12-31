@@ -291,8 +291,36 @@ function BasicScene:onEnter(args)
 
 	-- Fade in scene
 	local fadeInSpeed = args.fadeInSpeed or 1.0
-	self.bgColor = {0,0,0,255}
-	ScreenShader:sendColor("multColor", self.bgColor)
+	local fadeAction = Action()
+	if args.fadeWhite then
+		self.bgColor = {255,255,255,255}
+		self.bgWhite = {255,255,255,0}
+		ScreenShader:sendColor("multColor", self.bgColor)
+		ScreenShader:sendColor("addColor", self.bgWhite)
+
+		fadeAction = Parallel {
+			Ease(self.bgWhite, 1, 0, 2 * fadeInSpeed, "linear"),
+			Ease(self.bgWhite, 2, 0, 2 * fadeInSpeed, "linear"),
+			Ease(self.bgWhite, 3, 0, 2 * fadeInSpeed, "linear"),
+			Do(function()
+				ScreenShader:sendColor("addColor", self.bgWhite)
+			end)
+		}
+	else
+		self.bgColor = {0,0,0,255}
+		self.bgWhite = {0,0,0,0}
+		ScreenShader:sendColor("multColor", self.bgColor)
+		ScreenShader:sendColor("addColor", self.bgWhite)
+
+		fadeAction = Parallel {
+			Ease(self.bgColor, 1, 255, 2 * fadeInSpeed, "linear"),
+			Ease(self.bgColor, 2, 255, 2 * fadeInSpeed, "linear"),
+			Ease(self.bgColor, 3, 255, 2 * fadeInSpeed, "linear"),
+			Do(function()
+				ScreenShader:sendColor("multColor", self.bgColor)
+			end)
+		}
+	end
 	
 	if GameState.leader == "bunny" then
 		print("no special move")
@@ -310,19 +338,7 @@ function BasicScene:onEnter(args)
 				self.map.objectCollisionMap = self.objectCollisionLayer["objects"]
 			end
 		end),
-		Spawn(
-			Serial {
-				Parallel {
-					Ease(self.bgColor, 1, 255, 2 * fadeInSpeed, "linear"),
-					Ease(self.bgColor, 2, 255, 2 * fadeInSpeed, "linear"),
-					Ease(self.bgColor, 3, 255, 2 * fadeInSpeed, "linear"),
-					
-					Do(function()
-						ScreenShader:sendColor("multColor", self.bgColor)
-					end)
-				}
-			}
-		),
+		Spawn(fadeAction),
 			
 		onLoadAction,
 		
@@ -407,9 +423,37 @@ function BasicScene:onReEnter(args)
 	end
 
 	local fadeInSpeed = args.fadeInSpeed or 1.0
-	self.bgColor = {0,0,0,255}
-	ScreenShader:sendColor("multColor", self.bgColor)
-	
+	local fadeAction = Action()
+	if args.fadeWhite then
+		self.bgColor = {255,255,255,255}
+		self.bgWhite = {255,255,255,0}
+		ScreenShader:sendColor("multColor", self.bgColor)
+		ScreenShader:sendColor("addColor", self.bgWhite)
+
+		fadeAction = Parallel {
+			Ease(self.bgWhite, 1, 0, 2 * fadeInSpeed, "linear"),
+			Ease(self.bgWhite, 2, 0, 2 * fadeInSpeed, "linear"),
+			Ease(self.bgWhite, 3, 0, 2 * fadeInSpeed, "linear"),
+			Do(function()
+				ScreenShader:sendColor("addColor", self.bgWhite)
+			end)
+		}
+	else
+		self.bgColor = {0,0,0,255}
+		self.bgWhite = {0,0,0,0}
+		ScreenShader:sendColor("multColor", self.bgColor)
+		ScreenShader:sendColor("addColor", self.bgWhite)
+
+		fadeAction = Parallel {
+			Ease(self.bgColor, 1, 255, 2 * fadeInSpeed, "linear"),
+			Ease(self.bgColor, 2, 255, 2 * fadeInSpeed, "linear"),
+			Ease(self.bgColor, 3, 255, 2 * fadeInSpeed, "linear"),
+			Do(function()
+				ScreenShader:sendColor("multColor", self.bgColor)
+			end)
+		}
+	end
+
 	if GameState.leader == "bunny" then
 		self.player.noSpecialMove = true
 	end
@@ -424,15 +468,7 @@ function BasicScene:onReEnter(args)
 			end
 		end),
 	
-		Parallel {
-			-- Fade in
-			Ease(self.bgColor, 1, 255, 2 * fadeInSpeed, "linear"),
-			Ease(self.bgColor, 2, 255, 2 * fadeInSpeed, "linear"),
-			Ease(self.bgColor, 3, 255, 2 * fadeInSpeed, "linear"),
-			Do(function()
-				ScreenShader:sendColor("multColor", self.bgColor)
-			end)
-		},
+		fadeAction,
 		
 		Do(function()
 			self.player.cinematicStack = 0
@@ -469,17 +505,32 @@ function BasicScene:onExit(args)
 	
 	local fadeAction = Action()
 	if not args.noFade then
-		fadeAction = Parallel {
-			fadeMusicOrNoop,
-		
-			-- Fade to black
-			Ease(self.bgColor, 1, args.fadeWhite and 1024 or 0, 2 * fadeOutSpeed, "linear"),
-			Ease(self.bgColor, 2, args.fadeWhite and 1024 or 0, 2 * fadeOutSpeed, "linear"),
-			Ease(self.bgColor, 3, args.fadeWhite and 1024 or 0, 2 * fadeOutSpeed, "linear"),
-			Do(function()
-				ScreenShader:sendColor("multColor", self.bgColor)
-			end)
-		}
+		if args.fadeWhite then
+			self.bgWhite = {0,0,0,0}
+			fadeAction = Parallel {
+				fadeMusicOrNoop,
+			
+				-- Fade to black
+				Ease(self.bgWhite, 1, 255, 2 * fadeOutSpeed, "linear"),
+				Ease(self.bgWhite, 2, 255, 2 * fadeOutSpeed, "linear"),
+				Ease(self.bgWhite, 3, 255, 2 * fadeOutSpeed, "linear"),
+				Do(function()
+					ScreenShader:sendColor("addColor", self.bgWhite)
+				end)
+			}
+		else
+			fadeAction = Parallel {
+				fadeMusicOrNoop,
+			
+				-- Fade to black
+				Ease(self.bgColor, 1, 0, 2 * fadeOutSpeed, "linear"),
+				Ease(self.bgColor, 2, 0, 2 * fadeOutSpeed, "linear"),
+				Ease(self.bgColor, 3, 0, 2 * fadeOutSpeed, "linear"),
+				Do(function()
+					ScreenShader:sendColor("multColor", self.bgColor)
+				end)
+			}
+		end
 	end
 	
 	return BlockPlayer {
@@ -951,10 +1002,12 @@ function BasicScene:updatePlayerPos()
 	else
 		self.player.sprite.transform.x = math.floor(xCap - self.player.width + self.camPos.x)
 	end
-	
-	local flyHeight = self.player.flyOffsetY + self.player.tempFlyOffsetY
+
+	local flyOffsetY = self.player.flyOffsetY or 0
+	local tempFlyOffsetY = self.player.tempFlyOffsetY or 0
+	local flyHeight = flyOffsetY + tempFlyOffsetY
 	local playerY = (GameState.leader == "tails" and self.player.doingSpecialMove) and
-		self.player.y + (self.player.flyOffsetY + self.player.tempFlyOffsetY) or
+		self.player.y + (flyOffsetY + tempFlyOffsetY) or
 		self.player.y
 	if  playerY < yCap then
 		self.player.sprite.transform.y = math.floor(playerY - self.player.height + self.camPos.y)
