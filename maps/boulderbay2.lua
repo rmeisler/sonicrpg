@@ -8,7 +8,7 @@ return {
   height = 73,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 428,
+  nextobjectid = 429,
   properties = {
     ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
@@ -800,7 +800,7 @@ return {
         {
           id = 395,
           name = "Swatbot1",
-          type = "Swatbot",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1088,
           y = 1632,
@@ -811,25 +811,18 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["audibleDistance"] = 0,
-            ["battle"] = "../data/monsters/armedswatbot.lua",
-            ["battleOnCollide"] = true,
             ["defaultAnim"] = "idleright",
             ["disappearAfterBattle"] = true,
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
-            ["noInvestigate"] = true,
-            ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/swatbotwithblaster.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7",
-            ["viewRange"] = "ViewRange",
-            ["visibleDistance"] = 100
+            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
         {
           id = 396,
           name = "Swatbot2",
-          type = "Swatbot",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1344,
           y = 1632,
@@ -840,19 +833,12 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["audibleDistance"] = 0,
-            ["battle"] = "../data/monsters/armedswatbot.lua",
-            ["battleOnCollide"] = true,
             ["defaultAnim"] = "idleright",
             ["disappearAfterBattle"] = true,
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
-            ["noInvestigate"] = true,
-            ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/swatbotwithblaster.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7",
-            ["viewRange"] = "ViewRange",
-            ["visibleDistance"] = 100
+            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
         {
@@ -904,8 +890,25 @@ return {
           gid = 7597,
           visible = true,
           properties = {
-            ["LaserShield"] = 2,
+            ["GreenLeaf"] = 2,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 428,
+          name = "Battle1",
+          type = "TouchTrigger",
+          shape = "rectangle",
+          x = 1056,
+          y = 1664,
+          width = 384,
+          height = 128,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["atMostOnce"] = true,
+            ["script"] = "local Do = require \"actions/Do\"\n\nreturn function(self)\n    return self.scene:enterBattle {\n        opponents = {\"armedswatbot\", \"armedswatbot\"},\n        beforeBattle = Do(function()\n            self.scene.objectLookup.Swatbot1:permanentRemove()\n            self.scene.objectLookup.Swatbot2:permanentRemove()\n        end),\n    }\nend"
           }
         }
       }
@@ -1291,22 +1294,6 @@ return {
           properties = {
             ["notColliding"] = "return function(self, player)\n    if not self.deactivateLayer then\n        self.deactivateLayer = self.scene:findLayer(\"hill_upper\")\n    end\n    self.deactivateLayer.opacity = 1\nend",
             ["whileColliding"] = "return function(self, player)\n    if not self.deactivateLayer then\n        self.deactivateLayer = self.scene:findLayer(\"hill_upper\")\n    end\n    self.deactivateLayer.opacity = 0\nend"
-          }
-        },
-        {
-          id = 427,
-          name = "ViewRange",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 896,
-          y = 1760,
-          width = 672,
-          height = 224,
-          rotation = 0,
-          gid = 7597,
-          visible = false,
-          properties = {
-            ["ghost"] = true
           }
         }
       }

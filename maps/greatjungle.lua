@@ -3085,7 +3085,7 @@ return {
             ["depth"] = 192,
             ["flyLandingLayer"] = 6,
             ["ghost"] = true,
-            ["landingOffsetY"] = -16,
+            ["landingOffsetY"] = 15,
             ["nextFlyLandingLayer"] = 7,
             ["nextFlyOffsetY"] = 272
           }
@@ -3248,7 +3248,7 @@ return {
             ["depth"] = 192,
             ["flyLandingLayer"] = 6,
             ["ghost"] = true,
-            ["landingOffsetY"] = -16,
+            ["landingOffsetY"] = 15,
             ["nextFlyLandingLayer"] = 7,
             ["nextFlyOffsetY"] = 272
           }

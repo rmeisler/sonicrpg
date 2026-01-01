@@ -42,6 +42,8 @@ return function(scene)
 		end),
 		Do(function() scene.player.sprite:setAnimation("idleup") end),
 		Wait(3),
+		MessageBox {message="Tails: I made it! {p60}I think..."},
+		Wait(1),
 		PlayAudio("music", "talkingtolight", 1, true, true),
 		MessageBox {message="Tails: Is this..."},
 		MessageBox {message="Tails: The {h Light of Mobius}?..."},
@@ -110,6 +112,6 @@ return function(scene)
 		Do(function() scene.player.sprite:setAnimation("idledown") end),
 		Wait(2),
 		MessageBox {message="It is done.", textSpeed=3},
-		MessageBox {message="EPILOGUE TO BE DONE SOON", textSpeed=3},
+		MessageBox {message="Something something something the end! EPILOGUE TO BE DONE SOON", textSpeed=3},
 	}
 end

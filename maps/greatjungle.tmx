@@ -1478,7 +1478,7 @@
   <object id="366" name="Chest2" type="Chest" gid="7597" x="576" y="4543" width="64" height="64">
    <properties>
     <property name="Mushroom" type="int" value="1"/>
-    <property name="alignOffsetY" type="int" value="0"/>
+    <property name="alignOffsetY" type="int" value="-32"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -1592,7 +1592,7 @@
     <property name="depth" type="int" value="192"/>
     <property name="flyLandingLayer" type="int" value="6"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="landingOffsetY" type="int" value="-16"/>
+    <property name="landingOffsetY" type="int" value="15"/>
     <property name="nextFlyLandingLayer" type="int" value="7"/>
     <property name="nextFlyOffsetY" type="int" value="272"/>
    </properties>
@@ -1667,7 +1667,7 @@
     <property name="depth" type="int" value="192"/>
     <property name="flyLandingLayer" type="int" value="6"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="landingOffsetY" type="int" value="-16"/>
+    <property name="landingOffsetY" type="int" value="15"/>
     <property name="nextFlyLandingLayer" type="int" value="7"/>
     <property name="nextFlyOffsetY" type="int" value="272"/>
    </properties>

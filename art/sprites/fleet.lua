@@ -11,6 +11,9 @@ return {
 		flyright = {
 			frames = {{9,5}}
 		},
+		flyrightsmile = {
+			frames = {{9,6}}
+		},
 		idle = {
 			frames = {{5,7}}
 		},

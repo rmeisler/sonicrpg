@@ -8,7 +8,7 @@ return {
   height = 79,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 507,
+  nextobjectid = 510,
   properties = {
     ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
@@ -786,7 +786,7 @@ return {
         {
           id = 395,
           name = "Swatbot1",
-          type = "Swatbot",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 960,
           y = 2272,
@@ -797,19 +797,12 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["audibleDistance"] = 0,
-            ["battle"] = "../data/monsters/swatbot.lua",
-            ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
-            ["noInvestigate"] = true,
-            ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/swatbot.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7",
-            ["viewRange"] = "ViewRange",
-            ["visibleDistance"] = 200
+            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
         {
@@ -970,7 +963,7 @@ return {
         {
           id = 441,
           name = "Swatbot3",
-          type = "Swatbot",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1344,
           y = 2272,
@@ -981,25 +974,18 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["audibleDistance"] = 0,
-            ["battle"] = "../data/monsters/swatbot.lua",
-            ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
-            ["noInvestigate"] = true,
-            ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/swatbot.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7",
-            ["viewRange"] = "ViewRange",
-            ["visibleDistance"] = 200
+            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
         {
           id = 442,
           name = "Swatbot2",
-          type = "Swatbot",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1152,
           y = 2272,
@@ -1010,25 +996,18 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["audibleDistance"] = 0,
-            ["battle"] = "../data/monsters/armedswatbot.lua",
-            ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
-            ["noInvestigate"] = true,
-            ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/swatbotwithblaster.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7",
-            ["viewRange"] = "ViewRange",
-            ["visibleDistance"] = 200
+            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
         {
           id = 443,
           name = "Swatbot4",
-          type = "Swatbot",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1984,
           y = 2112,
@@ -1039,25 +1018,18 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["audibleDistance"] = 0,
-            ["battle"] = "../data/monsters/legacyswatbot.lua",
-            ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
-            ["noInvestigate"] = true,
-            ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7",
-            ["viewRange"] = "ViewRange2",
-            ["visibleDistance"] = 200
+            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
         {
           id = 445,
           name = "Swatbot5",
-          type = "Swatbot",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 2368,
           y = 2112,
@@ -1068,19 +1040,12 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["audibleDistance"] = 0,
-            ["battle"] = "../data/monsters/legacyswatbot.lua",
-            ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
-            ["noInvestigate"] = true,
-            ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/swatbotwhite.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7",
-            ["viewRange"] = "ViewRange2",
-            ["visibleDistance"] = 200
+            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
         {
@@ -1235,7 +1200,7 @@ return {
         {
           id = 494,
           name = "Rover1",
-          type = "Cambot",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1632,
           y = 770,
@@ -1246,25 +1211,18 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["audibleDistance"] = 0,
-            ["battle"] = "../data/monsters/rover.lua",
-            ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
-            ["noInvestigate"] = true,
-            ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/rover.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7",
-            ["viewRange"] = "ViewRange3",
-            ["visibleDistance"] = 200
+            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
         {
           id = 496,
           name = "Swatbot6",
-          type = "Swatbot",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1504,
           y = 768,
@@ -1275,25 +1233,18 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["audibleDistance"] = 0,
-            ["battle"] = "../data/monsters/swatbot.lua",
-            ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
-            ["noInvestigate"] = true,
-            ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/swatbot.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7",
-            ["viewRange"] = "ViewRange3",
-            ["visibleDistance"] = 200
+            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
         {
           id = 497,
           name = "Swatbot7",
-          type = "Swatbot",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 1760,
           y = 768,
@@ -1304,25 +1255,18 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["audibleDistance"] = 0,
-            ["battle"] = "../data/monsters/swatbot.lua",
-            ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
-            ["noInvestigate"] = true,
-            ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/swatbot.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7",
-            ["viewRange"] = "ViewRange3",
-            ["visibleDistance"] = 200
+            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
         {
           id = 499,
           name = "Cambot1",
-          type = "Swatbot",
+          type = "BasicNPC",
           shape = "rectangle",
           x = 2176,
           y = 2112,
@@ -1333,19 +1277,12 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["audibleDistance"] = 0,
-            ["battle"] = "../data/monsters/armedswatbot.lua",
-            ["battleOnCollide"] = true,
             ["defaultAnim"] = "idledown",
             ["disappearAfterBattle"] = true,
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
-            ["noInvestigate"] = true,
-            ["noflashlight"] = true,
             ["sprite"] = "../art/sprites/swatbotwithblaster.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7",
-            ["viewRange"] = "ViewRange2",
-            ["visibleDistance"] = 200
+            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
           }
         },
         {
@@ -1380,6 +1317,57 @@ return {
           properties = {
             ["BlueLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 507,
+          name = "Battle1",
+          type = "TouchTrigger",
+          shape = "rectangle",
+          x = 960,
+          y = 2304,
+          width = 448,
+          height = 128,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["atMostOnce"] = true,
+            ["script"] = "local Do = require \"actions/Do\"\n\nreturn function(self)\n    return self.scene:enterBattle {\n        opponents = {\"swatbot\", \"armedswatbot\", \"swatbot\"},\n        beforeBattle = Do(function()\n            self.scene.objectLookup.Swatbot1:permanentRemove()\n            self.scene.objectLookup.Swatbot2:permanentRemove()\n            self.scene.objectLookup.Swatbot3:permanentRemove()\n        end),\n    }\nend"
+          }
+        },
+        {
+          id = 508,
+          name = "Battle2",
+          type = "TouchTrigger",
+          shape = "rectangle",
+          x = 1984,
+          y = 2144,
+          width = 448,
+          height = 128,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["atMostOnce"] = true,
+            ["script"] = "local Do = require \"actions/Do\"\n\nreturn function(self)\n    return self.scene:enterBattle {\n        opponents = {\"legacyswatbot\", \"armedswatbot\", \"legacyswatbot\"},\n        beforeBattle = Do(function()\n            self.scene.objectLookup.Swatbot4:permanentRemove()\n            self.scene.objectLookup.Cambot1:permanentRemove()\n            self.scene.objectLookup.Swatbot5:permanentRemove()\n        end),\n    }\nend"
+          }
+        },
+        {
+          id = 509,
+          name = "Battle3",
+          type = "TouchTrigger",
+          shape = "rectangle",
+          x = 1408,
+          y = 800,
+          width = 448,
+          height = 96,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["atMostOnce"] = true,
+            ["script"] = "local Do = require \"actions/Do\"\n\nreturn function(self)\n    return self.scene:enterBattle {\n        opponents = {\"rover\", \"swatbot\", \"swatbot\"},\n        beforeBattle = Do(function()\n            self.scene.objectLookup.Swatbot6:permanentRemove()\n            self.scene.objectLookup.Rover1:permanentRemove()\n            self.scene.objectLookup.Swatbot7:permanentRemove()\n        end),\n    }\nend"
           }
         }
       }
@@ -1710,54 +1698,6 @@ return {
           properties = {
             ["notColliding"] = "return function(self, player)\n    if not self.deactivateLayer then\n        self.deactivateLayer = self.scene:findLayer(\"hill_upper2\")\n    end\n    self.deactivateLayer.opacity = 1\nend",
             ["whileColliding"] = "return function(self, player)\n    if not self.deactivateLayer then\n        self.deactivateLayer = self.scene:findLayer(\"hill_upper2\")\n    end\n    self.deactivateLayer.opacity = 0\nend"
-          }
-        },
-        {
-          id = 504,
-          name = "ViewRange",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 896,
-          y = 2400,
-          width = 576,
-          height = 224,
-          rotation = 0,
-          gid = 7597,
-          visible = false,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 505,
-          name = "ViewRange2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1920,
-          y = 2272,
-          width = 576,
-          height = 256,
-          rotation = 0,
-          gid = 7597,
-          visible = false,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 506,
-          name = "ViewRange3",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1408,
-          y = 928,
-          width = 576,
-          height = 224,
-          rotation = 0,
-          gid = 7597,
-          visible = false,
-          properties = {
-            ["ghost"] = true
           }
         }
       }

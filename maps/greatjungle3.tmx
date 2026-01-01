@@ -929,6 +929,7 @@
     <property name="depth" type="int" value="192"/>
     <property name="flyLandingLayer" type="int" value="6"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="landingOffsetY" type="int" value="15"/>
     <property name="nextFlyLandingLayer" type="int" value="7"/>
     <property name="nextFlyOffsetY" type="int" value="272"/>
    </properties>
@@ -943,6 +944,7 @@
     <property name="depth" type="int" value="192"/>
     <property name="flyLandingLayer" type="int" value="6"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="landingOffsetY" type="int" value="15"/>
     <property name="nextFlyLandingLayer" type="int" value="7"/>
     <property name="nextFlyOffsetY" type="int" value="272"/>
    </properties>
@@ -957,6 +959,7 @@
     <property name="depth" type="int" value="192"/>
     <property name="flyLandingLayer" type="int" value="6"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="landingOffsetY" type="int" value="15"/>
     <property name="nextFlyLandingLayer" type="int" value="7"/>
     <property name="nextFlyOffsetY" type="int" value="272"/>
    </properties>
@@ -977,6 +980,7 @@
     <property name="depth" type="int" value="192"/>
     <property name="flyLandingLayer" type="int" value="6"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="landingOffsetY" type="int" value="15"/>
     <property name="nextFlyLandingLayer" type="int" value="7"/>
     <property name="nextFlyOffsetY" type="int" value="272"/>
    </properties>

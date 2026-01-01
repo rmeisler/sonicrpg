@@ -109,7 +109,7 @@ return function(scene)
 	scene:addObject(chargeShot)
 
 	return BlockPlayer {
-		--[[Do(function()
+		Do(function()
 			scene.player.sprite.visible = false
 			scene.player.dropShadow.hidden = true
 		end),
@@ -141,10 +141,11 @@ return function(scene)
 					end
 				end
 				
-				if fleet.x > 80000 and fleet.x < 100000 then
+				if fleet.x > 80000 and fleet.x < 96500 then
 					fleet.x = fleet.x + vx + 60 * (dt/0.016)
-				elseif fleet.x > 100000 then
-					fleet.x = fleet.x + vx
+				elseif fleet.x > 96500 then
+					fleet.sprite:setAnimation("flyrightsmile")
+					fleet.x = fleet.x + vx * 0.9
 				end
 
 				if self.x > 9000 and self.x < 11000 then
@@ -260,12 +261,12 @@ return function(scene)
 		Animate(robotnik.sprite, "hurt"),
 		
 		MessageBox{message="Fleet: Got him!", closeAction=Wait(1.5)},
-		MessageBox{message="Sonic: Way past cool, Fleet!", closeAction=Wait(2)},]]
-		Wait(2),
+		MessageBox{message="Sonic: Way past cool, Fleet!", closeAction=Wait(2)},
+
 		PlayAudio("sfx", "battlestart", 1, true),
 		Do(function()
 			love.graphics.setBackgroundColor(255, 255, 255, 255)
-			scene:changeScene {map="lightofmobius", fadeOutSpeed=0.2, enterDelay=1, fadeInSpeed=0.1, fadeWhite=true}
+			scene:changeScene {map="lightofmobius", fadeOutSpeed=0.2, enterDelay=2, fadeInSpeed=0.1, fadeWhite=true}
 		end)
 	}
 end
