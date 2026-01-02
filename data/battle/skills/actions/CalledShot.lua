@@ -98,8 +98,8 @@ return function(self, target)
 	lockOnSprite.color[4] = 0
 	
 	local targetSprite = target:getSprite()
-	lockOnSprite.transform.x = targetSprite.transform.x + targetSprite.w*2 - math.random(targetSprite.w)
-	lockOnSprite.transform.y = targetSprite.transform.y + targetSprite.h - math.random(targetSprite.h/2)
+	lockOnSprite.transform.x = target.calledShotOverrideXForm and target.calledShotOverrideXForm.x or targetSprite.transform.x + math.random(targetSprite.w) - math.random(targetSprite.w)
+	lockOnSprite.transform.y = target.calledShotOverrideXForm and target.calledShotOverrideXForm.y or targetSprite.transform.y + math.random(targetSprite.h) - math.random(targetSprite.h)
 	
 	self.calledShotLanded = false
 	self.calledShotDone = false

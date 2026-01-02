@@ -297,6 +297,8 @@ return function(player)
 			hotspots.right_bot.y = hotspots.right_bot.y - self.flyOffsetY
 			hotspots.left_top.y = hotspots.left_top.y - self.flyOffsetY
 			hotspots.left_bot.y = hotspots.left_bot.y - self.flyOffsetY
+			
+			print("px = "..tostring(hotspots.left_top.x)..", py = "..tostring(hotspots.left_top.y))
 
 			-- If we can't move after landing, reset our position to where we took off from and flicker
 			if self.y > self.scene:getMapHeight() or not (
@@ -304,8 +306,8 @@ return function(player)
 				self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, 0, -movespeed)) or
 			   (self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, 0, movespeed) and
 				self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, 0, movespeed)) or
-			   (self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, -movespeed, 0, nil, true) and
-				self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, -movespeed, 0, nil, true)) or
+			   (self.scene:canMove(hotspots.left_top.x, hotspots.left_top.y, -movespeed, 0) and
+				self.scene:canMove(hotspots.left_bot.x, hotspots.left_bot.y, -movespeed, 0)) or
 			   (self.scene:canMove(hotspots.right_top.x, hotspots.right_top.y, movespeed, 0) and
 				self.scene:canMove(hotspots.right_bot.x, hotspots.right_bot.y, movespeed, 0))
 			) then

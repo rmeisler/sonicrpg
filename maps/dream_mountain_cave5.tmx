@@ -349,6 +349,7 @@
    <properties>
     <property name="defaultAnim" value="idledown"/>
     <property name="disappearOnFlag" type="bool" value="true"/>
+    <property name="flagOverride" value="ep5_reflection"/>
     <property name="sprite" type="file" value="../art/sprites/tails.png"/>
     <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
@@ -409,7 +410,7 @@ return function(self)
             MessageBox{message=&quot;Tails: What the heck is going on!?&quot;}
         },
         Wait(1),
-        MessageBox{message=&quot;Baby T's Reflection: Even though I have lived in Boudler Bay my whole life, I had to learn about the Light of Mobius from Tails!&quot;},
+        MessageBox{message=&quot;Baby T's Reflection: Even though I have lived in Boulder Bay my whole life, I had to learn about the Light of Mobius from Tails!&quot;},
         Parallel {
             sprites.babyt:hop(),
             refsprites.babyt:hop()
@@ -519,7 +520,7 @@ return function(self)
                     refsprites.tails:remove()
                     refsprites.babyt:remove()
                     refsprites.b:remove()
-                    reflection:remove()
+                    reflection:permanentRemove()
                     sprites.tails.sprite:setFadeWhite(-1, 1)
                     sprites.b.sprite:setFadeWhite(-1, 1)
                     sprites.babyt.sprite:setFadeWhite(-1, 1)

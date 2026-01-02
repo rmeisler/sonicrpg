@@ -42,7 +42,7 @@ return function(self, targets)
 			Serial {
 				AudioFade("music", 1.0, 0.0, 2),
 				Parallel {
-					PlayAudio("music", "babyt", 1.0),
+					PlayAudio("music", "babyt", 1.0, true),
 					Parallel(actions)
 				}
 			}

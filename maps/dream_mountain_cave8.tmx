@@ -263,8 +263,8 @@ return function(self)
             Ease(self.scene.objectLookup.EpochTails.sprite.color, 3, 255, 0.5)
         },
         MessageBox{message=&quot;Miles: The War Claws destroyed everything during the Great War...&quot;},
-        MessageBox{message=&quot;Miles: I was told that, after the King caught Mobotropolis' War Minister {h Julian Kintober} plotting against\nthe kingdom, he was banished...&quot;},
-        MessageBox{message=&quot;Miles: It was then that the, now former War Minister, made a deal with the {h War Claws}...&quot;},
+        MessageBox{message=&quot;Miles: I was told that, after the King caught Mobotropolis' War Minister {h Julian Kintobor} plotting against\nthe kingdom, he was banished...&quot;},
+        MessageBox{message=&quot;Miles: It was then that the now former War Minister made a deal with the {h War Claws}...&quot;},
         MessageBox{message=&quot;Miles: The War Claws, however, rejected Julian's 'roboticization' plan. {p80}They thought it put too much trust\nin the efficacy of mind control technology.&quot;},
         MessageBox{message=&quot;Miles: After all, if they failed to curb free will, it would then mean thousands of angry, super strong, roboticized citizenry to deal with...&quot;},
         MessageBox{message=&quot;Miles: So in exchange for his amnesty, Julian would instead build them a bomb. {p60}A very, {p60}very {p60}powerful bomb... {p80}to be used on Mobotropolis.&quot;},

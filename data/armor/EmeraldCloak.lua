@@ -6,6 +6,7 @@ return {
 	type = ItemType.Armor,
 	color = {50,50,50,255},
 	usableBy = {"tails", "b"},
+	regen = {stat = "sp", per_turn = 1},
 	stats = {
 		defense = 4
 	}

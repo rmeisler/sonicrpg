@@ -111,6 +111,7 @@ return {
 							Animate(selfSprite, "shieldbreak"),
 							Do(function() self.shieldSprite:setAnimation("broken") end),
 							PlayAudio("sfx", "factoryspit", 1, true),
+							Wait(1),
 							MessageBox {
 								message="Robotnik's shield is broken!",
 								rect=MessageBox.HEADLINER_RECT,
@@ -131,6 +132,10 @@ return {
 		selfSprite.transform.y = selfSprite.transform.y - 100
 		selfSprite.continuousAnimation = true
 		
+		self.calledShotOverrideXForm = Transform(
+			selfSprite.transform.x + selfSprite.w*2 - math.random(1, selfSprite.w),
+			selfSprite.transform.y + selfSprite.h - math.random(1, selfSprite.h)
+		)
 		self.calledShotKnockbackFn = function(self, impact, direction)
 			local selfSprite = self:getSprite()
 			return Serial {
@@ -186,14 +191,15 @@ return {
 		
 		if self.hp <= 7000 and self.numStates == 1 then
 			table.insert(self.states, "special")
-			self.numStates = 2
-		elseif self.hp <= 5000 and self.numStates == 2 then
-			table.insert(self.states, "grab")
+			table.insert(self.states, "laser")
 			self.numStates = 3
-		elseif self.hp <= 2500 and self.numStates == 3 then
+		elseif self.hp <= 5000 and self.numStates == 3 then
 			table.insert(self.states, "grab")
-			table.insert(self.states, "acidrain")
+			table.insert(self.states, "grab")
 			self.numStates = 5
+		elseif self.hp <= 2500 and self.numStates == 5 then
+			table.insert(self.states, "acidrain")
+			self.numStates = 6
 		end
 		
 		if not self.introDone then
@@ -558,6 +564,12 @@ return {
 			elseif state == "special" then
 				-- Don't keep picking B if already compelled
 				if target.id == "b" and target.confused then
+					if self.scene.partyByName.babyt.hp <= 0 and self.scene.partyByName.tails.hp <= 0 then
+						-- Pick a new action
+						table.insert(self.scene.opponentTurns, self)
+						return Action()
+					end
+
 					if math.random(1,2) == 1 then
 						target = self.scene.partyByName.babyt
 					else
@@ -621,7 +633,7 @@ return {
 							target:hop()
 						},
 						MessageBox {
-							message="Baby T immobilized is from fear!",
+							message="Baby T is immobilized from fear!",
 							rect=MessageBox.HEADLINER_RECT,
 							closeAction=Wait(1)
 						},
