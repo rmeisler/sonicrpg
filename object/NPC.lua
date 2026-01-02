@@ -306,7 +306,7 @@ function NPC:init(useBaseUpdate)
 			return
 		end
 	end
-	
+
 	if (self.isBot or self.disappearOnFlag) and GameState:isFlagSet(self:getFlag()) then
 		self:remove()
 		return

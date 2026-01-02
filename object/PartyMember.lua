@@ -15,11 +15,13 @@ local Animate = require "actions/Animate"
 local Layout = require "util/Layout"
 local Transform = require "util/Transform"
 local TargetType = require "util/TargetType"
+local ItemType = require "util/ItemType"
 
 local SpriteNode = require "object/SpriteNode"
 local Arrow = require "object/Arrow"
 local BattleActor = require "object/BattleActor"
 
+local SpHeal = require "data/items/actions/SpHeal"
 local RunAway = require "data/battle/actions/RunAway"
 
 local Scene = require "scene/Scene"
@@ -113,9 +115,20 @@ function PartyMember:setShadow()
 end
 
 function PartyMember:beginTurn()
+	local regenAction = Action()
+	if GameState:isEquipped(self.id, ItemType.Armor, "Emerald Cloak") then
+		regenAction = SpHeal("sp", 1)(self, self)
+	end
+
 	if self.state == BattleActor.STATE_IMMOBILIZED then
 		if self.noEscape then
-			self:endTurn()
+			self.scene:run {
+				regenAction,
+				Do(function()
+					self:endTurn()
+				end)
+			}
+
 			return
 		end
 
@@ -179,6 +192,7 @@ function PartyMember:beginTurn()
 			self.state = BattleActor.STATE_IDLE
 
 			self.scene:run {
+				regenAction,
 				shake,
 				self.escapeAction or Action(),
 				Do(function()
@@ -191,6 +205,7 @@ function PartyMember:beginTurn()
 			}
 		else
 			self.scene:run {
+				regenAction,
 				shake,
 				MessageBox {message=self.name.." is immobilized!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)},
 				Do(function()
@@ -216,6 +231,7 @@ function PartyMember:beginTurn()
 			self.state = BattleActor.STATE_IDLE
 
 			self.scene:run {
+				regenAction,
 				self.escapeAction or Action(),
 				Do(function()
 					self.sprite:setAnimation("idle")
@@ -234,6 +250,7 @@ function PartyMember:beginTurn()
 				end
 			end
 			self.scene:run {
+				regenAction,
 				self.confusedAction and self.confusedAction(self, target) or Action(),
 				Do(function()
 					self:endTurn()
@@ -245,6 +262,7 @@ function PartyMember:beginTurn()
 		local preAction = Action()
 		if self.poisoned then
 			preAction = Serial {
+				preAction,
 				MessageBox {message=self.name.." is poisoned!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(0.6)},
 				self:takeDamage(self.poisoned, true, BattleActor.poisonKnockback)
 			}
@@ -268,6 +286,7 @@ function PartyMember:beginTurn()
 		}
 		self.mainMenu:addHandler("cancel", PartyMember.skipTurn, self, self.mainMenu)
 		self.scene:run {
+			regenAction,
 			preAction,
 			self.mainMenu
 		}

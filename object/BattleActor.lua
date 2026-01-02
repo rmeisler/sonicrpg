@@ -245,11 +245,12 @@ function BattleActor:calculateDamage(stats)
 	local selfStats = self:getStats()
 	local defense = math.random(selfStats.defense * 2, selfStats.defense * 3)
 	local damage = math.max(0, math.floor((stats.attack * 10 + math.random(stats.attack)) - defense))
-
+	local dodgeChance = math.max(1, selfStats.speed - stats.speed)
+	
 	-- Random chance of miss
 	if stats.miss or
 	   damage == 0 or
-	   ((selfStats.speed > stats.speed) and (math.random(1, 100) <= (selfStats.speed - stats.speed)))
+	   math.random(dodgeChance, 100) <= dodgeChance
 	then
 		if damage ~= 0 or stats.miss then
 			damage = 0

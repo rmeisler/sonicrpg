@@ -121,6 +121,9 @@ function Player:construct(scene, layer, object)
 	-- A hashset of threedee objects we are touching
 	self.threeDeeObjects = {}
 	
+	-- A hashset of infinite drop objects
+	self.infiniteDropObjects = {}
+	
 	-- Current keyhint sprite and obj
 	self.curKeyHintSprite = nil
 	self.curKeyHint = nil
