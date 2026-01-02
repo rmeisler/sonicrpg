@@ -8,7 +8,7 @@ return {
   height = 32,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 37,
+  nextobjectid = 38,
   properties = {
     ["battlebg"] = "../art/backgrounds/caveoflight.png",
     ["onload"] = "actions/dream_mountain_cave2_etc.lua"

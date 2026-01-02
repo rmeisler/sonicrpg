@@ -42,8 +42,6 @@ return function(scene)
 		end),
 		Do(function() scene.player.sprite:setAnimation("idleup") end),
 		Wait(3),
-		MessageBox {message="Tails: I made it! {p60}I think..."},
-		Wait(1),
 		PlayAudio("music", "talkingtolight", 1, true, true),
 		MessageBox {message="Tails: Is this..."},
 		MessageBox {message="Tails: The {h Light of Mobius}?..."},
@@ -92,7 +90,7 @@ return function(scene)
 		Do(function() scene.player.sprite:setAnimation("crydown") end),
 		MessageBox {message="Tails: You mean... {p60}'Is my mom still alive?'... {p60}*sniff*"},
 		MessageBox {message="She died shortly after her capture.", textSpeed=3},
-		MessageBox {message="Tails: O-Oh n-no..."},
+		MessageBox {message="Tails: O-Oh..."},
 		MessageBox {message="It was her wish that you survive.", textSpeed=3},
 		MessageBox {message="You fulfilled her dreams by finding family in Knothole.", textSpeed=3},
 		Wait(2),
@@ -104,14 +102,16 @@ return function(scene)
 		MessageBox {message="Tails: I thought I could use your power to make everything better...{p60} to bring our families back..."},
 		MessageBox {message="Tails: But the trials taught me that the bigger the wish I make, the bigger the risk that things could go wrong..."},
 		MessageBox {message="Tails: I may not be able to save everyone, but at least I can save Baby T's family..."},
-		Wait(2),
+		Wait(1),
+		AudioFade("music", 1, 0, 1),
 		Do(function() scene.player.sprite:setAnimation("pose") end),
 		Ease(scene.player, "y", function() return scene.player.y - 50 end, 8),
 		Ease(scene.player, "y", function() return scene.player.y + 50 end, 8),
-		MessageBox {message="Tails: I wish for Boulder Bay and everyone in it to be returned to the state it was in before Robotnik showed up!"},
+		MessageBox {message="Tails: I wish for Boulder Bay and everyone in it to be returned to the state they were in before Robotnik showed up!"},
 		Do(function() scene.player.sprite:setAnimation("idledown") end),
-		Wait(2),
-		MessageBox {message="It is done.", textSpeed=3},
-		MessageBox {message="Something something something the end! EPILOGUE TO BE DONE SOON", textSpeed=3},
+		PlayAudio("music", "tailstheme", 1, true, true),
+		Do(function()
+			scene:changeScene{map="dream_mountain_cave11", fadeInSpeed=0.2, fadeOutSpeed=0.2, fadeWhite=true}
+		end)
 	}
 end

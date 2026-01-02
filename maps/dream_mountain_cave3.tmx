@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="41" height="32" tilewidth="32" tileheight="32" infinite="0" nextobjectid="37">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="41" height="32" tilewidth="32" tileheight="32" infinite="0" nextobjectid="38">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/caveoflight.png"/>
   <property name="onload" type="file" value="actions/dream_mountain_cave2_etc.lua"/>

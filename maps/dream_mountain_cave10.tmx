@@ -85,54 +85,6 @@
     <property name="sprite" type="file" value="../art/sprites/robotnikrace.png"/>
    </properties>
   </object>
-  <object id="67" name="Obstacle" type="EscapeObstacle" gid="4565" x="1920" y="-1120" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="snow"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
-   </properties>
-  </object>
-  <object id="69" name="Obstacle" type="EscapeObstacle" gid="4565" x="1856" y="-1216" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="snow"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
-   </properties>
-  </object>
-  <object id="71" name="Obstacle" type="EscapeObstacle" gid="4565" x="2560" y="-672" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="snow"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
-   </properties>
-  </object>
-  <object id="72" name="Obstacle" type="EscapeObstacle" gid="4565" x="2624" y="-576" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="snow"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
-   </properties>
-  </object>
-  <object id="73" name="Obstacle" type="EscapeObstacle" gid="4565" x="2496" y="-768" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="snow"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
-   </properties>
-  </object>
-  <object id="74" name="Obstacle" type="EscapeObstacle" gid="4565" x="2432" y="-864" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="snow"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
-   </properties>
-  </object>
   <object id="75" name="Obstacle" type="EscapeObstacle" gid="4565" x="3136" y="-1120" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
@@ -166,38 +118,6 @@
    </properties>
   </object>
   <object id="79" name="Obstacle" type="EscapeObstacle" gid="4565" x="3456" y="-576" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="snow"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
-   </properties>
-  </object>
-  <object id="81" name="Obstacle" type="EscapeObstacle" gid="4565" x="1504" y="-672" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="snow"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
-   </properties>
-  </object>
-  <object id="82" name="Obstacle" type="EscapeObstacle" gid="4565" x="1568" y="-576" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="snow"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
-   </properties>
-  </object>
-  <object id="83" name="Obstacle" type="EscapeObstacle" gid="4565" x="1440" y="-768" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="snow"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/haypatch.png"/>
-   </properties>
-  </object>
-  <object id="84" name="Obstacle" type="EscapeObstacle" gid="4565" x="1376" y="-864" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="snow"/>

@@ -61,8 +61,13 @@ return {
     },
 	{
         type = "map",
-        file = "maps/lightofmobius.lua",
+        file = "maps/dream_mountain_cave11.lua",
 		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/lightofmobius.lua",
+		primary = true
     },
 	{
         type = "map",
@@ -72,6 +77,11 @@ return {
 	{
         type = "map",
         file = "maps/boulderbay_cliffs.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/boulderbay_epilogue.lua",
 		--primary = true
     },
 	{

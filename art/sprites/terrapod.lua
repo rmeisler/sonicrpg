@@ -30,5 +30,24 @@ return {
 		papat_sad = {
             frames = {{7,0}}
         },
+		
+		unclet = {
+            frames = {{9,0}}
+        },
+		unclet_headbutt = {
+            frames = {{10,0},{11,0}},
+			speed=1
+        },
+		
+		grampat_surprised = {
+            frames = {{12,0}}
+        },
+		
+		grampat_scared = {
+            frames = {{11,0}}
+        },
+		grampat_surprised = {
+            frames = {{12,0}}
+        },
     }
 }

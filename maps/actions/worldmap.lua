@@ -22,6 +22,53 @@ return function(scene, hint)
 	local BlockPlayer = require "actions/BlockPlayer"
 	local Move = require "actions/Move"
 	
+	if hint == "ep5_epilogue" then
+		local shipLayer1 = scene:findLayer("ship1")
+		local shipLayer2 = scene:findLayer("ship2")
+
+		scene.player.sprite.visible = false
+		scene.player.dropShadow.hidden = true
+		
+		local opacityValue = 1
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+			end),
+			Repeat(Serial {
+				Do(function()
+					shipLayer1.opacity = 1
+					shipLayer2.opacity = 0
+				end),
+				Wait(0.2),
+				Do(function()
+					shipLayer1.opacity = 0
+					shipLayer2.opacity = 1
+				end),
+				Wait(0.2)
+			}, 5),
+			Repeat(Serial {
+				Do(function()
+					shipLayer1.opacity = opacityValue
+					shipLayer2.opacity = 0
+					opacityValue = opacityValue - 0.1
+				end),
+				Wait(0.2),
+				Do(function()
+					shipLayer1.opacity = 0
+					shipLayer2.opacity = opacityValue
+					opacityValue = opacityValue - 0.1
+				end),
+				Wait(0.2)
+			}, 6),
+			Wait(1),
+
+			Do(function()
+				--scene:changeScene{map="robotnikship_scene", fadeOutSpeed=2, fadeInSpeed=2}
+			end)
+		}
+	end
+	
 	if hint == "ep5_robotnik_ship" then
 		local shipLayer1 = scene:findLayer("ship1")
 		local shipLayer2 = scene:findLayer("ship2")
