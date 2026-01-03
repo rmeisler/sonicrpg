@@ -360,13 +360,13 @@ end</property>
   </object>
   <object id="65" name="Chest1" type="Chest" gid="6839" x="224" y="1120" width="64" height="64">
    <properties>
-    <property name="CrystalWater" type="int" value="3"/>
+    <property name="CrystalWater" type="int" value="6"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
   <object id="66" name="Chest2" type="Chest" gid="6839" x="544" y="1120" width="64" height="64">
    <properties>
-    <property name="BlueLeaf" type="int" value="3"/>
+    <property name="BlueLeaf" type="int" value="6"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>

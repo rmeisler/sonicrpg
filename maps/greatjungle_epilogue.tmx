@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="47" height="48" tilewidth="32" tileheight="32" infinite="0" nextobjectid="466">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="47" height="48" tilewidth="32" tileheight="32" infinite="0" nextobjectid="467">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/greatjunglecliffbg.png"/>
-  <property name="currentLayer" type="int" value="7"/>
-  <property name="layerHeightMap" value="objects:320,objects2:160,objects3:20"/>
-  <property name="layered" type="bool" value="true"/>
-  <property name="onload" type="file" value="actions/greatjungle.lua"/>
+  <property name="onload" type="file" value="actions/epilogue2.lua"/>
   <property name="regionName" value="Great Jungle"/>
   <property name="sectorName" value="Cliffs"/>
  </properties>
@@ -236,28 +233,37 @@
  </layer>
  <objectgroup name="lower"/>
  <objectgroup name="objects">
-  <object id="465" name="Spawn 1" type="Player" gid="5323" x="640" y="800" width="32" height="32">
+  <object id="465" name="Spawn 1" type="Player" gid="5323" x="928" y="768" width="32" height="32">
    <properties>
     <property name="orientation" value="right"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="all">
-  <object id="453" name="Terrabot" type="BasicNPC" gid="5323" x="320" y="800" width="288" height="128">
+  <object id="453" name="Terrabot" type="BasicNPC" gid="5323" x="307" y="762" width="288" height="128">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="hidden" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="false"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/terrabot.png"/>
    </properties>
   </object>
-  <object id="464" name="BabyT" type="BasicNPC" gid="5323" x="672" y="800" width="64" height="64">
+  <object id="464" name="BabyT" type="BasicNPC" gid="5323" x="672" y="768" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="sadright"/>
-    <property name="hidden" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="false"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/babyt.png"/>
+   </properties>
+  </object>
+  <object id="466" name="UncleT" type="BasicNPC" gid="5323" x="320" y="767" width="288" height="128">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="defaultAnim" value="unclet"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/terrapod.png"/>
    </properties>
   </object>
  </objectgroup>

@@ -67,7 +67,7 @@ return {
 	{
         type = "map",
         file = "maps/lightofmobius.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
@@ -82,7 +82,7 @@ return {
 	{
         type = "map",
         file = "maps/boulderbay_epilogue.lua",
-		--primary = true
+		primary = true
     },
 	{
         type = "map",
@@ -122,6 +122,11 @@ return {
 	{
         type = "map",
         file = "maps/greatjungle4.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/greatjungle_epilogue.lua",
 		--primary = true
     },
 	{

@@ -52,6 +52,123 @@ return function(scene, hint)
 		}
 	})
 	
+	if hint == "ep5_epilogue" then
+		scene.objectLookup.Sally_Epilogue.hidden = false
+		scene.objectLookup.Sonic_Epilogue.hidden = false
+		scene.objectLookup.Fleet_Epilogue.hidden = false
+		scene.objectLookup.Ivan_Epilogue.hidden = false
+		scene.objectLookup.B_Epilogue.hidden = false
+		scene.objectLookup.Tails_Epilogue.hidden = false
+		scene.objectLookup.Firefly:remove()
+		scene.objectLookup.IntroTrigger:remove()
+
+		scene.objectLookup.Sally_Epilogue.sprite:setFadeWhite(4)
+		scene.objectLookup.Sonic_Epilogue.sprite:setFadeWhite(4)
+		scene.objectLookup.Fleet_Epilogue.sprite:setFadeWhite(4)
+		scene.objectLookup.Ivan_Epilogue.sprite:setFadeWhite(4)
+		scene.objectLookup.B_Epilogue.sprite:setFadeWhite(4)
+		scene.objectLookup.Tails_Epilogue.sprite:setFadeWhite(4)
+		scene.objectLookup.Sally_Epilogue.sprite.color[4] = 0
+		scene.objectLookup.Sonic_Epilogue.sprite.color[4] = 0
+		scene.objectLookup.Fleet_Epilogue.sprite.color[4] = 0
+		scene.objectLookup.Ivan_Epilogue.sprite.color[4] = 0
+		scene.objectLookup.B_Epilogue.sprite.color[4] = 0
+		scene.objectLookup.Tails_Epilogue.sprite.color[4] = 0
+		
+		scene.player.sprite.visible = false
+		scene.player.dropShadow.hidden = true
+
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+			end),
+			Wait(3),
+			Parallel {
+				Ease(scene.objectLookup.Sally_Epilogue.sprite.color, 4, 255, 1),
+				Ease(scene.objectLookup.Sonic_Epilogue.sprite.color, 4, 255, 1),
+				Ease(scene.objectLookup.Fleet_Epilogue.sprite.color, 4, 255, 1),
+				Ease(scene.objectLookup.Ivan_Epilogue.sprite.color, 4, 255, 1),
+				Ease(scene.objectLookup.B_Epilogue.sprite.color, 4, 255, 1),
+				Ease(scene.objectLookup.Tails_Epilogue.sprite.color, 4, 255, 1),
+			},
+			Do(function()
+				scene.objectLookup.Sally_Epilogue.sprite:setFadeWhite(-1,1)
+				scene.objectLookup.Sonic_Epilogue.sprite:setFadeWhite(-1,1)
+				scene.objectLookup.Fleet_Epilogue.sprite:setFadeWhite(-1,1)
+				scene.objectLookup.Ivan_Epilogue.sprite:setFadeWhite(-1,1)
+				scene.objectLookup.B_Epilogue.sprite:setFadeWhite(-1,1)
+				scene.objectLookup.Tails_Epilogue.sprite:setFadeWhite(-1,1)
+			end),
+			MessageBox{message="Fleet: What the- {p60}how did we get back to Knothole?"},
+			Animate(scene.objectLookup.B_Epilogue.sprite, "pose"),
+			MessageBox{message="B: Tails must have made it to the Light!"},
+			PlayAudio("sfx", "bang", 1, true),
+			Animate(scene.objectLookup.Tails_Epilogue.sprite, "dead"),
+			Wait(0.5),
+			Parallel {
+				scene.objectLookup.Sonic_Epilogue:hop(),
+				scene.objectLookup.Sally_Epilogue:hop(),
+				scene.objectLookup.Fleet_Epilogue:hop(),
+				scene.objectLookup.Ivan_Epilogue:hop(),
+				scene.objectLookup.B_Epilogue:hop()
+			},
+			Animate(scene.objectLookup.B_Epilogue.sprite, "idleright"),
+			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "sadright"),
+			Animate(scene.objectLookup.Sally_Epilogue.sprite, "sadright"),
+			MessageBox{message="Sonic: Tails!"},
+			Parallel {
+				Move(scene.objectLookup.Sonic_Epilogue, scene.objectLookup.EpilogueWP2, "walk"),
+				Move(scene.objectLookup.Sally_Epilogue, scene.objectLookup.EpilogueWP3, "walk"),
+				Move(scene.objectLookup.B_Epilogue, scene.objectLookup.EpilogueWP1, "walk"),
+			},
+			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "worrieddown"),
+			Animate(scene.objectLookup.Sally_Epilogue.sprite, "sadleft"),
+			Animate(scene.objectLookup.B_Epilogue.sprite, "idleright"),
+			Animate(scene.objectLookup.Fleet_Epilogue.sprite, "sadleft"),
+			Animate(scene.objectLookup.Ivan_Epilogue.sprite, "attitude"),
+			MessageBox{message="Sonic: W-What happened to him?!"},
+			Animate(scene.objectLookup.Sally_Epilogue.sprite, "nicholedown"),
+			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "sadright"),
+			MessageBox{message="Sally: Nicole?!"},
+			MessageBox{message="Nicole: According to legend{p60}, the Light's power can put great strain on one's body...", sfx="nicolebeep"},
+			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "worrieddown"),
+			MessageBox{message="Sonic: Tails{p60}, please wake up... {p60}I can't lose you..."},
+			Animate(scene.objectLookup.Fleet_Epilogue.sprite, "idledown"),
+			scene.objectLookup.Fleet_Epilogue:hop(),
+			MessageBox{message="Fleet: Alright now{p60}, out of the way!"},
+			Parallel {
+				Move(scene.objectLookup.Fleet_Epilogue, scene.objectLookup.EpilogueWP2, "walk"),
+				Move(scene.objectLookup.Sonic_Epilogue, scene.objectLookup.EpilogueWP4, "walk")
+			},
+			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "sadright"),
+			Animate(scene.objectLookup.Fleet_Epilogue.sprite, "kneeldown"),
+			MessageBox{message="Fleet: He's still with us. {p60}Ivan, can you take him inside. {p60}I'll need my medical supplies..."},
+			Animate(scene.objectLookup.Ivan_Epilogue.sprite, "idledown"),
+			scene.objectLookup.Ivan_Epilogue:hop(),
+			MessageBox{message="Ivan: Affirmative."},
+			Parallel {
+				Move(scene.objectLookup.Ivan_Epilogue, scene.objectLookup.EpilogueWP3, "walk"),
+				Move(scene.objectLookup.Sally_Epilogue, scene.objectLookup.EpilogueWP5, "walk"),
+			},
+			Animate(scene.objectLookup.Ivan_Epilogue.sprite, "carrytails"),
+			Animate(scene.objectLookup.Sally_Epilogue.sprite, "sadleft"),
+			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "shock"),
+			scene.objectLookup.Sonic_Epilogue:hop(),
+			MessageBox{message="Sonic: W-Wait-- {p60}you--{p60} a medic?!"},
+			Animate(scene.objectLookup.Fleet_Epilogue.sprite, "thinking"),
+			MessageBox{message="Fleet: That's right! {p60}Got a problem with that?"},
+			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "earnestright"),
+			MessageBox{message="Sonic: No no no{p60}, sorry!"},
+			Animate(scene.objectLookup.Fleet_Epilogue.sprite, "idledown"),
+			Animate(scene.objectLookup.Ivan_Epilogue.sprite, "idledown"),
+			MessageBox{message="Fleet: Let's get to work, Ivan!"},
+			Do(function()
+				scene:changeScene{map="tailshut", fadeOutSpeed=0.2, fadeInSpeed=0.2}
+			end)
+		}
+	end
+	
 	if hint == "meanwhile_1" then
 		scene.objectLookup.Sally_Meanwhile1.hidden = false
 		scene.objectLookup.Sonic_Meanwhile1.hidden = false

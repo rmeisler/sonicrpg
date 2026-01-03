@@ -89,6 +89,9 @@ return {
 			frames = {{13,5},{14,5}},
 			speed = 0.1
 		},
+		tireddown = {
+			frames = {{15,5}}
+		},
 		
 		youngdown = {
 			frames = {{0,5}}

@@ -534,7 +534,7 @@ return {
           gid = 6839,
           visible = true,
           properties = {
-            ["CrystalWater"] = 3,
+            ["CrystalWater"] = 6,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -551,7 +551,7 @@ return {
           gid = 6839,
           visible = true,
           properties = {
-            ["BlueLeaf"] = 3,
+            ["BlueLeaf"] = 6,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         }

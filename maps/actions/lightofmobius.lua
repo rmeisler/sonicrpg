@@ -104,12 +104,13 @@ return function(scene)
 		MessageBox {message="Tails: I may not be able to save everyone, but at least I can save Baby T's family..."},
 		Wait(1),
 		AudioFade("music", 1, 0, 1),
+		Wait(1),
 		Do(function() scene.player.sprite:setAnimation("pose") end),
 		Ease(scene.player, "y", function() return scene.player.y - 50 end, 8),
 		Ease(scene.player, "y", function() return scene.player.y + 50 end, 8),
 		MessageBox {message="Tails: I wish for Boulder Bay and everyone in it to be returned to the state they were in before Robotnik showed up!"},
 		Do(function() scene.player.sprite:setAnimation("idledown") end),
-		PlayAudio("music", "tailstheme", 1, true, true),
+		PlayAudio("music", "tailstheme", 1, true, false),
 		Do(function()
 			scene:changeScene{map="dream_mountain_cave11", fadeInSpeed=0.2, fadeOutSpeed=0.2, fadeWhite=true}
 		end)

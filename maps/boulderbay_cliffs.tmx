@@ -1833,7 +1833,6 @@ return function(self)
     self.scene.objectLookup.Sonic.hidden = false
     self.scene.objectLookup.Fleet.hidden = false
     self.scene.objectLookup.Ivan.hidden = false
-    GameState:setFlag(&quot;ep5_after_meanwhile3&quot;)
     return BlockPlayer {
         Wait(1),
         Parallel {

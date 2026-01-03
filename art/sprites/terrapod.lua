@@ -32,11 +32,11 @@ return {
         },
 		
 		unclet = {
-            frames = {{9,0}}
+            frames = {{8,0}}
         },
 		unclet_headbutt = {
-            frames = {{10,0},{11,0}},
-			speed=1
+            frames = {{9,0},{10,0}},
+			speed=0.5
         },
 		
 		grampat_surprised = {

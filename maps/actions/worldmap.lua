@@ -64,7 +64,7 @@ return function(scene, hint)
 			Wait(1),
 
 			Do(function()
-				--scene:changeScene{map="robotnikship_scene", fadeOutSpeed=2, fadeInSpeed=2}
+				scene:changeScene{map="greatjungle_epilogue", fadeInSpeed=1, fadeOutSpeed=1, fadeWhite=true}
 			end)
 		}
 	end

@@ -8,7 +8,7 @@ return {
   height = 135,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 704,
+  nextobjectid = 714,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["currentLayer"] = 7,
@@ -4746,6 +4746,20 @@ return {
           properties = {
             ["orientation"] = "right"
           }
+        },
+        {
+          id = 710,
+          name = "EpilogueSpawn",
+          type = "SpawnPoint",
+          shape = "rectangle",
+          x = 1600,
+          y = 2080,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {}
         }
       }
     },
@@ -5790,7 +5804,7 @@ return {
           height = 192,
           rotation = 0,
           gid = 5323,
-          visible = false,
+          visible = true,
           properties = {
             ["atMostOnce"] = true,
             ["flagOverride"] = "ep5_knothole_firefly_trigger",
@@ -6094,6 +6108,180 @@ return {
             ["nocollision"] = true,
             ["nonight"] = false,
             ["sprite"] = "../art/sprites/sonic.png"
+          }
+        },
+        {
+          id = 704,
+          name = "Sonic_Epilogue",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1440,
+          y = 1920,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idledown",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["nonight"] = false,
+            ["sprite"] = "../art/sprites/sonic.png"
+          }
+        },
+        {
+          id = 705,
+          name = "Sally_Epilogue",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1536,
+          y = 1920,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idledown",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["nonight"] = false,
+            ["sprite"] = "../art/sprites/sally.png"
+          }
+        },
+        {
+          id = 706,
+          name = "Fleet_Epilogue",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1664,
+          y = 1920,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idledown",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["nonight"] = false,
+            ["sprite"] = "../art/sprites/fleet.png"
+          }
+        },
+        {
+          id = 707,
+          name = "Ivan_Epilogue",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1760,
+          y = 1920,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idledown",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["nonight"] = false,
+            ["sprite"] = "../art/sprites/ivan.png"
+          }
+        },
+        {
+          id = 708,
+          name = "B_Epilogue",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1504,
+          y = 2016,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idledown",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["nonight"] = false,
+            ["sprite"] = "../art/sprites/b.png"
+          }
+        },
+        {
+          id = 709,
+          name = "Tails_Epilogue",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1696,
+          y = 2016,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "tireddown",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["nonight"] = false,
+            ["sprite"] = "../art/sprites/tails.png"
+          }
+        },
+        {
+          id = 711,
+          name = "EpilogueWP1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1696,
+          y = 2048,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 712,
+          name = "EpilogueWP2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1760,
+          y = 2048,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 713,
+          name = "EpilogueWP3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1824,
+          y = 2048,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

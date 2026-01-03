@@ -45,13 +45,41 @@ return function(scene)
 			scene.player.dropShadow.hidden = true
 		end),
 		Wait(2),
-		MessageBox {message="Robotnik: T-T-That hedgehog!!", closeAction=Wait(2)},
-		Do(function() scene.objectLookup.Robotnik.sprite:setFadeWhite(0.5) end),
-		MessageBox {message="Robotnik: Wait... {p20}no... {p40}no... {p30}NO!", textSpeed=3, closeAction=Wait(0.5)},
-		Ease(scene.objectLookup.Robotnik.sprite.color, 4, 0, 3),
+		Ease(scene.camPos, "x", 200, 0.2),
+		Do(function()
+			scene.objectLookup.Terrabot.sprite:setFadeWhite(0.5)
+		end),
+		Animate(scene.objectLookup.BabyT.sprite, "shock"),
+		scene.objectLookup.BabyT:hop(),
+		Do(function()
+			scene.objectLookup.UncleT.hidden = false
+			scene.objectLookup.UncleT.sprite:setFadeWhite(4)
+		end),
 		Wait(1),
 		Do(function()
-			scene:changeScene{map="boulderbay_epilogue", fadeInSpeed=1, fadeOutSpeed=1, fadeWhite=true}
+			scene.objectLookup.Terrabot:remove()
+			scene.objectLookup.UncleT.sprite:setFadeWhite(-1, 1)
+		end),
+		Wait(2),
+		Animate(scene.objectLookup.BabyT.sprite, "joyleft"),
+		scene.objectLookup.BabyT:hop(),
+		Wait(2),
+		Parallel {
+			Animate(scene.objectLookup.UncleT.sprite, "unclet_headbutt"),
+			Ease(scene.objectLookup.UncleT, "x", function() return scene.objectLookup.UncleT.x + 20 end, 1),
+			Serial {
+				Wait(0.2),
+				Animate(scene.objectLookup.BabyT.sprite, "headbuttleft"),
+				Ease(scene.objectLookup.BabyT, "x", function() return scene.objectLookup.BabyT.x - 20 end, 1)
+			}
+		},
+		Wait(2),
+		Animate(scene.objectLookup.UncleT.sprite, "unclet"),
+		Animate(scene.objectLookup.BabyT.sprite, "joyright"),
+		Ease(scene.camPos, "x", 0, 0.2),
+		Wait(1),
+		Do(function()
+			scene:changeScene{map="knothole_ep5", fadeInSpeed=0.2, fadeOutSpeed=0.2, fadeWhite=true, hint="ep5_epilogue", spawnPoint="EpilogueSpawn"}
 		end)
 	}
 end

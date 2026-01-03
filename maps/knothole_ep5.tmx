@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="135" tilewidth="32" tileheight="32" infinite="0" nextobjectid="704">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="135" tilewidth="32" tileheight="32" infinite="0" nextobjectid="714">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="currentLayer" type="int" value="7"/>
@@ -3041,6 +3041,7 @@ end</property>
     <property name="orientation" value="right"/>
    </properties>
   </object>
+  <object id="710" name="EpilogueSpawn" type="SpawnPoint" gid="5323" x="1600" y="2080" width="32" height="32"/>
  </objectgroup>
  <layer name="bridgeoverlay" width="275" height="135">
   <data encoding="csv">
@@ -3816,7 +3817,7 @@ end</property>
     <property name="nextFlyOffsetY" type="int" value="64"/>
    </properties>
   </object>
-  <object id="674" name="IntroTrigger" type="TouchTrigger" gid="5323" x="1472" y="2048" width="192" height="192" visible="0">
+  <object id="674" name="IntroTrigger" type="TouchTrigger" gid="5323" x="1472" y="2048" width="192" height="192">
    <properties>
     <property name="atMostOnce" type="bool" value="true"/>
     <property name="flagOverride" value="ep5_knothole_firefly_trigger"/>
@@ -4099,6 +4100,81 @@ end</property>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
+   </properties>
+  </object>
+  <object id="704" name="Sonic_Epilogue" type="BasicNPC" gid="7597" x="1440" y="1920" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="false"/>
+    <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
+   </properties>
+  </object>
+  <object id="705" name="Sally_Epilogue" type="BasicNPC" gid="7597" x="1536" y="1920" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="false"/>
+    <property name="sprite" type="file" value="../art/sprites/sally.png"/>
+   </properties>
+  </object>
+  <object id="706" name="Fleet_Epilogue" type="BasicNPC" gid="7597" x="1664" y="1920" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="false"/>
+    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
+   </properties>
+  </object>
+  <object id="707" name="Ivan_Epilogue" type="BasicNPC" gid="7597" x="1760" y="1920" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="false"/>
+    <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
+   </properties>
+  </object>
+  <object id="708" name="B_Epilogue" type="BasicNPC" gid="7597" x="1504" y="2016" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="false"/>
+    <property name="sprite" type="file" value="../art/sprites/b.png"/>
+   </properties>
+  </object>
+  <object id="709" name="Tails_Epilogue" type="BasicNPC" gid="7597" x="1696" y="2016" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="tireddown"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="false"/>
+    <property name="sprite" type="file" value="../art/sprites/tails.png"/>
+   </properties>
+  </object>
+  <object id="711" name="EpilogueWP1" type="BasicNPC" gid="7597" x="1696" y="2048" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="712" name="EpilogueWP2" type="BasicNPC" gid="7597" x="1760" y="2048" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="713" name="EpilogueWP3" type="BasicNPC" gid="7597" x="1824" y="2048" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

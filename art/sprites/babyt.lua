@@ -14,6 +14,15 @@ return {
 		hug = {
 		    frames = {{0,4}}
 		},
+		joyleft = {
+			frames = {{1,4}}
+		},
+		joyright = {
+			frames = {{2,4}}
+		},
+		headbuttleft = {
+			frames = {{3,4}}
+		},
 		
 		lookdown = {
 			frames = {{13,1}}

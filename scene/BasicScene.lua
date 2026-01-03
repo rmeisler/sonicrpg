@@ -326,7 +326,7 @@ function BasicScene:onEnter(args)
 		print("no special move")
 		self.player.noSpecialMove = true
 	end
-	
+
 	return Serial {
 		args.enterDelay and Wait(args.enterDelay) or Action(),
 		Do(function()
