@@ -13,7 +13,7 @@ return {
 		return target.laserShield
 	end,
 	usableFromMenu = false,
-	usableFromBattle = true,
+	usableFromBattle = false,
 	battleAction = function()
 		return (require "data/items/actions/LaserShield")
 	end,

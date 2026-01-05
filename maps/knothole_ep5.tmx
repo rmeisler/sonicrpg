@@ -2884,7 +2884,10 @@ return function(self, dt)
                 self.scene.player:hop(),
                 MessageBox {message=&quot;Tails: Wait!&quot;}
             },
-            Do(function() self.scene.objectLookup.SonicMtg.y = self.scene.objectLookup.SonicMtg.y + 5 end),
+            Do(function()
+                self.scene.objectLookup.SonicMtg.y = self.scene.objectLookup.SonicMtg.y + 5
+                self.scene.objectLookup.LeonMtg.sprite.sortOrderY = self.scene.objectLookup.AntoineMtg.sprite.transform.y + self.scene.objectLookup.AntoineMtg.sprite.h*2 - 1
+            end),
             Animate(self.scene.objectLookup.FleetMtg.sprite, &quot;meeting_idledown&quot;),
             Animate(self.scene.objectLookup.IvanMtg.sprite, &quot;meeting_idledown&quot;),
             Animate(self.scene.objectLookup.LeonMtg.sprite, &quot;meeting_idledown&quot;),
