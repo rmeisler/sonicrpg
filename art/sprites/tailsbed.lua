@@ -19,6 +19,15 @@ return {
 		},
 		tailsawake_lookup = {
 			frames = {{4,0}}
+		},
+		tailssleep_injured = {
+			frames = {{5,0}}
+		},
+		tailstired_injured = {
+			frames = {{6,0}}
+		},
+		tailsawake_injured = {
+			frames = {{7,0}}
 		}
     }
 }

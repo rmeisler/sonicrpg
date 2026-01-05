@@ -52,6 +52,70 @@ return function(scene, hint)
 		}
 	})
 	
+	if hint == "epilogue_leon" then
+		scene.objectLookup.Leon_Epilogue2.hidden = false
+		scene.objectLookup.Fleet_Epilogue2.hidden = false
+		scene.objectLookup.Ivan_Epilogue2.hidden = false
+		
+		scene.objectLookup.Leon_Epilogue2.movespeed = 1.5
+		scene.objectLookup.Fleet_Epilogue2.movespeed = 2
+		scene.objectLookup.Ivan_Epilogue2.movespeed = 2
+
+		scene.player.sprite.visible = false
+		scene.player.dropShadow.hidden = true
+
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+			end),
+			Parallel {
+				Move(scene.objectLookup.Fleet_Epilogue2, scene.objectLookup.FleetWP1, "walk"),
+				Move(scene.objectLookup.Ivan_Epilogue2, scene.objectLookup.IvanWP1, "walk")
+			},
+			Animate(scene.objectLookup.Fleet_Epilogue2.sprite, "idleup"),
+			Animate(scene.objectLookup.Ivan_Epilogue2.sprite, "idleup"),
+			MessageBox{message="Leon: Why if it isn't my two greatest soldiers...{p60} or who I thought were my two greatest soldiers..."},
+			Parallel {
+				scene.objectLookup.Fleet_Epilogue2:hop(),
+				scene.objectLookup.Ivan_Epilogue2:hop(),
+			},
+			Animate(scene.objectLookup.Fleet_Epilogue2.sprite, "idleleft"),
+			Animate(scene.objectLookup.Ivan_Epilogue2.sprite, "idleleft"),
+			Move(scene.objectLookup.Leon_Epilogue2, scene.objectLookup.LeonWP1, "walk"),
+			Animate(scene.objectLookup.Leon_Epilogue2.sprite, "idleright"),
+			MessageBox{message="Ivan: Sir."},
+			MessageBox{message="Fleet: Sir, I can explain--"},
+			MessageBox{message="Leon: It seems that the anarchy of this quaint little hamlet has been rubbing off on you..."},
+			MessageBox{message="Leon: You no longer respect my orders--"},
+			Parallel {
+				scene.objectLookup.Fleet_Epilogue2:hop(),
+				MessageBox{message="Fleet: No, sir--"}
+			},
+			Animate(scene.objectLookup.Leon_Epilogue2.sprite, "glareright"),
+			MessageBox{message="Leon: Do not interrupt me, lieutenant!"},
+			Wait(1),
+			PlayAudio("music", "leonintro", 0.8, true, true),
+			MessageBox{message="Leon: ...you were nothing when I found you! {p60}Never forget that!"},
+			Wait(1),
+			Move(scene.objectLookup.Leon_Epilogue2, scene.objectLookup.LeonWP2, "walk"),
+			Animate(scene.objectLookup.Leon_Epilogue2.sprite, "idleright"),
+			MessageBox{message="Leon: Did Logan, put you up to this?"},
+			Animate(scene.objectLookup.Ivan_Epilogue2.sprite, "attitude"),
+			MessageBox{message="Ivan: Sir--"},
+			Animate(scene.objectLookup.Fleet_Epilogue2.sprite, "thinking"),
+			MessageBox{message="Fleet: It was my idea, sir. {p60}I felt it necessary to keep an eye on the Princess."},
+			MessageBox{message="Leon: ...{p60}A wise decision..."},
+			Animate(scene.objectLookup.Leon_Epilogue2.sprite, "glareright"),
+			MessageBox{message="Leon: But a decision you did not have the authority to make."},
+			MessageBox{message="Fleet: Y-Yes sir{p60}, I'm sorry sir."},
+			MessageBox{message="Leon: Do not forget why we are here..."},
+			Do(function()
+				scene:changeScene{map="ep5intro", fadeOutSpeed=0.5, fadeInSpeed=0.5, hint="epilogue2", fadeOutMusic=true}
+			end)
+		}
+	end
+	
 	if hint == "ep5_epilogue" then
 		scene.objectLookup.Sally_Epilogue.hidden = false
 		scene.objectLookup.Sonic_Epilogue.hidden = false
@@ -116,55 +180,71 @@ return function(scene, hint)
 			Animate(scene.objectLookup.B_Epilogue.sprite, "idleright"),
 			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "sadright"),
 			Animate(scene.objectLookup.Sally_Epilogue.sprite, "sadright"),
-			MessageBox{message="Sonic: Tails!"},
+			PlayAudio("music", "sonicsad", 1, true, true),
+			MessageBox{message="Sonic & Sally: Tails!"},
 			Parallel {
-				Move(scene.objectLookup.Sonic_Epilogue, scene.objectLookup.EpilogueWP2, "walk"),
-				Move(scene.objectLookup.Sally_Epilogue, scene.objectLookup.EpilogueWP3, "walk"),
-				Move(scene.objectLookup.B_Epilogue, scene.objectLookup.EpilogueWP1, "walk"),
+				Serial {
+					Move(scene.objectLookup.Sonic_Epilogue, scene.objectLookup.EpilogueWP2, "walk"),
+					Animate(scene.objectLookup.Sonic_Epilogue.sprite, "worrieddown")
+				},
+				Serial {
+					Move(scene.objectLookup.Sally_Epilogue, scene.objectLookup.EpilogueWP3, "walk"),
+					Animate(scene.objectLookup.Sally_Epilogue.sprite, "sadleft")
+				},
+				Serial {
+					Move(scene.objectLookup.B_Epilogue, scene.objectLookup.EpilogueWP1, "walk"),
+					Animate(scene.objectLookup.B_Epilogue.sprite, "idleright")
+				}
 			},
-			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "worrieddown"),
-			Animate(scene.objectLookup.Sally_Epilogue.sprite, "sadleft"),
-			Animate(scene.objectLookup.B_Epilogue.sprite, "idleright"),
 			Animate(scene.objectLookup.Fleet_Epilogue.sprite, "sadleft"),
 			Animate(scene.objectLookup.Ivan_Epilogue.sprite, "attitude"),
 			MessageBox{message="Sonic: W-What happened to him?!"},
 			Animate(scene.objectLookup.Sally_Epilogue.sprite, "nicholedown"),
 			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "sadright"),
 			MessageBox{message="Sally: Nicole?!"},
-			MessageBox{message="Nicole: According to legend{p60}, the Light's power can put great strain on one's body...", sfx="nicolebeep"},
+			MessageBox{message="Nicole: According to legend{p60}, those who communicate with the Light of Mobius undergo extreme physical\nstress{p40}, Sally.", sfx="nicolebeep"},
 			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "worrieddown"),
-			MessageBox{message="Sonic: Tails{p60}, please wake up... {p60}I can't lose you..."},
+			MessageBox{message="Sonic: Tails{p60}, please wake up lil' bro... {p60}I can't lose you..."},
 			Animate(scene.objectLookup.Fleet_Epilogue.sprite, "idledown"),
 			scene.objectLookup.Fleet_Epilogue:hop(),
 			MessageBox{message="Fleet: Alright now{p60}, out of the way!"},
 			Parallel {
 				Move(scene.objectLookup.Fleet_Epilogue, scene.objectLookup.EpilogueWP2, "walk"),
-				Move(scene.objectLookup.Sonic_Epilogue, scene.objectLookup.EpilogueWP4, "walk")
+				Move(scene.objectLookup.Sonic_Epilogue, scene.objectLookup.EpilogueWP4, "walk"),
+				Move(scene.objectLookup.B_Epilogue, scene.objectLookup.EpilogueWP7, "walk")
 			},
 			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "sadright"),
 			Animate(scene.objectLookup.Fleet_Epilogue.sprite, "kneeldown"),
-			MessageBox{message="Fleet: He's still with us. {p60}Ivan, can you take him inside. {p60}I'll need my medical supplies..."},
+			Animate(scene.objectLookup.B_Epilogue.sprite, "idleright"),
+			Animate(scene.objectLookup.Sally_Epilogue.sprite, "sadleft"),
+			Do(function()
+				scene.objectLookup.Fleet_Epilogue.x = scene.objectLookup.Fleet_Epilogue.x + 20
+				scene.objectLookup.Fleet_Epilogue.y = scene.objectLookup.Fleet_Epilogue.y + 10
+			end),
+			MessageBox{message="Fleet: Look, he's got a pulse. {p60}He's still with us."},
+			MessageBox{message="Fleet: Ivan, can you take him inside?{p60} I'll need my\nmed-kit..."},
 			Animate(scene.objectLookup.Ivan_Epilogue.sprite, "idledown"),
 			scene.objectLookup.Ivan_Epilogue:hop(),
 			MessageBox{message="Ivan: Affirmative."},
 			Parallel {
-				Move(scene.objectLookup.Ivan_Epilogue, scene.objectLookup.EpilogueWP3, "walk"),
+				Move(scene.objectLookup.Ivan_Epilogue, scene.objectLookup.EpilogueWP6, "walk"),
 				Move(scene.objectLookup.Sally_Epilogue, scene.objectLookup.EpilogueWP5, "walk"),
 			},
-			Animate(scene.objectLookup.Ivan_Epilogue.sprite, "carrytails"),
-			Animate(scene.objectLookup.Sally_Epilogue.sprite, "sadleft"),
-			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "shock"),
-			scene.objectLookup.Sonic_Epilogue:hop(),
-			MessageBox{message="Sonic: W-Wait-- {p60}you--{p60} a medic?!"},
-			Animate(scene.objectLookup.Fleet_Epilogue.sprite, "thinking"),
-			MessageBox{message="Fleet: That's right! {p60}Got a problem with that?"},
-			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "earnestright"),
-			MessageBox{message="Sonic: No no no{p60}, sorry!"},
+			Animate(scene.objectLookup.Ivan_Epilogue.sprite, "carry_tails"),
 			Animate(scene.objectLookup.Fleet_Epilogue.sprite, "idledown"),
-			Animate(scene.objectLookup.Ivan_Epilogue.sprite, "idledown"),
-			MessageBox{message="Fleet: Let's get to work, Ivan!"},
+			Do(function() scene.objectLookup.Tails_Epilogue:remove() end),
+			Animate(scene.objectLookup.Sally_Epilogue.sprite, "sadleft"),
+			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "thinking"),
+			scene.objectLookup.Sonic_Epilogue:hop(),
+			MessageBox{message="Sonic: Wait-- {p60}you--{p60} a medic?"},
+			Animate(scene.objectLookup.Fleet_Epilogue.sprite, "thinking"),
+			MessageBox{message="Fleet: That's right. {p60}Got a problem with that?"},
+			Animate(scene.objectLookup.Sonic_Epilogue.sprite, "earnestright"),
+			MessageBox{message="Sonic: No no no{p60}, it's cool."},
+			Animate(scene.objectLookup.Fleet_Epilogue.sprite, "idledown"),
+			MessageBox{message="Fleet: Right. {p60}Let's get to work, Ivan!"},
 			Do(function()
-				scene:changeScene{map="tailshut", fadeOutSpeed=0.2, fadeInSpeed=0.2}
+				scene:changeScene{map="ep5intro", fadeOutSpeed=0.5, fadeInSpeed=0.5, hint="epilogue1"}
 			end)
 		}
 	end

@@ -8,7 +8,7 @@ return {
   height = 135,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 714,
+  nextobjectid = 726,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["currentLayer"] = 7,
@@ -4760,6 +4760,20 @@ return {
           gid = 5323,
           visible = true,
           properties = {}
+        },
+        {
+          id = 718,
+          name = "EpilogueSpawn2",
+          type = "SpawnPoint",
+          shape = "rectangle",
+          x = 7456,
+          y = 1984,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {}
         }
       }
     },
@@ -6282,6 +6296,198 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 714,
+          name = "EpilogueWP5",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1920,
+          y = 2048,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 715,
+          name = "EpilogueWP4",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1536,
+          y = 2048,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 716,
+          name = "EpilogueWP6",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1664,
+          y = 2080,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 717,
+          name = "EpilogueWP7",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1472,
+          y = 2048,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 719,
+          name = "Leon_Epilogue2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 6976,
+          y = 2016,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idleright",
+            ["hidden"] = true,
+            ["ignoreMapCollision"] = true,
+            ["nocollision"] = true,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/leon.png"
+          }
+        },
+        {
+          id = 720,
+          name = "Fleet_Epilogue2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7424,
+          y = 2208,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idleup",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/fleet.png"
+          }
+        },
+        {
+          id = 721,
+          name = "Ivan_Epilogue2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7520,
+          y = 2208,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idleup",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/ivan.png"
+          }
+        },
+        {
+          id = 722,
+          name = "IvanWP1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7520,
+          y = 1888,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = false
+          }
+        },
+        {
+          id = 723,
+          name = "FleetWP1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7424,
+          y = 1888,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = false
+          }
+        },
+        {
+          id = 724,
+          name = "LeonWP1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7296,
+          y = 2016,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = false
+          }
+        },
+        {
+          id = 725,
+          name = "LeonWP2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7392,
+          y = 2016,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = false
           }
         }
       }

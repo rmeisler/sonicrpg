@@ -240,9 +240,10 @@
   </object>
  </objectgroup>
  <objectgroup name="all">
-  <object id="453" name="Terrabot" type="BasicNPC" gid="5323" x="307" y="762" width="288" height="128">
+  <object id="453" name="Terrabot" type="BasicNPC" gid="5323" x="307" y="770" width="288" height="128">
    <properties>
     <property name="align" value="bottom_center"/>
+    <property name="defaultAnim" value="still"/>
     <property name="hidden" type="bool" value="false"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/terrabot.png"/>

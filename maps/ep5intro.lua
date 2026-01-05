@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 32,
+  nextobjectid = 39,
   properties = {
     ["ignorenight"] = true,
     ["lowerCollisionCircleY"] = 300,
@@ -412,6 +412,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["ghost"] = true,
             ["onInit"] = "return function(self)\n    if not self.scene.nighttime then\n        self.isInteractable = false\n    end\nend",
             ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    if self.scene.nighttime and not GameState:isFlagSet(\"ep3_read\") then\n        return BlockPlayer {\n            MessageBox {message = \"Tails: You got some books in your hut, doncha?\"},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    elseif self.scene.nighttime and GameState:isFlagSet(\"ep3_read\") then\n        return BlockPlayer {\n            MessageBox {message = \"Tails: zzz...\"},\n            Do(function()\n                self:refreshKeyHint()\n            end)\n        }\n    end\n    return Do(function()\n        self:refreshKeyHint()\n    end)\nend",
             ["sprite"] = "../art/sprites/tailsbed.png"
@@ -541,6 +542,94 @@ return {
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/sally.png"
           }
+        },
+        {
+          id = 32,
+          name = "SonicEpilogue",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 496,
+          y = 448,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6860,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "paceleft",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["sprite"] = "../art/sprites/sonic.png"
+          }
+        },
+        {
+          id = 35,
+          name = "FleetEpilogue",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 480,
+          y = 300,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6860,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idledown",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["sprite"] = "../art/sprites/fleet.png"
+          }
+        },
+        {
+          id = 36,
+          name = "FleetWP2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 288,
+          y = 160,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 37,
+          name = "SonicWP",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 288,
+          y = 160,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 38,
+          name = "FleetWP1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 288,
+          y = 256,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
         }
       }
     },
@@ -564,9 +653,9 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10243, 10243, 10243, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10243, 10243, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10243, 10243, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

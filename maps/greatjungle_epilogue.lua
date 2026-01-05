@@ -582,7 +582,7 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 307,
-          y = 762,
+          y = 770,
           width = 288,
           height = 128,
           rotation = 0,
@@ -590,6 +590,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
+            ["defaultAnim"] = "still",
             ["hidden"] = false,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/terrabot.png"

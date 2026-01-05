@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="32">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="39">
  <properties>
   <property name="ignorenight" type="bool" value="true"/>
   <property name="lowerCollisionCircleY" type="float" value="300"/>
@@ -152,6 +152,7 @@
   <object id="20" name="TailsBed" type="BasicNPC" gid="6839" x="416" y="384" width="192" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
+    <property name="ghost" type="bool" value="true"/>
     <property name="onInit">return function(self)
     if not self.scene.nighttime then
         self.isInteractable = false
@@ -264,6 +265,39 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/sally.png"/>
    </properties>
   </object>
+  <object id="32" name="SonicEpilogue" type="BasicNPC" gid="6860" x="496" y="448" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="paceleft"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
+   </properties>
+  </object>
+  <object id="35" name="FleetEpilogue" type="BasicNPC" gid="6860" x="480" y="300" width="32" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
+   </properties>
+  </object>
+  <object id="36" name="FleetWP2" type="BasicNPC" gid="6839" x="288" y="160" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="37" name="SonicWP" type="BasicNPC" gid="6839" x="288" y="160" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="38" name="FleetWP1" type="BasicNPC" gid="6839" x="288" y="256" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="Collision" width="25" height="20" visible="0">
   <data encoding="csv">
@@ -273,9 +307,9 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,10243,10243,10243,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10243,10243,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10243,10243,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

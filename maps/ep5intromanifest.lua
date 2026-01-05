@@ -710,6 +710,17 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/ep5ending.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/leonintro.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
 		file = "audio/music/talkingtolight.ogg",
 		category = "music",
 		looping = true

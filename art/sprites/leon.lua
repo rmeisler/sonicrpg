@@ -14,6 +14,9 @@ return {
 		idledown = {
             frames = {{0,2}}
         },
+		glareright = {
+			frames = {{4,6}}
+		},
 
 		meeting_idledown = {
 			frames = {{0,2}},

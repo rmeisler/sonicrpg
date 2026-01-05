@@ -42,7 +42,7 @@ return {
 			speed = 0.09
 		},
 		walkup = {
-			frames = {{1,3}, {2,3}, {3,3}, {4,3},{5,3}, {6,3}, {7,3}, {8,3}},
+			frames = {{1,3}, {0,3}, {1,3}, {0,3},{1,3}, {0,3}, {1,3}, {0,3}},
 			speed = 0.09
 		},
 		idleup_lookleft = {
@@ -65,6 +65,9 @@ return {
 		},
 		sadleft = {
 		    frames = {{7,6}}
+		},
+		kneeldown = {
+			frames = {{10,6}}
 		},
 		thinking = {
 		    frames = {{8,6}}

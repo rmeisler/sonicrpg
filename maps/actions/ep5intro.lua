@@ -14,7 +14,9 @@ return function(scene, hint)
 	local Serial = require "actions/Serial"
 	local Executor = require "actions/Executor"
 	local Wait = require "actions/Wait"
+	local Repeat = require "actions/Repeat"
 	local Do = require "actions/Do"
+	local AudioFade = require "actions/AudioFade"
 	local Spawn = require "actions/Spawn"
 	local BlockPlayer = require "actions/BlockPlayer"
 	local Animate = require "actions/Animate"
@@ -39,14 +41,140 @@ return function(scene, hint)
 			end)
 		end
 	end
+	
+	scene.objectLookup.Door.isInteractable = false
+	scene.player.sprite.visible = false
+	scene.player.dropShadow.hidden = true
+
+	if hint == "epilogue1" then	
+		scene.objectLookup.SonicEpilogue.hidden = false
+		scene.objectLookup.FleetEpilogue.hidden = false
+		scene.objectLookup.FleetEpilogue.movespeed = 2
+		scene.objectLookup.Plane.hidden = true
+		scene.objectLookup.Ball.hidden = true
+		scene.objectLookup.Car.hidden = true
+		scene.objectLookup.Sally.sprite:setAnimation("sadright")
+		scene.objectLookup.TailsBed.sprite:setAnimation("tailssleep_injured")
+
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+			end),
+			Repeat(Serial {
+				Do(function() scene.objectLookup.SonicEpilogue.sprite:setAnimation("paceleft") end),
+				Ease(scene.objectLookup.SonicEpilogue, "x", function() return scene.objectLookup.SonicEpilogue.x - 256 end, 0.7, "linear"),
+				Do(function() scene.objectLookup.SonicEpilogue.sprite:setAnimation("paceright") end),
+				Ease(scene.objectLookup.SonicEpilogue, "x", function() return scene.objectLookup.SonicEpilogue.x + 256 end, 0.7, "linear"),
+			}, 2),
+			Parallel {
+				Serial {
+					Do(function() scene.objectLookup.SonicEpilogue.sprite:setAnimation("paceleft") end),
+					Ease(scene.objectLookup.SonicEpilogue, "x", function() return scene.objectLookup.SonicEpilogue.x - 200 end, 0.7, "linear"),
+					Animate(scene.objectLookup.SonicEpilogue.sprite, "idleup"),
+					scene.objectLookup.SonicEpilogue:hop(),
+				},
+				MessageBox{message="Fleet: Alright, that should do it. {p60}He should be fine, he just needs to rest for now."}
+			},
+			Animate(scene.objectLookup.Sally.sprite, "thinking"),
+			MessageBox{message="Sally: Hang in there, sweetie..."},
+			Wait(0.5),
+			Parallel {
+				Serial {
+					Move(scene.objectLookup.FleetEpilogue, scene.objectLookup.FleetWP1, "walk"),
+					Move(scene.objectLookup.FleetEpilogue, scene.objectLookup.FleetWP2, "walk"),
+					Animate(scene.objectLookup.FleetEpilogue.sprite, "idleup")
+				},
+				Serial {
+					Wait(0.5),
+					MessageBox{message="Sonic: Yo Fleet! {p60}Hold up a second."}
+				}
+			},
+			Move(scene.objectLookup.SonicEpilogue, scene.objectLookup.SonicWP, "walk"),
+			Animate(scene.objectLookup.SonicEpilogue.sprite, "earnestright"),
+			MessageBox{message="Sonic: Thanks for saving Tails... {p60}and sorry for what I said about you and Ivan back there..."},
+			MessageBox{message="Fleet: ...{p60}you have nothing to apologize for..."},
+			Animate(scene.objectLookup.SonicEpilogue.sprite, "idleup"),
+			Do(function() scene.objectLookup.Door:interact() end),
+			Wait(0.5),
+			Do(function() scene.objectLookup.FleetEpilogue:remove() end),
+			Wait(0.5),
+			Do(function()
+				scene.objectLookup.Door:close()
+			end),
+			Wait(0.5),
+			Do(function()
+				scene:changeScene{map="knothole_ep5", fadeInSpeed=0.2, fadeOutSpeed=0.2, fadeOutMusic=true, hint="epilogue_leon", spawnPoint="EpilogueSpawn2", nighttime=true}
+			end)
+		}
+	end
+
+	if hint == "epilogue2" then
+		scene.objectLookup.SonicEpilogue.hidden = true
+		scene.objectLookup.Sally.hidden = false
+		scene.objectLookup.FleetEpilogue.hidden = true
+		scene.objectLookup.Plane.hidden = true
+		scene.objectLookup.Ball.hidden = true
+		scene.objectLookup.Car.hidden = true
+
+		scene.objectLookup.TailsBed.sprite:setAnimation("tailsawake_injured")
+		scene.objectLookup.Sally.sprite:setAnimation("idledown")
+		
+		local storybook4 = SpriteNode(scene, Transform(0, 0, 1, 1), {255,255,255,0}, "storybook4", nil, nil, "ui")
+		storybook4.color[4] = 0
+
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+			end),
+			Wait(2),
+			PlayAudio("music", "tailssleep", 1.0, true),
+			MessageBox{message="Tails: Aww, do I have to go back to sleep already, Aunt Sally?"},
+			Animate(scene.objectLookup.Sally.sprite, "thinking"),
+			MessageBox{message="Sally: Doctor's orders! {p60}But don't worry{p60}, tonight we'll finish the story!"},
+			MessageBox{message="Tails: Alright!"},
+			Wait(1),
+			Do(function()
+				scene.objectLookup.Door:interact()
+
+				scene.objectLookup.SonicEpilogue.hidden = false
+				scene.objectLookup.SonicEpilogue.x = scene.objectLookup.Door.x + 32
+				scene.objectLookup.SonicEpilogue.y = scene.objectLookup.Door.y + 32
+				scene.objectLookup.SonicEpilogue.sprite:setAnimation("idledown")
+			end),
+			Animate(scene.objectLookup.Sally.sprite, "idleup"),
+			Wait(0.5),
+			Parallel {
+				scene.objectLookup.SonicEpilogue:hop(),
+				MessageBox{message="Sonic: Hey hey hey{p60}, did I miss the ending? {p60}That's my favorite part!"}
+			},
+			Animate(scene.objectLookup.Sally.sprite, "thinking_laugh"),
+			MessageBox{message="Sally: *chuckle* You didn't miss anything{p60}, I was just about to read it."},
+			Move(scene.objectLookup.SonicEpilogue, scene.objectLookup["Spawn 1"], "walk"),
+			Animate(scene.objectLookup.SonicEpilogue.sprite, "idleright"),
+			Animate(scene.objectLookup.Sally.sprite, "readdown"),
+			AudioFade("music", 1, 0, 1),
+			Wait(1),
+			Ease(storybook4.color, 4, 255, 0.5),
+			PlayAudio("music", "ep5ending", 1, true),
+			MessageBox{message="Sally: And so{p60}, Ben Windom made a wish to restore Boulder Bay and all of its inhabitants to how they were before the War Claws invaded...", closeAction=Wait(3)},
+			MessageBox{message="Sally: In an instant{p60}, all of the armies, their cages, and their shackles,{p60} suddenly disappeared!", closeAction=Wait(3)},
+			MessageBox{message="Sally: The two weary adventurers looked across the vista and breathed a long sigh of relief...", closeAction=Wait(3)},
+			Ease(storybook4.color, 4, 0, 0.5),
+			Wait(1),
+			MessageBox{message="Sally: On their long journey, Ben met many new friends and allies...", closeAction=Wait(3)},
+			MessageBox{message="Sally: ...some he would now consider family...", closeAction=Wait(3)},
+			MessageBox{message="Sally: He realized that it was the bonds he forged through struggle{p60}, that were tested through pain and sacrifice...", closeAction=Wait(3)},
+			MessageBox{message="Sally: ...these were the connections that would last a lifetime.", closeAction=Wait(3)},
+			
+		}
+	end
+	
 
 	scene.objectLookup.TailsBed.sprite:setAnimation("tailsawake_lookup")
 
 	GameState:setFlag("ep5_intro")
-
-	scene.objectLookup.Door.isInteractable = false
-	scene.player.sprite.visible = false
-	scene.player.dropShadow.hidden = true
 
 	scene.camPos.x = 0
 	scene.camPos.y = 0

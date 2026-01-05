@@ -368,6 +368,15 @@ return {
 			frames = {{10,10}}
 		},
 		
+		paceleft = {
+			frames = {{6,11},{7,11}},
+			speed = 0.1
+		},
+		paceright = {
+			frames = {{4,11},{5,11}},
+			speed = 0.1
+		},
+		
 		prepare_race = {
 			frames = {{14,9}}
 		},

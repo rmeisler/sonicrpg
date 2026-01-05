@@ -79,7 +79,7 @@ return function(scene)
 		Ease(scene.camPos, "x", 0, 0.2),
 		Wait(1),
 		Do(function()
-			scene:changeScene{map="knothole_ep5", fadeInSpeed=0.2, fadeOutSpeed=0.2, fadeWhite=true, hint="ep5_epilogue", spawnPoint="EpilogueSpawn"}
+			scene:changeScene{map="knothole_ep5", fadeInSpeed=0.2, fadeOutSpeed=0.2, fadeWhite=true, fadeOutMusic=true, hint="ep5_epilogue", spawnPoint="EpilogueSpawn"}
 		end)
 	}
 end

@@ -9,6 +9,9 @@ return {
             frames = {{0,0},{1,0}},
 			speed = 0.5
         },
+		still = {
+            frames = {{0,0}}
+        },
 		hurt = {
 			frames = {{0,0},{1,0}},
 			speed = 0.5
