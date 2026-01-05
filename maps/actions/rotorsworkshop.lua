@@ -119,8 +119,62 @@ return function(scene, hint)
 			end
 		)
 	end
+	
+	if hint == "epilogue" then
+		scene.objectLookup.Rotor:remove()
+		scene.objectLookup.Rotor2.hidden = false
+		scene.objectLookup.Logan.hidden = false
+		scene.objectLookup.Logan.x = scene.objectLookup.Computer.x + 64
+		scene.objectLookup.Logan.y = scene.objectLookup.Computer.y
+		scene.objectLookup.Logan.sprite:setAnimation("idleleft")
+		scene.objectLookup.FleetEpilogue.hidden = true
+		scene.objectLookup.IvanEpilogue.hidden = true
 
-	if hint == "snowday" then
+		scene.player.sprite.visible = false
+		scene.player.dropShadow.hidden = true
+
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+			end),
+			MessageBox{message="Sally: Throughout their long journey, Ben met many new friends and allies.", closeAction=Wait(3)},
+			PlayAudio("sfx", "door", 1.0, true),
+			Animate(scene.objectLookup.Door.sprite, "opening"),
+			Animate(scene.objectLookup.Door.sprite, "open"),
+			Wait(1),
+			Do(function()
+				scene.objectLookup.FleetEpilogue.hidden = false
+				scene.objectLookup.IvanEpilogue.hidden = false
+			end),
+			Parallel {
+				Move(scene.objectLookup.FleetEpilogue, scene.objectLookup.FleetEpilogueWP1, "walk"),
+				Move(scene.objectLookup.IvanEpilogue, scene.objectLookup.IvanEpilogueWP1, "walk")
+			},
+			Animate(scene.objectLookup.FleetEpilogue.sprite, "idleup"),
+			Animate(scene.objectLookup.IvanEpilogue.sprite, "idleup"),
+			Animate(scene.objectLookup.Logan.sprite, "idledown"),
+			scene.objectLookup.Logan:hop(),
+			MessageBox{message="Sally: Some whom he would now consider family.", closeAction=Wait(3)},
+			Wait(1),
+			Animate(scene.objectLookup.Logan.sprite, "blush"),
+			Wait(1),
+			Parallel {
+				Move(scene.objectLookup.FleetEpilogue, scene.objectLookup.FleetEpilogueWP2, "walk"),
+				Move(scene.objectLookup.IvanEpilogue, scene.objectLookup.IvanEpilogueWP2, "walk")
+			},
+			Do(function()
+				scene.objectLookup.FleetEpilogue:remove()
+				scene.objectLookup.IvanEpilogue:remove()
+			end),
+			Animate(scene.objectLookup.Logan.sprite, "hugged"),
+			MessageBox{message="Sally: It was these bonds, he realized{p40}, those forged through a shared struggle{p40}, which would last\na lifetime.", closeAction=Wait(4)},
+			Do(function()
+				scene.sceneMgr:pushScene {class = "CreditsSplashScene", fadeOutSpeed=0.2,fadeInSpeed=0.2, enterDelay=1}
+			end)
+			
+		}
+	elseif hint == "snowday" then
 		scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"
 		scene.objectLookup.Rotor:remove()
 		scene.objectLookup.Rotor2:remove()

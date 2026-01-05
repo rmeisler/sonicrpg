@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="23" tilewidth="32" tileheight="32" infinite="0" nextobjectid="32">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="23" tilewidth="32" tileheight="32" infinite="0" nextobjectid="38">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/prisonbg.png"/>
   <property name="onload" type="file" value="actions/rotorsworkshop.lua"/>
@@ -321,6 +321,44 @@ end</property>
    </properties>
   </object>
   <object id="31" name="Waypoint1" type="BasicNPC" gid="4565" x="352" y="512" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="32" name="FleetEpilogue" type="BasicNPC" gid="4565" x="288" y="608" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="idleup"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
+   </properties>
+  </object>
+  <object id="33" name="IvanEpilogue" type="BasicNPC" gid="4565" x="416" y="608" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="idleup"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
+   </properties>
+  </object>
+  <object id="34" name="FleetEpilogueWP1" type="BasicNPC" gid="4565" x="192" y="352" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="35" name="IvanEpilogueWP1" type="BasicNPC" gid="4565" x="320" y="352" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="36" name="FleetEpilogueWP2" type="BasicNPC" gid="4565" x="128" y="256" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="37" name="IvanEpilogueWP2" type="BasicNPC" gid="4565" x="224" y="256" width="64" height="64">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>

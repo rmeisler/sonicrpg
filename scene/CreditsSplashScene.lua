@@ -121,8 +121,8 @@ Jacob Berkley/Good Ol' Groovy Jake
 Reggie Meisler/RedG
 
 [Music]
-Billy Adams
 Reggie Meisler/RedG
+Billy Adams
 Jesse Rose/GreenCauldron08
 Diego Leal E (Robotnik Boss Theme)
 Ilya Rappu/Picnik

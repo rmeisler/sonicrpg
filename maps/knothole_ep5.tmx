@@ -2843,9 +2843,6 @@ return function(self, dt)
         local storybook = SpriteNode(scene, Transform(0, -20, 1, 1), {255,255,255,0}, &quot;storybook1&quot;, nil, nil, &quot;ui&quot;)
         self.scene.objectLookup.WarRoom2OuterOverlay.sprite.sortOrderY = -1
 
-        self.scene.objectLookup.LeonMtg.sprite.sortOrderY=100000
-        self.scene.objectLookup.IvanMtg.sprite.sortOrderY=100000
-
         -- Cinematic begins
         self:run(BlockPlayer {
             AudioFade(&quot;music&quot;, 1,0,1),
@@ -4198,7 +4195,7 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="719" name="Leon_Epilogue2" type="BasicNPC" gid="7597" x="6976" y="2016" width="32" height="32">
+  <object id="719" name="Leon_Epilogue2" type="BasicNPC" gid="7597" x="6976" y="2006" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleright"/>
@@ -4239,12 +4236,12 @@ end</property>
     <property name="ghost" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="724" name="LeonWP1" type="BasicNPC" gid="7597" x="7296" y="2016" width="32" height="32">
+  <object id="724" name="LeonWP1" type="BasicNPC" gid="7597" x="7296" y="2006" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="725" name="LeonWP2" type="BasicNPC" gid="7597" x="7392" y="2016" width="32" height="32">
+  <object id="725" name="LeonWP2" type="BasicNPC" gid="7597" x="7424" y="2006" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="false"/>
    </properties>

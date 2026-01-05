@@ -42,8 +42,8 @@ return {
 			speed = 0.09
 		},
 		walkup = {
-			frames = {{1,3}, {0,3}, {1,3}, {0,3},{1,3}, {0,3}, {1,3}, {0,3}},
-			speed = 0.09
+			frames = {{0,3}, {1,3}},
+			speed = 0.22
 		},
 		idleup_lookleft = {
 			frames = {{0,5}}

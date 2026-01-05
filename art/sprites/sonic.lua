@@ -370,11 +370,11 @@ return {
 		
 		paceleft = {
 			frames = {{6,11},{7,11}},
-			speed = 0.1
+			speed = 0.15
 		},
 		paceright = {
 			frames = {{4,11},{5,11}},
-			speed = 0.1
+			speed = 0.15
 		},
 		
 		prepare_race = {

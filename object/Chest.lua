@@ -12,6 +12,7 @@ function Chest:construct(scene, layer, object)
 	object.properties.alphaOverride = nil
 	object.properties.hidden = nil
 	object.properties.loganTargetable = nil
+	object.properties.alignOffsetY = nil
 	
 	local nonight = object.properties.nonight
 	object.properties.nonight = nil

@@ -119,6 +119,7 @@ return function(scene, hint)
 
 		scene.objectLookup.TailsBed.sprite:setAnimation("tailsawake_injured")
 		scene.objectLookup.Sally.sprite:setAnimation("idledown")
+		scene.objectLookup.SonicEpilogue.sprite.sortOrderY = scene.objectLookup.SonicEpilogue.y - scene.objectLookup.SonicEpilogue.sprite.h*2
 		
 		local storybook4 = SpriteNode(scene, Transform(0, 0, 1, 1), {255,255,255,0}, "storybook4", nil, nil, "ui")
 		storybook4.color[4] = 0
@@ -150,24 +151,19 @@ return function(scene, hint)
 				MessageBox{message="Sonic: Hey hey hey{p60}, did I miss the ending? {p60}That's my favorite part!"}
 			},
 			Animate(scene.objectLookup.Sally.sprite, "thinking_laugh"),
-			MessageBox{message="Sally: *chuckle* You didn't miss anything{p60}, I was just about to read it."},
+			MessageBox{message="Sally: *chuckle* You didn't miss anything{p60}, come on in, I was just about to read it."},
 			Move(scene.objectLookup.SonicEpilogue, scene.objectLookup["Spawn 1"], "walk"),
-			Animate(scene.objectLookup.SonicEpilogue.sprite, "idleright"),
+			Animate(scene.objectLookup.SonicEpilogue.sprite, "smileright"),
 			Animate(scene.objectLookup.Sally.sprite, "readdown"),
 			AudioFade("music", 1, 0, 1),
-			Wait(1),
 			Ease(storybook4.color, 4, 255, 0.5),
-			PlayAudio("music", "ep5ending", 1, true),
-			MessageBox{message="Sally: And so{p60}, Ben Windom made a wish to restore Boulder Bay and all of its inhabitants to how they were before the War Claws invaded...", closeAction=Wait(3)},
-			MessageBox{message="Sally: In an instant{p60}, all of the armies, their cages, and their shackles,{p60} suddenly disappeared!", closeAction=Wait(3)},
-			MessageBox{message="Sally: The two weary adventurers looked across the vista and breathed a long sigh of relief...", closeAction=Wait(3)},
-			Ease(storybook4.color, 4, 0, 0.5),
-			Wait(1),
-			MessageBox{message="Sally: On their long journey, Ben met many new friends and allies...", closeAction=Wait(3)},
-			MessageBox{message="Sally: ...some he would now consider family...", closeAction=Wait(3)},
-			MessageBox{message="Sally: He realized that it was the bonds he forged through struggle{p60}, that were tested through pain and sacrifice...", closeAction=Wait(3)},
-			MessageBox{message="Sally: ...these were the connections that would last a lifetime.", closeAction=Wait(3)},
-			
+			PlayAudio("music", "ep5ending", 0.7, true),
+			MessageBox{message="Sally: And so, Ben Windom made a wish to restore Boulder Bay and all of its inhabitants to how they were before the War Claws invaded...", closeAction=Wait(4.5)},
+			MessageBox{message="Sally: In an instant, all of the armies, their cages, and their shackles, suddenly disappeared!", closeAction=Wait(4.5)},
+			MessageBox{message="Sally: As the two weary adventurers looked across the bay, they breathed a long sigh of relief...", closeAction=Wait(4)},
+			Do(function()
+				scene:changeScene{map="rotorsworkshop", fadeInSpeed=1, fadeOutSpeed=1, hint="epilogue"}
+			end)
 		}
 	end
 	

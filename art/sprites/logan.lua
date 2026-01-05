@@ -131,6 +131,9 @@ return {
 		blush = {
 			frames = {{5,7}}
 		},
+		hugged = {
+			frames = {{6,7}}
+		},
 		shock = {
 			frames = {{11,4}}
 		},

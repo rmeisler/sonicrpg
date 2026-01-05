@@ -8,7 +8,7 @@ return {
   height = 23,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 32,
+  nextobjectid = 38,
   properties = {
     ["battlebg"] = "../art/backgrounds/prisonbg.png",
     ["onload"] = "actions/rotorsworkshop.lua",
@@ -599,6 +599,110 @@ return {
           y = 512,
           width = 32,
           height = 32,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 32,
+          name = "FleetEpilogue",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 288,
+          y = 608,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/fleet.png"
+          }
+        },
+        {
+          id = 33,
+          name = "IvanEpilogue",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 416,
+          y = 608,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["nonight"] = true,
+            ["sprite"] = "../art/sprites/ivan.png"
+          }
+        },
+        {
+          id = 34,
+          name = "FleetEpilogueWP1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 192,
+          y = 352,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 35,
+          name = "IvanEpilogueWP1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 320,
+          y = 352,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 36,
+          name = "FleetEpilogueWP2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 128,
+          y = 256,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 37,
+          name = "IvanEpilogueWP2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 224,
+          y = 256,
+          width = 64,
+          height = 64,
           rotation = 0,
           gid = 4565,
           visible = true,
