@@ -77,6 +77,7 @@ return function(scene, hint)
 				MessageBox{message="Fleet: Alright, that should do it. {p60}He should be fine, he just needs to rest for now."}
 			},
 			Animate(scene.objectLookup.Sally.sprite, "thinking"),
+			MessageBox{message="Sally: Thank you, Fleet."},
 			MessageBox{message="Sally: Hang in there, sweetie..."},
 			Wait(0.5),
 			Parallel {

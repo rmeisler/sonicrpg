@@ -27,11 +27,12 @@ CursorSprite:setFilter("nearest", "nearest")
 
 ScreenShader = love.graphics.newShader([[
 	extern vec4 multColor;
+	extern vec4 addColor;
 
 	vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
 	{
 		vec4 texturecolor = Texel(texture, texture_coords);
-		return texturecolor * color * multColor;
+		return texturecolor * color * multColor + addColor;
 	}
 ]])
 
@@ -49,7 +50,7 @@ function love.load()
 	
 	math.randomseed(os.time())
 	
-	sceneMgr:pushScene {class = "TitleSplashScene"} -- "SageSplashScene"}
+	sceneMgr:pushScene {class = "SageSplashScene"}
 end
 
 function love.update(dt)
@@ -58,6 +59,12 @@ function love.update(dt)
 	elseif love.keyboard.isDown("s") then
         dt = dt / 4
     end
+	
+	if love.keyboard.isDown("l") then
+		print("current layer is: "..tostring(sceneMgr:getCurrent().currentLayerId))
+		print("tempFlyOffsetY is: "..tostring(sceneMgr:getCurrent().player.tempFlyOffsetY))
+		print("flyOffsetY is: "..tostring(sceneMgr:getCurrent().player.flyOffsetY))
+	end
 
     sceneMgr:update(dt)
 end
