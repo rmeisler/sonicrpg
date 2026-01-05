@@ -258,7 +258,7 @@
     <property name="sprite" type="file" value="../art/sprites/babyt.png"/>
    </properties>
   </object>
-  <object id="466" name="UncleT" type="BasicNPC" gid="5323" x="320" y="767" width="288" height="128">
+  <object id="466" name="UncleT" type="BasicNPC" gid="5323" x="318" y="769" width="288" height="128">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="unclet"/>

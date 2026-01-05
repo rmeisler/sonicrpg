@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="135" tilewidth="32" tileheight="32" infinite="0" nextobjectid="726">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="135" tilewidth="32" tileheight="32" infinite="0" nextobjectid="728">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="currentLayer" type="int" value="7"/>
@@ -2886,7 +2886,6 @@ return function(self, dt)
             },
             Do(function()
                 self.scene.objectLookup.SonicMtg.y = self.scene.objectLookup.SonicMtg.y + 5
-                self.scene.objectLookup.LeonMtg.sprite.sortOrderY = self.scene.objectLookup.AntoineMtg.sprite.transform.y + self.scene.objectLookup.AntoineMtg.sprite.h*2 - 1
             end),
             Animate(self.scene.objectLookup.FleetMtg.sprite, &quot;meeting_idledown&quot;),
             Animate(self.scene.objectLookup.IvanMtg.sprite, &quot;meeting_idledown&quot;),
@@ -3465,15 +3464,10 @@ end</property>
   <object id="537" name="Ladder1" type="Ladder" gid="5323" x="5440" y="2720" width="32" height="576">
    <properties>
     <property name="botLayer" type="int" value="7"/>
-    <property name="nextFlyOffsetY" type="int" value="736"/>
     <property name="topLayer" type="int" value="6"/>
    </properties>
   </object>
-  <object id="544" name="Ladder2" type="Ladder" gid="5323" x="5664" y="1984" width="32" height="608">
-   <properties>
-    <property name="nextFlyOffsetY" type="int" value="1504"/>
-   </properties>
-  </object>
+  <object id="544" name="Ladder2" type="Ladder" gid="5323" x="5664" y="1984" width="32" height="608"/>
   <object id="545" name="Ladder3" type="Ladder" gid="5323" x="5376" y="1184" width="32" height="352">
    <properties>
     <property name="onClimbDown">return function(self, player)
@@ -3488,6 +3482,13 @@ end</property>
     <property name="orientation" value="down"/>
     <property name="scene" type="file" value="knotholelookout.lua"/>
     <property name="spawn_point" value="Entrance"/>
+   </properties>
+  </object>
+  <object id="727" name="Chest1" type="Chest" gid="7597" x="7328" y="1600" width="64" height="64">
+   <properties>
+    <property name="BlueLeaf" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+    <property name="swapLayers" value="objects:objects, objects2:objects, objects3:objects2, objects4:objects3, objects5:objects4, objects6:objects6, objects7:objects6"/>
    </properties>
   </object>
  </objectgroup>
@@ -3743,15 +3744,6 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
     <property name="nextFlyLandingLayer" type="int" value="7"/>
     <property name="nextFlyOffsetY" type="int" value="448"/>
-   </properties>
-  </object>
-  <object id="659" name="3DTreeCanopy" type="ThreeDee" gid="5323" x="6144" y="2816" width="224" height="1536">
-   <properties>
-    <property name="depth" type="int" value="1248"/>
-    <property name="flyLandingLayer" type="int" value="6"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="nextFlyLandingLayer" type="int" value="7"/>
-    <property name="nextFlyOffsetY" type="int" value="1504"/>
    </properties>
   </object>
   <object id="660" name="3DRotorWorkshop" type="ThreeDee" gid="5323" x="7328" y="1792" width="256" height="192">
@@ -4028,26 +4020,6 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="694" name="3DTree2" type="ThreeDee" gid="5323" x="4896" y="2752" width="992" height="1472">
-   <properties>
-    <property name="depth" type="int" value="1248"/>
-    <property name="flyLandingLayer" type="int" value="6"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="nextFlyLandingLayer" type="int" value="7"/>
-    <property name="nextFlyOffsetY" type="int" value="1504"/>
-    <property name="nocollision" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="695" name="3DTree1" type="ThreeDee" gid="5323" x="4896" y="2752" width="992" height="704">
-   <properties>
-    <property name="depth" type="int" value="480"/>
-    <property name="flyLandingLayer" type="int" value="6"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="nextFlyLandingLayer" type="int" value="7"/>
-    <property name="nextFlyOffsetY" type="int" value="736"/>
-    <property name="nocollision" type="bool" value="true"/>
-   </properties>
-  </object>
   <object id="696" name="Sally_Meanwhile1" type="BasicNPC" gid="7597" x="7168" y="2944" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -4247,6 +4219,17 @@ end</property>
   <object id="725" name="LeonWP2" type="BasicNPC" gid="7597" x="7424" y="2006" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="726" name="NoFlyZone" type="BasicNPC" gid="5323" x="4832" y="2144" width="1120" height="864">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="notColliding">return function(self, player)
+    player.noFly = false
+end</property>
+    <property name="whileColliding">return function(self, player)
+    player.noFly = true
+end</property>
    </properties>
   </object>
  </objectgroup>

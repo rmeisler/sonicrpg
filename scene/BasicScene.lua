@@ -55,6 +55,7 @@ function BasicScene:onEnter(args)
 	self.currentLayerId = self.map.properties.currentLayer or 1
 	self.currentLayer = "objects"..(self.currentLayerId > 1 and tostring(self.currentLayerId) or "")
 	self.hint = args.hint
+	self.noPlayerPanning = self.map.properties.noPlayerPanning
 
 	self.args = args
 	self.cacheSceneData = args.cache

@@ -95,7 +95,7 @@ return function(scene, hint)
 			Animate(scene.objectLookup.Leon_Epilogue2.sprite, "glareright"),
 			MessageBox{message="Leon: Do not interrupt me, lieutenant!"},
 			Wait(1),
-			PlayAudio("music", "leonintro", 0.5, true, true),
+			PlayAudio("music", "leonintro", 0.6, true, true),
 			Move(scene.objectLookup.Leon_Epilogue2, scene.objectLookup.LeonWP2, "walk"),
 			Animate(scene.objectLookup.Leon_Epilogue2.sprite, "glareright"),
 			MessageBox{message="Leon: You were nothing when I found you! {p60}Never forget that!"},

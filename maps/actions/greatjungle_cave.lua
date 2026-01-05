@@ -54,7 +54,7 @@ return function(scene, hint)
 				Wait(1),
 				Do(function()
 					scene.player.noIdle = false
-					scene.noPlayerPanning = true
+					--scene.noPlayerPanning = true
 				end)
 			},
 			Wait(0.5),

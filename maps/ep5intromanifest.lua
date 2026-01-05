@@ -82,7 +82,7 @@ return {
 	{
         type = "map",
         file = "maps/boulderbay_epilogue.lua",
-		--primary = true
+		primary = true
     },
 	{
         type = "map",

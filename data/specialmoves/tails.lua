@@ -21,7 +21,7 @@ return function(player)
 	
 	
 	-- If not a layered map, Tails cannot fly
-	if not player.scene.layered then
+	if not player.scene.layered or player.noFly then
 		player.scene.audio:playSfx("error")
 		return
 	end
@@ -297,8 +297,6 @@ return function(player)
 			hotspots.right_bot.y = hotspots.right_bot.y - self.flyOffsetY
 			hotspots.left_top.y = hotspots.left_top.y - self.flyOffsetY
 			hotspots.left_bot.y = hotspots.left_bot.y - self.flyOffsetY
-			
-			print("px = "..tostring(hotspots.left_top.x)..", py = "..tostring(hotspots.left_top.y))
 
 			-- If we can't move after landing, reset our position to where we took off from and flicker
 			if self.y > self.scene:getMapHeight() or not (

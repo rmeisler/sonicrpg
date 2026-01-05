@@ -138,7 +138,7 @@ return function(scene, hint)
 				scene.player.sprite.visible = false
 				scene.player.dropShadow.hidden = true
 			end),
-			MessageBox{message="Sally: Throughout their long journey, Ben met many new friends and allies.", closeAction=Wait(3)},
+			MessageBox{message="Sally: Throughout his long journey, Ben met many new friends and allies...", closeAction=Wait(3)},
 			PlayAudio("sfx", "door", 1.0, true),
 			Animate(scene.objectLookup.Door.sprite, "opening"),
 			Animate(scene.objectLookup.Door.sprite, "open"),
@@ -155,7 +155,7 @@ return function(scene, hint)
 			Animate(scene.objectLookup.IvanEpilogue.sprite, "idleup"),
 			Animate(scene.objectLookup.Logan.sprite, "idledown"),
 			scene.objectLookup.Logan:hop(),
-			MessageBox{message="Sally: Some whom he would now consider family.", closeAction=Wait(3)},
+			MessageBox{message="Sally: ...some he even came to consider family...", closeAction=Wait(3)},
 			Wait(1),
 			Animate(scene.objectLookup.Logan.sprite, "blush"),
 			Wait(1),
@@ -168,7 +168,7 @@ return function(scene, hint)
 				scene.objectLookup.IvanEpilogue:remove()
 			end),
 			Animate(scene.objectLookup.Logan.sprite, "hugged"),
-			MessageBox{message="Sally: It was these bonds, he realized{p40}, those forged through a shared struggle{p40}, which would last\na lifetime.", closeAction=Wait(4)},
+			MessageBox{message="Sally: ...and it was through their shared struggle, Ben realized, that these bonds would come to last a lifetime.", closeAction=Wait(4)},
 			Do(function()
 				scene.sceneMgr:pushScene {class = "CreditsSplashScene", fadeOutSpeed=0.2,fadeInSpeed=0.2, enterDelay=1}
 			end)

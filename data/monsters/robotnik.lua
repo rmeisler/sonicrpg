@@ -131,11 +131,7 @@ return {
 		selfSprite.transform.x = selfSprite.transform.x - 50
 		selfSprite.transform.y = selfSprite.transform.y - 100
 		selfSprite.continuousAnimation = true
-		
-		self.calledShotOverrideXForm = Transform(
-			selfSprite.transform.x + selfSprite.w*2 - math.random(1, selfSprite.w),
-			selfSprite.transform.y + selfSprite.h - math.random(1, selfSprite.h)
-		)
+
 		self.calledShotKnockbackFn = function(self, impact, direction)
 			local selfSprite = self:getSprite()
 			return Serial {
@@ -258,6 +254,11 @@ return {
 			end
 
 			local selfSprite = self:getSprite()
+			self.calledShotOverrideXForm = Transform(
+				selfSprite.transform.x + selfSprite.w*2 - math.random(1, selfSprite.w),
+				selfSprite.transform.y + selfSprite.h - math.random(1, selfSprite.h)
+			)
+			
 			if state == "laser" then
 				local dodgeAction = target.defenseEvent and
 					target.defenseEvent(self, target) or
