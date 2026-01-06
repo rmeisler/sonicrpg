@@ -640,6 +640,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/drill.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/babytroar.ogg",
 		category = "sfx"
 	},

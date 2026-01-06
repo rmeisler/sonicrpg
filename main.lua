@@ -54,7 +54,8 @@ function love.load()
 end
 
 function love.update(dt)
-    if love.keyboard.isDown("f") then
+    --[[
+	if love.keyboard.isDown("f") then
         dt = dt * 10
 	elseif love.keyboard.isDown("s") then
         dt = dt / 4
@@ -65,6 +66,7 @@ function love.update(dt)
 		print("tempFlyOffsetY is: "..tostring(sceneMgr:getCurrent().player.tempFlyOffsetY))
 		print("flyOffsetY is: "..tostring(sceneMgr:getCurrent().player.flyOffsetY))
 	end
+	]]
 
     sceneMgr:update(dt)
 end

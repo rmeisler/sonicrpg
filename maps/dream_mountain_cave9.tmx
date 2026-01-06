@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="26" height="54" tilewidth="32" tileheight="32" infinite="0" nextobjectid="67">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="26" height="54" tilewidth="32" tileheight="32" infinite="0" nextobjectid="68">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/caveoflight.png"/>
   <property name="noBattleMusic" type="bool" value="true"/>
@@ -240,7 +240,12 @@ return function(self)
         sprites[k].x = self.scene.player.x - 60
         sprites[k].y = self.scene.player.y - 60
     end
-    local storybook = SpriteNode(scene, Transform(0, 0, 1, 1), {255,255,255,0}, &quot;storybook3&quot;, nil, nil, &quot;ui&quot;)
+    local poof = self.scene.objectLookup.Poof
+    poof.sprite.transform.ox = poof.sprite.w/2
+    poof.sprite.transform.oy = poof.sprite.h/2
+    poof.sprite.color[4] = 0
+    poof.hidden = false
+    local storybook = SpriteNode(self.scene, Transform(0, 0, 1, 1), {255,255,255,0}, &quot;storybook3&quot;, nil, nil, &quot;ui&quot;)
     return BlockPlayer {
         AudioFade(&quot;music&quot;, 1, 0, 1),
         walkout,
@@ -259,6 +264,19 @@ return function(self)
         PlayAudio(&quot;sfx&quot;, &quot;elevator&quot;, 1.0, true),
         Parallel {
             Serial {
+                PlayAudio(&quot;sfx&quot;, &quot;drill&quot;, 0.1),
+                PlayAudio(&quot;sfx&quot;, &quot;drill&quot;, 0.1),
+                PlayAudio(&quot;sfx&quot;, &quot;drill&quot;, 0.1),
+                PlayAudio(&quot;sfx&quot;, &quot;drill&quot;, 0.1),
+                PlayAudio(&quot;sfx&quot;, &quot;drill&quot;, 0.1),
+                PlayAudio(&quot;sfx&quot;, &quot;drill&quot;, 0.2),
+                PlayAudio(&quot;sfx&quot;, &quot;drill&quot;, 0.2),
+                PlayAudio(&quot;sfx&quot;, &quot;drill&quot;, 0.3),
+                PlayAudio(&quot;sfx&quot;, &quot;drill&quot;, 0.3),
+                PlayAudio(&quot;sfx&quot;, &quot;drill&quot;, 0.4),
+                PlayAudio(&quot;sfx&quot;, &quot;drill&quot;, 0.5)
+            },
+            Serial {
                 Wait(1),
                 Animate(sprites.tails.sprite, &quot;idledown&quot;),
                 Wait(1),
@@ -270,6 +288,17 @@ return function(self)
        -- Drill bursts onto scene
        PlayAudio(&quot;sfx&quot;, &quot;explosion&quot;, 1, true),
        self.scene:screenShake(25, 40),
+       Spawn(Serial {
+           Parallel {
+               Ease(poof.sprite.color, 4, 200, 3),
+               Ease(poof.sprite.transform, &quot;sx&quot;, 30, 3),
+               Ease(poof.sprite.transform, &quot;sy&quot;, 10, 3)
+           },
+           Parallel {
+               Ease(poof.sprite.color, 4, 0, 0.1),
+               Ease(poof.sprite.transform, &quot;sx&quot;, 20, 0.1)
+           }
+       }),
        Ease(self.scene.objectLookup.Drill, &quot;x&quot;, function() return self.scene.objectLookup.Drill.x + 200 end, 5, &quot;quad&quot;),
        Animate(sprites.b.sprite, &quot;shock&quot;),
        Animate(sprites.babyt.sprite, &quot;shock&quot;),
@@ -284,7 +313,6 @@ return function(self)
             Ease(self.scene.objectLookup.Drill, &quot;x&quot;, function() return self.scene.objectLookup.Drill.x - 250 end, 1),
             Ease(self.scene.camPos, &quot;y&quot;, function() return self.scene.camPos.y - 100 end, 1)
         },
-
         Animate(sprites.b.sprite, &quot;leap&quot;),
         Animate(sprites.babyt.sprite, &quot;idle&quot;),
         Animate(sprites.tails.sprite, &quot;leap&quot;),
@@ -368,6 +396,15 @@ end</property>
    <properties>
     <property name="BlueLeaf" type="int" value="6"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="67" name="Poof" type="BasicNPC" gid="6839" x="128" y="608" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="cloud"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="sortOrderY" type="int" value="10000"/>
+    <property name="sprite" type="file" value="../art/sprites/explosion.png"/>
    </properties>
   </object>
  </objectgroup>

@@ -10,7 +10,7 @@ return {
 		},
 		drill = {
 			frames = {{1,0}, {2,0}},
-			speed = 0.1
+			speed = 0.05
 		}
     }
 }
