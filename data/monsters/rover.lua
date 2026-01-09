@@ -53,13 +53,13 @@ return {
 			return Action()
 		end
 	
-		if self.state == "upright" or self.state == "transition_to_crouched" then
+		if self.stance == "upright" or self.stance == "transition_to_crouched" then
 			-- Damage all party members
 			local dmgAllPartyMembers = {}
 			local _, firstPartyMember = next(self.scene.party)
 			local lastPartyMember
 			for _, mem in pairs(self.scene.party) do
-				table.insert(dmgAllPartyMembers, OnHitEvent(self, mem))
+				table.insert(dmgAllPartyMembers, mem:takeDamage(self.stats))
 				lastPartyMember = mem
 			end
 
@@ -100,7 +100,7 @@ return {
 
 	behavior = function (self, target)
 		-- Starting state, setup
-		if self.state == "idle" then
+		if self.stance == nil then
 			self.turnsBeforeTransition = 2
 
 			-- Setup beam sprite
@@ -114,22 +114,22 @@ return {
 			self.targetSprite.transform.oy = self.targetSprite.h/2
 			self.targetSprite.color[4] = 0
 			
-			self.state = "crouched"
+			self.stance = "crouched"
 		end
 	
 		-- Two modes, crouched and up
 		-- If you attack when crouched, you hurt it
 		-- If you attack when up, it does sweep
-		if self.state == "transition_to_crouched" then
+		if self.stance == "transition_to_crouched" then
 			return Serial {
 				Animate(self.sprite, "transition"),
 				Animate(self.sprite, "crouched"),
 				Do(function()
-					self.state = "crouched"
+					self.stance = "crouched"
 					self.turnsBeforeTransition = 2
 				end)
 			}
-		elseif self.state == "crouched" then
+		elseif self.stance == "crouched" then
 			local dodgeAction = Action()
 			if target.id == "sonic" and not target.laserShield then
 				dodgeAction = PressX(
@@ -167,6 +167,10 @@ return {
 					},
 					Do(function() end)
 				)
+			else
+				dodgeAction = target.defenseEvent and
+					target.defenseEvent(self, target) or
+					dodgeAction
 			end
 		
 			return Serial {
@@ -286,30 +290,30 @@ return {
 				Do(function()
 					self.turnsBeforeTransition = self.turnsBeforeTransition - 1
 					if self.turnsBeforeTransition == 0 then
-						self.state = "transition_to_upright"
+						self.stance = "transition_to_upright"
 					end
 				end)
 			}
-		elseif self.state == "transition_to_upright" then
+		elseif self.stance == "transition_to_upright" then
 			return Serial {
 				Animate(self.sprite, "transition"),
 				Animate(self.sprite, "upright"),
 				Do(function()
-					self.state = "upright"
+					self.stance = "upright"
 				end)
 			}
-		elseif self.state == "upright" then
+		elseif self.stance == "upright" then
 			return Serial {
 				Telegraph(self, "Rover bot looks poised to attack", {255,255,255,50}),
 				Do(function()
-					self.state = "transition_to_crouched"
+					self.stance = "transition_to_crouched"
 				end)
 			}
 		end
 	end,
 	
 	getIdleAnim = function(self)
-		if self.state == "upright" or self.state == "transition_to_upright" then
+		if self.stance == "upright" or self.stance == "transition_to_upright" then
 			return "upright"
 		else
 			return "idle"
@@ -317,7 +321,7 @@ return {
 	end,
 	
 	getBackwardAnim = function(self)
-		if self.state == "upright" or self.state == "transition_to_upright" then
+		if self.stance == "upright" or self.stance == "transition_to_upright" then
 			return "uprightbackward"
 		else
 			return "backward"

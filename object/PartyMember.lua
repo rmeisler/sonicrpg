@@ -645,7 +645,7 @@ end
 
 function PartyMember:cleanupChooseTarget(menu)
 	if  self.targetType == TargetType.AllOpponents or
-		self.targetType == TargetType.AllPartyisTurnOver
+		self.targetType == TargetType.AllParty
 	then
 		for _, arrow in pairs(self.arrow) do
 			arrow:remove()

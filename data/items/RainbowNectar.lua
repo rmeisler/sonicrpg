@@ -4,7 +4,7 @@ return {
 	name = "Rainbow Nectar",
 	desc = "Revives all fallen allies and recovers all hp.",
 	target = TargetType.AllParty,
-	usableFromMenu = true,
+	usableFromMenu = false,
 	icon = "icon_item",
 	battleAction = function()
 		local Revive = require "data/items/actions/Revive"

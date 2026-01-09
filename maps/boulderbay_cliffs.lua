@@ -2385,7 +2385,7 @@ return {
           shape = "rectangle",
           x = 1472,
           y = 2848,
-          width = 96,
+          width = 256,
           height = 160,
           rotation = 0,
           gid = 5323,

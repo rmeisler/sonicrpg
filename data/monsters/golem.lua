@@ -284,6 +284,9 @@ return {
 								},
 								Serial {
 									Wait(0.2),
+									Do(function()
+										self.bullet.color[4] = 255
+									end),
 									PressZ(
 										self,
 										target,
