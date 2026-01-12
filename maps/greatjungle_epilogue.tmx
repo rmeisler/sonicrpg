@@ -249,7 +249,7 @@
     <property name="sprite" type="file" value="../art/sprites/terrabot.png"/>
    </properties>
   </object>
-  <object id="464" name="BabyT" type="BasicNPC" gid="5323" x="672" y="768" width="64" height="64">
+  <object id="464" name="BabyT" type="BasicNPC" gid="5323" x="672" y="771" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="defaultAnim" value="sadright"/>

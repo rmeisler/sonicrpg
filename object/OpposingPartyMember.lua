@@ -155,10 +155,12 @@ function OpposingPartyMember:beginTurn()
 		if not self.chanceToEscape then
 			self.chanceToEscape = 0.2
 		else
-			self.chanceToEscape = self.chanceToEscape * 2
+			self.chanceToEscape = math.min(1.0, self.chanceToEscape + self.chanceToEscape)
 		end
 		
-		local escaped = math.random() > self.chanceToEscape and not self.noEscape
+		local escapeOdds = math.random()
+		print ("chance to escape = "..tostring(self.chanceToEscape).." escape odds = "..tostring(escapeOdds))
+		local escaped = escapeOdds < self.chanceToEscape and not self.noEscape
 		if not escaped then
 			self.action = Serial {
 				shake,

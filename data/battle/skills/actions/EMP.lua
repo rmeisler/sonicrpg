@@ -24,10 +24,17 @@ return function(self, targets)
 					Animate(target:getSprite(), "hurt"),
 					Wait(0.1),
 					Animate(function()
-						local xform = Transform.from(target:getSprite().transform)
-						xform.x = xform.x + target:getSprite().w
-						xform.y = xform.y + target:getSprite().h
-						return SpriteNode(self.scene, xform, nil, "lightning", nil, nil, "ui"), true
+						if target.mockSprite then
+							local xform = Transform.from(target:getSprite().transform)
+							xform.x = xform.x + target:getSprite().w
+							xform.y = xform.y + target:getSprite().h
+							return SpriteNode(self.scene, xform, nil, "lightning", nil, nil, "ui"), true
+						else
+							local xform = Transform.from(target.sprite.transform)
+							xform.x = xform.x + target.sprite.w/3
+							xform.y = xform.y + target.sprite.h/2
+							return SpriteNode(self.scene, xform, nil, "lightning", nil, nil, "ui"), true
+						end
 					end, "idle"),
 					Do(function()
 						target.state = target.STATE_IMMOBILIZED

@@ -198,6 +198,12 @@ return {
 			self.numStates = 6
 		end
 		
+		local selfSprite = self:getSprite()
+		self.calledShotOverrideXForm = Transform(
+			selfSprite.transform.x + selfSprite.w*1.5 - math.random(1, selfSprite.w/2),
+			selfSprite.transform.y + selfSprite.h*1.5 - math.random(1, selfSprite.h/2)
+		)
+		
 		if not self.introDone then
 			self.introDone = true
 
@@ -252,12 +258,6 @@ return {
 			if not self.aerial then
 				state = "fly"
 			end
-
-			local selfSprite = self:getSprite()
-			self.calledShotOverrideXForm = Transform(
-				selfSprite.transform.x + selfSprite.w*2 - math.random(1, selfSprite.w),
-				selfSprite.transform.y + selfSprite.h - math.random(1, selfSprite.h)
-			)
 			
 			if state == "laser" then
 				local dodgeAction = target.defenseEvent and

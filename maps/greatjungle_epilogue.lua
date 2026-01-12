@@ -602,7 +602,7 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 672,
-          y = 768,
+          y = 771,
           width = 64,
           height = 64,
           rotation = 0,

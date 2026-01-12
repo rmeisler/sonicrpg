@@ -8,11 +8,11 @@ return {
 	icon = "icon_conk",
 	battleAction = function()
 		local Serial = require "actions/Serial"
-		local Heal = require "data/items/actions/Heal"
+		local Revive = require "data/items/actions/Revive"
 		local SpHeal = require "data/items/actions/SpHeal"
 		return function(self, target)
 			return Serial {
-				Heal("hp", 200)(self, target),
+				Revive(200)(self, target),
 				SpHeal("sp", 5)(self, target)
 			}
 		end
