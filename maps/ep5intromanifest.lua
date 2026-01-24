@@ -57,7 +57,7 @@ return {
 	{
         type = "map",
         file = "maps/dream_mountain_cave10.lua",
-		--primary = true
+		primary = true
     },
 	{
         type = "map",

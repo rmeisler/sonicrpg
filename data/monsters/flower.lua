@@ -71,6 +71,8 @@ return {
 		self.bullet.transform.angle = math.pi / 6
 	end,
 	
+	is_bot = false,
+	
 	behavior = function (self, target)
 		if self.hp <= 0 then
 			return Action()

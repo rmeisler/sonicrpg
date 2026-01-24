@@ -251,8 +251,8 @@ Ilya Rappu/Picnik
 
 
 
-       This episode is a two-parter,
- the second part will be released Winter 2025...
+  This episode is dedicated to Floof, our fierce, curious,
+   and loving calico who was taken from us much too soon.
 
 	
 	
@@ -282,7 +282,7 @@ Ilya Rappu/Picnik
 		false
 	)
 	return Serial {
-		Ease(text.transform, "y", -4000, 0.01, "linear"),
+		Ease(text.transform, "y", -4200, 0.01, "linear"),
 		Do(function()
 			print("done")
 		end)

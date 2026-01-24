@@ -122,13 +122,34 @@ return function(scene)
 					self.x = self.x + vx
 				end
 				chargeShot.x = chargeShot.x + vx
+				
+				if love.keyboard.isDown("up") then
+					if tails.y > 350 then
+						tails.y = tails.y - 6*(dt/0.016)
+					else
+						tails.y = 350
+					end
+				elseif love.keyboard.isDown("down") then
+					if tails.y < 680 then
+						tails.y = tails.y + 6*(dt/0.016)
+					else
+						tails.y = 680
+					end
+				end
+				
+				if not scene.frameCounter then
+					scene.frameCounter = 0
+				else
+					scene.frameCounter = scene.frameCounter + 1
+				end
+				if scene.frameCounter % 10 == 0 then
+					print("tails x = "..tostring(tails.x))
+				end
 
 				if self.x > 48000 then
 					tails.x = tails.x + vx + 1 * (dt/0.016)
-				elseif self.x > 13000 and self.x < 22000 then
+				elseif self.x > 13000 and self.x < 16000 then
 					tails.x = tails.x + vx + 1 * (dt/0.016)
-				elseif self.x > 11000 and self.x < 14000 then
-					tails.x = tails.x + vx
 				elseif self.x > 2000 then
 					tails.x = tails.x + vx
 				end
@@ -158,9 +179,11 @@ return function(scene)
 				elseif self.x > 13000 and self.x < 20000 then
 					-- look at tails
 					scene.camPos.x = scene.camPos.x - vx
+				--[[
 				elseif self.x > 20000 and self.x < 22000 then
 					-- pan forward again
 					scene.camPos.x = scene.camPos.x - vx*1.5
+				]]
 				else
 					scene.camPos.x = scene.camPos.x - vx
 				end
@@ -168,6 +191,7 @@ return function(scene)
 		end),
 		Wait(2),
 		PlayAudio("music", "tailsrace", 1, true),
+		--[[
 		Wait(17),
 		MessageBox{message="Robotnik: That putrescent little mongrel is persistent, isn't he?", textSpeed=3, closeAction=Wait(4)},
 		Wait(2),
@@ -221,7 +245,8 @@ return function(scene)
 		MessageBox{message="Robotnik: This isn't possible!!", textSpeed=3, closeAction=Wait(3)},
 		Do(function() robotnik.sprite:setAnimation("angry") end),
 		MessageBox{message="Robotnik: No!! {p40}I will not be beaten by a child!!", textSpeed=3, closeAction=Wait(3)},
-		Wait(2),
+		]]
+		Wait(40),
 		Do(function()
 			robotnik.sprite:setAnimation("aim")
 			chargeShot.hidden = false

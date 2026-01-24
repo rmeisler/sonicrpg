@@ -42,6 +42,9 @@ Layout.Image = function(args)
 		if type(args) == "string" then
 			args = {name=args}
 		end
+		if not scene.images[args.name] then
+			args.name = "alert"
+		end
 		local node = SpriteNode(scene, Transform(0,0,2,2), args.color, args.name, nil, nil, false)
 		node.drawWithNight = false
 		if args.anim then

@@ -76,7 +76,7 @@ return function(self, target)
 		"ui"
 	)
 	self.slamArrow:setAnimation("point")
-	self.slamArrowSpeed = math.pi/50
+	self.slamArrowSpeed = math.pi/200
 	self.slamArrowEnd = false
 
 	local puckXform = Transform(self.sprite.transform.x - self.sprite.w, self.sprite.transform.y - self.sprite.h*2, 1, 1)

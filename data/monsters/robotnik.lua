@@ -51,6 +51,7 @@ return {
 	},
 
 	boss = true,
+	is_bot = false,
 
 	run_chance = 0.2,
 
@@ -578,7 +579,7 @@ return {
 					end
 				end
 
-				if target.id == "tails" then
+				if target.id == "babyt" then
 					return Serial {
 						Telegraph(self, "Intimidate", {500,500,500,50}),
 						Animate(selfSprite, "angry"),
@@ -599,14 +600,14 @@ return {
 							target:pushStats(newStats)
 						end),
 						MessageBox {
-							message="Tails defense reduced!",
+							message="Baby T defense reduced!",
 							rect=MessageBox.HEADLINER_RECT,
 							closeAction=Wait(1)
 						},
 						Animate(selfSprite, "idle"),
 						Animate(target.sprite, "idle")
 					}
-				elseif target.id == "babyt" then
+				elseif target.id == "tails" then
 					return Serial {
 						Telegraph(self, "Terrify", {500,500,500,50}),
 						Animate(selfSprite, "scary"),
@@ -634,7 +635,7 @@ return {
 							target:hop()
 						},
 						MessageBox {
-							message="Baby T is immobilized from fear!",
+							message="Tails is immobilized from fear!",
 							rect=MessageBox.HEADLINER_RECT,
 							closeAction=Wait(1)
 						},

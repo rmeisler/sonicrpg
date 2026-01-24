@@ -208,11 +208,23 @@ return {
 				Do(function() self:getSprite():setAnimation("angryidle") end)
 			}
 		end
+
+		local selfSprite = self:getSprite()
+		self.calledShotOverrideXForm = Transform(
+			selfSprite.transform.x + selfSprite.w*1.5 - math.random(1, selfSprite.w/2),
+			selfSprite.transform.y + selfSprite.h*1.5 - math.random(1, selfSprite.h/2)
+		)
 	end,
 
 	behavior = function (self, target)
 		self.turnCount = self.turnCount + 1
-		
+
+		local selfSprite = self:getSprite()
+		self.calledShotOverrideXForm = Transform(
+			selfSprite.transform.x + selfSprite.w*1.5 - math.random(1, selfSprite.w/2),
+			selfSprite.transform.y + selfSprite.h*1.5 - math.random(1, selfSprite.h/2)
+		)
+
 		if self.scene.partyByName.babyt.hp == 0 then
 			-- Can't win without Baby T
 			self.scene.specialLoseAction = Serial {
