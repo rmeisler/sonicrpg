@@ -108,11 +108,32 @@ return function(scene)
 	chargeShot.hidden = true
 	scene:addObject(chargeShot)
 
+	local waterfallLayer1 = scene:findLayer("waterfall1")
+	local waterfallLayer2 = scene:findLayer("waterfall2")
+	local floor2Layer = scene:findLayer("floor2")
+	local waterfallAnim = Spawn(
+		Repeat(Serial {
+			Do(function()
+				waterfallLayer1.opacity = 0.7
+				waterfallLayer2.opacity = 0
+				floor2Layer.opacity = 0
+			end),
+			Wait(0.2),
+			Do(function()
+				waterfallLayer1.opacity = 0
+				waterfallLayer2.opacity = 0.7
+				floor2Layer.opacity = 1
+			end),
+			Wait(0.2),
+		}, 1000000)
+	)
+
 	return BlockPlayer {
 		Do(function()
 			scene.player.sprite.visible = false
 			scene.player.dropShadow.hidden = true
 		end),
+		waterfallAnim,
 		Do(function()
 			scene.objectLookup.Robotnik:addSceneHandler("update", function(self, dt)
 				local vx = ROBOTNIK_SPEED * (dt/0.016)
@@ -143,7 +164,7 @@ return function(scene)
 					scene.frameCounter = scene.frameCounter + 1
 				end
 				if scene.frameCounter % 10 == 0 then
-					print("tails x = "..tostring(tails.x))
+					--print("tails x = "..tostring(tails.x))
 				end
 
 				if self.x > 48000 then
