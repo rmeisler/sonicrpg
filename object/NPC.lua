@@ -550,10 +550,6 @@ function NPC:update(dt)
 	if not self.scene.player or self.hidden then
 		return
 	end
-	
-	if self.onUpdate then
-		self.onUpdate(self, dt)
-	end
 
 	-- Update hotspots
 	if self.sprite and not self.useObjectCollision then
@@ -574,6 +570,10 @@ function NPC:update(dt)
 		self.hotspots.left_top.y = self.y + self.hotspotOffsets.left_top.y
 		self.hotspots.left_bot.x = self.x + self.hotspotOffsets.left_bot.x
 		self.hotspots.left_bot.y = self.y + self.object.height + self.hotspotOffsets.left_bot.y
+	end
+	
+	if self.onUpdate then
+		self.onUpdate(self, dt)
 	end
 	
 	if self.hidingSpot then

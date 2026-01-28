@@ -148,7 +148,7 @@ return function(scene)
 
 				if self.x > 48000 then
 					tails.x = tails.x + vx + 1 * (dt/0.016)
-				elseif self.x > 13000 and self.x < 16000 then
+				elseif self.x > 11000 and self.x < 13500 then
 					tails.x = tails.x + vx + 1 * (dt/0.016)
 				elseif self.x > 2000 then
 					tails.x = tails.x + vx
@@ -162,21 +162,21 @@ return function(scene)
 					end
 				end
 				
-				if fleet.x > 80000 and fleet.x < 96500 then
+				if fleet.x > 80000 and fleet.x < 94500 then
 					fleet.x = fleet.x + vx + 60 * (dt/0.016)
-				elseif fleet.x > 96500 then
+				elseif fleet.x > 94500 then
 					fleet.sprite:setAnimation("flyrightsmile")
 					fleet.x = fleet.x + vx * 0.9
 				end
 
-				if self.x > 9000 and self.x < 11000 then
+				if self.x > 7000 and self.x < 9000 then
 					self.sprite:setAnimation("lookback")
 					--self.scene.audio:playSfx("robotnikgrit")
 					scene.camPos.x = scene.camPos.x - vx
-				elseif self.x > 11000 and self.x < 13000 then
+				elseif self.x > 9000 and self.x < 11000 then
 					-- pan back
 					scene.camPos.x = scene.camPos.x - vx/2
-				elseif self.x > 13000 and self.x < 20000 then
+				elseif self.x > 11000 and self.x < 18000 then
 					-- look at tails
 					scene.camPos.x = scene.camPos.x - vx
 				--[[
