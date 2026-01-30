@@ -163,11 +163,11 @@ return function(scene)
 				else
 					scene.frameCounter = scene.frameCounter + 1
 				end
-				if scene.frameCounter % 10 == 0 then
-					--print("tails x = "..tostring(tails.x))
-				end
+				--[[if scene.frameCounter % 10 == 0 then
+					print("tails x = "..tostring(tails.x))
+				end]]
 
-				if self.x > 48000 then
+				if self.x > 44000 then
 					tails.x = tails.x + vx + 1 * (dt/0.016)
 				elseif self.x > 11000 and self.x < 13500 then
 					tails.x = tails.x + vx + 1 * (dt/0.016)
@@ -200,13 +200,24 @@ return function(scene)
 				elseif self.x > 11000 and self.x < 18000 then
 					-- look at tails
 					scene.camPos.x = scene.camPos.x - vx
-				--[[
-				elseif self.x > 20000 and self.x < 22000 then
+				elseif self.x > 42500 and self.x < 44500 then
 					-- pan forward again
 					scene.camPos.x = scene.camPos.x - vx*1.5
-				]]
 				else
 					scene.camPos.x = scene.camPos.x - vx
+
+					if self.x > 46000 and self.sprite.selected ~= "lookforward" then
+						self.sprite:setAnimation("lookforward")
+					end
+					
+					if self.x > 46500 and self.scene.objectLookup.Missile1.x < 1000 then
+						print("here comes the missile!!")
+						self.scene.audio:playSfx("explosion", 0.5, true)
+						self.scene.objectLookup.Missile1.x = self.x + 98*2
+						self.scene.objectLookup.Missile1.y = self.y + 43*2
+						self.scene.objectLookup.Missile1.speedBonus = ROBOTNIK_SPEED
+						self.scene.objectLookup.Missile1.move = true
+					end
 				end
 			end)
 		end),
@@ -267,7 +278,7 @@ return function(scene)
 		Do(function() robotnik.sprite:setAnimation("angry") end),
 		MessageBox{message="Robotnik: No!! {p40}I will not be beaten by a child!!", textSpeed=3, closeAction=Wait(3)},
 		]]
-		Wait(40),
+		Wait(55),
 		Do(function()
 			robotnik.sprite:setAnimation("aim")
 			chargeShot.hidden = false
