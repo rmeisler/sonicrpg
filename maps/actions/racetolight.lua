@@ -18,12 +18,14 @@ local Do = require "actions/Do"
 local YieldUntil = require "actions/YieldUntil"
 local shine = require "lib/shine"
 local SpriteNode = require "object/SpriteNode"
+local IfElse = require "actions/IfElse"
 local NameScreen = require "actions/NameScreen"
 local Executor = require "actions/Executor"
 local Spawn = require "actions/Spawn"
 local AudioFade = require "actions/AudioFade"
 local Repeat = require "actions/Repeat"
 local BlockPlayer = require "actions/BlockPlayer"
+local PressX = require "data/battle/actions/PressX"
 
 local BasicNPC = require "object/BasicNPC"
 local EscapeObstacle = require "object/EscapeObstacle"
@@ -35,6 +37,52 @@ local BasicNPC = require "object/BasicNPC"
 local EscapePlayer = require "object/EscapePlayer"
 
 local TARGET_OFFSET_X = 400
+
+local missileTarget = function(target, player, missile)
+	return Parallel {
+		Ease(target.sprite.color, 4, 255, 5),
+		Serial {
+			PlayAudio("sfx", "lockon", 1.0, true),
+			Parallel {
+				Ease(target.sprite.transform, "sx", 4, 12, "inout"),
+				Ease(target.sprite.transform, "sy", 4, 12, "inout")
+			},
+			Parallel {
+				Ease(target.sprite.transform, "sx", 1.5, 12, "inout"),
+				Ease(target.sprite.transform, "sy", 1.5, 12, "inout")
+			},
+			Parallel {
+				Ease(target.sprite.transform, "sx", 3, 12, "inout"),
+				Ease(target.sprite.transform, "sy", 3, 12, "inout")
+			},
+			Parallel {
+				Ease(target.sprite.transform, "sx", 2, 12, "inout"),
+				Ease(target.sprite.transform, "sy", 2, 12, "inout")
+			},
+			
+			Ease(target.sprite.color, 4, 0, 5),
+		},
+		
+		-- chance to dodge by boosting forward
+		PressX(
+			player,
+			player,
+			Do(function()
+				player.dodged = true
+
+				-- Boost player forward here...
+				player.bx = 2
+			end),
+			Repeat(
+				Serial {
+					Ease(tails.sprite.color, 4, 0, 20, "quad"),
+					Ease(tails.sprite.color, 4, 255, 20, "quad")
+				},
+				10
+			)
+		)
+	}
+end
 
 return function(scene)
 	scene.bgColor = {255,255,255,255}
@@ -83,6 +131,9 @@ return function(scene)
 	end
 
 	local ROBOTNIK_SPEED = 20
+
+	local target = scene.objectLookup.Target
+	target.sprite.transform = Transform.relative(player.sprite.transform)
 
 	local sonic = scene.objectLookup.Sonic
 	local fleet = scene.objectLookup.Fleet
@@ -167,9 +218,13 @@ return function(scene)
 					print("tails x = "..tostring(tails.x))
 				end]]
 
+				--[[
 				if self.x > 44000 then
 					tails.x = tails.x + vx + 1 * (dt/0.016)
-				elseif self.x > 11000 and self.x < 13500 then
+				else
+				]]
+				
+				if self.x > 11000 and self.x < 13500 then
 					tails.x = tails.x + vx + 1 * (dt/0.016)
 				elseif self.x > 2000 then
 					tails.x = tails.x + vx
@@ -203,6 +258,12 @@ return function(scene)
 				elseif self.x > 42500 and self.x < 44500 then
 					-- pan forward again
 					scene.camPos.x = scene.camPos.x - vx*1.5
+				elseif self.x > 48000 and self.x < 50000 then
+					-- pan back
+					scene.camPos.x = scene.camPos.x - vx/2
+				elseif self.x > 50000 and self.x < 57000 then
+					-- look at tails
+					scene.camPos.x = scene.camPos.x - vx
 				else
 					scene.camPos.x = scene.camPos.x - vx
 
@@ -211,74 +272,42 @@ return function(scene)
 					end
 					
 					if self.x > 46500 and self.scene.objectLookup.Missile1.x < 1000 then
-						print("here comes the missile!!")
 						self.scene.audio:playSfx("explosion", 0.5, true)
 						self.scene.objectLookup.Missile1.x = self.x + 98*2
 						self.scene.objectLookup.Missile1.y = self.y + 43*2
 						self.scene.objectLookup.Missile1.speedBonus = ROBOTNIK_SPEED
 						self.scene.objectLookup.Missile1.move = true
 					end
+					
+					if self.x > 47000 and self.scene.objectLookup.Missile2.x < 1000 then
+						self.scene.audio:playSfx("explosion", 0.5, true)
+						self.scene.objectLookup.Missile2.x = self.x + 98*2
+						self.scene.objectLookup.Missile2.y = self.y + 43*2
+						self.scene.objectLookup.Missile2.speedBonus = ROBOTNIK_SPEED
+						self.scene.objectLookup.Missile2.move = true
+					end
+					
+					if self.x > 47500 and self.scene.objectLookup.Missile3.x < 1000 then
+						self.scene.audio:playSfx("explosion", 0.5, true)
+						self.scene.objectLookup.Missile3.x = self.x + 98*2
+						self.scene.objectLookup.Missile3.y = self.y + 43*2
+						self.scene.objectLookup.Missile3.speedBonus = ROBOTNIK_SPEED
+						self.scene.objectLookup.Missile3.move = true
+					end
 				end
 			end)
 		end),
 		Wait(2),
 		PlayAudio("music", "tailsrace", 1, true),
-		--[[
-		Wait(17),
-		MessageBox{message="Robotnik: That putrescent little mongrel is persistent, isn't he?", textSpeed=3, closeAction=Wait(4)},
+		Wait(50),
+		missileTarget(target, tails, self.scene.objectLookup.Missile1),
+		Wait(1),
+		missileTarget(target, tails, self.scene.objectLookup.Missile2),
+		Wait(1),
+		missileTarget(target, tails, self.scene.objectLookup.Missile3),
+		
 		Wait(2),
-		Do(function() robotnik.sprite:setAnimation("lookforward") end),
-		MessageBox{message="Robotnik: Let's see how he handles this! {p40}He he he!", textSpeed=3, closeAction=Wait(3)},
-		Wait(2),
-		Do(function() robotnik.sprite:setAnimation("dropmines") end),
-		Repeat(Serial {
-			Wait(0.2),
-			Do(function()
-				local mine = BasicNPC(
-					scene,
-					{name = "objects"},
-					{
-						name = "robomine",
-						x = robotnik.x + 204,
-						y = robotnik.y + 106,
-						width = 19,
-						height = 19,
-						properties = {nocollision = true, sprite = "art/sprites/robotnikmine.png"}
-					}
-				)
-				mine.sprite.transform.ox = 9.5
-				mine.sprite.transform.oy = 9.5
-				scene:addObject(mine)
-				
-				mine:run {
-					PlayAudio("sfx", "choose", 1, true, false, true),
-					Ease(mine, "y", function() return mine.y + 100 end, 8)
-				}
 
-				if not scene.mines then
-					scene.mines = {}
-				end
-				table.insert(scene.mines, mine)
-			end)
-		}, 5),
-		Do(function() robotnik.sprite:setAnimation("lookforward") end),
-		
-		Wait(1),
-		Repeat(Serial {
-			PlayAudio("sfx", "explosion", 1, true, false, true),
-			Wait(0.2)
-		}, 5),
-		
-		MessageBox{message="Robotnik: Adieu{p40}, fox boy...", textSpeed=3, closeAction=Wait(3)},
-		
-		Wait(6),
-		Do(function() robotnik.sprite:setAnimation("scared") end),
-		Wait(1),
-		MessageBox{message="Robotnik: This isn't possible!!", textSpeed=3, closeAction=Wait(3)},
-		Do(function() robotnik.sprite:setAnimation("angry") end),
-		MessageBox{message="Robotnik: No!! {p40}I will not be beaten by a child!!", textSpeed=3, closeAction=Wait(3)},
-		]]
-		Wait(55),
 		Do(function()
 			robotnik.sprite:setAnimation("aim")
 			chargeShot.hidden = false
