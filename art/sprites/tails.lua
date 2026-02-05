@@ -89,6 +89,17 @@ return {
 			frames = {{13,5},{14,5}},
 			speed = 0.1
 		},
+		racescared = {
+			frames = {{9,5},{10,5}},
+			speed = 0.1
+		},
+		racesmile = {
+			frames = {{9,6},{10,6}},
+			speed = 0.1
+		},
+		racehurt = {
+			frames = {{8,6}}
+		},
 		tireddown = {
 			frames = {{15,5}}
 		},
@@ -177,11 +188,6 @@ return {
 		},
 		joydown = {
 			frames = {{9,3}}
-		},
-		
-		flyleftheavy = {
-			frames = {{9,5},{10,5}},
-			speed = 0.1
 		},
 		
 		flyright = {

@@ -9,13 +9,13 @@ local TargetType = require "util/TargetType"
 local ItemType = require "util/ItemType"
 local SpriteNode = require "object/SpriteNode"
 
-return function(self, target, success, fail, timeout)
+return function(self, target, success, fail, ttl)
 	-- If opponent v opponent, no press X event
 	if self.side == TargetType.Opponent and target.side == TargetType.Opponent then
 		return fail
 	end
 	
-	local ttl = 0.2
+	ttl = ttl or 0.2
 	if self.side == TargetType.Party and GameState:isEquipped(self.id, ItemType.Accessory, "Lucky Coin") then
 		ttl = ttl * 1.5
 	end
@@ -27,7 +27,7 @@ return function(self, target, success, fail, timeout)
 			Parallel {
 				-- Press X!
 				Animate(function()
-					return SpriteNode(self.scene, target.pressXXForm or target:getSprite().transform, nil, "pressx", nil, nil, "ui"), true
+					return SpriteNode(self.scene, target.pressXXForm or (target.getSprite and target:getSprite().transform or target.sprite.transform), nil, "pressx", nil, nil, "ui"), true
 				end, "idle"),
 				
 				-- If they press x fast enough, success! Otherwise fail

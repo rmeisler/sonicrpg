@@ -38,49 +38,106 @@ local EscapePlayer = require "object/EscapePlayer"
 
 local TARGET_OFFSET_X = 400
 
-local missileTarget = function(target, player, missile)
-	return Parallel {
-		Ease(target.sprite.color, 4, 255, 5),
-		Serial {
-			PlayAudio("sfx", "lockon", 1.0, true),
-			Parallel {
-				Ease(target.sprite.transform, "sx", 4, 12, "inout"),
-				Ease(target.sprite.transform, "sy", 4, 12, "inout")
-			},
-			Parallel {
-				Ease(target.sprite.transform, "sx", 1.5, 12, "inout"),
-				Ease(target.sprite.transform, "sy", 1.5, 12, "inout")
-			},
-			Parallel {
-				Ease(target.sprite.transform, "sx", 3, 12, "inout"),
-				Ease(target.sprite.transform, "sy", 3, 12, "inout")
-			},
-			Parallel {
-				Ease(target.sprite.transform, "sx", 2, 12, "inout"),
-				Ease(target.sprite.transform, "sy", 2, 12, "inout")
+local missileTarget = function(target, player, missile, explosion)
+	return Serial {
+		Do(function()
+			target.sprite.transform.ox = target.sprite.w/2
+			target.sprite.transform.oy = target.sprite.h/2
+
+			player.sprite:setAnimation("racescared")
+		end),
+		Parallel {
+			Do(function()
+				target.x = player.x - player.sprite.w + target.sprite.w
+				target.y = player.y + target.sprite.h - 40
+			end),
+			Ease(target.sprite.color, 4, 255, 5),
+			Serial {
+				PlayAudio("sfx", "lockon", 1.0, true),
+				Parallel {
+					Ease(target.sprite.transform, "sx", 4, 12, "inout"),
+					Ease(target.sprite.transform, "sy", 4, 12, "inout")
+				},
+				Parallel {
+					Ease(target.sprite.transform, "sx", 1.5, 12, "inout"),
+					Ease(target.sprite.transform, "sy", 1.5, 12, "inout")
+				},
+				Parallel {
+					Ease(target.sprite.transform, "sx", 3, 12, "inout"),
+					Ease(target.sprite.transform, "sy", 3, 12, "inout")
+				},
+				Parallel {
+					Ease(target.sprite.transform, "sx", 2, 12, "inout"),
+					Ease(target.sprite.transform, "sy", 2, 12, "inout")
+				},
+				
+				Ease(target.sprite.color, 4, 0, 5),
 			},
 			
-			Ease(target.sprite.color, 4, 0, 5),
-		},
-		
-		-- chance to dodge by boosting forward
-		PressX(
-			player,
-			player,
-			Do(function()
-				player.dodged = true
-
-				-- Boost player forward here...
-				player.bx = 2
-			end),
-			Repeat(
-				Serial {
-					Ease(tails.sprite.color, 4, 0, 20, "quad"),
-					Ease(tails.sprite.color, 4, 255, 20, "quad")
+			Serial {
+				Wait(0.2),
+				PressX(
+					player,
+					player,
+					Serial {
+						Do(function()
+							-- Boost player forward here...
+							player.bx = 5
+							player.sprite:setAnimation("racesmile")
+						end)
+					},
+					Serial {
+						Animate(player.sprite, "racehurt"),
+						Do(function()
+							player.bx = -1
+						end),
+						Parallel {
+							Ease(player.sprite.transform, "angle", 2*math.pi, 1, "quad"),
+							Serial {
+								Ease(player, "y", function() return player.y - 80 end, 2, "quad"),
+								Ease(player, "y", function() return player.y + 80 end, 2, "quad"),
+							},
+							Repeat(
+								Serial {
+									Ease(player.sprite.color, 4, 0, 20, "quad"),
+									Ease(player.sprite.color, 4, 255, 20, "quad")
+								},
+								10
+							)
+						},
+						Do(function()
+							player.sprite.transform.angle = 0
+							player.sprite:setAnimation("race")
+						end)
+					},
+					0.4
+				)
+			},
+			
+			Serial {
+				Wait(0.7),
+				Do(function()
+					explosion.sprite.transform.sx = 4
+					explosion.sprite.transform.sy = 4
+					explosion.x = player.x + 100
+					explosion.y = player.y - 130
+					explosion.hidden = true
+					missile.move = false
+					missile.smokeOnly = true
+				end),
+				Parallel {
+					Ease(missile, "x", function() return explosion.x end, 5, "quad"),
+					Ease(missile, "y", function() return explosion.y end, 5, "quad"),
+					Wait(0.1)
 				},
-				10
-			)
-		)
+				Do(function()
+					missile.hidden = true
+					explosion.hidden = false
+				end),
+				PlayAudio("sfx", "explosion", 1, true),
+				Animate(explosion.sprite, "updown"),
+			}
+		}
 	}
 end
 
@@ -132,12 +189,14 @@ return function(scene)
 
 	local ROBOTNIK_SPEED = 20
 
-	local target = scene.objectLookup.Target
-	target.sprite.transform = Transform.relative(player.sprite.transform)
-
 	local sonic = scene.objectLookup.Sonic
 	local fleet = scene.objectLookup.Fleet
 	local tails = scene.objectLookup.Tails
+	tails.sprite.transform.ox = 30
+	tails.sprite.transform.oy = 44
+	tails.pressXXForm = Transform.relative(tails.sprite.transform, Transform(50, 20))
+	
+	local explosion = scene.objectLookup.Explosion
 	local robotnik = scene.objectLookup.Robotnik
 	local chargeShot = BasicNPC(
 		scene,
@@ -158,6 +217,8 @@ return function(scene)
 	chargeShot.sprite:setAnimation("charge")
 	chargeShot.hidden = true
 	scene:addObject(chargeShot)
+	
+	local target = scene.objectLookup.Target
 
 	local waterfallLayer1 = scene:findLayer("waterfall1")
 	local waterfallLayer2 = scene:findLayer("waterfall2")
@@ -196,16 +257,16 @@ return function(scene)
 				chargeShot.x = chargeShot.x + vx
 				
 				if love.keyboard.isDown("up") then
-					if tails.y > 350 then
+					if tails.y > 420 then
 						tails.y = tails.y - 6*(dt/0.016)
 					else
-						tails.y = 350
+						tails.y = 420
 					end
 				elseif love.keyboard.isDown("down") then
-					if tails.y < 680 then
+					if tails.y < 750 then
 						tails.y = tails.y + 6*(dt/0.016)
 					else
-						tails.y = 680
+						tails.y = 750
 					end
 				end
 				
@@ -214,20 +275,30 @@ return function(scene)
 				else
 					scene.frameCounter = scene.frameCounter + 1
 				end
-				--[[if scene.frameCounter % 10 == 0 then
+				if scene.frameCounter % 10 == 0 then
 					print("tails x = "..tostring(tails.x))
-				end]]
+				end
 
 				--[[
 				if self.x > 44000 then
 					tails.x = tails.x + vx + 1 * (dt/0.016)
 				else
 				]]
-				
-				if self.x > 11000 and self.x < 13500 then
+
+				if not tails.bx or tails.bx < 0.1 and tails.bx > -0.1 then
+					tails.bx = 0.0
+				elseif tails.bx > 0.0 then
+					tails.bx = tails.bx - 0.05 * (dt/0.016)
+				else
+					tails.bx = tails.bx + 0.05 * (dt/0.016)
+				end
+
+				if self.x > 11000 and self.x < 14500 then
 					tails.x = tails.x + vx + 1 * (dt/0.016)
+				elseif self.x > 50000 and self.x < 60500 then
+					tails.x = tails.x + vx + (2.2 + tails.bx) * (dt/0.016)
 				elseif self.x > 2000 then
-					tails.x = tails.x + vx
+					tails.x = tails.x + vx + tails.bx * (dt/0.016)
 				end
 				
 				if sonic.x > 80000 then
@@ -261,9 +332,9 @@ return function(scene)
 				elseif self.x > 48000 and self.x < 50000 then
 					-- pan back
 					scene.camPos.x = scene.camPos.x - vx/2
-				elseif self.x > 50000 and self.x < 57000 then
+				elseif self.x > 50000 and self.x < 60500 then
 					-- look at tails
-					scene.camPos.x = scene.camPos.x - vx
+					scene.camPos.x = scene.camPos.x - vx - (2 + tails.bx) * (dt/0.016)
 				else
 					scene.camPos.x = scene.camPos.x - vx
 
@@ -299,14 +370,23 @@ return function(scene)
 		end),
 		Wait(2),
 		PlayAudio("music", "tailsrace", 1, true),
-		Wait(50),
-		missileTarget(target, tails, self.scene.objectLookup.Missile1),
+		Wait(38),
+		missileTarget(target, tails, scene.objectLookup.Missile1, explosion),
 		Wait(1),
-		missileTarget(target, tails, self.scene.objectLookup.Missile2),
+		missileTarget(target, tails, scene.objectLookup.Missile2, explosion),
 		Wait(1),
-		missileTarget(target, tails, self.scene.objectLookup.Missile3),
+		missileTarget(target, tails, scene.objectLookup.Missile3, explosion),
 		
-		Wait(2),
+		Do(function()
+			robotnik.sprite:setAnimation("scared")
+		end),
+		
+		Wait(1),
+		
+		Do(function()
+			robotnik.sprite:setAnimation("angry")
+		end),
+		MessageBox{message="Robotnik: I will not be beaten by a CHILD!!", textSpeed=3, closeAction=Wait(2)},
 
 		Do(function()
 			robotnik.sprite:setAnimation("aim")

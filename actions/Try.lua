@@ -9,13 +9,15 @@ function Try:construct(cond, success, fail, timeout)
 	self.fail = fail
 	self.timeout = timeout or 0
 	self.curtime = self.timeout
+	self.chooseSuccess = false
+	self.chooseFail = false
 	self.type = "Try"
 end
 
 function Try:update(dt)
-	if self.success.scene then
+	if self.chooseSuccess then
 		self.success:update(dt)
-	elseif self.fail.scene then
+	elseif self.chooseFail then
 		self.fail:update(dt)
 	else
 		self.cond:update(dt)
@@ -23,9 +25,11 @@ function Try:update(dt)
 		
 		if self.cond:isDone() then
 			self.success:setScene(self.scene)
+			self.chooseSuccess = true
 		elseif self.curtime <= 0 then
 			self.cond:finish()
 			self.fail:setScene(self.scene)
+			self.chooseFail = true
 		end
 	end
 end
@@ -45,6 +49,8 @@ function Try:reset()
 	self.cond:reset()
 	self.success:reset()
 	self.fail:reset()
+	self.chooseSuccess = false
+	self.chooseFail = false
 end
 
 
