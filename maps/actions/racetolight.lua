@@ -89,7 +89,9 @@ local missileTarget = function(target, player, missile, explosion)
 					Serial {
 						Animate(player.sprite, "racehurt"),
 						Do(function()
-							player.bx = -1
+							player.bx = -3
+
+							player.scene.audio:stopMusic()
 						end),
 						Parallel {
 							Ease(player.sprite.transform, "angle", 2*math.pi, 1, "quad"),
@@ -107,7 +109,8 @@ local missileTarget = function(target, player, missile, explosion)
 						},
 						Do(function()
 							player.sprite.transform.angle = 0
-							player.sprite:setAnimation("race")
+							player.sprite:setAnimation("dead")
+							player.noMove = true
 						end)
 					},
 					0.4
@@ -119,15 +122,18 @@ local missileTarget = function(target, player, missile, explosion)
 				Do(function()
 					explosion.sprite.transform.sx = 4
 					explosion.sprite.transform.sy = 4
-					explosion.x = player.x + 100
-					explosion.y = player.y - 130
+					explosion.x = player.x + 320
+					explosion.y = player.y - 140
 					explosion.hidden = true
-					missile.move = false
+					missile.move = true
 					missile.smokeOnly = true
+					missile.x = explosion.x - 800
+					missile.y = explosion.y - 100
+					missile.sprite.transform.angle = math.pi/6
 				end),
 				Parallel {
-					Ease(missile, "x", function() return explosion.x end, 5, "quad"),
-					Ease(missile, "y", function() return explosion.y end, 5, "quad"),
+					Ease(missile, "x", function() return explosion.x + 80 end, 3, "linear"),
+					Ease(missile, "y", function() return explosion.y + 150 end, 3, "linear"),
 					Wait(0.1)
 				},
 				Do(function()
@@ -246,193 +252,230 @@ return function(scene)
 			scene.player.dropShadow.hidden = true
 		end),
 		waterfallAnim,
-		Do(function()
-			scene.objectLookup.Robotnik:addSceneHandler("update", function(self, dt)
-				local vx = ROBOTNIK_SPEED * (dt/0.016)
-				if self.hurt then
-					self.x = self.x + vx * 0.2
-				else
-					self.x = self.x + vx
-				end
-				chargeShot.x = chargeShot.x + vx
+		
+		While(
+			function() return not tails.noMove end,
+			Serial {
+				Do(function()
+					scene.objectLookup.Robotnik:addSceneHandler("update", function(self, dt)
+						local vx = ROBOTNIK_SPEED * (dt/0.016)
+						if self.hurt then
+							self.x = self.x + vx * 0.2
+						else
+							self.x = self.x + vx
+						end
+						
+						if tails.noMove then
+							-- Game Over
+							return
+						end
+						
+						chargeShot.x = chargeShot.x + vx
+						
+						if love.keyboard.isDown("up") then
+							if tails.y > 420 then
+								tails.y = tails.y - 6*(dt/0.016)
+							else
+								tails.y = 420
+							end
+						elseif love.keyboard.isDown("down") then
+							if tails.y < 750 then
+								tails.y = tails.y + 6*(dt/0.016)
+							else
+								tails.y = 750
+							end
+						end
+						
+						if not scene.frameCounter then
+							scene.frameCounter = 0
+						else
+							scene.frameCounter = scene.frameCounter + 1
+						end
+						
+						if scene.frameCounter % 10 == 0 then
+							print("tails x = "..tostring(tails.x))
+						end
+
+						--[[
+						if self.x > 44000 then
+							tails.x = tails.x + vx + 1 * (dt/0.016)
+						else
+						]]
+
+						if not tails.bx or tails.bx < 0.1 and tails.bx > -0.1 then
+							tails.bx = 0.0
+						elseif tails.bx > 0.0 then
+							tails.bx = tails.bx - 0.05 * (dt/0.016)
+						else
+							tails.bx = tails.bx + 0.05 * (dt/0.016)
+						end
+
+						if self.x > 11000 and self.x < 14500 then
+							tails.x = tails.x + vx + 1 * (dt/0.016)
+						elseif self.x > 50500 and self.x < 62500 then
+							tails.x = tails.x + vx + (2.2 + tails.bx) * (dt/0.016)
+						elseif self.x > 2000 then
+							tails.x = tails.x + vx + tails.bx * (dt/0.016)
+						end
+						
+						if sonic.x > 80000 then
+							if sonic.x < robotnik.x - 200 then
+								sonic.x = sonic.x + vx + 2 * (dt/0.016)
+							else
+								sonic.x = sonic.x + vx
+							end
+						end
+						
+						if fleet.x > 90000 and fleet.x < 97000 then
+							fleet.x = fleet.x + vx + 60 * (dt/0.016)
+						elseif fleet.x > 97000 then
+							fleet.sprite:setAnimation("flyrightsmile")
+							fleet.x = fleet.x + vx * 0.9
+						end
+
+						if self.x > 7000 and self.x < 9000 then
+							self.sprite:setAnimation("lookback")
+							--self.scene.audio:playSfx("robotnikgrit")
+							scene.camPos.x = scene.camPos.x - vx
+						elseif self.x > 9000 and self.x < 11000 then
+							-- pan back
+							scene.camPos.x = scene.camPos.x - vx/2
+						elseif self.x > 11000 and self.x < 18000 then
+							-- look at tails
+							scene.camPos.x = scene.camPos.x - vx
+						elseif self.x > 42500 and self.x < 44500 then
+							-- pan forward again
+							scene.camPos.x = scene.camPos.x - vx*1.5
+						elseif self.x > 50500 and self.x < 52500 then
+							-- pan back
+							scene.camPos.x = scene.camPos.x - vx/2
+						elseif self.x > 52500 and self.x < 63000 then
+							-- look at tails
+							scene.camPos.x = scene.camPos.x - vx - (2 + tails.bx) * (dt/0.016)
+						elseif self.x > 66000 and self.x < 67500 then
+							-- pan back
+							scene.camPos.x = scene.camPos.x - vx/2
+						else
+							scene.camPos.x = scene.camPos.x - vx
+
+							if self.x > 47000 and self.x < 50000 and self.sprite.selected ~= "lookforward" then
+								self.sprite:setAnimation("lookforward")
+							end
+							
+							if self.x > 48000 and self.scene.objectLookup.Missile1.x < 1000 then
+								self.scene.audio:playSfx("explosion", 0.5, true)
+								self.scene.objectLookup.Missile1.x = self.x + 98*2
+								self.scene.objectLookup.Missile1.y = self.y + 43*2
+								self.scene.objectLookup.Missile1.speedBonus = ROBOTNIK_SPEED
+								self.scene.objectLookup.Missile1.move = true
+							end
+							
+							if self.x > 49000 and self.scene.objectLookup.Missile2.x < 1000 then
+								self.scene.audio:playSfx("explosion", 0.5, true)
+								self.scene.objectLookup.Missile2.x = self.x + 98*2
+								self.scene.objectLookup.Missile2.y = self.y + 43*2
+								self.scene.objectLookup.Missile2.speedBonus = ROBOTNIK_SPEED
+								self.scene.objectLookup.Missile2.move = true
+							end
+							
+							if self.x > 50000 and self.scene.objectLookup.Missile3.x < 1000 then
+								self.scene.audio:playSfx("explosion", 0.5, true)
+								self.scene.objectLookup.Missile3.x = self.x + 98*2
+								self.scene.objectLookup.Missile3.y = self.y + 43*2
+								self.scene.objectLookup.Missile3.speedBonus = ROBOTNIK_SPEED
+								self.scene.objectLookup.Missile3.move = true
+							end
+						end
+					end)
+				end),
+				Wait(2),
+				PlayAudio("music", "tailsrace", 1, true),
+				Wait(39),
+				missileTarget(target, tails, scene.objectLookup.Missile1, explosion),
+				Wait(1),
+				missileTarget(target, tails, scene.objectLookup.Missile2, explosion),
+				Wait(1),
+				missileTarget(target, tails, scene.objectLookup.Missile3, explosion),
 				
-				if love.keyboard.isDown("up") then
-					if tails.y > 420 then
-						tails.y = tails.y - 6*(dt/0.016)
-					else
-						tails.y = 420
-					end
-				elseif love.keyboard.isDown("down") then
-					if tails.y < 750 then
-						tails.y = tails.y + 6*(dt/0.016)
-					else
-						tails.y = 750
-					end
-				end
+				Wait(5),
 				
-				if not scene.frameCounter then
-					scene.frameCounter = 0
-				else
-					scene.frameCounter = scene.frameCounter + 1
-				end
-				if scene.frameCounter % 10 == 0 then
-					print("tails x = "..tostring(tails.x))
-				end
+				Do(function()
+					robotnik.sprite:setAnimation("angry")
+				end),
+				Wait(1),
+				MessageBox{message="Robotnik: I will not be beaten by a CHILD!!", textSpeed=3, closeAction=Wait(3)},
 
-				--[[
-				if self.x > 44000 then
-					tails.x = tails.x + vx + 1 * (dt/0.016)
-				else
-				]]
+				Wait(4),
 
-				if not tails.bx or tails.bx < 0.1 and tails.bx > -0.1 then
-					tails.bx = 0.0
-				elseif tails.bx > 0.0 then
-					tails.bx = tails.bx - 0.05 * (dt/0.016)
-				else
-					tails.bx = tails.bx + 0.05 * (dt/0.016)
-				end
-
-				if self.x > 11000 and self.x < 14500 then
-					tails.x = tails.x + vx + 1 * (dt/0.016)
-				elseif self.x > 50000 and self.x < 60500 then
-					tails.x = tails.x + vx + (2.2 + tails.bx) * (dt/0.016)
-				elseif self.x > 2000 then
-					tails.x = tails.x + vx + tails.bx * (dt/0.016)
-				end
+				Do(function()
+					robotnik.sprite:setAnimation("aim")
+					chargeShot.hidden = false
+				end),
+				Parallel {
+					Ease(chargeShot.sprite.transform, "sx", 1, 0.5),
+					Ease(chargeShot.sprite.transform, "sy", 1, 0.5),
+				},
+				Wait(1),
+				MessageBox{message="Robotnik: DIE!!", textSpeed=3, closeAction=Wait(2)},
 				
-				if sonic.x > 80000 then
-					if sonic.x < robotnik.x - 200 then
-						sonic.x = sonic.x + vx + 2 * (dt/0.016)
-					else
-						sonic.x = sonic.x + vx
-					end
-				end
 				
-				if fleet.x > 80000 and fleet.x < 94500 then
-					fleet.x = fleet.x + vx + 60 * (dt/0.016)
-				elseif fleet.x > 94500 then
-					fleet.sprite:setAnimation("flyrightsmile")
-					fleet.x = fleet.x + vx * 0.9
-				end
+				Do(function()
+					sonic.x = robotnik.x - 400
+				end),
+				MessageBox{message="Sonic: Yo Buttnik! {p60}Watch where you're pointing that thing!", closeAction=Wait(2)},
+				Do(function()
+					robotnik.sprite:setAnimation("aimlookback")
+				end),
+				PlayAudio("sfx", "robotnikgrit", 1, true),
+				
+				Wait(2),
+				Do(function()
+					fleet.x = robotnik.x - 400
+				end),
+				
+				PlayAudio("music", "sonicfanfare2", 1, true),
+				PlayAudio("sfx", "sonicrunturn", 1, true),
+				Wait(0.2),
+				Do(function()
+					robotnik.sprite:setAnimation("hurt")
+					robotnik.hurt = true
+					chargeShot.hidden = true
+				end),
+				PlayAudio("sfx", "robotnikhurt", 1, true),
+				Ease(robotnik, "y", function() return robotnik.y - 150 end, 3),
+				Ease(robotnik, "y", function() return robotnik.y + 250 end, 8),
+				Animate(robotnik.sprite, "hurt"),
+				
+				MessageBox{message="Fleet: Got him!", closeAction=Wait(1.5)},
+				MessageBox{message="Sonic: Way past cool, Fleet!", closeAction=Wait(2)},
 
-				if self.x > 7000 and self.x < 9000 then
-					self.sprite:setAnimation("lookback")
-					--self.scene.audio:playSfx("robotnikgrit")
-					scene.camPos.x = scene.camPos.x - vx
-				elseif self.x > 9000 and self.x < 11000 then
-					-- pan back
-					scene.camPos.x = scene.camPos.x - vx/2
-				elseif self.x > 11000 and self.x < 18000 then
-					-- look at tails
-					scene.camPos.x = scene.camPos.x - vx
-				elseif self.x > 42500 and self.x < 44500 then
-					-- pan forward again
-					scene.camPos.x = scene.camPos.x - vx*1.5
-				elseif self.x > 48000 and self.x < 50000 then
-					-- pan back
-					scene.camPos.x = scene.camPos.x - vx/2
-				elseif self.x > 50000 and self.x < 60500 then
-					-- look at tails
-					scene.camPos.x = scene.camPos.x - vx - (2 + tails.bx) * (dt/0.016)
-				else
-					scene.camPos.x = scene.camPos.x - vx
-
-					if self.x > 46000 and self.sprite.selected ~= "lookforward" then
-						self.sprite:setAnimation("lookforward")
-					end
-					
-					if self.x > 46500 and self.scene.objectLookup.Missile1.x < 1000 then
-						self.scene.audio:playSfx("explosion", 0.5, true)
-						self.scene.objectLookup.Missile1.x = self.x + 98*2
-						self.scene.objectLookup.Missile1.y = self.y + 43*2
-						self.scene.objectLookup.Missile1.speedBonus = ROBOTNIK_SPEED
-						self.scene.objectLookup.Missile1.move = true
-					end
-					
-					if self.x > 47000 and self.scene.objectLookup.Missile2.x < 1000 then
-						self.scene.audio:playSfx("explosion", 0.5, true)
-						self.scene.objectLookup.Missile2.x = self.x + 98*2
-						self.scene.objectLookup.Missile2.y = self.y + 43*2
-						self.scene.objectLookup.Missile2.speedBonus = ROBOTNIK_SPEED
-						self.scene.objectLookup.Missile2.move = true
-					end
-					
-					if self.x > 47500 and self.scene.objectLookup.Missile3.x < 1000 then
-						self.scene.audio:playSfx("explosion", 0.5, true)
-						self.scene.objectLookup.Missile3.x = self.x + 98*2
-						self.scene.objectLookup.Missile3.y = self.y + 43*2
-						self.scene.objectLookup.Missile3.speedBonus = ROBOTNIK_SPEED
-						self.scene.objectLookup.Missile3.move = true
-					end
-				end
-			end)
-		end),
-		Wait(2),
-		PlayAudio("music", "tailsrace", 1, true),
-		Wait(38),
-		missileTarget(target, tails, scene.objectLookup.Missile1, explosion),
-		Wait(1),
-		missileTarget(target, tails, scene.objectLookup.Missile2, explosion),
-		Wait(1),
-		missileTarget(target, tails, scene.objectLookup.Missile3, explosion),
-		
-		Do(function()
-			robotnik.sprite:setAnimation("scared")
-		end),
-		
-		Wait(1),
-		
-		Do(function()
-			robotnik.sprite:setAnimation("angry")
-		end),
-		MessageBox{message="Robotnik: I will not be beaten by a CHILD!!", textSpeed=3, closeAction=Wait(2)},
-
-		Do(function()
-			robotnik.sprite:setAnimation("aim")
-			chargeShot.hidden = false
-		end),
-		Parallel {
-			Ease(chargeShot.sprite.transform, "sx", 1, 0.5),
-			Ease(chargeShot.sprite.transform, "sy", 1, 0.5),
-		},
-		MessageBox{message="Robotnik: DIE!!", textSpeed=3, closeAction=Wait(2)},
-		
-		
-		Do(function()
-			sonic.x = robotnik.x - 400
-		end),
-		MessageBox{message="Sonic: Yo Buttnik! {p60}Watch where you're pointing that thing!", closeAction=Wait(2)},
-		Do(function()
-			robotnik.sprite:setAnimation("aimlookback")
-		end),
-		PlayAudio("sfx", "robotnikgrit", 1, true),
-		
-		Wait(2),
-		Do(function()
-			fleet.x = robotnik.x - 400
-		end),
-		
-		PlayAudio("music", "sonicfanfare2", 1, true),
-		PlayAudio("sfx", "sonicrunturn", 1, true),
-		Wait(0.2),
-		Do(function()
-			robotnik.sprite:setAnimation("hurt")
-			robotnik.hurt = true
-			chargeShot.hidden = true
-		end),
-		PlayAudio("sfx", "robotnikhurt", 1, true),
-		Ease(robotnik, "y", function() return robotnik.y - 150 end, 3),
-		Ease(robotnik, "y", function() return robotnik.y + 250 end, 8),
-		Animate(robotnik.sprite, "hurt"),
-		
-		MessageBox{message="Fleet: Got him!", closeAction=Wait(1.5)},
-		MessageBox{message="Sonic: Way past cool, Fleet!", closeAction=Wait(2)},
-
-		PlayAudio("sfx", "battlestart", 1, true),
-		Do(function()
-			love.graphics.setBackgroundColor(255, 255, 255, 255)
-			scene:changeScene {map="lightofmobius", fadeOutSpeed=0.2, enterDelay=2, fadeInSpeed=0.1, fadeWhite=true}
-		end)
+				PlayAudio("sfx", "battlestart", 1, true),
+				Do(function()
+					love.graphics.setBackgroundColor(255, 255, 255, 255)
+					scene:changeScene {map="lightofmobius", fadeOutSpeed=0.2, enterDelay=2, fadeInSpeed=0.1, fadeWhite=true}
+				end)
+			},
+			Serial {
+				Wait(1),
+				Menu {
+					layout = Layout {
+						{Layout.Text("Try again?"), selectable = false},
+						{Layout.Text("Yes"),
+							choose = function(menu)
+								menu:close()
+								scene:restart()
+							end},
+						{Layout.Text("No"),
+							choose = function(menu)
+								menu:close()
+								scene.sceneMgr:backToTitle()
+							end},
+						colWidth = 200
+					},
+					transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+					selectedRow = 2
+				}
+			}
+		)
 	}
 end

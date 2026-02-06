@@ -8,7 +8,7 @@ return {
   height = 25,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 139,
+  nextobjectid = 142,
   properties = {
     ["battlebg"] = "../art/backgrounds/caveoflight.png",
     ["noBattleMusic"] = true,
@@ -561,7 +561,7 @@ return {
             ["align"] = "bottom_center",
             ["defaultAnim"] = "race",
             ["ghost"] = true,
-            ["onUpdate"] = "return function(self, dt)\n    self.hotspots = {\n        right_top = {x = self.x + 12, y = self.y + self.sprite.h/2 + 10},\n        right_bot = {x = self.x + 12, y = self.y + self.sprite.h},\n        left_top  = {x = self.x - 15, y = self.y + self.sprite.h/2 + 10},\n        left_bot  = {x = self.x - 15, y = self.y + self.sprite.h}\n    }\nend",
+            ["onUpdate"] = "return function(self, dt)\n    self.hotspots = {\n        right_top = {x = self.x + 12, y = self.y + self.sprite.h/2 - 60},\n        right_bot = {x = self.x + 12, y = self.y + self.sprite.h - 50},\n        left_top  = {x = self.x - 15, y = self.y + self.sprite.h/2 - 60},\n        left_bot  = {x = self.x - 15, y = self.y + self.sprite.h - 50}\n    }\nend",
             ["sprite"] = "../art/sprites/tails.png"
           }
         },
@@ -1060,66 +1060,6 @@ return {
             ["ghost"] = true,
             ["onUpdate"] = "local Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Animate = require \"actions/Animate\"\n\nlocal SpriteNode = require \"object/SpriteNode\"\n\nlocal Transform = require \"util/Transform\"\n\nreturn function(self, dt)\n    local tails = self.scene.objectLookup.Tails\n    if tails.x < self.x + 100 and not self.touched and not self.scene.invincible then\n        if tails.x > self.x - 2500 and not self.alert then\n            self.alert = true\n\n            self:run {\n                PlayAudio(\"sfx\", \"alert\", 1.0, true),\n                Animate(function()\n                    return SpriteNode(self.scene, Transform(700, self.y-232, 2, 2), nil, \"alert\", nil, nil, \"ui\"), true\n                end, \"idle\")\n            }\n        end\n\n        if tails:isTouching(self.x, self.y, self.object.width, self.object.height) then\n            self.touched = true\n            self.scene.invincible = true\n\n            tails:run {\n                Repeat(\n                    Serial {\n                        Ease(tails.sprite.color, 4, 0, 20, \"quad\"),\n                        Ease(tails.sprite.color, 4, 255, 20, \"quad\")\n                     },\n                     10\n                 ),\n                 Do(function()\n                     self.scene.invincible = false\n                 end)\n            }\n        end\n    end\nend"
           }
-        },
-        {
-          id = 133,
-          name = "Missile1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 352,
-          y = 544,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 6839,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["onInit"] = "local BasicNPC = require \"object/BasicNPC\"\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    self.sprite.transform.ox = 0\n    self.sprite.transform.oy = self.sprite.h/2\n    self.moveDelta = 0.3\n    self.moveTime = self.moveDelta\n\n    self.smokeObjects = {}\n    self.currentSmokeObjectIndex = 1\n    self.smokeDelay = 0.05\n    self.smokeTime = self.smokeDelay\n\n    for i=1,10 do\n        local smokeObject = BasicNPC(\n            self.scene,\n            {name = \"objects\"},\n            {\n                name = \"smoke\", x = 0, y = 0, width = 48, height = 48,\n                properties = {nocollision = true, sprite = \"art/sprites/explosion.png\", align = NPC.ALIGN_BOTLEFT, defaultAnim=\"cloud\"}\n            }\n        )\n        self.scene:addObject(smokeObject)\n        table.insert(self.smokeObjects, smokeObject)\n    end\nend",
-            ["onUpdate"] = "local Ease = require \"actions/Ease\"\n\nreturn function(self, dt)\n    if not self.move then\n        return\n    end\n\n    if not self.smokeOnly then\n    -- Move toward Tails with rough trajectory\n    local frameTime = (dt/0.016)\n    local movespeed = self.speedBonus+ 5\n    local angleX = math.cos(self.sprite.transform.angle)\n    local angleY = math.sin(self.sprite.transform.angle)\n\n    self.x = self.x + movespeed * angleX * frameTime\n    self.y = self.y + (movespeed/5) * angleY * frameTime\n\n    self.moveTime = self.moveTime - dt\n    if self.moveTime <= 0 and self.sprite.transform.angle < math.pi then\n        self.sprite.transform.angle = self.sprite.transform.angle + math.pi/10\n        self.speedBonus = self.speedBonus - self.speedBonus/50\n\n        self.moveTime = self.moveDelta\n    end\n    end\n\n    -- Smoke particle system\n    self.smokeTime = self.smokeTime - dt\n    if self.smokeTime <= 0 then\n        local currentSmoke = self.smokeObjects[self.currentSmokeObjectIndex]\n        currentSmoke.x = self.x\n        currentSmoke.y = self.y\n        currentSmoke.sprite.transform.sx = 1\n        currentSmoke.sprite.transform.sy = 1\n        currentSmoke.sprite.transform.ox = currentSmoke.sprite.w/2\n        currentSmoke.sprite.transform.oy = currentSmoke.sprite.h/2\n        currentSmoke.sprite.color[4] = 255\n        if currentSmoke.curAction then\n            currentSmoke.curAction:stop()\n        end\n\n        currentSmoke:run{Ease(currentSmoke.sprite.color, 4, 0, 1)}\n\n        self.smokeTime = self.smokeDelay\n        self.currentSmokeObjectIndex =  (self.currentSmokeObjectIndex % table.count(self.smokeObjects)) + 1\n    end\nend",
-            ["sprite"] = "../art/sprites/missile.png"
-          }
-        },
-        {
-          id = 134,
-          name = "Missile3",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 352,
-          y = 672,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 6839,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["onInit"] = "local BasicNPC = require \"object/BasicNPC\"\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    self.sprite.transform.ox = 0\n    self.sprite.transform.oy = self.sprite.h/2\n    self.moveDelta = 0.1\n    self.moveTime = self.moveDelta\n\n    self.smokeObjects = {}\n    self.currentSmokeObjectIndex = 1\n    self.smokeDelay = 0.05\n    self.smokeTime = self.smokeDelay\n\n    for i=1,10 do\n        local smokeObject = BasicNPC(\n            self.scene,\n            {name = \"objects\"},\n            {\n                name = \"smoke\", x = 0, y = 0, width = 48, height = 48,\n                properties = {nocollision = true, sprite = \"art/sprites/explosion.png\", align = NPC.ALIGN_BOTLEFT, defaultAnim=\"cloud\"}\n            }\n        )\n        self.scene:addObject(smokeObject)\n        table.insert(self.smokeObjects, smokeObject)\n    end\nend",
-            ["onUpdate"] = "local Ease = require \"actions/Ease\"\n\nreturn function(self, dt)\n    if not self.move then\n        return\n    end\n\n\n    if not self.smokeOnly then\n    -- Move toward Tails with rough trajectory\n    local frameTime = (dt/0.016)\n    local movespeed = self.speedBonus\n    local angleX = math.cos(self.sprite.transform.angle)\n    local angleY = math.sin(self.sprite.transform.angle)\n\n    self.x = self.x + movespeed * angleX * frameTime\n    self.y = self.y + (movespeed/5) * angleY * frameTime\n\n    self.moveTime = self.moveTime - dt\n    if self.moveTime <= 0 and self.sprite.transform.angle < math.pi then\n        self.sprite.transform.angle = self.sprite.transform.angle + math.pi/10\n        self.speedBonus = self.speedBonus - self.speedBonus/50\n\n        self.moveTime = self.moveDelta\n    end\n    end\n\n    -- Smoke particle system\n    self.smokeTime = self.smokeTime - dt\n    if self.smokeTime <= 0 then\n        local currentSmoke = self.smokeObjects[self.currentSmokeObjectIndex]\n        currentSmoke.x = self.x\n        currentSmoke.y = self.y\n        currentSmoke.sprite.transform.sx = 1\n        currentSmoke.sprite.transform.sy = 1\n        currentSmoke.sprite.transform.ox = currentSmoke.sprite.w/2\n        currentSmoke.sprite.transform.oy = currentSmoke.sprite.h/2\n        currentSmoke.sprite.color[4] = 255\n        if currentSmoke.curAction then\n            currentSmoke.curAction:stop()\n        end\n\n        currentSmoke:run{Ease(currentSmoke.sprite.color, 4, 0, 1)}\n\n        self.smokeTime = self.smokeDelay\n        self.currentSmokeObjectIndex =  (self.currentSmokeObjectIndex % table.count(self.smokeObjects)) + 1\n    end\nend",
-            ["sprite"] = "../art/sprites/missile.png"
-          }
-        },
-        {
-          id = 135,
-          name = "Missile2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 352,
-          y = 608,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 6839,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["ghost"] = true,
-            ["onInit"] = "local BasicNPC = require \"object/BasicNPC\"\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    self.sprite.transform.ox = 0\n    self.sprite.transform.oy = self.sprite.h/2\n    self.moveDelta = 0.1\n    self.moveTime = self.moveDelta\n\n    self.smokeObjects = {}\n    self.currentSmokeObjectIndex = 1\n    self.smokeDelay = 0.05\n    self.smokeTime = self.smokeDelay\n\n    for i=1,10 do\n        local smokeObject = BasicNPC(\n            self.scene,\n            {name = \"objects\"},\n            {\n                name = \"smoke\", x = 0, y = 0, width = 48, height = 48,\n                properties = {nocollision = true, sprite = \"art/sprites/explosion.png\", align = NPC.ALIGN_BOTLEFT, defaultAnim=\"cloud\"}\n            }\n        )\n        self.scene:addObject(smokeObject)\n        table.insert(self.smokeObjects, smokeObject)\n    end\nend",
-            ["onUpdate"] = "local Ease = require \"actions/Ease\"\n\nreturn function(self, dt)\n    if not self.move then\n        return\n    end\n\n\n    if not self.smokeOnly then\n    -- Move toward Tails with rough trajectory\n    local frameTime = (dt/0.016)\n    local movespeed = self.speedBonus\n    local angleX = math.cos(self.sprite.transform.angle)\n    local angleY = math.sin(self.sprite.transform.angle)\n\n    self.x = self.x + movespeed * angleX * frameTime\n    self.y = self.y + (movespeed/5) * angleY * frameTime\n\n    self.moveTime = self.moveTime - dt\n    if self.moveTime <= 0 and self.sprite.transform.angle > -math.pi then\n        self.sprite.transform.angle = self.sprite.transform.angle - math.pi/10\n        self.speedBonus = self.speedBonus - self.speedBonus/50\n\n        self.moveTime = self.moveDelta\n    end\n    end\n\n    -- Smoke particle system\n    self.smokeTime = self.smokeTime - dt\n    if self.smokeTime <= 0 then\n        local currentSmoke = self.smokeObjects[self.currentSmokeObjectIndex]\n        currentSmoke.x = self.x\n        currentSmoke.y = self.y\n        currentSmoke.sprite.transform.sx = 1\n        currentSmoke.sprite.transform.sy = 1\n        currentSmoke.sprite.transform.ox = currentSmoke.sprite.w/2\n        currentSmoke.sprite.transform.oy = currentSmoke.sprite.h/2\n        currentSmoke.sprite.color[4] = 255\n        if currentSmoke.curAction then\n            currentSmoke.curAction:stop()\n        end\n\n        currentSmoke:run{Ease(currentSmoke.sprite.color, 4, 0, 1)}\n\n        self.smokeTime = self.smokeDelay\n        self.currentSmokeObjectIndex =  (self.currentSmokeObjectIndex % table.count(self.smokeObjects)) + 1\n    end\nend",
-            ["sprite"] = "../art/sprites/missile.png"
-          }
         }
       }
     },
@@ -1302,6 +1242,66 @@ return {
             ["defaultAnim"] = "right",
             ["ghost"] = true,
             ["sprite"] = "../art/sprites/dust.png"
+          }
+        },
+        {
+          id = 139,
+          name = "Missile1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 544,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["onInit"] = "local BasicNPC = require \"object/BasicNPC\"\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    self.sprite.transform.ox = 0\n    self.sprite.transform.oy = self.sprite.h/2\n    self.moveDelta = 0.3\n    self.moveTime = self.moveDelta\n\n    self.smokeObjects = {}\n    self.currentSmokeObjectIndex = 1\n    self.smokeDelay = 0.05\n    self.smokeTime = self.smokeDelay\n\n    for i=1,10 do\n        local smokeObject = BasicNPC(\n            self.scene,\n            {name = \"upper\"},\n            {\n                name = \"smoke\", x = 0, y = 0, width = 48, height = 48,\n                properties = {nocollision = true, sprite = \"art/sprites/explosion.png\", align = NPC.ALIGN_BOTLEFT, defaultAnim=\"cloud\"}\n            }\n        )\n        self.scene:addObject(smokeObject)\n        table.insert(self.smokeObjects, smokeObject)\n    end\nend",
+            ["onUpdate"] = "local Ease = require \"actions/Ease\"\n\nreturn function(self, dt)\n    if not self.move then\n        return\n    end\n\n    if not self.smokeOnly then\n    -- Move toward Tails with rough trajectory\n    local frameTime = (dt/0.016)\n    local movespeed = self.speedBonus+ 5\n    local angleX = math.cos(self.sprite.transform.angle)\n    local angleY = math.sin(self.sprite.transform.angle)\n\n    self.x = self.x + movespeed * angleX * frameTime\n    self.y = self.y + (movespeed/5) * angleY * frameTime\n\n    self.moveTime = self.moveTime - dt\n    if self.moveTime <= 0 and self.sprite.transform.angle < math.pi then\n        self.sprite.transform.angle = self.sprite.transform.angle + math.pi/10\n        self.speedBonus = self.speedBonus - self.speedBonus/50\n\n        self.moveTime = self.moveDelta\n    end\n    end\n\n    -- Smoke particle system\n    self.smokeTime = self.smokeTime - dt\n    if self.smokeTime <= 0 then\n        local currentSmoke = self.smokeObjects[self.currentSmokeObjectIndex]\n        currentSmoke.x = self.x\n        currentSmoke.y = self.y\n        currentSmoke.sprite.transform.sx = 1\n        currentSmoke.sprite.transform.sy = 1\n        currentSmoke.sprite.transform.ox = currentSmoke.sprite.w/2\n        currentSmoke.sprite.transform.oy = currentSmoke.sprite.h/2\n        currentSmoke.sprite.color[4] = 255\n        if currentSmoke.curAction then\n            currentSmoke.curAction:stop()\n        end\n\n        currentSmoke:run{Ease(currentSmoke.sprite.color, 4, 0, 1)}\n\n        self.smokeTime = self.smokeDelay\n        self.currentSmokeObjectIndex =  (self.currentSmokeObjectIndex % table.count(self.smokeObjects)) + 1\n    end\nend",
+            ["sprite"] = "../art/sprites/missile.png"
+          }
+        },
+        {
+          id = 140,
+          name = "Missile3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 672,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["onInit"] = "local BasicNPC = require \"object/BasicNPC\"\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    self.sprite.transform.ox = 0\n    self.sprite.transform.oy = self.sprite.h/2\n    self.moveDelta = 0.1\n    self.moveTime = self.moveDelta\n\n    self.smokeObjects = {}\n    self.currentSmokeObjectIndex = 1\n    self.smokeDelay = 0.05\n    self.smokeTime = self.smokeDelay\n\n    for i=1,10 do\n        local smokeObject = BasicNPC(\n            self.scene,\n            {name = \"upper\"},\n            {\n                name = \"smoke\", x = 0, y = 0, width = 48, height = 48,\n                properties = {nocollision = true, sprite = \"art/sprites/explosion.png\", align = NPC.ALIGN_BOTLEFT, defaultAnim=\"cloud\"}\n            }\n        )\n        self.scene:addObject(smokeObject)\n        table.insert(self.smokeObjects, smokeObject)\n    end\nend",
+            ["onUpdate"] = "local Ease = require \"actions/Ease\"\n\nreturn function(self, dt)\n    if not self.move then\n        return\n    end\n\n\n    if not self.smokeOnly then\n    -- Move toward Tails with rough trajectory\n    local frameTime = (dt/0.016)\n    local movespeed = self.speedBonus\n    local angleX = math.cos(self.sprite.transform.angle)\n    local angleY = math.sin(self.sprite.transform.angle)\n\n    self.x = self.x + movespeed * angleX * frameTime\n    self.y = self.y + (movespeed/5) * angleY * frameTime\n\n    self.moveTime = self.moveTime - dt\n    if self.moveTime <= 0 and self.sprite.transform.angle < math.pi then\n        self.sprite.transform.angle = self.sprite.transform.angle + math.pi/10\n        self.speedBonus = self.speedBonus - self.speedBonus/50\n\n        self.moveTime = self.moveDelta\n    end\n    end\n\n    -- Smoke particle system\n    self.smokeTime = self.smokeTime - dt\n    if self.smokeTime <= 0 then\n        local currentSmoke = self.smokeObjects[self.currentSmokeObjectIndex]\n        currentSmoke.x = self.x\n        currentSmoke.y = self.y\n        currentSmoke.sprite.transform.sx = 1\n        currentSmoke.sprite.transform.sy = 1\n        currentSmoke.sprite.transform.ox = currentSmoke.sprite.w/2\n        currentSmoke.sprite.transform.oy = currentSmoke.sprite.h/2\n        currentSmoke.sprite.color[4] = 255\n        if currentSmoke.curAction then\n            currentSmoke.curAction:stop()\n        end\n\n        currentSmoke:run{Ease(currentSmoke.sprite.color, 4, 0, 1)}\n\n        self.smokeTime = self.smokeDelay\n        self.currentSmokeObjectIndex =  (self.currentSmokeObjectIndex % table.count(self.smokeObjects)) + 1\n    end\nend",
+            ["sprite"] = "../art/sprites/missile.png"
+          }
+        },
+        {
+          id = 141,
+          name = "Missile2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 608,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["onInit"] = "local BasicNPC = require \"object/BasicNPC\"\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    self.sprite.transform.ox = 0\n    self.sprite.transform.oy = self.sprite.h/2\n    self.moveDelta = 0.1\n    self.moveTime = self.moveDelta\n\n    self.smokeObjects = {}\n    self.currentSmokeObjectIndex = 1\n    self.smokeDelay = 0.05\n    self.smokeTime = self.smokeDelay\n\n    for i=1,10 do\n        local smokeObject = BasicNPC(\n            self.scene,\n            {name = \"upper\"},\n            {\n                name = \"smoke\", x = 0, y = 0, width = 48, height = 48,\n                properties = {nocollision = true, sprite = \"art/sprites/explosion.png\", align = NPC.ALIGN_BOTLEFT, defaultAnim=\"cloud\"}\n            }\n        )\n        self.scene:addObject(smokeObject)\n        table.insert(self.smokeObjects, smokeObject)\n    end\nend",
+            ["onUpdate"] = "local Ease = require \"actions/Ease\"\n\nreturn function(self, dt)\n    if not self.move then\n        return\n    end\n\n\n    if not self.smokeOnly then\n    -- Move toward Tails with rough trajectory\n    local frameTime = (dt/0.016)\n    local movespeed = self.speedBonus\n    local angleX = math.cos(self.sprite.transform.angle)\n    local angleY = math.sin(self.sprite.transform.angle)\n\n    self.x = self.x + movespeed * angleX * frameTime\n    self.y = self.y + (movespeed/5) * angleY * frameTime\n\n    self.moveTime = self.moveTime - dt\n    if self.moveTime <= 0 and self.sprite.transform.angle > -math.pi then\n        self.sprite.transform.angle = self.sprite.transform.angle - math.pi/10\n        self.speedBonus = self.speedBonus - self.speedBonus/50\n\n        self.moveTime = self.moveDelta\n    end\n    end\n\n    -- Smoke particle system\n    self.smokeTime = self.smokeTime - dt\n    if self.smokeTime <= 0 then\n        local currentSmoke = self.smokeObjects[self.currentSmokeObjectIndex]\n        currentSmoke.x = self.x\n        currentSmoke.y = self.y\n        currentSmoke.sprite.transform.sx = 1\n        currentSmoke.sprite.transform.sy = 1\n        currentSmoke.sprite.transform.ox = currentSmoke.sprite.w/2\n        currentSmoke.sprite.transform.oy = currentSmoke.sprite.h/2\n        currentSmoke.sprite.color[4] = 255\n        if currentSmoke.curAction then\n            currentSmoke.curAction:stop()\n        end\n\n        currentSmoke:run{Ease(currentSmoke.sprite.color, 4, 0, 1)}\n\n        self.smokeTime = self.smokeDelay\n        self.currentSmokeObjectIndex =  (self.currentSmokeObjectIndex % table.count(self.smokeObjects)) + 1\n    end\nend",
+            ["sprite"] = "../art/sprites/missile.png"
           }
         }
       }

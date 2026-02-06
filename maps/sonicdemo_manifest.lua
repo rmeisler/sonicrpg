@@ -635,12 +635,12 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/thelight.ogg",
+		file = "audio/sfx/drill.ogg",
 		category = "sfx"
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/drill.ogg",
+		file = "audio/sfx/thelight.ogg",
 		category = "sfx"
 	},
 	{
