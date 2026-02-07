@@ -30,6 +30,7 @@ return function(self, targets)
 	end
 
 	local prevMusic = self.scene.audio:getCurrentMusic()
+	local prevVolume = self.scene.audio:getMusicVolume()
 	return Serial {
 		MessageBox {
 			message="Sally: We can do this guys...",
@@ -57,6 +58,6 @@ return function(self, targets)
 		
 		Animate(self.sprite, "idle"),
 		Parallel(resetActions),
-		PlayAudio("music", prevMusic, 1.0, true, true),
+		PlayAudio("music", prevMusic, prevVolume, true, true),
 	}
 end

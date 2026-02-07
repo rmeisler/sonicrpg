@@ -63,6 +63,7 @@ return {
 			local origY = target.sprite.transform.y
 			local action = Swatbot.behavior(self, target)
 			local prevMusic = self.scene.audio:getCurrentMusic()
+			local prevVolume = self.scene.audio:getMusicVolume()
 			return Serial {
 				MessageBox {message="Sally: We're in trouble!"},
 				MessageBox {message="Antoine: Not to be worried, my princess! {p40}I will get us right out of this!!"},
@@ -186,7 +187,7 @@ return {
 							Spawn(Serial {
 								PlayAudio("music", "sonicenters", 1.0),
 								Wait(6),
-								PlayAudio("music", prevMusic, 1.0, true, true)
+								PlayAudio("music", prevMusic, prevVolume, true, true)
 							}),
 							
 							Serial {

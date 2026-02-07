@@ -54,7 +54,6 @@ return function(self, targets)
 	empLt.transform.x = self.sprite.transform.x
 	empLt.transform.y = self.sprite.transform.y
 	
-	local prevMusic = self.scene.audio:getCurrentMusic()
 	return Serial {
 		Animate(self.sprite, "focus"),
 		Ease(empLt.color, 4, 255, 3),

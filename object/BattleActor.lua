@@ -226,8 +226,10 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun, attacker)
 			}
 		},
 		Do(function()
-			sprite:setAnimation(self.prevAnim)
 			self.hp = endHp
+			if self.hp > 0 then
+				sprite:setAnimation(self.prevAnim)
+			end
 		end)
 	}
 	if endHp <= 0 then

@@ -25,12 +25,13 @@ setNextTurn = function(self)
 	local direction = (self.sprite.transform.x > love.graphics.getWidth()/2) and 1 or -1
 	local bouncyTextOffset = (direction > 0) and -10 or -30
 	local prevMusic = self.scene.audio:getCurrentMusic()
+	local prevVolume = self.scene.audio:getMusicVolume()
 
 	self.onNextTurn = Parallel {
 		Serial {
 			AudioFade("music", 1.0, 0.0, 1),
 			PlayAudio("music", "resiliency", 1.0),
-			PlayAudio("music", prevMusic, 1.0, true)
+			PlayAudio("music", prevMusic, prevVolume, true)
 		},
 		Serial {
 			Parallel {

@@ -96,6 +96,7 @@ return function(self, target)
 	end
 
 	local prevMusic = self.scene.audio:getCurrentMusic()
+	local prevVolume = self.scene.audio:getMusicVolume()
 	return Serial {
 		-- Leap forward while attacking
 		Animate(self.sprite, "leap"),
@@ -167,7 +168,7 @@ return function(self, target)
 					self.keycodeSuccess and
 						Spawn(Serial {
 							PlayAudio("music", "sallyrally", 1.0),
-							PlayAudio("music", prevMusic, 1.0, true, true)
+							PlayAudio("music", prevMusic, prevVolume, true, true)
 						}) or
 						Action()
 				},

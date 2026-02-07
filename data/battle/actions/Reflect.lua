@@ -80,7 +80,7 @@ return function(self, target)
 
 			self.hasShield and
 				self.shieldAction(self, target) or
-				self:takeDamage(self.stats, true, BattleActor.shockKnockback)
+				self:takeDamage({attack=self.stats.attack, speed=100, luck=self.stats.luck}, true, BattleActor.shockKnockback)
 		},
 		Serial {
 			Do(function() end)

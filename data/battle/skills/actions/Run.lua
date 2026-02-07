@@ -13,7 +13,6 @@ local Transform = require "util/Transform"
 local SpriteNode = require "object/SpriteNode"
 
 return function(self, target)
-	local prevMusic = self.scene.audio:getCurrentMusic()
 	local targetSp = target:getSprite()
 
 	return Serial {

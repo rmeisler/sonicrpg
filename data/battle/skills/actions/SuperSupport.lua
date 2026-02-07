@@ -29,6 +29,7 @@ return function(self, targets)
 	end
 
 	local prevMusic = self.scene.audio:getCurrentMusic()
+	local prevVolume = self.scene.audio:getMusicVolume()
 	return Serial {
 		Animate(self.sprite, "victory"),
 		Parallel {
@@ -50,6 +51,6 @@ return function(self, targets)
 
 		Animate(self.sprite, "idle"),
 		Parallel(resetActions),
-		PlayAudio("music", prevMusic, 1.0, true, true),
+		PlayAudio("music", prevMusic, prevVolume, true, true),
 	}
 end

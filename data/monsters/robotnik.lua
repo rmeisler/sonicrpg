@@ -42,10 +42,10 @@ return {
 
 	stats = {
 		xp = 200,
-		maxhp = 8000,
-		attack = 30,
-		defense = 30,
-		speed = 10,
+		maxhp = 10000,
+		attack = 40,
+		defense = 40,
+		speed = 11,
 		focus = 10,
 		luck = 5,
 	},
@@ -186,17 +186,20 @@ return {
 			return Action()
 		end
 		
-		if self.hp <= 7000 and self.numStates == 1 then
+		if self.hp <= 9500 and self.numStates == 1 then
 			table.insert(self.states, "special")
 			table.insert(self.states, "laser")
 			self.numStates = 3
-		elseif self.hp <= 5000 and self.numStates == 3 then
+		elseif self.hp <= 7000 and self.numStates == 3 then
 			table.insert(self.states, "grab")
 			table.insert(self.states, "grab")
 			self.numStates = 5
-		elseif self.hp <= 2500 and self.numStates == 5 then
-			table.insert(self.states, "acidrain")
-			self.numStates = 6
+		elseif self.hp <= 4000 and self.numStates == 5 then
+			self.states = {"grab", "acidrain", "special"}
+			self.numStates = 3
+		elseif self.hp <= 2000 and self.numStates == 3 then
+			self.states = {"grab", "acidrain"}
+			self.numStates = 1
 		end
 		
 		local selfSprite = self:getSprite()
@@ -428,7 +431,7 @@ return {
 										Serial {
 											Wait(0.2),
 											Parallel {
-												self:takeDamage(target.stats),
+												self:takeDamage({attack=target.stats.attack, speed=100, luck=target.stats.luck}),
 												Ease(selfSprite.transform, "x", origTransform.x, 4),
 												Ease(selfSprite.transform, "y", origTransform.y, 4),
 												Ease(self.dropShadow2.transform, "x", origDropShadowTransform.x, 4),
@@ -501,14 +504,7 @@ return {
 									Ease(target.sprite.transform, "y", function() return target.sprite.transform.y + 10 end, 6, "quad"),
 									Wait(1),
 									Animate(selfSprite, "idle"),
-									Wait(1),
-									Do(function()
-										if target.hp <= 0 then
-											target.sprite:setAnimation("dead")
-										else
-											target.sprite:setAnimation("idle")
-										end
-									end)
+									Wait(1)
 								}
 							}
 						},
