@@ -71,14 +71,14 @@ function TitleSplashScene:onEnter()
 		false
 	)
 	
-	self.bg = love.graphics.newImage("art/splash/title5.png")
+	self.bg = love.graphics.newImage("art/splash/title6.png")
 	self.bgY = 0
 	
 	-- Setup menu sfx
 	self.audio:registerAs("sfx", "choose", love.audio.newSource("audio/sfx/choose.wav", "static"))
 	self.audio:registerAs("sfx", "cursor", love.audio.newSource("audio/sfx/cursor.wav", "static"))
 	self.audio:registerAs("sfx", "error", love.audio.newSource("audio/sfx/error.wav", "static"))
-	self.audio:registerAs("music", "pretitle", love.audio.newSource("audio/music/title.ogg", "static"))
+	self.audio:registerAs("music", "pretitle", love.audio.newSource("audio/music/title5.ogg", "static"))
 	
 	self.bgColor = {0,0,0,255}
 	self.logoColor = {255,255,255,0}
@@ -123,7 +123,7 @@ function TitleSplashScene:onEnter()
 				Ease(self.bgColor, 3, 255, 0.13, "linear"),
 				AudioFade("music", 0.5, 1.0, 0.1),
 				Serial {
-					PlayAudio("music", "pretitle", 0.5, true),
+					PlayAudio("music", "pretitle", 0.5, true, true),
 					Ease(self, "bgY", -466, 0.05, "inout"),
 				}
 			},
@@ -171,8 +171,8 @@ function TitleSplashScene:onExit(args)
 end
 
 function TitleSplashScene:newGame()
-	GameState:addToParty("tails", 3, true)
-	GameState.leader = "tails"
+	GameState:addToParty("sonic", 10, true)
+	GameState.leader = "sonic"
 
 	self.exiting = true
 	self.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/ep5intromanifest.lua"}
