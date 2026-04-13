@@ -175,7 +175,7 @@ function TitleSplashScene:newGame()
 	GameState.leader = "sonic"
 
 	self.exiting = true
-	self.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/ep5intromanifest.lua"}
+	self.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/ep6intromanifest.lua"}
 end
 
 function TitleSplashScene:continue()

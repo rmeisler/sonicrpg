@@ -191,10 +191,10 @@ return {
 		peekup = {
 			frames = {{6,4}}
 		},
-		kneelright = {
+		kneel = {
 			frames = {{13,0}}
 		},
-		kneelright_worry = {
+		kneel_worry = {
 			frames = {{14,0}}
 		},
 		
