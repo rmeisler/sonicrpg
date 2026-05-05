@@ -44,6 +44,9 @@ return {
 			speed = 0.3
         },
 
+		faceleft = {
+			frames = {{9,1}}
+		},
 		coffeeleft = {
             frames = {{10,1},{11,1}},
 			speed = 0.5

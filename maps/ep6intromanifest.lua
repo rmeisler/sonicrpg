@@ -6,6 +6,11 @@ return {
     },
 	{
         type = "map",
+        file = "maps/ep6trapped.lua",
+		primary = true
+    },
+	{
+        type = "map",
         file = "maps/robotnikship_scene.lua",
 		--primary = true
     },
@@ -715,7 +720,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/ep5ending.ogg",
+		file = "audio/music/fftraining.ogg",
 		category = "music"
 	},
 	{
@@ -726,9 +731,8 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/talkingtolight.ogg",
-		category = "music",
-		looping = true
+		file = "audio/music/racewithfleet.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",

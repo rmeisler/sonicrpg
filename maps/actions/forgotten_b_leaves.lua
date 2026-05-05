@@ -55,17 +55,17 @@ return function(scene, hint)
 		PlayAudio("music", "bleaves", 1.0, true),
 		scene.objectLookup.J:hop(),
 		MessageBox{message="J: We'll miss you B!", closeAction=Wait(2)},
-		Wait(1),
+		Wait(0.5),
 		scene.objectLookup.T:hop(),
 		MessageBox{message="T: Stay safe out there.", closeAction=Wait(2)},
-		Wait(1),
+		Wait(0.5),
 		scene.objectLookup.P:hop(),
 		MessageBox{message="P: Take care of yourself old timer!", closeAction=Wait(2)},
-		Wait(1),
+		Wait(0.5),
 		MessageBox{message="R: *sniff* ...", closeAction=Wait(2)},
 		Wait(0.5),
 		Animate(scene.objectLookup.B.sprite, "kneel_worry"),
-		MessageBox{message="B: There there, my boy...", closeAction=Wait(2.5)},
+		MessageBox{message="B: There there, my boy...", closeAction=Wait(2)},
 		Wait(0.5),
 		MessageBox{message="R: But what if you forget about us, Uncle B?", closeAction=Wait(3)},
 		Wait(0.5),
@@ -73,21 +73,27 @@ return function(scene, hint)
 		MessageBox{message="B: Our new friends will be there to remind me.", closeAction=Wait(3)},
 		Wait(1),
 		Animate(scene.objectLookup.B.sprite, "idleup"),
-		MessageBox{message="B: I'll be back soon, everyone. {p60}I just need to determine if {h Knothole} can be a safe place for us.", closeAction=Wait(4)},
+		MessageBox{message="B: I'll be back soon, everyone. {p60}I just need to determine if {h Knothole} can be a safe place for us.", closeAction=Wait(3.5)},
 		Animate(scene.objectLookup.B.sprite, "idledown"),
-		Wait(1),
+		Wait(0.5),
 		Do(function()
 			scene.objectLookup.B.sprite:setAnimation("walkdown")
 		end),
-		Parallel {
-			Move(scene.objectLookup.B, scene.objectLookup.B_WP, "walk"),
-			Serial {
-				Wait(1),
-				Parallel {
-					Move(scene.objectLookup.Sonic, scene.objectLookup.Sonic_WP, "walk"),
-					Move(scene.objectLookup.Sally, scene.objectLookup.Sally_WP, "walk")
+		Spawn(
+			Parallel {
+				Move(scene.objectLookup.B, scene.objectLookup.B_WP, "walk"),
+				Serial {
+					Wait(1),
+					Parallel {
+						Move(scene.objectLookup.Sonic, scene.objectLookup.Sonic_WP, "walk"),
+						Move(scene.objectLookup.Sally, scene.objectLookup.Sally_WP, "walk")
+					}
 				}
 			}
-		},
+		),
+		Wait(2),
+		Do(function()
+			scene:changeScene{map="ep6trapped", fadeInSpeed=0.2, fadeOutSpeed=0.2, fadeOutMusic=true}
+		end)
 	}
 end

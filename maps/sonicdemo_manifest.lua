@@ -6,7 +6,7 @@ return {
     },
 	{
         type = "map",
-        file = "maps/robotnikship_scene.lua",
+        file = "maps/ep6trapped.lua",
 		--primary = true
     },
 	{
