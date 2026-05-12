@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="162" height="36" tilewidth="32" tileheight="32" infinite="0" nextobjectid="35">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="162" height="36" tilewidth="32" tileheight="32" infinite="0" nextobjectid="38">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/deatheggbattle.png"/>
   <property name="onload" type="file" value="actions/ep6trapped.lua"/>
@@ -449,6 +449,139 @@ end</property>
    </properties>
   </object>
   <object id="34" name="Rotor_WP" type="BasicNPC" gid="8977" x="912" y="712" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="35" name="Firebird" type="BasicNPC" gid="6703" x="1984" y="-128" width="64" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="defaultAnim" value="fireidle"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/projectfirebird.png"/>
+   </properties>
+  </object>
+  <object id="36" name="ElevatorControl" type="BasicNPC" gid="9040" x="1728" y="576" width="64" height="32">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="onInteract">local MessageBox = require &quot;actions/MessageBox&quot;
+local Do = require &quot;actions/Do&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+
+return function(self)
+    local leaderMem = GameState.party[GameState.leader]
+    if GameState.leader == &quot;sally&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: Nicole should be able to interface with this terminal.&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif GameState.leader == &quot;bunny&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: Oh my stars{p50}, this stuff looks complicated!&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif GameState.leader == &quot;sonic&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: This is really more of Sal's domain...&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    elseif GameState.leader == &quot;antoine&quot; then
+        return BlockPlayer {
+            MessageBox {
+                message=leaderMem.name..&quot;: This is not for me, I am thinking...&quot;,
+                blocking=true
+            },
+            Do(function()
+                self:refreshKeyHint()
+            end)
+        }
+    end
+end</property>
+    <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Ease = require &quot;actions/Ease&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Menu = require &quot;actions/Menu&quot;
+local Do = require &quot;actions/Do&quot;
+local Move = require &quot;actions/Move&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Wait = require &quot;actions/Wait&quot;
+
+local Layout = require &quot;util/Layout&quot;
+local Transform = require &quot;util/Transform&quot;
+
+return function(self)
+    local elevatorLayer
+    for _,layer in pairs(self.scene.map.layers) do
+        if layer.name == &quot;elevator&quot; then
+            elevatorLayer = layer
+            break
+        end
+    end
+    return BlockPlayer {
+        MessageBox {message=&quot;Nicole: Shall I operate the elevator, {p40}Sally?&quot;, textspeed=4},
+        Menu {
+            layout = Layout {
+                {Layout.Text(&quot;Going up?&quot;), selectable = false},
+                {Layout.Text(&quot;Yes&quot;), choose = function(menu)
+                    menu:close()
+                    self.scene:run {
+                        menu,
+                        Do(function()
+                            self.scene.player.noIdle = true
+                            self.scene.player.sprite:setAnimation(&quot;walkright&quot;)
+                        end),
+                        Ease(self.scene.player, &quot;x&quot;, self.scene.objectLookup.Waypoint.x, 1, &quot;linear&quot;),
+                        Do(function()
+                            self.scene.player.noIdle = false
+                            self.scene.player.state = &quot;idledown&quot;
+                        end),
+                        Wait(1),
+                        Parallel {
+                            Ease(self.scene.player, &quot;y&quot;, self.scene.player.y - 300, 0.5, &quot;linear&quot;),
+                            Ease(elevatorLayer, &quot;offsety&quot;, elevatorLayer.offsety - 300, 0.5, &quot;linear&quot;),
+                            Do(function()
+                                -- Update drop shadow position
+                                self.scene.player.dropShadow.x = self.scene.player.x - 22
+                                self.scene.player.dropShadow.y = self.scene.player.dropShadowOverrideY or self.scene.player.y + self.scene.player.sprite.h - 15
+                            end)
+                        },
+                        Do(function() self.scene:changeScene {map=&quot;deathegg_elevator3&quot;, hint=&quot;frombelow&quot;} end),
+                        Do(function() end)
+                    }
+                 end},
+                {Layout.Text(&quot;No&quot;), choose = function(menu)
+                    menu:close()
+                 end}
+            },
+            cancellable = true,
+            transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),
+            selectedRow = 2
+        }
+    }
+end</property>
+    <property name="specialHint" value="sally"/>
+    <property name="sprite" type="file" value="../art/sprites/terminal.png"/>
+   </properties>
+  </object>
+  <object id="37" name="BunnieWP" type="BasicNPC" gid="6703" x="1696" y="608" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>

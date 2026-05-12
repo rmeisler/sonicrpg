@@ -93,7 +93,8 @@ return function(scene, hint)
 		),
 		Wait(2),
 		Do(function()
-			scene:changeScene{map="ep6trapped", fadeInSpeed=0.2, fadeOutSpeed=0.2, fadeOutMusic=true}
+			scene.exiting = true
+			scene.sceneMgr:switchScene {class = "ChapterSplashScene", manifest = "maps/ep6manifest.lua", fadeInSpeed=0.2, fadeOutSpeed=0.2, fadeOutMusic=true}
 		end)
 	}
 end

@@ -637,8 +637,10 @@ function BasicScene:remove(cleanupResources)
 				for _, obj in pairs(map.objects) do
 					if obj.remove then
 						obj:remove()
-						obj.sprite:remove()
-						obj.sprite:cleanup()
+						if obj.sprite then
+							obj.sprite:remove()
+							obj.sprite:cleanup()
+						end
 					end
 				end
 			end
