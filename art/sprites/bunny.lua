@@ -43,6 +43,11 @@ return {
 			frames = {{5,2}}
 		},
 		
+		punchup = {
+			frames = {{13,4},{13,4},{13,4},{14,4},{15,4}},
+			speed = 0.1
+		},
+		
 		idleright = {
             frames = {{0,0}}
         },
