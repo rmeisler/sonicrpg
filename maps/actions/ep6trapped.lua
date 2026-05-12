@@ -24,6 +24,8 @@ return function(scene, hint)
 
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.hidden = true
+	
+	local elevatorLayer = scene:findLayer("Elevator")
 
 	return BlockPlayer {
 		Do(function()
@@ -91,6 +93,9 @@ return function(scene, hint)
 			Ease(scene.objectLookup.Gas3.sprite.color, 4, 0, 1),
 			Ease(scene.objectLookup.Gas4.sprite.color, 4, 0, 1)
 		},
+		Do(function()
+			scene.objectLookup.Rotor.sprite.sortOrderY = 1
+		end),
 		Parallel {
 			Animate(scene.objectLookup.Logan.sprite, "pose"),
 			Animate(scene.objectLookup.Rotor.sprite, "pose"),
@@ -100,29 +105,44 @@ return function(scene, hint)
 		
 		Do(function() scene.objectLookup.Firebird.hidden = false end),
 		Ease(scene.objectLookup.Firebird, "y", 240, 5, "quad"),
-		Ease(scene.objectLookup.Firebird, "y", function() return scene.objectLookup.Firebird.y - 3 end, 15, "quad"),
-		Ease(scene.objectLookup.Firebird, "y", function() return scene.objectLookup.Firebird.y + 3 end, 15, "quad"),
-		Ease(scene.objectLookup.Firebird, "y", function() return scene.objectLookup.Firebird.y - 1 end, 15, "quad"),
-		Ease(scene.objectLookup.Firebird, "y", function() return scene.objectLookup.Firebird.y + 1 end, 15, "quad"),
-		Wait(1),
+		scene:screenShake(30, 20),
+		Wait(0.2),
 		Animate(scene.objectLookup.Bunnie.sprite, "shock"),
 		Animate(scene.objectLookup.Ivan.sprite, "attitude"),
 		Parallel {
 			scene.objectLookup.Bunnie:hop(),
 			scene.objectLookup.Ivan:hop(),
 		},
-		Animate(scene.objectLookup.Firebird.sprite, "fireattack"),
 		Wait(1),
 		Move(scene.objectLookup.Bunnie, scene.objectLookup.BunnieWP, "walk"),
 		Animate(scene.objectLookup.Bunnie.sprite, "idleup"),
 		PlayAudio("sfx", "error", 1),
 		Wait(0.2),
-		PlayAudio("sfx", "error", 1, true),
+		Animate(scene.objectLookup.Bunnie.sprite, "idleright"),
+		Wait(0.2),
+		Animate(scene.objectLookup.Firebird.sprite, "fireattack"),
+		Animate(scene.objectLookup.Bunnie.sprite, "idleup"),
+		PlayAudio("sfx", "error", 1, true, nil, true),
 		Wait(0.1),
-		PlayAudio("sfx", "error", 1, true),
+		PlayAudio("sfx", "error", 1, true, nil, true),
 		Wait(0.1),
-		PlayAudio("sfx", "error", 1, true),
+		PlayAudio("sfx", "error", 1, true, nil, true),
+		Wait(0.1),
+		PlayAudio("sfx", "error", 1, true, nil, true),
+		Animate(scene.objectLookup.Bunnie.sprite, "punchup"),
+		PlayAudio("sfx", "smack", 1, true, nil, true),
+		Animate(scene.objectLookup.ElevatorControl.sprite, "crushed"),
+		PlayAudio("sfx", "choose", 1, true, nil, true),
+		Parallel {
+			Ease(elevatorLayer, "offsety", function() return elevatorLayer.offsety + 1000 end, 4, "quad"),
+			Ease(scene.objectLookup.Firebird, "y", function() return scene.objectLookup.Firebird.y + 1000 end, 4, "quad")
+		},
+		Wait(0.5),
+		Animate(scene.objectLookup.Bunnie.sprite, "pose"),
+		Wait(0.2),
+		MessageBox{message="Sally: That works!", closeAction=Wait(1)},
 		
+		Ease(scene.camPos, "x", 1200 - 32, 0.5),
 
 		Do(function()
 			--scene:changeScene{map="knothole_ep5", fadeInSpeed=0.2, fadeOutSpeed=0.2, fadeOutMusic=true, hint="epilogue_leon", spawnPoint="EpilogueSpawn2", nighttime=true}
