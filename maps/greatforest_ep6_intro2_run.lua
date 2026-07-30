@@ -10,7 +10,7 @@ return {
   tileheight = 32,
   nextobjectid = 132,
   properties = {
-    ["onload"] = "actions/ep6trapped2.lua",
+    ["onload"] = "actions/ep6trapped3.lua",
     ["regionName"] = "",
     ["sectorName"] = "Great Forest"
   },
@@ -627,31 +627,11 @@ return {
           }
         },
         {
-          id = 126,
-          name = "Antoine",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2080,
-          y = 320,
-          width = 64,
-          height = 64,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["defaultAnim"] = "shockvisor",
-            ["hidden"] = false,
-            ["nocollision"] = true,
-            ["sprite"] = "../art/sprites/antoine.png"
-          }
-        },
-        {
           id = 127,
           name = "Spawn 1",
           type = "Player",
           shape = "rectangle",
-          x = 2080,
+          x = 2848,
           y = 352,
           width = 32,
           height = 32,
@@ -676,7 +656,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["defaultAnim"] = "idleright",
+            ["defaultAnim"] = "prepare_race_smile",
             ["hidden"] = false,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/sonic.png"
@@ -696,7 +676,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["defaultAnim"] = "idleright",
+            ["defaultAnim"] = "prepare_race1",
             ["hidden"] = false,
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/fleet.png"

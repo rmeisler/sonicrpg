@@ -30,18 +30,25 @@ return function(scene, hint)
 			scene.player.sprite.visible = false
 			scene.player.dropShadow.hidden = true
 		end),
+		PlayAudio("music", "racewithfleet", 1, true),
 		Wait(1),
-		scene.objectLookup.Antoine:hop(),
-		PlayAudio("sfx", "bang", 1, true),
-		Animate(scene.objectLookup.Antoine.sprite, "deadvisor"),
+		Parallel {
+			Ease(scene.camPos, "x", 2150, 0.09),
+			Serial {
+				Wait(0.5),
+				MessageBox{message="Tails: Welcome, one and all!", closeAction=Wait(2)},
+				MessageBox{message="Tails: To the ultimate race which will finally answer the question--", closeAction=Wait(2.5)},
+				MessageBox{message="Tails: Who is the fastest thing alive?!", closeAction=Wait(2.5)}
+			}
+		},
+		Wait(1),
+		Animate(scene.objectLookup.Tails.sprite, "joyright"),
+		scene.objectLookup.Tails:hop(),
+		MessageBox{message="Tails: On your mark--{p120} get set--{p120} go!!", closeAction=Wait(1)},
 		Wait(1.2),
 		
-		Ease(scene.camPos, "x", -1150, 0.3),
-		
-		MessageBox{message="Sally: Ugh! {p60}Where is that hedgehog!?"},
-		
 		Do(function()
-			scene:changeScene{map="greatforest_ep6_intro2", fadeInSpeed=2, fadeOutSpeed=2, fadeOutMusic=true}
+			--scene:changeScene{map="greatforest_ep6_intro1", fadeInSpeed=20, fadeOutSpeed=20, fadeOutMusic=false}
 		end)
 	}
 end

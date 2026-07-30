@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="128" height="19" tilewidth="32" tileheight="32" infinite="0" nextobjectid="132">
  <properties>
-  <property name="onload" type="file" value="actions/ep6trapped2.lua"/>
+  <property name="onload" type="file" value="actions/ep6trapped3.lua"/>
   <property name="regionName" value=""/>
   <property name="sectorName" value="Great Forest"/>
  </properties>
@@ -237,16 +237,7 @@
     <property name="spawn_point" value="DownPath"/>
    </properties>
   </object>
-  <object id="126" name="Antoine" type="BasicNPC" gid="5323" x="2080" y="320" width="64" height="64">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="shockvisor"/>
-    <property name="hidden" type="bool" value="false"/>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
-   </properties>
-  </object>
-  <object id="127" name="Spawn 1" type="Player" gid="5682" x="2080" y="352" width="32" height="32">
+  <object id="127" name="Spawn 1" type="Player" gid="5682" x="2848" y="352" width="32" height="32">
    <properties>
     <property name="orientation" value="up"/>
    </properties>
@@ -254,7 +245,7 @@
   <object id="128" name="Sonic" type="BasicNPC" gid="5323" x="608" y="384" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="idleright"/>
+    <property name="defaultAnim" value="prepare_race_smile"/>
     <property name="hidden" type="bool" value="false"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
@@ -263,7 +254,7 @@
   <object id="129" name="Fleet" type="BasicNPC" gid="5323" x="672" y="288" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="idleright"/>
+    <property name="defaultAnim" value="prepare_race1"/>
     <property name="hidden" type="bool" value="false"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/fleet.png"/>

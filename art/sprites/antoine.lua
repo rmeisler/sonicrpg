@@ -55,6 +55,13 @@ return {
 		smores = {
 			frames = {{9,0}}
 		},
+		
+		deadvisor = {
+			frames = {{10,0}}
+		},
+		shockvisor = {
+			frames = {{9,1}}
+		},
 
 		tremble = {
 			frames = {  {12,2}, {12,3}, {12,2}, {13,3},

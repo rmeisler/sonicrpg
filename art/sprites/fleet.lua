@@ -14,6 +14,12 @@ return {
 		flyrightsmile = {
 			frames = {{9,6}}
 		},
+		prepare_race1 = {
+			frames = {{9,7}}
+		},
+		prepare_race2 = {
+			frames = {{10,7}}
+		},
 		idle = {
 			frames = {{5,7}}
 		},

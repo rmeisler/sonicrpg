@@ -383,6 +383,9 @@ return {
 		prepare_race2 = {
 			frames = {{13,9}}
 		},
+		prepare_race_smile = {
+			frames = {{16,10}}
+		},
 		snowboard_ramp = {
 			frames = {{4,10}}
 		},

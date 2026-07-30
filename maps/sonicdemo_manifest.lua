@@ -6,6 +6,16 @@ return {
     },
 	{
         type = "map",
+        file = "maps/greatforest_ep6_intro1.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/greatforest_ep6_intro2_run.lua",
+		primary = true -- REAL
+    },
+	{
+        type = "map",
         file = "maps/ep6trapped.lua",
 		--primary = true
     },
@@ -711,6 +721,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/sonicfanfare2.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/racewithfleet.ogg",
 		category = "music"
 	},
 	{

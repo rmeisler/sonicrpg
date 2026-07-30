@@ -33,10 +33,11 @@ return function(scene, hint)
 			scene.player.dropShadow.hidden = true
 		end),
 		Wait(2),
-		MessageBox{message="Sally: Alright guys{p40}, you're all doing great!", closeAction=Wait(2)},
+		--PlayAudio("music", "ep6intro", 1, true),
+		MessageBox{message="Sally: Alright guys, I'm loading the training program now...", closeAction=Wait(2)},
 		Parallel {
-			MessageBox{message="Sally: Let's just run through it one more time.", closeAction=Wait(2)},
-			Ease(scene.camPos, "x", 3400, 0.1)
+			MessageBox{message="Sally: Let's do it to it!", closeAction=Wait(2)},
+			Ease(scene.camPos, "x", 3400, 0.12)
 		},
 		PlayAudio("music", "fftraining", 1, true),
 		Wait(1),
@@ -94,7 +95,7 @@ return function(scene, hint)
 			Ease(scene.objectLookup.Gas4.sprite.color, 4, 0, 1)
 		},
 		Do(function()
-			scene.objectLookup.Rotor.sprite.sortOrderY = 1
+			scene.objectLookup.Logan.sprite.sortOrderY = 10000
 		end),
 		Parallel {
 			Animate(scene.objectLookup.Logan.sprite, "pose"),
@@ -114,38 +115,58 @@ return function(scene, hint)
 			scene.objectLookup.Ivan:hop(),
 		},
 		Wait(1),
-		Move(scene.objectLookup.Bunnie, scene.objectLookup.BunnieWP, "walk"),
-		Animate(scene.objectLookup.Bunnie.sprite, "idleup"),
-		PlayAudio("sfx", "error", 1),
-		Wait(0.2),
-		Animate(scene.objectLookup.Bunnie.sprite, "idleright"),
-		Wait(0.2),
 		Animate(scene.objectLookup.Firebird.sprite, "fireattack"),
-		Animate(scene.objectLookup.Bunnie.sprite, "idleup"),
-		PlayAudio("sfx", "error", 1, true, nil, true),
-		Wait(0.1),
-		PlayAudio("sfx", "error", 1, true, nil, true),
-		Wait(0.1),
-		PlayAudio("sfx", "error", 1, true, nil, true),
-		Wait(0.1),
-		PlayAudio("sfx", "error", 1, true, nil, true),
+		Wait(0.5),
+		Move(scene.objectLookup.Bunnie, scene.objectLookup.BunnieWP, "walk"),
 		Animate(scene.objectLookup.Bunnie.sprite, "punchup"),
 		PlayAudio("sfx", "smack", 1, true, nil, true),
 		Animate(scene.objectLookup.ElevatorControl.sprite, "crushed"),
-		PlayAudio("sfx", "choose", 1, true, nil, true),
+		PlayAudio("sfx", "elevatorend", 1, true),
 		Parallel {
 			Ease(elevatorLayer, "offsety", function() return elevatorLayer.offsety + 1000 end, 4, "quad"),
 			Ease(scene.objectLookup.Firebird, "y", function() return scene.objectLookup.Firebird.y + 1000 end, 4, "quad")
 		},
 		Wait(0.5),
 		Animate(scene.objectLookup.Bunnie.sprite, "pose"),
-		Wait(0.2),
-		MessageBox{message="Sally: That works!", closeAction=Wait(1)},
+		Wait(0.5),
+		MessageBox{message="Sally: Good problem solving!", closeAction=Wait(1)},
 		
 		Ease(scene.camPos, "x", 1200 - 32, 0.5),
-
+		Wait(1),
 		Do(function()
-			--scene:changeScene{map="knothole_ep5", fadeInSpeed=0.2, fadeOutSpeed=0.2, fadeOutMusic=true, hint="epilogue_leon", spawnPoint="EpilogueSpawn2", nighttime=true}
-		end)
+			scene.objectLookup.LeftSpikeWall.hidden = false
+			scene.objectLookup.RightSpikeWall.hidden = false
+			scene.objectLookup.Antoine.sprite.sortOrderY = 10000
+		end),
+		Ease(scene.objectLookup.LeftSpikeWall, "y", 400, 5, "quad"),
+		scene:screenShake(30, 20),
+		Animate(scene.objectLookup.Antoine.sprite, "peekleft"),
+		Wait(0.5),
+		Ease(scene.objectLookup.RightSpikeWall, "y", 400, 5, "quad"),
+		scene:screenShake(30, 20),
+		Animate(scene.objectLookup.Antoine.sprite, "peekright"),
+		Wait(0.5),
+		Animate(scene.objectLookup.Antoine.sprite, "shock"),
+		scene.objectLookup.Antoine:hop(),
+		Do(function()
+			scene.objectLookup.Antoine.sprite:setAnimation("tremble")
+		end),
+		MessageBox{message="Antoine: I-I-I am not knowing what to be doing!!", closeAction=Wait(2)},
+		PlayAudio("sfx", "elevator", 1, true),
+		Parallel {
+			Ease(scene.objectLookup.LeftSpikeWall, "x", scene.objectLookup.Antoine.x, 0.08, "linear"),
+			Ease(scene.objectLookup.RightSpikeWall, "x", scene.objectLookup.Antoine.x, 0.08, "linear"),
+			Serial {
+				Wait(1.5),
+				MessageBox{message="Sally: Hmm{p60}, Sonic should be in this scenario with you.", closeAction=Wait(1.5)},
+				Wait(1.5),
+				MessageBox{message="Antoine: Sonic!!", closeAction=Wait(1)},
+				Animate(scene.objectLookup.Antoine.sprite, "scream"),
+				scene.objectLookup.Antoine:hop(),
+				Do(function()
+					scene:changeScene{map="greatforest_ep6_intro1", fadeInSpeed=20, fadeOutSpeed=20, fadeOutMusic=false}
+				end)
+			}
+		}
 	}
 end

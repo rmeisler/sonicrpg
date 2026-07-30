@@ -36,6 +36,10 @@ return {
 			clip = {0,0,47,40}
         },
 		
+		angryleft = {
+			frames = {{5,7}}
+		},
+		
 		idlerightsad = {
             frames = {{1,6}}
         },

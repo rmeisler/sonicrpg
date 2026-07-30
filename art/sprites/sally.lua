@@ -189,6 +189,10 @@ return {
 			frames = {{2,6}}
 		},
 		
+		angryvisor = {
+			frames = {{7,6}}
+		},
+		
 		thinking = {
 			frames = {{10,4}}
 		},
