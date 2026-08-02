@@ -21,6 +21,7 @@ return function(scene, hint)
 	local BlockPlayer = require "actions/BlockPlayer"
 	local Animate = require "actions/Animate"
 	local SpriteNode = require "object/SpriteNode"
+	local EscapePlayer = require "object/EscapePlayer"
 
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.hidden = true
@@ -33,20 +34,50 @@ return function(scene, hint)
 		PlayAudio("music", "racewithfleet", 1, true),
 		Wait(1),
 		Parallel {
-			Ease(scene.camPos, "x", 2150, 0.09),
+			Ease(scene.camPos, "x", 2150, 0.07),
 			Serial {
-				Wait(0.5),
-				MessageBox{message="Tails: Welcome, one and all!", closeAction=Wait(2)},
-				MessageBox{message="Tails: To the ultimate race which will finally answer the question--", closeAction=Wait(2.5)},
-				MessageBox{message="Tails: Who is the fastest thing alive?!", closeAction=Wait(2.5)}
+				Wait(1),
+				MessageBox{message="Tails: Welcome{p40}, one and all...", textSpeed=3, closeAction=Wait(2)},
+				MessageBox{message="Tails: ...to the ultimate race{p60}, which will finally answer the question...", textSpeed=3, closeAction=Wait(2.5)},
+				MessageBox{message="Tails: ...who is the fastest thing alive?!", textSpeed=3, closeAction=Wait(2.5)}
 			}
 		},
-		Wait(1),
-		Animate(scene.objectLookup.Tails.sprite, "joyright"),
-		scene.objectLookup.Tails:hop(),
-		MessageBox{message="Tails: On your mark--{p120} get set--{p120} go!!", closeAction=Wait(1)},
-		Wait(1.2),
-		
+		Parallel {
+			Serial {
+				Wait(1.2),
+				PlayAudio("sfx", "sonicrun", 1.0, true, false, true),
+				Animate(scene.objectLookup.Fleet.sprite, "prepare_race2"),
+				Parallel {
+					Animate(scene.objectLookup.Sonic.sprite, "chargerun1"),
+					Ease(scene.objectLookup.Sonic, "y", function() return scene.objectLookup.Sonic.y - 20 end, 4)
+				},
+				Do(function() scene.objectLookup.Sonic.sprite:setAnimation("chargerun2") end),
+				Wait(1.2),
+				Animate(scene.objectLookup.Tails.sprite, "joyright"),
+				scene.objectLookup.Tails:hop()
+			},
+			MessageBox{message="Tails: On your mark...{p60} get set...{p60} GO!!", closeAction=Wait(0.5)}
+		},
+		Do(function()
+			scene.player:addSceneHandler("update", EscapePlayer.update)
+			scene.player.x = scene.objectLookup.Sonic.x + scene.player.width
+			scene.player.y = scene.objectLookup.Sonic.y + scene.player.height + 20
+			scene.player.sprite.visible = true
+			scene.player.dropShadow.hidden = false
+			scene.player.dustColor = {255,255,255,255}
+			scene.player.bx = 10
+			scene.objectLookup.Sonic.hidden = true
+			scene.camPos.x = 0
+
+			--[[
+			scene.objectLookup.R.stopMoving = false
+			scene.objectLookup.R.bx = -20
+			scene.objectLookup.Sonic:remove()
+			]]
+		end),
+
+		Wait(100),
+
 		Do(function()
 			--scene:changeScene{map="greatforest_ep6_intro1", fadeInSpeed=20, fadeOutSpeed=20, fadeOutMusic=false}
 		end)

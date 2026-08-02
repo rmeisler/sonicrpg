@@ -2,7 +2,7 @@ return {
 	{
         type = "map",
         file = "maps/ep6trapped.lua",
-		primary = true
+		primary = true -- REAL
     },
 	{
         type = "map",
@@ -12,7 +12,7 @@ return {
 	{
         type = "map",
         file = "maps/greatforest_ep6_intro2_run.lua",
-		primary = true -- REAL
+		--primary = true
     },
 	{
         type = "map",

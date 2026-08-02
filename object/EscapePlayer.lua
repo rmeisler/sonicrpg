@@ -171,10 +171,15 @@ function EscapePlayer:update(dt)
 					properties = {nocollision = true, sprite = "art/sprites/dust.png", align = NPC.ALIGN_BOTLEFT}
 				}
 			)
-			dustObject.sprite.color[1] = 130
-			dustObject.sprite.color[2] = 130
-			dustObject.sprite.color[3] = 200
-			dustObject.sprite.color[4] = 255
+			
+			if self.dustColor then
+				dustObject.sprite.color = self.dustColor
+			else
+				dustObject.sprite.color[1] = 130
+				dustObject.sprite.color[2] = 130
+				dustObject.sprite.color[3] = 200
+				dustObject.sprite.color[4] = 255
+			end
 			
 			if self.bigDust then
 				dustObject.x = dustObject.x - dustObject.sprite.w
