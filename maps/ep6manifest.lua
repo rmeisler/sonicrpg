@@ -2,7 +2,7 @@ return {
 	{
         type = "map",
         file = "maps/ep6trapped.lua",
-		primary = true -- REAL
+		--primary = true -- REAL
     },
 	{
         type = "map",
@@ -17,7 +17,7 @@ return {
 	{
         type = "map",
         file = "maps/knothole_ep6.lua",
-		--primary = true
+		primary = true
     },
 	{
         type = "map",
@@ -595,8 +595,24 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/areyouready.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/sallyvictory.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/ep6intro.ogg",
 		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/ffmedley.ogg",
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",

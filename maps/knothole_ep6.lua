@@ -15,7 +15,7 @@ return {
     ["layerHeightMap"] = "objects:1504,objects2:736,objects3:448,objects4:160,objects5:20",
     ["layered"] = true,
     ["nighttime"] = false,
-    ["onload"] = "actions/knotholeep5.lua",
+    ["onload"] = "actions/knotholeep6.lua",
     ["regionName"] = "Great Forest",
     ["sectorName"] = "Knothole"
   },
@@ -3575,8 +3575,7 @@ return {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "right",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/waralcoveforward.png",
-            ["swapLayerLessThanY_"] = 2432
+            ["sprite"] = "../art/sprites/waralcoveforward.png"
           }
         },
         {
@@ -3595,8 +3594,7 @@ return {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "left",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/waralcoveforward.png",
-            ["swapLayerLessThanY_"] = 2136
+            ["sprite"] = "../art/sprites/waralcoveforward.png"
           }
         },
         {
@@ -3614,9 +3612,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/waralcove.png",
-            ["swapLayerLessThanY"] = 2656,
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
+            ["sprite"] = "../art/sprites/waralcove.png"
           }
         },
         {
@@ -4201,13 +4197,12 @@ return {
           height = 32,
           rotation = 0,
           gid = 5323,
-          visible = false,
+          visible = true,
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "idle_overlay",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/waralcove.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
+            ["sprite"] = "../art/sprites/waralcove.png"
           }
         },
         {
@@ -4226,8 +4221,7 @@ return {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "left",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/waralcoveforward.png",
-            ["swapLayerLessThanY_"] = 3328
+            ["sprite"] = "../art/sprites/waralcoveforward.png"
           }
         },
         {
@@ -4246,8 +4240,7 @@ return {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "left_overlay",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/waralcoveforward.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
+            ["sprite"] = "../art/sprites/waralcoveforward.png"
           }
         },
         {
@@ -4266,8 +4259,7 @@ return {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "left_overlay",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/waralcoveforward.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
+            ["sprite"] = "../art/sprites/waralcoveforward.png"
           }
         },
         {
@@ -4286,8 +4278,7 @@ return {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "right_overlay",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/waralcoveforward.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
+            ["sprite"] = "../art/sprites/waralcoveforward.png"
           }
         },
         {
@@ -4306,8 +4297,7 @@ return {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "right_overlay",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/knotholebase.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
+            ["sprite"] = "../art/sprites/knotholebase.png"
           }
         },
         {
@@ -4326,8 +4316,7 @@ return {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "left_overlay",
             ["ghost"] = true,
-            ["sprite"] = "../art/sprites/waralcoveforward.png",
-            ["swapLayers"] = "objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"
+            ["sprite"] = "../art/sprites/waralcoveforward.png"
           }
         },
         {
@@ -4345,7 +4334,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "sitlookforward",
-            ["hidden"] = false,
+            ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
             ["sprite"] = "../art/sprites/antoine.png"
@@ -4366,7 +4355,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "sitlookforward",
-            ["hidden"] = false,
+            ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
             ["sprite"] = "../art/sprites/bunny.png"
@@ -4387,7 +4376,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "sitlookforward",
-            ["hidden"] = false,
+            ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
             ["sprite"] = "../art/sprites/sonic.png"
@@ -4408,7 +4397,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "planning",
-            ["hidden"] = false,
+            ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
             ["sprite"] = "../art/sprites/sally.png"
@@ -4429,7 +4418,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "sitright",
-            ["hidden"] = false,
+            ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
             ["sprite"] = "../art/sprites/rotor.png"
@@ -4450,7 +4439,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "idleright",
-            ["hidden"] = false,
+            ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
             ["sprite"] = "../art/sprites/b.png"
@@ -4471,7 +4460,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "meeting_idleright",
-            ["hidden"] = false,
+            ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
             ["sprite"] = "../art/sprites/fleet.png"
@@ -4492,7 +4481,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "meeting_idledown",
-            ["hidden"] = false,
+            ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
             ["sprite"] = "../art/sprites/logan.png"
@@ -4513,27 +4502,10 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "meeting_idleleft",
-            ["hidden"] = false,
+            ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
             ["sprite"] = "../art/sprites/leon.png"
-          }
-        },
-        {
-          id = 631,
-          name = "Ep6Cinematic",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4800,
-          y = 2816,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["nocollision"] = true,
-            ["onUpdate"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Move = require \"actions/Move\"\nlocal Ease = require \"actions/Ease\"\n\nlocal SpriteNode = require \"object/SpriteNode\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self, dt)\n    if GameState:isFlagSet(self:getFlag()) then\n        self.onUpdate = nil\n        return\n    end\n\n    local flagObjects = {AntoineInteractable = true, BunnieInteractable = true, SonicInteractable = true, RotorInteractable = true}\n    for k, _ in pairs(flagObjects) do\n        if GameState:isFlagSet(self.scene.objectLookup[k]:getFlag()) then\n            flagObjects[k] = nil\n        end\n    end\n\n    -- All flags are set\n    if next(flagObjects) == nil then\n        GameState:setFlag(self:getFlag())\n\n        local storybook = SpriteNode(scene, Transform(0, -20, 1, 1), {255,255,255,0}, \"storybook1\", nil, nil, \"ui\")\n\n        -- Cinematic begins\n        self:run(BlockPlayer {\n            AudioFade(\"music\", 1,0,1),\n            PlayAudio(\"music\", \"meettherebellion\", 1, true, true),\n            MessageBox {message=\"Sally: With the computer virus's development on schedule, we should be two days away from being able to launch an assault.\"},\n            MessageBox {message=\"Sally: Now it's just a matter of figuring out when and where to strike...\"},\n            MessageBox {message=\"B: Excuse me, Princess. {p40}Before you embark upon this dangerous mission, I would like to make sure that my family is safely migrated to Knothole, as planned.\"},\n            Wait(1),\n            Animate(self.scene.objectLookup.LeonMtg.sprite, \"meeting_idleleftshakehead\"),\n            MessageBox {message=\"Leon: I understand your predicament B, but we can not risk further complications to this operation.\"},\n            MessageBox {message=\"Leon: Robotnik will soon be dethroned. {p40}Once he is, we will all be able to safely recover our family members trapped in Robotropolis.\"},\n            Animate(self.scene.objectLookup.BMtg.sprite, \"questionright\"),\n            MessageBox {message=\"B: And what if Robotnik decides to *scrap* my family members before then, General!\"},\n            Animate(self.scene.objectLookup.LeonMtg.sprite, \"meeting_idleleft\"),\n            MessageBox {message=\"Leon: What if the Princess is captured trying to get your family back to Knothole? {p40}It will derail our entire operation! {p40}We can't take that risk!\"},\n            AudioFade(\"music\", 1,0,1),\n            Animate(self.scene.objectLookup.SallyMtg.sprite, \"meeting_thinking\"),\n            MessageBox {message=\"Sally: Please calm down, both of you! {p40}I understand where you're both coming from, and--\", closeAction=Wait(1)},\n            PlayAudio(\"music\", \"bsad\", 1, true),\n            MessageBox {message=\"B: --and I came here on a promise! {p40}A promise that my family would be brought to Knothole...\"},\n            -- B walks away\n            Animate(self.scene.objectLookup.SallyMtg.sprite, \"meeting_verysadleft\"),\n            Do(function() self.scene.objectLookup.BMtg.sprite:setAnimation(\"walkleft\") end),\n            Move(self.scene.objectLookup.BMtg, self.scene.objectLookup.BWP_1, \"walkleft\"),\n            Parallel {\n                Move(self.scene.objectLookup.BMtg, self.scene.objectLookup.BWP_2, \"walkleft\"),\n                MessageBox {message=\"Sally: B, wait!\"}\n            },\n            Do(function() self.scene.objectLookup.BMtg:remove() end),\n            -- Sally looks sad\n            Animate(self.scene.objectLookup.SallyMtg.sprite, \"meeting_worriedleft\"), \n            AudioFade(\"music\", 1,0,1),\n            Wait(1),\n            MessageBox {message=\"Sonic: He'll be ok, Sal. I'll talk to him.\"},\n            MessageBox {message=\"Sally: *sigh*...\"},\n            Wait(2),\n            MessageBox {message=\"Leon: Now that that is settled, I--\", closeAction=Wait(0.7)},\n            Parallel {\n                self.scene.player:hop(),\n                MessageBox {message=\"Tails: Wait!\"}\n            },\n            Do(function()\n                self.scene.objectLookup.SonicMtg.y = self.scene.objectLookup.SonicMtg.y + 5\n                self.scene.objectLookup.WarRoom2OuterOverlay.sprite.sortOrderY = -1001\n                self.scene.objectLookup.WarRoom2Outer.sprite.sortOrderY = -1000\n                self.scene.objectLookup.IvanMtg.sprite.sortOrderY = -1002\n            end),\n            Animate(self.scene.objectLookup.FleetMtg.sprite, \"meeting_idledown\"),\n            Animate(self.scene.objectLookup.IvanMtg.sprite, \"meeting_idledown\"),\n            Animate(self.scene.objectLookup.LeonMtg.sprite, \"meeting_idledown\"),\n            Animate(self.scene.objectLookup.RotorMtg.sprite, \"sitright_lookdown\"),\n            Animate(self.scene.objectLookup.SonicMtg.sprite, \"idledown\"),\n            Animate(self.scene.objectLookup.BunnieMtg.sprite, \"idledown\"),\n            Animate(self.scene.objectLookup.AntoineMtg.sprite, \"idledown\"),\n            Animate(self.scene.objectLookup.SallyMtg.sprite, \"planning\"),\n            MessageBox {message=\"Tails: I understand that this computer virus plan is way past cool{p60}, but I think I got somethin' even better!\"},\n            -- Others look surprised\n            PlayAudio(\"music\", \"tailstheme\", 1, true, true),\n            Parallel {\n                Ease(storybook.color, 4, 255, 1, \"linear\"),\n                Serial {\n                    MessageBox {message=\"Tails: Check it out!\"},\n                    MessageBox {message=\"Tails: The {h Light of Mobius}! {p60}Located in the deepest\\npart of Boulder Bay, this light grants one wish! {p60}\\nIf we find it, we can wish that Robotnik never\\ntook over!\"},\n                    Wait(1),\n                    MessageBox {message=\"Fleet: Nice idea kid{p60}, but there's just one thing you've forgotten...\"}\n                }\n            },\n            Parallel {\n                Ease(storybook.color, 4, 0, 1, \"linear\"),\n                AudioFade(\"music\", 1,0,1)\n            },\n            Wait(1),\n            Animate(self.scene.objectLookup.FleetMtg.sprite, \"meeting_smirk\"),\n            MessageBox {message=\"Fleet: The {h Light of Mobius} is just a myth! {p60}\\nA fiction! {p60}A bedtime story parents read to their young\\nto keep them entertained. {p80}It's not real!\"},\n            -- Tails hops in frustration\n            Do(function()\n                self.scene.player.state = \"saddown\"\n            end),\n            MessageBox {message=\"Tails: Is too!\"},\n            Wait(1),\n            Animate(self.scene.objectLookup.SallyMtg.sprite, \"meeting_thinking\"),\n            MessageBox {message=\"Sally: Tails, sweetie... {p60}I appreciate the suggestion, but for now, we're gonna focus on the virus. It's just a more... {p60}realistic approach.\"},\n            Animate(self.scene.objectLookup.FleetMtg.sprite, \"meeting_lookright\"),\n            MessageBox {message=\"Fleet: Emphasis on \\\"real\\\".\"},\n            Wait(1),\n            MessageBox {message=\"Sonic: Hey little buddy, this is a mondo cool idea, but we gotta focus on what Sal's already got cookin'.\"},\n            Do(function() self.scene.player.state = \"idleup\" end),\n            PlayAudio(\"music\", \"sadintrospect\", 1, true),\n            MessageBox {message=\"Tails: But--\", closeAction=Wait(1)},\n            Animate(self.scene.objectLookup.SonicMtg.sprite, self.scene.player.x > self.scene.objectLookup.SonicMtg.x and \"earnestright\" or \"earnestleft\"),\n            MessageBox {message=\"Sonic: Whatcha say you and I play some dirt hockey once this meeting's over?\"},\n            Do(function() self.scene.player.state = \"saddown\" end),\n            MessageBox {message=\"Tails: ...ok.\"},\n\n            -- Fade out, place player below cart, fade in, more dialogue, end of scene\n            self.scene:fadeOut(0.2),\n            Do(function()\n                self.scene.player.x = self.scene.objectLookup.Cart.x + 60\n                self.scene.player.y = self.scene.objectLookup.Cart.y + 120\n                self.scene.player.state = \"idleup\"\n            end),\n            Wait(1),\n            Parallel {\n                self.scene:fadeIn(0.2),\n                AudioFade(\"music\", 1,0,1)\n            },\n            MessageBox {message=\"Tails: ... {p80}Ben Windom wouldn't give up...\"},\n            self.scene.player:hop(),\n            PlayAudio(\"music\", \"doittoit2\", 0.8, true, true),\n            MessageBox {message=\"Tails: I'll show them! {p80}The Light of Mobius 'is'\\nreal{p60}, and with this book, I'll be the one to find it!\"},\n            Move(self.scene.player, self.scene.objectLookup.TailsWP_1, \"walkup\"),\n            Do(function() self.scene.player.state = \"attitudedown\" end),\n            Parallel {\n                Do(function()\n                    local cart = self.scene.objectLookup.CartBG\n                    self.scene.player.x = cart.x + cart.sprite.w\n                    self.scene.player.y = cart.y + cart.sprite.h\n                end),\n                Move(self.scene.objectLookup.CartBG, self.scene.objectLookup.CartWaypoint),\n                Move(self.scene.objectLookup.Cart, self.scene.objectLookup.CartWaypoint)\n            },\n            Do(function()\n                self.scene.objectLookup.BWatch.hidden = false\n            end),\n            Wait(0.5),\n            Ease(self.scene.camPos, \"y\", -800, 1),\n            Wait(1),\n            MessageBox{message=\"B: Hmmm{p80}, what's that kid up to?\"},\n            Do(function()\n                self.scene:changeScene{map=\"greatjungle\", fadeInSpeed = 1, fadeOutSpeed = 0.1, fadeOutMusic = true, enterDelay=2, hint=\"from_knothole\"}\n            end)\n        })\n    end\nend"
           }
         },
         {
@@ -4551,7 +4523,7 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "meeting_idleleft_shorter",
-            ["hidden"] = false,
+            ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
             ["sprite"] = "../art/sprites/ivan.png"
@@ -4652,14 +4624,14 @@ return {
           type = "Player",
           shape = "rectangle",
           x = 4800,
-          y = 2752,
+          y = 2720,
           width = 32,
           height = 32,
           rotation = 0,
           gid = 5323,
           visible = true,
           properties = {
-            ["orientation"] = "right"
+            ["orientation"] = "down"
           }
         },
         {

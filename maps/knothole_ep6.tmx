@@ -6,7 +6,7 @@
   <property name="layerHeightMap" value="objects:1504,objects2:736,objects3:448,objects4:160,objects5:20"/>
   <property name="layered" type="bool" value="true"/>
   <property name="nighttime" type="bool" value="false"/>
-  <property name="onload" type="file" value="actions/knotholeep5.lua"/>
+  <property name="onload" type="file" value="actions/knotholeep6.lua"/>
   <property name="regionName" value="Great Forest"/>
   <property name="sectorName" value="Knothole"/>
  </properties>
@@ -2346,7 +2346,6 @@ end</property>
     <property name="defaultAnim" value="right"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/waralcoveforward.png"/>
-    <property name="swapLayerLessThanY_" type="int" value="2432"/>
    </properties>
   </object>
   <object id="123" name="WarRoom5" type="BasicNPC" gid="5323" x="3990" y="2268" width="32" height="32">
@@ -2355,7 +2354,6 @@ end</property>
     <property name="defaultAnim" value="left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/waralcoveforward.png"/>
-    <property name="swapLayerLessThanY_" type="int" value="2136"/>
    </properties>
   </object>
   <object id="130" name="WarRoom2Outer" type="BasicNPC" gid="5323" x="4488" y="2816" width="32" height="32">
@@ -2363,8 +2361,6 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/waralcove.png"/>
-    <property name="swapLayerLessThanY" type="int" value="2656"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="131" name="WorkshopDoor" type="Door" gid="7660" x="7456" y="1802" width="32" height="32">
@@ -2584,13 +2580,12 @@ end</property>
     <property name="direction" value="up_right"/>
    </properties>
   </object>
-  <object id="510" name="WarRoom2OuterOverlay" type="BasicNPC" gid="5323" x="4488" y="2816" width="32" height="32" visible="0">
+  <object id="510" name="WarRoom2OuterOverlay" type="BasicNPC" gid="5323" x="4488" y="2816" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idle_overlay"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/waralcove.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="536" name="WarRoom3" type="BasicNPC" gid="5323" x="4384" y="3460" width="32" height="32">
@@ -2599,7 +2594,6 @@ end</property>
     <property name="defaultAnim" value="left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/waralcoveforward.png"/>
-    <property name="swapLayerLessThanY_" type="int" value="3328"/>
    </properties>
   </object>
   <object id="511" name="WarRoom3Overlay" type="BasicNPC" gid="5323" x="4384" y="3460" width="32" height="32">
@@ -2608,7 +2602,6 @@ end</property>
     <property name="defaultAnim" value="left_overlay"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/waralcoveforward.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="539" name="WarRoom6Overlay" type="BasicNPC" gid="5323" x="5506" y="3460" width="32" height="32">
@@ -2617,7 +2610,6 @@ end</property>
     <property name="defaultAnim" value="left_overlay"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/waralcoveforward.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="541" name="WarRoom4Overlay" type="BasicNPC" gid="5323" x="5920" y="2564" width="32" height="32">
@@ -2626,7 +2618,6 @@ end</property>
     <property name="defaultAnim" value="right_overlay"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/waralcoveforward.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="542" name="WarRoom1OuterOverlay" type="BasicNPC" gid="5323" x="5824" y="2816" width="32" height="32">
@@ -2635,7 +2626,6 @@ end</property>
     <property name="defaultAnim" value="right_overlay"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/knotholebase.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="543" name="WarRoom5Overlay" type="BasicNPC" gid="5323" x="3990" y="2268" width="32" height="32">
@@ -2644,14 +2634,13 @@ end</property>
     <property name="defaultAnim" value="left_overlay"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/waralcoveforward.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="597" name="AntoineMtg" type="BasicNPC" gid="7597" x="4885" y="2699" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="sitlookforward"/>
-    <property name="hidden" type="bool" value="false"/>
+    <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
@@ -2661,7 +2650,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="sitlookforward"/>
-    <property name="hidden" type="bool" value="false"/>
+    <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
@@ -2671,7 +2660,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="sitlookforward"/>
-    <property name="hidden" type="bool" value="false"/>
+    <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
@@ -2681,7 +2670,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="planning"/>
-    <property name="hidden" type="bool" value="false"/>
+    <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/sally.png"/>
@@ -2691,7 +2680,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="sitright"/>
-    <property name="hidden" type="bool" value="false"/>
+    <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
@@ -2701,7 +2690,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleright"/>
-    <property name="hidden" type="bool" value="false"/>
+    <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/b.png"/>
@@ -2711,7 +2700,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="meeting_idleright"/>
-    <property name="hidden" type="bool" value="false"/>
+    <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
@@ -2721,7 +2710,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="meeting_idledown"/>
-    <property name="hidden" type="bool" value="false"/>
+    <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/logan.png"/>
@@ -2731,190 +2720,17 @@ end</property>
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="meeting_idleleft"/>
-    <property name="hidden" type="bool" value="false"/>
+    <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/leon.png"/>
-   </properties>
-  </object>
-  <object id="631" name="Ep6Cinematic" type="BasicNPC" gid="7597" x="4800" y="2816" width="32" height="32">
-   <properties>
-    <property name="nocollision" type="bool" value="true"/>
-    <property name="onUpdate">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Animate = require &quot;actions/Animate&quot;
-local Serial = require &quot;actions/Serial&quot;
-local Parallel = require &quot;actions/Parallel&quot;
-local AudioFade = require &quot;actions/AudioFade&quot;
-local Do = require &quot;actions/Do&quot;
-local PlayAudio = require &quot;actions/PlayAudio&quot;
-local Move = require &quot;actions/Move&quot;
-local Ease = require &quot;actions/Ease&quot;
-
-local SpriteNode = require &quot;object/SpriteNode&quot;
-local Transform = require &quot;util/Transform&quot;
-
-return function(self, dt)
-    if GameState:isFlagSet(self:getFlag()) then
-        self.onUpdate = nil
-        return
-    end
-
-    local flagObjects = {AntoineInteractable = true, BunnieInteractable = true, SonicInteractable = true, RotorInteractable = true}
-    for k, _ in pairs(flagObjects) do
-        if GameState:isFlagSet(self.scene.objectLookup[k]:getFlag()) then
-            flagObjects[k] = nil
-        end
-    end
-
-    -- All flags are set
-    if next(flagObjects) == nil then
-        GameState:setFlag(self:getFlag())
-
-        local storybook = SpriteNode(scene, Transform(0, -20, 1, 1), {255,255,255,0}, &quot;storybook1&quot;, nil, nil, &quot;ui&quot;)
-
-        -- Cinematic begins
-        self:run(BlockPlayer {
-            AudioFade(&quot;music&quot;, 1,0,1),
-            PlayAudio(&quot;music&quot;, &quot;meettherebellion&quot;, 1, true, true),
-            MessageBox {message=&quot;Sally: With the computer virus's development on schedule, we should be two days away from being able to launch an assault.&quot;},
-            MessageBox {message=&quot;Sally: Now it's just a matter of figuring out when and where to strike...&quot;},
-            MessageBox {message=&quot;B: Excuse me, Princess. {p40}Before you embark upon this dangerous mission, I would like to make sure that my family is safely migrated to Knothole, as planned.&quot;},
-            Wait(1),
-            Animate(self.scene.objectLookup.LeonMtg.sprite, &quot;meeting_idleleftshakehead&quot;),
-            MessageBox {message=&quot;Leon: I understand your predicament B, but we can not risk further complications to this operation.&quot;},
-            MessageBox {message=&quot;Leon: Robotnik will soon be dethroned. {p40}Once he is, we will all be able to safely recover our family members trapped in Robotropolis.&quot;},
-            Animate(self.scene.objectLookup.BMtg.sprite, &quot;questionright&quot;),
-            MessageBox {message=&quot;B: And what if Robotnik decides to *scrap* my family members before then, General!&quot;},
-            Animate(self.scene.objectLookup.LeonMtg.sprite, &quot;meeting_idleleft&quot;),
-            MessageBox {message=&quot;Leon: What if the Princess is captured trying to get your family back to Knothole? {p40}It will derail our entire operation! {p40}We can't take that risk!&quot;},
-            AudioFade(&quot;music&quot;, 1,0,1),
-            Animate(self.scene.objectLookup.SallyMtg.sprite, &quot;meeting_thinking&quot;),
-            MessageBox {message=&quot;Sally: Please calm down, both of you! {p40}I understand where you're both coming from, and--&quot;, closeAction=Wait(1)},
-            PlayAudio(&quot;music&quot;, &quot;bsad&quot;, 1, true),
-            MessageBox {message=&quot;B: --and I came here on a promise! {p40}A promise that my family would be brought to Knothole...&quot;},
-            -- B walks away
-            Animate(self.scene.objectLookup.SallyMtg.sprite, &quot;meeting_verysadleft&quot;),
-            Do(function() self.scene.objectLookup.BMtg.sprite:setAnimation(&quot;walkleft&quot;) end),
-            Move(self.scene.objectLookup.BMtg, self.scene.objectLookup.BWP_1, &quot;walkleft&quot;),
-            Parallel {
-                Move(self.scene.objectLookup.BMtg, self.scene.objectLookup.BWP_2, &quot;walkleft&quot;),
-                MessageBox {message=&quot;Sally: B, wait!&quot;}
-            },
-            Do(function() self.scene.objectLookup.BMtg:remove() end),
-            -- Sally looks sad
-            Animate(self.scene.objectLookup.SallyMtg.sprite, &quot;meeting_worriedleft&quot;), 
-            AudioFade(&quot;music&quot;, 1,0,1),
-            Wait(1),
-            MessageBox {message=&quot;Sonic: He'll be ok, Sal. I'll talk to him.&quot;},
-            MessageBox {message=&quot;Sally: *sigh*...&quot;},
-            Wait(2),
-            MessageBox {message=&quot;Leon: Now that that is settled, I--&quot;, closeAction=Wait(0.7)},
-            Parallel {
-                self.scene.player:hop(),
-                MessageBox {message=&quot;Tails: Wait!&quot;}
-            },
-            Do(function()
-                self.scene.objectLookup.SonicMtg.y = self.scene.objectLookup.SonicMtg.y + 5
-                self.scene.objectLookup.WarRoom2OuterOverlay.sprite.sortOrderY = -1001
-                self.scene.objectLookup.WarRoom2Outer.sprite.sortOrderY = -1000
-                self.scene.objectLookup.IvanMtg.sprite.sortOrderY = -1002
-            end),
-            Animate(self.scene.objectLookup.FleetMtg.sprite, &quot;meeting_idledown&quot;),
-            Animate(self.scene.objectLookup.IvanMtg.sprite, &quot;meeting_idledown&quot;),
-            Animate(self.scene.objectLookup.LeonMtg.sprite, &quot;meeting_idledown&quot;),
-            Animate(self.scene.objectLookup.RotorMtg.sprite, &quot;sitright_lookdown&quot;),
-            Animate(self.scene.objectLookup.SonicMtg.sprite, &quot;idledown&quot;),
-            Animate(self.scene.objectLookup.BunnieMtg.sprite, &quot;idledown&quot;),
-            Animate(self.scene.objectLookup.AntoineMtg.sprite, &quot;idledown&quot;),
-            Animate(self.scene.objectLookup.SallyMtg.sprite, &quot;planning&quot;),
-            MessageBox {message=&quot;Tails: I understand that this computer virus plan is way past cool{p60}, but I think I got somethin' even better!&quot;},
-            -- Others look surprised
-            PlayAudio(&quot;music&quot;, &quot;tailstheme&quot;, 1, true, true),
-            Parallel {
-                Ease(storybook.color, 4, 255, 1, &quot;linear&quot;),
-                Serial {
-                    MessageBox {message=&quot;Tails: Check it out!&quot;},
-                    MessageBox {message=&quot;Tails: The {h Light of Mobius}! {p60}Located in the deepest\npart of Boulder Bay, this light grants one wish! {p60}\nIf we find it, we can wish that Robotnik never\ntook over!&quot;},
-                    Wait(1),
-                    MessageBox {message=&quot;Fleet: Nice idea kid{p60}, but there's just one thing you've forgotten...&quot;}
-                }
-            },
-            Parallel {
-                Ease(storybook.color, 4, 0, 1, &quot;linear&quot;),
-                AudioFade(&quot;music&quot;, 1,0,1)
-            },
-            Wait(1),
-            Animate(self.scene.objectLookup.FleetMtg.sprite, &quot;meeting_smirk&quot;),
-            MessageBox {message=&quot;Fleet: The {h Light of Mobius} is just a myth! {p60}\nA fiction! {p60}A bedtime story parents read to their young\nto keep them entertained. {p80}It's not real!&quot;},
-            -- Tails hops in frustration
-            Do(function()
-                self.scene.player.state = &quot;saddown&quot;
-            end),
-            MessageBox {message=&quot;Tails: Is too!&quot;},
-            Wait(1),
-            Animate(self.scene.objectLookup.SallyMtg.sprite, &quot;meeting_thinking&quot;),
-            MessageBox {message=&quot;Sally: Tails, sweetie... {p60}I appreciate the suggestion, but for now, we're gonna focus on the virus. It's just a more... {p60}realistic approach.&quot;},
-            Animate(self.scene.objectLookup.FleetMtg.sprite, &quot;meeting_lookright&quot;),
-            MessageBox {message=&quot;Fleet: Emphasis on \&quot;real\&quot;.&quot;},
-            Wait(1),
-            MessageBox {message=&quot;Sonic: Hey little buddy, this is a mondo cool idea, but we gotta focus on what Sal's already got cookin'.&quot;},
-            Do(function() self.scene.player.state = &quot;idleup&quot; end),
-            PlayAudio(&quot;music&quot;, &quot;sadintrospect&quot;, 1, true),
-            MessageBox {message=&quot;Tails: But--&quot;, closeAction=Wait(1)},
-            Animate(self.scene.objectLookup.SonicMtg.sprite, self.scene.player.x &gt; self.scene.objectLookup.SonicMtg.x and &quot;earnestright&quot; or &quot;earnestleft&quot;),
-            MessageBox {message=&quot;Sonic: Whatcha say you and I play some dirt hockey once this meeting's over?&quot;},
-            Do(function() self.scene.player.state = &quot;saddown&quot; end),
-            MessageBox {message=&quot;Tails: ...ok.&quot;},
-
-            -- Fade out, place player below cart, fade in, more dialogue, end of scene
-            self.scene:fadeOut(0.2),
-            Do(function()
-                self.scene.player.x = self.scene.objectLookup.Cart.x + 60
-                self.scene.player.y = self.scene.objectLookup.Cart.y + 120
-                self.scene.player.state = &quot;idleup&quot;
-            end),
-            Wait(1),
-            Parallel {
-                self.scene:fadeIn(0.2),
-                AudioFade(&quot;music&quot;, 1,0,1)
-            },
-            MessageBox {message=&quot;Tails: ... {p80}Ben Windom wouldn't give up...&quot;},
-            self.scene.player:hop(),
-            PlayAudio(&quot;music&quot;, &quot;doittoit2&quot;, 0.8, true, true),
-            MessageBox {message=&quot;Tails: I'll show them! {p80}The Light of Mobius 'is'\nreal{p60}, and with this book, I'll be the one to find it!&quot;},
-            Move(self.scene.player, self.scene.objectLookup.TailsWP_1, &quot;walkup&quot;),
-            Do(function() self.scene.player.state = &quot;attitudedown&quot; end),
-            Parallel {
-                Do(function()
-                    local cart = self.scene.objectLookup.CartBG
-                    self.scene.player.x = cart.x + cart.sprite.w
-                    self.scene.player.y = cart.y + cart.sprite.h
-                end),
-                Move(self.scene.objectLookup.CartBG, self.scene.objectLookup.CartWaypoint),
-                Move(self.scene.objectLookup.Cart, self.scene.objectLookup.CartWaypoint)
-            },
-            Do(function()
-                self.scene.objectLookup.BWatch.hidden = false
-            end),
-            Wait(0.5),
-            Ease(self.scene.camPos, &quot;y&quot;, -800, 1),
-            Wait(1),
-            MessageBox{message=&quot;B: Hmmm{p80}, what's that kid up to?&quot;},
-            Do(function()
-                self.scene:changeScene{map=&quot;greatjungle&quot;, fadeInSpeed = 1, fadeOutSpeed = 0.1, fadeOutMusic = true, enterDelay=2, hint=&quot;from_knothole&quot;}
-            end)
-        })
-    end
-end</property>
    </properties>
   </object>
   <object id="632" name="IvanMtg" type="BasicNPC" gid="7597" x="4910" y="2666" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="meeting_idleleft_shorter"/>
-    <property name="hidden" type="bool" value="false"/>
+    <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
     <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
@@ -2964,9 +2780,9 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/leaf.png"/>
    </properties>
   </object>
-  <object id="728" name="Spawn 1" type="Player" gid="5323" x="4800" y="2752" width="32" height="32">
+  <object id="728" name="Spawn 1" type="Player" gid="5323" x="4800" y="2720" width="32" height="32">
    <properties>
-    <property name="orientation" value="right"/>
+    <property name="orientation" value="down"/>
    </properties>
   </object>
   <object id="730" name="LookoutEntrance" type="SceneEdge" gid="7660" x="5376" y="864" width="32" height="32">
