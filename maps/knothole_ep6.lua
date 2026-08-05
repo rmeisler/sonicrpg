@@ -8,7 +8,7 @@ return {
   height = 135,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 734,
+  nextobjectid = 737,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["currentLayer"] = 7,
@@ -4434,8 +4434,8 @@ return {
           name = "BMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4620,
-          y = 2684,
+          x = 4224,
+          y = 2784,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4499,7 +4499,7 @@ return {
           name = "LeonMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4857,
+          x = 4849,
           y = 2664,
           width = 32,
           height = 32,
@@ -4521,8 +4521,8 @@ return {
           name = "FleetMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4898,
-          y = 2666,
+          x = 4890,
+          y = 2662,
           width = 32,
           height = 32,
           rotation = 0,
@@ -4540,26 +4540,10 @@ return {
         },
         {
           id = 633,
-          name = "BWP_1",
+          name = "LeaveMeetingWP2",
           type = "BasicNPC",
           shape = "rectangle",
           x = 4448,
-          y = 2784,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 634,
-          name = "BWP_2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 4096,
           y = 2784,
           width = 32,
           height = 32,
@@ -4692,6 +4676,54 @@ return {
           gid = 5323,
           visible = true,
           properties = {}
+        },
+        {
+          id = 734,
+          name = "LeaveMeetingWP1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4608,
+          y = 2720,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 735,
+          name = "LeaveMeetingWP3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4192,
+          y = 2784,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 736,
+          name = "LeaveMeetingWP0",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4704,
+          y = 2688,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
         }
       }
     },

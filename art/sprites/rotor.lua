@@ -30,6 +30,9 @@ return {
 		sitright_approve = {
 			frames = {{11,4}}
 		},
+		sitright_cheer = {
+			frames = {{12,4}}
+		},
 		
 		leapdown = {
 			frames = {{5,2}}

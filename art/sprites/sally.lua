@@ -220,6 +220,12 @@ return {
 		planning_irritated = {
 			frames = {{15,5}}
 		},
+		planning_lookleft = {
+			frames = {{16,5}}
+		},
+		planning_lookright = {
+			frames = {{10,7}}
+		},
 		swimup = {
 			frames = {{10,3}}
 		},

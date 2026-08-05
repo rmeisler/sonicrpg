@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="135" tilewidth="32" tileheight="32" infinite="0" nextobjectid="734">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="135" tilewidth="32" tileheight="32" infinite="0" nextobjectid="737">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="currentLayer" type="int" value="7"/>
@@ -2691,7 +2691,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
    </properties>
   </object>
-  <object id="602" name="BMtg" type="BasicNPC" gid="7597" x="4620" y="2684" width="32" height="32">
+  <object id="602" name="BMtg" type="BasicNPC" gid="7597" x="4224" y="2784" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleright"/>
@@ -2723,7 +2723,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/logan.png"/>
    </properties>
   </object>
-  <object id="624" name="LeonMtg" type="BasicNPC" gid="7597" x="4857" y="2664" width="32" height="32">
+  <object id="624" name="LeonMtg" type="BasicNPC" gid="7597" x="4849" y="2664" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="meeting_idleleft"/>
@@ -2734,7 +2734,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/leon.png"/>
    </properties>
   </object>
-  <object id="632" name="FleetMtg" type="BasicNPC" gid="7597" x="4898" y="2666" width="32" height="32">
+  <object id="632" name="FleetMtg" type="BasicNPC" gid="7597" x="4890" y="2662" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="meeting_idleleft"/>
@@ -2745,12 +2745,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
    </properties>
   </object>
-  <object id="633" name="BWP_1" type="BasicNPC" gid="5323" x="4448" y="2784" width="32" height="32">
-   <properties>
-    <property name="ghost" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="634" name="BWP_2" type="BasicNPC" gid="5323" x="4096" y="2784" width="32" height="32">
+  <object id="633" name="LeaveMeetingWP2" type="BasicNPC" gid="5323" x="4448" y="2784" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -2811,6 +2806,21 @@ end</property>
    </properties>
   </object>
   <object id="732" name="Ladder2" type="Ladder" gid="5323" x="5664" y="1984" width="32" height="608"/>
+  <object id="734" name="LeaveMeetingWP1" type="BasicNPC" gid="7597" x="4608" y="2720" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="735" name="LeaveMeetingWP3" type="BasicNPC" gid="5323" x="4192" y="2784" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="736" name="LeaveMeetingWP0" type="BasicNPC" gid="5323" x="4704" y="2688" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="bridgeoverlay" width="275" height="135">
   <data encoding="csv">
