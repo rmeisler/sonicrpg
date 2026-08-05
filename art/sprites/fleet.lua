@@ -139,6 +139,10 @@ return {
 			frames = {{1,6}},
 			clip = {0,0,47,42}
 		},
+		meeting_thinking = {
+			frames = {{8,6}},
+			clip = {0,0,47,42}
+		},
 		meeting_laugh = {
 			frames = {{2,6},{3,6}},
 			speed = 0.2,

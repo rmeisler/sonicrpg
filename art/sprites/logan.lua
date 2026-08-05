@@ -195,6 +195,10 @@ return {
 			frames = {{0,0}},
 			clip = {0,0,47,46}
 		},
+		meeting_idleright_shorter = {
+			frames = {{0,0}},
+			clip = {0,0,47,42}
+		},
 		meeting_idleleft = {
 			frames = {{0,1}},
 			clip = {0,0,47,46}
@@ -206,6 +210,14 @@ return {
 		meeting_idledown_attitude = {
 			frames = {{1,5}},
 			clip = {0,0,47,46}
+		},
+		meeting_idledown_attitude_shorter = {
+			frames = {{1,5}},
+			clip = {0,0,47,42}
+		},
+		meeting_idledown_irritated_shorter = {
+			frames = {{1,6}},
+			clip = {0,0,47,42}
 		},
 		angrydown = {
 			frames = {{2,6}}

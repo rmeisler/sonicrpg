@@ -35,6 +35,11 @@ return {
             frames = {{1,7}},
 			clip = {0,0,47,40}
         },
+		meeting_idleleft_nod = {
+            frames = {{2,7}, {0,1}},
+			speed = 0.6,
+			clip = {0,0,47,40}
+        },
 		
 		angryleft = {
 			frames = {{5,7}}

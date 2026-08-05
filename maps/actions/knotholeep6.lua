@@ -73,57 +73,86 @@ return function(scene, hint)
 				scene.player.sprite.visible = false
 				scene.player.dropShadow.hidden = true
 			end),
-			Wait(3),
+			Wait(4),
+			PlayAudio("music", "areyouready", 0.5, true, true),
+			MessageBox{message="Sally: Rotor{p60}, Logan{p60}, status report on the computer virus?"},
+			Animate(scene.objectLookup.RotorMtg.sprite, "sitright_explain"),
 			MessageBox{message="Rotor: The modified computer virus is ready and thoroughly tested."},
 			MessageBox{message="Rotor: Once deployed it will ensure that no bot in Robotropolis can land a shot on us."},
+			Animate(scene.objectLookup.RotorMtg.sprite, "sitright"),
+			Animate(scene.objectLookup.LoganMtg.sprite, "meeting_idledown_irritated_shorter"),
 			MessageBox{message="Logan: Almost no bot{p60}, we've chosen not to infect our roboticized friends and family."},
 			MessageBox{message="Logan: We're not sure what the virus might do to them, and we don't have time to make sure it's safe."},
-			MessageBox{message="Sally: Thank you for the recap, Rotor and Logan."},
-			PlayAudio("music", "areyouready", 0.8, true, true),
-			MessageBox{message="Sally: With the city's primary security forces malfunctioning, we should be able to quickly make our way\nto Robotnik's throne room{p60}, overwhelm Robotnik{p60}, and take\ncontrol of the entire city in a matter of hours."},
-			MessageBox{message="Sally: Sonic and Fleet{p60}, you will help us get to the command center as quickly as possible."},
-			MessageBox{message="Sally: Rotor and Logan{p60}, you will deal with static\nsecurity{p60}; laser grids, locked doors, access for elevators."},
-			MessageBox{message="Sally: Ivan and Bunnie{p60}, you will deal with physical barriers{p60}; sealed doors or bots that attempt to engage us in melee combat."},
-			MessageBox{message="Sally: Antoine{p60}, you will accompany Leon and I."},
-			AudioFade("music", 1, 0, 1),
+			MessageBox{message="Sally: Thank you! {p80}Leon, can you go over assignments?"},
+			Animate(scene.objectLookup.LoganMtg.sprite, "meeting_idleright_shorter"),
+			Wait(0.6),
+			Animate(scene.objectLookup.LeonMtg.sprite, "meeting_idleleft_nod"),
+			Wait(1),
+			MessageBox{message="Leon: Rotor and Logan{p80}, you will deal with static\nsecurity{p60}; laser grids, locked doors, access for elevators."},
+			Wait(0.3),
+			Animate(scene.objectLookup.RotorMtg.sprite, "sitright_approve"),
+			Animate(scene.objectLookup.LoganMtg.sprite, "meeting_idledown_irritated_shorter"),
+			Wait(1),
+			MessageBox{message="Leon: Ivan and Bunnie{p80}, you will deal with physical\nbarriers{p60}; sealed doors or bots that attempt to engage us in melee combat."},
+			Animate(scene.objectLookup.RotorMtg.sprite, "sitright"),
+			Wait(0.3),
+			Animate(scene.objectLookup.IvanMtg.sprite, "meeting_attitude_shorter"),
+			scene.objectLookup.BunnieMtg:hop(),
+			Wait(1),
+			MessageBox{message="Leon: Sonic and Fleet{p80}, you will be our transportation."},
+			Wait(0.3),
+			Animate(scene.objectLookup.FleetMtg.sprite, "meeting_thinking"),
+			scene.objectLookup.SonicMtg:hop(),
+			Wait(1),
+			MessageBox{message="Leon: Antoine{p80}, you will accompany the Princess and myself."},
+			Wait(0.3),
+			scene.objectLookup.AntoineMtg:hop(),
+			Wait(1),
+			MessageBox{message="Sally: Perfect! {p80}Alright guys, let's recap the plan..."},
+			MessageBox{message="Sally: With the city's primary security forces malfunctioning, we should be able to quickly make our way\nto Robotnik's throne room{p60}, overwhelm Robotnik,{p60}\nand take control of the city in a matter of hours."},
 			scene.objectLookup.SonicMtg:hop(),
 			MessageBox{message="Sonic: Hold on a Sonic second!{p60} This all sounds too easy! {p60}What's the catch?"},
-			MessageBox{message="Sally: There's no catch, Sonic. {p60}Even by our most conservative predictions, Nicole is estimating a\n95% chance of mission success."},
-			PlayAudio("music", "sallyvictory", 1, true),
+			Parallel {
+				AudioFade("music", 0.5, 0, 0.3),
+				MessageBox{message="Sally: There's no catch, Sonic. {p100}Even by our most conservative predictions, Nicole is estimating a\n{h 95% chance} of mission success."}
+			},
+			Wait(1),
 			Parallel {
 				scene.objectLookup.SonicMtg:hop(),
 				scene.objectLookup.BunnieMtg:hop(),
-				scene.objectLookup.AntoineMtg:hop(),
-				scene.objectLookup.RotorMtg:hop(),
-				scene.objectLookup.LoganMtg:hop(),
-				scene.objectLookup.IvanMtg:hop(),
-				scene.objectLookup.FleetMtg:hop()
+				scene.objectLookup.AntoineMtg:hop()
 			},
-			MessageBox{message="Antoine: This is magnifique!!", closeAction=Wait(1)},
-			MessageBox{message="Bunnie: My stars, Sally girl, I'd bet the farm on that!", closeAction=Wait(1)},
-			MessageBox{message="Ivan: Incredible.", closeAction=Wait(1)},
 			Wait(1),
-			MessageBox{message="Sally: We've all been working very hard to prepare for this...", closeAction=Wait(2)},
-			MessageBox{message="Sally: By this time tomorrow, Robotnik's reign of terror will be over!!", closeAction=Wait(2)},
-
-			scene:fadeOut(),
+			PlayAudio("music", "sallyvictory", 1, true),
+			MessageBox{message="Antoine: This is magnifique!!", closeAction=Wait(2)},
+			MessageBox{message="Bunnie: My stars, Sally girl{p60}, I'd bet the farm on that!", closeAction=Wait(2)},
+			Wait(1),
+			MessageBox{message="Sally: We've all been working very hard to prepare for this...", closeAction=Wait(3)},
+			MessageBox{message="Sally: By this time tomorrow, Robotnik's reign of terror will be over!!", closeAction=Wait(2.5)},
 
 			Do(function()
-				scene.objectLookup.SonicMtg.hidden = true
-				scene.objectLookup.SallyMtg.hidden = true
-				scene.objectLookup.RotorMtg.hidden = true
-				scene.objectLookup.AntoineMtg.hidden = true
-				scene.objectLookup.BunnieMtg.hidden = true
-				scene.objectLookup.LeonMtg.hidden = true
-				scene.objectLookup.LoganMtg.hidden = true
-				scene.objectLookup.FleetMtg.hidden = true
-				scene.objectLookup.IvanMtg.hidden = true
+				scene.objectLookup.SonicMtg:run(BlockPlayer {
+					Wait(0.2),
+					scene:fadeOut(),
 
-				scene.player.sprite.visible = true
-				scene.player.dropShadow.hidden = false
-			end),
+					Do(function()
+						scene.objectLookup.SonicMtg.hidden = true
+						scene.objectLookup.SallyMtg.hidden = true
+						scene.objectLookup.RotorMtg.hidden = true
+						scene.objectLookup.AntoineMtg.hidden = true
+						scene.objectLookup.BunnieMtg.hidden = true
+						scene.objectLookup.LeonMtg.hidden = true
+						scene.objectLookup.LoganMtg.hidden = true
+						scene.objectLookup.FleetMtg.hidden = true
+						scene.objectLookup.IvanMtg.hidden = true
 
-			scene:fadeIn()
+						scene.player.sprite.visible = true
+						scene.player.dropShadow.hidden = false
+					end),
+
+					scene:fadeIn()
+				})
+			end)
 		}
 	end
 

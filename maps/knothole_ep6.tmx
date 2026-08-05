@@ -2643,6 +2643,7 @@ end</property>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
+    <property name="sortOrderY" type="float" value="10000"/>
     <property name="sprite" type="file" value="../art/sprites/antoine.png"/>
    </properties>
   </object>
@@ -2653,6 +2654,7 @@ end</property>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
+    <property name="sortOrderY" type="float" value="10000"/>
     <property name="sprite" type="file" value="../art/sprites/bunny.png"/>
    </properties>
   </object>
@@ -2663,16 +2665,18 @@ end</property>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
+    <property name="sortOrderY" type="float" value="10000"/>
     <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
    </properties>
   </object>
-  <object id="600" name="SallyMtg" type="BasicNPC" gid="7597" x="4806" y="2658" width="32" height="32">
+  <object id="600" name="SallyMtg" type="BasicNPC" gid="7597" x="4797" y="2658" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="planning"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
+    <property name="sortOrderY" type="float" value="10000"/>
     <property name="sprite" type="file" value="../art/sprites/sally.png"/>
    </properties>
   </object>
@@ -2683,6 +2687,7 @@ end</property>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
+    <property name="sortOrderY" type="float" value="10000"/>
     <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
    </properties>
   </object>
@@ -2696,44 +2701,48 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/b.png"/>
    </properties>
   </object>
-  <object id="603" name="FleetMtg" type="BasicNPC" gid="7597" x="4716" y="2658" width="32" height="32">
+  <object id="603" name="IvanMtg" type="BasicNPC" gid="7597" x="4707" y="2658" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="meeting_idleright"/>
+    <property name="defaultAnim" value="meeting_idleright_shorter"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
+    <property name="sortOrderY" type="float" value="10000"/>
+    <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
    </properties>
   </object>
-  <object id="604" name="LoganMtg" type="BasicNPC" gid="7597" x="4762" y="2658" width="32" height="32">
+  <object id="604" name="LoganMtg" type="BasicNPC" gid="7597" x="4749" y="2658" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="meeting_idledown"/>
+    <property name="defaultAnim" value="meeting_idleright_shorter"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
+    <property name="sortOrderY" type="float" value="10000"/>
     <property name="sprite" type="file" value="../art/sprites/logan.png"/>
    </properties>
   </object>
-  <object id="624" name="LeonMtg" type="BasicNPC" gid="7597" x="4864" y="2664" width="32" height="32">
+  <object id="624" name="LeonMtg" type="BasicNPC" gid="7597" x="4857" y="2664" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="meeting_idleleft"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
+    <property name="sortOrderY" type="float" value="10000"/>
     <property name="sprite" type="file" value="../art/sprites/leon.png"/>
    </properties>
   </object>
-  <object id="632" name="IvanMtg" type="BasicNPC" gid="7597" x="4910" y="2666" width="32" height="32">
+  <object id="632" name="FleetMtg" type="BasicNPC" gid="7597" x="4898" y="2666" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="defaultAnim" value="meeting_idleleft_shorter"/>
+    <property name="defaultAnim" value="meeting_idleleft"/>
     <property name="hidden" type="bool" value="true"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="nonight" type="bool" value="false"/>
-    <property name="sprite" type="file" value="../art/sprites/ivan.png"/>
+    <property name="sortOrderY" type="float" value="10000"/>
+    <property name="sprite" type="file" value="../art/sprites/fleet.png"/>
    </properties>
   </object>
   <object id="633" name="BWP_1" type="BasicNPC" gid="5323" x="4448" y="2784" width="32" height="32">

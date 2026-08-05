@@ -211,23 +211,15 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/snowfootprint.png"
+		file = "art/avatar/sonicavatar.png"
 	},
 	{
 		type = "image",
-		file = "art/avatar/loganavatar.png"
-	},
-	{
-		type = "image",
-		file = "art/avatar/tailsavatar.png"
+		file = "art/avatar/sallyavatar.png"
 	},
 	{
 		type = "image",
 		file = "art/avatar/bavatar.png"
-	},
-	{
-		type = "image",
-		file = "art/avatar/babytavatar.png"
 	},
 	{
 		type = "image",

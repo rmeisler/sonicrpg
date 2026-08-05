@@ -24,6 +24,12 @@ return {
 		sitrightupset = {
 			frames = {{4,5}}
 		},
+		sitright_explain = {
+			frames = {{12,5}}
+		},
+		sitright_approve = {
+			frames = {{11,4}}
+		},
 		
 		leapdown = {
 			frames = {{5,2}}

@@ -60,12 +60,20 @@ return {
 			frames = {{0,3}},
 			clip = {0,0,47,42}
 		},
+		meeting_idleright_shorter = {
+			frames = {{0,0}},
+			clip = {0,0,47,42}
+		},
 		meeting_idleleft = {
 			frames = {{0,1}},
 			clip = {0,0,47,42}
 		},
 		meeting_idleleft_shorter = {
 			frames = {{0,1}},
+			clip = {0,0,47,42}
+		},
+		meeting_attitude_shorter = {
+			frames = {{1,5}},
 			clip = {0,0,47,42}
 		},
 		meeting_idleup_lookleft = {

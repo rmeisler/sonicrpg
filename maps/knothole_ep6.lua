@@ -4337,6 +4337,7 @@ return {
             ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
+            ["sortOrderY"] = 10000,
             ["sprite"] = "../art/sprites/antoine.png"
           }
         },
@@ -4358,6 +4359,7 @@ return {
             ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
+            ["sortOrderY"] = 10000,
             ["sprite"] = "../art/sprites/bunny.png"
           }
         },
@@ -4379,6 +4381,7 @@ return {
             ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
+            ["sortOrderY"] = 10000,
             ["sprite"] = "../art/sprites/sonic.png"
           }
         },
@@ -4387,7 +4390,7 @@ return {
           name = "SallyMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4806,
+          x = 4797,
           y = 2658,
           width = 32,
           height = 32,
@@ -4400,6 +4403,7 @@ return {
             ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
+            ["sortOrderY"] = 10000,
             ["sprite"] = "../art/sprites/sally.png"
           }
         },
@@ -4421,6 +4425,7 @@ return {
             ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
+            ["sortOrderY"] = 10000,
             ["sprite"] = "../art/sprites/rotor.png"
           }
         },
@@ -4447,10 +4452,10 @@ return {
         },
         {
           id = 603,
-          name = "FleetMtg",
+          name = "IvanMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4716,
+          x = 4707,
           y = 2658,
           width = 32,
           height = 32,
@@ -4459,11 +4464,12 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "meeting_idleright",
+            ["defaultAnim"] = "meeting_idleright_shorter",
             ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
-            ["sprite"] = "../art/sprites/fleet.png"
+            ["sortOrderY"] = 10000,
+            ["sprite"] = "../art/sprites/ivan.png"
           }
         },
         {
@@ -4471,7 +4477,7 @@ return {
           name = "LoganMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4762,
+          x = 4749,
           y = 2658,
           width = 32,
           height = 32,
@@ -4480,10 +4486,11 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "meeting_idledown",
+            ["defaultAnim"] = "meeting_idleright_shorter",
             ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
+            ["sortOrderY"] = 10000,
             ["sprite"] = "../art/sprites/logan.png"
           }
         },
@@ -4492,7 +4499,7 @@ return {
           name = "LeonMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4864,
+          x = 4857,
           y = 2664,
           width = 32,
           height = 32,
@@ -4505,15 +4512,16 @@ return {
             ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
+            ["sortOrderY"] = 10000,
             ["sprite"] = "../art/sprites/leon.png"
           }
         },
         {
           id = 632,
-          name = "IvanMtg",
+          name = "FleetMtg",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4910,
+          x = 4898,
           y = 2666,
           width = 32,
           height = 32,
@@ -4522,11 +4530,12 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["defaultAnim"] = "meeting_idleleft_shorter",
+            ["defaultAnim"] = "meeting_idleleft",
             ["hidden"] = true,
             ["nocollision"] = true,
             ["nonight"] = false,
-            ["sprite"] = "../art/sprites/ivan.png"
+            ["sortOrderY"] = 10000,
+            ["sprite"] = "../art/sprites/fleet.png"
           }
         },
         {
