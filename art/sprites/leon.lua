@@ -40,6 +40,10 @@ return {
 			speed = 0.6,
 			clip = {0,0,47,40}
         },
+		meeting_idleleft_lookforward = {
+            frames = {{5,5}},
+			clip = {0,0,47,40}
+        },
 		
 		angryleft = {
 			frames = {{5,7}}

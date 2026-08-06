@@ -8,7 +8,7 @@ return {
   height = 135,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 737,
+  nextobjectid = 738,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
     ["currentLayer"] = 7,
@@ -4711,15 +4711,31 @@ return {
         },
         {
           id = 736,
-          name = "LeaveMeetingWP0",
+          name = "LeaveMeetingWP5",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 4704,
-          y = 2688,
+          x = 4736,
+          y = 2592,
           width = 32,
           height = 32,
           rotation = 0,
           gid = 5323,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 737,
+          name = "LeaveMeetingWP4",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 4640,
+          y = 2656,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 7597,
           visible = true,
           properties = {
             ["ghost"] = true

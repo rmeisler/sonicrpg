@@ -641,6 +641,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/bheart.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/bleaves.ogg",
 		category = "music"
 	},

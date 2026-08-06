@@ -281,6 +281,10 @@ return {
 			frames = {{11,4}},
 			clip = {0,0,47,44}
 		},
+		meeting_idleright = {
+			frames = {{0,0}},
+			clip = {0,0,47,44}
+		},
 		meeting_idleleft = {
 			frames = {{0,1}},
 			clip = {0,0,47,44}

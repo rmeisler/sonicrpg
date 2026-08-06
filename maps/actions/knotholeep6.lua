@@ -93,7 +93,7 @@ return function(scene, hint)
 			Wait(0.5),
 			Animate(scene.objectLookup.LeonMtg.sprite, "meeting_idleleft_nod"),
 			Wait(0.5),
-			MessageBox{message="Leon: Rotor and Logan{p80}, you will deal with static\nsecurity{p60}; laser grids, locked doors, access for elevators."},
+			MessageBox{message="Leon: Rotor and Logan{p80}, you will deal with laser grids, locked doors, access for elevators."},
 			Wait(0.3),
 			Parallel {
 				scene.objectLookup.RotorMtg:hop(),
@@ -102,7 +102,7 @@ return function(scene, hint)
 			Wait(1),
 			Animate(scene.objectLookup.RotorMtg.sprite, "sitright_approve"),
 			Animate(scene.objectLookup.LoganMtg.sprite, "meeting_idledown_irritated_shorter"),
-			MessageBox{message="Leon: Ivan and Bunnie{p80}, you will deal with physical\nbarriers{p60}; sealed doors or bots that attempt to engage us in melee combat."},
+			MessageBox{message="Leon: Ivan and Bunnie{p80}, you will deal with sealed doors or bots that attempt to engage us in melee combat."},
 			Animate(scene.objectLookup.RotorMtg.sprite, "sitright"),
 			Wait(0.3),
 			Parallel {
@@ -119,28 +119,31 @@ return function(scene, hint)
 			},
 			Wait(1),
 			Animate(scene.objectLookup.FleetMtg.sprite, "meeting_thinking"),
+			Animate(scene.objectLookup.LeonMtg.sprite, "meeting_idleleft_lookforward"),
 			MessageBox{message="Leon: Antoine{p80}, you will accompany the Princess and myself."},
 			Wait(0.3),
 			scene.objectLookup.AntoineMtg:hop(),
 			Wait(1),
 			Animate(scene.objectLookup.SallyMtg.sprite, "planning_smile"),
+			Animate(scene.objectLookup.LeonMtg.sprite, "meeting_idleleft"),
 			MessageBox{message="Sally: Perfect! {p80}Alright guys, let's recap the plan..."},
 			Animate(scene.objectLookup.SallyMtg.sprite, "planning"),
 			MessageBox{message="Sally: With the city's primary security forces malfunctioning, we should be able to quickly make our way\nto Robotnik's throne room--"},
 			MessageBox{message="Sally: --once there, we should be able to overwhelm Robotnik, and take control of the city in a matter of hours."},
-			Wait(1),
+			AudioFade("music", 0.5, 0, 0.2),
+			PlayAudio("music", "sallyvictory", 1, true),
 			Parallel {
 				scene.objectLookup.SonicMtg:hop(),
-				MessageBox{message="Sonic: So it's really happening this time..."},
-				AudioFade("music", 0.5, 0, 0.2)
+				Serial {
+					MessageBox{message="Sonic: So it's really happening this time, huh...", closeAction=Wait(3)},
+					MessageBox{message="Sally: Yeah it is...", closeAction=Wait(3)}
+				}
 			},
-			MessageBox{message="Sally: Yeah it is..."},
 			Animate(scene.objectLookup.SallyMtg.sprite, "meeting_thinking"),
-			PlayAudio("music", "sallyvictory", 1, true),
 			MessageBox{message="Sally: By this time tomorrow, Robotnik's reign of terror will be over!!", closeAction=Wait(3)},
 			Animate(scene.objectLookup.RotorMtg.sprite, "sitright_cheer"),
 			Parallel {
-				MessageBox{message="Freedom! {p20}Freedom! {p20}Freedom!", closeAction=Wait(3)},
+				MessageBox{message="Freedom! {p80}Freedom! {p80}Freedom!", closeAction=Wait(3)},
 				Repeat(Serial {
 					Parallel {
 						scene.objectLookup.SonicMtg:hop(),
@@ -148,14 +151,15 @@ return function(scene, hint)
 						scene.objectLookup.AntoineMtg:hop(),
 						scene.objectLookup.RotorMtg:hop()
 					},
-					Wait(0.2)
-				}, 5)
+					Wait(1)
+				}, 3)
 			},
 
 			MessageBox{message="Sally: Meeting adjourned."},
 			Wait(1),
 			Parallel {
 				Serial {
+					Wait(2),
 					MessageBox{message="Sonic: Hey{p60}, is it lunch time yet?", closeAction=Wait(1)},
 					MessageBox{message="Fleet: I could eat.", closeAction=Wait(1)},
 				},
@@ -237,29 +241,49 @@ return function(scene, hint)
 				}
 			},
 			
+			Wait(2),
 			Move(scene.objectLookup.BMtg, scene.objectLookup.LeaveMeetingWP2, "walk"),
-			Move(scene.objectLookup.BMtg, scene.objectLookup.LeaveMeetingWP1, "walk"),
-			Move(scene.objectLookup.BMtg, scene.objectLookup.LeaveMeetingWP0, "walk"),
+			Move(scene.objectLookup.BMtg, scene.objectLookup.LeaveMeetingWP4, "walk"),
+			Move(scene.objectLookup.BMtg, scene.objectLookup.LeaveMeetingWP5, "walk"),
 			Animate(scene.objectLookup.BMtg.sprite, "idleright"),
 			
-			Wait(0.5),
+			Wait(1),
 			PlayAudio("music", "bheart", 1, true, true),
 			MessageBox{message="B: Princess..."},
+			Wait(0.5),
+			Animate(scene.objectLookup.SallyMtg.sprite, "meeting_idleleft"),
 			MessageBox{message="Sally: B?"},
+			Wait(0.5),
 			MessageBox{message="B: I just wanted to thank you for all you've done for me..."},
-			MessageBox{message="Sally: Of course--"},
+			Wait(0.5),
+			MessageBox{message="Sally: Of course..."},
+			Wait(0.5),
 			MessageBox{message="B: ...and let you know that I am going to the city to bring my family back to Knothole."},
-			MessageBox{message="Sally: Why not wait just one more day, B? {p80}We should have control of Robotropolis by tomorrow evening."},
+			Animate(scene.objectLookup.SallyMtg.sprite, "meeting_thinking"),
+			MessageBox{message="Sally: Why not wait just one more day, B?"},
+			MessageBox{message="Sally: We should have control of Robotropolis by tomorrow evening."},
+			Animate(scene.objectLookup.BMtg.sprite, "pose"),
 			MessageBox{message="B: I appreciate that, Princess, but I've waited much too long already."},
-			MessageBox{message="B: If I have learned anything from living here in Knothole, it's that very little goes according to plan."},
+			MessageBox{message="B: And if I have learned anything from living here in Knothole, it's that very little goes according to plan."},
+			Animate(scene.objectLookup.LeonMtg.sprite, "meeting_idleleft_lookdown"),
 			MessageBox{message="Leon: He's right, Princess. {p80}We have not done right by B."},
+			Wait(1),
+			Animate(scene.objectLookup.SallyMtg.sprite, "meeting_idleright"),
+			Animate(scene.objectLookup.LeonMtg.sprite, "meeting_idleleft"),
 			MessageBox{message="Leon: When Tails went missing, you and Sonic took off after him-- {p80}fully understanding the risks in doing so."},
+			Animate(scene.objectLookup.SallyMtg.sprite, "meeting_thinking"),
 			MessageBox{message="Sally: I recall you telling me that I was being reckless..."},
 			MessageBox{message="Leon: It was the right thing to do."},
-			MessageBox{message="Leon: And if it was the right thing to do for Tails, then it is the right thing to do for B's family, too..."},
+			Wait(1),
+			MessageBox{message="Leon: And if it was the right thing to do for Tails, then it is the right thing to do for B's family,\ntoo..."},
+			Wait(1),
 			MessageBox{message="B: ...{p80}Thank you, Commander..."},
+			Wait(1),
+			Animate(scene.objectLookup.SallyMtg.sprite, "meeting_worriedleft"),
 			MessageBox{message="Sally: Y-You're right, Leon. {p80}I'm sorry we let this go on so long, B."},
-			MessageBox{message="Sally: Sonic and I will help bring your family back to Knothole before tomorrow's mission."},
+			Wait(1),
+			Animate(scene.objectLookup.SallyMtg.sprite, "meeting_idleleft"),
+			MessageBox{message="Sally: Sonic and I will help bring your family back to Knothole before tomorrow's mission!"},
 			
 			
 			-- Characters are walking off stage talking about food
@@ -271,7 +295,10 @@ return function(scene, hint)
 			Do(function()
 				scene.objectLookup.SonicMtg:run(BlockPlayer {
 					Wait(0.2),
-					scene:fadeOut(),
+					Parallel {
+						scene:fadeOut(0.2),
+						AudioFade("music", 1, 0, 0.2)
+					},
 
 					Do(function()
 						scene.objectLookup.SonicMtg.hidden = true
@@ -283,12 +310,14 @@ return function(scene, hint)
 						scene.objectLookup.LoganMtg.hidden = true
 						scene.objectLookup.FleetMtg.hidden = true
 						scene.objectLookup.IvanMtg.hidden = true
+						scene.objectLookup.BMtg.hidden = true
 
 						scene.player.sprite.visible = true
 						scene.player.dropShadow.hidden = false
 					end),
+					Wait(0.5),
 
-					scene:fadeIn(),
+					scene:fadeIn(0.2),
 					
 					PlayAudio("music", "ffmedley", 1, true, true)
 				})

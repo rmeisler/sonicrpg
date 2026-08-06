@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="135" tilewidth="32" tileheight="32" infinite="0" nextobjectid="737">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="135" tilewidth="32" tileheight="32" infinite="0" nextobjectid="738">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="currentLayer" type="int" value="7"/>
@@ -2816,7 +2816,12 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="736" name="LeaveMeetingWP0" type="BasicNPC" gid="5323" x="4704" y="2688" width="32" height="32">
+  <object id="736" name="LeaveMeetingWP5" type="BasicNPC" gid="5323" x="4736" y="2592" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="737" name="LeaveMeetingWP4" type="BasicNPC" gid="7597" x="4640" y="2656" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
