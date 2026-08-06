@@ -175,6 +175,18 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/sonicchargeleg1.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/sonicchargeleg2.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/sonicchargebody.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/tails.png"
 	},
 	{
