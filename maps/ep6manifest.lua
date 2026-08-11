@@ -653,7 +653,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/bheart.ogg",
+		file = "audio/music/bheart2.ogg",
 		category = "music"
 	},
 	{

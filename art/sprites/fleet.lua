@@ -152,6 +152,16 @@ return {
 			frames = {{0,0}},
 			clip = {0,0,47,44}
 		},
+		meeting_walkright = {
+			frames = {{1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}},
+			speed = 0.09,
+			clip = {0,0,47,44}
+		},
+		meeting_walkdown = {
+			frames = {{1,2}, {2,2}, {3,2}, {4,2},{5,2}, {6,2}, {7,2}, {8,2}},
+			speed = 0.09,
+			clip = {0,0,47,44}
+		},
 		meeting_idleleft = {
 			frames = {{0,1}},
 			clip = {0,0,47,44}

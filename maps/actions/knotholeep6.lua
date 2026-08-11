@@ -99,9 +99,10 @@ return function(scene, hint)
 				scene.objectLookup.RotorMtg:hop(),
 				scene.objectLookup.LoganMtg:hop()
 			},
-			Wait(1),
+			Wait(0.5),
 			Animate(scene.objectLookup.RotorMtg.sprite, "sitright_approve"),
 			Animate(scene.objectLookup.LoganMtg.sprite, "meeting_idledown_irritated_shorter"),
+			Wait(0.5),
 			MessageBox{message="Leon: Ivan and Bunnie{p80}, you will deal with sealed doors or bots that attempt to engage us in melee combat."},
 			Animate(scene.objectLookup.RotorMtg.sprite, "sitright"),
 			Wait(0.3),
@@ -109,16 +110,18 @@ return function(scene, hint)
 				scene.objectLookup.IvanMtg:hop(),
 				scene.objectLookup.BunnieMtg:hop()
 			},
-			Wait(1),
+			Wait(0.5),
 			Animate(scene.objectLookup.IvanMtg.sprite, "meeting_attitude_shorter"),
+			Wait(0.5),
 			MessageBox{message="Leon: Sonic and Fleet{p80}, you will be our transportation."},
 			Wait(0.3),
 			Parallel {
 				scene.objectLookup.FleetMtg:hop(),
 				scene.objectLookup.SonicMtg:hop()
 			},
-			Wait(1),
+			Wait(0.5),
 			Animate(scene.objectLookup.FleetMtg.sprite, "meeting_thinking"),
+			Wait(0.5),
 			Animate(scene.objectLookup.LeonMtg.sprite, "meeting_idleleft_lookforward"),
 			MessageBox{message="Leon: Antoine{p80}, you will accompany the Princess and myself."},
 			Wait(0.3),
@@ -136,14 +139,14 @@ return function(scene, hint)
 				scene.objectLookup.SonicMtg:hop(),
 				Serial {
 					MessageBox{message="Sonic: So it's really happening this time, huh...", closeAction=Wait(3)},
-					MessageBox{message="Sally: Yeah it is...", closeAction=Wait(3)}
+					MessageBox{message="Sally: Yeah it is...", closeAction=Wait(2)}
 				}
 			},
 			Animate(scene.objectLookup.SallyMtg.sprite, "meeting_thinking"),
 			MessageBox{message="Sally: By this time tomorrow, Robotnik's reign of terror will be over!!", closeAction=Wait(3)},
 			Animate(scene.objectLookup.RotorMtg.sprite, "sitright_cheer"),
 			Parallel {
-				MessageBox{message="Freedom! {p60}Freedom! {p60}Freedom!", closeAction=Wait(3)},
+				MessageBox{message="Freedom! {p50}Freedom! {p50}Freedom!", closeAction=Wait(3)},
 				Repeat(Serial {
 					Parallel {
 						scene.objectLookup.SonicMtg:hop(),
@@ -152,7 +155,7 @@ return function(scene, hint)
 						scene.objectLookup.RotorMtg:hop()
 					},
 					Wait(0.8)
-				}, 3)
+				}, 4)
 			},
 
 			MessageBox{message="Sally: Meeting adjourned."},
@@ -229,9 +232,11 @@ return function(scene, hint)
 					}),
 					Wait(0.2),
 					Spawn(Serial {
-						Animate(scene.objectLookup.FleetMtg.sprite, "idleleft"),
 						Wait(0.2),
-						Move(scene.objectLookup.FleetMtg, scene.objectLookup.LeaveMeetingWP6, "walk"),
+						Animate(scene.objectLookup.FleetMtg.sprite, "idleleft"),
+						Do(function()
+							scene.objectLookup.FleetMtg.y = scene.objectLookup.FleetMtg.y + 64
+						end),
 						Move(scene.objectLookup.FleetMtg, scene.objectLookup.LeaveMeetingWP1, "walk"),
 						Move(scene.objectLookup.FleetMtg, scene.objectLookup.LeaveMeetingWP2, "walk"),
 						Move(scene.objectLookup.FleetMtg, scene.objectLookup.LeaveMeetingWP3, "walk"),
@@ -250,7 +255,7 @@ return function(scene, hint)
 			Animate(scene.objectLookup.BMtg.sprite, "idleright"),
 			
 			Wait(1),
-			PlayAudio("music", "bheart", 1, true, true),
+			PlayAudio("music", "bheart2", 1, true, true),
 			MessageBox{message="B: Princess..."},
 			Wait(0.5),
 			Animate(scene.objectLookup.SallyMtg.sprite, "meeting_idleleft"),
@@ -280,7 +285,7 @@ return function(scene, hint)
 			Wait(1),
 			MessageBox{message="Leon: And if it was the right thing to do for Tails, then it is the right thing to do for B's family,\ntoo..."},
 			Wait(1),
-			MessageBox{message="B: ...{p60}Thank you{p60}, Commander..."},
+			MessageBox{message="B: ...{p60}Thank you, Commander..."},
 			Wait(1),
 			Animate(scene.objectLookup.SallyMtg.sprite, "meeting_worriedleft"),
 			MessageBox{message="Sally: Y-You're right, Leon. {p80}I'm sorry we let this go on so long, B."},

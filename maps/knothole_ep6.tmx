@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="135" tilewidth="32" tileheight="32" infinite="0" nextobjectid="740">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="275" height="135" tilewidth="32" tileheight="32" infinite="0" nextobjectid="749">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/rotorwsbg.png"/>
   <property name="currentLayer" type="int" value="7"/>
@@ -1604,6 +1604,24 @@
     <property name="sprite" type="file" value="../art/sprites/waralcoveforward_inner.png"/>
    </properties>
   </object>
+  <object id="746" name="RS1" type="RaceSquare" gid="5323" x="4736" y="3424" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
+   </properties>
+  </object>
+  <object id="747" name="RS2" type="RaceSquare" gid="5323" x="5856" y="3424" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
+   </properties>
+  </object>
+  <object id="748" name="RS3" type="RaceSquare" gid="5323" x="6336" y="2432" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="objects">
   <object id="2" name="SallyHut" type="BasicNPC" gid="5323" x="1088" y="1664" width="416" height="192">
@@ -1611,7 +1629,6 @@
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-32"/>
     <property name="sprite" type="file" value="../art/sprites/knotholehut.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="5" name="Ripple" type="BasicNPC" gid="5323" x="7680" y="2976" width="96" height="64">
@@ -1633,7 +1650,6 @@
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="sprite" type="file" value="../art/sprites/rotorworkshop.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="12" name="SonicHut" type="BasicNPC" gid="5323" x="1760" y="1664" width="416" height="192">
@@ -1641,7 +1657,6 @@
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-32"/>
     <property name="sprite" type="file" value="../art/sprites/knotholehut.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="13" name="KnotholeHut3" type="BasicNPC" gid="5323" x="1152" y="1376" width="416" height="192">
@@ -1649,7 +1664,6 @@
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-32"/>
     <property name="sprite" type="file" value="../art/sprites/knotholehut.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="14" name="KnotholeHut4" type="BasicNPC" gid="5323" x="1664" y="1376" width="416" height="192">
@@ -1657,7 +1671,6 @@
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-32"/>
     <property name="sprite" type="file" value="../art/sprites/knotholehut.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="15" name="KnotholeHut5" type="BasicNPC" gid="5323" x="1728" y="2592" width="416" height="128">
@@ -1665,7 +1678,6 @@
     <property name="align" value="bottom_left"/>
     <property name="alignOffsetX" type="float" value="-32"/>
     <property name="sprite" type="file" value="../art/sprites/knotholehut.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="17" name="SonicHutDoor" type="Door" gid="7660" x="1952" y="1674" width="32" height="32">
@@ -1678,7 +1690,6 @@
     <property name="scene" type="file" value="sonicshut.lua"/>
     <property name="spawn_point" value="Door"/>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="18" name="SallyHutDoor" type="Door" gid="7660" x="1280" y="1674" width="32" height="32">
@@ -1691,7 +1702,6 @@
     <property name="scene" type="file" value="sallyshut.lua"/>
     <property name="spawn_point" value="Door"/>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="19" name="MiddlePost" type="BasicNPC" gid="5323" x="1728" y="1792" width="32" height="96">
@@ -2003,7 +2013,6 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/knotholebase.png"/>
     <property name="swapLayerLessThanY" type="int" value="2688"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="76" name="WarRoom1Inner" type="BasicNPC" gid="5323" x="5952" y="2752" width="32" height="32">
@@ -2014,7 +2023,6 @@
     <property name="defaultAnim" value="right"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/knotholebasebg.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects4, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="78" name="RebellionHutDoor" type="Door" gid="7660" x="1856" y="1386" width="32" height="32">
@@ -2027,7 +2035,6 @@
     <property name="scene" type="file" value="rebellionhut.lua"/>
     <property name="spawn_point" value="Door"/>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="79" name="BunnieHutDoor" type="Door" gid="7660" x="1344" y="1386" width="32" height="32">
@@ -2040,7 +2047,6 @@
     <property name="scene" type="file" value="bunnieshut.lua"/>
     <property name="spawn_point" value="Door"/>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="80" name="AntoineHutDoor" type="Door" gid="7660" x="1920" y="2602" width="32" height="32">
@@ -2053,7 +2059,6 @@
     <property name="scene" type="file" value="antoineshut.lua"/>
     <property name="spawn_point" value="Door"/>
     <property name="sprite" type="file" value="../art/sprites/hutdoor.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="84" name="Sign" type="BasicNPC" gid="5323" x="2592" y="2912" width="64" height="64">
@@ -2281,7 +2286,6 @@ end</property>
     <property name="orientation" value="up"/>
     <property name="scene" type="file" value="tailshut.lua"/>
     <property name="spawn_point" value="Door"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="112" name="Log" type="BasicNPC" gid="5323" x="7264" y="2944" width="352" height="32">
@@ -2373,7 +2377,6 @@ end</property>
     <property name="scene" type="file" value="rotorsworkshop.lua"/>
     <property name="spawn_point" value="Spawn 1"/>
     <property name="sprite" type="file" value="../art/sprites/rotordoor.png"/>
-    <property name="swapLayers" value="objects:objects7, objects2:objects7, objects3:objects7, objects4:objects7, objects5:objects5, objects6:objects7, objects7:objects7"/>
    </properties>
   </object>
   <object id="132" name="Save" type="SavePoint" gid="7000" x="608" y="2144" width="32" height="32">
@@ -2402,7 +2405,6 @@ end</property>
     <property name="defaultAnim" value="left"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/waralcoveforward.png"/>
-    <property name="swapLayerLessThanY_" type="int" value="3328"/>
    </properties>
   </object>
   <object id="155" name="CenterPost" type="BasicNPC" gid="5323" x="1120" y="1792" width="32" height="96">
@@ -2834,7 +2836,7 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="739" name="LeaveMeetingWP6" type="BasicNPC" gid="7597" x="4928" y="2752" width="32" height="32">
+  <object id="739" name="LeaveMeetingWP6" type="BasicNPC" gid="7597" x="5056" y="2752" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -3178,12 +3180,12 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13083,13084,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13083,13084,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13152,13153,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13618,13619,13620,13621,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13650,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

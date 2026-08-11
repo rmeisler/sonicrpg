@@ -13,12 +13,12 @@ local Scene = require "scene/Scene"
 local SageSplashScene = class(Scene)
 
 function SageSplashScene:onEnter()
-	self.audio:registerAs("music", "sage", love.audio.newSource("audio/music/sage.ogg", "static"))
+	--self.audio:registerAs("music", "sage", love.audio.newSource("audio/music/sage.ogg", "static"))
 	self.video = love.graphics.newVideo("art/splash/sage.ogv")
-	--self.video:getSource():setVolume(0.5)
+	self.video:getSource():setVolume(0.25)
 
 	return Serial {
-		PlayAudio("music", "sage", 0.2, true),
+		--PlayAudio("music", "sage", 0.2, true),
 		Wait(0.5),
 		Do(function()
 			self.video:play()
@@ -38,7 +38,7 @@ function SageSplashScene:draw()
 	Scene.draw(self)
 	
 	love.graphics.setShader()
-	love.graphics.draw(self.video,-80,0,0,0.25,0.25)
+	love.graphics.draw(self.video,-80,0,0,0.5,0.56)
 	love.graphics.setShader(ScreenShader)
 end
 
