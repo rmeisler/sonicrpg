@@ -171,8 +171,11 @@ function TitleSplashScene:onExit(args)
 end
 
 function TitleSplashScene:newGame()
+	GameState:addToParty("sally", 10, true)
+	GameState:addToParty("b", 10, true)
+	
 	GameState:addToParty("sonic", 10, true)
-	GameState.leader = "sonic"
+	GameState.leader = "sally"
 
 	self.exiting = true
 	self.sceneMgr:switchScene {class = "Region", manifest = "maps/ep6intromanifest.lua"}

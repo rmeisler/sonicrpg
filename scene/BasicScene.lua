@@ -1136,6 +1136,9 @@ function BasicScene:canMoveWhitelist(x, y, dx, dy, whiteList, collisionLayer)
 		return false
 	end
 	local mapx, mapy = self:worldCoordToCollisionCoord(x + dx, y + dy)
+	if not self.map.objectCollisionMap then
+		return true
+	end
 	return (not collisionLayer[mapy][mapx] and not self.map.objectCollisionMap[mapy][mapx]) or
 	  (whiteList and whiteList[mapy] and whiteList[mapy][mapx])
 end

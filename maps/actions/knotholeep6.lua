@@ -155,7 +155,7 @@ return function(scene, hint)
 						scene.objectLookup.RotorMtg:hop()
 					},
 					Wait(0.8)
-				}, 4)
+				}, 5)
 			},
 
 			MessageBox{message="Sally: Meeting adjourned."},

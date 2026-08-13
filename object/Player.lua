@@ -191,7 +191,7 @@ function Player:updateHotspots()
 end
 
 function Player:updateKeyHint()
-	if self.erasingKeyHint then
+	if self.erasingKeyHint or self.nokeyhints then
 		return
 	end
 

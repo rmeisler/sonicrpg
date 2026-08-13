@@ -14,8 +14,8 @@ function SpriteNode:construct(scene, transform, color, imgsrc, w, h, layerName)
 		-- Add animations
 		local meta = scene.animations[imgsrc]
 		if not meta then
+			print("sprite animations not found for "..imgsrc)
 			meta = {w=self.img:getWidth(), h=self.img:getHeight(), animations={idle={frames={{0,0}}}}, starting="idle"}
-			--print("sprite animations not found for "..imgsrc)
 		end
 		self.w = meta.w --Ignore passed in w/h
 		self.h = meta.h

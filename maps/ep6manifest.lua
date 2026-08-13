@@ -21,6 +21,11 @@ return {
     },
 	{
         type = "map",
+        file = "maps/robo_opening3.lua",
+		primary = true
+    },
+	{
+        type = "map",
 		file = "maps/stealthtut1.lua",
 		--primary = true
     },
@@ -279,7 +284,19 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/cambot2.png"
+		file = "art/sprites/cambot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/swatbot.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/fancenter.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/fanblade.png"
 	},
 	{
 		type = "image",
@@ -595,6 +612,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/sonicfanfare2.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/sallyenters.ogg",
 		category = "music"
 	},
 	{
