@@ -41,7 +41,7 @@ return function(scene, hint)
 		MessageBox{message="Sally: Ugh! {p60}Where is that hedgehog!?"},
 		
 		Do(function()
-			scene:changeScene{map="greatforest_ep6_intro2_run", fadeInSpeed=2, fadeOutSpeed=2, fadeOutMusic=true}
+			scene:changeScene{map="greatforest_ep6_intro2_run", fadeInSpeed=0.2, fadeOutSpeed=0.2, fadeOutMusic=true}
 		end)
 	}
 end

@@ -20,6 +20,7 @@ local YieldUntil = require "actions/YieldUntil"
 local shine = require "lib/shine"
 local SpriteNode = require "object/SpriteNode"
 local NameScreen = require "actions/NameScreen"
+local BlockPlayer = require "actions/BlockPlayer"
 local Executor = require "actions/Executor"
 local Spawn = require "actions/Spawn"
 local Repeat = require "actions/Repeat"
@@ -75,7 +76,11 @@ return function(scene)
 	local origPlayerPos = Transform(scene.player.x, scene.player.y)
 	local walkout, walkin, partySprites = scene.player:split()
 	
-	return Serial {
+	for _,v in pairs(partySprites) do
+		v.hidden = true
+	end
+	
+	return BlockPlayer {
 	
 		Do(function()
 			scene.player.x = cambot.x
@@ -152,6 +157,8 @@ return function(scene)
 				},
 				Do(function()
 					scene.player.state = "idledown"
+					scene.objectLookup.SonicHide.hidden = true
+					scene.objectLookup.BHide.hidden = true
 				end),
 				Parallel {
 					Ease(scene.player, "x", scene.player.x, 1, "inout"),
@@ -161,73 +168,63 @@ return function(scene)
 		},
 		
 		Do(function()
-			partySprites.sally.sprite.visible = true
+			partySprites.sally.hidden = false
 			partySprites.sally.x = scene.player.x - scene.player.width
 			partySprites.sally.y = scene.player.y - scene.player.height
-			scene.player.sprite.visible = false
-			scene.player.dropShadow.sprite.visible = false
-		end),
-		
-		Move(partySprites.sally, scene.objectLookup.IntroWaypoint2),
-		Move(partySprites.sally, scene.objectLookup.IntroWaypoint3),
-		
-		Animate(partySprites.sally.sprite, "idledown"),
-		
-		Wait(0.5),
+			partySprites.sally.object.properties.ignoreMapCollision = true
+			partySprites.sally.ghost = true
+			
+			partySprites.sonic.hidden = false
+			partySprites.sonic.x = scene.player.x - scene.player.width + 50
+			partySprites.sonic.y = scene.player.y - scene.player.height
+			partySprites.sonic.object.properties.ignoreMapCollision = true
+			partySprites.sonic.ghost = true
 
-		Animate(partySprites.sally.sprite, "idleright"),
-		
-		MessageBox {
-			message="Sally: Are you ready, Antoine?",
-			blocking=true
+			partySprites.b.hidden = false
+			partySprites.b.x = scene.player.x - scene.player.width + 100
+			partySprites.b.y = scene.player.y - scene.player.height
+			partySprites.b.object.properties.ignoreMapCollision = true
+			partySprites.b.ghost = true
+
+			scene.player.sprite.visible = false
+			scene.player.dropShadow.hidden = true
+		end),
+
+		Parallel {
+			Move(partySprites.sally, scene.objectLookup.IntroWaypoint2),
+			Move(partySprites.sonic, scene.objectLookup.IntroWaypoint0_1),
+			Move(partySprites.b, scene.objectLookup.IntroWaypoint0)
 		},
+		Parallel {
+			Move(partySprites.sally, scene.objectLookup.IntroWaypoint3),
+			Move(partySprites.sonic, scene.objectLookup.IntroWaypoint4),
+			Move(partySprites.b, scene.objectLookup.IntroWaypoint4_1),
+			Do(function()
+				scene.player.y = scene.player.y + scene.player.movespeed * (love.timer.getDelta()/0.016)
+			end)
+		},
+
+		Animate(partySprites.sonic.sprite, "idleleft"),
+		Animate(partySprites.b.sprite, "idleleft"),
+		Animate(partySprites.sally.sprite, "idleright"),
+
+		PlayAudio("music", "patrol", 1, true, true),
+		Wait(1),
+		MessageBox {message="Sally: Remember guys{p60}, our final mission is\ntomorrow{p60}, so safety is our top priority."},
+		MessageBox {message="Sally: This means we are going to take the long way down{p60}, utility tunnels."},
+		MessageBox {message="Sally: And most importantly{p60}, no engaging with any\nsecurity bots!{p60} {h Sneak don't fight}."},
+		
+		AudioFade("music", 1, 0, 1),
+		Animate(partySprites.b.sprite, "pose"),
+		MessageBox {message="B: ..."},
+		Animate(partySprites.sonic.sprite, "idleright"),
+		MessageBox {message="Sally: Something wrong, B?"},
+		MessageBox {message="B: ...{p60}No, it's nothing.{p60} Let's go."},
+		PlayAudio("music", "infiltration", 1, true, true),
+		Animate(partySprites.sonic.sprite, "pose"),
+		MessageBox {message="Sonic: Let's do it to it!"},
 		
 		Wait(0.2),
-		
-		MessageBox {
-			message="Antoine: I was ready when I was being born, my princess!",
-			blocking=true
-		},
-		MessageBox {
-			message="Sally: Good!",
-			blocking=true
-		},
-		
-		Do(function()
-			partySprites.sally.x = partySprites.sally.x - 30
-			partySprites.sally.sprite.sortOrderY = scene.objectLookup.IntroWaypoint5.y + 10
-		end),
-		Animate(partySprites.sally.sprite, "hideleft"),
-		MessageBox {
-			message="Sally: Since Sonic isn't here, we'll have to be extra careful...",
-			blocking=true
-		},
-		Wait(1),
-		Do(function()
-			partySprites.sally.sprite:setAnimation("peekleft")
-		end),
-		Ease(scene.camPos, "x", 200, 1, "inout"),
-		Wait(2),
-		Ease(scene.camPos, "x", 0, 1, "inout"),
-		
-		MessageBox {
-			message="Sally: ...there seem to be a lot of bots between us and the rendevous point.",
-			blocking=true
-		},
-		
-		Wait(1),
-		
-		MessageBox {
-			message="Sally: We can't afford any encounters with Swatbots!",
-			blocking=true
-		},
-		
-		Animate(partySprites.sally.sprite, "pose"),
-		
-		MessageBox {
-			message="Sally: Let's do it to it!",
-			blocking=true
-		},
 		
 		Do(function()
 			partySprites.sally.sprite:setAnimation("walkright")
@@ -261,7 +258,7 @@ return function(scene)
 			scene.player.nokeyhints = false
 			scene.player.cinematicStack = 0
 			
-			GameState:setFlag("robo_intro2_done")
+			GameState:setFlag("robo_intro2_ep6_done")
 		end)
 	}
 end

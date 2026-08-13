@@ -76,10 +76,10 @@ return function(scene, hint)
 			]]
 		end),
 
-		Wait(100),
+		Wait(10),
 
 		Do(function()
-			--scene:changeScene{map="greatforest_ep6_intro1", fadeInSpeed=20, fadeOutSpeed=20, fadeOutMusic=false}
+			scene:changeScene{map="knothole_ep6", fadeInSpeed=0.2, fadeOutSpeed=0.2, fadeOutMusic=false}
 		end)
 	}
 end

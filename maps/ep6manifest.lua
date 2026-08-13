@@ -2,7 +2,7 @@ return {
 	{
         type = "map",
         file = "maps/ep6trapped.lua",
-		--primary = true -- REAL
+		primary = true -- REAL
     },
 	{
         type = "map",
@@ -17,12 +17,12 @@ return {
 	{
         type = "map",
         file = "maps/knothole_ep6.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
         file = "maps/robo_opening3.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
@@ -608,6 +608,11 @@ return {
 		type = "sound",
 		file = "audio/sfx/bounce.wav",
 		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/music/infiltration.ogg",
+		category = "music"
 	},
 	{
 		type = "sound",

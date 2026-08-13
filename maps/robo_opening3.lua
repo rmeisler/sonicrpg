@@ -8,7 +8,7 @@ return {
   height = 192,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 246,
+  nextobjectid = 249,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/robo_intro2_ep6.lua",
@@ -2088,7 +2088,7 @@ return {
           name = "IntroWaypoint1",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2816,
+          x = 2784,
           y = 5440,
           width = 32,
           height = 32,
@@ -2138,7 +2138,7 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 2560,
-          y = 5408,
+          y = 5440,
           width = 32,
           height = 32,
           rotation = 0,
@@ -2153,8 +2153,8 @@ return {
           name = "IntroWaypoint4",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2720,
-          y = 5408,
+          x = 2688,
+          y = 5344,
           width = 32,
           height = 32,
           rotation = 0,
@@ -2530,7 +2530,8 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "headright",
-            ["nocollision"] = true,
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = true,
             ["sprite"] = "../art/sprites/sonic.png"
           }
         },
@@ -2549,8 +2550,57 @@ return {
           properties = {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "pose",
-            ["nocollision"] = true,
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = true,
             ["sprite"] = "../art/sprites/b.png"
+          }
+        },
+        {
+          id = 246,
+          name = "IntroWaypoint0",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2976,
+          y = 5440,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 247,
+          name = "IntroWaypoint4_1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2752,
+          y = 5344,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 248,
+          name = "IntroWaypoint0_1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2912,
+          y = 5440,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }
