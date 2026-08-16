@@ -17,7 +17,7 @@ return {
 	{
         type = "map",
         file = "maps/knothole_ep6.lua",
-		--primary = true
+		primary = true
     },
 	{
         type = "map",

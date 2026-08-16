@@ -125,7 +125,7 @@ Reggie Meisler/RedG
 Billy Adams
 Jesse Rose/GreenCauldron08
 Diego Leal E (Robotnik Boss Theme)
-Ilya Rappu/Picnik
+Ilya Rappu/PicnikSonik
 F0XShadow
 Michael Tavera
 

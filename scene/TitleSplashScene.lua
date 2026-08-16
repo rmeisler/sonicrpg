@@ -178,8 +178,8 @@ function TitleSplashScene:newGame()
 	--GameState.leader = "sally"
 
 	self.exiting = true
-	self.sceneMgr:switchScene {class = "Region", manifest = "maps/ep6intromanifest.lua"}
-	--self.sceneMgr:switchScene {class = "Region", manifest = "maps/ep6manifest.lua"}
+	--self.sceneMgr:switchScene {class = "Region", manifest = "maps/ep6intromanifest.lua"}
+	self.sceneMgr:switchScene {class = "Region", manifest = "maps/ep6manifest.lua"}
 end
 
 function TitleSplashScene:continue()

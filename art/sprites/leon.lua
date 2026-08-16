@@ -14,6 +14,9 @@ return {
 		idledown = {
             frames = {{0,2}}
         },
+		idleup = {
+            frames = {{0,3}}
+        },
 		glareright = {
 			frames = {{4,6}}
 		},
