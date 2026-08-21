@@ -8,7 +8,7 @@ return {
   height = 84,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 247,
+  nextobjectid = 270,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter1f.png",
     ["onload"] = "actions/forgotten_hideout.lua",
@@ -78,7 +78,7 @@ return {
       margin = 0,
       image = "../art/tiles/greatforesttileset.png",
       imagewidth = 2208,
-      imageheight = 2144,
+      imageheight = 2400,
       transparentcolor = "#b326c3",
       tileoffset = {
         x = 0,
@@ -91,19 +91,19 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 4623,
+      tilecount = 5175,
       tiles = {}
     },
     {
       name = "knotholeindoors",
-      firstgid = 9314,
+      firstgid = 9866,
       filename = "knotholeindoors.tsx",
       tilewidth = 32,
       tileheight = 32,
       spacing = 0,
       margin = 0,
       image = "../art/tiles/knotholeinterior.png",
-      imagewidth = 1664,
+      imagewidth = 1696,
       imageheight = 1088,
       transparentcolor = "#b326bd",
       tileoffset = {
@@ -117,7 +117,7 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 1768,
+      tilecount = 1802,
       tiles = {}
     }
   },
@@ -592,7 +592,7 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4618, 4619, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4398, 4401, 4401, 4402, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4398, 4401, 4401, 4402, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4653, 4654, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4433, 4436, 4436, 4437, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4433, 4436, 4436, 4437, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3716, 3716, 3716, 3716, 3716, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4468, 4471, 4471, 4472, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4468, 4471, 4471, 4472, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3544, 3545, 3544, 3545, 0, 0, 3677, 3678, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3716, 3717, 3716, 3716, 3717, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4089, 0, 0, 0, 0, 4503, 4506, 4506, 4507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4503, 4506, 4506, 4507, 0, 0, 0, 0, 4082, 0, 0, 0, 0, 0, 0, 0, 3579, 3580, 3579, 3580, 0, 10903, 3712, 3713, 3716, 3716, 3716, 3716, 4636, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3716, 3717, 3716, 3716, 3717, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4089, 0, 0, 0, 0, 4503, 4506, 4506, 4507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4503, 4506, 4506, 4507, 0, 0, 0, 0, 4082, 0, 0, 0, 0, 0, 0, 0, 3579, 3580, 3579, 3580, 0, 11455, 3712, 3713, 3716, 3716, 3716, 3716, 4636, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4569, 4570, 4571, 0, 0, 4034, 4001, 4002, 4003, 4004, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4363, 4366, 4366, 4367, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4363, 4366, 4366, 4367, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3716, 3717, 3716, 3716, 3717, 4005, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4604, 4605, 4606, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4034, 4001, 4002, 4003, 4004, 4005, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4639, 4640, 4641, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4087, 4088, 4089, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4082, 4083, 4084, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -691,10 +691,10 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10916, 0, 10788, 10791, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10791, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4242, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11340, 11343, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11343, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4242, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4209, 0, 0, 4208, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10788, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 3575, 3575, 3575, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -831,98 +831,7 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {
-        {
-          id = 234,
-          name = "Square2",
-          type = "RaceSquare",
-          shape = "rectangle",
-          x = 2272,
-          y = 2080,
-          width = 96,
-          height = 96,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["sprite"] = "../art/sprites/racesquare.png",
-            ["subject"] = "UpperDoor"
-          }
-        },
-        {
-          id = 235,
-          name = "Square3",
-          type = "RaceSquare",
-          shape = "rectangle",
-          x = 1152,
-          y = 2080,
-          width = 96,
-          height = 96,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["sprite"] = "../art/sprites/racesquare.png",
-            ["subject"] = "UpperDoor"
-          }
-        },
-        {
-          id = 236,
-          name = "Square4",
-          type = "RaceSquare",
-          shape = "rectangle",
-          x = 2272,
-          y = 1408,
-          width = 96,
-          height = 96,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["sprite"] = "../art/sprites/racesquare.png",
-            ["subject"] = "UpperDoor"
-          }
-        },
-        {
-          id = 237,
-          name = "Square5",
-          type = "RaceSquare",
-          shape = "rectangle",
-          x = 1152,
-          y = 1376,
-          width = 96,
-          height = 96,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["sprite"] = "../art/sprites/racesquare.png",
-            ["subject"] = "UpperDoor"
-          }
-        },
-        {
-          id = 238,
-          name = "Square1",
-          type = "RaceSquare",
-          shape = "rectangle",
-          x = 1696,
-          y = 1152,
-          width = 96,
-          height = 96,
-          rotation = 0,
-          gid = 1227,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["sprite"] = "../art/sprites/racesquare.png",
-            ["subject"] = "UpperDoor"
-          }
-        }
-      }
+      objects = {}
     },
     {
       type = "objectgroup",
@@ -1346,57 +1255,6 @@ return {
           }
         },
         {
-          id = 224,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 2336,
-          y = 1280,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 3501,
-          visible = true,
-          properties = {
-            ["CrystalWater"] = 2,
-            ["sprite"] = "../art/sprites/chest.png"
-          }
-        },
-        {
-          id = 239,
-          name = "Chest2",
-          type = "Chest",
-          shape = "rectangle",
-          x = 3168,
-          y = 1984,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 3501,
-          visible = true,
-          properties = {
-            ["BlueLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest.png"
-          }
-        },
-        {
-          id = 240,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 416,
-          y = 1824,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 3501,
-          visible = true,
-          properties = {
-            ["GreenLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest.png"
-          }
-        },
-        {
           id = 241,
           name = "poster",
           type = "BasicNPC",
@@ -1435,6 +1293,313 @@ return {
             ["orientation"] = "down",
             ["scene"] = "sewer1.lua",
             ["spawn_point"] = "Spawn 1"
+          }
+        },
+        {
+          id = 247,
+          name = "Flames1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1600,
+          y = 2400,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "burn",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/flametrail.png"
+          }
+        },
+        {
+          id = 248,
+          name = "Flames2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1856,
+          y = 2400,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "burn",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/flametrail.png"
+          }
+        },
+        {
+          id = 249,
+          name = "Flames3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1632,
+          y = 2176,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "burn",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/flametrail.png"
+          }
+        },
+        {
+          id = 250,
+          name = "Flames4",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1824,
+          y = 2176,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "burn",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/flametrail.png"
+          }
+        },
+        {
+          id = 251,
+          name = "Flames5",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1088,
+          y = 1952,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "burn",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/flametrail.png"
+          }
+        },
+        {
+          id = 252,
+          name = "Flames6",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1216,
+          y = 2176,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "burn",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/flametrail.png"
+          }
+        },
+        {
+          id = 254,
+          name = "Flames7",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2336,
+          y = 2144,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "burn",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/flametrail.png"
+          }
+        },
+        {
+          id = 256,
+          name = "BWaypoint1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1472,
+          y = 2144,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 257,
+          name = "BWaypoint2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1280,
+          y = 2016,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 259,
+          name = "BAngry",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 672,
+          y = 1920,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "idleup",
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Wait = require \"actions/Wait\"\nlocal Repeat = require \"actions/Repeat\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal AudioFade = require \"actions/AudioFade\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    self.scene.player.x = self.x\n    self.scene.player.y = self.y + 64\n\n    local walkout, walkin, sprites = self.scene.player:split()\n    return BlockPlayer {\n        walkout,\n        Parallel {\n            Animate(sprites.sonic.sprite, \"idleup\"),\n            Animate(sprites.sally.sprite, \"idleup\")\n        },\n        MessageBox{message=\"B: ...\"},\n        Wait(1),\n        PlayAudio(\"music\", \"btragic\", 0.8, true),\n        Animate(self.sprite, \"holdrarm\"),\n        MessageBox{message=\"B: ...{p40}R's arm...\",textSpeed=3},\n        Wait(1),\n        MessageBox{message=\"B: ...{p40}Sh-{p40}Should have come sooner...\",textSpeed=3},\n        Wait(2),\n        Animate(sprites.sonic.sprite, \"cry\"),\n        MessageBox{message=\"Sonic: ...\", textSpeed=3},\n        Wait(2),\n        Animate(sprites.sally.sprite, \"cry\"),\n        MessageBox{message=\"Sally: I'm so sorry, B...\", textSpeed=3},\n        AudioFade(\"music\", 0.8, 0, 1),\n        Wait(2),\n        Animate(self.sprite, \"focus\"),\n        Parallel {\n            MessageBox{message=\"B: Sh-Sh-Sh-Sh-{p80} zzzzzt. {p80}ZZZZZT.\"},\n            Repeat(Serial {\n                Ease(self, \"x\", function() return self.x - 2 end, 12, \"linear\"),\n                Ease(self, \"x\", function() return self.x + 2 end, 12, \"linear\")\n            }, 30),\n            Serial {\n                Wait(0.2),\n                Animate(sprites.sonic.sprite, \"idleup\"),\n                Animate(sprites.sally.sprite, \"idleup\")\n            }\n        },\n        Animate(self.sprite, \"hurt\"),\n        self:hop(),\n        MessageBox{message=\"B: Arg!!\"},\n        Wait(1),\n        MessageBox{message=\"Sonic: Yo B, are you ok?!\"},\n        Wait(2),\n        MessageBox{message=\"B: ...\"},\n        Wait(2),\n        Animate(self.sprite, \"idledown\"),\n        Wait(3),\n        MessageBox{message=\"B: Where am I?... {p80}Who are you?\", textSpeed=3},\n        MessageBox{message=\"Sally: ...{p80}You don't remember us, B?\"},\n        Wait(1),\n        MessageBox{message=\"B: Who is B?\"},\n        Wait(2),\n        PlayAudio(\"music\", \"bsad2\", 1, true),\n        Animate(sprites.sonic.sprite, \"cry\"),\n        Animate(sprites.sally.sprite, \"cry\"),\n        Wait(1),\n        MessageBox{message=\"Sally: ...{p80}H-He forgot...{p80}he forgot everything...\", textSpeed=3},\n        Wait(1),\n        MessageBox{message=\"Sonic: You think I can bring him back with a {h Power Ring}?\", textSpeed=3},\n        Wait(1),\n        MessageBox{message=\"Sally: *sniff*{p60} L-Let's just get him back to\\nKnothole first...\", textSpeed=3},\n        Parallel {\n            Ease(sprites.sonic, \"x\", function() return sprites.sonic.x + 50 end, 2),\n            Ease(sprites.sally, \"x\", function() return sprites.sally.x - 50 end, 2),\n            Ease(self, \"y\", function() return self.y + 50 end, 2)\n        },\n        Do(function()\n            sprites.sonic:remove()\n            sprites.sally:remove()\n            self.scene.player.x = self.scene.player.x + 60\n            self.scene.player.y = self.scene.player.y + 32\n            self.scene.player.sprite.visible = true\n            self.scene.player.dropShadow.hidden = false\n            self.scene.player.state = \"idledown\"\n\n            self.scene.objectLookup.Cheetah.hidden = false\n\n            GameState:addToParty(\"b\", 1, true)\n            GameState:setFlag(\"ep6_tragic_scene\")\n\n            self:remove()\n        end)\n    }\nend",
+            ["sprite"] = "../art/sprites/b.png"
+          }
+        },
+        {
+          id = 261,
+          name = "BWaypoint3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1184,
+          y = 1984,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 262,
+          name = "Flames9",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 512,
+          y = 2080,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "burn",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/flametrail.png"
+          }
+        },
+        {
+          id = 263,
+          name = "Flames10",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2912,
+          y = 1824,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "burn",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/flametrail.png"
+          }
+        },
+        {
+          id = 264,
+          name = "Flames11",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2784,
+          y = 2048,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "burn",
+            ["ghost"] = true,
+            ["sprite"] = "../art/sprites/flametrail.png"
+          }
+        },
+        {
+          id = 266,
+          name = "Cheetah",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1696,
+          y = 2304,
+          width = 128,
+          height = 96,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "idleleft",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/cheeta.png"
+          }
+        },
+        {
+          id = 267,
+          name = "CheetahEvent1",
+          type = "TouchTrigger",
+          shape = "rectangle",
+          x = 1056,
+          y = 2208,
+          width = 64,
+          height = 352,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["activationFlag"] = "ep6_tragic_scene",
+            ["atMostOnce"] = true,
+            ["script"] = "local PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self)\n    return PlayAudio(\"sfx\", \"cheetabreathe\", 1)\nend"
+          }
+        },
+        {
+          id = 269,
+          name = "CheetahEvent2",
+          type = "TouchTrigger",
+          shape = "rectangle",
+          x = 1440,
+          y = 2368,
+          width = 64,
+          height = 352,
+          rotation = 0,
+          gid = 2904,
+          visible = true,
+          properties = {
+            ["activationFlag"] = "ep6_tragic_scene",
+            ["atMostOnce"] = true,
+            ["script"] = "local PlayAudio = require \"actions/PlayAudio\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal Ease = require \"actions/Ease\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Wait = require \"actions/Wait\"\n\nreturn function(self)\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"cheetabreathe\", 1, true),\n        Parallel {\n            Ease(self.scene.camPos, \"x\", -200, 0.5),\n            Ease(self.scene.camPos, \"y\", -100, 0.5),\n            Serial {\n                Wait(0.5),\n                PlayAudio(\"sfx\", \"cheetabreathe\", 1, true)\n            }\n        },\n        Wait(1),\n        MessageBox{message=\"Sonic: What's this guy doin' here?...\"}\n    }\nend"
           }
         }
       }

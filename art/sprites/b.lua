@@ -32,6 +32,9 @@ return {
 		focus = {
 			frames = {{2,4}}
 		},
+		holdrarm = {
+			frames = {{15,1}}
+		},
 		
 		lookdown = {
 			frames = {{13,1}}

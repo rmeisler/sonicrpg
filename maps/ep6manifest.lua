@@ -21,8 +21,18 @@ return {
     },
 	{
         type = "map",
+        file = "maps/tunnel1.lua",
+		primary = true
+    },
+	{
+        type = "map",
         file = "maps/robo_opening3.lua",
 		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/forgottenhideout.lua",
+		primary = true -- testing
     },
 	{
         type = "map",
@@ -104,22 +114,6 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/splash/storybook1.png"
-	},
-	{
-		type = "image",
-		file = "art/splash/storybook2.png"
-	},
-	{
-		type = "image",
-		file = "art/splash/storybook3.png"
-	},
-	{
-		type = "image",
-		file = "art/splash/storybook4.png"
-	},
-	{
-		type = "image",
 		file = "art/sprites/alert.png"
 	},
 	{
@@ -168,15 +162,31 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/rotorbattle.png"
-	},
-	{
-		type = "image",
 		file = "art/sprites/antoine.png"
 	},
 	{
 		type = "image",
+		file = "art/sprites/ringbeam.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/powerring.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/tornado.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/flametrail.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/sonic.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/sonicbattle.png"
 	},
 	{
 		type = "image",
@@ -611,7 +621,37 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/fire.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/cheetabreathe.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/cheetarun.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/music/infiltration.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/bsad2.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/btragic.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/sonicring.ogg",
 		category = "music"
 	},
 	{
@@ -1228,38 +1268,6 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/storybooklonging.ogg",
-		category = "music",
-		looping = true,
-	},
-	{
-		type = "sound",
-		file = "audio/music/tailsrace.ogg",
-		category = "music",
-	},
-	{
-		type = "sound",
-		file = "audio/music/tailssleep.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/tailssleep2.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/tailsawake.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/tailstheme.ogg",
-		category = "music",
-		looping = true
-	},
-	{
-		type = "sound",
 		file = "audio/music/meettherebellion.ogg",
 		category = "music",
 		looping = true
@@ -1310,6 +1318,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/door.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/autodoor.ogg",
 		category = "sfx"
 	}
 }

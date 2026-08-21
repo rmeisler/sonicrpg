@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="110" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="247">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="110" height="84" tilewidth="32" tileheight="32" infinite="0" nextobjectid="270">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="onload" type="file" value="actions/forgotten_hideout.lua"/>
@@ -9,7 +9,7 @@
  <tileset firstgid="1" source="datacenter_interior.tsx"/>
  <tileset firstgid="1191" source="robotropolis.tsx"/>
  <tileset firstgid="4691" source="forest2.tsx"/>
- <tileset firstgid="9314" source="knotholeindoors.tsx"/>
+ <tileset firstgid="9866" source="knotholeindoors.tsx"/>
  <layer name="ground" width="110" height="84">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,6154,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -420,7 +420,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4618,4619,0,0,0,0,0,0,0,0,0,0,0,0,4398,4401,4401,4402,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4398,4401,4401,4402,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4653,4654,0,0,0,0,0,0,0,0,0,0,0,0,4433,4436,4436,4437,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4433,4436,4436,4437,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3716,3716,3716,3716,3716,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4468,4471,4471,4472,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4468,4471,4471,4472,0,0,0,0,0,0,0,0,0,0,0,0,3544,3545,3544,3545,0,0,3677,3678,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3716,3717,3716,3716,3717,0,0,0,0,0,0,0,0,0,0,4089,0,0,0,0,4503,4506,4506,4507,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4503,4506,4506,4507,0,0,0,0,4082,0,0,0,0,0,0,0,3579,3580,3579,3580,0,10903,3712,3713,3716,3716,3716,3716,4636,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3716,3717,3716,3716,3717,0,0,0,0,0,0,0,0,0,0,4089,0,0,0,0,4503,4506,4506,4507,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4503,4506,4506,4507,0,0,0,0,4082,0,0,0,0,0,0,0,3579,3580,3579,3580,0,11455,3712,3713,3716,3716,3716,3716,4636,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,4569,4570,4571,0,0,4034,4001,4002,4003,4004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4363,4366,4366,4367,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4363,4366,4366,4367,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3716,3717,3716,3716,3717,4005,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,4604,4605,4606,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4034,4001,4002,4003,4004,4005,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,4639,4640,4641,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4087,4088,4089,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4082,4083,4084,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -507,10 +507,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10916,0,10788,10791,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10791,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4242,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11340,11343,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11343,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4242,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4209,0,0,4208,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,10788,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,3575,3575,3575,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -626,43 +626,7 @@
 0,0,0,0,0,0,0,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,0,0,3632,3632,3632,3632,3632,3632,3632,3632,0,0,0,0,0,0,0,0,3632,3632,3632,3632,3632,3632,3632,3632,3632,3632,3632,3632,0,0,0,0,0,0,0,0,3632,3632,3632,3632,3632,3632,3632,3632,0,0,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,3597,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="lowerobjects">
-  <object id="234" name="Square2" type="RaceSquare" gid="1227" x="2272" y="2080" width="96" height="96">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
-    <property name="subject" value="UpperDoor"/>
-   </properties>
-  </object>
-  <object id="235" name="Square3" type="RaceSquare" gid="1227" x="1152" y="2080" width="96" height="96">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
-    <property name="subject" value="UpperDoor"/>
-   </properties>
-  </object>
-  <object id="236" name="Square4" type="RaceSquare" gid="1227" x="2272" y="1408" width="96" height="96">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
-    <property name="subject" value="UpperDoor"/>
-   </properties>
-  </object>
-  <object id="237" name="Square5" type="RaceSquare" gid="1227" x="1152" y="1376" width="96" height="96">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
-    <property name="subject" value="UpperDoor"/>
-   </properties>
-  </object>
-  <object id="238" name="Square1" type="RaceSquare" gid="1227" x="1696" y="1152" width="96" height="96">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="sprite" type="file" value="../art/sprites/racesquare.png"/>
-    <property name="subject" value="UpperDoor"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="lowerobjects"/>
  <objectgroup name="objects">
   <object id="172" name="Spawn 1" type="Player" gid="1586" x="1728" y="2784" width="32" height="32">
    <properties>
@@ -851,24 +815,6 @@ end</property>
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="224" name="Chest1" type="Chest" gid="3501" x="2336" y="1280" width="32" height="32">
-   <properties>
-    <property name="CrystalWater" type="int" value="2"/>
-    <property name="sprite" type="file" value="../art/sprites/chest.png"/>
-   </properties>
-  </object>
-  <object id="239" name="Chest2" type="Chest" gid="3501" x="3168" y="1984" width="32" height="32">
-   <properties>
-    <property name="BlueLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest.png"/>
-   </properties>
-  </object>
-  <object id="240" name="Chest1" type="Chest" gid="3501" x="416" y="1824" width="32" height="32">
-   <properties>
-    <property name="GreenLeaf" type="int" value="1"/>
-    <property name="sprite" type="file" value="../art/sprites/chest.png"/>
-   </properties>
-  </object>
   <object id="241" name="poster" type="BasicNPC" gid="1227" x="672" y="1792" width="64" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
@@ -909,6 +855,250 @@ end</property>
     <property name="orientation" value="down"/>
     <property name="scene" type="file" value="sewer1.lua"/>
     <property name="spawn_point" value="Spawn 1"/>
+   </properties>
+  </object>
+  <object id="247" name="Flames1" type="BasicNPC" gid="2904" x="1600" y="2400" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="burn"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/flametrail.png"/>
+   </properties>
+  </object>
+  <object id="248" name="Flames2" type="BasicNPC" gid="2904" x="1856" y="2400" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="burn"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/flametrail.png"/>
+   </properties>
+  </object>
+  <object id="249" name="Flames3" type="BasicNPC" gid="2904" x="1632" y="2176" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="burn"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/flametrail.png"/>
+   </properties>
+  </object>
+  <object id="250" name="Flames4" type="BasicNPC" gid="2904" x="1824" y="2176" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="burn"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/flametrail.png"/>
+   </properties>
+  </object>
+  <object id="251" name="Flames5" type="BasicNPC" gid="2904" x="1088" y="1952" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="burn"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/flametrail.png"/>
+   </properties>
+  </object>
+  <object id="252" name="Flames6" type="BasicNPC" gid="2904" x="1216" y="2176" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="burn"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/flametrail.png"/>
+   </properties>
+  </object>
+  <object id="254" name="Flames7" type="BasicNPC" gid="2904" x="2336" y="2144" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="burn"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/flametrail.png"/>
+   </properties>
+  </object>
+  <object id="256" name="BWaypoint1" type="BasicNPC" gid="2904" x="1472" y="2144" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="257" name="BWaypoint2" type="BasicNPC" gid="2904" x="1280" y="2016" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="259" name="BAngry" type="BasicNPC" gid="2904" x="672" y="1920" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="idleup"/>
+    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Animate = require &quot;actions/Animate&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Repeat = require &quot;actions/Repeat&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Ease = require &quot;actions/Ease&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
+local Do = require &quot;actions/Do&quot;
+
+return function(self)
+    self.scene.player.x = self.x
+    self.scene.player.y = self.y + 64
+
+    local walkout, walkin, sprites = self.scene.player:split()
+    return BlockPlayer {
+        walkout,
+        Parallel {
+            Animate(sprites.sonic.sprite, &quot;idleup&quot;),
+            Animate(sprites.sally.sprite, &quot;idleup&quot;)
+        },
+        MessageBox{message=&quot;B: ...&quot;},
+        Wait(1),
+        PlayAudio(&quot;music&quot;, &quot;btragic&quot;, 0.8, true),
+        Animate(self.sprite, &quot;holdrarm&quot;),
+        MessageBox{message=&quot;B: ...{p40}R's arm...&quot;,textSpeed=3},
+        Wait(1),
+        MessageBox{message=&quot;B: ...{p40}Sh-{p40}Should have come sooner...&quot;,textSpeed=3},
+        Wait(2),
+        Animate(sprites.sonic.sprite, &quot;cry&quot;),
+        MessageBox{message=&quot;Sonic: ...&quot;, textSpeed=3},
+        Wait(2),
+        Animate(sprites.sally.sprite, &quot;cry&quot;),
+        MessageBox{message=&quot;Sally: I'm so sorry, B...&quot;, textSpeed=3},
+        AudioFade(&quot;music&quot;, 0.8, 0, 1),
+        Wait(2),
+        Animate(self.sprite, &quot;focus&quot;),
+        Parallel {
+            MessageBox{message=&quot;B: Sh-Sh-Sh-Sh-{p80} zzzzzt. {p80}ZZZZZT.&quot;},
+            Repeat(Serial {
+                Ease(self, &quot;x&quot;, function() return self.x - 2 end, 12, &quot;linear&quot;),
+                Ease(self, &quot;x&quot;, function() return self.x + 2 end, 12, &quot;linear&quot;)
+            }, 30),
+            Serial {
+                Wait(0.2),
+                Animate(sprites.sonic.sprite, &quot;idleup&quot;),
+                Animate(sprites.sally.sprite, &quot;idleup&quot;)
+            }
+        },
+        Animate(self.sprite, &quot;hurt&quot;),
+        self:hop(),
+        MessageBox{message=&quot;B: Arg!!&quot;},
+        Wait(1),
+        MessageBox{message=&quot;Sonic: Yo B, are you ok?!&quot;},
+        Wait(2),
+        MessageBox{message=&quot;B: ...&quot;},
+        Wait(2),
+        Animate(self.sprite, &quot;idledown&quot;),
+        Wait(3),
+        MessageBox{message=&quot;B: Where am I?... {p80}Who are you?&quot;, textSpeed=3},
+        MessageBox{message=&quot;Sally: ...{p80}You don't remember us, B?&quot;},
+        Wait(1),
+        MessageBox{message=&quot;B: Who is B?&quot;},
+        Wait(2),
+        PlayAudio(&quot;music&quot;, &quot;bsad2&quot;, 1, true),
+        Animate(sprites.sonic.sprite, &quot;cry&quot;),
+        Animate(sprites.sally.sprite, &quot;cry&quot;),
+        Wait(1),
+        MessageBox{message=&quot;Sally: ...{p80}H-He forgot...{p80}he forgot everything...&quot;, textSpeed=3},
+        Wait(1),
+        MessageBox{message=&quot;Sonic: You think I can bring him back with a {h Power Ring}?&quot;, textSpeed=3},
+        Wait(1),
+        MessageBox{message=&quot;Sally: *sniff*{p60} L-Let's just get him back to\nKnothole first...&quot;, textSpeed=3},
+        Parallel {
+            Ease(sprites.sonic, &quot;x&quot;, function() return sprites.sonic.x + 50 end, 2),
+            Ease(sprites.sally, &quot;x&quot;, function() return sprites.sally.x - 50 end, 2),
+            Ease(self, &quot;y&quot;, function() return self.y + 50 end, 2)
+        },
+        Do(function()
+            sprites.sonic:remove()
+            sprites.sally:remove()
+            self.scene.player.x = self.scene.player.x + 60
+            self.scene.player.y = self.scene.player.y + 32
+            self.scene.player.sprite.visible = true
+            self.scene.player.dropShadow.hidden = false
+            self.scene.player.state = &quot;idledown&quot;
+
+            self.scene.objectLookup.Cheetah.hidden = false
+
+            GameState:addToParty(&quot;b&quot;, 1, true)
+            GameState:setFlag(&quot;ep6_tragic_scene&quot;)
+
+            self:remove()
+        end)
+    }
+end</property>
+    <property name="sprite" type="file" value="../art/sprites/b.png"/>
+   </properties>
+  </object>
+  <object id="261" name="BWaypoint3" type="BasicNPC" gid="2904" x="1184" y="1984" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="262" name="Flames9" type="BasicNPC" gid="2904" x="512" y="2080" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="burn"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/flametrail.png"/>
+   </properties>
+  </object>
+  <object id="263" name="Flames10" type="BasicNPC" gid="2904" x="2912" y="1824" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="burn"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/flametrail.png"/>
+   </properties>
+  </object>
+  <object id="264" name="Flames11" type="BasicNPC" gid="2904" x="2784" y="2048" width="64" height="64">
+   <properties>
+    <property name="defaultAnim" value="burn"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/flametrail.png"/>
+   </properties>
+  </object>
+  <object id="266" name="Cheetah" type="BasicNPC" gid="2904" x="1696" y="2304" width="128" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="idleleft"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/cheeta.png"/>
+   </properties>
+  </object>
+  <object id="267" name="CheetahEvent1" type="TouchTrigger" gid="2904" x="1056" y="2208" width="64" height="352">
+   <properties>
+    <property name="activationFlag" value="ep6_tragic_scene"/>
+    <property name="atMostOnce" type="bool" value="true"/>
+    <property name="script">local PlayAudio = require &quot;actions/PlayAudio&quot;
+
+return function(self)
+    return PlayAudio(&quot;sfx&quot;, &quot;cheetabreathe&quot;, 1)
+end</property>
+   </properties>
+  </object>
+  <object id="269" name="CheetahEvent2" type="TouchTrigger" gid="2904" x="1440" y="2368" width="64" height="352">
+   <properties>
+    <property name="activationFlag" value="ep6_tragic_scene"/>
+    <property name="atMostOnce" type="bool" value="true"/>
+    <property name="script">local PlayAudio = require &quot;actions/PlayAudio&quot;
+local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Wait = require &quot;actions/Wait&quot;
+
+return function(self)
+    return BlockPlayer {
+        PlayAudio(&quot;sfx&quot;, &quot;cheetabreathe&quot;, 1, true),
+        Parallel {
+            Ease(self.scene.camPos, &quot;x&quot;, -200, 0.5),
+            Ease(self.scene.camPos, &quot;y&quot;, -100, 0.5),
+            Serial {
+                Wait(0.5),
+                PlayAudio(&quot;sfx&quot;, &quot;cheetabreathe&quot;, 1, true)
+            }
+        },
+        Wait(1),
+        MessageBox{message=&quot;Sonic: What's this guy doin' here?...&quot;}
+    }
+end</property>
    </properties>
   </object>
  </objectgroup>

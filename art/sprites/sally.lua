@@ -11,6 +11,9 @@ return {
 		shock = {
 			frames = {{11,4}}
 		},
+		cry = {
+			frames = {{1,6}}
+		},
 		
 		stepback = {
 		    frames = {{0,3},{1,3},{0,3},{5,3}},

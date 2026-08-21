@@ -8,13 +8,9 @@ return {
   height = 135,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 753,
+  nextobjectid = 757,
   properties = {
     ["battlebg"] = "../art/backgrounds/rotorwsbg.png",
-    ["currentLayer"] = 7,
-    ["layerHeightMap"] = "objects:1504,objects2:736,objects3:448,objects4:160,objects5:20",
-    ["layered"] = true,
-    ["nighttime"] = false,
     ["onload"] = "actions/knotholeep6.lua",
     ["regionName"] = "Great Forest",
     ["sectorName"] = "Knothole"
@@ -4598,43 +4594,6 @@ return {
           }
         },
         {
-          id = 635,
-          name = "TailsWP_1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 8064,
-          y = 1472,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 5323,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 636,
-          name = "BWatch",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 8064,
-          y = 1696,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 7597,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["defaultAnim"] = "idleup",
-            ["hidden"] = true,
-            ["nocollision"] = true,
-            ["nonight"] = false,
-            ["sprite"] = "../art/sprites/b.png"
-          }
-        },
-        {
           id = 676,
           name = "YellowLeaf",
           type = "BasicNPC",
@@ -4818,7 +4777,7 @@ return {
             ["defaultAnim"] = "idleup",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Leon: You are truly a brilliant organizer,\\nPrincess. {p80}I can tell that my team now holds great respect for you...\"},\n            MessageBox {message = \"Leon: I look forward to seeing you on the throne.\"},\n            Wait(1),\n            Do(function() self.scene.player.state = \"thinking\" end),\n            MessageBox {message = \"Sally: ...\"},\n            Wait(1),\n            MessageBox {message = \"Leon: Something wrong?\"},\n            Wait(1),\n            MessageBox {message = \"Sally: I've been thinking about that a lot, actually...\"},\n            Wait(1),\n            MessageBox {message = \"Sally: ...and the truth is{p60}, Mobotropolis isn't my home. {p60}Not anymore.\"},\n            MessageBox {message = \"Sally: We've built something really special in Knothole... {p60}why should we leave it all behind after Robotnik's gone?\"},\n            MessageBox {message = \"Leon: Princess...{p60} the people need a ruler.\"},\n            Do(function() self.scene.player.state = \"idleup\" end),\n            MessageBox {message = \"Sally: Everyone here is fighting Robotnik to save our friends and family, Leon... {p60}not to save a kingdom...\"},\n            MessageBox {message = \"Sally: ...so once we finally do{p60}, why then should my voice suddenly be elevated above everyone elses? {p100}Because my father happened to be the King?\"},\n            MessageBox {message = \"Leon: Yes.\"},\n            Do(function() self.scene.player.state = \"thinking\" end),\n            MessageBox {message = \"Sally: No. {p60}I don't believe that. {p60}Not anymore.\"},\n            MessageBox {message = \"Leon: *ahem*{p60}...that is an{p80}... interesting perspective...\"},\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Leon: Tread lightly in Robotropolis, Sonic.{p60} Robotnik's eyes are everywhere...\"}\n        }\n    else\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Leon: Good luck, B. {p60}I look forward to meeting your family.\"}\n        }\n    end\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState.leader == \"sally\" then\n        local lastState = self.scene.player.state\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Leon: You truly are a brilliant organizer,\\nPrincess. {p80}I can tell that my team now holds great respect for you...\"},\n            MessageBox {message = \"Sally: Thank you, Leon.\"},\n            MessageBox {message = \"Leon: I look forward to seeing you on the throne.\"},\n            Wait(1),\n            Do(function() self.scene.player.state = \"thinking\" end),\n            MessageBox {message = \"Sally: ...\"},\n            MessageBox {message = \"Leon: Something wrong?\"},\n            Wait(1),\n            MessageBox {message = \"Sally: I've been thinking about that a lot, actually...\"},\n            Wait(1),\n            MessageBox {message = \"Sally: ...and the truth is{p60}, Mobotropolis isn't my home. {p60}Not anymore.\"},\n            MessageBox {message = \"Sally: We've built something really special in\\nKnothole... {p60}why should we leave it all behind after\\nRobotnik's gone?\"},\n            MessageBox {message = \"Leon: Princess...{p60} the people need a ruler.\"},\n            Do(function() self.scene.player.state = \"idleup\" end),\n            MessageBox {message = \"Sally: Everyone here is fighting Robotnik to save our friends and family, Leon... {p60}not to save a kingdom...\"},\n            MessageBox {message = \"Sally: ...so once we finally do{p60}, why then should my voice suddenly be elevated above everyone elses? {p120}\\nBecause my father happened to be the King?\"},\n            MessageBox {message = \"Leon: Yes.\"},\n            Do(function() self.scene.player.state = \"thinking\" end),\n            MessageBox {message = \"Sally: No. {p60}I don't believe that.\"},\n            MessageBox {message = \"Sally: I think everyone deserves a say in what comes next.\"},\n            Wait(0.5),\n            Animate(self.sprite, \"idleup\"),\n            Wait(1),\n            MessageBox {message = \"Leon: *ahem*{p60}...that is an{p80}... interesting perspective...\"},\n            Do(function()\n                self.scene.player.state = lastState\n                self:refreshKeyHint()\n            end)\n        }\n    elseif GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Leon: Tread lightly in Robotropolis, Sonic.{p60}\\nRobotnik's eyes are everywhere...\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Leon: Good luck, B. {p60}I look forward to meeting\\nyour family.\"},\n            Animate(self.sprite, \"idleup\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/leon.png"
           }
         },
@@ -4828,7 +4787,7 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 1248,
-          y = 2720,
+          y = 2752,
           width = 64,
           height = 96,
           rotation = 0,
@@ -4836,10 +4795,11 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
+            ["alignOffsetY"] = -32,
             ["defaultAnim"] = "idleleft",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Ivan: Bunnie taught me how to grow produce.\"},\n            Wait(1),\n            Animate(self.sprite, \"attitude\"),\n            MessageBox {message = \"Ivan: It is a gratifying process.\"},\n            Wait(1),\n            Do(function() self:refreshKeyHint() end)\n        }\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Ivan: Bunnie taught me how to grow produce.\"},\n            Animate(self.sprite, \"attitude\"),\n            MessageBox {message = \"Ivan: It is a gratifying process.\"},\n            Animate(self.sprite, \"idleleft\"),\n            Do(function() self:refreshKeyHint() end)\n        }\nend",
             ["sprite"] = "../art/sprites/ivan.png"
           }
         },
@@ -4861,7 +4821,7 @@ return {
             ["defaultAnim"] = "idleright",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    local lastState = self.scene.player.state\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Logan: We got things covered here, Princess. You can count on us.\"},\n            Wait(1),\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Logan: I have your{p60} uh...{p80}{h numbers} {p80}calculated...\"},\n            Do(function() self.scene.player.state = \"pose\" end),\n            MessageBox {message = \"Sonic: Oh great! {p60}Lemme look!\"},\n            MessageBox {message = \"Logan: You can look when you get back!\"},\n            Do(function() self.scene.player.state = \"irritated\" end),\n            MessageBox {message = \"Sonic: Aww man! {p60}What a buzz kill!\"},\n            Wait(1),\n            Do(function() self.scene.player.state = lastState end),\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Logan: Knowing your family is safe and secure is everything...\"},\n            MessageBox {message = \"Logan: I'm glad you are bringing them back here, B. {p80}Knothole isn't just a better hiding place, you know? {p80}It's more than the sum of its parts. {p80}It's a--\", closeAction=Wait(1)},\n            Do(function() self.scene.player.state = \"pose\" end),\n            MessageBox {message = \"B: --A community.\"},\n            MessageBox {message = \"B: I feel the same. {p80}Thank you, Logan\"},\n            Wait(1),\n            Do(function() self.scene.player.state = lastState end),\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    local lastState = self.scene.player.state\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Logan: We got things covered here, Princess. You can count on us.\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Logan: I have your{p60} uh...{p80}{h numbers} {p80}calculated...\"},\n            Do(function() self.scene.player.state = \"pose\" end),\n            MessageBox {message = \"Sonic: Oh great! {p60}Lemme look!\"},\n            MessageBox {message = \"Logan: You can look when you get back!\"},\n            Do(function() self.scene.player.state = \"irritated\" end),\n            MessageBox {message = \"Sonic: Aww man! {p60}What a buzz kill!\"},\n            Do(function() self.scene.player.state = lastState end),\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Logan: Knowing your family is safe and secure is\\neverything...\"},\n            MessageBox {message = \"Logan: I'm glad you are bringing them back here,\\nB. {p80}Knothole isn't just a better hiding place, you\\nknow? {p80}It's more than the sum of its parts. {p80}It's a--\", closeAction=Wait(1)},\n            Do(function() self.scene.player.state = \"pose\" end),\n            MessageBox {message = \"B: --A community.\"},\n            MessageBox {message = \"B: I feel the same. {p80}Thank you, Logan.\"},\n            Do(function() self.scene.player.state = lastState end),\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/logan.png"
           }
         },
@@ -4883,8 +4843,96 @@ return {
             ["defaultAnim"] = "idleleft",
             ["ghost"] = false,
             ["nonight"] = true,
-            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    local lastState = self.scene.player.state\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: Be careful out there, Sally.\"},\n            MessageBox {message = \"Rotor: Can I make you anything before you head out?\"},\n            Wait(1),\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: Hey Sonic, don't take any unnecessary risks out there. {p80}We don't know what Robotnik might be up to right now.\"},\n            MessageBox {message = \"Sonic: I hear you, Rote.\"},\n            Wait(1),\n            Do(function() self.scene.player.state = lastState end),\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: How's your body feeling, B?\"},\n            MessageBox {message = \"B: The tune ups you gave me when I got back from Boulder Bay have really improved my mobility.\"},\n            MessageBox {message = \"Rotor: That's great to hear! {p80}Well let me at least give you a little {h extra protection}.\"},\n            Wait(1),\n            Do(function() self.scene.player.state = lastState end),\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    local lastState = self.scene.player.state\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: Be careful out there, Sally.\"},\n            MessageBox {message = \"Rotor: Can I make you anything before you head out?\"},\n            Animate(self.sprite, \"idleleft\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sonic\" then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: Hey Sonic, don't take any unnecessary risks out there. {p80}We don't know what Robotnik might be up to right now.\"},\n            MessageBox {message = \"Sonic: I hear you, Rote.\"},\n            Do(function() self.scene.player.state = lastState end),\n            Animate(self.sprite, \"idleleft\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Rotor: How's your body feeling, B?\"},\n            MessageBox {message = \"B: The tune ups you gave me when I got back from Boulder Bay have really improved my mobility.\"},\n            MessageBox {message = \"Rotor: That's great to hear! {p80}Well let me at least give you a little {h extra protection}.\"},\n            Do(function() self.scene.player.state = lastState end),\n            Animate(self.sprite, \"idleleft\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
             ["sprite"] = "../art/sprites/rotor.png"
+          }
+        },
+        {
+          id = 753,
+          name = "Bunnie",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 992,
+          y = 2752,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "idleright",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Bunnie: Well now Sally-girl{p60}, you've done an\\nabsolutely fabulous job bringing everyone together!\"},\n            MessageBox {message = \"Sally: Aww{p60}, thanks Bunnie.\"},\n            MessageBox {message = \"Bunnie: You're like that Ben Windom fella!{p80} Ya\\nknow{p60}, the one in that story you were reading to Tails the other night.\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sonic\" then\n        local lastState = self.scene.player.state\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Bunnie: Now Sonic{p60}, don't be foolin' around like ya\\ndo{p60}, puttin' our Sally-girl in danger before the\\n{h big mission}!\"},\n            Do(function() self.scene.player.state = \"foottap\" end),\n            MessageBox {message = \"Sonic: Hey hey hey{p60}, this hedgehog knows how to be discrete!\"},\n            MessageBox {message = \"Bunnie: Ya ain't got a discrete bone in your body, sugar hog.\"},\n            MessageBox {message = \"Bunnie: And ya know what?{p80} That's ok.\"},\n            Do(function() self.scene.player.state = lastState end),\n            MessageBox {message = \"Bunnie: Just be extra careful this time, alright?\"},\n            MessageBox {message = \"Sonic: ...{p80}you got it, Bunnie.\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        local lastState = self.scene.player.state\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Bunnie: You must be so worried, B.{p80} Bein' away from your family for so long.\"},\n            MessageBox {message = \"Bunnie: First few years in Knothole{p80}, knowin' I wouldn't be seein' my sibbies anytime soon{p120}, it was just so tough.\"},\n            MessageBox {message = \"B: Thank you, Bunnie. {p80}I hope you are reunited your siblings one day.\"},\n            MessageBox {message = \"Bunnie: Once that nasty ol' Robotnik is outta the way soon everything'll get a lot easier!\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/bunny.png"
+          }
+        },
+        {
+          id = 754,
+          name = "Antoine",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7296,
+          y = 2848,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "idleright",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Antoine: It is so exciting, zis time, eh?\"},\n            MessageBox {message = \"Antoine: And also... {p80}I am feeling a wee bit...{p80}how\\ndo you say...{p80}angious?\"},\n            MessageBox {message = \"Sally: Do you mean, \\\"anxious\\\"?\"},\n            MessageBox {message = \"Antoine: Ah, oui. {p60}I am feeling ze \\\"anxious\\\" things.\"},\n            MessageBox {message = \"Antoine: We are so close{p60}, and yet many things\\ncould still go wrong I am thinking...\"},\n            MessageBox {message = \"Sally: I understand.\"},\n            MessageBox {message = \"Sally: And you're right{p60}, we can't be\\noverconfident. {p80}I appreciate how cautious you are, Antoine.\"},\n            MessageBox {message = \"Antoine: Ah! {p60}Thank you, Sally!\"},\n            MessageBox {message = \"Antoine: And you know{p80}, I may be anxious{p80}, but that\\ndoes not mean I am ever doubting you.{p80} You make me feel courage.\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sonic\" then\n        local lastState = self.scene.player.state\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Antoine: Sonic, you were asking earlier about my very special French Chilidog!\"},\n            Do(function() self.scene.player.state = \"foottap\" end),\n            MessageBox {message = \"Antoine: I hope you like it!\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        local lastState = self.scene.player.state\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Antoine: Hallo, B!{p80} I have made a special dish for you!\"},\n            MessageBox {message = \"Antoine: Thank you for the Southern Mobius recipes! {p80}I am having so many new ideas to try!\"},\n            Animate(self.sprite, \"idleright\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/antoine.png"
+          }
+        },
+        {
+          id = 755,
+          name = "Fleet",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 7936,
+          y = 1664,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "idledown",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState.leader == \"sally\" then\n        local lastState = self.scene.player.state\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Fleet: Princess...\"},\n            Animate(self.sprite, \"thinking\"),\n            Wait(1),\n            MessageBox {message = \"Fleet: I just wanted to say... {p80}I was wrong about the Freedom Fighters.\"},\n            MessageBox {message = \"Fleet: What you've been able to accomplish{p80}, what\\nyou've built here{p80}, is {h extraordinary}.\"},\n            Wait(1),\n            Do(function() self.scene.player.state = \"thinking\" end),\n            MessageBox {message = \"Sally: Thank you, Fleet. {p80}That means a lot.\"},\n            Do(function() self.scene.player.state = lastState end),\n            Animate(self.sprite, \"idledown\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sonic\" then\n        local lastState = self.scene.player.state\n        return BlockPlayer {\n            Do(function()\n                self:facePlayer()\n                self.scene.player.state = \"laughleft\"\n            end),\n            MessageBox {message = \"Sonic: Aww, come to see us off? {p80}I'm touched!\"},\n            MessageBox {message = \"Fleet: Don't flatter yourself, hedgehog! {p80}I just\\nwanted to talk to the Princess before she left.\"},\n            Wait(1),\n            Do(function() self.scene.player.state = lastState end),\n            MessageBox {message = \"Fleet: Be careful though{p80}, ok?\"},\n            MessageBox {message = \"Sonic: S-Sure thing.\"},\n            Animate(self.sprite, \"idledown\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        local lastState = self.scene.player.state\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Fleet: Look out for these two in the big city,\\n{h metal man}.\"},\n            Wait(1),\n            Do(function() self.scene.player.state = \"pose\" end),\n            MessageBox {message = \"B: {h Metal man}?\"},\n            Do(function() self.scene.player.state = lastState end),\n            MessageBox {message = \"Fleet: You are a lot stronger than they are{p80}, even in your condition...\"},\n            Animate(self.sprite, \"idledown\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/fleet.png"
+          }
+        },
+        {
+          id = 756,
+          name = "Tails",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1152,
+          y = 2400,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 5323,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "idledown",
+            ["ghost"] = false,
+            ["nonight"] = true,
+            ["onInteract"] = "local Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Animate = require \"actions/Animate\"\n\nlocal Transform = require \"util/Transform\"\nlocal Layout = require \"util/Layout\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    if GameState.leader == \"sally\" then\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Tails: Hey Sally{p60}, I've been thinking...\"},\n            self:hop(),\n            MessageBox {message = \"Tails: I bet I could be really useful if I joined the mission tomorrow!\"},\n            MessageBox {message = \"Sally: That is so thoughtful Tails! {p80}But I already have a role for you.\"},\n            MessageBox {message = \"Tails: Oh yeah!?\"},\n            MessageBox {message = \"Sally: You will be the {h defender of Kothole}!\"},\n            MessageBox {message = \"Tails: Hey! {p80}That's not a real role!\"},\n            MessageBox {message = \"Sally: Is so! {p80}And I need someone to do it! {p80}Are you up to the challenge?\"},\n            self:hop(),\n            MessageBox {message = \"Tails: ...\"},\n            Animate(self.sprite, \"pose\"),\n            self:hop(),\n            MessageBox {message = \"Tails: You can count on me!\"},\n            Animate(self.sprite, \"idledown\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    elseif GameState.leader == \"sonic\" then\n        local lastState = self.scene.player.state\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Tails: Hey Sonic...\"},\n            MessageBox {message = \"Sonic: What's up, little bud?\"},\n            MessageBox {message = \"Tails: When I spoke to the Light of Mobius...\\n{p80}i-i-t knew... {p80}about my mom...\"},\n            MessageBox {message = \"Sonic: ...Oh! {p80}Uh, what did it say?\"},\n            MessageBox {message = \"Tails: It didn't say much... {p80}but when I was\\ntalkin' to the Light, I could just {p80}{h feel her}... {p80}ya know?\"},\n            MessageBox {message = \"Tails: I felt her love... {p80}and that she was ok.\\n{p120}That makes me happy.\"},\n            MessageBox {message = \"Sonic: Yeah, that makes me happy too.\"},\n            Animate(self.sprite, \"idledown\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    else\n        local lastState = self.scene.player.state\n        return BlockPlayer {\n            Do(function() self:facePlayer() end),\n            MessageBox {message = \"Tails: Hey B!\"},\n            MessageBox {message = \"Tails: Some adventure we went on, huh?\"},\n            Animate(self.sprite, \"idledown\"),\n            Do(function() self:refreshKeyHint() end)\n        }\n    end\nend",
+            ["sprite"] = "../art/sprites/tails.png"
           }
         }
       }
