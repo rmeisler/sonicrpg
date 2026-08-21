@@ -962,9 +962,14 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 			layer.x = layer.offsetx + worldOffsetX
 			layer.y = layer.offsety + worldOffsetY
 		elseif layer.properties.type ~= "Parallax" then
-			layer.x = math.floor((layer.offsetx + worldOffsetX)*(layer.properties.movespeed or 1.05))
-			layer.y = math.floor((layer.offsety + worldOffsetY)*(layer.properties.movespeed or 1.05))
-			
+			if layer.properties.follow then
+				layer.x = layer.properties.offsetX + self.player.sprite.transform.x
+				layer.y = layer.properties.offsetY + self.player.sprite.transform.y
+			else
+				layer.x = math.floor((layer.offsetx + worldOffsetX)*(layer.properties.movespeed or 1.05))
+				layer.y = math.floor((layer.offsety + worldOffsetY)*(layer.properties.movespeed or 1.05))
+			end
+
 			-- If image layer is configured to shimmer, setup a shimmer cycle and remove config
 			if layer.properties.shimmer then
 				local maxOpacity = layer.properties.max_shimmer or layer.opacity

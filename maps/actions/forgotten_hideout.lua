@@ -11,6 +11,7 @@ local PlayAudio = require "actions/PlayAudio"
 local Ease = require "actions/Ease"
 local Parallel = require "actions/Parallel"
 local Serial = require "actions/Serial"
+local BlockPlayer = require "actions/BlockPlayer"
 local Wait = require "actions/Wait"
 local While = require "actions/While"
 local Move = require "actions/Move"
@@ -28,6 +29,73 @@ local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
 	scene.player.noSonicCrash = false
+	
+	GameState:setFlag("ep6intro")
+	if GameState:isFlagSet("ep6intro") then
+		scene.player.x = scene.player.x - 20
+		scene.player.y = scene.player.y - 340
+		
+		local orderedParty = {GameState.party.sally, GameState.party.sonic, GameState.party.b}
+		local walkout, walkin, sprites = scene.player:split(orderedParty)
+
+		scene.player.x = scene.player.x + 20
+		scene.player.y = scene.player.y + 340
+		scene.audio:stopMusic()
+
+		return BlockPlayer {
+			Spawn(Repeat(PlayAudio("sfx", "fire", 1))),
+			Wait(2),
+
+			Do(function()
+				scene.player.sprite:setAnimation("walkup")
+				scene.player.noIdle = true
+			end),
+			Ease(scene.player, "y", scene.player.y - 280, 1, "linear"),
+
+			walkout,
+			Parallel {
+				Animate(sprites.sally.sprite, "idleup"),
+				Animate(sprites.sonic.sprite, "idleup"),
+				Animate(sprites.b.sprite, "idleup")
+			},
+			Wait(2.5),
+
+			MessageBox{message="B: No..."},
+			
+			Do(function()
+				sprites.b.object.properties.ignoreMapCollision = true
+			end),
+			Move(sprites.b, scene.objectLookup.Save, "walk"),
+			Animate(sprites.b.sprite, "idleup"),
+			Wait(2),
+
+			Do(function()
+				sprites.b.movespeed = 5
+			end),
+			Move(sprites.b, scene.objectLookup.BWaypoint1, "walk"),
+			Move(sprites.b, scene.objectLookup.BWaypoint2, "walk"),
+			Move(sprites.b, scene.objectLookup.BWaypoint3, "walk"),
+			
+			Wait(1),
+			
+			Parallel {
+				Ease(sprites.sally, "x", function() return sprites.sally.x - 50 end, 2),
+				Ease(sprites.sonic, "x", function() return sprites.sonic.x + 50 end, 2),
+			},
+
+			Do(function()
+				sprites.sonic:remove()
+				sprites.sally:remove()
+				sprites.b:remove()
+
+				GameState:removeFromParty("b")
+
+				scene.player.sprite.visible = true
+				scene.player.dropShadow.hidden = false
+				scene.player.noIdle = false
+			end)
+		}
+	end
 	
 	if (GameState:isFlagSet("b_speech") or
 		GameState:isFlagSet("met_b")) and

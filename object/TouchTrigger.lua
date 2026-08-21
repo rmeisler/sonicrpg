@@ -7,12 +7,17 @@ function TouchTrigger:construct(scene, layer, object)
 	
 	NPC.init(self)
 
+	self.activationFlag = object.properties.activationFlag
 	self.atMostOnce = object.properties.atMostOnce
 
 	self:addHandler("collision", TouchTrigger.touch, self)
 end
 
 function TouchTrigger:touch(prevState)
+    if self.activationFlag and not GameState:isFlagSet(self.activationFlag) then
+		return
+	end
+
 	if not self.atMostOnce or not GameState:isFlagSet(self:getFlag()) then
 		self.scene:run(assert(loadstring(self.object.properties.script))()(self))
 		GameState:setFlag(self:getFlag())
