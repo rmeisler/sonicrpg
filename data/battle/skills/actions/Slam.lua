@@ -146,7 +146,13 @@ return function(self, target)
 
 		Parallel {
 			target:takeDamage(
-				{attack=self.stats.attack, speed=100, luck=0},
+				{
+					attack=self.stats.attack,
+					speed=100,
+					luck=0,
+					miss=self.stats.miss,
+					damage=self.stats.damage
+				},
 				false,
 				function(_self, _impact, _direction)
 					return Action()
@@ -178,7 +184,13 @@ return function(self, target)
 								if (dx*dx) + (dy*dy) <= (dr*dr) then
 									oppo.hurtBySlam = true
 									Executor(self.scene):act(Serial {
-										oppo:takeDamage({attack=target.stats.attack, speed=100, luck=0}, false, oppo.slamKnockbackFn),
+										oppo:takeDamage({
+											attack=target.stats.attack,
+											speed=100,
+											luck=0,
+											miss=self.stats.miss,
+											damage=self.stats.damage
+										}, false, oppo.slamKnockbackFn),
 										Do(function()
 											oppo.sprite:setAnimation("idle")
 										end)

@@ -1,6 +1,7 @@
 local Serial = require "actions/Serial"
 local Parallel = require "actions/Parallel"
 local Wait = require "actions/Wait"
+local Action = require "actions/Action"
 local Ease = require "actions/Ease"
 local Animate = require "actions/Animate"
 local PlayAudio = require "actions/PlayAudio"
@@ -50,7 +51,13 @@ local PummelTrigger = function(self, key, _, target)
 			target.origY = target:getSprite().transform.y
 		end
 
-		local stats = {attack=math.max(1, self.stats.attack/3), luck=self.stats.luck, speed=self.stats.speed}
+		local stats = {
+			attack=math.max(1, self.stats.attack/3),
+			luck=self.stats.luck,
+			speed=self.stats.speed,
+			miss=self.stats.miss,
+			damage=self.stats.damage
+		}
 		local damage = target:calculateDamage(stats)
 		target.hp = math.max(0, target.hp - damage)
 		
@@ -90,7 +97,7 @@ local PummelTrigger = function(self, key, _, target)
 				false,
 				true -- outline
 			),
-			KnockbackFunction(target)
+			self.stats.miss and Action() or KnockbackFunction(target)
 		}))
 	end
 end

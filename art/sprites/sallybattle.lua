@@ -23,6 +23,7 @@ return {
 		stun = {
             frames = {{3,5}}
         },
+		
         leap = {
             frames = {{4,0}}
         },
@@ -72,6 +73,9 @@ return {
 		},
 		thinking3 = {
 			frames = {{4,4}}
+		},
+		thinking4 = {
+			frames = {{4,5}}
 		},
 		sad = {
 			frames = {{0,5}}

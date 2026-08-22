@@ -49,8 +49,16 @@ end
 return function(self, target)
 	self.doneWithInfect = false
 	self.earlyExitInfect = false
-	target.malfunctioningTurns = 3
-	target.infectedStats = {attack = self.stats.focus, speed = 100, luck = 0}
+	if not self.stats.miss then
+		target.malfunctioningTurns = 3
+	end
+	target.infectedStats = {
+		attack = self.stats.focus,
+		speed = 100,
+		luck = 0,
+		miss=self.stats.miss,
+		damage=self.stats.damage
+	}
 	
 	local keys = {"up", "down", "left", "right", "x", "z", "c"}
 	local fadeIn = {}
@@ -146,11 +154,17 @@ return function(self, target)
 				},
 				target:takeDamage(target.infectedStats),
 				
-				MessageBox {
-					message=target.name.." is malfunctioning!",
-					rect=MessageBox.HEADLINER_RECT,
-					closeAction=Wait(0.6)
-				},
+				self.stats.miss and
+					MessageBox{
+						message=target.name.." is unaffected.",
+						rect=MessageBox.HEADLINER_RECT,
+						closeAction=Wait(0.6)
+					} or
+					MessageBox {
+						message=target.name.." is malfunctioning!",
+						rect=MessageBox.HEADLINER_RECT,
+						closeAction=Wait(0.6)
+					},
 				
 				Animate(self.sprite, "nichole_retract"),
 				Animate(self.sprite, "idle"),

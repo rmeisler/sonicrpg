@@ -6,11 +6,11 @@ local Ease = require "actions/Ease"
 local Wait = require "actions/Wait"
 local Spawn = require "actions/Spawn"
 
-return function(self, msg, flashColor)
+return function(self, msg, flashColor, waitTime)
 	return Serial {
 		Wait(0.5),
 		Parallel {
-			MessageBox {message=msg, rect=MessageBox.HEADLINER_RECT, closeAction=Wait(0.6)},
+			MessageBox {message=msg, rect=MessageBox.HEADLINER_RECT, closeAction=Wait(waitTime or 0.6)},
 			Repeat(Serial {
 				Parallel {
 					Ease(self.sprite.color, 1, flashColor[1], 10, "linear"),

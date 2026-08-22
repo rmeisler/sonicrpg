@@ -252,7 +252,7 @@ function BattleActor:calculateDamage(stats)
 	-- Random chance of miss
 	if stats.miss or
 	   damage == 0 or
-	   math.random(dodgeChance, 100) <= dodgeChance
+	   math.random(dodgeChance, 50) <= dodgeChance
 	then
 		if damage ~= 0 or stats.miss then
 			damage = 0

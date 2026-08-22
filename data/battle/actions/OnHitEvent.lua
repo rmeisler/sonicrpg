@@ -40,7 +40,9 @@ return function(self, target, returnAction, knockbackActionFun, details)
 		local bonusStats = {
 			attack = 1.2 * self.stats.attack,
 			speed = self.stats.speed,
-			luck = self.stats.luck
+			luck = self.stats.luck,
+			miss = self.stats.miss,
+			damage = self.stats.damage
 		}
 		table.insert(
 			actions,

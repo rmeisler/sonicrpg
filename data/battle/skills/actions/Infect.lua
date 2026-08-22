@@ -13,7 +13,10 @@ local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
 
 return function(self, target)
-	target.malfunctioningTurns = 3
+	if not self.stats.miss then
+		target.malfunctioningTurns = 3
+	end
+
 	return Serial {
 		Animate(self.sprite, "nichole_start"),
 		Animate(self.sprite, "nichole_idle"),
@@ -51,13 +54,25 @@ return function(self, target)
 				PlayAudio("sfx", "shocked", 0.5, true),
 			}
 		},
-		target:takeDamage({attack = self.stats.focus, speed = 100, luck = 0}),
+		target:takeDamage({
+			attack = self.stats.focus,
+			speed = 100,
+			luck = 0,
+			miss=self.stats.miss,
+			damage=self.stats.damage
+		}),
 		
-		MessageBox {
-			message=target.name.." is malfunctioning!",
-			rect=MessageBox.HEADLINER_RECT,
-			closeAction=Wait(0.6)
-		},
+		self.stats.miss and
+			MessageBox{
+				message=target.name.." is unaffected.",
+				rect=MessageBox.HEADLINER_RECT,
+				closeAction=Wait(0.6)
+			} or
+			MessageBox {
+				message=target.name.." is malfunctioning!",
+				rect=MessageBox.HEADLINER_RECT,
+				closeAction=Wait(0.6)
+			},
 		
 		Animate(self.sprite, "nichole_retract"),
 		Animate(self.sprite, "idle"),

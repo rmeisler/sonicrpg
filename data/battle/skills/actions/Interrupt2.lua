@@ -50,8 +50,17 @@ return function(self, target)
 	self.doneWithInterrupt = false
 	self.earlyExitInterrupt = false
 
-	target.malfunctioningTurns = 3
-	target.infectedStats = {attack = self.stats.focus, speed = 100, luck = 0}
+	if not self.stats.miss then
+		target.malfunctioningTurns = 3
+	end
+
+	target.infectedStats = {
+		attack = self.stats.focus,
+		speed = 100,
+		luck = 0,
+		miss=self.stats.miss,
+		damage=self.stats.damage
+	}
 	
 	local keys = {"up", "down", "left", "right", "x", "z", "c"}
 	local fadeIn = {}
@@ -77,8 +86,10 @@ return function(self, target)
 		table.insert(fadeIn, Ease(sprite.color, 4, 255, 1))
 	end
 	
-	target.lostTurns = 2
-	target.lostTurnType = "interrupt"
+	if not self.stats.miss then
+		target.lostTurns = 2
+		target.lostTurnType = "interrupt"
+	end
 	return Serial {
 		Animate(self.sprite, "nichole_start"),
 		Animate(self.sprite, "nichole_idle"),
@@ -143,13 +154,25 @@ return function(self, target)
 						PlayAudio("sfx", "shocked", 0.5, true),
 					}
 				},
-				target:takeDamage({attack = self.stats.focus, speed = 100, luck = (self.keycodeSuccess and 100 or 0)}, false, target.interruptKnockbackFn),
+				target:takeDamage({
+					attack = self.stats.focus,
+					speed = 100,
+					luck = (self.keycodeSuccess and 100 or 0),
+					miss=self.stats.miss,
+					damage=self.stats.damage
+				}, false, target.interruptKnockbackFn),
 				
-				MessageBox {
-					message=target.name.." can't move!",
-					rect=MessageBox.HEADLINER_RECT,
-					closeAction=Wait(0.6)
-				},
+				self.stats.miss and
+					MessageBox {
+						message=target.name.." unaffected.",
+						rect=MessageBox.HEADLINER_RECT,
+						closeAction=Wait(0.6)
+					} or
+					MessageBox {
+						message=target.name.." can't move!",
+						rect=MessageBox.HEADLINER_RECT,
+						closeAction=Wait(0.6)
+					},
 				
 				Animate(self.sprite, "nichole_retract"),
 				Animate(self.sprite, "idle"),

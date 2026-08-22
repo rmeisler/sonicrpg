@@ -70,11 +70,12 @@ return function(scene)
 			Wait(2),
 
 			Do(function()
-				sprites.b.movespeed = 5
+				sprites.b.sprite:setAnimation("walkleft")
 			end),
-			Move(sprites.b, scene.objectLookup.BWaypoint1, "walk"),
-			Move(sprites.b, scene.objectLookup.BWaypoint2, "walk"),
-			Move(sprites.b, scene.objectLookup.BWaypoint3, "walk"),
+			Parallel {
+				Ease(sprites.b, "x", 1216, 1, "linear"),
+				Ease(sprites.b, "y", 1952, 1, "linear")
+			},
 			
 			Wait(1),
 			
@@ -93,7 +94,14 @@ return function(scene)
 				scene.player.sprite.visible = true
 				scene.player.dropShadow.hidden = false
 				scene.player.noIdle = false
-			end)
+			end),
+			
+			-- TODO Remove
+			scene:enterBattle {
+				opponents = {"cheetah1"},
+				initiative = "cinematic",
+				music = "ep6trapped"
+			}
 		}
 	end
 	

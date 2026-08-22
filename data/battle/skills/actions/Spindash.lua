@@ -156,7 +156,13 @@ return function(self, target)
 				Do(function()
 					Executor(self.scene):act(
 						target:takeDamage(
-							{attack=math.min(self.stats.focus * self.spinCharge, 25), speed=50, luck=0},
+							{
+								attack=math.min(self.stats.focus * self.spinCharge, 25),
+								speed=50,
+								luck=0,
+								miss=self.stats.miss,
+								damage=self.stats.damage
+							},
 							false,
 							function(_self, _impact, _direction) return Action() end
 						)

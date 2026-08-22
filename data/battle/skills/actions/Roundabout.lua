@@ -67,7 +67,7 @@ return function(self, target)
 				Serial {
 					Ease(self.sprite.transform, "y", targetSp.transform.y + targetSp.h - self.sprite.h, 20, "inout"),
 					Do(function()
-						self.sprite.sortOrderY = self.sprite.prevSortOrderY
+						self.sprite.sortOrderY = self.sprite.prevSortOrderY + 100
 					end)
 				},
 				Serial {

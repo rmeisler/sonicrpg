@@ -258,6 +258,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/sallybattle.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/phantomstandin.png"
 	},
 	{
@@ -534,6 +538,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/spindust.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/spark.png"
 	},
 	{
@@ -637,6 +645,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/infiltration.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/ep6trapped.ogg",
 		category = "music"
 	},
 	{
@@ -928,36 +941,6 @@ return {
 		type = "sound",
 		file = "audio/music/leonenters.ogg",
 		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/yourstoryendshere.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/youdarechallengeme.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/comehere.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/yeeeesss.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/robotnikhurt.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/robotnikgrit.ogg",
-		category = "sfx"
 	},
 	{
 		type = "sound",
