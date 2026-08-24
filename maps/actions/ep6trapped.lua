@@ -33,7 +33,6 @@ return function(scene, hint)
 			scene.player.dropShadow.hidden = true
 		end),
 		Wait(2),
-		--PlayAudio("music", "ep6intro", 1, true),
 		MessageBox{message="Sally: Alright guys, I'm loading the training program now...", closeAction=Wait(2)},
 		Parallel {
 			MessageBox{message="Sally: Let's do it to it!", closeAction=Wait(2)},

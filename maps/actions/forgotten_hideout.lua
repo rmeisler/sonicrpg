@@ -27,8 +27,41 @@ local Repeat = require "actions/Repeat"
 
 local BasicNPC = require "object/BasicNPC"
 
-return function(scene)
+return function(scene, hint)
 	scene.player.noSonicCrash = false
+	
+	if hint == "runaway" then
+		scene.objectLookup.Cheetah.sprite:setAnimation("idledown")
+		scene.objectLookup.Cheetah.hidden = false
+		scene.objectLookup.Cheetah.x = scene.objectLookup.Cheetah.x - 50
+		scene.objectLookup.Cheetah.y = scene.objectLookup.Cheetah.y + 50
+
+		scene.player.sprite.visible = false
+		scene.player.dropShadow.hidden = true
+		scene.player.x = scene.objectLookup.Cheetah.x + 100
+		scene.player.y = scene.objectLookup.Cheetah.y + 100
+
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+				
+				scene.player.x = scene.objectLookup.Cheetah.x + 100
+				scene.player.y = scene.objectLookup.Cheetah.y + 100
+			end),
+			Wait(2),
+			PlayAudio("sfx", "cheetarun", 1, true),
+			Do(function()
+				scene.objectLookup.Cheetah.sprite:setAnimation("rundown")
+			end),
+			Wait(1),
+			Ease(scene.objectLookup.Cheetah, "y", function() return scene.objectLookup.Cheetah.y + 600 end, 15, "linear"),
+			Wait(10),
+			Do(function()
+				scene:changeScene{map="greatforest_ep6_intro1", fadeInSpeed=0.5, fadeOutSpeed=0.5, fadeOutMusic=false}
+			end)
+		}
+	end
 	
 	GameState:setFlag("ep6intro")
 	if GameState:isFlagSet("ep6intro") then
@@ -58,7 +91,7 @@ return function(scene)
 				Animate(sprites.sonic.sprite, "idleup"),
 				Animate(sprites.b.sprite, "idleup")
 			},
-			Wait(2.5),
+			Wait(1.5),
 
 			MessageBox{message="B: No..."},
 			

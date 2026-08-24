@@ -8,7 +8,7 @@ return {
   height = 300,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 71,
+  nextobjectid = 74,
   properties = {
     ["battlebg"] = "../art/backgrounds/datacenter2f.png",
     ["onload"] = "actions/robo_tunnel.lua",
@@ -1737,8 +1737,8 @@ return {
           name = "Chest4",
           type = "Chest",
           shape = "rectangle",
-          x = 1408,
-          y = 4448,
+          x = 704,
+          y = 6112,
           width = 64,
           height = 64,
           rotation = 0,
@@ -1764,7 +1764,6 @@ return {
           properties = {
             ["alwaysOn"] = true,
             ["bounceY"] = -1,
-            ["respawn"] = "GrabbableRespawn",
             ["spawnPointLeft"] = "LaserTrapShooter1",
             ["spawnPointRight"] = "LaserTrapShooter2"
           }
@@ -1784,6 +1783,7 @@ return {
           properties = {
             ["defaultAnim"] = "left_on",
             ["ghost"] = true,
+            ["hidden"] = true,
             ["sprite"] = "../art/sprites/lasertrap.png"
           }
         },
@@ -1802,6 +1802,7 @@ return {
           properties = {
             ["defaultAnim"] = "right_on",
             ["ghost"] = true,
+            ["hidden"] = true,
             ["sprite"] = "../art/sprites/lasertrap.png"
           }
         },
@@ -1820,6 +1821,64 @@ return {
           properties = {
             ["RoboticBoots"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 71,
+          name = "LaserTrap2",
+          type = "LaserTrap",
+          shape = "rectangle",
+          x = 1056,
+          y = 8992,
+          width = 32,
+          height = 224,
+          rotation = 0,
+          gid = 6902,
+          visible = true,
+          properties = {
+            ["alwaysOn"] = true,
+            ["bounceX"] = -1,
+            ["spawnPointLeft"] = "LaserTrapShooter3",
+            ["spawnPointRight"] = "LaserTrapShooter4",
+            ["vertical"] = true
+          }
+        },
+        {
+          id = 72,
+          name = "LaserTrapShooter3",
+          type = "LaserTrapArm",
+          shape = "rectangle",
+          x = 1056,
+          y = 8768,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6902,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "left_on",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["sprite"] = "../art/sprites/lasertrap.png"
+          }
+        },
+        {
+          id = 73,
+          name = "LaserTrapShooter4",
+          type = "LaserTrapArm",
+          shape = "rectangle",
+          x = 1056,
+          y = 9024,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 6902,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "right_on",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["sprite"] = "../art/sprites/lasertrap.png"
           }
         }
       }

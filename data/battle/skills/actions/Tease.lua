@@ -24,9 +24,11 @@ return function(self, target)
 			end
 			
 			-- Override target for three turns
-			table.insert(target.targetOverrideStack, selfIdx)
-			table.insert(target.targetOverrideStack, selfIdx)
-			table.insert(target.targetOverrideStack, selfIdx)
+			if not self.stats.miss then
+				table.insert(target.targetOverrideStack, selfIdx)
+				table.insert(target.targetOverrideStack, selfIdx)
+				table.insert(target.targetOverrideStack, selfIdx)
+			end
 		end),
 		target.onTease and target:onTease() or Action(),
 		MessageBox {
@@ -35,7 +37,9 @@ return function(self, target)
 			textSpeed=8,
 			closeAction=Wait(0.8)
 		},
-		Telegraph(target, target.name.." feels compelled to attack "..self.name.."!", {255,255,255,50}),
+		self.stats.miss and
+			Telegraph(target, target.name.." is unfazed.", {255,255,255,50}) or
+			Telegraph(target, target.name.." feels compelled to attack "..self.name.."!", {255,255,255,50}),
 		Do(function()
 			self.sprite:setAnimation("idle")
 		end)

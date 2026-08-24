@@ -11,6 +11,15 @@ return {
 		idle_lookup = {
             frames = {{2,5}}
         },
+		idle_grit = {
+            frames = {{0,6}}
+        },
+		idle_grit_lookdown = {
+            frames = {{1,6}}
+        },
+		idle_shout = {
+            frames = {{2,6}}
+        },
 		backward = {
 			frames = {{4,3}}
 		},

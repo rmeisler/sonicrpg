@@ -644,6 +644,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/sonicscared.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/infiltration.ogg",
 		category = "music"
 	},

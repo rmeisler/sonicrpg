@@ -99,8 +99,22 @@ return {
 		noring_idle = {
 			frames = {{6,0}}
 		},
+		noring_shocked_idle = {
+			frames = {{0,13}}
+		},
+		scared = {
+			frames = {{1,13}}
+		},
 		liftring_idle = {
 			frames = {{1,3}}
+		},
+		scared_chargerun1 = {
+			frames = {{0,14},{1,14},{2,14},{3,14}},
+			speed = 0.03
+		},
+		scared_chargerun2 = {
+			frames = {{4,14},{5,14},{6,14},{2,13}},
+			speed = 0.03
 		},
 		ring_chargerun1 = {
 			frames = {{4,11},{5,11},{6,11},{4,12}},

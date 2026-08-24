@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="60" height="300" tilewidth="32" tileheight="32" infinite="0" nextobjectid="71">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="60" height="300" tilewidth="32" tileheight="32" infinite="0" nextobjectid="74">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter2f.png"/>
   <property name="onload" type="file" value="actions/robo_tunnel.lua"/>
@@ -1242,7 +1242,7 @@ return function(self, player, prevState)
 end</property>
    </properties>
   </object>
-  <object id="66" name="Chest4" type="Chest" gid="6839" x="1408" y="4448" width="64" height="64">
+  <object id="66" name="Chest4" type="Chest" gid="6839" x="704" y="6112" width="64" height="64">
    <properties>
     <property name="BlueLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
@@ -1252,7 +1252,6 @@ end</property>
    <properties>
     <property name="alwaysOn" type="bool" value="true"/>
     <property name="bounceY" type="float" value="-1"/>
-    <property name="respawn" value="GrabbableRespawn"/>
     <property name="spawnPointLeft" value="LaserTrapShooter1"/>
     <property name="spawnPointRight" value="LaserTrapShooter2"/>
    </properties>
@@ -1261,6 +1260,7 @@ end</property>
    <properties>
     <property name="defaultAnim" value="left_on"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
    </properties>
   </object>
@@ -1268,6 +1268,7 @@ end</property>
    <properties>
     <property name="defaultAnim" value="right_on"/>
     <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
    </properties>
   </object>
@@ -1275,6 +1276,31 @@ end</property>
    <properties>
     <property name="RoboticBoots" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="71" name="LaserTrap2" type="LaserTrap" gid="6902" x="1056" y="8992" width="32" height="224">
+   <properties>
+    <property name="alwaysOn" type="bool" value="true"/>
+    <property name="bounceX" type="float" value="-1"/>
+    <property name="spawnPointLeft" value="LaserTrapShooter3"/>
+    <property name="spawnPointRight" value="LaserTrapShooter4"/>
+    <property name="vertical" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="72" name="LaserTrapShooter3" type="LaserTrapArm" gid="6902" x="1056" y="8768" width="32" height="32">
+   <properties>
+    <property name="defaultAnim" value="left_on"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
+   </properties>
+  </object>
+  <object id="73" name="LaserTrapShooter4" type="LaserTrapArm" gid="6902" x="1056" y="9024" width="32" height="32">
+   <properties>
+    <property name="defaultAnim" value="right_on"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/lasertrap.png"/>
    </properties>
   </object>
  </objectgroup>

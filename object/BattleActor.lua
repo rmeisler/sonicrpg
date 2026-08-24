@@ -113,6 +113,10 @@ function BattleActor:poisonKnockback(impact, direction)
 	}
 end
 
+function BattleActor:noKnockback(impact, direction)
+	return Action()
+end
+
 function BattleActor:getSprite()
 	return self.sprite
 end

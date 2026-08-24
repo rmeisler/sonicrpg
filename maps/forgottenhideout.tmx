@@ -807,37 +807,6 @@ end</property>
     <property name="orientation" value="up"/>
    </properties>
   </object>
-  <object id="241" name="poster" type="BasicNPC" gid="1227" x="672" y="1792" width="64" height="32">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="defaultAnim" value="idleup"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Animate = require &quot;actions/Animate&quot;
-local Do = require &quot;actions/Do&quot;
-
-return function(self)
-    local walkout, walkin, sprites = self.scene.player:split()
-    self.scene.player:removeKeyHint()
-    self.scene.player.cinematicStack = self.scene.player.cinematicStack + 1
-    return Serial {
-        walkout,
-        Animate(sprites.sonic.sprite, &quot;idleup&quot;),
-        Animate(sprites.sally.sprite, &quot;idleup&quot;),
-        MessageBox {message = &quot;Sally: Definitely not under Robotnik's control...&quot;, blocking = true},
-        Animate(sprites.sonic.sprite, &quot;pose&quot;),
-        MessageBox {message = &quot;Sonic: These are my kinda people!&quot;, blocking = true},
-        walkin,
-        Do(function()
-            self.scene.player.x = self.scene.player.x + 60
-            self.scene.player.y = self.scene.player.y + 60
-            self.scene.player.cinematicStack = self.scene.player.cinematicStack - 1
-        end)
-    }
-end</property>
-   </properties>
-  </object>
   <object id="247" name="Flames1" type="BasicNPC" gid="2904" x="1600" y="2400" width="64" height="64">
    <properties>
     <property name="defaultAnim" value="burn"/>
@@ -924,10 +893,10 @@ return function(self)
         MessageBox{message=&quot;B: ...{p40}R's arm...&quot;,textSpeed=3},
         Wait(1),
         MessageBox{message=&quot;B: ...{p40}Sh-{p40}Should have come sooner...&quot;,textSpeed=3},
-        Wait(2),
+        Wait(1),
         Animate(sprites.sonic.sprite, &quot;cry&quot;),
         MessageBox{message=&quot;Sonic: ...&quot;, textSpeed=3},
-        Wait(2),
+        Wait(1),
         Animate(sprites.sally.sprite, &quot;cry&quot;),
         MessageBox{message=&quot;Sally: I'm so sorry, B...&quot;, textSpeed=3},
         AudioFade(&quot;music&quot;, 0.8, 0, 1),
@@ -961,16 +930,17 @@ return function(self)
         MessageBox{message=&quot;Sally: ...{p80}You don't remember us, B?&quot;},
         Wait(1),
         MessageBox{message=&quot;B: Who is B?&quot;},
-        Wait(2),
+        Wait(1),
         PlayAudio(&quot;music&quot;, &quot;bsad2&quot;, 1, true),
         Animate(sprites.sonic.sprite, &quot;cry&quot;),
         Animate(sprites.sally.sprite, &quot;cry&quot;),
         Wait(1),
         MessageBox{message=&quot;Sally: ...{p80}H-He forgot...{p80}he forgot everything...&quot;, textSpeed=3},
+        MessageBox{message=&quot;Sally: I should've listened to him, Sonic... {p80}why didn't I listen?!&quot;, textSpeed=3},
         Wait(1),
-        MessageBox{message=&quot;Sonic: You think I can bring him back with a {h Power Ring}?&quot;, textSpeed=3},
+        MessageBox{message=&quot;Sonic: Sal...&quot;, textSpeed=3},
         Wait(1),
-        MessageBox{message=&quot;Sally: *sniff*{p60} L-Let's just get him back to\nKnothole first...&quot;, textSpeed=3},
+        MessageBox{message=&quot;Sally: *sniff*{p60} W-We better get back to Knothole...&quot;, textSpeed=3},
         Parallel {
             Ease(sprites.sonic, &quot;x&quot;, function() return sprites.sonic.x + 50 end, 2),
             Ease(sprites.sally, &quot;x&quot;, function() return sprites.sally.x - 50 end, 2),
@@ -987,7 +957,6 @@ return function(self)
 
             self.scene.objectLookup.Cheetah.hidden = false
 
-            GameState:addToParty(&quot;b&quot;, 1, true)
             GameState:setFlag(&quot;ep6_tragic_scene&quot;)
 
             self.scene.objectLookup.CheetahEvent2.ghost = false
@@ -1064,7 +1033,7 @@ return function(self)
         },
         Wait(1),
         PlayAudio(&quot;sfx&quot;, &quot;cheetabreathe&quot;, 1, true),
-        MessageBox{message=&quot;Sonic: What's he doin' here?...&quot;},
+        Wait(1),
         self.scene:enterBattle {
             opponents = {&quot;cheetah1&quot;},
             initiative = &quot;cinematic&quot;,
