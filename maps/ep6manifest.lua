@@ -26,6 +26,11 @@ return {
     },
 	{
         type = "map",
+        file = "maps/tunnel2.lua",
+		primary = true
+    },
+	{
+        type = "map",
         file = "maps/robo_opening3.lua",
 		--primary = true
     },

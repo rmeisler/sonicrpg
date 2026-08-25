@@ -29,7 +29,7 @@ local BasicNPC = require "object/BasicNPC"
 
 return function(scene, hint)
 	scene.player.noSonicCrash = false
-	
+
 	if hint == "runaway" then
 		scene.objectLookup.Cheetah.sprite:setAnimation("idledown")
 		scene.objectLookup.Cheetah.hidden = false
@@ -38,7 +38,7 @@ return function(scene, hint)
 
 		scene.player.sprite.visible = false
 		scene.player.dropShadow.hidden = true
-		scene.player.x = scene.objectLookup.Cheetah.x + 100
+		scene.player.x = scene.objectLookup.Cheetah.x - 100
 		scene.player.y = scene.objectLookup.Cheetah.y + 100
 
 		return BlockPlayer {
@@ -46,7 +46,7 @@ return function(scene, hint)
 				scene.player.sprite.visible = false
 				scene.player.dropShadow.hidden = true
 				
-				scene.player.x = scene.objectLookup.Cheetah.x + 100
+				scene.player.x = scene.objectLookup.Cheetah.x - 100
 				scene.player.y = scene.objectLookup.Cheetah.y + 100
 			end),
 			Wait(2),
@@ -56,9 +56,9 @@ return function(scene, hint)
 			end),
 			Wait(1),
 			Ease(scene.objectLookup.Cheetah, "y", function() return scene.objectLookup.Cheetah.y + 600 end, 15, "linear"),
-			Wait(10),
+			Wait(2),
 			Do(function()
-				scene:changeScene{map="greatforest_ep6_intro1", fadeInSpeed=0.5, fadeOutSpeed=0.5, fadeOutMusic=false}
+				scene:changeScene{map="tunnel2", fadeInSpeed=0.5, fadeOutSpeed=0.5, fadeOutMusic=false, spawnPoint="Spawn 1", doingSpecialMove=true}
 			end)
 		}
 	end
@@ -129,12 +129,12 @@ return function(scene, hint)
 				scene.player.noIdle = false
 			end),
 			
-			-- TODO Remove
+			--[[ TODO Remove
 			scene:enterBattle {
 				opponents = {"cheetah1"},
 				initiative = "cinematic",
 				music = "ep6trapped"
-			}
+			}]]
 		}
 	end
 	

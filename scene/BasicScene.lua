@@ -710,7 +710,8 @@ function BasicScene:changeScene(args)
 			fadeOutMusic = args.fadeOutMusic,
 			spawn_point = args.spawnPoint,
 			nighttime = args.nighttime,
-			enterDelay = args.enterDelay
+			enterDelay = args.enterDelay,
+			doingSpecialMove = args.doingSpecialMove,
 		}
 	else
 		print("change scene...")
@@ -733,7 +734,8 @@ function BasicScene:changeScene(args)
 			fadeOutMusic = args.fadeOutMusic,
 			cache = args.cache,
 			nighttime = args.nighttime,
-			enterDelay = args.enterDelay
+			enterDelay = args.enterDelay,
+			doingSpecialMove = args.doingSpecialMove,
 		})
 	end
 end

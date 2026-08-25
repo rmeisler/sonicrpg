@@ -43,6 +43,9 @@ return {
         hurt = {
             frames = {{2,1}}
         },
+		hurt2 = {
+            frames = {{3,13}}
+        },
         dead = {
             frames = {{3,1}}
         },

@@ -38,6 +38,14 @@ local Hotspots = function(player, x, y)
 	}
 end
 
+local CommandDirection = function(player, dir)
+	if player.commandDirection == dir then
+		return true
+	elseif not player.commandDirection then
+		return love.keyboard.isDown(dir)
+	end
+end
+
 local PerPixelCollisionCheck = function(self, curX, curY)
 	-- Resolve collision by sweeping hotspot checks from prev pos to next pos
 	local stepX = curX > self.x and -1 or 1
@@ -174,8 +182,8 @@ local RunUpdate = function(self, dt)
 			end
 		end
 		
-		if not self.cinematic and not self.noMoveSpecial then
-			if love.keyboard.isDown("left") then
+		if (not self.cinematic or self.commandDirection) and not self.noMoveSpecial then
+			if CommandDirection(self, "left") then
 				if self.fy > 0 then
 					self.state = "juicedownleft"
 					self.by = ORTHO_BURST_MAGNITUDE
@@ -187,7 +195,7 @@ local RunUpdate = function(self, dt)
 				self.fx = -3.1
 				self.fy = 0
 				self.bigDust = true
-			elseif love.keyboard.isDown("right") then
+			elseif CommandDirection(self, "right") then
 				if self.fy > 0 then
 					self.state = "juicedownright"
 					self.by = ORTHO_BURST_MAGNITUDE
@@ -199,14 +207,14 @@ local RunUpdate = function(self, dt)
 				self.fx = 3.1
 				self.fy = 0
 				self.bigDust = true
-			elseif love.keyboard.isDown("down") and self.fy < 0 and self.cooldownCounter <= 0 and not next(self.stairs) then
+			elseif CommandDirection(self, "down") and self.fy < 0 and self.cooldownCounter <= 0 and not next(self.stairs) then
 				self.state = "juicedownleft"
 				self.bx = -ORTHO_BURST_MAGNITUDE
 				self.fx = 0
 				self.fy = 3.1
 				self.bigDust = true
 				self.cooldownCounter = RUN_DIRCHANGE_COOLDOWN
-			elseif love.keyboard.isDown("up") and self.fy > 0 and self.cooldownCounter <= 0 and not next(self.stairs) then
+			elseif CommandDirection(self, "up") and self.fy > 0 and self.cooldownCounter <= 0 and not next(self.stairs) then
 				self.state = "juiceupright"
 				self.bx = ORTHO_BURST_MAGNITUDE
 				self.fx = 0
@@ -252,8 +260,8 @@ local RunUpdate = function(self, dt)
 			end
 		end
 		
-		if not self.cinematic and not self.noMoveSpecial then
-			if love.keyboard.isDown("up") and not next(self.stairs) then
+		if (not self.cinematic or self.commandDirection) and not self.noMoveSpecial then
+			if CommandDirection(self, "up") and not next(self.stairs) then
 				if self.fx > 0 then
 					self.state = "juiceupright"
 					self.bx = ORTHO_BURST_MAGNITUDE
@@ -264,7 +272,7 @@ local RunUpdate = function(self, dt)
 				self.fx = 0
 				self.fy = -3.1
 				self.bigDust = true
-			elseif love.keyboard.isDown("down") and not next(self.stairs) then
+			elseif CommandDirection(self, "down") and not next(self.stairs) then
 				if self.fx > 0 then
 					self.state = "juicedownright"
 					self.bx = ORTHO_BURST_MAGNITUDE
@@ -275,14 +283,14 @@ local RunUpdate = function(self, dt)
 				self.fx = 0
 				self.fy = 3.1
 				self.bigDust = true
-			elseif love.keyboard.isDown("right") and self.fx < 0 and self.cooldownCounter <= 0 then
+			elseif CommandDirection(self, "right") and self.fx < 0 and self.cooldownCounter <= 0 then
 				self.state = "juiceupright"
 				self.by = -ORTHO_BURST_MAGNITUDE
 				self.fx = 3.1
 				self.fy = 0
 				self.bigDust = true
 				self.cooldownCounter = RUN_DIRCHANGE_COOLDOWN
-			elseif love.keyboard.isDown("left") and self.fx > 0 and self.cooldownCounter <= 0 then
+			elseif CommandDirection(self, "left") and self.fx > 0 and self.cooldownCounter <= 0 then
 				self.state = "juicedownleft"
 				self.by = ORTHO_BURST_MAGNITUDE
 				self.fx = -3.1

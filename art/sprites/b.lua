@@ -35,6 +35,12 @@ return {
 		holdrarm = {
 			frames = {{15,1}}
 		},
+		climb_1 = {
+			frames = {{2,3}}
+		},
+		climb_2 = {
+			frames = {{6,3}}
+		},
 		
 		lookdown = {
 			frames = {{13,1}}

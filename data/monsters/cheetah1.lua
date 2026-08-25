@@ -71,7 +71,7 @@ return {
 		self.scene.partyByName.sally.stats.miss = true
 		self.scene.partyByName.sonic.stats.damage = 0
 		self.scene.partyByName.sally.stats.damage = 0
-		self.turn = 3
+		self.turn = 0
 	end,
 
 	behavior = function (self, target)
@@ -79,13 +79,11 @@ return {
 			self.turn = self.turn + 1
 			return Serial {
 				Wait(1),
+				Animate(self.scene.partyByName.sally.sprite, "thinking4"),
 				MessageBox{message="Sally: Sonic{p80}, isn't this that bot you raced awhile\nback?..."},
 				Wait(1),
-				Animate(self.scene.partyByName.sally.sprite, "thinking4"),
-				MessageBox{message="Sally: Why is it just standing there like that?..."},
-				Wait(1),
 				Animate(self.scene.partyByName.sonic.sprite, "takenback"),
-				MessageBox{message="Sonic: Somethin's not right about this..."},
+				MessageBox{message="Sonic: Yeah... {p80}but what is he doin' here?..."},
 				Wait(0.5),
 				Animate(self.scene.partyByName.sally.sprite, "idle"),
 				Animate(self.scene.partyByName.sonic.sprite, "idle")
@@ -178,9 +176,9 @@ return {
 
 				-- Knock Sonic into the air and fall to the ground dead (1 hp)
 				PlayAudio("sfx", "smack2", 1, true),
-				Animate(self.scene.partyByName.sonic.sprite, "hurt"),
 				Do(function()
 					self.scene.partyByName.sonic.sprite:pushOverride("idle", "dead")
+					self.scene.partyByName.sonic.sprite:pushOverride("hurt", "hurt2")
 				end),
 				Parallel {
 					Serial {
@@ -198,6 +196,7 @@ return {
 							speed=1,
 							luck=0,
 							damage=self.scene.partyByName.sonic.hp-1,
+							nonlethal=true,
 						},
 						false,
 						BattleActor.noKnockback
@@ -217,6 +216,7 @@ return {
 				Ease(sonicXForm, "x", sonicXForm.x, 1),
 				Do(function()
 					self.scene.partyByName.sonic.sprite:popOverride("idle")
+					self.scene.partyByName.sonic.sprite:popOverride("hurt")
 				end),
 				MessageBox{message="Sonic: Ugh..."},
 				MessageBox{message="Sonic: T-This guy's fast... {p60}faster than last time..."},
@@ -240,8 +240,8 @@ return {
 				end),
 				PlayAudio("sfx", "slice", 0.2, true),
 				Parallel {
-					Ease(ring.transform, "x", function() return ring.transform.x + 300 end, 0.7),
-					Ease(ring.transform, "y", function() return ring.transform.y - 150 end, 1.5, "linear")
+					Ease(ring.transform, "x", function() return ring.transform.x + 300 end, 0.7, "sine"),
+					Ease(ring.transform, "y", function() return ring.transform.y - 150 end, 1.5, "sine")
 				},
 				Animate(self.scene.partyByName.sally.sprite, "shock"),
 				Wait(2),
@@ -253,23 +253,23 @@ return {
 				Do(function() self.sprite:setAnimation("idle") end),
 
 				Wait(2),
-				MessageBox{message="Sonic: ..."},
+				MessageBox{message="Sonic: ...", closeAction=Wait(2)},
 				PlayAudio("music", "sonicscared", 1, true, true),
 				Wait(1),
 				Animate(self.scene.partyByName.sally.sprite, "idle_grit"),
-				MessageBox{message="Sally: Sonic...?"},
+				MessageBox{message="Sally: Sonic...?", closeAction=Wait(2)},
 				PlayAudio("sfx", "cheetabreathe", 1, true),
 				Wait(1),
 				Animate(self.scene.partyByName.sonic.sprite, "scared"),
-				MessageBox{message="Sonic: ..."},
+				MessageBox{message="Sonic: ...", closeAction=Wait(2)},
 				Wait(1),
 				Animate(self.scene.partyByName.sally.sprite, "idle_grit_lookdown"),
-				MessageBox{message="Sally: Sonic!"},
+				MessageBox{message="Sally: Sonic!", closeAction=Wait(2)},
 				PlayAudio("sfx", "cheetabreathe", 1, true),
 				Wait(1),
-				MessageBox{message="Sonic: ..."},
+				MessageBox{message="Sonic: ...", closeAction=Wait(2)},
 				Animate(self.scene.partyByName.sally.sprite, "idle_shout"),
-				MessageBox{message="Sally: Sonic!! {p80}Run!!"},
+				MessageBox{message="Sally: Sonic!! {p80}Run!!", closeAction=Wait(2)},
 
 				Animate(self.scene.partyByName.sonic.sprite, "scared_chargerun1"),
 				PlayAudio("sfx", "sonicrun", 1, true),
