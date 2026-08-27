@@ -71,7 +71,7 @@ return {
 		self.scene.partyByName.sally.stats.miss = true
 		self.scene.partyByName.sonic.stats.damage = 0
 		self.scene.partyByName.sally.stats.damage = 0
-		self.turn = 0
+		self.turn = 3
 	end,
 
 	behavior = function (self, target)
@@ -225,7 +225,7 @@ return {
 				MessageBox{message="Sally: What do we do?"},
 				Wait(0.5),
 				Animate(self.scene.partyByName.sonic.sprite, "idle"),
-				MessageBox{message="Sonic: Pull out all the stops!"},
+				MessageBox{message="Sonic: Time to pull out all the stops!"},
 				AudioFade("music", 1, 0, 1),
 				Animate(self.scene.partyByName.sonic.sprite, "fish_backpack"),
 				Animate(self.scene.partyByName.sonic.sprite, "foundring_backpack"),

@@ -75,6 +75,7 @@ return function(scene)
 			return scene.player.y > scene.objectLookup.Waypoint5.y
 		end),
 		Do(function()
+			scene.player.specialUpdate = scene.player.basicUpdate
 			scene.player.basicUpdate = scene.player.updateFun
 			scene.player.x = scene.objectLookup.Waypoint6.x
 			scene.player.y = scene.objectLookup.Waypoint6.y
@@ -96,6 +97,7 @@ return function(scene)
 		Wait(1),
 		PlayAudio("sfx", "cheetarun", 1, true),
 		Ease(scene.objectLookup.Cheetah, "y", scene.objectLookup.Waypoint4.y, 15, "linear"),
+		Wait(0.5),
 		Do(function()
 			scene.player.state = "peekup"
 		end),
@@ -109,22 +111,25 @@ return function(scene)
 		Do(function()
 			scene.objectLookup.Cheetah.sprite:setAnimation("idleleft")
 		end),
-		Wait(0.5),
 		Do(function()
 			scene.player.state = "shock"
 		end),
 		
 		scene.player:hop(),
-		Wait(1),
+		Wait(1.5),
 		Do(function()
+			scene.player.commandDirection = "down"
 			scene.player.state = "juicedown"
+			scene.player.sby = 10
+			scene.player.basicUpdate = scene.player.specialUpdate
+			scene.player.ignoreSpecialMoveCollision = true
 		end),
-		Wait(0.2),
-		Ease(scene.player, "y", function() return scene.player.y + 350 end, 12),
+		
+		Wait(3),
 		Do(function()
 			scene.player.sprite.visible = false
 			scene.player.dropShadow.hidden = true
-			--scene:changeScene{map="run3", fadeInSpeed=0.5, fadeOutSpeed=0.5, fadeOutMusic=false}
+			scene:changeScene{map="run3", fadeInSpeed=1, fadeOutSpeed=0.2, enterDelay=1, fadeOutMusic=true}
 		end)
 	}
 end

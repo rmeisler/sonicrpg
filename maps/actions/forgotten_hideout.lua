@@ -56,7 +56,7 @@ return function(scene, hint)
 			end),
 			Wait(1),
 			Ease(scene.objectLookup.Cheetah, "y", function() return scene.objectLookup.Cheetah.y + 600 end, 15, "linear"),
-			Wait(2),
+			Wait(3),
 			Do(function()
 				scene:changeScene{map="tunnel2", fadeInSpeed=0.5, fadeOutSpeed=0.5, fadeOutMusic=false, spawnPoint="Spawn 1", doingSpecialMove=true}
 			end)
@@ -129,12 +129,12 @@ return function(scene, hint)
 				scene.player.noIdle = false
 			end),
 			
-			--[[ TODO Remove
+			-- TODO Remove
 			scene:enterBattle {
 				opponents = {"cheetah1"},
 				initiative = "cinematic",
 				music = "ep6trapped"
-			}]]
+			}
 		}
 	end
 	

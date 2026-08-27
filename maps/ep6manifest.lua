@@ -41,6 +41,11 @@ return {
     },
 	{
         type = "map",
+        file = "maps/run3.lua",
+		primary = true -- testing
+    },
+	{
+        type = "map",
 		file = "maps/stealthtut1.lua",
 		--primary = true
     },
@@ -649,7 +654,17 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/wearefucked.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/sonicscared.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/sonicscared2.ogg",
 		category = "music"
 	},
 	{
