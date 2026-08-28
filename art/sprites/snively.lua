@@ -27,6 +27,17 @@ return {
 		    frames = {{0,2},{1,2},{0,2},{5,2}},
 			speed = 0.5
 		},
+		stepback_left = {
+		    frames = {{0,0},{1,0},{0,0},{5,0}},
+			speed = 0.5
+		},
+		prep_kick = {
+			frames = {{13,2}}
+		},
+		kick = {
+			frames = {{13,2},{14,2},{16,2},{12,1},{13,1}},
+			speed = 0.1
+		},
 		
 		computerup = {
 		    frames = {{2,4}}

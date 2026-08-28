@@ -28,7 +28,7 @@ function CreditsSplashScene:onEnter()
 	self.images = {}
 	self.animations = {}
 	
-	self.bg = love.graphics.newImage("art/splash/title3.png")
+	self.bg = love.graphics.newImage("art/splash/title6.png")
 	self.soniclogo = love.graphics.newImage("art/sprites/rpglogo.png")
 	
 	self.bgY = -466
@@ -38,7 +38,7 @@ function CreditsSplashScene:onEnter()
 	-- Setup music
 	self.audio:registerAs("music", "sonicrpglogo", love.audio.newSource("audio/music/credits.ogg", "static"))
 	self.audio:registerAs("music", "credits", love.audio.newSource("audio/music/credits.ogg", "static"))
-	self.audio:registerAs("music", "tailstheme", love.audio.newSource("audio/music/tailstheme.ogg", "static"))
+	self.audio:registerAs("music", "ffta_sonicgenesis", love.audio.newSource("audio/music/ffta_sonicgenesis.ogg", "static"))
 	
 	self.bgColor = {0,0,0,255}
 	self.logoColor = {255,255,255,0}
@@ -80,8 +80,8 @@ function CreditsSplashScene:onEnter()
 		]]
 		
 		Spawn(Serial {
-			Wait(1),
-			PlayAudio("music", "tailstheme", 1.0, true, true)
+			Wait(5),
+			PlayAudio("music", "ffta_sonicgenesis", 1.0)
 		}),
 
 		Parallel {
@@ -125,6 +125,7 @@ Reggie Meisler/RedG
 Billy Adams
 Jesse Rose/GreenCauldron08
 Diego Leal E (Robotnik Boss Theme)
+Julia Jayhan Handschin (Ep 6 Credits Theme)
 Ilya Rappu/PicnikSonik
 F0XShadow
 Michael Tavera
@@ -142,7 +143,7 @@ Racoon Ninja
 Joey "The Plokman" Tripp Nimmo
 Kronovi
 Ibeh Dubem/Flame the Teen
-Ilya Rappu/Picnik
+Ilya Rappu/PicnikSonik
 Reggie Meisler/RedG
 Unstoppable Thombo
 Damien
@@ -172,6 +173,7 @@ AmeixaRoxa
 AmeixaRoxa
 JayFoxFire
 Anya Stocks/Frostdrop1
+Masquayla the Splendid
 Jacob Berkley/Good Ol' Groovy Jake
 Reggie Meisler/RedG
 RobertCo11
@@ -184,7 +186,7 @@ AmeixaRoxa
 dataexpunded
 McMistle
 ScaleyFoxy
-Ilya Rappu/Picnik
+Ilya Rappu/PicnikSonik
 Artis Armageddon
 Fieryfurnace
 Jacob Berkley/Good Ol' Groovy Jake
@@ -219,6 +221,9 @@ Leon Nalić/RingMasterLeon
 [2025 Box Art]
 Gwen Longcriercat
 
+[2026 Box Art]
+Keith Rowsell
+
 [Framework]
 Reggie Meisler/RedG
 
@@ -242,7 +247,7 @@ Jacob Berkley/Good Ol' Groovy Jake
 Billy Adams
 Ibeh Dubem/Flame the Teen
 AmeixaRoxa
-Ilya Rappu/Picnik
+Ilya Rappu/PicnikSonik
 
 
 
@@ -251,8 +256,7 @@ Ilya Rappu/Picnik
 
 
 
-  This episode is dedicated to Floof, our fierce, curious,
-   and loving calico who was taken from us much too soon.
+       Part 2 coming January 2027...
 
 	
 	

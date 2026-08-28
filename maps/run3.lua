@@ -8,7 +8,7 @@ return {
   height = 25,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 68,
+  nextobjectid = 71,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["bgm"] = "../audio/music/battle.ogg",
@@ -378,6 +378,65 @@ return {
           gid = 37,
           visible = true,
           properties = {}
+        },
+        {
+          id = 68,
+          name = "Cheetah",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 118784,
+          y = 576,
+          width = 128,
+          height = 96,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetX"] = -8,
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "idleright",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/cheeta.png"
+          }
+        },
+        {
+          id = 69,
+          name = "Snively",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 118400,
+          y = 576,
+          width = 64,
+          height = 96,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["alignOffsetY"] = -32,
+            ["defaultAnim"] = "idleright",
+            ["hidden"] = true,
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/snively.png"
+          }
+        },
+        {
+          id = 70,
+          name = "SnivelyWP",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 118848,
+          y = 576,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
         }
       }
     },

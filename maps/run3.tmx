@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="4000" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="68">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="4000" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="71">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="bgm" type="file" value="../audio/music/battle.ogg"/>
@@ -192,6 +192,32 @@
  </layer>
  <objectgroup name="objects">
   <object id="67" name="Spawn 1" type="EscapePlayer" gid="37" x="-350" y="544" width="32" height="32"/>
+  <object id="68" name="Cheetah" type="BasicNPC" gid="1714" x="118784" y="576" width="128" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetX" type="float" value="-8"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/cheeta.png"/>
+   </properties>
+  </object>
+  <object id="69" name="Snively" type="BasicNPC" gid="1714" x="118400" y="576" width="64" height="96">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="alignOffsetY" type="float" value="-32"/>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="nocollision" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/snively.png"/>
+   </properties>
+  </object>
+  <object id="70" name="SnivelyWP" type="BasicNPC" gid="1714" x="118848" y="576" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="Collision" width="4000" height="25" visible="0">
   <data encoding="csv">

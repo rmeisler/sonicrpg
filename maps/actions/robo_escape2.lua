@@ -10,6 +10,7 @@ local MessageBox = require "actions/MessageBox"
 local WaitForFrame = require "actions/WaitForFrame"
 local PlayAudio = require "actions/PlayAudio"
 local Ease = require "actions/Ease"
+local Move = require "actions/Move"
 local Parallel = require "actions/Parallel"
 local Serial = require "actions/Serial"
 local Wait = require "actions/Wait"
@@ -76,46 +77,71 @@ return function(scene)
 			Do(function()
 				scene.player:removeSceneHandler("update", EscapePlayer.update)
 				scene.player.sprite:setAnimation("shock")
+				scene.objectLookup.Snively.hidden = false
+				scene.objectLookup.Snively.sprite.sortOrderY = 10000
+				scene.objectLookup.Cheetah.hidden = false
+				scene.player.x = scene.objectLookup.Cheetah.x
+				scene.player.y = scene.objectLookup.Cheetah.y
 			end),
 
 			Parallel {
-				Ease(scene.player, "x", function() return scene.player.x + 200 end, 5),
-				Ease(scene.player, "y", function() return scene.player.y - 200 end, 5)
+				Ease(scene.player, "x", function() return scene.player.x + 800 end, 1, "linear"),
+				Ease(scene.player, "y", function() return scene.player.y + 600 end, 0.5)
 			},
-			Ease(scene.player, "x", function() return scene.player.x + 200 end, 5),
+			
+			Wait(2),
+			
+			MessageBox{message="YES!!!", textSpeed=3, closeAction=Wait(2)},
 			Parallel {
-				Ease(scene.player, "x", function() return scene.player.x + 200 end, 5),
-				Ease(scene.player, "y", function() return scene.player.y + 200 end, 5)
+				Serial {
+					Move(scene.objectLookup.Snively, scene.objectLookup.SnivelyWP, "walk"),
+					Animate(scene.objectLookup.Snively.sprite, "idleright_smile")
+				},
+				Ease(scene.camPos, "x", 600, 0.2)
 			},
-			Ease(scene.player, "y", function() return scene.player.y + 1000 end, 8),
-			
-			Wait(3),
-			
-			
-			MessageBox{message="YES!!! {p80}Good kitty!", textSpeed=3, closeAction=Wait(2)},
-			-- Snively walks onto scene
-			Wait(2),
-			MessageBox{message="Snively: You dropped those rodents straight into the\nrobot wasteland...", textSpeed=2, closeAction=Wait(3)},
-			Wait(1),
 
+			Wait(1),
 			PlayAudio("music", "wearefucked", 1, true),
-			MessageBox{message="Snively: I suppose this is goodbye, Princess... {p60}after all...", textSpeed=2, closeAction=Wait(2)},
+			MessageBox{message="Snively: You've done very well, my pet. {p120}The Princess\nand her hedgehog will be hopelessly trapped down there...\n{p120}in the {h robot wasteland}...", textSpeed=3, closeAction=Wait(5)},
+			Wait(1),			
+			Animate(scene.objectLookup.Snively.sprite, "idleright_lookleft"),
+			MessageBox{message="Snively: ...{p80}can't have the big round guy finding out\nabout this, though...", textSpeed=3, closeAction=Wait(4)},
+			Do(function() scene.objectLookup.Snively.sprite:setAnimation("stepback_left") end),
+			Ease(scene.objectLookup.Snively, "x", function() return scene.objectLookup.Snively.x - 25 end, 1, "linear"),
+			Animate(scene.objectLookup.Snively.sprite, "prep_kick"),
 			Wait(1),
-			MessageBox{message="Snively: ...once one enters the robot wasteland{p60}, there is no escape...", textSpeed=2, closeAction=Wait(2)},
+			Parallel {
+				Animate(scene.objectLookup.Snively.sprite, "kick"),
+				Ease(scene.objectLookup.Snively, "x", function() return scene.objectLookup.Snively.x + 70 end, 4),
+				Serial {
+					Wait(0.2),
+					PlayAudio("sfx", "smack", 1, true),
+					Animate(scene.objectLookup.Cheetah.sprite, "kicked"),
+					Parallel {
+						Ease(scene.objectLookup.Cheetah, "x", function() return scene.objectLookup.Cheetah.x + 80 end, 1, "linear"),
+						Ease(scene.objectLookup.Cheetah, "y", function() return scene.objectLookup.Cheetah.y - 100 end, 3),
+					},
+					Ease(scene.objectLookup.Cheetah, "x", function() return scene.objectLookup.Cheetah.x + 80 end, 1.5, "linear"),
+					Parallel {
+						Ease(scene.objectLookup.Cheetah, "x", function() return scene.objectLookup.Cheetah.x + 80 end, 3, "linear"),
+						Ease(scene.objectLookup.Cheetah, "y", function() return scene.objectLookup.Cheetah.y + 600 end, 5),
+					}
+				}
+			},
+			Do(function() scene.objectLookup.Snively.sprite:setAnimation("idleright_laugh") end),
 			Wait(2),
-			MessageBox{message="Snively: And lest you somehow find one...", textSpeed=2, closeAction=Wait(2)},
-			MessageBox{message="Snively: This ought to keep you busy!", textSpeed=2, closeAction=Wait(2)},
-			-- Snively kicks Cheetah into hole
-
 			TypeText(
 				Transform(50, 300),
 				{255, 255, 255, 255},
 				FontCache.Techno,
 				"TO BE CONTINUED...",
-				1.5
+				3
 			),
-			Wait(6)
-			
+			Wait(3),
+			Do(function()
+				scene.sceneMgr:pushScene {class = "CreditsSplashScene"}
+			end)
+
 			
 			-- TO BE CONTINUED
 
