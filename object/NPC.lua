@@ -53,6 +53,7 @@ function NPC:construct(scene, layer, object)
 	self.disappearOnFlag = object.properties.disappearOnFlag or object.properties.disappearAfterBattle
 	self.angle = (object.properties.angle or 0) * (math.pi/180)
 	self.isBot = object.properties.isBot
+	self.hard = object.properties.hard
 	self.destructable = object.properties.destructable
 	
 	if object.properties.onInit then
@@ -166,7 +167,7 @@ end
 
 function NPC:onInteract()
 	self.scene.player.hidekeyhints[tostring(self)] = self
-	self.scene:run(assert(loadstring(self.object.properties.onInteract))()(self))
+	self.scene:run(assert(loadstring(self.object.properties.onInteract))()(self, self.scene.player))
 end
 
 function NPC:onScan()
@@ -195,10 +196,12 @@ function NPC:distanceFromPlayerSq(ignoreCache)
 end
 
 function NPC:updateCollision(layerName)
-	self.collision = {}
+	self:removeCollision(layerName)
 
 	local collisionLayer = self.scene.objectCollisionLayer[layerName or self.layer.name]
 	if not self.object.properties.nocollision and collisionLayer then
+		self.object.x = self.x
+		self.object.y = self.y
 		local sx,sy = self.scene:worldCoordToCollisionCoord(self.object.x, self.object.y)
 		local dx,dy = self.scene:worldCoordToCollisionCoord(self.object.x + self.object.width, self.object.y + self.object.height)
 		for y=sy, dy-1 do
@@ -224,7 +227,7 @@ end
 
 function NPC:removeCollision(layerName)
     local collisionLayer = self.scene.objectCollisionLayer[layerName or self.layer.name]
-	if collisionLayer then
+	if not self.object.properties.nocollision and collisionLayer then
 		for _, pair in pairs(self.collision or {}) do
 			if collisionLayer[pair[2]] then
 				collisionLayer[pair[2]][pair[1]] = nil

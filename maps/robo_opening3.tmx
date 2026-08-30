@@ -1073,7 +1073,7 @@
     <property name="ghost" type="bool" value="true"/>
     <property name="key" value="up"/>
     <property name="orientation" value="down"/>
-    <property name="scene" type="file" value="roboterminal.lua"/>
+    <property name="scene" type="file" value="roboterminal2.lua"/>
     <property name="spawn_point" value="Exit2"/>
    </properties>
   </object>

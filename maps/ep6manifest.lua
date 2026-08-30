@@ -36,6 +36,11 @@ return {
     },
 	{
         type = "map",
+        file = "maps/roboterminal2.lua",
+		primary = true
+    },
+	{
+        type = "map",
         file = "maps/forgottenhideout.lua",
 		--primary = true -- testing
     },

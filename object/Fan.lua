@@ -20,7 +20,7 @@ local Fan = class(NPC)
 
 Fan.WIDTH_OFFSET = 30
 Fan.PULL_RANGE = 300
-Fan.PULL_SPEED = 3.5
+Fan.PULL_SPEED = 1.5
 
 function Fan:construct(scene, layer, object)
 	self.sprite = SpriteNode(
@@ -59,6 +59,7 @@ function Fan:construct(scene, layer, object)
 	
 	self.respawn = object.properties.respawn
 	self.nosound = object.properties.nosound
+	self.broken = false
 	
 	if object.properties.on then
 		self:use()
@@ -85,14 +86,14 @@ function Fan:update(dt)
 	for name, sprite in pairs(self.bladeSprites) do
 		sprite.sortOrderY = self.sprite.transform.y - 5
 		
-		if GameState:isFlagSet(self) then
+		if GameState:isFlagSet(self) and not self.broken then
 			sprite:setAnimation(name)
 		else
 			sprite:setAnimation(name.."_idle")
 		end
 	end
 	
-	if GameState:isFlagSet(self) then
+	if GameState:isFlagSet(self) and not self.broken then
 		local targets = {self.scene.player}
 		for _, obj in pairs(self.scene.map.objects) do
 			if obj.isBot then
@@ -112,12 +113,16 @@ function Fan:update(dt)
 					target.y = target.y - math.pow(
 						math.max(3, math.min(Fan.PULL_SPEED, ((Fan.PULL_RANGE - (target.y - self.y)) / Fan.PULL_RANGE) * Fan.PULL_SPEED)) * (dt/0.016),
 						2
-					)				
+					)
 					target.disabled = true
 					-- Knock out of fan three times, doing damage, until dead
 					if target.y < self.y then
 						self.scene.audio:setLooping("sfx", false)
-						self.scene.audio:playSfx("smack", 1.0)
+						if target.hard then
+							self.scene.audio:playSfx("openchasm", 1.0)
+						else
+							self.scene.audio:playSfx("smack", 1.0)
+						end
 						self.scene.audio:playSfx("oppdeath", 1.0)
 						target.isBot = false
 						self:run {
@@ -127,7 +132,22 @@ function Fan:update(dt)
 							},
 							Do(function()
 								target:remove()
-							end)
+							end),
+							target.hard and
+								Serial {
+									Do(function()
+										self.broken = true
+										self.scene.audio:stopSfx("fan")
+									end),
+									Parallel {
+										Ease(self.sprite.color, 4, 0, 1),
+										Ease(self.bladeSprites.first.color, 4, 0, 1),
+										Ease(self.bladeSprites.second.color, 4, 0, 1),
+										Ease(self.bladeSprites.third.color, 4, 0, 1),
+										Ease(self.bladeSprites.fourth.color, 4, 0, 1)
+									}
+								} or
+								Action()
 						}
 					end
 					target.sprite:setAnimation("hurtdown")
