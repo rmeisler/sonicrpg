@@ -8,7 +8,7 @@ return {
   height = 38,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 129,
+  nextobjectid = 130,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["regionName"] = "Robotropolis",
@@ -639,6 +639,28 @@ return {
             ["ghost"] = true,
             ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    local dir = \"y\"\n    local amount = -32\n    player.hidekeyhints[tostring(self)] = nil\n    if not player:isFacing(\"up\") then\n        return Do(function() end)\n    end\n\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"openchasm\", 1, true),\n        Parallel {\n            Ease(self.scene.objectLookup.BoulderPushUp, dir, function() return self.scene.objectLookup.BoulderPushUp[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushDown, dir, function() return self.scene.objectLookup.BoulderPushDown[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushLeft, dir, function() return self.scene.objectLookup.BoulderPushLeft[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushRight, dir, function() return self.scene.objectLookup.BoulderPushRight[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.Boulder, dir, function() return self.scene.objectLookup.Boulder[dir] + amount end, 2)\n        },\n        Do(function()\n            self.scene.objectLookup.BoulderPushUp:updateCollision()\n            self.scene.objectLookup.BoulderPushDown:updateCollision()\n            self.scene.objectLookup.BoulderPushLeft:updateCollision()\n            self.scene.objectLookup.BoulderPushRight:updateCollision()\n            self.scene.objectLookup.Boulder:updateCollision()\n            player:showKeyHint(true)\n        end)\n    }\nend"
           }
+        },
+        {
+          id = 129,
+          name = "Exit1",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 736,
+          y = 512,
+          width = 256,
+          height = 64,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["ghost"] = true,
+            ["key"] = "up",
+            ["orientation"] = "down",
+            ["scene"] = "factoryfloor_ep6.lua",
+            ["spawn_point"] = "Exit1",
+            ["walkin"] = true
+          }
         }
       }
     },
@@ -889,7 +911,7 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 1846, 1846, 1846, 1777, 1777, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1777, 1777, 1776, 1776, 1777, 1777, 1777, 1777, 1777, 1777, 1777, 1776, 1776, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1777, 1777, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

@@ -41,6 +41,10 @@ return {
     },
 	{
         type = "map",
+        file = "maps/factoryfloor_ep6.lua"
+    },
+	{
+        type = "map",
         file = "maps/forgottenhideout.lua",
 		--primary = true -- testing
     },
@@ -381,6 +385,14 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/icon_armor.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_helmet.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/icon_defense.png"
 	},
 	{
@@ -569,22 +581,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/drill.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/thelight.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/babytroar.ogg",
-		category = "sfx"
-	},
-	{
-		type = "sound",
-		file = "audio/sfx/terrapodroar.ogg",
+		file = "audio/sfx/factoryfloor.ogg",
 		category = "sfx"
 	},
 	{
@@ -665,6 +662,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/wearefucked.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/factory.ogg",
 		category = "music"
 	},
 	{

@@ -22,14 +22,14 @@ local SpriteNode = require "object/SpriteNode"
 return function(self)
 	return BlockPlayer {
 		Do(function()
-			self.scene.player.sprite:setAnimation("thinking")
-			self.scene.player.noIdle = true
+			self.disabled = true -- Disable computer
+
+			-- Remove collision around door
+			self.scene.objectLookup.Door:removeCollision()
+			self.scene.player.disableScan = true
 		end),
-		MessageBox {message = "Sally: No--{p40} This is too direct. {p60}We need to find another way in."},
-		Wait(1),
-		Do(function()
-			self.scene.player.sprite:setAnimation("idledown")
-			self.scene.player.noIdle = false
-		end)
+		Wait(0.5),
+		Animate(self.scene.objectLookup.Door.sprite, "opening"),
+		Animate(self.scene.objectLookup.Door.sprite, "open")
 	}
 end
