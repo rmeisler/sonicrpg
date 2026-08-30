@@ -8,7 +8,7 @@ return {
   height = 192,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 249,
+  nextobjectid = 263,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/robo_intro2_ep6.lua",
@@ -1568,14 +1568,12 @@ return {
           gid = 37,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/swatbot.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint1,Waypoint2,Waypoint3,Waypoint4",
             ["followRepeat"] = true,
             ["ghost"] = true,
             ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7",
             ["ignorePlayer"] = true,
+            ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/swatbot.png"
           }
         },
@@ -1656,13 +1654,11 @@ return {
           gid = 37,
           visible = true,
           properties = {
-            ["battle"] = "../data/monsters/swatbot.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint5,Waypoint15,Waypoint14,Waypoint5,Waypoint6",
             ["followRepeat"] = true,
             ["ghost"] = true,
-            ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest1",
+            ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7",
+            ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/swatbot.png"
           }
         },
@@ -1696,40 +1692,6 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true
-          }
-        },
-        {
-          id = 151,
-          name = "Chest1",
-          type = "Chest",
-          shape = "rectangle",
-          x = 704,
-          y = 4320,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 2311,
-          visible = true,
-          properties = {
-            ["GreenLeaf"] = 1,
-            ["sprite"] = "../art/sprites/chest.png"
-          }
-        },
-        {
-          id = 152,
-          name = "Chest2",
-          type = "Chest",
-          shape = "rectangle",
-          x = 2656,
-          y = 2848,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 2311,
-          visible = true,
-          properties = {
-            ["CrystalWater"] = 2,
-            ["sprite"] = "../art/sprites/chest.png"
           }
         },
         {
@@ -2047,27 +2009,6 @@ return {
           }
         },
         {
-          id = 202,
-          name = "Swatbot3",
-          type = "Swatbot",
-          shape = "rectangle",
-          x = 2784,
-          y = 1440,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["defaultAnim"] = "idleup",
-            ["ghost"] = true,
-            ["ignorePlayer"] = true,
-            ["movespeed"] = 1,
-            ["notAntoineTargetable"] = true,
-            ["sprite"] = "../art/sprites/swatbot.png"
-          }
-        },
-        {
           id = 203,
           name = "Waypoint7",
           type = "BasicNPC",
@@ -2197,22 +2138,6 @@ return {
           }
         },
         {
-          id = 213,
-          name = "Script1",
-          type = "TouchTrigger",
-          shape = "rectangle",
-          x = 2464,
-          y = 1856,
-          width = 32,
-          height = 352,
-          rotation = 0,
-          gid = 1922,
-          visible = true,
-          properties = {
-            ["script"] = "local Do = require \"actions/Do\"\n\nreturn function(self)\n	return Do(function()\n		local swatbot = self.scene.objectLookup.Swatbot3\n		swatbot.followStack = {\"Waypoint8\"}\n		swatbot:postInit()\n		swatbot.action:add(self.scene, Do(function() swatbot:remove() end))\n	end)\nend\n"
-          }
-        },
-        {
           id = 215,
           name = "Waypoint8",
           type = "BasicNPC",
@@ -2278,16 +2203,12 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["audibleDistance"] = 200,
-            ["battle"] = "../data/monsters/cambot.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint10,Waypoint20,Waypoint7,Waypoint20",
             ["followRepeat"] = true,
             ["ghost"] = true,
             ["ignoreCollision"] = "CHeap1,CHeap2,CHeap3,CHeap4,CHeap5,CHeap6,CHeap7",
-            ["sprite"] = "../art/sprites/cambot.png",
-            ["visibleDistance"] = 100
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/cambot.png"
           }
         },
         {
@@ -2551,6 +2472,7 @@ return {
             ["align"] = "bottom_left",
             ["defaultAnim"] = "pose",
             ["ghost"] = true,
+            ["hidden"] = true,
             ["ignoreMapCollision"] = true,
             ["sprite"] = "../art/sprites/b.png"
           }
@@ -2601,6 +2523,191 @@ return {
           visible = true,
           properties = {
             ["ghost"] = true
+          }
+        },
+        {
+          id = 250,
+          name = "Cambot3",
+          type = "Cambot",
+          shape = "rectangle",
+          x = 1344,
+          y = 1696,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["follow"] = "Waypoint7,Waypoint10,Waypoint20,Waypoint10",
+            ["followRepeat"] = true,
+            ["ghost"] = true,
+            ["ignoreCollision"] = "CHeap1,CHeap2,CHeap3,CHeap4,CHeap5,CHeap6,CHeap7",
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/cambot.png"
+          }
+        },
+        {
+          id = 251,
+          name = "Swatbot3",
+          type = "Swatbot",
+          shape = "rectangle",
+          x = 640,
+          y = 5440,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["follow"] = "SW3Waypoint3,SW3Waypoint2,SW3Waypoint1,SW3Waypoint2",
+            ["followRepeat"] = true,
+            ["ghost"] = true,
+            ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7",
+            ["ignorePlayer"] = true,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/swatbot.png"
+          }
+        },
+        {
+          id = 252,
+          name = "SW3Waypoint1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1216,
+          y = 5440,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 253,
+          name = "SW3Waypoint2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 544,
+          y = 5440,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 254,
+          name = "SW3Waypoint3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 128,
+          y = 5440,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 255,
+          name = "SW3Heap1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 608,
+          y = 5632,
+          width = 128,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["hideOffset"] = 96,
+            ["hidingspot"] = true,
+            ["sprite"] = "../art/sprites/heap.png"
+          }
+        },
+        {
+          id = 256,
+          name = "SW3Heap3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 352,
+          y = 5632,
+          width = 128,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["hideOffset"] = 26,
+            ["hidingspot"] = true,
+            ["sprite"] = "../art/sprites/heap.png"
+          }
+        },
+        {
+          id = 259,
+          name = "SW3Heap2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 480,
+          y = 5632,
+          width = 128,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["hideOffset"] = 64,
+            ["hidingspot"] = true,
+            ["sprite"] = "../art/sprites/heap.png"
+          }
+        },
+        {
+          id = 260,
+          name = "SW3Heap4",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 128,
+          y = 5632,
+          width = 128,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["hideOffset"] = 96,
+            ["hidingspot"] = true,
+            ["sprite"] = "../art/sprites/heap.png"
+          }
+        },
+        {
+          id = 262,
+          name = "Chest3",
+          type = "Chest",
+          shape = "rectangle",
+          x = 2656,
+          y = 2880,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["TuningFork"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
           }
         }
       }

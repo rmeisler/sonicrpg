@@ -71,7 +71,10 @@ local PummelTrigger = function(self, key, _, target)
 		end
 
 		self.scene.audio:stopSfx()
-		self.scene.audio:playSfx("smack")
+		
+		if not self.stats.miss then
+			self.scene.audio:playSfx("smack")
+		end
 		
 		local targetSp = target.sprite
 		self.scene:run(Spawn(Parallel {

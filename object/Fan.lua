@@ -68,7 +68,9 @@ end
 function Fan:exit()
 	if GameState:isFlagSet(self) and not self.nosound then
 		self.scene.audio:stopSfx("fan")
-		self.scene.fans[tostring(self)] = nil
+		if self.scene.fans then
+			self.scene.fans[tostring(self)] = nil
+		end
 	end
 end
 

@@ -230,7 +230,7 @@ function Player:updateKeyHint()
 					dir = "right"
 				end
 			else
-				if (self.y + self.sprite.h) >
+				if (self.y + self.sprite.h/2) >
 				   (closestKeyHint.y + closestKeyHint.sprite.h*2)
 				then
 					dir = "up"
@@ -238,7 +238,8 @@ function Player:updateKeyHint()
 					dir = "down"
 				end
 			end
-			self:showKeyHint(false, nil, "press"..dir)
+			-- FIXME: Maybe make directional hide hint work better
+			--self:showKeyHint(false, nil, "press"..dir)
 		elseif closestKeyHint.isInteractable then
 			self:showKeyHint(true, closestKeyHint.specialHintPlayer)
 		end

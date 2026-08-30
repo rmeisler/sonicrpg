@@ -385,7 +385,7 @@ function Bot:update(dt)
 		end
 
 		local lineOfSight = self:noticePlayer(false)
-		if self.noInvestigate then
+		if self.noInvestigate and (lineOfSight == Bot.NOTICE_HEAR or lineOfSight == Bot.NOTICE_SEE) then
 			self:removeSceneHandler("update")
 			self:addSceneHandler("update", Bot.updateAction)
 			self.sprite:setAnimation("idle"..self.manualFacing)

@@ -22,27 +22,27 @@ return {
 	{
         type = "map",
         file = "maps/tunnel1.lua",
-		primary = true
-    },
-	{
-        type = "map",
-        file = "maps/tunnel2.lua",
-		primary = true
-    },
-	{
-        type = "map",
-        file = "maps/robo_opening3.lua",
 		--primary = true
     },
 	{
         type = "map",
+        file = "maps/tunnel2.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/robo_opening3.lua",
+		primary = true
+    },
+	{
+        type = "map",
         file = "maps/forgottenhideout.lua",
-		primary = true -- testing
+		--primary = true -- testing
     },
 	{
         type = "map",
         file = "maps/run3.lua",
-		primary = true -- testing
+		--primary = true -- testing
     },
 	{
         type = "map",
@@ -650,6 +650,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/cheetarun.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/fan.ogg",
 		category = "sfx"
 	},
 	{

@@ -105,11 +105,10 @@ return function(scene)
 			MessageBox{message="Snively: You've done very well, my pet. {p120}The Princess\nand her hedgehog will be hopelessly trapped down there...\n{p120}in the {h robot wasteland}...", textSpeed=3, closeAction=Wait(5)},
 			Wait(1),			
 			Animate(scene.objectLookup.Snively.sprite, "idleright_lookleft"),
-			MessageBox{message="Snively: ...{p80}can't have the big round guy finding out\nabout this, though...", textSpeed=3, closeAction=Wait(4)},
+			MessageBox{message="Snively: ...{p80}can't have the big round guy finding out\nabout this, though...", textSpeed=3, closeAction=Wait(3)},
 			Do(function() scene.objectLookup.Snively.sprite:setAnimation("stepback_left") end),
 			Ease(scene.objectLookup.Snively, "x", function() return scene.objectLookup.Snively.x - 25 end, 1, "linear"),
 			Animate(scene.objectLookup.Snively.sprite, "prep_kick"),
-			Wait(1),
 			Parallel {
 				Animate(scene.objectLookup.Snively.sprite, "kick"),
 				Ease(scene.objectLookup.Snively, "x", function() return scene.objectLookup.Snively.x + 70 end, 4),

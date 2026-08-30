@@ -80,7 +80,7 @@ function CreditsSplashScene:onEnter()
 		]]
 		
 		Spawn(Serial {
-			Wait(5),
+			Wait(6),
 			PlayAudio("music", "ffta_sonicgenesis", 1.0)
 		}),
 

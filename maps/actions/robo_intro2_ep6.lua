@@ -26,6 +26,7 @@ local Spawn = require "actions/Spawn"
 local Repeat = require "actions/Repeat"
 
 local BasicNPC = require "object/BasicNPC"
+local Player = require "object/Player"
 
 return function(scene)
 	local subtext = TypeText(
@@ -56,10 +57,51 @@ return function(scene)
 			Ease(subtext.color, 4, 0, 1)
 		}
 	})
-
-	if GameState:isFlagSet("robo_intro2_done") then
-		return Action()
+	
+	scene.player.collisionHSOffsets = {
+		right_top = {x = 0, y = 0},
+		right_bot = {x = 0, y = 0},
+		left_top = {x = 0, y = 0},
+		left_bot = {x = 0, y = 0},
+	}
+	scene.player.dustColor = Player.ROBOTROPOLIS_DUST_COLOR
+	
+	scene.player.handlers.caught = nil
+	local caughtHandler
+	caughtHandler = function(bot)
+		scene.player.doingSpecialMove = false
+		scene.player.basicUpdate = function(p, dt) end
+		scene.player.sprite:setAnimation("shock")
+		for k,v in pairs(scene.player.keyhints) do
+			scene.player.hidekeyhints[k] = v
+		end
+		scene.player:removeKeyHint()
+		scene.player:removeHandler("caught", caughtHandler)
+		scene:run(
+			BlockPlayer {
+				Wait(1),
+				Do(function()
+					scene:restart{hint="caught", fadeOutMusic=false}
+				end),
+				Do(function() end)
+			}
+		)
 	end
+	scene.player:addHandler("caught", caughtHandler)
+
+	if GameState:isFlagSet("ep6_robo_intro2_done") then
+		return Do(function()
+			scene.player.y = scene.player.y + 200
+			scene.player.state = "idleleft"
+			scene.objectLookup.SonicHide.hidden = true
+			scene.objectLookup.BHide.hidden = true
+			scene.objectLookup.Swatbot1.ignorePlayer = false
+			scene.objectLookup.Swatbot3.ignorePlayer = false
+			scene.objectLookup.IntroCambot:remove()
+		end)
+	end
+	
+	GameState:setFlag("ep6_robo_intro2_done")
 	
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.hidden = true
@@ -86,6 +128,9 @@ return function(scene)
 			scene.player.x = cambot.x
 			scene.player.y = cambot.y
 
+			GameState.leader = "sally"
+			scene.player:updateSprite()
+			
 			scene.player.sprite.visible = false
 			scene.player.dropShadow.hidden = true
 			scene.player.nokeyhints = true
@@ -147,6 +192,9 @@ return function(scene)
 				Wait(1),
 				Ease(scene.objectLookup.SonicHide, "y", function() return scene.objectLookup.SonicHide.y - 70 end, 4, "inout"),
 				Wait(1),
+				Do(function()
+					scene.objectLookup.BHide.hidden = false
+				end),
 				Ease(scene.objectLookup.BHide, "y", function() return scene.objectLookup.BHide.y - 60 end, 4, "inout"),
 				Wait(2),
 				
@@ -210,39 +258,67 @@ return function(scene)
 
 		PlayAudio("music", "patrol", 1, true, true),
 		Wait(1),
-		MessageBox {message="Sally: Remember guys{p60}, our final mission is\ntomorrow{p60}, so safety is our top priority."},
-		MessageBox {message="Sally: This means we are going to take the long way down{p60}, utility tunnels."},
-		MessageBox {message="Sally: And most importantly{p60}, no engaging with any\nsecurity bots!{p60} {h Sneak don't fight}."},
+		MessageBox {message="Sally: Alright!"},
+		MessageBox {message="Sally: Remember guys{p40}, our big mission is tomorrow!\n{p60}So what does that mean?"},
+		Animate(partySprites.sonic.sprite, "smileleft"),
+		MessageBox {message="Sonic: We {h blast in}{p40}, and {h jam out}!"},
+		Animate(partySprites.sally.sprite, "thinking"),
+		partySprites.sally:hop(),
+		MessageBox {message="Sally: No {h blasting} or {h jamming}!!"},
+		Animate(partySprites.sonic.sprite, "irritated"),
+		partySprites.sonic:hop(),
+		MessageBox {message="Sonic: Well what does it mean then?"},
+		Animate(partySprites.sally.sprite, "idleright"),
+		MessageBox {message="Sally: No engaging with any security bots!{p60} In\nother words...{p40} {h sneak don't fight}!"},
+		Animate(partySprites.sonic.sprite, "idleleft"),
+		MessageBox {message="Sonic: Got it."},
 		
-		AudioFade("music", 1, 0, 1),
+		AudioFade("music", 1, 0, 0.5),
+		Wait(1),
 		Animate(partySprites.b.sprite, "pose"),
 		MessageBox {message="B: ..."},
-		Animate(partySprites.sonic.sprite, "idleright"),
+		Wait(1),
 		MessageBox {message="Sally: Something wrong, B?"},
-		MessageBox {message="B: ...{p60}No, it's nothing.{p60} Let's go."},
+		Animate(partySprites.sonic.sprite, "idleright"),
+		MessageBox {message="B: ...{p40}Just gotta a feeling..."},
+		Animate(partySprites.sonic.sprite, "idleright"),
+		MessageBox {message="Sonic: A feeling? {p60}What kind of feeling?"},
+		Animate(partySprites.b.sprite, "idleleft"),
+		MessageBox {message="B: It's probably nothing. {p60}Let's go."},
+		Wait(1),
+
 		PlayAudio("music", "infiltration", 1, true, true),
-		Animate(partySprites.sonic.sprite, "pose"),
-		MessageBox {message="Sonic: Let's do it to it!"},
+		Parallel {
+			Animate(partySprites.sonic.sprite, "pose"),
+			Animate(partySprites.sally.sprite, "pose"),
+			Animate(partySprites.b.sprite, "pose")
+		},
+		MessageBox {message="All: Let's do it to it!"},
 		
 		Wait(0.2),
 		
 		Do(function()
 			partySprites.sally.sprite:setAnimation("walkright")
+			partySprites.sonic.sprite:setAnimation("walkleft")
+			partySprites.b.sprite:setAnimation("walkleft")
 		end),
 		Parallel {
 			Do(function()
 				partySprites.sally.x = partySprites.sally.x + scene.player.movespeed * (love.timer.getDelta()/0.016)
+				partySprites.sonic.x = partySprites.sonic.x - scene.player.movespeed * (love.timer.getDelta()/0.016)
+				partySprites.b.x = partySprites.b.x - scene.player.movespeed * (love.timer.getDelta()/0.016)
 				scene.player.x = scene.player.x + scene.player.movespeed * (love.timer.getDelta()/0.016)
 			end),
 			
-			Wait(0.4)
+			Wait(0.3)
 		},
 		
 		Do(function()
-			scene.player.x = partySprites.sally.x + scene.player.width*2
+			scene.player.x = partySprites.sally.x
 			scene.player.y = partySprites.sally.y + scene.player.height
 			scene.player.sprite.visible = true
 			scene.player.dropShadow.sprite.visible = true
+			scene.player.state = "idleleft"
 			
 			for _, npc in pairs(partySprites) do
 				npc:remove()
@@ -255,10 +331,9 @@ return function(scene)
 			scene.player.cinematic = false
 			scene.player.dontfuckingmove = false
 			scene.objectLookup.Swatbot1.ignorePlayer = false
+			scene.objectLookup.Swatbot3.ignorePlayer = false
 			scene.player.nokeyhints = false
 			scene.player.cinematicStack = 0
-			
-			GameState:setFlag("robo_intro2_ep6_done")
 		end)
 	}
 end
