@@ -20,7 +20,7 @@ local Fan = class(NPC)
 
 Fan.WIDTH_OFFSET = 30
 Fan.PULL_RANGE = 300
-Fan.PULL_SPEED = 1.5
+Fan.PULL_SPEED = 3.5
 
 function Fan:construct(scene, layer, object)
 	self.sprite = SpriteNode(
@@ -54,12 +54,16 @@ function Fan:construct(scene, layer, object)
 	end
 
 	self:addInteract(Fan.use)
+	self.isInteractable = false
 	self:addSceneHandler("exit")
 	self:addSceneHandler("enter")
 	
 	self.respawn = object.properties.respawn
 	self.nosound = object.properties.nosound
 	self.broken = false
+	if self.object.properties.onBroken then
+		self.onBroken = assert(loadstring(self.object.properties.onBroken))()
+	end
 	
 	if object.properties.on then
 		self:use()
@@ -119,7 +123,7 @@ function Fan:update(dt)
 					if target.y < self.y then
 						self.scene.audio:setLooping("sfx", false)
 						if target.hard then
-							self.scene.audio:playSfx("openchasm", 1.0)
+							self.scene.audio:playSfx("explosion", 1.0)
 						else
 							self.scene.audio:playSfx("smack", 1.0)
 						end
@@ -128,26 +132,31 @@ function Fan:update(dt)
 						self:run {
 							Parallel {
 								Ease(target.sprite.color, 4, 0, 1),
-								Ease(target.sprite.color, 1, 800, 1)
+								Ease(target.sprite.color, 1, 800, 1),
+								target.hard and
+									Serial {
+										Do(function()
+											self.broken = true
+											self:removeInteract(Fan.use)
+											if self.onBroken then
+												print("call on broken")
+												self:onBroken()
+											end
+											self.scene.audio:stopSfx("fan")
+										end),
+										Parallel {
+											Ease(self.sprite.color, 4, 0, 1),
+											Ease(self.bladeSprites.first.color, 4, 0, 1),
+											Ease(self.bladeSprites.second.color, 4, 0, 1),
+											Ease(self.bladeSprites.third.color, 4, 0, 1),
+											Ease(self.bladeSprites.fourth.color, 4, 0, 1)
+										}
+									} or
+									Action(),
 							},
 							Do(function()
 								target:remove()
-							end),
-							target.hard and
-								Serial {
-									Do(function()
-										self.broken = true
-										self.scene.audio:stopSfx("fan")
-									end),
-									Parallel {
-										Ease(self.sprite.color, 4, 0, 1),
-										Ease(self.bladeSprites.first.color, 4, 0, 1),
-										Ease(self.bladeSprites.second.color, 4, 0, 1),
-										Ease(self.bladeSprites.third.color, 4, 0, 1),
-										Ease(self.bladeSprites.fourth.color, 4, 0, 1)
-									}
-								} or
-								Action()
+							end)
 						}
 					end
 					target.sprite:setAnimation("hurtdown")

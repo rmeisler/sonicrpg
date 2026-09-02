@@ -22,7 +22,7 @@ return {
 	{
         type = "map",
         file = "maps/tunnel1.lua",
-		--primary = true
+		primary = true
     },
 	{
         type = "map",
@@ -32,12 +32,12 @@ return {
 	{
         type = "map",
         file = "maps/robo_opening3.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",
         file = "maps/roboterminal2.lua",
-		primary = true
+		--primary = true
     },
 	{
         type = "map",

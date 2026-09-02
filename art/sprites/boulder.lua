@@ -21,5 +21,8 @@ return {
 		hurt = {
             frames = {{0,0}}
         },
+		hurtdown = {
+			frames = {{0,0}}
+		},
     }
 }

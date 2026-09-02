@@ -8,7 +8,7 @@ return {
   height = 192,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 263,
+  nextobjectid = 266,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/robo_intro2_ep6.lua",
@@ -1571,7 +1571,7 @@ return {
             ["follow"] = "Waypoint1,Waypoint2,Waypoint3,Waypoint4",
             ["followRepeat"] = true,
             ["ghost"] = true,
-            ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7",
+            ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest4",
             ["ignorePlayer"] = true,
             ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/swatbot.png"
@@ -2393,7 +2393,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hideOffset"] = 26,
+            ["hideOffset"] = 64,
             ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/heap.png"
           }
@@ -2412,7 +2412,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hideOffset"] = 26,
+            ["hideOffset"] = 96,
             ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/heap.png"
           }
@@ -2431,7 +2431,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["hideOffset"] = 26,
+            ["hideOffset"] = 96,
             ["hidingspot"] = true,
             ["sprite"] = "../art/sprites/heap.png"
           }
@@ -2675,25 +2675,6 @@ return {
           }
         },
         {
-          id = 260,
-          name = "SW3Heap4",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 128,
-          y = 5632,
-          width = 128,
-          height = 32,
-          rotation = 0,
-          gid = 1922,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["hideOffset"] = 96,
-            ["hidingspot"] = true,
-            ["sprite"] = "../art/sprites/heap.png"
-          }
-        },
-        {
           id = 262,
           name = "Chest3",
           type = "Chest",
@@ -2708,6 +2689,65 @@ return {
           properties = {
             ["TuningFork"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 263,
+          name = "Chest4",
+          type = "Chest",
+          shape = "rectangle",
+          x = 1728,
+          y = 5760,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["WhiteLeaf"] = 1,
+            ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 264,
+          name = "Swatbot4",
+          type = "Swatbot",
+          shape = "rectangle",
+          x = 1600,
+          y = 5664,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "idleleft",
+            ["ghost"] = true,
+            ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest4",
+            ["ignorePlayer"] = true,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/swatbot.png"
+          }
+        },
+        {
+          id = 265,
+          name = "Swatbot5",
+          type = "Swatbot",
+          shape = "rectangle",
+          x = 1792,
+          y = 5664,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "idleright",
+            ["ghost"] = true,
+            ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest4",
+            ["ignorePlayer"] = true,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/swatbot.png"
           }
         }
       }

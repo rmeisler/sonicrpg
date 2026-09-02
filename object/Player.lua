@@ -1168,7 +1168,7 @@ function Player:basicUpdate(dt)
     end
 	
 	-- Swatbot step sounds
-	if moving and isSwatbot and love.timer.getTime() - self.lastSwatbotStepSfx > 0.8 then
+	if moving and isSwatbot and love.timer.getTime() - self.lastSwatbotStepSfx > 0.7 then
 		self.scene.audio:playSfx("swatbotstep", 1.0)
 		self.lastSwatbotStepSfx = love.timer.getTime()
 	end

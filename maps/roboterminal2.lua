@@ -8,7 +8,7 @@ return {
   height = 38,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 130,
+  nextobjectid = 135,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["regionName"] = "Robotropolis",
@@ -420,7 +420,7 @@ return {
           shape = "rectangle",
           x = 1312,
           y = 512,
-          width = 64,
+          width = 32,
           height = 160,
           rotation = 0,
           gid = 2332,
@@ -492,7 +492,8 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
-            ["on"] = false
+            ["on"] = false,
+            ["onBroken"] = "return function(self)\n    print(\"here we goooo!\")\n    self.scene.objectLookup.Tunnel.isInteractable = true\nend"
           }
         },
         {
@@ -568,76 +569,8 @@ return {
             ["align"] = "bottom_left",
             ["hard"] = true,
             ["isBot"] = true,
-            ["onRemove"] = "return function(self)\n    self.scene.objectLookup.BoulderPushUp:remove()\n    self.scene.objectLookup.BoulderPushDown:remove()\n    self.scene.objectLookup.BoulderPushLeft:remove()\n    self.scene.objectLookup.BoulderPushRight:remove()\nend",
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    local dir\n    local amount\n    player.hidekeyhints[tostring(self)] = nil\n\n    if player:isFacing(\"up\") then\n        dir = \"y\"\n        amount = -64\n\n        if not self.scene:canMove(self.x + self.object.width/2, self.y, 0, -64) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    elseif player:isFacing(\"down\") then\n        dir = \"y\"\n        amount = 64\n\n        if not self.scene:canMove(self.x + self.object.width/2, self.y + self.object.height, 0, 64) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    elseif player:isFacing(\"right\") then\n        dir = \"x\"\n        amount = 64\n\n        if not self.scene:canMove(self.x + self.object.width, self.y + self.object.height/2, 64, 0) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    elseif player:isFacing(\"left\") then\n        dir = \"x\"\n        amount = -64\n\n        if not self.scene:canMove(self.x, self.y + self.object.height/2, -64, 0) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    end\n\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"openchasm\", 1, true),\n        Parallel {\n            Ease(self, dir, function() return self[dir] + amount end, 2),\n            Ease(self.object, dir, function() return self.object[dir] + amount end, 2)\n        },\n        Do(function()\n            self:updateCollision()\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/boulder.png"
-          }
-        },
-        {
-          id = 120,
-          name = "BoulderPushRight",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1472,
-          y = 896,
-          width = 32,
-          height = 64,
-          rotation = 0,
-          gid = 2311,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    local dir = \"x\"\n    local amount = 32\n    player.hidekeyhints[tostring(self)] = nil\n    if not player:isFacing(\"right\") then\n        return Do(function() end)\n    end\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"openchasm\", 1, true),\n        Parallel {\n            Ease(self.scene.objectLookup.BoulderPushUp, dir, function() return self.scene.objectLookup.BoulderPushUp[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushDown, dir, function() return self.scene.objectLookup.BoulderPushDown[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushLeft, dir, function() return self.scene.objectLookup.BoulderPushLeft[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushRight, dir, function() return self.scene.objectLookup.BoulderPushRight[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.Boulder, dir, function() return self.scene.objectLookup.Boulder[dir] + amount end, 2)\n        },\n        Do(function()\n            self.scene.objectLookup.BoulderPushUp:updateCollision()\n            self.scene.objectLookup.BoulderPushDown:updateCollision()\n            self.scene.objectLookup.BoulderPushLeft:updateCollision()\n            self.scene.objectLookup.BoulderPushRight:updateCollision()\n            self.scene.objectLookup.Boulder:updateCollision()\n            player:showKeyHint(true)\n        end)\n    }\nend"
-          }
-        },
-        {
-          id = 121,
-          name = "BoulderPushDown",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1536,
-          y = 800,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 2311,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    local dir = \"y\"\n    local amount = 32\n    player.hidekeyhints[tostring(self)] = nil\n    if not player:isFacing(\"down\") then\n        return Do(function() end)\n    end\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"openchasm\", 1, true),\n        Parallel {\n            Ease(self.scene.objectLookup.BoulderPushUp, dir, function() return self.scene.objectLookup.BoulderPushUp[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushDown, dir, function() return self.scene.objectLookup.BoulderPushDown[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushLeft, dir, function() return self.scene.objectLookup.BoulderPushLeft[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushRight, dir, function() return self.scene.objectLookup.BoulderPushRight[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.Boulder, dir, function() return self.scene.objectLookup.Boulder[dir] + amount end, 2)\n        },\n        Do(function()\n            self.scene.objectLookup.BoulderPushUp:updateCollision()\n            self.scene.objectLookup.BoulderPushDown:updateCollision()\n            self.scene.objectLookup.BoulderPushLeft:updateCollision()\n            self.scene.objectLookup.BoulderPushRight:updateCollision()\n            self.scene.objectLookup.Boulder:updateCollision()\n            player:showKeyHint(true)\n        end)\n    }\nend"
-          }
-        },
-        {
-          id = 122,
-          name = "BoulderPushLeft",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1632,
-          y = 896,
-          width = 32,
-          height = 64,
-          rotation = 0,
-          gid = 2311,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    local dir = \"x\"\n    local amount = -32\n    player.hidekeyhints[tostring(self)] = nil\n    if not player:isFacing(\"left\") then\n        return Do(function() end)\n    end\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"openchasm\", 1, true),\n        Parallel {\n            Ease(self.scene.objectLookup.BoulderPushUp, dir, function() return self.scene.objectLookup.BoulderPushUp[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushDown, dir, function() return self.scene.objectLookup.BoulderPushDown[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushLeft, dir, function() return self.scene.objectLookup.BoulderPushLeft[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushRight, dir, function() return self.scene.objectLookup.BoulderPushRight[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.Boulder, dir, function() return self.scene.objectLookup.Boulder[dir] + amount end, 2)\n        },\n        Do(function()\n            self.scene.objectLookup.BoulderPushUp:updateCollision()\n            self.scene.objectLookup.BoulderPushDown:updateCollision()\n            self.scene.objectLookup.BoulderPushLeft:updateCollision()\n            self.scene.objectLookup.BoulderPushRight:updateCollision()\n            self.scene.objectLookup.Boulder:updateCollision()\n            player:showKeyHint(true)\n        end)\n    }\nend"
-          }
-        },
-        {
-          id = 123,
-          name = "BoulderPushUp",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 1536,
-          y = 960,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 2311,
-          visible = true,
-          properties = {
-            ["ghost"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    local dir = \"y\"\n    local amount = -32\n    player.hidekeyhints[tostring(self)] = nil\n    if not player:isFacing(\"up\") then\n        return Do(function() end)\n    end\n\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"openchasm\", 1, true),\n        Parallel {\n            Ease(self.scene.objectLookup.BoulderPushUp, dir, function() return self.scene.objectLookup.BoulderPushUp[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushDown, dir, function() return self.scene.objectLookup.BoulderPushDown[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushLeft, dir, function() return self.scene.objectLookup.BoulderPushLeft[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.BoulderPushRight, dir, function() return self.scene.objectLookup.BoulderPushRight[dir] + amount end, 2),\n            Ease(self.scene.objectLookup.Boulder, dir, function() return self.scene.objectLookup.Boulder[dir] + amount end, 2)\n        },\n        Do(function()\n            self.scene.objectLookup.BoulderPushUp:updateCollision()\n            self.scene.objectLookup.BoulderPushDown:updateCollision()\n            self.scene.objectLookup.BoulderPushLeft:updateCollision()\n            self.scene.objectLookup.BoulderPushRight:updateCollision()\n            self.scene.objectLookup.Boulder:updateCollision()\n            player:showKeyHint(true)\n        end)\n    }\nend"
           }
         },
         {
@@ -660,6 +593,84 @@ return {
             ["scene"] = "factoryfloor_ep6.lua",
             ["spawn_point"] = "Exit1",
             ["walkin"] = true
+          }
+        },
+        {
+          id = 131,
+          name = "Boulder2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 384,
+          y = 896,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["hard"] = true,
+            ["isBot"] = true,
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    local dir\n    local amount\n    player.hidekeyhints[tostring(self)] = nil\n\n    if player:isFacing(\"up\") then\n        dir = \"y\"\n        amount = -64\n\n        if not self.scene:canMove(self.x + self.object.width/2, self.y, 0, -64) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    elseif player:isFacing(\"down\") then\n        dir = \"y\"\n        amount = 64\n\n        if not self.scene:canMove(self.x + self.object.width/2, self.y + self.object.height, 0, 64) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    elseif player:isFacing(\"right\") then\n        dir = \"x\"\n        amount = 64\n\n        if not self.scene:canMove(self.x + self.object.width, self.y + self.object.height/2, 64, 0) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    elseif player:isFacing(\"left\") then\n        dir = \"x\"\n        amount = -64\n\n        if not self.scene:canMove(self.x, self.y + self.object.height/2, -64, 0) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    end\n\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"openchasm\", 1, true),\n        Parallel {\n            Ease(self, dir, function() return self[dir] + amount end, 2),\n            Ease(self.object, dir, function() return self.object[dir] + amount end, 2)\n        },\n        Do(function()\n            self:updateCollision()\n        end)\n    }\nend",
+            ["sprite"] = "../art/sprites/boulder.png"
+          }
+        },
+        {
+          id = 132,
+          name = "Boulder3",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 96,
+          y = 864,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["hard"] = true,
+            ["isBot"] = true,
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    local dir\n    local amount\n    player.hidekeyhints[tostring(self)] = nil\n\n    if player:isFacing(\"up\") then\n        dir = \"y\"\n        amount = -64\n\n        if not self.scene:canMove(self.x + self.object.width/2, self.y, 0, -64) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    elseif player:isFacing(\"down\") then\n        dir = \"y\"\n        amount = 64\n\n        if not self.scene:canMove(self.x + self.object.width/2, self.y + self.object.height, 0, 64) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    elseif player:isFacing(\"right\") then\n        dir = \"x\"\n        amount = 64\n\n        if not self.scene:canMove(self.x + self.object.width, self.y + self.object.height/2, 64, 0) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    elseif player:isFacing(\"left\") then\n        dir = \"x\"\n        amount = -64\n\n        if not self.scene:canMove(self.x, self.y + self.object.height/2, -64, 0) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    end\n\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"openchasm\", 1, true),\n        Parallel {\n            Ease(self, dir, function() return self[dir] + amount end, 2),\n            Ease(self.object, dir, function() return self.object[dir] + amount end, 2)\n        },\n        Do(function()\n            self:updateCollision()\n        end)\n    }\nend",
+            ["sprite"] = "../art/sprites/boulder.png"
+          }
+        },
+        {
+          id = 133,
+          name = "Boulder4",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1888,
+          y = 896,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["hard"] = true,
+            ["isBot"] = true,
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Do = require \"actions/Do\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Ease = require \"actions/Ease\"\n\nreturn function(self, player)\n    local dir\n    local amount\n    player.hidekeyhints[tostring(self)] = nil\n\n    if player:isFacing(\"up\") then\n        dir = \"y\"\n        amount = -64\n\n        if not self.scene:canMove(self.x + self.object.width/2, self.y, 0, -64) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    elseif player:isFacing(\"down\") then\n        dir = \"y\"\n        amount = 64\n\n        if not self.scene:canMove(self.x + self.object.width/2, self.y + self.object.height, 0, 64) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    elseif player:isFacing(\"right\") then\n        dir = \"x\"\n        amount = 64\n\n        if not self.scene:canMove(self.x + self.object.width, self.y + self.object.height/2, 64, 0) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    elseif player:isFacing(\"left\") then\n        dir = \"x\"\n        amount = -64\n\n        if not self.scene:canMove(self.x, self.y + self.object.height/2, -64, 0) then\n            return PlayAudio(\"sfx\", \"openchasm\", 1, true)\n        end\n    end\n\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"openchasm\", 1, true),\n        Parallel {\n            Ease(self, dir, function() return self[dir] + amount end, 2),\n            Ease(self.object, dir, function() return self.object[dir] + amount end, 2)\n        },\n        Do(function()\n            self:updateCollision()\n        end)\n    }\nend",
+            ["sprite"] = "../art/sprites/boulder.png"
+          }
+        },
+        {
+          id = 134,
+          name = "Tunnel",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1376,
+          y = 352,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 1922,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["onInit"] = "return function(self)\n    self.isInteractable = false\nend",
+            ["onInteract"] = "local MessageBox = require \"actions/MessageBox\"\nlocal Animate = require \"actions/Animate\"\nlocal Serial = require \"actions/Serial\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal Menu = require \"actions/Menu\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nlocal Layout = require \"util/Layout\"\nlocal Transform = require \"util/Transform\"\n\nreturn function(self)\n        return BlockPlayer {\n            Menu {\n                layout = Layout {\n                    {Layout.Text{text=\"Enter air duct?\"}, selectable=false},\n                    {Layout.Text{text=\"Yes\"}, choose = function(menu)\n                        menu:close()\n                        self.scene:changeScene{map=\"tunnel1\", fadeOutMusic=true, fadeOutSpeed=0.2, fadeInSpeed=0.2}\n                    end},\n                    {Layout.Text{text=\"No\"}, choose = function(menu)\n                        menu:close()\n                    end},\n                },\n                cancellable = true,\n                transform = Transform(love.graphics.getWidth()/2, love.graphics.getHeight()/2 + 30),\n                selectedRow = 2\n            }\n        }\nend"
           }
         }
       }
@@ -894,44 +905,44 @@ return {
       properties = {},
       encoding = "lua",
       data = {
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1777, 1777, 1777, 1777, 1777, 1777, 1777, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 1846, 1846, 1846, 1846, 0, 0, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 74, 0, 0, 0, 0, 0, 0, 74, 1846, 1846, 1846, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 1846, 1846, 1846, 1777, 1777, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 0, 0, 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1777, 1777, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 0, 0, 0, 0, 0, 0, 0, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1777, 1777, 1777, 1777, 1777, 1777, 1777, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1846, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1846, 1846, 1846, 1846, 1776, 1776, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 74, 1776, 1776, 1776, 1776, 1776, 1776, 74, 1846, 1846, 1846, 1846, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74, 1776, 1776, 1776, 1776, 1776, 1776, 1846, 0, 0, 0, 1846, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74, 1776, 1776, 1776, 1776, 1776, 1776, 1846, 0, 0, 0, 1846, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 0, 0, 0, 1775, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1846, 1846, 1846, 1846, 1777, 1777, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1777, 1777, 1776, 1776, 0, 0, 0, 0, 0, 0, 0, 0, 1776, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1775, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 0, 0, 0, 0, 0, 0, 0, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 1846, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 1846, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 1846, 0, 0, 0, 0, 0, 0, 0, 1846, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1846, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1846, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1775, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776,
+        1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776, 1776
       }
     },
     {

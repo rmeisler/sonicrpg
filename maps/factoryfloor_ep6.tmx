@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="45" height="171" tilewidth="32" tileheight="32" infinite="0" nextobjectid="179">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="45" height="171" tilewidth="32" tileheight="32" infinite="0" nextobjectid="180">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/datacenter1f.png"/>
   <property name="onload" type="file" value="actions/factoryfloor.lua"/>
@@ -391,7 +391,11 @@ return function(self)
                     {Layout.Text{text=&quot;Release claw?&quot;}, selectable=false},
                     {Layout.Text{text=&quot;Yes&quot;}, choose = function(menu)
                         menu:close()
-                        self.scene.objectLookup.Claw.release = true
+                        if self.scene.objectLookup.Claw.canRelease then
+                            self.scene.objectLookup.Claw.release = true
+                        else
+                            self.scene:run(MessageBox{message=&quot;Claw not ready...&quot;, sfx=&quot;error&quot;, blocking=true})
+                        end
                     end},
                     {Layout.Text{text=&quot;No&quot;}, choose = function(menu)
                         menu:close()
@@ -478,32 +482,32 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="157" name="ClawTemplateWaypoint1" type="BasicNPC" gid="3522" x="736" y="1568" width="32" height="32">
+  <object id="157" name="ClawTemplateWaypoint1" type="BasicNPC" gid="3522" x="736" y="1600" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="158" name="ClawTemplateWaypoint2" type="BasicNPC" gid="3522" x="1216" y="1568" width="32" height="32">
+  <object id="158" name="ClawTemplateWaypoint2" type="BasicNPC" gid="3522" x="1216" y="1600" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="159" name="ClawTemplateWaypoint4" type="BasicNPC" gid="3522" x="160" y="2048" width="32" height="32">
+  <object id="159" name="ClawTemplateWaypoint4" type="BasicNPC" gid="3522" x="160" y="2080" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="160" name="ClawTemplateWaypoint3" type="BasicNPC" gid="3522" x="576" y="2048" width="64" height="32">
+  <object id="160" name="ClawTemplateWaypoint3" type="BasicNPC" gid="3522" x="576" y="2080" width="64" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="161" name="ClawTemplateWaypoint5" type="BasicNPC" gid="3522" x="736" y="2400" width="32" height="32">
+  <object id="161" name="ClawTemplateWaypoint5" type="BasicNPC" gid="3522" x="736" y="2432" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="162" name="ClawTemplateWaypoint6" type="BasicNPC" gid="3522" x="1216" y="2400" width="32" height="32">
+  <object id="162" name="ClawTemplateWaypoint6" type="BasicNPC" gid="3522" x="1216" y="2432" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -543,6 +547,12 @@ end</property>
     <property name="orientation" value="up"/>
     <property name="scene" type="file" value="roboterminal2.lua"/>
     <property name="spawn_point" value="Exit1"/>
+   </properties>
+  </object>
+  <object id="179" name="Chest1" type="Chest" gid="3501" x="896" y="832" width="64" height="64">
+   <properties>
+    <property name="SwatbotBoots" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
  </objectgroup>
@@ -884,7 +894,9 @@ local YieldUntil = require &quot;actions/YieldUntil&quot;
 local Do = require &quot;actions/Do&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Ease = require &quot;actions/Ease&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
 local While = require &quot;actions/While&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
 
 return function(self)
     return Repeat(Serial {
@@ -900,8 +912,10 @@ return function(self)
                 Serial {
                     Parallel {
                         Serial {
+                            Do(function() self.canRelease = true end),
                             SimpleMove(self, &quot;left&quot;, 658),
                             SimpleMove(self, &quot;down&quot;, 1400),
+                            Do(function() self.canRelease = false end),
                             SimpleMove(self, &quot;right&quot;, 736),
                         },
                         Do(function()
@@ -934,18 +948,42 @@ return function(self)
                         self.scene.objectLookup.ConveyorObj3.itemAvailable = false
                     end),
                 },
-                BlockPlayer {
+                Serial {
+                    BlockPlayer {
                     Parallel {
                         Ease(self.scene.camPos, &quot;x&quot;, function() return self.scene.player.x - self.x end, 0.5),
                         Ease(self.scene.camPos, &quot;y&quot;, function() return self.scene.player.y- self.y end, 0.5)
                     },
                     Wait(0.5),
+                    PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1, true),
                     Animate(self.sprite, &quot;release&quot;),
+                    Do(function()
+                        self.scene.objectLookup.ClawTemplate3:swapLayer(&quot;lowerobjects&quot;)
+                    end),
                     Ease(self.scene.objectLookup.ClawTemplate3, &quot;y&quot;, function() return self.scene.objectLookup.ClawTemplate3.y + 100 end, 3),
+                    PlayAudio(&quot;sfx&quot;, &quot;bang&quot;, 1, true),
                     Parallel {
                         Ease(self.scene.camPos, &quot;x&quot;, 0, 0.5),
                         Ease(self.scene.camPos, &quot;y&quot;, 0, 0.5)
-                    },
+                    }},
+                    SimpleMove(self, &quot;up&quot;, 1302),
+                    SimpleMove(self, &quot;right&quot;, 1056),
+                    Do(function()
+                        self.release = false
+                        GameState:setFlag(&quot;factory_dropped_item3&quot;)
+                        self.scene.objectLookup.ClawTemplate3.object.x = self.scene.objectLookup.ClawTemplate3.x
+                        self.scene.objectLookup.ClawTemplate3.object.y = self.scene.objectLookup.ClawTemplate3.y
+                        self.scene.objectLookup.ClawTemplate3:updateCollision(&quot;objects&quot;)
+                        self.scene.objectLookup.ClawTemplate3:addInteract(function(claw)
+                            self.scene:run {
+                                MessageBox{message=&quot;You got a Swatbot Armor!&quot;, sfx=&quot;levelup&quot;, blocking=true},
+                                Do(function()
+                                    GameState:grantItem(require &quot;data/armor/SwatbotArmor&quot;, 1)
+                                    self.scene.objectLookup.ClawTemplate3:remove()
+                                end)
+                            }
+                        end)
+                    end)
                 })
             end
             
@@ -955,8 +993,10 @@ return function(self)
                     Serial {
                     Parallel {
                         Serial {
+                            Do(function() self.canRelease = true end),
                             SimpleMove(self, &quot;left&quot;, 658),
                             SimpleMove(self, &quot;down&quot;, 1910),
+                            Do(function() self.canRelease = false end),
                             SimpleMove(self, &quot;left&quot;, 578),
                         },
                         Do(function()
@@ -989,18 +1029,42 @@ return function(self)
                         self.scene.objectLookup.ConveyorObj2.itemAvailable = false
                     end),
                 },
-                BlockPlayer {
+                Serial {
+                    BlockPlayer {
                     Parallel {
                         Ease(self.scene.camPos, &quot;x&quot;, function() return self.scene.player.x - self.x end, 0.5),
                         Ease(self.scene.camPos, &quot;y&quot;, function() return self.scene.player.y- self.y end, 0.5)
                     },
                     Wait(0.5),
+                    PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1, true),
                     Animate(self.sprite, &quot;release&quot;),
+                    Do(function()
+                        self.scene.objectLookup.ClawTemplate2:swapLayer(&quot;lowerobjects&quot;)
+                    end),
                     Ease(self.scene.objectLookup.ClawTemplate2, &quot;y&quot;, function() return self.scene.objectLookup.ClawTemplate2.y + 100 end, 3),
+                    PlayAudio(&quot;sfx&quot;, &quot;bang&quot;, 1, true),
                     Parallel {
                         Ease(self.scene.camPos, &quot;x&quot;, 0, 0.5),
                         Ease(self.scene.camPos, &quot;y&quot;, 0, 0.5)
-                    },
+                    }},
+                    SimpleMove(self, &quot;up&quot;, 1302),
+                    SimpleMove(self, &quot;right&quot;, 1056),
+                    Do(function()
+                        self.release = false
+                        GameState:setFlag(&quot;factory_dropped_item2&quot;)
+                        self.scene.objectLookup.ClawTemplate2.object.x = self.scene.objectLookup.ClawTemplate2.x
+                        self.scene.objectLookup.ClawTemplate2.object.y = self.scene.objectLookup.ClawTemplate2.y
+                        self.scene.objectLookup.ClawTemplate2:updateCollision(&quot;objects&quot;)
+                        self.scene.objectLookup.ClawTemplate2:addInteract(function(claw)
+                            self.scene:run {
+                                MessageBox{message=&quot;You got a Swatbot Gauntlet!&quot;, sfx=&quot;levelup&quot;, blocking=true},
+                                Do(function()
+                                    GameState:grantItem(require &quot;data/weapons/SwatbotGauntlet&quot;, 1)
+                                    self.scene.objectLookup.ClawTemplate2:remove()
+                                end)
+                            }
+                        end)
+                    end)
                 })
             end
             
@@ -1010,8 +1074,10 @@ return function(self)
                     Serial {
                     Parallel {
                         Serial {
+                            Do(function() self.canRelease = true end),
                             SimpleMove(self, &quot;left&quot;, 658),
                             SimpleMove(self, &quot;down&quot;, 2262),
+                            Do(function() self.canRelease = false end),
                             SimpleMove(self, &quot;right&quot;, 736),
                         },
                         Do(function()
@@ -1044,27 +1110,50 @@ return function(self)
                         self.scene.objectLookup.ConveyorObj1.itemAvailable = false
                     end)
                 },
-                BlockPlayer {
+                Serial {
+                    BlockPlayer {
                     Parallel {
                         Ease(self.scene.camPos, &quot;x&quot;, function() return self.scene.player.x - self.x end, 0.5),
                         Ease(self.scene.camPos, &quot;y&quot;, function() return self.scene.player.y- self.y end, 0.5)
                     },
                     Wait(0.5),
+                    PlayAudio(&quot;sfx&quot;, &quot;levelup&quot;, 1, true),
                     Animate(self.sprite, &quot;release&quot;),
+                    Do(function()
+                        self.scene.objectLookup.ClawTemplate1:swapLayer(&quot;lowerobjects&quot;)
+                    end),
                     Ease(self.scene.objectLookup.ClawTemplate1, &quot;y&quot;, function() return self.scene.objectLookup.ClawTemplate1.y + 100 end, 3),
+                    PlayAudio(&quot;sfx&quot;, &quot;bang&quot;, 1, true),
                     Parallel {
                         Ease(self.scene.camPos, &quot;x&quot;, 0, 0.5),
                         Ease(self.scene.camPos, &quot;y&quot;, 0, 0.5)
-                    },
+                    }},
+                    SimpleMove(self, &quot;up&quot;, 1302),
+                    SimpleMove(self, &quot;right&quot;, 1056),
+                    Do(function()
+                        self.release = false
+                        GameState:setFlag(&quot;factory_dropped_item1&quot;)
+                        self.scene.objectLookup.ClawTemplate1.object.x = self.scene.objectLookup.ClawTemplate1.x
+                        self.scene.objectLookup.ClawTemplate1.object.y = self.scene.objectLookup.ClawTemplate1.y
+                        self.scene.objectLookup.ClawTemplate1:updateCollision(&quot;objects&quot;)
+                        self.scene.objectLookup.ClawTemplate1:addInteract(function(claw)
+                            self.scene:run {
+                                MessageBox{message=&quot;You got a Swatbot Helmet!&quot;, sfx=&quot;levelup&quot;, blocking=true},
+                                Do(function()
+                                    GameState:grantItem(require &quot;data/accessories/SwatbotHelmet&quot;, 1)
+                                    self.scene.objectLookup.ClawTemplate1:remove()
+                                end)
+                            }
+                        end)
+                    end)
                 })
             end
             
             self:run {
-                conveyor3Action,
-                conveyor2Action,
-                conveyor1Action,
+                not GameState:isFlagSet(&quot;factory_dropped_item3&quot;) and conveyor3Action or Action(),
+                not GameState:isFlagSet(&quot;factory_dropped_item2&quot;) and conveyor2Action or Action(),
+                not GameState:isFlagSet(&quot;factory_dropped_item1&quot;) and conveyor1Action or Action(),
                 Do(function()
-                    print(&quot;progress&quot;)
                     self.progress = true
                 end)
             }

@@ -200,8 +200,6 @@ function NPC:updateCollision(layerName)
 
 	local collisionLayer = self.scene.objectCollisionLayer[layerName or self.layer.name]
 	if not self.object.properties.nocollision and collisionLayer then
-		self.object.x = self.x
-		self.object.y = self.y
 		local sx,sy = self.scene:worldCoordToCollisionCoord(self.object.x, self.object.y)
 		local dx,dy = self.scene:worldCoordToCollisionCoord(self.object.x + self.object.width, self.object.y + self.object.height)
 		for y=sy, dy-1 do
@@ -599,8 +597,6 @@ function NPC:update(dt)
 		return
 	end
 
-	--self:maybeSwapLayer()
-
 	-- Don't interact with player if player doesn't care about your layer
 	if (self.scene.player.onlyInteractWithLayer ~= nil and
 		self.scene.player.onlyInteractWithLayer ~= self.layer.name) and
@@ -648,22 +644,6 @@ function NPC:update(dt)
 		self.scene.player.keyhints[tostring(self)] = nil
 		self.scene.player.hidekeyhints[tostring(self)] = nil
 		self.scene.player.touching[tostring(self)] = nil
-	end
-end
-
-function NPC:maybeSwapLayer()
-	local wasAbovePlayer = self.abovePlayer
-	if self.swapLayerLessThanY and self.scene.player.dropShadow.y <= self.swapLayerLessThanY then
-		self.abovePlayer = true
-	else
-		self.abovePlayer = false
-	end
-
-	if not wasAbovePlayer and self.abovePlayer then
-		self.sprite:swapLayer(self.swapLayerMapping[self.scene.player.layer.name])
-	elseif wasAbovePlayer and not self.abovePlayer then
-		-- HACK
-		self.sprite:swapLayer("objects7")
 	end
 end
 

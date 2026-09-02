@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="97" height="192" tilewidth="32" tileheight="32" infinite="0" nextobjectid="263">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="97" height="192" tilewidth="32" tileheight="32" infinite="0" nextobjectid="266">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="onload" type="file" value="actions/robo_intro2_ep6.lua"/>
@@ -899,7 +899,7 @@
     <property name="follow" value="Waypoint1,Waypoint2,Waypoint3,Waypoint4"/>
     <property name="followRepeat" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="ignoreCollision" value="Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7"/>
+    <property name="ignoreCollision" value="Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest4"/>
     <property name="ignorePlayer" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
@@ -1160,7 +1160,7 @@
   <object id="241" name="CHeap6" type="BasicNPC" gid="1922" x="1920" y="1504" width="128" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hideOffset" type="int" value="26"/>
+    <property name="hideOffset" type="int" value="64"/>
     <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/heap.png"/>
    </properties>
@@ -1168,7 +1168,7 @@
   <object id="242" name="CHeap7" type="BasicNPC" gid="1922" x="2048" y="1504" width="128" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hideOffset" type="int" value="26"/>
+    <property name="hideOffset" type="int" value="96"/>
     <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/heap.png"/>
    </properties>
@@ -1176,7 +1176,7 @@
   <object id="243" name="CHeap3" type="BasicNPC" gid="1922" x="1024" y="1504" width="128" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="hideOffset" type="int" value="26"/>
+    <property name="hideOffset" type="int" value="96"/>
     <property name="hidingspot" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/heap.png"/>
    </properties>
@@ -1276,18 +1276,36 @@
     <property name="sprite" type="file" value="../art/sprites/heap.png"/>
    </properties>
   </object>
-  <object id="260" name="SW3Heap4" type="BasicNPC" gid="1922" x="128" y="5632" width="128" height="32">
-   <properties>
-    <property name="align" value="bottom_left"/>
-    <property name="hideOffset" type="int" value="96"/>
-    <property name="hidingspot" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/heap.png"/>
-   </properties>
-  </object>
   <object id="262" name="Chest3" type="Chest" gid="2311" x="2656" y="2880" width="64" height="64">
    <properties>
     <property name="TuningFork" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="263" name="Chest4" type="Chest" gid="2311" x="1728" y="5760" width="64" height="64">
+   <properties>
+    <property name="WhiteLeaf" type="int" value="1"/>
+    <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="264" name="Swatbot4" type="Swatbot" gid="37" x="1600" y="5664" width="32" height="32">
+   <properties>
+    <property name="defaultAnim" value="idleleft"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreCollision" value="Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest4"/>
+    <property name="ignorePlayer" type="bool" value="true"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
+   </properties>
+  </object>
+  <object id="265" name="Swatbot5" type="Swatbot" gid="37" x="1792" y="5664" width="32" height="32">
+   <properties>
+    <property name="defaultAnim" value="idleright"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreCollision" value="Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest4"/>
+    <property name="ignorePlayer" type="bool" value="true"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
    </properties>
   </object>
  </objectgroup>

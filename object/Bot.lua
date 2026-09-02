@@ -679,7 +679,7 @@ function Bot:noticePlayer(ignoreShadow)
 		return Bot.NOTICE_SEE
 	end
 	
-	if self.ignorePlayer then
+	if self.ignorePlayer or self.scene.player.isSwatbot[GameState.leader] then
 		return Bot.NOTICE_NONE
 	end
  
@@ -939,7 +939,8 @@ function Bot:updateAction(dt)
 	-- Collide for battle, not applicable for sonic when running
 	if  not (self.scene.player.doingSpecialMove and
 			(GameState.leader == "sonic" or GameState.leader == "bunny")) and
-		not self.scene.player.falling and not self.scene.ignorePlayer
+		not self.scene.player.falling and not self.scene.ignorePlayer and
+		not self.scene.player.isSwatbot[GameState.leader]
 	then
 		if (self.scene.player.onlyInteractWithLayer ~= nil and
 			self.scene.player.onlyInteractWithLayer ~= self.layer.name) and

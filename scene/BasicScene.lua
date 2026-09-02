@@ -358,10 +358,13 @@ function BasicScene:onReEnter(args)
 	print("re-enter")
 
 	-- Recreate player
-	self.player:remove()
 	local prevPlayer = self.player
+	local prevLayer = self.player.layer
+	local prevObject = self.player.object
+	self.player:remove()
+
 	local PlayerClass = require("object/"..(prevPlayer.playerType or "Player"))
-	self.player = PlayerClass(self, self.player.layer, self.player.object)
+	self.player = PlayerClass(self, prevLayer, prevObject)
 	self.player.x = prevPlayer.x
 	self.player.y = prevPlayer.y
 
@@ -373,6 +376,7 @@ function BasicScene:onReEnter(args)
 		toLayer = spawnNpc.layer.name
 		local spawnOffset = args.spawn_point_offset or
 			Transform(spawn.width/2, spawn.height/2)
+
 		self.player.x = spawn.x + spawnOffset.x
 		self.player.y = spawn.y + spawnOffset.y - self.player.height
 		
@@ -965,6 +969,7 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 			layer.y = layer.offsety + worldOffsetY
 		elseif layer.properties.type ~= "Parallax" then
 			if layer.properties.follow then
+				print(tostring(layer.properties.offsetX)..", "..tostring(layer.properties.offsetY))
 				layer.x = layer.properties.offsetX + self.player.sprite.transform.x
 				layer.y = layer.properties.offsetY + self.player.sprite.transform.y
 			else
