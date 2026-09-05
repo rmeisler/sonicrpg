@@ -43,6 +43,11 @@ function EscapePlayer:construct(scene, layer, object)
 	self:removeSceneHandler("update", Player.update)
 	self:removeSceneHandler("keytriggered", Player.keytriggered)
 	
+	local lowerLayer = self.scene:findLayer("lower")
+	if lowerLayer then
+		self.dropShadow.sprite:swapLayer("lower")
+	end
+	
 	scene.player = self
 end
 
@@ -225,9 +230,9 @@ function EscapePlayer:moveForward(dt)
 	
 	if (self.fy + self.by) ~= 0 then
 		self.y = math.max(
-			self.scene:getMapHeight() - 420,
+			self.scene:getMapHeight() - 420 + (self.scene.mapOffsetY or 0),
 			math.min(
-				self.scene:getMapHeight() - self.sprite.h,
+				self.scene:getMapHeight() - self.sprite.h + (self.scene.mapOffsetY or 0),
 				self.y + (self.fy + self.by) * (dt/0.016)
 			)
 		)

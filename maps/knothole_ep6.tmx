@@ -3082,7 +3082,7 @@ return function(self)
             Do(function() self:facePlayer() end),
             MessageBox {message = &quot;Bunnie: Well now Sally-girl{p60}, you've done an\nabsolutely fabulous job bringing everyone together!&quot;},
             MessageBox {message = &quot;Sally: Aww{p60}, thanks Bunnie.&quot;},
-            MessageBox {message = &quot;Bunnie: You're like that Ben Windom fella!{p80} Ya\nknow{p60}, the one in that story you were reading to Tails the other night.&quot;},
+            MessageBox {message = &quot;Bunnie: You're like that Ben Windom fella!{p80} Ya\nknow{p60}, the one in that story you were reading to Tails the other night!&quot;},
             Animate(self.sprite, &quot;idleright&quot;),
             Do(function() self:refreshKeyHint() end)
         }
@@ -3106,8 +3106,10 @@ return function(self)
         return BlockPlayer {
             Do(function() self:facePlayer() end),
             MessageBox {message = &quot;Bunnie: You must be so worried, B.{p80} Bein' away from your family for so long.&quot;},
+            Animate(self.sprite, &quot;concerned&quot;),
             MessageBox {message = &quot;Bunnie: First few years in Knothole{p80}, knowin' I wouldn't be seein' my sibbies anytime soon{p120}, it was just so tough.&quot;},
             MessageBox {message = &quot;B: Thank you, Bunnie. {p80}I hope you are reunited your siblings one day.&quot;},
+            Animate(self.sprite, &quot;pose&quot;),
             MessageBox {message = &quot;Bunnie: Once that nasty ol' Robotnik is outta the way soon everything'll get a lot easier!&quot;},
             Animate(self.sprite, &quot;idleright&quot;),
             Do(function() self:refreshKeyHint() end)
@@ -3228,18 +3230,21 @@ return function(self)
                 self.scene.player.state = &quot;laughleft&quot;
             end),
             MessageBox {message = &quot;Sonic: Aww, come to see us off? {p80}I'm touched!&quot;},
+            Animate(self.sprite, &quot;frustrated&quot;),
+            self:hop(),
             MessageBox {message = &quot;Fleet: Don't flatter yourself, hedgehog! {p80}I just\nwanted to talk to the Princess before she left.&quot;},
             Wait(1),
             Do(function() self.scene.player.state = lastState end),
+            Animate(self.sprite, &quot;thinking&quot;),
             MessageBox {message = &quot;Fleet: Be careful though{p80}, ok?&quot;},
-            MessageBox {message = &quot;Sonic: S-Sure thing.&quot;},
+            MessageBox {message = &quot;Sonic: Sure thing, Fleet.&quot;},
             Animate(self.sprite, &quot;idledown&quot;),
             Do(function() self:refreshKeyHint() end)
         }
     else
         local lastState = self.scene.player.state
         return BlockPlayer {
-            Do(function() self:facePlayer() end),
+            Animate(self.sprite, &quot;thinking&quot;),
             MessageBox {message = &quot;Fleet: Look out for these two in the big city,\n{h metal man}.&quot;},
             Wait(1),
             Do(function() self.scene.player.state = &quot;pose&quot; end),
@@ -3287,6 +3292,7 @@ return function(self)
             MessageBox {message = &quot;Sally: That is so thoughtful Tails! {p80}But I already have a role for you.&quot;},
             MessageBox {message = &quot;Tails: Oh yeah!?&quot;},
             MessageBox {message = &quot;Sally: You will be the {h defender of Kothole}!&quot;},
+            Animate(self.sprite, &quot;saddown&quot;),
             MessageBox {message = &quot;Tails: Hey! {p80}That's not a real role!&quot;},
             MessageBox {message = &quot;Sally: Is so! {p80}And I need someone to do it! {p80}Are you up to the challenge?&quot;},
             self:hop(),
@@ -3301,13 +3307,16 @@ return function(self)
         local lastState = self.scene.player.state
         return BlockPlayer {
             Do(function() self:facePlayer() end),
+            Animate(self.sprite, &quot;saddown&quot;),
             MessageBox {message = &quot;Tails: Hey Sonic...&quot;},
-            MessageBox {message = &quot;Sonic: What's up, little bud?&quot;},
+            MessageBox {message = &quot;Sonic: What's up?&quot;},
             MessageBox {message = &quot;Tails: When I spoke to the Light of Mobius...\n{p80}i-i-t knew... {p80}about my mom...&quot;},
             MessageBox {message = &quot;Sonic: ...Oh! {p80}Uh, what did it say?&quot;},
             MessageBox {message = &quot;Tails: It didn't say much... {p80}but when I was\ntalkin' to the Light, I could just {p80}{h feel her}... {p80}ya know?&quot;},
+            Do(function() self:facePlayer() end),
             MessageBox {message = &quot;Tails: I felt her love... {p80}and that she was ok.\n{p120}That makes me happy.&quot;},
-            MessageBox {message = &quot;Sonic: Yeah, that makes me happy too.&quot;},
+            Do(function() self.scene.player.state = &quot;pose&quot; end),
+            MessageBox {message = &quot;Sonic: Yeah, that makes me happy too, lil' bro.&quot;},
             Animate(self.sprite, &quot;idledown&quot;),
             Do(function() self:refreshKeyHint() end)
         }

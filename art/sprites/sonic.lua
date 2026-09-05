@@ -198,6 +198,10 @@ return {
 			frames = {{8,11}, {9,11}, {10,11}, {11,11}},
 			speed = 0.08
 		},
+		juicescaredright2 = {
+			frames = {{8,12}, {9,12}, {10,12}, {11,12}},
+			speed = 0.08
+		},
 		juicescareddownright = {
 			frames = {{12,11}}
 		},
