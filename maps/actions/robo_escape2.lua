@@ -68,7 +68,7 @@ return function(scene)
 			end),
 			
 			Wait(1),
-			MessageBox{message="Sally: Sonic! {p80}You're going the wrong way!", closeAction=Wait(2)},
+			MessageBox{message="Sally: Sonic!{p80} What are you doing?!{p80} You're going the wrong way!", closeAction=Wait(2)},
 			
 			--Wait(100),
 			Wait(3),
@@ -86,24 +86,35 @@ return function(scene)
 
 			Parallel {
 				Ease(scene.player, "x", function() return scene.player.x + 800 end, 1, "linear"),
+				Ease(scene.player, "y", function() return scene.player.y + 100 end, 0.5)
+			},
+			Parallel {
+				Ease(scene.player.sprite.transform.angle, math.pi/2, 0.5),
+				Ease(scene.player, "y", function() return scene.player.y + 600 end, 0.5)
+			},
+			Parallel {
+				Ease(scene.camPos, "y", 600, 0.5),
 				Ease(scene.player, "y", function() return scene.player.y + 600 end, 0.5)
 			},
 			
 			Wait(2),
-			
-			MessageBox{message="YES!!!", textSpeed=3, closeAction=Wait(2)},
+
 			Parallel {
 				Serial {
 					Move(scene.objectLookup.Snively, scene.objectLookup.SnivelyWP, "walk"),
 					Animate(scene.objectLookup.Snively.sprite, "idleright_smile")
 				},
-				Ease(scene.camPos, "x", 600, 0.2)
+				Ease(scene.camPos, "x", 600, 0.2),
+				Serial {
+					Wait(0.5),
+					MessageBox{message="YES!!!", textSpeed=3, closeAction=Wait(2)}
+				}
 			},
 
 			Wait(1),
 			PlayAudio("music", "wearefucked", 1, true),
 			MessageBox{message="Snively: You've done very well, my pet. {p120}The Princess\nand her hedgehog will be hopelessly trapped down there...\n{p120}in the {h robot wasteland}...", textSpeed=3, closeAction=Wait(5)},
-			Wait(1),			
+			Wait(1),
 			Animate(scene.objectLookup.Snively.sprite, "idleright_lookleft"),
 			MessageBox{message="Snively: ...{p80}can't have the big round guy finding out\nabout this, though...", textSpeed=3, closeAction=Wait(3)},
 			Do(function() scene.objectLookup.Snively.sprite:setAnimation("stepback_left") end),

@@ -5,6 +5,7 @@ local Ease = require "actions/Ease"
 local Animate = require "actions/Animate"
 local PlayAudio = require "actions/PlayAudio"
 local WaitForFrame = require "actions/WaitForFrame"
+local Do = require "actions/Do"
 
 local OnHitEvent = require "data/battle/actions/OnHitEvent"
 
@@ -20,6 +21,9 @@ local LeapBackward = function(self, target)
 			Ease(self.sprite.transform, "x", self.sprite.transform.x, 3),
 			Serial {
 				Ease(self.sprite.transform, "y", target.sprite.transform.y - math.abs(target.sprite.transform.y - self.sprite.transform.y) - self.sprite.h, 4),
+				Do(function()
+					self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h
+				end),
 				Ease(self.sprite.transform, "y", self.sprite.transform.y, 6)
 			}
 		},
@@ -40,6 +44,9 @@ return function(self, target)
 			Serial {
 				Animate(self.sprite, "leap"),
 				Ease(self.sprite.transform, "y", target.sprite.transform.y - math.abs(target.sprite.transform.y - self.sprite.transform.y) - self.sprite.h, 4),
+				Do(function()
+					self.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h/2
+				end),
 
 				Parallel {
 					Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 5),

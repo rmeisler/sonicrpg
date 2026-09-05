@@ -123,6 +123,16 @@ return {
 			speed = 0.5
 		},
 		
+		leapdown = {
+			frames = {{6,2}}
+		},
+		leapup = {
+			frames = {{6,3}}
+		},
+		leap_dodge = {
+		    frames = {{7,1}}
+		},
+		
 		crouch = {
 		    frames = {{11,0}}
 		},

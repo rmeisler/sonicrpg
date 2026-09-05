@@ -822,16 +822,16 @@ function Bot:baseUpdate(dt)
 	end
 	
 	self:updateAction(dt)
+	
+	-- HACK
+	if not self.sprite or not self.scene.player then
+		return
+	end
 
 	if not self.hopping then
 		self.object.x = self.x
 		self.object.y = self.y + self.sprite.h*2
 		self:updateCollision()
-	end
-
-	-- HACK
-	if not self.sprite or not self.scene.player then
-		return
 	end
 	
 	self.manualFacingTime = self.manualFacingTime + dt

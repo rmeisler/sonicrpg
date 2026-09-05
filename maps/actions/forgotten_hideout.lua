@@ -127,14 +127,7 @@ return function(scene, hint)
 				scene.player.sprite.visible = true
 				scene.player.dropShadow.hidden = false
 				scene.player.noIdle = false
-			end),
-			
-			-- TODO Remove
-			scene:enterBattle {
-				opponents = {"cheetah1"},
-				initiative = "cinematic",
-				music = "ep6trapped"
-			}
+			end)
 		}
 	end
 	

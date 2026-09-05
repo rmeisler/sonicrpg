@@ -36,7 +36,8 @@ function Ratbot:getBattleArgs()
 	return args
 end
 
-function Ratbot:noticePlayer(ignoreShadow)
+-- Do not use custom notice logic
+function Ratbot:_noticePlayer(ignoreShadow)
 	local audibleDistance = self.audibleDist or self.noticeDist or 250
 	
 	if self.forceSee then

@@ -78,7 +78,7 @@ return function(scene)
 		
 		PlayAudio("sfx", "poptop", 0.5, true),
 		Parallel {
-			Ease(scene.objectLookup.Grate1, "x", function() return scene.objectLookup.Grate1.x + 20 end, 6),
+			Ease(scene.objectLookup.Grate1, "x", function() return scene.objectLookup.Grate1.x + 20 end, 20),
 			Ease(scene.objectLookup.Grate1, "y", function() return scene.objectLookup.Grate1.y + 110 end, 6)
 		},
 		PlayAudio("sfx", "bang", 1, true),
@@ -94,31 +94,19 @@ return function(scene)
 				Ease(scene.objectLookup.Grate1.sprite.color, 4, 0, 20)
 			}, 10)
 		},
+		Wait(0.5),
 		Do(function()
 			scene.objectLookup.Grate1:remove()
-			scene.objectLookup.SonicHead.hidden = false
-			scene.objectLookup.SonicHead.sprite.color[4] = 0
-		end),
-		Ease(scene.objectLookup.SonicHead.sprite.color, 4, 255, 1),
-		Wait(0.5),
-		Animate(scene.objectLookup.SonicHead.sprite, "headleft"),
-		Wait(1),
-		Animate(scene.objectLookup.SonicHead.sprite, "headright"),
-		Wait(1),
-		Animate(scene.objectLookup.SonicHead.sprite, "leapdown"),
-		Parallel {
-			Ease(scene.objectLookup.SonicHead, "y", function() return scene.objectLookup.SonicHead.y + 110 end, 6),
-			Ease(scene.player, "y", function() return scene.player.y + 110 end, 6)
-		},
-		PlayAudio("sfx", "bang", 1, true),
-		Animate(scene.objectLookup.SonicHead.sprite, "idledown"),
-		Do(function()
-			scene.objectLookup.SonicHead:remove()
 			scene.player.sprite.visible = true
 			scene.player.dropShadow.hidden = false
+			scene.player.state = "leapdown"
 		end),
-		Wait(0.5),
+		Ease(scene.player, "y", function() return scene.player.y + 110 end, 6),
+		Do(function()
+			scene.player.state = "idledown"
+		end),
 
+		PlayAudio("music", "mysterious", 1, true, true),
 		Spawn(Serial {
 			subtext,
 			text,
@@ -126,7 +114,6 @@ return function(scene)
 				Ease(text.color, 4, 255, 1),
 				Ease(subtext.color, 4, 255, 1),
 			},
-			PlayAudio("music", "mysterious", 1, true, true),
 			Wait(2),
 			Parallel {
 				Ease(text.color, 4, 0, 1),

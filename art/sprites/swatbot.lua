@@ -26,6 +26,13 @@ return {
 			speed = 0.06
 		},
 		
+		leapup = {
+			frames = {{5,9}}
+		},
+		leapdown = {
+			frames = {{5,8}}
+		},
+		
         idleright = {
             frames = {{0,0}}
         },

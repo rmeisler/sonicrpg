@@ -359,7 +359,7 @@ function BasicScene:onReEnter(args)
 
 	-- Recreate player
 	local prevPlayer = self.player
-	local prevLayer = self.player.layer
+	local prevLayer = table.clone(self.player.layer)
 	local prevObject = self.player.object
 	self.player:remove()
 
@@ -367,6 +367,7 @@ function BasicScene:onReEnter(args)
 	self.player = PlayerClass(self, prevLayer, prevObject)
 	self.player.x = prevPlayer.x
 	self.player.y = prevPlayer.y
+	self.offsetHack = true
 
 	-- Place player at spawn point and orient them appropriately
 	local toLayer = self.currentLayer
@@ -969,9 +970,8 @@ function BasicScene:pan(worldOffsetX, worldOffsetY)
 			layer.y = layer.offsety + worldOffsetY
 		elseif layer.properties.type ~= "Parallax" then
 			if layer.properties.follow then
-				print(tostring(layer.properties.offsetX)..", "..tostring(layer.properties.offsetY))
-				layer.x = layer.properties.offsetX + self.player.sprite.transform.x
-				layer.y = layer.properties.offsetY + self.player.sprite.transform.y
+				layer.x = layer.properties.offsetX + self.player.sprite.transform.x + (self.offsetHack and self.player.width or 0)
+				layer.y = layer.properties.offsetY + self.player.sprite.transform.y + (self.offsetHack and self.player.height or 0)
 			else
 				layer.x = math.floor((layer.offsetx + worldOffsetX)*(layer.properties.movespeed or 1.05))
 				layer.y = math.floor((layer.offsety + worldOffsetY)*(layer.properties.movespeed or 1.05))

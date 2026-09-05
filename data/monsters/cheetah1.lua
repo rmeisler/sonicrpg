@@ -71,7 +71,7 @@ return {
 		self.scene.partyByName.sally.stats.miss = true
 		self.scene.partyByName.sonic.stats.damage = 0
 		self.scene.partyByName.sally.stats.damage = 0
-		self.turn = 3
+		self.turn = 0
 	end,
 
 	behavior = function (self, target)
@@ -80,10 +80,10 @@ return {
 			return Serial {
 				Wait(1),
 				Animate(self.scene.partyByName.sally.sprite, "thinking4"),
-				MessageBox{message="Sally: Sonic{p80}, isn't this that bot you raced awhile\nback?..."},
+				MessageBox{message="Sally: Sonic{p80}, isn't this that bot you raced awhile\nback?"},
 				Wait(1),
 				Animate(self.scene.partyByName.sonic.sprite, "takenback"),
-				MessageBox{message="Sonic: Yeah... {p80}but what is he doin' here?..."},
+				MessageBox{message="Sonic: Yeah{p80}, but what's he doin' down here?"},
 				Wait(0.5),
 				Animate(self.scene.partyByName.sally.sprite, "idle"),
 				Animate(self.scene.partyByName.sonic.sprite, "idle")

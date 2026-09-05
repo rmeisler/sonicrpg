@@ -207,7 +207,7 @@ return function(self, targets)
 		local prevVolume = self.scene.audio:getMusicVolume()
 		action = Serial {
 			Spawn(Serial {
-				PlayAudio("music", "sonicring", 1.0),
+				PlayAudio("music", "sonicring", 0.6),
 				PlayAudio("music", prevMusic, prevVolume, true, true)
 			}),
 			Animate(self.sprite, "foundring_backpack"),

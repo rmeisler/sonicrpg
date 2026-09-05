@@ -103,6 +103,10 @@ function LaserTrap:postInit()
 end
 
 function LaserTrap:lasersOn()
+	if not self.spawnPointLeft then
+		self:postInit()
+	end
+
 	self.laser1.x = self.spawnPointLeft.x + self.spawnPointLeft.object.width/2
 	self.laser1.y = self.spawnPointLeft.y + self.spawnPointLeft.object.height/2
 	self.laser1.sprite.transform.ox = 0
@@ -134,7 +138,7 @@ function LaserTrap:update(dt)
 
 	NPC.update(self, dt)
 	
-	if self.alwaysOn then
+	if self.alwaysOn and not self.deactivated then
 		self:shockBots()
 	end
 	
@@ -284,6 +288,10 @@ function LaserTrap:touch(prevState)
 end
 
 function LaserTrap:shockBots()
+	if not self.alwaysOn or self.deactivated then
+		return
+	end
+
 	for _, obj in pairs(self.scene.map.objects) do
 		if obj.isBot and
 		   not obj:isRemoved() and

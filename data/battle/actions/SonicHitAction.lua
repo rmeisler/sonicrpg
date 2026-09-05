@@ -17,9 +17,12 @@ local LeapBackward = function(self, target)
 	return Serial {
 		-- Bounce off target
 		Parallel {
-			Ease(self.sprite.transform, "y", target.sprite.transform.y - self.sprite.h*2.5, 4, "linear"),
+			Ease(self.sprite.transform, "y", target.sprite.transform.y - self.sprite.h*2.5 + 32, 4, "linear"),
 			Ease(self.sprite.transform, "x", target.sprite.transform.x + self.sprite.w*2, 4, "linear"),
 		},
+		Do(function()
+			self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h
+		end),
 		Parallel {
 			Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 4, "linear"),
 			Ease(self.sprite.transform, "x", target.sprite.transform.x + self.sprite.w*3, 4, "linear")
@@ -60,6 +63,10 @@ return function(self, target)
 			Ease(self.sprite.transform, "x", target.sprite.transform.x + math.abs(target.sprite.transform.x - self.sprite.transform.x)/2, 4, "linear"),
 			Ease(self.sprite.transform, "y", self.sprite.transform.y - self.sprite.h*3, 6, "linear"),
 		},
+		
+		Do(function()
+			self.sprite.sortOrderY = target.sprite.transform.y + target.sprite.h/2
+		end),
 
 		Parallel {
 			Ease(self.sprite.transform, "x", target.sprite.transform.x + target.sprite.w, 4, "linear"),
