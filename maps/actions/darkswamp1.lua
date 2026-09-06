@@ -46,6 +46,11 @@ return function(scene, hint)
 		})
 	end
 	
+	if GameState:isFlagSet("ep6intro") then
+		showTitle()
+		return PlayAudio("music", "darkswamp2", 1.0, true, true)
+	end
+	
 	if hint == "fromworldmap" then
 		if GameState:isFlagSet("ep3_darkswampintro") then
 			showTitle()

@@ -1598,7 +1598,7 @@ return {
           gid = 6839,
           visible = true,
           properties = {
-            ["RoboticGloves"] = 1,
+            ["RocketBoots"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -2278,7 +2278,7 @@ return {
           gid = 6839,
           visible = true,
           properties = {
-            ["RocketBoots"] = 1,
+            ["GreatGloves"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },

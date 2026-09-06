@@ -220,7 +220,10 @@ return function(scene, hint)
 			end
 		end
 		
-		if GameState:isFlagSet("ep5_knothole") then
+		if GameState:isFlagSet("ep6intro") then
+			scene.objectLookup.Door.object.properties.scene = "knothole_ep6.lua"
+			scene.objectLookup.Stove:remove()
+		elseif GameState:isFlagSet("ep5_knothole") then
 			scene.objectLookup.Door.object.properties.scene = "knothole_ep5.lua"
 		else
 			scene.objectLookup.Door.object.properties.scene = "knothole.lua"

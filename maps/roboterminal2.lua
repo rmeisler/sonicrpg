@@ -11,6 +11,7 @@ return {
   nextobjectid = 135,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
+    ["onload"] = "actions/roboterminal2.lua",
     ["regionName"] = "Robotropolis",
     ["sectorName"] = "Inner City"
   },

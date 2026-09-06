@@ -2029,7 +2029,7 @@ return {
           name = "IntroWaypoint1",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2784,
+          x = 2816,
           y = 5440,
           width = 32,
           height = 32,
@@ -2687,7 +2687,7 @@ return {
           gid = 2311,
           visible = true,
           properties = {
-            ["TuningFork"] = 1,
+            ["Mirror"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -2697,7 +2697,7 @@ return {
           type = "Chest",
           shape = "rectangle",
           x = 1728,
-          y = 5760,
+          y = 5728,
           width = 64,
           height = 64,
           rotation = 0,

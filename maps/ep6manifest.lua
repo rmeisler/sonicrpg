@@ -106,6 +106,38 @@ return {
     },
 	
 	{
+        type = "map",
+        file = "maps/greatjungle.lua",
+		--primary = true
+    },
+	
+	{
+        type = "map",
+        file = "maps/greatforest1.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/greatforest2.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/greatforest3.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/greatforest4.lua",
+		--primary = true
+    },
+	{
+        type = "map",
+        file = "maps/darkswamp1_ep6.lua",
+		--primary = true
+    },
+	
+	{
 		type = "gradient",
 		name = "mboxgradient",
 		args = string.dump(function()
@@ -785,22 +817,12 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/robotnik.ogg",
+		file = "audio/music/darkswamp2.ogg",
 		category = "music"
 	},
 	{
 		type = "sound",
-		file = "audio/music/robotnikship.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/robotnikbattle.ogg",
-		category = "music"
-	},
-	{
-		type = "sound",
-		file = "audio/music/beach.ogg",
+		file = "audio/music/greatforest.ogg",
 		category = "music"
 	},
 	{

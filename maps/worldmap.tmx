@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="300">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextobjectid="301">
  <properties>
   <property name="onload" type="file" value="actions/worldmap.lua"/>
  </properties>
@@ -542,6 +542,7 @@
  <objectgroup name="objects">
   <object id="1" name="Spawn 1" type="SpawnPoint" gid="3521" x="1040" y="1175" width="32" height="32">
    <properties>
+    <property name="ghost" type="bool" value="true"/>
     <property name="orientation" value="down"/>
     <property name="tiny" type="bool" value="true"/>
    </properties>
@@ -587,7 +588,11 @@ return function(self, player, prevState)
                             self.scene.player:run(BlockPlayer {
                                 menu,
                                 Do(function()
-                                    self.scene:changeScene{map=&quot;knothole&quot;, hint=&quot;fromworldmap&quot;, fadeOutSpeed = 0.5}
+                                    if GameState:isFlagSet(&quot;ep6intro&quot;) then
+                                        self.scene:changeScene{map=&quot;knothole_ep6&quot;, hint=&quot;fromworldmap&quot;, fadeOutSpeed = 0.5}
+                                    else
+                                        self.scene:changeScene{map=&quot;knothole&quot;, hint=&quot;fromworldmap&quot;, fadeOutSpeed = 0.5}
+                                    end
                                     self.scene:removeHandler(&quot;keytriggered&quot;, player.knotholeCallback)
                                 end)
                             })
@@ -1768,7 +1773,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/worldmaptrees2.png"/>
    </properties>
   </object>
-  <object id="198" name="RegionRobotropolis" type="BasicNPC" gid="3521" x="1632" y="1568" width="288" height="224" visible="0">
+  <object id="198" name="RegionRobotropolis" type="BasicNPC" gid="3521" x="1632" y="1568" width="288" height="224">
    <properties>
     <property name="ghost" type="bool" value="true"/>
     <property name="notColliding">return function(self, player)
@@ -1786,6 +1791,7 @@ local Do = require &quot;actions/Do&quot;
 local YieldUntil = require &quot;actions/YieldUntil&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Menu = require &quot;actions/Menu&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
@@ -1795,7 +1801,7 @@ return function(self, player, prevState)
         return
     end
     player.onLocation = self
-    --self.scene.pressX.color = {255,255,255,255}
+    self.scene.pressX.color = {255,255,255,255}
 
     player.robotropCallback = function(key)
         if player.onLocation == self and
@@ -1812,7 +1818,7 @@ return function(self, player, prevState)
                             self.scene.player:run(BlockPlayer {
                                 menu,
                                 Do(function()
-                                    self.scene:changeScene{map=&quot;robotropolis_1&quot;, hint=&quot;fromworldmap&quot;, fadeOutSpeed = 0.5, fadeInSpeed = 0.5, fadeOutMusic = true}
+                                    self.scene:changeScene{map=&quot;robo_opening3&quot;, hint=&quot;fromworldmap&quot;, fadeOutSpeed = 0.5, fadeInSpeed = 0.5, fadeOutMusic = true}
                                     self.scene:removeHandler(&quot;keytriggered&quot;, player.robotropCallback)
                                 end)
                             })
@@ -1828,7 +1834,7 @@ return function(self, player, prevState)
             })
         end
     end
-    --self.scene:addHandler(&quot;keytriggered&quot;, player.robotropCallback)
+    self.scene:addHandler(&quot;keytriggered&quot;, player.robotropCallback)
 
     self.typeText = TypeText(
         Transform(50, 500),
@@ -2447,6 +2453,7 @@ local Do = require &quot;actions/Do&quot;
 local YieldUntil = require &quot;actions/YieldUntil&quot;
 local Menu = require &quot;actions/Menu&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
 
 local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
@@ -2472,8 +2479,12 @@ return function(self, player, prevState)
                             menu:close()
                             self.scene.player:run(BlockPlayer {
                                 menu,
-                                Do(function()
-                                    self.scene:changeScene{map=&quot;darkswamp1&quot;, hint=&quot;fromworldmap&quot;, fadeOutSpeed = 0.5, fadeInSpeed = 0.5, fadeOutMusic=true}
+                                 Do(function()
+                                     if GameState:isFlagSet(&quot;ep6intro&quot;) then
+                                        self.scene:changeScene{map=&quot;darkswamp1_ep6&quot;, hint=&quot;fromworldmap&quot;, fadeOutSpeed = 0.5, fadeInSpeed = 0.5, fadeOutMusic=true}
+                                    else
+                                        self.scene:changeScene{map=&quot;darkswamp1&quot;, hint=&quot;fromworldmap&quot;, fadeOutSpeed = 0.5, fadeInSpeed = 0.5, fadeOutMusic=true}
+                                    end
                                     self.scene:removeHandler(&quot;keytriggered&quot;, player.darkswampCallback)
                                 end)
                             })
@@ -2553,6 +2564,8 @@ local Do = require &quot;actions/Do&quot;
 local YieldUntil = require &quot;actions/YieldUntil&quot;
 local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Menu = require &quot;actions/Menu&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Serial = require &quot;actions/Serial&quot;
 
 local Layout = require &quot;util/Layout&quot;
 local Transform = require &quot;util/Transform&quot;
@@ -2565,7 +2578,7 @@ return function(self, player, prevState)
     self.scene.pressX.color = {255,255,255,255}
 
     player.bhideoutCallback = function(key)
-        if player.onSubLocation == self and not self.scene.sceneMgr.transitioning and key == &quot;x&quot; then
+        if player.onSubLocation == self and not self.scene.sceneMgr.transitioning and key == &quot;x&quot; and not self.busy then
             self.scene:run(BlockPlayer {
                 Menu {
                     layout = Layout {
@@ -2574,6 +2587,12 @@ return function(self, player, prevState)
                             menu:close()
                             self.scene.player:run(BlockPlayer {
                                 menu,
+                                GameState:isFlagSet(&quot;ep6intro&quot;) and
+                                Serial {
+                                    Do(function() self.busy = true end),
+                                    MessageBox{message=&quot;Sally: We can't risk taking any shortcuts! {p80}We'll have to take the long way there...&quot;},
+                                    Do(function() self.busy = false end)
+                                } or
                                 Do(function()
                                     self.scene:changeScene{map=&quot;forgottenhideout&quot;, hint=&quot;fromworldmap&quot;, fadeInSpeed = 0.5, fadeOutSpeed = 0.5, fadeOutMusic = true}
                                     self.scene:removeHandler(&quot;keytriggered&quot;, player.bhideoutCallback)
@@ -2711,6 +2730,13 @@ end</property>
   </object>
   <object id="299" name="BoulderBaySpawn" type="SpawnPoint" gid="3521" x="1344" y="2272" width="32" height="32">
    <properties>
+    <property name="orientation" value="down"/>
+    <property name="tiny" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="300" name="GreatForestSpawn" type="SpawnPoint" gid="3521" x="800" y="1856" width="32" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
     <property name="orientation" value="down"/>
     <property name="tiny" type="bool" value="true"/>
    </properties>
@@ -2881,10 +2907,10 @@ end</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,1449,1449,1449,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,1449,1449,1449,1449,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,1449,1449,1449,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,1449,1449,0,1449,1449,0,0,0,0,0,1449,1449,1449,1449,1449,1449,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,1449,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,1449,1449,0,0,1449,1449,0,0,0,0,0,1449,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,1449,1449,1449,1449,1449,1449,1449,0,0,0,0,0,0,1449,1449,1449,1449,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,1449,1449,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,1449,1449,1449,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,1449,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,1449,1449,0,1449,1449,0,0,0,0,0,1449,1449,1449,1449,1449,1449,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,1449,1449,1449,1449,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,1449,1449,0,0,1449,1449,0,0,0,0,0,1449,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,1449,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,1449,1449,0,0,1449,1449,0,0,0,0,1449,1449,1449,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,0,0,1449,0,0,0,1449,1449,0,0,0,1449,1449,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,0,0,1449,1449,0,0,0,0,0,1449,1449,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,1449,0,1449,1449,1449,0,0,1449,1449,0,0,0,1449,1449,0,0,0,0,0,0,0,1449,0,0,0,0,0,0,0,0,0,0,0,

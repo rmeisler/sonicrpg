@@ -2,6 +2,7 @@
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="75" height="38" tilewidth="32" tileheight="32" infinite="0" nextobjectid="135">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
+  <property name="onload" type="file" value="actions/roboterminal2.lua"/>
   <property name="regionName" value="Robotropolis"/>
   <property name="sectorName" value="Inner City"/>
  </properties>

@@ -3,15 +3,14 @@ local ItemType = require "util/ItemType"
 local EventType = require "util/EventType"
 
 return {
-	name = "Robotic Gloves",
-	desc = "Gloves built from bot parts.",
+	name = "Great Gloves",
+	desc = "Elegantly stitched gloves from the Great War.",
 	type = ItemType.Weapon,
 	subtype = WeaponType.Sword,
-	usableBy = {"sonic", "sally", "antoine", "rotor", "logan"},
+	usableBy = {"sonic"},
 	sprite = "sword",
 	color = {200,200,0,255},
 	stats = {
-		attack = 5,
-		speed = -1
+		attack = 6
 	}
 }

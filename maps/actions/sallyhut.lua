@@ -106,6 +106,19 @@ return function(scene, hint)
 		return PlayAudio("music", "snowday", 1.0, true, true)
 	end
 	
+	if GameState:isFlagSet("ep6intro") then
+		scene.objectLookup.Door.object.properties.scene = "knothole_ep6.lua"
+		scene.objectLookup.SallysBed.isInteractable = false
+		Executor(scene):act(Serial {
+			Wait(0.5),
+			text,
+			Ease(text.color, 4, 255, 1),
+			Wait(2),
+			Ease(text.color, 4, 0, 1)
+		})
+		return Action()
+	end
+	
 	if GameState:isFlagSet("ep5_knothole") then
 		scene.objectLookup.Door.object.properties.scene = "knothole_ep5.lua"
 		scene.objectLookup.SallysBed.isInteractable = false
@@ -121,7 +134,7 @@ return function(scene, hint)
 		end
 		return Action()
 	end
-
+	
 	if GameState:isFlagSet("ep4_introdone") then
 		scene.objectLookup.Door.object.properties.scene = "knothole.lua"
 		scene.objectLookup.SallysBed.isInteractable = false

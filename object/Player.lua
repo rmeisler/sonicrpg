@@ -160,6 +160,11 @@ function Player:construct(scene, layer, object)
 	self.dropShadow.sprite.sortOrderY = self.sprite.transform.y - 1
 	self.scene:addObject(self.dropShadow)
 	
+	local lowerLayer = self.scene:findLayer("lower")
+	if lowerLayer then
+		self.dropShadow.sprite:swapLayer("lower")
+	end
+	
 	self:updateHotspots()
 	
 	self.hotspotOffsets = {

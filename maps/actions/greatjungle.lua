@@ -122,5 +122,16 @@ return function(scene, hint)
 		}
 	end
 	
-	return PlayAudio("music", "greatjungle", 0.5, true, true)
+	return Serial {
+		PlayAudio("music", "greatjungle", 0.5, true, true),
+		Spawn(
+			Serial {
+				Wait(0.5),
+				text,
+				Ease(text.color, 4, 255, 1),
+				Wait(2),
+				Ease(text.color, 4, 0, 1)
+			}
+		)
+	}
 end

@@ -976,7 +976,8 @@ return {
             ["key"] = "down",
             ["no_run"] = true,
             ["orientation"] = "up",
-            ["scene"] = "worldmap.lua"
+            ["scene"] = "worldmap.lua",
+            ["spawn_point"] = "GreatForestSpawn"
           }
         },
         {

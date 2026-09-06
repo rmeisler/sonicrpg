@@ -14,6 +14,9 @@ return {
 		concernedright = {
 			frames = {{11,0}}
 		},
+		smileright = {
+			frames = {{10,0}}
+		},
 		concerned = {
 			frames = {{10,3}}
 		},

@@ -13,7 +13,7 @@ return {
     ["battlebg"] = "../art/backgrounds/forgottenhideoutbg.png",
     ["onload"] = "actions/forgotten_hideout.lua",
     ["regionName"] = "Robotropolis",
-    ["sectorName"] = "???"
+    ["sectorName"] = "B's Hideout"
   },
   tilesets = {
     {

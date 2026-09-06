@@ -217,7 +217,8 @@ return function(self)
                     menu:close()
                     self.scene:run {
                         menu,
-                        MessageBox{message=&quot;Tails: I already know what it says!&quot;, blocking = true, textSpeed = 3}
+                        MessageBox{message=&quot;Diary: I can't believe I beat up Robotnik{p60} and then beat him in a race!&quot;, blocking = true, textSpeed = 3},
+                        MessageBox{message=&quot;Diary: Maybe he's not so tough after all...&quot;, blocking = true, textSpeed = 3}
                     }
                 end},
                 {Layout.Text(&quot;No&quot;), choose = function(menu)

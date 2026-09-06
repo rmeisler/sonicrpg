@@ -148,6 +148,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun, attacker)
 			damageText = "miss"
 			damage = 0
 			damageTextColor = {255,255,255,255}
+			stats.miss = false
 		end
 		
 		impact = 0
@@ -252,11 +253,12 @@ function BattleActor:calculateDamage(stats)
 	local defense = math.random(selfStats.defense * 2, selfStats.defense * 3)
 	local damage = math.max(0, math.floor((stats.attack * 10 + math.random(stats.attack)) - defense))
 	local dodgeChance = math.max(1, selfStats.speed - stats.speed)
+	local dodgeResult = math.random(dodgeChance, 50)
 	
 	-- Random chance of miss
 	if stats.miss or
 	   damage == 0 or
-	   math.random(dodgeChance, 50) <= dodgeChance
+	   dodgeResult <= dodgeChance
 	then
 		if damage ~= 0 or stats.miss then
 			damage = 0

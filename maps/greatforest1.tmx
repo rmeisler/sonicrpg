@@ -492,6 +492,7 @@
     <property name="no_run" type="bool" value="true"/>
     <property name="orientation" value="up"/>
     <property name="scene" type="file" value="worldmap.lua"/>
+    <property name="spawn_point" value="GreatForestSpawn"/>
    </properties>
   </object>
   <object id="102" name="Chest1" type="Chest" gid="7597" x="640" y="1888" width="64" height="64">

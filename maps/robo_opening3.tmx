@@ -1022,7 +1022,7 @@
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="205" name="IntroWaypoint1" type="BasicNPC" gid="37" x="2784" y="5440" width="32" height="32">
+  <object id="205" name="IntroWaypoint1" type="BasicNPC" gid="37" x="2816" y="5440" width="32" height="32">
    <properties>
     <property name="ghost" type="bool" value="true"/>
    </properties>
@@ -1278,11 +1278,11 @@
   </object>
   <object id="262" name="Chest3" type="Chest" gid="2311" x="2656" y="2880" width="64" height="64">
    <properties>
-    <property name="TuningFork" type="int" value="1"/>
+    <property name="Mirror" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
-  <object id="263" name="Chest4" type="Chest" gid="2311" x="1728" y="5760" width="64" height="64">
+  <object id="263" name="Chest4" type="Chest" gid="2311" x="1728" y="5728" width="64" height="64">
    <properties>
     <property name="WhiteLeaf" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>

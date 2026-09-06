@@ -502,7 +502,11 @@ return function(scene, hint)
 			end
 		end
 	else
-		if GameState:isFlagSet("ep5_knothole") then
+		if GameState:isFlagSet("ep6intro") then
+			scene.objectLookup.Door.object.properties.scene = "knothole_ep6.lua"
+			scene.objectLookup.Rotor:remove()
+			scene.objectLookup.Rotor2:remove()
+		elseif GameState:isFlagSet("ep5_knothole") then
 			scene.objectLookup.Door.object.properties.scene = "knothole_ep5.lua"
 			scene.objectLookup.Rotor:remove()
 			scene.objectLookup.Rotor2:remove()
@@ -517,7 +521,9 @@ return function(scene, hint)
 			end
 		end
 		
-		if not GameState:isFlagSet("ep5_knothole_firefly_trigger") and not GameState:isFlagSet("ep5_knothole_meeting_trigger") then
+		if not GameState:isFlagSet("ep6intro") and
+		   not GameState:isFlagSet("ep5_knothole_firefly_trigger") and
+		   not GameState:isFlagSet("ep5_knothole_meeting_trigger") then
 			scene.audio:playMusic("doittoit", 0.5)
 		end
 	end

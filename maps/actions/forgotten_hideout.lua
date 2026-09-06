@@ -62,8 +62,7 @@ return function(scene, hint)
 			end)
 		}
 	end
-	
-	GameState:setFlag("ep6intro")
+
 	if GameState:isFlagSet("ep6intro") then
 		scene.player.x = scene.player.x - 20
 		scene.player.y = scene.player.y - 340

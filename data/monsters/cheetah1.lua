@@ -79,11 +79,10 @@ return {
 			self.turn = self.turn + 1
 			return Serial {
 				Wait(1),
-				Animate(self.scene.partyByName.sally.sprite, "thinking4"),
-				MessageBox{message="Sally: Sonic{p80}, isn't this that bot you raced awhile\nback?"},
+				Animate(self.scene.partyByName.sally.sprite, "thinking"),
+				MessageBox{message="Sally: Ugh!{p80} I should have known this was a trap!"},
 				Wait(1),
-				Animate(self.scene.partyByName.sonic.sprite, "takenback"),
-				MessageBox{message="Sonic: Yeah{p80}, but what's he doin' down here?"},
+				MessageBox{message="Sonic: Don't worry Sal{p80}, I've beaten twinkle toes over here before. {p80}He's not so tough."},
 				Wait(0.5),
 				Animate(self.scene.partyByName.sally.sprite, "idle"),
 				Animate(self.scene.partyByName.sonic.sprite, "idle")

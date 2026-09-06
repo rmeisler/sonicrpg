@@ -37,8 +37,11 @@ return function(scene, hint)
 			Ease(text.color, 4, 0, 1)
 		})
 	end
-	
-	if hint == "ep5intro" then
+
+	if GameState:isFlagSet("ep6intro") then
+		scene.nighttime = false
+		scene.objectLookup.Door.object.properties.scene = "knothole_ep6.lua"
+	elseif hint == "ep5intro" then
 		scene.nighttime = false
 		scene.objectLookup.Door.object.properties.scene = "knothole_ep5.lua"
 	elseif hint == "snowday" then

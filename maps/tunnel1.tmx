@@ -1398,7 +1398,7 @@ end</property>
   </object>
   <object id="40" name="Chest1" type="Chest" gid="6839" x="1408" y="6112" width="64" height="64">
    <properties>
-    <property name="RoboticGloves" type="int" value="1"/>
+    <property name="RocketBoots" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>
@@ -2045,7 +2045,7 @@ end</property>
   </object>
   <object id="85" name="Chest5" type="Chest" gid="6839" x="2048" y="1760" width="64" height="64">
    <properties>
-    <property name="RocketBoots" type="int" value="1"/>
+    <property name="GreatGloves" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
    </properties>
   </object>

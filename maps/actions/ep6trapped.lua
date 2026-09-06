@@ -26,6 +26,8 @@ return function(scene, hint)
 	scene.player.dropShadow.hidden = true
 	
 	local elevatorLayer = scene:findLayer("Elevator")
+	
+	GameState:setFlag("ep6intro")
 
 	return BlockPlayer {
 		Do(function()

@@ -8,7 +8,7 @@ return {
   height = 180,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 367,
+  nextobjectid = 368,
   properties = {
     ["battlebg"] = "../art/backgrounds/greatjunglebg.png",
     ["currentLayer"] = 7,
@@ -3358,9 +3358,9 @@ return {
           type = "SceneEdge",
           shape = "rectangle",
           x = 608,
-          y = 96,
+          y = 64,
           width = 384,
-          height = 32,
+          height = 64,
           rotation = 0,
           gid = 7660,
           visible = true,
@@ -3369,7 +3369,6 @@ return {
             ["key"] = "up",
             ["layerOverride"] = 7,
             ["no_run"] = true,
-            ["nocollision"] = true,
             ["orientation"] = "down",
             ["scene"] = "worldmap.lua",
             ["spawn_point"] = "GreatJungleSpawn"

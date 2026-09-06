@@ -43,11 +43,6 @@ function EscapePlayer:construct(scene, layer, object)
 	self:removeSceneHandler("update", Player.update)
 	self:removeSceneHandler("keytriggered", Player.keytriggered)
 	
-	local lowerLayer = self.scene:findLayer("lower")
-	if lowerLayer then
-		self.dropShadow.sprite:swapLayer("lower")
-	end
-	
 	scene.player = self
 end
 

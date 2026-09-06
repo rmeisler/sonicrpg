@@ -2,7 +2,7 @@
 function love.conf(t)
     t.identity = "sonicrpg"
     t.version = "0.10.2"
-    t.console = true
+    t.console = false
     t.debug = true
 
     t.window.title = "Sonic RPG"

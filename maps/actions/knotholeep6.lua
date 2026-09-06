@@ -53,6 +53,21 @@ return function(scene, hint)
 			Ease(subtext.color, 4, 0, 1)
 		}
 	})
+	
+	if hint == "fromworldmap" then
+        scene.audio:playMusic("ffmedley", 1.0)
+		return BlockPlayer {
+			Parallel {
+				Do(function()
+					local cart = scene.objectLookup.CartBG
+					scene.player.x = cart.x + cart.sprite.w
+					scene.player.y = cart.y + cart.sprite.h
+				end),
+				Move(scene.objectLookup.CartBG, scene.objectLookup.CartWaypoint2),
+				Move(scene.objectLookup.Cart, scene.objectLookup.CartWaypoint2)
+			}
+		}
+	end
 
 	if not GameState:isFlagSet("ep6meeting") then
 		GameState:setFlag("ep6meeting")
@@ -313,8 +328,10 @@ return function(scene, hint)
 						scene.objectLookup.IvanMtg.hidden = true
 						scene.objectLookup.BMtg.hidden = true
 
+						GameState:removeFromParty("sonic")
 						GameState:addToParty("b", 10, true)
 						GameState:addToParty("sally", 10, true)
+						GameState:addToParty("sonic", 10, true)
 						GameState.leader = "sally"
 
 						scene.player.sprite.visible = true
