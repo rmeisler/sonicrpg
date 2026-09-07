@@ -127,6 +127,9 @@ function Player:construct(scene, layer, object)
 	-- Current keyhint sprite and obj
 	self.curKeyHintSprite = nil
 	self.curKeyHint = nil
+
+	-- Non update
+	self.noUpdate = function(player, dt) end
 	
 	-- Place player
 	self.x = object.x

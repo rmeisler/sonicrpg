@@ -480,7 +480,7 @@ local RunUpdate = function(self, dt)
 			end
 		elseif (collidedX or self.specialCollidedX) and self.fx < 0 then
 			if false and not self.noSonicCrash then
-				self.basicUpdate = function(player, dt) end
+				self.basicUpdate = self.noUpdate
 				local yOrig = self.sprite.transform.y + self.sprite.h*2
 				self.sprite.sortOrderY = yOrig
 				self:run(
@@ -534,7 +534,7 @@ local RunUpdate = function(self, dt)
 			end
 		elseif (collidedY or self.specialCollidedY) and self.fy > 0 then
 			if false and not self.noSonicCrash then
-				self.basicUpdate = function(player, dt) end
+				self.basicUpdate = self.noUpdate
 				self:run(
 					While(
 						function() return not self.ignoreSpecialMoveCollision end,
@@ -1008,8 +1008,13 @@ local ChargeUpDown = function(player, direction)
 end
 
 return function(player)
+	-- Don't do dat if on ladder
+	if next(player.ladders) ~= nil then
+		return
+	end
+
 	-- Remember basic movement controls
-	player.basicUpdate = function(self, dt) end
+	player.basicUpdate = player.noUpdate
 	player.counterWalkSpeed = player.walkspeed
 	
 	-- Play charge animation based on facing direction

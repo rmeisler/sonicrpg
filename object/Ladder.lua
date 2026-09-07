@@ -125,7 +125,7 @@ function Ladder:whileColliding(player)
 	end
 
 	if player.doingSpecialMove and GameState.leader == "sonic" then
-		player.basicUpdate = self.updateFun
+		return
 	end
 
 	if not player.ladders[tostring(self)] then
