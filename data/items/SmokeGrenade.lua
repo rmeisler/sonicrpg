@@ -9,28 +9,27 @@ return {
 	icon = "icon_charge",
 	usableFromMenu = false,
 	usableFromBattle = true,
-	unusable = function(targets)
-		for _,v in pairs(targets) do
-			if v.is_boss then
-				return true
-			end
-		end
-		return false
+	unusable = function(target)
+		return target.boss
 	end,
 	battleAction = function()
 		local Serial = require "actions/Serial"
+		local Parallel = require "actions/Parallel"
 		local Do = require "actions/Do"
-		return function(targets)
+		local Ease = require "actions/Ease"
+		return function(self, targets)
 			local actions = {}
-			for _,v in pairs(targets) do
-				table.insert(actions, Do(function()
+			for _,target in pairs(targets) do
+				table.insert(actions, Serial {
+				Ease(target:getSprite().color, 4, 0, 1),
+				Do(function()
 					target.hp = 0
 					target.state = target.STATE_DEAD
-					targetSp:remove()
 					target:invoke("dead")
-				end))
+				end)
+			})
 			end
-			return Serial(actions)
+			return Parallel(actions)
 		end
 	end,
 }

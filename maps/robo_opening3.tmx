@@ -1293,6 +1293,7 @@
     <property name="defaultAnim" value="idleleft"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreCollision" value="Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest4"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
     <property name="ignorePlayer" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>
@@ -1303,6 +1304,7 @@
     <property name="defaultAnim" value="idleright"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="ignoreCollision" value="Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest4"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
     <property name="ignorePlayer" type="bool" value="true"/>
     <property name="noInvestigate" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbot.png"/>

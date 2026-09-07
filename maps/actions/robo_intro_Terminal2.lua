@@ -27,6 +27,7 @@ return function(self)
 			-- Remove collision around door
 			self.scene.objectLookup.Door:removeCollision()
 			self.scene.player.disableScan = true
+			GameState:setFlag(self.scene.objectLookup.Door)
 		end),
 		Wait(0.5),
 		Animate(self.scene.objectLookup.Door.sprite, "opening"),

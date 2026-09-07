@@ -37,7 +37,7 @@ return function(scene)
 		end
 		
 		return Serial {
-			Wait(2),
+			Wait(0.5),
 			walkout,
 			MessageBox {message = "B: Where to now?", blocking = true},
 			MessageBox {message = "Sally: We need to find an entrance into the air ducts.", blocking = true},
@@ -48,8 +48,37 @@ return function(scene)
 		}
 	else
 		scene.audio:stopSfx("factoryfloor")
-		scene.objectLookup.Door.sprite:setAnimation("open")
-		scene.objectLookup.Door:removeCollision()
+		if GameState:isFlagSet(scene.objectLookup.Door) then
+			scene.objectLookup.Door.sprite:setAnimation("open")
+			scene.objectLookup.Door:removeCollision()
+		end
+		if GameState:isFlagSet(scene.objectLookup.Fan1) then
+			scene.objectLookup.Switch1.sprite:setAnimation("on")
+		end
+		scene.objectLookup.Boulder.x = 1536
+		scene.objectLookup.Boulder.y = 896 - 64
+		scene.objectLookup.Boulder.object.x = scene.objectLookup.Boulder.x
+		scene.objectLookup.Boulder.object.y = scene.objectLookup.Boulder.y
+		scene.objectLookup.Boulder:updateCollision()
+
+		scene.objectLookup.Boulder2.x = 384
+		scene.objectLookup.Boulder2.y = 896 - 64
+		scene.objectLookup.Boulder2.object.x = scene.objectLookup.Boulder2.x
+		scene.objectLookup.Boulder2.object.y = scene.objectLookup.Boulder2.y
+		scene.objectLookup.Boulder2:updateCollision()
+
+		scene.objectLookup.Boulder3.x = 96
+		scene.objectLookup.Boulder3.y = 864 - 64
+		scene.objectLookup.Boulder3.object.x = scene.objectLookup.Boulder3.x
+		scene.objectLookup.Boulder3.object.y = scene.objectLookup.Boulder3.y
+		scene.objectLookup.Boulder3:updateCollision()
+
+		scene.objectLookup.Boulder4.x = 1888
+		scene.objectLookup.Boulder4.y = 896 - 64
+		scene.objectLookup.Boulder4.object.x = scene.objectLookup.Boulder4.x
+		scene.objectLookup.Boulder4.object.y = scene.objectLookup.Boulder4.y
+		scene.objectLookup.Boulder4:updateCollision()
+
 		return PlayAudio("music", "infiltration", 1.0, true, true)
 	end
 end

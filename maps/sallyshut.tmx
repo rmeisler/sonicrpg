@@ -347,7 +347,9 @@ return function(self)
             menu:close()
             self.menuClosing = true
             local msg = &quot;&quot;
-            if GameState:isFlagSet(&quot;ep5_knothole&quot;) then
+            if GameState:isFlagSet(&quot;ep6intro&quot;) then
+                msg = &quot;Everyone in Knothole has something to say. {p60}Try talking to each person as Sally, Sonic, and B.&quot;
+            elseif GameState:isFlagSet(&quot;ep5_knothole&quot;) then
                 msg = &quot;Press left-shift to fly and left-shift again to fast fall!&quot;
             elseif GameState:isFlagSet(&quot;ep4_tails_snowman&quot;) then
                 msg = &quot;Ride the pulley out of Knothole and head to the Great Forest to get the Freedom Stormer!&quot;

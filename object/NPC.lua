@@ -404,7 +404,7 @@ function NPC:messageBox()
 	for _,message in pairs(messages) do
 		action:add(self.scene, MessageBox {message=message, blocking=true})
 	end
-	if objProps.battle and not self.falling then
+	if objProps.battle and not self.falling and not self.scene.player.isSwatbot[GameState.leader] then
 		self.collided = true
 
 		local battleArgs = {}

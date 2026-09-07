@@ -243,6 +243,8 @@ return function(self)
         return Action()
     end
 
+    local prevMusic = self.scene.audio:getCurrentMusic()
+    local prevVolume = self.scene.audio:getMusicVolume()
     return BlockPlayer { Menu {
         layout = Layout {
             {Layout.Text(&quot;Play guitar?&quot;), selectable = false},
@@ -268,7 +270,7 @@ return function(self)
                         self.scene.player.noIdle = false
                         self.hidden = false
                     end),
-                    PlayAudio(&quot;music&quot;, &quot;knotholehut&quot;, 1.0, true),
+                    PlayAudio(&quot;music&quot;, prevMusic, prevVolume, true),
                 }
             end},
             {Layout.Text(&quot;No&quot;), choose = function(menu) menu:close() end},

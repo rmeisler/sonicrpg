@@ -2724,6 +2724,7 @@ return {
             ["defaultAnim"] = "idleleft",
             ["ghost"] = true,
             ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest4",
+            ["ignoreMapCollision"] = true,
             ["ignorePlayer"] = true,
             ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/swatbot.png"
@@ -2745,6 +2746,7 @@ return {
             ["defaultAnim"] = "idleright",
             ["ghost"] = true,
             ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest4",
+            ["ignoreMapCollision"] = true,
             ["ignorePlayer"] = true,
             ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/swatbot.png"

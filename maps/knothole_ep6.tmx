@@ -2938,7 +2938,7 @@ end</property>
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="alignOffsetY" type="float" value="-32"/>
-    <property name="defaultAnim" value="idleleft"/>
+    <property name="defaultAnim" value="idleright"/>
     <property name="ghost" type="bool" value="false"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
@@ -2958,12 +2958,16 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
+    if self.scene.objectLookup.Bunnie.state == NPC.STATE_TOUCHING then
+        return
+    end
+
         return BlockPlayer {
             Do(function() self:facePlayer() end),
             MessageBox {message = &quot;Ivan: Bunnie taught me how to grow produce.&quot;},
             Animate(self.sprite, &quot;attitude&quot;),
             MessageBox {message = &quot;Ivan: It is a gratifying process.&quot;},
-            Animate(self.sprite, &quot;idleleft&quot;),
+            Animate(self.sprite, &quot;idleright&quot;),
             Do(function() self:refreshKeyHint() end)
         }
 end</property>
@@ -2994,6 +2998,10 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
+    if self.scene.objectLookup.Rotor.state == NPC.STATE_TOUCHING then
+        return
+    end
+
     local lastState = self.scene.player.state
     if GameState.leader == &quot;sally&quot; then
         return BlockPlayer {
@@ -3056,6 +3064,10 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
+    if self.scene.objectLookup.Logan.state == NPC.STATE_TOUCHING then
+        return
+    end
+
     local lastState = self.scene.player.state
     if GameState.leader == &quot;sally&quot; then
         local lastState = self.scene.player.state
@@ -3082,11 +3094,23 @@ return function(self)
             Do(function()
                 self.scene.player.sprite.visible = true
                 self.scene.player.dropShadow.hidden = false
+                self.scene.player.state = lastState
                 self:facePlayer()
                 self:refreshKeyHint()
             end)
         }
     elseif GameState.leader == &quot;sonic&quot; then
+        if GameState:isFlagSet(&quot;ep6_rotortalktosonic&quot;) then
+            return BlockPlayer {
+                Do(function() self:facePlayer() end),
+                MessageBox{message=&quot;Rotor: Good luck, Sonic!&quot;},
+                Animate(self.sprite, &quot;idleleft&quot;),
+                Do(function()
+                    self:refreshKeyHint()
+                end)
+            }
+        end
+        GameState:setFlag(&quot;ep6_rotortalktosonic&quot;)
         return BlockPlayer {
             Do(function() self:facePlayer() end),
             MessageBox {message = &quot;Rotor: Hey Sonic, I cooked up a special item for ya...&quot;},
@@ -3122,7 +3146,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/rotor.png"/>
    </properties>
   </object>
-  <object id="753" name="Bunnie" type="BasicNPC" gid="5323" x="1152" y="2752" width="64" height="96">
+  <object id="753" name="Bunnie" type="BasicNPC" gid="5323" x="1216" y="2752" width="64" height="96">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="alignOffsetY" type="float" value="-32"/>
@@ -3146,6 +3170,10 @@ local Layout = require &quot;util/Layout&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
+    if self.scene.objectLookup.Ivan.state == NPC.STATE_TOUCHING then
+        return
+    end
+
     if GameState.leader == &quot;sally&quot; then
         return BlockPlayer {
             Animate(self.sprite, &quot;smileright&quot;),
@@ -3169,7 +3197,6 @@ return function(self)
             Animate(self.sprite, &quot;concernedright&quot;),
             MessageBox {message = &quot;Bunnie: And ya know what?{p80} That's ok.&quot;},
             Do(function() self.scene.player.state = lastState end),
-            Animate(self.sprite, function() return nextAnim end),
             MessageBox {message = &quot;Bunnie: Just be extra careful this time, alright?&quot;},
             MessageBox {message = &quot;Sonic: ...{p80}you got it, Bunnie.&quot;},
             Animate(self.sprite, &quot;idleright&quot;),
@@ -3240,6 +3267,18 @@ return function(self)
             Do(function() self:refreshKeyHint() end)
         }
     elseif GameState.leader == &quot;sonic&quot; then
+        if GameState:isFlagSet(&quot;ep6_anttalktosonic&quot;) then
+            return BlockPlayer {
+                Do(function() self:facePlayer() end),
+                MessageBox{message=&quot;Antoine: I hope you are liking ze French Chilidog!&quot;},
+                Animate(self.sprite, &quot;idleright&quot;),
+                Do(function()
+                    self:refreshKeyHint()
+                end)
+            }
+        end
+        GameState:setFlag(&quot;ep6_anttalktosonic&quot;)
+
         local lastState = self.scene.player.state
         return BlockPlayer {
             Do(function() self:facePlayer() end),
@@ -3257,6 +3296,18 @@ return function(self)
             end)
         }
     else
+        if GameState:isFlagSet(&quot;ep6_anttalktob&quot;) then
+            return BlockPlayer {
+                Do(function() self:facePlayer() end),
+                MessageBox{message=&quot;Antoine: Good luck, B!&quot;},
+                Animate(self.sprite, &quot;idleright&quot;),
+                Do(function()
+                    self:refreshKeyHint()
+                end)
+            }
+        end
+        GameState:setFlag(&quot;ep6_anttalktob&quot;)
+
         local lastState = self.scene.player.state
         return BlockPlayer {
             Do(function() self:facePlayer() end),

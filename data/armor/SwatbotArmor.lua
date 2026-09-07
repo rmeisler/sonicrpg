@@ -12,6 +12,7 @@ return {
 	},
 
 	onEquip = function(member, player)
+	    local ItemType = require "util/ItemType"
 		if  GameState:isEquipped(member, ItemType.Accessory, "Swatbot Helmet") and
 			GameState:isEquipped(member, ItemType.Armor, "Swatbot Armor") and
 			GameState:isEquipped(member, ItemType.Weapon, "Swatbot Gauntlet") and

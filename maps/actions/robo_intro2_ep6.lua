@@ -90,17 +90,20 @@ return function(scene)
 	scene.player:addHandler("caught", caughtHandler)
 
 	if GameState:isFlagSet("ep6_robo_intro2_done") then
-		return Do(function()
-			scene.player.y = scene.player.y + 200
-			scene.player.state = "idleleft"
-			scene.objectLookup.SonicHide.hidden = true
-			scene.objectLookup.BHide.hidden = true
-			scene.objectLookup.Swatbot1.ignorePlayer = false
-			scene.objectLookup.Swatbot3.ignorePlayer = false
-			scene.objectLookup.Swatbot4.ignorePlayer = false
-			scene.objectLookup.Swatbot5.ignorePlayer = false
-			scene.objectLookup.IntroCambot:remove()
-		end)
+		return Serial {
+			Do(function()
+				scene.player.y = scene.player.y + 200
+				scene.player.state = "idleleft"
+				scene.objectLookup.SonicHide.hidden = true
+				scene.objectLookup.BHide.hidden = true
+				scene.objectLookup.Swatbot1.ignorePlayer = false
+				scene.objectLookup.Swatbot3.ignorePlayer = false
+				scene.objectLookup.Swatbot4.ignorePlayer = false
+				scene.objectLookup.Swatbot5.ignorePlayer = false
+				scene.objectLookup.IntroCambot:remove()
+			end),
+			PlayAudio("music", "infiltration", 1, true, true)
+		}
 	end
 	
 	GameState:setFlag("ep6_robo_intro2_done")

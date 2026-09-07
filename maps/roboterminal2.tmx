@@ -298,6 +298,7 @@ local Parallel = require &quot;actions/Parallel&quot;
 local Do = require &quot;actions/Do&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
 local Ease = require &quot;actions/Ease&quot;
+local Action = require &quot;actions/Action&quot;
 
 return function(self, player)
     local dir
@@ -334,6 +335,12 @@ return function(self, player)
         end
     end
 
+    if self.beingPushed then
+        return Action()
+    end
+
+    self.beingPushed = true
+
     return BlockPlayer {
         PlayAudio(&quot;sfx&quot;, &quot;openchasm&quot;, 1, true),
         Parallel {
@@ -342,6 +349,7 @@ return function(self, player)
         },
         Do(function()
             self:updateCollision()
+            self.beingPushed = false
         end)
     }
 end</property>
@@ -369,6 +377,7 @@ local Parallel = require &quot;actions/Parallel&quot;
 local Do = require &quot;actions/Do&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
 local Ease = require &quot;actions/Ease&quot;
+local Action = require &quot;actions/Action&quot;
 
 return function(self, player)
     local dir
@@ -405,6 +414,12 @@ return function(self, player)
         end
     end
 
+    if self.beingPushed then
+        return Action()
+    end
+
+    self.beingPushed = true
+
     return BlockPlayer {
         PlayAudio(&quot;sfx&quot;, &quot;openchasm&quot;, 1, true),
         Parallel {
@@ -413,6 +428,7 @@ return function(self, player)
         },
         Do(function()
             self:updateCollision()
+            self.beingPushed = false
         end)
     }
 end</property>
@@ -429,6 +445,7 @@ local Parallel = require &quot;actions/Parallel&quot;
 local Do = require &quot;actions/Do&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
 local Ease = require &quot;actions/Ease&quot;
+local Action = require &quot;actions/Action&quot;
 
 return function(self, player)
     local dir
@@ -465,6 +482,12 @@ return function(self, player)
         end
     end
 
+    if self.beingPushed then
+        return Action()
+    end
+
+    self.beingPushed = true
+
     return BlockPlayer {
         PlayAudio(&quot;sfx&quot;, &quot;openchasm&quot;, 1, true),
         Parallel {
@@ -473,6 +496,7 @@ return function(self, player)
         },
         Do(function()
             self:updateCollision()
+            self.beingPushed = false
         end)
     }
 end</property>
@@ -489,6 +513,7 @@ local Parallel = require &quot;actions/Parallel&quot;
 local Do = require &quot;actions/Do&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
 local Ease = require &quot;actions/Ease&quot;
+local Action = require &quot;actions/Action&quot;
 
 return function(self, player)
     local dir
@@ -525,6 +550,12 @@ return function(self, player)
         end
     end
 
+    if self.beingPushed then
+        return Action()
+    end
+
+    self.beingPushed = true
+
     return BlockPlayer {
         PlayAudio(&quot;sfx&quot;, &quot;openchasm&quot;, 1, true),
         Parallel {
@@ -533,6 +564,7 @@ return function(self, player)
         },
         Do(function()
             self:updateCollision()
+            self.beingPushed = false
         end)
     }
 end</property>
