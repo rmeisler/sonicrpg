@@ -15,6 +15,7 @@ local While = require "actions/While"
 local Action = require "actions/Action"
 local YieldUntil = require "actions/YieldUntil"
 local Repeat = require "actions/Repeat"
+local IfElse = require "actions/IfElse"
 
 local Transform = require "util/Transform"
 
@@ -38,10 +39,17 @@ function EscapePlayer:construct(scene, layer, object)
 	self.bx = 0
 	self.by = 0
 	self.extraBx = 0
+	self.extraSpeed = 0
 	self.state = "juiceright"
 
 	self:removeSceneHandler("update", Player.update)
 	self:removeSceneHandler("keytriggered", Player.keytriggered)
+	
+	if object.properties.numberOfBoosts > 0 then
+		self.boostCoolDown = 0
+		self.numberOfBoosts = object.properties.numberOfBoosts
+	end
+	self.opponent = object.properties.opponent
 	
 	scene.player = self
 end
@@ -51,12 +59,23 @@ function EscapePlayer:update(dt)
 		self.frameCounter = 0
 	end
 	
+	if self.boostCoolDown > 0 then
+		self.boostCoolDown = self.boostCoolDown - dt
+	end
+	
 	if not self.animationStack then
 		self.animationStack = {}
 	end
 	
 	if self.blocked or not self.scene:playerMovable() or self.scene.playerDead then
 		return
+	end
+	
+	if self.numberOfBoosts > 0 and love.keyboard.isDown("x") and self.boostCoolDown <= 0 then
+		self.boostCoolDown = 3 -- Three second cool down on boost
+		self.numberOfBoosts = self.numberOfBoosts - 1
+		self:boost(self.scene.objectLookup[self.opponent])
+		self:invoke("boost", self.numberOfBoosts)
 	end
 	
 	-- Snapshot current x and y
@@ -151,9 +170,11 @@ function EscapePlayer:update(dt)
 			local dustAnim
 			if self.fx > 0 then
 				dustX = dustX - self.width * 2 - 5
+				dustY = dustY - 10
 				dustAnim = "right"
 			elseif self.fx < 0 then
 				dustX = dustX + self.halfWidth
+				dustY = dustY - 10
 				dustAnim = "left"
 			elseif self.fy > 0 then
 				dustX = self.x - self.width
@@ -221,7 +242,7 @@ function EscapePlayer:update(dt)
 end
 
 function EscapePlayer:moveForward(dt)
-	self.x = self.x + (self.fx + self.bx + self.extraBx) * (dt/0.016)
+	self.x = self.x + (self.fx + self.bx + self.extraBx + self.extraSpeed) * (dt/0.016)
 	
 	if (self.fy + self.by) ~= 0 then
 		self.y = math.max(
@@ -267,9 +288,13 @@ function EscapePlayer:dodgeLaser()
 				self.extraBx = 10
 			end),
 			YieldUntil(
-				function()
-					return self.x > self.scene.objectLookup.R.x
-				end
+				self.scene.objectLookup.R and
+					function()
+						return self.x > self.scene.objectLookup.R.x
+					end or
+					function()
+						return self.x > self.scene.objectLookup.Fleet.x
+					end
 			)
 		},
 		Parallel {
@@ -278,6 +303,31 @@ function EscapePlayer:dodgeLaser()
 			end),
 			Wait(1.2)
 		}
+	}
+end
+
+function EscapePlayer:boost(opponentNPC)
+	self:run {
+		PlayAudio("sfx", "sonicrunturn", 1.0, true),
+		Parallel {
+			Do(function()
+				self.extraBx = 3
+				self.bigDust = true
+				self.stateOverride = "juicecrouchright"
+			end),
+
+			Wait(3)
+		},
+		IfElse(
+			function() return opponentNPC ~= nil and opponentNPC.x < (self.x - 200) end,
+			Parallel {
+				Do(function()
+					self.stateOverride = "juicesmileright"
+				end),
+				Wait(1.2)
+			},
+			Action()
+		)
 	}
 end
 
@@ -359,9 +409,13 @@ function EscapePlayer:hitByLaser()
 			end),
 			Parallel {
 				YieldUntil(
-					function()
-						return self.x > self.scene.objectLookup.R.x
-					end
+					self.scene.objectLookup.R and
+						function()
+							return self.x > self.scene.objectLookup.R.x
+						end or
+						function()
+							return self.x > self.scene.objectLookup.Fleet.x
+						end
 				),
 				Do(function()
 					self.bigDust = true

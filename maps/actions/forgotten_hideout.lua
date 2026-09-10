@@ -62,6 +62,12 @@ return function(scene, hint)
 			end)
 		}
 	end
+	
+	if GameState:isFlagSet("ep6_seefire") then
+		scene.audio:stopMusic()
+		
+		return Spawn(Repeat(PlayAudio("sfx", "fire", 1)))
+	end
 
 	if GameState:isFlagSet("ep6intro") then
 		scene.player.x = scene.player.x - 20
@@ -73,6 +79,8 @@ return function(scene, hint)
 		scene.player.x = scene.player.x + 20
 		scene.player.y = scene.player.y + 340
 		scene.audio:stopMusic()
+		
+		GameState:setFlag("ep6_seefire")
 
 		return BlockPlayer {
 			Spawn(Repeat(PlayAudio("sfx", "fire", 1))),

@@ -193,6 +193,10 @@ return {
 			frames = {{0,11}, {1,11}, {2,11}, {3,11}},
 			speed = 0.08
 		},
+		juicesurpriseright = {
+			frames = {{4,12}, {5,12}, {6,12}, {7,12}},
+			speed = 0.08
+		},
 		
 		juicescaredright = {
 			frames = {{8,11}, {9,11}, {10,11}, {11,11}},
@@ -390,6 +394,10 @@ return {
 		paceright = {
 			frames = {{4,11},{5,11}},
 			speed = 0.15
+		},
+		
+		skidright = {
+			frames = {{3,12}}
 		},
 		
 		prepare_race = {

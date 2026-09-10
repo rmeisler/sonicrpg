@@ -91,7 +91,7 @@ return function(scene, hint)
 				scene.player.sprite.visible = false
 				scene.player.dropShadow.hidden = true
 			end),
-			Wait(4),
+			Wait(3),
 			PlayAudio("music", "areyouready", 0.5, true, true),
 			Animate(scene.objectLookup.SallyMtg.sprite, "planning_lookleft"),
 			MessageBox{message="Sally: Rotor, Logan{p80}, status report on the computer virus?"},

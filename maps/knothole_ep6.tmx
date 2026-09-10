@@ -3436,7 +3436,7 @@ return function(self)
             MessageBox {message = &quot;Tails: I bet I could be really useful if I joined the mission tomorrow!&quot;},
             MessageBox {message = &quot;Sally: That is so thoughtful Tails! {p80}But I already have a role for you.&quot;},
             Do(function() self:facePlayer() end),
-            MessageBox {message = &quot;Sally: You will be the {h defender of Kothole}!&quot;},
+            MessageBox {message = &quot;Sally: You will be the {h defender of Knothole}!&quot;},
             Animate(self.sprite, &quot;saddown&quot;),
             MessageBox {message = &quot;Tails: Hey! {p80}That's not a real role!&quot;},
             MessageBox {message = &quot;Sally: Is so! {p80}And I need someone to do it! {p80}Are you up to the challenge?&quot;},
