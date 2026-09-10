@@ -1458,7 +1458,7 @@ return function(self, player, prevState)
 end</property>
    </properties>
   </object>
-  <object id="45" name="Ratbot2" type="Ratbot" gid="4565" x="640" y="3680" width="64" height="64">
+  <object id="45" name="Ratbot2" type="Ratbot" gid="4565" x="576" y="3680" width="96" height="96">
    <properties>
     <property name="align" value="bottom_center"/>
     <property name="battle" type="file" value="../data/monsters/ratbot2.lua"/>

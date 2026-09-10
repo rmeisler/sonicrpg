@@ -55,11 +55,13 @@ function love.load()
 end
 
 function love.update(dt)
+	--[[
     if love.keyboard.isDown("f") then
         dt = dt * 10
 	elseif love.keyboard.isDown("s") then
         dt = dt / 4
     end
+	]]
 	
 	if love.keyboard.isDown("l") then
 		print("current layer is: "..tostring(sceneMgr:getCurrent().currentLayerId))

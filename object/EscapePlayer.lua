@@ -42,15 +42,13 @@ function EscapePlayer:construct(scene, layer, object)
 	self.extraSpeed = 0
 	self.state = "juiceright"
 
+	self.boostCoolDown = 0
+	self.opponent = object.properties.opponent
+	self.numberOfBoosts = object.properties.numberOfBoosts or 0
+
 	self:removeSceneHandler("update", Player.update)
 	self:removeSceneHandler("keytriggered", Player.keytriggered)
-	
-	if object.properties.numberOfBoosts > 0 then
-		self.boostCoolDown = 0
-		self.numberOfBoosts = object.properties.numberOfBoosts
-	end
-	self.opponent = object.properties.opponent
-	
+
 	scene.player = self
 end
 
