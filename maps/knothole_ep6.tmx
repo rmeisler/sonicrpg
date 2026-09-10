@@ -3127,6 +3127,17 @@ return function(self)
             end)
         }
     else
+        if GameState:isFlagSet(&quot;ep6_rotortalktob&quot;) then
+            return BlockPlayer {
+                Do(function() self:facePlayer() end),
+                MessageBox{message=&quot;Rotor: Good luck, B!&quot;},
+                Animate(self.sprite, &quot;idleleft&quot;),
+                Do(function()
+                    self:refreshKeyHint()
+                end)
+            }
+        end
+        GameState:setFlag(&quot;ep6_rotortalktob&quot;)
         return BlockPlayer {
             Do(function() self:facePlayer() end),
             MessageBox {message = &quot;Rotor: How's your body feeling, B?&quot;},
@@ -3246,6 +3257,17 @@ local NPC = require &quot;object/NPC&quot;
 return function(self)
     if GameState.leader == &quot;sally&quot; then
         local lastState = self.scene.player.state
+        if GameState:isFlagSet(&quot;ep6_anttalktosally&quot;) then
+            return BlockPlayer {
+                Do(function() self:facePlayer() end),
+                MessageBox{message=&quot;Antoine: Hurry home!&quot;},
+                Animate(self.sprite, &quot;idleright&quot;),
+                Do(function()
+                    self:refreshKeyHint()
+                end)
+            }
+        end
+        GameState:setFlag(&quot;ep6_anttalktosally&quot;)
         return BlockPlayer {
             Do(function() self:facePlayer() end),
             MessageBox {message = &quot;Antoine: It is so exciting, zis time, eh?&quot;},

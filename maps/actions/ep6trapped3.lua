@@ -38,7 +38,7 @@ return function(scene, hint)
 	)
 	scene.pressX1 = SpriteNode(
 		scene,
-		Transform(190, 580, 2, 2),
+		Transform(190, 570, 2, 2),
 		{255,255,255,0},
 		"pressx",
 		12,
@@ -48,7 +48,7 @@ return function(scene, hint)
 	scene.pressX1:setAnimation("nopress")
 	scene.pressX2 = SpriteNode(
 		scene,
-		Transform(220, 580, 2, 2),
+		Transform(220, 570, 2, 2),
 		{255,255,255,0},
 		"pressx",
 		12,
@@ -58,7 +58,7 @@ return function(scene, hint)
 	scene.pressX2:setAnimation("nopress")
 	scene.pressX3 = SpriteNode(
 		scene,
-		Transform(250, 580, 2, 2),
+		Transform(250, 570, 2, 2),
 		{255,255,255,0},
 		"pressx",
 		12,
@@ -68,7 +68,7 @@ return function(scene, hint)
 	scene.pressX3:setAnimation("nopress")
 	scene.pressX4 = SpriteNode(
 		scene,
-		Transform(280, 580, 2, 2),
+		Transform(280, 570, 2, 2),
 		{255,255,255,0},
 		"pressx",
 		12,
