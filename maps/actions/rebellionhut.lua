@@ -86,7 +86,6 @@ return function(scene, hint)
 	elseif not scene.nighttime then
 		if GameState:isFlagSet("ep6intro") then
 			scene.objectLookup.Door.object.properties.scene = "knothole_ep6.lua"
-			scene.objectLookup.Leon:remove()
 		elseif GameState:isFlagSet("ep5_knothole") then
 			if not GameState:isFlagSet("ep5_knothole_firefly_trigger") and not GameState:isFlagSet("ep5_knothole_meeting_trigger") then
 				scene.audio:playMusic("knotholehut", 0.8)
@@ -118,13 +117,15 @@ return function(scene, hint)
 			scene.objectLookup.Ivan.ghost = false
 			scene.objectLookup.Ivan.isInteractable = true
 			scene.objectLookup.Ivan:updateCollision()
+		elseif GameState:isFlagSet("ep6intro") then
+			scene.objectLookup.Leon:remove()
+			scene.objectLookup.Fleet:remove()
+			scene.objectLookup.Ivan:remove()
 		elseif not GameState:isFlagSet("ep5_knothole") then
 			scene.objectLookup.Leon.hidden = false
 			scene.objectLookup.Leon.ghost = false
 			scene.objectLookup.Leon.isInteractable = true
 			scene.objectLookup.Leon:updateCollision()
-		else
-			
 		end
 	end)
 end

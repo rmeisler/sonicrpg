@@ -1301,7 +1301,14 @@ return function(self)
                             self.scene.objectLookup.Door5:updateCollision()
 
                             self.scene.objectLookup.LaserTrap2:deactivate()
-                        end)
+                        end),
+                        Parallel {
+                            Animate(self.scene.objectLookup.Door1.sprite, &quot;closing_right&quot;),
+                            Animate(self.scene.objectLookup.Door2.sprite, &quot;closing_left&quot;),
+                            Animate(self.scene.objectLookup.Door3.sprite, &quot;closing_left&quot;),
+                            Animate(self.scene.objectLookup.Door4.sprite, &quot;closing_right&quot;),
+                            Animate(self.scene.objectLookup.Door5.sprite, &quot;closing_left&quot;)
+                        }
                     },
                     Do(function()
                     end)
@@ -1315,6 +1322,14 @@ return function(self)
                 self.scene.objectLookup.Door3:updateCollision()
                 self.scene.objectLookup.Door4:updateCollision()
                 self.scene.objectLookup.Door5:updateCollision()
+
+                self:run(Parallel {
+                    Animate(self.scene.objectLookup.Door1.sprite, &quot;closing_right&quot;),
+                    Animate(self.scene.objectLookup.Door2.sprite, &quot;closing_left&quot;),
+                    Animate(self.scene.objectLookup.Door3.sprite, &quot;closing_left&quot;),
+                    Animate(self.scene.objectLookup.Door4.sprite, &quot;closing_right&quot;),
+                    Animate(self.scene.objectLookup.Door5.sprite, &quot;closing_left&quot;)
+                })
 
                 self.scene.objectLookup.LaserTrap2:deactivate()
             end
@@ -1420,6 +1435,9 @@ end</property>
 
 return function(self, player, prevState)
     if not self.scene.lightsOn then
+        if self.scene.objectLookup.Door1.sprite.selected == &quot;opening_right&quot; then
+            self.scene.objectLookup.Door1:run(Animate(self.scene.objectLookup.Door1.sprite, &quot;closing_right&quot;))
+        end
         return
     end
 
@@ -1448,6 +1466,9 @@ end</property>
 
 return function(self, player, prevState)
     if not self.scene.lightsOn then
+        if self.scene.objectLookup.Door2.sprite.selected == &quot;opening_left&quot; then
+            self.scene.objectLookup.Door2:run(Animate(self.scene.objectLookup.Door2.sprite, &quot;closing_left&quot;))
+        end
         return
     end
 
@@ -1565,6 +1586,9 @@ end</property>
 
 return function(self, player, prevState)
     if not self.scene.lightsOn then
+        if self.scene.objectLookup.Door3.sprite.selected == &quot;opening_left&quot; then
+            self.scene.objectLookup.Door3:run(Animate(self.scene.objectLookup.Door3.sprite, &quot;closing_left&quot;))
+        end
         return
     end
 
@@ -1708,10 +1732,27 @@ return function(self)
                             self.scene.objectLookup.Door6:updateCollision()
                             self.scene.objectLookup.Door7:updateCollision()
 
+                            self.scene.objectLookup.Door1.sprite:setAnimation(&quot;closing_right&quot;)
+                            self.scene.objectLookup.Door2.sprite:setAnimation(&quot;closing_left&quot;)
+                            self.scene.objectLookup.Door3.sprite:setAnimation(&quot;closing_left&quot;)
+                            self.scene.objectLookup.Door4.sprite:setAnimation(&quot;closing_right&quot;)
+                            self.scene.objectLookup.Door5.sprite:setAnimation(&quot;closing_left&quot;)
+                            self.scene.objectLookup.Door6.sprite:setAnimation(&quot;closing_left&quot;)
+                            self.scene.objectLookup.Door7.sprite:setAnimation(&quot;closing_left&quot;)
+
                             self.scene.objectLookup.LaserTrap1:deactivate()
                             self.scene.objectLookup.LaserTrap2:deactivate()
                             self.scene.objectLookup.LaserTrap3:deactivate()
-                        end)
+                        end),
+                        Parallel {
+                            Animate(self.scene.objectLookup.Door1.sprite, &quot;closing_right&quot;),
+                            Animate(self.scene.objectLookup.Door2.sprite, &quot;closing_left&quot;),
+                            Animate(self.scene.objectLookup.Door3.sprite, &quot;closing_left&quot;),
+                            Animate(self.scene.objectLookup.Door4.sprite, &quot;closing_right&quot;),
+                            Animate(self.scene.objectLookup.Door5.sprite, &quot;closing_left&quot;),
+                            Animate(self.scene.objectLookup.Door6.sprite, &quot;closing_left&quot;),
+                            Animate(self.scene.objectLookup.Door7.sprite, &quot;closing_left&quot;)
+                        }
                     },
                     Do(function()
                     end)
@@ -1727,6 +1768,16 @@ return function(self)
                 self.scene.objectLookup.Door5:updateCollision()
                 self.scene.objectLookup.Door6:updateCollision()
                 self.scene.objectLookup.Door7:updateCollision()
+
+                self:run(                        Parallel {
+                            Animate(self.scene.objectLookup.Door1.sprite, &quot;closing_right&quot;),
+                            Animate(self.scene.objectLookup.Door2.sprite, &quot;closing_left&quot;),
+                            Animate(self.scene.objectLookup.Door3.sprite, &quot;closing_left&quot;),
+                            Animate(self.scene.objectLookup.Door4.sprite, &quot;closing_right&quot;),
+                            Animate(self.scene.objectLookup.Door5.sprite, &quot;closing_left&quot;),
+                            Animate(self.scene.objectLookup.Door6.sprite, &quot;closing_left&quot;),
+                            Animate(self.scene.objectLookup.Door7.sprite, &quot;closing_left&quot;)
+                        })
 
                 self.scene.objectLookup.LaserTrap1:deactivate()
                 self.scene.objectLookup.LaserTrap2:deactivate()
@@ -1831,6 +1882,9 @@ end</property>
 
 return function(self, player, prevState)
     if not self.scene.lightsOn then
+        if self.scene.objectLookup.Door4.sprite.selected == &quot;opening_right&quot; then
+            self.scene.objectLookup.Door4:run(Animate(self.scene.objectLookup.Door4.sprite, &quot;closing_right&quot;))
+        end
         return
     end
 
@@ -1948,6 +2002,9 @@ end</property>
 
 return function(self, player, prevState)
     if not self.scene.lightsOn then
+        if self.scene.objectLookup.Door5.sprite.selected == &quot;opening_left&quot; then
+            self.scene.objectLookup.Door5:run(Animate(self.scene.objectLookup.Door5.sprite, &quot;closing_left&quot;))
+        end
         return
     end
 
@@ -2168,6 +2225,9 @@ end</property>
 
 return function(self, player, prevState)
     if not self.scene.lightsOn then
+        if self.scene.objectLookup.Door7.sprite.selected == &quot;opening_left&quot; then
+            self.scene.objectLookup.Door7:run(Animate(self.scene.objectLookup.Door7.sprite, &quot;closing_left&quot;))
+        end
         return
     end
 
@@ -2231,6 +2291,9 @@ end</property>
 
 return function(self, player, prevState)
     if not self.scene.lightsOn then
+        if self.scene.objectLookup.Door6.sprite.selected == &quot;opening_left&quot; then
+            self.scene.objectLookup.Door6:run(Animate(self.scene.objectLookup.Door6.sprite, &quot;closing_left&quot;))
+        end
         return
     end
 

@@ -307,25 +307,39 @@ end
 function EscapePlayer:boost(opponentNPC)
 	self:run {
 		PlayAudio("sfx", "sonicrunturn", 1.0, true),
+		Do(function()
+			self.sprite:pushOverride("juiceright", "juicecrouchright")
+			self.sprite:pushOverride("juiceupright", "juicecrouchright")
+			self.sprite:pushOverride("juicedownright", "juicecrouchright")
+		end),
 		Parallel {
 			Do(function()
 				self.extraBx = 3
 				self.bigDust = true
-				self.stateOverride = "juicecrouchright"
 			end),
 
 			Wait(3)
 		},
 		IfElse(
 			function() return opponentNPC ~= nil and opponentNPC.x < (self.x - 200) end,
-			Parallel {
+			Serial {
 				Do(function()
-					self.stateOverride = "juicesmileright"
+					self.sprite:popOverride("juiceright")
+					self.sprite:popOverride("juiceupright")
+					self.sprite:popOverride("juicedownright")
+					self.sprite:pushOverride("juiceright", "juicesmileright")
+					self.sprite:pushOverride("juiceupright", "juicesmileright")
+					self.sprite:pushOverride("juicedownright", "juicesmileright")
 				end),
 				Wait(1.2)
 			},
 			Action()
-		)
+		),
+		Do(function()
+			self.sprite:popOverride("juiceright")
+			self.sprite:popOverride("juiceupright")
+			self.sprite:popOverride("juicedownright")
+		end)
 	}
 end
 

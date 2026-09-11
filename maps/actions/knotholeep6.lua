@@ -215,8 +215,12 @@ return function(scene, hint)
 					}),
 					Wait(0.2),
 					Spawn(Serial {
-						Animate(scene.objectLookup.LoganMtg.sprite, "idleleft"),
+						Animate(scene.objectLookup.LoganMtg.sprite, "meeting_idleleft"),
 						Wait(0.2),
+						Do(function()
+							scene.objectLookup.LoganMtg.x = scene.objectLookup.LoganMtg.x - 80
+							scene.objectLookup.LoganMtg.y = scene.objectLookup.LoganMtg.y + 50
+						end),
 						Move(scene.objectLookup.LoganMtg, scene.objectLookup.LeaveMeetingWP1, "walk"),
 						Move(scene.objectLookup.LoganMtg, scene.objectLookup.LeaveMeetingWP2, "walk"),
 						Move(scene.objectLookup.LoganMtg, scene.objectLookup.LeaveMeetingWP3, "walk"),

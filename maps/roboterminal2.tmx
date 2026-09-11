@@ -293,7 +293,7 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="hard" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
-    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Do = require &quot;actions/Do&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
@@ -341,7 +341,7 @@ return function(self, player)
 
     self.beingPushed = true
 
-    return BlockPlayer {
+    return Serial {
         PlayAudio(&quot;sfx&quot;, &quot;openchasm&quot;, 1, true),
         Parallel {
             Ease(self, dir, function() return self[dir] + amount end, 2),
@@ -372,7 +372,7 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="hard" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
-    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Do = require &quot;actions/Do&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
@@ -420,7 +420,7 @@ return function(self, player)
 
     self.beingPushed = true
 
-    return BlockPlayer {
+    return Serial {
         PlayAudio(&quot;sfx&quot;, &quot;openchasm&quot;, 1, true),
         Parallel {
             Ease(self, dir, function() return self[dir] + amount end, 2),
@@ -440,7 +440,7 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="hard" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
-    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Do = require &quot;actions/Do&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
@@ -488,7 +488,7 @@ return function(self, player)
 
     self.beingPushed = true
 
-    return BlockPlayer {
+    return Serial {
         PlayAudio(&quot;sfx&quot;, &quot;openchasm&quot;, 1, true),
         Parallel {
             Ease(self, dir, function() return self[dir] + amount end, 2),
@@ -508,7 +508,7 @@ end</property>
     <property name="align" value="bottom_left"/>
     <property name="hard" type="bool" value="true"/>
     <property name="isBot" type="bool" value="true"/>
-    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+    <property name="onInteract">local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Do = require &quot;actions/Do&quot;
 local PlayAudio = require &quot;actions/PlayAudio&quot;
@@ -556,7 +556,7 @@ return function(self, player)
 
     self.beingPushed = true
 
-    return BlockPlayer {
+    return Serial {
         PlayAudio(&quot;sfx&quot;, &quot;openchasm&quot;, 1, true),
         Parallel {
             Ease(self, dir, function() return self[dir] + amount end, 2),

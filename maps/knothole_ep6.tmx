@@ -2951,6 +2951,7 @@ local Wait = require &quot;actions/Wait&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Animate = require &quot;actions/Animate&quot;
+local Action = require &quot;actions/Action&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
@@ -2959,7 +2960,7 @@ local NPC = require &quot;object/NPC&quot;
 
 return function(self)
     if self.scene.objectLookup.Bunnie.state == NPC.STATE_TOUCHING then
-        return
+        return Action()
     end
 
         return BlockPlayer {
@@ -2991,6 +2992,7 @@ local Wait = require &quot;actions/Wait&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Animate = require &quot;actions/Animate&quot;
+local Action = require &quot;actions/Action&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
@@ -2999,7 +3001,7 @@ local NPC = require &quot;object/NPC&quot;
 
 return function(self)
     if self.scene.objectLookup.Rotor.state == NPC.STATE_TOUCHING then
-        return
+        return Action()
     end
 
     local lastState = self.scene.player.state
@@ -3057,6 +3059,7 @@ local Wait = require &quot;actions/Wait&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Animate = require &quot;actions/Animate&quot;
+local Action = require &quot;actions/Action&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
@@ -3065,7 +3068,7 @@ local NPC = require &quot;object/NPC&quot;
 
 return function(self)
     if self.scene.objectLookup.Logan.state == NPC.STATE_TOUCHING then
-        return
+        return Action()
     end
 
     local lastState = self.scene.player.state
@@ -3174,6 +3177,7 @@ local Wait = require &quot;actions/Wait&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Animate = require &quot;actions/Animate&quot;
+local Action = require &quot;actions/Action&quot;
 
 local Transform = require &quot;util/Transform&quot;
 local Layout = require &quot;util/Layout&quot;
@@ -3182,12 +3186,17 @@ local NPC = require &quot;object/NPC&quot;
 
 return function(self)
     if self.scene.objectLookup.Ivan.state == NPC.STATE_TOUCHING then
-        return
+        return Action()
     end
 
     if GameState.leader == &quot;sally&quot; then
         return BlockPlayer {
-            Animate(self.sprite, &quot;smileright&quot;),
+            Do(function()
+                self:facePlayer()
+                if self.scene.player.state == &quot;idleleft&quot; then
+                    self.sprite:setAnimation(&quot;smileright&quot;)
+                end
+            end),
             MessageBox {message = &quot;Bunnie: Well now Sally-girl{p60}, you've done an\nabsolutely fabulous job bringing everyone together!&quot;},
             MessageBox {message = &quot;Sally: Aww{p60}, thanks Bunnie.&quot;},
             MessageBox {message = &quot;Bunnie: You're like that Ben Windom fella!{p80} Ya\nknow{p60}, the one in that story you were reading to Tails the other night!&quot;},
@@ -3199,26 +3208,54 @@ return function(self)
         return BlockPlayer {
             Do(function()
                 self:facePlayer()
+                if self.scene.player.state == &quot;idleleft&quot; then
+                    self.sprite:setAnimation(&quot;upsetright&quot;)
+                    self.doAnim = true
+                else
+                    self.doAnim = false
+                end
             end),
             MessageBox {message = &quot;Bunnie: Now Sonic{p60}, don't be foolin' around like ya\ndo{p60}, puttin' our Sally-girl in danger before the\n{h big mission}!&quot;},
             Do(function() self.scene.player.state = &quot;foottap&quot; end),
             MessageBox {message = &quot;Sonic: Hey hey hey{p60}, this hedgehog knows how to be discrete!&quot;},
-            Animate(self.sprite, &quot;upsetright&quot;),
             MessageBox {message = &quot;Bunnie: Ya ain't got a discrete bone in your body, sugar hog.&quot;},
-            Animate(self.sprite, &quot;concernedright&quot;),
+            Do(function()
+                if self.doAnim then
+                    self.sprite:setAnimation(&quot;concernedright&quot;)
+                end
+            end),
             MessageBox {message = &quot;Bunnie: And ya know what?{p80} That's ok.&quot;},
-            Do(function() self.scene.player.state = lastState end),
+            Do(function()
+                 if self.doAnim then
+                     self.scene.player.state = &quot;sadleft&quot;
+                 else
+                     self.scene.player.state = lastState
+                 end
+            end),
             MessageBox {message = &quot;Bunnie: Just be extra careful this time, alright?&quot;},
+            Do(function()
+                 if self.doAnim then
+                     self.scene.player.state = &quot;earnestleft&quot;
+                 end
+            end),
             MessageBox {message = &quot;Sonic: ...{p80}you got it, Bunnie.&quot;},
             Animate(self.sprite, &quot;idleright&quot;),
-            Do(function() self:refreshKeyHint() end)
+            Do(function()
+                self:refreshKeyHint()
+                self.scene.player.state = lastState
+                self.doAnim = false
+            end)
         }
     else
         local lastState = self.scene.player.state
         return BlockPlayer {
-            Do(function() self:facePlayer() end),
+            Do(function()
+                self:facePlayer()
+                if self.scene.player.state == &quot;idleleft&quot; then
+                    self.sprite:setAnimation(&quot;concernedright&quot;)
+                end
+            end),
             MessageBox {message = &quot;Bunnie: You must be so worried, B.{p80} Bein' away from your family for so long.&quot;},
-            Animate(self.sprite, &quot;concerned&quot;),
             MessageBox {message = &quot;Bunnie: First few years in Knothole{p80}, knowin' I wouldn't be seein' my sibbies anytime soon{p120}, it was just so tough.&quot;},
             MessageBox {message = &quot;B: Thank you, Bunnie. {p80}I hope you are reunited your siblings one day.&quot;},
             Animate(self.sprite, &quot;pose&quot;),
@@ -3475,15 +3512,32 @@ return function(self)
             Do(function() self:facePlayer() end),
             Animate(self.sprite, &quot;saddown&quot;),
             MessageBox {message = &quot;Tails: Hey Sonic...&quot;},
+            Do(function()
+                if self.scene.player.state == &quot;idleleft&quot; then
+                    self.scene.player.state = &quot;sadleft&quot;
+                elseif self.scene.player.state == &quot;idleright&quot; then
+                    self.scene.player.state = &quot;sadright&quot;
+                end
+            end),
             MessageBox {message = &quot;Sonic: What's up, bud?&quot;},
             MessageBox {message = &quot;Tails: When I spoke to the Light of Mobius...\n{p80}i-i-t knew... {p80}about my mom...&quot;},
             MessageBox {message = &quot;Sonic: ...Oh! {p80}Uh, what did it say?&quot;},
             MessageBox {message = &quot;Tails: It didn't say much... {p80}but when I was\ntalkin' to the Light, I could just {p80}{h feel her}... {p80}ya know?&quot;},
             Do(function() self:facePlayer() end),
             MessageBox {message = &quot;Tails: I felt her love... {p80}and that she was ok.\n{p120}That makes me happy.&quot;},
+            Do(function()
+                if self.scene.player.state == &quot;sadleft&quot; then
+                    self.scene.player.state = &quot;earnestleft&quot;
+                elseif self.scene.player.state == &quot;sadright&quot; then
+                    self.scene.player.state = &quot;earnestright&quot;
+                end
+            end),
             MessageBox {message = &quot;Sonic: Yeah, that makes me happy too, lil' bro.&quot;},
             Animate(self.sprite, &quot;idledown&quot;),
-            Do(function() self:refreshKeyHint() end)
+            Do(function()
+                self:refreshKeyHint()
+                self.scene.player.state = lastState
+            end)
         }
     else
         local lastState = self.scene.player.state

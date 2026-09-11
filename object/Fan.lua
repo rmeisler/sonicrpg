@@ -172,6 +172,7 @@ function Fan:update(dt)
 					else
 						-- Teleport player next to fan
 						self.scene.audio:playSfx("smack2", 1.0)
+						self.scene.player.basicUpdate = self.scene.player.updateFun
 						self.scene.player.cinematic = true
 						self.scene.player.state = "shock"
 						self.scene.player:run {

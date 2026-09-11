@@ -8,7 +8,7 @@ return {
   height = 192,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 266,
+  nextobjectid = 267,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/robo_intro2_ep6.lua",
@@ -2722,6 +2722,8 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "idleleft",
+            ["follow"] = "Chest4,Waypoint2",
+            ["followRepeat"] = true,
             ["ghost"] = true,
             ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest4",
             ["ignoreMapCollision"] = true,
@@ -2744,12 +2746,29 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "idleright",
+            ["follow"] = "Waypoint40,Chest4",
+            ["followRepeat"] = true,
             ["ghost"] = true,
             ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest4",
-            ["ignoreMapCollision"] = true,
             ["ignorePlayer"] = true,
             ["noInvestigate"] = true,
             ["sprite"] = "../art/sprites/swatbot.png"
+          }
+        },
+        {
+          id = 266,
+          name = "Waypoint40",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2016,
+          y = 5664,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
           }
         }
       }

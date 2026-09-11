@@ -1023,9 +1023,11 @@ local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local MessageBox = require &quot;actions/MessageBox&quot;
 local Wait = require &quot;actions/Wait&quot;
+local Do = require &quot;actions/Do&quot;
 
 return function(self)
     return BlockPlayer {
+        Do(function() self.scene.player.blocked = true end),
         PlayAudio(&quot;sfx&quot;, &quot;cheetabreathe&quot;, 1, true),
         Parallel {
             Ease(self.scene.camPos, &quot;x&quot;, -200, 0.5),

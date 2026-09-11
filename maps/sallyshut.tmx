@@ -567,7 +567,7 @@ return function(self)
             Do(function() self:refreshKeyHint() end)
         }
     elseif GameState.leader == &quot;sally&quot; then
-        if GameState:isFlagSet(&quot;ep3_book&quot;) then
+        if GameState:isFlagSet(&quot;ep3_book&quot;) or GameState:isFlagSet(&quot;ep6intro&quot;) then
             return BlockPlayer {
                 MessageBox {message=&quot;Sally: I haven't read some of these in quite awhile... &quot;}, 
                 Do(function() self:refreshKeyHint() end)

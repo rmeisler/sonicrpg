@@ -172,7 +172,9 @@ function Bot:postInit()
 		return
 	end
 
-	self:run(self:followActions())
+	if self.followStack and next(self.followStack) then
+		self:run(self:followActions())
+	end
 
 	if self.object.properties.ignoreCollision then
 		self.ignoreCollision = {}

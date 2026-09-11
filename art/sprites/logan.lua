@@ -219,6 +219,11 @@ return {
 			frames = {{1,6}},
 			clip = {0,0,47,42}
 		},
+		meeting_walkleft = {
+			frames = {{1,1}, {2,1}, {3,1}, {4,1}, {5,1}, {6,1}, {7,1}, {8,1}},
+			speed = 0.09,
+			clip = {0,0,47,42}
+		},
 		angrydown = {
 			frames = {{2,6}}
 		},

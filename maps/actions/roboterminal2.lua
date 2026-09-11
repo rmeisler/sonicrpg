@@ -23,28 +23,31 @@ local NameScreen = require "actions/NameScreen"
 local Executor = require "actions/Executor"
 local Spawn = require "actions/Spawn"
 local Repeat = require "actions/Repeat"
+local BlockPlayer = require "actions/BlockPlayer"
 
 local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
 	if not GameState:isFlagSet("robotterminal2_enter") then
 		GameState:setFlag("robotterminal2_enter")
-		scene.player.cinematicStack = scene.player.cinematicStack + 1
 		local walkout, walkin, partySprites = scene.player:split()
 		for k,v in pairs(partySprites) do
 			v.x = v.x + 60
 			v.y = v.y - 100
 		end
 		
-		return Serial {
+		return BlockPlayer {
+			Do(function()
+				scene.player.blocked = true
+			end),
 			Wait(0.5),
 			walkout,
-			MessageBox {message = "B: Where to now?", blocking = true},
-			MessageBox {message = "Sally: We need to find an entrance into the air ducts.", blocking = true},
+			MessageBox {message = "B: Where to now?"},
+			MessageBox {message = "Sally: We need to find an entrance into the air ducts."},
 			walkin,
 			Do(function()
-				scene.player.cinematicStack = 0
-			end)
+				scene.player.blocked = false
+			end),
 		}
 	else
 		scene.audio:stopSfx("factoryfloor")

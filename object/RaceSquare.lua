@@ -146,6 +146,9 @@ function RaceSquare:onCollision(prevState)
 		local subjWidth = self.subject.sprite and self.subject.sprite.w*2 or self.subject.object.width
 		local subjHeight = self.subject.sprite and self.subject.sprite.h*2 or self.subject.object.height/2
 		self.scene.player:run(BlockPlayer {
+			Do(function()
+				self.scene.player.blocked = true
+			end),
 			PlayAudio("music", "puzzlesolve", 1.0, true),
 			Wait(4),
 			
@@ -169,6 +172,7 @@ function RaceSquare:onCollision(prevState)
 				self.scene.player.cinematicStack = 0
 				self.scene:pauseEnemies(false)
 				self.scene.pausePlayer = false
+				self.scene.player.blocked = false
 			end),
 		})
 	end
