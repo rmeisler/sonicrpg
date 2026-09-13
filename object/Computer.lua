@@ -25,6 +25,9 @@ function Computer:construct(scene, layer, object)
 	end
 
 	self:addInteract(Computer.use)
+	self.specialHintPlayer = "sally"
+	self.isInteractable = false
+	self.showHint = true
 end
 
 function Computer:use()

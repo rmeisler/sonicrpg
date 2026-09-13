@@ -1301,14 +1301,13 @@ return function(self)
                             self.scene.objectLookup.Door5:updateCollision()
 
                             self.scene.objectLookup.LaserTrap2:deactivate()
+
+                            self.scene.objectLookup.Door1.sprite:setAnimation(&quot;closed_right&quot;)
+                            self.scene.objectLookup.Door2.sprite:setAnimation(&quot;closed_left&quot;)
+                            self.scene.objectLookup.Door3.sprite:setAnimation(&quot;closed_left&quot;)
+                            self.scene.objectLookup.Door4.sprite:setAnimation(&quot;closed_right&quot;)
+                            self.scene.objectLookup.Door5.sprite:setAnimation(&quot;closed_left&quot;)
                         end),
-                        Parallel {
-                            Animate(self.scene.objectLookup.Door1.sprite, &quot;closing_right&quot;),
-                            Animate(self.scene.objectLookup.Door2.sprite, &quot;closing_left&quot;),
-                            Animate(self.scene.objectLookup.Door3.sprite, &quot;closing_left&quot;),
-                            Animate(self.scene.objectLookup.Door4.sprite, &quot;closing_right&quot;),
-                            Animate(self.scene.objectLookup.Door5.sprite, &quot;closing_left&quot;)
-                        }
                     },
                     Do(function()
                     end)
@@ -1322,14 +1321,11 @@ return function(self)
                 self.scene.objectLookup.Door3:updateCollision()
                 self.scene.objectLookup.Door4:updateCollision()
                 self.scene.objectLookup.Door5:updateCollision()
-
-                self:run(Parallel {
-                    Animate(self.scene.objectLookup.Door1.sprite, &quot;closing_right&quot;),
-                    Animate(self.scene.objectLookup.Door2.sprite, &quot;closing_left&quot;),
-                    Animate(self.scene.objectLookup.Door3.sprite, &quot;closing_left&quot;),
-                    Animate(self.scene.objectLookup.Door4.sprite, &quot;closing_right&quot;),
-                    Animate(self.scene.objectLookup.Door5.sprite, &quot;closing_left&quot;)
-                })
+                self.scene.objectLookup.Door1.sprite:setAnimation(&quot;closed_right&quot;)
+                self.scene.objectLookup.Door2.sprite:setAnimation(&quot;closed_left&quot;)
+                self.scene.objectLookup.Door3.sprite:setAnimation(&quot;closed_left&quot;)
+                self.scene.objectLookup.Door4.sprite:setAnimation(&quot;closed_right&quot;)
+                self.scene.objectLookup.Door5.sprite:setAnimation(&quot;closed_left&quot;)
 
                 self.scene.objectLookup.LaserTrap2:deactivate()
             end
@@ -1732,27 +1728,18 @@ return function(self)
                             self.scene.objectLookup.Door6:updateCollision()
                             self.scene.objectLookup.Door7:updateCollision()
 
-                            self.scene.objectLookup.Door1.sprite:setAnimation(&quot;closing_right&quot;)
-                            self.scene.objectLookup.Door2.sprite:setAnimation(&quot;closing_left&quot;)
-                            self.scene.objectLookup.Door3.sprite:setAnimation(&quot;closing_left&quot;)
-                            self.scene.objectLookup.Door4.sprite:setAnimation(&quot;closing_right&quot;)
-                            self.scene.objectLookup.Door5.sprite:setAnimation(&quot;closing_left&quot;)
-                            self.scene.objectLookup.Door6.sprite:setAnimation(&quot;closing_left&quot;)
-                            self.scene.objectLookup.Door7.sprite:setAnimation(&quot;closing_left&quot;)
+                            self.scene.objectLookup.Door1.sprite:setAnimation(&quot;closed_right&quot;)
+                            self.scene.objectLookup.Door2.sprite:setAnimation(&quot;closed_left&quot;)
+                            self.scene.objectLookup.Door3.sprite:setAnimation(&quot;closed_left&quot;)
+                            self.scene.objectLookup.Door4.sprite:setAnimation(&quot;closed_right&quot;)
+                            self.scene.objectLookup.Door5.sprite:setAnimation(&quot;closed_left&quot;)
+                            self.scene.objectLookup.Door6.sprite:setAnimation(&quot;closed_left&quot;)
+                            self.scene.objectLookup.Door7.sprite:setAnimation(&quot;closed_left&quot;)
 
                             self.scene.objectLookup.LaserTrap1:deactivate()
                             self.scene.objectLookup.LaserTrap2:deactivate()
                             self.scene.objectLookup.LaserTrap3:deactivate()
-                        end),
-                        Parallel {
-                            Animate(self.scene.objectLookup.Door1.sprite, &quot;closing_right&quot;),
-                            Animate(self.scene.objectLookup.Door2.sprite, &quot;closing_left&quot;),
-                            Animate(self.scene.objectLookup.Door3.sprite, &quot;closing_left&quot;),
-                            Animate(self.scene.objectLookup.Door4.sprite, &quot;closing_right&quot;),
-                            Animate(self.scene.objectLookup.Door5.sprite, &quot;closing_left&quot;),
-                            Animate(self.scene.objectLookup.Door6.sprite, &quot;closing_left&quot;),
-                            Animate(self.scene.objectLookup.Door7.sprite, &quot;closing_left&quot;)
-                        }
+                        end)
                     },
                     Do(function()
                     end)
@@ -1769,15 +1756,13 @@ return function(self)
                 self.scene.objectLookup.Door6:updateCollision()
                 self.scene.objectLookup.Door7:updateCollision()
 
-                self:run(                        Parallel {
-                            Animate(self.scene.objectLookup.Door1.sprite, &quot;closing_right&quot;),
-                            Animate(self.scene.objectLookup.Door2.sprite, &quot;closing_left&quot;),
-                            Animate(self.scene.objectLookup.Door3.sprite, &quot;closing_left&quot;),
-                            Animate(self.scene.objectLookup.Door4.sprite, &quot;closing_right&quot;),
-                            Animate(self.scene.objectLookup.Door5.sprite, &quot;closing_left&quot;),
-                            Animate(self.scene.objectLookup.Door6.sprite, &quot;closing_left&quot;),
-                            Animate(self.scene.objectLookup.Door7.sprite, &quot;closing_left&quot;)
-                        })
+                self.scene.objectLookup.Door1.sprite:setAnimation(&quot;closed_right&quot;)
+                self.scene.objectLookup.Door2.sprite:setAnimation(&quot;closed_left&quot;)
+                self.scene.objectLookup.Door3.sprite:setAnimation(&quot;closed_left&quot;)
+                self.scene.objectLookup.Door4.sprite:setAnimation(&quot;closed_right&quot;)
+                self.scene.objectLookup.Door5.sprite:setAnimation(&quot;closed_left&quot;)
+                self.scene.objectLookup.Door6.sprite:setAnimation(&quot;closed_left&quot;)
+                self.scene.objectLookup.Door7.sprite:setAnimation(&quot;closed_left&quot;)
 
                 self.scene.objectLookup.LaserTrap1:deactivate()
                 self.scene.objectLookup.LaserTrap2:deactivate()

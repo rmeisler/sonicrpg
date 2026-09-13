@@ -8,7 +8,7 @@ return {
   height = 192,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 267,
+  nextobjectid = 270,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["onload"] = "actions/robo_intro2_ep6.lua",
@@ -2687,7 +2687,7 @@ return {
           gid = 2311,
           visible = true,
           properties = {
-            ["Mirror"] = 1,
+            ["WhiteLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -2704,55 +2704,8 @@ return {
           gid = 2311,
           visible = true,
           properties = {
-            ["WhiteLeaf"] = 1,
+            ["BlueLeaf"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
-          }
-        },
-        {
-          id = 264,
-          name = "Swatbot4",
-          type = "Swatbot",
-          shape = "rectangle",
-          x = 1600,
-          y = 5664,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["defaultAnim"] = "idleleft",
-            ["follow"] = "Chest4,Waypoint2",
-            ["followRepeat"] = true,
-            ["ghost"] = true,
-            ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest4",
-            ["ignoreMapCollision"] = true,
-            ["ignorePlayer"] = true,
-            ["noInvestigate"] = true,
-            ["sprite"] = "../art/sprites/swatbot.png"
-          }
-        },
-        {
-          id = 265,
-          name = "Swatbot5",
-          type = "Swatbot",
-          shape = "rectangle",
-          x = 1792,
-          y = 5664,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["defaultAnim"] = "idleright",
-            ["follow"] = "Waypoint40,Chest4",
-            ["followRepeat"] = true,
-            ["ghost"] = true,
-            ["ignoreCollision"] = "Pillar1,Pillar2,Pillar3,Pillar4,Pillar5,Pillar6,Pillar7,Chest4",
-            ["ignorePlayer"] = true,
-            ["noInvestigate"] = true,
-            ["sprite"] = "../art/sprites/swatbot.png"
           }
         },
         {
@@ -2762,6 +2715,58 @@ return {
           shape = "rectangle",
           x = 2016,
           y = 5664,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 267,
+          name = "Swatbot4",
+          type = "Swatbot",
+          shape = "rectangle",
+          x = 2528,
+          y = 2880,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["follow"] = "SW4Waypoint1,SW4Waypoint2",
+            ["followRepeat"] = true,
+            ["ghost"] = true,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/swatbot.png"
+          }
+        },
+        {
+          id = 268,
+          name = "SW4Waypoint1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2048,
+          y = 2880,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["ghost"] = true
+          }
+        },
+        {
+          id = 269,
+          name = "SW4Waypoint2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2496,
+          y = 2880,
           width = 32,
           height = 32,
           rotation = 0,

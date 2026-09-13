@@ -98,8 +98,6 @@ return function(scene)
 				scene.objectLookup.BHide.hidden = true
 				scene.objectLookup.Swatbot1.ignorePlayer = false
 				scene.objectLookup.Swatbot3.ignorePlayer = false
-				scene.objectLookup.Swatbot4.ignorePlayer = false
-				scene.objectLookup.Swatbot5.ignorePlayer = false
 				scene.objectLookup.IntroCambot:remove()
 			end),
 			PlayAudio("music", "infiltration", 1, true, true)
@@ -337,8 +335,6 @@ return function(scene)
 			scene.player.dontfuckingmove = false
 			scene.objectLookup.Swatbot1.ignorePlayer = false
 			scene.objectLookup.Swatbot3.ignorePlayer = false
-			scene.objectLookup.Swatbot4.ignorePlayer = false
-			scene.objectLookup.Swatbot5.ignorePlayer = false
 			scene.player.nokeyhints = false
 			scene.player.cinematicStack = 0
 		end)

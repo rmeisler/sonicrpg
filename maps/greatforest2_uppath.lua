@@ -540,7 +540,8 @@ return {
           gid = 5323,
           visible = true,
           properties = {
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\n\nreturn function(self)\n    return BlockPlayer {\n        DialogueChoice(\"Fly to Northern Mountains?\", {\n            {\"Yes\", function(menu)\n                menu:close()\n                -- Switch to cinematic of Sally then Robotnik\n                self.scene:changeScene{map=\"robotnikwarroom\", fadeInSpeed = 0.2, fadeOutSpeed = 0.2, fadeOutMusic = true, enterDelay = 2}\n            end},\n            {\"No\", function(menu)\n                menu:close()\n            end},\n        })\n    }\nend"
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\nlocal Action = require \"actions/Action\"\n\nreturn function(self)\n    if GameState:isFlagSet(\"ep6intro\") then\n        return Action()\n    end\n\n    return BlockPlayer {\n        DialogueChoice(\"Fly to Northern Mountains?\", {\n            {\"Yes\", function(menu)\n                menu:close()\n                -- Switch to cinematic of Sally then Robotnik\n                self.scene:changeScene{map=\"robotnikwarroom\", fadeInSpeed = 0.2, fadeOutSpeed = 0.2, fadeOutMusic = true, enterDelay = 2}\n            end},\n            {\"No\", function(menu)\n                menu:close()\n            end},\n        })\n    }\nend",
+            ["usableBy"] = "rotor"
           }
         }
       }

@@ -44,7 +44,7 @@ return function(scene, hint)
 	
 	scene.player.dustColor = Player.FOREST_DUST_COLOR
 	
-	if GameState:isFlagSet("ep4_seeplane") then
+	if GameState:isFlagSet("ep4_seeplane") or GameState:isFlagSet("ep6intro") then
 		return Action()
 	end
 

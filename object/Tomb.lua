@@ -118,6 +118,7 @@ function Tomb:onScan()
                 self.scene.player.sprite:setAnimation("idledown")
                 self:removeCollision()
 				GameState:setFlag(self:getFlag())
+				self:remove()
             end)
         }
     }

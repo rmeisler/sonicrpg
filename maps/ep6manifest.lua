@@ -123,6 +123,11 @@ return {
     },
 	{
         type = "map",
+        file = "maps/greatforest2_uppath.lua",
+		--primary = true
+    },
+	{
+        type = "map",
         file = "maps/greatforest3.lua",
 		--primary = true
     },
@@ -694,6 +699,17 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/wearefucked.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/ringlake.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/trialcomplete.ogg",
 		category = "music"
 	},
 	{

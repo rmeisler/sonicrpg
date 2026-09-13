@@ -228,8 +228,13 @@
    <properties>
     <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local DialogueChoice = require &quot;actions/DialogueChoice&quot;
+local Action = require &quot;actions/Action&quot;
 
 return function(self)
+    if GameState:isFlagSet(&quot;ep6intro&quot;) then
+        return Action()
+    end
+
     return BlockPlayer {
         DialogueChoice(&quot;Fly to Northern Mountains?&quot;, {
             {&quot;Yes&quot;, function(menu)
@@ -243,6 +248,7 @@ return function(self)
         })
     }
 end</property>
+    <property name="usableBy" value="rotor"/>
    </properties>
   </object>
  </objectgroup>
