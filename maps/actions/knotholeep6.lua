@@ -218,8 +218,7 @@ return function(scene, hint)
 						Animate(scene.objectLookup.LoganMtg.sprite, "meeting_idleleft"),
 						Wait(0.2),
 						Do(function()
-							scene.objectLookup.LoganMtg.x = scene.objectLookup.LoganMtg.x - 80
-							scene.objectLookup.LoganMtg.y = scene.objectLookup.LoganMtg.y + 50
+							scene.objectLookup.LoganMtg.y = scene.objectLookup.LoganMtg.y + 64
 						end),
 						Move(scene.objectLookup.LoganMtg, scene.objectLookup.LeaveMeetingWP1, "walk"),
 						Move(scene.objectLookup.LoganMtg, scene.objectLookup.LeaveMeetingWP2, "walk"),

@@ -186,10 +186,10 @@ return {
 		},
 		
 		hideright = {
-			frames = {{1,4}}
+			frames = {{10,4}}
 		},
 		hideleft = {
-			frames = {{3,4}}
+			frames = {{8,4}}
 		},
 		hideup = {
 			frames = {{5,4}}
@@ -197,15 +197,12 @@ return {
 		hidedown = {
 			frames = {{7,4}}
 		},
-		hidedownhand = {
-			frames = {{8,4}}
-		},
 		
 		peekright = {
-			frames = {{2,4}}
+			frames = {{10,4}}
 		},
 		peekleft = {
-			frames = {{4,4}}
+			frames = {{8,4}}
 		},
 		peekup = {
 			frames = {{6,4}}
