@@ -1338,7 +1338,7 @@ end</property>
   <object id="32" name="Ratbot1" type="Ratbot" gid="4565" x="672" y="4672" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/ratbot.lua"/>
+    <property name="battle" type="file" value="../data/monsters/ratbot2.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint1,Waypoint2"/>
@@ -1492,7 +1492,7 @@ end</property>
   <object id="46" name="Ratbot3" type="Ratbot" gid="4565" x="1088" y="2944" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/ratbot2.lua"/>
+    <property name="battle" type="file" value="../data/monsters/ratbot3.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint7,Waypoint8"/>
@@ -1598,7 +1598,7 @@ end</property>
   <object id="54" name="Ratbot4" type="Ratbot" gid="4565" x="1568" y="3360" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/ratbot3.lua"/>
+    <property name="battle" type="file" value="../data/monsters/ratbot2.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint9,Waypoint10"/>

@@ -1506,7 +1506,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/ratbot.lua",
+            ["battle"] = "../data/monsters/ratbot2.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint1,Waypoint2",
@@ -1677,7 +1677,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/ratbot2.lua",
+            ["battle"] = "../data/monsters/ratbot3.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint7,Waypoint8",
@@ -1821,7 +1821,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/ratbot3.lua",
+            ["battle"] = "../data/monsters/ratbot2.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint9,Waypoint10",
