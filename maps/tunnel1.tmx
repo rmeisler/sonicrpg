@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="85" height="225" tilewidth="32" tileheight="32" infinite="0" nextobjectid="142">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="85" height="225" tilewidth="32" tileheight="32" infinite="0" nextobjectid="144">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/tunnelbg.png"/>
   <property name="onload" type="file" value="actions/robo_tunnel.lua"/>
@@ -1338,7 +1338,7 @@ end</property>
   <object id="32" name="Ratbot1" type="Ratbot" gid="4565" x="672" y="4672" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/ratbot2.lua"/>
+    <property name="battle" type="file" value="../data/monsters/ratbot.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint1,Waypoint2"/>
@@ -1478,7 +1478,7 @@ end</property>
   <object id="45" name="Ratbot2" type="Ratbot" gid="4565" x="576" y="3680" width="96" height="96">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/ratbot2.lua"/>
+    <property name="battle" type="file" value="../data/monsters/ratbotx2.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint5,Waypoint6"/>
@@ -1598,7 +1598,7 @@ end</property>
   <object id="54" name="Ratbot4" type="Ratbot" gid="4565" x="1568" y="3360" width="64" height="64">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/ratbot2.lua"/>
+    <property name="battle" type="file" value="../data/monsters/ratbot3.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="follow" value="Waypoint9,Waypoint10"/>
@@ -3026,6 +3026,32 @@ end</property>
    <properties>
     <property name="RedCape" type="int" value="1"/>
     <property name="sprite" type="file" value="../art/sprites/chest2.png"/>
+   </properties>
+  </object>
+  <object id="142" name="Ratbot6" type="Ratbot" gid="4565" x="992" y="1248" width="96" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="battle" type="file" value="../data/monsters/ratbot3.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/ratbot.png"/>
+   </properties>
+  </object>
+  <object id="143" name="Ratbot7" type="Ratbot" gid="4565" x="1088" y="1248" width="96" height="64">
+   <properties>
+    <property name="align" value="bottom_center"/>
+    <property name="battle" type="file" value="../data/monsters/ratbot3.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idledown"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/ratbot.png"/>
    </properties>
   </object>
  </objectgroup>

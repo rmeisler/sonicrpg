@@ -8,7 +8,7 @@ return {
   height = 225,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 142,
+  nextobjectid = 144,
   properties = {
     ["battlebg"] = "../art/backgrounds/tunnelbg.png",
     ["onload"] = "actions/robo_tunnel.lua",
@@ -1506,7 +1506,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/ratbot2.lua",
+            ["battle"] = "../data/monsters/ratbot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint1,Waypoint2",
@@ -1652,7 +1652,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/ratbot2.lua",
+            ["battle"] = "../data/monsters/ratbotx2.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint5,Waypoint6",
@@ -1821,7 +1821,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/ratbot2.lua",
+            ["battle"] = "../data/monsters/ratbot3.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["follow"] = "Waypoint9,Waypoint10",
@@ -3235,6 +3235,54 @@ return {
           properties = {
             ["RedCape"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
+          }
+        },
+        {
+          id = 142,
+          name = "Ratbot6",
+          type = "Ratbot",
+          shape = "rectangle",
+          x = 992,
+          y = 1248,
+          width = 96,
+          height = 64,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["battle"] = "../data/monsters/ratbot3.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = false,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/ratbot.png"
+          }
+        },
+        {
+          id = 143,
+          name = "Ratbot7",
+          type = "Ratbot",
+          shape = "rectangle",
+          x = 1088,
+          y = 1248,
+          width = 96,
+          height = 64,
+          rotation = 0,
+          gid = 4565,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_center",
+            ["battle"] = "../data/monsters/ratbot3.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idledown",
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = false,
+            ["noInvestigate"] = true,
+            ["sprite"] = "../art/sprites/ratbot.png"
           }
         }
       }
