@@ -716,6 +716,11 @@ local ChargeLeftRight = function(player, direction)
 	if player.skipChargeSpecialMove then
 		player.basicUpdate = RunUpdate
 		player.skipChargeSpecialMove = false
+		if direction > 0 then
+			player.state = "juiceright"
+		else
+			player.state = "juiceleft"
+		end
 		player.sprite:setAnimation(player.state)
 		return
 	end
@@ -846,6 +851,12 @@ local ChargeLeftRight = function(player, direction)
 				leg2:remove()
 				body:remove()
 				head:remove()
+				
+				if direction > 0 then
+					player.state = "juiceright"
+				else
+					player.state = "juiceleft"
+				end
 
 				player.sprite:setAnimation(player.state)
 				player.sprite.visible = true
@@ -891,6 +902,11 @@ local ChargeUpDown = function(player, direction)
 	if player.skipChargeSpecialMove then
 		player.basicUpdate = RunUpdate
 		player.skipChargeSpecialMove = false
+		if direction > 0 then
+			player.state = "juicedown"
+		else
+			player.state = "juiceup"
+		end
 		player.sprite:setAnimation(player.state)
 		return
 	end
@@ -975,6 +991,12 @@ local ChargeUpDown = function(player, direction)
 				legs:remove()
 				body:remove()
 				head:remove()
+				
+				if direction > 0 then
+					player.state = "juicedown"
+				else
+					player.state = "juiceup"
+				end
 
 				player.sprite:setAnimation(player.state)
 				player.sprite.visible = true
@@ -1027,19 +1049,15 @@ return function(player)
 	player.state = Player.ToIdle[player.state]
 	if player.state == Player.STATE_IDLEUP then
 		player.fy = -RUN_FORCE_MAGNITUDE
-		player.state = "juiceup"
 		ChargeUpDown(player, -1)
 	elseif player.state == Player.STATE_IDLEDOWN then
 		player.fy = RUN_FORCE_MAGNITUDE
-		player.state = "juicedown"
 		ChargeUpDown(player, 1)
 	elseif player.state == Player.STATE_IDLELEFT then
 		player.fx = -RUN_FORCE_MAGNITUDE
-		player.state = "juiceleft"
 		ChargeLeftRight(player, -1)
 	elseif player.state == Player.STATE_IDLERIGHT then
 		player.fx = RUN_FORCE_MAGNITUDE
-		player.state = "juiceright"
 		ChargeLeftRight(player, 1)
 	end
 end

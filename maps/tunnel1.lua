@@ -8,7 +8,7 @@ return {
   height = 225,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 99,
+  nextobjectid = 137,
   properties = {
     ["battlebg"] = "../art/backgrounds/tunnelbg.png",
     ["onload"] = "actions/robo_tunnel.lua",
@@ -1488,7 +1488,7 @@ return {
             ["alignOffsetY"] = -16,
             ["defaultAnim"] = "off",
             ["ghost"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Repeat = require \"actions/Repeat\"\nlocal While = require \"actions/While\"\nlocal Spawn = require \"actions/Spawn\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    local isOn = self.sprite.selected == \"on\"\n    local lightLayer = self.scene:findLayer(\"light\")\n\n    return BlockPlayer {\n        Do(function()\n            if not isOn then\n                -- Turn lights on temporarily and activate doors/lasers\n                lightLayer.opacity = 0.0\n                self.scene.audio:playSfx(\"factoryspit\")\n                self.scene.lightsOn = true\n                self.sprite:setAnimation(\"on\")\n                self.scene.objectLookup.Door1:removeCollision()\n                self.scene.objectLookup.Door2:removeCollision()\n                self.scene.objectLookup.Door3:removeCollision()\n                self.scene.objectLookup.Door4:removeCollision()\n                self.scene.objectLookup.Door5:removeCollision()\n\n                self.scene.objectLookup.LaserTrap2:activate()\n\n                self:run(While(function() return self.scene.lightsOn end,\n                    Serial {\n                        Repeat(\n                            Serial {\n                                PlayAudio(\"sfx\", \"tick\", 1.0, true),\n                                Wait(0.5),\n                                PlayAudio(\"sfx\", \"tick\", 1.0, true),\n                                Wait(0.5)\n                            },\n                            6\n                        ),\n                        PlayAudio(\"sfx\", \"error\", 1, true),\n                        Do(function()\n                            self.scene.lightsOn = false\n                            lightLayer.opacity = 0.5\n                            self.sprite:setAnimation(\"off\")\n                            self.scene.objectLookup.Door1:updateCollision()\n                            self.scene.objectLookup.Door2:updateCollision()\n                            self.scene.objectLookup.Door3:updateCollision()\n                            self.scene.objectLookup.Door4:updateCollision()\n                            self.scene.objectLookup.Door5:updateCollision()\n\n                            self.scene.objectLookup.LaserTrap2:deactivate()\n\n                            self.scene.objectLookup.Door1.sprite:setAnimation(\"closed_right\")\n                            self.scene.objectLookup.Door2.sprite:setAnimation(\"closed_left\")\n                            self.scene.objectLookup.Door3.sprite:setAnimation(\"closed_left\")\n                            self.scene.objectLookup.Door4.sprite:setAnimation(\"closed_right\")\n                            self.scene.objectLookup.Door5.sprite:setAnimation(\"closed_left\")\n                        end),\n                    },\n                    Do(function()\n                    end)\n                ))\n            else\n                self.scene.lightsOn = false\n                lightLayer.opacity = 0.5\n                self.sprite:setAnimation(\"off\")\n                self.scene.objectLookup.Door1:updateCollision()\n                self.scene.objectLookup.Door2:updateCollision()\n                self.scene.objectLookup.Door3:updateCollision()\n                self.scene.objectLookup.Door4:updateCollision()\n                self.scene.objectLookup.Door5:updateCollision()\n                self.scene.objectLookup.Door1.sprite:setAnimation(\"closed_right\")\n                self.scene.objectLookup.Door2.sprite:setAnimation(\"closed_left\")\n                self.scene.objectLookup.Door3.sprite:setAnimation(\"closed_left\")\n                self.scene.objectLookup.Door4.sprite:setAnimation(\"closed_right\")\n                self.scene.objectLookup.Door5.sprite:setAnimation(\"closed_left\")\n\n                self.scene.objectLookup.LaserTrap2:deactivate()\n            end\n        end)\n    }\nend",
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Repeat = require \"actions/Repeat\"\nlocal While = require \"actions/While\"\nlocal Spawn = require \"actions/Spawn\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    local isOn = self.sprite.selected == \"on\"\n    local lightLayer = self.scene:findLayer(\"light\")\n\n    return BlockPlayer {\n        Do(function()\n            if not isOn then\n                -- Turn lights on temporarily and activate doors/lasers\n                lightLayer.opacity = 0.0\n                self.scene.audio:playSfx(\"factoryspit\")\n                self.scene.lightsOn = true\n                self.sprite:setAnimation(\"on\")\n                self.scene.objectLookup.Door1:removeCollision()\n                self.scene.objectLookup.Door2:removeCollision()\n                self.scene.objectLookup.Door3:removeCollision()\n                self.scene.objectLookup.Door4:removeCollision()\n                self.scene.objectLookup.Door5:removeCollision()\n\n                self.scene.objectLookup.LaserTrap2:activate()\n\n                self:run(While(function() return self.scene.lightsOn end,\n                    Serial {\n                        Repeat(\n                            Serial {\n                                PlayAudio(\"sfx\", \"tick\", 1.0, true),\n                                Wait(0.5),\n                                PlayAudio(\"sfx\", \"tick\", 1.0, true),\n                                Wait(0.5)\n                            },\n                            5\n                        ),\n                        PlayAudio(\"sfx\", \"error\", 1, true),\n                        Do(function()\n                            self.scene.lightsOn = false\n                            lightLayer.opacity = 0.5\n                            self.sprite:setAnimation(\"off\")\n                            self.scene.objectLookup.Door1:updateCollision()\n                            self.scene.objectLookup.Door2:updateCollision()\n                            self.scene.objectLookup.Door3:updateCollision()\n                            self.scene.objectLookup.Door4:updateCollision()\n                            self.scene.objectLookup.Door5:updateCollision()\n\n                            self.scene.objectLookup.LaserTrap2:deactivate()\n\n                            self.scene.objectLookup.Door1.sprite:setAnimation(\"closed_right\")\n                            self.scene.objectLookup.Door2.sprite:setAnimation(\"closed_left\")\n                            self.scene.objectLookup.Door3.sprite:setAnimation(\"closed_left\")\n                            self.scene.objectLookup.Door4.sprite:setAnimation(\"closed_right\")\n                            self.scene.objectLookup.Door5.sprite:setAnimation(\"closed_left\")\n                        end),\n                    },\n                    Do(function()\n                    end)\n                ))\n            else\n                self.scene.lightsOn = false\n                lightLayer.opacity = 0.5\n                self.sprite:setAnimation(\"off\")\n                self.scene.objectLookup.Door1:updateCollision()\n                self.scene.objectLookup.Door2:updateCollision()\n                self.scene.objectLookup.Door3:updateCollision()\n                self.scene.objectLookup.Door4:updateCollision()\n                self.scene.objectLookup.Door5:updateCollision()\n                self.scene.objectLookup.Door1.sprite:setAnimation(\"closed_right\")\n                self.scene.objectLookup.Door2.sprite:setAnimation(\"closed_left\")\n                self.scene.objectLookup.Door3.sprite:setAnimation(\"closed_left\")\n                self.scene.objectLookup.Door4.sprite:setAnimation(\"closed_right\")\n                self.scene.objectLookup.Door5.sprite:setAnimation(\"closed_left\")\n\n                self.scene.objectLookup.LaserTrap2:deactivate()\n            end\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/switch4.png"
           }
         },
@@ -1898,7 +1898,7 @@ return {
             ["alignOffsetY"] = -16,
             ["defaultAnim"] = "off",
             ["ghost"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Repeat = require \"actions/Repeat\"\nlocal While = require \"actions/While\"\nlocal Spawn = require \"actions/Spawn\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    local isOn = self.sprite.selected == \"on\"\n    local lightLayer = self.scene:findLayer(\"light\")\n\n    return BlockPlayer {\n        Do(function()\n            if not isOn then\n                -- Turn lights on temporarily and activate doors/lasers\n                lightLayer.opacity = 0.0\n                self.scene.audio:playSfx(\"factoryspit\")\n                self.scene.lightsOn = true\n                self.sprite:setAnimation(\"on\")\n                self.scene.objectLookup.Door1:removeCollision()\n                self.scene.objectLookup.Door2:removeCollision()\n                self.scene.objectLookup.Door3:removeCollision()\n                self.scene.objectLookup.Door4:removeCollision()\n                self.scene.objectLookup.Door5:removeCollision()\n                self.scene.objectLookup.Door6:removeCollision()\n                self.scene.objectLookup.Door7:removeCollision()\n\n                self.scene.objectLookup.LaserTrap1:activate()\n                self.scene.objectLookup.LaserTrap2:activate()\n                self.scene.objectLookup.LaserTrap3:activate()\n\n                self:run(While(function() return self.scene.lightsOn end,\n                    Serial {\n                        Repeat(\n                            Serial {\n                                PlayAudio(\"sfx\", \"tick\", 1.0, true),\n                                Wait(0.5),\n                                PlayAudio(\"sfx\", \"tick\", 1.0, true),\n                                Wait(0.5)\n                            },\n                            9\n                        ),\n                        PlayAudio(\"sfx\", \"error\", 1, true),\n                        Do(function()\n                            self.scene.lightsOn = false\n                            lightLayer.opacity = 0.5\n                            self.sprite:setAnimation(\"off\")\n                            self.scene.objectLookup.Door1:updateCollision()\n                            self.scene.objectLookup.Door2:updateCollision()\n                            self.scene.objectLookup.Door3:updateCollision()\n                            self.scene.objectLookup.Door4:updateCollision()\n                            self.scene.objectLookup.Door5:updateCollision()\n                            self.scene.objectLookup.Door6:updateCollision()\n                            self.scene.objectLookup.Door7:updateCollision()\n\n                            self.scene.objectLookup.Door1.sprite:setAnimation(\"closed_right\")\n                            self.scene.objectLookup.Door2.sprite:setAnimation(\"closed_left\")\n                            self.scene.objectLookup.Door3.sprite:setAnimation(\"closed_left\")\n                            self.scene.objectLookup.Door4.sprite:setAnimation(\"closed_right\")\n                            self.scene.objectLookup.Door5.sprite:setAnimation(\"closed_left\")\n                            self.scene.objectLookup.Door6.sprite:setAnimation(\"closed_left\")\n                            self.scene.objectLookup.Door7.sprite:setAnimation(\"closed_left\")\n\n                            self.scene.objectLookup.LaserTrap1:deactivate()\n                            self.scene.objectLookup.LaserTrap2:deactivate()\n                            self.scene.objectLookup.LaserTrap3:deactivate()\n                        end)\n                    },\n                    Do(function()\n                    end)\n                ))\n            else\n                self.scene.lightsOn = false\n                lightLayer.opacity = 0.5\n                self.sprite:setAnimation(\"off\")\n                self.scene.objectLookup.Door1:updateCollision()\n                self.scene.objectLookup.Door2:updateCollision()\n                self.scene.objectLookup.Door3:updateCollision()\n                self.scene.objectLookup.Door4:updateCollision()\n                self.scene.objectLookup.Door5:updateCollision()\n                self.scene.objectLookup.Door6:updateCollision()\n                self.scene.objectLookup.Door7:updateCollision()\n\n                self.scene.objectLookup.Door1.sprite:setAnimation(\"closed_right\")\n                self.scene.objectLookup.Door2.sprite:setAnimation(\"closed_left\")\n                self.scene.objectLookup.Door3.sprite:setAnimation(\"closed_left\")\n                self.scene.objectLookup.Door4.sprite:setAnimation(\"closed_right\")\n                self.scene.objectLookup.Door5.sprite:setAnimation(\"closed_left\")\n                self.scene.objectLookup.Door6.sprite:setAnimation(\"closed_left\")\n                self.scene.objectLookup.Door7.sprite:setAnimation(\"closed_left\")\n\n                self.scene.objectLookup.LaserTrap1:deactivate()\n                self.scene.objectLookup.LaserTrap2:deactivate()\n                self.scene.objectLookup.LaserTrap3:deactivate()\n            end\n        end)\n    }\nend",
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Serial = require \"actions/Serial\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal Action = require \"actions/Action\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Repeat = require \"actions/Repeat\"\nlocal While = require \"actions/While\"\nlocal Spawn = require \"actions/Spawn\"\n\nlocal NPC = require \"object/NPC\"\n\nreturn function(self)\n    local isOn = self.sprite.selected == \"on\"\n    local lightLayer = self.scene:findLayer(\"light\")\n\n    return BlockPlayer {\n        Do(function()\n            if not isOn then\n                -- Turn lights on temporarily and activate doors/lasers\n                lightLayer.opacity = 0.0\n                self.scene.audio:playSfx(\"factoryspit\")\n                self.scene.lightsOn = true\n                self.sprite:setAnimation(\"on\")\n                self.scene.objectLookup.Door1:removeCollision()\n                self.scene.objectLookup.Door2:removeCollision()\n                self.scene.objectLookup.Door3:removeCollision()\n                self.scene.objectLookup.Door4:removeCollision()\n                self.scene.objectLookup.Door5:removeCollision()\n                self.scene.objectLookup.Door6:removeCollision()\n                self.scene.objectLookup.Door7:removeCollision()\n\n                self.scene.objectLookup.LaserTrap1:activate()\n                self.scene.objectLookup.LaserTrap2:activate()\n                self.scene.objectLookup.LaserTrap3:activate()\n\n                self:run(While(function() return self.scene.lightsOn end,\n                    Serial {\n                        Repeat(\n                            Serial {\n                                PlayAudio(\"sfx\", \"tick\", 1.0, true),\n                                Wait(0.5),\n                                PlayAudio(\"sfx\", \"tick\", 1.0, true),\n                                Wait(0.5)\n                            },\n                            7.5\n                        ),\n                        PlayAudio(\"sfx\", \"error\", 1, true),\n                        Do(function()\n                            self.scene.lightsOn = false\n                            lightLayer.opacity = 0.5\n                            self.sprite:setAnimation(\"off\")\n                            self.scene.objectLookup.Door1:updateCollision()\n                            self.scene.objectLookup.Door2:updateCollision()\n                            self.scene.objectLookup.Door3:updateCollision()\n                            self.scene.objectLookup.Door4:updateCollision()\n                            self.scene.objectLookup.Door5:updateCollision()\n                            self.scene.objectLookup.Door6:updateCollision()\n                            self.scene.objectLookup.Door7:updateCollision()\n\n                            self.scene.objectLookup.Door1.sprite:setAnimation(\"closed_right\")\n                            self.scene.objectLookup.Door2.sprite:setAnimation(\"closed_left\")\n                            self.scene.objectLookup.Door3.sprite:setAnimation(\"closed_left\")\n                            self.scene.objectLookup.Door4.sprite:setAnimation(\"closed_right\")\n                            self.scene.objectLookup.Door5.sprite:setAnimation(\"closed_left\")\n                            self.scene.objectLookup.Door6.sprite:setAnimation(\"closed_left\")\n                            self.scene.objectLookup.Door7.sprite:setAnimation(\"closed_left\")\n\n                            self.scene.objectLookup.LaserTrap1:deactivate()\n                            self.scene.objectLookup.LaserTrap2:deactivate()\n                            self.scene.objectLookup.LaserTrap3:deactivate()\n                        end)\n                    },\n                    Do(function()\n                    end)\n                ))\n            else\n                self.scene.lightsOn = false\n                lightLayer.opacity = 0.5\n                self.sprite:setAnimation(\"off\")\n                self.scene.objectLookup.Door1:updateCollision()\n                self.scene.objectLookup.Door2:updateCollision()\n                self.scene.objectLookup.Door3:updateCollision()\n                self.scene.objectLookup.Door4:updateCollision()\n                self.scene.objectLookup.Door5:updateCollision()\n                self.scene.objectLookup.Door6:updateCollision()\n                self.scene.objectLookup.Door7:updateCollision()\n\n                self.scene.objectLookup.Door1.sprite:setAnimation(\"closed_right\")\n                self.scene.objectLookup.Door2.sprite:setAnimation(\"closed_left\")\n                self.scene.objectLookup.Door3.sprite:setAnimation(\"closed_left\")\n                self.scene.objectLookup.Door4.sprite:setAnimation(\"closed_right\")\n                self.scene.objectLookup.Door5.sprite:setAnimation(\"closed_left\")\n                self.scene.objectLookup.Door6.sprite:setAnimation(\"closed_left\")\n                self.scene.objectLookup.Door7.sprite:setAnimation(\"closed_left\")\n\n                self.scene.objectLookup.LaserTrap1:deactivate()\n                self.scene.objectLookup.LaserTrap2:deactivate()\n                self.scene.objectLookup.LaserTrap3:deactivate()\n            end\n        end)\n    }\nend",
             ["sprite"] = "../art/sprites/switch4.png"
           }
         },
@@ -2518,6 +2518,635 @@ return {
           properties = {
             ["ghost"] = true,
             ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal Ease = require \"actions/Ease\"\nlocal Parallel = require \"actions/Parallel\"\nlocal Wait = require \"actions/Wait\"\nlocal PlayAudio = require \"actions/PlayAudio\"\n\nreturn function(self, player)\n    return BlockPlayer {\n        Do(function()\n            player.state = \"leapup\"\n            player.dropShadow.hidden = true\n            player.nocollision = true\n        end),\n        Ease(player, \"y\", function() return player.y - 96 end, 5),\n        Do(function()\n            player.sprite.visible = false\n        end),\n        Wait(0.5),\n        Parallel {\n            Ease(player, \"x\", function() return player.x + (self.scene.objectLookup.Grate8.x + 32 - player.x) end, 1),\n            Ease(player, \"y\", function() return player.y + (self.scene.objectLookup.Grate8.y + 64 - player.y) end, 1)\n        },\n        Wait(0.5),\n        Do(function()\n            player.sprite.visible = true\n            player.dropShadow.hidden = false\n            player.state = \"leapdown\"\n            player.nocollision = false\n        end),\n        Ease(player, \"y\", function() return player.y + 96 end, 5),\n        PlayAudio(\"sfx\", \"bang\", 1, true),\n        Do(function() player.state = \"idledown\" end)\n    }\nend"
+          }
+        },
+        {
+          id = 100,
+          name = "SonicRightWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1280,
+          y = 6496,
+          width = 64,
+          height = 1920,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownright\" then\n            player.x = player.x - 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupright\" then\n            player.x = player.x - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 101,
+          name = "SonicRightWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2368,
+          y = 2656,
+          width = 64,
+          height = 1920,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownright\" then\n            player.x = player.x - 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupright\" then\n            player.x = player.x - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 102,
+          name = "SonicRightWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2176,
+          y = 6240,
+          width = 64,
+          height = 1248,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownright\" then\n            player.x = player.x - 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupright\" then\n            player.x = player.x - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 103,
+          name = "SonicRightWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 2240,
+          y = 4800,
+          width = 64,
+          height = 1600,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownright\" then\n            player.x = player.x - 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupright\" then\n            player.x = player.x - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 104,
+          name = "SonicRightWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1728,
+          y = 4576,
+          width = 64,
+          height = 864,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownright\" then\n            player.x = player.x - 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupright\" then\n            player.x = player.x - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 105,
+          name = "SonicLeftWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1408,
+          y = 3424,
+          width = 64,
+          height = 896,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownleft\" then\n            player.x = player.x + 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupleft\" then\n            player.x = player.x + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 106,
+          name = "SonicLeftWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 512,
+          y = 4032,
+          width = 64,
+          height = 1184,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownleft\" then\n            player.x = player.x + 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupleft\" then\n            player.x = player.x + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 107,
+          name = "SonicLeftWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 512,
+          y = 2560,
+          width = 64,
+          height = 256,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownleft\" then\n            player.x = player.x + 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupleft\" then\n            player.x = player.x + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 108,
+          name = "SonicLeftWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 704,
+          y = 2208,
+          width = 64,
+          height = 800,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownleft\" then\n            player.x = player.x + 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupleft\" then\n            player.x = player.x + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 109,
+          name = "SonicRightWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 896,
+          y = 2144,
+          width = 64,
+          height = 352,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownright\" then\n            player.x = player.x - 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupright\" then\n            player.x = player.x - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 110,
+          name = "SonicLeftWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 512,
+          y = 5088,
+          width = 64,
+          height = 736,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownleft\" then\n            player.x = player.x + 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupleft\" then\n            player.x = player.x + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 111,
+          name = "SonicLeftWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1984,
+          y = 6016,
+          width = 64,
+          height = 736,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownleft\" then\n            player.x = player.x + 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupleft\" then\n            player.x = player.x + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 112,
+          name = "SonicLeftWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1088,
+          y = 5568,
+          width = 64,
+          height = 448,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownleft\" then\n            player.x = player.x + 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupleft\" then\n            player.x = player.x + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 113,
+          name = "SonicLeftWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1088,
+          y = 6016,
+          width = 64,
+          height = 224,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownleft\" then\n            player.x = player.x + 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupleft\" then\n            player.x = player.x + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 114,
+          name = "SonicUpWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 608,
+          y = 2848,
+          width = 448,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juiceupleft\" then\n            player.y = player.y + 5\n        elseif player.state == \"juiceright\" or player.state == \"juiceupright\" then\n            player.y = player.y + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 115,
+          name = "SonicUpWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 832,
+          y = 3744,
+          width = 864,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juiceupleft\" then\n            player.y = player.y + 5\n        elseif player.state == \"juiceright\" or player.state == \"juiceupright\" then\n            player.y = player.y + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 116,
+          name = "SonicUpWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1696,
+          y = 3232,
+          width = 512,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juiceupleft\" then\n            player.y = player.y + 5\n        elseif player.state == \"juiceright\" or player.state == \"juiceupright\" then\n            player.y = player.y + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 117,
+          name = "SonicUpWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1696,
+          y = 2528,
+          width = 512,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juiceupleft\" then\n            player.y = player.y + 5\n        elseif player.state == \"juiceright\" or player.state == \"juiceupright\" then\n            player.y = player.y + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 118,
+          name = "SonicUpWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1888,
+          y = 2080,
+          width = 320,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juiceupleft\" then\n            player.y = player.y + 5\n        elseif player.state == \"juiceright\" or player.state == \"juiceupright\" then\n            player.y = player.y + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 119,
+          name = "SonicDownWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1696,
+          y = 2848,
+          width = 640,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juicedownleft\" then\n            player.y = player.y - 5\n        elseif player.state == \"juiceright\" or player.state == \"juicedownright\" then\n            player.y = player.y - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 120,
+          name = "SonicDownWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1856,
+          y = 2368,
+          width = 352,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juicedownleft\" then\n            player.y = player.y - 5\n        elseif player.state == \"juiceright\" or player.state == \"juicedownright\" then\n            player.y = player.y - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 121,
+          name = "SonicDownWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1504,
+          y = 3584,
+          width = 512,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juicedownleft\" then\n            player.y = player.y - 5\n        elseif player.state == \"juiceright\" or player.state == \"juicedownright\" then\n            player.y = player.y - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 122,
+          name = "SonicLeftWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1984,
+          y = 4544,
+          width = 64,
+          height = 992,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownleft\" then\n            player.x = player.x + 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupleft\" then\n            player.x = player.x + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 123,
+          name = "SonicDownWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1632,
+          y = 4928,
+          width = 608,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juicedownleft\" then\n            player.y = player.y - 5\n        elseif player.state == \"juiceright\" or player.state == \"juicedownright\" then\n            player.y = player.y - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 124,
+          name = "SonicUpWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1760,
+          y = 4576,
+          width = 256,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juiceupleft\" then\n            player.y = player.y + 5\n        elseif player.state == \"juiceright\" or player.state == \"juiceupright\" then\n            player.y = player.y + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 125,
+          name = "SonicDownWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 608,
+          y = 4128,
+          width = 960,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juicedownleft\" then\n            player.y = player.y - 5\n        elseif player.state == \"juiceright\" or player.state == \"juicedownright\" then\n            player.y = player.y - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 126,
+          name = "SonicDownWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 608,
+          y = 5184,
+          width = 512,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juicedownleft\" then\n            player.y = player.y - 5\n        elseif player.state == \"juiceright\" or player.state == \"juicedownright\" then\n            player.y = player.y - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 127,
+          name = "SonicDownWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1408,
+          y = 5376,
+          width = 576,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juicedownleft\" then\n            player.y = player.y - 5\n        elseif player.state == \"juiceright\" or player.state == \"juicedownright\" then\n            player.y = player.y - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 128,
+          name = "SonicUpWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1600,
+          y = 5024,
+          width = 544,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juiceupleft\" then\n            player.y = player.y + 5\n        elseif player.state == \"juiceright\" or player.state == \"juiceupright\" then\n            player.y = player.y + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 129,
+          name = "SonicUpWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 608,
+          y = 4576,
+          width = 640,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juiceupleft\" then\n            player.y = player.y + 5\n        elseif player.state == \"juiceright\" or player.state == \"juiceupright\" then\n            player.y = player.y + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 130,
+          name = "SonicRightWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1664,
+          y = 3200,
+          width = 64,
+          height = 416,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownright\" then\n            player.x = player.x - 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupright\" then\n            player.x = player.x - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 131,
+          name = "SonicLeftWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1536,
+          y = 4480,
+          width = 64,
+          height = 416,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownleft\" then\n            player.x = player.x + 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupleft\" then\n            player.x = player.x + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 132,
+          name = "SonicDownWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 704,
+          y = 6688,
+          width = 1280,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juicedownleft\" then\n            player.y = player.y - 5\n        elseif player.state == \"juiceright\" or player.state == \"juicedownright\" then\n            player.y = player.y - 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 133,
+          name = "SonicUpWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1440,
+          y = 6048,
+          width = 576,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juiceupleft\" then\n            player.y = player.y + 5\n        elseif player.state == \"juiceright\" or player.state == \"juiceupright\" then\n            player.y = player.y + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 134,
+          name = "SonicUpWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1312,
+          y = 6496,
+          width = 448,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juiceupleft\" then\n            player.y = player.y + 5\n        elseif player.state == \"juiceright\" or player.state == \"juiceupright\" then\n            player.y = player.y + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 135,
+          name = "SonicUpWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 672,
+          y = 6496,
+          width = 448,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juiceleft\" or player.state == \"juiceupleft\" then\n            player.y = player.y + 5\n        elseif player.state == \"juiceright\" or player.state == \"juiceupright\" then\n            player.y = player.y + 5\n        end\n    end\nend"
+          }
+        },
+        {
+          id = 136,
+          name = "SonicLeftWall",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 1088,
+          y = 6464,
+          width = 64,
+          height = 224,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["whileColliding"] = "return function(self, player, prevState)\n    if player.doingSpecialMove and GameState.leader == \"sonic\" then\n        if player.state == \"juicedown\" or player.state == \"juicedownleft\" then\n            player.x = player.x + 5\n        elseif player.state == \"juiceup\" or player.state == \"juiceupleft\" then\n            player.x = player.x + 5\n        end\n    end\nend"
           }
         }
       }

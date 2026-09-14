@@ -234,12 +234,16 @@ function Menu:update(dt)
 	if next(self.descBoxes) ~= nil then
 		local topBox = self.descBoxes[1]
 		if #self.descBoxes > 1 or self.closing then
-			topBox:interrupt()
+			if topBox.interrupt then
+				topBox:interrupt()
+			end
 		end
 	
-		topBox:update(dt)
+		if topBox.update then
+			topBox:update(dt)
+		end
 
-		if topBox:isDone() then
+		if topBox.isDone and topBox:isDone() then
 			table.remove(self.descBoxes, 1)
 		end
 	end

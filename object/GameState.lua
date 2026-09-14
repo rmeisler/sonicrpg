@@ -284,14 +284,15 @@ function GameState:equip(member, itemType, id)
 	local equipCallback
 	if id ~= nil then
 		item = table.remove(self[itemType], id)
-		
-		-- Apply stat bonuses
-		local memStats = self.party[member].stats
-		for stat, bonus in pairs(item.stats) do
-			memStats[stat] = memStats[stat] + bonus
+		if item ~= nil then
+			-- Apply stat bonuses
+			local memStats = self.party[member].stats
+			for stat, bonus in pairs(item.stats) do
+				memStats[stat] = memStats[stat] + bonus
+			end
+			
+			equipCallback = item.onEquip
 		end
-		
-		equipCallback = item.onEquip
 	end
 	table.insert(self[itemType], id or 1, self.party[member].equip[itemType])
 	self.party[member].equip[itemType] = item

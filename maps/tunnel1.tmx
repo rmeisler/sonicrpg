@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="85" height="225" tilewidth="32" tileheight="32" infinite="0" nextobjectid="99">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="85" height="225" tilewidth="32" tileheight="32" infinite="0" nextobjectid="137">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/tunnelbg.png"/>
   <property name="onload" type="file" value="actions/robo_tunnel.lua"/>
@@ -1287,7 +1287,7 @@ return function(self)
                                 PlayAudio(&quot;sfx&quot;, &quot;tick&quot;, 1.0, true),
                                 Wait(0.5)
                             },
-                            6
+                            5
                         ),
                         PlayAudio(&quot;sfx&quot;, &quot;error&quot;, 1, true),
                         Do(function()
@@ -1713,7 +1713,7 @@ return function(self)
                                 PlayAudio(&quot;sfx&quot;, &quot;tick&quot;, 1.0, true),
                                 Wait(0.5)
                             },
-                            9
+                            7.5
                         ),
                         PlayAudio(&quot;sfx&quot;, &quot;error&quot;, 1, true),
                         Do(function()
@@ -2406,6 +2406,524 @@ return function(self, player)
         PlayAudio(&quot;sfx&quot;, &quot;bang&quot;, 1, true),
         Do(function() player.state = &quot;idledown&quot; end)
     }
+end</property>
+   </properties>
+  </object>
+  <object id="100" name="SonicRightWall" type="BasicNPC" gid="6839" x="1280" y="6496" width="64" height="1920">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownright&quot; then
+            player.x = player.x - 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupright&quot; then
+            player.x = player.x - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="101" name="SonicRightWall" type="BasicNPC" gid="6839" x="2368" y="2656" width="64" height="1920">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownright&quot; then
+            player.x = player.x - 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupright&quot; then
+            player.x = player.x - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="102" name="SonicRightWall" type="BasicNPC" gid="6839" x="2176" y="6240" width="64" height="1248">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownright&quot; then
+            player.x = player.x - 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupright&quot; then
+            player.x = player.x - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="103" name="SonicRightWall" type="BasicNPC" gid="6839" x="2240" y="4800" width="64" height="1600">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownright&quot; then
+            player.x = player.x - 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupright&quot; then
+            player.x = player.x - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="104" name="SonicRightWall" type="BasicNPC" gid="6839" x="1728" y="4576" width="64" height="864">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownright&quot; then
+            player.x = player.x - 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupright&quot; then
+            player.x = player.x - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="105" name="SonicLeftWall" type="BasicNPC" gid="6839" x="1408" y="3424" width="64" height="896">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownleft&quot; then
+            player.x = player.x + 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupleft&quot; then
+            player.x = player.x + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="106" name="SonicLeftWall" type="BasicNPC" gid="6839" x="512" y="4032" width="64" height="1184">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownleft&quot; then
+            player.x = player.x + 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupleft&quot; then
+            player.x = player.x + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="107" name="SonicLeftWall" type="BasicNPC" gid="6839" x="512" y="2560" width="64" height="256">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownleft&quot; then
+            player.x = player.x + 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupleft&quot; then
+            player.x = player.x + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="108" name="SonicLeftWall" type="BasicNPC" gid="6839" x="704" y="2208" width="64" height="800">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownleft&quot; then
+            player.x = player.x + 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupleft&quot; then
+            player.x = player.x + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="109" name="SonicRightWall" type="BasicNPC" gid="6839" x="896" y="2144" width="64" height="352">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownright&quot; then
+            player.x = player.x - 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupright&quot; then
+            player.x = player.x - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="110" name="SonicLeftWall" type="BasicNPC" gid="6839" x="512" y="5088" width="64" height="736">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownleft&quot; then
+            player.x = player.x + 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupleft&quot; then
+            player.x = player.x + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="111" name="SonicLeftWall" type="BasicNPC" gid="6839" x="1984" y="6016" width="64" height="736">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownleft&quot; then
+            player.x = player.x + 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupleft&quot; then
+            player.x = player.x + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="112" name="SonicLeftWall" type="BasicNPC" gid="6839" x="1088" y="5568" width="64" height="448">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownleft&quot; then
+            player.x = player.x + 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupleft&quot; then
+            player.x = player.x + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="113" name="SonicLeftWall" type="BasicNPC" gid="6839" x="1088" y="6016" width="64" height="224">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownleft&quot; then
+            player.x = player.x + 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupleft&quot; then
+            player.x = player.x + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="114" name="SonicUpWall" type="BasicNPC" gid="6839" x="608" y="2848" width="448" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juiceupleft&quot; then
+            player.y = player.y + 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juiceupright&quot; then
+            player.y = player.y + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="115" name="SonicUpWall" type="BasicNPC" gid="6839" x="832" y="3744" width="864" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juiceupleft&quot; then
+            player.y = player.y + 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juiceupright&quot; then
+            player.y = player.y + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="116" name="SonicUpWall" type="BasicNPC" gid="6839" x="1696" y="3232" width="512" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juiceupleft&quot; then
+            player.y = player.y + 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juiceupright&quot; then
+            player.y = player.y + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="117" name="SonicUpWall" type="BasicNPC" gid="6839" x="1696" y="2528" width="512" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juiceupleft&quot; then
+            player.y = player.y + 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juiceupright&quot; then
+            player.y = player.y + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="118" name="SonicUpWall" type="BasicNPC" gid="6839" x="1888" y="2080" width="320" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juiceupleft&quot; then
+            player.y = player.y + 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juiceupright&quot; then
+            player.y = player.y + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="119" name="SonicDownWall" type="BasicNPC" gid="6839" x="1696" y="2848" width="640" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juicedownleft&quot; then
+            player.y = player.y - 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juicedownright&quot; then
+            player.y = player.y - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="120" name="SonicDownWall" type="BasicNPC" gid="6839" x="1856" y="2368" width="352" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juicedownleft&quot; then
+            player.y = player.y - 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juicedownright&quot; then
+            player.y = player.y - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="121" name="SonicDownWall" type="BasicNPC" gid="6839" x="1504" y="3584" width="512" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juicedownleft&quot; then
+            player.y = player.y - 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juicedownright&quot; then
+            player.y = player.y - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="122" name="SonicLeftWall" type="BasicNPC" gid="6839" x="1984" y="4544" width="64" height="992">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownleft&quot; then
+            player.x = player.x + 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupleft&quot; then
+            player.x = player.x + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="123" name="SonicDownWall" type="BasicNPC" gid="6839" x="1632" y="4928" width="608" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juicedownleft&quot; then
+            player.y = player.y - 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juicedownright&quot; then
+            player.y = player.y - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="124" name="SonicUpWall" type="BasicNPC" gid="6839" x="1760" y="4576" width="256" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juiceupleft&quot; then
+            player.y = player.y + 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juiceupright&quot; then
+            player.y = player.y + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="125" name="SonicDownWall" type="BasicNPC" gid="6839" x="608" y="4128" width="960" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juicedownleft&quot; then
+            player.y = player.y - 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juicedownright&quot; then
+            player.y = player.y - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="126" name="SonicDownWall" type="BasicNPC" gid="6839" x="608" y="5184" width="512" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juicedownleft&quot; then
+            player.y = player.y - 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juicedownright&quot; then
+            player.y = player.y - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="127" name="SonicDownWall" type="BasicNPC" gid="6839" x="1408" y="5376" width="576" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juicedownleft&quot; then
+            player.y = player.y - 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juicedownright&quot; then
+            player.y = player.y - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="128" name="SonicUpWall" type="BasicNPC" gid="6839" x="1600" y="5024" width="544" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juiceupleft&quot; then
+            player.y = player.y + 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juiceupright&quot; then
+            player.y = player.y + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="129" name="SonicUpWall" type="BasicNPC" gid="6839" x="608" y="4576" width="640" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juiceupleft&quot; then
+            player.y = player.y + 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juiceupright&quot; then
+            player.y = player.y + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="130" name="SonicRightWall" type="BasicNPC" gid="6839" x="1664" y="3200" width="64" height="416">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownright&quot; then
+            player.x = player.x - 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupright&quot; then
+            player.x = player.x - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="131" name="SonicLeftWall" type="BasicNPC" gid="6839" x="1536" y="4480" width="64" height="416">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownleft&quot; then
+            player.x = player.x + 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupleft&quot; then
+            player.x = player.x + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="132" name="SonicDownWall" type="BasicNPC" gid="6839" x="704" y="6688" width="1280" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juicedownleft&quot; then
+            player.y = player.y - 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juicedownright&quot; then
+            player.y = player.y - 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="133" name="SonicUpWall" type="BasicNPC" gid="6839" x="1440" y="6048" width="576" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juiceupleft&quot; then
+            player.y = player.y + 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juiceupright&quot; then
+            player.y = player.y + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="134" name="SonicUpWall" type="BasicNPC" gid="6839" x="1312" y="6496" width="448" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juiceupleft&quot; then
+            player.y = player.y + 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juiceupright&quot; then
+            player.y = player.y + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="135" name="SonicUpWall" type="BasicNPC" gid="6839" x="672" y="6496" width="448" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juiceleft&quot; or player.state == &quot;juiceupleft&quot; then
+            player.y = player.y + 5
+        elseif player.state == &quot;juiceright&quot; or player.state == &quot;juiceupright&quot; then
+            player.y = player.y + 5
+        end
+    end
+end</property>
+   </properties>
+  </object>
+  <object id="136" name="SonicLeftWall" type="BasicNPC" gid="6839" x="1088" y="6464" width="64" height="224">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="whileColliding">return function(self, player, prevState)
+    if player.doingSpecialMove and GameState.leader == &quot;sonic&quot; then
+        if player.state == &quot;juicedown&quot; or player.state == &quot;juicedownleft&quot; then
+            player.x = player.x + 5
+        elseif player.state == &quot;juiceup&quot; or player.state == &quot;juiceupleft&quot; then
+            player.x = player.x + 5
+        end
+    end
 end</property>
    </properties>
   </object>

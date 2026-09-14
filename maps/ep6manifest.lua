@@ -162,6 +162,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/splash/sonicpicture.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/puck.png"
 	},
 	{
@@ -703,6 +707,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/sonicguitar.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/ringlake.ogg",
 		category = "music",
 		looping = true
@@ -839,7 +848,8 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/greatforest.ogg",
-		category = "music"
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",
