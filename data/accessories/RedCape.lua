@@ -2,15 +2,10 @@ local ItemType = require "util/ItemType"
 
 return {
 	name = "Red Cape",
-	desc = "A dark red cape, made of woodwyrm silk.",
+	desc = "Increases chance to dodge.",
 	type = ItemType.Accessory,
-	icon = "icon_accessory",
-	cost = {
-		plant = 10,
-		gear = 10
-	},
+	usableBy = {"bunny", "antoine", "sally", "sonic", "b", "tails", "rotor", "logan"},
 	stats = {
-		defense = 2,
-		speed = 2,
+		speed = 10,
 	}
 }

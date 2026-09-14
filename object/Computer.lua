@@ -17,9 +17,6 @@ local Computer = class(NPC)
 function Computer:construct(scene, layer, object)
 	NPC.init(self)
 
-	object.properties.sprite = nil
-	object.properties.appearAfter = nil
-	
 	if GameState:isFlagSet(self) and self.sprite then
 		self.sprite:setAnimation("open")
 	end

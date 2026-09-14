@@ -61,8 +61,7 @@ return function(player)
 				self.doingSpecialMove = false
 				self.scanning = false
 				self.cinematic = false
-				
-				print("cinematicstack - 1")
+
 				self.cinematicStack = self.cinematicStack - 1
 				self.basicUpdate = origUpdate
 

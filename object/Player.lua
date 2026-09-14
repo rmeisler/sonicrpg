@@ -64,6 +64,7 @@ function Player:construct(scene, layer, object)
 	self.collisionY = 0
 	self.baseMoveSpeed = 4
 	self.movespeed = self.baseMoveSpeed
+	self.partyMovespeed = {}
 	self.layer = layer
 	self.object = object
 	self.cinematicStack = 0
@@ -827,7 +828,7 @@ function Player:basicUpdate(dt)
 	local isSwatbot = self.isSwatbot[GameState.leader]
 
 	-- Scale movespeed by time
-	local baseMoveSpeed = self.movespeed
+	local baseMoveSpeed = self.partyMovespeed[GameState.leader] or self.movespeed
 	if isSwatbot then
 		baseMoveSpeed = 3
 	end
