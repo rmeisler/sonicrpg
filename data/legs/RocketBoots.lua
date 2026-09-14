@@ -10,7 +10,7 @@ return {
 		defense = 1
 	},
 	onEquip = function(member, player)
-		player.partyMovespeed[member] = 5
+		player.partyMovespeed[member] = 6
 	end,
 	onUnequip = function(member, player)
 		player.partyMovespeed[member] = nil
