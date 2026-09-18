@@ -380,6 +380,9 @@ return {
 		youngsurprise = {
 			frames = {{15,10}}
 		},
+		veryyoungsad = {
+			frames = {{15,11}}
+		},
 		attitude = {
 			frames = {{12,10}}
 		},
@@ -447,6 +450,16 @@ return {
 		
 		worried2 = {
 			frames = {{8,9}}
+		},
+
+		mom_concerned = {
+			frames = {{0,12}}
+		},
+		chuck_surprisedleft = {
+			frames = {{1,12}}
+		},
+		chuck_supportiveleft = {
+			frames = {{2,12}}
 		},
 		
 		foottap = {
