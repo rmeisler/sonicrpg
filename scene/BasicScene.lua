@@ -1201,6 +1201,11 @@ function BasicScene:draw()
 			love.graphics.setDefaultFilter("nearest", "nearest")
 			Scene.draw(self)
 		end)
+	elseif self.tvstatic then
+		self.tvstatic:draw(function()
+			love.graphics.setDefaultFilter("nearest", "nearest")
+			Scene.draw(self)
+		end)
 	elseif self.lightFlash then
 		local prevShader = love.graphics.getShader()
 		love.graphics.setDefaultFilter("nearest", "nearest")

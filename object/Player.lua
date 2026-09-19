@@ -572,7 +572,7 @@ function Player:keytriggered(key)
 end
 
 function Player:onChangeChar()
-	if self.noChangeChar or self.doingSpecialMove or self.doingChangeChar or self.cinematic or self.cinematicStack > 0 then
+	if self.noChangeChar or self.doingSpecialMove or self.doingChangeChar or self.cinematic or self.cinematicStack > 0 or self.blocked then
 		return
 	end	
 	
@@ -591,7 +591,7 @@ function Player:onChangeChar()
 	self.scene.audio:playSfx("switchcharshort", 1.0)
 	
 	-- Spin around, change sprite/leader, spin, pose
-	self:run {
+	self:run(BlockPlayer {
 		self:spin(1, 0.01),
 
 		Do(function()
@@ -625,7 +625,7 @@ function Player:onChangeChar()
 			self.hidekeyhints = {}
 			self:removeKeyHint()
 		end)
-	}
+	})
 end
 
 function Player:onSpecialMove()

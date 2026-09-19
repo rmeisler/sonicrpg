@@ -104,6 +104,12 @@ return {
         file = "maps/worldmap.lua",
 		--primary = true -- testing
     },
+
+	{
+        type = "map",
+        file = "maps/sonicdream1.lua",
+		--primary = true -- testing
+    },
 	
 	{
         type = "map",
@@ -707,6 +713,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/sonicdream.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/sonicguitar.ogg",
 		category = "music"
 	},
@@ -1030,6 +1041,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/slice.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/static.ogg",
 		category = "sfx"
 	},
 	{
