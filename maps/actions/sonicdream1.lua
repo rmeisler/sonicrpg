@@ -71,7 +71,7 @@ return function(scene)
 		Animate(scene.objectLookup.Chuck.sprite, "chuck_supportiveleft"),
 		Wait(2),
 		Animate(scene.objectLookup.Mom.sprite, "mom_evil"),
-		MessageBox{message="Roxanne: ...{p60}he's really {h slowing} me down!", textSpeed=3, closeAction=Wait(3.5)},
+		MessageBox{message="Roxanne: ...{p60}having to take care of him is really {h slowing} me down!", textSpeed=3, closeAction=Wait(3.5)},
 
 		staticAction(),
 		Animate(scene.objectLookup.Mom.sprite, "teacher_concerned"),
@@ -96,8 +96,10 @@ return function(scene)
 			)
 			scene.objectLookup.Mom.sprite:setAnimation("on")
 			scene.objectLookup.Tube.hidden = false
+			scene.objectLookup.Sonic.x = scene.objectLookup.Sonic.x + 8
 		end),
 		Animate(scene.objectLookup.Chuck.sprite, "chuck_surprisedleft"),
+		Animate(scene.objectLookup.Sonic.sprite, "veryyoungscared"),
 		Wait(1),
 		MessageBox{message="Uncle Chuck: Quick, Sonny! {p80}Turn off the roboticizer!!", closeAction=Wait(3)},
 		staticAction(),

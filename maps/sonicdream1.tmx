@@ -52,7 +52,7 @@
     <property name="sprite" type="file" value="../art/sprites/sonic.png"/>
    </properties>
   </object>
-  <object id="19" name="Sonic" type="BasicNPC" gid="6839" x="352" y="288" width="64" height="64">
+  <object id="19" name="Sonic" type="BasicNPC" gid="6839" x="352" y="289" width="64" height="64">
    <properties>
     <property name="defaultAnim" value="veryyoungsad"/>
     <property name="ghost" type="bool" value="true"/>

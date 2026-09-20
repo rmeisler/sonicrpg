@@ -108,7 +108,7 @@ return {
 	{
         type = "map",
         file = "maps/sonicdream1.lua",
-		primary = true -- testing
+		--primary = true -- testing
     },
 	
 	{

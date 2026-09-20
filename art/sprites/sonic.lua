@@ -383,6 +383,9 @@ return {
 		veryyoungsad = {
 			frames = {{15,11}}
 		},
+		veryyoungscared = {
+			frames = {{13,12}}
+		},
 		teacher_concerned = {
 			frames = {{16,11}}
 		},

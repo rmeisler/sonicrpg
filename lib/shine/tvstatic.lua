@@ -4,7 +4,7 @@ local function build_tvstatic_shader()
 	return love.graphics.newShader [[
 		extern float time;
         vec4 effect(vec4 color, Image tex, vec2 tc, vec2 sc) {
-            float noise = fract(sin(dot(sc.xy + vec2(time), vec2(12.9898, 78.233))) * 43758.5453);
+            float noise = fract(sin(dot(floor(sc).xy + vec2(time), vec2(12.9898, 78.233))) * 43758.5453);
             return vec4(vec3(noise), 1.0);
         }
 	]]

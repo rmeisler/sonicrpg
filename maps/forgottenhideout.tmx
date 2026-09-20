@@ -936,7 +936,7 @@ return function(self)
         Animate(sprites.sally.sprite, &quot;cry&quot;),
         Wait(1),
         MessageBox{message=&quot;Sally: ...{p80}H-He forgot...{p80}he forgot everything...&quot;, textSpeed=3},
-        MessageBox{message=&quot;Sally: I should've listened to him, Sonic... {p80}why didn't I listen?!&quot;, textSpeed=3},
+        MessageBox{message=&quot;Sally: I should've listened to him, Sonic... {p80}\nwhy didn't I listen?!&quot;, textSpeed=3},
         Wait(1),
         MessageBox{message=&quot;Sonic: Sal...&quot;, textSpeed=3},
         Wait(1),
