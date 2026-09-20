@@ -386,6 +386,9 @@ return {
 		teacher_concerned = {
 			frames = {{16,11}}
 		},
+		teacher_evil = {
+			frames = {{14,11}}
+		},
 		attitude = {
 			frames = {{12,10}}
 		},
@@ -458,11 +461,20 @@ return {
 		mom_concerned = {
 			frames = {{0,12}}
 		},
+		mom_evil = {
+			frames = {{14,12}}
+		},
 		chuck_surprisedleft = {
 			frames = {{1,12}}
 		},
 		chuck_supportiveleft = {
 			frames = {{2,12}}
+		},
+		chuck_roboticized = {
+			frames = {{15,12}}
+		},
+		glass_tube = {
+			frames = {{16,12}}
 		},
 		
 		foottap = {

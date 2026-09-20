@@ -36,68 +36,58 @@ return function(scene)
 	local tvstatic = shine.tvstatic()
 	scene.tvstatic = tvstatic
 	scene.tvstatic_time = 0
+	
+	local staticAction = function(duringFun)
+		return Serial {
+			PlayAudio("sfx", "static", 0.2, true),
+			Do(function()
+				scene.tvstatic = tvstatic
+				duringFun = duringFun or function() end
+				duringFun()
+			end),
+			Parallel {
+				Wait(1),
+				Do(function()
+					scene.tvstatic_time = scene.tvstatic_time + love.timer.getDelta()
+					scene.tvstatic.shader:send("time", scene.tvstatic_time)
+				end)
+			},
+			Do(function()
+				-- Disable tv static shader
+				scene.tvstatic = nil
+			end)
+		}
+	end
 
 	return BlockPlayer {
 		Do(function()
 			scene.player.sprite.visible = false
 			scene.player.dropShadow.hidden = true
 		end),
-		PlayAudio("sfx", "static", 0.2, true),
-		Parallel {
-			Wait(1),
-			Do(function()
-				scene.tvstatic_time = scene.tvstatic_time + love.timer.getDelta()
-				scene.tvstatic.shader:send("time", scene.tvstatic_time)
-			end)
-		},
-		Do(function()
-			-- Disable tv static shader
-			scene.tvstatic = nil
-		end),
-		PlayAudio("music", "sonicdream", 1, true, true),
+		staticAction(),
 		Wait(1),
-		MessageBox{message="Roxeanne: Chuck... {p100}I need you to take care of Sonic..."},
-		MessageBox{message="Roxeanne: I gotta go away for a little while, and he's just... {p80}{h slowing} me down."},
+		PlayAudio("music", "ep6trapped", 1, true, true),
+		MessageBox{message="Roxanne: Chuck... {p60}I need you to look after Sonic for a little while...", textSpeed=3, closeAction=Wait(3.5)},
+		Animate(scene.objectLookup.Chuck.sprite, "chuck_supportiveleft"),
+		Wait(2),
+		Animate(scene.objectLookup.Mom.sprite, "mom_evil"),
+		MessageBox{message="Roxanne: ...{p60}he's really {h slowing} me down!", textSpeed=3, closeAction=Wait(3.5)},
 
-		PlayAudio("sfx", "static", 0.2, true),
-		Do(function() scene.tvstatic = tvstatic end),
-		Parallel {
-			Wait(1),
-			Do(function()
-				scene.tvstatic_time = scene.tvstatic_time + love.timer.getDelta()
-				scene.tvstatic.shader:send("time", scene.tvstatic_time)
-			end)
-		},
-		Do(function()
-			-- Disable tv static shader
-			scene.tvstatic = nil
-		end),
+		staticAction(),
 		Animate(scene.objectLookup.Mom.sprite, "teacher_concerned"),
+		Animate(scene.objectLookup.Chuck.sprite, "chuck_surprisedleft"),
 		Wait(1),
-		MessageBox{message="Teacher: Sir Charles{p100}, your nephew is struggling in math and science..."},
-		MessageBox{message="Teacher: I'm not sure the reason{p80}, he may be just be a little {h slower} than the other children..."},
+		MessageBox{message="Teacher: Sonic seems to be struggling in math and science, Sir Charles...", textSpeed=3, closeAction=Wait(3.5)},
+		Animate(scene.objectLookup.Chuck.sprite, "chuck_supportiveleft"),
+		Wait(2),
+		Animate(scene.objectLookup.Mom.sprite, "teacher_evil"),
+		MessageBox{message="Teacher: ...{p60}perhaps it's because his brain is so much {h slower} than the other children's!", textSpeed=3, closeAction=Wait(4)},
 
-		AudioFade("music", 1, 0, 1),
-		PlayAudio("sfx", "static", 0.2, true),
-		Do(function() scene.tvstatic = tvstatic end),
-		Parallel {
-			Wait(1),
-			Do(function()
-				scene.tvstatic_time = scene.tvstatic_time + love.timer.getDelta()
-				scene.tvstatic.shader:send("time", scene.tvstatic_time)
-			end)
-		},
-		Do(function()
-			-- Disable tv static shader
-			scene.tvstatic = nil
-		end),
-		PlayAudio("music", "sonicscared", 1, true, true),
-		Wait(1),
-		Do(function()
+		staticAction(function()
 			scene.objectLookup.Mom.sprite:remove()
 			scene.objectLookup.Mom.sprite = SpriteNode(
 				scene,
-				Transform(288+64, 288+32, 2, 2),
+				Transform(288+96, 288+96, 2, 2),
 				{255,255,255,255},
 				"switch4",
 				nil,
@@ -105,9 +95,17 @@ return function(scene)
 				"objects"
 			)
 			scene.objectLookup.Mom.sprite:setAnimation("on")
+			scene.objectLookup.Tube.hidden = false
 		end),
-		MessageBox{message="Uncle Chuck: Quick, Sonny! {p80}Turn off the roboticizer!!"},
-		MessageBox{message="Uncle Chuck: Ahh!!!"},
-		MessageBox{message="Uncle Chuck: ...{p80}too {h slow}, Sonic..."}
+		Animate(scene.objectLookup.Chuck.sprite, "chuck_surprisedleft"),
+		Wait(1),
+		MessageBox{message="Uncle Chuck: Quick, Sonny! {p80}Turn off the roboticizer!!", closeAction=Wait(3)},
+		staticAction(),
+		Animate(scene.objectLookup.Chuck.sprite, "chuck_roboticized"),
+		MessageBox{message="Uncle Chuck: ...{p80}too {h slow}, Sonic...", textSpeed=3, closeAction=Wait(3)},
+		scene:lightningFlash(),
+		Wait(0.1),
+		scene:lightningFlash(),
+		PlayAudio("sfx", "thunder2", 0.8, true),
 	}
 end
