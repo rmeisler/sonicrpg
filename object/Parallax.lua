@@ -24,11 +24,12 @@ function Parallax:construct(scene, layer)
 	self.w = self.layer.image:getWidth()
 	self.h = self.layer.image:getHeight()
 	self.color = {255,255,255,255}
+	self.angle = self.layer.properties.angle or 0
 
 	-- Parallax images are drawn as a 3x3 tiles, stitched together by drawing the image nine times
 	self.oneDraw = function()
 		love.graphics.setColor(self.color)
-		love.graphics.draw(layer.image, layer.x, layer.y)
+		love.graphics.draw(layer.image, layer.x, layer.y, self.angle * (math.pi/180), 1, 1, 0, 0, 0, 0)
 	end
 	self.layer.draw = function()
 		local offsets = {

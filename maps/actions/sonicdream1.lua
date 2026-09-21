@@ -67,21 +67,21 @@ return function(scene)
 		staticAction(),
 		Wait(1),
 		PlayAudio("music", "ep6trapped", 1, true, true),
-		MessageBox{message="Roxanne: Chuck... {p60}I need you to look after Sonic for a little while...", textSpeed=3, closeAction=Wait(3.5)},
-		Animate(scene.objectLookup.Chuck.sprite, "chuck_supportiveleft"),
-		Wait(2),
+		MessageBox{message="Mom: Chuck... {p60}I need you to look after Sonic for a little while...", textSpeed=3, closeAction=Wait(3.5)},
+		staticAction(),
 		Animate(scene.objectLookup.Mom.sprite, "mom_evil"),
-		MessageBox{message="Roxanne: ...{p60}having to take care of him is really {h slowing} me down!", textSpeed=3, closeAction=Wait(3.5)},
+		Animate(scene.objectLookup.Chuck.sprite, "chuck_supportiveleft"),
+		MessageBox{message="Mom: Having to take care of Sonic is really\n{h slowing} me down!", textSpeed=3, closeAction=Wait(4)},
 
 		staticAction(),
 		Animate(scene.objectLookup.Mom.sprite, "teacher_concerned"),
 		Animate(scene.objectLookup.Chuck.sprite, "chuck_surprisedleft"),
 		Wait(1),
-		MessageBox{message="Teacher: Sonic seems to be struggling in math and science, Sir Charles...", textSpeed=3, closeAction=Wait(3.5)},
-		Animate(scene.objectLookup.Chuck.sprite, "chuck_supportiveleft"),
-		Wait(2),
+		MessageBox{message="Teacher: Sonic seems to be struggling in math and\nscience, Sir Charles...", textSpeed=3, closeAction=Wait(3.5)},
+		staticAction(),
 		Animate(scene.objectLookup.Mom.sprite, "teacher_evil"),
-		MessageBox{message="Teacher: ...{p60}perhaps it's because his brain is so much {h slower} than the other children's!", textSpeed=3, closeAction=Wait(4)},
+		Animate(scene.objectLookup.Chuck.sprite, "chuck_supportiveleft"),
+		MessageBox{message="Teacher: Sonic's brain seems to be a lot {h slower}\nthan the other children's!", textSpeed=3, closeAction=Wait(4)},
 
 		staticAction(function()
 			scene.objectLookup.Mom.sprite:remove()
@@ -104,10 +104,23 @@ return function(scene)
 		MessageBox{message="Uncle Chuck: Quick, Sonny! {p80}Turn off the roboticizer!!", closeAction=Wait(3)},
 		staticAction(),
 		Animate(scene.objectLookup.Chuck.sprite, "chuck_roboticized"),
-		MessageBox{message="Uncle Chuck: ...{p80}too {h slow}, Sonic...", textSpeed=3, closeAction=Wait(3)},
+		MessageBox{message="Uncle Chuck: ...{p40}too {h slow}, Sonic...", textSpeed=3, closeAction=Wait(2.5)},
+		Wait(0.5),
+		Do(function()
+			scene.audio:stopMusic()
+		end),
 		scene:lightningFlash(),
 		Wait(0.1),
+		Do(function()
+			scene.objectLookup.Chuck:remove()
+			scene.objectLookup.Mom:remove()
+			scene.objectLookup.Tube:remove()
+			scene.objectLookup.Sonic:remove()
+		end),
 		scene:lightningFlash(),
 		PlayAudio("sfx", "thunder2", 0.8, true),
+		Do(function()
+			scene:changeScene{map="robot_wasteland1", fadeOutSpeed=20, fadeInSpeed=20}
+		end)
 	}
 end

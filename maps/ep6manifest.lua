@@ -108,9 +108,13 @@ return {
 	{
         type = "map",
         file = "maps/sonicdream1.lua",
+		primary = true -- testing
+    },
+	{
+        type = "map",
+        file = "maps/robot_wasteland1.lua",
 		--primary = true -- testing
     },
-	
 	{
         type = "map",
         file = "maps/greatjungle.lua",
@@ -668,7 +672,7 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/sfx/rain.ogg",
+		file = "audio/sfx/lightrain.ogg",
 		category = "sfx"
 	},
 	{
