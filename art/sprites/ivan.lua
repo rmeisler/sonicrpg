@@ -76,6 +76,11 @@ return {
 			frames = {{1,5}},
 			clip = {0,0,47,42}
 		},
+		meeting_walkleft = {
+			frames = {{1,1},{2,1},{3,1},{2,1}},
+			speed = 0.18,
+			clip = {0,0,47,42}
+		},
 		meeting_idleup_lookleft = {
 			frames = {{0,5}},
 			clip = {0,0,47,44}

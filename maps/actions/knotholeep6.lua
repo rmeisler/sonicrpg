@@ -94,16 +94,17 @@ return function(scene, hint)
 			Wait(3),
 			PlayAudio("music", "areyouready", 0.5, true, true),
 			Animate(scene.objectLookup.RotorMtg.sprite, "sitright_explain"),
-			MessageBox{message="Rotor: The modified computer virus is ready and thoroughly tested."},
-			MessageBox{message="Rotor: Once deployed it will ensure that no bot in Robotropolis can land a shot on us."},
+			MessageBox{message="Rotor: The modified computer virus is ready and\nthoroughly tested."},
+			MessageBox{message="Rotor: Once deployed it will ensure that no bot in\nRobotropolis can land a shot on us."},
 			Animate(scene.objectLookup.LoganMtg.sprite, "meeting_idledown_irritated_shorter"),
-			MessageBox{message="Logan: Almost no bot{p60}, we've chosen not to infect our roboticized friends and family."},
-			MessageBox{message="Logan: We're not sure what the virus might do to them, and we don't have time to make sure it's safe."},
+			Animate(scene.objectLookup.RotorMtg.sprite, "sitright"),
+			MessageBox{message="Logan: Almost no bot{p60}, we've chosen not to infect\nour roboticized friends and family."},
+			MessageBox{message="Logan: We're not sure what the virus might do to\nthem, and we don't have time to make sure it's safe."},
 			Wait(1),
-			Animate(scene.objectLookup.SallyMtg.sprite, "planning_smile"),
+			Animate(scene.objectLookup.LoganMtg.sprite, "meeting_idleright_shorter"),
 			MessageBox{message="Sally: Alright guys, let's recap the plan..."},
 			Animate(scene.objectLookup.SallyMtg.sprite, "planning"),
-			MessageBox{message="Sally: With the city's primary security forces\nmalfunctioning, we should be able to quickly make our way\nto Robotnik's throne room--"},
+			MessageBox{message="Sally: With the city's primary security forces\nmalfunctioning, we should be able to quickly make\nour way to Robotnik's throne room--"},
 			MessageBox{message="Sally: --once there, we'll overwhelm Robotnik and use his master terminal to take control of the city."},
 			AudioFade("music", 0.5, 0, 0.2),
 			PlayAudio("music", "sallyvictory", 1, true),
@@ -115,9 +116,11 @@ return function(scene, hint)
 					MessageBox{message="Sally: Yeah it is...", closeAction=Wait(2)}
 				}
 			},
-			Animate(scene.objectLookup.SallyMtg.sprite, "planning_smile"),
 			MessageBox{message="Sally: By this time tomorrow, Robotnik's reign of terror will be over!!", closeAction=Wait(3)},
 			Animate(scene.objectLookup.RotorMtg.sprite, "sitright_cheer"),
+			Animate(scene.objectLookup.LoganMtg.sprite, "meeting_idledown_irritated_shorter"),
+			Animate(scene.objectLookup.FleetMtg.sprite, "meeting_thinking"),
+			Animate(scene.objectLookup.IvanMtg.sprite, "meeting_idledown_attitude"),
 			Parallel {
 				MessageBox{message="Freedom! {p50}Freedom! {p50}Freedom!", closeAction=Wait(3)},
 				Repeat(Serial {
@@ -130,7 +133,7 @@ return function(scene, hint)
 					Wait(0.8)
 				}, 5)
 			},
-
+			Animate(scene.objectLookup.SallyMtg.sprite, "meeting_thinking"),
 			MessageBox{message="Sally: Meeting adjourned."},
 			Wait(1),
 			Parallel {
@@ -152,9 +155,20 @@ return function(scene, hint)
 					}),
 					Wait(0.2),
 					Spawn(Serial {
-						Animate(scene.objectLookup.IvanMtg.sprite, "idleleft"),
+						Animate(scene.objectLookup.IvanMtg.sprite, "meeting_idleleft"),
 						Wait(0.2),
-						Move(scene.objectLookup.IvanMtg, scene.objectLookup.LeaveMeetingWP1, "walk"),
+						Do(function()
+							scene.objectLookup.IvanMtg.sprite:pushOverride("walkleft", "meeting_walkleft")
+						end),
+						Parallel {
+							Move(scene.objectLookup.IvanMtg, scene.objectLookup.LeaveMeetingWP1, "walk"),
+							Serial {
+								Wait(0.1),
+								Do(function()
+									scene.objectLookup.IvanMtg.sprite:popOverride("walkleft")
+								end)
+							}
+						},
 						Move(scene.objectLookup.IvanMtg, scene.objectLookup.LeaveMeetingWP2, "walk"),
 						Move(scene.objectLookup.IvanMtg, scene.objectLookup.LeaveMeetingWP3, "walk"),
 						Do(function()
@@ -176,9 +190,17 @@ return function(scene, hint)
 						Animate(scene.objectLookup.LoganMtg.sprite, "meeting_idleleft"),
 						Wait(0.2),
 						Do(function()
-							scene.objectLookup.LoganMtg.y = scene.objectLookup.LoganMtg.y + 64
+							scene.objectLookup.LoganMtg.sprite:pushOverride("walkleft", "meeting_walkleft")
 						end),
-						Move(scene.objectLookup.LoganMtg, scene.objectLookup.LeaveMeetingWP1, "walk"),
+						Parallel {
+							Move(scene.objectLookup.LoganMtg, scene.objectLookup.LeaveMeetingWP1, "walk"),
+							Serial {
+								Wait(0.1),
+								Do(function()
+									scene.objectLookup.LoganMtg.sprite:popOverride("walkleft")
+								end)
+							}
+						},
 						Move(scene.objectLookup.LoganMtg, scene.objectLookup.LeaveMeetingWP2, "walk"),
 						Move(scene.objectLookup.LoganMtg, scene.objectLookup.LeaveMeetingWP3, "walk"),
 						Do(function()
@@ -197,6 +219,9 @@ return function(scene, hint)
 					}),
 					Wait(0.2),
 					Spawn(Serial {
+						Do(function()
+							scene.objectLookup.AntoineMtg.y = scene.objectLookup.AntoineMtg.y + 6
+						end),
 						Animate(scene.objectLookup.AntoineMtg.sprite, "idleleft"),
 						Wait(0.2),
 						Move(scene.objectLookup.AntoineMtg, scene.objectLookup.LeaveMeetingWP1, "walk"),
@@ -239,15 +264,11 @@ return function(scene, hint)
 			Wait(0.5),
 			MessageBox{message="B: I just wanted to thank you for all you've done for me..."},
 			Wait(0.5),
-			MessageBox{message="Sally: Of course..."},
-			Wait(0.5),
 			MessageBox{message="B: ...and let you know that I am going to the city to bring my family back to Knothole."},
 			Animate(scene.objectLookup.SallyMtg.sprite, "meeting_thinking"),
-			MessageBox{message="Sally: Why not wait just one more day, B?"},
-			MessageBox{message="Sally: We should have control of Robotropolis by tomorrow evening."},
+			MessageBox{message="Sally: Why not wait just one more day, B? {p60}We should\nhave control of Robotropolis by tomorrow evening."},
 			Animate(scene.objectLookup.BMtg.sprite, "pose"),
-			MessageBox{message="B: I appreciate that, Princess, but I've waited much too long already."},
-			MessageBox{message="B: And if I have learned anything from living here in Knothole, it's that very little goes according to plan."},
+			MessageBox{message="B: I appreciate that, Princess, but I've waited much too long already.{p80} And if I have learned anything from living here in Knothole, it's that very little goes according to plan."},
 			Animate(scene.objectLookup.LeonMtg.sprite, "meeting_idleleft_lookdown"),
 			MessageBox{message="Leon: He's right, Princess. {p80}We have not done right by B."},
 			Wait(1),
