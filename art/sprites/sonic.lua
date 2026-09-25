@@ -364,6 +364,23 @@ return {
 		dead = {
 			frames = {{12,9}}
 		},
+		dead2 = {
+			frames = {{12,12}}
+		},
+		dead3 = {
+			frames = {{12,13}}
+		},
+		dead4 = {
+			frames = {{13,13}}
+		},
+
+		dead3_wake = {
+			frames = {{12,13},{13,13}},
+			speed = 0.1
+		},
+		dead3_pain = {
+			frames = {{14,13}}
+		},
 		
 		younghug1 = {
 			frames = {{0,10}}

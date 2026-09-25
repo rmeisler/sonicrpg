@@ -66,6 +66,7 @@ return function(scene)
 		end),
 		staticAction(),
 		Wait(1),
+		
 		PlayAudio("music", "ep6trapped", 1, true, true),
 		MessageBox{message="Mom: Chuck... {p60}I need you to look after Sonic for a little while...", textSpeed=3, closeAction=Wait(3.5)},
 		staticAction(),
@@ -77,11 +78,11 @@ return function(scene)
 		Animate(scene.objectLookup.Mom.sprite, "teacher_concerned"),
 		Animate(scene.objectLookup.Chuck.sprite, "chuck_surprisedleft"),
 		Wait(1),
-		MessageBox{message="Teacher: Sonic seems to be struggling in math and\nscience, Sir Charles...", textSpeed=3, closeAction=Wait(3.5)},
+		MessageBox{message="Teacher: Sonic seems to be struggling in math and science,\nSir Charles...", textSpeed=3, closeAction=Wait(3.5)},
 		staticAction(),
 		Animate(scene.objectLookup.Mom.sprite, "teacher_evil"),
 		Animate(scene.objectLookup.Chuck.sprite, "chuck_supportiveleft"),
-		MessageBox{message="Teacher: Sonic's brain seems to be a lot {h slower}\nthan the other children's!", textSpeed=3, closeAction=Wait(4)},
+		MessageBox{message="Teacher: Sonic seems to be a much {h slower} learner than\nthe other children!", textSpeed=3, closeAction=Wait(4)},
 
 		staticAction(function()
 			scene.objectLookup.Mom.sprite:remove()

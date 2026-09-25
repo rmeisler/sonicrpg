@@ -14,6 +14,9 @@ return {
 		cry = {
 			frames = {{1,6}}
 		},
+		kneeldown = {
+			frames = {{12,7}}
+		},
 		
 		stepback = {
 		    frames = {{0,3},{1,3},{0,3},{5,3}},

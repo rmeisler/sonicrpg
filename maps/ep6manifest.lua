@@ -108,7 +108,7 @@ return {
 	{
         type = "map",
         file = "maps/sonicdream1.lua",
-		--primary = true -- testing
+		primary = true -- testing
     },
 	{
         type = "map",
@@ -673,7 +673,7 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/lightrain.ogg",
-		category = "sfx"
+		category = "ambient"
 	},
 	{
 		type = "sound",

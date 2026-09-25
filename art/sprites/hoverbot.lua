@@ -29,6 +29,9 @@ return {
 		},
 		idlecrashright = {
 			frames = {{8,0}}
+		},
+		trashed = {
+			frames = {{9,0}}
 		}
     }
 }
