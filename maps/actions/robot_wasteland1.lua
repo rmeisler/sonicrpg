@@ -33,7 +33,7 @@ return function(scene)
 		scene.player.state = "dead2"
 		
 		local subtext = TypeText(
-			Transform(50, 470),
+			Transform(10, 470),
 			{255, 255, 255, 0},
 			FontCache.TechnoSmall,
 			"Robotropolis",
@@ -41,7 +41,7 @@ return function(scene)
 		)
 
 		local text = TypeText(
-			Transform(50, 500),
+			Transform(10, 500),
 			{255, 255, 255, 0},
 			FontCache.Techno,
 			"RobotWasteland",
@@ -93,8 +93,6 @@ return function(scene)
 			MessageBox{message="B: Excuse me, miss. {p60}Will you be taking me home, soon?"},
 			Wait(2),
 			MessageBox{message="Sonic: ..."},
-			Animate(scene.objectLookup.Sally.sprite, "thinking"),
-			Wait(2),
 			Animate(scene.objectLookup.Sally.sprite, "worriedleft"),
 			MessageBox{message="Sally: Soon. {p80}We're just taking a little detour right now."},
 			Wait(2),
@@ -102,7 +100,13 @@ return function(scene)
 			Wait(1),
 			Animate(scene.objectLookup.Sally.sprite, "thinking"),
 			MessageBox{message="Sally: We can't think like that. {p60}We need to get to some place safe..."},
-			
+			Parallel {
+				Ease(scene.objectLookup.B, "x", function() return scene.player.x - 35 end, 1),
+				Ease(scene.objectLookup.Sally, "x", function() return scene.player.x - 35 end, 1),
+				Ease(scene.objectLookup.B, "y", function() return scene.player.y - 50 end, 1),
+				Ease(scene.objectLookup.Sally, "y", function() return scene.player.y - 50 end, 1),
+			},
+
 			Do(function()
 				GameState:removeFromParty("sonic")
 				GameState:removeFromParty("b")

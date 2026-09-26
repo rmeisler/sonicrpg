@@ -8,7 +8,7 @@ return {
   height = 28,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 125,
+  nextobjectid = 134,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["bgm"] = "../audio/music/battle.ogg",
@@ -152,7 +152,7 @@ return {
         2565, 2536, 2537, 2564, 2565, 2536, 2537, 2564, 2565, 2566, 2669, 2670, 2569, 2570, 2571, 2572, 2567, 2568, 2569, 2570, 2571, 2572, 2669, 2670, 2532, 2533,
         2533, 2534, 2535, 2710, 2711, 2712, 2709, 2599, 2600, 2601, 2704, 2705, 2604, 2605, 2606, 2607, 2602, 2603, 2604, 2605, 2606, 2607, 2704, 2705, 2636, 2702,
         2568, 2569, 2570, 2952, 2952, 2952, 2952, 3191, 3228, 3228, 3228, 3228, 3228, 3228, 3228, 3228, 3228, 3228, 3192, 2952, 2952, 2952, 2739, 2740, 2601, 2952,
-        2603, 2604, 2605, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2532, 2533, 2534, 2535, 2532, 2533, 2534,
+        2603, 2604, 2605, 2637, 2638, 2639, 2640, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2532, 2533, 2534, 2535, 2532, 2533, 2534,
         2638, 2639, 2640, 2532, 2533, 2534, 2535, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2567, 2568, 2569, 2570, 2567, 2568, 2569,
         2533, 2534, 2535, 2567, 2568, 2569, 2570, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2602, 2603, 2604, 2605, 2602, 2603, 2604,
         2568, 2569, 2570, 2602, 2603, 2604, 2605, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2637, 2638, 2639, 2640, 2532, 2533, 2534,
@@ -166,16 +166,6 @@ return {
         2568, 2569, 2570, 2602, 2603, 2604, 2605, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2637, 2638, 2639, 2640, 2532, 2533, 2534,
         2603, 2604, 2605, 2637, 2638, 2639, 2640, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2532, 2533, 2534, 2535, 2567, 2568, 2569
       }
-    },
-    {
-      type = "imagelayer",
-      name = "dino",
-      visible = true,
-      opacity = 1,
-      offsetx = 96,
-      offsety = 224,
-      image = "../art/sprites/dinohead.png",
-      properties = {}
     },
     {
       type = "objectgroup",
@@ -193,7 +183,7 @@ return {
           type = "BasicNPC",
           shape = "rectangle",
           x = 576,
-          y = 672,
+          y = 608,
           width = 64,
           height = 64,
           rotation = 0,
@@ -201,9 +191,172 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_left",
+            ["angle"] = 25,
             ["defaultAnim"] = "trashed",
             ["nocollision"] = true,
             ["sprite"] = "../art/sprites/hoverbot.png"
+          }
+        },
+        {
+          id = 125,
+          name = "SwatbotHead",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 128,
+          y = 576,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["angle"] = 10,
+            ["colorOverride"] = "150,150,150",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/swatbothelmet.png"
+          }
+        },
+        {
+          id = 126,
+          name = "SwatbotArmor",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 64,
+          y = 704,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["angle"] = -20,
+            ["colorOverride"] = "150,150,150",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/swatbotarmor.png"
+          }
+        },
+        {
+          id = 127,
+          name = "BuzzBomber",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 672,
+          y = 768,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["angle"] = -30,
+            ["colorOverride"] = "100,100,100",
+            ["defaultAnim"] = "trashed",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/buzzbomber.png"
+          }
+        },
+        {
+          id = 128,
+          name = "BartChair",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 96,
+          y = 832,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["angle"] = -45,
+            ["colorOverride"] = "80,80,80",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/bartchair.png"
+          }
+        },
+        {
+          id = 129,
+          name = "FactoryBotHelmet",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 736,
+          y = 576,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["angle"] = -15,
+            ["colorOverride"] = "100,100,100",
+            ["defaultAnim"] = "idledown",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/factorybothelmet.png"
+          }
+        },
+        {
+          id = 131,
+          name = "DinoHead",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 88,
+          y = 496,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["angle"] = 5,
+            ["colorOverride"] = "255,255,255",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/dinohead.png"
+          }
+        },
+        {
+          id = 132,
+          name = "SwatbotArm",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 32,
+          y = 592,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["angle"] = -10,
+            ["colorOverride"] = "100,100,100",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/swatbothand.png"
+          }
+        },
+        {
+          id = 133,
+          name = "JuggerbotArm",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 704,
+          y = 864,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 1714,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["angle"] = 60,
+            ["colorOverride"] = "80,80,80",
+            ["nocollision"] = true,
+            ["sprite"] = "../art/sprites/juggerbotrightarm.png"
           }
         }
       }

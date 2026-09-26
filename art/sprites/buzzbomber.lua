@@ -23,6 +23,10 @@ return {
 			speed = 0.02
         },
 		
+		trashed = {
+			frames = {{14,0}}
+		},
+		
 		hurt = {
 			frames = {{8,0}}
 		}
