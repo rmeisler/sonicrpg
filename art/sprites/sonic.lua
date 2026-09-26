@@ -381,6 +381,9 @@ return {
 		dead3_pain = {
 			frames = {{14,13}}
 		},
+		dead3_grimmace = {
+			frames = {{15,13}}
+		},
 		
 		younghug1 = {
 			frames = {{0,10}}

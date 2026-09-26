@@ -118,10 +118,9 @@ return function(scene)
 			scene.objectLookup.Tube:remove()
 			scene.objectLookup.Sonic:remove()
 		end),
-		scene:lightningFlash(),
 		PlayAudio("sfx", "thunder2", 0.8, true),
 		Do(function()
-			scene:changeScene{map="robot_wasteland1", fadeOutSpeed=20, fadeInSpeed=20}
+			scene:changeScene{map="robot_wasteland1", fadeWhite=true, fadeOutSpeed=2, fadeInSpeed=2}
 		end)
 	}
 end

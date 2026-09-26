@@ -30,7 +30,7 @@ local BasicNPC = require "object/BasicNPC"
 return function(scene)
 	if not GameState:isFlagSet("robot_wastland_intro") then
 		GameState:setFlag("robot_wastland_intro")
-		scene.player.state = "dead2"
+		scene.player.sprite.visible = false
 		
 		local subtext = TypeText(
 			Transform(10, 470),
@@ -44,13 +44,14 @@ return function(scene)
 			Transform(10, 500),
 			{255, 255, 255, 0},
 			FontCache.Techno,
-			"RobotWasteland",
+			"Robot Wasteland",
 			100
 		)
 
 		return BlockPlayer {
 			Do(function()
 				scene.player.state = "dead2"
+				scene.player.sprite.visible = true
 			end),
 			PlayAudio("ambient", "lightrain", 1, true, true),
 			Wait(2),
@@ -72,12 +73,13 @@ return function(scene)
 				scene.player.state = "dead3_pain"
 			end),
 			MessageBox{message="Sonic: Arg!! {p60}My leg!!"},
+			Wait(0.5),
 			MessageBox{message="Sally: It might be broken..."},
 
 			Do(function()
-				scene.player.state = "dead4"
+				scene.player.state = "dead3_grimmace"
 			end),
-			MessageBox{message="Sonic: W-What?! {p60}No no no no--{p60} it can't be! {p60}I gotta get us outta here!"},
+			MessageBox{message="Sonic: W-What?! {p60}No no no no--{p60} can't be! {p60}I gotta get us outta here!"},
 
 			Do(function()
 				scene.player.state = "dead3_pain"
@@ -125,6 +127,7 @@ return function(scene)
 					Ease(text.color, 4, 255, 1),
 					Ease(subtext.color, 4, 255, 1),
 				},
+				PlayAudio("music", "robotwasteland", 1, true, true),
 				Wait(2),
 				Parallel {
 					Ease(text.color, 4, 0, 1),
