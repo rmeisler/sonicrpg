@@ -28,32 +28,32 @@ local BlockPlayer = require "actions/BlockPlayer"
 local BasicNPC = require "object/BasicNPC"
 
 return function(scene)
+	local subtext = TypeText(
+		Transform(10, 470),
+		{255, 255, 255, 0},
+		FontCache.TechnoSmall,
+		"Robotropolis",
+		100
+	)
+
+	local text = TypeText(
+		Transform(10, 500),
+		{255, 255, 255, 0},
+		FontCache.Techno,
+		"Robot Wasteland",
+		100
+	)
+
 	if not GameState:isFlagSet("robot_wastland_intro") then
 		GameState:setFlag("robot_wastland_intro")
 		scene.player.sprite.visible = false
-		
-		local subtext = TypeText(
-			Transform(10, 470),
-			{255, 255, 255, 0},
-			FontCache.TechnoSmall,
-			"Robotropolis",
-			100
-		)
-
-		local text = TypeText(
-			Transform(10, 500),
-			{255, 255, 255, 0},
-			FontCache.Techno,
-			"Robot Wasteland",
-			100
-		)
 
 		return BlockPlayer {
 			Do(function()
 				scene.player.state = "dead2"
 				scene.player.sprite.visible = true
 			end),
-			PlayAudio("ambient", "lightrain", 1, true, true),
+			PlayAudio("ambient", "lightrain", 0.5, true, true),
 			Wait(2),
 			MessageBox{message="Sally: Sonic! {p60}Can you hear me?"},
 			Do(function()
@@ -73,7 +73,7 @@ return function(scene)
 				scene.player.state = "dead3_pain"
 			end),
 			MessageBox{message="Sonic: Arg!! {p60}My leg!!"},
-			Wait(0.5),
+			Wait(1),
 			MessageBox{message="Sally: It might be broken..."},
 
 			Do(function()
@@ -93,9 +93,10 @@ return function(scene)
 			Wait(3),
 			Animate(scene.objectLookup.B.sprite, "pose"),
 			MessageBox{message="B: Excuse me, miss. {p60}Will you be taking me home, soon?"},
-			Wait(2),
+			Wait(1),
 			MessageBox{message="Sonic: ..."},
 			Animate(scene.objectLookup.Sally.sprite, "worriedleft"),
+			Wait(1),
 			MessageBox{message="Sally: Soon. {p80}We're just taking a little detour right now."},
 			Wait(2),
 			MessageBox{message="Sonic: Guess we're really cooked this time, huh?"},
@@ -123,11 +124,11 @@ return function(scene)
 				Wait(0.5),
 				subtext,
 				text,
+				PlayAudio("music", "robotwasteland", 1, true, true),
 				Parallel {
 					Ease(text.color, 4, 255, 1),
 					Ease(subtext.color, 4, 255, 1),
 				},
-				PlayAudio("music", "robotwasteland", 1, true, true),
 				Wait(2),
 				Parallel {
 					Ease(text.color, 4, 0, 1),
@@ -136,6 +137,26 @@ return function(scene)
 			}),
 		}
 	else
-		return PlayAudio("sfx", "lightrain", 1, true, true)
+		scene.objectLookup.Sally:remove()
+		scene.objectLookup.B:remove()
+
+		return Serial {
+			PlayAudio("sfx", "lightrain", 0.5, true, true),
+			Spawn(Serial {
+				Wait(0.5),
+				subtext,
+				text,
+				PlayAudio("music", "robotwasteland", 1, true, true),
+				Parallel {
+					Ease(text.color, 4, 255, 1),
+					Ease(subtext.color, 4, 255, 1),
+				},
+				Wait(2),
+				Parallel {
+					Ease(text.color, 4, 0, 1),
+					Ease(subtext.color, 4, 0, 1)
+				}
+			})
+		}
 	end
 end

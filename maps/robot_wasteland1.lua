@@ -8,13 +8,13 @@ return {
   height = 38,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 135,
+  nextobjectid = 136,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["bgm"] = "../audio/music/battle.ogg",
     ["onload"] = "actions/robot_wasteland1.lua",
     ["regionName"] = "Robotropolis",
-    ["sectorName"] = "Sector 7"
+    ["sectorName"] = "Robot Wasteland"
   },
   tilesets = {
     {
@@ -160,8 +160,8 @@ return {
         2496, 2497, 2496, 2497, 2496, 2497, 2461, 2462, 2461, 2496, 2496, 2497, 2496, 2497, 2496, 2497, 2496, 2497, 2496, 2497, 2496, 2497, 2496, 2497, 2461,
         2530, 2496, 2497, 2529, 2530, 2496, 2497, 2529, 2530, 2531, 2532, 2533, 2534, 2535, 2536, 2537, 2532, 2533, 2534, 2535, 2536, 2537, 2532, 2533, 2496,
         2565, 2536, 2537, 2564, 2565, 2536, 2537, 2564, 2565, 2566, 2669, 2670, 2569, 2570, 2571, 2572, 2567, 2568, 2569, 2570, 2571, 2572, 2669, 2670, 2532,
-        2533, 2534, 2535, 2710, 2711, 2712, 2709, 2599, 2600, 2601, 2704, 2705, 2604, 2605, 2606, 2607, 2602, 2603, 2604, 2605, 2606, 2607, 2704, 2705, 2636,
-        2568, 2569, 2570, 2952, 2952, 2952, 2952, 3191, 3228, 3228, 3228, 3228, 3228, 3228, 3228, 3228, 3228, 3228, 3192, 2952, 2952, 2952, 2739, 2740, 2601,
+        2533, 2534, 2535, 2710, 2711, 2712, 2709, 2709, 2600, 2601, 2704, 2705, 2604, 2605, 2606, 2607, 2602, 2603, 2604, 2605, 2606, 2607, 2704, 2705, 2636,
+        2568, 2569, 2570, 2952, 2952, 2952, 2952, 2952, 3228, 3228, 3228, 3228, 3228, 3228, 3228, 3228, 3228, 3228, 3192, 2952, 2952, 2952, 2739, 2740, 2601,
         2603, 2604, 2605, 2637, 2638, 2639, 2640, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2532, 2533, 2534, 2535, 2532, 2533,
         2638, 2639, 2640, 2532, 2533, 2534, 2535, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2567, 2568, 2569, 2570, 2567, 2568,
         2533, 2534, 2535, 2567, 2568, 2569, 2570, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2628, 2602, 2603, 2604, 2605, 2602, 2603,
@@ -787,6 +787,27 @@ return {
           properties = {
             ["ghost"] = true,
             ["whileColliding"] = "local Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal Do = require \"actions/Do\"\nlocal BlockPlayer = require \"actions/BlockPlayer\"\n\nreturn function(self, player, prevState)\n    if not self.panning and prevState == self.STATE_IDLE and love.keyboard.isDown(\"up\") then\n        self.panning = true\n        player.blocked = true\n        player.basicUpdate = player.updateFun\n        player.state = \"idleup\"\n        self.scene:run(BlockPlayer {\n            Ease(self.scene.camPos, \"y\", 200, 0.6),\n            Wait(2),\n            Ease(self.scene.camPos, \"y\", 0, 0.6),\n            Do(function()\n                self.panning = false\n                player.blocked = false\n            end)\n        })\n    end\nend"
+          }
+        },
+        {
+          id = 135,
+          name = "DownPath",
+          type = "SceneEdge",
+          shape = "rectangle",
+          x = 224,
+          y = 1216,
+          width = 384,
+          height = 32,
+          rotation = 0,
+          gid = 2311,
+          visible = true,
+          properties = {
+            ["ghost"] = true,
+            ["key"] = "down",
+            ["no_run"] = true,
+            ["orientation"] = "up",
+            ["scene"] = "robot_wasteland2.lua",
+            ["spawn_point"] = "UpPath"
           }
         }
       }

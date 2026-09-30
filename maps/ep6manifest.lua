@@ -117,6 +117,11 @@ return {
     },
 	{
         type = "map",
+        file = "maps/robot_wasteland2.lua",
+		--primary = true -- testing
+    },
+	{
+        type = "map",
         file = "maps/greatjungle.lua",
 		--primary = true
     },

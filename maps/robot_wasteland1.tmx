@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="38" tilewidth="32" tileheight="32" infinite="0" nextobjectid="135">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="25" height="38" tilewidth="32" tileheight="32" infinite="0" nextobjectid="136">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotropolis1.png"/>
   <property name="bgm" type="file" value="../audio/music/battle.ogg"/>
   <property name="onload" type="file" value="actions/robot_wasteland1.lua"/>
   <property name="regionName" value="Robotropolis"/>
-  <property name="sectorName" value="Sector 7"/>
+  <property name="sectorName" value="Robot Wasteland"/>
  </properties>
  <tileset firstgid="1" source="robotropolis.tsx"/>
  <tileset firstgid="3501" source="knothole.tsx"/>
@@ -36,8 +36,8 @@
 2496,2497,2496,2497,2496,2497,2461,2462,2461,2496,2496,2497,2496,2497,2496,2497,2496,2497,2496,2497,2496,2497,2496,2497,2461,
 2530,2496,2497,2529,2530,2496,2497,2529,2530,2531,2532,2533,2534,2535,2536,2537,2532,2533,2534,2535,2536,2537,2532,2533,2496,
 2565,2536,2537,2564,2565,2536,2537,2564,2565,2566,2669,2670,2569,2570,2571,2572,2567,2568,2569,2570,2571,2572,2669,2670,2532,
-2533,2534,2535,2710,2711,2712,2709,2599,2600,2601,2704,2705,2604,2605,2606,2607,2602,2603,2604,2605,2606,2607,2704,2705,2636,
-2568,2569,2570,2952,2952,2952,2952,3191,3228,3228,3228,3228,3228,3228,3228,3228,3228,3228,3192,2952,2952,2952,2739,2740,2601,
+2533,2534,2535,2710,2711,2712,2709,2709,2600,2601,2704,2705,2604,2605,2606,2607,2602,2603,2604,2605,2606,2607,2704,2705,2636,
+2568,2569,2570,2952,2952,2952,2952,2952,3228,3228,3228,3228,3228,3228,3228,3228,3228,3228,3192,2952,2952,2952,2739,2740,2601,
 2603,2604,2605,2637,2638,2639,2640,2628,2628,2628,2628,2628,2628,2628,2628,2628,2628,2628,2628,2532,2533,2534,2535,2532,2533,
 2638,2639,2640,2532,2533,2534,2535,2628,2628,2628,2628,2628,2628,2628,2628,2628,2628,2628,2628,2567,2568,2569,2570,2567,2568,
 2533,2534,2535,2567,2568,2569,2570,2628,2628,2628,2628,2628,2628,2628,2628,2628,2628,2628,2628,2602,2603,2604,2605,2602,2603,
@@ -437,6 +437,16 @@ return function(self, player, prevState)
         })
     end
 end</property>
+   </properties>
+  </object>
+  <object id="135" name="DownPath" type="SceneEdge" gid="2311" x="224" y="1216" width="384" height="32">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="key" value="down"/>
+    <property name="no_run" type="bool" value="true"/>
+    <property name="orientation" value="up"/>
+    <property name="scene" type="file" value="robot_wasteland2.lua"/>
+    <property name="spawn_point" value="UpPath"/>
    </properties>
   </object>
  </objectgroup>

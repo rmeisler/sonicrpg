@@ -97,6 +97,17 @@ return {
 				require "data/battle/skills/Inspire"
 			}
 		},
+		[10] = {
+			messages = {"Sally learned \"Power Drain\"!"},
+			skills = {
+				GameState:getEarnedSkill("nicole_upgrade_scan", "Scan"),
+				GameState:getEarnedSkill("nicole_upgrade_infect", "Infect"),
+				require "data/battle/skills/Rally",
+				GameState:getEarnedSkill("nicole_upgrade_interrupt", "Interrupt"),
+				require "data/battle/skills/Inspire",
+				require "data/battle/skills/PowerDrain",
+			}
+		},
 	},
 	
 	specialmove = require "data/specialmoves/sally",
