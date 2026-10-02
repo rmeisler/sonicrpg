@@ -30,9 +30,12 @@ return function(self, targets)
 							xform.y = xform.y + target:getSprite().h
 							return SpriteNode(self.scene, xform, nil, "lightning", nil, nil, "ui"), true
 						else
-							local xform = Transform.from(target.sprite.transform)
-							xform.x = xform.x + target.sprite.w/3
-							xform.y = xform.y + target.sprite.h/2
+							local xform = Transform(
+								target.sprite.transform.x - 50,
+								target.sprite.transform.y - 50,
+								2,
+								2
+							)
 							return SpriteNode(self.scene, xform, nil, "lightning", nil, nil, "ui"), true
 						end
 					end, "idle"),

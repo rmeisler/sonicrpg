@@ -605,34 +605,22 @@ function NPC:update(dt)
 		return
 	end
 
-	for _,coord in ipairs(self.collision) do
-		-- Separating axis-theorem
-		local x = self.scene.player.collisionX
-		local y = self.scene.player.collisionY
-		
-		-- Loosely touching
-		if math.abs(x - coord[1]) + math.abs(y - coord[2]) <= NPC.COLLISION_FUZZ then
-			-- More specific check
-			local cx, cy = self.scene:collisionCoordToWorldCoord(coord[1], coord[2])
-			if self.scene.player:isTouching(cx, cy, self.object.width, self.object.height) then
-				self.state = NPC.STATE_TOUCHING
-				self:invoke("collision", prevState)
-				self:onCollision(prevState)
-				if  prevState ~= NPC.STATE_TOUCHING and
-					not self.disabled and
-					self.scene.player:isFacingObj(self)
-				then
-					if self.isInteractable or self.specialHintPlayer then
-						self.scene.player.keyhints[tostring(self)] = self
-					end
-
-					if not self.scene.player.touching then
-						self.scene.player.touching = {}
-					end
-					self.scene.player.touching[tostring(self)] = self
-				end
-				break
+	if self:isTouchingPlayer() then
+		self.state = NPC.STATE_TOUCHING
+		self:invoke("collision", prevState)
+		self:onCollision(prevState)
+		if  prevState ~= NPC.STATE_TOUCHING and
+			not self.disabled and
+			self.scene.player:isFacingObj(self)
+		then
+			if self.isInteractable or self.specialHintPlayer then
+				self.scene.player.keyhints[tostring(self)] = self
 			end
+
+			if not self.scene.player.touching then
+				self.scene.player.touching = {}
+			end
+			self.scene.player.touching[tostring(self)] = self
 		end
 	end
 	
@@ -650,6 +638,25 @@ end
 function NPC:swapLayer(layerName)
     self.layer = self.scene:findLayer(layerName)
 	self.sprite:swapLayer(layerName)
+end
+
+function NPC:isTouchingPlayer()
+	for _,coord in ipairs(self.collision) do
+		-- Separating axis-theorem
+		local x = self.scene.player.collisionX
+		local y = self.scene.player.collisionY
+		
+		-- Loosely touching
+		if math.abs(x - coord[1]) + math.abs(y - coord[2]) <= NPC.COLLISION_FUZZ then
+			-- More specific check
+			local cx, cy = self.scene:collisionCoordToWorldCoord(coord[1], coord[2])
+			if self.scene.player:isTouching(cx, cy, self.object.width, self.object.height) then
+				return true
+			end
+		end
+	end
+
+	return false
 end
 
 function NPC:isTouching(x, y, w, h)

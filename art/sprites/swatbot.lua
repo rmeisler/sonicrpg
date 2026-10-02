@@ -7,24 +7,28 @@ return {
     animations = {
 		swathead_right = {
 			frames = {{7,5},{8,5},{10,5},{9,5}},
-			speed = 0.3
+			speed = 0.15
 		},
 		swathead_left = {
 			frames = {{7,6},{8,6},{10,6},{9,6}},
-			speed = 0.3
+			speed = 0.15
 		},
 		swathead_down = {
 			frames = {{8,8},{9,8},{10,8},{11,8}},
-			speed = 0.3
+			speed = 0.15
 		},
 		swathead_up = {
 			frames = {{8,9},{9,9},{10,9},{11,9}},
-			speed = 0.3
+			speed = 0.15
 		},
 		swathead_hurt = {
 			frames = {{11,5}}
 		},
-	
+		swathead_moveright = {
+			frames = {{11,6},{11,7}},
+			speed = 0.3
+		},
+
 	
 		idle = {
             frames = {{0,0}}

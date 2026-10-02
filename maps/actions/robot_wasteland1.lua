@@ -46,6 +46,7 @@ return function(scene)
 
 	if not GameState:isFlagSet("robot_wastland_intro") then
 		GameState:setFlag("robot_wastland_intro")
+		GameState:setFlag("ep6intro")
 		scene.player.sprite.visible = false
 
 		return BlockPlayer {
@@ -85,7 +86,7 @@ return function(scene)
 				scene.player.state = "dead3_pain"
 			end),
 			MessageBox{message="Sonic: ACK!!"},
-			MessageBox{message="Sally: We'll find a way out later. {p60}I'm just happy you're alive!"},
+			MessageBox{message="Sally: We'll find a way out later. {p80}I'm just happy you're alive!"},
 			Do(function()
 				scene.player.state = "dead4"
 			end),

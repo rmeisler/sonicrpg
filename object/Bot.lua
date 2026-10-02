@@ -951,18 +951,22 @@ function Bot:updateAction(dt)
 			return
 		end
 
-		local cx = self.hotspots.left_top.x
-		local cy = self.hotspots.left_top.y
-		local cw = self.hotspots.right_top.x - cx
-		local ch = self.hotspots.right_bot.y - cy
-
-		if  self.scene.player:isTouching(cx, cy, cw, ch) then
+		if self:isTouchingPlayer() then
 			self.scene.audio:stopSfx(self.stepSfx)
 			self.state = NPC.STATE_TOUCHING
 			self:invoke("collision")
 			self:onCollision()
 		end
 	end
+end
+
+function Bot:isTouchingPlayer()
+	local cx = self.hotspots.left_top.x
+	local cy = self.hotspots.left_top.y
+	local cw = self.hotspots.right_top.x - cx
+	local ch = self.hotspots.right_bot.y - cy
+
+	return self.scene.player:isTouching(cx, cy, cw, ch)
 end
 
 function Bot:getBattleArgs()

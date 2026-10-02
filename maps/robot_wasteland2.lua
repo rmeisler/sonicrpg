@@ -841,22 +841,25 @@ return {
           name = "SwatHeadbot1",
           type = "SwatHeadbot",
           shape = "rectangle",
-          x = 1728,
+          x = 1920,
           y = 992,
-          width = 64,
-          height = 64,
+          width = 32,
+          height = 32,
           rotation = 0,
           gid = 37,
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/ratbot3.lua",
+            ["audibleDistance"] = 0,
+            ["battle"] = "../data/monsters/swatheadbot.lua",
             ["battleOnCollide"] = true,
             ["disappearAfterBattle"] = true,
             ["ghost"] = true,
             ["ignoreMapCollision"] = false,
             ["noInvestigate"] = true,
-            ["sprite"] = "../art/sprites/swatbot.png"
+            ["noMusic"] = true,
+            ["sprite"] = "../art/sprites/swatbot.png",
+            ["visibleDistance"] = 10
           }
         },
         {
