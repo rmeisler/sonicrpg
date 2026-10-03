@@ -24,6 +24,9 @@ return {
 		swathead_hurt = {
 			frames = {{11,5}}
 		},
+		swathead_hurt2 = {
+			frames = {{11,4}}
+		},
 		swathead_moveright = {
 			frames = {{11,6},{11,7}},
 			speed = 0.15

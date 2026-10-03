@@ -160,24 +160,36 @@ return {
 					Ease(self:getSprite().transform, "x", self:getSprite().transform.x + 8, 1)
 				}
 				
-				action = Serial {
-					Telegraph(self, "Plasma Beam", {255,255,255,50}),
-					PlayAudio("sfx", "plasmabeam", 1.0, true),
-					Parallel {
-						Ease(self.beamSpriteStart.transform, "sy", 2, 3),
-						Ease(self.beamSprite.transform, "sy", 2, 3),
-					},
-					Parallel(hurtActions),
-					Parallel {
-						Ease(self.beamSpriteStart.transform, "sy", 0, 3),
-						Ease(self.beamSprite.transform, "sy", 0, 3)
-					},
-					Wait(1),
-					Parallel(moveForwardActions),
-					Do(function()
-						self.sprite:popOverride("hurt")
-					end)
-				}
+				if self.noPower then
+					action = Serial {
+						Telegraph(self, "Plasma Beam", {255,255,255,50}),
+						PlayAudio("sfx", "error", 1.0, true),
+						Telegraph(self, "No power!", {255,255,255,50}),
+						Parallel(moveForwardActions),
+						Do(function()
+							self.sprite:popOverride("hurt")
+						end)
+					}
+				else
+					action = Serial {
+						Telegraph(self, "Plasma Beam", {255,255,255,50}),
+						PlayAudio("sfx", "plasmabeam", 1.0, true),
+						Parallel {
+							Ease(self.beamSpriteStart.transform, "sy", 2, 3),
+							Ease(self.beamSprite.transform, "sy", 2, 3),
+						},
+						Parallel(hurtActions),
+						Parallel {
+							Ease(self.beamSpriteStart.transform, "sy", 0, 3),
+							Ease(self.beamSprite.transform, "sy", 0, 3)
+						},
+						Wait(1),
+						Parallel(moveForwardActions),
+						Do(function()
+							self.sprite:popOverride("hurt")
+						end)
+					}
+				end
 			end
 
 			self.turnCount = self.turnCount + 1

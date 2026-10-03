@@ -59,6 +59,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.onInit = data.onInit or function() end
 	self.onUpdate = data.onUpdate or function(self, dt) end
 	self.onScan = data.onScan or nil
+	self.onDrain = data.onDrain or nil
 	self.onConfused = data.onConfused or nil
 	self.onTease = data.onTease or nil
 	self.getHpStats = data.getHpStats or function(self) return self.hp, self.maxhp end

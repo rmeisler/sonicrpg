@@ -14,7 +14,7 @@ local Transform = require "util/Transform"
 
 return function(self, target)
 	if not self.stats.miss then
-		target.malfunctioningTurns = 3
+		target.noPower = true
 	end
 
 	return Serial {
@@ -22,7 +22,7 @@ return function(self, target)
 		Animate(self.sprite, "nichole_idle"),
 		
 		MessageBox {
-			message="Nicole: Uploading bugs into "..target.name.."'s software...",
+			message="Nicole: Draining power from "..target.name.."...",
 			rect=MessageBox.HEADLINER_RECT,
 			sfx="nichole",
 			closeAction=Wait(0.6)
@@ -38,29 +38,7 @@ return function(self, target)
 			target:getSprite():removeParallax()
 		end),
 		
-		Parallel {
-			Animate(function()
-				local xform = Transform(
-					target.sprite.transform.x - 50,
-					target.sprite.transform.y - 50,
-					2,
-					2
-				)
-				return SpriteNode(self.scene, xform, nil, "lightning", nil, nil, "ui"), true
-			end, "idle"),
-			
-			Serial {
-				Wait(0.2),
-				PlayAudio("sfx", "shocked", 0.5, true),
-			}
-		},
-		target:takeDamage({
-			attack = self.stats.focus,
-			speed = 100,
-			luck = 0,
-			miss=self.stats.miss,
-			damage=self.stats.damage
-		}),
+		target.onDrain and target:onDrain() or Action(),
 		
 		self.stats.miss and
 			MessageBox{
@@ -69,7 +47,7 @@ return function(self, target)
 				closeAction=Wait(0.6)
 			} or
 			MessageBox {
-				message=target.name.." is malfunctioning!",
+				message=target.name.." is out of juice!",
 				rect=MessageBox.HEADLINER_RECT,
 				closeAction=Wait(0.6)
 			},

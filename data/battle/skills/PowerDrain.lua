@@ -2,8 +2,11 @@ local TargetType = require "util/TargetType"
 
 return {
 	name = "Power Drain",
-	target = TargetType.AllParty,
-	cost = 3,
-	desc = "Drains +1 sp from enemy each turn",
+	target = TargetType.Opponent,
+	unusable = function(target)
+		return target.side == TargetType.Party
+	end,
+	cost = 7,
+	desc = "Disables bot from doing energy attacks.",
 	action = require "data/battle/skills/actions/PowerDrain"
 }

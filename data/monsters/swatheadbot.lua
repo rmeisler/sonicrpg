@@ -62,7 +62,40 @@ return {
 		self.scene.partyByName.sally.sprite.color = {170,170,170,255}
 	end,
 	
+	onDrain = function(self)
+		return Serial {
+			Do(function() self.sprite:setAnimation("swathead_hurt") end),
+			Wait(0.05),
+			Do(function() self.sprite:setAnimation("swathead_moveright") end),
+			Wait(0.05),
+			Do(function() self.sprite:setAnimation("swathead_hurt") end),
+			Wait(0.05),
+			Do(function() self.sprite:setAnimation("swathead_moveright") end),
+			Wait(0.05),
+			Do(function() self.sprite:setAnimation("swathead_hurt") end),
+			Wait(1),
+			Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + self.sprite.h end, 3),
+			PlayAudio("sfx", "bang", 1, true),
+			Ease(self.sprite.transform, "y", function() return self.sprite.transform.y - 2 end, 5),
+			Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + 2 end, 5),
+			Do(function()
+				self.disabled = true
+				self.aerial = false
+
+				self.sprite.transform.y = self.sprite.transform.y - self.sprite.h
+				self.sprite:setAnimation("swathead_hurt2")
+				self.sprite:pushOverride("hurt", "swathead_hurt2")
+				self.sprite:pushOverride("idle", "swathead_hurt2")
+				self.sprite:pushOverride("backward", "swathead_hurt2")
+			end)
+		}
+	end,
+	
 	behavior = function (self, target)
+		if self.disabled then
+			return Action()
+		end
+	
 		if self.turnCount == nil then
 			self.turnCount = 1
 			return Serial {
@@ -72,7 +105,9 @@ return {
 					self.scene:addMonster("busted_juggerbot")
 				end)
 			}
-		elseif self.turnCount == 1 then
+		elseif self.turnCount % 2 == 0 then
+			self.turnCount = self.turnCount + 1
+
 			local origX, origY = self.sprite.transform.x, self.sprite.transform.y
 			return Serial {
 				Telegraph(self, "Bomb Drop", {255,255,255,50}),
@@ -95,6 +130,10 @@ return {
 					self.sprite:setAnimation("idle")
 				end)
 			}
+		elseif self.turnCount % 2 == 1 then
+			self.turnCount = self.turnCount + 1
+
+			return Action()
 		end
 	end
 }
