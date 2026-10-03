@@ -14,7 +14,7 @@ local BouncyText = require "actions/BouncyText"
 local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
 
-local PressX = require "data/battle/actions/PressX"
+local Throw = require "data/items/actions/Throw"
 local Heal = require "data/items/actions/Heal"
 local Telegraph = require "data/monsters/actions/Telegraph"
 local OnHitEvent = require "data/battle/actions/OnHitEvent"
@@ -24,6 +24,8 @@ return {
 	name = "Swatbot Head",
 	altName = "Swatbot Head",
 	sprite = "sprites/swatbot",
+	
+	aerial = true,
 
 	stats = {
 		xp    = 10,
@@ -42,12 +44,22 @@ return {
 	drops = {},
 	
 	scan = "You can kick their bombs back at them!",
+	
+	onPreInit = function(self)
+		
+	end,
 
 	onInit = function(self)
 		self.sprite:pushOverride("idle", "swathead_right")
 		self.sprite:pushOverride("backward", "swathead_left")
 		self.sprite:pushOverride("hurt", "swathead_moveright")
+		self.sprite:pushOverride("throw", "swathead_moveright")
 		self.sprite:setAnimation("idle")
+
+		self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h
+		self.sprite.color = {170,170,170,255}
+		self.scene.bgImgColor = {170,170,170,255}
+		self.scene.partyByName.sally.sprite.color = {170,170,170,255}
 	end,
 	
 	behavior = function (self, target)
@@ -55,26 +67,26 @@ return {
 			self.turnCount = 1
 			return Serial {
 				PlayAudio("sfx", "alert", 1, true),
-				Telegraph(self, "Alert", {255,0,0,255}),
+				Telegraph(self, "Alert", {255,255,255,50}),
+				Do(function()
+					self.scene:addMonster("busted_juggerbot")
+				end)
 			}
 		elseif self.turnCount == 1 then
 			local origX, origY = self.sprite.transform.x, self.sprite.transform.y
 			return Serial {
 				Telegraph(self, "Bomb Drop", {255,255,255,50}),
 				Do(function()
-					self.sprite:setAnimation("swathead_moveright")
+					self.sprite:setAnimation("throw")
 				end),
 				Parallel {
-					Ease(self.sprite.transform, "x", target.sprite.transform.x - 50, 1, "inout"),
-					Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h*2 - self.sprite.h*2 + 20, 1, "inout")
+					Ease(self.sprite.transform, "x", target.sprite.transform.x - target.sprite.w*2 - 20, 1, "inout"),
+					Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h*2 - self.sprite.h*2 + 40, 1, "inout")
 				},
-				Do(function()
-					self.sprite:setAnimation("idle")
-				end),
 				Wait(1),
-				Do(function()
-					self.sprite:setAnimation("swathead_moveright")
-				end),
+				Throw("mine", self.stats, true, true)(self, target),
+				
+				Wait(1),
 				Parallel {
 					Ease(self.sprite.transform, "x", origX, 1, "inout"),
 					Ease(self.sprite.transform, "y", origY, 1, "inout")

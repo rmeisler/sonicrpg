@@ -26,7 +26,7 @@ return {
 		},
 		swathead_moveright = {
 			frames = {{11,6},{11,7}},
-			speed = 0.3
+			speed = 0.15
 		},
 
 	

@@ -133,7 +133,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun, attacker)
 	end
 
 	-- Calculate damage based on stats of the attacker combined with our own
-	local direction = (sprite.transform.x > love.graphics.getWidth()/2) and 1 or -1
+	local direction = (sprite.transform.x > (attacker and attacker.sprite.transform.x or love.graphics.getWidth()/2)) and 1 or -1
 	local impact = 50
 
 	local knockBackAction
@@ -171,11 +171,11 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun, attacker)
 		else
 			knockBackAction = Serial {
 				PlayAudio("sfx", self.hurtSfx, nil, true),
-				Ease(sprite.transform, "x", sprite.transform.x + (impact/3 * direction), 20, "quad"),
-				Ease(sprite.transform, "x", sprite.transform.x - (impact/6 * direction), 20, "quad"),
-				Ease(sprite.transform, "x", sprite.transform.x - (impact/3 * direction), 20, "quad"),
-				Ease(sprite.transform, "x", sprite.transform.x + (impact/6 * direction), 20, "quad"),
-				Ease(sprite.transform, "x", sprite.transform.x, 20, "linear"),
+				Ease(sprite.transform, "x", function() return sprite.transform.x - (impact * direction) end, 20, "quad"),
+				Ease(sprite.transform, "x", function() return sprite.transform.x + (impact/3 * direction) end, 20, "quad"),
+				Ease(sprite.transform, "x", function() return sprite.transform.x - (impact/3 * direction) end, 20, "quad"),
+				Ease(sprite.transform, "x", function() return sprite.transform.x + (impact/6 * direction) end, 20, "quad"),
+				Ease(sprite.transform, "x", function() return sprite.transform.x - (impact/6 * direction) end, 20, "linear"),
 			}
 		end
 	end
@@ -190,6 +190,7 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun, attacker)
 	
 	local bouncyTextOffsetX = (direction > 0) and 10 or -50
 	local endHp = math.max(0, self.hp - damage)
+	local origRedColor = sprite.color[1]
 	local action = Serial {
 		isPassive = isPassive,
 		
@@ -204,19 +205,21 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun, attacker)
 			Serial {
 				Parallel {
 					Ease(sprite.color, 1, 500, 10, "quad"),
-					Ease(sprite.transform, "x", sprite.transform.x + (impact * direction), 10, "quad")
+					Ease(sprite.transform, "x", function() return sprite.transform.x + (impact * direction) end, 10, "quad")
 				},
 				Parallel {
 					knockBackAction,
-					Ease(sprite.color, 1, self.color[1], 2, "linear"),
+					Ease(sprite.color, 1, origRedColor, 2, "linear"),
 				}
 			},
 			
 			Parallel {
 				BouncyText(
-					Transform(
-						self.sprite.transform.x + bouncyTextOffsetX + (self.textOffset.x),
-						self.sprite.transform.y + (self.textOffset.y)),
+					function()
+						return Transform(
+							self.sprite.transform.x + bouncyTextOffsetX + (self.textOffset.x),
+							self.sprite.transform.y + (self.textOffset.y))
+					end,
 					damageTextColor,
 					FontCache.ConsolasLarge,
 					damageText,

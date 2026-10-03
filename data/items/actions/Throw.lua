@@ -6,15 +6,19 @@ local Repeat = require "actions/Repeat"
 local Animate = require "actions/Animate"
 local Executor = require "actions/Executor"
 local Wait = require "actions/Wait"
+local Action = require "actions/Action"
+local While = require "actions/While"
 local PlayAudio = require "actions/PlayAudio"
+local IfElse = require "actions/IfElse"
 
 local HealText = require "data/items/actions/HealText"
+local PressZ = require "data/battle/actions/PressZ"
 
 local SpriteNode = require "object/SpriteNode"
 
 local Transform = require "util/Transform"
 
-return function(sprite, stats)
+return function(sprite, stats, reflectable, noThrowAnimation)
 	return function(self, target)
 		local throwable = SpriteNode(
 			target.scene,
@@ -30,21 +34,57 @@ return function(sprite, stats)
 		throwable.transform.angle = -math.pi/4
 		throwable.color[4] = 0
 		
+		local reflectAction = Action()
+		if reflectable then
+			reflectAction = Serial {
+				Wait(0.2),
+				PressZ(
+					self,
+					target,
+					Serial {
+						PlayAudio("sfx", "pressx", 1.0, true),
+						Do(function() self.reflected = true end),
+						Animate(target.sprite, "reflect")
+					},
+					Do(function()
+					
+					end)
+				)
+			}
+		end
+	
 		local explosionXForm = Transform()
 		return Serial {
-			Animate(self.sprite, "throw", true),
+			not noThrowAnimation and Animate(self.sprite, "throw", true) or Action(),
 			Wait(0.2),
 			Do(function()
 				throwable.color[4] = 255
+				throwable.transform.x = self.sprite.transform.x
+				throwable.transform.y = self.sprite.transform.y
 			end),
-			Parallel {
-				Serial {
-					Ease(throwable.transform, "y", target.sprite.transform.y - 200, 3, "linear"),
-					Ease(throwable.transform, "y", target.sprite.transform.y - throwable.h*2, 3, "quad")
+			
+			While(
+				function() return not self.reflected end,
+				Parallel {
+					reflectAction,
+					Serial {
+						Ease(throwable.transform, "y", function() return target.sprite.transform.y - 200 end, 3, "linear"),
+						Ease(throwable.transform, "y", function() return target.sprite.transform.y - throwable.h*2 end, 3, "quad")
+					},
+					Ease(throwable.transform, "angle", -(3*math.pi)/4, 1.5, "linear"),
+					Ease(throwable.transform, "x", function() return target.sprite.transform.x end, 1.5, "linear")
 				},
-				Ease(throwable.transform, "angle", -(3*math.pi)/4, 1.5, "linear"),
-				Ease(throwable.transform, "x", target.sprite.transform.x, 1.5, "linear")
-			},
+				Serial {
+					Do(function()
+						throwable.transform.x = target.sprite.transform.x
+						throwable.transform.y = target.sprite.transform.y - throwable.h*2
+					end),
+					Parallel {
+						Ease(throwable.transform, "x", function() return self.sprite.transform.x + self.sprite.w end, 5, "linear"),
+						Ease(throwable.transform, "y", function() return self.sprite.transform.y - self.sprite.h end, 5, "linear")
+					}
+				}
+			),
 			
 			Do(function()
 				explosionXForm = throwable.transform
@@ -58,10 +98,21 @@ return function(sprite, stats)
 					return sprite, true
 				end, "explode"),
 				target.scene:screenShake(),
-				target:takeDamage(stats, true)
+
+				IfElse(
+					function() return self.reflected end,
+					self:takeDamage(stats, true, nil, target),
+					target:takeDamage(stats, true, nil, self)
+				)
 			},
 			Do(function()
-				self.sprite:setAnimation("idle")
+				if self.reflected then
+					target.sprite:setAnimation("idle")
+				else
+					self.sprite:setAnimation("idle")
+				end
+
+				self.reflected = false
 			end)
 		}
 	end

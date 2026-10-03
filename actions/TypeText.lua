@@ -63,6 +63,10 @@ function TypeText:setScene(scene)
 		self.textTable = {}
 		self.textTable = self:UpdateText(text or " ")
 	end
+	
+	if type(self.transform) == "function" then
+		self.transform = self.transform()
+	end
 
     self:update(0)
 end

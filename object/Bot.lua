@@ -312,6 +312,11 @@ function Bot:followActions()
 end
 
 function Bot:getInitiative()
+	local override = NPC.getInitiative(self)
+	if override ~= nil then
+		return override
+	end
+
 	if self.scene.player:isFacing(self.manualFacing) then
 		if ((self.manualFacing == "left"  and self.x > (self.scene.player.x + self.scene.player.sprite.w)) or
 		    (self.manualFacing == "right" and (self.x + self.sprite.w*2) < (self.scene.player.x - self.scene.player.sprite.w)) or

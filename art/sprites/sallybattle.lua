@@ -50,6 +50,10 @@ return {
 			frames = {{2,3},{3,3},{0,0}},
 			speed = 0.1
 		},
+		reflect = {
+            frames = {{0,2},{1,2},{2,2}},
+            speed = 0.1
+        },
         kick = {
             frames = {{0,2},{1,2},{2,2}},
             speed = 0.1

@@ -27,6 +27,7 @@ return function(attribute, amount)
 		local direction = (target.sprite.transform.x > love.graphics.getWidth()/2) and 1 or -1
 		local bouncyTextOffset = (direction > 0) and 10 or -50
 		local targetXform = target.sprite.transform
+		local origGreenColor = target.color[2]
 		local sparkleCount = 0
 		return Serial {
 			-- Spawn sparkles around target starting from foot and moving upward in sine-wave
@@ -86,7 +87,7 @@ return function(attribute, amount)
 				Parallel {
 					Ease(target.sprite.glowColor, 4, 0, 6, "quad"),
 					Ease(target.sprite, "glowSize", 2, 6, "quad"),
-					Ease(target.sprite.color, 2, target.color[2], 6, "quad"),
+					Ease(target.sprite.color, 2, origGreenColor, 6, "quad"),
 				},
 				Do(function() target.sprite:removeGlow() end)
 			}

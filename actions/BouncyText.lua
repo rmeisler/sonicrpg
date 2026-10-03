@@ -11,6 +11,21 @@ function BouncyText:construct(transform, color, font, text, speed, noFastForward
 	self.text = "{p2}"..self.text
 	self.color[4] = 0
 	
+	self.type = "BouncyText"
+end
+
+function BouncyText:isDone()
+	return self.action and self.action:isDone()
+end
+
+function BouncyText:reset()
+	TypeText.reset(self)
+	self.action:reset()
+end
+
+function BouncyText:setScene(scene)
+	TypeText.setScene(self, scene)
+	
 	self.action = Serial {
 		Parallel {
 			-- Text rises up and fades in
@@ -28,26 +43,14 @@ function BouncyText:construct(transform, color, font, text, speed, noFastForward
 		},
 		Ease(self.color, 4, 0, 2)
 	}
-	
-	self.type = "BouncyText"
-end
 
-function BouncyText:isDone()
-	return self.action:isDone()
-end
-
-function BouncyText:reset()
-	TypeText.reset(self)
-	self.action:reset()
-end
-
-function BouncyText:setScene(scene)
-	TypeText.setScene(self, scene)
 	scene:addHandler("update", BouncyText.update, self)
 end
 
 function BouncyText:update(dt)
-	self.action:update(dt)
+	if self.action then
+		self.action:update(dt)
+	end
 end
 
 

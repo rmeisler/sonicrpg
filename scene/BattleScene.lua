@@ -705,6 +705,7 @@ function BattleScene:addMonster(monster)
 					oppo.mockSprite.transform.y = oppo.mockSprite.transform.y + mem.mockSpriteOffset.y					
 				end
 				
+				oppo:onPreInit()
 				oppo:onInit()
 			end)
 		})
@@ -724,6 +725,7 @@ function BattleScene:addMonster(monster)
 			oppo.mockSprite.transform.y = oppo.mockSprite.transform.y + mem.mockSpriteOffset.y
 		end
 		
+		oppo:onPreInit()
 		oppo:onInit()
 	end
 	
@@ -827,7 +829,8 @@ function BattleScene:draw()
 		self.blur(function()
 			love.graphics.setDefaultFilter("nearest", "nearest")
 			
-			love.graphics.setColor(255,255,255,255)
+			self.bgImgColor = self.bgImgColor or {255,255,255,255}
+			love.graphics.setColor(self.bgImgColor[1], self.bgImgColor[2], self.bgImgColor[3], self.bgImgColor[4])
 			love.graphics.draw(self.bgimg, 0, self.camPos.y)
 		
 			self:sortedDraw("behind")
@@ -838,7 +841,8 @@ function BattleScene:draw()
 	else
 		love.graphics.setDefaultFilter("nearest", "nearest")
 		
-		love.graphics.setColor(255,255,255,255)
+		self.bgImgColor = self.bgImgColor or {255,255,255,255}
+		love.graphics.setColor(self.bgImgColor[1], self.bgImgColor[2], self.bgImgColor[3], self.bgImgColor[4])
 		love.graphics.draw(self.bgimg, 0, self.camPos.y)
 		
 		self:sortedDraw("behind")
