@@ -13,6 +13,7 @@ local PlayAudio = require "actions/PlayAudio"
 local BouncyText = require "actions/BouncyText"
 local Repeat = require "actions/Repeat"
 local While = require "actions/While"
+local IfElse = require "actions/IfElse"
 local Executor = require "actions/Executor"
 
 local PressX = require "data/battle/actions/PressX"
@@ -31,8 +32,8 @@ return {
 	sprite = "sprites/juggerbotbody",
 
 	stats = {
-		xp    = 100,
-		maxhp = 800,
+		xp    = 30,
+		maxhp = 300,
 		attack = 20,
 		defense = 100,
 		speed = 1,
@@ -48,8 +49,8 @@ return {
 		--{item = require "data/items/MetallicPlate", count = 6, chance = 1.0},
 	},
 	
-	scan = "Focus damage on Juggerbot's weapons systems.",
-	
+	scan = "Stop Juggerbot's beam cannon from firing!",
+
 	skipAnimation = false,
 
 	onPreInit = function(self)
@@ -162,12 +163,19 @@ return {
 				
 				if self.noPower then
 					action = Serial {
-						Telegraph(self, "Plasma Beam", {255,255,255,50}),
-						PlayAudio("sfx", "error", 1.0, true),
 						Telegraph(self, "No power!", {255,255,255,50}),
 						Parallel(moveForwardActions),
 						Do(function()
 							self.sprite:popOverride("hurt")
+						end),
+						Parallel {
+							Ease(self.sprite.transform, "x", -200, 1),
+							Telegraph(self, self.name.." retreated!", {255,255,255,50})
+						},
+						Do(function()
+							self.hp = 0
+							self.state = self.STATE_DEAD
+							self:invoke("dead")
 						end)
 					}
 				else
@@ -187,7 +195,22 @@ return {
 						Parallel(moveForwardActions),
 						Do(function()
 							self.sprite:popOverride("hurt")
-						end)
+						end),
+						IfElse(
+							function() return target.hp > 0 end,
+							Serial {
+								Parallel {
+									Ease(self.sprite.transform, "x", -200, 1),
+									Telegraph(self, self.name.." retreated!", {255,255,255,50})
+								},
+								Do(function()
+									self.hp = 0
+									self.state = self.STATE_DEAD
+									self:invoke("dead")
+								end)
+							},
+							Action()
+						)
 					}
 				end
 			end

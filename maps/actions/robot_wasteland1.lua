@@ -136,6 +136,15 @@ return function(scene)
 					Ease(subtext.color, 4, 0, 1)
 				}
 			}),
+			
+			-- Occassional lightning/thunder
+			Spawn(Repeat(Serial {
+				Wait(60),
+				scene:lightningFlash(),
+				Wait(0.1),
+				scene:lightningFlash(),
+				PlayAudio("sfx", "thunder2", 0.8, true),
+			}))
 		}
 	else
 		scene.objectLookup.Sally:remove()
@@ -157,7 +166,16 @@ return function(scene)
 					Ease(text.color, 4, 0, 1),
 					Ease(subtext.color, 4, 0, 1)
 				}
-			})
+			}),
+			
+			-- Occassional lightning/thunder
+			Spawn(Repeat(Serial {
+				Wait(60),
+				scene:lightningFlash(),
+				Wait(0.1),
+				scene:lightningFlash(),
+				PlayAudio("sfx", "thunder2", 0.8, true),
+			}))
 		}
 	end
 end

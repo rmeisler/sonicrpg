@@ -13,10 +13,6 @@ local SpriteNode = require "object/SpriteNode"
 local Transform = require "util/Transform"
 
 return function(self, target)
-	if not self.stats.miss then
-		target.noPower = true
-	end
-
 	return Serial {
 		Animate(self.sprite, "nichole_start"),
 		Animate(self.sprite, "nichole_idle"),
@@ -54,5 +50,11 @@ return function(self, target)
 		
 		Animate(self.sprite, "nichole_retract"),
 		Animate(self.sprite, "idle"),
+		
+		Do(function()
+			if not self.stats.miss then
+				target.noPower = true
+			end
+		end)
 	}
 end

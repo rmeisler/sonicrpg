@@ -29,7 +29,7 @@ return {
 
 	stats = {
 		xp    = 10,
-		maxhp = 300,
+		maxhp = 50,
 		attack = 40,
 		defense = 25,
 		speed = 5,
@@ -63,6 +63,10 @@ return {
 	end,
 	
 	onDrain = function(self)
+		if self.noPower then
+			return Action()
+		end
+
 		return Serial {
 			Do(function() self.sprite:setAnimation("swathead_hurt") end),
 			Wait(0.05),
@@ -74,15 +78,16 @@ return {
 			Wait(0.05),
 			Do(function() self.sprite:setAnimation("swathead_hurt") end),
 			Wait(1),
-			Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + self.sprite.h end, 3),
+			Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + self.sprite.h + 20 end, 5),
 			PlayAudio("sfx", "bang", 1, true),
-			Ease(self.sprite.transform, "y", function() return self.sprite.transform.y - 2 end, 5),
-			Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + 2 end, 5),
+			Ease(self.sprite.transform, "y", function() return self.sprite.transform.y - 5 end, 10, "linear"),
+			Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + 5 end, 10, "linear"),
+			Ease(self.sprite.transform, "y", function() return self.sprite.transform.y - 2 end, 20, "linear"),
+			Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + 2 end, 20, "linear"),
 			Do(function()
-				self.disabled = true
 				self.aerial = false
 
-				self.sprite.transform.y = self.sprite.transform.y - self.sprite.h
+				self.sprite.transform.y = self.sprite.transform.y - self.sprite.h - 20
 				self.sprite:setAnimation("swathead_hurt2")
 				self.sprite:pushOverride("hurt", "swathead_hurt2")
 				self.sprite:pushOverride("idle", "swathead_hurt2")
@@ -92,7 +97,7 @@ return {
 	end,
 	
 	behavior = function (self, target)
-		if self.disabled then
+		if self.noPower then
 			return Action()
 		end
 	
