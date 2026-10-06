@@ -27,7 +27,7 @@ local BlockPlayer = require "actions/BlockPlayer"
 
 local BasicNPC = require "object/BasicNPC"
 
-return function(scene)
+return function(scene, hint)
 	local subtext = TypeText(
 		Transform(10, 470),
 		{255, 255, 255, 0},
@@ -149,10 +149,10 @@ return function(scene)
 	else
 		scene.objectLookup.Sally:remove()
 		scene.objectLookup.B:remove()
-
-		return Serial {
-			PlayAudio("sfx", "lightrain", 0.5, true, true),
-			Spawn(Serial {
+		
+		local titleAction = Action()
+		if hint == "fromload" then
+			titleAction = Spawn(Serial {
 				Wait(0.5),
 				subtext,
 				text,
@@ -166,7 +166,12 @@ return function(scene)
 					Ease(text.color, 4, 0, 1),
 					Ease(subtext.color, 4, 0, 1)
 				}
-			}),
+			})
+		end
+
+		return Serial {
+			PlayAudio("sfx", "lightrain", 0.5, true, true),
+			titleAction,
 			
 			-- Occassional lightning/thunder
 			Spawn(Repeat(Serial {

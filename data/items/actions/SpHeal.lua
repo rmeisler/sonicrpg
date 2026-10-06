@@ -26,6 +26,7 @@ return function(attribute, amount)
 		end
 		local direction = (target.sprite.transform.x > love.graphics.getWidth()/2) and 1 or -1
 		local bouncyTextOffset = (direction > 0) and 10 or -50
+		local origGreen, origBlue = target.color[2], target.color[3]
 	
 		local targetXform = target.sprite.transform
 		local sparkleCount = 0
@@ -88,8 +89,8 @@ return function(attribute, amount)
 				Parallel {
 					Ease(target.sprite.glowColor, 4, 0, 6, "quad"),
 					Ease(target.sprite, "glowSize", 2, 6, "quad"),
-					Ease(target.sprite.color, 2, target.color[2], 6, "quad"),
-					Ease(target.sprite.color, 3, target.color[3], 6, "quad"),
+					Ease(target.sprite.color, 2, origGreen, 6, "quad"),
+					Ease(target.sprite.color, 3, origBlue, 6, "quad"),
 				},
 				Do(function() target.sprite:removeGlow() end)
 			}

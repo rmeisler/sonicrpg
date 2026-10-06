@@ -61,6 +61,11 @@ return function(sprite, stats, reflectable, noThrowAnimation)
 				throwable.color[4] = 255
 				throwable.transform.x = self.sprite.transform.x
 				throwable.transform.y = self.sprite.transform.y
+				
+				if self.throwXForm then
+					throwable.transform.x = throwable.transform.x + self.throwXForm.x
+					throwable.transform.y = throwable.transform.y + self.throwXForm.y
+				end
 			end),
 			
 			While(

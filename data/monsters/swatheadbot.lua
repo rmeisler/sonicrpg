@@ -60,6 +60,7 @@ return {
 		self.sprite.color = {170,170,170,255}
 		self.scene.bgImgColor = {170,170,170,255}
 		self.scene.partyByName.sally.sprite.color = {170,170,170,255}
+		self.throwXForm = Transform(50, -20)
 	end,
 	
 	onDrain = function(self)
