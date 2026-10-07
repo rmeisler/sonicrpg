@@ -64,6 +64,7 @@ function Player:construct(scene, layer, object)
 	self.collisionY = 0
 	self.baseMoveSpeed = 4
 	self.movespeed = self.baseMoveSpeed
+	self.speedModifier = 1.0
 	self.partyMovespeed = {}
 	self.layer = layer
 	self.object = object
@@ -833,7 +834,7 @@ function Player:basicUpdate(dt)
 		baseMoveSpeed = 3
 	end
 	
-	local movespeed = baseMoveSpeed * (dt/0.016)
+	local movespeed = baseMoveSpeed * self.speedModifier * (dt/0.016)
 	
 	self:updateShadows()
 	self:updateVisuals()

@@ -12,7 +12,7 @@ local NPC = require "object/NPC"
 local Megamuck = class(NPC)
 
 
-local DEFAULT_DEPTH = 10
+local DEFAULT_DEPTH = 20
 
 
 function Megamuck:construct(scene, layer, object)
@@ -36,7 +36,7 @@ function Megamuck:update(dt)
 	if self.state == NPC.STATE_TOUCHING then
 		if next(player.megamucks) == nil then
 			player.dropShadow.hidden = true
-			player.movespeed = player.baseMoveSpeed/2
+			player.speedModifier = 0.5
 		end
 
 		player.sprite:setCrop(DEFAULT_DEPTH)
@@ -47,7 +47,7 @@ function Megamuck:update(dt)
 		if next(player.megamucks) == nil then
 			player.sprite:removeCrop()
 			player.dropShadow.hidden = false
-			player.movespeed = player.baseMoveSpeed
+			player.speedModifier = 1.0
 		end
 	end
 end
