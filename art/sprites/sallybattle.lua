@@ -29,6 +29,15 @@ return {
         crouch = {
             frames = {{3,0}}
         },
+		counter_flip = {
+			frames = {{3,6},{4,6},{0,7},{1,7}},
+			speed = 0.1
+		},
+		counter_land = {
+			frames = {{2,7},{3,7}},
+			speed = 0.1
+		},
+
 		stun = {
             frames = {{3,5}}
         },

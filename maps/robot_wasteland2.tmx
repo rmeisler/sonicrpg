@@ -1785,7 +1785,7 @@ return function(self)
                     function(menu)
                         menu:close()
                         if not self.dialPos then
-                            self.dialPos = 2
+                            self.dialPos = 3
                         end
                         self.dialPos = (self.dialPos + 1) % 4
 

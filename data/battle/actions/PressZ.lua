@@ -9,7 +9,7 @@ local TargetType = require "util/TargetType"
 local ItemType = require "util/ItemType"
 local SpriteNode = require "object/SpriteNode"
 
-return function(self, target, success, fail)
+return function(self, target, success, fail, ttl)
 	-- If opponent v opponent, no press X event
 	if (self.side == TargetType.Opponent and target.side == TargetType.Opponent) or
 		target.state == self.STATE_IMMOBILIZED
@@ -17,7 +17,7 @@ return function(self, target, success, fail)
 		return fail
 	end
 	
-	local ttl = 0.2
+	ttl = ttl or 0.2
 	if self.side == TargetType.Party and
 	   GameState:isEquipped(self.id, ItemType.Accessory, "Lucky Coin")
 	then
@@ -25,9 +25,7 @@ return function(self, target, success, fail)
 	end
 
 	if self.name == "Terrabot" then
-		print("made it to here")
 		ttl = ttl * 2.0
-		print("increase ttl!!!")
 	end
 	
 	return Try(

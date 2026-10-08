@@ -11,8 +11,10 @@ local Ease = require "actions/Ease"
 local Animate = require "actions/Animate"
 local PlayAudio = require "actions/PlayAudio"
 local BouncyText = require "actions/BouncyText"
+local IfElse = require "actions/IfElse"
 
 local PressX = require "data/battle/actions/PressX"
+local PressZ = require "data/battle/actions/PressZ"
 local Heal = require "data/items/actions/Heal"
 local Telegraph = require "data/monsters/actions/Telegraph"
 local Smack = require "data/monsters/actions/Smack"
@@ -128,6 +130,65 @@ return {
 			end
 		end
 		
+		local sallyCounterAction = Action()
+		local sallyCounter = false
+		if target.id == "sally" and GameState.party[target.id].level >= 10 then
+			sallyCounter = true
+			sallyCounterAction = PressX(
+				self,
+				target,
+				Serial {
+					PlayAudio("sfx", "pressx", 1.0, true),
+					Parallel {
+						Serial {
+							Animate(target.sprite, "leap_dodge"),
+							Ease(target.sprite.transform, "y", target.sprite.transform.y - 100, 5, "linear"),
+							PressZ(
+								self,
+								target,
+								Serial {
+									PlayAudio("sfx", "pressx", 1.0, true, false, true),
+									Animate(target.sprite, "counter_flip"),
+									Ease(target.sprite.transform, "y", target.sprite.transform.y - target.sprite.h, 8, "quad"),
+									Parallel {
+										Animate(target.sprite, "counter_land"),
+										Ease(target.sprite.transform, "y", target.sprite.transform.y, 12, "quad")
+									},
+									self:takeDamage(target.stats),
+									Animate(target.sprite, "idle")
+								},
+								Parallel {
+									BouncyText(
+										Transform(
+											target.sprite.transform.x + 10 + (target.textOffset.x),
+											target.sprite.transform.y + (target.textOffset.y)),
+										{255,255,255,255},
+										FontCache.ConsolasLarge,
+										"miss",
+										6,
+										false,
+										true -- outline
+									),
+									Serial {
+										Ease(target.sprite.transform, "y", target.sprite.transform.y, 6, "quad"),
+										Animate(target.sprite, "crouch"),
+										Wait(0.1),
+										Animate(target.sprite, "victory"),
+										Wait(0.8),
+										Animate(target.sprite, "idle"),
+									}
+								}
+							)
+						}
+					}
+				},
+				Serial {
+					soundAction,
+					target:takeDamage(stats, true, self.electricTail and BattleActor.shockKnockback or nil)
+				}
+			)
+		end
+		
 		return Serial {
 			telegraphAction,
 			leap(),
@@ -140,6 +201,7 @@ return {
 					Animate(self.sprite, "pose")
 				},
 				
+				sallyCounter and sallyCounterAction or
 				PressX(
 					self,
 					target,

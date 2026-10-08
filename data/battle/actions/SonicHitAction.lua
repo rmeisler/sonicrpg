@@ -6,6 +6,7 @@ local Animate = require "actions/Animate"
 local PlayAudio = require "actions/PlayAudio"
 local WaitForFrame = require "actions/WaitForFrame"
 local Do = require "actions/Do"
+local Action = require "actions/Action"
 
 local PressX = require "data/battle/actions/PressX"
 local OnHitEvent = require "data/battle/actions/OnHitEvent"
@@ -73,8 +74,8 @@ return function(self, target)
 			Serial {
 				Wait(0.09),
 				Animate(self.sprite, "spin", true),
-				Ease(self.sprite.transform, "y", target.sprite.transform.y - self.sprite.h, 6, "linear")
-			}
+				Ease(self.sprite.transform, "y", target.sprite.transform.y - self.sprite.h, 6, "linear"),
+			},
 		},
 		
 		Parallel {

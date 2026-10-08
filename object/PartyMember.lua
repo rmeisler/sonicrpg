@@ -34,6 +34,7 @@ function PartyMember:construct(scene, data)
 	self.transform = transform
 	self.playerSlot = data.playerSlot
 	self.sprite = data.sprite
+	self.level = data.level
 	self.hp = data.hp or 0
 	self.sp = data.sp or 0
 	self.charge = 100
