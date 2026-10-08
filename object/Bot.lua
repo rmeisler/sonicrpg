@@ -812,7 +812,7 @@ function Bot:baseUpdate(dt)
 			self:postInit()
 			self.scene.player.chasers[tostring(self.name)] = nil
 
-			self.scene:run {
+			self:run {
 				AudioFade("music", 1.0, 0.0, 2, "linear"),
 				PlayAudio("music", self.prevSceneMusic, 0.0, true, true),
 				AudioFade("music", 0.0, 1.0, 2, "linear")
@@ -887,7 +887,7 @@ function Bot:baseUpdate(dt)
 			self.scene.player.extenderArmColliding = self
 			self.scene.player.extenderPull = self
 
-			self.scene:run {
+			self:run {
 				PlayAudio("sfx", "smack", 1.0),
 				Do(function()
 					self:removeAllUpdates()

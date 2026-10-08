@@ -181,7 +181,7 @@ return {
 	},
 	{
 		type = "image",
-		file = "art/sprites/puck.png"
+		file = "art/sprites/messbot.png"
 	},
 	{
 		type = "image",

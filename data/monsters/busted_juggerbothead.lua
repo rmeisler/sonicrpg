@@ -43,6 +43,8 @@ return {
 		luck    = 1,
 	},
 	
+	boss_part = true,
+	
 	run_chance = 0.2,
 
 	coin = 0,
@@ -52,9 +54,12 @@ return {
 	},
 	
 	scan = "Focus damage on Juggerbot's weapons systems.",
+	
+	skipAnimation = true,
 
 	onPreInit = function(self)
 		self.scene.juggerbothead = self
+		self:getSprite().color = {170,170,170,255}
 	end,
 	
 	onInit = function(self)
@@ -65,9 +70,8 @@ return {
 		self.mockSprite.transform.oy = 0
 		self.mockSprite.transform.x = body.sprite.transform.x - body.sprite.w + 89
 		self.mockSprite.transform.y = body.sprite.transform.y - body.sprite.h + 35
-		self.mockSprite.sortOrderY = body.sprite.sortOrderY + 1
-		self.mockSprite:swapLayer("behind")
-
+		--self.mockSprite.sortOrderY = body.sprite.sortOrderY - 10
+		
 		-- Locate where we want the cursor to be
 		self.sprite.transform.x = body.sprite.transform.x + 45
 		self.sprite.transform.y = body.sprite.transform.y + 5

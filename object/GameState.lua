@@ -12,6 +12,9 @@ function GameState:construct()
 	-- Characters not currently in party
 	self.inactiveMembers = {}
 	
+	-- Characters are not in your active party, but they are still visible in subscreen
+	self.disabledMembers = {}
+	
 	-- Characters currently in party
 	self.party = {}
 	
@@ -41,7 +44,7 @@ function GameState:construct()
 end
 
 function GameState:calcNextXp(member, level)
-	return self:calcNextStat(self.party[member], level, "startxp")
+	return self:calcNextStat(self.party[member] or self.disabledMembers[member], level, "startxp")
 end
 
 function GameState:calcNextStat(profile, level, stat)
@@ -95,13 +98,13 @@ function GameState:loadPartyMember(member, level, new)
 	return profile
 end
 
-function GameState:addToParty(member, level, new)
+function GameState:addToParty(member, level, new, unmarkDisabled)
 	if not self.profiles[member] or not self.profiles[member][level] then
 		self:loadPartyMember(member, level, new)
 	end
 
 	if self.inactiveMembers[member] then
-		self:addBackToParty(member)
+		self:addBackToParty(member, unmarkDisabled)
 	else
 		self.party[member] = self.profiles[member][level]
 	end
@@ -109,15 +112,21 @@ function GameState:addToParty(member, level, new)
 	self.leader = member
 end
 
-function GameState:addBackToParty(member)
+function GameState:addBackToParty(member, unmarkDisabled)
     if self.inactiveMembers[member] then
 		self.party[member] = self.inactiveMembers[member]
+		if unmarkDisabled then
+			self.disabledMembers[member] = nil
+		end
 		self.inactiveMembers[member] = nil
 	end
 end
 
-function GameState:removeFromParty(member)
+function GameState:removeFromParty(member, markDisabled)
 	self.inactiveMembers[member] = self.party[member]
+	if markDisabled then
+		self.disabledMembers[member] = self.party[member]
+	end
 	self.party[member] = nil
 end
 
@@ -150,7 +159,7 @@ function GameState:getEarnedSkill(flag, skillName)
 end
 
 function GameState:getSkills(member)
-	local member = self.party[member]
+	local member = self.party[member] or self.disabledMembers[member]
 	for curLevel = member.level, 1, -1 do 
 		if member.levelup[curLevel] then
 			local skillDefs = member.levelup[curLevel].skills
@@ -252,7 +261,8 @@ function GameState:removeItem(name)
 end
 
 function GameState:isEquipped(member, itemType, itemName)
-	local item = self.party[member].equip[itemType]
+	local partyMember = self.party[member] or self.disabledMembers[member]
+	local item = partyMember.equip[itemType]
 	if item then
 		return item.name == itemName
 	else
@@ -269,15 +279,15 @@ function GameState:equip(member, itemType, id)
 	local unequipCallback
 	
 	-- Remove stat bonuses
-	local partyMem = self.party[member]
-	local memStats = self.party[member].stats
+	local partyMem = self.party[member] or self.disabledMembers[member]
+	local memStats = partyMem.stats
 	
-	if self.party[member].equip[itemType] then
-		for stat, bonus in pairs(self.party[member].equip[itemType].stats) do
+	if partyMem.equip[itemType] then
+		for stat, bonus in pairs(partyMem.equip[itemType].stats) do
 			memStats[stat] = memStats[stat] - bonus
 		end
 		
-		unequipCallback = self.party[member].equip[itemType].onUnequip
+		unequipCallback = partyMem.equip[itemType].onUnequip
 	end
 
 	local item = nil
@@ -286,7 +296,7 @@ function GameState:equip(member, itemType, id)
 		item = table.remove(self[itemType], id)
 		if item ~= nil then
 			-- Apply stat bonuses
-			local memStats = self.party[member].stats
+			local memStats = partyMem.stats
 			for stat, bonus in pairs(item.stats) do
 				memStats[stat] = memStats[stat] + bonus
 			end
@@ -294,13 +304,13 @@ function GameState:equip(member, itemType, id)
 			equipCallback = item.onEquip
 		end
 	end
-	table.insert(self[itemType], id or 1, self.party[member].equip[itemType])
-	self.party[member].equip[itemType] = item
+	table.insert(self[itemType], id or 1, partyMem.equip[itemType])
+	partyMem.equip[itemType] = item
 	return equipCallback or noopCallback, unequipCallback or noopCallback
 end
 
 function GameState:levelup(member)
-	local member = self.party[member]
+	local member = self.party[member] or self.disabledMembers[member]
 	
 	member.level = member.level + 1
 
@@ -355,11 +365,15 @@ function GameState:save(scene, slot, spawnPoint)
 	local slots = self:loadSlots()
 	slots[slot] = {
 		party = {},
+		disabled = {},
 		level = maxLevel,
 		location = string.format("%s\n(%s)", scene.map.properties.sectorName, scene.map.properties.regionName)
 	}
 	for k, v in pairs(self.party) do
 		slots[slot].party[k] = v.sprite
+	end
+	for k, v in pairs(self.disabledMembers) do
+		slots[slot].disabled[k] = v.sprite
 	end
 	love.filesystem.write("sage2020_game_slots.sav", serpent.dump(slots))
 	
@@ -376,6 +390,12 @@ function GameState:save(scene, slot, spawnPoint)
 		}
 	end
 	data.leader = self.leader
+	
+	-- Save disabled members
+	data.disabled = {}
+	for k, v in pairs(self.disabledMembers) do
+		data.disabled[k] = k
+	end
 	
 	-- Save inactive members
 	data.inactive = {}
@@ -465,6 +485,9 @@ function GameState:load(scene, slot)
 					self.inactiveMembers[k].stats[stat] = self.inactiveMembers[k].stats[stat] + bonus
 				end
 			end
+		end
+		for k, _ in pairs(data.disabled) do
+			self.disabledMembers[k] = self.inactiveMembers[k]
 		end
 		self.leader = data.leader
 		

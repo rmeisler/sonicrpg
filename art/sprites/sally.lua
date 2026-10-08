@@ -23,6 +23,18 @@ return {
 			speed = 0.5
 		},
 		
+		junk_reveal = {
+			frames = {{0,7},{1,7}},
+			speed = 0.3
+		},
+		junk_idle = {
+			frames = {{1,7},{2,7}},
+			speed = 0.5
+		},
+		junk_shock = {
+			frames = {{3,7}}
+		},
+		
 		crouchdown = {
 		    frames = {{13,7}}
 		},

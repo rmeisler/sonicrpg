@@ -6,7 +6,7 @@ return {
 	unusable = function(target)
 		return target.side == TargetType.Party
 	end,
-	cost = 7,
+	cost = 10,
 	desc = "Disables bot from doing energy attacks.",
 	action = require "data/battle/skills/actions/PowerDrain"
 }

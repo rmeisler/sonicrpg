@@ -112,8 +112,9 @@ return function(scene, hint)
 			},
 
 			Do(function()
-				GameState:removeFromParty("sonic")
-				GameState:removeFromParty("b")
+				print("remove from party...")
+				GameState:removeFromParty("sonic", true)
+				GameState:removeFromParty("b", true)
 				GameState.leader = "sally"
 				scene.player.state = "idledown"
 				scene.player:updateSprite()

@@ -57,7 +57,7 @@ return {
 		self.scene.juggerbotbody = self
 		self.sprite.sortOrderY = self.sprite.transform.y + self.sprite.h
 		self.turnCount = 0
-		self.turnPhase = 2
+		self.turnPhase = 1
 			
 		-- Setup plasma beam sprites
 		self.beamSpriteStart = SpriteNode(self.scene, Transform(), nil, "plasmabeam", nil, nil, "sprites")
@@ -75,11 +75,20 @@ return {
 		self.beamSprite.transform.sx = 20
 		self.beamSprite.transform.sy = 0
 		self.beamSprite.sortOrderY = self.sprite.transform.y + self.sprite.h + 1
-
 		self.sprite:swapLayer("behind")
+		
+		self.scene:addMonster("busted_juggerbothead")
+		self.scene:addMonster("busted_juggerbotleftarm")
 
 		self.sprite.h = self.sprite.h + 10
 		self.sprite.color = {170,170,170,255}
+	end,
+	
+	onDead = function(self)
+		local head = self.scene.juggerbothead
+		head.hp = 0
+		head.state = head.STATE_DEAD
+		head:invoke("dead")
 	end,
 	
 	behavior = function (self, target)
@@ -91,12 +100,18 @@ return {
 			local turnIdx = self.turnCount % 4
 			-- charge
 			if turnIdx == 0 then
+				local headSp = self.scene.juggerbothead:getSprite()
 				local moveBackActions = {
 					Animate(self:getSprite(), "cannonright"),
-					Ease(self:getSprite().transform, "x", self:getSprite().transform.x - 8, 1)
+					Ease(self:getSprite().transform, "x", self:getSprite().transform.x - 8, 1),
+					Parallel {
+						Ease(headSp.transform, "x", headSp.transform.x - 24, 1),
+						Ease(headSp.transform, "y", headSp.transform.y - 16, 1),
+					}
 				}
 				
-				self.sprite:pushOverride("hurt", "idlecannonright")
+				self:getSprite():pushOverride("idle", "idlecannonright")
+				self:getSprite():pushOverride("hurt", "idlecannonright")
 				action = Serial {
 					Parallel(moveBackActions),
 					Animate(self:getSprite(), "idlecannonright"),
@@ -153,30 +168,40 @@ return {
 						}
 					)
 				end
-				
+
+				local headSp = self.scene.juggerbothead:getSprite()
 				local moveForwardActions = {
 					Serial {
 						Animate(self:getSprite(), "undocannonright"),
 						Animate(self:getSprite(), "idle")
 					},
-					Ease(self:getSprite().transform, "x", self:getSprite().transform.x + 8, 1)
+					Ease(self:getSprite().transform, "x", self:getSprite().transform.x + 8, 1),
+					Parallel {
+						Ease(headSp.transform, "x", headSp.transform.x + 12, 1),
+						Ease(headSp.transform, "y", headSp.transform.y + 8, 1),
+					}
 				}
-				
+
 				if self.noPower then
 					action = Serial {
 						Telegraph(self, "No power!", {255,255,255,50}),
 						Parallel(moveForwardActions),
 						Do(function()
-							self.sprite:popOverride("hurt")
+							self:getSprite():popOverride("idle")
+							self:getSprite():popOverride("hurt")
 						end),
 						Parallel {
-							Ease(self.sprite.transform, "x", -200, 1),
+							Ease(self.sprite.transform, "x", function() return self.sprite.transform.x - 500 end, 1),
+							Ease(headSp.transform, "x", function() return headSp.transform.x - 500 end, 1),
 							Telegraph(self, self.name.." retreated!", {255,255,255,50})
 						},
 						Do(function()
 							self.hp = 0
+							self.scene.juggerbothead.hp = 0
 							self.state = self.STATE_DEAD
+							self.scene.juggerbothead.state = self.STATE_DEAD
 							self:invoke("dead")
+							self.scene.juggerbothead:invoke("dead")
 						end)
 					}
 				else
@@ -195,23 +220,9 @@ return {
 						Wait(1),
 						Parallel(moveForwardActions),
 						Do(function()
-							self.sprite:popOverride("hurt")
-						end),
-						IfElse(
-							function() return target.hp > 0 end,
-							Serial {
-								Parallel {
-									Ease(self.sprite.transform, "x", -200, 1),
-									Telegraph(self, self.name.." retreated!", {255,255,255,50})
-								},
-								Do(function()
-									self.hp = 0
-									self.state = self.STATE_DEAD
-									self:invoke("dead")
-								end)
-							},
-							Action()
-						)
+							self:getSprite():popOverride("idle")
+							self:getSprite():popOverride("hurt")
+						end)
 					}
 				end
 			end

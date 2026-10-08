@@ -45,6 +45,9 @@ function Savescreen(args)
 				for _,sprite in pairs(slots[index].party) do
 					table.insert(row, Layout.Image {name=sprite, anim="idleleft", width=70})
 				end
+				for k,sprite in pairs(slots[index].disabled or {}) do
+					table.insert(row, Layout.Image {name=sprite, anim="idleleft", width=70, color={255,255,255,150}})
+				end
 				table.insert(rows, row)
 			else
 				table.insert(row, Layout.Text {text="Empty", color={255, 255, 0, 255}})

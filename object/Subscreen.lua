@@ -65,6 +65,10 @@ function Subscreen:construct(scene, transform, color, img)
 	for k,_ in pairs(GameState.party) do
 		table.insert(self.party, k)
 	end
+	
+	for k,_ in pairs(GameState.disabledMembers) do
+		table.insert(self.party, k)
+	end
 end
 
 function Subscreen:choosePlayer(callback, ...)
@@ -91,7 +95,8 @@ function Subscreen:choosePlayerInput(key, uni, callback, ...)
 		end
 	elseif key == "x" then
 		self.scene.audio:playSfx("choose", nil, true)
-		callback(self, GameState.party[self.party[self.selectedPlayer]], ...)
+		local selectedParty = self.party[self.selectedPlayer]
+		callback(self, GameState.party[selectedParty] or GameState.disabledMembers[selectedParty], ...)
 	end
 end
 
@@ -413,10 +418,11 @@ function Subscreen:getEquipInvEntry(equipMenu, playerName, id, item)
 		onEquip(playerName, self.scene.player)
 		
 		-- Update equip menu slot
+		local playerMem = GameState.party[playerName] or GameState.disabledMembers[playerName]
 		equipMenu.layout:updateCol(
 			self:getEquipTypeIndex(item.type),
 			1,
-			self:getEquipEntry(item.type, GameState.party[playerName].equip[item.type])
+			self:getEquipEntry(item.type, playerMem.equip[item.type])
 		)
 		equipMenu:updateLayout()
 		
@@ -444,7 +450,7 @@ function Subscreen:switch(equipMenu, itemType)
 	local items = {}
 	
 	-- First option is "Unequip"
-	local player = GameState.party[playerName]
+	local player = GameState.party[playerName] or GameState.disabledMembers[playerName]
 	if player.equip[itemType] then
 		table.insert(
 			items,
@@ -514,10 +520,15 @@ function Subscreen:draw()
 	local avatarX = rect.transform.x + 150
 	local avatarYOffset = 142
 	local index = 0
-	for k,v in pairs(GameState.party) do
+	for _,k in pairs(self.party) do
+		local v = GameState.party[k] or GameState.disabledMembers[k]
 		local alpha = self.selectedPlayer == (index + 1) and 255 or self.color[4]
 		local avatar = self.scene.images[v.avatar]
-		local avatarY = index * avatarYOffset + 20		
+		local avatarY = index * avatarYOffset + 20
+		
+		if GameState.disabledMembers[k] then
+			alpha = alpha/2
+		end
 		
 		-- Avatar
 		love.graphics.setColor(255, 255, 255, alpha)
