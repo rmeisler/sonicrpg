@@ -98,7 +98,7 @@ return {
 			}
 		},
 		[10] = {
-			messages = {"Sally learned \"Power Drain\"!"},
+			messages = {"Sally learned \"Power Drain\"!", "Sally can now counter after dodge!"},
 			skills = {
 				GameState:getEarnedSkill("nicole_upgrade_scan", "Scan"),
 				GameState:getEarnedSkill("nicole_upgrade_infect", "Infect"),
