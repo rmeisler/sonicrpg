@@ -32,7 +32,7 @@ return {
 	sprite = "sprites/juggerbotbody",
 
 	stats = {
-		xp    = 30,
+		xp    = 45,
 		maxhp = 800,
 		attack = 20,
 		defense = 100,

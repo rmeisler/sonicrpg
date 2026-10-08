@@ -28,7 +28,7 @@ return {
 
 	stats = {
 		xp    = 10,
-		maxhp = 500,
+		maxhp = 300,
 		attack = 14,
 		defense = 15,
 		speed = 2,
@@ -44,7 +44,7 @@ return {
 		{item = require "data/items/GreenLeaf", count = 1, chance = 0.2},
 	},
 	
-	onPreInit = function(self)
+	onInit = function(self)
 		self.scene.bgImgColor = {170,170,170,255}
 		self.scene.partyByName.sally.sprite.color = {170,170,170,255}
 	end,

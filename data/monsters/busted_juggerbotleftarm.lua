@@ -144,7 +144,7 @@ return {
 		end
 		
 		local isblind = self.scene.juggerbothead.hp <= 0
-		local misschance = isblind and 0.8 or 0
+		local misschance = isblind and 0.9 or 0
 		
 		local blindAction = Action()
 		if isblind then
