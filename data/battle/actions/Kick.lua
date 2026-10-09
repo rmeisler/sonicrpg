@@ -8,12 +8,14 @@ local WaitForFrame = require "actions/WaitForFrame"
 local Do = require "actions/Do"
 local Action = require "actions/Action"
 
+local ItemType = require "util/ItemType"
+
 local OnHitEvent = require "data/battle/actions/OnHitEvent"
 
 local LeapBackward = function(self, target)
-	local hasSallyCounter = self.id == "sally" and GameState.party[self.id].level >= 10
+	local sallyHasAdventurerBoots = self.id == "sally" and GameState:isEquipped(self.id, ItemType.Legs, "Adventurer Boots")
 	return Serial {
-		hasSallyCounter and Wait(0.5) or Serial {
+		sallyHasAdventurerBoots and Wait(0.5) or Serial {
 			Animate(self.sprite, "retract_kick"),
 			Animate(self.sprite, "crouch")
 		},
@@ -40,8 +42,8 @@ local LeapBackward = function(self, target)
 end
 
 return function(self, target)
-	local hasSallyCounter = self.id == "sally" and GameState.party[self.id].level >= 10
-	local jumpHeight = hasSallyCounter and 80 or 0
+	local sallyHasAdventurerBoots = self.id == "sally" and GameState:isEquipped(self.id, ItemType.Legs, "Adventurer Boots")
+	local jumpHeight = sallyHasAdventurerBoots and 80 or 0
 	return Serial {
 		-- Leap forward while attacking
 		Animate(self.sprite, "crouch"),
@@ -54,7 +56,7 @@ return function(self, target)
 					Ease(self.sprite.transform, "y", target.sprite.transform.y - math.abs(target.sprite.transform.y - self.sprite.transform.y) - self.sprite.h - jumpHeight, 4),
 					Serial {
 						Wait(0.1),
-						hasSallyCounter and Animate(self.sprite, "counter_flip") or Action()
+						sallyHasAdventurerBoots and Animate(self.sprite, "counter_flip") or Action()
 					}
 				},
 				Do(function()
@@ -64,17 +66,18 @@ return function(self, target)
 				
 
 				Parallel {
-					Serial {
-						Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h*2, 5),
-						Parallel {
-							hasSallyCounter and Animate(self.sprite, "counter_land") or Action(),
-							Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 12, "quad")
-						}
-					},
+					sallyHasAdventurerBoots and
+						Serial {
+							Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h*2, 5),
+							Parallel {
+								Animate(self.sprite, "counter_land"),
+								Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 12, "quad")
+							}
+						} or Ease(self.sprite.transform, "y", target.sprite.transform.y + target.sprite.h - self.sprite.h, 5, "quad"),
 					
 					-- Slash!
 					Serial {
-						hasSallyCounter and Action() or Animate(self.sprite, "kick"),
+						sallyHasAdventurerBoots and Action() or Animate(self.sprite, "kick"),
 						
 						OnHitEvent(self, target, LeapBackward(self, target)),
 					}

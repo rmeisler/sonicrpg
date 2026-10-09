@@ -78,4 +78,9 @@ return function(player)
 			self.basicUpdate = origUpdate
 		end
 	end
+
+	-- Only invoke binding if not touching anything else
+	if player.nicoleBinding and next(player.touching) == nil then
+		player:scan(player.nicoleBinding)
+	end
 end

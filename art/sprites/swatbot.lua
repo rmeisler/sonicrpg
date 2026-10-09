@@ -61,6 +61,10 @@ return {
 			frames = {{5,8}}
 		},
 		
+		thinking = {
+			frames = {{0,3}}
+		},
+		
         idleright = {
             frames = {{0,0}}
         },

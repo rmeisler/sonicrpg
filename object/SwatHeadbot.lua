@@ -25,6 +25,11 @@ function SwatHeadbot:construct(scene, layer, object)
 	self.collision = {}
 	
 	self.sprite:pushOverride("idle", "swathead_right")
+	self.sprite:pushOverride("hurt", "swathead_right")
+	self.sprite:pushOverride("hurtup", "swathead_up")
+	self.sprite:pushOverride("hurtdown", "swathead_down")
+	self.sprite:pushOverride("hurtleft", "swathead_left")
+	self.sprite:pushOverride("hurtright", "swathead_right")
 	
 	self.sprite:pushOverride("idleup", "swathead_up")
 	self.sprite:pushOverride("idledown", "swathead_down")

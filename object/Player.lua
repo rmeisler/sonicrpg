@@ -635,6 +635,7 @@ function Player:onSpecialMove()
 		self.keyhints = {}
 		self.hidekeyhints = {}
 		self:removeKeyHint()
+
 		GameState.party[GameState.leader].specialmove(self)
 	else
 		self.scene.audio:playSfx("error")
