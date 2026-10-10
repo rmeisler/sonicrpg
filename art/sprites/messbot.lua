@@ -10,7 +10,13 @@ return {
 			speed = 0.3
         },
 		hurt = {
-            frames = {{0,0}}
-        }
+            frames = {{2,0}}
+        },
+		crouch = {
+            frames = {{3,0}}
+        },
+		attack = {
+            frames = {{4,0}}
+        },
     },
 }

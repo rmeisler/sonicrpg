@@ -2,7 +2,7 @@ local ItemType = require "util/ItemType"
 
 return {
 	name = "Adventurer Boots",
-	desc = "These boots feel like they belong to you.",
+	desc = "Upgraded attack and can counter on dodge.",
 	type = ItemType.Legs,
 	color = {50,50,50,255},
 	usableBy = {"sally"},

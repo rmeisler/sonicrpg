@@ -297,35 +297,130 @@ function LaserTrap:shockBots()
 		   not obj:isRemoved() and
 		   obj:isTouching(self.x, self.y, self.object.width, self.object.height)
 		then
-			obj:run(Parallel {
-				Serial {
-					Do(function()
-						obj.sprite:setAnimation("hurtdown")
-					end),
-					PlayAudio("sfx", "shocked", 1.0, true),
-					Repeat(Serial {
+			local hurtAction
+			if obj.sprite.selected:find("down", 1, true) then
+				hurtAction = Parallel {
+					Serial {
 						Do(function()
-							obj.sprite:setInvertedColor()
+							obj.sprite:setAnimation("hurtdown")
 						end),
-						Wait(0.1),
-						Do(function()
-							obj.sprite:removeInvertedColor()
-						end),
-						Wait(0.1),
-					}, 3),
-				},
-				Serial {
-					Ease(obj, "y", obj.y - 100, 8, "linear"),
-					PlayAudio("sfx", "oppdeath", 1.0, true),
-					Parallel {
-						Ease(obj.sprite.color, 1, 512, 8, "linear"),
-						Ease(obj.sprite.color, 4, 0, 8, "linear"),
+						PlayAudio("sfx", "shocked", 1.0, true),
+						Repeat(Serial {
+							Do(function()
+								obj.sprite:setInvertedColor()
+							end),
+							Wait(0.1),
+							Do(function()
+								obj.sprite:removeInvertedColor()
+							end),
+							Wait(0.1),
+						}, 3),
 					},
-					Do(function()
-						obj:remove()
-					end)
+					Serial {
+						Ease(obj, "y", obj.y - 100, 8, "linear"),
+						PlayAudio("sfx", "oppdeath", 1.0, true),
+						Parallel {
+							Ease(obj.sprite.color, 1, 512, 8, "linear"),
+							Ease(obj.sprite.color, 4, 0, 8, "linear"),
+						},
+						Do(function()
+							obj:remove()
+						end)
+					}
 				}
-			})
+			elseif obj.sprite.selected:find("up", 1, true) then
+				hurtAction = Parallel {
+					Serial {
+						Do(function()
+							obj.sprite:setAnimation("hurtup")
+						end),
+						PlayAudio("sfx", "shocked", 1.0, true),
+						Repeat(Serial {
+							Do(function()
+								obj.sprite:setInvertedColor()
+							end),
+							Wait(0.1),
+							Do(function()
+								obj.sprite:removeInvertedColor()
+							end),
+							Wait(0.1),
+						}, 3),
+					},
+					Serial {
+						Ease(obj, "y", obj.y + 100, 8, "linear"),
+						PlayAudio("sfx", "oppdeath", 1.0, true),
+						Parallel {
+							Ease(obj.sprite.color, 1, 512, 8, "linear"),
+							Ease(obj.sprite.color, 4, 0, 8, "linear"),
+						},
+						Do(function()
+							obj:remove()
+						end)
+					}
+				}
+			elseif obj.sprite.selected:find("left", 1, true) then
+				hurtAction = Parallel {
+					Serial {
+						Do(function()
+							obj.sprite:setAnimation("hurtleft")
+						end),
+						PlayAudio("sfx", "shocked", 1.0, true),
+						Repeat(Serial {
+							Do(function()
+								obj.sprite:setInvertedColor()
+							end),
+							Wait(0.1),
+							Do(function()
+								obj.sprite:removeInvertedColor()
+							end),
+							Wait(0.1),
+						}, 3),
+					},
+					Serial {
+						Ease(obj, "x", obj.x + 100, 8, "linear"),
+						PlayAudio("sfx", "oppdeath", 1.0, true),
+						Parallel {
+							Ease(obj.sprite.color, 1, 512, 8, "linear"),
+							Ease(obj.sprite.color, 4, 0, 8, "linear"),
+						},
+						Do(function()
+							obj:remove()
+						end)
+					}
+				}
+			else
+				hurtAction = Parallel {
+					Serial {
+						Do(function()
+							obj.sprite:setAnimation("hurtright")
+						end),
+						PlayAudio("sfx", "shocked", 1.0, true),
+						Repeat(Serial {
+							Do(function()
+								obj.sprite:setInvertedColor()
+							end),
+							Wait(0.1),
+							Do(function()
+								obj.sprite:removeInvertedColor()
+							end),
+							Wait(0.1),
+						}, 3),
+					},
+					Serial {
+						Ease(obj, "x", obj.x - 100, 8, "linear"),
+						PlayAudio("sfx", "oppdeath", 1.0, true),
+						Parallel {
+							Ease(obj.sprite.color, 1, 512, 8, "linear"),
+							Ease(obj.sprite.color, 4, 0, 8, "linear"),
+						},
+						Do(function()
+							obj:remove()
+						end)
+					}
+				}
+			end
+			
+			obj:run(hurtAction)
 		end
 	end
 end

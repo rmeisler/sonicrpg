@@ -107,6 +107,7 @@ return function(scene, hint)
 		
 		Do(function() scene.objectLookup.Firebird.hidden = false end),
 		Ease(scene.objectLookup.Firebird, "y", 240, 5, "quad"),
+		PlayAudio("sfx", "cyclopsstep", 1, true),
 		scene:screenShake(30, 20),
 		Wait(0.2),
 		Animate(scene.objectLookup.Bunnie.sprite, "shock"),
@@ -140,10 +141,12 @@ return function(scene, hint)
 			scene.objectLookup.Antoine.sprite.sortOrderY = 10000
 		end),
 		Ease(scene.objectLookup.LeftSpikeWall, "y", 400, 5, "quad"),
+		PlayAudio("sfx", "cyclopsstep", 0.5, true),
 		scene:screenShake(30, 20),
 		Animate(scene.objectLookup.Antoine.sprite, "peekleft"),
 		Wait(0.5),
 		Ease(scene.objectLookup.RightSpikeWall, "y", 400, 5, "quad"),
+		PlayAudio("sfx", "cyclopsstep", 0.5, true),
 		scene:screenShake(30, 20),
 		Animate(scene.objectLookup.Antoine.sprite, "peekright"),
 		Wait(0.5),

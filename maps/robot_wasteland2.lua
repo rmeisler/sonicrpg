@@ -1411,7 +1411,7 @@ return {
           gid = 2311,
           visible = true,
           properties = {
-            ["Mine"] = 2,
+            ["AdventurerBoots"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1489,7 +1489,7 @@ return {
           properties = {
             ["alignOffsetX"] = 32,
             ["disappearOnFlag"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Spawn = require \"actions/Spawn\"\n\nreturn function(self)\n    return BlockPlayer {\n        Do(function() self.scene.player.state = \"idleup\" end),\n        MessageBox{message=\"Sally: I thought I saw something...\"},\n        DialogueChoice(\n            \"Investigate?\",\n            {\n                {\"Yes\",\n                    function(menu)\n                        menu:close()\n\n                        local movable1 = self.scene:findLayer(\"movable1\")\n                        self.scene:run(Spawn(BlockPlayer {\n                            Wait(1),\n                            PlayAudio(\"sfx\", \"explosion\", 1, true),\n                            Ease(movable1, \"offsety\", -8*32, 1),\n                            Do(function()\n                                self.scene.player.state = \"idleup\"\n                                self:permanentRemove()\n                            end)\n                        }))\n                    end},\n                {\"No\",\n                    function(menu)\n                        menu:close()\n                    end}\n            }\n        )\n    }\nend",
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Spawn = require \"actions/Spawn\"\n\nreturn function(self)\n    return BlockPlayer {\n        Do(function() self.scene.player.state = \"idleup\" end),\n        MessageBox{message=\"Sally: I thought I saw something...\"},\n        DialogueChoice(\n            \"Investigate?\",\n            {\n                {\"Yes\",\n                    function(menu)\n                        menu:close()\n\n                        local movable1 = self.scene:findLayer(\"movable1\")\n                        self.scene:run(Spawn(BlockPlayer {\n                            Wait(1),\n                            PlayAudio(\"sfx\", \"explosion\", 1, true),\n                            Ease(movable1, \"offsetx\", 3*32, 1),\n                            Do(function()\n                                self.scene.player.state = \"idleup\"\n                                self:permanentRemove()\n                            end)\n                        }))\n                    end},\n                {\"No\",\n                    function(menu)\n                        menu:close()\n                    end}\n            }\n        )\n    }\nend",
             ["sprite"] = "../art/sprites/sparkle.png"
           }
         },
@@ -1635,7 +1635,7 @@ return {
           properties = {
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Spawn = require \"actions/Spawn\"\n\nreturn function(self)\n    return BlockPlayer {\n        Do(function() self.scene.player.state = \"idleup\" end),\n        MessageBox{message=\"Sally: I thought I saw something...\"},\n        DialogueChoice(\n            \"Investigate?\",\n            {\n                {\"Yes\",\n                    function(menu)\n                        menu:close()\n\n                        local movable2 = self.scene:findLayer(\"movable2\")\n                        self.scene:run(Spawn(BlockPlayer {\n                            Wait(1),\n                            PlayAudio(\"sfx\", \"explosion\", 1, true),\n                            Ease(movable2, \"offsety\", -10*32, 1),\n                            Do(function()\n                                self.scene.player.state = \"idleup\"\n                                self:permanentRemove()\n                                self.scene.objectLookup.Inspect6Block:permanentRemove()\n                            end)\n                        }))\n                    end},\n                {\"No\",\n                    function(menu)\n                        menu:close()\n                    end}\n            }\n        )\n    }\nend",
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Ease = require \"actions/Ease\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal Spawn = require \"actions/Spawn\"\n\nreturn function(self)\n    return BlockPlayer {\n        Do(function() self.scene.player.state = \"idleup\" end),\n        MessageBox{message=\"Sally: I thought I saw something...\"},\n        DialogueChoice(\n            \"Investigate?\",\n            {\n                {\"Yes\",\n                    function(menu)\n                        menu:close()\n\n                        local movable2 = self.scene:findLayer(\"movable2\")\n                        self.scene:run(Spawn(BlockPlayer {\n                            Wait(1),\n                            PlayAudio(\"sfx\", \"explosion\", 1, true),\n                            Ease(movable2, \"offsety\", 11*32, 1),\n                            Do(function()\n                                self.scene.player.state = \"idleup\"\n                                self:permanentRemove()\n                                self.scene.objectLookup.Inspect6Block:permanentRemove()\n                            end)\n                        }))\n                    end},\n                {\"No\",\n                    function(menu)\n                        menu:close()\n                    end}\n            }\n        )\n    }\nend",
             ["sprite"] = "../art/sprites/sparkle.png"
           }
         },
@@ -1862,7 +1862,7 @@ return {
           gid = 2311,
           visible = true,
           properties = {
-            ["AdventurerBoots"] = 1,
+            ["RainbowNectar"] = 1,
             ["sprite"] = "../art/sprites/chest2.png"
           }
         },
@@ -1990,7 +1990,7 @@ return {
           type = "Ratbot",
           shape = "rectangle",
           x = 608,
-          y = 1472,
+          y = 1696,
           width = 32,
           height = 32,
           rotation = 0,
@@ -2000,47 +2000,13 @@ return {
             ["align"] = "bottom_center",
             ["battle"] = "../data/monsters/dark_ratbot.lua",
             ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idledown",
+            ["defaultAnim"] = "idleup",
             ["disappearAfterBattle"] = true,
-            ["follow"] = "RBWaypoint1,RBWaypoint2",
-            ["followRepeat"] = true,
             ["ghost"] = true,
             ["ignoreMapCollision"] = true,
             ["noInvestigate"] = true,
             ["noMusic"] = true,
             ["sprite"] = "../art/sprites/ratbot.png"
-          }
-        },
-        {
-          id = 201,
-          name = "RBWaypoint1",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 608,
-          y = 1728,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1714,
-          visible = true,
-          properties = {
-            ["ghost"] = true
-          }
-        },
-        {
-          id = 202,
-          name = "RBWaypoint2",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 608,
-          y = 1312,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 1714,
-          visible = true,
-          properties = {
-            ["ghost"] = true
           }
         },
         {
@@ -2059,7 +2025,6 @@ return {
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
             ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    return BlockPlayer {\n        Do(function() self.scene.player.state = \"idleup\" end),\n        MessageBox{message=\"Sally: I see a {h switch}...\"},\n        DialogueChoice(\n            \"Choose action:\",\n            {\n                {\"Flip Switch\",\n                    function(menu)\n                        menu:close()\n\n                        if self.scene.objectLookup.LaserTrap5.deactivated then\n                            self.scene.objectLookup.LaserTrap5:activate()\n                        else\n                            self.scene.objectLookup.LaserTrap5:deactivate()\n                        end\n                    end},\n                {\"Do Nothing\",\n                    function(menu)\n                        menu:close()\n                    end}\n            }\n        )\n    }\nend",
-            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal Spawn = require \"actions/Spawn\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\nlocal Action = require \"actions/Action\"\n\nreturn function(self)\n    if not GameState:isFlagSet(\"ep6_nicole_auth\") then\n        return Action()\n    end\n\n    if self.scene.player.nicoleBinding == self then\n        return self:onInteract()\n    end\n\n    self.scene.player.nicoleBinding = self\n\n    return BlockPlayer {\n        PlayAudio(\"sfx\", \"nicolebeep\", 1),\n        MessageBox{message=\"Nicole: I am now connected to the device, Sally.\"}\n    }\nend",
             ["sprite"] = "../art/sprites/sparkle.png"
           }
         },
@@ -2147,9 +2112,9 @@ return {
           type = "Megamuck",
           shape = "rectangle",
           x = 672,
-          y = 2368,
+          y = 2336,
           width = 32,
-          height = 544,
+          height = 480,
           rotation = 0,
           gid = 1714,
           visible = true,
@@ -2160,7 +2125,7 @@ return {
           name = "Ratbot3",
           type = "Ratbot",
           shape = "rectangle",
-          x = 2784,
+          x = 3104,
           y = 1952,
           width = 64,
           height = 32,
@@ -2234,28 +2199,6 @@ return {
             ["ghost"] = true,
             ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\n\nreturn function(self)\n    return BlockPlayer {\n        Do(function() self.scene.player.state = \"idleup\" end),\n        MessageBox{message=\"Sally: I thought I saw something...\"},\n        DialogueChoice(\n            \"Investigate?\",\n            {\n                {\"Yes\",\n                    function(menu)\n                        menu:close()\n                        self.scene:run(Spawn(BlockPlayer{\n                            Do(function()\n                                self.scene.player.noIdle = true\n                            end),\n                            Animate(self.scene.player.sprite, \"junk_reveal\"),\n                            Do(function()\n                                self.scene.player.sprite:setAnimation(\"junk_idle\")\n                            end),\n                            Wait(1.5),\n                            Animate(self.scene.player.sprite, \"junk_shock\"),\n                            Wait(0.5),\n                            self.scene:enterBattle {\n                                opponents = {\"messbot\"},\n                                initiative = \"opponent\"\n                            },\n                            Do(function()\n                                self.scene.player.noIdle = false\n                                self:permanentRemove()\n                            end)\n                        }))\n                    end},\n                {\"No\",\n                    function(menu)\n                        menu:close()\n                    end}\n            }\n        )\n    }\nend",
             ["sprite"] = "../art/sprites/sparkle.png"
-          }
-        },
-        {
-          id = 223,
-          name = "Computer",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 192,
-          y = 2400,
-          width = 64,
-          height = 96,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_left",
-            ["alignOffsetX"] = -8,
-            ["defaultAnim"] = "computer_idle",
-            ["nonight"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal Do = require \"actions/Do\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Action = require \"actions/Action\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox{message=\"Sally: A terminal?... {p40}Maybe Nicole can interface with it.\"}\n    }\nend",
-            ["onScan"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Do = require \"actions/Do\"\nlocal Spawn = require \"actions/Spawn\"\nlocal PlayAudio = require \"actions/PlayAudio\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\n\nreturn function(self)\n    return BlockPlayer {\n        MessageBox{message=\"Nicole: This terminal authenticates devices to be able to perform {h remote operations}, Sally.\"},\n        DialogueChoice(\"Authenticate?\",\n            {\n                {\"Yes\", function(menu)\n                     menu:close()\n                     GameState:setFlag(\"ep6_nicole_auth\")\n\n                     self.scene:run(Spawn(BlockPlayer {\n                         PlayAudio(\"sfx\", \"nicolebeep\", 1),\n                         MessageBox{message=\"Nicole: I am now authenticated.\"},\n                         MessageBox{message=\"Nicole: You can bind me to a device you want to remotely operate by {h scanning it}{p40}, Sally.\"},\n                     }))\n                 end},\n                {\"No\", function(menu)\n                     menu:close()\n                 end},\n            }\n        )\n    }\nend",
-            ["sprite"] = "../art/sprites/p.png"
           }
         },
         {
@@ -2371,15 +2314,15 @@ return {
         2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
         2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
         2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
-        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
-        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
-        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
-        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
-        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
-        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
-        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
-        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
-        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 0, 0, 0, 0, 0, 0, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662
+        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
+        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
+        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
+        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
+        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
+        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
+        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
+        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662,
+        2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662, 2662
       }
     },
     {

@@ -55,21 +55,43 @@ return {
 	behavior = function (self, target)
 		if not self.turnCounter then
 			self.turnCounter = 1
+			
+			-- First turn, call more rats
+			return Serial {
+				Animate(self.sprite, "crouch"),
+				PlayAudio("sfx", "ratstep", 1, true),
+				Telegraph(self, "Call For Help", {255,255,255,50}),
+				Do(function()
+					self.scene:addMonster("dark_ratbot")
+					self.scene:addMonster("dark_ratbot3")
+				end),
+				Animate(self.sprite, "idle")
+			}
 		end
 
 		local telegraphAction = Action()
 		local soundAction = Action()
 		local prefix = ""
 		local stats = table.clone(self.stats)
-		if self.turnCounter % 3 == 0 and not self.noPower then
+		if self.turnCounter % 4 == 0 then
+			-- Every fourth turn, call more rats
+			return Serial {
+				Animate(self.sprite, "crouch"),
+				PlayAudio("sfx", "ratstep", 1, true),
+				Telegraph(self, "Call For Help", {255,255,255,50}),
+				Do(function()
+					self.scene:addMonster("dark_ratbot")
+					self.scene:addMonster("dark_ratbot3")
+				end),
+				Animate(self.sprite, "idle")
+			}
+		else
+			-- Otherwise use electric tail
 			self.electricTail = true
 			prefix = "electric"
 			telegraphAction = Telegraph(self, "Electric Whip", {255,255,255,50})
 			stats.attack = self.stats.attack * 2
 			soundAction = PlayAudio("sfx", "smack2", 1.0, true)
-		else
-			self.electricTail = false
-			telegraphAction = Telegraph(self, "Whip", {255,255,255,50})
 		end
 		
 		self.turnCounter = self.turnCounter + 1
@@ -113,7 +135,7 @@ return {
 				}
 			end
 		end
-
+		
 		local sallyCounterAction = Action()
 		local sallyCounter = false
 		if target.id == "sally" and GameState:isEquipped(target.id, ItemType.Legs, "Adventurer Boots") then
