@@ -185,6 +185,10 @@ return {
 	},
 	{
 		type = "image",
+		file = "art/sprites/ladybug.png"
+	},
+	{
+		type = "image",
 		file = "art/sprites/emp.png"
 	},
 	{

@@ -139,9 +139,11 @@ function NPC:construct(scene, layer, object)
 		if self.hidden then
 			self.sprite.visible = false
 		end
+		self.sprite.name = object.name
 		self.sprite.sortOrderY = object.properties.sortOrderY
-		if self.object.properties.defaultAnim then
-			self.sprite:setAnimation(self.object.properties.defaultAnim)
+
+		if object.properties.defaultAnim then
+			self.sprite:setAnimation(object.properties.defaultAnim)
 		end
 		if self.angle > 0 or self.angle < 0 then
 			self.sprite.transform.ox = self.sprite.w/2
@@ -162,6 +164,8 @@ function NPC:construct(scene, layer, object)
 				self.sprite.color = {150, 150, 150, alpha}
 			end
 		end
+
+		self.sprite.drawWithShadow = object.properties.castShadow
 	end
 end
 

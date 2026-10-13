@@ -708,6 +708,9 @@ function Player:updateSprite()
 		nil,
 		self.layer.name
 	)
+
+	self.sprite.drawWithShadow = self.object.properties.castShadow
+
 	if self.scene.nighttime then
 		self.sprite.drawWithNight = false
 	end

@@ -18,5 +18,19 @@ return {
 		attack = {
             frames = {{4,0}}
         },
+
+		poison_idle = {
+            frames = {{0,1},{1,1}},
+			speed = 0.3
+        },
+		poison_hurt = {
+            frames = {{2,1}}
+        },
+		poison_crouch = {
+            frames = {{3,1}}
+        },
+		poison_attack = {
+            frames = {{4,1}}
+        },
     },
 }

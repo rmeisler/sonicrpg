@@ -38,6 +38,7 @@ function SpriteNode:construct(scene, transform, color, imgsrc, w, h, layerName)
 	self.drawWithShine = false
 	self.drawWithParallax = false
 	self.drawWithGlow = false
+	self.drawWithShadow = false
 	self.drawWithNight = true
 	self.glowColor = {0,0,0,0}
 	self.layerName = layerName
@@ -442,6 +443,19 @@ function SpriteNode:draw(override)
 			self.scene.night.shader:send("opacity", self.color[4]/255)
 			drawSprite()
 		end)
+	elseif self.scene.lightFlash then
+		local prevShader = self.origShader
+
+		if self.drawWithShadow then
+			love.graphics.setShader(prevShader)
+			love.graphics.setColor({0,0,0,255})
+		else
+			love.graphics.setShader(self.scene.flashShader)
+		end
+
+		drawSprite()
+
+		love.graphics.setShader(prevShader)
 	else
 		love.graphics.setColor(self.color)
 		drawSprite()

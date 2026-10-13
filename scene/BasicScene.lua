@@ -583,13 +583,41 @@ function BasicScene:lightningFlash()
 		]]
 		BasicScene.flashShader = love.graphics.newShader(script)
 	end
+	scene.flashShader = BasicScene.flashShader
+	
+	local originalMapDraw = self.map.drawTileLayer
+	local originalImgDraw = self.map.drawImageLayer
+
 	return Serial {
 		Do(function()
 			self.lightFlash = true
+			
+			self.map.drawTileLayer = function(map, layer)
+				if not layer.properties.ignoreShader then
+					self.origShader = love.graphics.getShader()
+					love.graphics.setShader(self.flashShader)
+					originalMapDraw(map, layer)
+					love.graphics.setShader(self.origShader)
+				else
+					originalMapDraw(map, layer)
+				end
+			end
+			self.map.drawImageLayer = function(map, layer)
+				if not layer.properties.ignoreShader then
+					self.origShader = love.graphics.getShader()
+					love.graphics.setShader(self.flashShader)
+					originalImgDraw(map, layer)
+					love.graphics.setShader(self.origShader)
+				else
+					originalImgDraw(map, layer)
+				end
+			end
 		end),
 		Wait(0.1),
 		Do(function()
 			self.lightFlash = false
+			self.map.drawTileLayer = originalMapDraw
+			self.map.drawImageLayer = originalImgDraw
 		end)
 	}
 end
@@ -1206,12 +1234,6 @@ function BasicScene:draw()
 			love.graphics.setDefaultFilter("nearest", "nearest")
 			Scene.draw(self)
 		end)
-	elseif self.lightFlash then
-		local prevShader = love.graphics.getShader()
-		love.graphics.setDefaultFilter("nearest", "nearest")
-		love.graphics.setShader(BasicScene.flashShader)
-		Scene.draw(self)
-		love.graphics.setShader(prevShader)
 	else
 		love.graphics.setDefaultFilter("nearest", "nearest")
 		Scene.draw(self)

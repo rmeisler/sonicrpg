@@ -140,7 +140,7 @@ return function(scene, hint)
 			
 			-- Occassional lightning/thunder
 			Spawn(Repeat(Serial {
-				Wait(60),
+				Wait(40),
 				scene:lightningFlash(),
 				Wait(0.1),
 				scene:lightningFlash(),
@@ -176,7 +176,7 @@ return function(scene, hint)
 			
 			-- Occassional lightning/thunder
 			Spawn(Repeat(Serial {
-				Wait(60),
+				Wait(40),
 				scene:lightningFlash(),
 				Wait(0.1),
 				scene:lightningFlash(),

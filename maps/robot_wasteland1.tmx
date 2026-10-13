@@ -11,7 +11,52 @@
  <tileset firstgid="3501" source="knothole.tsx"/>
  <tileset firstgid="6985" source="tunnel.tsx"/>
  <tileset firstgid="10167" source="forest2.tsx"/>
+ <layer name="darkbg" width="25" height="38">
+  <data encoding="csv">
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,2662,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
  <layer name="Ground" width="25" height="38">
+  <properties>
+   <property name="ignoreShader" type="bool" value="true"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -58,6 +103,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="angle" type="float" value="25"/>
+    <property name="castShadow" type="bool" value="true"/>
     <property name="defaultAnim" value="trashed"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/hoverbot.png"/>
@@ -67,6 +113,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="angle" type="float" value="10"/>
+    <property name="castShadow" type="bool" value="true"/>
     <property name="colorOverride" value="150,150,150"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbothelmet.png"/>
@@ -76,6 +123,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="angle" type="float" value="-20"/>
+    <property name="castShadow" type="bool" value="true"/>
     <property name="colorOverride" value="150,150,150"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbotarmor.png"/>
@@ -85,6 +133,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="angle" type="float" value="-30"/>
+    <property name="castShadow" type="bool" value="true"/>
     <property name="colorOverride" value="100,100,100"/>
     <property name="defaultAnim" value="trashed"/>
     <property name="nocollision" type="bool" value="true"/>
@@ -95,6 +144,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="angle" type="float" value="-45"/>
+    <property name="castShadow" type="bool" value="true"/>
     <property name="colorOverride" value="80,80,80"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/bartchair.png"/>
@@ -104,6 +154,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="angle" type="float" value="15"/>
+    <property name="castShadow" type="bool" value="true"/>
     <property name="colorOverride" value="100,100,100"/>
     <property name="defaultAnim" value="idledown"/>
     <property name="nocollision" type="bool" value="true"/>
@@ -114,6 +165,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="angle" type="float" value="5"/>
+    <property name="castShadow" type="bool" value="true"/>
     <property name="colorOverride" value="255,255,255"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/dinohead.png"/>
@@ -123,6 +175,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="angle" type="float" value="-10"/>
+    <property name="castShadow" type="bool" value="true"/>
     <property name="colorOverride" value="100,100,100"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/swatbothand.png"/>
@@ -132,6 +185,7 @@
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="angle" type="float" value="60"/>
+    <property name="castShadow" type="bool" value="true"/>
     <property name="colorOverride" value="80,80,80"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/juggerbotrightarm.png"/>
@@ -181,6 +235,9 @@
 </data>
  </layer>
  <layer name="Obstacle" width="25" height="38">
+  <properties>
+   <property name="ignoreShader" type="bool" value="true"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -391,9 +448,14 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="119" name="Spawn 1" type="Player" gid="1714" x="400" y="896" width="32" height="32"/>
+  <object id="119" name="Spawn 1" type="Player" gid="1714" x="400" y="896" width="32" height="32">
+   <properties>
+    <property name="castShadow" type="bool" value="true"/>
+   </properties>
+  </object>
   <object id="120" name="Sally" type="BasicNPC" gid="1714" x="352" y="800" width="32" height="32">
    <properties>
+    <property name="castShadow" type="bool" value="true"/>
     <property name="defaultAnim" value="kneeldown"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/sally.png"/>
@@ -401,6 +463,7 @@
   </object>
   <object id="121" name="B" type="BasicNPC" gid="1714" x="320" y="768" width="32" height="32">
    <properties>
+    <property name="castShadow" type="bool" value="true"/>
     <property name="defaultAnim" value="idledown"/>
     <property name="nocollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/b.png"/>
@@ -408,6 +471,7 @@
   </object>
   <object id="122" name="Save" type="SavePoint" gid="1714" x="512" y="832" width="32" height="32">
    <properties>
+    <property name="castShadow" type="bool" value="true"/>
     <property name="nonight" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
@@ -453,12 +517,16 @@ end</property>
  <imagelayer name="rain" offsetx="-1312" offsety="-3264">
   <image source="../art/parallax/rain2.png" width="800" height="600"/>
   <properties>
+   <property name="ignoreShader" type="bool" value="true"/>
    <property name="speedx" type="float" value="0"/>
    <property name="speedy" type="float" value="8"/>
    <property name="type" value="Parallax"/>
   </properties>
  </imagelayer>
  <layer name="darkness" width="25" height="38" opacity="0.5">
+  <properties>
+   <property name="ignoreShader" type="bool" value="true"/>
+  </properties>
   <data encoding="csv">
 72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,
 72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,
