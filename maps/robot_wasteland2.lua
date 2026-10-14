@@ -8,7 +8,7 @@ return {
   height = 86,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 227,
+  nextobjectid = 229,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotwastelandbg.png",
     ["bgm"] = "../audio/music/battle.ogg",
@@ -1601,26 +1601,6 @@ return {
           }
         },
         {
-          id = 177,
-          name = "Inspect5",
-          type = "BasicNPC",
-          shape = "rectangle",
-          x = 2112,
-          y = 1984,
-          width = 32,
-          height = 64,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["disappearOnFlag"] = true,
-            ["ghost"] = true,
-            ["item"] = "../data/items/LaserShield.lua",
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal Spawn = require \"actions/Spawn\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\nlocal Do = require \"actions/Do\"\n\nreturn function(self)\n    return BlockPlayer {\n        Do(function() self.scene.player.state = \"idleup\" end),\n        MessageBox{message=\"Sally: I thought I saw something...\"},\n        DialogueChoice(\n            \"Investigate?\",\n            {\n                {\"Yes\",\n                    function(menu)\n                        menu:close()\n                        local item = require(self.object.properties.item:sub(4, -5))\n                        GameState:grantItem(item, 1)\n                        self.scene:run(Spawn(BlockPlayer{\n                            MessageBox{message=\"Found a {h \"..(item.name)..\"}!\", sfx=\"levelup\"},\n                            Do(function() self:permanentRemove() end)\n                        }))\n                    end},\n                {\"No\",\n                    function(menu)\n                        menu:close()\n                    end}\n            }\n        )\n    }\nend",
-            ["sprite"] = "../art/sprites/sparkle.png"
-          }
-        },
-        {
           id = 178,
           name = "Inspect6",
           type = "BasicNPC",
@@ -1880,7 +1860,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/dark_ratbot.lua",
+            ["battle"] = "../data/monsters/dark_ratbot3.lua",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idleleft",
             ["disappearAfterBattle"] = true,
@@ -1989,7 +1969,7 @@ return {
           name = "Ratbot2",
           type = "Ratbot",
           shape = "rectangle",
-          x = 384,
+          x = 320,
           y = 2432,
           width = 32,
           height = 32,
@@ -1998,7 +1978,7 @@ return {
           visible = true,
           properties = {
             ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/dark_ratbot.lua",
+            ["battle"] = "../data/monsters/dark_ratbot_with_bug.lua",
             ["battleOnCollide"] = true,
             ["defaultAnim"] = "idleright",
             ["disappearAfterBattle"] = true,
@@ -2114,36 +2094,11 @@ return {
           x = 672,
           y = 2336,
           width = 32,
-          height = 480,
+          height = 512,
           rotation = 0,
           gid = 1714,
           visible = true,
           properties = {}
-        },
-        {
-          id = 215,
-          name = "Ratbot3",
-          type = "Ratbot",
-          shape = "rectangle",
-          x = 3104,
-          y = 1952,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["align"] = "bottom_center",
-            ["battle"] = "../data/monsters/dark_ratbot.lua",
-            ["battleOnCollide"] = true,
-            ["defaultAnim"] = "idleleft",
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["ignoreMapCollision"] = false,
-            ["noInvestigate"] = true,
-            ["noMusic"] = true,
-            ["sprite"] = "../art/sprites/ratbot.png"
-          }
         },
         {
           id = 219,
@@ -2187,8 +2142,8 @@ return {
           name = "Inspect10",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 2400,
-          y = 1344,
+          x = 2304,
+          y = 1408,
           width = 32,
           height = 64,
           rotation = 0,
@@ -2197,7 +2152,7 @@ return {
           properties = {
             ["disappearOnFlag"] = true,
             ["ghost"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\n\nreturn function(self)\n    return BlockPlayer {\n        Do(function() self.scene.player.state = \"idleup\" end),\n        MessageBox{message=\"Sally: I thought I saw something...\"},\n        DialogueChoice(\n            \"Investigate?\",\n            {\n                {\"Yes\",\n                    function(menu)\n                        menu:close()\n                        self.scene:run(Spawn(BlockPlayer{\n                            Do(function()\n                                self.scene.player.noIdle = true\n                            end),\n                            Animate(self.scene.player.sprite, \"junk_reveal\"),\n                            Do(function()\n                                self.scene.player.sprite:setAnimation(\"junk_idle\")\n                            end),\n                            Wait(1.5),\n                            Animate(self.scene.player.sprite, \"junk_shock\"),\n                            Wait(0.5),\n                            self.scene:enterBattle {\n                                opponents = {\"messbot\"},\n                                initiative = \"opponent\"\n                            },\n                            Do(function()\n                                self.scene.player.noIdle = false\n                                self:permanentRemove()\n                            end)\n                        }))\n                    end},\n                {\"No\",\n                    function(menu)\n                        menu:close()\n                    end}\n            }\n        )\n    }\nend",
+            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\n\nreturn function(self)\n    return BlockPlayer {\n        Do(function() self.scene.player.state = \"idleup\" end),\n        MessageBox{message=\"Sally: I thought I saw something...\"},\n        DialogueChoice(\n            \"Investigate?\",\n            {\n                {\"Yes\",\n                    function(menu)\n                        menu:close()\n                        self.scene:run(Spawn(BlockPlayer{\n                            Do(function()\n                                self.scene.player.noIdle = true\n                            end),\n                            Animate(self.scene.player.sprite, \"junk_reveal\"),\n                            Do(function()\n                                self.scene.player.sprite:setAnimation(\"junk_idle\")\n                            end),\n                            Wait(1.5),\n                            Animate(self.scene.player.sprite, \"junk_shock\"),\n                            Wait(0.5),\n                            self.scene:enterBattle {\n                                opponents = {\"messbot\", \"ladybug\"},\n                                initiative = \"opponent\"\n                            },\n                            Do(function()\n                                self.scene.player.noIdle = false\n                                self:permanentRemove()\n                            end)\n                        }))\n                    end},\n                {\"No\",\n                    function(menu)\n                        menu:close()\n                    end}\n            }\n        )\n    }\nend",
             ["sprite"] = "../art/sprites/sparkle.png"
           }
         },
@@ -2206,8 +2161,8 @@ return {
           name = "Inspect11",
           type = "BasicNPC",
           shape = "rectangle",
-          x = 640,
-          y = 2080,
+          x = 672,
+          y = 1936,
           width = 32,
           height = 32,
           rotation = 0,
@@ -2222,22 +2177,28 @@ return {
           }
         },
         {
-          id = 226,
-          name = "Inspect3",
-          type = "BasicNPC",
+          id = 227,
+          name = "Ratbot3",
+          type = "Ratbot",
           shape = "rectangle",
-          x = 2016,
-          y = 352,
-          width = 32,
-          height = 64,
+          x = 2912,
+          y = 416,
+          width = 64,
+          height = 32,
           rotation = 0,
           gid = 37,
           visible = true,
           properties = {
-            ["disappearOnFlag"] = true,
+            ["align"] = "bottom_center",
+            ["battle"] = "../data/monsters/dark_ratbot.lua",
+            ["battleOnCollide"] = true,
+            ["defaultAnim"] = "idleleft",
+            ["disappearAfterBattle"] = true,
             ["ghost"] = true,
-            ["onInteract"] = "local BlockPlayer = require \"actions/BlockPlayer\"\nlocal MessageBox = require \"actions/MessageBox\"\nlocal DialogueChoice = require \"actions/DialogueChoice\"\nlocal Spawn = require \"actions/Spawn\"\nlocal Do = require \"actions/Do\"\nlocal Wait = require \"actions/Wait\"\nlocal Animate = require \"actions/Animate\"\n\nreturn function(self)\n    return BlockPlayer {\n        Do(function() self.scene.player.state = \"idleup\" end),\n        MessageBox{message=\"Sally: I thought I saw something...\"},\n        DialogueChoice(\n            \"Investigate?\",\n            {\n                {\"Yes\",\n                    function(menu)\n                        menu:close()\n                        self.scene:run(Spawn(BlockPlayer{\n                            Do(function()\n                                self.scene.player.noIdle = true\n                            end),\n                            Animate(self.scene.player.sprite, \"junk_reveal\"),\n                            Do(function()\n                                self.scene.player.sprite:setAnimation(\"junk_idle\")\n                            end),\n                            Wait(1.5),\n                            Animate(self.scene.player.sprite, \"junk_shock\"),\n                            Wait(0.5),\n                            self.scene:enterBattle {\n                                opponents = {\"ladybug\"},\n                                initiative = \"opponent\"\n                            },\n                            Do(function()\n                                self.scene.player.noIdle = false\n                                self:permanentRemove()\n                            end)\n                        }))\n                    end},\n                {\"No\",\n                    function(menu)\n                        menu:close()\n                    end}\n            }\n        )\n    }\nend",
-            ["sprite"] = "../art/sprites/sparkle.png"
+            ["ignoreMapCollision"] = false,
+            ["noInvestigate"] = true,
+            ["noMusic"] = true,
+            ["sprite"] = "../art/sprites/ratbot.png"
           }
         }
       }

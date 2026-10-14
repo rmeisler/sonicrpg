@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="125" height="86" tilewidth="32" tileheight="32" infinite="0" nextobjectid="227">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="125" height="86" tilewidth="32" tileheight="32" infinite="0" nextobjectid="229">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotwastelandbg.png"/>
   <property name="bgm" type="file" value="../audio/music/battle.ogg"/>
@@ -1195,45 +1195,6 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="177" name="Inspect5" type="BasicNPC" gid="37" x="2112" y="1984" width="32" height="64">
-   <properties>
-    <property name="disappearOnFlag" type="bool" value="true"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="item" type="file" value="../data/items/LaserShield.lua"/>
-    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local Spawn = require &quot;actions/Spawn&quot;
-local DialogueChoice = require &quot;actions/DialogueChoice&quot;
-local Do = require &quot;actions/Do&quot;
-
-return function(self)
-    return BlockPlayer {
-        Do(function() self.scene.player.state = &quot;idleup&quot; end),
-        MessageBox{message=&quot;Sally: I thought I saw something...&quot;},
-        DialogueChoice(
-            &quot;Investigate?&quot;,
-            {
-                {&quot;Yes&quot;,
-                    function(menu)
-                        menu:close()
-                        local item = require(self.object.properties.item:sub(4, -5))
-                        GameState:grantItem(item, 1)
-                        self.scene:run(Spawn(BlockPlayer{
-                            MessageBox{message=&quot;Found a {h &quot;..(item.name)..&quot;}!&quot;, sfx=&quot;levelup&quot;},
-                            Do(function() self:permanentRemove() end)
-                        }))
-                    end},
-                {&quot;No&quot;,
-                    function(menu)
-                        menu:close()
-                    end}
-            }
-        )
-    }
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/sparkle.png"/>
-   </properties>
-  </object>
   <object id="178" name="Inspect6" type="BasicNPC" gid="37" x="2112" y="2368" width="32" height="64">
    <properties>
     <property name="disappearOnFlag" type="bool" value="true"/>
@@ -1425,7 +1386,7 @@ end</property>
   <object id="191" name="Ratbot1" type="Ratbot" gid="37" x="2784" y="1440" width="64" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/dark_ratbot.lua"/>
+    <property name="battle" type="file" value="../data/monsters/dark_ratbot3.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleleft"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
@@ -1474,10 +1435,10 @@ end</property>
     <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="200" name="Ratbot2" type="Ratbot" gid="37" x="384" y="2432" width="32" height="32">
+  <object id="200" name="Ratbot2" type="Ratbot" gid="37" x="320" y="2432" width="32" height="32">
    <properties>
     <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/dark_ratbot.lua"/>
+    <property name="battle" type="file" value="../data/monsters/dark_ratbot_with_bug.lua"/>
     <property name="battleOnCollide" type="bool" value="true"/>
     <property name="defaultAnim" value="idleright"/>
     <property name="disappearAfterBattle" type="bool" value="true"/>
@@ -1606,21 +1567,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/sparkle.png"/>
    </properties>
   </object>
-  <object id="209" name="Megamuck2" type="Megamuck" gid="1714" x="672" y="2336" width="32" height="480"/>
-  <object id="215" name="Ratbot3" type="Ratbot" gid="37" x="3104" y="1952" width="64" height="32">
-   <properties>
-    <property name="align" value="bottom_center"/>
-    <property name="battle" type="file" value="../data/monsters/dark_ratbot.lua"/>
-    <property name="battleOnCollide" type="bool" value="true"/>
-    <property name="defaultAnim" value="idleleft"/>
-    <property name="disappearAfterBattle" type="bool" value="true"/>
-    <property name="ghost" type="bool" value="true"/>
-    <property name="ignoreMapCollision" type="bool" value="false"/>
-    <property name="noInvestigate" type="bool" value="true"/>
-    <property name="noMusic" type="bool" value="true"/>
-    <property name="sprite" type="file" value="../art/sprites/ratbot.png"/>
-   </properties>
-  </object>
+  <object id="209" name="Megamuck2" type="Megamuck" gid="1714" x="672" y="2336" width="32" height="512"/>
   <object id="219" name="Chest4" type="Chest" gid="2311" x="3360" y="1920" width="64" height="64">
    <properties>
     <property name="YellowLeaf" type="int" value="1"/>
@@ -1666,7 +1613,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/sparkle.png"/>
    </properties>
   </object>
-  <object id="221" name="Inspect10" type="BasicNPC" gid="37" x="2400" y="1344" width="32" height="64">
+  <object id="221" name="Inspect10" type="BasicNPC" gid="37" x="2304" y="1408" width="32" height="64">
    <properties>
     <property name="disappearOnFlag" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1700,7 +1647,7 @@ return function(self)
                             Animate(self.scene.player.sprite, &quot;junk_shock&quot;),
                             Wait(0.5),
                             self.scene:enterBattle {
-                                opponents = {&quot;messbot&quot;},
+                                opponents = {&quot;messbot&quot;, &quot;ladybug&quot;},
                                 initiative = &quot;opponent&quot;
                             },
                             Do(function()
@@ -1720,7 +1667,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/sparkle.png"/>
    </properties>
   </object>
-  <object id="224" name="Inspect11" type="BasicNPC" gid="37" x="640" y="2080" width="32" height="32">
+  <object id="224" name="Inspect11" type="BasicNPC" gid="37" x="672" y="1936" width="32" height="32">
    <properties>
     <property name="disappearOnFlag" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
@@ -1759,58 +1706,18 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/sparkle.png"/>
    </properties>
   </object>
-  <object id="226" name="Inspect3" type="BasicNPC" gid="37" x="2016" y="352" width="32" height="64">
+  <object id="227" name="Ratbot3" type="Ratbot" gid="37" x="2912" y="416" width="64" height="32">
    <properties>
-    <property name="disappearOnFlag" type="bool" value="true"/>
+    <property name="align" value="bottom_center"/>
+    <property name="battle" type="file" value="../data/monsters/dark_ratbot.lua"/>
+    <property name="battleOnCollide" type="bool" value="true"/>
+    <property name="defaultAnim" value="idleleft"/>
+    <property name="disappearAfterBattle" type="bool" value="true"/>
     <property name="ghost" type="bool" value="true"/>
-    <property name="onInteract">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
-local MessageBox = require &quot;actions/MessageBox&quot;
-local DialogueChoice = require &quot;actions/DialogueChoice&quot;
-local Spawn = require &quot;actions/Spawn&quot;
-local Do = require &quot;actions/Do&quot;
-local Wait = require &quot;actions/Wait&quot;
-local Animate = require &quot;actions/Animate&quot;
-
-return function(self)
-    return BlockPlayer {
-        Do(function() self.scene.player.state = &quot;idleup&quot; end),
-        MessageBox{message=&quot;Sally: I thought I saw something...&quot;},
-        DialogueChoice(
-            &quot;Investigate?&quot;,
-            {
-                {&quot;Yes&quot;,
-                    function(menu)
-                        menu:close()
-                        self.scene:run(Spawn(BlockPlayer{
-                            Do(function()
-                                self.scene.player.noIdle = true
-                            end),
-                            Animate(self.scene.player.sprite, &quot;junk_reveal&quot;),
-                            Do(function()
-                                self.scene.player.sprite:setAnimation(&quot;junk_idle&quot;)
-                            end),
-                            Wait(1.5),
-                            Animate(self.scene.player.sprite, &quot;junk_shock&quot;),
-                            Wait(0.5),
-                            self.scene:enterBattle {
-                                opponents = {&quot;ladybug&quot;},
-                                initiative = &quot;opponent&quot;
-                            },
-                            Do(function()
-                                self.scene.player.noIdle = false
-                                self:permanentRemove()
-                            end)
-                        }))
-                    end},
-                {&quot;No&quot;,
-                    function(menu)
-                        menu:close()
-                    end}
-            }
-        )
-    }
-end</property>
-    <property name="sprite" type="file" value="../art/sprites/sparkle.png"/>
+    <property name="ignoreMapCollision" type="bool" value="false"/>
+    <property name="noInvestigate" type="bool" value="true"/>
+    <property name="noMusic" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/ratbot.png"/>
    </properties>
   </object>
  </objectgroup>

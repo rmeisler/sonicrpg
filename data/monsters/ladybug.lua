@@ -13,6 +13,9 @@ local PlayAudio = require "actions/PlayAudio"
 local BouncyText = require "actions/BouncyText"
 local IfElse = require "actions/IfElse"
 local Repeat = require "actions/Repeat"
+local While = require "actions/While"
+local Executor = require "actions/Executor"
+local Spawn = require "actions/Spawn"
 
 local PressX = require "data/battle/actions/PressX"
 local PressZ = require "data/battle/actions/PressZ"
@@ -26,15 +29,33 @@ local ItemType = require "util/ItemType"
 local SpriteNode = require "object/SpriteNode"
 local BattleActor = require "object/BattleActor"
 
+local ShakeOff = function(self, key, _, target)
+	if key == "x" then
+		self.shakeCount = self.shakeCount + 1
+		self.scene.audio:stopSfx()
+		self.scene.audio:playSfx("bang", 0.5)
+		
+		if self.shakeCount % 2 == 0 then
+			target.sprite.transform.x = target.sprite.transform.x - 10
+		else
+			target.sprite.transform.x = target.sprite.transform.x + 10
+		end
+	end
+end
+
+local PainTimer = function(self, dt)
+	self.painTime = self.painTime + dt
+end
+
 return {
-	name = "Bug",
-	altName = "Bug",
+	name = "Bugs",
+	altName = "Bugs",
 	sprite = "sprites/ladybug",
 
 	stats = {
 		xp    = 10,
 		maxhp = 500,
-		attack = 10,
+		attack = 5,
 		defense = 10,
 		speed = 30,
 		focus = 1,
@@ -133,7 +154,6 @@ return {
 				},
 				Animate(self.sprite, "level2_idle"),
 				Do(function()
-					self.stats.attack = self.stats.attack + 20
 					self.stats.defense = self.stats.defense + 20
 					self.stats.speed = self.stats.speed - 10
 					
@@ -265,22 +285,81 @@ return {
 				},
 				Do(function()
 					self.sprite.sortOrderY = self.sprite.transform.y + 1
+					target.sprite:pushOverride("hurt", "shock")
 				end),
-				MessageBox {message="Rapidly press x to shake off bugs!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(0.5)},
+				MessageBox {message="Rapidly press x to shake off bugs!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)},
 
 				-- Do repeated little amounts of damage until player shakes them off
-				Parallel {
-					Repeat(Serial {
-						Ease(self.sprite.transform, "y", function() return self.sprite.transform.y - 20 end, 10),
-						Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + 20 end, 10)
-					}, 8),
-					Serial {
-						Wait(0.5),
-						target:takeDamage(self.stats)
-					}
-				},
+				Do(function()
+					self.shakeCount = 0
+					self.painTime = 0
+					
+					target.origX = target.sprite.transform.x
+
+					self.scene:addHandler("keytriggered", ShakeOff, self, target)
+					self.scene:focus("keytriggered", self) -- HACK, focus past skills + battle menu
+					self.scene:focus("keytriggered", self)
+					self.scene:focus("keytriggered", self)
+					
+					self.scene:addHandler("update", PainTimer, self)
+				end),
+				While(
+					function() return self.shakeCount < 15 and self.painTime < 5 and target.hp > 0 end,
+					Parallel {
+						Repeat(Serial {
+							Ease(self.sprite.transform, "y", function() return self.sprite.transform.y - 20 end, 10),
+							Ease(self.sprite.transform, "y", function() return self.sprite.transform.y + 20 end, 10)
+						}),
+						Animate(function()
+							local xform = Transform.from(self.sprite.transform)
+							xform.x = xform.x + self.sprite.w
+							return SpriteNode(self.scene, xform, nil, "pressx", nil, nil, "ui"), true
+						end, "rapidly"),
+						Repeat(
+							Serial {
+								Wait(0.4),
+								Do(function()
+									local damage = target:calculateDamage(self.stats)
+									target.hp = math.max(target.hp - damage, 0)
+
+									Executor(self.scene):act(
+										BouncyText(
+											Transform(
+												target.sprite.transform.x + target.textOffset.x + 30,
+												target.sprite.transform.y + target.textOffset.y
+											),
+											{255,0,0,255},
+											FontCache.ConsolasLarge,
+											tostring(damage),
+											6,
+											false,
+											true -- outline
+										)
+									)
+								end)
+							}
+						)	
+					},
+					Do(function()
+						
+					end)
+				),
 				Do(function()
 					self.sprite.sortOrderY = nil
+					target.sprite.transform.x = target.origX
+
+					self.scene:removeHandler("keytriggered", ShakeOff, self, target)
+					self.scene:unfocus("keytriggered")
+					self.scene:unfocus("keytriggered")
+					self.scene:unfocus("keytriggered")
+					
+					self.scene:removeHandler("update", PainTimer, self)
+					
+					target.sprite:popOverride("hurt")
+
+					if target.hp <= 0 then
+						Executor(self.scene):act(target:die())
+					end
 				end),
 				Parallel {
 					Ease(self.sprite.transform, "x", origX, 3),
@@ -295,5 +374,5 @@ return {
 		end
 	end,
 	
-	scan = "Stop Bugs from gathering!"
+	scan = "Bugs are weak against hacking skills."
 }

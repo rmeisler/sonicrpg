@@ -188,6 +188,10 @@ function BattleActor:takeDamage(stats, isPassive, knockbackActionFun, attacker)
 		damageText = tostring(damage)
 	end
 	
+	if stats.impact then
+		impact = stats.impact
+	end
+	
 	local bouncyTextOffsetX = (direction > 0) and 10 or -50
 	local endHp = math.max(0, self.hp - damage)
 	local origRedColor = sprite.color[1]
