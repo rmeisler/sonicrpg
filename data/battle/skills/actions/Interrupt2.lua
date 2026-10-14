@@ -49,18 +49,6 @@ end
 return function(self, target)
 	self.doneWithInterrupt = false
 	self.earlyExitInterrupt = false
-
-	if not self.stats.miss then
-		target.malfunctioningTurns = 3
-	end
-
-	target.infectedStats = {
-		attack = self.stats.focus,
-		speed = 100,
-		luck = 0,
-		miss=self.stats.miss,
-		damage=self.stats.damage
-	}
 	
 	local keys = {"up", "down", "left", "right", "x", "z", "c"}
 	local fadeIn = {}
@@ -159,7 +147,8 @@ return function(self, target)
 					speed = 100,
 					luck = (self.keycodeSuccess and 100 or 0),
 					miss=self.stats.miss,
-					damage=self.stats.damage
+					damage=self.stats.damage,
+					damageType="focus"
 				}, false, target.interruptKnockbackFn),
 				
 				self.stats.miss and

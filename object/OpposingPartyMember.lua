@@ -51,6 +51,7 @@ function OpposingPartyMember:construct(scene, data)
 	self.heavy = data.heavy or false
 	self.transient = data.transient or false
 	self.behavior = data.behavior or function() end
+	self.weakness = data.weakness
 	self.onLift = data.onLift or function(self, carrier) return Action() end
 	self.onDrop = data.onDrop or function(carriedTarget, carrier, target) return Action() end
 	self.onDead = data.onDead or function() return Action() end
@@ -322,7 +323,7 @@ function OpposingPartyMember:beginTurn()
 						PlayAudio("sfx", "shocked", 0.5, true),
 					}
 				},
-				self:takeDamage(self.infectedStats or {attack = 10, speed = 100, luck = 0})
+				self:takeDamage(self.infectedStats or {attack = 10, speed = 100, luck = 0, damageType="focus"})
 			}
 		)
 		self.malfunctioningTurns = self.malfunctioningTurns - 1

@@ -36,7 +36,7 @@ return {
 	stats = {
 		xp    = 10,
 		maxhp = 500,
-		attack = 50,
+		attack = 40,
 		defense = 25,
 		speed = 10,
 		focus = 0,
@@ -129,91 +129,88 @@ return {
 				Parallel {
 					Serial {
 						Animate(self.sprite, "poison_crouch"),
-						Wait(0.5),
+						Wait(0.3),
 						Animate(self.sprite, "poison_attack")
 					},
-					Serial {
-						Wait(0.2),
-						sallyCounter and sallyCounterAction or
-						PressX(
-							self,
-							target,
-							Serial {
-								PlayAudio("sfx", "pressx", 1.0, true),
-								Parallel {
-									Serial {
-										Animate(target.sprite, "leap_dodge"),
-										Ease(target.sprite.transform, "y", target.sprite.transform.y - target.sprite.h*2, 8, "linear"),
-										Ease(target.sprite.transform, "y", target.sprite.transform.y, 6, "quad"),
-										Animate(target.sprite, "crouch"),
-										Wait(0.1),
-										Animate(target.sprite, "victory"),
-										Wait(0.8),
-										Animate(target.sprite, "idle"),
-									},
-									BouncyText(
-										Transform(
-											target.sprite.transform.x + 10 + (target.textOffset.x),
-											target.sprite.transform.y + (target.textOffset.y)),
-										{255,255,255,255},
-										FontCache.ConsolasLarge,
-										"miss",
-										6,
-										false,
-										true -- outline
-									),
-								}
-							},
-							Serial {
-								Animate(target.sprite, "hurt"),
-								Repeat(Serial {
-									-- Why are these necessary?
-									Do(function() end),
-									Animate(self.sprite, "attack"),
-									Do(function() end),
+					sallyCounter and sallyCounterAction or
+					PressX(
+						self,
+						target,
+						Serial {
+							PlayAudio("sfx", "pressx", 1.0, true),
+							Parallel {
+								Serial {
+									Animate(target.sprite, "leap_dodge"),
+									Ease(target.sprite.transform, "y", target.sprite.transform.y - target.sprite.h*2, 8, "linear"),
+									Ease(target.sprite.transform, "y", target.sprite.transform.y, 6, "quad"),
+									Animate(target.sprite, "crouch"),
 									Wait(0.1),
-									Animate(self.sprite, "poison_attack"),
-									Wait(0.1),
-									Do(function() end),
-								}, 5),
-								Animate(self.sprite, "attack"),
-								Do(function()
-									self.usedPoison = true
-									
-									-- Can't poison someone wearing Copper Amulet
-									if  target.side == TargetType.Party and
-										GameState:isEquipped(target.id, ItemType.Accessory, "Copper Amulet") then
-										return
-									end
-
-									target.poisoned = table.clone(self.stats)
-									target.poisoned.attack = target.poisoned.attack/2
-									target.poisoned.speed = 100
-									target.poisoned.nomiss = true
-									target.poisoned.nonlethal = false
-
-									-- Always fade in and out green
-									target.poisonAnim = Executor(self.scene)
-									target.poisonAnim:act(While(
-										function()
-											return target.poisoned
-										end,
-										Repeat(Serial {
-											Ease(target.sprite.color, 2, 400, 1.5),
-											Ease(target.sprite.color, 2, 300, 1.5)
-										}),
-										Ease(target.color, 2, 170, 1)
-									))
-								end),
-								IfElse(
-									function() return target.poisoned end,
-									MessageBox {message=target.name.." is poisoned!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)},
-									MessageBox {message=target.name.." could not be poisoned!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)}
+									Animate(target.sprite, "victory"),
+									Wait(0.8),
+									Animate(target.sprite, "idle"),
+								},
+								BouncyText(
+									Transform(
+										target.sprite.transform.x + 10 + (target.textOffset.x),
+										target.sprite.transform.y + (target.textOffset.y)),
+									{255,255,255,255},
+									FontCache.ConsolasLarge,
+									"miss",
+									6,
+									false,
+									true -- outline
 								),
-								Animate(target.sprite, "idle")
 							}
-						)
-					}
+						},
+						Serial {
+							Animate(target.sprite, "hurt"),
+							Repeat(Serial {
+								-- Why are these necessary?
+								Do(function() end),
+								Animate(self.sprite, "attack"),
+								Do(function() end),
+								Wait(0.1),
+								Animate(self.sprite, "poison_attack"),
+								Wait(0.1),
+								Do(function() end),
+							}, 5),
+							Animate(self.sprite, "attack"),
+							Do(function()
+								self.usedPoison = true
+								
+								-- Can't poison someone wearing Copper Amulet
+								if  target.side == TargetType.Party and
+									GameState:isEquipped(target.id, ItemType.Accessory, "Copper Amulet") then
+									return
+								end
+
+								target.poisoned = table.clone(self.stats)
+								target.poisoned.attack = target.poisoned.attack/2
+								target.poisoned.speed = 100
+								target.poisoned.nomiss = true
+								target.poisoned.nonlethal = false
+
+								-- Always fade in and out green
+								target.poisonAnim = Executor(self.scene)
+								target.poisonAnim:act(While(
+									function()
+										return target.poisoned
+									end,
+									Repeat(Serial {
+										Ease(target.sprite.color, 2, 400, 1.5),
+										Ease(target.sprite.color, 2, 300, 1.5)
+									}),
+									Ease(target.color, 2, 170, 1)
+								))
+							end),
+							IfElse(
+								function() return target.poisoned end,
+								MessageBox {message=target.name.." is poisoned!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)},
+								MessageBox {message=target.name.." could not be poisoned!", rect=MessageBox.HEADLINER_RECT, closeAction=Wait(1)}
+							),
+							Animate(target.sprite, "idle")
+						}
+					)
 				},
 				Parallel {
 					Ease(self.sprite.transform, "x", origX, 3),

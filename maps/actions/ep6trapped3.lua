@@ -182,10 +182,7 @@ return function(scene, hint)
 			scene.player.sprite:setAnimation("skidright")
 			scene.objectLookup.Sally.x = scene.player.x + 2700
 			scene.objectLookup.Sally.y = scene.player.y - 80
-		end),
-
-		Parallel {
-			Do(function()
+			scene.raceUpdateFun = function(dt)
 				if scene.player.blocked then
 					return
 				end
@@ -193,15 +190,18 @@ return function(scene, hint)
 					scene.player.extraSpeed = -(scene.player.fx + scene.player.bx)
 					scene.player.blocked = true
 				else
-					scene.player.extraSpeed = scene.player.extraSpeed - 0.25
-					scene.objectLookup.Fleet.extraBx = scene.objectLookup.Fleet.extraBx + 0.25
+					scene.player.extraSpeed = scene.player.extraSpeed - 0.25 * (dt/0.016)
+					scene.objectLookup.Fleet.extraBx = scene.objectLookup.Fleet.extraBx + 0.25 * (dt/0.016)
 				end
-			end),
+			end
+			
+			scene:addHandler("update", scene.raceUpdateFun)
+		end),
 
-			Wait(3)
-		},
+		Wait(3),
 		
 		Do(function()
+			scene:removeHandler("update", scene.raceUpdateFun)
 			scene.player.sprite:setAnimation("earnestright")
 		end),
 		Wait(1),

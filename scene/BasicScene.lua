@@ -618,6 +618,7 @@ function BasicScene:lightningFlash()
 			self.lightFlash = false
 			self.map.drawTileLayer = originalMapDraw
 			self.map.drawImageLayer = originalImgDraw
+			love.graphics.setShader(ScreenShader)
 		end)
 	}
 end

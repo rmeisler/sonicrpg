@@ -115,9 +115,9 @@ function Fan:update(dt)
 			then
 				if self.scene.player ~= target then
 					target.y = target.y - math.pow(
-						math.max(3, math.min(Fan.PULL_SPEED, ((Fan.PULL_RANGE - (target.y - self.y)) / Fan.PULL_RANGE) * Fan.PULL_SPEED)) * (dt/0.016),
+						math.max(3, math.min(Fan.PULL_SPEED, ((Fan.PULL_RANGE - (target.y - self.y)) / Fan.PULL_RANGE) * Fan.PULL_SPEED)),
 						2
-					)
+					) * (dt/0.016)
 					target.disabled = true
 					-- Knock out of fan three times, doing damage, until dead
 					if target.y < self.y then
@@ -164,10 +164,10 @@ function Fan:update(dt)
 					if target.y > self.y + self.sprite.h*1.5 then
 						target.y = math.max(
 							target.y - math.pow(
-								math.max(3, math.min(Fan.PULL_SPEED, ((Fan.PULL_RANGE - (target.y - self.y)) / Fan.PULL_RANGE) * Fan.PULL_SPEED)) * (dt/0.016),
+								math.max(3, math.min(Fan.PULL_SPEED, ((Fan.PULL_RANGE - (target.y - self.y)) / Fan.PULL_RANGE) * Fan.PULL_SPEED)),
 								2
-							),
-							self.y + self.sprite.h*1.5
+							) * (dt/0.016),
+							self.y + self.sprite.h*1.5*(dt/0.016)
 						)
 					else
 						-- Teleport player next to fan

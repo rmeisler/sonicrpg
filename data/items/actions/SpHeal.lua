@@ -26,7 +26,7 @@ return function(attribute, amount)
 		end
 		local direction = (target.sprite.transform.x > love.graphics.getWidth()/2) and 1 or -1
 		local bouncyTextOffset = (direction > 0) and 10 or -50
-		local origGreen, origBlue = target.color[2], target.color[3]
+		local origGreen, origBlue = target.sprite.color[2], target.sprite.color[3]
 	
 		local targetXform = target.sprite.transform
 		local sparkleCount = 0

@@ -60,6 +60,7 @@ return function(self, target, returnAction, knockbackActionFun, details)
 							bonusStats,
 							false,
 							function(self, impact, direction)
+								local origRed = self:getSprite().color[1]
 								return Serial {
 									PlayAudio("sfx", self.hurtSfx, nil, true),
 									Parallel {
@@ -85,7 +86,7 @@ return function(self, target, returnAction, knockbackActionFun, details)
 										},
 										Serial {
 											Ease(self:getSprite().color, 1, 800, 2.7, "linear"),
-											Ease(self:getSprite().color, 1, 255, 2.7, "linear")
+											Ease(self:getSprite().color, 1, origRed, 2.7, "linear")
 										}
 									}
 								}

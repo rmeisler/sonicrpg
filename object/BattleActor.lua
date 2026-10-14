@@ -254,6 +254,11 @@ function BattleActor:calculateDamage(stats)
 	-- Calculate damage based on stats of the attacker combined with our own
 	local selfStats = self:getStats()
 	local defense = math.random(selfStats.defense * 2, selfStats.defense * 3)
+
+	if stats.damageType == self.weakness then
+		defense = 0
+	end
+
 	local damage = math.max(0, math.floor((stats.attack * 10 + math.random(stats.attack)) - defense))
 	local dodgeChance = math.max(1, selfStats.speed - stats.speed)
 	local dodgeResult = math.random(dodgeChance, 50)

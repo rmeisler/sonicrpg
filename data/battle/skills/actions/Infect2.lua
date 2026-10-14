@@ -57,7 +57,8 @@ return function(self, target)
 		speed = 100,
 		luck = 0,
 		miss=self.stats.miss,
-		damage=self.stats.damage
+		damage=self.stats.damage,
+		damageType="focus"
 	}
 	
 	local keys = {"up", "down", "left", "right", "x", "z", "c"}
