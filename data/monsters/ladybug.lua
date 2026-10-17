@@ -95,21 +95,6 @@ return {
 			table.insert(self.ladybugSprites, sp)
 		end
 	end,
-	
-	onAttack = function(self, attacker)
-		if self.growth == 2 and self.hp < 400 then
-			return Serial {
-				
-			}
-		elseif self.growth == 1 and self.hp < 300 then
-			return Serial {
-				
-			}
-		else
-			return Serial {
-			}
-		end
-	end,
 
 	behavior = function (self, target)
 		if self.growth == 0 then

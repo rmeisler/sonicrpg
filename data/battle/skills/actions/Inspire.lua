@@ -16,6 +16,8 @@ return function(self, targets)
 	local actions = {}
 	local resetActions = {}
 	for _, target in pairs(targets) do
+		local origRed, origGreen, origBlue = target.sprite.color[1], target.sprite.color[2], target.sprite.color[3]
+
 		table.insert(
 			actions,
 			Serial {
@@ -42,9 +44,9 @@ return function(self, targets)
 				Parallel {
 					Ease(target.sprite.glowColor, 4, 0, 6, "quad"),
 					Ease(target.sprite, "glowSize", 2, 6, "quad"),
-					Ease(target.sprite.color, 1, 255, 6, "quad"),
-					Ease(target.sprite.color, 2, 255, 6, "quad"),
-					Ease(target.sprite.color, 3, 255, 6, "quad")
+					Ease(target.sprite.color, 1, origRed, 6, "quad"),
+					Ease(target.sprite.color, 2, origGreen, 6, "quad"),
+					Ease(target.sprite.color, 3, origBlue, 6, "quad")
 				},
 				Do(function()
 					target.sprite:removeGlow()

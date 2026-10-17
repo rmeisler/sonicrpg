@@ -23,6 +23,7 @@ return function()
 	
 		local targetXform = target.sprite.transform
 		local sparkleCount = 0
+		local origRed, origGreen, origBlue = target.sprite.color[1], target.sprite.color[2], target.sprite.color[3]
 		return Serial {
 			-- Spawn sparkles around target starting from foot and moving upward in sine-wave
 			Repeat(Serial {
@@ -88,9 +89,9 @@ return function()
 				Parallel {
 					Ease(target.sprite.glowColor, 4, 0, 6, "quad"),
 					Ease(target.sprite, "glowSize", 2, 6, "quad"),
-					Ease(target.sprite.color, 1, target.color[1], 6, "quad"),
-					Ease(target.sprite.color, 2, target.color[2], 6, "quad"),
-					Ease(target.sprite.color, 3, target.color[3], 6, "quad"),
+					Ease(target.sprite.color, 1, origRed, 6, "quad"),
+					Ease(target.sprite.color, 2, origGreen, 6, "quad"),
+					Ease(target.sprite.color, 3, origBlue, 6, "quad"),
 				},
 				Do(function() target.sprite:removeGlow() end)
 			}

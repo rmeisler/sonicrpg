@@ -46,6 +46,7 @@ return function(amount)
 
 			local targetXform = t.sprite.transform
 			local sparkleCount = 0
+			local origGreen = t.sprite.color[2]
 			table.insert(
 				actions,
 				Serial {
@@ -66,7 +67,7 @@ return function(amount)
 					Parallel {
 						Ease(t.sprite.glowColor, 4, 0, 6, "quad"),
 						Ease(t.sprite, "glowSize", 2, 6, "quad"),
-						Ease(t.sprite.color, 2, t.color[2], 6, "quad"),
+						Ease(t.sprite.color, 2, origGreen, 6, "quad"),
 					},
 					Do(function()
 						t.sprite:removeGlow()

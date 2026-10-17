@@ -74,8 +74,8 @@ return {
 								target,
 								Serial {
 									PlayAudio("sfx", "pressx", 1.0, true, false, true),
-									Animate(target.sprite, "counter_flip"),
 									Ease(target.sprite.transform, "y", target.sprite.transform.y - target.sprite.h, 8, "quad"),
+									Animate(self.sprite, "crouch"),
 									Parallel {
 										Animate(target.sprite, "counter_land"),
 										Ease(target.sprite.transform, "y", target.sprite.transform.y, 12, "quad")
@@ -96,6 +96,7 @@ return {
 										true -- outline
 									),
 									Serial {
+										Animate(self.sprite, "crouch"),
 										Ease(target.sprite.transform, "y", target.sprite.transform.y, 6, "quad"),
 										Animate(target.sprite, "crouch"),
 										Wait(0.1),
@@ -137,6 +138,7 @@ return {
 								Serial {
 									Animate(target.sprite, "leap_dodge"),
 									Ease(target.sprite.transform, "y", target.sprite.transform.y - target.sprite.h*2, 8, "linear"),
+									Animate(self.sprite, "crouch"),
 									Ease(target.sprite.transform, "y", target.sprite.transform.y, 6, "quad"),
 									Animate(target.sprite, "crouch"),
 									Wait(0.1),
