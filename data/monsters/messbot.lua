@@ -75,7 +75,10 @@ return {
 								Serial {
 									PlayAudio("sfx", "pressx", 1.0, true, false, true),
 									Ease(target.sprite.transform, "y", target.sprite.transform.y - target.sprite.h, 8, "quad"),
-									Animate(self.sprite, "crouch"),
+									Do(function()
+										self.sprite:setAnimation("crouch")
+										self.sprite.sortOrderY = 0
+									end),
 									Parallel {
 										Animate(target.sprite, "counter_land"),
 										Ease(target.sprite.transform, "y", target.sprite.transform.y, 12, "quad")
@@ -96,7 +99,10 @@ return {
 										true -- outline
 									),
 									Serial {
-										Animate(self.sprite, "crouch"),
+										Do(function()
+											self.sprite:setAnimation("crouch")
+											self.sprite.sortOrderY = 0
+										end),
 										Ease(target.sprite.transform, "y", target.sprite.transform.y, 6, "quad"),
 										Animate(target.sprite, "crouch"),
 										Wait(0.1),
@@ -122,9 +128,15 @@ return {
 			},
 			Parallel {
 				Serial {
-					Animate(self.sprite, "crouch"),
+					Do(function()
+						self.sprite:setAnimation("crouch")
+						self.sprite.sortOrderY = 0
+					end),
 					Wait(0.5),
-					Animate(self.sprite, "attack")
+					Do(function()
+						self.sprite:setAnimation("attack")
+						self.sprite.sortOrderY = nil
+					end),
 				},
 				Serial {
 					Wait(0.2),
@@ -138,7 +150,10 @@ return {
 								Serial {
 									Animate(target.sprite, "leap_dodge"),
 									Ease(target.sprite.transform, "y", target.sprite.transform.y - target.sprite.h*2, 8, "linear"),
-									Animate(self.sprite, "crouch"),
+									Do(function()
+										self.sprite:setAnimation("crouch")
+										self.sprite.sortOrderY = 0
+									end),
 									Ease(target.sprite.transform, "y", target.sprite.transform.y, 6, "quad"),
 									Animate(target.sprite, "crouch"),
 									Wait(0.1),
@@ -167,7 +182,10 @@ return {
 				Ease(self.sprite.transform, "x", origX, 3),
 				Ease(self.sprite.transform, "y", origY, 3)
 			},
-			Do(function() self.sprite:setAnimation("idle") end)
+			Do(function()
+				self.sprite:setAnimation("idle")
+				self.sprite.sortOrderY = nil
+			end),
 		}
 	end
 }

@@ -53,7 +53,6 @@ return {
 							target.poisoned.luck = 0
 							target.poisoned.nomiss = true
 							target.poisoned.nonlethal = true
-							target.sprite:setAnimation("hurt")
 
 							-- Always fade in and out green
 							target.poisonAnim = Executor(target.scene)
@@ -67,10 +66,6 @@ return {
 								}),
 								Ease(target.color, 2, 255, 1)
 							))
-						end),
-						Wait(0.5),
-						Do(function()
-							target.sprite:setAnimation("idle")
 						end)
 					},
 					Do(function() end)

@@ -25,6 +25,10 @@ end
 
 function Megamuck:update(dt)
 	local player = self.scene.player
+
+	if not player then
+		return
+	end
 	
 	-- Initialize megamucks
 	if player.megamucks == nil then

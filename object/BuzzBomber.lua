@@ -128,8 +128,12 @@ end
 
 function BuzzBomber:onRemove()
 	if GameState:isFlagSet(self) then
-		self.buzzProxy:remove()
-		self.dropShadow:remove()
+		if self.buzzProxy then
+			self.buzzProxy:remove()
+		end
+		if self.dropShadow then
+			self.dropShadow:remove()
+		end
 	end
 end
 

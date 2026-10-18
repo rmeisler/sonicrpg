@@ -122,6 +122,16 @@ return {
     },
 	{
         type = "map",
+        file = "maps/robot_wasteland3.lua",
+		--primary = true -- testing
+    },
+	{
+        type = "map",
+        file = "maps/robot_wasteland5.lua",
+		--primary = true -- testing
+    },
+	{
+        type = "map",
         file = "maps/greatjungle.lua",
 		--primary = true
     },
@@ -642,6 +652,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/factoryfloor.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/bee.ogg",
 		category = "sfx"
 	},
 	{
