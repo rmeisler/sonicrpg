@@ -8,7 +8,7 @@ return {
   height = 90,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 264,
+  nextobjectid = 269,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotwastelandbg.png",
     ["bgm"] = "../audio/music/battle.ogg",
@@ -1246,72 +1246,6 @@ return {
           }
         },
         {
-          id = 227,
-          name = "Buzz1",
-          type = "BuzzBomber",
-          shape = "rectangle",
-          x = 480,
-          y = 448,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/dark_buzzbomber.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["ignoreMapCollision"] = false,
-            ["ignorePlayer"] = false,
-            ["noInvestigate"] = false
-          }
-        },
-        {
-          id = 228,
-          name = "Buzz2",
-          type = "BuzzBomber",
-          shape = "rectangle",
-          x = 992,
-          y = 448,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/dark_buzzbomber.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["ignoreMapCollision"] = false,
-            ["ignorePlayer"] = false,
-            ["noInvestigate"] = false
-          }
-        },
-        {
-          id = 229,
-          name = "Buzz3",
-          type = "BuzzBomber",
-          shape = "rectangle",
-          x = 736,
-          y = 1024,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/dark_buzzbomberx2.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["ignoreMapCollision"] = false,
-            ["ignorePlayer"] = false,
-            ["noInvestigate"] = false
-          }
-        },
-        {
           id = 230,
           name = "Megamuck1",
           type = "Megamuck",
@@ -1823,50 +1757,6 @@ return {
           }
         },
         {
-          id = 258,
-          name = "Buzz4",
-          type = "BuzzBomber",
-          shape = "rectangle",
-          x = 736,
-          y = 1376,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/dark_buzzbomberx2.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["ignoreMapCollision"] = false,
-            ["ignorePlayer"] = false,
-            ["noInvestigate"] = false
-          }
-        },
-        {
-          id = 259,
-          name = "Buzz5",
-          type = "BuzzBomber",
-          shape = "rectangle",
-          x = 736,
-          y = 1760,
-          width = 64,
-          height = 32,
-          rotation = 0,
-          gid = 37,
-          visible = true,
-          properties = {
-            ["battle"] = "../data/monsters/dark_buzzbomberx2.lua",
-            ["battleOnCollide"] = true,
-            ["disappearAfterBattle"] = true,
-            ["ghost"] = true,
-            ["ignoreMapCollision"] = false,
-            ["ignorePlayer"] = false,
-            ["noInvestigate"] = false
-          }
-        },
-        {
           id = 260,
           name = "Inspect4",
           type = "BasicNPC",
@@ -2166,7 +2056,118 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {}
+      objects = {
+        {
+          id = 264,
+          name = "Buzz1",
+          type = "BuzzBomber",
+          shape = "rectangle",
+          x = 480,
+          y = 448,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/dark_buzzbomber.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = false,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false
+          }
+        },
+        {
+          id = 265,
+          name = "Buzz2",
+          type = "BuzzBomber",
+          shape = "rectangle",
+          x = 992,
+          y = 448,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/dark_buzzbomber.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = false,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false
+          }
+        },
+        {
+          id = 266,
+          name = "Buzz3",
+          type = "BuzzBomber",
+          shape = "rectangle",
+          x = 736,
+          y = 992,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/dark_buzzbomber.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = false,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false
+          }
+        },
+        {
+          id = 267,
+          name = "Buzz4",
+          type = "BuzzBomber",
+          shape = "rectangle",
+          x = 736,
+          y = 1344,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/dark_buzzbomberx2.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = false,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false
+          }
+        },
+        {
+          id = 268,
+          name = "Buzz5",
+          type = "BuzzBomber",
+          shape = "rectangle",
+          x = 736,
+          y = 1792,
+          width = 64,
+          height = 32,
+          rotation = 0,
+          gid = 37,
+          visible = true,
+          properties = {
+            ["battle"] = "../data/monsters/dark_buzzbomberx2.lua",
+            ["battleOnCollide"] = true,
+            ["disappearAfterBattle"] = true,
+            ["ghost"] = true,
+            ["ignoreMapCollision"] = false,
+            ["ignorePlayer"] = false,
+            ["noInvestigate"] = false
+          }
+        }
+      }
     },
     {
       type = "imagelayer",

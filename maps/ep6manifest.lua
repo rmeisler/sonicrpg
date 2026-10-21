@@ -127,6 +127,11 @@ return {
     },
 	{
         type = "map",
+        file = "maps/robot_wasteland4.lua",
+		--primary = true -- testing
+    },
+	{
+        type = "map",
         file = "maps/robot_wasteland5.lua",
 		--primary = true -- testing
     },
@@ -496,6 +501,10 @@ return {
 	{
 		type = "image",
 		file = "art/sprites/icon_key.png"
+	},
+	{
+		type = "image",
+		file = "art/sprites/icon_keycard.png"
 	},
 	{
 		type = "image",
