@@ -32,7 +32,7 @@ return {
 	sprite = "sprites/juggerbotbody",
 
 	stats = {
-		xp    = 45,
+		xp    = 80,
 		maxhp = 800,
 		attack = 20,
 		defense = 100,
@@ -85,10 +85,21 @@ return {
 	end,
 	
 	onDead = function(self)
-		local head = self.scene.juggerbothead
-		head.hp = 0
-		head.state = head.STATE_DEAD
-		head:invoke("dead")
+		return Do(function()
+			local head = self.scene.juggerbothead
+			if head then
+				head.hp = 0
+				head.state = head.STATE_DEAD
+				head:invoke("dead")
+			end
+			
+			local arm = self.scene.juggerbotleftarm
+			if arm then
+				arm.hp = 0
+				arm.state = arm.STATE_DEAD
+				arm:invoke("dead")
+			end
+		end)
 	end,
 	
 	behavior = function (self, target)

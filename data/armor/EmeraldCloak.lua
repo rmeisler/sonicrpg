@@ -5,7 +5,7 @@ return {
 	desc = "A magical cloak from the distant past.",
 	type = ItemType.Armor,
 	color = {50,50,50,255},
-	usableBy = {"tails", "b"},
+	usableBy = {"tails", "b", "sonic", "sally", "logan", "rotor", "antoine", "bunnie"},
 	regen = {stat = "sp", per_turn = 1},
 	stats = {
 		defense = 4

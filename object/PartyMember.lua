@@ -21,6 +21,7 @@ local SpriteNode = require "object/SpriteNode"
 local Arrow = require "object/Arrow"
 local BattleActor = require "object/BattleActor"
 
+local Heal = require "data/items/actions/Heal"
 local SpHeal = require "data/items/actions/SpHeal"
 local RunAway = require "data/battle/actions/RunAway"
 
@@ -119,6 +120,11 @@ function PartyMember:beginTurn()
 	local regenAction = Action()
 	if GameState:isEquipped(self.id, ItemType.Armor, "Emerald Cloak") then
 		regenAction = SpHeal("sp", 1)(self, self)
+	end
+	print("noice 1 "..tostring(GameState:isEquipped(self.id, ItemType.Armor, "Regen Suit")))
+	if GameState:isEquipped(self.id, ItemType.Armor, "Regen Suit") then
+		print("noice 2")
+		regenAction = Heal("hp", 100)(self, self)
 	end
 
 	if self.state == BattleActor.STATE_IMMOBILIZED then
