@@ -32,7 +32,7 @@ return function(scene, hint)
 		Transform(50, 500),
 		{255, 255, 255, 0},
 		FontCache.Techno,
-		"30 days earlier...",
+		"4 days earlier...",
 		100
 	)
 

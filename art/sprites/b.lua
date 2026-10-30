@@ -35,6 +35,21 @@ return {
 		holdrarm = {
 			frames = {{15,1}}
 		},
+		holdsonic = {
+			frames = {{16,0}}
+		},
+		holdsonichurt = {
+			frames = {{16,1}}
+		},
+		holdsonicscaredright = {
+			frames = {{13,2}}
+		},
+		holdsonicsmile = {
+			frames = {{12,2}}
+		},
+		holdsonicsad = {
+			frames = {{11,2}}
+		},
 		climb_1 = {
 			frames = {{12,3}}
 		},

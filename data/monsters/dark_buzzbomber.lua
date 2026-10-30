@@ -261,6 +261,14 @@ return {
 			}
 		-- Tail Laser
 		else
+			if self.noPower then
+				return Serial {
+					Telegraph(self, "Tail Laser", {255,255,255,50}),
+					Wait(0.5),
+					Telegraph(self, "No power!", {255,255,255,50}),
+				}
+			end
+		
 			local laserShot = function(t)
 				return Serial {
 					Do(function()

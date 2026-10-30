@@ -202,6 +202,7 @@ function Region:finalize()
 			map.properties.battlebg = img
 		end
 
+		print("Trying to load map... "..tostring(filename))
 		local mapSti = sti(map)
 		
 		for _,layer in ipairs(mapSti.layers) do

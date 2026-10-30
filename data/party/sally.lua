@@ -97,7 +97,7 @@ return {
 				require "data/battle/skills/Inspire"
 			}
 		},
-		[10] = {
+		[11] = {
 			messages = {"Sally learned \"Power Drain\"!", "Sally can now counter after dodge!"},
 			skills = {
 				GameState:getEarnedSkill("nicole_upgrade_scan", "Scan"),

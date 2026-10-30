@@ -65,55 +65,52 @@ return {
 				target,
 				Serial {
 					PlayAudio("sfx", "pressx", 1.0, true),
-					Parallel {
+					Animate(target.sprite, "leap_dodge"),
+					Ease(target.sprite.transform, "y", target.sprite.transform.y - 100, 5, "linear"),
+					PressZ(
+						self,
+						target,
 						Serial {
-							Animate(target.sprite, "leap_dodge"),
-							Ease(target.sprite.transform, "y", target.sprite.transform.y - 100, 5, "linear"),
-							PressZ(
-								self,
-								target,
-								Serial {
-									PlayAudio("sfx", "pressx", 1.0, true, false, true),
-									Ease(target.sprite.transform, "y", target.sprite.transform.y - target.sprite.h, 8, "quad"),
-									Do(function()
-										self.sprite:setAnimation("crouch")
-										self.sprite.sortOrderY = 0
-									end),
-									Parallel {
-										Animate(target.sprite, "counter_land"),
-										Ease(target.sprite.transform, "y", target.sprite.transform.y, 12, "quad")
-									},
-									self:takeDamage(target.stats),
-									Animate(target.sprite, "idle")
-								},
-								Parallel {
-									BouncyText(
-										Transform(
-											target.sprite.transform.x + 10 + (target.textOffset.x),
-											target.sprite.transform.y + (target.textOffset.y)),
-										{255,255,255,255},
-										FontCache.ConsolasLarge,
-										"miss",
-										6,
-										false,
-										true -- outline
-									),
-									Serial {
-										Do(function()
-											self.sprite:setAnimation("crouch")
-											self.sprite.sortOrderY = 0
-										end),
-										Ease(target.sprite.transform, "y", target.sprite.transform.y, 6, "quad"),
-										Animate(target.sprite, "crouch"),
-										Wait(0.1),
-										Animate(target.sprite, "victory"),
-										Wait(0.8),
-										Animate(target.sprite, "idle"),
-									}
-								}
-							)
+							PlayAudio("sfx", "pressx", 1.0, true, false, true),
+							Animate(target.sprite, "counter_flip"),
+							Ease(target.sprite.transform, "y", target.sprite.transform.y - target.sprite.h, 8, "quad"),
+							Do(function()
+								self.sprite:setAnimation("crouch")
+								self.sprite.sortOrderY = 0
+							end),
+							Parallel {
+								Animate(target.sprite, "counter_land"),
+								Ease(target.sprite.transform, "y", target.sprite.transform.y, 12, "quad")
+							},
+							self:takeDamage(target.stats),
+							Animate(target.sprite, "idle")
+						},
+						Parallel {
+							BouncyText(
+								Transform(
+									target.sprite.transform.x + 10 + (target.textOffset.x),
+									target.sprite.transform.y + (target.textOffset.y)),
+								{255,255,255,255},
+								FontCache.ConsolasLarge,
+								"miss",
+								6,
+								false,
+								true -- outline
+							),
+							Serial {
+								Do(function()
+									self.sprite:setAnimation("crouch")
+									self.sprite.sortOrderY = 0
+								end),
+								Ease(target.sprite.transform, "y", target.sprite.transform.y, 6, "quad"),
+								Animate(target.sprite, "crouch"),
+								Wait(0.1),
+								Animate(target.sprite, "victory"),
+								Wait(0.8),
+								Animate(target.sprite, "idle"),
+							}
 						}
-					}
+					)
 				},
 				target:takeDamage(self.stats, true, BattleActor.shockKnockback)
 			)

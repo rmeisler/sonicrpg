@@ -121,9 +121,7 @@ function PartyMember:beginTurn()
 	if GameState:isEquipped(self.id, ItemType.Armor, "Emerald Cloak") then
 		regenAction = SpHeal("sp", 1)(self, self)
 	end
-	print("noice 1 "..tostring(GameState:isEquipped(self.id, ItemType.Armor, "Regen Suit")))
 	if GameState:isEquipped(self.id, ItemType.Armor, "Regen Suit") then
-		print("noice 2")
 		regenAction = Heal("hp", 100)(self, self)
 	end
 

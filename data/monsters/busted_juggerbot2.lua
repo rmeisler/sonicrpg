@@ -6,7 +6,6 @@ local Wait = require "actions/Wait"
 local Action = require "actions/Action"
 local YieldUntil = require "actions/YieldUntil"
 local Try = require "actions/Try"
-local Action = require "actions/Action"
 local Ease = require "actions/Ease"
 local Animate = require "actions/Animate"
 local PlayAudio = require "actions/PlayAudio"
@@ -85,21 +84,10 @@ return {
 	end,
 	
 	onDead = function(self)
-		return Do(function()
-			local head = self.scene.juggerbothead
-			if head then
-				head.hp = 0
-				head.state = head.STATE_DEAD
-				head:invoke("dead")
-			end
-			
-			local arm = self.scene.juggerbotleftarm
-			if arm then
-				arm.hp = 0
-				arm.state = arm.STATE_DEAD
-				arm:invoke("dead")
-			end
-		end)
+		return Parallel {
+			self.scene.juggerbothead and self.scene.juggerbothead:die() or Action(),
+			self.scene.juggerbotleftarm and self.scene.juggerbotleftarm:die() or Action()
+		}
 	end,
 	
 	behavior = function (self, target)

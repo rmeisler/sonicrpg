@@ -665,6 +665,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/sfx/magnets.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
 		file = "audio/sfx/bee.ogg",
 		category = "sfx"
 	},
@@ -1093,6 +1098,11 @@ return {
 	{
 		type = "sound",
 		file = "audio/sfx/elevator.ogg",
+		category = "sfx"
+	},
+	{
+		type = "sound",
+		file = "audio/sfx/elevatorend.ogg",
 		category = "sfx"
 	},
 	{

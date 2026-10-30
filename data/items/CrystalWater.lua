@@ -8,7 +8,7 @@ return {
 	unusable = function(target)
 		return target.hp > 0
 	end,
-	icon = "icon_plant",
+	icon = "icon_item",
 	cost = {
 		plant = 5
 	},

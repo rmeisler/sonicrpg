@@ -259,7 +259,7 @@ function BattleActor:calculateDamage(stats)
 	local selfStats = self:getStats()
 	local defense = math.random(selfStats.defense * 2, selfStats.defense * 3)
 
-	if stats.damageType == self.weakness then
+	if self.weakness ~= nil and stats.damageType == self.weakness then
 		defense = 0
 	end
 

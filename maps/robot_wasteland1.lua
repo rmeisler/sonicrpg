@@ -40,12 +40,12 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 3500,
+      tilecount = 4800,
       tiles = {}
     },
     {
       name = "forest",
-      firstgid = 3501,
+      firstgid = 4801,
       filename = "knothole.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -71,7 +71,7 @@ return {
     },
     {
       name = "tunnel",
-      firstgid = 6985,
+      firstgid = 8285,
       filename = "tunnel.tsx",
       tilewidth = 32,
       tileheight = 32,
@@ -97,7 +97,7 @@ return {
     },
     {
       name = "forest2",
-      firstgid = 10167,
+      firstgid = 11467,
       filename = "forest2.tsx",
       tilewidth = 32,
       tileheight = 32,

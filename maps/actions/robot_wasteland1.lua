@@ -126,7 +126,7 @@ return function(scene, hint)
 				Wait(0.5),
 				subtext,
 				text,
-				PlayAudio("music", "robotwasteland", 1, true, true),
+				PlayAudio("music", "robotwasteland", 1.0, true, true),
 				Parallel {
 					Ease(text.color, 4, 255, 1),
 					Ease(subtext.color, 4, 255, 1),
@@ -157,7 +157,7 @@ return function(scene, hint)
 				Wait(0.5),
 				subtext,
 				text,
-				PlayAudio("music", "robotwasteland", 1, true, true),
+				PlayAudio("music", "robotwasteland", 1.0, true, true),
 				Parallel {
 					Ease(text.color, 4, 255, 1),
 					Ease(subtext.color, 4, 255, 1),

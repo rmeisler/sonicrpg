@@ -13,8 +13,23 @@ return {
             frames = {{0,2},{0,3},{0,4},{0,5},{0,4},{0,3}},
 			speed = 0.4
         },
+		hurt = {
+			frames = {{3,0}}
+		},
+		hurtright = {
+			frames = {{3,0}}
+		},
 		kicked = {
 			frames = {{3,1}}
+		},
+		kickedright = {
+			frames = {{3,1}}
+		},
+		hurtleft = {
+			frames = {{3,2}}
+		},
+		kickedleft = {
+			frames = {{3,3}}
 		},
 		idleright = {
             frames = {{0,2},{0,3},{0,4},{0,5},{0,4},{0,3}},

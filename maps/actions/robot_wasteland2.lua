@@ -33,7 +33,7 @@ return function(scene, hint)
 
 	return Serial {
 		PlayAudio("sfx", "lightrain", 0.5, true, true),
-		PlayAudio("music", "robotwasteland", 1, true, true),
+		PlayAudio("music", "robotwasteland", 1.0, true, true),
 
 		-- Mud effect
 		Spawn(Repeat(Serial {
