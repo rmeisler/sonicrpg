@@ -43,6 +43,9 @@ return {
             frames = {{2,2},{2,3},{2,4},{2,5},{2,4},{2,3}},
 			speed = 0.4
         },
+		staticleft = {
+			frames = {{1,4}},
+		},
 		runright = {
 			frames = {{0,0},{0,1}},
 			speed = 0.02

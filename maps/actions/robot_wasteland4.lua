@@ -40,50 +40,56 @@ return function(scene, hint)
 		PlayAudio("sfx", "magnets", 0.2, true, true),
 
 		-- Magnet effect
-		Spawn(While(
-		    function() return scene.magnetsOn end,
-			Repeat(
+		Spawn(Repeat(Serial {
+			While(
+				function() return scene.magnetsOn end,
+				Repeat(
+					Serial {
+						Do(function()
+							magnetLayer1.opacity = 0
+							magnetLayer2.opacity = 1
+						end),
+						Wait(0.2),
+						Do(function()
+							magnetLayer1.opacity = 1
+							magnetLayer2.opacity = 0
+						end),
+						Wait(0.2),
+					}
+				),
+				Do(function() end)
+			),
+			YieldUntil(scene, "magnetsOn")
+		})),
+		
+		-- Magnet jitter
+		Spawn(Repeat(Serial {
+			While(
+				function() return scene.magnetsOn end,
+				Repeat(
+					Serial {
+						Do(function()
+							magnetLayer1.offsety = magnetLayer1.offsety - 1
+							magnetLayer2.offsety = magnetLayer2.offsety - 1
+						end),
+						Wait(0.01),
+						Do(function()
+							magnetLayer1.offsety = magnetLayer1.offsety + 1
+							magnetLayer2.offsety = magnetLayer2.offsety + 1
+						end),
+						Wait(0.01),
+					}
+				),
 				Serial {
 					Do(function()
 						magnetLayer1.opacity = 0
-						magnetLayer2.opacity = 1
-					end),
-					Wait(0.2),
-					Do(function()
-						magnetLayer1.opacity = 1
 						magnetLayer2.opacity = 0
+						scene.audio:stopSfx("magnets")
 					end),
-					Wait(0.2),
+					AudioFade("music", 1, 0, 1)
 				}
 			),
-			Do(function() end)
-		)),
-		
-		-- Magnet jitter
-		Spawn(While(
-		    function() return scene.magnetsOn end,
-		    Repeat(
-				Serial {
-					Do(function()
-						magnetLayer1.offsety = magnetLayer1.offsety - 1
-						magnetLayer2.offsety = magnetLayer2.offsety - 1
-					end),
-					Wait(0.01),
-					Do(function()
-						magnetLayer1.offsety = magnetLayer1.offsety + 1
-						magnetLayer2.offsety = magnetLayer2.offsety + 1
-					end),
-					Wait(0.01),
-				}
-			),
-			Serial {
-				Do(function()
-					magnetLayer1.opacity = 0
-					magnetLayer2.opacity = 0
-					scene.audio:stopSfx("magnets")
-				end),
-				AudioFade("music", 1, 0, 1)
-			}
-		))
+			YieldUntil(scene, "magnetsOn")
+		}))
 	}
 end

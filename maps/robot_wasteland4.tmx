@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="41" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="235">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="41" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="236">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotwastelandbg.png"/>
   <property name="bgm" type="file" value="../audio/music/battle.ogg"/>
@@ -518,12 +518,14 @@ end</property>
     <property name="defaultAnim" value="right"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="onScan">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
 local DialogueChoice = require &quot;actions/DialogueChoice&quot;
 
 return function(self)
     return BlockPlayer {
+         MessageBox{message=&quot;Nicole: Scanning, Sally...&quot;, sfx=&quot;nicolebeep&quot;},
          DialogueChoice(
-            &quot;Nicole: What would you like me to do, Sally?&quot;,
+            &quot;Choose Action:&quot;,
             {
                 {&quot;Turn Off Magnets&quot;,
                     function(menu)
@@ -540,8 +542,8 @@ return function(self)
         )
     }
 end</property>
+    <property name="specialHint" value="sally"/>
     <property name="sprite" type="file" value="../art/sprites/oldcomputer.png"/>
-    <property name="usableBy" value="sally"/>
    </properties>
   </object>
   <object id="230" name="MagnetCollision" type="BasicNPC" gid="2311" x="448" y="576" width="448" height="160"/>
@@ -572,6 +574,11 @@ local Wait = require &quot;actions/Wait&quot;
 local Serial = require &quot;actions/Serial&quot;
 local Parallel = require &quot;actions/Parallel&quot;
 local Move = require &quot;actions/Move&quot;
+local Spawn = require &quot;actions/Spawn&quot;
+local Repeat = require &quot;actions/Repeat&quot;
+
+local BasicNPC = require &quot;object/BasicNPC&quot;
+local NPC = require &quot;object/NPC&quot;
 
 return function(self)
     return BlockPlayer {
@@ -581,22 +588,30 @@ return function(self)
             self.scene.objectLookup.Cheetah.movespeed = 30
         end),
         PlayAudio(&quot;sfx&quot;, &quot;cheetarun&quot;, 1, true),
-        Move(self.scene.objectLookup.Cheetah, self.scene.objectLookup.CheetahWP, &quot;run&quot;),
-        Animate(self.scene.objectLookup.Cheetah.sprite, &quot;idleleft&quot;),
-        Do(function()
-            self.scene.player.noIdle = true
-            self.scene.objectLookup.B.hidden = false
-            self.scene.objectLookup.B.sprite:setAnimation(&quot;holdsonicscaredright&quot;)
-            self.scene.objectLookup.B.x = self.scene.player.x - 60
-            self.scene.objectLookup.B.y = self.scene.player.y - 60
-        end),
-        PlayAudio(&quot;music&quot;, &quot;sonicscared&quot;, 1, true, true),
-        Animate(self.scene.player.sprite, &quot;shock&quot;),
         Parallel {
-            Ease(self.scene.objectLookup.B, &quot;x&quot;, self.scene.player.x - 120, 3),
-            MessageBox{message=&quot;Sonic: N-No no no!! {p80}How did it get down here?!&quot;}
+            Serial {
+                Move(self.scene.objectLookup.Cheetah, self.scene.objectLookup.CheetahWP, &quot;run&quot;),
+                Animate(self.scene.objectLookup.Cheetah.sprite, &quot;idleleft&quot;),
+                PlayAudio(&quot;music&quot;, &quot;sonicscared&quot;, 1, true, true)
+            },
+           Serial {
+                Wait(1),
+                Do(function()
+                    self.scene.player.noIdle = true
+                    self.scene.objectLookup.B.hidden = false
+                    self.scene.objectLookup.B.sprite:setAnimation(&quot;holdsonicscaredright&quot;)
+                    self.scene.objectLookup.B.x = self.scene.player.x - 60
+                    self.scene.objectLookup.B.y = self.scene.player.y - 60
+                end),
+                Animate(self.scene.player.sprite, &quot;shock&quot;),
+                Wait(1),
+                Parallel {
+                    Ease(self.scene.objectLookup.B, &quot;x&quot;, self.scene.player.x - 120, 3),
+                    MessageBox{message=&quot;Sonic: N-No no no!! {p80}How did it get down here?!&quot;}
+                },
+                MessageBox{message=&quot;Sally: It must've followed us down here!&quot;}
+            }
         },
-        MessageBox{message=&quot;Sally: It must've followed us down here!&quot;},
         Wait(0.5),
         Animate(self.scene.player.sprite, &quot;nicholeright&quot;),
         MessageBox{message=&quot;Sally: Nicole{p60}, reactivate the magnets!&quot;, sfx=&quot;nicolebeep&quot;},
@@ -605,23 +620,100 @@ return function(self)
         end),
         Wait(0.2),
         Animate(self.scene.objectLookup.Cheetah.sprite, &quot;hurtleft&quot;),
-        MessageBox{message=&quot;Sonic: Saaal{p60}, it's still moooving!&quot;},
-        MessageBox{message=&quot;B: W-W-What is happening?!&quot;},
-        MessageBox{message=&quot;Sally: Nicole! Why isn't this door opening?!&quot;},
-        MessageBox{message=&quot;Nicole: It appears that the security system is in lockdown as a result of detecting an intruder, Sally.&quot;, sfx=&quot;nicolebeep&quot;},
-        MessageBox{message=&quot;Nicole: I am in the process of overriding it now...&quot;},
-        MessageBox{message=&quot;Sonic: Move it along, Nicole!!&quot;},
-        MessageBox{message=&quot;B: I-I'm scared! I don't like this!!&quot;},
-        MessageBox{message=&quot;Sally: Nicole!?&quot;},
+        Spawn(Repeat(
+            Serial {
+                Do(function() self.scene.objectLookup.Cheetah.y = self.scene.objectLookup.Cheetah.y + 2 end),
+                Do(function() self.scene.objectLookup.Cheetah.y  = self.scene.objectLookup.Cheetah.y - 2 end)
+            }
+        )),
+        Spawn(Repeat(
+            Serial {
+                Wait(5),
+                PlayAudio(&quot;sfx&quot;, &quot;shocked&quot;, 1, true),
+                Do(function()
+                    if not self.scene.spark then
+                        self.scene.spark = BasicNPC(
+                            self.scene,
+                            {name = &quot;objects&quot;},
+                            {name = &quot;lightning&quot;, x = self.scene.objectLookup.Cheetah.x + 30, y = self.scene.objectLookup.Cheetah.y + 70, width=32, height=32,
+                              properties = {nocollision = true, sprite = &quot;art/sprites/lightning.png&quot;, align = NPC.ALIGN_BOTLEFT}}
+                        )
+                        self.scene:addObject(self.scene.spark)
+                    end
+                    self.scene.spark:run(Serial {
+                        Do(function() self.scene.spark.hidden = false end),
+                        Animate(self.scene.spark.sprite, &quot;idle&quot;),
+                        Do(function() self.scene.spark.hidden = true end)
+                    })
+                end)
+            }
+        )),
 
-        -- Exit to other side
-
+        MessageBox{message=&quot;Sally: Let's get out of here!&quot;},
         Ease(self.scene.objectLookup.B, &quot;x&quot;, self.scene.player.x - 60, 1),
         Do(function()
             self.scene.objectLookup.B.hidden = true
             self.scene.player.noIdle = false
             self.scene.player.state = &quot;idleleft&quot;
         end)
+    }
+end</property>
+   </properties>
+  </object>
+  <object id="235" name="Cinematic3" type="TouchTrigger" gid="2311" x="128" y="544" width="32" height="160">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="atMostOnce" type="bool" value="true"/>
+    <property name="script">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Animate = require &quot;actions/Animate&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local Do = require &quot;actions/Do&quot;
+local Ease = require &quot;actions/Ease&quot;
+local Wait = require &quot;actions/Wait&quot;
+local Serial = require &quot;actions/Serial&quot;
+local Parallel = require &quot;actions/Parallel&quot;
+local Move = require &quot;actions/Move&quot;
+local Spawn = require &quot;actions/Spawn&quot;
+local Repeat = require &quot;actions/Repeat&quot;
+
+local BasicNPC = require &quot;object/BasicNPC&quot;
+local NPC = require &quot;object/NPC&quot;
+
+return function(self)
+    return BlockPlayer {
+        Wait(1),
+        Do(function() self.scene.player.noIdle = true end),
+        Animate(self.scene.player.sprite, &quot;nicholedown&quot;),
+        MessageBox{message=&quot;Sally: Ugh! {p80}Why isn't this door opening, Nicole?!&quot;},
+        MessageBox{message=&quot;Nicole: It appears that the security system is in lockdown as a result of detecting an intruder{p60}, Sally.&quot;, sfx=&quot;nicolebeep&quot;},
+        MessageBox{message=&quot;Nicole: I am in the process of overriding it now...&quot;},
+        Wait(1),
+        Animate(self.scene.objectLookup.Cheetah.sprite, &quot;staticleft&quot;),
+        Wait(1),
+        PlayAudio(&quot;sfx&quot;, &quot;cheetabreathe&quot;, 1),
+        Animate(self.scene.player.sprite, &quot;scaredright&quot;),
+        Wait(1),
+        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 10 end, 1),
+        Wait(1),
+        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 20 end, 1),
+
+        MessageBox{message=&quot;Sonic: Saaal{p60}, it's still moooving!&quot;},
+        Wait(1),
+        PlayAudio(&quot;sfx&quot;, &quot;cheetabreathe&quot;, 1),
+        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 20 end, 1),
+        MessageBox{message=&quot;B: W-W-What is happening?!&quot;},
+        Wait(1),
+        MessageBox{message=&quot;Sally: Nicole{p60}, how's it going?&quot;},
+        MessageBox{message=&quot;Nicole: Override operation is 88% complete.&quot;, sfx=&quot;nicolebeep&quot;},
+        Wait(1),
+        PlayAudio(&quot;sfx&quot;, &quot;cheetabreathe&quot;, 1),
+        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 20 end, 1),
+        MessageBox{message=&quot;Sonic: Move it along, Nicole!!&quot;},
+        MessageBox{message=&quot;B: I-I'm scared! I don't like this!!&quot;},
+        Wait(0.5),
+        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 20 end, 1),
+        MessageBox{message=&quot;Nicole: Override complete.&quot;, sfx=&quot;nicolebeep&quot;},
     }
 end</property>
    </properties>

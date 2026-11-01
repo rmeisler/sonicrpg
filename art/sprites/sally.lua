@@ -206,6 +206,9 @@ return {
 		readdown = {
 			frames = {{2,6}}
 		},
+		scaredright = {
+			frames = {{3,6}}
+		},
 		
 		angryvisor = {
 			frames = {{7,6}}
