@@ -86,7 +86,7 @@ return function(scene, hint)
 						magnetLayer2.opacity = 0
 						scene.audio:stopSfx("magnets")
 					end),
-					AudioFade("music", 1, 0, 1)
+					--AudioFade("music", 1, 0, 1)
 				}
 			),
 			YieldUntil(scene, "magnetsOn")

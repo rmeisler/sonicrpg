@@ -44,6 +44,9 @@ return {
 		holdsonicscaredright = {
 			frames = {{13,2}}
 		},
+		holdsonicright = {
+			frames = {{14,1}}
+		},
 		holdsonicsmile = {
 			frames = {{12,2}}
 		},

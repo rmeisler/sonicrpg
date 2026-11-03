@@ -46,6 +46,10 @@ return {
 		staticleft = {
 			frames = {{1,4}},
 		},
+		jitterleft = {
+			frames = {{1,4},{3,2},{1,4},{3,2},{1,4},{3,2},{1,4}},
+			speed = 0.1
+		},
 		runright = {
 			frames = {{0,0},{0,1}},
 			speed = 0.02

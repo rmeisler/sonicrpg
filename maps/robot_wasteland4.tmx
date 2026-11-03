@@ -586,34 +586,35 @@ return function(self)
         Do(function()
             self.scene.objectLookup.Cheetah.hidden = false
             self.scene.objectLookup.Cheetah.movespeed = 30
+            self.scene.player.noIdle = true
         end),
         PlayAudio(&quot;sfx&quot;, &quot;cheetarun&quot;, 1, true),
         Parallel {
             Serial {
                 Move(self.scene.objectLookup.Cheetah, self.scene.objectLookup.CheetahWP, &quot;run&quot;),
-                Animate(self.scene.objectLookup.Cheetah.sprite, &quot;idleleft&quot;),
+                Do(function() self.scene.objectLookup.Cheetah.sprite:setAnimation(&quot;idleleft&quot;) end),
                 PlayAudio(&quot;music&quot;, &quot;sonicscared&quot;, 1, true, true)
             },
            Serial {
                 Wait(1),
+                Animate(self.scene.player.sprite, &quot;shock&quot;),
+                Wait(1),
                 Do(function()
-                    self.scene.player.noIdle = true
                     self.scene.objectLookup.B.hidden = false
                     self.scene.objectLookup.B.sprite:setAnimation(&quot;holdsonicscaredright&quot;)
                     self.scene.objectLookup.B.x = self.scene.player.x - 60
                     self.scene.objectLookup.B.y = self.scene.player.y - 60
                 end),
-                Animate(self.scene.player.sprite, &quot;shock&quot;),
-                Wait(1),
                 Parallel {
                     Ease(self.scene.objectLookup.B, &quot;x&quot;, self.scene.player.x - 120, 3),
                     MessageBox{message=&quot;Sonic: N-No no no!! {p80}How did it get down here?!&quot;}
                 },
+                Animate(self.scene.player.sprite, &quot;scaredright&quot;),
                 MessageBox{message=&quot;Sally: It must've followed us down here!&quot;}
             }
         },
         Wait(0.5),
-        Animate(self.scene.player.sprite, &quot;nicholeright&quot;),
+        Animate(self.scene.player.sprite, &quot;nicholedown&quot;),
         MessageBox{message=&quot;Sally: Nicole{p60}, reactivate the magnets!&quot;, sfx=&quot;nicolebeep&quot;},
         Do(function()
             self.scene.magnetsOn = true
@@ -628,7 +629,6 @@ return function(self)
         )),
         Spawn(Repeat(
             Serial {
-                Wait(5),
                 PlayAudio(&quot;sfx&quot;, &quot;shocked&quot;, 1, true),
                 Do(function()
                     if not self.scene.spark then
@@ -638,17 +638,24 @@ return function(self)
                             {name = &quot;lightning&quot;, x = self.scene.objectLookup.Cheetah.x + 30, y = self.scene.objectLookup.Cheetah.y + 70, width=32, height=32,
                               properties = {nocollision = true, sprite = &quot;art/sprites/lightning.png&quot;, align = NPC.ALIGN_BOTLEFT}}
                         )
+                        self.scene.spark.sprite.sortOrderY = 10000
                         self.scene:addObject(self.scene.spark)
                     end
                     self.scene.spark:run(Serial {
-                        Do(function() self.scene.spark.hidden = false end),
+                        Do(function()
+                            self.scene.spark.hidden = false
+                            self.scene.spark.x = self.scene.objectLookup.Cheetah.x + 30
+                            self.scene.spark.y = self.scene.objectLookup.Cheetah.y + 15
+                        end),
                         Animate(self.scene.spark.sprite, &quot;idle&quot;),
                         Do(function() self.scene.spark.hidden = true end)
                     })
-                end)
+                end),
+                Wait(5)
             }
         )),
 
+        Animate(self.scene.player.sprite, &quot;idleright&quot;),
         MessageBox{message=&quot;Sally: Let's get out of here!&quot;},
         Ease(self.scene.objectLookup.B, &quot;x&quot;, self.scene.player.x - 60, 1),
         Do(function()
@@ -660,7 +667,7 @@ return function(self)
 end</property>
    </properties>
   </object>
-  <object id="235" name="Cinematic3" type="TouchTrigger" gid="2311" x="128" y="544" width="32" height="160">
+  <object id="235" name="Cinematic3" type="TouchTrigger" gid="2311" x="160" y="544" width="32" height="160">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="atMostOnce" type="bool" value="true"/>
@@ -681,6 +688,7 @@ local BasicNPC = require &quot;object/BasicNPC&quot;
 local NPC = require &quot;object/NPC&quot;
 
 return function(self)
+    local doorLayer = self.scene:findLayer(&quot;movable3&quot;)
     return BlockPlayer {
         Wait(1),
         Do(function() self.scene.player.noIdle = true end),
@@ -689,31 +697,75 @@ return function(self)
         MessageBox{message=&quot;Nicole: It appears that the security system is in lockdown as a result of detecting an intruder{p60}, Sally.&quot;, sfx=&quot;nicolebeep&quot;},
         MessageBox{message=&quot;Nicole: I am in the process of overriding it now...&quot;},
         Wait(1),
-        Animate(self.scene.objectLookup.Cheetah.sprite, &quot;staticleft&quot;),
+        Animate(self.scene.objectLookup.Cheetah.sprite, &quot;jitterleft&quot;),
         Wait(1),
         PlayAudio(&quot;sfx&quot;, &quot;cheetabreathe&quot;, 1),
         Animate(self.scene.player.sprite, &quot;scaredright&quot;),
         Wait(1),
-        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 10 end, 1),
+        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 40 end, 1),
+        Animate(self.scene.objectLookup.Cheetah.sprite, &quot;hurtleft&quot;),
         Wait(1),
-        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 20 end, 1),
+        Animate(self.scene.objectLookup.Cheetah.sprite, &quot;jitterleft&quot;),
+        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 50 end, 1),
+        Animate(self.scene.objectLookup.Cheetah.sprite, &quot;hurtleft&quot;),
 
-        MessageBox{message=&quot;Sonic: Saaal{p60}, it's still moooving!&quot;},
-        Wait(1),
-        PlayAudio(&quot;sfx&quot;, &quot;cheetabreathe&quot;, 1),
-        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 20 end, 1),
-        MessageBox{message=&quot;B: W-W-What is happening?!&quot;},
-        Wait(1),
-        MessageBox{message=&quot;Sally: Nicole{p60}, how's it going?&quot;},
-        MessageBox{message=&quot;Nicole: Override operation is 88% complete.&quot;, sfx=&quot;nicolebeep&quot;},
-        Wait(1),
-        PlayAudio(&quot;sfx&quot;, &quot;cheetabreathe&quot;, 1),
-        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 20 end, 1),
-        MessageBox{message=&quot;Sonic: Move it along, Nicole!!&quot;},
-        MessageBox{message=&quot;B: I-I'm scared! I don't like this!!&quot;},
+        Do(function()
+            self.scene.player.noIdle = true
+            self.scene.objectLookup.B.hidden = false
+            self.scene.objectLookup.B.sprite:setAnimation(&quot;holdsonicright&quot;)
+            self.scene.objectLookup.B.x = self.scene.player.x - 60
+            self.scene.objectLookup.B.y = self.scene.player.y - 60
+        end),
+        Ease(self.scene.objectLookup.B, &quot;y&quot;, function() return self.scene.player.y - 60 + 70 end, 2),
+
+        MessageBox{message=&quot;Sonic: Saaal{p60}, it's still moooving!&quot;, closeAction=Wait(1.5)},
+        MessageBox{message=&quot;B: I-I'm scared! {p60}I don't like this!!&quot;, closeAction=Wait(1)},
+        Parallel {
+            Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x - 15 end, 1),
+            Ease(self.scene.objectLookup.B, &quot;x&quot;, function() return self.scene.objectLookup.B.x - 20 end, 1)
+        },
         Wait(0.5),
-        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 20 end, 1),
-        MessageBox{message=&quot;Nicole: Override complete.&quot;, sfx=&quot;nicolebeep&quot;},
+        PlayAudio(&quot;sfx&quot;, &quot;cheetabreathe&quot;, 1),
+        Animate(self.scene.objectLookup.Cheetah.sprite, &quot;jitterleft&quot;),
+        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 50 end, 1),
+        Animate(self.scene.objectLookup.Cheetah.sprite, &quot;hurtleft&quot;),
+        Parallel {
+            Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x - 15 end, 1),
+            Ease(self.scene.objectLookup.B, &quot;x&quot;, function() return self.scene.objectLookup.B.x - 20 end, 1)
+        },
+        Wait(0.5),
+        MessageBox{message=&quot;Sally: Nicole?!&quot;, closeAction=Wait(1)},
+        MessageBox{message=&quot;Nicole: Security override is 85% complete, Sally.&quot;, sfx=&quot;nicolebeep&quot;, closeAction=Wait(1)},
+        Wait(0.5),
+        PlayAudio(&quot;sfx&quot;, &quot;cheetabreathe&quot;, 1),
+        Animate(self.scene.objectLookup.Cheetah.sprite, &quot;jitterleft&quot;),
+        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 50 end, 1),
+        Animate(self.scene.objectLookup.Cheetah.sprite, &quot;hurtleft&quot;),
+        Parallel {
+            Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x - 15 end, 1),
+            Ease(self.scene.objectLookup.B, &quot;x&quot;, function() return self.scene.objectLookup.B.x - 20 end, 1)
+        },
+        MessageBox{message=&quot;Sonic: Move it along, Nicole!!&quot;, closeAction=Wait(1.5)},
+        Wait(0.5),
+        Animate(self.scene.objectLookup.Cheetah.sprite, &quot;jitterleft&quot;),
+        Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 50 end, 1),
+        Parallel {
+            MessageBox{message=&quot;Nicole: Override complete.&quot;, sfx=&quot;nicolebeep&quot;, closeAction=Wait(1)},
+            Serial {
+                PlayAudio(&quot;sfx&quot;, &quot;elevatorend&quot;, 1, true),
+                Ease(doorLayer, &quot;offsety&quot;, 32*-6, 0.8, &quot;linear&quot;),
+                Wait(0.2),
+                PlayAudio(&quot;sfx&quot;, &quot;elevatorend&quot;, 1, true, false, true),
+                Ease(doorLayer, &quot;offsety&quot;, 0, 0.8, &quot;linear&quot;)
+            },
+            Serial {
+                Wait(0.5),
+                Parallel {
+                    Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x - 150 end, 1),
+                    Ease(self.scene.objectLookup.B, &quot;x&quot;, function() return self.scene.objectLookup.B.x - 100 end, 1)
+                }
+            }
+        },
     }
 end</property>
    </properties>
