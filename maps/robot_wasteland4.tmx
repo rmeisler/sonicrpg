@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="41" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="236">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="41" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="237">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotwastelandbg.png"/>
   <property name="bgm" type="file" value="../audio/music/battle.ogg"/>
@@ -690,7 +690,7 @@ local NPC = require &quot;object/NPC&quot;
 return function(self)
     local doorLayer = self.scene:findLayer(&quot;movable3&quot;)
     return BlockPlayer {
-        Wait(1),
+        Wait(2.5),
         Do(function() self.scene.player.noIdle = true end),
         Animate(self.scene.player.sprite, &quot;nicholedown&quot;),
         MessageBox{message=&quot;Sally: Ugh! {p80}Why isn't this door opening, Nicole?!&quot;},
@@ -716,13 +716,13 @@ return function(self)
             self.scene.objectLookup.B.x = self.scene.player.x - 60
             self.scene.objectLookup.B.y = self.scene.player.y - 60
         end),
-        Ease(self.scene.objectLookup.B, &quot;y&quot;, function() return self.scene.player.y - 60 + 70 end, 2),
+        Ease(self.scene.objectLookup.B, &quot;y&quot;, function() return self.scene.player.y - 60 + (self.scene.player.y &gt; 450 and -70 or 70) end, 2),
 
         MessageBox{message=&quot;Sonic: Saaal{p60}, it's still moooving!&quot;, closeAction=Wait(1.5)},
-        MessageBox{message=&quot;B: I-I'm scared! {p60}I don't like this!!&quot;, closeAction=Wait(1)},
+        MessageBox{message=&quot;B: I-I don't like this!!&quot;, closeAction=Wait(1)},
         Parallel {
-            Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x - 15 end, 1),
-            Ease(self.scene.objectLookup.B, &quot;x&quot;, function() return self.scene.objectLookup.B.x - 20 end, 1)
+            Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x - (self.scene.player.y &gt; 450 and 20 or 15) end, 1),
+            Ease(self.scene.objectLookup.B, &quot;x&quot;, function() return self.scene.objectLookup.B.x - (self.scene.player.y &gt; 450 and 15 or 20) end, 1)
         },
         Wait(0.5),
         PlayAudio(&quot;sfx&quot;, &quot;cheetabreathe&quot;, 1),
@@ -730,8 +730,8 @@ return function(self)
         Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 50 end, 1),
         Animate(self.scene.objectLookup.Cheetah.sprite, &quot;hurtleft&quot;),
         Parallel {
-            Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x - 15 end, 1),
-            Ease(self.scene.objectLookup.B, &quot;x&quot;, function() return self.scene.objectLookup.B.x - 20 end, 1)
+            Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x - (self.scene.player.y &gt; 450 and 20 or 15) end, 1),
+            Ease(self.scene.objectLookup.B, &quot;x&quot;, function() return self.scene.objectLookup.B.x - (self.scene.player.y &gt; 450 and 15 or 20) end, 1)
         },
         Wait(0.5),
         MessageBox{message=&quot;Sally: Nicole?!&quot;, closeAction=Wait(1)},
@@ -742,32 +742,48 @@ return function(self)
         Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 50 end, 1),
         Animate(self.scene.objectLookup.Cheetah.sprite, &quot;hurtleft&quot;),
         Parallel {
-            Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x - 15 end, 1),
-            Ease(self.scene.objectLookup.B, &quot;x&quot;, function() return self.scene.objectLookup.B.x - 20 end, 1)
+            Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x - (self.scene.player.y &gt; 450 and 20 or 15) end, 1),
+            Ease(self.scene.objectLookup.B, &quot;x&quot;, function() return self.scene.objectLookup.B.x - (self.scene.player.y &gt; 450 and 15 or 20) end, 1)
         },
         MessageBox{message=&quot;Sonic: Move it along, Nicole!!&quot;, closeAction=Wait(1.5)},
         Wait(0.5),
         Animate(self.scene.objectLookup.Cheetah.sprite, &quot;jitterleft&quot;),
         Ease(self.scene.objectLookup.Cheetah, &quot;x&quot;, function() return self.scene.objectLookup.Cheetah.x - 50 end, 1),
+        Do(function() self.scene.objectLookup.Cheetah.sprite:setAnimation(&quot;runleft&quot;) end),
         Parallel {
             MessageBox{message=&quot;Nicole: Override complete.&quot;, sfx=&quot;nicolebeep&quot;, closeAction=Wait(1)},
             Serial {
                 PlayAudio(&quot;sfx&quot;, &quot;elevatorend&quot;, 1, true),
-                Ease(doorLayer, &quot;offsety&quot;, 32*-6, 0.8, &quot;linear&quot;),
+                Ease(doorLayer, &quot;offsety&quot;, 32*-6, 2, &quot;linear&quot;),
                 Wait(0.2),
                 PlayAudio(&quot;sfx&quot;, &quot;elevatorend&quot;, 1, true, false, true),
-                Ease(doorLayer, &quot;offsety&quot;, 0, 0.8, &quot;linear&quot;)
+                Ease(doorLayer, &quot;offsety&quot;, 0, 3, &quot;linear&quot;)
             },
             Serial {
                 Wait(0.5),
                 Parallel {
-                    Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x - 150 end, 1),
-                    Ease(self.scene.objectLookup.B, &quot;x&quot;, function() return self.scene.objectLookup.B.x - 100 end, 1)
+                    Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x - 150 end, 1.5),
+                    Ease(self.scene.objectLookup.B, &quot;x&quot;, function() return self.scene.objectLookup.B.x - 100 end, 1.5)
                 }
+            },
+            Serial {
+                Wait(0.3),
+                PlayAudio(&quot;sfx&quot;, &quot;cheetarun&quot;, 1, true),
+                Wait(0.5),
+                Move(self.scene.objectLookup.Cheetah, self.scene.objectLookup.CheetahWP2, &quot;run&quot;),
+                PlayAudio(&quot;sfx&quot;, &quot;explosion&quot;, 1, true),
+                Animate(self.scene.objectLookup.Cheetah.sprite, &quot;kickedleft&quot;),
+                self.scene:screenShake(30, 40)
             }
         },
+        Do(function() self.scene:changeScene{map=&quot;robot_wasteland2&quot;, fadeOutSpeed=0.2, fadeInSpeed=0.2} end)
     }
 end</property>
+   </properties>
+  </object>
+  <object id="236" name="CheetahWP2" type="BasicNPC" gid="37" x="0" y="448" width="64" height="64">
+   <properties>
+    <property name="ghost" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
@@ -877,8 +893,8 @@ end</property>
 847,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,847,
 847,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,847,
 847,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,847,
-847,847,847,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,847,847,847,
-847,847,847,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,847,847,847,
+847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,
+847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,
 847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,847,
 0,0,847,847,847,847,847,847,847,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
