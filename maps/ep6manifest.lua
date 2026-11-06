@@ -137,6 +137,21 @@ return {
     },
 	{
         type = "map",
+        file = "maps/robot_wasteland6.lua",
+		--primary = true -- testing
+    },
+	{
+        type = "map",
+        file = "maps/robot_wasteland7.lua",
+		--primary = true -- testing
+    },
+	{
+        type = "map",
+        file = "maps/scrapheap.lua",
+		--primary = true -- testing
+    },
+	{
+        type = "map",
         file = "maps/greatjungle.lua",
 		--primary = true
     },

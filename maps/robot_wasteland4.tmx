@@ -547,11 +547,12 @@ end</property>
    </properties>
   </object>
   <object id="230" name="MagnetCollision" type="BasicNPC" gid="2311" x="448" y="576" width="448" height="160"/>
-  <object id="232" name="Cheetah" type="BasicNPC" gid="37" x="1248" y="448" width="64" height="64">
+  <object id="232" name="Cheetah" type="BasicNPC" gid="37" x="1184" y="448" width="64" height="64">
    <properties>
     <property name="defaultAnim" value="runleft"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="hidden" type="bool" value="true"/>
+    <property name="ignoreMapCollision" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/cheeta.png"/>
    </properties>
   </object>
@@ -607,10 +608,10 @@ return function(self)
                 end),
                 Parallel {
                     Ease(self.scene.objectLookup.B, &quot;x&quot;, self.scene.player.x - 120, 3),
-                    MessageBox{message=&quot;Sonic: N-No no no!! {p80}How did it get down here?!&quot;}
+                    MessageBox{message=&quot;Sonic: N-No no no!! {p80}What is that {h thing} doing down here?!&quot;}
                 },
                 Animate(self.scene.player.sprite, &quot;scaredright&quot;),
-                MessageBox{message=&quot;Sally: It must've followed us down here!&quot;}
+                MessageBox{message=&quot;Sally: It must've followed us!&quot;}
             }
         },
         Wait(0.5),
@@ -776,7 +777,7 @@ return function(self)
                 self.scene:screenShake(30, 40)
             }
         },
-        Do(function() self.scene:changeScene{map=&quot;robot_wasteland2&quot;, fadeOutSpeed=0.2, fadeInSpeed=0.2} end)
+        Do(function() self.scene:changeScene{map=&quot;robot_wasteland6&quot;, fadeOutSpeed=0.2, fadeInSpeed=0.2, fadeOutMusic=true} end)
     }
 end</property>
    </properties>
