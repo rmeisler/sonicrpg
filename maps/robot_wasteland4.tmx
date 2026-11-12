@@ -616,7 +616,7 @@ return function(self)
         },
         Wait(0.5),
         Animate(self.scene.player.sprite, &quot;nicholedown&quot;),
-        MessageBox{message=&quot;Sally: Nicole{p60}, reactivate the magnets!&quot;, sfx=&quot;nicolebeep&quot;},
+        MessageBox{message=&quot;Sally: Reactivate the magnets, Nicole!&quot;, sfx=&quot;nicolebeep&quot;},
         Do(function()
             self.scene.magnetsOn = true
         end),
@@ -763,8 +763,8 @@ return function(self)
             Serial {
                 Wait(0.5),
                 Parallel {
-                    Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x - 150 end, 1.5),
-                    Ease(self.scene.objectLookup.B, &quot;x&quot;, function() return self.scene.objectLookup.B.x - 100 end, 1.5)
+                    Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x - 150 end, 3),
+                    Ease(self.scene.objectLookup.B, &quot;x&quot;, function() return self.scene.objectLookup.B.x - 100 end, 3)
                 }
             },
             Serial {

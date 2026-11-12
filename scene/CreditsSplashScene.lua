@@ -124,6 +124,8 @@ Reggie Meisler/RedG
 Reggie Meisler/RedG
 Billy Adams
 Jesse Rose/GreenCauldron08
+AmeixaRoxa
+Artis Armageddon
 Diego Leal E (Robotnik Boss Theme)
 Julia Jayhan Handschin (Ep 6 Credits Theme)
 Ilya Rappu/PicnikSonik

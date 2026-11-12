@@ -770,6 +770,11 @@ return {
 	},
 	{
 		type = "sound",
+		file = "audio/music/tumbling.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
 		file = "audio/music/robotwasteland.ogg",
 		category = "music"
 	},

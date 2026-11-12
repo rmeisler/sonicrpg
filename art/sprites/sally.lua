@@ -17,6 +17,9 @@ return {
 		kneeldown = {
 			frames = {{12,7}}
 		},
+		kneelleft = {
+			frames = {{16,3}}
+		},
 		
 		stepback = {
 		    frames = {{0,3},{1,3},{0,3},{5,3}},

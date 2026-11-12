@@ -54,10 +54,6 @@ return function(scene, hint)
 		MessageBox{message="Sally: Wait a second... {p60}where's B?"},
 		Wait(0.5),
 		MessageBox{message="Sonic: He's gotta be around here somewhere."},
-		Parallel {
-			Ease(scene.objectLookup.Sonic, "x", scene.player.x - 40, 2),
-			Ease(scene.objectLookup.Sonic, "y", scene.player.y - 80, 2)
-		},
 		Do(function()
 			GameState:removeFromParty("b")
 			scene.player.noIdle = false

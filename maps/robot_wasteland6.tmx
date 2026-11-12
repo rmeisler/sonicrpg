@@ -246,7 +246,7 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="225" name="Spawn 1" type="Player" gid="2311" x="1056" y="448" width="32" height="32"/>
+  <object id="225" name="Spawn 1" type="Player" gid="2311" x="1120" y="480" width="32" height="32"/>
   <object id="227" name="LeftPath" type="SceneEdge" gid="2311" x="64" y="512" width="32" height="128">
    <properties>
     <property name="ghost" type="bool" value="true"/>
@@ -256,7 +256,7 @@
     <property name="scene" type="file" value="robot_wasteland7.lua"/>
    </properties>
   </object>
-  <object id="237" name="Sonic" type="BasicNPC" gid="37" x="992" y="480" width="32" height="32">
+  <object id="237" name="Sonic" type="BasicNPC" gid="37" x="1056" y="448" width="32" height="32">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="dead"/>

@@ -54,39 +54,49 @@ return function(scene, hint)
 			sonicSprite:pushOverride("walkleft", "shock")
 			sonicSprite:pushOverride("walkright", "shock")
 		end),
+		MessageBox{message="Sally: It's so dark in here..."},
+		Wait(0.5),
+		MessageBox{message="Sonic: Yo, watch where you're steppin', Sal! {p60}\nYou're walkin' for both of us, right now!"},
+		Wait(0.5),
+		MessageBox{message="Sally: !!", closeAction=Wait(1)},
 		Parallel {
-			Ease(sallySprite.transform, "angle", -20*math.pi, 0.1, "linear"),
-			Ease(sonicSprite.transform, "angle", -20*math.pi, 0.1, "linear"),
 			Serial {
-				Wait(0.5),
+				Wait(1.5),
+				PlayAudio("music", "tumbling", 1, true)
+			},
+			MessageBox{message="Sonic: This is not coooool!", closeAction=Wait(3), textSpeed=3},
+			Ease(sallySprite.transform, "angle", -24*math.pi, 0.08, "linear"),
+			Ease(sonicSprite.transform, "angle", -24*math.pi, 0.08, "linear"),
+			Serial {
+				Wait(0.3),
 				Parallel {
 					Ease(scene.objectLookup.Sonic, "x", 100, 0.7, "linear"),
 					Ease(scene.objectLookup.Sonic, "y", 100, 0.7, "linear")
 				},
 				Ease(scene.objectLookup.Sonic, "y", 170, 4, "linear"),
 				Parallel {
-					Ease(scene.objectLookup.Sonic, "x", 700, 0.7, "linear"),
-					Ease(scene.objectLookup.Sonic, "y", 200, 0.7, "linear")
+					Ease(scene.objectLookup.Sonic, "x", 700, 0.8, "linear"),
+					Ease(scene.objectLookup.Sonic, "y", 200, 0.8, "linear")
 				},
 				Ease(scene.objectLookup.Sonic, "y", 270, 4, "linear"),
 				Parallel {
-					Ease(scene.objectLookup.Sonic, "x", 100, 0.7, "linear"),
-					Ease(scene.objectLookup.Sonic, "y", 300, 0.7, "linear"),
+					Ease(scene.objectLookup.Sonic, "x", 100, 0.9, "linear"),
+					Ease(scene.objectLookup.Sonic, "y", 300, 0.9, "linear"),
 				},
 				Ease(scene.objectLookup.Sonic, "y", 370, 4, "linear"),
 				Parallel {
-					Ease(scene.objectLookup.Sonic, "x", 700, 0.7, "linear"),
-					Ease(scene.objectLookup.Sonic, "y", 400, 0.7, "linear"),
+					Ease(scene.objectLookup.Sonic, "x", 700, 1, "linear"),
+					Ease(scene.objectLookup.Sonic, "y", 400, 1, "linear"),
 				},
 				Ease(scene.objectLookup.Sonic, "y", 470, 4, "linear"),
 				Parallel {
-					Ease(scene.objectLookup.Sonic, "x", 100, 0.7, "linear"),
-					Ease(scene.objectLookup.Sonic, "y", 500, 0.7, "linear"),
+					Ease(scene.objectLookup.Sonic, "x", 100, 1.1, "linear"),
+					Ease(scene.objectLookup.Sonic, "y", 500, 1.1, "linear"),
 				},
 				Ease(scene.objectLookup.Sonic, "y", 570, 4, "linear"),
 				Parallel {
-					Ease(scene.objectLookup.Sonic, "x", 900, 0.7, "linear"),
-					Ease(scene.objectLookup.Sonic, "y", 600, 0.7, "linear"),
+					Ease(scene.objectLookup.Sonic, "x", 900, 1.2, "linear"),
+					Ease(scene.objectLookup.Sonic, "y", 600, 1.2, "linear"),
 				}
 			},
 			Serial {
@@ -96,28 +106,28 @@ return function(scene, hint)
 				},
 				Ease(scene.objectLookup.Sally, "y", 170, 4, "linear"),
 				Parallel {
-					Ease(scene.objectLookup.Sally, "x", 700, 0.7, "linear"),
-					Ease(scene.objectLookup.Sally, "y", 200, 0.7, "linear")
+					Ease(scene.objectLookup.Sally, "x", 700, 0.8, "linear"),
+					Ease(scene.objectLookup.Sally, "y", 200, 0.8, "linear")
 				},
 				Ease(scene.objectLookup.Sally, "y", 270, 4, "linear"),
 				Parallel {
-					Ease(scene.objectLookup.Sally, "x", 100, 0.7, "linear"),
-					Ease(scene.objectLookup.Sally, "y", 300, 0.7, "linear")
+					Ease(scene.objectLookup.Sally, "x", 100, 0.9, "linear"),
+					Ease(scene.objectLookup.Sally, "y", 300, 0.9, "linear")
 				},
 				Ease(scene.objectLookup.Sally, "y", 370, 4, "linear"),
 				Parallel {
-					Ease(scene.objectLookup.Sally, "x", 700, 0.7, "linear"),
-					Ease(scene.objectLookup.Sally, "y", 400, 0.7, "linear")
+					Ease(scene.objectLookup.Sally, "x", 700, 1, "linear"),
+					Ease(scene.objectLookup.Sally, "y", 400, 1, "linear")
 				},
 				Ease(scene.objectLookup.Sally, "y", 470, 4, "linear"),
 				Parallel {
-					Ease(scene.objectLookup.Sally, "x", 100, 0.7, "linear"),
-					Ease(scene.objectLookup.Sally, "y", 500, 0.7, "linear")
+					Ease(scene.objectLookup.Sally, "x", 100, 1.1, "linear"),
+					Ease(scene.objectLookup.Sally, "y", 500, 1.1, "linear")
 				},
 				Ease(scene.objectLookup.Sally, "y", 570, 4, "linear"),
 				Parallel {
-					Ease(scene.objectLookup.Sally, "x", 900, 0.7, "linear"),
-					Ease(scene.objectLookup.Sally, "y", 600, 0.7, "linear")
+					Ease(scene.objectLookup.Sally, "x", 900, 1.2, "linear"),
+					Ease(scene.objectLookup.Sally, "y", 600, 1.2, "linear")
 				}
 			}
 		}
