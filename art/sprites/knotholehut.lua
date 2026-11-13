@@ -11,6 +11,10 @@ return {
 		
 		snow = {
 			frames = {{1,0}}
+		},
+		
+		yurt = {
+			frames = {{2,0}}
 		}
     }
 }

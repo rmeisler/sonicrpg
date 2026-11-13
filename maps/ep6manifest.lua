@@ -148,7 +148,7 @@ return {
 	{
         type = "map",
         file = "maps/scrapheap.lua",
-		--primary = true -- testing
+		primary = true -- testing
     },
 	{
         type = "map",
