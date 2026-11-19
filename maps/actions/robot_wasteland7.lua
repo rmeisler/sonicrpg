@@ -58,12 +58,9 @@ return function(scene, hint)
 		Wait(0.5),
 		MessageBox{message="Sonic: Yo, watch where you're steppin', Sal! {p60}\nYou're walkin' for both of us, right now!"},
 		Wait(0.5),
-		MessageBox{message="Sally: !!", closeAction=Wait(1)},
+		MessageBox{message="Sally: !!", closeAction=Wait(0.5)},
+		PlayAudio("music", "tumbling", 1, true),
 		Parallel {
-			Serial {
-				Wait(1.5),
-				PlayAudio("music", "tumbling", 1, true)
-			},
 			MessageBox{message="Sonic: This is not coooool!", closeAction=Wait(3), textSpeed=3},
 			Ease(sallySprite.transform, "angle", -24*math.pi, 0.08, "linear"),
 			Ease(sonicSprite.transform, "angle", -24*math.pi, 0.08, "linear"),
@@ -130,6 +127,9 @@ return function(scene, hint)
 					Ease(scene.objectLookup.Sally, "y", 600, 1.2, "linear")
 				}
 			}
-		}
+		},
+		Do(function()
+			scene:changeScene{map="scrapheap", fadeOutSpeed=1, fadeInSpeed=1, hint="intro"}
+		end)
 	}
 end

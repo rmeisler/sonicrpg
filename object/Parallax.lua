@@ -28,7 +28,7 @@ function Parallax:construct(scene, layer)
 
 	-- Parallax images are drawn as a 3x3 tiles, stitched together by drawing the image nine times
 	self.oneDraw = function()
-		love.graphics.setColor(self.color)
+		love.graphics.setColor(self.color[1], self.color[2], self.color[3], self.layer.opacity * 255 or 255)
 		love.graphics.draw(layer.image, layer.x, layer.y, self.angle * (math.pi/180), 1, 1, 0, 0, 0, 0)
 	end
 	self.layer.draw = function()

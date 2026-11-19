@@ -138,7 +138,7 @@ return {
 	{
         type = "map",
         file = "maps/robot_wasteland6.lua",
-		--primary = true -- testing
+		primary = true -- testing
     },
 	{
         type = "map",
@@ -148,7 +148,7 @@ return {
 	{
         type = "map",
         file = "maps/scrapheap.lua",
-		primary = true -- testing
+		--primary = true -- testing
     },
 	{
         type = "map",
@@ -766,6 +766,16 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/wearefucked.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/scrapheap.ogg",
+		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/dumbbots.ogg",
 		category = "music"
 	},
 	{

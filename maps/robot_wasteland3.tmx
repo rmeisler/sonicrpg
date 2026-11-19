@@ -1360,7 +1360,7 @@ end</property>
   <object id="262" name="Coconuts" type="BasicNPC" gid="1714" x="736" y="2402" width="64" height="64">
    <properties>
     <property name="colorOverride" value="0,0,0"/>
-    <property name="sprite" type="file" value="../art/sprites/coconuts1.png"/>
+    <property name="sprite" type="file" value="../art/sprites/coconuts.png"/>
    </properties>
   </object>
   <object id="263" name="Inspect6" type="BasicNPC" gid="37" x="736" y="2400" width="32" height="32">

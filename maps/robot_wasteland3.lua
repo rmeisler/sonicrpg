@@ -1810,7 +1810,7 @@ return {
           visible = true,
           properties = {
             ["colorOverride"] = "0,0,0",
-            ["sprite"] = "../art/sprites/coconuts1.png"
+            ["sprite"] = "../art/sprites/coconuts.png"
           }
         },
         {
