@@ -108,7 +108,7 @@ return {
 	{
         type = "map",
         file = "maps/sonicdream1.lua",
-		primary = true -- testing
+		--primary = true -- testing
     },
 	{
         type = "map",
@@ -143,7 +143,7 @@ return {
 	{
         type = "map",
         file = "maps/robot_wasteland7.lua",
-		--primary = true -- testing
+		primary = true -- testing
     },
 	{
         type = "map",

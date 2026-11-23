@@ -423,7 +423,7 @@ return {
 		},
 		veryyoungdesksweating = {
 			frames = {{6,13},{7,13}},
-			speed = 0.2
+			speed = 0.4
 		},
 		veryyoungdesksleep = {
 			frames = {{5,13}}

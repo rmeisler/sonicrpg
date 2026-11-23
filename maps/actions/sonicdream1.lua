@@ -65,29 +65,37 @@ return function(scene, hint)
 		scene.objectLookup.Swatbot2.sprite.color = {255,255,255,0}
 		scene.objectLookup.Hoverbot1.sprite.color = {255,255,255,0}
 		scene.objectLookup.Hoverbot2.sprite.color = {255,255,255,0}
+		scene.objectLookup.Cheetah.sprite.color = {255,255,255,0}
 
 		return BlockPlayer {
 			Do(function()
 				scene.player.sprite.visible = false
 				scene.player.dropShadow.hidden = true
 				scene.objectLookup.Chuck.hidden = true
-				scene.objectLookup.Chalkboard.hidden = false
+				scene.objectLookup.Sonic.hidden = true
+				scene.objectLookup.Mom.hidden = true
+				scene.objectLookup.Chalkboard.hidden = true
 				scene.objectLookup.Chalkboard.x = scene.objectLookup.Chalkboard.x - 96
 				scene.objectLookup.Mom.x = scene.objectLookup.Mom.x - 96
 				scene.objectLookup.Cheetah.x = scene.objectLookup.Cheetah.x - 96
+			end),
+			Wait(1),
+			MessageBox{message="Sonic!", closeAction=Wait(2)},
+			Do(function()
+				scene.objectLookup.Sonic.hidden = false
+				scene.objectLookup.Mom.hidden = false
+				scene.objectLookup.Chalkboard.hidden = false
 				scene.tvstatic = tvstatic
 				scene.tvstatic_time = 0
 			end),
 			staticAction(),
 			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesksleep"),
 			Animate(scene.objectLookup.Mom.sprite, "teacher_concerned"),
-			Wait(1),
-			PlayAudio("music", "ep6trapped", 1, true, true),
-			Wait(1),
 			Parallel {
-				MessageBox{message="Teacher: Sonic! {p60}Are you listening?", textSpeed=3, closeAction=Wait(3)},
+				MessageBox{message="Teacher: Sonic! {p80}Are you listening?", textSpeed=3, closeAction=Wait(3)},
 				Serial {
-					Wait(1),
+					Wait(0.5),
+					PlayAudio("music", "ep6trapped", 1, true, true),
 					Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesksurprise"),
 					scene.objectLookup.Sonic:hop()
 				}
@@ -95,23 +103,20 @@ return function(scene, hint)
 			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesklookaway"),
 			Wait(1),
 			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesk"),
-			MessageBox{message="Teacher: This will be on tomorrow's exam!", textSpeed=3, closeAction=Wait(3)},
+			MessageBox{message="Teacher: As I was saying...", textSpeed=3, closeAction=Wait(2)},
 
-			staticAction(),
+			Wait(1),
 			Do(function()
 				scene.objectLookup.Cheetah.hidden = false
 			end),
-			Wait(0.5),
+			Ease(scene.objectLookup.Cheetah.sprite.color, 4, 255, 1, "linear"),
 			PlayAudio("sfx", "cheetabreathe", 1, true),
-			Wait(1),
 			scene.objectLookup.Sonic:hop(),
 			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdeskscared"),
+			MessageBox{message="Teacher: The {h Cheetah Bot} features the latest in\nhyper speed technology{p100}, the {h \"Super Sonic Microchip\"}!", textSpeed=3, closeAction=Wait(5)},
+			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesksurprise"),
+			MessageBox{message="Teacher: With this microchip, any robot will be able to outrun even the fastest hedgehog...", textSpeed=3, closeAction=Wait(5)},
 			Wait(1),
-			MessageBox{message="Teacher: This {h Cheetah Bot}{p60}, features the latest in hyper speed technology{p100}, the {h \"Super Sonic Microchip\"}!", textSpeed=3, closeAction=Wait(4.5)},
-			Animate(scene.objectLookup.Mom.sprite, "teacher_evil"),
-			Wait(1),
-			MessageBox{message="Teacher: With this microchip{p60}, any robot can outpace even the fastest mobian...", textSpeed=3, closeAction=Wait(4)},
-			Wait(1.5),
 			Do(function()
 				scene.objectLookup.Rover.hidden = false
 				scene.objectLookup.Swatbot1.hidden = false
@@ -119,10 +124,11 @@ return function(scene, hint)
 				scene.objectLookup.Hoverbot1.hidden = false
 				scene.objectLookup.Hoverbot2.hidden = false
 			end),
+			Animate(scene.objectLookup.Mom.sprite, "teacher_evil"),
 			Parallel {
-				MessageBox{message="Teacher: Soon{p80}, this microchip will be installed in every bot in Robotropolis!!", textSpeed=3, closeAction=Wait(3)},
+				MessageBox{message="Teacher: Soon, every bot in Robotropolis will have one!", textSpeed=3, closeAction=Wait(4)},
 				Serial {
-					Wait(3),
+					Wait(2),
 					Do(function()
 						scene.objectLookup.Sonic.sprite:setAnimation("veryyoungdesksweating")
 					end),
