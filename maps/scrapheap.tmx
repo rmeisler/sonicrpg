@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="90" height="90" tilewidth="32" tileheight="32" infinite="0" nextobjectid="308">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="90" height="90" tilewidth="32" tileheight="32" infinite="0" nextobjectid="313">
  <properties>
   <property name="battlebg" type="file" value="../art/backgrounds/robotwastelandbg.png"/>
   <property name="bgm" type="file" value="../audio/music/battle.ogg"/>
@@ -352,12 +352,12 @@
 0,0,0,0,0,0,0,3021,0,2491,2492,2491,2491,2492,2491,2491,2491,0,3049,3050,3050,3050,3051,0,0,0,0,14524,14525,14526,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14524,14525,14526,14524,14526,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,2526,2527,2526,2526,2527,2526,2526,2526,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3191,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3192,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2892,2893,0,0,2454,3047,3047,3047,3047,3047,3047,3047,3047,3047,3047,3047,3047,3047,3047,3047,2455,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2458,0,0,2458,0,0,2458,0,0,2458,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3117,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,3118,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,2458,0,0,2458,0,0,2458,0,0,2458,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2815,2815,2844,2815,2844,2844,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3117,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,3118,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,2493,0,0,2493,0,0,2493,0,0,2493,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14386,14387,14388,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3117,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,3118,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,2528,0,0,2528,0,0,2528,0,0,2528,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14386,14387,14456,14456,14456,14387,14388,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3117,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,3118,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2563,0,0,2563,0,0,2563,0,0,2563,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14386,14456,14456,14456,14456,14456,14456,14456,14388,0,0,0,0,0,0,0,0,0,0,0,0,0,3117,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,3118,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,2563,0,0,2563,0,0,2563,0,0,2563,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14386,14524,14456,14456,14456,14456,14456,14456,14388,0,0,0,0,0,0,0,0,0,0,0,0,0,3117,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,3118,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14524,14525,14456,14456,14456,14525,14526,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3117,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,3118,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14524,14525,14526,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3117,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,3118,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2815,2815,2844,2815,2844,2844,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3117,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,2948,3118,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2489,3082,3082,3082,3082,3082,3082,3082,3082,3082,3082,3082,3082,3082,3082,3082,2490,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -388,7 +388,16 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="lower"/>
+ <objectgroup name="lower">
+  <object id="311" name="CageBack" type="BasicNPC" gid="2374" x="902" y="1728" width="256" height="224">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="back"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/cage.png"/>
+   </properties>
+  </object>
+ </objectgroup>
  <layer name="ObstacleShadow" width="90" height="90" opacity="0.8">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1069,7 +1078,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/mattress.png"/>
    </properties>
   </object>
-  <object id="299" name="Spawn 1" type="Player" gid="1714" x="384" y="1728" width="32" height="32"/>
+  <object id="299" name="Spawn 1" type="Player" gid="1714" x="384" y="1746" width="32" height="32"/>
   <object id="300" name="Sonic" type="BasicNPC" gid="2374" x="32" y="1600" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
@@ -1086,7 +1095,7 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/sally.png"/>
    </properties>
   </object>
-  <object id="302" name="B" type="BasicNPC" gid="2374" x="1024" y="1696" width="64" height="64">
+  <object id="302" name="B" type="BasicNPC" gid="2374" x="992" y="1696" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
     <property name="defaultAnim" value="idleright"/>
@@ -1124,25 +1133,151 @@ end</property>
   <object id="306" name="Breezie" type="BasicNPC" gid="2374" x="1248" y="1376" width="64" height="64">
    <properties>
     <property name="align" value="bottom_left"/>
-    <property name="colorOverride" value="0,0,0"/>
     <property name="defaultAnim" value="pose"/>
     <property name="ghost" type="bool" value="true"/>
     <property name="sprite" type="file" value="../art/sprites/breezie.png"/>
    </properties>
   </object>
-  <object id="307" name="IntroEvent" type="TouchTrigger" gid="1714" x="736" y="1760" width="32" height="160">
+  <object id="307" name="IntroEvent" type="TouchTrigger" gid="1714" x="704" y="1760" width="32" height="160">
    <properties>
     <property name="atMostOnce" type="bool" value="true"/>
     <property name="script">local BlockPlayer = require &quot;actions/BlockPlayer&quot;
 local Ease = require &quot;actions/Ease&quot;
 local Wait = require &quot;actions/Wait&quot;
+local MessageBox = require &quot;actions/MessageBox&quot;
+local AudioFade = require &quot;actions/AudioFade&quot;
+local PlayAudio = require &quot;actions/PlayAudio&quot;
+local Animate = require &quot;actions/Animate&quot;
+local Do = require &quot;actions/Do&quot;
+local Parallel = require &quot;actions/Parallel&quot;
 
 return function(self)
     return BlockPlayer {
-        Ease(self.scene.camPos, &quot;x&quot;, -400, 1),
-        Wait(1)
+        MessageBox{message=&quot;Hey! Behave yourselves!&quot;},
+        AudioFade(&quot;music&quot;, 1, 0, 1),
+        Ease(self.scene.camPos, &quot;x&quot;, -500, 0.5, &quot;linear&quot;),
+        Wait(1),
+        self.scene.objectLookup.Breezie:hop(),
+        MessageBox{message=&quot;Breezie: Come on you three, cut it out!&quot;},
+        PlayAudio(&quot;music&quot;, &quot;scrapheap&quot;, 1, true, true),
+        self.scene.objectLookup.Coconuts:hop(),
+        Animate(self.scene.objectLookup.Coconuts.sprite, &quot;idleleft&quot;),
+        MessageBox{message=&quot;Coconuts: Sorry, Breez.&quot;},
+        self.scene.objectLookup.Scratch:hop(),
+        Animate(self.scene.objectLookup.Scratch.sprite, &quot;idleleft&quot;),
+        MessageBox{message=&quot;Scratch: Be-HA! {p60}Sorry, Breezie.&quot;},
+        self.scene.objectLookup.Grounder:hop(),
+        Animate(self.scene.objectLookup.Grounder.sprite, &quot;idleleft&quot;),
+        MessageBox{message=&quot;Grounder: Yeah{p60}, duh{p60}, we'll be good.&quot;},
+        MessageBox{message=&quot;Breezie: Thank you! {p60}So what's going on, anyhow?&quot;},
+        self.scene.objectLookup.Coconuts:hop(),
+        Animate(self.scene.objectLookup.Coconuts.sprite, &quot;idleup&quot;),
+        MessageBox{message=&quot;Coconuts: I success'ully captured an intruda, Breez!&quot;},
+        self.scene.objectLookup.Scratch:hop(),
+        Animate(self.scene.objectLookup.Scratch.sprite, &quot;idleup&quot;),
+        MessageBox{message=&quot;Scratch: YOU did?!&quot;},
+        self.scene.objectLookup.Coconuts:hop(),
+        MessageBox{message=&quot;Coconuts: Thas right! {p60}I made da cage didn' I?!&quot;},
+        self.scene.objectLookup.Grounder:hop(),
+        Animate(self.scene.objectLookup.Grounder.sprite, &quot;idleup&quot;),
+        MessageBox{message=&quot;Grounder: And I duh-ployed it!&quot;},
+        self.scene.objectLookup.Breezie:hop(),
+        MessageBox{message=&quot;Breezie: Guys, please!&quot;},
+
+        Wait(0.5),
+        Do(function()
+            self.scene.player.state = &quot;holdsonic_right_surprise&quot;
+        end),
+        Parallel {
+            Ease(self.scene.player, &quot;x&quot;, function() return self.scene.player.x + 100 end, 1, &quot;linear&quot;),
+            Ease(self.scene.camPos, &quot;x&quot;, function() return self.scene.camPos.x + 200 end, 1, &quot;linear&quot;)
+        },
+        AudioFade(&quot;music&quot;, 1, 0, 1),
+        Parallel {
+            self.scene.objectLookup.Grounder:hop(),
+            self.scene.objectLookup.Scratch:hop(),
+            self.scene.objectLookup.Coconuts:hop(),
+            self.scene.objectLookup.Breezie:hop()
+        },
+        Parallel {
+            Animate(self.scene.objectLookup.Grounder.sprite, &quot;idleleft&quot;),
+            Animate(self.scene.objectLookup.Scratch.sprite, &quot;idleleft&quot;),
+            Animate(self.scene.objectLookup.Coconuts.sprite, &quot;idleleft&quot;)
+        },
+        Wait(1),
+        Do(function()
+            self.scene.player.state = &quot;holdsonic_right_smile&quot;
+            self.scene.audio:stopMusic()
+        end),
+        MessageBox{message=&quot;Sally: Uhh... {p60}hello!&quot;},
+        Wait(0.5),
+        MessageBox{message=&quot;Breezie: ...&quot;},
+        Wait(1),
+        Do(function()
+            self.scene.objectLookup.Breezie.x = self.scene.player.x + 50
+            self.scene.objectLookup.Breezie.y = self.scene.player.y - 60
+            self.scene.player.state = &quot;holdsonic_right_surprise&quot;
+        end),
+        PlayAudio(&quot;sfx&quot;, &quot;poptop&quot;, 1, true),
+        self.scene.player:hop(),
+        Wait(1),
+        self.scene.objectLookup.Breezie:hop(),
+        MessageBox{message=&quot;Breezie: It's an honor to{p60}-- meet you{p60}-- {h Princess Sally}!&quot;},
+        MessageBox{message=&quot;Sally: Oh! {p60}Uh{p60}, thank you!&quot;},
+        self.scene.objectLookup.Breezie:hop(),
+        MessageBox{message=&quot;Breezie: A-And {h Sonic the Hedgehog}!&quot;},
+        MessageBox{message=&quot;Sonic: Hey, I'm usually much cooler than this, I swear.&quot;},
+        MessageBox{message=&quot;Sally: And you must be--&quot;},
+        PlayAudio(&quot;music&quot;, &quot;scrapheap&quot;, 1, true, true),
+        self.scene.objectLookup.Breezie:hop(),
+        MessageBox{message=&quot;Breezie: Breezie!&quot;},
+        MessageBox{message=&quot;Breezie: Oh, and back there are Coconuts, Scratch, and Grounder.&quot;},
+        Do(function() self.scene.player.state = &quot;holdsonic_right_smile&quot; end),
+        MessageBox{message=&quot;Sally: Nice to meet you all-- {p60}uh, and the one you have in the cage over here is our friend, B.&quot;},
+        MessageBox{message=&quot;Breezie: Oh! {p60}He's your friend!&quot;},
+        self.scene.objectLookup.Breezie:hop(),
+        MessageBox{message=&quot;Breezie: Well let him outta the cage already, guys!&quot;},
+        self.scene.objectLookup.Grounder:hop(),
+        MessageBox{message=&quot;Grounder: Daww man! {p60}But we did such a good job catchin' him!&quot;},
+        self.scene.objectLookup.Scratch:hop(),
+        MessageBox{message=&quot;Scratch: Breezie said to let him out drill bit{p60},\nba-HA! {p60}So do it already!&quot;},
+        self.scene.objectLookup.Grounder:hop(),
+        MessageBox{message=&quot;Grounder: Duh, ok. {p60}But I'm keepin' my eye on this one...&quot;},
+        Parallel {
+            Ease(self.scene.objectLookup.CageBack, &quot;y&quot;, 0, 1),
+            Ease(self.scene.objectLookup.CageFront, &quot;y&quot;, 0, 1)
+        },
+        Do(function()
+            self.scene.objectLookup.CageBack:remove()
+            self.scene.objectLookup.CageFront:remove()
+        end),
+        Wait(1),
+        MessageBox{message=&quot;Sonic: Yo, we good now?...&quot;},
+        AudioFade(&quot;music&quot;, 1, 0, 1),
+        Do(function() self.scene.player.state = &quot;holdsonic_right_unsteady&quot; end),
+        MessageBox{message=&quot;Sonic: ...cause I think I need... {p60}a little nap...&quot;},
+        Do(function()
+            self.scene.player.state = &quot;dropsonic_right&quot;
+            self.scene.objectLookup.Sonic.hidden = false
+            self.scene.objectLookup.Sonic.x = self.scene.player.x
+            self.scene.objectLookup.Sonic.y = self.scene.player.y - 70
+            self.scene.objectLookup.Sonic.sprite.sortOrderY = 0
+        end),
+        Animate(self.scene.objectLookup.Sonic.sprite, &quot;layright&quot;),
+        PlayAudio(&quot;sfx&quot;, &quot;bang&quot;, 1, true),
+        self.scene.player:hop(),
+        MessageBox{message=&quot;Sally: Sonic!&quot;},
+        Do(function()
+            self.scene:changeScene{map=&quot;sonicdream1&quot;, hint=&quot;dream2&quot;, fadeOutSpeed=0.2, fadeInSpeed=0.2, enterDelay=2, fadeOutMusic=true}
+        end)
     }
 end</property>
+   </properties>
+  </object>
+  <object id="308" name="Save" type="SavePoint" gid="1714" x="1600" y="1664" width="32" height="32">
+   <properties>
+    <property name="nonight" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/save.png"/>
    </properties>
   </object>
  </objectgroup>
@@ -1248,8 +1383,16 @@ end</property>
     <property name="sprite" type="file" value="../art/sprites/flametrail.png"/>
    </properties>
   </object>
+  <object id="312" name="CageFront" type="BasicNPC" gid="2374" x="902" y="1728" width="256" height="224">
+   <properties>
+    <property name="align" value="bottom_left"/>
+    <property name="defaultAnim" value="front"/>
+    <property name="ghost" type="bool" value="true"/>
+    <property name="sprite" type="file" value="../art/sprites/cage.png"/>
+   </properties>
+  </object>
  </objectgroup>
- <imagelayer name="smog" opacity="0.5">
+ <imagelayer name="smog" opacity="0.5" offsetx="64" offsety="0">
   <image source="../art/sprites/swampfog.png" width="1022" height="510"/>
   <properties>
    <property name="speedx" type="float" value="-0.5"/>
@@ -1315,12 +1458,12 @@ end</property>
 0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,14384,14384,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,
 0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,14384,14384,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,
 0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,14384,14384,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,
-0,0,0,0,0,0,0,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,
+0,0,0,0,0,0,0,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,14384,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,14384,14384,14384,14384,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,14384,14384,14384,14384,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,14384,14384,14384,14384,14384,14384,0,0,0,0,0,14384,14384,14384,14384,14384,14384,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14384,14384,14384,14384,14384,14384,14384,0,0,0,0,0,14384,14384,14384,14384,14384,14384,14384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

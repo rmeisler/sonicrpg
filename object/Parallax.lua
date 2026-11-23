@@ -49,8 +49,11 @@ function Parallax:construct(scene, layer)
 			self.layer.y = orig.y + o.y
 			self.oneDraw()
 		end
-		self.layer.x = (orig.x + self.dx) % (self.w)
-		self.layer.y = (orig.y + self.dy) % (self.h)
+		local dx = (self.layer.properties.speedx or 0) + (self.scene.camPos.dx or 0)
+		local dy = (self.layer.properties.speedy or 0) + (self.scene.camPos.dy or 0)
+
+		self.layer.x = (orig.x + dx) % (self.w)
+		self.layer.y = (orig.y + dy) % (self.h)
 		
 		if not self.scene.player then
 			return
@@ -80,9 +83,7 @@ function Parallax:construct(scene, layer)
 			end
 		end
 	end
-	
-	self.dx = self.layer.properties.speedx or 0
-	self.dy = self.layer.properties.speedy or 0
+
 	self.sticky = true
 	
 	self:addSceneHandler("update", Parallax.update)

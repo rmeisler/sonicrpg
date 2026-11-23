@@ -8,6 +8,12 @@ return {
         forward = {
             frames = {{0,0}}
         },
+		downright = {
+            frames = {{0,0}}
+        },
+		downleft = {
+            frames = {{6,0}}
+        },
 		backward = {
             frames = {{1,0}}
         },

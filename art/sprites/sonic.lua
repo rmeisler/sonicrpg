@@ -415,6 +415,28 @@ return {
 		teacher_evil = {
 			frames = {{14,11}}
 		},
+		veryyoungdesk = {
+			frames = {{9,13}}
+		},
+		veryyoungdeskscared = {
+			frames = {{10,13}}
+		},
+		veryyoungdesksweating = {
+			frames = {{6,13},{7,13}},
+			speed = 0.2
+		},
+		veryyoungdesksleep = {
+			frames = {{5,13}}
+		},
+		veryyoungdesksurprise = {
+			frames = {{3,13}}
+		},
+		veryyoungdesklookaway = {
+			frames = {{4,13}}
+		},
+		chalkboard = {
+			frames = {{8,13}}
+		},
 		attitude = {
 			frames = {{12,10}}
 		},

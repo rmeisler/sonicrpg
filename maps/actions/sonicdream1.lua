@@ -27,15 +27,15 @@ local BlockPlayer = require "actions/BlockPlayer"
 
 local BasicNPC = require "object/BasicNPC"
 
-return function(scene)
+return function(scene, hint)
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.hidden = true
+	
+	hint="dream2"
 
 	-- TV Static shader
 	local shine = require "lib/shine"
 	local tvstatic = shine.tvstatic()
-	scene.tvstatic = tvstatic
-	scene.tvstatic_time = 0
 	
 	local staticAction = function(duringFun)
 		return Serial {
@@ -59,10 +59,91 @@ return function(scene)
 		}
 	end
 
+	if hint == "dream2" then
+		scene.objectLookup.Rover.sprite.color = {255,255,255,0}
+		scene.objectLookup.Swatbot1.sprite.color = {255,255,255,0}
+		scene.objectLookup.Swatbot2.sprite.color = {255,255,255,0}
+		scene.objectLookup.Hoverbot1.sprite.color = {255,255,255,0}
+		scene.objectLookup.Hoverbot2.sprite.color = {255,255,255,0}
+
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+				scene.objectLookup.Chuck.hidden = true
+				scene.objectLookup.Chalkboard.hidden = false
+				scene.objectLookup.Chalkboard.x = scene.objectLookup.Chalkboard.x - 96
+				scene.objectLookup.Mom.x = scene.objectLookup.Mom.x - 96
+				scene.objectLookup.Cheetah.x = scene.objectLookup.Cheetah.x - 96
+				scene.tvstatic = tvstatic
+				scene.tvstatic_time = 0
+			end),
+			staticAction(),
+			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesksleep"),
+			Animate(scene.objectLookup.Mom.sprite, "teacher_concerned"),
+			Wait(1),
+			PlayAudio("music", "ep6trapped", 1, true, true),
+			Wait(1),
+			Parallel {
+				MessageBox{message="Teacher: Sonic! {p60}Are you listening?", textSpeed=3, closeAction=Wait(3)},
+				Serial {
+					Wait(1),
+					Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesksurprise"),
+					scene.objectLookup.Sonic:hop()
+				}
+			},
+			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesklookaway"),
+			Wait(1),
+			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesk"),
+			MessageBox{message="Teacher: This will be on tomorrow's exam!", textSpeed=3, closeAction=Wait(3)},
+
+			staticAction(),
+			Do(function()
+				scene.objectLookup.Cheetah.hidden = false
+			end),
+			Wait(0.5),
+			PlayAudio("sfx", "cheetabreathe", 1, true),
+			Wait(1),
+			scene.objectLookup.Sonic:hop(),
+			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdeskscared"),
+			Wait(1),
+			MessageBox{message="Teacher: This {h Cheetah Bot}{p60}, features the latest in hyper speed technology{p100}, the {h \"Super Sonic Microchip\"}!", textSpeed=3, closeAction=Wait(4.5)},
+			Animate(scene.objectLookup.Mom.sprite, "teacher_evil"),
+			Wait(1),
+			MessageBox{message="Teacher: With this microchip{p60}, any robot can outpace even the fastest mobian...", textSpeed=3, closeAction=Wait(4)},
+			Wait(1.5),
+			Do(function()
+				scene.objectLookup.Rover.hidden = false
+				scene.objectLookup.Swatbot1.hidden = false
+				scene.objectLookup.Swatbot2.hidden = false
+				scene.objectLookup.Hoverbot1.hidden = false
+				scene.objectLookup.Hoverbot2.hidden = false
+			end),
+			Parallel {
+				MessageBox{message="Teacher: Soon{p80}, this microchip will be installed in every bot in Robotropolis!!", textSpeed=3, closeAction=Wait(3)},
+				Serial {
+					Wait(3),
+					Do(function()
+						scene.objectLookup.Sonic.sprite:setAnimation("veryyoungdesksweating")
+					end),
+					Parallel {
+						Ease(scene.objectLookup.Rover.sprite.color, 4, 255, 0.5, "linear"),
+						Ease(scene.objectLookup.Swatbot1.sprite.color, 4, 255, 0.5, "linear"),
+						Ease(scene.objectLookup.Swatbot2.sprite.color, 4, 255, 0.5, "linear"),
+						Ease(scene.objectLookup.Hoverbot1.sprite.color, 4, 255, 0.5, "linear"),
+						Ease(scene.objectLookup.Hoverbot2.sprite.color, 4, 255, 0.5, "linear")
+					}
+				}
+			}
+		}
+	end
+	
 	return BlockPlayer {
 		Do(function()
 			scene.player.sprite.visible = false
 			scene.player.dropShadow.hidden = true
+			scene.tvstatic = tvstatic
+			scene.tvstatic_time = 0
 		end),
 		staticAction(),
 		Wait(1),

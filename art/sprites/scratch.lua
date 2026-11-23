@@ -1,8 +1,8 @@
 return {
     image = "scratch.png",
     starting = "idleleft",
-    w = 46,
-    h = 58,
+    w = 60,
+    h = 68,
 
     animations = {
 		idleright = {
@@ -10,6 +10,16 @@ return {
         },
         idleleft = {
             frames = {{2,0}}
+        },
+		idledown = {
+            frames = {{6,0}}
+        },
+		idleup = {
+            frames = {{7,0}}
+        },
+		laugh = {
+            frames = {{4,0},{5,0}},
+			speed = 0.2
         },
 		crouchright = {
 			frames = {{1,0}}

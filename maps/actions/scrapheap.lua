@@ -131,37 +131,54 @@ return function(scene, hint)
 			Wait(1),
 			MessageBox{message="Ba-HA-ha-HAAA!"},
 			Ease(scene.camPos, "x", -650, 0.5, "linear"),
+			Wait(0.5),
 			scene.objectLookup.Scratch:hop(),
 			MessageBox{message="???: Managed to get past all of our security, eh?"},
 			scene.objectLookup.Coconuts:hop(),
 			MessageBox{message="???: Dis guy must be some kinda robo genius or somethin'!"},
 			scene.objectLookup.Grounder:hop(),
-			MessageBox{message="???: Duh{p60}, he don't look so smart to me!"},
-			MessageBox{message="???: Well, uh-- {p60}you should prepare for trouble when you're up against the--"},
+			MessageBox{message="???: Duh{p60}, he doesn't look so smart to me!"},
+			AudioFade("music", 1, 0, 1),
+			MessageBox{message="???: Well, uh-- {p60}prepare for trouble when you're up against the--"},
 			PlayAudio("music", "dumbbots", 1, true, true),
 			scene.objectLookup.Scratch:hop(),
-			MessageBox{message="???: Hey! {p60}That's my line! {p60}Be-HA!"},
+			Do(function() scene.objectLookup.Scratch.sprite:setAnimation("laugh") end),
+			MessageBox{message="???: Hey! {p60}That's my line! {p60}Ba-HA!"},
+			Animate(scene.objectLookup.Scratch.sprite, "idledown"),
+			PlayAudio("sfx", "smack", 1, true),
 			scene.objectLookup.Grounder:hop(),
 			MessageBox{message="???: Ow!"},
 			scene.objectLookup.Scratch:hop(),
+			Do(function() scene.objectLookup.Scratch.sprite:setAnimation("laugh") end),
 			MessageBox{message="???: I am the leader after all!"},
 			scene.objectLookup.Coconuts:hop(),
-			MessageBox{message="???: Hey, who made you leada, peck?"},
+			MessageBox{message="???: Hey, who made you leada, stretch? {p60}\nYou couldn't peck your way out of a paper bag!"},
+			Animate(scene.objectLookup.Coconuts.sprite, "throwright"),
+			PlayAudio("sfx", "poptop", 1, true),
+			Animate(scene.objectLookup.Scratch.sprite, "idleup"),
+			-- Coconut hits Scratch's head
 			scene.objectLookup.Scratch:hop(),
-			MessageBox{message="???: That does it! {p60}Now you're gonna get it!"},
+			MessageBox{message="???: Alright, ba-HA!{p60} That does it! {p60}Now you're gonna get it!!"},
 			-- Fight cloud
 			Do(function()
-				scene.objectLookup.Sonic:remove()
-				scene.objectLookup.Sally:remove()
+				scene.objectLookup.Sonic.hidden = true
+				scene.objectLookup.Sally.hidden = true
 				scene.player.sprite.visible = true
+				GameState.leader = "sally"
+				scene.player:updateSprite()
 				scene.player.dropShadow.hidden = false
 				scene.player.state = "idleright"
 			end),
 			Ease(scene.camPos, "x", 0, 1),
 			Do(function()
-				scene.objectLookup.Coconuts.color = {255,255,255,255}
-				scene.objectLookup.Scratch.color = {255,255,255,255}
-				scene.objectLookup.Grounder.color = {255,255,255,255}
+				scene.objectLookup.Coconuts.sprite.color = {255,255,255,255}
+				scene.objectLookup.Scratch.sprite.color = {255,255,255,255}
+				scene.objectLookup.Grounder.sprite.color = {255,255,255,255}
+				
+				scene.objectLookup.Coconuts.sprite:setAnimation("idleup")
+				scene.objectLookup.Scratch.sprite:setAnimation("idleup")
+				scene.objectLookup.Grounder.sprite:setAnimation("idleup")
+				scene.objectLookup.Breezie.y = scene.objectLookup.Breezie.y + 64
 			end)
 		}
 	end

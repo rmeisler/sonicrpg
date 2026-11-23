@@ -20,6 +20,18 @@ return {
 		kneelleft = {
 			frames = {{16,3}}
 		},
+		holdsonic_right_smile = {
+			frames = {{11,0}}
+		},
+		holdsonic_right_surprise = {
+			frames = {{11,7}}
+		},
+		holdsonic_right_unsteady = {
+			frames = {{7,7}}
+		},
+		dropsonic_right = {
+			frames = {{8,7}}
+		},
 		
 		stepback = {
 		    frames = {{0,3},{1,3},{0,3},{5,3}},

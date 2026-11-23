@@ -56,7 +56,7 @@ return function(scene, hint)
 		end),
 		MessageBox{message="Sally: It's so dark in here..."},
 		Wait(0.5),
-		MessageBox{message="Sonic: Yo, watch where you're steppin', Sal! {p60}\nYou're walkin' for both of us, right now!"},
+		MessageBox{message="Sonic: Yo, watch where you're steppin', Sal! {p60}\nYou're walkin' for both of us right now!"},
 		Wait(0.5),
 		MessageBox{message="Sally: !!", closeAction=Wait(0.5)},
 		PlayAudio("music", "tumbling", 1, true),

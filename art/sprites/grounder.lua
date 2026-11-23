@@ -11,6 +11,9 @@ return {
         idleleft = {
             frames = {{2,0}}
         },
+		idleup = {
+            frames = {{4,0}}
+        },
 		crouchright = {
 			frames = {{1,0}}
 		},

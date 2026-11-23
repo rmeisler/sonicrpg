@@ -108,7 +108,7 @@ return {
 	{
         type = "map",
         file = "maps/sonicdream1.lua",
-		--primary = true -- testing
+		primary = true -- testing
     },
 	{
         type = "map",
@@ -138,7 +138,7 @@ return {
 	{
         type = "map",
         file = "maps/robot_wasteland6.lua",
-		primary = true -- testing
+		--primary = true -- testing
     },
 	{
         type = "map",
@@ -771,12 +771,19 @@ return {
 	{
 		type = "sound",
 		file = "audio/music/scrapheap.ogg",
+		category = "music",
+		looping = true
+	},
+	{
+		type = "sound",
+		file = "audio/music/ssss.ogg",
 		category = "music"
 	},
 	{
 		type = "sound",
 		file = "audio/music/dumbbots.ogg",
-		category = "music"
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",

@@ -142,6 +142,9 @@ Anonymous
 AmeixaRoxa
 Deebs
 Racoon Ninja
+Tonberry2k
+Joseph Tek Fox
+Silverbolt
 Joey "The Plokman" Tripp Nimmo
 Kronovi
 Ibeh Dubem/Flame the Teen

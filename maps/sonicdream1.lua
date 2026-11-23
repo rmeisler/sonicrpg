@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 21,
+  nextobjectid = 30,
   properties = {
     ["battlebg"] = "../art/backgrounds/robotropolis1.png",
     ["ignorenight"] = true,
@@ -259,6 +259,145 @@ return {
           visible = true,
           properties = {
             ["defaultAnim"] = "glass_tube",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["sprite"] = "../art/sprites/sonic.png"
+          }
+        },
+        {
+          id = 21,
+          name = "Cheetah",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 96,
+          y = 352,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idleright",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["sprite"] = "../art/sprites/cheeta.png"
+          }
+        },
+        {
+          id = 23,
+          name = "Rover",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 544,
+          y = 352,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idleleft",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["sprite"] = "../art/sprites/rover.png"
+          }
+        },
+        {
+          id = 24,
+          name = "Swatbot1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 256,
+          y = 480,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["sprite"] = "../art/sprites/swatbotwithblaster.png"
+          }
+        },
+        {
+          id = 25,
+          name = "Swatbot2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 448,
+          y = 480,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "idleup",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["sprite"] = "../art/sprites/swatbotwithblaster.png"
+          }
+        },
+        {
+          id = 26,
+          name = "Hoverbot2",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 384,
+          y = 288,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "downleft",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["sprite"] = "../art/sprites/hoverbotopening.png"
+          }
+        },
+        {
+          id = 27,
+          name = "Hoverbot1",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 48,
+          y = 288,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["align"] = "bottom_left",
+            ["defaultAnim"] = "downright",
+            ["ghost"] = true,
+            ["hidden"] = true,
+            ["sprite"] = "../art/sprites/hoverbotopening.png"
+          }
+        },
+        {
+          id = 29,
+          name = "Chalkboard",
+          type = "BasicNPC",
+          shape = "rectangle",
+          x = 224,
+          y = 288,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          gid = 6839,
+          visible = true,
+          properties = {
+            ["defaultAnim"] = "chalkboard",
             ["ghost"] = true,
             ["hidden"] = true,
             ["sprite"] = "../art/sprites/sonic.png"
