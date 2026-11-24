@@ -31,6 +31,7 @@ return function(scene, hint)
 	scene.player.sprite.visible = false
 	scene.player.dropShadow.hidden = true
 	
+	-- TODO REMOVE
 	hint="dream2"
 
 	-- TV Static shader
@@ -88,11 +89,11 @@ return function(scene, hint)
 				scene.tvstatic = tvstatic
 				scene.tvstatic_time = 0
 			end),
-			staticAction(),
 			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesksleep"),
 			Animate(scene.objectLookup.Mom.sprite, "teacher_concerned"),
+			staticAction(),
 			Parallel {
-				MessageBox{message="Teacher: Sonic! {p80}Are you listening?", textSpeed=3, closeAction=Wait(3)},
+				MessageBox{message="Teacher: Sonic! {p80}Are you listening?", textSpeed=3, closeAction=Wait(2)},
 				Serial {
 					Wait(0.5),
 					PlayAudio("music", "ep6trapped", 1, true, true),
@@ -103,7 +104,7 @@ return function(scene, hint)
 			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesklookaway"),
 			Wait(1),
 			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesk"),
-			MessageBox{message="Teacher: As I was saying...", textSpeed=3, closeAction=Wait(2)},
+			MessageBox{message="Teacher: This is going to be on the test...", textSpeed=3, closeAction=Wait(2)},
 
 			Wait(1),
 			Do(function()
@@ -113,10 +114,12 @@ return function(scene, hint)
 			PlayAudio("sfx", "cheetabreathe", 1, true),
 			scene.objectLookup.Sonic:hop(),
 			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdeskscared"),
-			MessageBox{message="Teacher: The {h Cheetah Bot} features the latest in\nhyper speed technology{p100}, the {h \"Super Sonic Microchip\"}!", textSpeed=3, closeAction=Wait(5)},
-			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesksurprise"),
-			MessageBox{message="Teacher: With this microchip, any robot will be able to outrun even the fastest hedgehog...", textSpeed=3, closeAction=Wait(5)},
 			Wait(1),
+			MessageBox{message="Teacher: The {h Cheetah Bot}, features the latest in\nhyper speed technology! {p60}The {h Super Sonic microchip}!", textSpeed=3, closeAction=Wait(4)},
+			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesksurprise"),
+			MessageBox{message="Teacher: With this {h microchip},{p60} any robot will able to\noutrun even the {h fastest hedgehog}!", textSpeed=3, closeAction=Wait(5)},
+			Wait(1),
+			Animate(scene.objectLookup.Mom.sprite, "teacher_evil"),
 			Do(function()
 				scene.objectLookup.Rover.hidden = false
 				scene.objectLookup.Swatbot1.hidden = false
@@ -124,9 +127,9 @@ return function(scene, hint)
 				scene.objectLookup.Hoverbot1.hidden = false
 				scene.objectLookup.Hoverbot2.hidden = false
 			end),
-			Animate(scene.objectLookup.Mom.sprite, "teacher_evil"),
 			Parallel {
-				MessageBox{message="Teacher: Soon, every bot in Robotropolis will have one!", textSpeed=3, closeAction=Wait(4)},
+				MessageBox{message="Teacher: Soon{p60}, every bot in Robotropolis will have one!", textSpeed=3, closeAction=Wait(4)},
+				
 				Serial {
 					Wait(2),
 					Do(function()
@@ -140,7 +143,12 @@ return function(scene, hint)
 						Ease(scene.objectLookup.Hoverbot2.sprite.color, 4, 255, 0.5, "linear")
 					}
 				}
-			}
+			},
+			Wait(2.5),
+			PlayAudio("sfx", "battlestart", 1, true),
+			Do(function()
+				scene:changeScene{map="sonicshut", hint="scrapheap", fadeOutSpeed=2, fadeInSpeed=2, fadeOutMusic=true}
+			end)
 		}
 	end
 	

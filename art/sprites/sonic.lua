@@ -388,6 +388,10 @@ return {
 			frames = {{11,13}}
 		},
 		
+		shock_wake = {
+			frames = {{16,13}}
+		},
+		
 		younghug1 = {
 			frames = {{0,10}}
 		},

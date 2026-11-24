@@ -81,7 +81,22 @@ return function(scene, hint)
 
 	--scene.audio:playMusic("knotholehut", 0.8)
 
-	if hint == "snowday" then
+	if hint == "scrapheap" then
+		local scrapheapLayer = scene:findLayer("scrapheap")
+		return BlockPlayer {
+			Do(function()
+				scene.player.sprite.visible = false
+				scene.player.dropShadow.hidden = true
+				scene.camPos.x = 0
+				scene.camPos.y = 0
+			end),
+			
+			Wait(0.2),
+			Animate(scene.objectLookup.Sonic.sprite, "shock_wake"),
+			Ease(scrapheapLayer, "opacity", 1, 0.3),
+			Wait(10)
+		}
+	elseif hint == "snowday" then
 		scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"
 		scene.objectLookup.Sonic:remove()
 		local prefix = "nighthide"

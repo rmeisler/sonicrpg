@@ -1266,9 +1266,9 @@ return function(self)
         Animate(self.scene.objectLookup.Sonic.sprite, &quot;layright&quot;),
         PlayAudio(&quot;sfx&quot;, &quot;bang&quot;, 1, true),
         self.scene.player:hop(),
-        MessageBox{message=&quot;Sally: Sonic!&quot;},
+        Wait(1),
         Do(function()
-            self.scene:changeScene{map=&quot;sonicdream1&quot;, hint=&quot;dream2&quot;, fadeOutSpeed=0.2, fadeInSpeed=0.2, enterDelay=2, fadeOutMusic=true}
+            self.scene:changeScene{map=&quot;sonicdream1&quot;, hint=&quot;dream2&quot;, fadeOutSpeed=2, fadeInSpeed=2, fadeOutMusic=true}
         end)
     }
 end</property>

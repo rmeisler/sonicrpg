@@ -58,7 +58,7 @@ return function(scene, hint)
 		Wait(0.5),
 		MessageBox{message="Sonic: Yo, watch where you're steppin', Sal! {p60}\nYou're walkin' for both of us right now!"},
 		Wait(0.5),
-		MessageBox{message="Sally: !!", closeAction=Wait(0.5)},
+		MessageBox{message="Sally: !!", closeAction=Wait(1)},
 		PlayAudio("music", "tumbling", 1, true),
 		Parallel {
 			MessageBox{message="Sonic: This is not coooool!", closeAction=Wait(3), textSpeed=3},
