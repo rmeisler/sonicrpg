@@ -770,14 +770,32 @@ return {
 	},
 	{
 		type = "sound",
-		file = "audio/music/scrapheap.ogg",
+		file = "audio/music/sonicandsally.ogg",
 		category = "music",
-		looping = true
+		looping=true
 	},
 	{
 		type = "sound",
-		file = "audio/music/ssss.ogg",
+		file = "audio/music/sallyromance.ogg",
 		category = "music"
+	},
+	{
+		type = "sound",
+		file = "audio/music/sallyworried.ogg",
+		category = "music",
+		looping=true
+	},
+	{
+		type = "sound",
+		file = "audio/music/sonicaimless.ogg",
+		category = "music",
+		looping=true
+	},
+	{
+		type = "sound",
+		file = "audio/music/scrapheap.ogg",
+		category = "music",
+		looping = true
 	},
 	{
 		type = "sound",

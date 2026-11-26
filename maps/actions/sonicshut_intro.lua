@@ -16,6 +16,7 @@ return function(scene, hint)
 	local Wait = require "actions/Wait"
 	local Do = require "actions/Do"
 	local Spawn = require "actions/Spawn"
+	local AudioFade = require "actions/AudioFade"
 	local BlockPlayer = require "actions/BlockPlayer"
 	local SpriteNode = require "object/SpriteNode"
 
@@ -82,7 +83,10 @@ return function(scene, hint)
 	--scene.audio:playMusic("knotholehut", 0.8)
 
 	if hint == "scrapheap" then
-		local scrapheapLayer = scene:findLayer("scrapheap")
+		local scrapheapLayers = {
+			scene:findLayer("scrapheap"),
+			scene:findLayer("scrapheap2")
+		}
 		return BlockPlayer {
 			Do(function()
 				scene.player.sprite.visible = false
@@ -93,8 +97,84 @@ return function(scene, hint)
 			
 			Wait(0.2),
 			Animate(scene.objectLookup.Sonic.sprite, "shock_wake"),
-			Ease(scrapheapLayer, "opacity", 1, 0.3),
-			Wait(10)
+			Wait(1),
+			MessageBox{message="Sonic?", closeAction=Wait(2)},
+			Wait(1),
+			PlayAudio("sfx", "bang", 1, true),
+			Animate(scene.objectLookup.Sonic.sprite, "shock_wake_hugged"),
+			Wait(2),
+			Parallel {
+				MessageBox{message="Sally: Sonic!"},
+				Ease(scrapheapLayers[1], "opacity", 1, 0.3),
+				Ease(scrapheapLayers[2], "opacity", 1, 0.3),
+			},
+			Animate(scene.objectLookup.Sonic.sprite, "shock_wake_hugged_smile"),
+			Wait(0.5),
+			PlayAudio("music", "sallyromance", 0.8, true),
+			MessageBox{message="Sonic: H-Hey Sal..."},
+			Wait(2),
+			MessageBox{message="Sally: Sorry! {p60}I'm just so happy to see you awake!"},
+			MessageBox{message="Sonic: Missed your hedgehog hunk that much, huh?"},
+			MessageBox{message="Sally: *sigh*{p60} I think I like you better unconscious."},
+			MessageBox{message="Sonic: *laughs*{p60} Yeah, right! {p60}I--"},
+			MessageBox{message="Sonic: Oof. {p60}My head...", textSpeed=3},
+			Wait(1),
+			MessageBox{message="Sonic: Oh man...{p60} how long was I out?", textSpeed=3},
+			AudioFade("music", 0.8, 0, 0.5),
+			MessageBox{message="Sally: Yeah{p60}, about that..."},
+			MessageBox{message="Sonic: What? {p60}A day?"},
+			Wait(1),
+			MessageBox{message="Sally: You've been unconscious for a week, Sonic."},
+			MessageBox{message="Sonic: What?! {p60}B-But the mission--{p60} the others--{p60}\noh man, we gotta juice!!"},
+			MessageBox{message="Sonic: ARG!"},
+			MessageBox{message="Sally: Sonic, be careful!"},
+			Wait(1),
+			PlayAudio("music", "sonicsad", 1, true, true),
+			MessageBox{message="Sonic: You're tellin' me I've been in bed for a whole week...{p80} but my leg is still this messed up?...", textSpeed=3},
+			Wait(1),
+			MessageBox{message="Sally: You were really hurt, Sonic. {p60}Worse than we initially thought... {p80}we just have to be patient."},
+			MessageBox{message="Sonic: Patient?! {p60}Sal! {p60}What are ya talkin' about?!\n{p80}We were just about to finally take down Robotnik, once and for all, and then--"},
+			MessageBox{message="Sally: Here. {p60}Take this."},
+			Wait(1),
+			MessageBox{message="Sonic: ?"},
+			Wait(1),
+			MessageBox{message="Sally: While you've been recovering{p60}, I've been building a communication device."},
+			MessageBox{message="Sally: Since the others are probably looking\nfor us{p60}, I'm hoping one of them will pick up my\ndistress signals."},
+			MessageBox{message="Sally: The only problem is{p60}, I can't seem to form a\ntwo-way link with anything up there{p60}, so I'm not\nsure if anyone is receiving my messages."},
+			Wait(1),
+			MessageBox{message="Sonic: ..."},
+			Wait(1),
+			MessageBox{message="Sally: I know this is a lot, Sonic. {p80}But the only way we'll make it out of here is if we stay calm and act rationally."},
+			
+			Wait(1),
+			MessageBox{message="Sonic: Ok{p60}, I just got one question. {p100}What the heck did you hand me a second ago?"},
+			MessageBox{message="Sally: Oh, it's a cane{p60}, to help you walk."},
+			MessageBox{message="Sonic: Cool{p60}, cause it looks like a robot leg..."},
+			MessageBox{message="Sally: Yeah{p60}, it is... {p80}It's how things are down here. {p80}You make use of what's available."},
+			Wait(1),
+			MessageBox{message="Sonic: ...{p60} *So {h Sonic the Hedgehog} needs a cane now...*", textSpeed=3},
+			AudioFade("music", 1, 0, 1),
+			Wait(1),
+			PlayAudio("music", "scrapheap", 1, true, true),
+			MessageBox{message="Breezie: Ah, I see that prince charming has finally awaken from his long slumber!"},
+			MessageBox{message="Sonic: Uh, Breezie{p60}, right?"},
+			MessageBox{message="Breezie: Thats me!{p60} I see you haven't suffered any amnesia{p60}, that's great news!"},
+			MessageBox{message="Breezie: You're certainly in better shape than that friend of yours{p60}, B is it?{p60} I'm not sure what happened to him, but he's not all there..."},
+			MessageBox{message="Sally: *long sigh*{p60} Well, I better get back to work."},
+			MessageBox{message="Breezie: Sounds great! {p60}I'll join you!"},
+			Wait(1),
+			MessageBox{message="Sally: *exasperated breath*{p60} Uh... {p60}ok, sure."},
+			MessageBox{message="Sonic: I'm comin' too!"},
+			MessageBox{message="Sally: Take it easy, Sonic. {p60}You only just woke up! {p60}Maybe try to rest a bit more?"},
+			MessageBox{message="Sonic: Oh come on, Sal, I--{p60} ack!"},
+			Wait(1),
+			MessageBox{message="Sonic: *sigh*"},
+			Wait(1),
+			MessageBox{message="Sally: It's ok. {p60}I'll come visit later."},
+			Wait(1),
+			MessageBox{message="Sonic: Ok."},
+			Wait(3),
+			MessageBox{message="Sonic: I've been asleep for a whole week and Sal thinks I'm just gonna lay around all day?!{p60} Fat chance!"}
 		}
 	elseif hint == "snowday" then
 		scene.objectLookup.Door.object.properties.scene = "knotholesnowday.lua"

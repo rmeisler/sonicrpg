@@ -391,6 +391,12 @@ return {
 		shock_wake = {
 			frames = {{16,13}}
 		},
+		shock_wake_hugged = {
+			frames = {{1,13}}
+		},
+		shock_wake_hugged_smile = {
+			frames = {{0,13}}
+		},
 		
 		younghug1 = {
 			frames = {{0,10}}
