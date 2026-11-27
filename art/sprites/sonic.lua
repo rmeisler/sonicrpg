@@ -421,6 +421,9 @@ return {
 		sit_questionmark = {
 			frames = {{6,14}}
 		},
+		sit_questionmark_cane = {
+			frames = {{7,14}}
+		},
 		
 		younghug1 = {
 			frames = {{0,10}}

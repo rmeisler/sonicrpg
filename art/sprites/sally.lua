@@ -348,6 +348,10 @@ return {
 			frames = {{5,5}}
 		},
 		
+		handleg = {
+			frames = {{4,5}}
+		},
+		
 		sadright = {
 			frames = {{12,0}}
 		},
