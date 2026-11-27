@@ -125,7 +125,7 @@ return function(scene, hint)
 			},
 			Wait(1),
 			Animate(scene.objectLookup.Sonic.sprite, "veryyoungdesksurprise"),
-			MessageBox{message="Teacher: The {h Cheetah Bot}, features the latest in\nhyper speed technology! {p60}The {h Super Sonic microchip}!", textSpeed=3, closeAction=Wait(4)},
+			MessageBox{message="Teacher: The {h Cheetah Bot} features the latest in\nhyper speed technology! {p60}The {h Super Sonic microchip}!", textSpeed=3, closeAction=Wait(4)},
 			MessageBox{message="Teacher: With this {h microchip},{p60} any bot can outpace even\nthe {h fastest hedgehog}!", textSpeed=3, closeAction=Wait(5)},
 			Wait(1),
 			Animate(scene.objectLookup.Mom.sprite, "teacher_evil"),
@@ -154,7 +154,7 @@ return function(scene, hint)
 					Wait(2.7),
 					PlayAudio("sfx", "battlestart", 1, true),
 					Do(function()
-						scene:changeScene{map="sonicshut", hint="scrapheap", fadeOutSpeed=2, fadeInSpeed=2, fadeOutMusic=true}
+						scene:changeScene{map="sonicshut_scrapheap", hint="scrapheap", fadeOutSpeed=2, fadeInSpeed=2, fadeOutMusic=true}
 					end)
 				}
 			}

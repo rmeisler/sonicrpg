@@ -397,6 +397,21 @@ return {
 		shock_wake_hugged_smile = {
 			frames = {{0,13}}
 		},
+		wake_smile = {
+			frames = {{2,13}}
+		},
+		wake_scared = {
+			frames = {{0,14}}
+		},
+		wake_head = {
+			frames = {{1,14}}
+		},
+		wake_head2 = {
+			frames = {{3,14}}
+		},
+		wake_laugh = {
+			frames = {{2,14}}
+		},
 		
 		younghug1 = {
 			frames = {{0,10}}

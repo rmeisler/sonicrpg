@@ -32,6 +32,9 @@ return {
 		dropsonic_right = {
 			frames = {{8,7}}
 		},
+		sit_smileaway = {
+			frames = {{5,7}}
+		},
 		
 		stepback = {
 		    frames = {{0,3},{1,3},{0,3},{5,3}},

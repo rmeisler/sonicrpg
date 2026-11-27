@@ -85,7 +85,8 @@ return function(scene, hint)
 	if hint == "scrapheap" then
 		local scrapheapLayers = {
 			scene:findLayer("scrapheap"),
-			scene:findLayer("scrapheap2")
+			scene:findLayer("scrapheap2"),
+			scene:findLayer("disappear")
 		}
 		return BlockPlayer {
 			Do(function()
@@ -95,19 +96,20 @@ return function(scene, hint)
 				scene.camPos.y = 0
 			end),
 			
-			Wait(0.2),
+			Wait(0.6),
 			Animate(scene.objectLookup.Sonic.sprite, "shock_wake"),
-			Wait(1),
-			MessageBox{message="Sonic?", closeAction=Wait(2)},
+			Wait(2),
+			MessageBox{message="Sonic?", closeAction=Wait(1.5)},
 			Wait(1),
 			PlayAudio("sfx", "bang", 1, true),
 			Animate(scene.objectLookup.Sonic.sprite, "shock_wake_hugged"),
-			Wait(2),
 			Parallel {
 				MessageBox{message="Sally: Sonic!"},
 				Ease(scrapheapLayers[1], "opacity", 1, 0.3),
 				Ease(scrapheapLayers[2], "opacity", 1, 0.3),
+				Ease(scrapheapLayers[3], "opacity", 0, 0.3),
 			},
+			Wait(1),
 			Animate(scene.objectLookup.Sonic.sprite, "shock_wake_hugged_smile"),
 			Wait(0.5),
 			PlayAudio("music", "sallyromance", 0.8, true),

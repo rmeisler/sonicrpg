@@ -152,6 +152,11 @@ return {
     },
 	{
         type = "map",
+		file = "maps/sonicshut_scrapheap.lua",
+		--primary = true
+    },
+	{
+        type = "map",
         file = "maps/greatjungle.lua",
 		--primary = true
     },
