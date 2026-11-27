@@ -108,7 +108,7 @@ return {
 	{
         type = "map",
         file = "maps/sonicdream1.lua",
-		primary = true -- testing
+		--primary = true -- testing
     },
 	{
         type = "map",
@@ -153,7 +153,7 @@ return {
 	{
         type = "map",
 		file = "maps/sonicshut_scrapheap.lua",
-		--primary = true
+		primary = true
     },
 	{
         type = "map",

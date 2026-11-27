@@ -412,6 +412,15 @@ return {
 		wake_laugh = {
 			frames = {{2,14}}
 		},
+		sit_concerned = {
+			frames = {{4,14}}
+		},
+		sit_speak = {
+			frames = {{5,14}}
+		},
+		sit_questionmark = {
+			frames = {{6,14}}
+		},
 		
 		younghug1 = {
 			frames = {{0,10}}
